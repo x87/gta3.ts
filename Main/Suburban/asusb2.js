@@ -1,0 +1,915 @@
+// Generated from Main/Suburban/asusb2.sc
+// Imports: vars (../../../vars.mts), ide (../../../ide.ts).
+// Copy or re-point these paths if you move the output tree; repo copies live next to this converter.
+import { $ } from "../../../vars.mts";
+import { car, ped, hier } from "../../../ide.ts";
+
+
+async function mission_start_as2() {
+  Stat.RegisterMissionGiven();
+  // ScriptName
+  $.flag_player_on_mission = 1;
+  $.flag_player_on_asuka_suburban_mission = 1;
+  await asyncWait(0);
+  $.flag_kappa1_dead = 0;
+  $.flag_kappa2_dead = 0;
+  $.flag_kappa3_dead = 0;
+  $.flag_kappa4_dead = 0;
+  $.flag_kappa5_dead = 0;
+  $.flag_kappa6_dead = 0;
+  $.flag_kappa7_dead = 0;
+  $.flag_kappa8_dead = 0;
+  $.flag_kappa9_dead = 0;
+  $.flag_kappa10_dead = 0;
+  $.flag_kappa11_dead = 0;
+  $.flag_kappa12_dead = 0;
+  $.flag_kappa1_created = 0;
+  $.flag_kappa2_created = 0;
+  $.flag_kappa3_created = 0;
+  $.flag_kappa4_created = 0;
+  $.flag_kappa5_created = 0;
+  $.flag_kappa6_created = 0;
+  $.flag_kappa7_created = 0;
+  $.flag_kappa8_created = 0;
+  $.flag_kappa9_created = 0;
+  $.flag_kappa10_created = 0;
+  $.flag_kappa11_created = 0;
+  $.flag_kappa12_created = 0;
+  $.blip_kappa1_created = 0;
+  $.blip_kappa2_created = 0;
+  $.blip_kappa3_created = 0;
+  $.blip_kappa4_created = 0;
+  $.blip_kappa5_created = 0;
+  $.blip_kappa6_created = 0;
+  $.blip_kappa7_created = 0;
+  $.blip_kappa8_created = 0;
+  $.blip_kappa9_created = 0;
+  $.blip_kappa10_created = 0;
+  $.blip_kappa11_created = 0;
+  $.blip_kappa12_created = 0;
+  $.counter_kappa_dead = 0;
+  $.particle_time_as2 = 0;
+  $.counter_kappa_dead_ind = 0;
+  $.counter_kappa_dead_com = 0;
+  $.counter_kappa_dead_sub = 0;
+  $.flag_as2_1 = 0;
+  $.flag_as2_2 = 0;
+  $.flag_as2_3 = 0;
+  $.flag_particle_as2 = 0;
+  $.flag_guard1_created = 0;
+  $.kappa_time = 470000;
+  $.flag_timer_started = 0;
+  $.kappa1_x = 1342.0;
+  $.kappa1_y = -821.0;
+  $.kappa2_x = 1024.1;
+  $.kappa2_y = -465.57;
+  $.kappa3_x = 1351.22;
+  $.kappa3_y = -259.56;
+  $.kappa4_x = 286.4;
+  $.kappa4_y = -667.8;
+  $.kappa5_x = 28.0;
+  $.kappa5_y = -850.0;
+  $.kappa6_x = 14.16;
+  $.kappa6_y = -1140.0;
+  $.kappa7_x = 73.16;
+  $.kappa7_y = -1359.8;
+  $.kappa8_x = -221.0;
+  $.kappa8_y = -197.0;
+  $.kappa9_x = 282.8;
+  $.kappa9_y = -1492.4;
+  $.kappa10_x = -644.0;
+  $.kappa10_y = -721.5;
+  $.kappa11_x = -212.0;
+  $.kappa11_y = 310.0;
+  $.kappa12_x = -1255.0;
+  $.kappa12_y = -113.0;
+  Streaming.RequestModel(csitecutscene);
+  Streaming.LoadSpecialCharacter(1, $.asuka);
+  Streaming.LoadSpecialCharacter(2, $.miguel);
+  Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
+  Streaming.LoadSpecialModel(hier`cutobj02`, ASUKAH);
+  Streaming.LoadSpecialModel(hier`cutobj03`, WHIP);
+  Streaming.LoadAllModelsNow();
+  while (!(Streaming.HasModelLoaded(csitecutscene))) {
+    await asyncWait(0);
+  }
+  while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasSpecialCharacterLoaded(2))) {
+    await asyncWait(0);
+  }
+  while (!(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(hier`cutobj03`))) {
+    await asyncWait(0);
+  }
+  Cutscene.Load(a7_etg);
+  Streaming.Switch(1 /* ON */);
+  Cutscene.SetOffset(369.02, -327.5, 18.46);
+  $.cs_player = CutsceneObject.Create(ped`PLAYER`);
+  $.cs_player.SetAnim($.player);
+  $.cs_asuka = CutsceneObject.Create(ped`SPECIAL1`);
+  $.cs_asuka.SetAnim($.asuka);
+  $.cs_miguel = CutsceneObject.Create(ped`SPECIAL2`);
+  $.cs_miguel.SetAnim($.miguel);
+  $.cs_whip = CutsceneObject.Create(hier`cutobj03`);
+  $.cs_whip.SetAnim(WHIP);
+  $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`);
+  $.cs_playerhead.SetAnim($.player);
+  $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj02`);
+  $.cs_asukahead.SetAnim($.asuka);
+  $.player.SetCoordinates(373.7523, -327.2676, 17.1950);
+  $.player.SetHeading(270.0);
+  Camera.DoFade(250, 1 /* FADE_IN */);
+  World.SwitchRubbish(0 /* OFF */);
+  Streaming.Switch(0 /* OFF */);
+  World.SwitchProcessing(0 /* OFF */);
+  Cutscene.Start();
+  $.cs_time = Cutscene.GetTime();
+  while ($.cs_time < 3445) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.PrintNow("AS2_A1", 10000, 1);
+  while ($.cs_time < 7961) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.PrintNow("AS2_A2", 10000, 1);
+  while ($.cs_time < 9836) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.PrintNow("AS2_A", 10000, 1);
+  while ($.cs_time < 13013) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.PrintNow("AS2_B", 10000, 1);
+  while ($.cs_time < 16802) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.PrintNow("AS2_C", 10000, 1);
+  while ($.cs_time < 20591) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.PrintNow("AS2_D", 10000, 1);
+  while ($.cs_time < 23499) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.PrintNow("AS2_E", 10000, 1);
+  while ($.cs_time < 27594) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.PrintNow("AS2_F", 10000, 1);
+  while ($.cs_time < 30000) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Camera.DoFade(1500, 0 /* FADE_OUT */);
+  while (!(Cutscene.HasFinished())) {
+    await asyncWait(0);
+  }
+  Text.ClearPrints();
+  while (Camera.GetFadingStatus()) {
+    await asyncWait(0);
+  }
+  Cutscene.Clear();
+  Camera.DoFade(0, 0 /* FADE_OUT */);
+  Camera.SetBehindPlayer();
+  await asyncWait(500);
+  Camera.DoFade(1500, 1 /* FADE_IN */);
+  Streaming.UnloadSpecialCharacter(1);
+  Streaming.UnloadSpecialCharacter(2);
+  Streaming.MarkModelAsNoLongerNeeded(csitecutscene);
+  Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
+  Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
+  Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`);
+  World.SwitchRubbish(1 /* ON */);
+  Streaming.Switch(1 /* ON */);
+  World.SwitchProcessing(1 /* ON */);
+  Hud.DisplayCounterWithString($.counter_kappa_dead, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS);
+  $.timer_as2_start = Clock.GetGameTimer();
+  Text.PrintNow("AS2_12", 5000, 1);
+  Text.PrintSoon("AS2_12A", 5000, 1);
+  Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */);
+  Streaming.RequestModel(coffee);
+  while (!(Streaming.HasModelLoaded(coffee))) {
+    await asyncWait(0);
+  }
+  Streaming.RequestModel(car`COLUMB`);
+  while (!(Streaming.HasModelLoaded(car`COLUMB`))) {
+    await asyncWait(0);
+  }
+  Streaming.RequestModel(ped`GANG_COLOMBIAN_A`);
+  while (!(Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_A`))) {
+    await asyncWait(0);
+  }
+  Streaming.RequestModel(ped`GANG_COLOMBIAN_B`);
+  while (!(Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_B`))) {
+    await asyncWait(0);
+  }
+  while ($.counter_kappa_dead < 9) {
+    await asyncWait(0);
+    if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+      if ($.flag_kappa1_created == 0) {
+        if ($.player.LocateAnyMeans2D($.kappa1_x, $.kappa1_y, 150.0, 150.0, 0 /* false */)) {
+          $.kappa_cartel1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa1_x, $.kappa1_y, -100.0);
+          $.kappa_cartel1.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+          $.kappa_cartel1.GiveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+          $.kappa_cartel1.SetStayInSamePlace(1 /* true */);
+          $.kappa_1 = Object.Create(coffee, $.kappa1_x, $.kappa1_y, -100.0);
+          $.kappa_1.SetHeading(180.0);
+          $.kappa_1.SetCollision(1 /* true */);
+          $.kappa_1.SetDynamic(0 /* false */);
+          if ($.blip_kappa1_created == 0) {
+            $.blip_kappa1 = Blip.AddForObject($.kappa_1);
+            $.blip_kappa1_created = 1;
+          }
+          $.flag_kappa1_created = 1;
+        }
+      }
+      if ($.flag_kappa3_created == 0) {
+        if ($.player.IsInZone("LITTLEI")) {
+          $.kappa_cartel3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa3_x, $.kappa3_y, -100.0);
+          $.kappa_cartel3.SetHeading(270.0);
+          $.kappa_cartel3.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+          $.kappa_cartel3.GiveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
+          $.kappa_cartel3.SetStayInSamePlace(1 /* true */);
+          $.kappa_3 = Object.Create(coffee, $.kappa3_x, $.kappa3_y, -100.0);
+          $.kappa_3.SetHeading(180.0);
+          $.kappa_3.SetCollision(1 /* true */);
+          $.kappa_3.SetDynamic(0 /* false */);
+          if ($.blip_kappa3_created == 0) {
+            $.blip_kappa3 = Blip.AddForObject($.kappa_3);
+            $.blip_kappa3_created = 1;
+          }
+          $.flag_kappa3_created = 1;
+        }
+      }
+    }
+    if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+      if ($.flag_kappa4_created == 0) {
+        $.kappa_cartel4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, $.kappa4_x, $.kappa4_y, -100.0);
+        $.kappa_cartel4.SetHeading(360.0);
+        $.kappa_cartel4.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        $.kappa_cartel4.GiveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+        $.kappa_cartel4.SetStayInSamePlace(1 /* true */);
+        $.kappa_cartel4.AddArmor(100);
+        $.kappa_4 = Object.Create(coffee, $.kappa4_x, $.kappa4_y, -100.0);
+        $.kappa_4.SetHeading(270.0);
+        $.kappa_4.SetCollision(1 /* true */);
+        $.kappa_4.SetDynamic(0 /* false */);
+        if ($.blip_kappa4_created == 0) {
+          $.blip_kappa4 = Blip.AddForObject($.kappa_4);
+          $.blip_kappa4_created = 1;
+        }
+        $.flag_kappa4_created = 1;
+      }
+      if ($.flag_kappa5_created == 0) {
+        if ($.player.IsInZone("PARK")) {
+          $.kappa_cartel5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa5_x, $.kappa5_y, -100.0);
+          $.kappa_cartel5.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+          $.kappa_cartel5.GiveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+          $.kappa_cartel5.SetStayInSamePlace(1 /* true */);
+          $.kappa_5 = Object.Create(coffee, $.kappa5_x, $.kappa5_y, -100.0);
+          $.kappa_5.SetCollision(1 /* true */);
+          $.kappa_5.SetDynamic(0 /* false */);
+          if ($.blip_kappa5_created == 0) {
+            $.blip_kappa5 = Blip.AddForObject($.kappa_5);
+            $.blip_kappa5_created = 1;
+          }
+          $.flag_kappa5_created = 1;
+        }
+      }
+      if ($.flag_kappa6_created == 0) {
+        if ($.player.IsInZone("SHOPING")) {
+          $.kappa_cartel6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, $.kappa6_x, $.kappa6_y, -100.0);
+          $.kappa_cartel6.SetHeading(190.0);
+          $.kappa_cartel6.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+          $.kappa_cartel6.GiveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+          $.kappa_cartel6.SetStayInSamePlace(1 /* true */);
+          $.kappa_6 = Object.Create(coffee, $.kappa6_x, $.kappa6_y, -100.0);
+          $.kappa_6.SetHeading(145.0);
+          $.kappa_6.SetCollision(1 /* true */);
+          $.kappa_6.SetDynamic(0 /* false */);
+          if ($.blip_kappa6_created == 0) {
+            $.blip_kappa6 = Blip.AddForObject($.kappa_6);
+            $.blip_kappa6_created = 1;
+          }
+          $.flag_kappa6_created = 1;
+        }
+      }
+      if ($.flag_kappa7_created == 0) {
+        if ($.player.IsInZone("SHOPING")) {
+          $.kappa_cartel7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa7_x, $.kappa7_y, -100.0);
+          $.kappa_cartel7.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+          $.kappa_cartel7.GiveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+          $.kappa_cartel7.SetStayInSamePlace(1 /* true */);
+          $.kappa_7 = Object.Create(coffee, $.kappa7_x, $.kappa7_y, -100.0);
+          $.kappa_7.SetCollision(1 /* true */);
+          $.kappa_7.SetDynamic(0 /* false */);
+          if ($.blip_kappa7_created == 0) {
+            $.blip_kappa7 = Blip.AddForObject($.kappa_7);
+            $.blip_kappa7_created = 1;
+          }
+          $.flag_kappa7_created = 1;
+        }
+      }
+      if ($.flag_kappa9_created == 0) {
+        if ($.player.IsInZone("YAKUSA")) {
+          $.kappa_cartel9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa9_x, $.kappa9_y, 23.7);
+          $.kappa_cartel9.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+          $.kappa_cartel9.GiveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
+          $.kappa_cartel9.SetStayInSamePlace(1 /* true */);
+          $.kappa_9 = Object.Create(coffee, $.kappa9_x, $.kappa9_y, -100.0);
+          $.kappa_9.SetHeading(270.0);
+          $.kappa_9.SetCollision(1 /* true */);
+          $.kappa_9.SetDynamic(0 /* false */);
+          if ($.blip_kappa9_created == 0) {
+            $.blip_kappa9 = Blip.AddForObject($.kappa_9);
+            $.blip_kappa9_created = 1;
+          }
+          $.flag_kappa9_created = 1;
+        }
+      }
+    }
+    if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+      if ($.flag_kappa10_created == 0) {
+        if ($.player.IsInZone("AIRPORT")) {
+          $.kappa_cartel10 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, $.kappa10_x, $.kappa10_y, 18.9);
+          $.kappa_cartel10.SetHeading(50.0);
+          $.kappa_cartel10.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+          $.kappa_cartel10.GiveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+          $.kappa_cartel10.SetStayInSamePlace(1 /* true */);
+          $.kappa_10 = Object.Create(coffee, $.kappa10_x, $.kappa10_y, -100.0);
+          $.kappa_10.SetCollision(1 /* true */);
+          $.kappa_10.SetDynamic(0 /* false */);
+          if ($.blip_kappa10_created == 0) {
+            $.blip_kappa10 = Blip.AddForObject($.kappa_10);
+            $.blip_kappa10_created = 1;
+          }
+          $.flag_kappa10_created = 1;
+        }
+      }
+      if ($.flag_kappa12_created == 0) {
+        if ($.player.IsInZone("SUB_IND")) {
+          $.kappa_cartel12 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, $.kappa12_x, $.kappa12_y, -100.0);
+          $.kappa_cartel12.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+          $.kappa_cartel12.GiveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+          $.kappa_12 = Object.Create(coffee, $.kappa12_x, $.kappa12_y, -100.0);
+          $.kappa_cartel12.SetStayInSamePlace(1 /* true */);
+          $.kappa_12.SetCollision(1 /* true */);
+          $.kappa_12.SetDynamic(0 /* false */);
+          if ($.blip_kappa12_created == 0) {
+            $.blip_kappa12 = Blip.AddForObject($.kappa_12);
+            $.blip_kappa12_created = 1;
+          }
+          $.flag_kappa12_created = 1;
+        }
+      }
+      if ($.flag_kappa10_created == 1 || $.flag_kappa12_created == 1) {
+        if ($.flag_guard1_created == 0) {
+          $.patriot_1 = Car.Create(131 /* CAR_COLUMB */, -706.3, -285.7, 18.3);
+          $.varmint_1 = Char.CreateInsideCar($.patriot_1, 12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`);
+          $.varmint_1.GiveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+          $.varmint_1.SetObjKillPlayerAnyMeans($.player);
+          $.flag_guard1_created = 1;
+        }
+      }
+    }
+    if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
+      if ($.kappa_1.HasBeenDamaged()) {
+        $.flag_kappa1_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_ind;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa1.Remove();
+        if (!(Char.IsDead($.kappa_cartel1))) {
+          $.kappa_cartel1.ClearThreatSearch();
+          $.kappa_cartel1.SetObjRunToCoord(1335.5, -820.5);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel1))) {
+        $.kappa_cartel1.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa1_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel1))) {
+        if ($.kappa_cartel1.IsObjectivePassed()) {
+          $.kappa_cartel1.TurnToFacePlayer($.player);
+          $.kappa_cartel1.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel1.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    if ($.flag_kappa3_dead == 0 && $.flag_kappa3_created == 1) {
+      if ($.kappa_3.HasBeenDamaged()) {
+        $.flag_kappa3_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_ind;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa3.Remove();
+        if (!(Char.IsDead($.kappa_cartel3))) {
+          $.kappa_cartel3.ClearThreatSearch();
+          $.kappa_cartel3.SetObjRunToCoord(1342.7, -259.0);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel3))) {
+        $.kappa_cartel3.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa3_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel3))) {
+        if ($.kappa_cartel3.IsObjectivePassed()) {
+          $.kappa_cartel3.TurnToFacePlayer($.player);
+          $.kappa_cartel3.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel3.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    if ($.flag_kappa4_dead == 0 && $.flag_kappa4_created == 1) {
+      if ($.kappa_4.HasBeenDamaged()) {
+        $.flag_kappa4_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_com;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa4.Remove();
+        if (!(Char.IsDead($.kappa_cartel4))) {
+          $.kappa_cartel4.ClearThreatSearch();
+          $.kappa_cartel4.SetObjRunToCoord(280.0, -676.5);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel4))) {
+        $.kappa_cartel4.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa4_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel4))) {
+        if ($.kappa_cartel4.IsObjectivePassed()) {
+          $.kappa_cartel4.TurnToFacePlayer($.player);
+          $.kappa_cartel4.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel4.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    if ($.flag_kappa5_dead == 0 && $.flag_kappa5_created == 1) {
+      if ($.kappa_5.HasBeenDamaged()) {
+        $.flag_kappa5_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_com;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa5.Remove();
+        if (!(Char.IsDead($.kappa_cartel5))) {
+          $.kappa_cartel5.ClearThreatSearch();
+          $.kappa_cartel5.SetObjRunToCoord(34.5, -850.0);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel5))) {
+        $.kappa_cartel5.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa5_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel5))) {
+        if ($.kappa_cartel5.IsObjectivePassed()) {
+          $.kappa_cartel5.TurnToFacePlayer($.player);
+          $.kappa_cartel5.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel5.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    if ($.flag_kappa6_dead == 0 && $.flag_kappa6_created == 1) {
+      if ($.kappa_6.HasBeenDamaged()) {
+        $.flag_kappa6_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_com;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa6.Remove();
+        if (!(Char.IsDead($.kappa_cartel6))) {
+          $.kappa_cartel6.ClearThreatSearch();
+          $.kappa_cartel6.SetObjRunToCoord(13.7, -1135.3);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel6))) {
+        $.kappa_cartel6.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa6_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel6))) {
+        if ($.kappa_cartel6.IsObjectivePassed()) {
+          $.kappa_cartel6.TurnToFacePlayer($.player);
+          $.kappa_cartel6.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel6.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    if ($.flag_kappa7_dead == 0 && $.flag_kappa7_created == 1) {
+      if ($.kappa_7.HasBeenDamaged()) {
+        $.flag_kappa7_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_com;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa7.Remove();
+        if (!(Char.IsDead($.kappa_cartel7))) {
+          $.kappa_cartel7.ClearThreatSearch();
+          $.kappa_cartel7.SetObjRunToCoord(79.0, -1361.0);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel7))) {
+        $.kappa_cartel7.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa7_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel7))) {
+        if ($.kappa_cartel7.IsObjectivePassed()) {
+          $.kappa_cartel7.TurnToFacePlayer($.player);
+          $.kappa_cartel7.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel7.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    if ($.flag_kappa9_dead == 0 && $.flag_kappa9_created == 1) {
+      if ($.kappa_9.HasBeenDamaged()) {
+        $.flag_kappa9_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_com;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa9.Remove();
+        if (!(Char.IsDead($.kappa_cartel9))) {
+          $.kappa_cartel9.ClearThreatSearch();
+          $.kappa_cartel9.SetObjRunToCoord(282.5, -1501.0);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel9))) {
+        $.kappa_cartel9.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa9_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel9))) {
+        if ($.kappa_cartel9.IsObjectivePassed()) {
+          $.kappa_cartel9.TurnToFacePlayer($.player);
+          $.kappa_cartel9.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel9.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    if ($.flag_kappa10_dead == 0 && $.flag_kappa10_created == 1) {
+      if ($.kappa_10.HasBeenDamaged()) {
+        $.flag_kappa10_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_sub;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa10.Remove();
+        if (!(Char.IsDead($.kappa_cartel10))) {
+          $.kappa_cartel10.ClearThreatSearch();
+          $.kappa_cartel10.SetObjRunToCoord(-638.8, -721.6);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel10))) {
+        $.kappa_cartel10.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa10_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel10))) {
+        if ($.kappa_cartel10.IsObjectivePassed()) {
+          $.kappa_cartel10.TurnToFacePlayer($.player);
+          $.kappa_cartel10.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel10.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    if ($.flag_kappa12_dead == 0 && $.flag_kappa12_created == 1) {
+      if ($.kappa_12.HasBeenDamaged()) {
+        $.flag_kappa12_dead = 1;
+        ++$.counter_kappa_dead;
+        ++$.counter_kappa_dead_sub;
+        Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
+        $.blip_kappa12.Remove();
+        if (!(Char.IsDead($.kappa_cartel12))) {
+          $.kappa_cartel12.ClearThreatSearch();
+          $.kappa_cartel12.SetObjRunToCoord(-1251.0, -114.5);
+        }
+      }
+      if (!(Char.IsDead($.kappa_cartel12))) {
+        $.kappa_cartel12.TurnToFacePlayer($.player);
+      }
+    }
+    if ($.flag_kappa12_dead > 0) {
+      if (!(Char.IsDead($.kappa_cartel12))) {
+        if ($.kappa_cartel12.IsObjectivePassed()) {
+          $.kappa_cartel12.TurnToFacePlayer($.player);
+          $.kappa_cartel12.SetStayInSamePlace(0 /* false */);
+          $.kappa_cartel12.SetThreatSearch(0 /* THREAT_PLAYER1 */);
+        }
+      }
+    }
+    $.timer_as2_now = Clock.GetGameTimer();
+    $.timer_as2_dif = $.timer_as2_now - $.timer_as2_start;
+    if ($.timer_as2_dif > $.particle_time_as2) {
+      $.particle_time_as2 = $.particle_time_as2 + 50;
+      $.flag_particle_as2 = 1;
+    }
+    if ($.flag_particle_as2 == 1) {
+      if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_1.GetCoordinates();
+        $.steam_y = $.steam_y - 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa1_dead == 1 && $.flag_kappa1_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_1.GetCoordinates();
+        $.steam_y = $.steam_y - 1.0;
+        $.kappa_1_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa1_dead = 2;
+      }
+      if ($.flag_kappa3_dead == 0 && $.flag_kappa3_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_3.GetCoordinates();
+        $.steam_y = $.steam_y - 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa3_dead == 1 && $.flag_kappa3_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_3.GetCoordinates();
+        $.steam_y = $.steam_y - 1.0;
+        $.kappa_3_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa3_dead = 2;
+      }
+      if ($.flag_kappa4_dead == 0 && $.flag_kappa4_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_4.GetCoordinates();
+        $.steam_x = $.steam_x + 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa4_dead == 1 && $.flag_kappa4_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_4.GetCoordinates();
+        $.steam_x = $.steam_x + 1.0;
+        $.kappa_4_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa4_dead = 2;
+      }
+      if ($.flag_kappa5_dead == 0 && $.flag_kappa5_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_5.GetCoordinates();
+        $.steam_y = $.steam_y + 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa5_dead == 1 && $.flag_kappa5_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_5.GetCoordinates();
+        $.steam_y = $.steam_y + 1.0;
+        $.kappa_5_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa5_dead = 2;
+      }
+      if ($.flag_kappa6_dead == 0 && $.flag_kappa6_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_6.GetCoordinates();
+        $.steam_x = $.steam_x - 1.0;
+        $.steam_y = $.steam_y - 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa6_dead == 1 && $.flag_kappa6_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_6.GetCoordinates();
+        $.steam_x = $.steam_x - 1.0;
+        $.steam_y = $.steam_y - 1.0;
+        $.kappa_6_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa6_dead = 2;
+      }
+      if ($.flag_kappa7_dead == 0 && $.flag_kappa7_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_7.GetCoordinates();
+        $.steam_y = $.steam_y + 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa7_dead == 1 && $.flag_kappa7_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_7.GetCoordinates();
+        $.steam_y = $.steam_y + 1.0;
+        $.kappa_7_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa7_dead = 2;
+      }
+      if ($.flag_kappa9_dead == 0 && $.flag_kappa9_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_9.GetCoordinates();
+        $.steam_x = $.steam_x + 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa9_dead == 1 && $.flag_kappa9_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_9.GetCoordinates();
+        $.steam_x = $.steam_x + 1.0;
+        $.kappa_9_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa9_dead = 2;
+      }
+      if ($.flag_kappa10_dead == 0 && $.flag_kappa10_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_10.GetCoordinates();
+        $.steam_y = $.steam_y + 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa10_dead == 1 && $.flag_kappa10_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_10.GetCoordinates();
+        $.steam_y = $.steam_y + 1.0;
+        $.kappa_10_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa10_dead = 2;
+      }
+      if ($.flag_kappa12_dead == 0 && $.flag_kappa12_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_12.GetCoordinates();
+        $.steam_y = $.steam_y + 1.0;
+        Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+      }
+      if ($.flag_kappa12_dead == 1 && $.flag_kappa12_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_12.GetCoordinates();
+        $.steam_y = $.steam_y + 1.0;
+        $.kappa_12_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
+        $.flag_kappa12_dead = 2;
+      }
+      $.flag_particle_as2 = 0;
+    }
+    if ($.kappa_time < 1) {
+      Text.PrintNow("AS2_4", 3000, 1);
+      // SCM GOTO → mission_as2_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_as2_failed"); // fallback: would break linear control flow
+    }
+    if ($.counter_kappa_dead == 1 && $.flag_timer_started == 0) {
+      Hud.DisplayTimer($.kappa_time);
+      $.flag_timer_started = 1;
+    }
+    if ($.counter_kappa_dead_ind == 2 && $.flag_as2_1 == 0) {
+      Text.PrintNow("AS2_1", 3000, 1);
+      await asyncWait(3000);
+      $.flag_as2_1 = 1;
+      if ($.flag_as2_2 == 0 && $.flag_as2_3 == 0) {
+        Text.PrintNow("AS2_5", 4000, 1);
+        await asyncWait(3000);
+      }
+      if ($.flag_as2_2 == 1 && $.flag_as2_3 == 0) {
+        Text.PrintNow("AS2_6", 4000, 1);
+        await asyncWait(3000);
+      }
+      if ($.flag_as2_2 == 0 && $.flag_as2_3 == 1) {
+        Text.PrintNow("AS2_7", 4000, 1);
+        await asyncWait(3000);
+      }
+    }
+    if ($.counter_kappa_dead_com == 5 && $.flag_as2_2 == 0) {
+      Text.PrintNow("AS2_2", 3000, 1);
+      await asyncWait(3000);
+      $.flag_as2_2 = 1;
+      if ($.flag_as2_1 == 0 && $.flag_as2_3 == 0) {
+        Text.PrintNow("AS2_9", 4000, 1);
+        await asyncWait(3000);
+      }
+      if ($.flag_as2_1 == 1 && $.flag_as2_3 == 0) {
+        Text.PrintNow("AS2_6", 4000, 1);
+        await asyncWait(3000);
+      }
+      if ($.flag_as2_1 == 0 && $.flag_as2_3 == 1) {
+        Text.PrintNow("AS2_8", 4000, 1);
+        await asyncWait(3000);
+      }
+    }
+    if ($.counter_kappa_dead_sub == 2 && $.flag_as2_3 == 0) {
+      Text.PrintNow("AS2_3", 3000, 1);
+      await asyncWait(3000);
+      $.flag_as2_3 = 1;
+      if ($.flag_as2_1 == 0 && $.flag_as2_2 == 0) {
+        Text.PrintNow("AS2_10", 4000, 1);
+        await asyncWait(3000);
+      }
+      if ($.flag_as2_1 == 1 && $.flag_as2_2 == 0) {
+        Text.PrintNow("AS2_7", 4000, 1);
+        await asyncWait(3000);
+      }
+      if ($.flag_as2_1 == 0 && $.flag_as2_2 == 1) {
+        Text.PrintNow("AS2_8", 4000, 1);
+        await asyncWait(3000);
+      }
+    }
+  }
+  // SCM GOTO → mission_as2_passed (not lowered; manual jump required)
+  throw new Error("unresolved GOTO mission_as2_passed"); // fallback: would break linear control flow
+}
+
+async function mission_as2_failed() {
+  Text.PrintBig("M_FAIL", 2000, 1);
+  if ($.player.HasBeenArrested()) {
+    Restart.OverridePolice(2 /* LEVEL_COMMERCIAL */);
+  }
+  if ($.player.IsDead()) {
+    Restart.OverrideHospital(2 /* LEVEL_COMMERCIAL */);
+  }
+  return;
+}
+
+async function mission_as2_passed() {
+  $.flag_asuka_suburban_mission2_passed = 1;
+  Text.PrintWithNumberBig("M_PASS", 40000, 5000, 1);
+  Audio.PlayMissionPassedTune(1);
+  $.player.ClearWantedLevel();
+  $.player.AddScore(40000);
+  Stat.RegisterMissionPassed(AS2);
+  Stat.PlayerMadeProgress(1);
+  // START_NEW_SCRIPT asuka_suburban_mission3_loop
+  return;
+}
+
+async function mission_cleanup_as2() {
+  $.flag_player_on_mission = 0;
+  $.flag_player_on_asuka_suburban_mission = 0;
+  Hud.ClearTimer($.kappa_time);
+  Hud.ClearCounter($.counter_kappa_dead);
+  Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */);
+  if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
+    $.blip_kappa1.Remove();
+  }
+  if ($.flag_kappa3_dead == 0 && $.flag_kappa3_created == 1) {
+    $.blip_kappa3.Remove();
+  }
+  if ($.flag_kappa4_dead == 0 && $.flag_kappa4_created == 1) {
+    $.blip_kappa4.Remove();
+  }
+  if ($.flag_kappa5_dead == 0 && $.flag_kappa5_created == 1) {
+    $.blip_kappa5.Remove();
+  }
+  if ($.flag_kappa6_dead == 0 && $.flag_kappa6_created == 1) {
+    $.blip_kappa6.Remove();
+  }
+  if ($.flag_kappa7_dead == 0 && $.flag_kappa7_created == 1) {
+    $.blip_kappa7.Remove();
+  }
+  if ($.flag_kappa9_dead == 0 && $.flag_kappa9_created == 1) {
+    $.blip_kappa9.Remove();
+  }
+  if ($.flag_kappa10_dead == 0 && $.flag_kappa10_created == 1) {
+    $.blip_kappa10.Remove();
+  }
+  if ($.flag_kappa12_dead == 0 && $.flag_kappa12_created == 1) {
+    $.blip_kappa12.Remove();
+  }
+  World.RemoveAllScriptFires();
+  $.kappa_1.MarkAsNoLongerNeeded();
+  $.kappa_3.MarkAsNoLongerNeeded();
+  $.kappa_4.MarkAsNoLongerNeeded();
+  $.kappa_5.MarkAsNoLongerNeeded();
+  $.kappa_6.MarkAsNoLongerNeeded();
+  $.kappa_7.MarkAsNoLongerNeeded();
+  $.kappa_9.MarkAsNoLongerNeeded();
+  $.kappa_10.MarkAsNoLongerNeeded();
+  $.kappa_12.MarkAsNoLongerNeeded();
+  Streaming.MarkModelAsNoLongerNeeded(car`COLUMB`);
+  Streaming.MarkModelAsNoLongerNeeded(coffee);
+  Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_A`);
+  Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_B`);
+  Mission.Finish();
+  return;
+}
+
+export async function asusb2() {
+  // MissionBoundary
+  // SCM GOSUB mission_start_as2
+  await mission_start_as2();
+  // fallback if label was not emitted as async function: no-op continues linearly
+  if (HAS_DEATHARREST_BEEN_EXECUTED()) {
+    // SCM GOSUB mission_as2_failed
+    await mission_as2_failed();
+    // fallback if label was not emitted as async function: no-op continues linearly
+  }
+  // SCM GOSUB mission_cleanup_as2
+  await mission_cleanup_as2();
+  // fallback if label was not emitted as async function: no-op continues linearly
+  // MissionBoundary
+  // VAR_INT kappa_1 kappa_3 kappa_4
+  // VAR_INT kappa_5 kappa_6 kappa_7
+  // VAR_INT kappa_9 kappa_10 kappa_12
+  // VAR_INT patriot_1
+  // VAR_INT flag_guard1_created flag_guard2_created
+  // VAR_INT kappa_1_fire kappa_2_fire kappa_3_fire kappa_4_fire
+  // VAR_INT kappa_5_fire kappa_6_fire kappa_7_fire kappa_8_fire
+  // VAR_INT kappa_9_fire kappa_10_fire kappa_11_fire kappa_12_fire
+  // VAR_INT kappa_cartel1 kappa_cartel2 kappa_cartel3 kappa_cartel4
+  // VAR_INT kappa_cartel5 kappa_cartel6 kappa_cartel7 kappa_cartel8
+  // VAR_INT kappa_cartel9 kappa_cartel10 kappa_cartel11 kappa_cartel12
+  // VAR_INT flag_kappa1_dead flag_kappa2_dead flag_kappa3_dead flag_kappa4_dead
+  // VAR_INT flag_kappa5_dead flag_kappa6_dead flag_kappa7_dead flag_kappa8_dead
+  // VAR_INT flag_kappa9_dead flag_kappa10_dead flag_kappa11_dead flag_kappa12_dead
+  // VAR_INT flag_kappa1_created flag_kappa2_created flag_kappa3_created flag_kappa4_created
+  // VAR_INT flag_kappa5_created flag_kappa6_created flag_kappa7_created flag_kappa8_created
+  // VAR_INT flag_kappa9_created flag_kappa10_created flag_kappa11_created flag_kappa12_created
+  // VAR_INT blip_kappa1_created blip_kappa2_created blip_kappa3_created blip_kappa4_created
+  // VAR_INT blip_kappa5_created blip_kappa6_created blip_kappa7_created blip_kappa8_created
+  // VAR_INT blip_kappa9_created blip_kappa10_created blip_kappa11_created blip_kappa12_created
+  // VAR_INT blip_kappa1 blip_kappa2 blip_kappa3 blip_kappa4
+  // VAR_INT blip_kappa5 blip_kappa6 blip_kappa7 blip_kappa8
+  // VAR_INT blip_kappa9 blip_kappa10 blip_kappa11 blip_kappa12
+  // VAR_INT kappa_time
+  // VAR_INT flag_timer_started
+  // VAR_INT timer_as2_dif timer_as2_now timer_as2_start flag_particle_as2 particle_time_as2
+  // VAR_INT counter_kappa_dead
+  // VAR_INT counter_kappa_dead_ind
+  // VAR_INT counter_kappa_dead_com
+  // VAR_INT counter_kappa_dead_sub
+  // VAR_INT flag_as2_1 flag_as2_2 flag_as2_3
+  // VAR_FLOAT kappa1_x kappa1_y
+  // VAR_FLOAT kappa2_x kappa2_y
+  // VAR_FLOAT kappa3_x kappa3_y
+  // VAR_FLOAT kappa4_x kappa4_y
+  // VAR_FLOAT kappa5_x kappa5_y
+  // VAR_FLOAT kappa6_x kappa6_y
+  // VAR_FLOAT kappa7_x kappa7_y
+  // VAR_FLOAT kappa8_x kappa8_y
+  // VAR_FLOAT kappa9_x kappa9_y
+  // VAR_FLOAT kappa10_x kappa10_y
+  // VAR_FLOAT kappa11_x kappa11_y
+  // VAR_FLOAT kappa12_x kappa12_y
+  // VAR_FLOAT steam_x steam_y steam_z
+  // VAR_FLOAT test_x test_y
+  // VAR_INT kappa_test
+}
