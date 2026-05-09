@@ -294,10 +294,6 @@ interface Camera {
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_FADING_STATUS [016B]*/
     GetFadingStatus(): boolean;
-    /** Returns true if the camera is in widescreen mode
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_CAMERA_IN_WIDESCREEN_MODE [0603]*/
-    IsInWidescreenMode(): boolean;
     /** Returns true if any part of the radius of the specified point is visible on screen
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_POINT_ON_SCREEN [00C2]*/
@@ -445,10 +441,6 @@ declare class Car {
         y: float;
         z: float;
     };
-    /** Returns the current gear of the vehicle
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_CAR_CURRENT_GEAR [0AB8]*/
-    getCurrentGear(): int;
     /** Returns the car's driver handle
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_DRIVER_OF_CAR [046C]*/
@@ -477,22 +469,10 @@ declare class Car {
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_CAR_MODEL [0441]*/
     getModel(): int;
-    /** Gets the total number of gears of the vehicle and stores it to the variable
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_CAR_NUMBER_OF_GEARS [0AB7]*/
-    getNumberOfGears(): int;
     /** Returns the number of passengers sitting in the car
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_NUMBER_OF_PASSENGERS [01E9]*/
     getNumberOfPassengers(): int;
-    /** Returns the coordinates of an offset of the vehicle's position, depending on the vehicle's rotation
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_OFFSET_FROM_CAR_IN_WORLD_COORDS [04C3]*/
-    getOffsetInWorldCoords(xOffset: float, yOffset: float, zOffset: float): {
-        x: float;
-        y: float;
-        z: float;
-    };
     /** Gets the car's speed
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_CAR_SPEED [02E3]*/
@@ -537,7 +517,6 @@ declare class Car {
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_CAR_DOOR_CLOSED [0415]*/
     isDoorClosed(door: import('./enums').CarDoor): boolean;
-    isEngineOn(): boolean;
     /** Returns true if the vehicle's primary color matches the specified color
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_FIRST_CAR_COLOUR [031B]*/
@@ -570,7 +549,6 @@ declare class Car {
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_CAR_IN_WATER [02BF]*/
     isInWater(): boolean;
-    isLightsOn(): boolean;
     /** Returns true if the vehicle has the specified model
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_CAR_MODEL [0137]*/
@@ -695,10 +673,6 @@ declare class Car {
     *
     * https://library.sannybuilder.com/#/gta3?q=SET_CAR_DRIVING_STYLE [00AE]*/
     setDrivingStyle(drivingStyle: import('./enums').DrivingMode): Car;
-    /** Sets whether the vehicle's engine is turned on or off
-    *
-    * https://library.sannybuilder.com/#/gta3?q=SET_CAR_ENGINE_ON [0ABF]*/
-    setEngineOn(state: boolean): Car;
     /** Makes the AI driver in the vehicle brake for the specified period of time
     *
     * https://library.sannybuilder.com/#/gta3?q=SET_CAR_HANDBRAKE_STOP [0479]*/
@@ -934,10 +908,6 @@ declare class Char {
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_AMMO_IN_CHAR_WEAPON [041A]*/
     getAmmoInWeapon(weaponType: import('./enums').WeaponType): int;
-    /** Returns the character's armor amount
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_CHAR_ARMOUR [04DD]*/
-    getArmour(): int;
     /** Returns the character's coordinates
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_CHAR_COORDINATES [00A0]*/
@@ -962,14 +932,6 @@ declare class Char {
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_NUMBER_OF_FOLLOWERS [046D]*/
     getNumberOfFollowers(): int;
-    /** Returns the coordinates of the character, with an offset
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS [04C4]*/
-    getOffsetInWorldCoords(xOffset: float, yOffset: float, zOffset: float): {
-        x: float;
-        y: float;
-        z: float;
-    };
     /** Gives the character the weapon with the specified amount of ammo
     *
     * https://library.sannybuilder.com/#/gta3?q=GIVE_WEAPON_TO_CHAR [01B2]*/
@@ -1262,10 +1224,6 @@ declare class Char {
     *
     * https://library.sannybuilder.com/#/gta3?q=MARK_CHAR_AS_NO_LONGER_NEEDED [01C2]*/
     markAsNoLongerNeeded(): Char;
-    /** Sets the character to play a certain action
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PLAY_ANIMATION [0673]*/
-    playAnimation(groupId: import('./enums').AnimGroup, animId: int, blend: float): Char;
     /** Removes the character with a fade, freeing game memory
     *
     * https://library.sannybuilder.com/#/gta3?q=REMOVE_CHAR_ELEGANTLY [034F]*/
@@ -1561,20 +1519,6 @@ interface ChaseScene {
     Stop(): void;
 }
 declare var ChaseScene: ChaseScene
-/** Basic operations to copy and paste data
- * 
- * https://library.sannybuilder.com/#/gta3/classes/Clipboard */
-interface Clipboard {
-    /** Copies the specified number of bytes of text from the clipboard to the address
-    *
-    * https://library.sannybuilder.com/#/gta3?q=READ_CLIPBOARD_DATA [0B20]*/
-    ReadData(address: int, number: int): void;
-    /** Copies  the specified number of bytes of text from the address to the clipboard
-    *
-    * https://library.sannybuilder.com/#/gta3?q=WRITE_CLIPBOARD_DATA [0B21]*/
-    WriteData(address: int, number: int): void;
-}
-declare var Clipboard: Clipboard
 /** Time Manipulation
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Clock */
@@ -1780,144 +1724,6 @@ interface DrugRun {
     Start(): void;
 }
 declare var DrugRun: DrugRun
-/** Loading DLL files and finding exported functions
- * 
- * https://library.sannybuilder.com/#/gta3/classes/DynamicLibrary */
-declare class DynamicLibrary {
-    constructor(handle: number);
-    /** Loads the specified module (usually a dynamic-link library (DLL)) into the address space of the game
-    *
-    * https://library.sannybuilder.com/#/gta3?q=LOAD_DYNAMIC_LIBRARY [0AA2]*/
-    static Load(fileName: string): DynamicLibrary | undefined;
-    /** Frees the loaded dynamic-link library (DLL) module and unloads it from the address space of the game
-    *
-    * https://library.sannybuilder.com/#/gta3?q=FREE_DYNAMIC_LIBRARY [0AA3]*/
-    free(): void;
-    /** Retrieves the address of an exported function or variable from the specified dynamic-link library (DLL)
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_DYNAMIC_LIBRARY_PROCEDURE [0AA4]*/
-    getProcedure(procName: string): int | undefined;
-}
-/** Reading and writing files
- * 
- * https://library.sannybuilder.com/#/gta3/classes/File */
-declare class File {
-    constructor(handle: number);
-    /** Opens the file in the specified mode, sets the condition result to True if the open operation has been successful, or to False otherwise, and writes the file handle to the variable
-    *
-    * https://library.sannybuilder.com/#/gta3?q=OPEN_FILE [0A9A]*/
-    static Open(filePathName: string, mode: import('./enums').FileMode): File | undefined;
-    /** Closes the file and frees the memory
-    *
-    * https://library.sannybuilder.com/#/gta3?q=CLOSE_FILE [0A9B]*/
-    close(): void;
-    /** Gets the file size in bytes
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_FILE_SIZE [0A9C]*/
-    getSize(): int;
-    /** Returns true if all data has been read or any file error occurred
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_END_OF_FILE_REACHED [0AD6]*/
-    isEndReached(): boolean;
-    /** Reads the specified number of bytes from the opened file and writes them to the memory region starting from the address of the destination variable
-    *
-    * https://library.sannybuilder.com/#/gta3?q=READ_FROM_FILE [0A9D]*/
-    read(size: int): int;
-    /** Reads up to maxLength-1 text characters from the file until the newline or the end-of-file is reached. Result will be null-terminated string
-    *
-    * https://library.sannybuilder.com/#/gta3?q=READ_STRING_FROM_FILE [0AD7]*/
-    readString(storeTo: string, maxLength: int): boolean;
-    /** Extracts data from a file using fscanf
-    *
-    * https://library.sannybuilder.com/#/gta3?q=SCAN_FILE [0ADA]*/
-    scan(format: string): {
-        nValues: int;
-        values: number[];
-    } | undefined;
-    /** Sets the position of the file to the given offset from the origin
-    *
-    * https://library.sannybuilder.com/#/gta3?q=FILE_SEEK [0AD5]*/
-    seek(offset: int, origin: unknown): boolean;
-    /** Copies the specified number of bytes of the memory region starting from the address of the source variable to the file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=WRITE_TO_FILE [0A9E]*/
-    write(size: int, source: int): File;
-    /** Writes a formatted string to the file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=WRITE_FORMATTED_STRING_TO_FILE [0AD9]*/
-    writeFormattedString(format: string, ...args: number[]): File;
-    /** Copies data from the source string to the file up to but not including the null character
-    *
-    * https://library.sannybuilder.com/#/gta3?q=WRITE_STRING_TO_FILE [0AD8]*/
-    writeString(source: string): boolean;
-}
-/** File search operations
- * 
- * https://library.sannybuilder.com/#/gta3/classes/FindFile */
-declare class FindFile {
-    constructor(handle: number);
-    /** Searches a directory for a file or subdirectory with a name that matches a specific name (or partial name if wildcards are used)
-    *
-    * https://library.sannybuilder.com/#/gta3?q=FIND_FIRST_FILE [0AE6]*/
-    static First(searchMask: string): {
-        handle: FindFile;
-        fileName: string;
-    } | undefined;
-    /** Closes a file search handle opened by 0AE6
-    *
-    * https://library.sannybuilder.com/#/gta3?q=FIND_CLOSE [0AE8]*/
-    close(): FindFile;
-    /** Continues a file search from a previous call to 0AE6
-    *
-    * https://library.sannybuilder.com/#/gta3?q=FIND_NEXT_FILE [0AE7]*/
-    next(): string | undefined;
-}
-/** File System operations such as copying or deleting files
- * 
- * https://library.sannybuilder.com/#/gta3/classes/Fs */
-interface Fs {
-    /** Copies an existing directory to a new directory and returns true if the operation is successful
-    *
-    * https://library.sannybuilder.com/#/gta3?q=COPY_DIRECTORY [0B05]*/
-    CopyDirectory(dirPath: string, newDirPath: string): boolean;
-    /** Copies an existing file to a new file and returns true if the operation is successful
-    *
-    * https://library.sannybuilder.com/#/gta3?q=COPY_FILE [0B04]*/
-    CopyFile(fileName: string, newFileName: string): boolean;
-    /** Creates a directory at the given path
-    *
-    * https://library.sannybuilder.com/#/gta3?q=CREATE_DIRECTORY [0AE5]*/
-    CreateDirectory(path: string): boolean;
-    /** Deletes a directory at the given path and returns true if the operation is successful
-    *
-    * https://library.sannybuilder.com/#/gta3?q=DELETE_DIRECTORY [0B01]*/
-    DeleteDirectory(path: string, recursive: boolean): boolean;
-    /** Deletes a file at the given path and returns true if the operation is successful
-    *
-    * https://library.sannybuilder.com/#/gta3?q=DELETE_FILE [0B00]*/
-    DeleteFile(path: string): boolean;
-    /** Returns true if a directory at the given path exists
-    *
-    * https://library.sannybuilder.com/#/gta3?q=DOES_DIRECTORY_EXIST [0AE4]*/
-    DoesDirectoryExist(path: string): boolean;
-    /** Returns true if a file at the given path exists
-    *
-    * https://library.sannybuilder.com/#/gta3?q=DOES_FILE_EXIST [0AAB]*/
-    DoesFileExist(path: string): boolean;
-    /** Moves an existing directory and returns true if the operation is successful
-    *
-    * https://library.sannybuilder.com/#/gta3?q=MOVE_DIRECTORY [0B03]*/
-    MoveDirectory(dirPath: string, newDirPath: string): boolean;
-    /** Moves an existing file and returns true if the operation is successful
-    *
-    * https://library.sannybuilder.com/#/gta3?q=MOVE_FILE [0B02]*/
-    MoveFile(fileName: string, newFileName: string): boolean;
-    /** Sets the current working directory (cwd) to a predefined location with a value of 0 or 1, or to an arbitrary path with a string value
-    *
-    * https://library.sannybuilder.com/#/gta3?q=SET_CURRENT_DIRECTORY [0A99]*/
-    SetCurrentDirectory(path: unknown): void;
-}
-declare var Fs: Fs
 /** Various 2D Effects (Shadows, Lights, Coronas, Particles)
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Fx */
@@ -1984,22 +1790,10 @@ interface Game {
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_COLLECTABLE1S_COLLECTED [03E1]*/
     GetCollectablesCollected(): int;
-    /** Returns game FPS
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_FRAMERATE [2244]*/
-    GetFramerate(): int;
-    /** Returns the version id of the game
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_GAME_VERSION [05E5]*/
-    GetVersion(): int;
     /** Returns false if save game menu was requested with activate_save_menu command, but not displayed yet
     *
     * https://library.sannybuilder.com/#/gta3?q=HAS_SAVE_GAME_FINISHED [03D9]*/
     HasSaveGameFinished(): boolean;
-    /** Returns true if the current game is an Australian release
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_AUSTRALIAN_GAME [059A]*/
-    IsAustralian(): boolean;
     /** Returns true if the game language is set to French
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_FRENCH_GAME [040B]*/
@@ -2012,18 +1806,10 @@ interface Game {
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_NASTY_GAME [0351]*/
     IsNasty(): boolean;
-    /** Returns true on PC versions of the game
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_PC_VERSION [0485]*/
-    IsPcVersion(): boolean;
     /** Returns true if the ped type is hostile to other ped types
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_THREAT_FOR_PED_TYPE [042A]*/
     IsThreatForPedType(type: import('./enums').PedType, threatMask: int): boolean;
-    /** Returns true if the game version is vanilla 1.0
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_GAME_VERSION_ORIGINAL [0AA9]*/
-    IsVersionOriginal(): boolean;
     /** Sets whether all cars receive damage
     *
     * https://library.sannybuilder.com/#/gta3?q=SET_ALL_CARS_CAN_BE_DAMAGED [03F4]*/
@@ -2232,406 +2018,6 @@ interface Hud {
     SwitchWidescreen(state: boolean): void;
 }
 declare var Hud: Hud
-/** ImGui integration
- * 
- * https://library.sannybuilder.com/#/gta3/classes/ImGui */
-interface ImGui {
-    /** Adds a line form point A to B
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_DRAWLIST_ADD_LINE [2243]*/
-    AddLine(drawList: int, p1X: float, p1Y: float, p2X: float, p2Y: float, r: int, g: int, b: int, a: int, thickness: float): void;
-    /** Adds text at specified position
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_DRAWLIST_ADD_TEXT [2242]*/
-    AddText(drawList: int, posX: float, posY: float, r: int, g: int, b: int, a: int, text: string): void;
-    /** Creates the window
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BEGIN [2202]*/
-    Begin(windowName: string, state: boolean, noTitleBar: boolean, noResize: boolean, noMove: boolean, autoResize: boolean): boolean;
-    /** Creates a child window widget inside the main window
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BEGIN_CHILD [2206]*/
-    BeginChild(uniqueId: string): void;
-    /** Creates a child window widget inside the main window
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BEGIN_CHILDEX [2252]*/
-    BeginChildEx(uniqueId: string, width: float, height: float, border: boolean, flags: int): void;
-    /** Disables ImGui widgets inside this block
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BEGIN_DISABLED [2253]*/
-    BeginDisabled(disabled: boolean): void;
-    /** Creates a unique frame with its own space in memory. Must be enclosed with IMGUI_END_FRAME
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BEGIN_FRAME [2200]*/
-    BeginFrame(uniqueId: string): void;
-    /** Creates the main menu bar
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BEGIN_MAINMENUBAR [2204]*/
-    BeginMainMenuBar(uniqueId: string): void;
-    /** Begins a ImGui menu block
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BEGIN_MENU [2255]*/
-    BeginMenu(label: string, enabled: boolean): boolean;
-    /** Creates a bullet point
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BULLET [2214]*/
-    Bullet(): void;
-    /** Creates the button
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BUTTON [2218]*/
-    Button(buttonName: string, width: float, height: float): boolean;
-    /** Creates the arrow button in the specified direction
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_ARROW_BUTTON [221C]*/
-    ButtonArrow(name: string, imGuiDir: unknown): boolean;
-    /** Creates the button with custom colors
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_COLOR_BUTTON [221B]*/
-    ButtonColored(buttonName: string, red: float, green: float, blue: float, alpha: float, width: float, height: float): boolean;
-    /** Creates a ImGui button with specified image
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_IMAGE_BUTTON [2219]*/
-    ButtonImage(name: string, image: int, width: float, height: float): boolean;
-    /** Creates the invisible button
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_INVISIBLE_BUTTON [221A]*/
-    ButtonInvisible(buttonName: string, width: float, height: float): boolean;
-    /** Returns the width and height of the given text
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_CALC_TEXT_SIZE [224B]*/
-    CalcTextSize(text: string): {
-        width: float;
-        height: float;
-    };
-    /** Creates the checkbox
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_CHECKBOX [2215]*/
-    Checkbox(label: string, isChecked: boolean): boolean;
-    /** Adds the collapsing header
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_COLLAPSING_HEADER [2209]*/
-    CollapsingHeader(label: string): boolean;
-    /** Creates the color picker and sets the default color (0-255)
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_COLOR_PICKER [2223]*/
-    ColorPicker(label: string): {
-        red: int;
-        green: int;
-        blue: int;
-        alpha: int;
-    };
-    /** Divides the window width into N columns. Close this with Columns(1)
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_COLUMNS [2229]*/
-    Columns(count: int): void;
-    /** Creates a combo box widget. Pass options separated by commas "item1,item2,item3"
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_COMBO [2216]*/
-    ComboBox(name: string, options: string, selection: int): int;
-    /** Creates the dummy widget. Used for spacing
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_DUMMY [2226]*/
-    Dummy(width: float, height: float): void;
-    /** Ends the window
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_END [2203]*/
-    End(): void;
-    /** Ends the child window widget created with 0C25
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_END_CHILD [2207]*/
-    EndChild(): void;
-    /** Closes the ImGui disable block
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_END_DISABLED [2254]*/
-    EndDisabled(): void;
-    /** Ends unique ImGui frame created with IMGUI_BEGIN_FRAME
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_END_FRAME [2201]*/
-    EndFrame(): void;
-    /** Ends the main menu bar
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_END_MAINMENUBAR [2205]*/
-    EndMainMenuBar(): void;
-    /** Ends a ImGui menu block
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_END_MENU [2256]*/
-    EndMenu(): void;
-    /** Frees a loaded image data
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_FREE_IMAGE [2239]*/
-    FreeImage(image: int): void;
-    /** Returns pointer to ImGui background drawlist
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_BACKGROUND_DRAWLIST [2240]*/
-    GetBackgroundDrawList(): int;
-    /** Returns the width & height of the display
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_DISPLAY_SIZE [224E]*/
-    GetDisplaySize(): {
-        width: float;
-        height: float;
-    };
-    /** Returns pointer to foreground draw list
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_FOREGROUND_DRAWLIST [223F]*/
-    GetForegroundDrawList(): int;
-    /** Returns the ImGui frame height
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_FRAME_HEIGHT [2248]*/
-    GetFrameHeight(): float;
-    /** Returns the ImGuiRedux version
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_PLUGIN_VERSION [2246]*/
-    GetPluginVersion(): int;
-    /** Returns the width and height scaling factor based on the window size
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_SCALING_SIZE [224D]*/
-    GetScalingSize(uniqueId: string, count: int, spacing: boolean): {
-        x: float;
-        y: float;
-    };
-    /** Returns the ImGui version
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_VERSION [2245]*/
-    GetVersion(): int;
-    /** Returns the content region width of the window
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_WINDOW_CONTENT_REGION_WIDTH [224C]*/
-    GetWindowContentRegionWidth(uniqueId: string): float;
-    /** Returns pointer to ImGui window drawList
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_WINDOW_DRAWLIST [2241]*/
-    GetWindowDrawlist(): int;
-    /** Returns the x,y coordinates of the window on the screen
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_WINDOW_POS [2249]*/
-    GetWindowPos(uniqueId: string): {
-        x: float;
-        y: float;
-    };
-    /** Returns the width and height of the window
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_GET_WINDOW_SIZE [224A]*/
-    GetWindowSize(uniqueId: string): {
-        width: float;
-        height: float;
-    };
-    /** Creates the float input
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_INPUT_FLOAT [2220]*/
-    InputFloat(label: string, initValue: float, min: float, max: float): float;
-    /** Creates the int input
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_INPUT_INT [221F]*/
-    InputInt(label: string, initValue: int, min: int, max: int): int;
-    /** Creates the text input
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_INPUT_TEXT [2221]*/
-    InputText(label: string): string;
-    /** Returns true if the previous widget is in active state
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_IS_ITEM_ACTIVE [222F]*/
-    IsItemActive(uniqueId: string): boolean;
-    /** Returns true if the previous widget is clicked
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_IS_ITEM_CLICKED [2230]*/
-    IsItemClicked(uniqueId: string): boolean;
-    /** Returns true if the previous widget is focused
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_IS_ITEM_FOCUSED [2231]*/
-    IsItemFocused(uniqueId: string): boolean;
-    /** Returns true if the previous widget is hovered with mouse
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_IS_ITEM_HOVERED [2232]*/
-    IsItemHovered(uniqueId: string): boolean;
-    /** Loads a image file from disk. Relative to CLEO directory
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_LOAD_IMAGE [2238]*/
-    LoadImage(path: string): int;
-    /** Adds the menu item
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_MENU_ITEM [2224]*/
-    MenuItem(text: string, selected: boolean, enabled: boolean): boolean;
-    /** Creates a new line for the next widget
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_NEWLINE [2228]*/
-    NewLine(): void;
-    /** Puts the next widgets on the next column. Used alongside 0C16
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_NEXT_COLUMN [222A]*/
-    NextColumn(): void;
-    /** Removes the pushed item width (0C27) from the stack
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_POP_ITEM_WIDTH [222E]*/
-    PopItemWidth(): void;
-    /** Removes the recent ImGuiCol from the stack
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_POP_STYLE_COLOR [223E]*/
-    PopStyleColor(count: int): void;
-    /** Removes the recent imGuiStyleVar from the stack
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_POP_STYLE_VAR [223D]*/
-    PopStyleVar(count: int): void;
-    /** Sets the item width for the next widgets
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_PUSH_ITEM_WIDTH [222D]*/
-    PushItemWidth(width: float): void;
-    /** Pushes a ImGuiCol value to the stack. Use PopStyleColor to undo the effect
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_PUSH_STYLE_COLOR [223C]*/
-    PushStyleColor(imGuiCol: import('./enums').ImGuiCol, r: int, g: int, b: int, a: int): void;
-    /** Pushes a ImGuiStyleVar value to the stack. Use PopStyleVar to undo the effect
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_PUSH_STYLE_VAR [223A]*/
-    PushStyleVar(imGuiStyleVar: import('./enums').ImGuiStyleVar, val: float): void;
-    /** Pushes a ImGuiStyleVar value to the stack. Use PopStyleVar to undo the effect
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_PUSH_STYLE_VAR2 [223B]*/
-    PushStyleVar2(imGuiStyleVar: import('./enums').ImGuiStyleVar, x: float, y: float): void;
-    /** Creates the radio button
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_RADIO_BUTTON [2222]*/
-    RadioButton(label: string, selectedBtn: int, btnNo: int): int;
-    /** Appends the next widget to the same line as the previous widget
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SAMELINE [2227]*/
-    SameLine(): void;
-    /** Adds the selectable widget
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SELECTABLE [2225]*/
-    Selectable(text: string, selected: boolean): boolean;
-    /** Adds a horizontal separator line
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SEPARATOR [222C]*/
-    Separator(): void;
-    /** Sets the width of the column
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_COLUMN_WIDTH [2251]*/
-    SetColumnWidth(index: int, width: float): void;
-    /** Toggles the cursor
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_CURSOR_VISIBLE [2247]*/
-    SetCursorVisible(show: boolean): void;
-    /** Sets image background color
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_IMAGE_BG_COLOR [2236]*/
-    SetImageBgColor(r: float, g: float, b: float, a: float): void;
-    /** Sets image tint color
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_IMAGE_TINT_COLOR [2237]*/
-    SetImageTintColor(r: float, g: float, b: float, a: float): void;
-    /** Sets the value of input float & slider float widget
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_ITEM_FLOAT [2234]*/
-    SetItemValueFloat(id: string, val: float): void;
-    /** Sets the value of input int & slider int widget
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_ITEM_INT [2233]*/
-    SetItemValueInt(id: string, val: int): void;
-    /** Sets value of input text widget
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_ITEM_TEXT [2235]*/
-    SetItemValueText(id: string, val: string): void;
-    /** Displays a text message on top left corner of the screen. Useful for games without `showTextBox(...)` support
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_MESSAGE [2250]*/
-    SetMessage(text: string): void;
-    /** Sets the current window position. Applies to the next window ( aka Begin() )
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_NEXT_WINDOW_POS [220C]*/
-    SetNextWindowPos(x: float, y: float, imGuiCond: import('./enums').ImGuiCond): void;
-    /** Sets the current window size. Applies to the next window ( aka Begin() )
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_NEXT_WINDOW_SIZE [220D]*/
-    SetNextWindowSize(width: float, height: float, imGuiCond: import('./enums').ImGuiCond): void;
-    /** Sets the background transparency of next window (0.0f-1.0f)
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_NEXT_WINDOW_TRANSPARENCY [224F]*/
-    SetNextWindowTransparency(alpha: float): void;
-    /** Creates the popup window with the given text
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_TOOLTIP [2217]*/
-    SetTooltip(text: string): void;
-    /** Sets the current window position. Must be called inside Begin()...End()
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_WINDOW_POS [220A]*/
-    SetWindowPos(x: float, y: float, imGuiCond: import('./enums').ImGuiCond): void;
-    /** Sets the current window size. Must be called inside Begin()...End()
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SET_WINDOW_SIZE [220B]*/
-    SetWindowSize(width: float, height: float, imGuiCond: import('./enums').ImGuiCond): void;
-    /** Creates the float slider input
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SLIDER_FLOAT [221E]*/
-    SliderFloat(label: string, initValue: float, min: float, max: float): float;
-    /** Creates the int slider input
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SLIDER_INT [221D]*/
-    SliderInt(label: string, initValue: int, min: int, max: int): int;
-    /** Adds some spacing after the previous widget
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_SPACING [222B]*/
-    Spacing(): void;
-    /** Pass tab names separated by comma. Returns the index of the visible tab
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_TABS [2208]*/
-    Tabs(name: string, tabNames: string): int;
-    /** Creates the text line
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_TEXT [220E]*/
-    Text(text: string): void;
-    /** Displays a center aligned ImGui text widget
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_TEXT_CENTERED [220F]*/
-    TextCentered(text: string): void;
-    /** Creates the text line of the given RGBA color (0.0f-1.0f)
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_TEXT_COLORED [2212]*/
-    TextColored(text: string, red: float, green: float, blue: float, alpha: float): void;
-    /** Creates the text line with the disabled color ( Grayish by default )
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_TEXT_DISABLED [2210]*/
-    TextDisabled(text: string): void;
-    /** Creates the text line with a bullet point
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_BULLET_TEXT [2213]*/
-    TextWithBullet(text: string): void;
-    /** Creates the text line that wraps to a newline if the text goes beyond the window width
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IMGUI_TEXT_WRAPPED [2211]*/
-    TextWrapped(text: string): void;
-}
-declare var ImGui: ImGui
-/** Reading and writing .ini files
- * 
- * https://library.sannybuilder.com/#/gta3/classes/IniFile */
-interface IniFile {
-    /** Reads a floating-point value from the ini file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=READ_FLOAT_FROM_INI_FILE [0AF2]*/
-    ReadFloat(path: string, section: string, key: string): float | undefined;
-    /** Reads an integer value from the ini file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=READ_INT_FROM_INI_FILE [0AF0]*/
-    ReadInt(path: string, section: string, key: string): int | undefined;
-    /** Reads a string value from the ini file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=READ_STRING_FROM_INI_FILE [0AF4]*/
-    ReadString(path: string, section: string, key: string): string | undefined;
-    /** Writes the floating-point value to the ini file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=WRITE_FLOAT_TO_INI_FILE [0AF3]*/
-    WriteFloat(value: float, path: string, section: string, key: string): boolean;
-    /** Writes the integer value to the ini file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=WRITE_INT_TO_INI_FILE [0AF1]*/
-    WriteInt(value: int, path: string, section: string, key: string): boolean;
-    /** Writes the string value to the ini file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=WRITE_STRING_TO_INI_FILE [0AF5]*/
-    WriteString(value: string, path: string, section: string, key: string): boolean;
-}
-declare var IniFile: IniFile
 /** Rampages Logic
  * 
  * https://library.sannybuilder.com/#/gta3/classes/KillFrenzy */
@@ -3193,14 +2579,6 @@ interface Memory {
     *
     * https://re.cleo.li/docs/en/using-memory.html */
     CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
-    /** Allocates a chunk of memory of the given size near to the memory page of the main exe module
-    *
-    * https://library.sannybuilder.com/#/gta3?q=ALLOC_NEAR */
-    AllocNear(size: int): int;
-    /** Allocates a chunk of memory of the given size and stores its address to the variable
-    *
-    * https://library.sannybuilder.com/#/gta3?q=ALLOCATE_MEMORY [0AC8]*/
-    Allocate(size: int): int | undefined;
     /** Calls a function at the address with the given arguments and the calling convention defined by the pop parameter where 0 means 'stdcall' and a value equal to numParams means  'cdecl'
     *
     * https://library.sannybuilder.com/#/gta3?q=CALL_FUNCTION [0AA5]*/
@@ -3217,93 +2595,16 @@ interface Memory {
     *
     * https://library.sannybuilder.com/#/gta3?q=CALL_METHOD_RETURN [0AA8]*/
     CallMethodReturn(address: int, struct: int, numArgs: int, pop: int, ...args: number[]): unknown;
-    /** Returns an address of a memory chunk with the given index in a list of matches for the pattern
-    *
-    * https://library.sannybuilder.com/#/gta3?q=FIND_PATTERN */
-    FindPattern(pattern: string, index: int): int | undefined;
-    /** Frees the memory allocated with 0AC8
-    *
-    * https://library.sannybuilder.com/#/gta3?q=FREE_MEMORY [0AC9]*/
-    Free(address: int): void;
-    /** Returns the address of the main exe module
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_IMAGE_BASE */
-    GetImageBase(): int;
-    /** Stores the absolute address of a code location marked with the label
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_LABEL_POINTER [0AC6]*/
-    GetLabelPointer(_: int): int;
-    /** Gets the address of the object struct in the game memory by its handle
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_OBJECT_POINTER [0A98]*/
-    GetObjectPointer(object: ScriptObject): int;
-    /** Gets the corresponding handle of the object located at the given address in memory
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_OBJECT_REF [0AEC]*/
-    GetObjectRef(address: int): ScriptObject;
-    /** Gets the address of the ped struct in the game memory by its handle
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_PED_POINTER [0A96]*/
-    GetPedPointer(char: Char): int;
-    /** Gets the corresponding handle of the char located at the given address in memory
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_PED_REF [0AEA]*/
-    GetPedRef(address: int): Char;
-    /** Gets the address of a running script which name matches the given string or 0 otherwise
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_SCRIPT_STRUCT_NAMED [0AAA]*/
-    GetScriptStructNamed(scriptName: string): int;
-    /** Gets the address of the current script structure in the game memory
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_THIS_SCRIPT_STRUCT [0A9F]*/
-    GetThisScriptStruct(): int;
-    /** Stores the absolute address of the variable
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_VAR_POINTER [0AC7]*/
-    GetVarPointer(_: unknown): int;
-    /** Gets the address of the vehicle struct in the game memory by its handle
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_VEHICLE_POINTER [0A97]*/
-    GetVehiclePointer(handle: Car): int;
-    /** Gets the corresponding handle of the vehicle located at the given address in memory
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_VEHICLE_REF [0AEB]*/
-    GetVehicleRef(address: int): Car;
-    /** Returns a floating-point number stored as the result of the function called (0AA5, 0AA6, 0AA7, 0AA8) immediately before this command
-    *
-    * https://library.sannybuilder.com/#/gta3?q=POP_FLOAT [0AE9]*/
-    PopFloat(): float;
     /** Reads a value from the game memory
     *
     * https://library.sannybuilder.com/#/gta3?q=READ_MEMORY [0A8D]*/
     Read(address: int, size: int, vp: boolean): unknown;
-    /** Reads a 32-bit value referenced by a relative offset at the address
-    *
-    * https://library.sannybuilder.com/#/gta3?q=READ_RELATIVE_OFFSET */
-    ReadRelativeOffset(address: int): int;
-    /** Calculates an offset between address1 and address2, and writes it to address1
-    *
-    * https://library.sannybuilder.com/#/gta3?q=SET_MEMORY_OFFSET [0606]*/
-    SetOffset(address1: int, address2: int, vp: boolean): void;
     /** Writes the value at the memory address
     *
     * https://library.sannybuilder.com/#/gta3?q=WRITE_MEMORY [0A8C]*/
     Write(address: int, size: int, value: unknown, vp: boolean): void;
-    /** Replaces an offset at the address with the offset to the near address (use ALLOC_NEAR)
-    *
-    * https://library.sannybuilder.com/#/gta3?q=WRITE_RELATIVE_OFFSET */
-    WriteRelativeOffset(address: int, nearAddress: int): void;
 }
 declare var Memory: Memory
-/** Working with DLL files already loaded in memory
- * 
- * https://library.sannybuilder.com/#/gta3/classes/MemoryLibrary */
-declare class MemoryLibrary {
-    constructor(handle: number);
-    static Load(address: int): MemoryLibrary | undefined;
-    free(): void;
-    getProcedure(procName: string): int | undefined;
-}
 /** Current Mission control
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Mission */
@@ -3322,23 +2623,6 @@ interface Mission {
     LoadAndLaunchInternal(index: int): void;
 }
 declare var Mission: Mission
-/** 
- * 
- * https://library.sannybuilder.com/#/gta3/classes/Mouse */
-interface Mouse {
-    /** Returns the position of the mouse cursor
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_CURSOR_POS */
-    GetCursorPos(): {
-        x: int;
-        y: int;
-    } | undefined;
-    /** Sets the position of the mouse cursor
-    *
-    * https://library.sannybuilder.com/#/gta3?q=SET_CURSOR_POS */
-    SetCursorPos(x: int, y: int): boolean;
-}
-declare var Mouse: Mouse
 /** Big'N'Veiny Mission Logic
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Pacman */
@@ -3385,58 +2669,26 @@ declare var Pacman: Pacman
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Pad */
 interface Pad {
-    /** Sets emulate and press pad's button
-    *
-    * https://library.sannybuilder.com/#/gta3?q=EMULATE_BUTTON_PRESS_WITH_SENSITIVITY [0602]*/
-    EmulateButtonPressWithSensitivity(buttonId: import('./enums').Button, sensitivity: int): void;
     /** Returns the controller mode
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_CONTROLLER_MODE [0293]*/
     GetControllerMode(): import('./enums').ControllerMode;
-    /** Returns the code of the last pressed button
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_LAST_KEY */
-    GetLastKey(): import('./enums').KeyCode;
     /** Stores the status of the specified key into a variable
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_PAD_STATE [00E2]*/
     GetState(pad: import('./enums').PadId, buttonId: import('./enums').Button): int;
-    /** Holds down a keyboard or mouse button until it gets released with RELEASE_KEY
-    *
-    * https://library.sannybuilder.com/#/gta3?q=HOLD_KEY */
-    HoldKey(keyCode: import('./enums').KeyCode): void;
     /** Returns true if the pad's button has been pressed
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_BUTTON_PRESSED [00E1]*/
     IsButtonPressed(pad: import('./enums').PadId, buttonId: import('./enums').Button): boolean;
-    /** Returns true if the pad's button is pressed with a certain sensitivity
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_BUTTON_PRESSED_WITH_SENSITIVITY [0601]*/
-    IsButtonPressedWithSensitivity(buttonId: import('./enums').Button, sensitivity: int): boolean;
-    /** Returns true if a keyboard or mouse button has just been pressed
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_KEY_DOWN */
-    IsKeyDown(keyCode: import('./enums').KeyCode): boolean;
     /** Returns true if the player is pressing a keyboard button with the specified code
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_KEY_PRESSED [0AB0]*/
     IsKeyPressed(keyCode: import('./enums').KeyCode): boolean;
-    /** Returns true if a keyboard or mouse button has just been released
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_KEY_UP */
-    IsKeyUp(keyCode: import('./enums').KeyCode): boolean;
-    /** Releases a keyboard or mouse button after HOLD_KEY
-    *
-    * https://library.sannybuilder.com/#/gta3?q=RELEASE_KEY */
-    ReleaseKey(keyCode: import('./enums').KeyCode): void;
     /** Shakes the player's joypad at the specified intensity for the specified time
     *
     * https://library.sannybuilder.com/#/gta3?q=SHAKE_PAD [015B]*/
     Shake(pad: import('./enums').PadId, time: int, intensity: int): void;
-    /** Returns true if the specified string of letters has been typed on the keyboard
-    *
-    * https://library.sannybuilder.com/#/gta3?q=TEST_CHEAT [0ADC]*/
-    TestCheat(input: string): boolean;
 }
 declare var Pad: Pad
 /** In-Game Pager
@@ -3791,18 +3043,10 @@ declare class Player {
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_PLAYER_IN_ANGLED_AREA_ON_FOOT_3D [02B4]*/
     isInAngledAreaOnFoot3D(leftBottomX: float, leftBottomY: float, leftBottomZ: float, rightTopX: float, rightTopY: float, rightTopZ: float, angle: float, drawSphere: boolean): boolean;
-    /** Returns true if the player is on a boat
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_PLAYER_IN_ANY_BOAT [04A8]*/
-    isInAnyBoat(): boolean;
     /** Returns true if the player has a vehicle, even if they are not actually sat inside it (opening and closing the door)
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_PLAYER_IN_ANY_CAR [00E0]*/
     isInAnyCar(): boolean;
-    /** Returns true if the player is in a helicopter
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_PLAYER_IN_ANY_HELI [04AA]*/
-    isInAnyHeli(): boolean;
     /** Returns true if the player is within the specified 2D area
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_PLAYER_IN_AREA_2D [0056]*/
@@ -3831,10 +3075,6 @@ declare class Player {
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_PLAYER_IN_CAR [00DC]*/
     isInCar(vehicle: Car): boolean;
-    /** Returns true if the player is flying in a plane or a helicopter
-    *
-    * https://library.sannybuilder.com/#/gta3?q=IS_PLAYER_IN_FLYING_VEHICLE [04C9]*/
-    isInFlyingVehicle(): boolean;
     /** Returns true if the player is driving a vehicle with the specified model
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_PLAYER_IN_MODEL [00DE]*/
@@ -4308,14 +3548,6 @@ declare class ScriptObject {
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_OBJECT_HEADING [0176]*/
     getHeading(): float;
-    /** Returns the object's coordinates with an offset
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_OFFSET_FROM_OBJECT_IN_WORLD_COORDS [04C2]*/
-    getOffsetInWorldCoords(xOffset: float, yOffset: float, zOffset: float): {
-        x: float;
-        y: float;
-        z: float;
-    };
     /** Returns true if the object is damaged
     *
     * https://library.sannybuilder.com/#/gta3?q=HAS_OBJECT_BEEN_DAMAGED [0366]*/
@@ -4551,7 +3783,6 @@ declare var Stat: Stat
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Streaming */
 interface Streaming {
-    GetNameOfVehicleModel(modelId: int): string;
     /** Returns true if the model is available for creation
     *
     * https://library.sannybuilder.com/#/gta3?q=HAS_MODEL_LOADED [0248]*/
@@ -4628,10 +3859,6 @@ declare var StuckCarCheck: StuckCarCheck
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Text */
 interface Text {
-    /** Adds or updates the text associated with the dynamic GXT key. It does nothing if the same key is defined in a FXT file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=ADD_TEXT_LABEL [0ADF]*/
-    AddLabel(dynamicKey: string, text: string): void;
     /** Removes the text box from the screen
     *
     * https://library.sannybuilder.com/#/gta3?q=CLEAR_HELP [03E6]*/
@@ -4656,8 +3883,6 @@ interface Text {
     *
     * https://library.sannybuilder.com/#/gta3?q=DISPLAY_TEXT [033E]*/
     Display(offsetLeft: float, offsetTop: float, key: string): void;
-    DisplayFormatted(screenX: float, screenY: float, text: string, _: number[]): void;
-    DisplayString(screenX: float, screenY: float, text: string): void;
     /** Draws text with two numbers
     *
     * https://library.sannybuilder.com/#/gta3?q=DISPLAY_TEXT_WITH_2_NUMBERS [045B]*/
@@ -4666,10 +3891,6 @@ interface Text {
     *
     * https://library.sannybuilder.com/#/gta3?q=DISPLAY_TEXT_WITH_NUMBER [045A]*/
     DisplayWithNumber(offsetLeft: float, offsetTop: float, key: string, num: int): void;
-    /** Returns the text associated with the GXT key
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_TEXT_LABEL_STRING [0ADE]*/
-    GetLabelString(key: string): string;
     /** Displays a message positioned on the bottom of the screen for the specified time
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT [00BB]*/
@@ -4678,38 +3899,14 @@ interface Text {
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_BIG [00BA]*/
     PrintBig(key: string, time: int, style: import('./enums').TextStyle): void;
-    /** Formats args according to the format string, then displays it similarly to PRINT_BIG
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PRINT_BIG_FORMATTED [0ACF]*/
-    PrintBigFormatted(format: string, time: int, style: import('./enums').TextStyle, ...args: number[]): void;
     /** Displays a low-priority styled message for the specified time
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_BIG_Q [0217]*/
     PrintBigQ(key: string, duration: int, style: import('./enums').TextStyle): void;
-    /** Displays a custom text (provided as a literal or an address) similarly to PRINT_BIG
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PRINT_BIG_STRING [0ACB]*/
-    PrintBigString(text: string, time: int, style: import('./enums').TextStyle): void;
-    /** Formats args according to the format string, then displays it similarly to PRINT
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PRINT_FORMATTED [0AD0]*/
-    PrintFormatted(format: string, time: int, ...args: number[]): void;
-    /** Formats args according to the format string, then displays it similarly to PRINT_NOW
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PRINT_FORMATTED_NOW [0AD1]*/
-    PrintFormattedNow(format: string, time: int, ...args: number[]): void;
     /** Displays a black text box for a few seconds
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_HELP [03E5]*/
     PrintHelp(key: string): void;
-    /** Displays a black text box for a few seconds respecting the format of the String entered
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PRINT_HELP_FORMATTED [0ACE]*/
-    PrintHelpFormatted(text: string, ...args: number[]): void;
-    /** Displays a custom text (provided as a literal or an address) in a black box similarly to PRINT_HELP
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PRINT_HELP_STRING [0ACA]*/
-    PrintHelpString(text: string): void;
     /** Displays a message positioned on the bottom of the screen for the specified time
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_NOW [00BC]*/
@@ -4718,10 +3915,6 @@ interface Text {
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_SOON [00BD]*/
     PrintSoon(key: string, time: int, flag: int): void;
-    /** Displays a custom text (provided as a literal or an address) similarly to PRINT
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PRINT_STRING [0ACC]*/
-    PrintString(text: string, time: int): void;
     /** Displays a styled message in which the first string token ~a~ is substituted with the specified text
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_STRING_IN_STRING [0375]*/
@@ -4730,10 +3923,6 @@ interface Text {
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_STRING_IN_STRING_NOW [0384]*/
     PrintStringInStringNow(templateKey: string, replacementKey: string, duration: int, style: import('./enums').TextStyle): void;
-    /** Displays a custom text (provided as a literal or an address) similarly to PRINT_NOW
-    *
-    * https://library.sannybuilder.com/#/gta3?q=PRINT_STRING_NOW [0ACD]*/
-    PrintStringNow(text: string, time: int): void;
     /** Displays a styled message in which the first two ~1~ tokens are substituted with the specified numbers
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_WITH_2_NUMBERS [02FC]*/
@@ -4814,17 +4003,6 @@ interface Text {
     *
     * https://library.sannybuilder.com/#/gta3?q=PRINT_WITH_NUMBER_NOW [01E5]*/
     PrintWithNumberNow(key: string, num: int, duration: int, flag: int): void;
-    /** Deletes the key and associated text created with ADD_TEXT_LABEL or defined in a FXT file
-    *
-    * https://library.sannybuilder.com/#/gta3?q=REMOVE_TEXT_LABEL [0AE0]*/
-    RemoveLabel(key: string): void;
-    /** Extracts data from a string using sscanf
-    *
-    * https://library.sannybuilder.com/#/gta3?q=SCAN_STRING [0AD4]*/
-    ScanString(string: string, format: string): {
-        nValues: int;
-        values: number[];
-    } | undefined;
     /** Gives the text a background (0346)
     *
     * https://library.sannybuilder.com/#/gta3?q=SET_TEXT_BACKGROUND [0345]*/
@@ -4877,10 +4055,6 @@ interface Text {
     *
     * https://library.sannybuilder.com/#/gta3?q=SET_TEXT_WRAPX [0343]*/
     SetWrapX(width: float): void;
-    /** Formats a text according to the format string and given arguments and writes it in the result
-    *
-    * https://library.sannybuilder.com/#/gta3?q=STRING_FORMAT [0AD3]*/
-    StringFormat(result: string, format: string, ...args: number[]): void;
     /** Enables text and texture drawing
     *
     * https://library.sannybuilder.com/#/gta3?q=USE_TEXT_COMMANDS [03F0]*/
@@ -4905,20 +4079,6 @@ interface Txd {
     Remove(): void;
 }
 declare var Txd: Txd
-/** Weapons
- * 
- * https://library.sannybuilder.com/#/gta3/classes/Weapon */
-interface Weapon {
-    /** Gets the model ID of the weapon according to the weapon type
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_WEAPONTYPE_MODEL [0604]*/
-    GetModel(weaponType: import('./enums').WeaponType): int;
-    /** Gets the type of weapon according to the model ID of the weapon
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_WEAPONTYPE_FOR_MODEL [0605]*/
-    GetTypeForModel(modelId: int): import('./enums').WeaponType;
-}
-declare var Weapon: Weapon
 /** Weather Control
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Weather */
@@ -4935,10 +4095,6 @@ interface Weather {
     *
     * https://library.sannybuilder.com/#/gta3?q=FORCE_RAIN [0421]*/
     ForceRain(state: boolean): void;
-    /** Gets the current weather ID
-    *
-    * https://library.sannybuilder.com/#/gta3?q=GET_CURRENT_WEATHER [0607]*/
-    GetCurrent(): import('./enums').WeatherType;
     /** Allows the game to continue its usual weather pattern after using 01B5
     *
     * https://library.sannybuilder.com/#/gta3?q=RELEASE_WEATHER [01B7]*/
@@ -5005,9 +4161,6 @@ interface World {
     *
     * https://library.sannybuilder.com/#/gta3?q=GET_GROUND_Z_FOR_3D_COORD [02CE]*/
     GetGroundZFor3DCoord(x: float, y: float, z: float): float;
-    GetRandomCarInSphereNoSaveRecursive(x: float, y: float, z: float, radius: float, findNext: boolean, skipWrecked: boolean): Car | undefined;
-    GetRandomCharInSphereNoSaveRecursive(x: float, y: float, z: float, radius: float, findNext: boolean, skipDead: boolean): Char | undefined;
-    GetRandomObjectInSphereNoSaveRecursive(x: float, y: float, z: float, radius: float, findNext: boolean): ScriptObject | undefined;
     /** Returns true if there is anything with the specified properties within the 3D area
     *
     * https://library.sannybuilder.com/#/gta3?q=IS_AREA_OCCUPIED [0339]*/
@@ -5060,10 +4213,6 @@ interface World {
     *
     * https://library.sannybuilder.com/#/gta3?q=SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE [0363]*/
     SetVisibilityOfClosestObjectOfType(x: float, y: float, z: float, radius: float, modelId: int, state: boolean): void;
-    /** Creates a vehicle with the model (no pre-loading needed) in front of the player
-    *
-    * https://library.sannybuilder.com/#/gta3?q=SPAWN_VEHICLE_BY_CHEATING [0ADD]*/
-    SpawnVehicleByCheating(modelId: int): void;
     /** Swaps a map model with another map model nearest to the center of the search area
     *
     * https://library.sannybuilder.com/#/gta3?q=SWAP_NEAREST_BUILDING_MODEL [03B6]*/
