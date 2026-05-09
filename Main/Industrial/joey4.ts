@@ -105,6 +105,7 @@ async function mission_start_joey4() {
         World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false /* FALSE */)
 
         //MOVE GARAGE UP
+
         ;[$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates()
         ;[$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates()
 
@@ -332,6 +333,7 @@ async function mission_start_joey4() {
 
         Audio.PlayMissionAudio()
         Text.PrintNow('JM4_12', 5000, 1) //"Go to X, wait for Toni"
+
         ;[$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates()
         ;[$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates()
 

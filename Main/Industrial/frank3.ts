@@ -539,17 +539,17 @@ async function mission_start_frankie3() {
 
         // barrels on the boat 1 - 6, 10 - 14 removed as they were doubles
 
-        $.boat_barrel7 = Object.Create(1344 /* barrel4 */, 1535.15, -930.763, 18.7294)
+        $.boat_barrel7 = ScriptObject.Create(1344 /* barrel4 */, 1535.15, -930.763, 18.7294)
 
-        $.boat_barrel8 = Object.Create(1344 /* barrel4 */, 1535.18, -929.604, 18.7294)
+        $.boat_barrel8 = ScriptObject.Create(1344 /* barrel4 */, 1535.18, -929.604, 18.7294)
 
-        $.boat_barrel9 = Object.Create(1344 /* barrel4 */, 1535.21, -928.446, 18.7294)
+        $.boat_barrel9 = ScriptObject.Create(1344 /* barrel4 */, 1535.21, -928.446, 18.7294)
 
-        $.boat_barrel15 = Object.Create(1344 /* barrel4 */, 1484.85, -942.803, 18.7328)
+        $.boat_barrel15 = ScriptObject.Create(1344 /* barrel4 */, 1484.85, -942.803, 18.7328)
 
-        $.boat_barrel16 = Object.Create(1344 /* barrel4 */, 1483.69, -942.752, 18.7328)
+        $.boat_barrel16 = ScriptObject.Create(1344 /* barrel4 */, 1483.69, -942.752, 18.7328)
 
-        $.boat_barrel17 = Object.Create(1344 /* barrel4 */, 1482.53, -942.701, 18.7328)
+        $.boat_barrel17 = ScriptObject.Create(1344 /* barrel4 */, 1482.53, -942.701, 18.7328)
 
         World.ClearArea(1272.8, -96.5, -100.0, 1.0, true /* TRUE */)
 

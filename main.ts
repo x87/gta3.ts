@@ -4354,7 +4354,7 @@ async function close_asuka1_door() {
 
         // SCRIPT_NAME ASUK_DR
 
-        if (Object.DoesExist($.backdoor)) {
+        if (ScriptObject.DoesExist($.backdoor)) {
             $.door_position_a1 = $.backdoor.getHeading()
             if ($.door_crash_flag == 1) {
                 while (!($.door_position_a1 == 0.0)) {
@@ -4805,76 +4805,76 @@ export async function main() {
 
     // VAR_FLOAT joeydoor2_X joeydoor2_Y joeydoor2_Z joeydoor3_X joeydoor3_Y joeydoor3_Z
 
-    $.playersdoor = Object.CreateNoOffset(1380 /* playersdoor */, 890.883, -307.74, 8.75)
+    $.playersdoor = ScriptObject.CreateNoOffset(1380 /* playersdoor */, 890.883, -307.74, 8.75)
     $.playersdoor.dontRemove()
 
-    $.target1 = Object.CreateNoOffset(1385 /* faketarget */, 1078.7, -384.8, 15.4)
+    $.target1 = ScriptObject.CreateNoOffset(1385 /* faketarget */, 1078.7, -384.8, 15.4)
     $.target1.dontRemove()
 
-    $.target2 = Object.CreateNoOffset(1385 /* faketarget */, 1080.5, -384.8, 15.4)
+    $.target2 = ScriptObject.CreateNoOffset(1385 /* faketarget */, 1080.5, -384.8, 15.4)
     $.target2.dontRemove()
 
-    $.target3 = Object.CreateNoOffset(1385 /* faketarget */, 1082.3, -384.8, 15.4)
+    $.target3 = ScriptObject.CreateNoOffset(1385 /* faketarget */, 1082.3, -384.8, 15.4)
     $.target3.dontRemove()
 
-    $.misty_door1 = Object.CreateNoOffset(382 /* Mistydoor */, 945.68, -272.31, 4.854)
+    $.misty_door1 = ScriptObject.CreateNoOffset(382 /* Mistydoor */, 945.68, -272.31, 4.854)
     $.misty_door1.dontRemove()
-    $.misty_door2 = Object.CreateNoOffset(382 /* Mistydoor */, 942.746, -273.712, 4.854)
+    $.misty_door2 = ScriptObject.CreateNoOffset(382 /* Mistydoor */, 942.746, -273.712, 4.854)
     $.misty_door2.dontRemove()
     $.misty_door2.setHeading(180.0)
 
-    $.laundrete_door1 = Object.CreateNoOffset(1326 /* laundrtdoor1 */, 845.773, -662.8, 15.07)
+    $.laundrete_door1 = ScriptObject.CreateNoOffset(1326 /* laundrtdoor1 */, 845.773, -662.8, 15.07)
     $.laundrete_door1.dontRemove()
-    $.laundrete_door2 = Object.CreateNoOffset(1326 /* laundrtdoor1 */, 845.773, -664.824, 15.07)
+    $.laundrete_door2 = ScriptObject.CreateNoOffset(1326 /* laundrtdoor1 */, 845.773, -664.824, 15.07)
     $.laundrete_door2.dontRemove()
     $.laundrete_door2.setHeading(180.0)
 
-    $.joeys_garage_door2 = Object.CreateNoOffset(1375 /* joey_door1 */, 1192.23, -867.252, 14.124) //The moving one
+    $.joeys_garage_door2 = ScriptObject.CreateNoOffset(1375 /* joey_door1 */, 1192.23, -867.252, 14.124) //The moving one
     $.joeys_garage_door2.dontRemove()
     $.joeys_garage_door2.setHeading(45.0)
 
-    $.joeys_garage_door3 = Object.CreateNoOffset(1374 /* joey_door2 */, 1190.12, -869.339, 14.19)
+    $.joeys_garage_door3 = ScriptObject.CreateNoOffset(1374 /* joey_door2 */, 1190.12, -869.339, 14.19)
     $.joeys_garage_door3.dontRemove()
     $.joeys_garage_door3.setHeading(45.0)
 
-    $.dogfood_factory_gate = Object.CreateNoOffset(1278 /* electricgate */, 1250.4, -812.0, 13.97)
+    $.dogfood_factory_gate = ScriptObject.CreateNoOffset(1278 /* electricgate */, 1250.4, -812.0, 13.97)
     $.dogfood_factory_gate.dontRemove()
     $.dogfood_factory_gate.setHeading(225.0)
 
-    $.doggy_door = Object.CreateNoOffset(407 /* dogfoodoor01 */, 1205.298, -802.908, 15.0)
+    $.doggy_door = ScriptObject.CreateNoOffset(407 /* dogfoodoor01 */, 1205.298, -802.908, 15.0)
     $.doggy_door.dontRemove()
     $.doggy_door.setHeading(45.0)
 
-    $.fish_factory_gate = Object.CreateNoOffset(1278 /* electricgate */, 1016.0, -1107.955, 12.294)
+    $.fish_factory_gate = ScriptObject.CreateNoOffset(1278 /* electricgate */, 1016.0, -1107.955, 12.294)
     $.fish_factory_gate.dontRemove()
     $.fish_factory_gate.setHeading(90.0)
 
-    $.Bank_job_door = Object.CreateNoOffset(391 /* bankjobdoor */, 1087.523, -233.801, 11.012)
+    $.Bank_job_door = ScriptObject.CreateNoOffset(391 /* bankjobdoor */, 1087.523, -233.801, 11.012)
     $.Bank_job_door.dontRemove()
 
-    $.bankdoor1 = Object.CreateNoOffset(1386 /* chnabankdoor */, 1035.6, -700.793, 15.334) //chnabankdoor 1035.479 -700.743 15.334
+    $.bankdoor1 = ScriptObject.CreateNoOffset(1386 /* chnabankdoor */, 1035.6, -700.793, 15.334) //chnabankdoor 1035.479 -700.743 15.334
     $.bankdoor1.dontRemove()
 
-    $.bankdoor2 = Object.CreateNoOffset(1386 /* chnabankdoor */, 1035.6, -699.408, 15.334) //chnabankdoor
+    $.bankdoor2 = ScriptObject.CreateNoOffset(1386 /* chnabankdoor */, 1035.6, -699.408, 15.334) //chnabankdoor
     $.bankdoor2.dontRemove()
     $.bankdoor2.setHeading(180.0)
 
-    $.backdoor = Object.CreateNoOffset(1376 /* backdoor */, 891.056, -416.4373, 14.955)
+    $.backdoor = ScriptObject.CreateNoOffset(1376 /* backdoor */, 891.056, -416.4373, 14.955)
     $.backdoor.dontRemove()
 
-    $.fuzz_door1 = Object.CreateNoOffset(1330 /* fuzballdoor */, 1001.673, -887.855, 15.775)
+    $.fuzz_door1 = ScriptObject.CreateNoOffset(1330 /* fuzballdoor */, 1001.673, -887.855, 15.775)
     $.fuzz_door1.setHeading(180.0)
     $.fuzz_door1.dontRemove()
 
-    $.fuzz_door2 = Object.CreateNoOffset(1330 /* fuzballdoor */, 998.33, -887.94, 15.775)
+    $.fuzz_door2 = ScriptObject.CreateNoOffset(1330 /* fuzballdoor */, 998.33, -887.94, 15.775)
     $.fuzz_door2.setHeading(0.0)
     $.fuzz_door2.dontRemove()
 
-    $.subway_gate_industrial = Object.CreateNoOffset(1280 /* subwaygate */, 988.963, -471.778, 5.2)
+    $.subway_gate_industrial = ScriptObject.CreateNoOffset(1280 /* subwaygate */, 988.963, -471.778, 5.2)
     $.subway_gate_industrial.dontRemove()
     $.subway_gate_industrial.setHeading(90.0)
 
-    $.tunnel_gate_industrial = Object.CreateNoOffset(1281 /* tunnelentrance */, 730.331, 172.467, -21.075)
+    $.tunnel_gate_industrial = ScriptObject.CreateNoOffset(1281 /* tunnelentrance */, 730.331, 172.467, -21.075)
     $.tunnel_gate_industrial.dontRemove()
 
     // ********************************CREATE COMMERCIAL OBJECTS********************************
@@ -4885,36 +4885,36 @@ export async function main() {
     // VAR_INT phils_compnd_gate flag_player_on_phil_mission
     // VAR_INT inside_fence outside_fence
 
-    $.helix_barrier = Object.CreateNoOffset(1299 /* helix_barrier */, -73.137, -630.333, 25.932)
+    $.helix_barrier = ScriptObject.CreateNoOffset(1299 /* helix_barrier */, -73.137, -630.333, 25.932)
     $.helix_barrier.dontRemove()
 
-    $.plysav_lftdr_lft = Object.CreateNoOffset(1252 /* plysav_lftdr_lft */, 103.85, -482.8, 16.25)
+    $.plysav_lftdr_lft = ScriptObject.CreateNoOffset(1252 /* plysav_lftdr_lft */, 103.85, -482.8, 16.25)
     $.plysav_lftdr_lft.dontRemove()
 
-    $.plysav_lftdr_rght = Object.CreateNoOffset(1253 /* plysav_lftdr_rght */, 102.192, -482.8, 16.25)
+    $.plysav_lftdr_rght = ScriptObject.CreateNoOffset(1253 /* plysav_lftdr_rght */, 102.192, -482.8, 16.25)
     $.plysav_lftdr_rght.dontRemove()
     $.plysav_lftdr_rght.setHeading(180.0)
 
-    $.police_door_one = Object.CreateNoOffset(1278 /* electricgate */, 366.158, -1128.522, 21.941)
+    $.police_door_one = ScriptObject.CreateNoOffset(1278 /* electricgate */, 366.158, -1128.522, 21.941)
     $.police_door_one.dontRemove()
     $.police_door_one.setHeading(180.0)
 
-    $.police_door_two = Object.CreateNoOffset(1278 /* electricgate */, 326.3, -1128.522, 21.941)
+    $.police_door_two = ScriptObject.CreateNoOffset(1278 /* electricgate */, 326.3, -1128.522, 21.941)
     $.police_door_two.dontRemove()
     $.police_door_two.setHeading(180.0)
 
-    $.colombian_gate = Object.CreateNoOffset(1278 /* electricgate */, 91.589, -318.592, 15.296)
+    $.colombian_gate = ScriptObject.CreateNoOffset(1278 /* electricgate */, 91.589, -318.592, 15.296)
     $.colombian_gate.dontRemove()
     $.colombian_gate.setHeading(270.0)
 
-    $.phils_compnd_gate = Object.CreateNoOffset(1278 /* electricgate */, 147.249, 207.323, 10.599)
+    $.phils_compnd_gate = ScriptObject.CreateNoOffset(1278 /* electricgate */, 147.249, 207.323, 10.599)
     $.phils_compnd_gate.dontRemove()
     $.phils_compnd_gate.setHeading(270.0)
 
-    $.inside_fence = Object.CreateNoOffset(1409 /* fixed_inside */, 362.827, -341.883, 17.186)
+    $.inside_fence = ScriptObject.CreateNoOffset(1409 /* fixed_inside */, 362.827, -341.883, 17.186)
     $.inside_fence.dontRemove()
 
-    $.outside_fence = Object.CreateNoOffset(1412 /* fixed_outside */, 360.852, -391.405, 22.622)
+    $.outside_fence = ScriptObject.CreateNoOffset(1412 /* fixed_outside */, 360.852, -391.405, 22.622)
     $.outside_fence.dontRemove()
 
     // ********************************CREATE SUBURBAN OBJECTS*********************************
@@ -4922,18 +4922,18 @@ export async function main() {
     // VAR_INT newtowerdoor1 Columbian_gate2
     // VAR_INT airportdoor1 airportdoor2
 
-    $.newtowerdoor1 = Object.CreateNoOffset(1286 /* newtowerdoor1 */, -664.313, 2.883, 19.51)
+    $.newtowerdoor1 = ScriptObject.CreateNoOffset(1286 /* newtowerdoor1 */, -664.313, 2.883, 19.51)
     $.newtowerdoor1.dontRemove()
     $.newtowerdoor1.setHeading(180.0)
 
-    $.Columbian_gate2 = Object.CreateNoOffset(1284 /* Columbiangate */, -363.05, 250.455, 61.355)
+    $.Columbian_gate2 = ScriptObject.CreateNoOffset(1284 /* Columbiangate */, -363.05, 250.455, 61.355)
     $.Columbian_gate2.dontRemove()
     $.Columbian_gate2.setHeading(180.0)
 
-    $.airportdoor1 = Object.CreateNoOffset(1371 /* airportdoor1 */, -770.414, -599.292, 11.847)
+    $.airportdoor1 = ScriptObject.CreateNoOffset(1371 /* airportdoor1 */, -770.414, -599.292, 11.847)
     $.airportdoor1.dontRemove()
 
-    $.airportdoor2 = Object.CreateNoOffset(1372 /* airportdoor2 */, -770.414, -601.369, 11.846)
+    $.airportdoor2 = ScriptObject.CreateNoOffset(1372 /* airportdoor2 */, -770.414, -601.369, 11.846)
     $.airportdoor2.dontRemove()
 
     // ******************************************Police Levels**********************************

@@ -244,9 +244,9 @@ async function mission_start_love4() {
         }
 
         if (Game.IsNasty()) {
-            $.deadman1 = Object.CreateNoOffset(2780 /* deadman1 */, -1276.834, -528.049, 10.568) //-1276.983 -527.532 9.951 deadman1
+            $.deadman1 = ScriptObject.CreateNoOffset(2780 /* deadman1 */, -1276.834, -528.049, 10.568) //-1276.983 -527.532 9.951 deadman1
         } else {
-            $.deadman1 = Object.CreateNoOffset(2799 /* deadmanoblood */, -1276.834, -528.049, 10.568) //-1276.983 -527.532 9.951 deadman1
+            $.deadman1 = ScriptObject.CreateNoOffset(2799 /* deadmanoblood */, -1276.834, -528.049, 10.568) //-1276.983 -527.532 9.951 deadman1
         }
 
         while (!$.player.locateAnyMeans2D(-1268.4851, -528.6431, 200.0, 200.0, false)) {
@@ -579,6 +579,7 @@ async function mission_start_love4() {
         $.script_controlled_player.setIdle()
 
         $.love_4_blip.remove()
+
         ;[$.player_lo4_x, $.player_lo4_y, $.player_lo4_z] = $.player.getCoordinates()
 
         $.differ_x = $.player_lo4_x - $.result1_x
@@ -1277,17 +1278,17 @@ async function mission_start_love4() {
 
         Camera.SetBehindPlayer()
 
-        if (Object.DoesExist($.inside_fence)) {
+        if (ScriptObject.DoesExist($.inside_fence)) {
             $.inside_fence.delete()
         }
 
-        if (Object.DoesExist($.outside_fence)) {
+        if (ScriptObject.DoesExist($.outside_fence)) {
             $.outside_fence.delete()
         }
 
-        $.inside_fence = Object.CreateNoOffset(1410 /* broken_inside */, 362.827, -341.362, 17.375)
+        $.inside_fence = ScriptObject.CreateNoOffset(1410 /* broken_inside */, 362.827, -341.362, 17.375)
         $.inside_fence.dontRemove()
-        $.outside_fence = Object.CreateNoOffset(1411 /* broken_outside */, 360.852, -390.891, 22.622)
+        $.outside_fence = ScriptObject.CreateNoOffset(1411 /* broken_outside */, 360.852, -390.891, 22.622)
         $.outside_fence.dontRemove()
 
         $.yakuza_car1 = Car.Create(129 /* CAR_YAKUZA */, 339.8449, -290.6314, 16.0) // out front

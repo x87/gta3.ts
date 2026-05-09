@@ -476,7 +476,7 @@ async function mission_start_asuka1() {
         $.beamer2_a1.setCruiseSpeed(14.0)
         $.beamer3_a1.setCruiseSpeed(13.0)
 
-        if (Object.DoesExist($.backdoor)) {
+        if (ScriptObject.DoesExist($.backdoor)) {
             $.door_position_a1 = $.backdoor.getHeading()
         }
 

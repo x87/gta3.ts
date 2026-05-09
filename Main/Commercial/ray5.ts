@@ -470,7 +470,7 @@ async function injured_cop_bailout() {
     $.blip_ambulance_rc5.remove()
     ;[$.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z] = $.ambulance_rc5.getCoordinates()
     $.amb_rc5_z = $.amb_rc5_z + 2.5
-    $.injured_cop_rc5 = Object.Create(1395 /* bodycast */, $.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z)
+    $.injured_cop_rc5 = ScriptObject.Create(1395 /* bodycast */, $.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z)
     $.injured_cop_rc5.setCollision(true /* TRUE */)
     $.injured_cop_rc5.setDynamic(true /* true */)
     $.injured_cop_rc5.makeTargetable()
@@ -503,7 +503,7 @@ async function injured_cop_bailout() {
         await asyncWait(0)
         ;[$.ic_x, $.ic_y, $.ic_z] = $.injured_cop_rc5.getCoordinates()
         Audio.SetMissionAudioPosition($.ic_x, $.ic_y, $.ic_z)
-        $.bodycast_health = Object.GetBodyCastHealth()
+        $.bodycast_health = ScriptObject.GetBodyCastHealth()
         $.bodycast_health = $.bodycast_health * -1
         $.bodycast_health = $.bodycast_health + 1000
         $.bodycast_health = $.bodycast_health / 10

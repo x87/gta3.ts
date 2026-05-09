@@ -1165,11 +1165,11 @@ async function mission_cleanup_ray6() {
     $.flag_player_on_mission = 0
     $.flag_player_on_ray_mission = 0
 
-    if (Object.DoesExist($.airportdoor1)) {
+    if (ScriptObject.DoesExist($.airportdoor1)) {
         $.airportdoor1.setCoordinates(-770.414, -599.292, 11.847)
     }
 
-    if (Object.DoesExist($.airportdoor2)) {
+    if (ScriptObject.DoesExist($.airportdoor2)) {
         $.airportdoor2.setCoordinates(-770.414, -601.369, 11.846)
     }
 

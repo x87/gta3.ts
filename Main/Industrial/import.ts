@@ -283,7 +283,7 @@ async function import1_loop() {
                     if (!($.industrial_garage_slots_filled == 16)) {
                         if ($.collect_all_cars1.hasSlotBeenFilled(1) && $.industrial_slot1 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.securicar_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 13.582)
+                            $.securicar_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 13.582)
                             $.securicar_score_off.dontRemove()
                             $.securicar_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -291,7 +291,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(2) && $.industrial_slot2 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.moonbeam_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 13.385)
+                            $.moonbeam_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 13.385)
                             $.moonbeam_score_off.dontRemove()
                             $.moonbeam_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -299,7 +299,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(3) && $.industrial_slot3 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.coach_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 13.18)
+                            $.coach_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 13.18)
                             $.coach_score_off.dontRemove()
                             $.coach_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -307,7 +307,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(4) && $.industrial_slot4 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.flatbed_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.972)
+                            $.flatbed_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.972)
                             $.flatbed_score_off.dontRemove()
                             $.flatbed_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -315,7 +315,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(5) && $.industrial_slot5 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.linerunner_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.75)
+                            $.linerunner_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.75)
                             $.linerunner_score_off.dontRemove()
                             $.linerunner_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -323,7 +323,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(6) && $.industrial_slot6 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.trashmaster_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.549)
+                            $.trashmaster_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.549)
                             $.trashmaster_score_off.dontRemove()
                             $.trashmaster_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -331,7 +331,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(7) && $.industrial_slot7 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.patriot_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.35)
+                            $.patriot_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.35)
                             $.patriot_score_off.dontRemove()
                             $.patriot_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -339,7 +339,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(8) && $.industrial_slot8 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.whoopee_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.131)
+                            $.whoopee_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -674.578, 12.131)
                             $.whoopee_score_off.dontRemove()
                             $.whoopee_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -347,7 +347,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(9) && $.industrial_slot9 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.blista_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -675.459, 13.582)
+                            $.blista_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -675.459, 13.582)
                             $.blista_score_off.dontRemove()
                             $.blista_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -355,7 +355,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(10) && $.industrial_slot10 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.mule_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 13.361)
+                            $.mule_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 13.361)
                             $.mule_score_off.dontRemove()
                             $.mule_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -363,7 +363,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(11) && $.industrial_slot11 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.yankee_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 13.151)
+                            $.yankee_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 13.151)
                             $.yankee_score_off.dontRemove()
                             $.yankee_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -371,7 +371,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(12) && $.industrial_slot12 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.bobcat_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.966)
+                            $.bobcat_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.966)
                             $.bobcat_score_off.dontRemove()
                             $.bobcat_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -379,7 +379,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(13) && $.industrial_slot13 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.dodo_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.757)
+                            $.dodo_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.757)
                             $.dodo_score_off.dontRemove()
                             $.dodo_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -387,7 +387,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(14) && $.industrial_slot14 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.bus_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.52)
+                            $.bus_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.52)
                             $.bus_score_off.dontRemove()
                             $.bus_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -395,7 +395,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(15) && $.industrial_slot15 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.rumpo_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.322)
+                            $.rumpo_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.322)
                             $.rumpo_score_off.dontRemove()
                             $.rumpo_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -403,7 +403,7 @@ async function import1_loop() {
                         }
                         if ($.collect_all_cars1.hasSlotBeenFilled(16) && $.industrial_slot16 == 0) {
                             $.industrial_garage_slots_filled++
-                            $.pony_score_off = Object.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.131)
+                            $.pony_score_off = ScriptObject.CreateNoOffset(1379 /* line */, 1496.036, -675.474, 12.131)
                             $.pony_score_off.dontRemove()
                             $.pony_score_off.setHeading(270.0)
                             Stat.PlayerMadeProgress(1)
@@ -739,7 +739,7 @@ async function import2_loop() {
                     if (!($.suburban_garage_slots_filled == 16)) {
                         if ($.collect_all_cars2.hasSlotBeenFilled(1) && $.suburban_slot1 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.sentinet_score_off = Object.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 60.529)
+                            $.sentinet_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 60.529)
                             $.sentinet_score_off.dontRemove()
                             $.sentinet_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -747,7 +747,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(2) && $.suburban_slot2 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.cheetah_score_off = Object.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 60.332)
+                            $.cheetah_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 60.332)
                             $.cheetah_score_off.dontRemove()
                             $.cheetah_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -755,7 +755,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(3) && $.suburban_slot3 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.banshee_score_off = Object.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 60.127)
+                            $.banshee_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 60.127)
                             $.banshee_score_off.dontRemove()
                             $.banshee_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -763,7 +763,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(4) && $.suburban_slot4 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.idaho_score_off = Object.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.919)
+                            $.idaho_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.919)
                             $.idaho_score_off.dontRemove()
                             $.idaho_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -771,7 +771,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(5) && $.suburban_slot5 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.infernus_score_off = Object.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.697)
+                            $.infernus_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.697)
                             $.infernus_score_off.dontRemove()
                             $.infernus_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -779,7 +779,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(6) && $.suburban_slot6 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.taxi_score_off = Object.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.497)
+                            $.taxi_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.497)
                             $.taxi_score_off.dontRemove()
                             $.taxi_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -787,7 +787,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(7) && $.suburban_slot7 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.kuruma_score_off = Object.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.298)
+                            $.kuruma_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.298)
                             $.kuruma_score_off.dontRemove()
                             $.kuruma_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -795,7 +795,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(8) && $.suburban_slot8 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.stretch_score_off = Object.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.079)
+                            $.stretch_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1106.161, 151.191, 59.079)
                             $.stretch_score_off.dontRemove()
                             $.stretch_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -803,7 +803,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(9) && $.suburban_slot9 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.perennial_score_off = Object.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 60.529)
+                            $.perennial_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 60.529)
                             $.perennial_score_off.dontRemove()
                             $.perennial_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -811,7 +811,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(10) && $.suburban_slot10 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.stinger_score_off = Object.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 60.309)
+                            $.stinger_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 60.309)
                             $.stinger_score_off.dontRemove()
                             $.stinger_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -819,7 +819,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(11) && $.suburban_slot11 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.manana_score_off = Object.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 60.098)
+                            $.manana_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 60.098)
                             $.manana_score_off.dontRemove()
                             $.manana_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -827,7 +827,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(12) && $.suburban_slot12 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.landstalker_score_off = Object.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.919)
+                            $.landstalker_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.919)
                             $.landstalker_score_off.dontRemove()
                             $.landstalker_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -835,7 +835,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(13) && $.suburban_slot13 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.stallion_score_off = Object.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.697)
+                            $.stallion_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.697)
                             $.stallion_score_off.dontRemove()
                             $.stallion_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -843,7 +843,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(14) && $.suburban_slot14 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.injection_score_off = Object.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.497)
+                            $.injection_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.497)
                             $.injection_score_off.dontRemove()
                             $.injection_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -851,7 +851,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(15) && $.suburban_slot15 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.cabbie_score_off = Object.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.298)
+                            $.cabbie_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.298)
                             $.cabbie_score_off.dontRemove()
                             $.cabbie_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)
@@ -859,7 +859,7 @@ async function import2_loop() {
                         }
                         if ($.collect_all_cars2.hasSlotBeenFilled(16) && $.suburban_slot16 == 0) {
                             $.suburban_garage_slots_filled++
-                            $.esperanto_score_off = Object.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.079)
+                            $.esperanto_score_off = ScriptObject.CreateNoOffset(1379 /* line */, -1107.042, 151.191, 59.079)
                             $.esperanto_score_off.dontRemove()
                             $.esperanto_score_off.setHeading(180.0)
                             Stat.PlayerMadeProgress(1)

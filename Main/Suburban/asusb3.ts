@@ -352,17 +352,17 @@ async function mission_start_as3() {
 
   */
 
-    $.bouy_1_as3 = Object.Create(1373 /* bouy */, -825.0, -1360.0, 2.0)
-    $.bouy_3_as3 = Object.Create(1373 /* bouy */, -705.0, -1410.0, 2.0)
-    $.bouy_5_as3 = Object.Create(1373 /* bouy */, -585.0, -1460.0, 2.0)
-    $.bouy_6_as3 = Object.Create(1373 /* bouy */, -785.0, -1260.0, 2.0)
-    $.bouy_8_as3 = Object.Create(1373 /* bouy */, -665.0, -1310.0, 2.0)
-    $.bouy_10_as3 = Object.Create(1373 /* bouy */, -545.0, -1360.0, 2.0)
-    $.bouy_2_as3 = Object.Create(1373 /* bouy */, -765.0, -1385.0, 2.0)
-    $.bouy_4_as3 = Object.Create(1373 /* bouy */, -645.0, -1435.0, 2.0)
-    $.bouy_7_as3 = Object.Create(1373 /* bouy */, -725.0, -1285.0, 2.0)
-    $.bouy_9_as3 = Object.Create(1373 /* bouy */, -605.0, -1335.0, 2.0)
-    $.bouy_point = Object.Create(1373 /* bouy */, $.platform_x, $.platform_y, 2.0)
+    $.bouy_1_as3 = ScriptObject.Create(1373 /* bouy */, -825.0, -1360.0, 2.0)
+    $.bouy_3_as3 = ScriptObject.Create(1373 /* bouy */, -705.0, -1410.0, 2.0)
+    $.bouy_5_as3 = ScriptObject.Create(1373 /* bouy */, -585.0, -1460.0, 2.0)
+    $.bouy_6_as3 = ScriptObject.Create(1373 /* bouy */, -785.0, -1260.0, 2.0)
+    $.bouy_8_as3 = ScriptObject.Create(1373 /* bouy */, -665.0, -1310.0, 2.0)
+    $.bouy_10_as3 = ScriptObject.Create(1373 /* bouy */, -545.0, -1360.0, 2.0)
+    $.bouy_2_as3 = ScriptObject.Create(1373 /* bouy */, -765.0, -1385.0, 2.0)
+    $.bouy_4_as3 = ScriptObject.Create(1373 /* bouy */, -645.0, -1435.0, 2.0)
+    $.bouy_7_as3 = ScriptObject.Create(1373 /* bouy */, -725.0, -1285.0, 2.0)
+    $.bouy_9_as3 = ScriptObject.Create(1373 /* bouy */, -605.0, -1335.0, 2.0)
+    $.bouy_point = ScriptObject.Create(1373 /* bouy */, $.platform_x, $.platform_y, 2.0)
 
     $.bouy_1_as3.setCollision(true /* true */)
     $.bouy_1_as3.setDynamic(true /* true */)
@@ -716,7 +716,7 @@ async function loop_as3_6() {
     $.dodo_as3.setHealth(1)
     $.dodo_as3_x = $.dodo_as3_x + 1.0
 
-    $.charlie_1 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
+    $.charlie_1 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
     $.charlie_1.flash(true /* On */)
     $.charlie_1.setCollision(true /* TRUE */)
     $.charlie_1.setDynamic(true /* TRUE */)
@@ -726,7 +726,7 @@ async function loop_as3_6() {
 
     $.dodo_as3_y = $.dodo_as3_y - 1.0
 
-    $.charlie_2 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
+    $.charlie_2 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
     $.charlie_2.flash(true /* On */)
     $.charlie_2.setCollision(true /* TRUE */)
     $.charlie_2.setDynamic(true /* TRUE */)
@@ -735,7 +735,7 @@ async function loop_as3_6() {
 
     $.dodo_as3_x = $.dodo_as3_x - 1.0
 
-    $.charlie_3 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
+    $.charlie_3 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
     $.charlie_3.flash(true /* On */)
     $.charlie_3.setCollision(true /* TRUE */)
     $.charlie_3.setDynamic(true /* TRUE */)
@@ -744,7 +744,7 @@ async function loop_as3_6() {
 
     $.dodo_as3_x = $.dodo_as3_x - 1.0
 
-    $.charlie_4 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
+    $.charlie_4 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
     $.charlie_4.flash(true /* On */)
     $.charlie_4.setCollision(true /* TRUE */)
     $.charlie_4.setDynamic(true /* TRUE */)
@@ -753,7 +753,7 @@ async function loop_as3_6() {
 
     $.dodo_as3_y = $.dodo_as3_y + 1.0
 
-    $.charlie_5 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
+    $.charlie_5 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
     $.charlie_5.flash(true /* On */)
     $.charlie_5.setCollision(true /* TRUE */)
     $.charlie_5.setDynamic(true /* TRUE */)
@@ -762,7 +762,7 @@ async function loop_as3_6() {
 
     $.dodo_as3_y = $.dodo_as3_y + 1.0
 
-    $.charlie_6 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
+    $.charlie_6 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
     $.charlie_6.flash(true /* On */)
     $.charlie_6.setCollision(true /* TRUE */)
     $.charlie_6.setDynamic(true /* TRUE */)
@@ -771,7 +771,7 @@ async function loop_as3_6() {
 
     $.dodo_as3_x = $.dodo_as3_x + 1.0
 
-    $.charlie_7 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
+    $.charlie_7 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
     $.charlie_7.flash(true /* On */)
     $.charlie_7.setCollision(true /* TRUE */)
     $.charlie_7.setDynamic(true /* TRUE */)
@@ -780,7 +780,7 @@ async function loop_as3_6() {
 
     $.dodo_as3_x = $.dodo_as3_x + 1.0
 
-    $.charlie_8 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
+    $.charlie_8 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z)
     $.charlie_8.flash(true /* On */)
     $.charlie_8.setCollision(true /* TRUE */)
     $.charlie_8.setDynamic(true /* TRUE */)

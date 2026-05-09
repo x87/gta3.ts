@@ -631,8 +631,10 @@ async function mission_start_joey6() {
         $.objective_count_done_before1 = 0
         $.objective_count_done_before2 = 0
         $.objective_count_done_before3 = 0
+
         ;[$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates()
         $.bankdoor_Y = $.bankdoor_Y - 1.0
+
         ;[$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates()
         $.bankdoor2_Y = $.bankdoor2_Y + 1.0
 
@@ -766,8 +768,10 @@ async function mission_start_joey6() {
         }
 
         Audio.LoadMissionAudio(J6_1)
+
         ;[$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates()
         $.bankdoor_Y = $.bankdoor_Y + 1.0
+
         ;[$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates()
         $.bankdoor2_Y = $.bankdoor2_Y - 1.0
 
@@ -795,8 +799,10 @@ async function mission_start_joey6() {
         //THUGS COME OUT OF BANK
 
         World.ClearArea(1037.3, -699.6, 15.0, 4.0, true /* TRUE */)
+
         ;[$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates()
         $.bankdoor_Y = $.bankdoor_Y - 1.0
+
         ;[$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates()
         $.bankdoor2_Y = $.bankdoor2_Y + 1.0
 
@@ -903,8 +909,10 @@ async function mission_start_joey6() {
         Audio.PlayMissionAudio()
 
         $.player.alterWantedLevelNoDrop(3)
+
         ;[$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates()
         $.bankdoor_Y = $.bankdoor_Y + 1.0
+
         ;[$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates()
         $.bankdoor2_Y = $.bankdoor2_Y - 1.0
 

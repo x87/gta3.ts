@@ -33,6 +33,7 @@ async function next_fire() {
     await asyncWait(0)
 
     Game.SetWantedMultiplier(0.5)
+
     ;[$.player1_x, $.player1_y, $.player1_z] = $.player.getCoordinates()
 
     if (!$.player.isInModel(90 /* CAR_FIRETRUCK */)) {

@@ -264,17 +264,17 @@ async function mission_start_ray3() {
         ;[$.car_stuck_x, $.car_stuck_y, $.car_stuck_z] = $.ia_car_rm3.getCoordinates()
         ;[$.ia_car_x, $.ia_car_y, $.ia_car_z] = $.ia_car_rm3.getCoordinates()
         $.ia_car_z += 3.0
-        $.evidence_1 = Object.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
+        $.evidence_1 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
         $.ia_car_z += 1.0
-        $.evidence_2 = Object.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
+        $.evidence_2 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
         $.ia_car_z += 1.0
-        $.evidence_3 = Object.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
+        $.evidence_3 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
         $.ia_car_z += 1.0
-        $.evidence_4 = Object.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
+        $.evidence_4 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
         $.ia_car_z += 1.0
-        $.evidence_5 = Object.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
+        $.evidence_5 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
         $.ia_car_z += 1.0
-        $.evidence_6 = Object.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
+        $.evidence_6 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
 
         $.evidence_1.setCollision(false /* FALSE */)
         $.evidence_2.setCollision(false /* FALSE */)

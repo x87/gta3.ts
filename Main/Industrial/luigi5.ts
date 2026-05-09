@@ -380,7 +380,7 @@ async function mission_start_luigi5() {
 
         $.cop_car2_lm5.lockDoors(1 /* CARLOCK_UNLOCKED */)
 
-        $.fuzzball_sign = Object.CreateNoOffset(1329 /* policeballsigns */, 1010.74, -896.46, 24.161)
+        $.fuzzball_sign = ScriptObject.CreateNoOffset(1329 /* policeballsigns */, 1010.74, -896.46, 24.161)
 
         $.ball_sounds = Sound.AddContinuous(999.9, -892.4, 16.0, 71 /* SOUND_POLICE_BALL_LOOP_L */)
 

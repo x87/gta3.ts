@@ -199,13 +199,13 @@ async function mission_start_frank4() {
         //CREATE SUBURBAN BARRIERS
 
         if ($.barriers_been_added == 0) {
-            $.subway_gate_suburban1 = Object.CreateNoOffset(1280 /* subwaygate */, -672.0, -760.0, 8.3)
+            $.subway_gate_suburban1 = ScriptObject.CreateNoOffset(1280 /* subwaygate */, -672.0, -760.0, 8.3)
             $.subway_gate_suburban1.dontRemove()
             $.subway_gate_suburban1.setHeading(270.0)
-            $.subway_gate_suburban2 = Object.CreateNoOffset(1280 /* subwaygate */, -672.0, -768.9, 8.3)
+            $.subway_gate_suburban2 = ScriptObject.CreateNoOffset(1280 /* subwaygate */, -672.0, -768.9, 8.3)
             $.subway_gate_suburban2.dontRemove()
             $.subway_gate_suburban2.setHeading(270.0)
-            $.tunnel_gate_suburban = Object.CreateNoOffset(1281 /* tunnelentrance */, 533.3, 97.0, -21.3)
+            $.tunnel_gate_suburban = ScriptObject.CreateNoOffset(1281 /* tunnelentrance */, 533.3, 97.0, -21.3)
             $.tunnel_gate_suburban.dontRemove()
             $.tunnel_gate_suburban.setHeading(45.0)
             $.barriers_been_added = 1

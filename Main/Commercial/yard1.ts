@@ -413,6 +413,7 @@ async function main_loop() {
 
         if ($.player.isInAnyCar()) {
             $.player_car = $.player.storeCarIsIn()
+
             ;[$.player_car_x, $.player_car_y, $.player_car_z] = $.player_car.getCoordinates()
             $.x_sum = $.finish_x - $.player_car_x
             $.y_sum = $.finish_y - $.player_car_y

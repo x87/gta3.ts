@@ -1481,8 +1481,8 @@ async function mission_start_intro() {
         World.SwapNearestBuildingModel(529.023, -940.098, 43.504, 20.0, 1184 /* lodridgerda */, 1186 /* lodgbbridgerda */)
         World.SwapNearestBuildingModel(702.764, -919.963, 38.736, 20.0, 1184 /* lodridgerda */, 1186 /* lodgbbridgerda */)
 
-        $.damagea = Object.CreateNoOffset(725 /* bridgefuka */, 715.746, -937.908, 40.194)
-        $.damageb = Object.CreateNoOffset(724 /* bridgefukb */, 787.835, -939.24, 38.971)
+        $.damagea = ScriptObject.CreateNoOffset(725 /* bridgefuka */, 715.746, -937.908, 40.194)
+        $.damageb = ScriptObject.CreateNoOffset(724 /* bridgefukb */, 787.835, -939.24, 38.971)
 
         $.player.setCoordinates(811.9, -939.95, 35.8)
         $.player.setHeading(180.0)

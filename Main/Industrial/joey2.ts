@@ -211,7 +211,7 @@ async function mission_start_joey2() {
         $.gun_chunky = Pickup.CreateWithAmmo(154 /* WEAPON_COLT45 */, 3 /* PICKUP_ONCE */, 45, 1080.5, -396.0, -100.0)
         $.blip2_jm2 = Blip.AddSpriteForPickup($.gun_chunky, 20 /* RADAR_SPRITE_WEAPON */)
 
-        $.noodle_stand = Object.Create(1406 /* noodlesbox */, 975.0, -720.0, 14.0)
+        $.noodle_stand = ScriptObject.Create(1406 /* noodlesbox */, 975.0, -720.0, 14.0)
 
         // START OF MISSION
 

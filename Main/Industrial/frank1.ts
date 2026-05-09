@@ -345,6 +345,7 @@ async function mission_start_frankie1() {
         $.player.warpIntoCar($.frankies_limo)
 
         Camera.DoFade(0, 0 /* FADE_OUT */)
+
         ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
 
         $.fm1_blip = Blip.AddForCoord(775.5, -557.3, 14.0)
@@ -532,6 +533,7 @@ async function mission_start_frankie1() {
         }
 
         $.maria.setObjGotoCharOnFoot($.chico)
+
         ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
 
         while (!$.maria.locateStoppedOnFoot2D($.chico_x, $.chico_y, 3.0, 3.0, false)) {

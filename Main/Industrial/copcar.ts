@@ -46,6 +46,7 @@ async function next_cop_car() {
     $.players_distance_from_criminal = 0.0
     $.cop_time_limit_float = 0.0
     $.criminal_heading = 0.0
+
     ;[$.player_c_x, $.player_c_y, $.player_c_z] = $.player.getCoordinates()
     Streaming.RequestModel(car`SENTINEL`)
     {
@@ -276,6 +277,7 @@ async function next_cop_car() {
         $.criminal_car.setHealth(800)
         Streaming.MarkModelAsNoLongerNeeded(car`model`)
         $.criminal_car.setHeading($.criminal_heading)
+
         ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z] = Path.GetClosestCharNode($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
         $.criminal = Char.CreateRandom($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
         $.criminal.setIsChrisCriminal(true /* TRUE */)

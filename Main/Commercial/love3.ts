@@ -575,17 +575,17 @@ async function mission_love3_passed() {
     $.flag_commercial_passed = 1
     Stat.SetCommercialPassed()
 
-    if (Object.DoesExist($.subway_gate_suburban1)) {
+    if (ScriptObject.DoesExist($.subway_gate_suburban1)) {
         $.subway_gate_suburban1.delete()
     }
-    if (Object.DoesExist($.subway_gate_suburban2)) {
+    if (ScriptObject.DoesExist($.subway_gate_suburban2)) {
         $.subway_gate_suburban2.delete()
     }
-    if (Object.DoesExist($.tunnel_gate_suburban)) {
+    if (ScriptObject.DoesExist($.tunnel_gate_suburban)) {
         $.tunnel_gate_suburban.delete()
     }
 
-    if (Object.DoesExist($.helix_barrier)) {
+    if (ScriptObject.DoesExist($.helix_barrier)) {
         $.helix_barrier.delete()
     }
 

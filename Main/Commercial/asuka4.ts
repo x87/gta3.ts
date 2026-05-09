@@ -157,16 +157,16 @@ async function mission_start_asuka4() {
 
         // MISSION START
 
-        $.phone_1_obj = Object.CreateNoOffset(1385 /* faketarget */, 229.2, -1537.6, 26.0)
+        $.phone_1_obj = ScriptObject.CreateNoOffset(1385 /* faketarget */, 229.2, -1537.6, 26.0)
         $.phone_1_obj.dontRemove()
 
-        $.phone_2_obj = Object.CreateNoOffset(1385 /* faketarget */, -53.5, -699.1, 26.0)
+        $.phone_2_obj = ScriptObject.CreateNoOffset(1385 /* faketarget */, -53.5, -699.1, 26.0)
         $.phone_2_obj.dontRemove()
 
-        $.phone_3_obj = Object.CreateNoOffset(1385 /* faketarget */, 204.8, -135.0, 16.0)
+        $.phone_3_obj = ScriptObject.CreateNoOffset(1385 /* faketarget */, 204.8, -135.0, 16.0)
         $.phone_3_obj.dontRemove()
 
-        $.phone_4_obj = Object.CreateNoOffset(1385 /* faketarget */, 60.3, -964.8, 26.1)
+        $.phone_4_obj = ScriptObject.CreateNoOffset(1385 /* faketarget */, 60.3, -964.8, 26.1)
         $.phone_4_obj.dontRemove()
 
         $.countdown_as4 = 211000

@@ -283,8 +283,8 @@ async function mission_start_ray4() {
         $.partners_boat = Car.Create(143 /* BOAT_GHOST */, 1695.0, -381.5, -1.4)
         $.partners_boat.setStrong(true /* TRUE */)
 
-        $.barrel2_a = Object.Create(1336 /* barrel2 */, 837.0, -1115.6, 10.0)
-        $.barrel2_b = Object.Create(1336 /* barrel2 */, 837.0, -1115.6, 20.0)
+        $.barrel2_a = ScriptObject.Create(1336 /* barrel2 */, 837.0, -1115.6, 10.0)
+        $.barrel2_b = ScriptObject.Create(1336 /* barrel2 */, 837.0, -1115.6, 20.0)
         //CREATE_OBJECT faketarget 837.0 -1115.6 30.0 sniper_object
 
         $.barrel2_a.setCollision(false /* OFF */)
@@ -423,6 +423,7 @@ async function mission_start_ray4() {
         }
 
         $.rays_partner.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 1600)
+
         ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
         $.partners_boat_forward_x = $.partners_boat.getForwardX()
         $.partners_boat_forward_y = $.partners_boat.getForwardY()
@@ -492,6 +493,7 @@ async function mission_start_ray4() {
 
         $.rays_partner.setObjNoObj()
         World.DestroyProjectilesInArea($.partner_x, $.partner_y, $.partner_z, $.temp_x, $.vector_x, $.vector_y)
+
         ;[$.partner_x, $.partner_y, $.partner_z] = $.fish_target.getCoordinates()
         $.partner_z += 1.0
         $.fish_target_x = $.partner_x
@@ -564,7 +566,7 @@ async function mission_start_ray4() {
         $.fish_target_y = $.partner_y - 0.2
         $.fish_target_z = $.partner_z
 
-        $.fishy_1 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_1 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_1.setDynamic(true /* TRUE */)
         $.fishy_1.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -586,7 +588,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_2 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_2 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_2.setDynamic(true /* TRUE */)
         $.fishy_2.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -605,7 +607,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_3 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_3 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_3.setDynamic(true /* TRUE */)
         $.fishy_3.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -624,7 +626,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_4 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_4 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_4.setDynamic(true /* TRUE */)
         $.fishy_4.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -643,7 +645,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_5 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_5 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_5.setDynamic(true /* TRUE */)
         $.fishy_5.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -662,7 +664,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_6 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_6 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_6.setDynamic(true /* TRUE */)
         $.fishy_6.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -681,7 +683,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_7 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_7 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_7.setDynamic(true /* TRUE */)
         $.fishy_7.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -700,7 +702,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_8 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_8 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_8.setDynamic(true /* TRUE */)
         $.fishy_8.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -719,7 +721,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_9 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_9 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_9.setDynamic(true /* TRUE */)
         $.fishy_9.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -738,7 +740,7 @@ async function mission_start_ray4() {
         $.temp_x = Math.RandomFloatInRange(-3.0, 3.0)
         $.fish_target_y = $.partner_y + $.temp_x
 
-        $.fishy_10 = Object.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
+        $.fishy_10 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z)
         $.fishy_10.setDynamic(true /* TRUE */)
         $.fishy_10.addToVelocity(0.0, 0.0, 1.0)
         $.temp_x = Math.RandomFloatInRange(0.0, 359.9)
@@ -896,12 +898,12 @@ async function mission_start_ray4() {
             await asyncWait(0)
 
             if (Char.IsDead($.rays_partner)) {
-                if (Object.DoesExist($.barrel2_a)) {
+                if (ScriptObject.DoesExist($.barrel2_a)) {
                     ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_a.getCoordinates()
                     Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */)
                     $.barrel2_a.delete()
                 }
-                if (Object.DoesExist($.barrel2_b)) {
+                if (ScriptObject.DoesExist($.barrel2_b)) {
                     ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_b.getCoordinates()
                     Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */)
                     $.barrel2_b.delete()
@@ -912,7 +914,7 @@ async function mission_start_ray4() {
 
             if ($.partner_on_foot_flag == -1) {
                 if (!Car.IsDead($.partners_boat)) {
-                    if (Object.DoesExist($.barrel2_a) && Object.DoesExist($.barrel2_b)) {
+                    if (ScriptObject.DoesExist($.barrel2_a) && ScriptObject.DoesExist($.barrel2_b)) {
                         // SCM GOSUB object_placement
                         await object_placement()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -933,7 +935,7 @@ async function mission_start_ray4() {
 
             if ($.partner_on_foot_flag == 0) {
                 if (!Car.IsDead($.partners_boat)) {
-                    if (Object.DoesExist($.barrel2_a) && Object.DoesExist($.barrel2_b)) {
+                    if (ScriptObject.DoesExist($.barrel2_a) && ScriptObject.DoesExist($.barrel2_b)) {
                         // SCM GOSUB object_placement
                         await object_placement()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -967,12 +969,12 @@ async function mission_start_ray4() {
                         }
                     }
                     if ($.boat_node_counter == 0) {
-                        if (Object.DoesExist($.barrel2_a)) {
+                        if (ScriptObject.DoesExist($.barrel2_a)) {
                             ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_a.getCoordinates()
                             $.barrel2_a.delete()
                             Pickup.DropNauticalMine($.fish_target_x, $.fish_target_y, $.fish_target_z)
                         }
-                        if (Object.DoesExist($.barrel2_b)) {
+                        if (ScriptObject.DoesExist($.barrel2_b)) {
                             ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_b.getCoordinates()
                             $.barrel2_b.delete()
                             Pickup.DropNauticalMine($.fish_target_x, $.fish_target_y, $.fish_target_z)
@@ -1036,12 +1038,12 @@ async function mission_start_ray4() {
                         $.timerc_reset_flag_r4 = 0
                     }
                 } else {
-                    if (Object.DoesExist($.barrel2_a)) {
+                    if (ScriptObject.DoesExist($.barrel2_a)) {
                         ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_a.getCoordinates()
                         Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */)
                         $.barrel2_a.delete()
                     }
-                    if (Object.DoesExist($.barrel2_b)) {
+                    if (ScriptObject.DoesExist($.barrel2_b)) {
                         ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_b.getCoordinates()
                         Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */)
                         $.barrel2_b.delete()

@@ -344,6 +344,7 @@ async function create_random_injured_ped() {
 
 async function generate_random_coord() {
     await asyncWait(0)
+
     ;[$.player1_a_x, $.player1_a_y, $.player1_a_z] = $.player.getCoordinates()
 
     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {

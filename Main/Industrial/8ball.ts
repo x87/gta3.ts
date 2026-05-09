@@ -97,9 +97,9 @@ async function mission_start_eightball() {
         }
 
         if ($.flag_bridge_created_8ball == 0) {
-            $.damagea = Object.CreateNoOffset(725 /* bridgefuka */, 715.746, -937.908, 40.194)
+            $.damagea = ScriptObject.CreateNoOffset(725 /* bridgefuka */, 715.746, -937.908, 40.194)
             $.damagea.dontRemove()
-            $.damageb = Object.CreateNoOffset(724 /* bridgefukb */, 787.835, -939.24, 38.971)
+            $.damageb = ScriptObject.CreateNoOffset(724 /* bridgefukb */, 787.835, -939.24, 38.971)
             $.damageb.dontRemove()
             $.flag_bridge_created_8ball = 1
         }
@@ -756,9 +756,11 @@ async function mission_start_eightball() {
         }
 
         World.ClearArea(886.8, -310.1, -100.0, 2.0, true /* TRUE */)
+
         ;[$.car_8ball_x, $.car_8ball_y, $.car_8ball_z] = $.car_eightball.getCoordinates()
 
         $.car_8ball_heading = $.car_eightball.getHeading()
+
         ;[$.car_colour1_8ball, $.car_colour2_8ball] = $.car_eightball.getColors()
 
         while (!$.playersdoor.rotate(210.0, 10.0, false /* FALSE */)) {

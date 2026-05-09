@@ -345,6 +345,7 @@ async function mission_start_toni3() {
 
         Camera.SetFixedPosition(1200.9, -866.5, 19.0, 0.0, 0.0, 0.0)
         Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */)
+
         ;[$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates()
         ;[$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates()
 
