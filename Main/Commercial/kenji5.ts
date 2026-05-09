@@ -6,11 +6,21 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function mission_start_kenji5() {
+
+
   $.flag_player_on_mission = 1;
   $.flag_player_on_kenji_mission = 1;
+
+
   Stat.RegisterMissionGiven();
+
+
   await asyncWait(0);
+
+
   // ScriptName
+
+
   $.number_of_peds = 0;
   $.ped_2_exists = 0;
   $.delete_oldest_ped_time = 0;
@@ -49,115 +59,231 @@ async function mission_start_kenji5() {
   $.ped_14_time = 0;
   $.ped_15_exists = 0;
   $.ped_15_time = 0;
+
+
   $.minimum_kills = 8;
   {
+
+  // ****************************************START OF CUTSCENE********************************
+
+  /*
+  SET_FADING_COLOUR 0 0 0
+
+  DO_FADE 1500 FADE_OUT
+
+  IF CAN_PLAYER_START_MISSION player
+  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+  ELSE
+  GOTO mission_kenji5_failed
+  ENDIF
+
+  SWITCH_STREAMING OFF
+
+  PRINT_BIG KM5 15000 2 // "SMACK DOWN"
+  */
+
+
   Streaming.LoadSpecialCharacter(1, $.kenji);
   Streaming.RequestModel(ped`GANG_YAKUZA_A`);
   Streaming.RequestModel(ped`GANG_YAKUZA_B`);
   Streaming.RequestModel(ped`GANG_YARDIE_A`);
   Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH);
   Streaming.RequestModel(casino_garden);
+
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
+
+
   Streaming.LoadAllModelsNow();
+
+
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(ped`GANG_YAKUZA_A`)) || !(Streaming.HasModelLoaded(ped`GANG_YAKUZA_B`)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(casino_garden))) {
     await asyncWait(0);
   }
+
+
   Cutscene.Load(K5_SD);
+
+
   Cutscene.SetOffset(476.380, -1382.168, 67.347);
+
+
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
   $.cs_player.setAnim($.player);
+
+
   $.cs_kenji = CutsceneObject.Create(ped`SPECIAL1`);
   $.cs_kenji.setAnim($.kenji);
+
+
   $.cs_yakuza = CutsceneObject.Create(ped`GANG_YAKUZA_A`);
   $.cs_yakuza.setAnim(gang07);
+
+
   $.cs_yakuza2 = CutsceneObject.Create(ped`GANG_YAKUZA_B`);
   $.cs_yakuza2.setAnim(gang08);
+
+
   $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj01`);
   $.cs_kenjihead.setAnim($.kenji);
+
   //CREATE_CUTSCENE_HEAD cs_player cut_obj2 cs_playerhead
   //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
+
+
   World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */);
   $.player.setCoordinates(459.1, -1413.0, 25.11);
   $.player.setHeading(132.0);
+
+
   Camera.DoFade(1500, 1 /* FADE_IN */);
+
+
   World.SwitchRubbish(false /* OFF */);
+
+
   Cutscene.Start();
+
   // Displays cutscene text
+
+
   $.cs_time = Cutscene.GetTime();
+
+
   while ($.cs_time < 6121) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(KM5_A, 7000, 1); //"YOU! How fitting you should choose this moment to show your worthless face!"
+
+
   while ($.cs_time < 11088) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(KM5_B, 7000, 1); //"It would appear your attempts to dissuade the Jamaicans"
+
+
   while ($.cs_time < 13770) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(KM5_B1, 7000, 1); //"from becoming bed fellows with the Cartel were wholly inadequate!"
+
+
   while ($.cs_time < 17324) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(KM5_C, 7000, 1); //"Yardie pushers line Liberty's streets selling packets of SPANK like they were selling hotdogs!"
+
+
   while ($.cs_time < 22060) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(KM5_D, 7000, 1); //"Those Cartel pigs are laughing at us, at me!"
+
+
   while ($.cs_time < 24716) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(KM5_E, 7000, 1); //"I will give you one last chance to prove my sister's faith in you to be well founded!"
+
+
   while ($.cs_time < 29220) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(KM5_F, 7000, 1); //"Run these scumbags into the ground and wash your shame in rivers of our enemies' blood!!!"
+
+
   while ($.cs_time < 33666) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+
   while (!(Cutscene.HasFinished())) {
     await asyncWait(0);
   }
+
+
   Text.ClearPrints();
+
+
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
+
+
   Cutscene.Clear();
+
+
   Streaming.Switch(true /* ON */);
+
+
   World.SwitchRubbish(true /* ON */);
+
+
   Camera.DoFade(1500, 1 /* FADE_IN */);
+
+
   Camera.SetInFrontOfPlayer();
+
   //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
+
+
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_A`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_B`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(casino_garden);
+
   // *******************************************END OF CUTSCENE*******************************
+
+
+
   while (!(Streaming.HasModelLoaded(ped`GANG_YARDIE_A`))) {
     await asyncWait(0);
   }
+
+
   // SCM GOTO → main_part_of_script (not lowered; manual jump required)
   throw new Error("unresolved GOTO main_part_of_script"); // fallback: would break linear control flow
+
+
 }
 
 async function create_random_ped() {
+
+
   if ($.delete_oldest_ped_time > 10000) {
     $.delete_oldest_ped_time = $.delete_oldest_ped_time - 5000;
   }
+
+
   if ($.ped_1_exists == 0) {
     // SCM label generate_coord_ped_1
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -181,6 +307,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_2_exists == 0) {
     // SCM label generate_coord_ped_2
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -204,6 +332,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_3_exists == 0) {
     // SCM label generate_coord_ped_3
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -227,6 +357,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_4_exists == 0) {
     // SCM label generate_coord_ped_4
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -250,6 +382,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_5_exists == 0) {
     // SCM label generate_coord_ped_5
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -273,6 +407,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_6_exists == 0) {
     // SCM label generate_coord_ped_6
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -296,6 +432,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_7_exists == 0) {
     // SCM label generate_coord_ped_7
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -319,6 +457,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_8_exists == 0) {
     // SCM label generate_coord_ped_8
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -342,6 +482,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_9_exists == 0) {
     // SCM label generate_coord_ped_9
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -365,6 +507,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_10_exists == 0) {
     // SCM label generate_coord_ped_10
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -388,6 +532,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_11_exists == 0) {
     // SCM label generate_coord_ped_11
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -411,6 +557,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_12_exists == 0) {
     // SCM label generate_coord_ped_12
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -434,6 +582,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_13_exists == 0) {
     // SCM label generate_coord_ped_13
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -457,6 +607,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_14_exists == 0) {
     // SCM label generate_coord_ped_14
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -480,6 +632,8 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   if ($.ped_15_exists == 0) {
     // SCM label generate_coord_ped_15
     $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0);
@@ -503,28 +657,51 @@ async function create_random_ped() {
     ++$.number_of_peds;
     return;
   }
+
+
   return;
+
+
+
 }
 
 async function main_part_of_script() {
+
+
   $.ped_1_x = 39.3;
   $.ped_1_y = -880.6;
   $.ped_1_z = 34.0;
+
+
   $.ped_2_x = -55.4331;
   $.ped_2_y = -974.3467;
   $.ped_2_z = 25.4;
+
+
   $.delete_oldest_ped_time = 80000;
+
+
   $.ped_1_blip = Blip.AddForCoordOld($.ped_1_x, $.ped_1_y, $.ped_1_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
   $.ped_1_blip.changeScale(3);
+
+
   $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
   $.ped_2_blip.changeScale(3);
+
+
   Text.PrintNow(KM5_6, 5000, 1); //"You must murder at least 8 Yardie dealers."
   Text.PrintSoon(KM5_7, 6000, 1); //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
+
+
   Hud.DisplayCounterWithString($.dead_peds, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS);
+
+
   $.ped_1_exists = 1;
   $.ped_2_exists = 1;
   $.number_of_peds = 2;
   TIMERA = 0;
+
+
   while ($.number_of_peds > 0) {
     await asyncWait(0);
     if ($.dead_peds > 0) {
@@ -1263,7 +1440,11 @@ async function main_part_of_script() {
         }
       }
     }
+
+
   }
+
+
   if ($.dead_peds > $.minimum_kills || $.dead_peds == $.minimum_kills) {
     // SCM GOTO → mission_kenji5_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_kenji5_passed"); // fallback: would break linear control flow
@@ -1272,72 +1453,112 @@ async function main_part_of_script() {
     // SCM GOTO → mission_kenji5_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_kenji5_failed"); // fallback: would break linear control flow
   }
+
+
+
 }
 
 async function delete_oldest_ped() {
+
+
   $.oldest_ped = 0;
+
+
   $.oldest_ped_time = Clock.GetGameTimer();
+
+
   if ($.ped_1_exists == 1 && $.ped_1_time < $.oldest_ped_time) {
     $.oldest_ped = 1;
     $.oldest_ped_time = $.ped_1_time;
   }
+
+
   if ($.ped_2_exists == 1 && $.ped_2_time < $.oldest_ped_time) {
     $.oldest_ped = 2;
     $.oldest_ped_time = $.ped_2_time;
   }
+
+
   if ($.ped_3_exists == 1 && $.ped_3_time < $.oldest_ped_time) {
     $.oldest_ped = 3;
     $.oldest_ped_time = $.ped_3_time;
   }
+
+
   if ($.ped_4_exists == 1 && $.ped_4_time < $.oldest_ped_time) {
     $.oldest_ped = 4;
     $.oldest_ped_time = $.ped_4_time;
   }
+
+
   if ($.ped_5_exists == 1 && $.ped_5_time < $.oldest_ped_time) {
     $.oldest_ped = 5;
     $.oldest_ped_time = $.ped_5_time;
   }
+
+
   if ($.ped_6_exists == 1 && $.ped_6_time < $.oldest_ped_time) {
     $.oldest_ped = 6;
     $.oldest_ped_time = $.ped_6_time;
   }
+
+
   if ($.ped_7_exists == 1 && $.ped_7_time < $.oldest_ped_time) {
     $.oldest_ped = 7;
     $.oldest_ped_time = $.ped_7_time;
   }
+
+
   if ($.ped_8_exists == 1 && $.ped_8_time < $.oldest_ped_time) {
     $.oldest_ped = 8;
     $.oldest_ped_time = $.ped_8_time;
   }
+
+
   if ($.ped_9_exists == 1 && $.ped_9_time < $.oldest_ped_time) {
     $.oldest_ped = 9;
     $.oldest_ped_time = $.ped_9_time;
   }
+
+
   if ($.ped_10_exists == 1 && $.ped_10_time < $.oldest_ped_time) {
     $.oldest_ped = 10;
     $.oldest_ped_time = $.ped_10_time;
   }
+
+
   if ($.ped_11_exists == 1 && $.ped_11_time < $.oldest_ped_time) {
     $.oldest_ped = 11;
     $.oldest_ped_time = $.ped_11_time;
   }
+
+
   if ($.ped_12_exists == 1 && $.ped_12_time < $.oldest_ped_time) {
     $.oldest_ped = 12;
     $.oldest_ped_time = $.ped_12_time;
   }
+
+
   if ($.ped_13_exists == 1 && $.ped_13_time < $.oldest_ped_time) {
     $.oldest_ped = 13;
     $.oldest_ped_time = $.ped_13_time;
   }
+
+
   if ($.ped_14_exists == 1 && $.ped_14_time < $.oldest_ped_time) {
     $.oldest_ped = 14;
     $.oldest_ped_time = $.ped_14_time;
   }
+
+
   if ($.ped_15_exists == 1 && $.ped_15_time < $.oldest_ped_time) {
     $.oldest_ped = 15;
     $.oldest_ped_time = $.ped_15_time;
   }
+
   ///////////////////////////////////////
+
+
   if ($.oldest_ped == 1) {
     $.ped_1_blip.remove();
     $.ped_1.markAsNoLongerNeeded();
@@ -1345,6 +1566,8 @@ async function delete_oldest_ped() {
     $.ped_1_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 2) {
     $.ped_2_blip.remove();
     $.ped_2.markAsNoLongerNeeded();
@@ -1352,6 +1575,8 @@ async function delete_oldest_ped() {
     $.ped_2_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 3) {
     $.ped_3_blip.remove();
     $.ped_3.markAsNoLongerNeeded();
@@ -1359,6 +1584,8 @@ async function delete_oldest_ped() {
     $.ped_3_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 4) {
     $.ped_4_blip.remove();
     $.ped_4.markAsNoLongerNeeded();
@@ -1366,6 +1593,8 @@ async function delete_oldest_ped() {
     $.ped_4_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 5) {
     $.ped_5_blip.remove();
     $.ped_5.markAsNoLongerNeeded();
@@ -1373,6 +1602,8 @@ async function delete_oldest_ped() {
     $.ped_5_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 6) {
     $.ped_6_blip.remove();
     $.ped_6.markAsNoLongerNeeded();
@@ -1380,6 +1611,8 @@ async function delete_oldest_ped() {
     $.ped_6_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 7) {
     $.ped_7_blip.remove();
     $.ped_7.markAsNoLongerNeeded();
@@ -1387,6 +1620,8 @@ async function delete_oldest_ped() {
     $.ped_7_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 8) {
     $.ped_8_blip.remove();
     $.ped_8.markAsNoLongerNeeded();
@@ -1394,6 +1629,8 @@ async function delete_oldest_ped() {
     $.ped_8_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 9) {
     $.ped_9_blip.remove();
     $.ped_9.markAsNoLongerNeeded();
@@ -1401,6 +1638,8 @@ async function delete_oldest_ped() {
     $.ped_9_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 10) {
     $.ped_10_blip.remove();
     $.ped_10.markAsNoLongerNeeded();
@@ -1408,6 +1647,8 @@ async function delete_oldest_ped() {
     $.ped_10_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 11) {
     $.ped_11_blip.remove();
     $.ped_11.markAsNoLongerNeeded();
@@ -1415,6 +1656,8 @@ async function delete_oldest_ped() {
     $.ped_11_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 12) {
     $.ped_12_blip.remove();
     $.ped_12.markAsNoLongerNeeded();
@@ -1422,6 +1665,8 @@ async function delete_oldest_ped() {
     $.ped_12_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 13) {
     $.ped_13_blip.remove();
     $.ped_13.markAsNoLongerNeeded();
@@ -1429,6 +1674,8 @@ async function delete_oldest_ped() {
     $.ped_13_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 14) {
     $.ped_14_blip.remove();
     $.ped_14.markAsNoLongerNeeded();
@@ -1436,6 +1683,8 @@ async function delete_oldest_ped() {
     $.ped_14_exists = 0;
     --$.number_of_peds;
   }
+
+
   if ($.oldest_ped == 15) {
     $.ped_15_blip.remove();
     $.ped_15.markAsNoLongerNeeded();
@@ -1443,18 +1692,34 @@ async function delete_oldest_ped() {
     $.ped_15_exists = 0;
     --$.number_of_peds;
   }
+
+
   return;
+
+
   }
+
+
+  // Mission Kenji5 failed
+
+
 }
 
 async function mission_kenji5_failed() {
   Text.PrintBig("M_FAIL", 5000, 1);
   Text.PrintWithNumberNow(KM5_3, $.minimum_kills, 3000, 1); // "You failed to kill at least ~1~ yardies."
   return;
+
+
+
   // mission Kenji5 passed
+
+
 }
 
 async function mission_kenji5_passed() {
+
+
   $.flag_kenji_mission5_passed = 1;
   Text.PrintWithNumberBig(m_pass, 10000, 5000, 1);
   $.player.addScore(10000);
@@ -1472,12 +1737,21 @@ async function mission_kenji5_passed() {
   Stat.PlayerMadeProgress(1);
   $.kenji_contact_blip.remove();
   return;
+
+
+
   // mission cleanup
+
+
 }
 
 async function mission_cleanup_kenji5() {
+
+
   $.flag_player_on_mission = 0;
   $.flag_player_on_kenji_mission = 0;
+
+
   $.ped_1_blip.remove();
   $.ped_2_blip.remove();
   $.ped_3_blip.remove();
@@ -1486,6 +1760,8 @@ async function mission_cleanup_kenji5() {
   $.ped_6_blip.remove();
   $.ped_7_blip.remove();
   $.ped_8_blip.remove();
+
+
   $.ped_9_blip.remove();
   $.ped_10_blip.remove();
   $.ped_11_blip.remove();
@@ -1493,10 +1769,22 @@ async function mission_cleanup_kenji5() {
   $.ped_13_blip.remove();
   $.ped_14_blip.remove();
   $.ped_15_blip.remove();
+
+
   Hud.ClearCounter($.dead_peds);
+
+
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YARDIE_A`);
+
+
   Mission.Finish();
+
+
   return;
+
+
+
+
 }
 
 export async function kenji5() {
@@ -1504,24 +1792,38 @@ export async function kenji5() {
   // *****************************************************************************************
   // *******************************   Kenji Mission 5   *************************************
   // *******************************     Smack Down      *************************************
+  // *****************************************************************************************
   // *** Kenji wants you to hit the Yardies pushing Spank for the Cartel. They're dotted   ***
   // *** about Liberty dealing in gangs or from vehicles. The player must race round the 	 ***
   // *** city splattering and killing all the dealers within a time limit. Occasionally 	 ***
   // *** they may have a 'backup vehicle' that will give chase to make the mission harder. ***
+  // *****************************************************************************************
+
   // Mission start stuff
+
+
   // SCM GOSUB mission_start_kenji5
   await mission_start_kenji5();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   if (HAS_DEATHARREST_BEEN_EXECUTED()) {
     // SCM GOSUB mission_kenji5_failed
     await mission_kenji5_failed();
     // fallback if label was not emitted as async function: no-op continues linearly
   }
+
+
   // SCM GOSUB mission_cleanup_kenji5
   await mission_cleanup_kenji5();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   // MissionBoundary
+
   // Variables For Mission
+
+
   // VAR_INT number_of_peds ped_2_exists ped_2_blip ped_2 delete_oldest_ped_time on_screen_counter_flag
   // VAR_INT ped_3_exists ped_3_blip ped_3 ped_4_exists ped_4_blip ped_4 dead_peds minimum_kills reward_kills
   // VAR_INT ped_1_time ped_2_time ped_3_time ped_4_time oldest_ped_time oldest_ped random_direction
@@ -1537,6 +1839,8 @@ export async function kenji5() {
   // VAR_INT ped_13_blip ped_13_exists ped_13 ped_13_time
   // VAR_INT ped_14_blip ped_14_exists ped_14 ped_14_time
   // VAR_INT ped_15_blip ped_15_exists ped_15 ped_15_time
+
+
   // VAR_FLOAT ped_15_x ped_15_y ped_15_z
   // VAR_FLOAT ped_14_x ped_14_y ped_14_z
   // VAR_FLOAT ped_13_x ped_13_y ped_13_z
@@ -1552,5 +1856,8 @@ export async function kenji5() {
   // VAR_FLOAT ped_2_x ped_2_y ped_2_z ped_3_x ped_3_y ped_3_z
   // VAR_FLOAT ped_4_x ped_4_y ped_4_z random_commercial_x random_commercial_y garbage_x garbage_y garbage_z
   // VAR_FLOAT difference_x difference_y sum_diff distance
+
   // ****************************************Mission Start************************************
+
+
 }

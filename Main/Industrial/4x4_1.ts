@@ -10,15 +10,24 @@ async function mission_start_4x4one() {
   // ScriptName
   $.flag_player_on_mission = 1;
   //flag_player_on_4x4_mission = 1
+
+
   Text.PrintBig("T4X4_1", 5000, 2);
+
+
   await asyncWait(0);
+
   //Set Variables
+
+
   $.counter_4x4_pickups = 0;
   $.timer_4x4 = 0;
   $.flag_intro = 0;
   $.flag_timer = 0;
   $.flag_4x4one_trigger = 1;
   $.flag_intro_jump = 0;
+
+
   $.flag_blip_1 = 0;
   $.flag_blip_2 = 0;
   $.flag_blip_3 = 0;
@@ -34,8 +43,13 @@ async function mission_start_4x4one() {
   $.flag_blip_13 = 0;
   $.flag_blip_14 = 0;
   $.flag_blip_15 = 0;
+
+
   $.record_temp = 0;
+
   //Set Coords
+
+
   $.x_1 = 1391.7;
   $.y_1 = -135.0;
   $.z_1 = 54.8;
@@ -81,7 +95,10 @@ async function mission_start_4x4one() {
   $.x_15 = 1320.99;
   $.y_15 = -541.66;
   $.z_15 = 37.82;
+
   //Mission Script
+
+
   $.wanted_4x4 = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   $.player_4x4 = $.player.storeCarIsIn();
@@ -90,6 +107,9 @@ async function mission_start_4x4one() {
   }
   $.player.setControl(false /* off */);
   Hud.SwitchWidescreen(true /* on */);
+
+
+
   $.blip_1 = Blip.AddForCoord($.x_1, $.y_1, $.z_1);
   $.blip_2 = Blip.AddForCoord($.x_2, $.y_2, $.z_2);
   $.blip_3 = Blip.AddForCoord($.x_3, $.y_3, $.z_3);
@@ -105,12 +125,16 @@ async function mission_start_4x4one() {
   $.blip_13 = Blip.AddForCoord($.x_13, $.y_13, $.z_13);
   $.blip_14 = Blip.AddForCoord($.x_14, $.y_14, $.z_14);
   $.blip_15 = Blip.AddForCoord($.x_15, $.y_15, $.z_15);
+
+
   while ($.counter_4x4_pickups < 15) {
     await asyncWait(0);
     if ($.counter_4x4_pickups == 1 && $.flag_timer == 0) {
       Hud.DisplayTimer($.timer_4x4);
       $.flag_timer = 1;
     }
+
+
     if ($.flag_blip_1 == 0) {
       Fx.DrawCorona($.x_1, $.y_1, $.z_1, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
       if ($.player.locateInCar3D($.x_1, $.y_1, $.z_1, 2.5, 2.5, 3.5, false /* false */)) {
@@ -353,25 +377,49 @@ async function mission_start_4x4one() {
       // SCM GOTO → mission_4x4one_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_4x4one_failed"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   if ($.counter_4x4_pickups == 15) {
     // SCM GOTO → mission_4x4one_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_4x4one_passed"); // fallback: would break linear control flow
   }
+
   // --------------------------Mission failed-----------------------------------------------
+
+
 }
 
 async function mission_4x4one_failed() {
+
+
+
   Text.PrintBig("M_FAIL", 2000, 1);
+
+
+
   return;
+
+
+
+
+
   // -------------------------Mission passed-------------------------------------------------
+
+
 }
 
 async function mission_4x4one_passed() {
+
+
   if ($.flag_4x4_mission1_passed == 0) {
     $.record_4x4_one = 300000 - $.timer_4x4;
     $.record_4x4_one = $.record_4x4_one / 1000;
   }
+
+
   if ($.flag_4x4_mission1_passed == 1) {
     $.record_temp = 300000 - $.timer_4x4;
     $.record_temp = $.record_temp / 1000;
@@ -379,6 +427,9 @@ async function mission_4x4one_passed() {
       $.record_4x4_one = $.record_temp;
     }
   }
+
+
+
   Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.clearWantedLevel();
@@ -388,14 +439,26 @@ async function mission_4x4one_passed() {
     Stat.RegisterMissionPassed(T4X4_1);
     $.flag_4x4_mission1_passed = 1;
     Stat.PlayerMadeProgress(1);
+
+
   }
+
   //START_NEW_SCRIPT t4x4_mission2_loop
   //START_NEW_SCRIPT multistorey_mission_loop
+
+
   return;
+
+
+
   // mission cleanup
+
+
 }
 
 async function mission_cleanup_4x4one() {
+
+
   $.blip_1.remove();
   $.blip_2.remove();
   $.blip_3.remove();
@@ -411,12 +474,18 @@ async function mission_cleanup_4x4one() {
   $.blip_13.remove();
   $.blip_14.remove();
   $.blip_15.remove();
+
+
   Camera.RestoreJumpcut();
   Hud.SwitchWidescreen(false /* off */);
   $.player.setControl(true /* on */);
+
+
   Hud.ClearTimer($.timer_4x4);
   $.flag_player_on_mission = 0;
   //flag_player_on_4x4_mission = 0
+
+
   Mission.Finish();
   return;
 }
@@ -424,8 +493,16 @@ async function mission_cleanup_4x4one() {
 export async function _4x4_1() {
   // MissionBoundary
   // *****************************************************************************************
+  // *****************************************************************************************
+  // *****************************************************************************************
   // ***************************************4x4 by Far****************************************
+  // *****************************************************************************************
+  // *****************************************************************************************
+  // *****************************************************************************************
+
   // Mission start stuff
+
+
   // SCM GOSUB mission_start_4x4one
   await mission_start_4x4one();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -433,22 +510,31 @@ export async function _4x4_1() {
   await mission_cleanup_4x4one();
   // fallback if label was not emitted as async function: no-op continues linearly
   // MissionBoundary
+
   // Variables for mission
+
+
   // VAR_INT player_4x4
   // VAR_INT counter_4x4_pickups timer_4x4
   // VAR_INT wanted_4x4 flag_timer
   // VAR_INT intro_time_lapsed timer_intro_now timer_intro_start flag_intro
   // VAR_INT flag_intro_jump
+
+
   // VAR_INT flag_blip_1 flag_blip_2 flag_blip_3 flag_blip_4
   // VAR_INT flag_blip_5 flag_blip_6 flag_blip_7 flag_blip_8
   // VAR_INT flag_blip_9 flag_blip_10 flag_blip_11 flag_blip_12
   // VAR_INT flag_blip_13 flag_blip_14 flag_blip_15 flag_blip_16
   // VAR_INT flag_blip_17 flag_blip_18 flag_blip_19 flag_blip_20
+
+
   // VAR_INT blip_1 blip_2 blip_3 blip_4
   // VAR_INT blip_5 blip_6 blip_7 blip_8
   // VAR_INT blip_9 blip_10 blip_11 blip_12
   // VAR_INT blip_13 blip_14 blip_15 blip_16
   // VAR_INT blip_17 blip_18 blip_19 blip_20
+
+
   // VAR_FLOAT x_1 y_1 z_1
   // VAR_FLOAT x_2 y_2 z_2
   // VAR_FLOAT x_3 y_3 z_3
@@ -469,5 +555,9 @@ export async function _4x4_1() {
   // VAR_FLOAT x_18 y_18 z_18
   // VAR_FLOAT x_19 y_19 z_19
   // VAR_FLOAT x_20 y_20 z_20
+
+
   // ****************************************Mission Start************************************
+
+
 }

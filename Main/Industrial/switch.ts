@@ -6,6 +6,8 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function switch_car_generator() {
+
+
   $.gen_car1.switch(101);
   $.gen_car2.switch(101);
   $.gen_car3.switch(101);
@@ -152,9 +154,14 @@ async function switch_car_generator() {
   $.rc_van2.switch(101);
   $.rc_van3.switch(101);
   $.rc_van4.switch(101);
+
+
+
+
   return;
 }
 
 export async function switch_() {
+
 
 }

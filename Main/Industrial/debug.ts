@@ -6,7 +6,11 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function mission_start_debug() {
+
+
   await asyncWait(0);
+
+
   if (Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */) && Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && cheat_mode_on_flag == 0) {
     if (!(Pad.IsButtonPressed(1 /* PAD2 */, 16 /* CROSS */)) || !(Pad.IsButtonPressed(1 /* PAD2 */, 17 /* CIRCLE */)) || !(Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */)) || !(Pad.IsButtonPressed(1 /* PAD2 */, 5 /* LEFTSHOULDER2 */)) || !(Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */)) || !(Pad.IsButtonPressed(1 /* PAD2 */, 13 /* SELECT */))) {
       Text.PrintNow(CHEATON, 2000, 1); //CHEAT MODE ON
@@ -14,6 +18,8 @@ async function mission_start_debug() {
       cheat_mode_on_flag = 1;
     }
   }
+
+
   if (!(Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */)) || !(Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */))) {
     if (cheat_mode_on_flag == 1) {
       cheat_mode_on_flag = 2;
@@ -22,11 +28,15 @@ async function mission_start_debug() {
       cheat_mode_on_flag = 0;
     }
   }
+
+
   if (Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */) && Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && cheat_mode_on_flag == 2) {
     Text.PrintNow(CHEATOF, 2000, 1); //CHEAT MODE OFF
     cheat_mode_on = 0;
     cheat_mode_on_flag = 3;
   }
+
+
   if ($.player.isPlaying()) {
     if (Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */) && invulnerability_on == 0) {
       $.script_controlled_player = $.player.getChar();
@@ -47,19 +57,27 @@ async function mission_start_debug() {
       }
     }
   }
+
+
   if (Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && debug_crap_on == 0 /* FALSE */ && crap_press_flag == 0) {
     Debugger.Enable();
     debug_crap_on = 1 /* TRUE */;
     crap_press_flag = 1;
   }
+
+
   if (Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && debug_crap_on == 1 /* TRUE */ && crap_press_flag == 0) {
     Debugger.Disable();
     debug_crap_on = 0 /* FALSE */;
     crap_press_flag = 1;
   }
+
+
   if (!(Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */)) && crap_press_flag == 1) {
     crap_press_flag = 0;
   }
+
+
   if (Pad.IsButtonPressed(1 /* PAD2 */, 16 /* CROSS */) && Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */)) {
     if ($.player.isPlaying()) {
       if (!($.player.isInAnyCar())) {
@@ -74,6 +92,8 @@ async function mission_start_debug() {
       await asyncWait(1000);
     }
   }
+
+
   if (cheat_mode_on == 0 && Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */)) {
     if ($.player.isPlaying()) {
       weather_crap++;
@@ -105,20 +125,33 @@ async function mission_start_debug() {
         Text.PrintNow("WEATHE2", 1000, 1); //CHEAT MODE ON
         await asyncWait(300);
       }
+
+
     }
   }
+
+
+
   if (cheat_mode_on == 1 && cheat_mode_on_flag == 2) {
     if (Pad.IsButtonPressed(1 /* PAD2 */, 5 /* LEFTSHOULDER2 */) && repeat_button_press == 0 && slow_motion == 0) {
+      //		IF IS_PLAYER_IN_ANY_CAR player
+      //			STORE_CAR_PLAYER_IS_IN_NO_SAVE player players_car_debug
+      //			SET_CAR_BIG_WHEELS players_car_debug TRUE
       Clock.SetTimeScale(0.0);
       slow_motion = 1;
       repeat_button_press = 1;
       //		ENDIF
+
     }
     if (Pad.IsButtonPressed(1 /* PAD2 */, 5 /* LEFTSHOULDER2 */) && repeat_button_press == 0 && slow_motion == 1) {
+      //		IF IS_PLAYER_IN_ANY_CAR player
+      //			STORE_CAR_PLAYER_IS_IN_NO_SAVE player players_car_debug
+      //			SET_CAR_BIG_WHEELS players_car_debug FALSE
       Clock.SetTimeScale(1.0);
       slow_motion = 0;
       repeat_button_press = 1;
       //		ENDIF
+
     }
     if (!(Pad.IsButtonPressed(1 /* PAD2 */, 5 /* LEFTSHOULDER2 */))) {
       if (repeat_button_press == 1) {
@@ -143,6 +176,8 @@ async function mission_start_debug() {
       }
     }
   }
+
+
   if ($.player.isPlaying()) {
     if (cheat_mode_on == 1 && cheat_mode_on_flag == 2) {
       if (Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */) && text_button_pressed == 0) {
@@ -190,9 +225,12 @@ async function mission_start_debug() {
           await asyncWait(0);
           Text.PrintNow(LOADCAR, 100, 1); //"Loading vehicle, press pad2 leftshoulder1 to cancel"
           if (Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */)) {
+            //++ counter_create_car
             // SCM GOTO → next_carzzz (not lowered; manual jump required)
             throw new Error("unresolved GOTO next_carzzz"); // fallback: would break linear control flow
           }
+
+
         }
         magic_car = Car.Create(counter_create_car, x_float_m, y_float_m, z_float_m);
         magic_car.setHeading(debug_car_heading);
@@ -201,6 +239,14 @@ async function mission_start_debug() {
         magic_car.markAsNoLongerNeeded();
         // SCM label next_carzzz
         if (initial_create_car == 0) {
+
+          //IF counter_create_car = 90
+          //AND initial_car_selected = 0
+          //counter_create_car = 91
+          //initial_car_selected = 1
+          //initial_create_car = 1
+          //ENDIF
+
           if (counter_create_car == 105 && initial_car_selected == 0) {
             counter_create_car = 110;
             initial_car_selected = 1;
@@ -235,12 +281,15 @@ async function mission_start_debug() {
             initial_car_selected = 1;
             initial_create_car = 1;
           }
+
+
         }
         else {
           ++counter_create_car;
           if (counter_create_car > 150) {
             counter_create_car = 90;
             //initial_create_car = 0
+
           }
           if (counter_create_car == 140 || counter_create_car == 141) {
             counter_create_car = 142;
@@ -254,10 +303,13 @@ async function mission_start_debug() {
           if (counter_create_car == 147) {
             counter_create_car = 148;
           }
+
+
         }
         flag_create_car = 1;
         button_press_flag = 1;
       }
+
       //		IF IS_BUTTON_PRESSED PAD2 LEFTSHOULDER1
       //		AND flag_create_car = 1
       //			IF NOT IS_CAR_DEAD magic_car
@@ -269,6 +321,7 @@ async function mission_start_debug() {
       //				ENDIF
       //			ENDIF
       //		ENDIF
+
       if (!(Pad.IsButtonPressed(1 /* PAD2 */, 6 /* RIGHTSHOULDER1 */)) && button_press_flag == 1) {
         button_press_flag = 0;
       }
@@ -289,7 +342,10 @@ async function mission_start_debug() {
         button_press_flag = 1;
       }
     }
+
     // Industrial mission jump stuff
+
+
     //WARP PLAYER
     //IF flag_player_on_mission = 0
     if (Pad.IsButtonPressed(1 /* PAD2 */, 8 /* DPADUP */)) {
@@ -360,6 +416,7 @@ async function mission_start_debug() {
             Game.SetMaxWantedLevel(6);
             add_just_the_once_though = 1;
           }
+
           //flag_industrial_passed = 1
           //flag_commercial_passed = 0
           await asyncWait(300);
@@ -397,6 +454,8 @@ async function mission_start_debug() {
         }
       }
     }
+
+
     //WARP PLAYER
     //IF flag_player_on_mission = 0
     if (Pad.IsButtonPressed(1 /* PAD2 */, 9 /* DPADDOWN */)) {
@@ -451,6 +510,7 @@ async function mission_start_debug() {
             Game.SetMaxWantedLevel(6);
             add_just_the_once_though = 1;
           }
+
           //flag_industrial_passed = 0
           //flag_commercial_passed = 0
           await asyncWait(300);
@@ -515,11 +575,14 @@ async function mission_start_debug() {
         }
       }
     }
+
+
     //INDUSTRIAL MISSION SKIP RIGHT
     if ($.flag_player_on_mission == 0) {
       if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
         if ($.player.isPlaying()) {
           if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+            //flag_industrial_passed = 0
             button_pressed_ind++;
             if (button_pressed_ind > 29) {
               $.flag_meat_mission4_passed = 1;
@@ -811,15 +874,23 @@ async function mission_start_debug() {
               // START_NEW_SCRIPT meat_mission4_loop
               $.flag_meat_mission3_passed = 1;
             }
+
+
           }
         }
       }
     }
+
+
+
     //COMMERCIAL MISSION SKIP RIGHT
+
     if ($.flag_player_on_mission == 0) {
       if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
         if ($.player.isPlaying()) {
           if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+            //flag_industrial_passed = 1
+            //flag_commercial_passed = 0
             button_pressed_com++;
             if (button_pressed_com > 30) {
               $.flag_yardie_mission4_passed = 1;
@@ -1026,6 +1097,7 @@ async function mission_start_debug() {
               $.flag_ray_mission5_passed = 1;
               //flag_industrial_passed = 1
               //flag_commercial_passed = 1
+
             }
             if (button_pressed_com == 20) {
               $.flag_love_mission1_passed = 1;
@@ -1075,6 +1147,7 @@ async function mission_start_debug() {
               $.flag_love_mission4_passed = 1;
               //flag_industrial_passed = 1
               //flag_commercial_passed = 1
+
             }
             if (button_pressed_com == 25) {
               $.flag_love_mission6_passed = 1;
@@ -1085,6 +1158,7 @@ async function mission_start_debug() {
               $.flag_love_mission5_passed = 1;
               //flag_industrial_passed = 1
               //flag_commercial_passed = 1
+
             }
             if (button_pressed_com == 26) {
               $.flag_love_mission7_passed = 1;
@@ -1095,6 +1169,7 @@ async function mission_start_debug() {
               $.flag_love_mission6_passed = 1;
               //flag_industrial_passed = 1
               //flag_commercial_passed = 1
+
             }
             if (button_pressed_com == 27) {
               $.flag_yardie_mission1_passed = 1;
@@ -1124,6 +1199,8 @@ async function mission_start_debug() {
               // START_NEW_SCRIPT yardie_mission3_loop
               $.flag_yardie_mission2_passed = 1;
             }
+
+
             if (button_pressed_com == 30) {
               $.flag_yardie_mission4_passed = 1;
               Text.PrintBig("YD4", 1000, 4); //"Yardie Mission 4"
@@ -1132,15 +1209,23 @@ async function mission_start_debug() {
               // START_NEW_SCRIPT yardie_mission4_loop
               $.flag_yardie_mission3_passed = 1;
             }
+
+
           }
         }
       }
     }
+
+
+
     // SUBURBAN MISSION SKIP RIGHT
+
     if ($.flag_player_on_mission == 0) {
       if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
         if ($.player.isPlaying()) {
           if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+            //flag_commercial_passed = 1
+            //flag_suburban_passed = 0
             button_pressed_sub++;
             if (button_pressed_sub > 6) {
               $.flag_cat_mission1_passed = 1;
@@ -1207,18 +1292,29 @@ async function mission_start_debug() {
               $.maria_contact_blip.remove();
               $.maria_contact_blip = Blip.AddSpriteForContactPoint(-362.8, 245.9, 60.0, 3 /* RADAR_SPRITE_CAT */);
             }
+
+
           }
         }
       }
     }
+
+
+
   }
+
+
   // SCM GOTO → mission_start_debug (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_start_debug"); // fallback: would break linear control flow
+
+
   // MissionBoundary
 }
 
 export async function debug() {
   // MissionBoundary
+
+
   // VAR_FLOAT x_float_m y_float_m z_float_m text_x text_y text_z text_h player_heading_debug debug_car_heading
   // VAR_INT magic_car button_press_flag car_colour car_colour2 intro_explosion_flag
   // VAR_INT flag_create_car initial_create_car initial_car_selected
@@ -1227,6 +1323,8 @@ export async function debug() {
   // VAR_INT repeat_button_press slow_motion text_button_pressed players_car_debug
   // VAR_INT debug_crap_on crap_press_flag no_cars repeat_butt_press
   // VAR_INT weather_crap add_just_the_once_though invulnerability_on
+
+
   initial_create_car = 0;
   counter_create_car = 105;
   button_pressed_warp = 0;
@@ -1237,6 +1335,12 @@ export async function debug() {
   cheat_mode_on = 0;
   weather_crap = 0;
   add_just_the_once_though = 0;
+
+
   // ScriptName
+
+
   // SET_DEATHARREST_STATE(false /* OFF */);
+
+
 }

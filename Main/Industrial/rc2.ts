@@ -6,49 +6,85 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function mission_start_rc2() {
+
+
   $.flag_player_on_mission = 1;
+
+
   if ($.flag_rc2_passed == 0) {
     Stat.RegisterMissionGiven();
   }
+
+
   Text.PrintBig("RC2", 15000, 2);
+
+
   await asyncWait(0);
+
+
   $.counter_RCDD = 0;
   $.flag_buggy_help1_hm2 = 0;
   $.controlmode = 0;
   $.reward_RCDD = 0;
+
+
   $.cam_x = 1159.0;
   $.cam_y = -317.5;
   $.cam_z = 24.0;
+
+
   $.rc_x = 1166.0;
   $.rc_y = -310.0;
   $.rc_z = 23.5;
+
+
   $.timer_RCDD = 120000;
+
+
   Player.ResetNumOfModelsKilled();
+
+
   Game.SetPoliceIgnorePlayer($.player, true /* ON */);
   $.player.setControl(false /* off */);
   $.wanted_4x4 = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   $.rc_van = $.player.storeCarIsIn();
   Hud.SwitchWidescreen(true /* on */);
+
   //UP GANGCAR NUMBERS AND DENSITY
+
+
   Zone.SetCarInfo("LITTLEI", 1 /* DAY */, 10, 250, 0, 0, 0, 0, 0, 0, 20, 400, 0, 0, 250, 50, 0);
   Zone.SetCarInfo("LITTLEI", 0 /* NIGHT */, 8, 250, 0, 0, 0, 0, 0, 0, 10, 550, 0, 0, 150, 0, 0);
+
+
   Camera.SetFixedPosition($.cam_x, $.cam_y, $.cam_z, 0.0, 0.0, 0.0);
   if (!(Car.IsDead($.rc_van))) {
     $.rc_van.lockDoors(2 /* CARLOCK_LOCKED */);
     Camera.PointAtCar($.rc_van, 15 /* FIXED */, 2 /* JUMP_CUT */);
     World.ClearArea($.rc_x, $.rc_y, $.rc_z, 5.0, true /* true */);
   }
+
+
   Text.PrintNow("RC_2", 4000, 1); //You have 4 minutes to blow up as many Diablo Gang Cars as possible!
+
+
   Streaming.RequestModel(car`rcbandit`);
   Streaming.RequestModel(car`mafia`);
+
+
   while (!(Streaming.HasModelLoaded(car`rcbandit`)) || !(Streaming.HasModelLoaded(car`mafia`))) {
     await asyncWait(0);
   }
+
+
   //GIVE_REMOTE_CONTROLLED_CAR_TO_PLAYER player rc_x rc_y rc_z 180.0
+
   Hud.DisplayCounterWithString($.counter_RCDD, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS);
   Hud.DisplayTimer($.timer_RCDD);
   $.timer_intro_start = Clock.GetGameTimer();
+
+
   while (!($.timer_RCDD < 1)) {
     await asyncWait(0);
     $.timer_intro_now = Clock.GetGameTimer();
@@ -81,6 +117,8 @@ async function mission_start_rc2() {
         Hud.SwitchWidescreen(false /* off */);
         $.player.setControl(true /* on */);
         Camera.Restore();
+
+
       }
       if (!($.player.isSittingInCar($.rc_van))) {
         // SCM GOTO → mission_rc2_failed (not lowered; manual jump required)
@@ -97,16 +135,33 @@ async function mission_start_rc2() {
         Rc.GiveCarToPlayer($.player, $.rc_x, $.rc_y, $.rc_z, 180.0);
       }
     }
+
+
   }
+
+
   Hud.ClearTimer($.timer_RCDD);
   Hud.ClearCounter($.counter_RCDD);
+
+
   Rc.BlowUpBuggy();
+
+
   {
+
+
   TIMERA = 0;
+
+
   while (TIMERA < 1500) {
     await asyncWait(0);
+
+
   }
   }
+
+
+
   if ($.counter_RCDD > $.rec_rc2) {
     $.reward_RCDD = $.counter_RCDD - $.rec_rc2;
     $.reward_RCDD = $.reward_RCDD * 1000;
@@ -114,17 +169,34 @@ async function mission_start_rc2() {
     // SCM GOTO → mission_rc2_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_rc2_passed"); // fallback: would break linear control flow
   }
+
+
+
   // Mission rc2 failed
+
+
 }
 
 async function mission_rc2_failed() {
   Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed!"
   Text.PrintNow("NRECORD", 5000, 1);
+
+
   return;
+
+
+
+
   // mission rc2 passed
+
+
 }
 
 async function mission_rc2_passed() {
+
+
+  //reward_RCDD = counter_RCDD * 1000
+
   Text.PrintWithNumberBig("M_PASS", $.reward_RCDD, 5000, 1); //"Mission Passed!"
   Text.PrintNow("RECORD", 3000, 1);
   Audio.PlayMissionPassedTune(1);
@@ -135,11 +207,20 @@ async function mission_rc2_passed() {
     Stat.RegisterMissionPassed(RC2);
   }
   Stat.RegisterHighestScore(2, $.rec_rc2);
+
+
   return;
+
+
+
   // mission cleanup
+
+
 }
 
 async function mission_cleanup_rc2() {
+
+
   $.flag_player_on_mission = 0;
   $.flag_just_done_rc_mission = 1;
   Streaming.LoadScene($.cam_x, $.cam_y, $.cam_z);
@@ -149,29 +230,55 @@ async function mission_cleanup_rc2() {
   Camera.Restore();
   Hud.SwitchWidescreen(false /* OFF */);
   $.player.alterWantedLevel($.wanted_4x4);
+
+
   Hud.ClearTimer($.timer_RCDD);
   Hud.ClearCounter($.counter_RCDD);
+
+
   Rc.BlowUpBuggy();
+
+
   if (!(Car.IsDead($.rc_van))) {
     $.rc_van.lockDoors(1 /* CARLOCK_UNLOCKED */);
   }
+
+
   Zone.SetCarInfo("LITTLEI", 1 /* DAY */, 10, 100, 0, 0, 0, 0, 0, 0, 20, 400, 0, 0, 350, 50, 0);
   Zone.SetCarInfo("LITTLEI", 0 /* NIGHT */, 8, 150, 0, 0, 0, 0, 0, 0, 10, 550, 0, 0, 150, 0, 0);
+
+
   Streaming.MarkModelAsNoLongerNeeded(car`MAFIA`);
+
+
   Mission.Finish();
   return;
+
+
+
 }
 
 export async function rc2() {
   // MissionBoundary
   // *******************************************************************************************
+  // *******************************************************************************************
   // **************************************RC Destruction Derby*********************************
   // ***************************************Diablo Demolition***********************************
+  // *******************************************************************************************
+  // *******************************************************************************************
+  // *******************************************************************************************
+
+
   // ScriptName
+
   // Mission start stuff
+
+
   // SCM GOSUB mission_start_rc2
   await mission_start_rc2();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   if (HAS_DEATHARREST_BEEN_EXECUTED()) {
     // SCM GOSUB mission_rc2_failed
     await mission_rc2_failed();
@@ -180,6 +287,23 @@ export async function rc2() {
   // SCM GOSUB mission_cleanup_rc2
   await mission_cleanup_rc2();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   // MissionBoundary
+
+
+  // Variables for mission
+
+  /*
+  VAR_INT counter_RCDD rc_van
+  VAR_INT timer_RCDD
+  VAR_INT reward_RCDD
+
+  VAR_FLOAT cam_x cam_y cam_z
+  VAR_FLOAT rc_x rc_y rc_z
+  */
   // ***************************************Mission Start*************************************
+
+
+
 }

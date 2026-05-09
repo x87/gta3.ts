@@ -6,10 +6,16 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function health_info_start() {
+  //REGISTER_MISSION_GIVEN
+
   // ScriptName
   $.flag_player_on_mission = 1;
+
+
   await asyncWait(0);
+
   //Set Variables
+
   $.info_time_lapsed = 0;
   $.info_time_now = 0;
   $.info_time_start = 0;
@@ -18,27 +24,41 @@ async function health_info_start() {
   $.wanted_level = 0;
   $.flag_intro_jump = 0;
   //Set Coords
+
+
   //Mission Script
+
   $.player.setControl(false /* off */);
+
+
   $.wanted_level = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   Game.SetPoliceIgnorePlayer($.player, true /* on */);
   //SWITCH_WIDESCREEN on
+
+
   Streaming.RequestModel(car`AMBULANCE`);
   Streaming.RequestModel(ped`MEDIC`);
+
+
   while (!(Streaming.HasModelLoaded(car`AMBULANCE`)) || !(Streaming.HasModelLoaded(ped`MEDIC`))) {
     await asyncWait(0);
   }
+
+
   Camera.SetFixedPosition(1138.6, -600.0, 18.0, 0.0, 0.0, 0.0);
   Camera.PointAtPlayer($.player, 15 /* FIXED */, 1 /* INTERPOLATION */);
+
+
   while ($.flag_info < 8) {
     await asyncWait(0);
+
+
     if ($.flag_info == 0) {
       $.info_time_start = Clock.GetGameTimer();
       /*SET_FADING_COLOUR 0 0 0
-      DO_FADE 1500 FADE_OUT
-      WAIT 1500*/
       World.ClearArea(1141.0, -622.0, 14.8, 30.0, true /* true */);
+
       World.ClearArea(1125.77, -594.0, 14.8, 10.0, true /* true */);
       World.SetCarDensityMultiplier(0.0);
       World.SetPedDensityMultiplier(0.0);
@@ -50,9 +70,8 @@ async function health_info_start() {
       $.medic_info.setStayInSamePlace(true /* true */);
       //CAR_SET_IDLE amb_info
       /*SET_FADING_COLOUR 0 0 0
-      DO_FADE 1500 FADE_IN
-      WAIT 1500*/
       Text.PrintHelp("HEAL_A");
+
       Hud.FlashObject(4 /* HUD_FLASH_HEALTH */);
       $.flag_info = 1;
     }
@@ -139,35 +158,67 @@ async function health_info_start() {
         $.flag_intro_jump = 1;
       }
     }
+
+
   }
+
+
   return;
+
+
+
   // mission cleanup
+
+
 }
 
 async function health_info_cleanup() {
+
+
   Camera.RestoreJumpcut();
   Hud.SwitchWidescreen(false /* off */);
   $.player.setControl(true /* on */);
   Game.SetPoliceIgnorePlayer($.player, false /* off */);
+
+
   $.amb_info.markAsNoLongerNeeded();
   $.medic_info.markAsNoLongerNeeded();
+
+
   Streaming.MarkModelAsNoLongerNeeded(car`AMBULANCE`);
   Streaming.MarkModelAsNoLongerNeeded(ped`MEDIC`);
+
+
   World.SetCarDensityMultiplier(1.0);
   World.SetPedDensityMultiplier(1.0);
+
   //REMOVE_PICKUP heal_info
+
   $.flag_player_on_mission = 0;
   $.flag_health_info = 1;
+
+
   Mission.Finish();
   return;
+
+
   //----main stuff-------
+
 }
 
 export async function health() {
   // MissionBoundary
   // *****************************************************************************************
+  // *****************************************************************************************
+  // *****************************************************************************************
   // ***************************************HEALTH INFO***************************************
+  // *****************************************************************************************
+  // *****************************************************************************************
+  // *****************************************************************************************
+
   // Mission start stuff
+
+
   // SCM GOSUB health_info_start
   await health_info_start();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -180,9 +231,16 @@ export async function health() {
   await health_info_cleanup();
   // fallback if label was not emitted as async function: no-op continues linearly
   // MissionBoundary
+
   // Variables for info script
+
+
   // VAR_INT amb_info medic_info flag_bottom
   // VAR_INT health_pickup_info armour_pickup_info
   // VAR_INT info_time_lapsed info_time_now info_time_start flag_info
+
+
   // ****************************************Mission Start************************************
+
+
 }

@@ -7,11 +7,17 @@ import { car, ped, hier } from "../../../ide.ts";
 
 async function mission_start_camera() {
   {
+
+
   await asyncWait(70);
+
+
   //INDUSTRIAL******************************************************************************************************
   /*
   IF IS_PLAYER_PLAYING Player
+
   IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
+
   IF IS_PLAYER_IN_ZONE player CHINA
   // Fuzz ball camera zoom
   IF IS_PLAYER_IN_AREA_3D player 1004.0 -892.0 14.0 996.9 -885.6 17.0 FALSE
@@ -30,12 +36,21 @@ async function mission_start_camera() {
   ENDIF
   ENDIF
   ENDIF
+
   ENDIF //IS_PLAYER_IN_ZONE
+
   ENDIF //IS_PLAYER_PLAYING
   */
+
+
   //COMMERCIAL*****************************************************************************************************
+
+
   if ($.player.isPlaying()) {
     if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+
+
+      //RAYS TOILETS FIXED CAM STUFF //rays_camera_1
       if ($.rays_cutscene_flag == 0) {
         if ($.player.isPlaying()) {
           if ($.player.isInZone("PARK")) {
@@ -156,21 +171,50 @@ async function mission_start_camera() {
           }
         }
       }
+      */
+
+
     }
+
+
   }
+
+
+
+
   // SCM GOTO → mission_start_camera (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_start_camera"); // fallback: would break linear control flow
+
+
   // MissionBoundary
   }
 }
 
 export async function camera() {
   // MissionBoundary
+
+
   // VAR_INT rays_cutscene_flag rays_camera_1 rays_camera_2 rays_camera_3
+  //VAR_INT camera_stuff1 camera_stuff2	camera_stuff3 camera_stuff4
+  /*
+  camera_stuff1 = 0
+  camera_stuff2 = 0
+  camera_stuff3 = 0
+  camera_stuff4 = 0
+  */
+
   $.rays_camera_1 = 0;
   $.rays_camera_2 = 0;
   $.rays_camera_3 = 0;
   $.rays_cutscene_flag = 0;
+
+
+
   // ScriptName
+
+
   // SET_DEATHARREST_STATE(false /* OFF */);
+
+
+
 }

@@ -8,29 +8,47 @@ import { car, ped, hier } from "../../../ide.ts";
 async function mission_start_usj() {
   // SCM GOTO → mission_start_usj lowered to endless loop
   while (true) {
+
+
     await asyncWait(0);
+
+
     if (!($.player.isPlaying())) {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
+
+
     if (!($.player.isInAnyCar())) {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
+
+
     $.players_car_usj = $.player.storeCarIsInNoSave();
+
+
     if ($.players_car_usj.isBoat()) {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
+
+
     $.car_speed_usj = $.players_car_usj.getSpeed();
+
+
     if (!($.car_speed_usj > 25.0)) {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
+
+
     if (!($.players_car_usj.isInAirProper())) {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
+
+
     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
       if ($.player.isInZone("ROADBR1")) {
         if ($.player.locateInCar2D(940.4, -933.7, 4.0, 4.0, false)) {
@@ -109,6 +127,8 @@ async function mission_start_usj() {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
+
+
     if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
       if ($.player.isInZone("COM_EAS")) {
         if ($.player.locateInCar3D(470.728, -918.38, 19.828, 6.0, 3.0, 3.0, false)) {
@@ -149,6 +169,8 @@ async function mission_start_usj() {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
+
+
     if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
       if ($.player.isInZone("SUB_IND")) {
         if ($.player.locateInCar3D(-1182.442, 22.213, 74.03, 3.0, 4.0, 3.0, false)) {
@@ -225,16 +247,26 @@ async function mission_start_usj() {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
+
+
+
+
   }
 }
 
 async function the_jump() {
+
+
   $.flag_1st_locate_usj = 0;
   $.flag_2nd_locate_usj = 0;
   $.collision_counter_usj = 0;
+
+
   Clock.SetTimeScale(0.3);
   Camera.SetFixedPosition($.camera_x, $.camera_y, $.camera_z, 0.0, 0.0, 0.0);
   Camera.PointAtCar($.players_car_usj, 15 /* FIXED */, 2 /* JUMP_CUT */);
+
+
   while ($.players_car_usj.isInAirProper() || $.collision_counter_usj < 10) {
     ++$.collision_counter_usj;
     await asyncWait(0);
@@ -390,7 +422,11 @@ async function the_jump() {
       // SCM GOTO → mission_usj_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_usj_passed"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   while ($.players_car_usj.isInAirProper()) {
     await asyncWait(0);
     if (Car.IsDead($.players_car_usj)) {
@@ -409,19 +445,30 @@ async function the_jump() {
       // SCM GOTO → camera_restore_if_fail (not lowered; manual jump required)
       throw new Error("unresolved GOTO camera_restore_if_fail"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   await asyncWait(600);
 }
 
 async function camera_restore_if_fail() {
   Clock.SetTimeScale(1.0);
   Camera.RestoreJumpcut();
+
+
   // SCM GOTO → mission_start_usj (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
+
   // mission usj1 passed
+
+
 }
 
 async function mission_usj_passed() {
+
+
   while ($.players_car_usj.isInAirProper()) {
     await asyncWait(0);
     if (Car.IsDead($.players_car_usj)) {
@@ -440,13 +487,19 @@ async function mission_usj_passed() {
       // SCM GOTO → camera_restore_if_fail (not lowered; manual jump required)
       throw new Error("unresolved GOTO camera_restore_if_fail"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   await asyncWait(600);
 }
 
 async function camera_restore_if_passed() {
   Clock.SetTimeScale(1.0);
   Camera.RestoreJumpcut();
+
+
   if ($.usj_number == 1 && $.flag_usj1_passed == 0) {
     $.flag_usj1_passed = 1;
     ++$.total_completed_usj;
@@ -454,6 +507,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 2 && $.flag_usj2_passed == 0) {
     $.flag_usj2_passed = 1;
     ++$.total_completed_usj;
@@ -461,6 +516,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 3 && $.flag_usj3_passed == 0) {
     $.flag_usj3_passed = 1;
     ++$.total_completed_usj;
@@ -468,6 +525,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 4 && $.flag_usj4_passed == 0) {
     $.flag_usj4_passed = 1;
     ++$.total_completed_usj;
@@ -475,6 +534,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 5 && $.flag_usj5_passed == 0) {
     $.flag_usj5_passed = 1;
     ++$.total_completed_usj;
@@ -482,6 +543,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 6 && $.flag_usj6_passed == 0) {
     $.flag_usj6_passed = 1;
     ++$.total_completed_usj;
@@ -489,6 +552,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 7 && $.flag_usj7_passed == 0) {
     $.flag_usj7_passed = 1;
     ++$.total_completed_usj;
@@ -496,6 +561,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 8 && $.flag_usj8_passed == 0) {
     $.flag_usj8_passed = 1;
     ++$.total_completed_usj;
@@ -503,6 +570,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 9 && $.flag_usj9_passed == 0) {
     $.flag_usj9_passed = 1;
     ++$.total_completed_usj;
@@ -510,6 +579,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 10 && $.flag_usj10_passed == 0) {
     $.flag_usj10_passed = 1;
     ++$.total_completed_usj;
@@ -517,6 +588,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 11 && $.flag_usj11_passed == 0) {
     $.flag_usj11_passed = 1;
     ++$.total_completed_usj;
@@ -524,6 +597,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 12 && $.flag_usj12_passed == 0) {
     $.flag_usj12_passed = 1;
     ++$.total_completed_usj;
@@ -531,6 +606,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 13 && $.flag_usj13_passed == 0) {
     $.flag_usj13_passed = 1;
     ++$.total_completed_usj;
@@ -538,6 +615,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 14 && $.flag_usj14_passed == 0) {
     $.flag_usj14_passed = 1;
     ++$.total_completed_usj;
@@ -545,6 +624,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 15 && $.flag_usj15_passed == 0) {
     $.flag_usj15_passed = 1;
     ++$.total_completed_usj;
@@ -552,6 +633,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 16 && $.flag_usj16_passed == 0) {
     $.flag_usj16_passed = 1;
     ++$.total_completed_usj;
@@ -559,6 +642,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 17 && $.flag_usj17_passed == 0) {
     $.flag_usj17_passed = 1;
     ++$.total_completed_usj;
@@ -566,6 +651,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 18 && $.flag_usj18_passed == 0) {
     $.flag_usj18_passed = 1;
     ++$.total_completed_usj;
@@ -573,6 +660,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 19 && $.flag_usj19_passed == 0) {
     $.flag_usj19_passed = 1;
     ++$.total_completed_usj;
@@ -580,6 +669,8 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   if ($.usj_number == 20 && $.flag_usj20_passed == 0) {
     $.flag_usj20_passed = 1;
     ++$.total_completed_usj;
@@ -587,8 +678,12 @@ async function camera_restore_if_passed() {
     // SCM GOTO → reward_usj (not lowered; manual jump required)
     throw new Error("unresolved GOTO reward_usj"); // fallback: would break linear control flow
   }
+
+
   // SCM GOTO → mission_start_usj (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
+
+
 }
 
 async function reward_usj() {
@@ -602,26 +697,44 @@ async function reward_usj() {
     Text.PrintWithNumberBig(REWARD, 1000000, 6000, 6);
     $.player.addScore(1000000);
   }
+
+
   Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+
+
   Stat.RegisterUniqueJumpFound();
   $.cash_reward_usj += 5000;
   // SCM GOTO → mission_start_usj (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
+
+
   // MissionBoundary
 }
 
 export async function usj() {
   // MissionBoundary
   // *****************************************************************************************
+  // *****************************************************************************************
+  // *****************************************************************************************
   // ********************************** Unique Stunt Jumps ***********************************
+  // *****************************************************************************************
+  // *****************************************************************************************
+  // *****************************************************************************************
+
+
   // Variables for mission
+
+
   // VAR_INT players_car_usj cash_reward_usj total_completed_usj
   // VAR_INT flag_1st_locate_usj flag_2nd_locate_usj usj_number collision_counter_usj
   // VAR_INT flag_usj1_passed flag_usj2_passed flag_usj3_passed flag_usj4_passed flag_usj5_passed flag_usj6_passed flag_usj7_passed
   // VAR_INT flag_usj8_passed flag_usj9_passed flag_usj10_passed flag_usj11_passed flag_usj12_passed flag_usj13_passed flag_usj14_passed
   // VAR_INT flag_usj15_passed flag_usj16_passed flag_usj17_passed flag_usj18_passed flag_usj19_passed flag_usj20_passed
   // VAR_FLOAT car_speed_usj camera_x camera_y camera_z
+
   // ****************************************Mission Start************************************
+
+
   $.flag_usj1_passed = 0;
   $.flag_usj2_passed = 0;
   $.flag_usj3_passed = 0;
@@ -642,10 +755,19 @@ export async function usj() {
   $.flag_usj18_passed = 0;
   $.flag_usj19_passed = 0;
   $.flag_usj20_passed = 0;
+
+
   $.cash_reward_usj = 5000;
   $.usj_number = 0;
   $.total_completed_usj = 0;
+
+
   // SET_DEATHARREST_STATE(false /* OFF */);
   Stat.SetUniqueJumpsTotal(20);
+
+
   // ScriptName
+
+
+
 }

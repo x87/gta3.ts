@@ -6,12 +6,22 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function mission_start_ray6() {
+
+
   $.flag_player_on_mission = 1;
   $.flag_player_on_ray_mission = 1;
   $.rays_cutscene_flag = 1;
+
+
   Stat.RegisterMissionGiven();
+
+
   await asyncWait(0);
+
+
   // ScriptName
+
+
   $.time_till_flight = 180000;
   $.flag_blip_on_ray = 0;
   $.airport_door_flag = 0;
@@ -36,121 +46,232 @@ async function mission_start_ray6() {
   $.cia_15_flag = 0;
   $.cia_16_flag = 0;
   $.cia_17_flag = 0;
+
   // ****************************************START OF CUTSCENE********************************
+
   //SET_FADING_COLOUR 0 0 0
   //
   //DO_FADE 1500 FADE_OUT
+  //
   //IF CAN_PLAYER_START_MISSION player
   //	MAKE_PLAYER_SAFE_FOR_CUTSCENE player
   //ELSE
   //	GOTO mission_ray6_failed
   //ENDIF
+  //
   //PRINT_BIG RM6 15000 2 //"Marked Man"
+
+
   Streaming.LoadSpecialCharacter(1, $.ray);
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, RAYH);
   Streaming.RequestModel(toilet);
+
   //WHILE GET_FADING_STATUS
   //	WAIT 0
   //ENDWHILE
+
+
   Streaming.LoadAllModelsNow();
+
+
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(toilet))) {
     await asyncWait(0);
   }
+
+
   World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
+
+
   $.player.setCoordinates(39.0, -723.5, 22.0);
+
+
   $.player.setHeading(90.0);
+
+
   Cutscene.Load(r6_mm);
+
+
   Cutscene.SetOffset(39.424, -726.677, 21.692);
+
+
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
+
+
   $.cs_player.setAnim($.player);
+
+
   $.cs_ray = CutsceneObject.Create(ped`SPECIAL1`);
+
+
   $.cs_ray.setAnim($.ray);
+
+
   $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`);
   $.cs_playerhead.setAnim($.player);
+
+
   $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`);
   $.cs_rayhead.setAnim($.ray);
+
   //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
   //
   //SET_PLAYER_HEADING player 270.0
+
+
   Camera.DoFade(1500, 1 /* FADE_IN */);
+
+
   Camera.SetNearClip(0.2);
+
+
   Cutscene.Start();
+
+
   Streaming.Switch(false /* OFF */);
   World.SwitchRubbish(false /* OFF */);
   // Displays cutscene text
+
+
   $.cs_time = Cutscene.GetTime();
+
+
   while ($.cs_time < 1807) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(RM6_A, 4000, 1); //"You weren't followed? Good."
+
+
   while ($.cs_time < 4920) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(RM6_B, 4000, 1); //"This is it, I'm in way over my fucking head and I'm starting to fucking drown here!"
+
+
   while ($.cs_time < 8597) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(RM6_C, 4000, 1); //"The CIA seem to have a vested interest in SPANK"
+
+
   while ($.cs_time < 11482) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(RM6_C1, 4000, 1); //"and they don't like us fucking with the Cartel!"
+
+
   while ($.cs_time < 14220) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(RM6_D, 4000, 1); //"I'm a marked man, so I'm getting out of here."
+
+
   while ($.cs_time < 17464) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(RM6_E, 4000, 1); //"Get me to my flight at the airport and I'll make it worth your while!!"
+
+
   while ($.cs_time < 21666) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+
   while (!(Cutscene.HasFinished())) {
     await asyncWait(0);
   }
+
+
   World.SwitchRubbish(true /* ON */);
+
+
   Text.ClearPrints();
+
+
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
+
+
   Cutscene.Clear();
+
+
   Camera.DoFade(0, 0 /* FADE_OUT */);
   Camera.SetNearClip(0.9);
+
+
   Camera.SetBehindPlayer();
+
+
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
   Streaming.MarkModelAsNoLongerNeeded(toilet);
   Streaming.RequestModel(ped`B_MAN3`);
+
+
   Streaming.LoadAllModelsNow();
+
+
   while (!(Streaming.HasModelLoaded(ped`B_MAN3`))) {
     await asyncWait(0);
   }
+
+
   $.ray = Char.Create(21 /* PEDTYPE_SPECIAL */, ped`SPECIAL1`, 38.7, -727.7, 22.0);
   $.ray.addArmor(100);
+
+
   $.ray.followPlayer($.player);
+
+
   Streaming.Switch(true /* ON */);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   $.rays_cutscene_flag = 0;
+
   // ******************************************END OF CUTSCENE********************************
+
+
   Hud.DisplayTimer($.time_till_flight);
+
+
   $.rays_blip = Blip.AddForCoord(-739.0, -583.0, -100.0);
+
+
   if (Char.IsDead($.ray)) {
     Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
     // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
   }
+
+
   $.ray.setRunning(true /* TRUE */);
+
+
   Text.PrintNow(RM6_5, 15000, 1); //"The CIA have the bridge under surveillance, find another route across."
+
+
   while (!($.ray.locateStoppedAnyMeans2D(-738.3010, -582.8834, 8.0, 8.0, true))) {
     await asyncWait(0);
     if (Char.IsDead($.ray)) {
@@ -163,7 +284,9 @@ async function mission_start_ray6() {
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_1_flag == 0) {
         if ($.player.locateAnyMeans2D(-25.8545, -612.5001, 100.0, 100.0, false)) {
@@ -202,7 +325,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_2_flag == 0) {
         if ($.player.locateAnyMeans2D(-24.0225, -630.3363, 100.0, 100.0, false)) {
@@ -241,7 +366,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_3_flag == 0) {
         if ($.player.locateAnyMeans2D(-35.1159, -632.8395, 100.0, 100.0, false)) {
@@ -280,7 +407,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_4_flag == 0) {
         if ($.player.locateAnyMeans2D(-24.3022, -650.4634, 100.0, 100.0, false)) {
@@ -319,7 +448,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_5_flag == 0) {
         if ($.player.locateAnyMeans2D(-217.9545, -630.4070, 100.0, 100.0, false)) {
@@ -358,7 +489,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_6_flag == 0) {
         if ($.player.locateAnyMeans2D(-212.4922, -632.7455, 100.0, 100.0, false)) {
@@ -397,7 +530,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_7_flag == 0) {
         if ($.player.locateAnyMeans2D(-437.0927, -612.5157, 100.0, 100.0, false)) {
@@ -436,7 +571,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_8_flag == 0) {
         if ($.player.locateAnyMeans2D(-534.6777, -631.2995, 100.0, 100.0, false)) {
@@ -475,7 +612,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_9_flag == 0) {
         if ($.player.locateAnyMeans2D(-523.4218, -650.3831, 100.0, 100.0, false)) {
@@ -514,7 +653,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_10_flag == 0) {
         if ($.player.locateAnyMeans2D(-628.0785, -498.4106, 100.0, 100.0, false)) {
@@ -553,7 +694,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_11_flag == 0) {
         if ($.player.locateAnyMeans2D(-637.6517, -501.7922, 100.0, 100.0, false)) {
@@ -592,7 +735,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_12_flag == 0) {
         if ($.player.locateAnyMeans2D(-692.3098, -563.0333, 100.0, 100.0, false)) {
@@ -631,7 +776,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_13_flag == 0) {
         if ($.player.locateAnyMeans2D(-671.1359, -540.5952, 100.0, 100.0, false)) {
@@ -670,7 +817,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_14_flag == 0) {
         if ($.player.locateAnyMeans2D(-638.4215, -419.2620, 100.0, 100.0, false)) {
@@ -709,7 +858,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_15_flag == 0) {
         if ($.player.locateAnyMeans2D(-655.3353, -404.4556, 100.0, 100.0, false)) {
@@ -748,7 +899,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_16_flag == 0) {
         if ($.player.locateAnyMeans2D(-677.0261, -425.0470, 100.0, 100.0, false)) {
@@ -787,7 +940,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if ($.total_cia < 16) {
       if ($.cia_17_flag == 0) {
         if ($.player.locateAnyMeans2D(-679.1292, -485.1575, 100.0, 100.0, false)) {
@@ -826,7 +981,9 @@ async function mission_start_ray6() {
         }
       }
     }
+
     ////////
+
     if (!($.ray.isInPlayersGroup($.player)) && $.flag_blip_on_ray == 0) {
       Text.PrintNow(RM6_8, 5000, 1); //"You have left Ray behind, go back and get him."
       $.rays_blip.remove();
@@ -841,21 +998,36 @@ async function mission_start_ray6() {
         $.flag_blip_on_ray = 0;
       }
     }
+
+
   }
+
+
   $.rays_blip.remove();
+
+
   Hud.ClearTimer($.time_till_flight);
+
+
   $.player.setControl(false /* OFF */);
   Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
   //SET_ALL_CARS_CAN_BE_DAMAGED FALSE
+
   Hud.SwitchWidescreen(true /* ON */);
   Camera.SetFixedPosition(-732.0104, -571.0955, 14.0482, 0.0, 0.0, 0.0);
   Camera.PointAtChar($.ray, 15 /* FIXED */, 2 /* JUMP_CUT */);
+
+
   if (!($.ray.isInAnyCar()) || !($.player.isInAnyCar())) {
     $.ray.turnToFacePlayer($.player);
     $.script_controlled_player = $.player.getChar();
     $.script_controlled_player.turnToFaceChar($.ray);
   }
+
+
   Audio.LoadMissionAudio(R6_A);
+
+
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
     if (Char.IsDead($.ray)) {
@@ -863,9 +1035,15 @@ async function mission_start_ray6() {
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   Audio.PlayMissionAudio();
   Text.PrintNow(RM6_1, 5000, 1); //"Here's a key to a lock-up."
+
+
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Char.IsDead($.ray)) {
@@ -873,8 +1051,14 @@ async function mission_start_ray6() {
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   Audio.LoadMissionAudio(R6_A1);
+
+
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
     if (Char.IsDead($.ray)) {
@@ -882,9 +1066,15 @@ async function mission_start_ray6() {
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   Audio.PlayMissionAudio();
   Text.PrintNow(RM6_2, 5000, 1); //"You'll find some cash and some 'supplies' I'd stashed in case things got tight."
+
+
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Char.IsDead($.ray)) {
@@ -892,8 +1082,14 @@ async function mission_start_ray6() {
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   Audio.LoadMissionAudio(R6_B);
+
+
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
     if (Char.IsDead($.ray)) {
@@ -901,14 +1097,22 @@ async function mission_start_ray6() {
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   Audio.PlayMissionAudio();
   Text.PrintNow(RM6_3, 5000, 1); //"See y'around."
+
+
   if ($.ray.isInAnyCar()) {
     $.ray.leaveGroup();
     $.player_death_car = $.ray.storeCarIsIn();
     $.ray.setObjLeaveCar($.player_death_car);
   }
+
+
   while (!($.airport_door_flag == 6) || !($.door1_closed == 0) || !($.door2_closed == 0)) {
     await asyncWait(0);
     if (!($.airport_door_flag == 6)) {
@@ -985,20 +1189,35 @@ async function mission_start_ray6() {
         $.airport_door_flag = 6;
       }
     }
+
+
   }
+
+
   Text.PrintNow(RM6_4, 5000, 1); //GO TO THE LOCKUP TO GET YOUR REWARD
+
+
   $.rays_blip = Blip.AddForCoord(241.1441, -997.7660, 20.9853);
+
+
   Streaming.RequestModel(car`PATRIOT`);
+
+
   while (!($.player.locateAnyMeans2D(241.1441, -997.7660, 50.0, 50.0, false))) {
     await asyncWait(0);
   }
+
+
   while (!(Streaming.HasModelLoaded(car`PATRIOT`))) {
     await asyncWait(0);
   }
+
+
   $.rays_prize_car = Car.Create(89 /* CAR_PATRIOT */, 241.1441, -997.7660, 20.9853);
   //SET_CAR_COLOUR 256 256/WHITE
   //SET_CAR_CANT_BE_RESPRAYED
   //SET_CAR_DO_NOT_DELETE	maybe
+
   $.rays_prize_car.setHeading(270.0);
   $.rays_prize_car.setProofs(true /* TRUE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
   $.rays_prize_car.setStrong(true /* TRUE */);
@@ -1007,19 +1226,37 @@ async function mission_start_ray6() {
   $.rays_prize_weapon3 = Pickup.CreateWithAmmo(156 /* WEAPON_ROCKET */, 3 /* PICKUP_ONCE */, 25, 243.8931, -995.5624, 21.0);
   $.rays_prize_weapon4 = Pickup.CreateWithAmmo(158 /* WEAPON_SNIPER */, 3 /* PICKUP_ONCE */, 50, 241.2706, -993.6790, 21.0);
   $.rays_cash = Pickup.CreateMoney(238.9743, -993.6944, 21.0, 20000);
+
+
   $.pickups_created_rm6 = 1;
+
+
   while (!($.player.locateAnyMeans2D(230.2258, -996.4656, 2.0, 2.0, false))) {
     await asyncWait(0);
   }
+
+
   $.rays_prize_garage.open();
+
+
   Pager.AddMessage(RM6_666, 140, 666, 1); //"Take care of my armoured Cheetah, I had it modified to be bullet proof. See you in Miami, Ray"
+
+
   await asyncWait(13000);
+
+
   // SCM GOTO → mission_ray6_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_ray6_passed"); // fallback: would break linear control flow
+
+
   // Mission Ray 6 failed
+
+
 }
 
 async function mission_ray6_failed() {
+
+
   if ($.pickups_created_rm6 == 1) {
     $.rays_prize_weapon1.remove();
     $.rays_prize_weapon2.remove();
@@ -1032,10 +1269,16 @@ async function mission_ray6_failed() {
   $.ray.removeElegantly();
   Text.PrintBig(M_FAIL, 5000, 1);
   return;
+
+
   // mission Ray 6 passed
+
+
 }
 
 async function mission_ray6_passed() {
+
+
   $.flag_ray_mission6_passed = 1;
   Text.PrintWithNumberBig(M_PASS, 20000, 2000, 1);
   $.player.addScore(20000);
@@ -1045,30 +1288,53 @@ async function mission_ray6_passed() {
   Stat.PlayerMadeProgress(1);
   $.ray_contact_blip.remove();
   return;
+
+
+
   // mission cleanup
+
+
 }
 
 async function mission_cleanup_ray6() {
+
+
   $.flag_player_on_mission = 0;
   $.flag_player_on_ray_mission = 0;
+
+
   if (Object.DoesExist($.airportdoor1)) {
     $.airportdoor1.setCoordinates(-770.414, -599.292, 11.847);
   }
+
+
   if (Object.DoesExist($.airportdoor2)) {
     $.airportdoor2.setCoordinates(-770.414, -601.369, 11.846);
   }
+
+
   if ($.player.isInArea2D(-773.75, -605.205, -768.76, -595.613, false)) {
     $.player.setCoordinates(-767.8299, -600.3843, 11.0);
     $.player.setHeading(270.0);
   }
+
+
   Hud.ClearTimer($.time_till_flight);
   $.rays_blip.remove();
+
+
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(ped`B_MAN3`);
   Streaming.MarkModelAsNoLongerNeeded(car`CHEETAH`);
   Streaming.MarkModelAsNoLongerNeeded(car`PATRIOT`);
+
+
   Mission.Finish();
   return;
+
+
+
+
 }
 
 export async function ray6() {
@@ -1076,26 +1342,40 @@ export async function ray6() {
   // *****************************************************************************************
   // ************************************   Ray 6    *****************************************
   // ************************************ Marked Man *****************************************
+  // *****************************************************************************************
   // *** The CIA is making money from Cartel deals and is concerned that the Yakuza are 	 ***
   // *** hindering the operation. They've discovered that Ray is helping them and they've  ***
   // *** decided to 'rub him out'. Ray is running scared and needs a ride to the airport.  ***
   // *** His contact point is empty, but the player will get a pager message. The player is***
   // *** followed by the C.I.A Ray is dressed in a Hawaiian shirt and has two cases packed.***
   // *** He's booked on a flight (timed mission). The CIA give chase.						 ***
+  // *****************************************************************************************
+
   // Mission start stuff
+
+
   // SCM GOSUB mission_start_ray6
   await mission_start_ray6();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   if (HAS_DEATHARREST_BEEN_EXECUTED()) {
     // SCM GOSUB mission_ray6_failed
     await mission_ray6_failed();
     // fallback if label was not emitted as async function: no-op continues linearly
   }
+
+
   // SCM GOSUB mission_cleanup_ray6
   await mission_cleanup_ray6();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   // MissionBoundary
+
   // Variables for mission
+
+
   // VAR_INT time_till_flight flag_blip_on_ray rays_blip total_cia player_death_car airport_door_flag door1_closed door2_closed
   // VAR_INT cia_1 cia_1_flag
   // VAR_INT cia_2 cia_2_flag
@@ -1115,5 +1395,9 @@ export async function ray6() {
   // VAR_INT cia_16 cia_16_flag
   // VAR_INT cia_17 cia_17_flag
   // VAR_INT rays_prize_car rays_prize_weapon1 rays_prize_weapon2 rays_prize_weapon3 rays_prize_weapon4 rays_cash pickups_created_rm6
+
+
   // ****************************************Mission Start************************************
+
+
 }

@@ -6,8 +6,14 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function mission_start_taxi1() {
+
+
   // ScriptName
+
+
   // SET_DEATHARREST_STATE(false /* OFF */); // GSW - does deatharrest have to be switched off?  YES! well maybe...
+
+
   $.flag_player_on_mission = 1;
   $.taxi_countdown_already_started = 0;
   $.taxi_countdown = 0;
@@ -18,12 +24,20 @@ async function mission_start_taxi1() {
   $.taxi_fucked_flag = 0;
   $.in_a_row_number = 5;
   $.in_a_row_cash = 2000;
+
+
   await asyncWait(0);
+
+
   Hud.DisplayCounterWithString($.taxi_passed_this_shot, 0 /* COUNTER_DISPLAY_NUMBER */, "FARES"); //TEST STUFF!!!!!!!!!!!!!
+
+
   if (!($.player.isPlaying())) {
     // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
   }
+
+
   if ($.player.isInAnyCar()) {
     $.taxi_car1 = $.player.storeCarIsIn();
   }
@@ -31,32 +45,57 @@ async function mission_start_taxi1() {
     // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
   }
+
   //SWITCH_TAXI_TIMER ON
+
   $.taxi_car1.setTaxiLights(true /* On */);
   Text.PrintNow("TAXI1", 1500, 1); //Pick up a fare
   //WAIT 1500
+
   await asyncWait(0);
+
+
 }
 
 async function Start_taxi_mission() {
+
+
   if ($.done_taxi_help == 0) {
     Text.PrintHelp("TAXIH1");
     $.done_taxi_help = 1;
   }
+
+
   $.score_for_this_fare = 0;
+
+
   if (!($.player.isPlaying())) {
     // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
   }
+
+
   if (Car.IsDead($.taxi_car1)) {
     // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
   }
+
+
   if (!($.player.isInCar($.taxi_car1))) {
     // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
   }
+
+  /*
+  IF taxi_passed = 0	   				//SPECIAL MISSIONS???
+  AND IS_PLAYER_IN_ZONE player REDLIGH
+  GOTO special_ped_mission1
+  ENDIF
+  */
+
   //	random_ped_grabber:
+
+
   if (!($.controlmode == 3)) {
     if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && $.flag_player_on_mission == 1) {
       // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
@@ -69,39 +108,62 @@ async function Start_taxi_mission() {
       throw new Error("unresolved GOTO taxi_fail_button_pressed"); // fallback: would break linear control flow
     }
   }
+
+
   if ($.taxi_countdown_already_started == 1 && $.taxi_countdown == 0) {
+    //PRINT_NOW ( TAXI2 ) 5000 2 //You SUCK!
     // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
   }
+
+
   if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
     $.taxi_ped1 = Zone.GetRandomChar("IND_ZON");
   }
+
+
   if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
     $.taxi_ped1 = Zone.GetRandomChar("COM_ZON");
   }
+
+
   if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
     $.taxi_ped1 = Zone.GetRandomChar("SUB_ZON");
   }
   //IF IS_PLAYER_IN_ZONE player SUB_ZON
   //	GET_RANDOM_CHAR_IN_ZONE IND_ZON taxi_ped1
   //ENDIF
+
+
   if ($.taxi_ped1 == -1) {
     await asyncWait(0);
     // SCM GOTO → Start_taxi_mission (not lowered; manual jump required)
     throw new Error("unresolved GOTO Start_taxi_mission"); // fallback: would break linear control flow
   }
+
+
   //been_in_taxi1_before = 7
+
   // START OF TAXI MISSION
+
+
   $.taxi_ped1.setIdle();
   $.taxi_ped1.clearThreatSearch();
   $.taxi_ped1.setHeedThreats(false /* False */);
   $.blip1_ct1 = Blip.AddForChar($.taxi_ped1);
   $.taxi_ped1.setObjHailTaxi();
+
   //PRINT_NOW ( TAXI1 ) 2000 2 //Pick up a fare
+
+
 }
 
 async function ped_get_in_taxi() {
+
+
   while (!($.player.locateInCarChar3D($.taxi_ped1, 7.0, 7.0, 2.0, false /* FALSE */)) || !($.taxi_car1.isStopped())) {
+    //	OR NOT IS_PLAYER_IN_CAR player taxi_car1
+
     await asyncWait(0);
     if (!($.player.isPlaying())) {
       // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
@@ -136,6 +198,7 @@ async function ped_get_in_taxi() {
       }
     }
     if ($.taxi_countdown_already_started == 1 && $.taxi_countdown == 0) {
+      //PRINT_NOW ( TAXI2 ) 5000 2 //You SUCK!
       // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
     }
@@ -147,7 +210,12 @@ async function ped_get_in_taxi() {
     if (!(Char.IsDead($.taxi_ped1))) {
       $.taxi_ped1.turnToFacePlayer($.player);
     }
+
+
   }
+
+
+
   if (!($.taxi_car1.isHealthGreater(500))) {
     Text.PrintNow("TAXI7", 4000, 1); //I ain't getting in that heap of shit!!
     if ($.spray_blip_onscreen == 0) {
@@ -167,8 +235,13 @@ async function ped_get_in_taxi() {
     // SCM GOTO → mission_taxi1_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_passed"); // fallback: would break linear control flow
   }
+
+
   $.taxi_ped1.setRunning(true /* TRUE */);
   $.taxi_ped1.setObjEnterCarAsPassenger($.taxi_car1);
+
+
+
   while (!($.taxi_ped1.isInCar($.taxi_car1))) {
     await asyncWait(0);
     if (!($.player.isPlaying())) {
@@ -204,6 +277,7 @@ async function ped_get_in_taxi() {
       }
     }
     if ($.taxi_countdown_already_started == 1 && $.taxi_countdown == 0) {
+      //PRINT_NOW ( TAXI2 ) 5000 2 //You SUCK!
       // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
     }
@@ -215,20 +289,37 @@ async function ped_get_in_taxi() {
       // SCM GOTO → ped_get_in_taxi (not lowered; manual jump required)
       throw new Error("unresolved GOTO ped_get_in_taxi"); // fallback: would break linear control flow
     }
+
+
   }
+
+
   [$.taxi_ped_x, $.taxi_ped_y, $.taxi_ped_z] = $.taxi_ped1.getCoordinates();
+
+
   $.blip1_ct1.remove();
   $.taxi_car1.setTaxiLights(false /* Off */);
+
   //GET_GAME_TIMER taxi_start_time
+
+
 }
 
 async function passenger_destination() {
+
+
   await asyncWait(0);
+
+
   if (!($.player.isPlaying())) {
     // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
   }
+
+
   if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+    //OR IS_PLAYER_IN_ZONE player SUB_ZON
+
     $.been_in_taxi1_before = Math.RandomIntInRange(1, 11);
     if (!($.player.isPlaying())) {
       // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
@@ -365,7 +456,12 @@ async function passenger_destination() {
       $.taxi_destz2 = 16.4;
     }
   }
+
+
+
   if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+    //OR IS_PLAYER_IN_ZONE player SUB_ZON
+
     $.been_in_taxi1_before = Math.RandomIntInRange(11, 21);
     if (!($.player.isPlaying())) {
       // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
@@ -502,6 +598,9 @@ async function passenger_destination() {
       $.taxi_destz2 = 28.57;
     }
   }
+
+
+
   if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
     $.been_in_taxi1_before = Math.RandomIntInRange(21, 27);
     if (!($.player.isPlaying())) {
@@ -586,77 +685,132 @@ async function passenger_destination() {
       $.taxi_desty2 = 88.4;
       $.taxi_destz2 = 25.0;
     }
+
+
+
   }
+
+
+
   $.taxi_blipx = $.taxi_destx1 + $.taxi_destx2;
   $.taxi_blipx /= 2.0;
+
+
   $.taxi_blipy = $.taxi_desty1 + $.taxi_desty2;
   $.taxi_blipy /= 2.0;
+
+
   $.blip2_ct1 = Blip.AddForCoord($.taxi_blipx, $.taxi_blipy, -100.0);
   $.blip2_ct1.changeDisplay(2 /* BLIP_ONLY */);
+
+
+
   if (Car.IsDead($.taxi_car1)) {
     // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
   }
+
+
   $.x_diff = $.taxi_ped_x - $.taxi_blipx;
   $.y_diff = $.taxi_ped_y - $.taxi_blipy;
+
+
   $.x_diff_sq = $.x_diff * $.x_diff;
   $.y_diff_sq = $.y_diff * $.y_diff;
+
+
   $.taxi_distance_sq = $.x_diff_sq + $.y_diff_sq;
   $.taxi_distance = Math.Sqrt($.taxi_distance_sq);
   $.taxi_distance_int = $.taxi_distance;
   $.taxi_distance_int_old = $.taxi_distance_int;
+
+
+
   if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
     if ($.taxi_passed_this_shot == 0) {
       $.taxi_distance_int = $.taxi_distance_int * 100;
     }
   }
+
+
   if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
     if ($.taxi_passed_this_shot == 0) {
       $.taxi_distance_int = $.taxi_distance_int * 95;
     }
   }
+
+
   if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
     if ($.taxi_passed_this_shot == 0) {
       $.taxi_distance_int = $.taxi_distance_int * 115;
     }
   }
+
+
   if ($.taxi_passed_this_shot == 1) {
     $.taxi_distance_int = $.taxi_distance_int * 90;
   }
+
+
   if ($.taxi_passed_this_shot == 2) {
     $.taxi_distance_int = $.taxi_distance_int * 85;
   }
+
+
   if ($.taxi_passed_this_shot == 3) {
     $.taxi_distance_int = $.taxi_distance_int * 84;
   }
+
+
   if ($.taxi_passed_this_shot == 4) {
     $.taxi_distance_int = $.taxi_distance_int * 83;
   }
+
+
   if ($.taxi_passed_this_shot == 5) {
     $.taxi_distance_int = $.taxi_distance_int * 82;
   }
+
+
   if ($.taxi_passed_this_shot > 5 && $.taxi_passed_this_shot <= 10) {
     $.taxi_distance_int = $.taxi_distance_int * 80;
   }
+
+
   if ($.taxi_passed_this_shot > 11 && $.taxi_passed_this_shot <= 20) {
     $.taxi_distance_int = $.taxi_distance_int * 75;
   }
+
+
   if ($.taxi_passed_this_shot > 20 && $.taxi_passed_this_shot <= 50) {
     $.taxi_distance_int = $.taxi_distance_int * 70;
   }
+
+
   if ($.taxi_passed_this_shot > 50) {
     $.taxi_distance_int = $.taxi_distance_int * 60;
   }
+
+
   $.taxi_countdown = $.taxi_countdown + $.taxi_distance_int;
+
+
   $.speedbonus = $.taxi_distance_int;
   $.speedbonus = $.speedbonus / 100;
   $.speedbonus = $.speedbonus * 65;
   {
+
+
   TIMERB = 0;
+
+
   if ($.taxi_countdown_already_started == 0) {
     Hud.DisplayTimer($.taxi_countdown);
     $.taxi_countdown_already_started = 1;
   }
+
+
+
   if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
     if ($.taxi_passed_this_shot == 0) {
       $.taxi_countdown = $.taxi_countdown + 15000;
@@ -667,6 +821,8 @@ async function passenger_destination() {
       $.taxi_countdown = $.taxi_countdown + 10000;
     }
   }
+
+
   while (!($.taxi_car1.isStoppedInArea3D($.taxi_destx1, $.taxi_desty1, $.taxi_destz1, $.taxi_destx2, $.taxi_desty2, $.taxi_destz2, true /* TRUE */))) {
     await asyncWait(0);
     if (!($.player.isPlaying())) {
@@ -729,10 +885,17 @@ async function passenger_destination() {
       // SCM GOTO → taxi_fucked (not lowered; manual jump required)
       throw new Error("unresolved GOTO taxi_fucked"); // fallback: would break linear control flow
     }
+
+
   }
+
+
+
 }
 
 async function score() {
+
+
   if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
     if (TIMERB > $.speedbonus) {
       $.score_for_this_fare = $.taxi_distance_int_old;
@@ -742,6 +905,8 @@ async function score() {
       $.score_for_this_fare = $.taxi_distance_int_old * 2;
       Text.PrintBig("TAXI5", 5000, 5); //Speed Bonus!!
     }
+
+
   }
   else {
     if (TIMERB > $.speedbonus) {
@@ -752,26 +917,45 @@ async function score() {
       $.score_for_this_fare = $.taxi_distance_int_old;
       Text.PrintBig("TAXI5", 5000, 5); //Speed Bonus!!
     }
+
+
   }
+
+
   }
+
+  //score_for_this_fare = taxi_distance_int_old
+
+
+
   $.player.addScore($.score_for_this_fare);
   Text.PrintWithNumberBig("TSCORE2", $.score_for_this_fare, 6000, 6); //Your score is...
   Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
   $.taxi_score = $.taxi_score + $.score_for_this_fare;
+
+
   $.taxi_passed++;
   Stat.RegisterPassengerDroppedOffTaxi();
   $.taxi_passed_this_shot++;
+
   //CREATE NEW TAXI AFTER COMPLETING 100 TAXI MISSIONS
+
   if ($.new_taxi_created_before == 0 && $.taxi_passed == 100) {
     Pager.AddMessage("NEW_TAX", 140, 2, 0);
     $.swank_taxi.switch(101);
     Stat.PlayerMadeProgress(1);
     $.new_taxi_created_before = 1;
   }
+
+
   $.taxi_countdown = $.taxi_countdown + 10000;
+
+
   // SCM GOSUB mission_taxi1_failed
   await mission_taxi1_failed();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   if ($.taxi_passed_this_shot == $.in_a_row_number) {
     Text.PrintWith2NumbersBig("IN_ROW", $.taxi_passed_this_shot, $.in_a_row_cash, 5000, 6); //Bonus!
     $.player.addScore($.in_a_row_cash);
@@ -779,30 +963,88 @@ async function score() {
     $.in_a_row_number = $.in_a_row_number + 5;
     $.in_a_row_cash = $.in_a_row_cash + 2000;
   }
+
+  /*
+  IF taxi_passed_this_shot = 10
+  PRINT_WITH_2_NUMBERS_BIG  ( IN_ROW ) taxi_passed_this_shot 2000 6000 6 //Bonus!
+  taxi_score = taxi_score + 2000
+  ADD_SCORE player 1000
+  ENDIF
+
+  IF taxi_passed_this_shot = 15
+  PRINT_WITH_2_NUMBERS_BIG  ( IN_ROW ) taxi_passed_this_shot 4000 6000 6 //Bonus!
+  taxi_score = taxi_score + 4000
+  ADD_SCORE player 2000
+  ENDIF
+
+  IF taxi_passed_this_shot = 20
+  PRINT_WITH_2_NUMBERS_BIG  ( IN_ROW ) taxi_passed_this_shot 8000 6000 6 //Bonus!
+  taxi_score = taxi_score + 8000
+  ADD_SCORE player 4000
+  ENDIF
+
+  IF taxi_passed_this_shot = 25
+  PRINT_WITH_2_NUMBERS_BIG  ( IN_ROW ) taxi_passed_this_shot 16000 6000 6 //Bonus!
+  taxi_score = taxi_score + 16000
+  ADD_SCORE player 8000
+  ENDIF
+
+  IF taxi_passed_this_shot = 30
+  PRINT_WITH_2_NUMBERS_BIG  ( IN_ROW ) taxi_passed_this_shot 32000 6000 6 //Bonus!
+  taxi_score = taxi_score + 32000
+  ADD_SCORE player 16000
+  ENDIF
+  */
+
   // SCM GOTO → mission_taxi1_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_taxi1_passed"); // fallback: would break linear control flow
+
+
   //Taxi_fail_conditions
+
+
 }
 
 async function taxi_out_of_time() {
+
+
   Text.PrintNow("TAXI2", 5000, 1); //Out of time
+
+
   // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
+
+
 }
 
 async function taxi_fucked() {
+
+
   await asyncWait(0);
+
+
   Text.PrintNow("TAXI3", 5000, 1); //Taxi is trashed
+
+
   if (!(Char.IsDead($.taxi_ped1))) {
+    //SET_CHAR_PERSONALITY taxi_ped1 PEDSTAT_TOURIST
     $.taxi_ped1.setObjFleeOnFootTillSafe();
     //SET_CHAR_THREAT_SEARCH taxi_ped1 THREAT_PLAYER1
+
   }
   $.taxi_fucked_flag = 1;
+
+
   // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
+
+
+
 }
 
 async function taxi_fail_button_pressed() {
+
+
   $.controlmode = Pad.GetControllerMode();
   if (!($.controlmode == 3)) {
     while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
@@ -822,27 +1064,53 @@ async function taxi_fail_button_pressed() {
       }
     }
   }
+
+
   // SCM GOTO → mission_taxi1_failed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_taxi1_failed"); // fallback: would break linear control flow
+
+
+  // Mission taxi1 failed
+  /*
+  mission_taxi1_failed:
+
+  GOSUB taxi_ped_leave
+
+  RETURN
+  */
   // mission taxi1 passed
+
+
 }
 
 async function mission_taxi1_passed() {
+
+
   $.blip1_ct1.remove();
   $.blip2_ct1.remove();
   $.taxi_ped1.markAsNoLongerNeeded();
+
+
   if (!(Car.IsDead($.taxi_car1))) {
     $.taxi_car1.setTaxiLights(true /* On */);
   }
+
   //WAIT 1000
+
   await asyncWait(0);
   Text.PrintSoon("TAXI1", 1500, 1); //Pick up a fare
+
+
   // SCM GOTO → Start_taxi_mission (not lowered; manual jump required)
   throw new Error("unresolved GOTO Start_taxi_mission"); // fallback: would break linear control flow
   return;
+
+
 }
 
 async function mission_taxi1_failed() {
+
+
   if (!(Char.IsDead($.taxi_ped1))) {
     if (!(Car.IsDead($.taxi_car1))) {
       if ($.taxi_ped1.isInCar($.taxi_car1)) {
@@ -877,20 +1145,34 @@ async function mission_taxi1_failed() {
               throw new Error("unresolved GOTO taxi_ped_leave2"); // fallback: would break linear control flow
             }
           }
+
+
         }
+
+
       }
     }
   }
+
+
   if ($.player.isPlaying()) {
     $.player.setControl(true /* ON */);
   }
+
+
   if ($.taxi_fucked_flag == 1) {
     return;
   }
+
+
 }
 
 async function taxi_ped_leave2() {
+
+
   await asyncWait(0);
+
+
   if (!(Char.IsDead($.taxi_ped1))) {
     if (!(Car.IsDead($.taxi_car1))) {
       if (!($.taxi_ped1.isInCar($.taxi_car1))) {
@@ -899,11 +1181,18 @@ async function taxi_ped_leave2() {
       }
     }
   }
+
+
   if ($.player.isPlaying()) {
     $.player.setControl(true /* ON */);
   }
+
+
   return;
+
   // mission cleanup
+
+
 }
 
 async function mission_cleanup_taxi1() {
@@ -913,6 +1202,7 @@ async function mission_cleanup_taxi1() {
     $.taxi_car1.setTaxiLights(false /* Off */);
   }
   //SWITCH_TAXI_TIMER OFF
+
   $.blip1_ct1.remove();
   $.blip2_ct1.remove();
   $.spray_taxi.remove();
@@ -929,33 +1219,66 @@ async function mission_cleanup_taxi1() {
   Text.ClearHelp();
   Mission.Finish();
   return;
+
+
 }
 
 export async function taxi1() {
   // MissionBoundary
   // *******************************************************************************************
+  // *******************************************************************************************
   // *************************************CRRRRRAZY TAXI****************************************
   // *******************************LETS MAKE SOME CRRRRRAZY MONEY!*****************************
+  // *******************************************************************************************
+  // *******************************************************************************************
+  // *******************************************************************************************
+
   // Mission start stuff
+
+
   // SCM GOSUB mission_start_taxi1
   await mission_start_taxi1();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   // SCM GOSUB mission_cleanup_taxi1
   await mission_cleanup_taxi1();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   // MissionBoundary
+
+
   // Variables for mission
+
+
   // VAR_INT blip1_ct1 blip2_ct1 spray_blip_onscreen
+
+
   // VAR_INT taxi_car1 taxi_countdown_already_started
+
+
   // VAR_INT taxi_ped1 taxi_passed_this_shot taxi_fucked_flag
+
   //VAR_INT special_ped1
+
+
   // VAR_INT taxi_countdown taxi_score taxi_distance_int taxi_distance_int_old
+
+
   // VAR_INT taxi_finish_time taxi_start_time total_taxi_time_taken
+
+
   // VAR_FLOAT taxi_destx1 taxi_desty1 taxi_destz1
   // VAR_FLOAT taxi_destx2 taxi_desty2 taxi_destz2
   // VAR_FLOAT taxi_blipx taxi_blipy taxi_blipz
+
+
   // VAR_FLOAT taxi_ped_x taxi_ped_y taxi_ped_z
   // VAR_FLOAT x_diff y_diff x_diff_sq y_diff_sq taxi_distance_sq taxi_distance
   // VAR_INT score_for_this_fare speedbonus in_a_row_cash in_a_row_number
+
   // ***************************************Mission Start*************************************
+
+
 }

@@ -6,11 +6,21 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function mission_start_love5() {
+
+
   $.flag_player_on_mission = 1;
   $.flag_player_on_love_mission = 1;
+
+
   Stat.RegisterMissionGiven();
+
+
   await asyncWait(0);
+
+
   // ScriptName
+
+
   $.car1_attacking_flag = 0;
   $.car2_attacking_flag = 0;
   $.car3_attacking_flag = 0;
@@ -21,92 +31,176 @@ async function mission_start_love5() {
   $.colombian_3_flag = 0;
   $.colombian_4_flag = 0;
   $.dummy_health = 2000;
+
   // ****************************************START OF CUTSCENE********************************
+
   //SET_FADING_COLOUR 0 0 0
   //
   //DO_FADE 1500 FADE_OUT
+  //
   //IF CAN_PLAYER_START_MISSION player
   //	MAKE_PLAYER_SAFE_FOR_CUTSCENE player
   //ELSE
   //	GOTO mission_love5_failed
   //ENDIF
+  //
   //PRINT_BIG LOVE5 15000 2
+
+
   Streaming.LoadSpecialCharacter(1, $.love);
   Streaming.RequestModel(tshrorckgrdn);
   Streaming.RequestModel(tshrorckgrdn_alfas);
   Streaming.LoadSpecialModel(hier`cutobj01`, LOVEH);
+
+
   Streaming.Switch(false /* OFF */);
+
   //WHILE GET_FADING_STATUS
   //	WAIT 0
   //ENDWHILE
+
+
   Streaming.LoadAllModelsNow();
+
+
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(tshrorckgrdn)) || !(Streaming.HasModelLoaded(tshrorckgrdn_alfas)) || !(Streaming.HasModelLoaded(hier`cutobj01`))) {
     await asyncWait(0);
   }
+
+
   Cutscene.Load(D5_ES);
+
+
   Cutscene.SetOffset(85.2162, -1532.9093, 243.5422);
+
+
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
   $.cs_player.setAnim($.player);
+
+
   $.cs_love = CutsceneObject.Create(ped`SPECIAL1`);
   $.cs_love.setAnim($.love);
+
+
   $.cs_lovehead = CutsceneHead.Create($.cs_love, hier`cutobj01`);
   $.cs_lovehead.setAnim($.love);
+
+
   World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */);
+
+
   $.player.setCoordinates(82.44, -1548.49, 28.0);
+
+
   $.player.setHeading(90.0);
+
+
   Camera.DoFade(1500, 1 /* FADE_IN */);
+
+
   Cutscene.Start();
+
+
   World.SwitchRubbish(false /* OFF */);
+
+
   $.cs_time = Cutscene.GetTime();
+
+
   while ($.cs_time < 1324) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.PrintNow(LOVE5_A, 5000, 1); //"You are proving to be a safe investment, a rare thing these days."
+
+
   while ($.cs_time < 6061) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.Print(LOVE5_B, 5000, 1); //"My Oriental friend will need an escort while he takes my latest acquisition to be authenticated."
+
+
   while ($.cs_time < 10660) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Text.Print(LOVE5_C, 5000, 1); //"I want you to follow him, and make sure he and my package get to Pike Creek unharmed."
+
+
   while ($.cs_time < 17500) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+
+
   Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+
   while (!(Cutscene.HasFinished())) {
     await asyncWait(0);
   }
+
+
   World.SwitchRubbish(true /* ON */);
+
+
   Text.ClearPrints();
+
+
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
+
+
   Cutscene.Clear();
+
+
   Camera.DoFade(0, 0 /* FADE_OUT */);
+
+
   Camera.SetBehindPlayer();
+
+
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn);
   Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
+
+
   Streaming.RequestModel(car`SECURICAR`);
   Streaming.RequestModel(car`COLUMB`);
   Streaming.RequestModel(ped`GANG_COLOMBIAN_A`);
   Streaming.LoadSpecialCharacter(2, $.ojg);
   Streaming.LoadSpecialCharacter(3, S_GUARD);
+
+
   Streaming.LoadAllModelsNow();
+
+
   while (!(Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_A`)) || !(Streaming.HasModelLoaded(car`COLUMB`)) || !(Streaming.HasSpecialCharacterLoaded(2)) || !(Streaming.HasSpecialCharacterLoaded(3)) || !(Streaming.HasModelLoaded(car`SECURICAR`))) {
     await asyncWait(0);
   }
+
+
   Streaming.Switch(true /* ON */);
+
+
   Camera.DoFade(1500, 1 /* FADE_IN */);
+
   // ******************************************END OF CUTSCENE********************************
+
+
   $.escort_truck = Car.Create(111 /* CAR_SECURICAR */, 83.6, -1592.3, 25.1);
   $.escort_truck.changeColor(0, 0);
+
+
   if (Car.IsDead($.escort_truck)) {
     Text.PrintNow(LOVE5_5, 5000, 1); //"You failed to protect the truck!"
     // SCM GOTO → mission_love5_failed (not lowered; manual jump required)
@@ -123,8 +217,13 @@ async function mission_start_love5() {
   $.escort_truck.setStrong(true /* TRUE */);
   $.escort_truck.setProofs(false /* FALSE */, false /* FALSE */, true /* TRUE */, false /* FALSE */, false /* FALSE */);
   //SET_CAR_HEALTH escort_truck 2000
+
   $.escort_truck_blip = Blip.AddForCar($.escort_truck);
+
+
   $.tank_weapon = Pickup.CreateWithAmmo(161 /* WEAPON_M16 */, 3 /* PICKUP_ONCE */, 600, 77.6708, -1589.0255, 27.5);
+
+
   while (!($.player.locateInCarCar2D($.escort_truck, 15.0, 15.0, false)) || !(Camera.IsPointOnScreen(83.6, -1592.3, 25.1, 4.0))) {
     await asyncWait(0);
     if (Car.IsDead($.escort_truck)) {
@@ -139,12 +238,22 @@ async function mission_start_love5() {
       // SCM GOTO → car_goto_bit (not lowered; manual jump required)
       throw new Error("unresolved GOTO car_goto_bit"); // fallback: would break linear control flow
     }
+
+
   }
+
+
 }
 
 async function car_goto_bit() {
+
+
   $.escort_truck.gotoCoordinates(173.4898, 76.3099, 14.9781);
+
+
   Text.PrintNow(LOVE5_1, 5000, 1); //"Lets go!"
+
+
   $.escort_truck_health = $.escort_truck.getHealth();
   if ($.dummy_health > 499) {
     if ($.escort_truck_health < 500) {
@@ -162,6 +271,8 @@ async function car_goto_bit() {
   $.escort_truck_health2 = $.escort_truck_health;
   $.escort_truck_health = 100 - $.escort_truck_health2;
   Hud.DisplayCounterWithString($.escort_truck_health, 1 /* COUNTER_DISPLAY_BAR */, DAM);
+
+
   while (!($.escort_truck_flag == 11)) {
     await asyncWait(0);
     if (Car.IsDead($.escort_truck)) {
@@ -185,6 +296,7 @@ async function car_goto_bit() {
       //    			SET_CAR_HEALTH escort_truck escort_truck_health
       //			ENDIF
       //		ENDIF
+
     }
     $.escort_truck_health = $.escort_truck.getHealth();
     if ($.dummy_health > 499) {
@@ -311,6 +423,7 @@ async function car_goto_bit() {
         $.escort_truck_flag = 11;
       }
     }
+
     ////////
     if ($.escort_truck_flag < 9) {
       if ($.colombian_1_flag == 0) {
@@ -342,7 +455,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.colombian_2_flag == 0) {
         if ($.player.locateAnyMeans2D(3.7, -467.7, 220.0, 220.0, false) || $.escort_truck.locate2D(3.7, -467.7, 220.0, 220.0, false)) {
           $.colombian_2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 3.7, -467.7, 17.0);
@@ -372,7 +487,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.colombian_3_flag == 0) {
         if ($.player.locateAnyMeans2D(124.4, -111.2, 220.0, 220.0, false) || $.escort_truck.locate2D(124.4, -111.2, 220.0, 220.0, false)) {
           $.colombian_3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 124.4, -111.2, 16.0);
@@ -402,7 +519,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.colombian_4_flag == 0) {
         if ($.player.locateAnyMeans2D(8.65, -262.74, 220.0, 220.0, false) || $.escort_truck.locate2D(8.65, -262.74, 220.0, 220.0, false)) {
           $.colombian_4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 8.65, -262.74, 16.0);
@@ -432,7 +551,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.colombian_5_flag == 0) {
         if ($.player.locateAnyMeans2D(287.5946, 17.6184, 220.0, 220.0, false) || $.escort_truck.locate2D(287.5946, 17.6184, 220.0, 220.0, false)) {
           $.colombian_5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 287.5946, 17.6184, 19.0714);
@@ -462,7 +583,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.colombian_6_flag == 0) {
         if ($.player.locateAnyMeans2D(537.7727, 119.5505, 220.0, 220.0, false) || $.escort_truck.locate2D(537.7727, 119.5505, 220.0, 220.0, false)) {
           $.colombian_6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 537.7727, 119.5505, -20.3699);
@@ -492,7 +615,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.escort_truck_flag > 4) {
         if ($.colombian_7_flag == 0) {
           if ($.player.locateAnyMeans2D(-632.9545, -499.5869, 220.0, 220.0, false) || $.escort_truck.locate2D(-632.9545, -499.5869, 220.0, 220.0, false)) {
@@ -524,7 +649,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.colombian_8_flag == 0) {
         if ($.player.locateAnyMeans2D(-982.5755, -115.7109, 220.0, 220.0, false) || $.escort_truck.locate2D(-982.5755, -115.7109, 220.0, 220.0, false)) {
           $.colombian_8 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, -982.5755, -115.7109, 33.0045);
@@ -554,7 +681,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.colombian_9_flag == 0) {
         if ($.player.locateAnyMeans2D(-967.8587, -103.2732, 220.0, 220.0, false) || $.escort_truck.locate2D(-967.8587, -103.2732, 220.0, 220.0, false)) {
           $.colombian_9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, -967.8587, -103.2732, 34.2468);
@@ -584,7 +713,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.escort_truck_flag > 4) {
         if ($.colombian_10_flag == 0) {
           if ($.player.locateAnyMeans2D(-655.9044, -405.6324, 220.0, 220.0, false) || $.escort_truck.locate2D(-655.9044, -405.6324, 220.0, 220.0, false)) {
@@ -616,7 +747,9 @@ async function car_goto_bit() {
           }
         }
       }
+
       ////////
+
       if ($.car1_attacking_flag == 0) {
         if ($.escort_truck.locate2D(41.0, -1070.0, 40.0, 40.0, false)) {
           if (!(Camera.IsPointOnScreen(122.0, -1099.0, 26.0, 4.0))) {
@@ -782,7 +915,9 @@ async function car_goto_bit() {
         $.columbian_humvee1.setRamCar($.escort_truck);
         $.car1_attacking_flag = 8;
       }
+
       ////////////////////////////////////
+
       if ($.car2_attacking_flag == 0) {
         if ($.escort_truck.locate2D(2.0, -405.0, 40.0, 40.0, false)) {
           if (!(Camera.IsPointOnScreen(-86.0, -409.0, 16.0, 4.0))) {
@@ -946,7 +1081,9 @@ async function car_goto_bit() {
         $.columbian_humvee2.setRamCar($.escort_truck);
         $.car2_attacking_flag = 8;
       }
+
       ////////////////////////////////////
+
       if ($.escort_truck_flag > 4) {
         if ($.car3_attacking_flag == 0) {
           if ($.escort_truck.locate2D(-645.8259, -435.9940, 40.0, 40.0, false)) {
@@ -1112,7 +1249,9 @@ async function car_goto_bit() {
         $.columbian_humvee3.setRamCar($.escort_truck);
         $.car3_attacking_flag = 8;
       }
+
       ////////
+
       if ($.car4_attacking_flag == 0) {
         if ($.escort_truck.locate2D(-645.8259, -435.9940, 40.0, 40.0, false)) {
           if (!(Camera.IsPointOnScreen(-1017.6605, -226.1589, 37.9967, 4.0))) {
@@ -1276,7 +1415,10 @@ async function car_goto_bit() {
         $.columbian_humvee4.setRamCar($.escort_truck);
         $.car4_attacking_flag = 8;
       }
+
       ////////////////////////////////////
+
+
     }
     else {
       $.columbian_humvee1.markAsNoLongerNeeded();
@@ -1305,19 +1447,34 @@ async function car_goto_bit() {
       $.colombian_9.markAsNoLongerNeeded();
       $.colombian_10.markAsNoLongerNeeded();
     }
+
+
   }
+
+
   // SCM GOTO → mission_love5_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_love5_passed"); // fallback: would break linear control flow
+
+
   // Mission love 5 failed
+
+
 }
 
 async function mission_love5_failed() {
   Text.PrintBig(M_FAIL, 2000, 1);
   return;
+
+
+
   // mission love 5 passed
+
+
 }
 
 async function mission_love5_passed() {
+
+
   $.flag_love_mission5_passed = 1;
   Text.PrintWithNumberBig(M_PASS, 40000, 2000, 1);
   $.player.addScore(40000);
@@ -1327,12 +1484,21 @@ async function mission_love5_passed() {
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT love_mission6_loop
   return;
+
+
+
   // mission cleanup
+
+
 }
 
 async function mission_cleanup_love5() {
+
+
   $.flag_player_on_mission = 0;
   $.flag_player_on_love_mission = 0;
+
+
   if (!($.tank_weapon.hasBeenCollected())) {
     $.tank_weapon.remove();
   }
@@ -1343,12 +1509,24 @@ async function mission_cleanup_love5() {
   Streaming.UnloadSpecialCharacter(2);
   Streaming.UnloadSpecialCharacter(3);
   World.SetCarDensityMultiplier(1.0);
+
+
   $.escort_truck_blip.remove();
+
+
   Mission.Finish();
+
+
   return;
+
+
+
+
 }
 
 async function call_off_the_attackers() {
+
+
   if (!(Car.IsDead($.columbian_humvee1))) {
     $.columbian_humvee1.wanderRandomly();
   }
@@ -1417,6 +1595,8 @@ async function call_off_the_attackers() {
   $.car2_attacking_flag = -100;
   $.car3_attacking_flag = -100;
   $.car4_attacking_flag = -100;
+
+
   return;
 }
 
@@ -1425,23 +1605,37 @@ export async function love5() {
   // *****************************************************************************************
   // ********************************		Love 5 	   *****************************************
   // ********************************	Escort Service *****************************************
+  // *****************************************************************************************
   // *** The packages and the OJG need transporting to the <destination>. The player must  ***
   // *** escort the van. The van will be attacked en-route by the Cartel, the player must  ***
   // *** fight off any attackers and protect the van at all costs.						 ***
+  // *****************************************************************************************
+
   // Mission start stuff
+
+
   // SCM GOSUB mission_start_love5
   await mission_start_love5();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   if (HAS_DEATHARREST_BEEN_EXECUTED()) {
     // SCM GOSUB mission_love5_failed
     await mission_love5_failed();
     // fallback if label was not emitted as async function: no-op continues linearly
   }
+
+
   // SCM GOSUB mission_cleanup_love5
   await mission_cleanup_love5();
   // fallback if label was not emitted as async function: no-op continues linearly
+
+
   // MissionBoundary
+
   // Variables for mission
+
+
   // VAR_INT escort_truck truck_driver escort_truck_blip escort_truck_health escort_truck_flag ojg
   // VAR_INT columbian_humvee1 columbian_humvee2 columbian_humvee3 columbian_driver_1 columbian_driver_2 columbian_driver_3
   // VAR_INT car1_attacking_flag car2_attacking_flag car3_attacking_flag tank_weapon escort_truck_health2
@@ -1450,6 +1644,11 @@ export async function love5() {
   // VAR_INT columbian_hitman_1 columbian_hitman_2 columbian_hitman_3 columbian_hitman_4 columbian_hitman_5
   // VAR_INT columbian_hitman_6 columbian_hitman_7 columbian_hitman_8 columbian_hitman_9 dummy_health
   // VAR_INT car4_attacking_flag columbian_driver_4 columbian_hitman_10 columbian_hitman_11 columbian_hitman_12 columbian_humvee4
+
+
   // VAR_FLOAT escort_truck_speed columbian_humvee1_speed columbian_humvee2_speed columbian_humvee3_speed columbian_humvee4_speed
+
   // ****************************************Mission Start************************************
+
+
 }
