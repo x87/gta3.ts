@@ -168,7 +168,7 @@ async function mission_start_asuka3() {
             $.boat_health = $.spy_boat.getHealth()
             Hud.DisplayCounterWithString($.boat_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM')
             // SCM GOSUB boat_health
-            await $.boat_health()
+            await boat_health()
             // fallback if label was not emitted as async function: no-op continues linearly
         }
 
@@ -207,7 +207,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -246,7 +246,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -280,7 +280,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -313,7 +313,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -346,7 +346,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -379,7 +379,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -412,7 +412,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -445,7 +445,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -478,7 +478,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -511,7 +511,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -545,7 +545,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -579,7 +579,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -612,7 +612,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -645,7 +645,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -678,7 +678,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -712,7 +712,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -746,7 +746,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -780,7 +780,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -814,7 +814,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
@@ -848,7 +848,7 @@ async function mission_start_asuka3() {
             // fallback if label was not emitted as async function: no-op continues linearly
             if (!Car.IsDead($.spy_boat)) {
                 // SCM GOSUB boat_health
-                await $.boat_health()
+                await boat_health()
                 // fallback if label was not emitted as async function: no-op continues linearly
             }
         }
