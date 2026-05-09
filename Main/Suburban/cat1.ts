@@ -1093,7 +1093,7 @@ async function mission_cat1_passed() {
     //PRINT_WITH_NUMBER_BIG ( M_PASS ) 1000000 5000 1 //"Mission Passed!"
 
     $.player.clearWantedLevel()
-    Stat.RegisterMissionPassed(CAT2)
+    Stat.RegisterMissionPassed('CAT2')
     Stat.PlayerMadeProgress(1)
     $.maria_contact_blip.remove()
     $.special_tank.switch(101)

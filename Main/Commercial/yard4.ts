@@ -689,7 +689,7 @@ async function mission_yardie4_passed() {
     Audio.PlayMissionPassedTune(1)
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(YD4)
+    Stat.RegisterMissionPassed('YD4')
     Stat.PlayerMadeProgress(1)
     Game.SetThreatForPedType(11 /* PEDTYPE_GANG_YARDIE */, 0 /* THREAT_PLAYER1 */)
 

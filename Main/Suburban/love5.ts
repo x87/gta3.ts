@@ -91,21 +91,21 @@ async function mission_start_love5() {
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(LOVE5_A, 5000, 1) //"You are proving to be a safe investment, a rare thing these days."
+    Text.PrintNow('LOVE5_A', 5000, 1) //"You are proving to be a safe investment, a rare thing these days."
 
     while ($.cs_time < 6061) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.Print(LOVE5_B, 5000, 1) //"My Oriental friend will need an escort while he takes my latest acquisition to be authenticated."
+    Text.Print('LOVE5_B', 5000, 1) //"My Oriental friend will need an escort while he takes my latest acquisition to be authenticated."
 
     while ($.cs_time < 10660) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.Print(LOVE5_C, 5000, 1) //"I want you to follow him, and make sure he and my package get to Pike Creek unharmed."
+    Text.Print('LOVE5_C', 5000, 1) //"I want you to follow him, and make sure he and my package get to Pike Creek unharmed."
 
     while ($.cs_time < 17500) {
         await asyncWait(0)
@@ -165,7 +165,7 @@ async function mission_start_love5() {
     $.escort_truck.changeColor(0, 0)
 
     if (Car.IsDead($.escort_truck)) {
-        Text.PrintNow(LOVE5_5, 5000, 1) //"You failed to protect the truck!"
+        Text.PrintNow('LOVE5_5', 5000, 1) //"You failed to protect the truck!"
         // SCM GOTO → mission_love5_failed (not lowered; manual jump required)
         throw new Error('unresolved GOTO mission_love5_failed') // fallback: would break linear control flow
     }
@@ -188,12 +188,12 @@ async function mission_start_love5() {
     while (!$.player.locateInCarCar2D($.escort_truck, 15.0, 15.0, false) || !Camera.IsPointOnScreen(83.6, -1592.3, 25.1, 4.0)) {
         await asyncWait(0)
         if (Car.IsDead($.escort_truck)) {
-            Text.PrintNow(LOVE5_5, 5000, 1) //"You failed to protect the truck!"
+            Text.PrintNow('LOVE5_5', 5000, 1) //"You failed to protect the truck!"
             // SCM GOTO → mission_love5_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_love5_failed') // fallback: would break linear control flow
         }
         if ($.player.locateOnFootCar2D($.escort_truck, 15.0, 15.0, false)) {
-            Text.PrintNow(LOVE5_2, 5000, 1) //"You'll need a car!"
+            Text.PrintNow('LOVE5_2', 5000, 1) //"You'll need a car!"
         }
         if ($.player.locateOnFootCar2D($.escort_truck, 1.0, 1.0, false) && $.player.isStopped()) {
             // SCM GOTO → car_goto_bit (not lowered; manual jump required)
@@ -205,7 +205,7 @@ async function mission_start_love5() {
 async function car_goto_bit() {
     $.escort_truck.gotoCoordinates(173.4898, 76.3099, 14.9781)
 
-    Text.PrintNow(LOVE5_1, 5000, 1) //"Lets go!"
+    Text.PrintNow('LOVE5_1', 5000, 1) //"Lets go!"
 
     $.escort_truck_health = $.escort_truck.getHealth()
     if ($.dummy_health > 499) {
@@ -223,12 +223,12 @@ async function car_goto_bit() {
     $.escort_truck_health = $.escort_truck_health / 750
     $.escort_truck_health2 = $.escort_truck_health
     $.escort_truck_health = 100 - $.escort_truck_health2
-    Hud.DisplayCounterWithString($.escort_truck_health, 1 /* COUNTER_DISPLAY_BAR */, DAM)
+    Hud.DisplayCounterWithString($.escort_truck_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM')
 
     while (!($.escort_truck_flag == 11)) {
         await asyncWait(0)
         if (Car.IsDead($.escort_truck)) {
-            Text.PrintNow(LOVE5_5, 5000, 1) //"You failed to protect the truck!"
+            Text.PrintNow('LOVE5_5', 5000, 1) //"You failed to protect the truck!"
             // SCM GOTO → mission_love5_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_love5_failed') // fallback: would break linear control flow
         } else {
@@ -301,7 +301,7 @@ async function car_goto_bit() {
         if ($.escort_truck_flag == 3) {
             if ($.escort_truck.locate2D(-573.8346, -426.376, 10.0, 10.0, false)) {
                 if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                    Text.PrintNow(LOVE5_3, 200, 1) //"Go ahead to scout the tunnel exit!"
+                    Text.PrintNow('LOVE5_3', 200, 1) //"Go ahead to scout the tunnel exit!"
                 } else {
                     $.escort_truck_flag = 4
                 }
@@ -1360,7 +1360,7 @@ async function car_goto_bit() {
 }
 
 async function mission_love5_failed() {
-    Text.PrintBig(M_FAIL, 2000, 1)
+    Text.PrintBig('M_FAIL', 2000, 1)
     return
 
     // mission love 5 passed
@@ -1368,11 +1368,11 @@ async function mission_love5_failed() {
 
 async function mission_love5_passed() {
     $.flag_love_mission5_passed = 1
-    Text.PrintWithNumberBig(M_PASS, 40000, 2000, 1)
+    Text.PrintWithNumberBig('M_PASS', 40000, 2000, 1)
     $.player.addScore(40000)
     $.player.clearWantedLevel()
     Audio.PlayMissionPassedTune(1)
-    Stat.RegisterMissionPassed(LOVE5)
+    Stat.RegisterMissionPassed('LOVE5')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT love_mission6_loop
     return

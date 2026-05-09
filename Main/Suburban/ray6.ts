@@ -112,42 +112,42 @@ async function mission_start_ray6() {
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM6_A, 4000, 1) //"You weren't followed? Good."
+    Text.PrintNow('RM6_A', 4000, 1) //"You weren't followed? Good."
 
     while ($.cs_time < 4920) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM6_B, 4000, 1) //"This is it, I'm in way over my fucking head and I'm starting to fucking drown here!"
+    Text.PrintNow('RM6_B', 4000, 1) //"This is it, I'm in way over my fucking head and I'm starting to fucking drown here!"
 
     while ($.cs_time < 8597) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM6_C, 4000, 1) //"The CIA seem to have a vested interest in SPANK"
+    Text.PrintNow('RM6_C', 4000, 1) //"The CIA seem to have a vested interest in SPANK"
 
     while ($.cs_time < 11482) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM6_C1, 4000, 1) //"and they don't like us fucking with the Cartel!"
+    Text.PrintNow('RM6_C1', 4000, 1) //"and they don't like us fucking with the Cartel!"
 
     while ($.cs_time < 14220) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM6_D, 4000, 1) //"I'm a marked man, so I'm getting out of here."
+    Text.PrintNow('RM6_D', 4000, 1) //"I'm a marked man, so I'm getting out of here."
 
     while ($.cs_time < 17464) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM6_E, 4000, 1) //"Get me to my flight at the airport and I'll make it worth your while!!"
+    Text.PrintNow('RM6_E', 4000, 1) //"Get me to my flight at the airport and I'll make it worth your while!!"
 
     while ($.cs_time < 21666) {
         await asyncWait(0)
@@ -202,24 +202,24 @@ async function mission_start_ray6() {
     $.rays_blip = Blip.AddForCoord(-739.0, -583.0, -100.0)
 
     if (Char.IsDead($.ray)) {
-        Text.PrintNow(RM6_6, 5000, 1) //"~r~Ray is dead!"
+        Text.PrintNow('RM6_6', 5000, 1) //"~r~Ray is dead!"
         // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
         throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
     }
 
     $.ray.setRunning(true /* TRUE */)
 
-    Text.PrintNow(RM6_5, 15000, 1) //"The CIA have the bridge under surveillance, find another route across."
+    Text.PrintNow('RM6_5', 15000, 1) //"The CIA have the bridge under surveillance, find another route across."
 
     while (!$.ray.locateStoppedAnyMeans2D(-738.301, -582.8834, 8.0, 8.0, true)) {
         await asyncWait(0)
         if (Char.IsDead($.ray)) {
-            Text.PrintNow(RM6_6, 5000, 1) //"~r~Ray is dead!"
+            Text.PrintNow('RM6_6', 5000, 1) //"~r~Ray is dead!"
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
         }
         if ($.time_till_flight < 1) {
-            Text.PrintNow(RM6_7, 5000, 1) //"~r~Ray has missed his flight."
+            Text.PrintNow('RM6_7', 5000, 1) //"~r~Ray has missed his flight."
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
         }
@@ -907,7 +907,7 @@ async function mission_start_ray6() {
         ////////
 
         if (!$.ray.isInPlayersGroup($.player) && $.flag_blip_on_ray == 0) {
-            Text.PrintNow(RM6_8, 5000, 1) //"You have left Ray behind, go back and get him."
+            Text.PrintNow('RM6_8', 5000, 1) //"You have left Ray behind, go back and get him."
             $.rays_blip.remove()
             $.rays_blip = Blip.AddForChar($.ray)
             $.flag_blip_on_ray = 1
@@ -945,19 +945,19 @@ async function mission_start_ray6() {
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Char.IsDead($.ray)) {
-            Text.PrintNow(RM6_6, 5000, 1) //"~r~Ray is dead!"
+            Text.PrintNow('RM6_6', 5000, 1) //"~r~Ray is dead!"
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
         }
     }
 
     Audio.PlayMissionAudio()
-    Text.PrintNow(RM6_1, 5000, 1) //"Here's a key to a lock-up."
+    Text.PrintNow('RM6_1', 5000, 1) //"Here's a key to a lock-up."
 
     while (!Audio.HasMissionAudioFinished()) {
         await asyncWait(0)
         if (Char.IsDead($.ray)) {
-            Text.PrintNow(RM6_6, 5000, 1) //"~r~Ray is dead!"
+            Text.PrintNow('RM6_6', 5000, 1) //"~r~Ray is dead!"
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
         }
@@ -968,19 +968,19 @@ async function mission_start_ray6() {
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Char.IsDead($.ray)) {
-            Text.PrintNow(RM6_6, 5000, 1) //"~r~Ray is dead!"
+            Text.PrintNow('RM6_6', 5000, 1) //"~r~Ray is dead!"
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
         }
     }
 
     Audio.PlayMissionAudio()
-    Text.PrintNow(RM6_2, 5000, 1) //"You'll find some cash and some 'supplies' I'd stashed in case things got tight."
+    Text.PrintNow('RM6_2', 5000, 1) //"You'll find some cash and some 'supplies' I'd stashed in case things got tight."
 
     while (!Audio.HasMissionAudioFinished()) {
         await asyncWait(0)
         if (Char.IsDead($.ray)) {
-            Text.PrintNow(RM6_6, 5000, 1) //"~r~Ray is dead!"
+            Text.PrintNow('RM6_6', 5000, 1) //"~r~Ray is dead!"
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
         }
@@ -991,14 +991,14 @@ async function mission_start_ray6() {
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Char.IsDead($.ray)) {
-            Text.PrintNow(RM6_6, 5000, 1) //"~r~Ray is dead!"
+            Text.PrintNow('RM6_6', 5000, 1) //"~r~Ray is dead!"
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
         }
     }
 
     Audio.PlayMissionAudio()
-    Text.PrintNow(RM6_3, 5000, 1) //"See y'around."
+    Text.PrintNow('RM6_3', 5000, 1) //"See y'around."
 
     if ($.ray.isInAnyCar()) {
         $.ray.leaveGroup()
@@ -1010,7 +1010,7 @@ async function mission_start_ray6() {
         await asyncWait(0)
         if (!($.airport_door_flag == 6)) {
             if (Char.IsDead($.ray)) {
-                Text.PrintNow(RM6_6, 5000, 1) //"~r~Ray is dead!"
+                Text.PrintNow('RM6_6', 5000, 1) //"~r~Ray is dead!"
                 // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_ray6_failed') // fallback: would break linear control flow
             }
@@ -1084,7 +1084,7 @@ async function mission_start_ray6() {
         }
     }
 
-    Text.PrintNow(RM6_4, 5000, 1) //GO TO THE LOCKUP TO GET YOUR REWARD
+    Text.PrintNow('RM6_4', 5000, 1) //GO TO THE LOCKUP TO GET YOUR REWARD
 
     $.rays_blip = Blip.AddForCoord(241.1441, -997.766, 20.9853)
 
@@ -1120,7 +1120,7 @@ async function mission_start_ray6() {
 
     $.rays_prize_garage.open()
 
-    Pager.AddMessage(RM6_666, 140, 666, 1) //"Take care of my armoured Cheetah, I had it modified to be bullet proof. See you in Miami, Ray"
+    Pager.AddMessage('RM6_666', 140, 666, 1) //"Take care of my armoured Cheetah, I had it modified to be bullet proof. See you in Miami, Ray"
 
     await asyncWait(13000)
 
@@ -1141,7 +1141,7 @@ async function mission_ray6_failed() {
         $.pickups_created_rm6 = 0
     }
     $.ray.removeElegantly()
-    Text.PrintBig(M_FAIL, 5000, 1)
+    Text.PrintBig('M_FAIL', 5000, 1)
     return
 
     // mission Ray 6 passed
@@ -1149,10 +1149,10 @@ async function mission_ray6_failed() {
 
 async function mission_ray6_passed() {
     $.flag_ray_mission6_passed = 1
-    Text.PrintWithNumberBig(M_PASS, 20000, 2000, 1)
+    Text.PrintWithNumberBig('M_PASS', 20000, 2000, 1)
     $.player.addScore(20000)
     $.player.clearWantedLevel()
-    Stat.RegisterMissionPassed(RM6)
+    Stat.RegisterMissionPassed('RM6')
     Audio.PlayMissionPassedTune(1)
     Stat.PlayerMadeProgress(1)
     $.ray_contact_blip.remove()

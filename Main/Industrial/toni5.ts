@@ -476,7 +476,7 @@ async function mission_toni5_passed() {
     $.gen_car48.switch(0)
     $.gen_car49.switch(0)
     $.flag_frankie_switched_off = 0
-    Stat.RegisterMissionPassed(TM5)
+    Stat.RegisterMissionPassed('TM5')
     Stat.PlayerMadeProgress(1)
     $.toni_contact_blip.remove()
     // START_NEW_SCRIPT toni5_flames_loop

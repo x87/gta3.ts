@@ -163,35 +163,35 @@ async function mission_start_ray4() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM4_A, 4000, 1) //"I think my partner's a rat."
+        Text.PrintNow('RM4_A', 4000, 1) //"I think my partner's a rat."
 
         while ($.cs_time < 6389) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM4_B, 4000, 1) //"We gotta shut him up permanently."
+        Text.PrintNow('RM4_B', 4000, 1) //"We gotta shut him up permanently."
 
         while ($.cs_time < 8524) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM4_C, 4000, 1) //"He goes fishing out of his boat near the lighthouse on Portland Rock most nights."
+        Text.PrintNow('RM4_C', 4000, 1) //"He goes fishing out of his boat near the lighthouse on Portland Rock most nights."
 
         while ($.cs_time < 13026) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM4_D, 4000, 1) //"Steal a police boat and make sure his back stabbing plans are sunk!"
+        Text.PrintNow('RM4_D', 4000, 1) //"Steal a police boat and make sure his back stabbing plans are sunk!"
 
         while ($.cs_time < 17497) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM4_E, 4000, 1) //"I want him sleeping with the fishes not eating them."
+        Text.PrintNow('RM4_E', 4000, 1) //"I want him sleeping with the fishes not eating them."
 
         while ($.cs_time < 21000) {
             await asyncWait(0)
@@ -258,7 +258,7 @@ async function mission_start_ray4() {
         $.players_boat_with_guns.setHeading(140.0)
         $.players_boat_with_guns_blip = Blip.AddForCar($.players_boat_with_guns)
 
-        Text.PrintNow(RM4_1, 5000, 1) //"Go steal a boat."
+        Text.PrintNow('RM4_1', 5000, 1) //"Go steal a boat."
 
         /////////////////////////
         /////////////////////////
@@ -298,7 +298,7 @@ async function mission_start_ray4() {
         $.barrel2_a.placeRelativeToCar($.partners_boat, -0.3, -2.5, 0.2)
         $.barrel2_b.placeRelativeToCar($.partners_boat, 0.3, -2.5, 0.2)
 
-        Text.PrintNow(RM4_2, 5000, 1) //"Get to the lighthouse and 'rub out' Ray's partner!"
+        Text.PrintNow('RM4_2', 5000, 1) //"Get to the lighthouse and 'rub out' Ray's partner!"
 
         $.partners_boat_health = $.partners_boat.getHealth()
 
@@ -913,7 +913,7 @@ async function mission_start_ray4() {
         $.partners_boat_health = $.partners_boat_health / 750
         $.partners_boat_health2 = $.partners_boat_health
         $.partners_boat_health = 100 - $.partners_boat_health2
-        Hud.DisplayCounterWithString($.partners_boat_health, 1 /* COUNTER_DISPLAY_BAR */, DAM)
+        Hud.DisplayCounterWithString($.partners_boat_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM')
     }
 
     async function boat_looop() {
@@ -1417,7 +1417,7 @@ async function mission_start_ray4() {
     }
 
     async function mission_ray4_failed() {
-        Text.PrintBig(M_FAIL, 5000, 1)
+        Text.PrintBig('M_FAIL', 5000, 1)
         return
 
         // mission Ray4 passed
@@ -1425,10 +1425,10 @@ async function mission_start_ray4() {
 
     async function mission_ray4_passed() {
         $.flag_ray_mission4_passed = 1
-        Text.PrintWithNumberBig(M_PASS, 15000, 2000, 1)
+        Text.PrintWithNumberBig('M_PASS', 15000, 2000, 1)
         $.player.addScore(15000)
         $.player.clearWantedLevel()
-        Stat.RegisterMissionPassed(RM4)
+        Stat.RegisterMissionPassed('RM4')
         Audio.PlayMissionPassedTune(1)
         Stat.PlayerMadeProgress(1)
         // START_NEW_SCRIPT ray_mission5_loop
@@ -1736,7 +1736,7 @@ async function mission_start_ray4() {
                     if (!$.rays_partner.isOnScreen()) {
                         $.gotaway_timer_reset_flag = 0
                         $.rays_partner.delete()
-                        Text.PrintNow(RM4_3, 5000, 1) //"Ray's partner has escaped!"
+                        Text.PrintNow('RM4_3', 5000, 1) //"Ray's partner has escaped!"
                         $.goto_mission_ray4_failed = 1
                     }
                 }

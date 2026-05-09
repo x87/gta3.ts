@@ -206,42 +206,42 @@ async function mission_start_ray2() {
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM2_A1, 10000, 1) //"Hey kid, over here!"
+    Text.PrintNow('RM2_A1', 10000, 1) //"Hey kid, over here!"
 
     while ($.cs_time < 8218) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM2_A, 10000, 1) //"An old army buddy of mine runs a business up in Rockford."
+    Text.PrintNow('RM2_A', 10000, 1) //"An old army buddy of mine runs a business up in Rockford."
 
     while ($.cs_time < 11093) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM2_B, 10000, 1) //"We saw action in Nicaragua, back when this country knew what it was doing."
+    Text.PrintNow('RM2_B', 10000, 1) //"We saw action in Nicaragua, back when this country knew what it was doing."
 
     while ($.cs_time < 14634) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM2_C, 10000, 1) //"Some Cartel scum roughed him up yesterday and said they'd be back for some of his stock today.
+    Text.PrintNow('RM2_C', 10000, 1) //"Some Cartel scum roughed him up yesterday and said they'd be back for some of his stock today.
 
     while ($.cs_time < 20938) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM2_D, 10000, 1) //"He could do with some back-up and in return he'll give you knock-down rates on any hardware you buy."
+    Text.PrintNow('RM2_D', 10000, 1) //"He could do with some back-up and in return he'll give you knock-down rates on any hardware you buy."
 
     while ($.cs_time < 26599) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM2_D1, 10000, 1) //"I'd go myself but the old siatica's playing up again -cough cough- so, eerr, good luck."
+    Text.PrintNow('RM2_D1', 10000, 1) //"I'd go myself but the old siatica's playing up again -cough cough- so, eerr, good luck."
 
     while ($.cs_time < 38333) {
         await asyncWait(0)
@@ -1014,7 +1014,7 @@ async function mission_ray2_passed() {
     Audio.PlayMissionPassedTune(1)
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(RM2)
+    Stat.RegisterMissionPassed('RM2')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT ray_mission3_loop
     return

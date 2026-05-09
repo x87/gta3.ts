@@ -316,7 +316,7 @@ async function mission_start_as1() {
     $.blip_killzone = Blip.AddForCoord($.killzone_cent_x, $.killzone_cent_y, -100.0)
     $.blip_killzone.changeColor(4)
 
-    Hud.DisplayCounterWithString($.counter_cartels_killed_as1, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS)
+    Hud.DisplayCounterWithString($.counter_cartels_killed_as1, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS')
 
     Path.SwitchRoadsOff($.killzone_min_x, $.killzone_min_y, 65.0, -1170.0, $.killzone_max_y, 85.0)
 
@@ -1145,7 +1145,7 @@ async function mission_as1_passed() {
     Audio.PlayMissionPassedTune(1)
     $.player.clearWantedLevel()
     $.player.addScore(35000)
-    Stat.RegisterMissionPassed(AS1)
+    Stat.RegisterMissionPassed('AS1')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT asuka_suburban_mission2_loop
     return

@@ -14,7 +14,7 @@ async function mission_start_debug() {
             !Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */) ||
             !Pad.IsButtonPressed(1 /* PAD2 */, 13 /* SELECT */)
         ) {
-            Text.PrintNow(CHEATON, 2000, 1) //CHEAT MODE ON
+            Text.PrintNow('CHEATON', 2000, 1) //CHEAT MODE ON
             cheat_mode_on = 1
             cheat_mode_on_flag = 1
         }
@@ -30,7 +30,7 @@ async function mission_start_debug() {
     }
 
     if (Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */) && Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && cheat_mode_on_flag == 2) {
-        Text.PrintNow(CHEATOF, 2000, 1) //CHEAT MODE OFF
+        Text.PrintNow('CHEATOF', 2000, 1) //CHEAT MODE OFF
         cheat_mode_on = 0
         cheat_mode_on_flag = 3
     }
@@ -146,13 +146,13 @@ async function mission_start_debug() {
         }
         if (Pad.IsButtonPressed(1 /* PAD2 */, 13 /* SELECT */) && repeat_butt_press == 0 && no_cars == 0) {
             World.SetCarDensityMultiplier(0.0)
-            Text.PrintNow(CARSOFF, 2000, 1)
+            Text.PrintNow('CARSOFF', 2000, 1)
             no_cars = 1
             repeat_butt_press = 1
         }
         if (Pad.IsButtonPressed(1 /* PAD2 */, 13 /* SELECT */) && repeat_butt_press == 0 && no_cars == 1) {
             World.SetCarDensityMultiplier(1.0)
-            Text.PrintNow(CARS_ON, 2000, 1)
+            Text.PrintNow('CARS_ON', 2000, 1)
             no_cars = 0
             repeat_butt_press = 1
         }
@@ -174,7 +174,7 @@ async function mission_start_debug() {
                 // unsupported SAVE_FLOAT_TO_DEBUG_FILE
                 // unsupported SAVE_FLOAT_TO_DEBUG_FILE
                 // unsupported SAVE_NEWLINE_TO_DEBUG_FILE
-                Text.PrintNow(TEXTXYZ, 800, 1) // Writing coordinates to file...
+                Text.PrintNow('TEXTXYZ', 800, 1) // Writing coordinates to file...
                 text_button_pressed = 1
             }
             if (!Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */) && text_button_pressed == 1) {
@@ -208,7 +208,7 @@ async function mission_start_debug() {
                 Streaming.RequestModel(counter_create_car)
                 while (!Streaming.HasModelLoaded(counter_create_car)) {
                     await asyncWait(0)
-                    Text.PrintNow(LOADCAR, 100, 1) //"Loading vehicle, press pad2 leftshoulder1 to cancel"
+                    Text.PrintNow('LOADCAR', 100, 1) //"Loading vehicle, press pad2 leftshoulder1 to cancel"
                     if (Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */)) {
                         //++ counter_create_car
                         // SCM GOTO → next_carzzz (not lowered; manual jump required)

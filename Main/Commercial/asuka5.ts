@@ -427,7 +427,7 @@ async function mission_asuka5_passed() {
     $.player.clearWantedLevel()
     $.player.addScore(20000)
     $.asuka_contact_blip.remove()
-    Stat.RegisterMissionPassed(AM5)
+    Stat.RegisterMissionPassed('AM5')
     Stat.PlayerMadeProgress(1)
     return
 

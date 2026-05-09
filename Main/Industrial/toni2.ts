@@ -426,7 +426,7 @@ async function mission_toni2_passed() {
     //ADD_SCORE player 10000
 
     Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */)
-    Stat.RegisterMissionPassed(TM2)
+    Stat.RegisterMissionPassed('TM2')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT toni_mission3_loop
     return

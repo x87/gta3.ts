@@ -345,13 +345,13 @@ async function mission_start_toni1() {
                 await asyncWait(1500)
                 $.controlmode = Pad.GetControllerMode()
                 if ($.controlmode == 0 || $.controlmode == 1) {
-                    Text.PrintHelp(GREN_1)
+                    Text.PrintHelp('GREN_1')
                 }
                 if ($.controlmode == 2) {
-                    Text.PrintHelp(GREN_2)
+                    Text.PrintHelp('GREN_2')
                 }
                 if ($.controlmode == 3) {
-                    Text.PrintHelp(GREN_3)
+                    Text.PrintHelp('GREN_3')
                 }
                 $.picked_up_grenades = 1
             }
@@ -377,7 +377,7 @@ async function mission_toni1_passed() {
     Text.PrintWithNumberBig('M_PASS', 20000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(20000)
-    Stat.RegisterMissionPassed(TM1)
+    Stat.RegisterMissionPassed('TM1')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT toni_mission2_loop
     return

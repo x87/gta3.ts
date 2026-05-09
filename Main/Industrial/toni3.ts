@@ -1200,119 +1200,119 @@ async function mission_start_toni3() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_H, 10000, 1)
+        Text.PrintNow('TM3_H', 10000, 1)
 
         while ($.cs_time < 3252) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_I, 10000, 1)
+        Text.PrintNow('TM3_I', 10000, 1)
 
         while ($.cs_time < 4866) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_J, 10000, 1)
+        Text.PrintNow('TM3_J', 10000, 1)
 
         while ($.cs_time < 5839) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_K, 10000, 1)
+        Text.PrintNow('TM3_K', 10000, 1)
 
         while ($.cs_time < 10201) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_L, 10000, 1)
+        Text.PrintNow('TM3_L', 10000, 1)
 
         while ($.cs_time < 13769) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_M, 10000, 1)
+        Text.PrintNow('TM3_M', 10000, 1)
 
         while ($.cs_time < 17654) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_N, 10000, 1)
+        Text.PrintNow('TM3_N', 10000, 1)
 
         while ($.cs_time < 18718) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_N2, 10000, 1)
+        Text.PrintNow('TM3_N2', 10000, 1)
 
         while ($.cs_time < 19529) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_O, 10000, 1)
+        Text.PrintNow('TM3_O', 10000, 1)
 
         while ($.cs_time < 21673) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_P, 10000, 1)
+        Text.PrintNow('TM3_P', 10000, 1)
 
         while ($.cs_time < 25525) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_Q, 10000, 1)
+        Text.PrintNow('TM3_Q', 10000, 1)
 
         while ($.cs_time < 26615) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_R, 10000, 1)
+        Text.PrintNow('TM3_R', 10000, 1)
 
         while ($.cs_time < 29462) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_S, 10000, 1)
+        Text.PrintNow('TM3_S', 10000, 1)
 
         while ($.cs_time < 32814) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_T, 10000, 1)
+        Text.PrintNow('TM3_T', 10000, 1)
 
         while ($.cs_time < 35855) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_U, 10000, 1)
+        Text.PrintNow('TM3_U', 10000, 1)
 
         while ($.cs_time < 37787) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_V, 10000, 1)
+        Text.PrintNow('TM3_V', 10000, 1)
 
         while ($.cs_time < 44707) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(TM3_W, 10000, 1)
+        Text.PrintNow('TM3_W', 10000, 1)
 
         while ($.cs_time < 47837) {
             await asyncWait(0)
@@ -1380,7 +1380,7 @@ async function mission_toni3_passed() {
     Text.PrintWithNumberBig('M_PASS', 15000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(15000)
-    Stat.RegisterMissionPassed(TM3)
+    Stat.RegisterMissionPassed('TM3')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT frankie_mission1_loop
     $.luigi_contact_blip.remove()

@@ -108,42 +108,42 @@ async function mission_start_ray5() {
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM5_A, 2000, 1) //"You useless bastard!"
+    Text.PrintNow('RM5_A', 2000, 1) //"You useless bastard!"
 
     while ($.cs_time < 3082) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM5_A1, 4500, 1) //"You messed up! My ass is on the line and you can't hurt a god damned fly."
+    Text.PrintNow('RM5_A1', 4500, 1) //"You messed up! My ass is on the line and you can't hurt a god damned fly."
 
     while ($.cs_time < 7840) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM5_B, 3000, 1) //"I paid you good money to kill that witness and he ain't dead!"
+    Text.PrintNow('RM5_B', 3000, 1) //"I paid you good money to kill that witness and he ain't dead!"
 
     while ($.cs_time < 10868) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM5_B1, 2000, 1) //"And today he's gonna make a Federal Deposition!"
+    Text.PrintNow('RM5_B1', 2000, 1) //"And today he's gonna make a Federal Deposition!"
 
     while ($.cs_time < 13138) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM5_C, 4000, 1) //"He's being moved any second now from the Carson General Hospital up in Rockford.
+    Text.PrintNow('RM5_C', 4000, 1) //"He's being moved any second now from the Carson General Hospital up in Rockford.
 
     while ($.cs_time < 17626) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(RM5_D, 2500, 1) //"so go do the job you were paid for!"
+    Text.PrintNow('RM5_D', 2500, 1) //"so go do the job you were paid for!"
 
     while ($.cs_time < 24333) {
         await asyncWait(0)
@@ -254,7 +254,7 @@ async function mission_start_ray5() {
 
 async function amb_generator() {
     $.ambulance_health = 0
-    Hud.DisplayCounterWithString($.ambulance_health, 1 /* COUNTER_DISPLAY_BAR */, DAM)
+    Hud.DisplayCounterWithString($.ambulance_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM')
 
     $.ambulance_rc5 = Car.Create(99 /* CAR_AMBULANCE */, 387.3, 4.5, 11.4)
     $.blip_ambulance_rc5 = Blip.AddForCar($.ambulance_rc5)
@@ -501,7 +501,7 @@ async function injured_cop_bailout() {
   ENDWHILE
   */
 
-    Hud.DisplayCounterWithString($.bodycast_health, 1 /* COUNTER_DISPLAY_BAR */, DAM)
+    Hud.DisplayCounterWithString($.bodycast_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM')
 
     Text.PrintNow('RM5_6', 3000, 1)
 
@@ -569,7 +569,7 @@ async function quentin() {
 }
 
 async function mission_ray5_failed() {
-    Text.PrintNow(RM5_7, 3000, 1) //Witness has been delivered!!
+    Text.PrintNow('RM5_7', 3000, 1) //Witness has been delivered!!
 
     Text.PrintBig('M_FAIL', 2000, 1)
 
@@ -584,7 +584,7 @@ async function mission_ray5_passed() {
     Audio.PlayMissionPassedTune(1)
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(RM5)
+    Stat.RegisterMissionPassed('RM5')
     Stat.PlayerMadeProgress(1)
 
     if (!($.flag_love_mission3_passed == 1)) {

@@ -136,56 +136,56 @@ async function mission_start_ray3() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM3_A, 10000, 1) //"I know a real important man in town, a soft touch
+        Text.PrintNow('RM3_A', 10000, 1) //"I know a real important man in town, a soft touch
 
         while ($.cs_time < 13529) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM3_H, 10000, 1) //"with shall we say, exotic tastes and the money to indulge them.
+        Text.PrintNow('RM3_H', 10000, 1) //"with shall we say, exotic tastes and the money to indulge them.
 
         while ($.cs_time < 17950) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM3_B, 10000, 1) //"He's involved in a legal matter and the prosecution has some rather embarrassing photos of him..."
+        Text.PrintNow('RM3_B', 10000, 1) //"He's involved in a legal matter and the prosecution has some rather embarrassing photos of him..."
 
         while ($.cs_time < 23502) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM3_C, 10000, 1) //"...at a morgue party or something."
+        Text.PrintNow('RM3_C', 10000, 1) //"...at a morgue party or something."
 
         while ($.cs_time < 26180) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM3_D, 10000, 1) //"The evidence is being driven across town."
+        Text.PrintNow('RM3_D', 10000, 1) //"The evidence is being driven across town."
 
         while ($.cs_time < 29179) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM3_E, 10000, 1) //"You are going to have to ram the car and collect each bit of evidence as it falls out."
+        Text.PrintNow('RM3_E', 10000, 1) //"You are going to have to ram the car and collect each bit of evidence as it falls out."
 
         while ($.cs_time < 34865) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM3_F, 10000, 1) //"When you've got it all, leave it in the car and torch it."
+        Text.PrintNow('RM3_F', 10000, 1) //"When you've got it all, leave it in the car and torch it."
 
         while ($.cs_time < 39290) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM3_G, 10000, 1) //"We're both gonna do well out of this."
+        Text.PrintNow('RM3_G', 10000, 1) //"We're both gonna do well out of this."
 
         while ($.cs_time < 41666) {
             await asyncWait(0)
@@ -327,7 +327,7 @@ async function mission_start_ray3() {
                             }
                         }
                     } else {
-                        Text.PrintNow(RM3_6, 5000, 1) //"The evidence will be washed up all over Liberty!"
+                        Text.PrintNow('RM3_6', 5000, 1) //"The evidence will be washed up all over Liberty!"
                         // SCM GOTO → mission_ray3_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_ray3_failed') // fallback: would break linear control flow
                     }
@@ -679,7 +679,7 @@ async function mission_start_ray3() {
 
             if ($.amount_of_evidence_player_has == 6) {
                 $.rays_evidence_blip.remove()
-                Text.PrintNow(RM3_1, 5000, 1)
+                Text.PrintNow('RM3_1', 5000, 1)
                 while (!$.player.isInAnyCar()) {
                     await asyncWait(0)
                 }
@@ -690,7 +690,7 @@ async function mission_start_ray3() {
                 if (!Car.IsDead($.players_car)) {
                     $.rays_evidence_blip = Blip.AddForCar($.players_car)
                     Hud.ClearCounter($.amount_of_evidence_player_has)
-                    Text.PrintNow(RM3_7, 5000, 1) // "Now torch the car!"
+                    Text.PrintNow('RM3_7', 5000, 1) // "Now torch the car!"
                     while (!Car.IsDead($.players_car)) {
                         await asyncWait(0)
                     }
@@ -715,10 +715,10 @@ async function mission_start_ray3() {
 
     async function mission_ray3_passed() {
         $.flag_ray_mission3_passed = 1
-        Text.PrintWithNumberBig(M_PASS, 10000, 5000, 1)
+        Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1)
         $.player.addScore(10000)
         $.player.clearWantedLevel()
-        Stat.RegisterMissionPassed(RM3)
+        Stat.RegisterMissionPassed('RM3')
         Audio.PlayMissionPassedTune(1)
         Stat.PlayerMadeProgress(1)
         $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, 6 /* RADAR_SPRITE_DON */)
@@ -757,7 +757,7 @@ async function mission_start_ray3() {
             $.timerd_current_r3 = Clock.GetGameTimer()
             $.timerd_r3 = $.timerd_current_r3 - $.timerd_started_r3
             if ($.timerd_r3 > 15000) {
-                Text.PrintNow(RM3_8, 5000, 1) //"That car is a decoy!!"
+                Text.PrintNow('RM3_8', 5000, 1) //"That car is a decoy!!"
                 $.prosecution_car_blip.remove()
                 $.ia_car_rm3.markAsNoLongerNeeded()
                 $.ia_car_driver_1.markAsNoLongerNeeded()
@@ -791,7 +791,7 @@ async function mission_start_ray3() {
         Sound.AddOneOffSound($.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z, 82 /* SOUND_EVIDENCE_PICKUP */)
         if ($.drop_evidence == 1) {
             $.evidence_1.delete()
-            Hud.DisplayCounterWithString($.amount_of_evidence_player_has, 0 /* COUNTER_DISPLAY_NUMBER */, COLLECT)
+            Hud.DisplayCounterWithString($.amount_of_evidence_player_has, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT')
         }
         if ($.drop_evidence == 2) {
             $.evidence_2.delete()
@@ -809,7 +809,7 @@ async function mission_start_ray3() {
             $.evidence_6.delete()
         }
         ++$.amount_of_evidence_player_has
-        Text.PrintWithNumberNow(RM3_5, $.amount_of_evidence_player_has, 5000, 1) //"You have ~1~ evidence packages."
+        Text.PrintWithNumberNow('RM3_5', $.amount_of_evidence_player_has, 5000, 1) //"You have ~1~ evidence packages."
         $.ia_have_evidence_flag = 1
         TIMERB = 0
 

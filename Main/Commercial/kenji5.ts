@@ -137,49 +137,49 @@ async function mission_start_kenji5() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(KM5_A, 7000, 1) //"YOU! How fitting you should choose this moment to show your worthless face!"
+        Text.PrintNow('KM5_A', 7000, 1) //"YOU! How fitting you should choose this moment to show your worthless face!"
 
         while ($.cs_time < 11088) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(KM5_B, 7000, 1) //"It would appear your attempts to dissuade the Jamaicans"
+        Text.PrintNow('KM5_B', 7000, 1) //"It would appear your attempts to dissuade the Jamaicans"
 
         while ($.cs_time < 13770) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(KM5_B1, 7000, 1) //"from becoming bed fellows with the Cartel were wholly inadequate!"
+        Text.PrintNow('KM5_B1', 7000, 1) //"from becoming bed fellows with the Cartel were wholly inadequate!"
 
         while ($.cs_time < 17324) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(KM5_C, 7000, 1) //"Yardie pushers line Liberty's streets selling packets of SPANK like they were selling hotdogs!"
+        Text.PrintNow('KM5_C', 7000, 1) //"Yardie pushers line Liberty's streets selling packets of SPANK like they were selling hotdogs!"
 
         while ($.cs_time < 22060) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(KM5_D, 7000, 1) //"Those Cartel pigs are laughing at us, at me!"
+        Text.PrintNow('KM5_D', 7000, 1) //"Those Cartel pigs are laughing at us, at me!"
 
         while ($.cs_time < 24716) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(KM5_E, 7000, 1) //"I will give you one last chance to prove my sister's faith in you to be well founded!"
+        Text.PrintNow('KM5_E', 7000, 1) //"I will give you one last chance to prove my sister's faith in you to be well founded!"
 
         while ($.cs_time < 29220) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(KM5_F, 7000, 1) //"Run these scumbags into the ground and wash your shame in rivers of our enemies' blood!!!"
+        Text.PrintNow('KM5_F', 7000, 1) //"Run these scumbags into the ground and wash your shame in rivers of our enemies' blood!!!"
 
         while ($.cs_time < 33666) {
             await asyncWait(0)
@@ -701,10 +701,10 @@ async function mission_start_kenji5() {
         $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
         $.ped_2_blip.changeScale(3)
 
-        Text.PrintNow(KM5_6, 5000, 1) //"You must murder at least 8 Yardie dealers."
-        Text.PrintSoon(KM5_7, 6000, 1) //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
+        Text.PrintNow('KM5_6', 5000, 1) //"You must murder at least 8 Yardie dealers."
+        Text.PrintSoon('KM5_7', 6000, 1) //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
 
-        Hud.DisplayCounterWithString($.dead_peds, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS)
+        Hud.DisplayCounterWithString($.dead_peds, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS')
 
         $.ped_1_exists = 1
         $.ped_2_exists = 1
@@ -749,9 +749,9 @@ async function mission_start_kenji5() {
                         $.ped_1_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         if ($.on_screen_counter_flag == 0) {
-                            Text.PrintSoon(KM5_7, 6000, 1) //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
+                            Text.PrintSoon('KM5_7', 6000, 1) //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
                             TIMERA = 0
                             $.on_screen_counter_flag = 1
                         }
@@ -803,9 +803,9 @@ async function mission_start_kenji5() {
                         $.ped_2_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         if ($.on_screen_counter_flag == 0) {
-                            Text.PrintSoon(KM5_7, 6000, 1) //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
+                            Text.PrintSoon('KM5_7', 6000, 1) //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
                             TIMERA = 0
                             $.on_screen_counter_flag = 1
                         }
@@ -859,7 +859,7 @@ async function mission_start_kenji5() {
                         $.ped_3_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -910,7 +910,7 @@ async function mission_start_kenji5() {
                         $.ped_4_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -961,7 +961,7 @@ async function mission_start_kenji5() {
                         $.ped_5_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1012,7 +1012,7 @@ async function mission_start_kenji5() {
                         $.ped_6_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1063,7 +1063,7 @@ async function mission_start_kenji5() {
                         $.ped_7_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1114,7 +1114,7 @@ async function mission_start_kenji5() {
                         $.ped_8_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1165,7 +1165,7 @@ async function mission_start_kenji5() {
                         $.ped_9_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1216,7 +1216,7 @@ async function mission_start_kenji5() {
                         $.ped_10_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1267,7 +1267,7 @@ async function mission_start_kenji5() {
                         $.ped_11_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1318,7 +1318,7 @@ async function mission_start_kenji5() {
                         $.ped_12_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1369,7 +1369,7 @@ async function mission_start_kenji5() {
                         $.ped_13_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1420,7 +1420,7 @@ async function mission_start_kenji5() {
                         $.ped_14_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1471,7 +1471,7 @@ async function mission_start_kenji5() {
                         $.ped_15_exists = 0
                         ++$.dead_peds
                         --$.number_of_peds
-                        Text.PrintNow(KM5_1, 2000, 1) // "One down, two more to kill."
+                        Text.PrintNow('KM5_1', 2000, 1) // "One down, two more to kill."
                         // SCM GOSUB create_random_ped
                         await create_random_ped()
                         // fallback if label was not emitted as async function: no-op continues linearly
@@ -1590,7 +1590,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 1) {
             $.ped_1_blip.remove()
             $.ped_1.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_1_exists = 0
             --$.number_of_peds
         }
@@ -1598,7 +1598,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 2) {
             $.ped_2_blip.remove()
             $.ped_2.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_2_exists = 0
             --$.number_of_peds
         }
@@ -1606,7 +1606,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 3) {
             $.ped_3_blip.remove()
             $.ped_3.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_3_exists = 0
             --$.number_of_peds
         }
@@ -1614,7 +1614,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 4) {
             $.ped_4_blip.remove()
             $.ped_4.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_4_exists = 0
             --$.number_of_peds
         }
@@ -1622,7 +1622,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 5) {
             $.ped_5_blip.remove()
             $.ped_5.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_5_exists = 0
             --$.number_of_peds
         }
@@ -1630,7 +1630,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 6) {
             $.ped_6_blip.remove()
             $.ped_6.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_6_exists = 0
             --$.number_of_peds
         }
@@ -1638,7 +1638,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 7) {
             $.ped_7_blip.remove()
             $.ped_7.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_7_exists = 0
             --$.number_of_peds
         }
@@ -1646,7 +1646,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 8) {
             $.ped_8_blip.remove()
             $.ped_8.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_8_exists = 0
             --$.number_of_peds
         }
@@ -1654,7 +1654,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 9) {
             $.ped_9_blip.remove()
             $.ped_9.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_9_exists = 0
             --$.number_of_peds
         }
@@ -1662,7 +1662,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 10) {
             $.ped_10_blip.remove()
             $.ped_10.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_10_exists = 0
             --$.number_of_peds
         }
@@ -1670,7 +1670,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 11) {
             $.ped_11_blip.remove()
             $.ped_11.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_11_exists = 0
             --$.number_of_peds
         }
@@ -1678,7 +1678,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 12) {
             $.ped_12_blip.remove()
             $.ped_12.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_12_exists = 0
             --$.number_of_peds
         }
@@ -1686,7 +1686,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 13) {
             $.ped_13_blip.remove()
             $.ped_13.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_13_exists = 0
             --$.number_of_peds
         }
@@ -1694,7 +1694,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 14) {
             $.ped_14_blip.remove()
             $.ped_14.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_14_exists = 0
             --$.number_of_peds
         }
@@ -1702,7 +1702,7 @@ async function mission_start_kenji5() {
         if ($.oldest_ped == 15) {
             $.ped_15_blip.remove()
             $.ped_15.markAsNoLongerNeeded()
-            Text.PrintNow(KM5_2, 2000, 1) // "A Yardie has gone to ground."
+            Text.PrintNow('KM5_2', 2000, 1) // "A Yardie has gone to ground."
             $.ped_15_exists = 0
             --$.number_of_peds
         }
@@ -1715,7 +1715,7 @@ async function mission_start_kenji5() {
 
 async function mission_kenji5_failed() {
     Text.PrintBig('M_FAIL', 5000, 1)
-    Text.PrintWithNumberNow(KM5_3, $.minimum_kills, 3000, 1) // "You failed to kill at least ~1~ yardies."
+    Text.PrintWithNumberNow('KM5_3', $.minimum_kills, 3000, 1) // "You failed to kill at least ~1~ yardies."
     return
 
     // mission Kenji5 passed
@@ -1723,17 +1723,17 @@ async function mission_kenji5_failed() {
 
 async function mission_kenji5_passed() {
     $.flag_kenji_mission5_passed = 1
-    Text.PrintWithNumberBig(m_pass, 10000, 5000, 1)
+    Text.PrintWithNumberBig('m_pass', 10000, 5000, 1)
     $.player.addScore(10000)
     if ($.dead_peds == 8) {
-        Text.PrintWithNumberNow(KM5_4, $.dead_peds, 3000, 1) // "Congratulations you killed ~1~ Yardies."
+        Text.PrintWithNumberNow('KM5_4', $.dead_peds, 3000, 1) // "Congratulations you killed ~1~ Yardies."
     } else {
         $.reward_kills = $.dead_peds - $.minimum_kills
         $.reward_kills = $.reward_kills * 1000
-        Text.PrintWith2NumbersNow(KM5_5, $.dead_peds, $.reward_kills, 3000, 1) // "Congratulations you killed ~1~ Yardies."
+        Text.PrintWith2NumbersNow('KM5_5', $.dead_peds, $.reward_kills, 3000, 1) // "Congratulations you killed ~1~ Yardies."
     }
     $.player.clearWantedLevel()
-    Stat.RegisterMissionPassed(KM5)
+    Stat.RegisterMissionPassed('KM5')
     Audio.PlayMissionPassedTune(1)
     Stat.PlayerMadeProgress(1)
     $.kenji_contact_blip.remove()

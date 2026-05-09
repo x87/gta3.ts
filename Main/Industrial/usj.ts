@@ -628,12 +628,12 @@ async function camera_restore_if_passed() {
 
 async function reward_usj() {
     if ($.total_completed_usj < 20) {
-        Text.PrintBigQ(USJ, 5000, 5) //UNIQUE STUNT BONUS!
-        Text.PrintWithNumberBig(REWARD, $.cash_reward_usj, 6000, 6)
+        Text.PrintBigQ('USJ', 5000, 5) //UNIQUE STUNT BONUS!
+        Text.PrintWithNumberBig('REWARD', $.cash_reward_usj, 6000, 6)
         $.player.addScore($.cash_reward_usj)
     } else {
-        Text.PrintBigQ(USJ_ALL, 5000, 5) //ALL UNIQUE STUNTS COMPLETED!
-        Text.PrintWithNumberBig(REWARD, 1000000, 6000, 6)
+        Text.PrintBigQ('USJ_ALL', 5000, 5) //ALL UNIQUE STUNTS COMPLETED!
+        Text.PrintWithNumberBig('REWARD', 1000000, 6000, 6)
         $.player.addScore(1000000)
     }
 

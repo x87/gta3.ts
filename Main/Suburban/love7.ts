@@ -115,7 +115,7 @@ async function mission_love7_passed() {
     $.love_contact_blip.remove()
     $.player.clearWantedLevel()
     Audio.PlayMissionPassedTune(1)
-    Stat.RegisterMissionPassed(LOVE7)
+    Stat.RegisterMissionPassed('LOVE7')
     return
 
     // mission cleanup

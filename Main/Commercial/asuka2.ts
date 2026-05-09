@@ -538,7 +538,7 @@ async function mission_asuka2_passed() {
     Text.PrintWithNumberBig('M_PASS', 15000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(15000)
-    Stat.RegisterMissionPassed(AM2)
+    Stat.RegisterMissionPassed('AM2')
     Stat.PlayerMadeProgress(1)
     $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, 11 /* RADAR_SPRITE_KENJI */) //TEST STUFF
     $.com_ammu_nation2.remove()

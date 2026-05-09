@@ -737,7 +737,7 @@ async function mission_joey1_passed() {
         $.mission_passed_for_lips_finished = 1
     }
 
-    Stat.RegisterMissionPassed(JM1)
+    Stat.RegisterMissionPassed('JM1')
     Stat.PlayerMadeProgress(1)
     $.lips.removeElegantly()
     // START_NEW_SCRIPT joey_mission2_loop

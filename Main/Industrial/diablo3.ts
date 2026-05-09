@@ -266,7 +266,7 @@ async function mission_diablo3_passed() {
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(DIAB3)
+    Stat.RegisterMissionPassed('DIAB3')
     Stat.PlayerMadeProgress(1)
     Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */)
     // START_NEW_SCRIPT diablo_mission4_loop

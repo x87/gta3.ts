@@ -445,7 +445,7 @@ async function mission_diablo4_passed() {
     $.flag_diablo_mission1_passed = 0
     $.diablo_contact_blip.remove()
     // START_NEW_SCRIPT diablo_mission1_loop
-    Stat.RegisterMissionPassed(DIAB4)
+    Stat.RegisterMissionPassed('DIAB4')
     Stat.PlayerMadeProgress(1)
     return
 

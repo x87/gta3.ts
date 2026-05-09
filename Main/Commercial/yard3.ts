@@ -358,7 +358,7 @@ async function mission_yd3_passed() {
     Audio.PlayMissionPassedTune(1)
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(YD3)
+    Stat.RegisterMissionPassed('YD3')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT yardie_mission4_loop
     return

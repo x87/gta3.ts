@@ -367,7 +367,7 @@ async function mission_4x4two_passed() {
     Stat.Register4X4TwoTime($.record_4x4_two)
 
     if ($.flag_4x4_mission2_passed == 0) {
-        Stat.RegisterMissionPassed(T4X4_2)
+        Stat.RegisterMissionPassed('T4X4_2')
         $.flag_4x4_mission2_passed = 1
         Stat.PlayerMadeProgress(1)
     }

@@ -574,7 +574,7 @@ async function getting_there() {
     //------------------------------THE HIT-----------------------------------------------------------------
 
     $.blip_driveby_yd2.remove()
-    Hud.DisplayCounterWithString($.body_count_yd2, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS)
+    Hud.DisplayCounterWithString($.body_count_yd2, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS')
 
     while ($.body_count_yd2 < 10) {
         await asyncWait(0)
@@ -925,7 +925,7 @@ async function filby() {
     Audio.PlayMissionPassedTune(1)
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(YD2)
+    Stat.RegisterMissionPassed('YD2')
     Stat.PlayerMadeProgress(1)
     Game.SetThreatForPedType(9 /* PEDTYPE_GANG_DIABLO */, 0 /* THREAT_PLAYER1 */)
     // START_NEW_SCRIPT yardie_mission3_loop

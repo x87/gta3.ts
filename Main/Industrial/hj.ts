@@ -210,41 +210,41 @@ async function mission_start_hj() {
             $.cash_reward /= 3
             $.player.addScore($.cash_reward)
             if ($.stunt_flags_hj == 1 && $.flag_wheels_hj == 0) {
-                Text.PrintWithNumber(HJ_IS, $.cash_reward, 2000, 1) //"INSANE STUNT BONUS"
+                Text.PrintWithNumber('HJ_IS', $.cash_reward, 2000, 1) //"INSANE STUNT BONUS"
                 Stat.RegisterJumpStunt(1)
             }
             if ($.stunt_flags_hj == 1 && $.flag_wheels_hj == 1) {
-                Text.PrintWithNumber(HJ_PIS, $.cash_reward, 2000, 1) //"PERFECT INSANE STUNT BONUS"
+                Text.PrintWithNumber('HJ_PIS', $.cash_reward, 2000, 1) //"PERFECT INSANE STUNT BONUS"
                 Stat.RegisterJumpStunt(2)
             }
             if ($.stunt_flags_hj == 2 && $.flag_wheels_hj == 0) {
-                Text.PrintWithNumber(HJ_DIS, $.cash_reward, 2000, 1) //"DOUBLE INSANE STUNT BONUS"
+                Text.PrintWithNumber('HJ_DIS', $.cash_reward, 2000, 1) //"DOUBLE INSANE STUNT BONUS"
                 Stat.RegisterJumpStunt(3)
             }
             if ($.stunt_flags_hj == 2 && $.flag_wheels_hj == 1) {
-                Text.PrintWithNumber(HJ_PDIS, $.cash_reward, 2000, 1) //"PERFECT DOUBLE INSANE STUNT BONUS"
+                Text.PrintWithNumber('HJ_PDIS', $.cash_reward, 2000, 1) //"PERFECT DOUBLE INSANE STUNT BONUS"
                 Stat.RegisterJumpStunt(4)
             }
             if ($.stunt_flags_hj == 3 && $.flag_wheels_hj == 0) {
-                Text.PrintWithNumber(HJ_TIS, $.cash_reward, 2000, 1) //"TRIPLE INSANE STUNT BONUS"
+                Text.PrintWithNumber('HJ_TIS', $.cash_reward, 2000, 1) //"TRIPLE INSANE STUNT BONUS"
                 Stat.RegisterJumpStunt(5)
             }
             if ($.stunt_flags_hj == 3 && $.flag_wheels_hj == 1) {
-                Text.PrintWithNumber(HJ_PTIS, $.cash_reward, 2000, 1) //"PERFECT TRIPLE INSANE STUNT BONUS"
+                Text.PrintWithNumber('HJ_PTIS', $.cash_reward, 2000, 1) //"PERFECT TRIPLE INSANE STUNT BONUS"
                 Stat.RegisterJumpStunt(6)
             }
             if ($.stunt_flags_hj == 4 && $.flag_wheels_hj == 0) {
-                Text.PrintWithNumber(HJ_QIS, $.cash_reward, 2000, 1) //"QUADRUPLE INSANE STUNT BONUS"
+                Text.PrintWithNumber('HJ_QIS', $.cash_reward, 2000, 1) //"QUADRUPLE INSANE STUNT BONUS"
                 Stat.RegisterJumpStunt(7)
             }
             if ($.stunt_flags_hj == 4 && $.flag_wheels_hj == 1) {
-                Text.PrintWithNumber(HJ_PQIS, $.cash_reward, 3000, 1) //"PERFECT QUADRUPLE INSANE STUNT BONUS"
+                Text.PrintWithNumber('HJ_PQIS', $.cash_reward, 3000, 1) //"PERFECT QUADRUPLE INSANE STUNT BONUS"
                 Stat.RegisterJumpStunt(8)
             }
             if (Game.AreMeasurementsInMeters()) {
                 if ($.flag_wheels_hj == 1) {
                     Text.PrintWith6Numbers(
-                        HJSTATW,
+                        'HJSTATW',
                         $.jumpdistance_int_hj,
                         $.distance_decimals_int_hj,
                         $.height_int_hj,
@@ -256,7 +256,7 @@ async function mission_start_hj() {
                     )
                 } else {
                     Text.PrintWith6Numbers(
-                        HJSTAT,
+                        'HJSTAT',
                         $.jumpdistance_int_hj,
                         $.distance_decimals_int_hj,
                         $.height_int_hj,
@@ -271,9 +271,9 @@ async function mission_start_hj() {
                 $.jumpdistance_int_hj = Math.ConvertMetersToFeet($.jumpdistance_int_hj)
                 $.height_int_hj = Math.ConvertMetersToFeet($.height_int_hj)
                 if ($.flag_wheels_hj == 1) {
-                    Text.PrintWith4Numbers(HJSTAWF, $.jumpdistance_int_hj, $.height_int_hj, $.counter_stunt_rolls_hj, $.total_rotation_int, 5000, 5)
+                    Text.PrintWith4Numbers('HJSTAWF', $.jumpdistance_int_hj, $.height_int_hj, $.counter_stunt_rolls_hj, $.total_rotation_int, 5000, 5)
                 } else {
-                    Text.PrintWith4Numbers(HJSTATF, $.jumpdistance_int_hj, $.height_int_hj, $.counter_stunt_rolls_hj, $.total_rotation_int, 5000, 5)
+                    Text.PrintWith4Numbers('HJSTATF', $.jumpdistance_int_hj, $.height_int_hj, $.counter_stunt_rolls_hj, $.total_rotation_int, 5000, 5)
                 }
             }
 
@@ -318,7 +318,7 @@ async function cessna_fight_bit() {
             if ($.flight_time > $.longest_flight_time) {
                 $.longest_flight_time = $.flight_time
             }
-            Text.PrintWithNumberNow(DODO_FT, $.flight_time, 5000, 1)
+            Text.PrintWithNumberNow('DODO_FT', $.flight_time, 5000, 1)
             Stat.RegisterLongestDodoFlight($.flight_time)
         }
     }

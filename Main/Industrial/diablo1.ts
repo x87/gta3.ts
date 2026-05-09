@@ -170,28 +170,28 @@ async function mission_start_d1() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(DIAB1_B, 10000, 1) //"This is El Buro of the Diablos."
+        Text.PrintNow('DIAB1_B', 10000, 1) //"This is El Buro of the Diablos."
 
         while ($.cs_time < 4731) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(DIAB1_D, 10000, 1) //"You're new in Liberty, but already you are gaining a reputation on the streets."
+        Text.PrintNow('DIAB1_D', 10000, 1) //"You're new in Liberty, but already you are gaining a reputation on the streets."
 
         while ($.cs_time < 10501) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(DIAB1_E, 10000, 1) //"There's a street race starting by the old school hall near the Callahan Bridge."
+        Text.PrintNow('DIAB1_E', 10000, 1) //"There's a street race starting by the old school hall near the Callahan Bridge."
 
         while ($.cs_time < 15111) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(DIAB1_F, 10000, 1) //"Get yourself some wheels and first through all the checkpoints wins the prize."
+        Text.PrintNow('DIAB1_F', 10000, 1) //"Get yourself some wheels and first through all the checkpoints wins the prize."
 
         while ($.cs_time < 20500) {
             await asyncWait(0)
@@ -286,12 +286,12 @@ async function mission_start_d1() {
 
         $.blip_chase_d1 = Blip.AddForCoord(1042.9772, -858.7398, 13.7827)
 
-        Text.PrintNow(DIAB1_4, 5000, 1) //"~g~Get a fast car and get to the starting grid."
+        Text.PrintNow('DIAB1_4', 5000, 1) //"~g~Get a fast car and get to the starting grid."
 
         while (!$.player.locateStoppedInCar3D(1042.9772, -858.7398, 13.7827, 2.0, 2.0, 2.0, true)) {
             await asyncWait(0)
             if ($.player.locateStoppedOnFoot3D(1042.9772, -858.7398, 13.7827, 2.0, 2.0, 2.0, true)) {
-                Text.PrintNow(YD1_G, 5000, 1)
+                Text.PrintNow('YD1_G', 5000, 1)
             }
             if (Car.IsDead($.car1_d1)) {
                 // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
@@ -339,7 +339,7 @@ async function mission_start_d1() {
         $.car3_d1.setOnlyDamagedByPlayer(false /* FALSE */)
 
         if ($.timerc == 9) {
-            Text.PrintBig(DIAB1_1, 1200, 4) // "3..2..1.. GO GO GO!"
+            Text.PrintBig('DIAB1_1', 1200, 4) // "3..2..1.. GO GO GO!"
         } else {
             $.player.setControl(false /* OFF */)
             Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */)
@@ -414,7 +414,7 @@ async function mission_start_d1() {
         $.game_timer_end_d1 = Clock.GetGameTimer()
         $.game_timer_end_d1 = $.game_timer_end_d1 - $.game_timer_start_d1
         $.game_timer_end_d1 = $.game_timer_end_d1 / 1000
-        Hud.DisplayCounterWithString($.game_timer_end_d1, 0 /* COUNTER_DISPLAY_NUMBER */, DIAB1_5)
+        Hud.DisplayCounterWithString($.game_timer_end_d1, 0 /* COUNTER_DISPLAY_NUMBER */, 'DIAB1_5')
     }
 
     async function loop1() {
@@ -431,19 +431,19 @@ async function mission_start_d1() {
             $.position += $.behind_car3
 
             if ($.position == 0) {
-                Text.PrintNow(FIRST, 100, 1) //"1st"
+                Text.PrintNow('FIRST', 100, 1) //"1st"
             }
 
             if ($.position == 1) {
-                Text.PrintNow(SECOND, 100, 1) //"2nd"
+                Text.PrintNow('SECOND', 100, 1) //"2nd"
             }
 
             if ($.position == 2) {
-                Text.PrintNow(THIRD, 100, 1) //"3rd"
+                Text.PrintNow('THIRD', 100, 1) //"3rd"
             }
 
             if ($.position == 3) {
-                Text.PrintNow(FOURTH, 100, 1) //"4th"
+                Text.PrintNow('FOURTH', 100, 1) //"4th"
             }
 
             if ($.player_cpcounter == 17) {
@@ -816,7 +816,7 @@ async function mission_start_d1() {
                     }
                     if ($.car1_cpcounter == 18) {
                         //		AND	position > 0
-                        Text.PrintNow(DIAB1_3, 5000, 1) //"~r~You failed to win the race!"
+                        Text.PrintNow('DIAB1_3', 5000, 1) //"~r~You failed to win the race!"
                         // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_d1_failed') // fallback: would break linear control flow
                     }
@@ -1063,7 +1063,7 @@ async function mission_start_d1() {
                     }
                     if ($.car2_cpcounter == 18) {
                         //		AND	position > 0
-                        Text.PrintNow(DIAB1_3, 5000, 1) //"~r~You failed to win the race!"
+                        Text.PrintNow('DIAB1_3', 5000, 1) //"~r~You failed to win the race!"
                         // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_d1_failed') // fallback: would break linear control flow
                     }
@@ -1314,7 +1314,7 @@ async function mission_start_d1() {
                     }
                     if ($.car3_cpcounter == 18) {
                         //		AND	position > 0
-                        Text.PrintNow(DIAB1_3, 5000, 1) //"~r~You failed to win the race!"
+                        Text.PrintNow('DIAB1_3', 5000, 1) //"~r~You failed to win the race!"
                         // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_d1_failed') // fallback: would break linear control flow
                     }
@@ -1355,7 +1355,7 @@ async function mission_start_d1() {
 }
 
 async function mission_d1_failed() {
-    Text.PrintBig(M_FAIL, 2000, 1)
+    Text.PrintBig('M_FAIL', 2000, 1)
     return
 
     // mission d1 passed
@@ -1366,15 +1366,15 @@ async function mission_d1_passed() {
     $.game_timer_end_d1 = $.game_timer_end_d1 - $.game_timer_start_d1
     $.game_timer_end_d1 = $.game_timer_end_d1 / 1000
     $.player.addScore(10000)
-    Text.PrintWithNumberBig(M_PASS, 10000, 5000, 1)
-    Text.PrintWithNumberNow(DIAB1_2, $.game_timer_end_d1, 5000, 1) //"Race time: ~1~ seconds"
+    Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1)
+    Text.PrintWithNumberNow('DIAB1_2', $.game_timer_end_d1, 5000, 1) //"Race time: ~1~ seconds"
     Stat.RegisterElBurroTime($.game_timer_end_d1)
     $.player.clearWantedLevel()
     Audio.PlayMissionPassedTune(1)
     //CLEAR_THREAT_FOR_PED_TYPE PEDTYPE_GANG_DIABLO THREAT_PLAYER1
 
     if ($.flag_diablo1_passed_before == 0) {
-        Stat.RegisterMissionPassed(DIAB1)
+        Stat.RegisterMissionPassed('DIAB1')
         Stat.PlayerMadeProgress(1)
         $.flag_diablo_mission1_passed = 1
         // START_NEW_SCRIPT diablo_mission2_loop

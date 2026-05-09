@@ -178,7 +178,7 @@ async function mission_start_hood4() {
 
         Hud.DisplayTimer($.timer_hm4)
 
-        Hud.DisplayCounterWithString($.total_no_pills_carried_hm4, 0 /* COUNTER_DISPLAY_NUMBER */, collect)
+        Hud.DisplayCounterWithString($.total_no_pills_carried_hm4, 0 /* COUNTER_DISPLAY_NUMBER */, 'collect')
 
         // waiting for the player to get the correct number of pills
 

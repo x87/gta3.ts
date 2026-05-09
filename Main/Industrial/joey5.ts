@@ -467,7 +467,7 @@ async function mission_joey5_passed() {
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(JM5)
+    Stat.RegisterMissionPassed('JM5')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT joey_mission6_loop
     return

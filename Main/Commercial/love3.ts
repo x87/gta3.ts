@@ -90,28 +90,28 @@ async function mission_start_love3() {
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(LOVE3_A, 5000, 1) //"In these days of moral hypocrisy certain valuable commodities can be hard to import."
+    Text.PrintNow('LOVE3_A', 5000, 1) //"In these days of moral hypocrisy certain valuable commodities can be hard to import."
 
     while ($.cs_time < 16652) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(LOVE3_B, 5000, 1) //"On it's approach to Liberty airport tonight, a light aircraft will pass over the bay."
+    Text.PrintNow('LOVE3_B', 5000, 1) //"On it's approach to Liberty airport tonight, a light aircraft will pass over the bay."
 
     while ($.cs_time < 20065) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(LOVE3_C, 5000, 1) //"It will drop several packages into the water."
+    Text.PrintNow('LOVE3_C', 5000, 1) //"It will drop several packages into the water."
 
     while ($.cs_time < 22434) {
         await asyncWait(0)
         $.cs_time = Cutscene.GetTime()
     }
 
-    Text.PrintNow(LOVE3_D, 5000, 1) //"Make sure you pick them up before anyone else does."
+    Text.PrintNow('LOVE3_D', 5000, 1) //"Make sure you pick them up before anyone else does."
 
     while ($.cs_time < 25333) {
         await asyncWait(0)
@@ -169,7 +169,7 @@ async function mission_start_love3() {
 
     $.players_boat_blip = Blip.AddForCar($.players_boat)
 
-    Text.PrintNow(LOVE3_1, 5000, 1)
+    Text.PrintNow('LOVE3_1', 5000, 1)
 
     DrugDropOff.Start()
 
@@ -190,14 +190,14 @@ async function plane_drop_loop() {
         await asyncWait(0)
 
         if (DrugDropOff.HasPlaneBeenShotDown()) {
-            Text.PrintNow(LOVE3_4, 5000, 1)
+            Text.PrintNow('LOVE3_4', 5000, 1)
             // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_love3_failed') // fallback: would break linear control flow
         }
 
         if ($.plane_timer == 0) {
             Hud.ClearTimer($.plane_timer)
-            Text.PrintNow(LOVE3_5, 5000, 1) // "The plane is now in range."
+            Text.PrintNow('LOVE3_5', 5000, 1) // "The plane is now in range."
             $.plane_timer = -1000
         }
 
@@ -262,7 +262,7 @@ async function plane_drop_loop() {
         }
 
         if ($.packge_01 > 0 && $.packages_collected < 6) {
-            Text.PrintWithNumberNow(LOVE3_3, $.package_numbers, 5000, 1) //"The plane has dropped ~1~ of 8 packages."
+            Text.PrintWithNumberNow('LOVE3_3', $.package_numbers, 5000, 1) //"The plane has dropped ~1~ of 8 packages."
         }
 
         if ($.packge_01 == 1) {
@@ -270,7 +270,7 @@ async function plane_drop_loop() {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */)
                 ++$.packages_collected
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, COLLECT)
+                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT')
                     $.counter_display_flag = 1
                 }
                 $.police_rating += 1
@@ -284,7 +284,7 @@ async function plane_drop_loop() {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */)
                 ++$.packages_collected
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, COLLECT)
+                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT')
                     $.counter_display_flag = 1
                 }
                 $.police_rating += 1
@@ -298,7 +298,7 @@ async function plane_drop_loop() {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */)
                 ++$.packages_collected
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, COLLECT)
+                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT')
                     $.counter_display_flag = 1
                 }
                 $.police_rating += 1
@@ -312,7 +312,7 @@ async function plane_drop_loop() {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */)
                 ++$.packages_collected
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, COLLECT)
+                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT')
                     $.counter_display_flag = 1
                 }
                 $.police_rating += 1
@@ -326,7 +326,7 @@ async function plane_drop_loop() {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */)
                 ++$.packages_collected
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, COLLECT)
+                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT')
                     $.counter_display_flag = 1
                 }
                 $.police_rating += 1
@@ -340,7 +340,7 @@ async function plane_drop_loop() {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */)
                 ++$.packages_collected
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, COLLECT)
+                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT')
                     $.counter_display_flag = 1
                 }
                 $.police_rating += 1
@@ -369,7 +369,7 @@ async function plane_drop_loop() {
                             $.float_packge_04.remove()
                             $.float_packge_05.remove()
                             $.float_packge_06.remove()
-                            Text.PrintNow(LOVE3_6, 5000, 1) // "~r~The Police got the the package first!"
+                            Text.PrintNow('LOVE3_6', 5000, 1) // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0)
                             $.police_boat.setCruiseSpeed(100.0)
                             // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -389,7 +389,7 @@ async function plane_drop_loop() {
                             $.float_packge_04.remove()
                             $.float_packge_05.remove()
                             $.float_packge_06.remove()
-                            Text.PrintNow(LOVE3_6, 5000, 1) // "~r~The Police got the the package first!"
+                            Text.PrintNow('LOVE3_6', 5000, 1) // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0)
                             $.police_boat.setCruiseSpeed(100.0)
                             // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -409,7 +409,7 @@ async function plane_drop_loop() {
                             $.float_packge_04.remove()
                             $.float_packge_05.remove()
                             $.float_packge_06.remove()
-                            Text.PrintNow(LOVE3_6, 5000, 1) // "~r~The Police got the the package first!"
+                            Text.PrintNow('LOVE3_6', 5000, 1) // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0)
                             $.police_boat.setCruiseSpeed(100.0)
                             // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -429,7 +429,7 @@ async function plane_drop_loop() {
                             $.float_packge_04.remove()
                             $.float_packge_05.remove()
                             $.float_packge_06.remove()
-                            Text.PrintNow(LOVE3_6, 5000, 1) // "~r~The Police got the the package first!"
+                            Text.PrintNow('LOVE3_6', 5000, 1) // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0)
                             $.police_boat.setCruiseSpeed(100.0)
                             // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -449,7 +449,7 @@ async function plane_drop_loop() {
                             $.float_packge_04.remove()
                             $.float_packge_05.remove()
                             $.float_packge_06.remove()
-                            Text.PrintNow(LOVE3_6, 5000, 1) // "~r~The Police got the the package first!"
+                            Text.PrintNow('LOVE3_6', 5000, 1) // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0)
                             $.police_boat.setCruiseSpeed(100.0)
                             // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -469,7 +469,7 @@ async function plane_drop_loop() {
                             $.float_packge_04.remove()
                             $.float_packge_05.remove()
                             $.float_packge_06.remove()
-                            Text.PrintNow(LOVE3_6, 5000, 1) // "~r~The Police got the the package first!"
+                            Text.PrintNow('LOVE3_6', 5000, 1) // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0)
                             $.police_boat.setCruiseSpeed(100.0)
                             // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -484,7 +484,7 @@ async function plane_drop_loop() {
         }
 
         if ($.packages_collected == 6) {
-            Text.PrintNow(LOVE3_2, 5000, 1) // "You have them all.  Take the package to Donald Love"
+            Text.PrintNow('LOVE3_2', 5000, 1) // "You have them all.  Take the package to Donald Love"
             $.plane_blip.remove()
             $.plane_blip = Blip.AddForCoord(87.3, -1548.6, 27.255) //130.0 -1585.0 26.0
             $.temporary_time_drug = 0
@@ -567,7 +567,7 @@ async function get_out_of_loop_l3() {
 }
 
 async function mission_love3_failed() {
-    Text.PrintBig(M_FAIL, 5000, 1)
+    Text.PrintBig('M_FAIL', 5000, 1)
     return
 
     // mission love 3 passed
@@ -600,10 +600,10 @@ async function mission_love3_passed() {
         // START_NEW_SCRIPT ray_mission6_loop
     }
 
-    Text.PrintWithNumberBig(M_PASS, 10000, 5000, 1)
+    Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1)
     $.player.addScore(10000)
     $.player.clearWantedLevel()
-    Stat.RegisterMissionPassed(LOVE3)
+    Stat.RegisterMissionPassed('LOVE3')
     Audio.PlayMissionPassedTune(1)
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT love_mission4_loop

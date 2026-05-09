@@ -819,7 +819,7 @@ async function mission_frank4_passed() {
     Path.SwitchRoadsOn(619.6, -911.5, 45.0, 834.3, -954.5, 32.0) //Industrial to commercial Bridge
     Path.SwitchRoadsOn(659.6, 200.0, -20.0, 945.8, 147.5, 5.0) //Tunnel
     Path.SwitchRoadsOn(529.6, 106.5, -30.0, 581.4, 65.7, 0.0) //tunnel from commercial to intersection for sub and ind
-    Stat.RegisterMissionPassed(FM4)
+    Stat.RegisterMissionPassed('FM4')
     Stat.PlayerMadeProgress(1)
     $.com_car23.switch(101)
     $.frankie_contact_blip.remove()

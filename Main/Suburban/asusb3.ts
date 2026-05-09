@@ -1249,7 +1249,7 @@ async function mission_as3_passed() {
     $.maria_contact_blip.remove()
     $.maria_contact_blip = Blip.AddSpriteForContactPoint(-362.8, 245.9, 60.0, 3 /* RADAR_SPRITE_CAT */)
     // START_NEW_SCRIPT cat_mission1_loop
-    Stat.RegisterMissionPassed(AS3)
+    Stat.RegisterMissionPassed('AS3')
     Stat.PlayerMadeProgress(1)
     //START_NEW_SCRIPT asuka_suburban_mission4_loop
 

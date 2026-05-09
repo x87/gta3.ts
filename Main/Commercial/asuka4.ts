@@ -506,7 +506,7 @@ async function mission_asuka4_passed() {
     Text.PrintWithNumberBig('M_PASS', 11000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(11000)
-    Stat.RegisterMissionPassed(AM4)
+    Stat.RegisterMissionPassed('AM4')
     Stat.PlayerMadeProgress(1)
     $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, 15 /* RADAR_SPRITE_RAY */)
     Camera.SetBehindPlayer()

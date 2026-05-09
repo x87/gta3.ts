@@ -781,7 +781,7 @@ async function mission_love2_passed() {
     Audio.PlayMissionPassedTune(1)
     $.player.clearWantedLevel()
     $.player.addScore(30000)
-    Stat.RegisterMissionPassed(LOVE2)
+    Stat.RegisterMissionPassed('LOVE2')
     Stat.PlayerMadeProgress(1)
     $.kenji_contact_blip.remove()
     // START_NEW_SCRIPT love_mission3_loop

@@ -180,9 +180,9 @@ async function mission_start_asuka3() {
                 if (TIMERB > 4000) {
                     $.controlmode = Pad.GetControllerMode()
                     if ($.controlmode == 3) {
-                        Text.PrintHelp(BOATIN3)
+                        Text.PrintHelp('BOATIN3')
                     } else {
-                        Text.PrintHelp(BOATIN1)
+                        Text.PrintHelp('BOATIN1')
                     }
                     $.help1_displayed = 1
                 }
@@ -191,9 +191,9 @@ async function mission_start_asuka3() {
                 if (TIMERB > 11000) {
                     $.controlmode = Pad.GetControllerMode()
                     if ($.controlmode == 3) {
-                        Text.PrintHelp(BOATIN4)
+                        Text.PrintHelp('BOATIN4')
                     } else {
-                        Text.PrintHelp(BOATIN2)
+                        Text.PrintHelp('BOATIN2')
                     }
                     $.help2_displayed = 1
                 }
@@ -1104,7 +1104,7 @@ async function mission_asuka3_passed() {
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(AM3)
+    Stat.RegisterMissionPassed('AM3')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT asuka_mission4_loop
     return
@@ -1149,9 +1149,9 @@ async function check_boats_dead() {
             if ($.player.isInCar($.cop_boat) && $.been_in_cop_boat_before == 0) {
                 $.controlmode = Pad.GetControllerMode()
                 if (!($.controlmode == 3)) {
-                    Text.PrintHelp(PBOAT_1)
+                    Text.PrintHelp('PBOAT_1')
                 } else {
-                    Text.PrintHelp(PBOAT_2)
+                    Text.PrintHelp('PBOAT_2')
                 }
                 $.blip1_as3.remove()
                 $.been_in_cop_boat_before = 1

@@ -53,7 +53,7 @@ async function mission_start_ambulance() {
     $.saved_peds_this_go = 0
     $.paramedic_location = 0
 
-    Text.PrintNow(ATUTOR2, 3000, 1) // Take the injured people to the Hospital
+    Text.PrintNow('ATUTOR2', 3000, 1) // Take the injured people to the Hospital
 
     await asyncWait(3000)
 
@@ -61,7 +61,7 @@ async function mission_start_ambulance() {
 }
 
 async function mission_root() {
-    Text.PrintWithNumberNow(ALEVEL, $.ambulance_level, 5000, 4) // Ambulance Mission Level ~1~
+    Text.PrintWithNumberNow('ALEVEL', $.ambulance_level, 5000, 4) // Ambulance Mission Level ~1~
 
     Hud.ClearTimer($.ped_time_limit)
 
@@ -72,16 +72,16 @@ async function mission_root() {
     if ($.got_siren_help_before == 0) {
         $.controlmode = Pad.GetControllerMode()
         if ($.controlmode == 0) {
-            Text.PrintHelp(SIREN_1) //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
+            Text.PrintHelp('SIREN_1') //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
         }
         if ($.controlmode == 1) {
-            Text.PrintHelp(SIREN_2) //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
+            Text.PrintHelp('SIREN_2') //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
         }
         if ($.controlmode == 2) {
-            Text.PrintHelp(SIREN_3) //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
+            Text.PrintHelp('SIREN_3') //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
         }
         if ($.controlmode == 3) {
-            Text.PrintHelp(SIREN_4) //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
+            Text.PrintHelp('SIREN_4') //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
         }
         $.got_siren_help_before = 1
     }
@@ -391,7 +391,7 @@ async function generate_random_coord() {
 
     if ($.player_in_range_flag == 0 && $.flag_got_range_message == 0) {
         if ($.flag_got_range_message == 0) {
-            Text.PrintNow(A_RANGE, 5000, 1) //"The ambulance radio is out of range, get closer to a hospital."
+            Text.PrintNow('A_RANGE', 5000, 1) //"The ambulance radio is out of range, get closer to a hospital."
             $.flag_got_range_message = 1
         }
         // SCM GOTO → ambulance_failed (not lowered; manual jump required)
@@ -413,13 +413,13 @@ async function generate_random_coord() {
     if ($.mission_end_button_ambulance == 1) {
         if (!($.controlmode == 3)) {
             if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                Text.PrintNow(A_CANC, 3000, 1) //"~r~Ambulance mission cancelled!"
+                Text.PrintNow('A_CANC', 3000, 1) //"~r~Ambulance mission cancelled!"
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
         } else {
             if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                Text.PrintNow(A_CANC, 3000, 1) //"~r~Ambulance mission cancelled!"
+                Text.PrintNow('A_CANC', 3000, 1) //"~r~Ambulance mission cancelled!"
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -427,7 +427,7 @@ async function generate_random_coord() {
     }
 
     if (!$.player.isInModel(99 /* CAR_AMBULANCE */)) {
-        Text.PrintNow(A_CANC, 3000, 1) //"~r~Ambulance mission cancelled!"
+        Text.PrintNow('A_CANC', 3000, 1) //"~r~Ambulance mission cancelled!"
         // SCM GOTO → ambulance_failed (not lowered; manual jump required)
         throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
     }
@@ -730,13 +730,13 @@ async function ambulance_loop() {
         if ($.mission_end_button_ambulance == 1) {
             if (!($.controlmode == 3)) {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                    Text.PrintNow(A_CANC, 3000, 1) //"~r~Ambulance mission cancelled!"
+                    Text.PrintNow('A_CANC', 3000, 1) //"~r~Ambulance mission cancelled!"
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
                 }
             } else {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                    Text.PrintNow(A_CANC, 3000, 1) //"~r~Ambulance mission cancelled!"
+                    Text.PrintNow('A_CANC', 3000, 1) //"~r~Ambulance mission cancelled!"
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
                 }
@@ -744,7 +744,7 @@ async function ambulance_loop() {
         }
 
         if (!$.player.isInModel(99 /* CAR_AMBULANCE */)) {
-            Text.PrintNow(A_CANC, 3000, 1) //"~r~Ambulance mission cancelled!"
+            Text.PrintNow('A_CANC', 3000, 1) //"~r~Ambulance mission cancelled!"
             // SCM GOTO → ambulance_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
         } else {
@@ -768,7 +768,7 @@ async function ambulance_loop() {
 
         if ($.ambulance_pager_flag == 0) {
             if ($.total_saved_peds > 34) {
-                Pager.AddMessage(PAGEB13, 140, 100, 1) //"Health delivered to hideout"
+                Pager.AddMessage('PAGEB13', 140, 100, 1) //"Health delivered to hideout"
                 // SCM GOSUB progress_counter1
                 await progress_counter1()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -777,7 +777,7 @@ async function ambulance_loop() {
         }
         if ($.ambulance_pager_flag == 1) {
             if ($.total_saved_peds > 69) {
-                Pager.AddMessage(PAGEB14, 140, 100, 1) //"Adrenaline delivered to hideout"
+                Pager.AddMessage('PAGEB14', 140, 100, 1) //"Adrenaline delivered to hideout"
                 // SCM GOSUB progress_counter2
                 await progress_counter2()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -787,14 +787,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_1_flag > 0) {
             if (Char.IsDead($.injured_ped_1)) {
-                Text.PrintNow(A_FAIL3, 3000, 1) //The patient is dead
+                Text.PrintNow('A_FAIL3', 3000, 1) //The patient is dead
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_1.explodeHead()
                 $.injured_ped_1.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1) //"Your too late"
+                Text.PrintNow('A_FAIL2', 3000, 1) //"Your too late"
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -859,14 +859,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_2_flag > 0) {
             if (Char.IsDead($.injured_ped_2)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_2.explodeHead()
                 $.injured_ped_2.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -931,14 +931,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_3_flag > 0) {
             if (Char.IsDead($.injured_ped_3)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_3.explodeHead()
                 $.injured_ped_3.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1003,14 +1003,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_4_flag > 0) {
             if (Char.IsDead($.injured_ped_4)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_4.explodeHead()
                 $.injured_ped_4.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1075,14 +1075,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_5_flag > 0) {
             if (Char.IsDead($.injured_ped_5)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_5.explodeHead()
                 $.injured_ped_5.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1147,14 +1147,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_6_flag > 0) {
             if (Char.IsDead($.injured_ped_6)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_6.explodeHead()
                 $.injured_ped_6.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1219,14 +1219,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_7_flag > 0) {
             if (Char.IsDead($.injured_ped_7)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_7.explodeHead()
                 $.injured_ped_7.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1291,14 +1291,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_8_flag > 0) {
             if (Char.IsDead($.injured_ped_8)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_8.explodeHead()
                 $.injured_ped_8.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1363,14 +1363,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_9_flag > 0) {
             if (Char.IsDead($.injured_ped_9)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_9.explodeHead()
                 $.injured_ped_9.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1435,14 +1435,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_10_flag > 0) {
             if (Char.IsDead($.injured_ped_10)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_10.explodeHead()
                 $.injured_ped_10.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1507,14 +1507,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_11_flag > 0) {
             if (Char.IsDead($.injured_ped_11)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_11.explodeHead()
                 $.injured_ped_11.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1579,14 +1579,14 @@ async function ambulance_loop() {
 
         if ($.injured_ped_12_flag > 0) {
             if (Char.IsDead($.injured_ped_12)) {
-                Text.PrintNow(A_FAIL3, 3000, 1)
+                Text.PrintNow('A_FAIL3', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
             if ($.ped_time_limit == 0) {
                 $.injured_ped_12.explodeHead()
                 $.injured_ped_12.removeElegantly()
-                Text.PrintNow(A_FAIL2, 3000, 1)
+                Text.PrintNow('A_FAIL2', 3000, 1)
                 // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
             }
@@ -1850,11 +1850,11 @@ async function ambulance_loop() {
         if ($.saved_peds == $.number_of_injured_peds) {
             $.score_am = $.saved_peds * $.ambulance_level
             $.score_am *= 100
-            Text.PrintWithNumberBig(REWARD, $.score_am, 6000, 6)
+            Text.PrintWithNumberBig('REWARD', $.score_am, 6000, 6)
             $.total_saved_peds += $.saved_peds
             if ($.ambulance_pager_flag == 0) {
                 if ($.total_saved_peds > 34) {
-                    Pager.AddMessage(PAGEB13, 140, 100, 1) //"Health delivered to hideout"
+                    Pager.AddMessage('PAGEB13', 140, 100, 1) //"Health delivered to hideout"
                     // SCM GOSUB progress_counter1
                     await progress_counter1()
                     // fallback if label was not emitted as async function: no-op continues linearly
@@ -1863,7 +1863,7 @@ async function ambulance_loop() {
             }
             if ($.ambulance_pager_flag == 1) {
                 if ($.total_saved_peds > 69) {
-                    Pager.AddMessage(PAGEB14, 140, 100, 1) //"Adrenaline delivered to hideout"
+                    Pager.AddMessage('PAGEB14', 140, 100, 1) //"Adrenaline delivered to hideout"
                     // SCM GOSUB progress_counter2
                     await progress_counter2()
                     // fallback if label was not emitted as async function: no-op continues linearly
@@ -1895,9 +1895,9 @@ async function ambulance_loop() {
             Stat.RegisterAmbulanceLevel($.ambulance_level)
             ++$.ambulance_level
             if ($.ambulance_level == 13) {
-                Text.PrintBig(A_COMP1, 5000, 5) //"Ambulance missions complete!"
-                Text.PrintBig(A_COMP2, 6000, 6) //"You will never get tired!"
-                Pager.AddMessage(A_COMP3, 140, 100, 1) //"Ambulance missions complete! You will never get tired when running!"
+                Text.PrintBig('A_COMP1', 5000, 5) //"Ambulance missions complete!"
+                Text.PrintBig('A_COMP2', 6000, 6) //"You will never get tired!"
+                Pager.AddMessage('A_COMP3', 140, 100, 1) //"Ambulance missions complete! You will never get tired when running!"
                 Audio.PlayMissionPassedTune(1)
                 $.player.setNeverGetsTired(true /* TRUE */)
                 Stat.PlayerMadeProgress(1)
@@ -1912,8 +1912,8 @@ async function ambulance_loop() {
 async function ambulance_failed() {
     Hud.ClearTimer($.ped_time_limit)
     Text.ClearHelp()
-    Text.PrintBig(A_FAIL1, 5000, 5)
-    Text.PrintWithNumberBig(A_SAVES, $.saved_peds_this_go, 6000, 6) //PEOPLE SAVED: ~1~
+    Text.PrintBig('A_FAIL1', 5000, 5)
+    Text.PrintWithNumberBig('A_SAVES', $.saved_peds_this_go, 6000, 6) //PEOPLE SAVED: ~1~
 
     $.hospital_blip_flag = 0
     $.hospital_blip.remove()
@@ -1980,7 +1980,7 @@ async function chunk2_ambulance() {
     $.max_peds_in_car = $.players_ambulance.getMaximumNumberOfPassengers()
 
     if ($.peds_in_car == $.max_peds_in_car) {
-        Text.PrintNow(A_FULL, 5000, 1) //"I'm not getting in there, its full of injured people."
+        Text.PrintNow('A_FULL', 5000, 1) //"I'm not getting in there, its full of injured people."
         $.car_full_flag = 1
     } else {
         $.car_full_flag = 0
@@ -2000,7 +2000,7 @@ async function chunk3_ambulance() {
         $.hospital_blip_flag = 1
     }
     $.time_chunk_in_secs = $.time_chunk / 1000
-    Text.PrintWithNumberBig(A_TIME, $.time_chunk_in_secs, 6000, 6) //+~1~ Seconds
+    Text.PrintWithNumberBig('A_TIME', $.time_chunk_in_secs, 6000, 6) //+~1~ Seconds
     $.ped_time_limit += $.time_chunk
 
     return
@@ -2010,10 +2010,10 @@ async function chunk3_ambulance() {
 }
 
 async function chunk4_ambulance() {
-    Text.PrintBig(A_PASS, 3000, 5)
+    Text.PrintBig('A_PASS', 3000, 5)
     if ($.bonus_time_flag == 1) {
         $.time_chunk_in_secs = $.time_chunk / 1000
-        Text.PrintWithNumberBig(A_TIME, $.time_chunk_in_secs, 6000, 6) //+~1~ Seconds
+        Text.PrintWithNumberBig('A_TIME', $.time_chunk_in_secs, 6000, 6) //+~1~ Seconds
         $.players_ambulance = $.player.storeCarIsIn()
         $.players_ambulance_health = $.players_ambulance.getHealth()
         $.players_ambulance_health += 110

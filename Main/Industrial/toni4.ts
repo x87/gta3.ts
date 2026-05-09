@@ -520,7 +520,7 @@ async function mission_toni4_passed() {
     Text.PrintWithNumberBig('M_PASS', 30000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(30000)
-    Stat.RegisterMissionPassed(TM4)
+    Stat.RegisterMissionPassed('TM4')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT toni_mission5_loop
     Zone.SetPedInfo('CHINA', 1 /* DAY */, 20, 0, 200, 0, 0, 0, 0, 0, 20) //China town

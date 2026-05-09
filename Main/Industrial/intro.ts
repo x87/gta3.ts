@@ -235,7 +235,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(BETRA_A, 4000, 1) //"Sorry babe."
+        Text.PrintNow('BETRA_A', 4000, 1) //"Sorry babe."
 
         while ($.cs_time < 26060) {
             await asyncWait(0)
@@ -249,7 +249,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(BETRA_B, 5000, 1) //"I'm an ambituos girl and you,"
+        Text.PrintNow('BETRA_B', 5000, 1) //"I'm an ambituos girl and you,"
 
         while ($.cs_time < 27000) {
             await asyncWait(0)
@@ -396,7 +396,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(BETRA_C, 2282, 1) //"you're just small time."
+        Text.PrintNow('BETRA_C', 2282, 1) //"you're just small time."
 
         Audio.SetMusicDoesFade(true /* TRUE */)
 
@@ -741,7 +741,7 @@ async function mission_start_intro() {
         }
 
         Text.UseCommands(false /* FALSE */)
-        Text.PrintNow(JAILB_V, 10000, 1) //"Liberty city is in shock today."
+        Text.PrintNow('JAILB_V', 10000, 1) //"Liberty city is in shock today."
 
         while ($.cs_time < 14500) {
             await asyncWait(0)
@@ -757,7 +757,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_A, 10000, 1) //"As the police and emergency services deal with the aftermath..."
+        Text.PrintNow('JAILB_A', 10000, 1) //"As the police and emergency services deal with the aftermath..."
 
         while ($.cs_time < 15933) {
             await asyncWait(0)
@@ -816,7 +816,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_B, 10000, 1) //"of a devastating attack on a police convoy this morning."
+        Text.PrintNow('JAILB_B', 10000, 1) //"of a devastating attack on a police convoy this morning."
 
         while ($.cs_time < 18933) {
             await asyncWait(0)
@@ -886,7 +886,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_C, 10000, 1) //"No details have been released about the prisoners being transferred in the convoy,"
+        Text.PrintNow('JAILB_C', 10000, 1) //"No details have been released about the prisoners being transferred in the convoy,"
 
         while ($.cs_time < 22181) {
             await asyncWait(0)
@@ -914,7 +914,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_D, 10000, 1) //"And no group, terrorists or otherwise have claimed responsibility."
+        Text.PrintNow('JAILB_D', 10000, 1) //"And no group, terrorists or otherwise have claimed responsibility."
 
         while ($.cs_time < 27208) {
             await asyncWait(0)
@@ -928,7 +928,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_E, 10000, 1) //"The convoy left Police head quarters early this morning..."
+        Text.PrintNow('JAILB_E', 10000, 1) //"The convoy left Police head quarters early this morning..."
 
         while ($.cs_time < 29793) {
             await asyncWait(0)
@@ -942,7 +942,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_F, 10000, 1) //"for a routine transfer to Liberty penitentiary."
+        Text.PrintNow('JAILB_F', 10000, 1) //"for a routine transfer to Liberty penitentiary."
 
         while ($.cs_time < 30599) {
             await asyncWait(0)
@@ -981,7 +981,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_G, 10000, 1) //"The attack took place on Callahan bridge,"
+        Text.PrintNow('JAILB_G', 10000, 1) //"The attack took place on Callahan bridge,"
 
         while ($.cs_time < 34817) {
             await asyncWait(0)
@@ -995,7 +995,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_H, 10000, 1) //"leaving few witness', several dead officers and bridge itself severely damaged."
+        Text.PrintNow('JAILB_H', 10000, 1) //"leaving few witness', several dead officers and bridge itself severely damaged."
 
         while ($.cs_time < 38590) {
             await asyncWait(0)
@@ -1009,7 +1009,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_I, 10000, 1) //"Some of the convicts are thought to have perished in the explosion..."
+        Text.PrintNow('JAILB_I', 10000, 1) //"Some of the convicts are thought to have perished in the explosion..."
 
         while ($.cs_time < 40842) {
             await asyncWait(0)
@@ -1023,7 +1023,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_J, 10000, 1) //"that followed the initial attack, although police divers are yet to find any remains."
+        Text.PrintNow('JAILB_J', 10000, 1) //"that followed the initial attack, although police divers are yet to find any remains."
 
         while ($.cs_time < 42066) {
             await asyncWait(0)
@@ -1059,7 +1059,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_W, 10000, 1) //"Revelations as to the professionalism of the attack struck police hours afterward,"
+        Text.PrintNow('JAILB_W', 10000, 1) //"Revelations as to the professionalism of the attack struck police hours afterward,"
 
         while ($.cs_time < 46683) {
             await asyncWait(0)
@@ -1073,7 +1073,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_K, 10000, 1) //"When identification of the missing felons was further hampered..."
+        Text.PrintNow('JAILB_K', 10000, 1) //"When identification of the missing felons was further hampered..."
 
         while ($.cs_time < 49483) {
             await asyncWait(0)
@@ -1087,7 +1087,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_L, 10000, 1) //"by an attack by computer hackers on police head quarter databases."
+        Text.PrintNow('JAILB_L', 10000, 1) //"by an attack by computer hackers on police head quarter databases."
 
         while ($.cs_time < 53406) {
             await asyncWait(0)
@@ -1101,7 +1101,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_O, 10000, 1) //"With the Porter tunnel project falling behind schedule,"
+        Text.PrintNow('JAILB_O', 10000, 1) //"With the Porter tunnel project falling behind schedule,"
 
         while ($.cs_time < 53666) {
             await asyncWait(0)
@@ -1129,7 +1129,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_P, 5000, 1) //"this disaster leaves Portland isolated from the rest of the city."
+        Text.PrintNow('JAILB_P', 5000, 1) //"this disaster leaves Portland isolated from the rest of the city."
 
         while ($.cs_time < 64200) {
             await asyncWait(0)
@@ -1212,7 +1212,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_Q, 1200, 1) //"Come on."
+        Text.PrintNow('JAILB_Q', 1200, 1) //"Come on."
 
         while ($.cs_time < 69378) {
             await asyncWait(0)
@@ -1227,7 +1227,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_R, 1600, 1) //"Senor dickhead."
+        Text.PrintNow('JAILB_R', 1600, 1) //"Senor dickhead."
 
         while ($.cs_time < 71994) {
             await asyncWait(0)
@@ -1242,7 +1242,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_S, 2000, 1) //"It's no problem to kill you."
+        Text.PrintNow('JAILB_S', 2000, 1) //"It's no problem to kill you."
 
         while ($.cs_time < 75623) {
             await asyncWait(0)
@@ -1257,7 +1257,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_T, 1800, 1) //"You gonna be sorry."
+        Text.PrintNow('JAILB_T', 1800, 1) //"You gonna be sorry."
 
         while ($.cs_time < 79633) {
             await asyncWait(0)
@@ -1294,7 +1294,7 @@ async function mission_start_intro() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(JAILB_U, 1800, 1) //"A'right, a'right. Get lost."
+        Text.PrintNow('JAILB_U', 1800, 1) //"A'right, a'right. Get lost."
 
         while ($.cs_time < 87592) {
             await asyncWait(0)
@@ -1702,7 +1702,7 @@ async function mission_start_intro() {
         Text.SetBackgroundColor(0, 0, 0, $.text_alpha)
         Text.SetBackground(true /* ON */)
 
-        Text.Display(320.0, 400.0, PAPER1)
+        Text.Display(320.0, 400.0, 'PAPER1')
 
         if ($.text_fading_flag == 0) {
             $.text_alpha += 2

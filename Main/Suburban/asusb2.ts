@@ -299,7 +299,7 @@ async function mission_start_as2() {
 
     // Mission stuff goes here
 
-    Hud.DisplayCounterWithString($.counter_kappa_dead, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS)
+    Hud.DisplayCounterWithString($.counter_kappa_dead, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS')
 
     $.timer_as2_start = Clock.GetGameTimer()
 
@@ -1440,7 +1440,7 @@ async function mission_as2_passed() {
     Audio.PlayMissionPassedTune(1)
     $.player.clearWantedLevel()
     $.player.addScore(40000)
-    Stat.RegisterMissionPassed(AS2)
+    Stat.RegisterMissionPassed('AS2')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT asuka_suburban_mission3_loop
     return

@@ -407,7 +407,7 @@ async function mission_joey3_passed() {
     Text.PrintWithNumberBig('M_PASS', 20000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(20000)
-    Stat.RegisterMissionPassed(JM3)
+    Stat.RegisterMissionPassed('JM3')
     Stat.PlayerMadeProgress(1)
     $.Garage_bank.changeTypeWithCarModel(7 /* GARAGE_COLLECTSPECIFICCARS */, 111 /* CAR_SECURICAR */)
     // START_NEW_SCRIPT joey_mission4_loop

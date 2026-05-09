@@ -1144,7 +1144,7 @@ async function mission_start_joey6() {
             if ($.player.isInAreaOnFoot2D(1089.9, -223.9, 1084.5, -228.5, true /* TRUE */)) {
                 Text.PrintNow('EBAL_5', 5000, 1)
             } else {
-                Text.ClearThisPrint(EBAL_5)
+                Text.ClearThisPrint('EBAL_5')
             }
         }
 
@@ -1433,7 +1433,7 @@ async function mission_joey6_passed() {
     Text.PrintWithNumberBig('M_PASS', $.thugs_score, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore($.thugs_score)
-    Stat.RegisterMissionPassed(JM6)
+    Stat.RegisterMissionPassed('JM6')
     Stat.PlayerMadeProgress(1)
     $.joey_contact_blip.remove()
     return

@@ -124,56 +124,56 @@ async function mission_start_love4() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(LOVE4_A, 10000, 1) //"Thank you for retrieving those packages, but they were only a decoy."
+        Text.PrintNow('LOVE4_A', 10000, 1) //"Thank you for retrieving those packages, but they were only a decoy."
 
         while ($.cs_time < 4000) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(LOVE4_B, 10000, 1) //"Sorry about that, but that's sometimes the way in business."
+        Text.PrintNow('LOVE4_B', 10000, 1) //"Sorry about that, but that's sometimes the way in business."
 
         while ($.cs_time < 6851) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(LOVE4_C, 10000, 1) //"My real objective was hidden on the plane all along."
+        Text.PrintNow('LOVE4_C', 10000, 1) //"My real objective was hidden on the plane all along."
 
         while ($.cs_time < 9951) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(LOVE4_D, 10000, 1) //"Unfortunately the port authorities seized the plane and were stripping it down"
+        Text.PrintNow('LOVE4_D', 10000, 1) //"Unfortunately the port authorities seized the plane and were stripping it down"
 
         while ($.cs_time < 13204) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(LOVE4_H, 10000, 1) //"until I intervened at great personal expense."
+        Text.PrintNow('LOVE4_H', 10000, 1) //"until I intervened at great personal expense."
 
         while ($.cs_time < 16457) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(LOVE4_E, 10000, 1) //"Cross the bridge to and go to Francis International Airport."
+        Text.PrintNow('LOVE4_E', 10000, 1) //"Cross the bridge to and go to Francis International Airport."
 
         while ($.cs_time < 19710) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(LOVE4_F, 10000, 1) //"I've paid off the officials."
+        Text.PrintNow('LOVE4_F', 10000, 1) //"I've paid off the officials."
 
         while ($.cs_time < 21394) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(LOVE4_G, 10000, 1) //"My property will be waiting for you at the customs hanger in the aircraft's fuselage."
+        Text.PrintNow('LOVE4_G', 10000, 1) //"My property will be waiting for you at the customs hanger in the aircraft's fuselage."
 
         while ($.cs_time < 27666) {
             await asyncWait(0)
@@ -312,12 +312,12 @@ async function mission_start_love4() {
         while (!$.player.locateAnyMeans2D(-1281.3341, -561.8243, 90.0, 90.0, false)) {
             await asyncWait(0)
             if (Car.IsDead($.wingless_cessna)) {
-                Text.PrintNow(LOVE4_9, 5000, 1)
+                Text.PrintNow('LOVE4_9', 5000, 1)
                 // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
             }
             if (Car.IsDead($.car_van3_lm4)) {
-                Text.PrintNow(LOV4_10, 5000, 1)
+                Text.PrintNow('LOV4_10', 5000, 1)
                 // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
             }
@@ -338,12 +338,12 @@ async function mission_start_love4() {
         while (!Char.IsDead($.goon_in_hangar1) || !Char.IsDead($.goon_in_hangar2) || !Char.IsDead($.goon_in_hangar3) || !Char.IsDead($.goon_in_hangar4)) {
             await asyncWait(0)
             if (Car.IsDead($.wingless_cessna)) {
-                Text.PrintNow(LOVE4_9, 5000, 1)
+                Text.PrintNow('LOVE4_9', 5000, 1)
                 // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
             }
             if (Car.IsDead($.car_van3_lm4)) {
-                Text.PrintNow(LOV4_10, 5000, 1)
+                Text.PrintNow('LOV4_10', 5000, 1)
                 // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
             }
@@ -492,10 +492,10 @@ async function mission_start_love4() {
 
         $.script_controlled_player = $.player.getChar()
 
-        Text.PrintNow(LOVE4_5, 5000, 1) //CHECK OUT THE CESSNA
+        Text.PrintNow('LOVE4_5', 5000, 1) //CHECK OUT THE CESSNA
 
         if (Car.IsDead($.wingless_cessna)) {
-            Text.PrintNow(LOVE4_9, 5000, 1)
+            Text.PrintNow('LOVE4_9', 5000, 1)
             // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
         }
@@ -503,12 +503,12 @@ async function mission_start_love4() {
         while (!$.player.isInCar($.wingless_cessna)) {
             await asyncWait(0)
             if (Car.IsDead($.wingless_cessna)) {
-                Text.PrintNow(LOVE4_9, 5000, 1)
+                Text.PrintNow('LOVE4_9', 5000, 1)
                 // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
             }
             if (Car.IsDead($.car_van3_lm4)) {
-                Text.PrintNow(LOV4_10, 5000, 1)
+                Text.PrintNow('LOV4_10', 5000, 1)
                 // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
             }
@@ -516,12 +516,12 @@ async function mission_start_love4() {
 
         await asyncWait(1000)
 
-        Text.PrintNow(LOVE4_2, 3000, 1) // "The package is not here"
+        Text.PrintNow('LOVE4_2', 3000, 1) // "The package is not here"
 
         $.love_4_blip.remove()
 
         if (Car.IsDead($.car_van3_lm4)) {
-            Text.PrintNow(LOV4_10, 5000, 1)
+            Text.PrintNow('LOV4_10', 5000, 1)
             // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
         }
@@ -531,7 +531,7 @@ async function mission_start_love4() {
         while (!$.player.locateOnFootCar2D($.car_van3_lm4, 6.0, 6.0, false)) {
             await asyncWait(0)
             if (Car.IsDead($.car_van3_lm4)) {
-                Text.PrintNow(LOV4_10, 5000, 1)
+                Text.PrintNow('LOV4_10', 5000, 1)
                 // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love4_failed') // fallback: would break linear control flow
             }
@@ -618,7 +618,7 @@ async function mission_start_love4() {
 
         await asyncWait(1000)
 
-        Text.PrintNow(LOVE4_3, 3000, 1) //Construction....yard!
+        Text.PrintNow('LOVE4_3', 3000, 1) //Construction....yard!
 
         await asyncWait(2000)
 
@@ -627,7 +627,7 @@ async function mission_start_love4() {
         Hud.SwitchWidescreen(false /* OFF */)
         $.player.setControl(true /* ON */)
 
-        Text.Print(LOVE4_7, 5000, 1) //GET THERE
+        Text.Print('LOVE4_7', 5000, 1) //GET THERE
 
         $.love_4_blip = Blip.AddForCoord(366.939, -328.025, 20.268) // CONSTRUCTION SITE
 
@@ -839,7 +839,7 @@ async function mission_start_love4() {
                         $.reset_timera_flag = 1
                     }
                     if (TIMERA > 10000 && $.reset_timera_flag == 1) {
-                        Text.PrintNow(LOVE4_6, 10000, 1) //GET INTO THE LIFT
+                        Text.PrintNow('LOVE4_6', 10000, 1) //GET INTO THE LIFT
                         $.reset_timera_flag = 2
                     }
                 }
@@ -958,21 +958,21 @@ async function mission_start_love4() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_A, 15000, 1) //Hey, let's get this out of here. God knows what it is
+        Text.PrintNow('GTAB_A', 15000, 1) //Hey, let's get this out of here. God knows what it is
 
         while ($.cs_time < 18600) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_B, 15000, 1) //but he seems to want it badly enough so it must be worth something.
+        Text.PrintNow('GTAB_B', 15000, 1) //but he seems to want it badly enough so it must be worth something.
 
         while ($.cs_time < 21318) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_C, 15000, 1) //Who the Heck!
+        Text.PrintNow('GTAB_C', 15000, 1) //Who the Heck!
 
         while ($.cs_time < 21933) {
             await asyncWait(0)
@@ -1053,42 +1053,42 @@ async function mission_start_love4() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_D, 15000, 1) //YOU!
+        Text.PrintNow('GTAB_D', 15000, 1) //YOU!
 
         while ($.cs_time < 23270) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_E, 15000, 1) //Hey take it easy amigo! De nada! De nada!
+        Text.PrintNow('GTAB_E', 15000, 1) //Hey take it easy amigo! De nada! De nada!
 
         while ($.cs_time < 26829) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_F, 15000, 1) //I left you pouring your heart out into the gutter!
+        Text.PrintNow('GTAB_F', 15000, 1) //I left you pouring your heart out into the gutter!
 
         while ($.cs_time < 29508) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_G, 15000, 1) //Don't shoot amigo. No problem. We all friends. Here, take this.
+        Text.PrintNow('GTAB_G', 15000, 1) //Don't shoot amigo. No problem. We all friends. Here, take this.
 
         while ($.cs_time < 33871) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_H, 15000, 1) //Don't be such a pussy!
+        Text.PrintNow('GTAB_H', 15000, 1) //Don't be such a pussy!
 
         while ($.cs_time < 35408) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_I, 15000, 1) //We got no choice baby!
+        Text.PrintNow('GTAB_I', 15000, 1) //We got no choice baby!
 
         while ($.cs_time < 36700) {
             await asyncWait(0)
@@ -1162,84 +1162,84 @@ async function mission_start_love4() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_J, 15000, 1) //We always got a choice you dumb bastard!
+        Text.PrintNow('GTAB_J', 15000, 1) //We always got a choice you dumb bastard!
 
         while ($.cs_time < 41684) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_K, 15000, 1) //I'm sorry about that crazy bitch man, they all the same�..por favor??
+        Text.PrintNow('GTAB_K', 15000, 1) //I'm sorry about that crazy bitch man, they all the same�..por favor??
 
         while ($.cs_time < 46468) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_L, 15000, 1) //So the whore got away.
+        Text.PrintNow('GTAB_L', 15000, 1) //So the whore got away.
 
         while ($.cs_time < 48918) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_M, 15000, 1) //But you've done me a favour,
+        Text.PrintNow('GTAB_M', 15000, 1) //But you've done me a favour,
 
         while ($.cs_time < 50755) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_N, 15000, 1) //you're not the only one that has a score to settle with the Cartel -
+        Text.PrintNow('GTAB_N', 15000, 1) //you're not the only one that has a score to settle with the Cartel -
 
         while ($.cs_time < 54352) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_O, 15000, 1) //this worm killed my brother!
+        Text.PrintNow('GTAB_O', 15000, 1) //this worm killed my brother!
 
         while ($.cs_time < 56266) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_P, 15000, 1) //I never killed no Yakuza!
+        Text.PrintNow('GTAB_P', 15000, 1) //I never killed no Yakuza!
 
         while ($.cs_time < 57299) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_Q, 15000, 1) //LIAR! We all saw the Cartel assassin.
+        Text.PrintNow('GTAB_Q', 15000, 1) //LIAR! We all saw the Cartel assassin.
 
         while ($.cs_time < 60721) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_R, 15000, 1) //We are going to hunt down and kill all you Colombian dogs!
+        Text.PrintNow('GTAB_R', 15000, 1) //We are going to hunt down and kill all you Colombian dogs!
 
         while ($.cs_time < 64778) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_S, 15000, 1) //I'll be operating on our friend here to extract information and a little pleasure.
+        Text.PrintNow('GTAB_S', 15000, 1) //I'll be operating on our friend here to extract information and a little pleasure.
 
         while ($.cs_time < 70710) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_T, 15000, 1) //You, drop by later, I'm sure I'll require your services.
+        Text.PrintNow('GTAB_T', 15000, 1) //You, drop by later, I'm sure I'll require your services.
 
         while ($.cs_time < 75150) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(GTAB_U, 15000, 1) //Please amigo, don't leave me with her, she psycho chica! Amigo? Hey AMEEEGO!!! ��.Aiiieeeeaaargghh!
+        Text.PrintNow('GTAB_U', 15000, 1) //Please amigo, don't leave me with her, she psycho chica! Amigo? Hey AMEEEGO!!! ��.Aiiieeeeaaargghh!
 
         while ($.cs_time < 86666) {
             await asyncWait(0)
@@ -1371,7 +1371,7 @@ async function mission_start_love4() {
 
         // ******************************************END OF CUTSCENE********************************
 
-        Text.PrintNow(LOVE4_4, 5000, 1) //"Take the package to Love."
+        Text.PrintNow('LOVE4_4', 5000, 1) //"Take the package to Love."
 
         if (!Car.IsDead($.colombian_car)) {
             if (!Char.IsDead($.yakuza_guard5)) {
@@ -1470,7 +1470,7 @@ async function mission_start_love4() {
     }
 
     async function mission_love4_failed() {
-        Text.PrintBig(M_FAIL, 2000, 1)
+        Text.PrintBig('M_FAIL', 2000, 1)
         return
 
         // mission Love 4 passed
@@ -1487,10 +1487,10 @@ async function mission_start_love4() {
         $.gen_car63.switch(101)
         Path.SwitchRoadsOn(-46.8, -648.0, 39.0, -69.1, -614.0, 50.0) //Commercial to Suburbia Bridge
         $.asuka_contact_blip.remove()
-        Text.PrintWithNumberBig(M_PASS, 50000, 2000, 1)
+        Text.PrintWithNumberBig('M_PASS', 50000, 2000, 1)
         $.player.addScore(50000)
         $.player.clearWantedLevel()
-        Stat.RegisterMissionPassed(LOVE4)
+        Stat.RegisterMissionPassed('LOVE4')
         Zone.SetPedInfo('CONSTRU', 1 /* DAY */, 30, 0, 0, 0, 250, 0, 50, 0, 20) //Fort staunton
         Zone.SetPedInfo('CONSTRU', 0 /* NIGHT */, 15, 0, 0, 0, 300, 0, 70, 0, 10)
         Audio.PlayMissionPassedTune(1)
@@ -1567,7 +1567,7 @@ async function mission_start_love4() {
         if ($.goon_in_hangar1_blip_flag == 0) {
             if (!Char.IsDead($.goon_in_hangar1)) {
                 $.goon_in_hangar1_blip = Blip.AddForChar($.goon_in_hangar1)
-                Text.PrintNow(LOVE4_1, 5000, 1) //"KILL them all!!"
+                Text.PrintNow('LOVE4_1', 5000, 1) //"KILL them all!!"
                 $.goon_in_hangar1_blip_flag = 1
             }
         }
@@ -1575,7 +1575,7 @@ async function mission_start_love4() {
         if ($.goon_in_hangar2_blip_flag == 0) {
             if (!Char.IsDead($.goon_in_hangar2)) {
                 $.goon_in_hangar2_blip = Blip.AddForChar($.goon_in_hangar2)
-                Text.PrintNow(LOVE4_1, 5000, 1) //"KILL them all!!"
+                Text.PrintNow('LOVE4_1', 5000, 1) //"KILL them all!!"
                 $.goon_in_hangar2_blip_flag = 1
             }
         }
@@ -1583,7 +1583,7 @@ async function mission_start_love4() {
         if ($.goon_in_hangar3_blip_flag == 0) {
             if (!Char.IsDead($.goon_in_hangar3)) {
                 $.goon_in_hangar3_blip = Blip.AddForChar($.goon_in_hangar3)
-                Text.PrintNow(LOVE4_1, 5000, 1) //"KILL them all!!"
+                Text.PrintNow('LOVE4_1', 5000, 1) //"KILL them all!!"
                 $.goon_in_hangar3_blip_flag = 1
             }
         }
@@ -1591,7 +1591,7 @@ async function mission_start_love4() {
         if ($.goon_in_hangar4_blip_flag == 0) {
             if (!Char.IsDead($.goon_in_hangar4)) {
                 $.goon_in_hangar4_blip = Blip.AddForChar($.goon_in_hangar4)
-                Text.PrintNow(LOVE4_1, 5000, 1) //"KILL them all!!"
+                Text.PrintNow('LOVE4_1', 5000, 1) //"KILL them all!!"
                 $.goon_in_hangar4_blip_flag = 1
             }
         }

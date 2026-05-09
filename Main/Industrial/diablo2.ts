@@ -454,7 +454,7 @@ async function mission_diablo2_passed() {
     Text.PrintWithNumberBig('M_PASS', 6000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(8000)
-    Stat.RegisterMissionPassed(DIAB2)
+    Stat.RegisterMissionPassed('DIAB2')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT diablo_mission3_loop
     return

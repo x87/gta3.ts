@@ -401,7 +401,7 @@ async function mission_4x4one_passed() {
     $.player.addScore(20000)
     Stat.Register4X4OneTime($.record_4x4_one)
     if ($.flag_4x4_mission1_passed == 0) {
-        Stat.RegisterMissionPassed(T4X4_1)
+        Stat.RegisterMissionPassed('T4X4_1')
         $.flag_4x4_mission1_passed = 1
         Stat.PlayerMadeProgress(1)
     }

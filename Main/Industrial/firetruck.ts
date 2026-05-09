@@ -40,7 +40,7 @@ async function next_fire() {
     $.player1_z = _res225.z
 
     if (!$.player.isInModel(90 /* CAR_FIRETRUCK */)) {
-        Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+        Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
         // SCM GOTO → failed (not lowered; manual jump required)
         throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
     }
@@ -60,13 +60,13 @@ async function next_fire() {
     if ($.mission_end_button_ft == 1) {
         if (!($.controlmode == 3)) {
             if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+                Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
                 // SCM GOTO → failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
             }
         } else {
             if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+                Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
                 // SCM GOTO → failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
             }
@@ -108,7 +108,7 @@ async function next_fire() {
 
     if ($.player_in_range_fire == 0 && $.flag_got_range_mssg == 0) {
         if ($.flag_got_range_mssg == 0) {
-            Text.PrintNow(F_RANGE, 5000, 1) //"The radio is out of range, get closer."
+            Text.PrintNow('F_RANGE', 5000, 1) //"The radio is out of range, get closer."
             $.flag_got_range_mssg = 1
         }
         // SCM GOTO → failed (not lowered; manual jump required)
@@ -229,12 +229,12 @@ async function generate_model() {
         while (!Streaming.HasModelLoaded($.random_car_model) || !(TIMERA > 3000)) {
             await asyncWait(0)
             if ($.fire_time_limit < 1) {
-                Text.PrintNow(F_FAIL2, 5000, 1)
+                Text.PrintNow('F_FAIL2', 5000, 1)
                 // SCM GOTO → failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
             }
             if (!$.player.isInModel(90 /* CAR_FIRETRUCK */)) {
-                Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+                Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
                 // SCM GOTO → failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
             }
@@ -251,13 +251,13 @@ async function generate_model() {
             if ($.mission_end_button_ft == 1) {
                 if (!($.controlmode == 3)) {
                     if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                        Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+                        Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
                         // SCM GOTO → failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
                     }
                 } else {
                     if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                        Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+                        Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
                         // SCM GOTO → failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
                     }
@@ -286,55 +286,55 @@ async function generate_model() {
     //PRINT_NOW F_START 3000 1
 
     if ($.dummy_ped_for_zone.isInZone('PORT_W')) {
-        Text.PrintStringInStringNow(F_START, PORT_W, 5000, 1) // The suspect is in the Callahan Point area.
+        Text.PrintStringInStringNow('F_START', 'PORT_W', 5000, 1) // The suspect is in the Callahan Point area.
     }
 
     if ($.dummy_ped_for_zone.isInZone('PORT_S')) {
-        Text.PrintStringInStringNow(F_START, PORT_S, 5000, 1) // The suspect is in the Atlantic Quays area.
+        Text.PrintStringInStringNow('F_START', 'PORT_S', 5000, 1) // The suspect is in the Atlantic Quays area.
     }
 
     if ($.dummy_ped_for_zone.isInZone('PORT_E')) {
-        Text.PrintStringInStringNow(F_START, PORT_E, 5000, 1) // The suspect is in the Portland Harbour area.
+        Text.PrintStringInStringNow('F_START', 'PORT_E', 5000, 1) // The suspect is in the Portland Harbour area.
     }
 
     if ($.dummy_ped_for_zone.isInZone('PORT_I')) {
-        Text.PrintStringInStringNow(F_START, PORT_I, 5000, 1) // The suspect is in the Trenton area.
+        Text.PrintStringInStringNow('F_START', 'PORT_I', 5000, 1) // The suspect is in the Trenton area.
     }
 
     if ($.dummy_ped_for_zone.isInZone('S_VIEW')) {
-        Text.PrintStringInStringNow(F_START, S_VIEW, 5000, 1) // The suspect is in the Portland View area.
+        Text.PrintStringInStringNow('F_START', 'S_VIEW', 5000, 1) // The suspect is in the Portland View area.
     }
 
     if ($.dummy_ped_for_zone.isInZone('CHINA')) {
-        Text.PrintStringInStringNow(F_START, CHINA, 5000, 1) // The dummy_ped_for_zone is proceeding south in Chinatown
+        Text.PrintStringInStringNow('F_START', 'CHINA', 5000, 1) // The dummy_ped_for_zone is proceeding south in Chinatown
     }
 
     if ($.dummy_ped_for_zone.isInZone('EASTBAY')) {
-        Text.PrintStringInStringNow(F_START, EASTBAY, 5000, 1) // The dummy_ped_for_zone is proceeding south in Portland Beach
+        Text.PrintStringInStringNow('F_START', 'EASTBAY', 5000, 1) // The dummy_ped_for_zone is proceeding south in Portland Beach
     }
 
     if ($.dummy_ped_for_zone.isInZone('LITTLEI')) {
-        Text.PrintStringInStringNow(F_START, LITTLEI, 5000, 1) // The dummy_ped_for_zone is proceeding south in Saint Mark's
+        Text.PrintStringInStringNow('F_START', 'LITTLEI', 5000, 1) // The dummy_ped_for_zone is proceeding south in Saint Mark's
     }
 
     if ($.dummy_ped_for_zone.isInZone('REDLIGH')) {
-        Text.PrintStringInStringNow(F_START, REDLIGH, 5000, 1) // The dummy_ped_for_zone is proceeding south in Red Light District
+        Text.PrintStringInStringNow('F_START', 'REDLIGH', 5000, 1) // The dummy_ped_for_zone is proceeding south in Red Light District
     }
 
     if ($.dummy_ped_for_zone.isInZone('TOWERS')) {
-        Text.PrintStringInStringNow(F_START, TOWERS, 5000, 1) // The dummy_ped_for_zone is proceeding south in Hepburn Heights
+        Text.PrintStringInStringNow('F_START', 'TOWERS', 5000, 1) // The dummy_ped_for_zone is proceeding south in Hepburn Heights
     }
 
     if ($.dummy_ped_for_zone.isInZone('HARWOOD')) {
-        Text.PrintStringInStringNow(F_START, HARWOOD, 5000, 1) // The dummy_ped_for_zone is proceeding south in Harwood
+        Text.PrintStringInStringNow('F_START', 'HARWOOD', 5000, 1) // The dummy_ped_for_zone is proceeding south in Harwood
     }
 
     if ($.dummy_ped_for_zone.isInZone('ROADBR1')) {
-        Text.PrintStringInStringNow(F_START, ROADBR1, 5000, 1) // The dummy_ped_for_zone is proceeding south in Callahan Bridge
+        Text.PrintStringInStringNow('F_START', 'ROADBR1', 5000, 1) // The dummy_ped_for_zone is proceeding south in Callahan Bridge
     }
 
     if ($.dummy_ped_for_zone.isInZone('ROADBR2')) {
-        Text.PrintStringInStringNow(F_START, ROADBR2, 5000, 1) // The dummy_ped_for_zone is proceeding south in Callahan Bridge
+        Text.PrintStringInStringNow('F_START', 'ROADBR2', 5000, 1) // The dummy_ped_for_zone is proceeding south in Callahan Bridge
     }
 
     //IF IS_CHAR_IN_ZONE dummy_ped_for_zone TUNNELP
@@ -342,55 +342,55 @@ async function generate_model() {
     //ENDIF
 
     if ($.dummy_ped_for_zone.isInZone('STADIUM')) {
-        Text.PrintStringInStringNow(F_START, STADIUM, 5000, 1) // The dummy_ped_for_zone is proceeding south in Aspatria
+        Text.PrintStringInStringNow('F_START', 'STADIUM', 5000, 1) // The dummy_ped_for_zone is proceeding south in Aspatria
     }
 
     if ($.dummy_ped_for_zone.isInZone('HOSPI_2')) {
-        Text.PrintStringInStringNow(F_START, HOSPI_2, 5000, 1) // The dummy_ped_for_zone is proceeding south in Rockford
+        Text.PrintStringInStringNow('F_START', 'HOSPI_2', 5000, 1) // The dummy_ped_for_zone is proceeding south in Rockford
     }
 
     if ($.dummy_ped_for_zone.isInZone('UNIVERS')) {
-        Text.PrintStringInStringNow(F_START, UNIVERS, 5000, 1) // The dummy_ped_for_zone is proceeding south in Liberty Campus
+        Text.PrintStringInStringNow('F_START', 'UNIVERS', 5000, 1) // The dummy_ped_for_zone is proceeding south in Liberty Campus
     }
 
     if ($.dummy_ped_for_zone.isInZone('CONSTRU')) {
-        Text.PrintStringInStringNow(F_START, CONSTRU, 5000, 1) // The dummy_ped_for_zone is proceeding south in Fort Staunton
+        Text.PrintStringInStringNow('F_START', 'CONSTRU', 5000, 1) // The dummy_ped_for_zone is proceeding south in Fort Staunton
     }
 
     if ($.dummy_ped_for_zone.isInZone('PARK')) {
-        Text.PrintStringInStringNow(F_START, PARK, 5000, 1) // The dummy_ped_for_zone is proceeding south in Belleville Park
+        Text.PrintStringInStringNow('F_START', 'PARK', 5000, 1) // The dummy_ped_for_zone is proceeding south in Belleville Park
     }
 
     if ($.dummy_ped_for_zone.isInZone('COM_EAS')) {
-        Text.PrintStringInStringNow(F_START, COM_EAS, 5000, 1) // The dummy_ped_for_zone is proceeding south in Newport
+        Text.PrintStringInStringNow('F_START', 'COM_EAS', 5000, 1) // The dummy_ped_for_zone is proceeding south in Newport
     }
 
     if ($.dummy_ped_for_zone.isInZone('SHOPING')) {
-        Text.PrintStringInStringNow(F_START, SHOPING, 5000, 1) // The dummy_ped_for_zone is proceeding south in Bedford Point
+        Text.PrintStringInStringNow('F_START', 'SHOPING', 5000, 1) // The dummy_ped_for_zone is proceeding south in Bedford Point
     }
 
     if ($.dummy_ped_for_zone.isInZone('YAKUSA')) {
-        Text.PrintStringInStringNow(F_START, YAKUSA, 5000, 1) // The dummy_ped_for_zone is proceeding south in Torrington
+        Text.PrintStringInStringNow('F_START', 'YAKUSA', 5000, 1) // The dummy_ped_for_zone is proceeding south in Torrington
     }
 
     if ($.dummy_ped_for_zone.isInZone('AIRPORT')) {
-        Text.PrintStringInStringNow(F_START, AIRPORT, 5000, 1) // The dummy_ped_for_zone is proceeding south in Francis International Airport
+        Text.PrintStringInStringNow('F_START', 'AIRPORT', 5000, 1) // The dummy_ped_for_zone is proceeding south in Francis International Airport
     }
 
     if ($.dummy_ped_for_zone.isInZone('PROJECT')) {
-        Text.PrintStringInStringNow(F_START, PROJECT, 5000, 1) // The dummy_ped_for_zone is proceeding south in Wichita Gardens
+        Text.PrintStringInStringNow('F_START', 'PROJECT', 5000, 1) // The dummy_ped_for_zone is proceeding south in Wichita Gardens
     }
 
     if ($.dummy_ped_for_zone.isInZone('SUB_IND')) {
-        Text.PrintStringInStringNow(F_START, SUB_IND, 5000, 1) // The dummy_ped_for_zone is proceeding south in Pike Creek
+        Text.PrintStringInStringNow('F_START', 'SUB_IND', 5000, 1) // The dummy_ped_for_zone is proceeding south in Pike Creek
     }
 
     if ($.dummy_ped_for_zone.isInZone('SWANKS')) {
-        Text.PrintStringInStringNow(F_START, SWANKS, 5000, 1) // The dummy_ped_for_zone is proceeding south in Cedar Grove
+        Text.PrintStringInStringNow('F_START', 'SWANKS', 5000, 1) // The dummy_ped_for_zone is proceeding south in Cedar Grove
     }
 
     if ($.dummy_ped_for_zone.isInZone('BIG_DAM')) {
-        Text.PrintStringInStringNow(F_START, BIG_DAM, 5000, 1) // The dummy_ped_for_zone is proceeding south in Cochrane Dam
+        Text.PrintStringInStringNow('F_START', 'BIG_DAM', 5000, 1) // The dummy_ped_for_zone is proceeding south in Cochrane Dam
     }
 
     $.dummy_ped_for_zone.delete()
@@ -405,16 +405,16 @@ async function generate_model() {
     if ($.got_siren_help_before == 1) {
         $.controlmode = Pad.GetControllerMode()
         if ($.controlmode == 0) {
-            Text.PrintHelp(SIREN_1) //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
+            Text.PrintHelp('SIREN_1') //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
         }
         if ($.controlmode == 1) {
-            Text.PrintHelp(SIREN_2) //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
+            Text.PrintHelp('SIREN_2') //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
         }
         if ($.controlmode == 2) {
-            Text.PrintHelp(SIREN_3) //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
+            Text.PrintHelp('SIREN_3') //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
         }
         if ($.controlmode == 3) {
-            Text.PrintHelp(SIREN_4) //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
+            Text.PrintHelp('SIREN_4') //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
         }
         $.got_siren_help_before = 2
     }
@@ -422,16 +422,16 @@ async function generate_model() {
     if ($.got_siren_help_before == 0) {
         $.controlmode = Pad.GetControllerMode()
         if ($.controlmode == 0) {
-            Text.PrintHelp(SPRAY_1) //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
+            Text.PrintHelp('SPRAY_1') //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
         }
         if ($.controlmode == 1) {
-            Text.PrintHelp(SPRAY_1) //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
+            Text.PrintHelp('SPRAY_1') //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
         }
         if ($.controlmode == 2) {
-            Text.PrintHelp(SPRAY_1) //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
+            Text.PrintHelp('SPRAY_1') //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
         }
         if ($.controlmode == 3) {
-            Text.PrintHelp(SPRAY_4) //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
+            Text.PrintHelp('SPRAY_4') //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
         }
         $.got_siren_help_before = 1
     }
@@ -439,17 +439,17 @@ async function generate_model() {
     while (!$.fire_to_extinguish.isExtinguished()) {
         await asyncWait(0)
         if (Car.IsDead($.car_on_fire)) {
-            Text.PrintNow(F_FAIL2, 5000, 1)
+            Text.PrintNow('F_FAIL2', 5000, 1)
             // SCM GOTO → failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
         }
         if ($.fire_time_limit < 1) {
-            Text.PrintNow(F_FAIL2, 5000, 1)
+            Text.PrintNow('F_FAIL2', 5000, 1)
             // SCM GOTO → failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
         }
         if (!$.player.isInModel(90 /* CAR_FIRETRUCK */)) {
-            Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+            Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
             // SCM GOTO → failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
         }
@@ -470,13 +470,13 @@ async function generate_model() {
         if ($.mission_end_button_ft == 1) {
             if (!($.controlmode == 3)) {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                    Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+                    Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
                     // SCM GOTO → failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
                 }
             } else {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                    Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
+                    Text.PrintNow('F_CANC', 3000, 1) //"Fire truck mission cancelled!"
                     // SCM GOTO → failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
                 }
@@ -494,8 +494,8 @@ async function passed() {
     /////////////////////////////////////////////////
 
     ++$.fires_extinguished
-    Text.PrintBig(F_PASS1, 5000, 5)
-    Text.PrintWithNumberBig(REWARD, $.score_ft, 6000, 6)
+    Text.PrintBig('F_PASS1', 5000, 5)
+    Text.PrintWithNumberBig('REWARD', $.score_ft, 6000, 6)
     Stat.RegisterFireExtinguished()
 
     if ($.fire_location == 1) {
@@ -512,7 +512,7 @@ async function passed() {
 
     if ($.earned_free_flamethrower == 0) {
         if ($.ind_fires_exting > 19 && $.com_fires_exting > 19 && $.sub_fires_exting > 19) {
-            Pager.AddMessage(PAGEB11, 140, 100, 1) //"Flamethrower delivered to hideout"
+            Pager.AddMessage('PAGEB11', 140, 100, 1) //"Flamethrower delivered to hideout"
             Stat.PlayerMadeProgress(1)
             $.earned_free_flamethrower = 1
         }
@@ -535,7 +535,7 @@ async function passed() {
     //earned_free_flamethrower PAGEB11
 
     if ($.displayed_counter == 0) {
-        Hud.DisplayCounterWithString($.fires_extinguished, 0 /* COUNTER_DISPLAY_NUMBER */, F_EXTIN)
+        Hud.DisplayCounterWithString($.fires_extinguished, 0 /* COUNTER_DISPLAY_NUMBER */, 'F_EXTIN')
         $.displayed_counter = 1
     }
 
@@ -560,8 +560,8 @@ async function failed() {
 
     Hud.ClearTimer($.fire_time_limit)
     Hud.ClearCounter($.fires_extinguished)
-    Text.PrintBig(F_FAIL1, 5000, 5)
-    Text.PrintWithNumberBig(TSCORE, $.total_score, 6000, 6)
+    Text.PrintBig('F_FAIL1', 5000, 5)
+    Text.PrintWithNumberBig('TSCORE', $.total_score, 6000, 6)
     World.RemoveAllScriptFires()
     $.fire_to_extinguish_blip.remove()
     Text.ClearHelp()

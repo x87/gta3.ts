@@ -1137,7 +1137,7 @@ async function mission_joey4_passed() {
     //CLEAR_WANTED_LEVEL player
     //ADD_SCORE player 3000
 
-    Stat.RegisterMissionPassed(JM4)
+    Stat.RegisterMissionPassed('JM4')
     Stat.PlayerMadeProgress(1)
     $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, 26.4, 19 /* RADAR_SPRITE_TONY */)
     $.SHOP_UZI.remove()

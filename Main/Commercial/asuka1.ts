@@ -157,35 +157,35 @@ async function mission_start_asuka1() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_A, 15000, 1)
+        Text.PrintNow('AM1_A', 15000, 1)
 
         while ($.cs_time < 9624) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_B, 15000, 1)
+        Text.PrintNow('AM1_B', 15000, 1)
 
         while ($.cs_time < 13409) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_C, 15000, 1)
+        Text.PrintNow('AM1_C', 15000, 1)
 
         while ($.cs_time < 17788) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_D, 15000, 1)
+        Text.PrintNow('AM1_D', 15000, 1)
 
         while ($.cs_time < 20113) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_E, 15000, 1)
+        Text.PrintNow('AM1_E', 15000, 1)
 
         while ($.cs_time < 25303) {
             await asyncWait(0)
@@ -204,9 +204,9 @@ async function mission_start_asuka1() {
         $.mins_a1 = 30
 
         if ($.hours_a1 > 9) {
-            Text.PrintWith2NumbersNow(AM1_F, $.hours_a1, $.mins_a1, 15000, 1) // "Salvatore Leon will be leaving Luigi's at about ~1~:~1~."
+            Text.PrintWith2NumbersNow('AM1_F', $.hours_a1, $.mins_a1, 15000, 1) // "Salvatore Leon will be leaving Luigi's at about ~1~:~1~."
         } else {
-            Text.PrintWith2NumbersNow(AM1_K, $.hours_a1, $.mins_a1, 15000, 1) // "Salvatore Leon will be leaving Luigi's at about 0~1~:~1~."
+            Text.PrintWith2NumbersNow('AM1_K', $.hours_a1, $.mins_a1, 15000, 1) // "Salvatore Leon will be leaving Luigi's at about 0~1~:~1~."
         }
 
         while ($.cs_time < 29629) {
@@ -214,28 +214,28 @@ async function mission_start_asuka1() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_G, 15000, 1)
+        Text.PrintNow('AM1_G', 15000, 1)
 
         while ($.cs_time < 32657) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_H, 15000, 1)
+        Text.PrintNow('AM1_H', 15000, 1)
 
         while ($.cs_time < 37360) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_I, 15000, 1)
+        Text.PrintNow('AM1_I', 15000, 1)
 
         while ($.cs_time < 40118) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(AM1_J, 15000, 1)
+        Text.PrintNow('AM1_J', 15000, 1)
 
         while ($.cs_time < 41666) {
             await asyncWait(0)
@@ -330,11 +330,11 @@ async function mission_start_asuka1() {
         $.mafia_13_flag = 0
         $.kill_player_now_flag = 0
 
-        Text.PrintNow(AM1_5, 5000, 1) //"Get to the Red Light District and wait for Salvatore to leave the club."
+        Text.PrintNow('AM1_5', 5000, 1) //"Get to the Red Light District and wait for Salvatore to leave the club."
         if ($.hours_a1 > 9) {
-            Text.PrintWith2NumbersSoon(AM1_8, $.hours_a1, $.mins_a1, 5000, 1) //"Salvatore will be leaving at about ~1~:~1~"
+            Text.PrintWith2NumbersSoon('AM1_8', $.hours_a1, $.mins_a1, 5000, 1) //"Salvatore will be leaving at about ~1~:~1~"
         } else {
-            Text.PrintWith2NumbersSoon(AM1_10, $.hours_a1, $.mins_a1, 5000, 1) //"Salvatore will be leaving at about 0~1~:~1~"
+            Text.PrintWith2NumbersSoon('AM1_10', $.hours_a1, $.mins_a1, 5000, 1) //"Salvatore will be leaving at about 0~1~:~1~"
         }
 
         //IF ammu2_blip_added = 0
@@ -350,7 +350,7 @@ async function mission_start_asuka1() {
             $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1)
             if ($.garage_door_close == 0) {
                 if ($.player.isInZone('REDLIGH')) {
-                    Text.PrintNow(AM1_6, 5000, 1) //"Don't hang around Luigi's club, or the Mafia will spot you"
+                    Text.PrintNow('AM1_6', 5000, 1) //"Don't hang around Luigi's club, or the Mafia will spot you"
                     $.mission_blip_am1.remove()
                     $.garage_door_close = 1
                 }
@@ -359,7 +359,7 @@ async function mission_start_asuka1() {
 
         if ($.garage_door_close == 0) {
             if ($.player.isInZone('REDLIGH')) {
-                Text.PrintNow(AM1_6, 5000, 1) //"Don't hang around Luigi's club, or the Mafia will spot you"
+                Text.PrintNow('AM1_6', 5000, 1) //"Don't hang around Luigi's club, or the Mafia will spot you"
                 $.mission_blip_am1.remove()
                 $.garage_door_close = 1
             }
@@ -370,7 +370,7 @@ async function mission_start_asuka1() {
             await asyncWait(0)
             $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1)
             if ($.time_left_a1 < 1) {
-                Text.PrintNow(AM1_3, 5000, 1) //"You've missed Salvatore!"
+                Text.PrintNow('AM1_3', 5000, 1) //"You've missed Salvatore!"
                 // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_asuka1_failed') // fallback: would break linear control flow
             }
@@ -566,7 +566,7 @@ async function mission_start_asuka1() {
             }
             if ($.garage_door_close == 0) {
                 if ($.player.isInZone('REDLIGH')) {
-                    Text.PrintNow(AM1_6, 5000, 1) //"Don't hang around Luigi's club, or the Mafia will spot you"
+                    Text.PrintNow('AM1_6', 5000, 1) //"Don't hang around Luigi's club, or the Mafia will spot you"
                     $.mission_blip_am1.remove()
                     $.garage_door_close = 1
                 }
@@ -1099,7 +1099,7 @@ async function mission_start_asuka1() {
 
         $.mission_blip_am1.remove()
         $.mission_blip_am1 = Blip.AddForChar($.frankie)
-        Text.PrintNow(AM1_1, 5000, 1) //"Salvatore is now leaving Luigi's"
+        Text.PrintNow('AM1_1', 5000, 1) //"Salvatore is now leaving Luigi's"
 
         $.garage_door_close = 0
 
@@ -1285,7 +1285,7 @@ async function mission_start_asuka1() {
             if ($.frankie_flag == 6) {
                 if ($.frankie.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 1.0, 1.0, false)) {
                     $.frankie.delete()
-                    Text.PrintNow(AM1_9, 5000, 1) //"Salvatore has escaped back into Luigi's Club!"
+                    Text.PrintNow('AM1_9', 5000, 1) //"Salvatore has escaped back into Luigi's Club!"
                     // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_asuka1_failed') // fallback: would break linear control flow
                 }
@@ -2307,7 +2307,7 @@ async function mission_start_asuka1() {
                     $.garage_door_close = 1
                 }
                 if ($.frankie_garage.isClosed()) {
-                    Text.PrintNow(AM1_7, 5000, 1) //"Salvatore got back to his club alive!"
+                    Text.PrintNow('AM1_7', 5000, 1) //"Salvatore got back to his club alive!"
                     // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_asuka1_failed') // fallback: would break linear control flow
                 }
@@ -2413,12 +2413,12 @@ async function mission_start_asuka1() {
             $.mafia_14X.setObjKillPlayerAnyMeans($.player)
         }
 
-        Text.PrintWithNumberBig(m_pass, 25000, 5000, 1)
+        Text.PrintWithNumberBig('m_pass', 25000, 5000, 1)
         $.player.addScore(25000)
         Game.SetThreatForPedType(7 /* PEDTYPE_GANG_MAFIA */, 0 /* THREAT_PLAYER1 */)
         Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */) //The Mafia
         $.player.clearWantedLevel()
-        Stat.RegisterMissionPassed(AM1)
+        Stat.RegisterMissionPassed('AM1')
         Audio.PlayMissionPassedTune(1)
         Stat.PlayerMadeProgress(1)
         // START_NEW_SCRIPT asuka_mission2_loop
@@ -2453,7 +2453,7 @@ async function mission_start_asuka1() {
     async function kill_player_now_script() {
         if ($.spotted_print == 0) {
             if (Audio.HasMissionAudioLoaded()) {
-                Text.PrintNow(AM1_2, 5000, 1)
+                Text.PrintNow('AM1_2', 5000, 1)
                 Audio.PlayMissionAudio()
                 $.spotted_print = 1
             }

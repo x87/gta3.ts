@@ -60,7 +60,7 @@ async function mission_start_rc1() {
 
     //GIVE_REMOTE_CONTROLLED_CAR_TO_PLAYER player rc_x rc_y rc_z 180.0
 
-    Hud.DisplayCounterWithString($.counter_RCDD, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS)
+    Hud.DisplayCounterWithString($.counter_RCDD, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS')
     Hud.DisplayTimer($.timer_RCDD)
     $.timer_intro_start = Clock.GetGameTimer()
 
@@ -155,7 +155,7 @@ async function mission_rc1_passed() {
     if ($.flag_rc1_passed == 0) {
         Stat.PlayerMadeProgress(1)
         $.flag_rc1_passed = 1
-        Stat.RegisterMissionPassed(RC1)
+        Stat.RegisterMissionPassed('RC1')
     }
     Stat.RegisterHighestScore(1, $.rec_rc1)
 

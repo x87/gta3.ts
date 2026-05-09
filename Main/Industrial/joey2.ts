@@ -818,7 +818,7 @@ async function mission_joey2_passed() {
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1) //"Mission Passed!"
     $.player.clearWantedLevel()
     $.player.addScore(10000)
-    Stat.RegisterMissionPassed(JM2)
+    Stat.RegisterMissionPassed('JM2')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT joey_mission3_loop
     if ($.out_of_stock_pistol == 0) {

@@ -59,7 +59,7 @@ async function next_cop_car() {
         await asyncWait(0)
 
         if ($.got_cop_breif == 0) {
-            Text.PrintNow(LEGAL, 3000, 1)
+            Text.PrintNow('LEGAL', 3000, 1)
             TIMERB = 0
             $.got_cop_breif = 1
         } else {
@@ -92,7 +92,7 @@ async function next_cop_car() {
 
         if ($.player_in_range == 0) {
             if ($.got_range_message == 0) {
-                Text.PrintNow(C_RANGE, 5000, 1) //"The radio is out of range, get closer to a police station!"
+                Text.PrintNow('C_RANGE', 5000, 1) //"The radio is out of range, get closer to a police station!"
                 $.got_range_message = 1
             }
             // SCM GOTO → cop_car_failed (not lowered; manual jump required)
@@ -347,70 +347,70 @@ async function next_cop_car() {
         if ($.got_siren_help_before == 0) {
             $.controlmode = Pad.GetControllerMode()
             if ($.controlmode == 0) {
-                Text.PrintHelp(SIREN_1) //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
+                Text.PrintHelp('SIREN_1') //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
             }
             if ($.controlmode == 1) {
-                Text.PrintHelp(SIREN_2) //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
+                Text.PrintHelp('SIREN_2') //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
             }
             if ($.controlmode == 2) {
-                Text.PrintHelp(SIREN_3) //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
+                Text.PrintHelp('SIREN_3') //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
             }
             if ($.controlmode == 3) {
-                Text.PrintHelp(SIREN_4) //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
+                Text.PrintHelp('SIREN_4') //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
             }
             $.got_siren_help_before = 1
         }
 
         if ($.criminal.isInZone('PORT_W')) {
-            Text.PrintStringInStringNow(C_BREIF, PORT_W, 5000, 1) // The suspect is in the Callahan Point area.
+            Text.PrintStringInStringNow('C_BREIF', 'PORT_W', 5000, 1) // The suspect is in the Callahan Point area.
         }
 
         if ($.criminal.isInZone('PORT_S')) {
-            Text.PrintStringInStringNow(C_BREIF, PORT_S, 5000, 1) // The suspect is in the Atlantic Quays area.
+            Text.PrintStringInStringNow('C_BREIF', 'PORT_S', 5000, 1) // The suspect is in the Atlantic Quays area.
         }
 
         if ($.criminal.isInZone('PORT_E')) {
-            Text.PrintStringInStringNow(C_BREIF, PORT_E, 5000, 1) // The suspect is in the Portland Harbour area.
+            Text.PrintStringInStringNow('C_BREIF', 'PORT_E', 5000, 1) // The suspect is in the Portland Harbour area.
         }
 
         if ($.criminal.isInZone('PORT_I')) {
-            Text.PrintStringInStringNow(C_BREIF, PORT_I, 5000, 1) // The suspect is in the Trenton area.
+            Text.PrintStringInStringNow('C_BREIF', 'PORT_I', 5000, 1) // The suspect is in the Trenton area.
         }
 
         if ($.criminal.isInZone('S_VIEW')) {
-            Text.PrintStringInStringNow(C_BREIF, S_VIEW, 5000, 1) // The suspect is in the Portland View area.
+            Text.PrintStringInStringNow('C_BREIF', 'S_VIEW', 5000, 1) // The suspect is in the Portland View area.
         }
 
         if ($.criminal.isInZone('CHINA')) {
-            Text.PrintStringInStringNow(C_BREIF, CHINA, 5000, 1) // The criminal is proceeding south in Chinatown
+            Text.PrintStringInStringNow('C_BREIF', 'CHINA', 5000, 1) // The criminal is proceeding south in Chinatown
         }
 
         if ($.criminal.isInZone('EASTBAY')) {
-            Text.PrintStringInStringNow(C_BREIF, EASTBAY, 5000, 1) // The criminal is proceeding south in Portland Beach
+            Text.PrintStringInStringNow('C_BREIF', 'EASTBAY', 5000, 1) // The criminal is proceeding south in Portland Beach
         }
 
         if ($.criminal.isInZone('LITTLEI')) {
-            Text.PrintStringInStringNow(C_BREIF, LITTLEI, 5000, 1) // The criminal is proceeding south in Saint Mark's
+            Text.PrintStringInStringNow('C_BREIF', 'LITTLEI', 5000, 1) // The criminal is proceeding south in Saint Mark's
         }
 
         if ($.criminal.isInZone('REDLIGH')) {
-            Text.PrintStringInStringNow(C_BREIF, REDLIGH, 5000, 1) // The criminal is proceeding south in Red Light District
+            Text.PrintStringInStringNow('C_BREIF', 'REDLIGH', 5000, 1) // The criminal is proceeding south in Red Light District
         }
 
         if ($.criminal.isInZone('TOWERS')) {
-            Text.PrintStringInStringNow(C_BREIF, TOWERS, 5000, 1) // The criminal is proceeding south in Hepburn Heights
+            Text.PrintStringInStringNow('C_BREIF', 'TOWERS', 5000, 1) // The criminal is proceeding south in Hepburn Heights
         }
 
         if ($.criminal.isInZone('HARWOOD')) {
-            Text.PrintStringInStringNow(C_BREIF, HARWOOD, 5000, 1) // The criminal is proceeding south in Harwood
+            Text.PrintStringInStringNow('C_BREIF', 'HARWOOD', 5000, 1) // The criminal is proceeding south in Harwood
         }
 
         if ($.criminal.isInZone('ROADBR1')) {
-            Text.PrintStringInStringNow(C_BREIF, ROADBR1, 5000, 1) // The criminal is proceeding south in Callahan Bridge
+            Text.PrintStringInStringNow('C_BREIF', 'ROADBR1', 5000, 1) // The criminal is proceeding south in Callahan Bridge
         }
 
         if ($.criminal.isInZone('ROADBR2')) {
-            Text.PrintStringInStringNow(C_BREIF, ROADBR2, 5000, 1) // The criminal is proceeding south in Callahan Bridge
+            Text.PrintStringInStringNow('C_BREIF', 'ROADBR2', 5000, 1) // The criminal is proceeding south in Callahan Bridge
         }
 
         //IF IS_CHAR_IN_ZONE criminal TUNNELP
@@ -418,55 +418,55 @@ async function next_cop_car() {
         //ENDIF
 
         if ($.criminal.isInZone('STADIUM')) {
-            Text.PrintStringInStringNow(C_BREIF, STADIUM, 5000, 1) // The criminal is proceeding south in Aspatria
+            Text.PrintStringInStringNow('C_BREIF', 'STADIUM', 5000, 1) // The criminal is proceeding south in Aspatria
         }
 
         if ($.criminal.isInZone('HOSPI_2')) {
-            Text.PrintStringInStringNow(C_BREIF, HOSPI_2, 5000, 1) // The criminal is proceeding south in Rockford
+            Text.PrintStringInStringNow('C_BREIF', 'HOSPI_2', 5000, 1) // The criminal is proceeding south in Rockford
         }
 
         if ($.criminal.isInZone('UNIVERS')) {
-            Text.PrintStringInStringNow(C_BREIF, UNIVERS, 5000, 1) // The criminal is proceeding south in Liberty Campus
+            Text.PrintStringInStringNow('C_BREIF', 'UNIVERS', 5000, 1) // The criminal is proceeding south in Liberty Campus
         }
 
         if ($.criminal.isInZone('CONSTRU')) {
-            Text.PrintStringInStringNow(C_BREIF, CONSTRU, 5000, 1) // The criminal is proceeding south in Fort Staunton
+            Text.PrintStringInStringNow('C_BREIF', 'CONSTRU', 5000, 1) // The criminal is proceeding south in Fort Staunton
         }
 
         if ($.criminal.isInZone('PARK')) {
-            Text.PrintStringInStringNow(C_BREIF, PARK, 5000, 1) // The criminal is proceeding south in Belleville Park
+            Text.PrintStringInStringNow('C_BREIF', 'PARK', 5000, 1) // The criminal is proceeding south in Belleville Park
         }
 
         if ($.criminal.isInZone('COM_EAS')) {
-            Text.PrintStringInStringNow(C_BREIF, COM_EAS, 5000, 1) // The criminal is proceeding south in Newport
+            Text.PrintStringInStringNow('C_BREIF', 'COM_EAS', 5000, 1) // The criminal is proceeding south in Newport
         }
 
         if ($.criminal.isInZone('SHOPING')) {
-            Text.PrintStringInStringNow(C_BREIF, SHOPING, 5000, 1) // The criminal is proceeding south in Bedford Point
+            Text.PrintStringInStringNow('C_BREIF', 'SHOPING', 5000, 1) // The criminal is proceeding south in Bedford Point
         }
 
         if ($.criminal.isInZone('YAKUSA')) {
-            Text.PrintStringInStringNow(C_BREIF, YAKUSA, 5000, 1) // The criminal is proceeding south in Torrington
+            Text.PrintStringInStringNow('C_BREIF', 'YAKUSA', 5000, 1) // The criminal is proceeding south in Torrington
         }
 
         if ($.criminal.isInZone('AIRPORT')) {
-            Text.PrintStringInStringNow(C_BREIF, AIRPORT, 5000, 1) // The criminal is proceeding south in Francis International Airport
+            Text.PrintStringInStringNow('C_BREIF', 'AIRPORT', 5000, 1) // The criminal is proceeding south in Francis International Airport
         }
 
         if ($.criminal.isInZone('PROJECT')) {
-            Text.PrintStringInStringNow(C_BREIF, PROJECT, 5000, 1) // The criminal is proceeding south in Wichita Gardens
+            Text.PrintStringInStringNow('C_BREIF', 'PROJECT', 5000, 1) // The criminal is proceeding south in Wichita Gardens
         }
 
         if ($.criminal.isInZone('SUB_IND')) {
-            Text.PrintStringInStringNow(C_BREIF, SUB_IND, 5000, 1) // The criminal is proceeding south in Pike Creek
+            Text.PrintStringInStringNow('C_BREIF', 'SUB_IND', 5000, 1) // The criminal is proceeding south in Pike Creek
         }
 
         if ($.criminal.isInZone('SWANKS')) {
-            Text.PrintStringInStringNow(C_BREIF, SWANKS, 5000, 1) // The criminal is proceeding south in Cedar Grove
+            Text.PrintStringInStringNow('C_BREIF', 'SWANKS', 5000, 1) // The criminal is proceeding south in Cedar Grove
         }
 
         if ($.criminal.isInZone('BIG_DAM')) {
-            Text.PrintStringInStringNow(C_BREIF, BIG_DAM, 5000, 1) // The criminal is proceeding south in Cochrane Dam
+            Text.PrintStringInStringNow('C_BREIF', 'BIG_DAM', 5000, 1) // The criminal is proceeding south in Cochrane Dam
         }
 
         const _res182 = $.criminal.getCoordinates()
@@ -485,9 +485,9 @@ async function next_cop_car() {
                     $.criminal_blip.remove()
                     $.criminal.delete()
                     $.criminal_created_flag = 0
-                    Text.PrintNow(C_ESCP, 3000, 1) //"The suspect has escaped!"
+                    Text.PrintNow('C_ESCP', 3000, 1) //"The suspect has escaped!"
                 } else {
-                    Text.PrintNow(C_TIME, 3000, 1) //"Your time as a law enforcer is over!"
+                    Text.PrintNow('C_TIME', 3000, 1) //"Your time as a law enforcer is over!"
                 }
                 // SCM GOTO → cop_car_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO cop_car_failed') // fallback: would break linear control flow
@@ -650,20 +650,20 @@ async function next_cop_car() {
     Stat.RegisterCriminalCaught()
     Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */)
     if ($.total_criminals_killed == 1) {
-        Hud.DisplayCounterWithString($.total_criminals_killed, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS)
+        Hud.DisplayCounterWithString($.total_criminals_killed, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS')
     }
 
     $.criminal_blip.remove()
     $.vigilante_score = $.total_criminals_killed * 500
-    Text.PrintBig(C_PASS, 5000, 5)
-    Text.PrintWithNumberBig(REWARD, $.vigilante_score, 5000, 6)
+    Text.PrintBig('C_PASS', 5000, 5)
+    Text.PrintWithNumberBig('REWARD', $.vigilante_score, 5000, 6)
     $.player.addScore($.vigilante_score)
 
     if ($.total_criminals_killed == $.vigilante_bonus_kills) {
         $.vigilante = $.total_criminals_killed * 2
         $.vigilante *= 500
-        Text.PrintBigQ(C_VIGIL, 5000, 5)
-        Text.PrintWithNumberBigQ(REWARD, $.vigilante, 6000, 6)
+        Text.PrintBigQ('C_VIGIL', 5000, 5)
+        Text.PrintWithNumberBigQ('REWARD', $.vigilante, 6000, 6)
         $.player.addScore($.vigilante)
         //FLASH_HUD_OBJECT OnscreenCounter
         if ($.vigilante_bonus_kills == 10) {
@@ -687,7 +687,7 @@ async function next_cop_car() {
 
     if ($.play_pager_message1 == 0) {
         if ($.ind_copcar_kills == 10) {
-            Pager.AddMessage(PAGEB12, 140, 100, 1) //"Police Bribe delivered to hideout"
+            Pager.AddMessage('PAGEB12', 140, 100, 1) //"Police Bribe delivered to hideout"
             Stat.PlayerMadeProgress(1)
             $.play_pager_message1 = 1
         }
@@ -695,7 +695,7 @@ async function next_cop_car() {
 
     if ($.play_pager_message1 == 1) {
         if ($.ind_copcar_kills == 20) {
-            Pager.AddMessage(PAGEB12, 140, 100, 1) //"Police Bribe delivered to hideout"
+            Pager.AddMessage('PAGEB12', 140, 100, 1) //"Police Bribe delivered to hideout"
             Stat.PlayerMadeProgress(1)
             $.play_pager_message1 = 2
         }
@@ -703,7 +703,7 @@ async function next_cop_car() {
 
     if ($.play_pager_message2 == 0) {
         if ($.com_copcar_kills == 10) {
-            Pager.AddMessage(PAGEB12, 140, 100, 1) //"Police Bribe delivered to hideout"
+            Pager.AddMessage('PAGEB12', 140, 100, 1) //"Police Bribe delivered to hideout"
             Stat.PlayerMadeProgress(1)
             $.play_pager_message2 = 1
         }
@@ -711,7 +711,7 @@ async function next_cop_car() {
 
     if ($.play_pager_message2 == 1) {
         if ($.com_copcar_kills == 20) {
-            Pager.AddMessage(PAGEB12, 140, 100, 1) //"Police Bribe delivered to hideout"
+            Pager.AddMessage('PAGEB12', 140, 100, 1) //"Police Bribe delivered to hideout"
             Stat.PlayerMadeProgress(1)
             $.play_pager_message2 = 2
         }
@@ -719,7 +719,7 @@ async function next_cop_car() {
 
     if ($.play_pager_message3 == 0) {
         if ($.sub_copcar_kills == 10) {
-            Pager.AddMessage(PAGEB12, 140, 100, 1) //"Police Bribe delivered to hideout"
+            Pager.AddMessage('PAGEB12', 140, 100, 1) //"Police Bribe delivered to hideout"
             Stat.PlayerMadeProgress(1)
             $.play_pager_message3 = 1
         }
@@ -727,7 +727,7 @@ async function next_cop_car() {
 
     if ($.play_pager_message3 == 1) {
         if ($.sub_copcar_kills == 20) {
-            Pager.AddMessage(PAGEB12, 140, 100, 1) //"Police Bribe delivered to hideout"
+            Pager.AddMessage('PAGEB12', 140, 100, 1) //"Police Bribe delivered to hideout"
             Stat.PlayerMadeProgress(1)
             $.play_pager_message3 = 2
         }
@@ -753,9 +753,9 @@ async function next_cop_car() {
         $.copcar_timer -= $.game_time_difference
         $.game_timer_start = $.game_time_present
         $.timer_in_secs = $.copcar_timer / 1000
-        Text.PrintWithNumberNow(COPCART, $.timer_in_secs, 200, 1) //You have ~1~ seconds to return to the car before the mission ends.
+        Text.PrintWithNumberNow('COPCART', $.timer_in_secs, 200, 1) //You have ~1~ seconds to return to the car before the mission ends.
         if ($.timer_in_secs < 1) {
-            Text.PrintNow(C_TIME, 3000, 1) //"Your time as a law enforcer is over!"
+            Text.PrintNow('C_TIME', 3000, 1) //"Your time as a law enforcer is over!"
             // SCM GOTO → cop_car_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO cop_car_failed') // fallback: would break linear control flow
         }
@@ -795,8 +795,8 @@ async function cop_car_passed() {
 async function cop_car_failed() {
     /////////////////////////////////////////////////////////////
 
-    Text.PrintBig(C_FAIL, 5000, 5)
-    Text.PrintWithNumberBig(C_KILLS, $.total_criminals_killed, 6000, 6)
+    Text.PrintBig('C_FAIL', 5000, 5)
+    Text.PrintWithNumberBig('C_KILLS', $.total_criminals_killed, 6000, 6)
     Hud.ClearTimer($.cop_time_limit)
     Hud.ClearCounter($.total_criminals_killed)
     $.criminal_blip.remove()
@@ -836,9 +836,9 @@ async function copcar_cancelled_checks() {
         $.copcar_timer -= $.game_time_difference
         $.game_timer_start = $.game_time_present
         $.timer_in_secs = $.copcar_timer / 1000
-        Text.PrintWithNumberNow(COPCART, $.timer_in_secs, 200, 1) //You have ~1~ seconds to return to a squad car before the mission ends.
+        Text.PrintWithNumberNow('COPCART', $.timer_in_secs, 200, 1) //You have ~1~ seconds to return to a squad car before the mission ends.
         if ($.timer_in_secs < 1) {
-            Text.PrintNow(C_TIME, 3000, 1) //"Your time as a law enforcer is over!"
+            Text.PrintNow('C_TIME', 3000, 1) //"Your time as a law enforcer is over!"
             $.copcar_cancelled_flag = 1
             return
         }
@@ -867,13 +867,13 @@ async function copcar_cancelled_checks() {
     if ($.mission_end_button == 1) {
         if (!($.controlmode == 3)) {
             if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                Text.PrintNow(C_CANC, 3000, 1) //"Police mission cancelled!"
+                Text.PrintNow('C_CANC', 3000, 1) //"Police mission cancelled!"
                 $.copcar_cancelled_flag = 1
                 return
             }
         } else {
             if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                Text.PrintNow(C_CANC, 3000, 1) //"Police mission cancelled!"
+                Text.PrintNow('C_CANC', 3000, 1) //"Police mission cancelled!"
                 $.copcar_cancelled_flag = 1
                 return
             }

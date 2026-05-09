@@ -103,35 +103,35 @@ async function mission_start_ray1() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM1_A, 8000, 1) //"That scum bag McAffrey he took more bribes than anyone, and now he's gone too far."
+        Text.PrintNow('RM1_A', 8000, 1) //"That scum bag McAffrey he took more bribes than anyone, and now he's gone too far."
 
         while ($.cs_time < 6097) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM1_B, 8000, 1) //"Reckons he'll get an honorable discharge if he turns states evidence."
+        Text.PrintNow('RM1_B', 8000, 1) //"Reckons he'll get an honorable discharge if he turns states evidence."
 
         while ($.cs_time < 9509) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM1_C, 8000, 1) //"He just squealed."
+        Text.PrintNow('RM1_C', 8000, 1) //"He just squealed."
 
         while ($.cs_time < 11019) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM1_D, 8000, 1) //"He's under armed protection in a WitSec property down Newport some apartment behind the car park."
+        Text.PrintNow('RM1_D', 8000, 1) //"He's under armed protection in a WitSec property down Newport some apartment behind the car park."
 
         while ($.cs_time < 16109) {
             await asyncWait(0)
             $.cs_time = Cutscene.GetTime()
         }
 
-        Text.PrintNow(RM1_E, 8000, 1) //"Torch the place and that should flush 'em out, then make sure he never talks to no one."
+        Text.PrintNow('RM1_E', 8000, 1) //"Torch the place and that should flush 'em out, then make sure he never talks to no one."
 
         while ($.cs_time < 21333) {
             await asyncWait(0)
@@ -188,7 +188,7 @@ async function mission_start_ray1() {
 
         $.ray1_blip = Blip.AddForCoord(378.0, -443.2, 29.9)
 
-        Text.PrintNow(RM1_1, 5000, 1) //"Check out the witness protection house."
+        Text.PrintNow('RM1_1', 5000, 1) //"Check out the witness protection house."
 
         while (!$.player.isStoppedInArea2D(330.35, -471.43, 375.982, -431.119, false)) {
             await asyncWait(0)
@@ -222,7 +222,7 @@ async function mission_start_ray1() {
             $.get_away_car += $.police_guard1
             if ($.police_guard2 == 0) {
                 if ($.get_away_car == 0) {
-                    Text.PrintNow(RM1_4, 5000, 1) //"You have run out of grenades! Get some more from ammunation"
+                    Text.PrintNow('RM1_4', 5000, 1) //"You have run out of grenades! Get some more from ammunation"
                     $.ray1_blip.remove()
                     $.ray1_blip = Blip.AddSpriteForCoord(345.5, -713.5, 26.1, 20 /* RADAR_SPRITE_WEAPON */)
                     $.police_guard2 = 1
@@ -230,7 +230,7 @@ async function mission_start_ray1() {
             }
             if ($.police_guard2 == 1) {
                 if ($.get_away_car > 0) {
-                    Text.PrintNow(RM1_5, 5000, 1) //"Get back to the safehouse and torch it"
+                    Text.PrintNow('RM1_5', 5000, 1) //"Get back to the safehouse and torch it"
                     $.ray1_blip.remove()
                     $.ray1_blip = Blip.AddForCoord(378.0, -443.2, 29.9)
                     $.police_guard2 = 0
@@ -319,7 +319,7 @@ async function mission_start_ray1() {
         $.get_away_car.wanderRandomly()
         $.get_away_car.setAvoidLevelTransitions(true /* TRUE */)
 
-        Text.PrintNow(RM1_2, 5000, 1) //"Take out the witness!"
+        Text.PrintNow('RM1_2', 5000, 1) //"Take out the witness!"
 
         $.game_timer_start_r1 = Clock.GetGameTimer()
 
@@ -360,7 +360,7 @@ async function mission_start_ray1() {
                             if (!$.the_witness.isOnScreen()) {
                                 $.mfail_timer_reset_flag = 0
                                 $.the_witness.delete()
-                                Text.PrintNow(RM1_3, 5000, 1) //"McAffrey got away!"
+                                Text.PrintNow('RM1_3', 5000, 1) //"McAffrey got away!"
                                 // SCM GOTO → mission_ray1_failed (not lowered; manual jump required)
                                 throw new Error('unresolved GOTO mission_ray1_failed') // fallback: would break linear control flow
                             }
@@ -465,7 +465,7 @@ async function mission_start_ray1() {
 }
 
 async function mission_ray1_failed() {
-    Text.PrintBig(M_FAIL, 5000, 1)
+    Text.PrintBig('M_FAIL', 5000, 1)
     return
 
     // mission Ray 1 passed
@@ -473,11 +473,11 @@ async function mission_ray1_failed() {
 
 async function mission_ray1_passed() {
     $.flag_ray_mission1_passed = 1
-    Text.PrintWithNumberBig(M_PASS, 30000, 5000, 1)
+    Text.PrintWithNumberBig('M_PASS', 30000, 5000, 1)
     $.player.addScore(30000)
     $.player.clearWantedLevel()
     Audio.PlayMissionPassedTune(1)
-    Stat.RegisterMissionPassed(RM1)
+    Stat.RegisterMissionPassed('RM1')
     Stat.PlayerMadeProgress(1)
     // START_NEW_SCRIPT ray_mission2_loop
     return

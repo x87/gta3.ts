@@ -1642,7 +1642,7 @@ async function frankie_mission1_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(FM1, 15000, 2) //"Pulp Friction"
+                            Text.PrintBig('FM1', 15000, 2) //"Pulp Friction"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2112,7 +2112,7 @@ async function asuka_mission1_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(AM1, 15000, 2)
+                            Text.PrintBig('AM1', 15000, 2)
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2514,7 +2514,7 @@ async function kenji_mission5_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(KM5, 15000, 2) // "SMACK DOWN"
+                            Text.PrintBig('KM5', 15000, 2) // "SMACK DOWN"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2561,7 +2561,7 @@ async function ray_mission1_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(RM1, 15000, 2) //"Silence the sneak"
+                            Text.PrintBig('RM1', 15000, 2) //"Silence the sneak"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2606,7 +2606,7 @@ async function ray_mission2_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */) //	used to be 250
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(RM2, 15000, 2) //"Arms Shortage"
+                            Text.PrintBig('RM2', 15000, 2) //"Arms Shortage"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2651,7 +2651,7 @@ async function ray_mission3_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(RM3, 15000, 2) //"Evidence Dash"
+                            Text.PrintBig('RM3', 15000, 2) //"Evidence Dash"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2696,7 +2696,7 @@ async function ray_mission4_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(RM4, 15000, 2) //"Gone Fishing"
+                            Text.PrintBig('RM4', 15000, 2) //"Gone Fishing"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2741,7 +2741,7 @@ async function ray_mission5_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */) //	used to be 250
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(RM5, 15000, 2) //"Plaster Blaster"
+                            Text.PrintBig('RM5', 15000, 2) //"Plaster Blaster"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2785,7 +2785,7 @@ async function ray_mission6_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(RM6, 15000, 2) //"Marked Man"
+                            Text.PrintBig('RM6', 15000, 2) //"Marked Man"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -2919,7 +2919,7 @@ async function love_mission3_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(LOVE3, 15000, 2) //"love Mission 3"
+                            Text.PrintBig('LOVE3', 15000, 2) //"love Mission 3"
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -3175,7 +3175,7 @@ async function love_mission4_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(LOVE4, 15000, 2)
+                            Text.PrintBig('LOVE4', 15000, 2)
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -3219,7 +3219,7 @@ async function love_mission5_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(LOVE5, 15000, 2)
+                            Text.PrintBig('LOVE5', 15000, 2)
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -3263,7 +3263,7 @@ async function love_mission6_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(LOVE6, 15000, 2)
+                            Text.PrintBig('LOVE6', 15000, 2)
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -3307,7 +3307,7 @@ async function love_mission7_loop() {
                             Camera.SetFadingColor(0, 0, 0)
                             Camera.DoFade(1500, 0 /* FADE_OUT */)
                             Streaming.Switch(false /* OFF */)
-                            Text.PrintBig(LOVE7, 15000, 2)
+                            Text.PrintBig('LOVE7', 15000, 2)
                             while (Camera.GetFadingStatus()) {
                                 await asyncWait(0)
                             }
@@ -4698,7 +4698,7 @@ async function imp_exp_pager() {
 
             if ($.flag_player_on_mission == 0) {
                 if ($.player.isPlaying()) {
-                    Pager.AddMessage(IMPEXPP, 140, 2, 0)
+                    Pager.AddMessage('IMPEXPP', 140, 2, 0)
                     return // TERMINATE_THIS_SCRIPT
                 }
             }
@@ -4716,7 +4716,7 @@ async function emergency_crane_pager() {
 
             if ($.flag_player_on_mission == 0) {
                 if ($.player.isPlaying()) {
-                    Pager.AddMessage(EMVHPUP, 140, 2, 0)
+                    Pager.AddMessage('EMVHPUP', 140, 2, 0)
                     return // TERMINATE_THIS_SCRIPT
                 }
             }
@@ -4734,7 +4734,7 @@ async function van_heist_garage_pager() {
 
             if ($.flag_player_on_mission == 0) {
                 if ($.player.isPlaying()) {
-                    Pager.AddMessage(VANHSTP, 140, 2, 0)
+                    Pager.AddMessage('VANHSTP', 140, 2, 0)
                     return // TERMINATE_THIS_SCRIPT
                 }
             }

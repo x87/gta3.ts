@@ -494,7 +494,7 @@ async function mission_mayhem_passed() {
     $.player.addScore(30000)
     Stat.Register4X4MayhemTime($.record_mayhem)
     if ($.flag_mayhem_mission1_passed == 0) {
-        Stat.RegisterMissionPassed(MM_1)
+        Stat.RegisterMissionPassed('MM_1')
         $.flag_mayhem_mission1_passed = 1
         Stat.PlayerMadeProgress(1)
     }

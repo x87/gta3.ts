@@ -916,7 +916,7 @@ async function mission_yd1_failed() {
 
 async function mission_yd1_passed() {
     if ($.flag_yardie_mission4_passed == 0) {
-        Stat.RegisterMissionPassed(YD1)
+        Stat.RegisterMissionPassed('YD1')
         Stat.PlayerMadeProgress(1)
         $.flag_yardie_mission1_passed = 1
         // START_NEW_SCRIPT yardie_mission2_loop
