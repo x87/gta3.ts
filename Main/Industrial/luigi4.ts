@@ -607,8 +607,14 @@ async function mission_start_luigi4() {
                     if ($.car_lm4.isOnScreen()) {
                         $.car_lm4.setWatertight(false /* FALSE */)
                     } else {
-                        ;[$.car_lm4_x, $.car_lm4_y, $.car_lm4_z] = $.car_lm4.getCoordinates()
-                        ;[$.car_lm4_x, $.car_lm4_y, $.car_lm4_z] = Path.GetClosestCarNode($.car_lm4_x, $.car_lm4_y, $.car_lm4_z)
+                        const _res283 = $.car_lm4.getCoordinates()
+                        $.car_lm4_x = _res283.x
+                        $.car_lm4_y = _res283.y
+                        $.car_lm4_z = _res283.z
+                        const _res284 = Path.GetClosestCarNode($.car_lm4_x, $.car_lm4_y, $.car_lm4_z)
+                        $.car_lm4_x = _res284.nodeX
+                        $.car_lm4_y = _res284.nodeY
+                        $.car_lm4_z = _res284.nodeZ
                     }
                     if (!Camera.IsPointOnScreen($.car_lm4_x, $.car_lm4_y, $.car_lm4_z, 5.0)) {
                         $.car_lm4.setCoordinates($.car_lm4_x, $.car_lm4_y, $.car_lm4_z)

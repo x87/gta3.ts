@@ -1072,7 +1072,10 @@ async function mission_start_as2() {
         }
         if ($.flag_particle_as2 == 1) {
             if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_1.getCoordinates()
+                const _res315 = $.kappa_1.getCoordinates()
+                $.steam_x = _res315.x
+                $.steam_y = _res315.y
+                $.steam_z = _res315.z
                 //steam_x = steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1080,7 +1083,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa1_dead == 1 && $.flag_kappa1_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_1.getCoordinates()
+                const _res316 = $.kappa_1.getCoordinates()
+                $.steam_x = _res316.x
+                $.steam_y = _res316.y
+                $.steam_z = _res316.z
                 //steam_x = steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1110,7 +1116,10 @@ async function mission_start_as2() {
       ENDIF
       */
             if ($.flag_kappa3_dead == 0 && $.flag_kappa3_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_3.getCoordinates()
+                const _res317 = $.kappa_3.getCoordinates()
+                $.steam_x = _res317.x
+                $.steam_y = _res317.y
+                $.steam_z = _res317.z
                 //steam_x = steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1118,7 +1127,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa3_dead == 1 && $.flag_kappa3_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_3.getCoordinates()
+                const _res318 = $.kappa_3.getCoordinates()
+                $.steam_x = _res318.x
+                $.steam_y = _res318.y
+                $.steam_z = _res318.z
                 //steam_x = steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1127,7 +1139,10 @@ async function mission_start_as2() {
                 $.flag_kappa3_dead = 2
             }
             if ($.flag_kappa4_dead == 0 && $.flag_kappa4_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_4.getCoordinates()
+                const _res319 = $.kappa_4.getCoordinates()
+                $.steam_x = _res319.x
+                $.steam_y = _res319.y
+                $.steam_z = _res319.z
                 $.steam_x = $.steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1135,7 +1150,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa4_dead == 1 && $.flag_kappa4_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_4.getCoordinates()
+                const _res320 = $.kappa_4.getCoordinates()
+                $.steam_x = _res320.x
+                $.steam_y = _res320.y
+                $.steam_z = _res320.z
                 $.steam_x = $.steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1144,7 +1162,10 @@ async function mission_start_as2() {
                 $.flag_kappa4_dead = 2
             }
             if ($.flag_kappa5_dead == 0 && $.flag_kappa5_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_5.getCoordinates()
+                const _res321 = $.kappa_5.getCoordinates()
+                $.steam_x = _res321.x
+                $.steam_y = _res321.y
+                $.steam_z = _res321.z
                 //steam_x = steam_x + 1.0
                 $.steam_y = $.steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1152,7 +1173,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa5_dead == 1 && $.flag_kappa5_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_5.getCoordinates()
+                const _res322 = $.kappa_5.getCoordinates()
+                $.steam_x = _res322.x
+                $.steam_y = _res322.y
+                $.steam_z = _res322.z
                 //steam_x = steam_x + 1.0
                 $.steam_y = $.steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1161,7 +1185,10 @@ async function mission_start_as2() {
                 $.flag_kappa5_dead = 2
             }
             if ($.flag_kappa6_dead == 0 && $.flag_kappa6_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_6.getCoordinates()
+                const _res323 = $.kappa_6.getCoordinates()
+                $.steam_x = _res323.x
+                $.steam_y = _res323.y
+                $.steam_z = _res323.z
                 //steam_x = steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 $.steam_x = $.steam_x - 1.0
@@ -1169,7 +1196,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa6_dead == 1 && $.flag_kappa6_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_6.getCoordinates()
+                const _res324 = $.kappa_6.getCoordinates()
+                $.steam_x = _res324.x
+                $.steam_y = _res324.y
+                $.steam_z = _res324.z
                 //steam_x = steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 $.steam_x = $.steam_x - 1.0
@@ -1178,7 +1208,10 @@ async function mission_start_as2() {
                 $.flag_kappa6_dead = 2
             }
             if ($.flag_kappa7_dead == 0 && $.flag_kappa7_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_7.getCoordinates()
+                const _res325 = $.kappa_7.getCoordinates()
+                $.steam_x = _res325.x
+                $.steam_y = _res325.y
+                $.steam_z = _res325.z
                 //steam_x = steam_x + 1.0
                 $.steam_y = $.steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1186,7 +1219,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa7_dead == 1 && $.flag_kappa7_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_7.getCoordinates()
+                const _res326 = $.kappa_7.getCoordinates()
+                $.steam_x = _res326.x
+                $.steam_y = _res326.y
+                $.steam_z = _res326.z
                 //steam_x = steam_x + 1.0
                 $.steam_y = $.steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1216,7 +1252,10 @@ async function mission_start_as2() {
       ENDIF
       */
             if ($.flag_kappa9_dead == 0 && $.flag_kappa9_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_9.getCoordinates()
+                const _res327 = $.kappa_9.getCoordinates()
+                $.steam_x = _res327.x
+                $.steam_y = _res327.y
+                $.steam_z = _res327.z
                 $.steam_x = $.steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1224,7 +1263,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa9_dead == 1 && $.flag_kappa9_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_9.getCoordinates()
+                const _res328 = $.kappa_9.getCoordinates()
+                $.steam_x = _res328.x
+                $.steam_y = _res328.y
+                $.steam_z = _res328.z
                 $.steam_x = $.steam_x + 1.0
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1233,7 +1275,10 @@ async function mission_start_as2() {
                 $.flag_kappa9_dead = 2
             }
             if ($.flag_kappa10_dead == 0 && $.flag_kappa10_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_10.getCoordinates()
+                const _res329 = $.kappa_10.getCoordinates()
+                $.steam_x = _res329.x
+                $.steam_y = _res329.y
+                $.steam_z = _res329.z
                 //steam_x = steam_x + 1.0
                 $.steam_y = $.steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1241,7 +1286,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa10_dead == 1 && $.flag_kappa10_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_10.getCoordinates()
+                const _res330 = $.kappa_10.getCoordinates()
+                $.steam_x = _res330.x
+                $.steam_y = _res330.y
+                $.steam_z = _res330.z
                 //steam_x = steam_x + 1.0
                 $.steam_y = $.steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1271,7 +1319,10 @@ async function mission_start_as2() {
       ENDIF
       */
             if ($.flag_kappa12_dead == 0 && $.flag_kappa12_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_12.getCoordinates()
+                const _res331 = $.kappa_12.getCoordinates()
+                $.steam_x = _res331.x
+                $.steam_y = _res331.y
+                $.steam_z = _res331.z
                 //steam_x = steam_x + 1.0
                 $.steam_y = $.steam_y + 1.0
                 //steam_x = steam_x - 1.0
@@ -1279,7 +1330,10 @@ async function mission_start_as2() {
                 Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50)
             }
             if ($.flag_kappa12_dead == 1 && $.flag_kappa12_created == 1) {
-                ;[$.steam_x, $.steam_y, $.steam_z] = $.kappa_12.getCoordinates()
+                const _res332 = $.kappa_12.getCoordinates()
+                $.steam_x = _res332.x
+                $.steam_y = _res332.y
+                $.steam_z = _res332.z
                 //steam_x = steam_x + 1.0
                 $.steam_y = $.steam_y + 1.0
                 //steam_x = steam_x - 1.0

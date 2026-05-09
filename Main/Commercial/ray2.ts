@@ -804,7 +804,10 @@ async function herring() {
 
     if (!Char.IsDead($.phil)) {
         $.phil.setStayInSamePlace(true /* true */)
-        ;[$.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z] = $.phil.getCoordinates()
+        const _res70 = $.phil.getCoordinates()
+        $.phils_defcon_x = _res70.x
+        $.phils_defcon_y = _res70.y
+        $.phils_defcon_z = _res70.z
         if (!$.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false /* false */)) {
             Text.PrintNow('RM2_G', 2500, 1) //"Go check on Phil!"
             $.blip_phil = Blip.AddForChar($.phil)

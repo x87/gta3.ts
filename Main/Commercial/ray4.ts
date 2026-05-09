@@ -324,7 +324,10 @@ async function mission_start_ray4() {
         }
 
         $.distance_resultB = $.partners_boat.getHeading()
-        ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
+        const _res88 = $.partners_boat.getCoordinates()
+        $.partner_x = _res88.x
+        $.partner_y = _res88.y
+        $.partner_z = _res88.z
         $.partners_boat_forward_x = $.partners_boat.getForwardX()
         $.partners_boat_forward_y = $.partners_boat.getForwardY()
         $.temp_dot_product_x = 0.0 * $.partners_boat_forward_y
@@ -385,7 +388,10 @@ async function mission_start_ray4() {
             throw new Error('unresolved GOTO mission_ray4_passed') // fallback: would break linear control flow
         }
 
-        ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
+        const _res89 = $.partners_boat.getCoordinates()
+        $.partner_x = _res89.x
+        $.partner_y = _res89.y
+        $.partner_z = _res89.z
         $.partners_boat_forward_x = $.partners_boat.getForwardX()
         $.partners_boat_forward_y = $.partners_boat.getForwardY()
         $.temp_dot_product_x = -5.0 * $.partners_boat_forward_y
@@ -424,7 +430,10 @@ async function mission_start_ray4() {
 
         $.rays_partner.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 1600)
 
-        ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
+        const _res90 = $.partners_boat.getCoordinates()
+        $.partner_x = _res90.x
+        $.partner_y = _res90.y
+        $.partner_z = _res90.z
         $.partners_boat_forward_x = $.partners_boat.getForwardX()
         $.partners_boat_forward_y = $.partners_boat.getForwardY()
         $.temp_dot_product_x = 25.0 * $.partners_boat_forward_y
@@ -464,7 +473,10 @@ async function mission_start_ray4() {
         $.rays_partner.setObjNoObj()
         $.rays_partner.setWaitState(0 /* WAITSTATE_FALSE */, 100)
         $.rays_partner.setObjDestroyCar($.fish_target)
-        ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.fish_target.getCoordinates()
+        const _res91 = $.fish_target.getCoordinates()
+        $.fish_target_x = _res91.x
+        $.fish_target_y = _res91.y
+        $.fish_target_z = _res91.z
 
         $.partner_x = $.fish_target_x - 2.0
         $.partner_y = $.fish_target_y - 2.0
@@ -494,7 +506,10 @@ async function mission_start_ray4() {
         $.rays_partner.setObjNoObj()
         World.DestroyProjectilesInArea($.partner_x, $.partner_y, $.partner_z, $.temp_x, $.vector_x, $.vector_y)
 
-        ;[$.partner_x, $.partner_y, $.partner_z] = $.fish_target.getCoordinates()
+        const _res92 = $.fish_target.getCoordinates()
+        $.partner_x = _res92.x
+        $.partner_y = _res92.y
+        $.partner_z = _res92.z
         $.partner_z += 1.0
         $.fish_target_x = $.partner_x
         $.fish_target_y = $.partner_y
@@ -520,7 +535,10 @@ async function mission_start_ray4() {
             throw new Error('unresolved GOTO mission_ray4_passed') // fallback: would break linear control flow
         }
 
-        ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
+        const _res93 = $.partners_boat.getCoordinates()
+        $.partner_x = _res93.x
+        $.partner_y = _res93.y
+        $.partner_z = _res93.z
         $.partners_boat_forward_x = $.partners_boat.getForwardX()
         $.partners_boat_forward_y = $.partners_boat.getForwardY()
         $.temp_dot_product_x = 30.0 * $.partners_boat_forward_y
@@ -774,7 +792,10 @@ async function mission_start_ray4() {
             throw new Error('unresolved GOTO mission_ray4_passed') // fallback: would break linear control flow
         }
 
-        ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
+        const _res94 = $.partners_boat.getCoordinates()
+        $.partner_x = _res94.x
+        $.partner_y = _res94.y
+        $.partner_z = _res94.z
         $.partners_boat_forward_x = $.partners_boat.getForwardX()
         $.partners_boat_forward_y = $.partners_boat.getForwardY()
         $.temp_dot_product_x = 10.0 * $.partners_boat_forward_y
@@ -834,7 +855,10 @@ async function mission_start_ray4() {
             throw new Error('unresolved GOTO mission_ray4_passed') // fallback: would break linear control flow
         }
 
-        ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
+        const _res95 = $.partners_boat.getCoordinates()
+        $.partner_x = _res95.x
+        $.partner_y = _res95.y
+        $.partner_z = _res95.z
 
         $.rays_partner.setObjGotoCoordOnFoot($.partner_x, $.partner_y)
 
@@ -899,12 +923,18 @@ async function mission_start_ray4() {
 
             if (Char.IsDead($.rays_partner)) {
                 if (ScriptObject.DoesExist($.barrel2_a)) {
-                    ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_a.getCoordinates()
+                    const _res96 = $.barrel2_a.getCoordinates()
+                    $.fish_target_x = _res96.x
+                    $.fish_target_y = _res96.y
+                    $.fish_target_z = _res96.z
                     Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */)
                     $.barrel2_a.delete()
                 }
                 if (ScriptObject.DoesExist($.barrel2_b)) {
-                    ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_b.getCoordinates()
+                    const _res97 = $.barrel2_b.getCoordinates()
+                    $.fish_target_x = _res97.x
+                    $.fish_target_y = _res97.y
+                    $.fish_target_z = _res97.z
                     Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */)
                     $.barrel2_b.delete()
                 }
@@ -970,12 +1000,18 @@ async function mission_start_ray4() {
                     }
                     if ($.boat_node_counter == 0) {
                         if (ScriptObject.DoesExist($.barrel2_a)) {
-                            ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_a.getCoordinates()
+                            const _res98 = $.barrel2_a.getCoordinates()
+                            $.fish_target_x = _res98.x
+                            $.fish_target_y = _res98.y
+                            $.fish_target_z = _res98.z
                             $.barrel2_a.delete()
                             Pickup.DropNauticalMine($.fish_target_x, $.fish_target_y, $.fish_target_z)
                         }
                         if (ScriptObject.DoesExist($.barrel2_b)) {
-                            ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_b.getCoordinates()
+                            const _res99 = $.barrel2_b.getCoordinates()
+                            $.fish_target_x = _res99.x
+                            $.fish_target_y = _res99.y
+                            $.fish_target_z = _res99.z
                             $.barrel2_b.delete()
                             Pickup.DropNauticalMine($.fish_target_x, $.fish_target_y, $.fish_target_z)
                         }
@@ -1011,7 +1047,10 @@ async function mission_start_ray4() {
                                     $.timerc_reset_flag_r4 = 1
                                     $.partner_on_foot_flag = -1
                                 } else {
-                                    ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.partners_boat.getCoordinates()
+                                    const _res100 = $.partners_boat.getCoordinates()
+                                    $.fish_target_x = _res100.x
+                                    $.fish_target_y = _res100.y
+                                    $.fish_target_z = _res100.z
                                     $.fish_target_z = World.GetGroundZFor3DCoord($.fish_target_x, $.fish_target_y, $.fish_target_z)
                                     if (!($.fish_target_z == 0.0)) {
                                         // SCM GOSUB exit_boat
@@ -1034,17 +1073,26 @@ async function mission_start_ray4() {
                         }
                     }
                     if (!$.partners_boat.locate3D($.partner_stuck_x, $.partner_stuck_y, $.partner_stuck_z, 4.0, 4.0, 4.0, false)) {
-                        ;[$.partner_stuck_x, $.partner_stuck_y, $.partner_stuck_z] = $.partners_boat.getCoordinates()
+                        const _res101 = $.partners_boat.getCoordinates()
+                        $.partner_stuck_x = _res101.x
+                        $.partner_stuck_y = _res101.y
+                        $.partner_stuck_z = _res101.z
                         $.timerc_reset_flag_r4 = 0
                     }
                 } else {
                     if (ScriptObject.DoesExist($.barrel2_a)) {
-                        ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_a.getCoordinates()
+                        const _res102 = $.barrel2_a.getCoordinates()
+                        $.fish_target_x = _res102.x
+                        $.fish_target_y = _res102.y
+                        $.fish_target_z = _res102.z
                         Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */)
                         $.barrel2_a.delete()
                     }
                     if (ScriptObject.DoesExist($.barrel2_b)) {
-                        ;[$.fish_target_x, $.fish_target_y, $.fish_target_z] = $.barrel2_b.getCoordinates()
+                        const _res103 = $.barrel2_b.getCoordinates()
+                        $.fish_target_x = _res103.x
+                        $.fish_target_y = _res103.y
+                        $.fish_target_z = _res103.z
                         Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */)
                         $.barrel2_b.delete()
                     }
@@ -1277,12 +1325,15 @@ async function mission_start_ray4() {
                                     $.timer_reset_flag_r4 = 0
                                 } else {
                                     if (!$.partners_car.isOnScreen()) {
-                                        ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_car.getCoordinates()
-                                        ;[$.partner_x, $.partner_y, $.partner_z, $.distance_between_boats] = Path.GetClosestCarNodeWithHeading(
-                                            $.partner_x,
-                                            $.partner_y,
-                                            $.partner_z
-                                        )
+                                        const _res104 = $.partners_car.getCoordinates()
+                                        $.partner_x = _res104.x
+                                        $.partner_y = _res104.y
+                                        $.partner_z = _res104.z
+                                        const _res105 = Path.GetClosestCarNodeWithHeading($.partner_x, $.partner_y, $.partner_z)
+                                        $.partner_x = _res105.nodeX
+                                        $.partner_y = _res105.nodeY
+                                        $.partner_z = _res105.nodeZ
+                                        $.distance_between_boats = _res105.angle
                                         if (!Camera.IsPointOnScreen($.partner_x, $.partner_y, $.partner_z, 4.0)) {
                                             $.partners_car.setCoordinates($.partner_x, $.partner_y, $.partner_z)
                                             $.partners_car.setHeading($.distance_between_boats)
@@ -1298,8 +1349,15 @@ async function mission_start_ray4() {
                                 $.partners_car.setUpsidedownNotDamaged(false /* FALSE */)
                             } else {
                                 if (!$.partners_car.isOnScreen()) {
-                                    ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_car.getCoordinates()
-                                    ;[$.partner_x, $.partner_y, $.partner_z, $.distance_between_boats] = Path.GetClosestCarNodeWithHeading($.partner_x, $.partner_y, $.partner_z)
+                                    const _res106 = $.partners_car.getCoordinates()
+                                    $.partner_x = _res106.x
+                                    $.partner_y = _res106.y
+                                    $.partner_z = _res106.z
+                                    const _res107 = Path.GetClosestCarNodeWithHeading($.partner_x, $.partner_y, $.partner_z)
+                                    $.partner_x = _res107.nodeX
+                                    $.partner_y = _res107.nodeY
+                                    $.partner_z = _res107.nodeZ
+                                    $.distance_between_boats = _res107.angle
                                     if (!Camera.IsPointOnScreen($.partner_x, $.partner_y, $.partner_z, 4.0)) {
                                         $.partners_car.setCoordinates($.partner_x, $.partner_y, $.partner_z)
                                         $.partners_car.setHeading($.distance_between_boats)
@@ -1320,12 +1378,15 @@ async function mission_start_ray4() {
                                         $.rays_partner.setObjLeaveCar($.partners_car)
                                         $.timerc_reset_flag_r4 = 0
                                     } else {
-                                        ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_car.getCoordinates()
-                                        ;[$.partner_x, $.partner_y, $.partner_z, $.distance_between_boats] = Path.GetClosestCarNodeWithHeading(
-                                            $.partner_x,
-                                            $.partner_y,
-                                            $.partner_z
-                                        )
+                                        const _res108 = $.partners_car.getCoordinates()
+                                        $.partner_x = _res108.x
+                                        $.partner_y = _res108.y
+                                        $.partner_z = _res108.z
+                                        const _res109 = Path.GetClosestCarNodeWithHeading($.partner_x, $.partner_y, $.partner_z)
+                                        $.partner_x = _res109.nodeX
+                                        $.partner_y = _res109.nodeY
+                                        $.partner_z = _res109.nodeZ
+                                        $.distance_between_boats = _res109.angle
                                         if (!World.IsPointObscuredByAMissionEntity($.partner_x, $.partner_y, $.partner_z, 4.0, 4.0, 4.0)) {
                                             if (!Camera.IsPointOnScreen($.partner_x, $.partner_y, $.partner_z, 4.0)) {
                                                 $.partners_car.setCoordinates($.partner_x, $.partner_y, $.partner_z)
@@ -1338,7 +1399,10 @@ async function mission_start_ray4() {
                             }
                         }
                         if (!$.partners_car.locate3D($.partner_stuck_x, $.partner_stuck_y, $.partner_stuck_z, 4.0, 4.0, 4.0, false)) {
-                            ;[$.partner_stuck_x, $.partner_stuck_y, $.partner_stuck_z] = $.partners_car.getCoordinates()
+                            const _res110 = $.partners_car.getCoordinates()
+                            $.partner_stuck_x = _res110.x
+                            $.partner_stuck_y = _res110.y
+                            $.partner_stuck_z = _res110.z
                             $.timerc_reset_flag_r4 = 0
                         }
                         if (!$.partners_car.isHealthGreater(400)) {
@@ -1404,8 +1468,14 @@ async function mission_start_ray4() {
             $.last_mine_dropped_timer = Clock.GetGameTimer()
             if ($.random_int == 2) {
                 $.partners_boat_speed = $.partners_boat.getSpeed()
-                ;[$.player_X, $.player_Y, $.player_Z] = $.player.getCoordinates()
-                ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
+                const _res111 = $.player.getCoordinates()
+                $.player_X = _res111.x
+                $.player_Y = _res111.y
+                $.player_Z = _res111.z
+                const _res112 = $.partners_boat.getCoordinates()
+                $.partner_x = _res112.x
+                $.partner_y = _res112.y
+                $.partner_z = _res112.z
                 if (!$.player.locateAnyMeansChar2D($.rays_partner, 5.0, 5.0, false)) {
                     if ($.partners_boat_speed > 12.0) {
                         $.vector_x = $.partner_x - $.player_X
@@ -1439,7 +1509,10 @@ async function mission_start_ray4() {
     async function exit_boat() {
         if ($.exit_boat_flag == 0) {
             $.partners_boat.stop()
-            ;[$.partner_x, $.partner_y, $.partner_z] = $.partners_boat.getCoordinates()
+            const _res113 = $.partners_boat.getCoordinates()
+            $.partner_x = _res113.x
+            $.partner_y = _res113.y
+            $.partner_z = _res113.z
             $.partners_boat_forward_x = $.partners_boat.getForwardX()
             $.partners_boat_forward_y = $.partners_boat.getForwardY()
             $.temp_dot_product_x = 3.0 * $.partners_boat_forward_y
@@ -1458,7 +1531,10 @@ async function mission_start_ray4() {
             $.temp_vector_y = $.temp_dot_product_y - $.temp_y
             $.temp_vector_x = $.temp_vector_x + $.partner_x
             $.temp_vector_y = $.temp_vector_y + $.partner_y
-            ;[$.sniper_object_a_x, $.sniper_object_a_y, $.dot_product] = $.player.getCoordinates()
+            const _res114 = $.player.getCoordinates()
+            $.sniper_object_a_x = _res114.x
+            $.sniper_object_a_y = _res114.y
+            $.dot_product = _res114.z
             $.partner_x = $.sniper_object_a_x - $.vector_x
             $.partner_y = $.sniper_object_a_y - $.vector_y
             $.partner_x = $.partner_x * $.partner_x
@@ -1519,7 +1595,11 @@ async function mission_start_ray4() {
         if ($.player.locateAnyMeansChar2D($.rays_partner, 100.0, 100.0, false)) {
             $.rays_partner.setObjStealAnyCar()
         } else {
-            ;[$.partner_x, $.partner_y, $.partner_z, $.dot_product] = Path.GetClosestCarNodeWithHeading(1309.8854, -695.2979, 15.383)
+            const _res115 = Path.GetClosestCarNodeWithHeading(1309.8854, -695.2979, 15.383)
+            $.partner_x = _res115.nodeX
+            $.partner_y = _res115.nodeY
+            $.partner_z = _res115.nodeZ
+            $.dot_product = _res115.angle
             $.partners_car.markAsNoLongerNeeded()
             $.partners_car = Car.Create(88 /* CAR_SENTINEL */, $.partner_x, $.partner_y, $.partner_z)
             $.partners_car.setHeading($.dot_product)

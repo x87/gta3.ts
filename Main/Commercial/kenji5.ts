@@ -235,8 +235,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_1
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_1_x, $.ped_1_y, $.ped_1_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res23 = $.player.getCoordinates()
+            $.garbage_x = _res23.x
+            $.garbage_y = _res23.y
+            $.garbage_z = _res23.z
+            const _res24 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_1_x = _res24.nodeX
+            $.ped_1_y = _res24.nodeY
+            $.ped_1_z = _res24.nodeZ
             $.difference_x = $.garbage_x - $.ped_1_x
             $.difference_y = $.garbage_y - $.ped_1_y
             $.difference_x = $.difference_x * $.difference_x
@@ -259,8 +265,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_2
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_2_x, $.ped_2_y, $.ped_2_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res25 = $.player.getCoordinates()
+            $.garbage_x = _res25.x
+            $.garbage_y = _res25.y
+            $.garbage_z = _res25.z
+            const _res26 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_2_x = _res26.nodeX
+            $.ped_2_y = _res26.nodeY
+            $.ped_2_z = _res26.nodeZ
             $.difference_x = $.garbage_x - $.ped_2_x
             $.difference_y = $.garbage_y - $.ped_2_y
             $.difference_x = $.difference_x * $.difference_x
@@ -283,8 +295,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_3
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_3_x, $.ped_3_y, $.ped_3_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res27 = $.player.getCoordinates()
+            $.garbage_x = _res27.x
+            $.garbage_y = _res27.y
+            $.garbage_z = _res27.z
+            const _res28 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_3_x = _res28.nodeX
+            $.ped_3_y = _res28.nodeY
+            $.ped_3_z = _res28.nodeZ
             $.difference_x = $.garbage_x - $.ped_3_x
             $.difference_y = $.garbage_y - $.ped_3_y
             $.difference_x = $.difference_x * $.difference_x
@@ -307,8 +325,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_4
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_4_x, $.ped_4_y, $.ped_4_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res29 = $.player.getCoordinates()
+            $.garbage_x = _res29.x
+            $.garbage_y = _res29.y
+            $.garbage_z = _res29.z
+            const _res30 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_4_x = _res30.nodeX
+            $.ped_4_y = _res30.nodeY
+            $.ped_4_z = _res30.nodeZ
             $.difference_x = $.garbage_x - $.ped_4_x
             $.difference_y = $.garbage_y - $.ped_4_y
             $.difference_x = $.difference_x * $.difference_x
@@ -331,8 +355,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_5
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_5_x, $.ped_5_y, $.ped_5_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res31 = $.player.getCoordinates()
+            $.garbage_x = _res31.x
+            $.garbage_y = _res31.y
+            $.garbage_z = _res31.z
+            const _res32 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_5_x = _res32.nodeX
+            $.ped_5_y = _res32.nodeY
+            $.ped_5_z = _res32.nodeZ
             $.difference_x = $.garbage_x - $.ped_5_x
             $.difference_y = $.garbage_y - $.ped_5_y
             $.difference_x = $.difference_x * $.difference_x
@@ -355,8 +385,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_6
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_6_x, $.ped_6_y, $.ped_6_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res33 = $.player.getCoordinates()
+            $.garbage_x = _res33.x
+            $.garbage_y = _res33.y
+            $.garbage_z = _res33.z
+            const _res34 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_6_x = _res34.nodeX
+            $.ped_6_y = _res34.nodeY
+            $.ped_6_z = _res34.nodeZ
             $.difference_x = $.garbage_x - $.ped_6_x
             $.difference_y = $.garbage_y - $.ped_6_y
             $.difference_x = $.difference_x * $.difference_x
@@ -379,8 +415,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_7
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_7_x, $.ped_7_y, $.ped_7_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res35 = $.player.getCoordinates()
+            $.garbage_x = _res35.x
+            $.garbage_y = _res35.y
+            $.garbage_z = _res35.z
+            const _res36 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_7_x = _res36.nodeX
+            $.ped_7_y = _res36.nodeY
+            $.ped_7_z = _res36.nodeZ
             $.difference_x = $.garbage_x - $.ped_7_x
             $.difference_y = $.garbage_y - $.ped_7_y
             $.difference_x = $.difference_x * $.difference_x
@@ -403,8 +445,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_8
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_8_x, $.ped_8_y, $.ped_8_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res37 = $.player.getCoordinates()
+            $.garbage_x = _res37.x
+            $.garbage_y = _res37.y
+            $.garbage_z = _res37.z
+            const _res38 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_8_x = _res38.nodeX
+            $.ped_8_y = _res38.nodeY
+            $.ped_8_z = _res38.nodeZ
             $.difference_x = $.garbage_x - $.ped_8_x
             $.difference_y = $.garbage_y - $.ped_8_y
             $.difference_x = $.difference_x * $.difference_x
@@ -427,8 +475,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_9
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_9_x, $.ped_9_y, $.ped_9_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res39 = $.player.getCoordinates()
+            $.garbage_x = _res39.x
+            $.garbage_y = _res39.y
+            $.garbage_z = _res39.z
+            const _res40 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_9_x = _res40.nodeX
+            $.ped_9_y = _res40.nodeY
+            $.ped_9_z = _res40.nodeZ
             $.difference_x = $.garbage_x - $.ped_9_x
             $.difference_y = $.garbage_y - $.ped_9_y
             $.difference_x = $.difference_x * $.difference_x
@@ -451,8 +505,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_10
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_10_x, $.ped_10_y, $.ped_10_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res41 = $.player.getCoordinates()
+            $.garbage_x = _res41.x
+            $.garbage_y = _res41.y
+            $.garbage_z = _res41.z
+            const _res42 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_10_x = _res42.nodeX
+            $.ped_10_y = _res42.nodeY
+            $.ped_10_z = _res42.nodeZ
             $.difference_x = $.garbage_x - $.ped_10_x
             $.difference_y = $.garbage_y - $.ped_10_y
             $.difference_x = $.difference_x * $.difference_x
@@ -475,8 +535,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_11
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_11_x, $.ped_11_y, $.ped_11_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res43 = $.player.getCoordinates()
+            $.garbage_x = _res43.x
+            $.garbage_y = _res43.y
+            $.garbage_z = _res43.z
+            const _res44 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_11_x = _res44.nodeX
+            $.ped_11_y = _res44.nodeY
+            $.ped_11_z = _res44.nodeZ
             $.difference_x = $.garbage_x - $.ped_11_x
             $.difference_y = $.garbage_y - $.ped_11_y
             $.difference_x = $.difference_x * $.difference_x
@@ -499,8 +565,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_12
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_12_x, $.ped_12_y, $.ped_12_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res45 = $.player.getCoordinates()
+            $.garbage_x = _res45.x
+            $.garbage_y = _res45.y
+            $.garbage_z = _res45.z
+            const _res46 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_12_x = _res46.nodeX
+            $.ped_12_y = _res46.nodeY
+            $.ped_12_z = _res46.nodeZ
             $.difference_x = $.garbage_x - $.ped_12_x
             $.difference_y = $.garbage_y - $.ped_12_y
             $.difference_x = $.difference_x * $.difference_x
@@ -523,8 +595,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_13
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_13_x, $.ped_13_y, $.ped_13_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res47 = $.player.getCoordinates()
+            $.garbage_x = _res47.x
+            $.garbage_y = _res47.y
+            $.garbage_z = _res47.z
+            const _res48 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_13_x = _res48.nodeX
+            $.ped_13_y = _res48.nodeY
+            $.ped_13_z = _res48.nodeZ
             $.difference_x = $.garbage_x - $.ped_13_x
             $.difference_y = $.garbage_y - $.ped_13_y
             $.difference_x = $.difference_x * $.difference_x
@@ -547,8 +625,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_14
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_14_x, $.ped_14_y, $.ped_14_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res49 = $.player.getCoordinates()
+            $.garbage_x = _res49.x
+            $.garbage_y = _res49.y
+            $.garbage_z = _res49.z
+            const _res50 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_14_x = _res50.nodeX
+            $.ped_14_y = _res50.nodeY
+            $.ped_14_z = _res50.nodeZ
             $.difference_x = $.garbage_x - $.ped_14_x
             $.difference_y = $.garbage_y - $.ped_14_y
             $.difference_x = $.difference_x * $.difference_x
@@ -571,8 +655,14 @@ async function mission_start_kenji5() {
             // SCM label generate_coord_ped_15
             $.random_commercial_x = Math.RandomFloatInRange(-173.0, 460.0)
             $.random_commercial_y = Math.RandomFloatInRange(-1627.0, 100.0)
-            ;[$.garbage_x, $.garbage_y, $.garbage_z] = $.player.getCoordinates()
-            ;[$.ped_15_x, $.ped_15_y, $.ped_15_z] = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            const _res51 = $.player.getCoordinates()
+            $.garbage_x = _res51.x
+            $.garbage_y = _res51.y
+            $.garbage_z = _res51.z
+            const _res52 = Path.GetClosestCharNode($.random_commercial_x, $.random_commercial_y, $.garbage_z)
+            $.ped_15_x = _res52.nodeX
+            $.ped_15_y = _res52.nodeY
+            $.ped_15_z = _res52.nodeZ
             $.difference_x = $.garbage_x - $.ped_15_x
             $.difference_y = $.garbage_y - $.ped_15_y
             $.difference_x = $.difference_x * $.difference_x
@@ -674,7 +764,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_1_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_1, 90.0, 90.0, false)) {
-                            ;[$.ped_1_x, $.ped_1_y, $.ped_1_z] = $.ped_1.getCoordinates()
+                            const _res53 = $.ped_1.getCoordinates()
+                            $.ped_1_x = _res53.x
+                            $.ped_1_y = _res53.y
+                            $.ped_1_z = _res53.z
                             $.ped_1_blip.remove()
                             $.ped_1_blip = Blip.AddForCoordOld($.ped_1_x, $.ped_1_y, $.ped_1_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_1_blip.changeScale(3)
@@ -725,7 +818,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_2_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_2, 90.0, 90.0, false)) {
-                            ;[$.ped_2_x, $.ped_2_y, $.ped_2_z] = $.ped_2.getCoordinates()
+                            const _res54 = $.ped_2.getCoordinates()
+                            $.ped_2_x = _res54.x
+                            $.ped_2_y = _res54.y
+                            $.ped_2_z = _res54.z
                             $.ped_2_blip.remove()
                             $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_2_blip.changeScale(3)
@@ -773,7 +869,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_3_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_3, 90.0, 90.0, false)) {
-                            ;[$.ped_3_x, $.ped_3_y, $.ped_3_z] = $.ped_3.getCoordinates()
+                            const _res55 = $.ped_3.getCoordinates()
+                            $.ped_3_x = _res55.x
+                            $.ped_3_y = _res55.y
+                            $.ped_3_z = _res55.z
                             $.ped_3_blip.remove()
                             $.ped_3_blip = Blip.AddForCoordOld($.ped_3_x, $.ped_3_y, $.ped_3_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_3_blip.changeScale(3)
@@ -821,7 +920,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_4_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_4, 90.0, 90.0, false)) {
-                            ;[$.ped_4_x, $.ped_4_y, $.ped_4_z] = $.ped_4.getCoordinates()
+                            const _res56 = $.ped_4.getCoordinates()
+                            $.ped_4_x = _res56.x
+                            $.ped_4_y = _res56.y
+                            $.ped_4_z = _res56.z
                             $.ped_4_blip.remove()
                             $.ped_4_blip = Blip.AddForCoordOld($.ped_4_x, $.ped_4_y, $.ped_4_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_4_blip.changeScale(3)
@@ -869,7 +971,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_5_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_5, 90.0, 90.0, false)) {
-                            ;[$.ped_5_x, $.ped_5_y, $.ped_5_z] = $.ped_5.getCoordinates()
+                            const _res57 = $.ped_5.getCoordinates()
+                            $.ped_5_x = _res57.x
+                            $.ped_5_y = _res57.y
+                            $.ped_5_z = _res57.z
                             $.ped_5_blip.remove()
                             $.ped_5_blip = Blip.AddForCoordOld($.ped_5_x, $.ped_5_y, $.ped_5_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_5_blip.changeScale(3)
@@ -917,7 +1022,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_6_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_6, 90.0, 90.0, false)) {
-                            ;[$.ped_6_x, $.ped_6_y, $.ped_6_z] = $.ped_6.getCoordinates()
+                            const _res58 = $.ped_6.getCoordinates()
+                            $.ped_6_x = _res58.x
+                            $.ped_6_y = _res58.y
+                            $.ped_6_z = _res58.z
                             $.ped_6_blip.remove()
                             $.ped_6_blip = Blip.AddForCoordOld($.ped_6_x, $.ped_6_y, $.ped_6_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_6_blip.changeScale(3)
@@ -965,7 +1073,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_7_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_7, 90.0, 90.0, false)) {
-                            ;[$.ped_7_x, $.ped_7_y, $.ped_7_z] = $.ped_7.getCoordinates()
+                            const _res59 = $.ped_7.getCoordinates()
+                            $.ped_7_x = _res59.x
+                            $.ped_7_y = _res59.y
+                            $.ped_7_z = _res59.z
                             $.ped_7_blip.remove()
                             $.ped_7_blip = Blip.AddForCoordOld($.ped_7_x, $.ped_7_y, $.ped_7_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_7_blip.changeScale(3)
@@ -1013,7 +1124,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_8_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_8, 90.0, 90.0, false)) {
-                            ;[$.ped_8_x, $.ped_8_y, $.ped_8_z] = $.ped_8.getCoordinates()
+                            const _res60 = $.ped_8.getCoordinates()
+                            $.ped_8_x = _res60.x
+                            $.ped_8_y = _res60.y
+                            $.ped_8_z = _res60.z
                             $.ped_8_blip.remove()
                             $.ped_8_blip = Blip.AddForCoordOld($.ped_8_x, $.ped_8_y, $.ped_8_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_8_blip.changeScale(3)
@@ -1061,7 +1175,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_9_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_9, 90.0, 90.0, false)) {
-                            ;[$.ped_9_x, $.ped_9_y, $.ped_9_z] = $.ped_9.getCoordinates()
+                            const _res61 = $.ped_9.getCoordinates()
+                            $.ped_9_x = _res61.x
+                            $.ped_9_y = _res61.y
+                            $.ped_9_z = _res61.z
                             $.ped_9_blip.remove()
                             $.ped_9_blip = Blip.AddForCoordOld($.ped_9_x, $.ped_9_y, $.ped_9_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_9_blip.changeScale(3)
@@ -1109,7 +1226,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_10_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_10, 90.0, 90.0, false)) {
-                            ;[$.ped_10_x, $.ped_10_y, $.ped_10_z] = $.ped_10.getCoordinates()
+                            const _res62 = $.ped_10.getCoordinates()
+                            $.ped_10_x = _res62.x
+                            $.ped_10_y = _res62.y
+                            $.ped_10_z = _res62.z
                             $.ped_10_blip.remove()
                             $.ped_10_blip = Blip.AddForCoordOld($.ped_10_x, $.ped_10_y, $.ped_10_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_10_blip.changeScale(3)
@@ -1157,7 +1277,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_11_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_11, 90.0, 90.0, false)) {
-                            ;[$.ped_11_x, $.ped_11_y, $.ped_11_z] = $.ped_11.getCoordinates()
+                            const _res63 = $.ped_11.getCoordinates()
+                            $.ped_11_x = _res63.x
+                            $.ped_11_y = _res63.y
+                            $.ped_11_z = _res63.z
                             $.ped_11_blip.remove()
                             $.ped_11_blip = Blip.AddForCoordOld($.ped_11_x, $.ped_11_y, $.ped_11_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_11_blip.changeScale(3)
@@ -1205,7 +1328,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_12_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_12, 90.0, 90.0, false)) {
-                            ;[$.ped_12_x, $.ped_12_y, $.ped_12_z] = $.ped_12.getCoordinates()
+                            const _res64 = $.ped_12.getCoordinates()
+                            $.ped_12_x = _res64.x
+                            $.ped_12_y = _res64.y
+                            $.ped_12_z = _res64.z
                             $.ped_12_blip.remove()
                             $.ped_12_blip = Blip.AddForCoordOld($.ped_12_x, $.ped_12_y, $.ped_12_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_12_blip.changeScale(3)
@@ -1253,7 +1379,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_13_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_13, 90.0, 90.0, false)) {
-                            ;[$.ped_13_x, $.ped_13_y, $.ped_13_z] = $.ped_13.getCoordinates()
+                            const _res65 = $.ped_13.getCoordinates()
+                            $.ped_13_x = _res65.x
+                            $.ped_13_y = _res65.y
+                            $.ped_13_z = _res65.z
                             $.ped_13_blip.remove()
                             $.ped_13_blip = Blip.AddForCoordOld($.ped_13_x, $.ped_13_y, $.ped_13_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_13_blip.changeScale(3)
@@ -1301,7 +1430,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_14_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_14, 90.0, 90.0, false)) {
-                            ;[$.ped_14_x, $.ped_14_y, $.ped_14_z] = $.ped_14.getCoordinates()
+                            const _res66 = $.ped_14.getCoordinates()
+                            $.ped_14_x = _res66.x
+                            $.ped_14_y = _res66.y
+                            $.ped_14_z = _res66.z
                             $.ped_14_blip.remove()
                             $.ped_14_blip = Blip.AddForCoordOld($.ped_14_x, $.ped_14_y, $.ped_14_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_14_blip.changeScale(3)
@@ -1349,7 +1481,10 @@ async function mission_start_kenji5() {
                     }
                     if ($.ped_15_exists == 2) {
                         if (!$.player.locateAnyMeansChar2D($.ped_15, 90.0, 90.0, false)) {
-                            ;[$.ped_15_x, $.ped_15_y, $.ped_15_z] = $.ped_15.getCoordinates()
+                            const _res67 = $.ped_15.getCoordinates()
+                            $.ped_15_x = _res67.x
+                            $.ped_15_y = _res67.y
+                            $.ped_15_z = _res67.z
                             $.ped_15_blip.remove()
                             $.ped_15_blip = Blip.AddForCoordOld($.ped_15_x, $.ped_15_y, $.ped_15_z, 1 /* GREEN */, 2 /* BLIP_ONLY */)
                             $.ped_15_blip.changeScale(3)

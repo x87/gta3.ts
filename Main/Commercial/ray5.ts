@@ -288,7 +288,10 @@ async function amb_generator() {
     while ($.flag_redalert == 0) {
         await asyncWait(0)
         if (!Car.IsDead($.ambulance_rc5)) {
-            ;[$.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z] = $.ambulance_rc5.getCoordinates()
+            const _res116 = $.ambulance_rc5.getCoordinates()
+            $.amb_rc5_x = _res116.x
+            $.amb_rc5_y = _res116.y
+            $.amb_rc5_z = _res116.z
             $.ambulance_health = $.ambulance_rc5.getHealth()
             $.ambulance_health = $.ambulance_health * -1
             $.ambulance_health = $.ambulance_health + 1000
@@ -468,7 +471,10 @@ async function amb_generator() {
 
 async function injured_cop_bailout() {
     $.blip_ambulance_rc5.remove()
-    ;[$.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z] = $.ambulance_rc5.getCoordinates()
+    const _res117 = $.ambulance_rc5.getCoordinates()
+    $.amb_rc5_x = _res117.x
+    $.amb_rc5_y = _res117.y
+    $.amb_rc5_z = _res117.z
     $.amb_rc5_z = $.amb_rc5_z + 2.5
     $.injured_cop_rc5 = ScriptObject.Create(1395 /* bodycast */, $.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z)
     $.injured_cop_rc5.setCollision(true /* TRUE */)
@@ -501,7 +507,10 @@ async function injured_cop_bailout() {
 
     while (!$.injured_cop_rc5.hasBeenDamaged()) {
         await asyncWait(0)
-        ;[$.ic_x, $.ic_y, $.ic_z] = $.injured_cop_rc5.getCoordinates()
+        const _res118 = $.injured_cop_rc5.getCoordinates()
+        $.ic_x = _res118.x
+        $.ic_y = _res118.y
+        $.ic_z = _res118.z
         Audio.SetMissionAudioPosition($.ic_x, $.ic_y, $.ic_z)
         $.bodycast_health = ScriptObject.GetBodyCastHealth()
         $.bodycast_health = $.bodycast_health * -1

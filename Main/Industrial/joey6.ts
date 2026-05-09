@@ -198,7 +198,9 @@ async function mission_start_joey6() {
             } else {
                 Text.ClearThisPrint('JM6_5')
             }
-            ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+            const _res270 = Clock.GetTimeOfDay()
+            $.hours = _res270.hours
+            $.minutes = _res270.minutes
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1)
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -281,7 +283,9 @@ async function mission_start_joey6() {
 
         while (!$.Bank_job_door.slide(1087.523, -233.801, 13.5, 0.0, 0.0, 0.07, false /* FALSE */)) {
             await asyncWait(0)
-            ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+            const _res271 = Clock.GetTimeOfDay()
+            $.hours = _res271.hours
+            $.minutes = _res271.minutes
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1)
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -325,7 +329,9 @@ async function mission_start_joey6() {
                     // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_joey6_failed') // fallback: would break linear control flow
                 }
-                ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                const _res272 = Clock.GetTimeOfDay()
+                $.hours = _res272.hours
+                $.minutes = _res272.minutes
                 if ($.hours >= 17) {
                     Text.PrintNow('OUTTIME', 5000, 1)
                     // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -363,7 +369,9 @@ async function mission_start_joey6() {
 
         while (!$.Bank_job_door.slide(1087.523, -233.801, 11.012, 0.0, 0.0, 0.2, false /* FALSE */)) {
             await asyncWait(0)
-            ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+            const _res273 = Clock.GetTimeOfDay()
+            $.hours = _res273.hours
+            $.minutes = _res273.minutes
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1)
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -464,7 +472,9 @@ async function mission_start_joey6() {
             } else {
                 Text.ClearThisPrint('JM6_5')
             }
-            ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+            const _res274 = Clock.GetTimeOfDay()
+            $.hours = _res274.hours
+            $.minutes = _res274.minutes
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1)
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -632,10 +642,16 @@ async function mission_start_joey6() {
         $.objective_count_done_before2 = 0
         $.objective_count_done_before3 = 0
 
-        ;[$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates()
+        const _res275 = $.bankdoor1.getCoordinates()
+        $.bankdoor_X = _res275.x
+        $.bankdoor_Y = _res275.y
+        $.bankdoor_Z = _res275.z
         $.bankdoor_Y = $.bankdoor_Y - 1.0
 
-        ;[$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates()
+        const _res276 = $.bankdoor2.getCoordinates()
+        $.bankdoor2_X = _res276.x
+        $.bankdoor2_Y = _res276.y
+        $.bankdoor2_Z = _res276.z
         $.bankdoor2_Y = $.bankdoor2_Y + 1.0
 
         while (
@@ -769,10 +785,16 @@ async function mission_start_joey6() {
 
         Audio.LoadMissionAudio(J6_1)
 
-        ;[$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates()
+        const _res277 = $.bankdoor1.getCoordinates()
+        $.bankdoor_X = _res277.x
+        $.bankdoor_Y = _res277.y
+        $.bankdoor_Z = _res277.z
         $.bankdoor_Y = $.bankdoor_Y + 1.0
 
-        ;[$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates()
+        const _res278 = $.bankdoor2.getCoordinates()
+        $.bankdoor2_X = _res278.x
+        $.bankdoor2_Y = _res278.y
+        $.bankdoor2_Z = _res278.z
         $.bankdoor2_Y = $.bankdoor2_Y - 1.0
 
         while (
@@ -800,10 +822,16 @@ async function mission_start_joey6() {
 
         World.ClearArea(1037.3, -699.6, 15.0, 4.0, true /* TRUE */)
 
-        ;[$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates()
+        const _res279 = $.bankdoor1.getCoordinates()
+        $.bankdoor_X = _res279.x
+        $.bankdoor_Y = _res279.y
+        $.bankdoor_Z = _res279.z
         $.bankdoor_Y = $.bankdoor_Y - 1.0
 
-        ;[$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates()
+        const _res280 = $.bankdoor2.getCoordinates()
+        $.bankdoor2_X = _res280.x
+        $.bankdoor2_Y = _res280.y
+        $.bankdoor2_Z = _res280.z
         $.bankdoor2_Y = $.bankdoor2_Y + 1.0
 
         while (
@@ -910,10 +938,16 @@ async function mission_start_joey6() {
 
         $.player.alterWantedLevelNoDrop(3)
 
-        ;[$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates()
+        const _res281 = $.bankdoor1.getCoordinates()
+        $.bankdoor_X = _res281.x
+        $.bankdoor_Y = _res281.y
+        $.bankdoor_Z = _res281.z
         $.bankdoor_Y = $.bankdoor_Y + 1.0
 
-        ;[$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates()
+        const _res282 = $.bankdoor2.getCoordinates()
+        $.bankdoor2_X = _res282.x
+        $.bankdoor2_Y = _res282.y
+        $.bankdoor2_Z = _res282.z
         $.bankdoor2_Y = $.bankdoor2_Y - 1.0
 
         while (

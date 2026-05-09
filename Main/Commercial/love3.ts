@@ -208,7 +208,10 @@ async function plane_drop_loop() {
         $.plane_blip.remove()
 
         if ($.package_numbers < 6) {
-            ;[$.PlaneX, $.PlaneY, $.PlaneZ] = DrugDropOff.FindPlaneCoordinates()
+            const _res68 = DrugDropOff.FindPlaneCoordinates()
+            $.PlaneX = _res68.x
+            $.PlaneY = _res68.y
+            $.PlaneZ = _res68.z
             $.plane_blip = Blip.AddForCoordOld($.PlaneX, $.PlaneY, $.PlaneZ, 4, 2 /* BLIP_ONLY */)
             $.plane_blip.changeScale(3)
             $.drug_current_timer = Clock.GetGameTimer()

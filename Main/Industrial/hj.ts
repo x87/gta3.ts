@@ -64,7 +64,10 @@ async function mission_start_hj() {
                     }
                     while ($.car_player_is_in_hj.isInAirProper() || $.collision_counter < 10) {
                         ++$.collision_counter
-                        ;[$.x_float_hj, $.y_float_hj, $.z_float_hj] = $.car_player_is_in_hj.getCoordinates()
+                        const _res263 = $.car_player_is_in_hj.getCoordinates()
+                        $.x_float_hj = _res263.x
+                        $.y_float_hj = _res263.y
+                        $.z_float_hj = _res263.z
                         $.old_heading_hj = $.heading_hj
                         if ($.flag_takeoff_hj == 0) {
                             $.old_heading_hj = $.car_player_is_in_hj.getHeading()
@@ -129,7 +132,10 @@ async function mission_start_hj() {
         }
 
         if ($.flag_takeoff_hj == 1) {
-            ;[$.jumpend_x_float_hj, $.jumpend_y_float_hj, $.temp_float] = $.car_player_is_in_hj.getCoordinates()
+            const _res264 = $.car_player_is_in_hj.getCoordinates()
+            $.jumpend_x_float_hj = _res264.x
+            $.jumpend_y_float_hj = _res264.y
+            $.temp_float = _res264.z
             while ($.counter_land_on_wheels_hj < 90) {
                 if (Car.IsDead($.car_player_is_in_hj)) {
                     // SCM GOTO → mission_start_hj (not lowered; manual jump required)

@@ -414,7 +414,10 @@ async function main_loop() {
         if ($.player.isInAnyCar()) {
             $.player_car = $.player.storeCarIsIn()
 
-            ;[$.player_car_x, $.player_car_y, $.player_car_z] = $.player_car.getCoordinates()
+            const _res119 = $.player_car.getCoordinates()
+            $.player_car_x = _res119.x
+            $.player_car_y = _res119.y
+            $.player_car_z = _res119.z
             $.x_sum = $.finish_x - $.player_car_x
             $.y_sum = $.finish_y - $.player_car_y
             $.x_sum = $.x_sum * $.x_sum
@@ -423,9 +426,16 @@ async function main_loop() {
 
             if (!Car.IsDead($.hot_rod_1) || $.hot_rod_1.isInWater()) {
                 if (!Char.IsDead($.street_racer_1) && !$.player.isInCar($.hot_rod_1)) {
-                    ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates()
+                    const _res120 = $.hot_rod_1.getCoordinates()
+                    $.hot_rod_1_x = _res120.x
+                    $.hot_rod_1_y = _res120.y
+                    $.hot_rod_1_z = _res120.z
                     if ($.hot_rod_1_z < 0.0) {
-                        ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
+                        const _res121 = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
+                        $.hot_rod_1_x = _res121.nodeX
+                        $.hot_rod_1_y = _res121.nodeY
+                        $.hot_rod_1_z = _res121.nodeZ
+                        $.hot_rod_heading = _res121.angle
                         //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
                         if (!Camera.IsPointOnScreen($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, 3.0)) {
                             $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
@@ -438,8 +448,15 @@ async function main_loop() {
                     if ($.hot_rod_1.isUpsidedown() && $.hot_rod_1.isStopped()) {
                         $.street_racer_1.setObjLeaveCar($.hot_rod_1)
                         if (!$.hot_rod_1.isOnScreen()) {
-                            ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates()
-                            ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
+                            const _res122 = $.hot_rod_1.getCoordinates()
+                            $.hot_rod_1_x = _res122.x
+                            $.hot_rod_1_y = _res122.y
+                            $.hot_rod_1_z = _res122.z
+                            const _res123 = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
+                            $.hot_rod_1_x = _res123.nodeX
+                            $.hot_rod_1_y = _res123.nodeY
+                            $.hot_rod_1_z = _res123.nodeZ
+                            $.hot_rod_heading = _res123.angle
                             //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
                             if (!Camera.IsPointOnScreen($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, 3.0)) {
                                 $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
@@ -452,8 +469,15 @@ async function main_loop() {
                     if ($.hot_rod_1.isInWater()) {
                         //PRINT_BIG (Y1_TEST) 2000 1//CAR IN WATER!!
                         if (!$.hot_rod_1.isOnScreen()) {
-                            ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates()
-                            ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
+                            const _res124 = $.hot_rod_1.getCoordinates()
+                            $.hot_rod_1_x = _res124.x
+                            $.hot_rod_1_y = _res124.y
+                            $.hot_rod_1_z = _res124.z
+                            const _res125 = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
+                            $.hot_rod_1_x = _res125.nodeX
+                            $.hot_rod_1_y = _res125.nodeY
+                            $.hot_rod_1_z = _res125.nodeZ
+                            $.hot_rod_heading = _res125.angle
                             //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
                             if (!Camera.IsPointOnScreen($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, 3.0)) {
                                 $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
@@ -479,8 +503,15 @@ async function main_loop() {
                         }
                         if ($.hr1_time_dif > 4000) {
                             if (!$.hot_rod_1.isOnScreen()) {
-                                ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates()
-                                ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
+                                const _res126 = $.hot_rod_1.getCoordinates()
+                                $.hot_rod_1_x = _res126.x
+                                $.hot_rod_1_y = _res126.y
+                                $.hot_rod_1_z = _res126.z
+                                const _res127 = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
+                                $.hot_rod_1_x = _res127.nodeX
+                                $.hot_rod_1_y = _res127.nodeY
+                                $.hot_rod_1_z = _res127.nodeZ
+                                $.hot_rod_heading = _res127.angle
                                 //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
                                 if (!Camera.IsPointOnScreen($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, 3.0)) {
                                     $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z)
@@ -491,7 +522,10 @@ async function main_loop() {
                         }
                     }
 
-                    ;[$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates()
+                    const _res128 = $.hot_rod_1.getCoordinates()
+                    $.hot_rod_1_x = _res128.x
+                    $.hot_rod_1_y = _res128.y
+                    $.hot_rod_1_z = _res128.z
                     $.x_sum = $.finish_x - $.hot_rod_1_x
                     $.y_sum = $.finish_y - $.hot_rod_1_y
                     $.x_sum = $.x_sum * $.x_sum
@@ -512,9 +546,16 @@ async function main_loop() {
 
             if (!Car.IsDead($.hot_rod_2) || $.hot_rod_2.isInWater()) {
                 if (!Char.IsDead($.street_racer_2) && !$.player.isInCar($.hot_rod_2)) {
-                    ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates()
+                    const _res129 = $.hot_rod_2.getCoordinates()
+                    $.hot_rod_2_x = _res129.x
+                    $.hot_rod_2_y = _res129.y
+                    $.hot_rod_2_z = _res129.z
                     if ($.hot_rod_2_z < 0.0) {
-                        ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
+                        const _res130 = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
+                        $.hot_rod_2_x = _res130.nodeX
+                        $.hot_rod_2_y = _res130.nodeY
+                        $.hot_rod_2_z = _res130.nodeZ
+                        $.hot_rod_heading = _res130.angle
                         //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
                         if (!Camera.IsPointOnScreen($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, 3.0)) {
                             $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
@@ -527,8 +568,15 @@ async function main_loop() {
                     if ($.hot_rod_2.isUpsidedown() && $.hot_rod_2.isStopped()) {
                         $.street_racer_2.setObjLeaveCar($.hot_rod_2)
                         if (!$.hot_rod_2.isOnScreen()) {
-                            ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates()
-                            ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
+                            const _res131 = $.hot_rod_2.getCoordinates()
+                            $.hot_rod_2_x = _res131.x
+                            $.hot_rod_2_y = _res131.y
+                            $.hot_rod_2_z = _res131.z
+                            const _res132 = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
+                            $.hot_rod_2_x = _res132.nodeX
+                            $.hot_rod_2_y = _res132.nodeY
+                            $.hot_rod_2_z = _res132.nodeZ
+                            $.hot_rod_heading = _res132.angle
                             //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
                             if (!Camera.IsPointOnScreen($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, 3.0)) {
                                 $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
@@ -541,8 +589,15 @@ async function main_loop() {
                     if ($.hot_rod_2.isInWater()) {
                         //PRINT_BIG (Y1_TEST) 2000 1
                         if (!$.hot_rod_2.isOnScreen()) {
-                            ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates()
-                            ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
+                            const _res133 = $.hot_rod_2.getCoordinates()
+                            $.hot_rod_2_x = _res133.x
+                            $.hot_rod_2_y = _res133.y
+                            $.hot_rod_2_z = _res133.z
+                            const _res134 = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
+                            $.hot_rod_2_x = _res134.nodeX
+                            $.hot_rod_2_y = _res134.nodeY
+                            $.hot_rod_2_z = _res134.nodeZ
+                            $.hot_rod_heading = _res134.angle
                             //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
                             if (!Camera.IsPointOnScreen($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, 3.0)) {
                                 $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
@@ -568,8 +623,15 @@ async function main_loop() {
                         }
                         if ($.hr2_time_dif > 4000) {
                             if (!$.hot_rod_2.isOnScreen()) {
-                                ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates()
-                                ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
+                                const _res135 = $.hot_rod_2.getCoordinates()
+                                $.hot_rod_2_x = _res135.x
+                                $.hot_rod_2_y = _res135.y
+                                $.hot_rod_2_z = _res135.z
+                                const _res136 = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
+                                $.hot_rod_2_x = _res136.nodeX
+                                $.hot_rod_2_y = _res136.nodeY
+                                $.hot_rod_2_z = _res136.nodeZ
+                                $.hot_rod_heading = _res136.angle
                                 //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
                                 if (!Camera.IsPointOnScreen($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, 3.0)) {
                                     $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z)
@@ -580,7 +642,10 @@ async function main_loop() {
                         }
                     }
 
-                    ;[$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates()
+                    const _res137 = $.hot_rod_2.getCoordinates()
+                    $.hot_rod_2_x = _res137.x
+                    $.hot_rod_2_y = _res137.y
+                    $.hot_rod_2_z = _res137.z
                     $.x_sum = $.finish_x - $.hot_rod_2_x
                     $.y_sum = $.finish_y - $.hot_rod_2_y
                     $.x_sum = $.x_sum * $.x_sum
@@ -602,9 +667,16 @@ async function main_loop() {
             }
             if (!Car.IsDead($.hot_rod_3) || $.hot_rod_3.isInWater()) {
                 if (!Char.IsDead($.street_racer_3) && !$.player.isInCar($.hot_rod_3)) {
-                    ;[$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z] = $.hot_rod_3.getCoordinates()
+                    const _res138 = $.hot_rod_3.getCoordinates()
+                    $.hot_rod_3_x = _res138.x
+                    $.hot_rod_3_y = _res138.y
+                    $.hot_rod_3_z = _res138.z
                     if ($.hot_rod_3_z < 0.0) {
-                        ;[$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
+                        const _res139 = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
+                        $.hot_rod_3_x = _res139.nodeX
+                        $.hot_rod_3_y = _res139.nodeY
+                        $.hot_rod_3_z = _res139.nodeZ
+                        $.hot_rod_heading = _res139.angle
                         //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
                         if (!Camera.IsPointOnScreen($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, 3.0)) {
                             $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
@@ -617,8 +689,15 @@ async function main_loop() {
                     if ($.hot_rod_3.isUpsidedown() && $.hot_rod_3.isStopped()) {
                         $.street_racer_3.setObjLeaveCar($.hot_rod_3)
                         if (!$.hot_rod_3.isOnScreen()) {
-                            ;[$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z] = $.hot_rod_3.getCoordinates()
-                            ;[$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
+                            const _res140 = $.hot_rod_3.getCoordinates()
+                            $.hot_rod_3_x = _res140.x
+                            $.hot_rod_3_y = _res140.y
+                            $.hot_rod_3_z = _res140.z
+                            const _res141 = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
+                            $.hot_rod_3_x = _res141.nodeX
+                            $.hot_rod_3_y = _res141.nodeY
+                            $.hot_rod_3_z = _res141.nodeZ
+                            $.hot_rod_heading = _res141.angle
                             //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
                             if (!Camera.IsPointOnScreen($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, 3.0)) {
                                 $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
@@ -631,8 +710,15 @@ async function main_loop() {
                     if ($.hot_rod_3.isInWater()) {
                         //PRINT_BIG (Y1_TEST) 2000 1
                         if (!$.hot_rod_3.isOnScreen()) {
-                            ;[$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z] = $.hot_rod_3.getCoordinates()
-                            ;[$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
+                            const _res142 = $.hot_rod_3.getCoordinates()
+                            $.hot_rod_3_x = _res142.x
+                            $.hot_rod_3_y = _res142.y
+                            $.hot_rod_3_z = _res142.z
+                            const _res143 = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
+                            $.hot_rod_3_x = _res143.nodeX
+                            $.hot_rod_3_y = _res143.nodeY
+                            $.hot_rod_3_z = _res143.nodeZ
+                            $.hot_rod_heading = _res143.angle
                             //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
                             if (!Camera.IsPointOnScreen($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, 3.0)) {
                                 $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
@@ -658,8 +744,15 @@ async function main_loop() {
                         }
                         if ($.hr3_time_dif > 4000) {
                             if (!$.hot_rod_3.isOnScreen()) {
-                                ;[$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z] = $.hot_rod_3.getCoordinates()
-                                ;[$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
+                                const _res144 = $.hot_rod_3.getCoordinates()
+                                $.hot_rod_3_x = _res144.x
+                                $.hot_rod_3_y = _res144.y
+                                $.hot_rod_3_z = _res144.z
+                                const _res145 = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)
+                                $.hot_rod_3_x = _res145.nodeX
+                                $.hot_rod_3_y = _res145.nodeY
+                                $.hot_rod_3_z = _res145.nodeZ
+                                $.hot_rod_heading = _res145.angle
                                 //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
                                 if (!Camera.IsPointOnScreen($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, 3.0)) {
                                     $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z)

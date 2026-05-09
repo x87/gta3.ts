@@ -277,7 +277,10 @@ async function mission_start_yd2() {
 async function plinky_yd2() {
     await asyncWait(0)
 
-    ;[$.y2_x, $.y2_y, $.y2_z] = $.player.getCoordinates()
+    const _res146 = $.player.getCoordinates()
+    $.y2_x = _res146.x
+    $.y2_y = _res146.y
+    $.y2_z = _res146.z
 
     if (!Char.IsDead($.chaperone_2) && !Char.IsDead($.chaperone_1)) {
         $.chaperone_1.setHealth(100)

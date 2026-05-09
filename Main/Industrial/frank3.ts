@@ -988,7 +988,10 @@ async function mission_start_frankie3() {
                 // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_frankie3_failed') // fallback: would break linear control flow
             } else {
-                ;[$.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3] = $.ped_8ball_fm3.getCoordinates()
+                const _res253 = $.ped_8ball_fm3.getCoordinates()
+                $.eightball_x_fm3 = _res253.x
+                $.eightball_y_fm3 = _res253.y
+                $.eightball_z_fm3 = _res253.z
             }
             if ($.flag_bloke_leave_group_fm3 == 0) {
                 if (!$.ped_8ball_fm3.isInPlayersGroup($.player) && $.flag_blip_on_eightball_fm3 == 0) {

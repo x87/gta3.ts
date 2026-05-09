@@ -495,7 +495,10 @@ async function mission_start_meat2() {
         while (!($.flag_victim1_in_area == 2) || !($.flag_victim2_in_area == 2)) {
             await asyncWait(0)
             if (!$.doggy_door.rotate(135.0, 5.0, false /* FALSE */)) {
-                ;[$.doorx, $.doory, $.doorz] = $.doggy_door.getCoordinates()
+                const _res285 = $.doggy_door.getCoordinates()
+                $.doorx = _res285.x
+                $.doory = _res285.y
+                $.doorz = _res285.z
             }
             if (Car.IsDead($.car_meat2)) {
                 Text.PrintNow('WRECKED', 5000, 1) //"The vehicle's wrecked!"

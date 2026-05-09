@@ -244,7 +244,10 @@ async function mission_start_diablo4() {
             }
             if ($.NumEaten_diablo4_total == 106 && $.eaten_all_the_porn == 0) {
                 $.player.addScore(10000)
-                ;[$.player_X, $.player_Y, $.player_Z] = $.player.getCoordinates()
+                const _res224 = $.player.getCoordinates()
+                $.player_X = _res224.x
+                $.player_Y = _res224.y
+                $.player_Z = _res224.z
                 Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */)
                 $.eaten_all_the_porn = 1
             }

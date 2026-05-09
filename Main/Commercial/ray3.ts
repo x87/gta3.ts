@@ -261,8 +261,14 @@ async function mission_start_ray3() {
             $.rays_evidence_blip = Blip.AddForChar($.ia_car_driver_1)
         }
 
-        ;[$.car_stuck_x, $.car_stuck_y, $.car_stuck_z] = $.ia_car_rm3.getCoordinates()
-        ;[$.ia_car_x, $.ia_car_y, $.ia_car_z] = $.ia_car_rm3.getCoordinates()
+        const _res71 = $.ia_car_rm3.getCoordinates()
+        $.car_stuck_x = _res71.x
+        $.car_stuck_y = _res71.y
+        $.car_stuck_z = _res71.z
+        const _res72 = $.ia_car_rm3.getCoordinates()
+        $.ia_car_x = _res72.x
+        $.ia_car_y = _res72.y
+        $.ia_car_z = _res72.z
         $.ia_car_z += 3.0
         $.evidence_1 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z)
         $.ia_car_z += 1.0
@@ -306,8 +312,15 @@ async function mission_start_ray3() {
                 if ($.ia_car_rm3.isInWater()) {
                     if (!$.player.locateAnyMeansCar2D($.ia_car_rm3, 50.0, 50.0, false)) {
                         if (!$.ia_car_rm3.isOnScreen()) {
-                            ;[$.ia_car_x, $.ia_car_y, $.ia_car_z] = $.ia_car_rm3.getCoordinates()
-                            ;[$.ia_car_x, $.ia_car_y, $.ia_car_z, $.warp_heading] = Path.GetClosestCarNodeWithHeading($.ia_car_x, $.ia_car_y, $.ia_car_z)
+                            const _res73 = $.ia_car_rm3.getCoordinates()
+                            $.ia_car_x = _res73.x
+                            $.ia_car_y = _res73.y
+                            $.ia_car_z = _res73.z
+                            const _res74 = Path.GetClosestCarNodeWithHeading($.ia_car_x, $.ia_car_y, $.ia_car_z)
+                            $.ia_car_x = _res74.nodeX
+                            $.ia_car_y = _res74.nodeY
+                            $.ia_car_z = _res74.nodeZ
+                            $.warp_heading = _res74.angle
                             if (!Camera.IsPointOnScreen($.ia_car_x, $.ia_car_y, $.ia_car_z, 3.0)) {
                                 $.ia_car_rm3.setCoordinates($.ia_car_x, $.ia_car_y, $.ia_car_z)
                                 $.ia_car_rm3.setHeading($.warp_heading)
@@ -326,8 +339,15 @@ async function mission_start_ray3() {
 
             if ($.ia_car_rm3.isUpsidedown() && $.ia_car_rm3.isStopped()) {
                 if (!$.ia_car_rm3.isOnScreen()) {
-                    ;[$.ia_car_x, $.ia_car_y, $.ia_car_z] = $.ia_car_rm3.getCoordinates()
-                    ;[$.ia_car_x, $.ia_car_y, $.ia_car_z, $.warp_heading] = Path.GetClosestCarNodeWithHeading($.ia_car_x, $.ia_car_y, $.ia_car_z)
+                    const _res75 = $.ia_car_rm3.getCoordinates()
+                    $.ia_car_x = _res75.x
+                    $.ia_car_y = _res75.y
+                    $.ia_car_z = _res75.z
+                    const _res76 = Path.GetClosestCarNodeWithHeading($.ia_car_x, $.ia_car_y, $.ia_car_z)
+                    $.ia_car_x = _res76.nodeX
+                    $.ia_car_y = _res76.nodeY
+                    $.ia_car_z = _res76.nodeZ
+                    $.warp_heading = _res76.angle
                     if (!Camera.IsPointOnScreen($.ia_car_x, $.ia_car_y, $.ia_car_z, 3.0)) {
                         $.ia_car_rm3.setCoordinates($.ia_car_x, $.ia_car_y, $.ia_car_z)
                         $.ia_car_rm3.setHeading($.warp_heading)
@@ -354,8 +374,15 @@ async function mission_start_ray3() {
                 }
                 if (TIMERA > 5000 && $.timera_reset_flag == 1) {
                     if (!$.ia_car_rm3.isOnScreen()) {
-                        ;[$.ia_car_x, $.ia_car_y, $.ia_car_z] = $.ia_car_rm3.getCoordinates()
-                        ;[$.ia_car_x, $.ia_car_y, $.ia_car_z, $.warp_heading] = Path.GetClosestCarNodeWithHeading($.ia_car_x, $.ia_car_y, $.ia_car_z)
+                        const _res77 = $.ia_car_rm3.getCoordinates()
+                        $.ia_car_x = _res77.x
+                        $.ia_car_y = _res77.y
+                        $.ia_car_z = _res77.z
+                        const _res78 = Path.GetClosestCarNodeWithHeading($.ia_car_x, $.ia_car_y, $.ia_car_z)
+                        $.ia_car_x = _res78.nodeX
+                        $.ia_car_y = _res78.nodeY
+                        $.ia_car_z = _res78.nodeZ
+                        $.warp_heading = _res78.angle
                         if (!Camera.IsPointOnScreen($.ia_car_x, $.ia_car_y, $.ia_car_z, 4.0)) {
                             $.ia_car_rm3.setCoordinates($.ia_car_x, $.ia_car_y, $.ia_car_z)
                             $.ia_car_rm3.setHeading($.warp_heading)
@@ -381,8 +408,15 @@ async function mission_start_ray3() {
                     $.timerc_r3 = $.timerc_current_r3 - $.timerc_started_r3
                     if ($.timerc_r3 > 8000) {
                         if (!$.ia_car_rm3.isOnScreen()) {
-                            ;[$.ia_car_x, $.ia_car_y, $.ia_car_z] = $.ia_car_rm3.getCoordinates()
-                            ;[$.ia_car_x, $.ia_car_y, $.ia_car_z, $.warp_heading] = Path.GetClosestCarNodeWithHeading($.ia_car_x, $.ia_car_y, $.ia_car_z)
+                            const _res79 = $.ia_car_rm3.getCoordinates()
+                            $.ia_car_x = _res79.x
+                            $.ia_car_y = _res79.y
+                            $.ia_car_z = _res79.z
+                            const _res80 = Path.GetClosestCarNodeWithHeading($.ia_car_x, $.ia_car_y, $.ia_car_z)
+                            $.ia_car_x = _res80.nodeX
+                            $.ia_car_y = _res80.nodeY
+                            $.ia_car_z = _res80.nodeZ
+                            $.warp_heading = _res80.angle
                             if (!World.IsPointObscuredByAMissionEntity($.ia_car_x, $.ia_car_y, $.ia_car_z, 4.0, 4.0, 4.0)) {
                                 if (!Camera.IsPointOnScreen($.ia_car_x, $.ia_car_y, $.ia_car_z, 4.0)) {
                                     $.ia_car_rm3.setCoordinates($.ia_car_x, $.ia_car_y, $.ia_car_z)
@@ -402,7 +436,10 @@ async function mission_start_ray3() {
             }
 
             if (!$.ia_car_rm3.locate3D($.car_stuck_x, $.car_stuck_y, $.car_stuck_z, 4.0, 4.0, 4.0, false)) {
-                ;[$.car_stuck_x, $.car_stuck_y, $.car_stuck_z] = $.ia_car_rm3.getCoordinates()
+                const _res81 = $.ia_car_rm3.getCoordinates()
+                $.car_stuck_x = _res81.x
+                $.car_stuck_y = _res81.y
+                $.car_stuck_z = _res81.z
                 $.timerc_reset_flag_r3 = 0
             }
 
@@ -537,22 +574,40 @@ async function mission_start_ray3() {
 
             if ($.get_coords_flag == 1) {
                 if ($.drop_evidence == 1) {
-                    ;[$.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z] = $.evidence_1.getCoordinates()
+                    const _res82 = $.evidence_1.getCoordinates()
+                    $.object_current_coords_x = _res82.x
+                    $.object_current_coords_y = _res82.y
+                    $.object_current_coords_z = _res82.z
                 }
                 if ($.drop_evidence == 2) {
-                    ;[$.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z] = $.evidence_2.getCoordinates()
+                    const _res83 = $.evidence_2.getCoordinates()
+                    $.object_current_coords_x = _res83.x
+                    $.object_current_coords_y = _res83.y
+                    $.object_current_coords_z = _res83.z
                 }
                 if ($.drop_evidence == 3) {
-                    ;[$.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z] = $.evidence_3.getCoordinates()
+                    const _res84 = $.evidence_3.getCoordinates()
+                    $.object_current_coords_x = _res84.x
+                    $.object_current_coords_y = _res84.y
+                    $.object_current_coords_z = _res84.z
                 }
                 if ($.drop_evidence == 4) {
-                    ;[$.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z] = $.evidence_4.getCoordinates()
+                    const _res85 = $.evidence_4.getCoordinates()
+                    $.object_current_coords_x = _res85.x
+                    $.object_current_coords_y = _res85.y
+                    $.object_current_coords_z = _res85.z
                 }
                 if ($.drop_evidence == 5) {
-                    ;[$.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z] = $.evidence_5.getCoordinates()
+                    const _res86 = $.evidence_5.getCoordinates()
+                    $.object_current_coords_x = _res86.x
+                    $.object_current_coords_y = _res86.y
+                    $.object_current_coords_z = _res86.z
                 }
                 if ($.drop_evidence == 6) {
-                    ;[$.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z] = $.evidence_6.getCoordinates()
+                    const _res87 = $.evidence_6.getCoordinates()
+                    $.object_current_coords_x = _res87.x
+                    $.object_current_coords_y = _res87.y
+                    $.object_current_coords_z = _res87.z
                 }
             }
 

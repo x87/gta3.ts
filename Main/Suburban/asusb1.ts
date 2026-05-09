@@ -381,7 +381,10 @@ async function mission_start_as1() {
 
     while ($.counter_cartels_killed_as1 < 12) {
         await asyncWait(0)
-        ;[$.player_X, $.player_Y, $.player_Z] = $.player.getCoordinates()
+        const _res293 = $.player.getCoordinates()
+        $.player_X = _res293.x
+        $.player_Y = _res293.y
+        $.player_Z = _res293.z
         if ($.player.locateAnyMeans3D($.killzone_min_x, $.killzone_min_y, 65.0, $.killzone_max_x, $.killzone_max_y, 75.0, false /* false */)) {
             $.flag_wellybob = 1
         } else {
@@ -607,7 +610,10 @@ async function mission_start_as1() {
                     }
                     if (!$.player.isInAnyCar() && $.flag_bailout_a == 0 && !Car.IsDead($.cartel_car_a_as1)) {
                         if ($.flag_wellybob == 0) {
-                            ;[$.player_X, $.player_Y, $.player_Z] = $.player.getCoordinates()
+                            const _res294 = $.player.getCoordinates()
+                            $.player_X = _res294.x
+                            $.player_Y = _res294.y
+                            $.player_Z = _res294.z
                             if ($.cartel_car_a_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false /* false */)) {
                                 // SCM GOSUB bailout_a
                                 await bailout_a()
@@ -718,7 +724,10 @@ async function mission_start_as1() {
 
                     if (!$.player.isInAnyCar() && $.flag_bailout_b == 0 && !Car.IsDead($.cartel_car_b_as1)) {
                         if ($.flag_wellybob == 0) {
-                            ;[$.player_X, $.player_Y, $.player_Z] = $.player.getCoordinates()
+                            const _res295 = $.player.getCoordinates()
+                            $.player_X = _res295.x
+                            $.player_Y = _res295.y
+                            $.player_Z = _res295.z
                             if ($.cartel_car_b_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false /* false */)) {
                                 // SCM GOSUB bailout_b
                                 await bailout_b()
@@ -944,7 +953,10 @@ async function mission_start_as1() {
 
                     if (!$.player.isInAnyCar() && $.flag_bailout_d == 0 && !Car.IsDead($.cartel_car_d_as1)) {
                         if ($.flag_wellybob == 0) {
-                            ;[$.player_X, $.player_Y, $.player_Z] = $.player.getCoordinates()
+                            const _res296 = $.player.getCoordinates()
+                            $.player_X = _res296.x
+                            $.player_Y = _res296.y
+                            $.player_Z = _res296.z
                             if ($.cartel_car_d_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false /* false */)) {
                                 // SCM GOSUB bailout_d
                                 await bailout_d()
@@ -1857,12 +1869,15 @@ async function cartel_car_a_stuck() {
     if (!Car.IsDead($.cartel_car_a_as1)) {
         if ($.cartel_car_a_as1.isUpsidedown() && $.cartel_car_a_as1.isStopped()) {
             if (!$.cartel_car_a_as1.isOnScreen()) {
-                ;[$.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z] = $.cartel_car_a_as1.getCoordinates()
-                ;[$.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                    $.cartel_car_a_as1_x,
-                    $.cartel_car_a_as1_y,
-                    $.cartel_car_a_as1_z
-                )
+                const _res297 = $.cartel_car_a_as1.getCoordinates()
+                $.cartel_car_a_as1_x = _res297.x
+                $.cartel_car_a_as1_y = _res297.y
+                $.cartel_car_a_as1_z = _res297.z
+                const _res298 = Path.GetClosestCarNodeWithHeading($.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z)
+                $.cartel_car_a_as1_x = _res298.nodeX
+                $.cartel_car_a_as1_y = _res298.nodeY
+                $.cartel_car_a_as1_z = _res298.nodeZ
+                $.cartel_heading = _res298.angle
                 if (!Camera.IsPointOnScreen($.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z, 3.0)) {
                     $.cartel_car_a_as1.setCoordinates($.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z)
                     $.cartel_car_a_as1.setHeading($.cartel_heading)
@@ -1877,12 +1892,15 @@ async function cartel_car_a_stuck() {
         if ($.cartel_car_a_as1.isInWater()) {
             //PRINT_BIG (Y1_TEST) 2000 1//CAR IN WATER!! ---test stuff
             if (!$.cartel_car_a_as1.isOnScreen()) {
-                ;[$.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z] = $.cartel_car_a_as1.getCoordinates()
-                ;[$.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                    $.cartel_car_a_as1_x,
-                    $.cartel_car_a_as1_y,
-                    $.cartel_car_a_as1_z
-                )
+                const _res299 = $.cartel_car_a_as1.getCoordinates()
+                $.cartel_car_a_as1_x = _res299.x
+                $.cartel_car_a_as1_y = _res299.y
+                $.cartel_car_a_as1_z = _res299.z
+                const _res300 = Path.GetClosestCarNodeWithHeading($.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z)
+                $.cartel_car_a_as1_x = _res300.nodeX
+                $.cartel_car_a_as1_y = _res300.nodeY
+                $.cartel_car_a_as1_z = _res300.nodeZ
+                $.cartel_heading = _res300.angle
                 if (!Camera.IsPointOnScreen($.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z, 3.0)) {
                     $.cartel_car_a_as1.setCoordinates($.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z)
                     $.cartel_car_a_as1.setHeading($.cartel_heading)
@@ -1940,12 +1958,15 @@ async function cartel_car_b_stuck() {
     if (!Car.IsDead($.cartel_car_b_as1)) {
         if ($.cartel_car_b_as1.isUpsidedown() && $.cartel_car_b_as1.isStopped()) {
             if (!$.cartel_car_b_as1.isOnScreen()) {
-                ;[$.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z] = $.cartel_car_b_as1.getCoordinates()
-                ;[$.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                    $.cartel_car_b_as1_x,
-                    $.cartel_car_b_as1_y,
-                    $.cartel_car_b_as1_z
-                )
+                const _res301 = $.cartel_car_b_as1.getCoordinates()
+                $.cartel_car_b_as1_x = _res301.x
+                $.cartel_car_b_as1_y = _res301.y
+                $.cartel_car_b_as1_z = _res301.z
+                const _res302 = Path.GetClosestCarNodeWithHeading($.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z)
+                $.cartel_car_b_as1_x = _res302.nodeX
+                $.cartel_car_b_as1_y = _res302.nodeY
+                $.cartel_car_b_as1_z = _res302.nodeZ
+                $.cartel_heading = _res302.angle
                 if (!Camera.IsPointOnScreen($.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z, 3.0)) {
                     $.cartel_car_b_as1.setCoordinates($.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z)
                     $.cartel_car_b_as1.setHeading($.cartel_heading)
@@ -1960,12 +1981,15 @@ async function cartel_car_b_stuck() {
         if ($.cartel_car_b_as1.isInWater()) {
             //PRINT_BIG (Y1_TEST) 2000 1//CAR IN WATER!!----test stuff
             if (!$.cartel_car_b_as1.isOnScreen()) {
-                ;[$.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z] = $.cartel_car_b_as1.getCoordinates()
-                ;[$.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                    $.cartel_car_b_as1_x,
-                    $.cartel_car_b_as1_y,
-                    $.cartel_car_b_as1_z
-                )
+                const _res303 = $.cartel_car_b_as1.getCoordinates()
+                $.cartel_car_b_as1_x = _res303.x
+                $.cartel_car_b_as1_y = _res303.y
+                $.cartel_car_b_as1_z = _res303.z
+                const _res304 = Path.GetClosestCarNodeWithHeading($.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z)
+                $.cartel_car_b_as1_x = _res304.nodeX
+                $.cartel_car_b_as1_y = _res304.nodeY
+                $.cartel_car_b_as1_z = _res304.nodeZ
+                $.cartel_heading = _res304.angle
                 if (!Camera.IsPointOnScreen($.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z, 3.0)) {
                     $.cartel_car_b_as1.setCoordinates($.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z)
                     $.cartel_car_b_as1.setHeading($.cartel_heading)
@@ -2093,12 +2117,15 @@ async function cartel_car_d_stuck() {
     if (!Car.IsDead($.cartel_car_d_as1)) {
         if ($.cartel_car_d_as1.isUpsidedown() && $.cartel_car_d_as1.isStopped()) {
             if (!$.cartel_car_d_as1.isOnScreen()) {
-                ;[$.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z] = $.cartel_car_d_as1.getCoordinates()
-                ;[$.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                    $.cartel_car_d_as1_x,
-                    $.cartel_car_d_as1_y,
-                    $.cartel_car_d_as1_z
-                )
+                const _res305 = $.cartel_car_d_as1.getCoordinates()
+                $.cartel_car_d_as1_x = _res305.x
+                $.cartel_car_d_as1_y = _res305.y
+                $.cartel_car_d_as1_z = _res305.z
+                const _res306 = Path.GetClosestCarNodeWithHeading($.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z)
+                $.cartel_car_d_as1_x = _res306.nodeX
+                $.cartel_car_d_as1_y = _res306.nodeY
+                $.cartel_car_d_as1_z = _res306.nodeZ
+                $.cartel_heading = _res306.angle
                 if (!Camera.IsPointOnScreen($.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z, 3.0)) {
                     $.cartel_car_d_as1.setCoordinates($.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z)
                     $.cartel_car_d_as1.setHeading($.cartel_heading)
@@ -2113,12 +2140,15 @@ async function cartel_car_d_stuck() {
         if ($.cartel_car_d_as1.isInWater()) {
             //PRINT_BIG (Y1_TEST) 2000 1//CAR IN WATER!! ---etst stuff!!
             if (!$.cartel_car_d_as1.isOnScreen()) {
-                ;[$.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z] = $.cartel_car_d_as1.getCoordinates()
-                ;[$.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                    $.cartel_car_d_as1_x,
-                    $.cartel_car_d_as1_y,
-                    $.cartel_car_d_as1_z
-                )
+                const _res307 = $.cartel_car_d_as1.getCoordinates()
+                $.cartel_car_d_as1_x = _res307.x
+                $.cartel_car_d_as1_y = _res307.y
+                $.cartel_car_d_as1_z = _res307.z
+                const _res308 = Path.GetClosestCarNodeWithHeading($.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z)
+                $.cartel_car_d_as1_x = _res308.nodeX
+                $.cartel_car_d_as1_y = _res308.nodeY
+                $.cartel_car_d_as1_z = _res308.nodeZ
+                $.cartel_heading = _res308.angle
                 if (!Camera.IsPointOnScreen($.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z, 3.0)) {
                     $.cartel_car_d_as1.setCoordinates($.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z)
                     $.cartel_car_d_as1.setHeading($.cartel_heading)
@@ -2289,15 +2319,18 @@ async function unhappy_car_check() {
             $.car_a_x_old = $.car_a_as1_x
             $.car_a_y_old = $.car_a_as1_y
             $.car_a_z_old = $.car_a_as1_z
-            ;[$.car_a_as1_x, $.car_a_as1_y, $.car_a_as1_z] = $.cartel_car_a_as1.getCoordinates()
+            const _res309 = $.cartel_car_a_as1.getCoordinates()
+            $.car_a_as1_x = _res309.x
+            $.car_a_as1_y = _res309.y
+            $.car_a_as1_z = _res309.z
             if ($.cartel_car_a_as1.locate2D($.car_a_x_old, $.car_a_y_old, 3.0, 3.0, false /* false */)) {
                 if (!$.cartel_car_a_as1.isOnScreen()) {
                     //GET_CAR_COORDINATES cartel_car_a_as1 cartel_car_a_as1_x cartel_car_a_as1_y cartel_car_a_as1_z
-                    ;[$.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                        $.car_a_as1_x,
-                        $.car_a_as1_y,
-                        $.car_a_as1_z
-                    )
+                    const _res310 = Path.GetClosestCarNodeWithHeading($.car_a_as1_x, $.car_a_as1_y, $.car_a_as1_z)
+                    $.cartel_car_a_as1_x = _res310.nodeX
+                    $.cartel_car_a_as1_y = _res310.nodeY
+                    $.cartel_car_a_as1_z = _res310.nodeZ
+                    $.cartel_heading = _res310.angle
                     if (!Camera.IsPointOnScreen($.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z, 3.0)) {
                         $.cartel_car_a_as1.setCoordinates($.cartel_car_a_as1_x, $.cartel_car_a_as1_y, $.cartel_car_a_as1_z)
                         $.cartel_car_a_as1.setHeading($.cartel_heading)
@@ -2310,15 +2343,18 @@ async function unhappy_car_check() {
             $.car_b_x_old = $.car_b_as1_x
             $.car_b_y_old = $.car_b_as1_y
             $.car_b_z_old = $.car_b_as1_z
-            ;[$.car_b_as1_x, $.car_b_as1_y, $.car_b_as1_z] = $.cartel_car_b_as1.getCoordinates()
+            const _res311 = $.cartel_car_b_as1.getCoordinates()
+            $.car_b_as1_x = _res311.x
+            $.car_b_as1_y = _res311.y
+            $.car_b_as1_z = _res311.z
             if ($.cartel_car_b_as1.locate2D($.car_b_x_old, $.car_b_y_old, 3.0, 3.0, false /* false */)) {
                 if (!$.cartel_car_b_as1.isOnScreen()) {
                     //GET_CAR_COORDINATES cartel_car_b_as1 cartel_car_b_as1_x cartel_car_b_as1_y cartel_car_b_as1_z
-                    ;[$.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                        $.car_b_as1_x,
-                        $.car_b_as1_y,
-                        $.car_b_as1_z
-                    )
+                    const _res312 = Path.GetClosestCarNodeWithHeading($.car_b_as1_x, $.car_b_as1_y, $.car_b_as1_z)
+                    $.cartel_car_b_as1_x = _res312.nodeX
+                    $.cartel_car_b_as1_y = _res312.nodeY
+                    $.cartel_car_b_as1_z = _res312.nodeZ
+                    $.cartel_heading = _res312.angle
                     if (!Camera.IsPointOnScreen($.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z, 3.0)) {
                         $.cartel_car_b_as1.setCoordinates($.cartel_car_b_as1_x, $.cartel_car_b_as1_y, $.cartel_car_b_as1_z)
                         $.cartel_car_b_as1.setHeading($.cartel_heading)
@@ -2331,15 +2367,18 @@ async function unhappy_car_check() {
             $.car_d_x_old = $.car_d_as1_x
             $.car_d_y_old = $.car_d_as1_y
             $.car_d_z_old = $.car_d_as1_z
-            ;[$.car_d_as1_x, $.car_d_as1_y, $.car_d_as1_z] = $.cartel_car_d_as1.getCoordinates()
+            const _res313 = $.cartel_car_d_as1.getCoordinates()
+            $.car_d_as1_x = _res313.x
+            $.car_d_as1_y = _res313.y
+            $.car_d_as1_z = _res313.z
             if ($.cartel_car_d_as1.locate2D($.car_d_x_old, $.car_d_y_old, 3.0, 3.0, false /* false */)) {
                 if (!$.cartel_car_d_as1.isOnScreen()) {
                     //GET_CAR_COORDINATES cartel_car_d_as1 cartel_car_d_as1_x cartel_car_d_as1_y cartel_car_d_as1_z
-                    ;[$.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z, $.cartel_heading] = Path.GetClosestCarNodeWithHeading(
-                        $.car_d_as1_x,
-                        $.car_d_as1_y,
-                        $.car_d_as1_z
-                    )
+                    const _res314 = Path.GetClosestCarNodeWithHeading($.car_d_as1_x, $.car_d_as1_y, $.car_d_as1_z)
+                    $.cartel_car_d_as1_x = _res314.nodeX
+                    $.cartel_car_d_as1_y = _res314.nodeY
+                    $.cartel_car_d_as1_z = _res314.nodeZ
+                    $.cartel_heading = _res314.angle
                     if (!Camera.IsPointOnScreen($.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z, 3.0)) {
                         $.cartel_car_d_as1.setCoordinates($.cartel_car_d_as1_x, $.cartel_car_d_as1_y, $.cartel_car_d_as1_z)
                         $.cartel_car_d_as1.setHeading($.cartel_heading)

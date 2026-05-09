@@ -301,7 +301,10 @@ async function create_car_yd5() {
         while ($.human_bomb_demo.isInCar($.gen1_van)) {
             await asyncWait(0)
             if (!Char.IsDead($.human_bomb_demo)) {
-                ;[$.bomb_z, $.bomb_y, $.bomb_z] = $.human_bomb_demo.getCoordinates()
+                const _res147 = $.human_bomb_demo.getCoordinates()
+                $.bomb_z = _res147.x
+                $.bomb_y = _res147.y
+                $.bomb_z = _res147.z
             }
             if (Char.IsDead($.human_bomb_demo)) {
                 // SCM GOTO → selkirk (not lowered; manual jump required)
@@ -327,7 +330,10 @@ async function create_car_yd5() {
         while (!$.human_bomb_demo.locateOnFoot2D(-114.5, -1452.4, 3.0, 3.0, false)) {
             await asyncWait(0)
             if (!Char.IsDead($.human_bomb_demo)) {
-                ;[$.bomb_x, $.bomb_y, $.bomb_z] = $.human_bomb_demo.getCoordinates()
+                const _res148 = $.human_bomb_demo.getCoordinates()
+                $.bomb_x = _res148.x
+                $.bomb_y = _res148.y
+                $.bomb_z = _res148.z
             } else {
                 // SCM GOTO → selkirk (not lowered; manual jump required)
                 throw new Error('unresolved GOTO selkirk') // fallback: would break linear control flow
@@ -338,13 +344,19 @@ async function create_car_yd5() {
     await asyncWait(3000)
 
     if (!Char.IsDead($.human_bomb_demo)) {
-        ;[$.y4_x, $.y4_y, $.y4_z] = $.player.getCoordinates()
+        const _res149 = $.player.getCoordinates()
+        $.y4_x = _res149.x
+        $.y4_y = _res149.y
+        $.y4_z = _res149.z
         Camera.PointAtChar($.human_bomb_demo, 4 /* FOLLOWPED */, 1 /* INTERPOLATION */)
         $.human_bomb_demo.setObjRunToCoord($.y4_x, $.y4_y)
         while (!$.human_bomb_demo.locateOnFoot2D($.y4_x, $.y4_y, 5.0, 5.0, false)) {
             await asyncWait(0)
             if (!Char.IsDead($.human_bomb_demo)) {
-                ;[$.bomb_x, $.bomb_y, $.bomb_z] = $.human_bomb_demo.getCoordinates()
+                const _res150 = $.human_bomb_demo.getCoordinates()
+                $.bomb_x = _res150.x
+                $.bomb_y = _res150.y
+                $.bomb_z = _res150.z
             }
             if (Char.IsDead($.human_bomb_demo)) {
                 // SCM GOTO → selkirk (not lowered; manual jump required)
@@ -385,7 +397,10 @@ async function generator_1_easy() {
         $.human_bomb_1.setObjLeaveCar($.gen1_van)
         $.blip_bomber_1 = Blip.AddForChar($.human_bomb_1)
         while ($.human_bomb_1.isInCar($.gen1_van)) {
-            ;[$.bomb_x, $.bomb_y, $.bomb_z] = $.human_bomb_1.getCoordinates()
+            const _res151 = $.human_bomb_1.getCoordinates()
+            $.bomb_x = _res151.x
+            $.bomb_y = _res151.y
+            $.bomb_z = _res151.z
             await asyncWait(0)
             if (Char.IsDead($.human_bomb_1) || Car.IsDead($.gen1_van)) {
                 return
@@ -406,7 +421,10 @@ async function generator_2_easy() {
         $.blip_bomber_4 = Blip.AddForChar($.human_bomb_4)
 
         while ($.human_bomb_4.isInCar($.gen2_van)) {
-            ;[$.bomb4_x, $.bomb4_y, $.bomb4_z] = $.human_bomb_4.getCoordinates()
+            const _res152 = $.human_bomb_4.getCoordinates()
+            $.bomb4_x = _res152.x
+            $.bomb4_y = _res152.y
+            $.bomb4_z = _res152.z
             await asyncWait(0)
             if (Char.IsDead($.human_bomb_4) || Car.IsDead($.gen2_van)) {
                 return
@@ -426,7 +444,10 @@ async function generator_3_easy() {
         $.human_bomb_7.setObjLeaveCar($.gen3_van)
         $.blip_bomber_7 = Blip.AddForChar($.human_bomb_7)
         while ($.human_bomb_7.isInCar($.gen3_van)) {
-            ;[$.bomb7_x, $.bomb7_y, $.bomb7_z] = $.human_bomb_7.getCoordinates()
+            const _res153 = $.human_bomb_7.getCoordinates()
+            $.bomb7_x = _res153.x
+            $.bomb7_y = _res153.y
+            $.bomb7_z = _res153.z
             await asyncWait(0)
             if (Char.IsDead($.human_bomb_7) || Car.IsDead($.gen3_van)) {
                 return
@@ -446,7 +467,10 @@ async function generator_4_easy() {
         $.human_bomb_9.setObjLeaveCar($.gen4_van)
         $.blip_bomber_9 = Blip.AddForChar($.human_bomb_9)
         while ($.human_bomb_9.isInCar($.gen4_van)) {
-            ;[$.bomb9_x, $.bomb9_y, $.bomb9_z] = $.human_bomb_9.getCoordinates()
+            const _res154 = $.human_bomb_9.getCoordinates()
+            $.bomb9_x = _res154.x
+            $.bomb9_y = _res154.y
+            $.bomb9_z = _res154.z
             await asyncWait(0)
             if (Char.IsDead($.human_bomb_9) || Car.IsDead($.gen4_van)) {
                 return
@@ -470,9 +494,15 @@ async function le_loop_de_mort() {
             // fallback if label was not emitted as async function: no-op continues linearly
         } else {
             if (!Char.IsDead($.human_bomb_1)) {
-                ;[$.y4_x, $.y4_y, $.y4_z] = $.player.getCoordinates()
+                const _res155 = $.player.getCoordinates()
+                $.y4_x = _res155.x
+                $.y4_y = _res155.y
+                $.y4_z = _res155.z
                 $.human_bomb_1.setObjRunToCoord($.y4_x, $.y4_y)
-                ;[$.bomb_x, $.bomb_y, $.bomb_z] = $.human_bomb_1.getCoordinates()
+                const _res156 = $.human_bomb_1.getCoordinates()
+                $.bomb_x = _res156.x
+                $.bomb_y = _res156.y
+                $.bomb_z = _res156.z
                 $.human_bomb_1.clearThreatSearch()
                 if ($.human_bomb_1.locateAnyMeans3D($.y4_x, $.y4_y, $.y4_z, 3.0, 3.0, 4.0, false) || !$.human_bomb_1.isHealthGreater(95)) {
                     // SCM GOSUB detonate_1
@@ -499,9 +529,15 @@ async function le_loop_de_mort() {
             // fallback if label was not emitted as async function: no-op continues linearly
         } else {
             if (!Char.IsDead($.human_bomb_4)) {
-                ;[$.y4_x, $.y4_y, $.y4_z] = $.player.getCoordinates()
+                const _res157 = $.player.getCoordinates()
+                $.y4_x = _res157.x
+                $.y4_y = _res157.y
+                $.y4_z = _res157.z
                 $.human_bomb_4.setObjRunToCoord($.y4_x, $.y4_y)
-                ;[$.bomb4_x, $.bomb4_y, $.bomb4_z] = $.human_bomb_4.getCoordinates()
+                const _res158 = $.human_bomb_4.getCoordinates()
+                $.bomb4_x = _res158.x
+                $.bomb4_y = _res158.y
+                $.bomb4_z = _res158.z
                 $.human_bomb_4.clearThreatSearch()
                 if ($.human_bomb_4.locateAnyMeans3D($.y4_x, $.y4_y, $.y4_z, 3.0, 3.0, 4.0, false) || !$.human_bomb_4.isHealthGreater(95)) {
                     // SCM GOSUB detonate_4
@@ -525,9 +561,15 @@ async function le_loop_de_mort() {
             // fallback if label was not emitted as async function: no-op continues linearly
         } else {
             if (!Char.IsDead($.human_bomb_7)) {
-                ;[$.y4_x, $.y4_y, $.y4_z] = $.player.getCoordinates()
+                const _res159 = $.player.getCoordinates()
+                $.y4_x = _res159.x
+                $.y4_y = _res159.y
+                $.y4_z = _res159.z
                 $.human_bomb_7.setObjRunToCoord($.y4_x, $.y4_y)
-                ;[$.bomb7_x, $.bomb7_y, $.bomb7_z] = $.human_bomb_7.getCoordinates()
+                const _res160 = $.human_bomb_7.getCoordinates()
+                $.bomb7_x = _res160.x
+                $.bomb7_y = _res160.y
+                $.bomb7_z = _res160.z
                 $.human_bomb_7.clearThreatSearch()
                 if ($.human_bomb_7.locateAnyMeans3D($.y4_x, $.y4_y, $.y4_z, 3.0, 3.0, 4.0, false) || !$.human_bomb_7.isHealthGreater(95)) {
                     // SCM GOSUB detonate_7
@@ -551,8 +593,14 @@ async function le_loop_de_mort() {
             // fallback if label was not emitted as async function: no-op continues linearly
         } else {
             if (!Char.IsDead($.human_bomb_9)) {
-                ;[$.y4_x, $.y4_y, $.y4_z] = $.player.getCoordinates()
-                ;[$.bomb9_x, $.bomb9_y, $.bomb9_z] = $.human_bomb_9.getCoordinates()
+                const _res161 = $.player.getCoordinates()
+                $.y4_x = _res161.x
+                $.y4_y = _res161.y
+                $.y4_z = _res161.z
+                const _res162 = $.human_bomb_9.getCoordinates()
+                $.bomb9_x = _res162.x
+                $.bomb9_y = _res162.y
+                $.bomb9_z = _res162.z
                 $.human_bomb_9.clearThreatSearch()
                 $.human_bomb_9.setObjRunToCoord($.y4_x, $.y4_y)
                 if ($.human_bomb_9.locateAnyMeans3D($.y4_x, $.y4_y, $.y4_z, 3.0, 3.0, 4.0, false) || !$.human_bomb_9.isHealthGreater(95)) {

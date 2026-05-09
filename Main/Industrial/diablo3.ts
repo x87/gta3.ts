@@ -217,7 +217,10 @@ async function mission_start_diablo3() {
                 }
                 if ($.counter_diablo3 == 6 && $.given_money_before == 0) {
                     $.player.addScore(6000)
-                    ;[$.player_X, $.player_Y, $.player_Z] = $.player.getCoordinates()
+                    const _res223 = $.player.getCoordinates()
+                    $.player_X = _res223.x
+                    $.player_Y = _res223.y
+                    $.player_Z = _res223.z
                     Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */)
                     $.given_money_before = 1
                 }

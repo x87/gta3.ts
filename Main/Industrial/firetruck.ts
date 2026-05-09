@@ -34,7 +34,10 @@ async function next_fire() {
 
     Game.SetWantedMultiplier(0.5)
 
-    ;[$.player1_x, $.player1_y, $.player1_z] = $.player.getCoordinates()
+    const _res225 = $.player.getCoordinates()
+    $.player1_x = _res225.x
+    $.player1_y = _res225.y
+    $.player1_z = _res225.z
 
     if (!$.player.isInModel(90 /* CAR_FIRETRUCK */)) {
         Text.PrintNow(F_CANC, 3000, 1) //"Fire truck mission cancelled!"
@@ -112,7 +115,10 @@ async function next_fire() {
         throw new Error('unresolved GOTO failed') // fallback: would break linear control flow
     }
 
-    ;[$.fire_coord_x, $.fire_coord_y, $.fire_coord_z] = Path.GetClosestCarNode($.random_fire_x, $.random_fire_y, $.player1_z)
+    const _res226 = Path.GetClosestCarNode($.random_fire_x, $.random_fire_y, $.player1_z)
+    $.fire_coord_x = _res226.nodeX
+    $.fire_coord_y = _res226.nodeY
+    $.fire_coord_z = _res226.nodeZ
 
     if ($.fire_coord_x > 670.0 && $.fire_coord_x < 1035.0 && $.fire_coord_y > -953.0 && $.fire_coord_y < -912.0) {
         // SCM GOTO → next_fire (not lowered; manual jump required)

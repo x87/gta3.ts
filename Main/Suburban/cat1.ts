@@ -683,7 +683,10 @@ async function mission_start_cat1() {
 
         while (!CatalinaHeli.HasBeenShotDown()) {
             await asyncWait(0)
-            ;[$.playerx_cat, $.playery_cat, $.playerz_cat] = $.player.getCoordinates()
+            const _res345 = $.player.getCoordinates()
+            $.playerx_cat = _res345.x
+            $.playery_cat = _res345.y
+            $.playerz_cat = _res345.z
             if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1)
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)

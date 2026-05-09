@@ -615,14 +615,20 @@ async function mission_start_d1() {
                         $.behind_car1 = 0
                     }
                 } else {
-                    ;[$.car1_x, $.car1_y, $.car1_z] = $.car1_d1.getCoordinates()
+                    const _res189 = $.car1_d1.getCoordinates()
+                    $.car1_x = _res189.x
+                    $.car1_y = _res189.y
+                    $.car1_z = _res189.z
                     $.difference_x_float_d = $.car1_x - $.player_x_d1
                     $.difference_y_float_d = $.car1_y - $.player_y_d1
                     $.difference_x_float_d = $.difference_x_float_d * $.difference_x_float_d
                     $.difference_y_float_d = $.difference_y_float_d * $.difference_y_float_d
                     $.sum_difference_d_xy = $.difference_x_float_d + $.difference_y_float_d
                     $.car1_distance_from_cp = Math.Sqrt($.sum_difference_d_xy)
-                    ;[$.players_x, $.players_y, $.players_z] = $.player.getCoordinates()
+                    const _res190 = $.player.getCoordinates()
+                    $.players_x = _res190.x
+                    $.players_y = _res190.y
+                    $.players_z = _res190.z
                     $.difference_x_float_d = $.players_x - $.player_x_d1
                     $.difference_y_float_d = $.players_y - $.player_y_d1
                     $.difference_x_float_d = $.difference_x_float_d * $.difference_x_float_d
@@ -645,8 +651,14 @@ async function mission_start_d1() {
                         $.timerd = $.timerd_current - $.timerd_started
                         if ($.timerd > 8000) {
                             if (!$.car1_d1.isOnScreen()) {
-                                ;[$.car1_x, $.car1_y, $.car1_z] = $.car1_d1.getCoordinates()
-                                ;[$.car1_x, $.car1_y, $.car1_z] = Path.GetClosestCarNode($.car1_x, $.car1_y, $.car1_z)
+                                const _res191 = $.car1_d1.getCoordinates()
+                                $.car1_x = _res191.x
+                                $.car1_y = _res191.y
+                                $.car1_z = _res191.z
+                                const _res192 = Path.GetClosestCarNode($.car1_x, $.car1_y, $.car1_z)
+                                $.car1_x = _res192.nodeX
+                                $.car1_y = _res192.nodeY
+                                $.car1_z = _res192.nodeZ
                                 if (!World.IsPointObscuredByAMissionEntity($.car1_x, $.car1_y, $.car1_z, 4.0, 4.0, 4.0)) {
                                     if (!Camera.IsPointOnScreen($.car1_x, $.car1_y, $.car1_z, 4.0)) {
                                         $.car1_d1.setCoordinates($.car1_x, $.car1_y, $.car1_z)
@@ -659,13 +671,22 @@ async function mission_start_d1() {
                     }
                 }
                 if (!$.car1_d1.locate3D($.car1_stuck_x, $.car1_stuck_y, $.car1_stuck_z, 4.0, 4.0, 4.0, false)) {
-                    ;[$.car1_stuck_x, $.car1_stuck_y, $.car1_stuck_z] = $.car1_d1.getCoordinates()
+                    const _res193 = $.car1_d1.getCoordinates()
+                    $.car1_stuck_x = _res193.x
+                    $.car1_stuck_y = _res193.y
+                    $.car1_stuck_z = _res193.z
                     $.timerd_reset_flag = 0
                 }
                 if ($.car1_d1.isUpsidedown() && $.car1_d1.isStopped()) {
                     if (!$.car1_d1.isOnScreen()) {
-                        ;[$.car1_x, $.car1_y, $.car1_z] = $.car1_d1.getCoordinates()
-                        ;[$.car1_x, $.car1_y, $.car1_z] = Path.GetClosestCarNode($.car1_x, $.car1_y, $.car1_z)
+                        const _res194 = $.car1_d1.getCoordinates()
+                        $.car1_x = _res194.x
+                        $.car1_y = _res194.y
+                        $.car1_z = _res194.z
+                        const _res195 = Path.GetClosestCarNode($.car1_x, $.car1_y, $.car1_z)
+                        $.car1_x = _res195.nodeX
+                        $.car1_y = _res195.nodeY
+                        $.car1_z = _res195.nodeZ
                         if (!World.IsPointObscuredByAMissionEntity($.car1_x, $.car1_y, $.car1_z, 4.0, 4.0, 4.0)) {
                             if (!Camera.IsPointOnScreen($.car1_x, $.car1_y, $.car1_z, 3.0)) {
                                 $.car1_d1.setCoordinates($.car1_x, $.car1_y, $.car1_z)
@@ -686,8 +707,14 @@ async function mission_start_d1() {
                     }
                     if (TIMERA > 5000 && $.timera_reset_flag_d1 == 1) {
                         if (!$.car1_d1.isOnScreen()) {
-                            ;[$.car1_x, $.car1_y, $.car1_z] = $.car1_d1.getCoordinates()
-                            ;[$.car1_x, $.car1_y, $.car1_z] = Path.GetClosestCarNode($.car1_x, $.car1_y, $.car1_z)
+                            const _res196 = $.car1_d1.getCoordinates()
+                            $.car1_x = _res196.x
+                            $.car1_y = _res196.y
+                            $.car1_z = _res196.z
+                            const _res197 = Path.GetClosestCarNode($.car1_x, $.car1_y, $.car1_z)
+                            $.car1_x = _res197.nodeX
+                            $.car1_y = _res197.nodeY
+                            $.car1_z = _res197.nodeZ
                             if (!World.IsPointObscuredByAMissionEntity($.car1_x, $.car1_y, $.car1_z, 4.0, 4.0, 4.0)) {
                                 if (!Camera.IsPointOnScreen($.car1_x, $.car1_y, $.car1_z, 4.0)) {
                                     $.car1_d1.setCoordinates($.car1_x, $.car1_y, $.car1_z)
@@ -806,8 +833,14 @@ async function mission_start_d1() {
                 }
                 if ($.car1_d1.isInWater()) {
                     if (!$.car1_d1.isOnScreen()) {
-                        ;[$.car1_x, $.car1_y, $.car1_z] = $.car1_d1.getCoordinates()
-                        ;[$.car1_x, $.car1_y, $.car1_z] = Path.GetClosestCarNode($.car1_x, $.car1_y, $.car1_z)
+                        const _res198 = $.car1_d1.getCoordinates()
+                        $.car1_x = _res198.x
+                        $.car1_y = _res198.y
+                        $.car1_z = _res198.z
+                        const _res199 = Path.GetClosestCarNode($.car1_x, $.car1_y, $.car1_z)
+                        $.car1_x = _res199.nodeX
+                        $.car1_y = _res199.nodeY
+                        $.car1_z = _res199.nodeZ
                         if (!World.IsPointObscuredByAMissionEntity($.car1_x, $.car1_y, $.car1_z, 4.0, 4.0, 4.0)) {
                             if (!Camera.IsPointOnScreen($.car1_x, $.car1_y, $.car1_z, 3.0)) {
                                 $.car1_d1.setCoordinates($.car1_x, $.car1_y, $.car1_z)
@@ -830,14 +863,20 @@ async function mission_start_d1() {
                         $.behind_car2 = 0
                     }
                 } else {
-                    ;[$.car2_x, $.car2_y, $.car2_z] = $.car2_d1.getCoordinates()
+                    const _res200 = $.car2_d1.getCoordinates()
+                    $.car2_x = _res200.x
+                    $.car2_y = _res200.y
+                    $.car2_z = _res200.z
                     $.difference_x_float_d = $.car2_x - $.player_x_d1
                     $.difference_y_float_d = $.car2_y - $.player_y_d1
                     $.difference_x_float_d = $.difference_x_float_d * $.difference_x_float_d
                     $.difference_y_float_d = $.difference_y_float_d * $.difference_y_float_d
                     $.sum_difference_d_xy = $.difference_x_float_d + $.difference_y_float_d
                     $.car2_distance_from_cp = Math.Sqrt($.sum_difference_d_xy)
-                    ;[$.players_x, $.players_y, $.players_z] = $.player.getCoordinates()
+                    const _res201 = $.player.getCoordinates()
+                    $.players_x = _res201.x
+                    $.players_y = _res201.y
+                    $.players_z = _res201.z
                     $.difference_x_float_d = $.players_x - $.player_x_d1
                     $.difference_y_float_d = $.players_y - $.player_y_d1
                     $.difference_x_float_d = $.difference_x_float_d * $.difference_x_float_d
@@ -860,8 +899,14 @@ async function mission_start_d1() {
                         $.timere = $.timere_current - $.timere_started
                         if ($.timere > 8000) {
                             if (!$.car2_d1.isOnScreen()) {
-                                ;[$.car2_x, $.car2_y, $.car2_z] = $.car2_d1.getCoordinates()
-                                ;[$.car2_x, $.car2_y, $.car2_z] = Path.GetClosestCarNode($.car2_x, $.car2_y, $.car2_z)
+                                const _res202 = $.car2_d1.getCoordinates()
+                                $.car2_x = _res202.x
+                                $.car2_y = _res202.y
+                                $.car2_z = _res202.z
+                                const _res203 = Path.GetClosestCarNode($.car2_x, $.car2_y, $.car2_z)
+                                $.car2_x = _res203.nodeX
+                                $.car2_y = _res203.nodeY
+                                $.car2_z = _res203.nodeZ
                                 if (!World.IsPointObscuredByAMissionEntity($.car2_x, $.car2_y, $.car2_z, 4.0, 4.0, 4.0)) {
                                     if (!Camera.IsPointOnScreen($.car2_x, $.car2_y, $.car2_z, 4.0)) {
                                         $.car2_d1.setCoordinates($.car2_x, $.car2_y, $.car2_z)
@@ -874,13 +919,22 @@ async function mission_start_d1() {
                     }
                 }
                 if (!$.car2_d1.locate3D($.car2_stuck_x, $.car2_stuck_y, $.car2_stuck_z, 4.0, 4.0, 4.0, false)) {
-                    ;[$.car2_stuck_x, $.car2_stuck_y, $.car2_stuck_z] = $.car2_d1.getCoordinates()
+                    const _res204 = $.car2_d1.getCoordinates()
+                    $.car2_stuck_x = _res204.x
+                    $.car2_stuck_y = _res204.y
+                    $.car2_stuck_z = _res204.z
                     $.timere_reset_flag = 0
                 }
                 if ($.car2_d1.isUpsidedown() && $.car2_d1.isStopped()) {
                     if (!$.car2_d1.isOnScreen()) {
-                        ;[$.car2_x, $.car2_y, $.car2_z] = $.car2_d1.getCoordinates()
-                        ;[$.car2_x, $.car2_y, $.car2_z] = Path.GetClosestCarNode($.car2_x, $.car2_y, $.car2_z)
+                        const _res205 = $.car2_d1.getCoordinates()
+                        $.car2_x = _res205.x
+                        $.car2_y = _res205.y
+                        $.car2_z = _res205.z
+                        const _res206 = Path.GetClosestCarNode($.car2_x, $.car2_y, $.car2_z)
+                        $.car2_x = _res206.nodeX
+                        $.car2_y = _res206.nodeY
+                        $.car2_z = _res206.nodeZ
                         if (!World.IsPointObscuredByAMissionEntity($.car2_x, $.car2_y, $.car2_z, 4.0, 4.0, 4.0)) {
                             if (!Camera.IsPointOnScreen($.car2_x, $.car2_y, $.car2_z, 3.0)) {
                                 $.car2_d1.setCoordinates($.car2_x, $.car2_y, $.car2_z)
@@ -901,8 +955,14 @@ async function mission_start_d1() {
                     }
                     if (TIMERB > 5000 && $.timerb_reset_flag_d1 == 1) {
                         if (!$.car2_d1.isOnScreen()) {
-                            ;[$.car2_x, $.car2_y, $.car2_z] = $.car2_d1.getCoordinates()
-                            ;[$.car2_x, $.car2_y, $.car2_z] = Path.GetClosestCarNode($.car2_x, $.car2_y, $.car2_z)
+                            const _res207 = $.car2_d1.getCoordinates()
+                            $.car2_x = _res207.x
+                            $.car2_y = _res207.y
+                            $.car2_z = _res207.z
+                            const _res208 = Path.GetClosestCarNode($.car2_x, $.car2_y, $.car2_z)
+                            $.car2_x = _res208.nodeX
+                            $.car2_y = _res208.nodeY
+                            $.car2_z = _res208.nodeZ
                             if (!World.IsPointObscuredByAMissionEntity($.car2_x, $.car2_y, $.car2_z, 4.0, 4.0, 4.0)) {
                                 if (!Camera.IsPointOnScreen($.car2_x, $.car2_y, $.car2_z, 4.0)) {
                                     $.car2_d1.setCoordinates($.car2_x, $.car2_y, $.car2_z)
@@ -1020,8 +1080,14 @@ async function mission_start_d1() {
                 }
                 if ($.car2_d1.isInWater()) {
                     if (!$.car2_d1.isOnScreen()) {
-                        ;[$.car2_x, $.car2_y, $.car2_z] = $.car2_d1.getCoordinates()
-                        ;[$.car2_x, $.car2_y, $.car2_z] = Path.GetClosestCarNode($.car2_x, $.car2_y, $.car2_z)
+                        const _res209 = $.car2_d1.getCoordinates()
+                        $.car2_x = _res209.x
+                        $.car2_y = _res209.y
+                        $.car2_z = _res209.z
+                        const _res210 = Path.GetClosestCarNode($.car2_x, $.car2_y, $.car2_z)
+                        $.car2_x = _res210.nodeX
+                        $.car2_y = _res210.nodeY
+                        $.car2_z = _res210.nodeZ
                         if (!World.IsPointObscuredByAMissionEntity($.car2_x, $.car2_y, $.car2_z, 4.0, 4.0, 4.0)) {
                             if (!Camera.IsPointOnScreen($.car2_x, $.car2_y, $.car2_z, 3.0)) {
                                 $.car2_d1.setCoordinates($.car2_x, $.car2_y, $.car2_z)
@@ -1044,14 +1110,20 @@ async function mission_start_d1() {
                         $.behind_car3 = 0
                     }
                 } else {
-                    ;[$.car3_x, $.car3_y, $.car3_z] = $.car3_d1.getCoordinates()
+                    const _res211 = $.car3_d1.getCoordinates()
+                    $.car3_x = _res211.x
+                    $.car3_y = _res211.y
+                    $.car3_z = _res211.z
                     $.difference_x_float_d = $.car3_x - $.player_x_d1
                     $.difference_y_float_d = $.car3_y - $.player_y_d1
                     $.difference_x_float_d = $.difference_x_float_d * $.difference_x_float_d
                     $.difference_y_float_d = $.difference_y_float_d * $.difference_y_float_d
                     $.sum_difference_d_xy = $.difference_x_float_d + $.difference_y_float_d
                     $.car3_distance_from_cp = Math.Sqrt($.sum_difference_d_xy)
-                    ;[$.players_x, $.players_y, $.players_z] = $.player.getCoordinates()
+                    const _res212 = $.player.getCoordinates()
+                    $.players_x = _res212.x
+                    $.players_y = _res212.y
+                    $.players_z = _res212.z
                     $.difference_x_float_d = $.players_x - $.player_x_d1
                     $.difference_y_float_d = $.players_y - $.player_y_d1
                     $.difference_x_float_d = $.difference_x_float_d * $.difference_x_float_d
@@ -1074,8 +1146,14 @@ async function mission_start_d1() {
                         $.timerf = $.timerf_current - $.timerf_started
                         if ($.timerf > 8000) {
                             if (!$.car3_d1.isOnScreen()) {
-                                ;[$.car3_x, $.car3_y, $.car3_z] = $.car3_d1.getCoordinates()
-                                ;[$.car3_x, $.car3_y, $.car3_z] = Path.GetClosestCarNode($.car3_x, $.car3_y, $.car3_z)
+                                const _res213 = $.car3_d1.getCoordinates()
+                                $.car3_x = _res213.x
+                                $.car3_y = _res213.y
+                                $.car3_z = _res213.z
+                                const _res214 = Path.GetClosestCarNode($.car3_x, $.car3_y, $.car3_z)
+                                $.car3_x = _res214.nodeX
+                                $.car3_y = _res214.nodeY
+                                $.car3_z = _res214.nodeZ
                                 if (!World.IsPointObscuredByAMissionEntity($.car3_x, $.car3_y, $.car3_z, 4.0, 4.0, 4.0)) {
                                     if (!Camera.IsPointOnScreen($.car3_x, $.car3_y, $.car3_z, 4.0)) {
                                         $.car3_d1.setCoordinates($.car3_x, $.car3_y, $.car3_z)
@@ -1088,13 +1166,22 @@ async function mission_start_d1() {
                     }
                 }
                 if (!$.car3_d1.locate3D($.car3_stuck_x, $.car3_stuck_y, $.car3_stuck_z, 4.0, 4.0, 4.0, false)) {
-                    ;[$.car3_stuck_x, $.car3_stuck_y, $.car3_stuck_z] = $.car3_d1.getCoordinates()
+                    const _res215 = $.car3_d1.getCoordinates()
+                    $.car3_stuck_x = _res215.x
+                    $.car3_stuck_y = _res215.y
+                    $.car3_stuck_z = _res215.z
                     $.timerf_reset_flag = 0
                 }
                 if ($.car3_d1.isUpsidedown() && $.car3_d1.isStopped()) {
                     if (!$.car3_d1.isOnScreen()) {
-                        ;[$.car3_x, $.car3_y, $.car3_z] = $.car3_d1.getCoordinates()
-                        ;[$.car3_x, $.car3_y, $.car3_z] = Path.GetClosestCarNode($.car3_x, $.car3_y, $.car3_z)
+                        const _res216 = $.car3_d1.getCoordinates()
+                        $.car3_x = _res216.x
+                        $.car3_y = _res216.y
+                        $.car3_z = _res216.z
+                        const _res217 = Path.GetClosestCarNode($.car3_x, $.car3_y, $.car3_z)
+                        $.car3_x = _res217.nodeX
+                        $.car3_y = _res217.nodeY
+                        $.car3_z = _res217.nodeZ
                         if (!World.IsPointObscuredByAMissionEntity($.car3_x, $.car3_y, $.car3_z, 4.0, 4.0, 4.0)) {
                             if (!Camera.IsPointOnScreen($.car3_x, $.car3_y, $.car3_z, 3.0)) {
                                 $.car3_d1.setCoordinates($.car3_x, $.car3_y, $.car3_z)
@@ -1118,8 +1205,14 @@ async function mission_start_d1() {
                         $.timerc = $.timerc_current - $.timerc_started
                         if ($.timerc > 5000) {
                             if (!$.car3_d1.isOnScreen()) {
-                                ;[$.car3_x, $.car3_y, $.car3_z] = $.car3_d1.getCoordinates()
-                                ;[$.car3_x, $.car3_y, $.car3_z] = Path.GetClosestCarNode($.car3_x, $.car3_y, $.car3_z)
+                                const _res218 = $.car3_d1.getCoordinates()
+                                $.car3_x = _res218.x
+                                $.car3_y = _res218.y
+                                $.car3_z = _res218.z
+                                const _res219 = Path.GetClosestCarNode($.car3_x, $.car3_y, $.car3_z)
+                                $.car3_x = _res219.nodeX
+                                $.car3_y = _res219.nodeY
+                                $.car3_z = _res219.nodeZ
                                 if (!World.IsPointObscuredByAMissionEntity($.car3_x, $.car3_y, $.car3_z, 4.0, 4.0, 4.0)) {
                                     if (!Camera.IsPointOnScreen($.car3_x, $.car3_y, $.car3_z, 4.0)) {
                                         $.car3_d1.setCoordinates($.car3_x, $.car3_y, $.car3_z)
@@ -1238,8 +1331,14 @@ async function mission_start_d1() {
                 }
                 if ($.car3_d1.isInWater()) {
                     if (!$.car3_d1.isOnScreen()) {
-                        ;[$.car3_x, $.car3_y, $.car3_z] = $.car3_d1.getCoordinates()
-                        ;[$.car3_x, $.car3_y, $.car3_z] = Path.GetClosestCarNode($.car3_x, $.car3_y, $.car3_z)
+                        const _res220 = $.car3_d1.getCoordinates()
+                        $.car3_x = _res220.x
+                        $.car3_y = _res220.y
+                        $.car3_z = _res220.z
+                        const _res221 = Path.GetClosestCarNode($.car3_x, $.car3_y, $.car3_z)
+                        $.car3_x = _res221.nodeX
+                        $.car3_y = _res221.nodeY
+                        $.car3_z = _res221.nodeZ
                         if (!World.IsPointObscuredByAMissionEntity($.car3_x, $.car3_y, $.car3_z, 4.0, 4.0, 4.0)) {
                             if (!Camera.IsPointOnScreen($.car3_x, $.car3_y, $.car3_z, 3.0)) {
                                 $.car3_d1.setCoordinates($.car3_x, $.car3_y, $.car3_z)

@@ -249,7 +249,10 @@ async function ped_get_in_taxi() {
         }
     }
 
-    ;[$.taxi_ped_x, $.taxi_ped_y, $.taxi_ped_z] = $.taxi_ped1.getCoordinates()
+    const _res286 = $.taxi_ped1.getCoordinates()
+    $.taxi_ped_x = _res286.x
+    $.taxi_ped_y = _res286.y
+    $.taxi_ped_z = _res286.z
 
     $.blip1_ct1.remove()
     $.taxi_car1.setTaxiLights(false /* Off */)

@@ -473,7 +473,10 @@ async function loop_as3_1() {
             if ($.flag_commence_approach == 0) {
                 DrugRun.Start()
                 $.flag_commence_approach = 1
-                ;[$.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z] = DrugRun.FindPlaneCoordinates()
+                const _res333 = DrugRun.FindPlaneCoordinates()
+                $.dodo_as3_x = _res333.x
+                $.dodo_as3_y = _res333.y
+                $.dodo_as3_z = _res333.z
                 $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */)
                 $.blip_as3_dodo.changeScale(2)
             }
@@ -571,7 +574,10 @@ async function loop_as3_2() {
 
         //TEST BLIP FOR PLANE
 
-        ;[$.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z] = DrugRun.FindPlaneCoordinates()
+        const _res334 = DrugRun.FindPlaneCoordinates()
+        $.dodo_as3_x = _res334.x
+        $.dodo_as3_y = _res334.y
+        $.dodo_as3_z = _res334.z
         $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */)
         $.blip_as3_dodo.changeScale(3)
 
@@ -625,7 +631,10 @@ async function loop_as3_3() {
             if ($.flag_commence_approach == 0) {
                 DrugRun.Start()
                 $.flag_commence_approach = 1
-                ;[$.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z] = DrugRun.FindPlaneCoordinates()
+                const _res335 = DrugRun.FindPlaneCoordinates()
+                $.dodo_as3_x = _res335.x
+                $.dodo_as3_y = _res335.y
+                $.dodo_as3_z = _res335.z
                 $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */)
                 $.blip_as3_dodo.changeScale(3)
             }
@@ -690,7 +699,10 @@ async function loop_as3_4() {
 
         //TEST BLIP FOR PLANE
 
-        ;[$.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z] = DrugRun.FindPlaneCoordinates()
+        const _res336 = DrugRun.FindPlaneCoordinates()
+        $.dodo_as3_x = _res336.x
+        $.dodo_as3_y = _res336.y
+        $.dodo_as3_z = _res336.z
         $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */)
         $.blip_as3_dodo.changeScale(2)
 
@@ -808,7 +820,10 @@ async function loop_as3_7() {
         }
         if ($.flag_particle == 1) {
             if ($.flag_charlie_1 == 0) {
-                ;[$.charlie_1_x, $.charlie_1_y, $.charlie_1_z] = $.charlie_1.getCoordinates()
+                const _res337 = $.charlie_1.getCoordinates()
+                $.charlie_1_x = _res337.x
+                $.charlie_1_y = _res337.y
+                $.charlie_1_z = _res337.z
                 /*
         min_x = charlie_1_x - 0.2
         max_x = charlie_1_x	+ 0.2
@@ -826,7 +841,10 @@ async function loop_as3_7() {
                 }
             }
             if ($.flag_charlie_2 == 0) {
-                ;[$.charlie_2_x, $.charlie_2_y, $.charlie_2_z] = $.charlie_2.getCoordinates()
+                const _res338 = $.charlie_2.getCoordinates()
+                $.charlie_2_x = _res338.x
+                $.charlie_2_y = _res338.y
+                $.charlie_2_z = _res338.z
                 if ($.timer_as3_dif < 4000) {
                     Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_2_x, $.charlie_2_y, $.charlie_2_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200)
                 }
@@ -835,7 +853,10 @@ async function loop_as3_7() {
                 }
             }
             if ($.flag_charlie_3 == 0) {
-                ;[$.charlie_3_x, $.charlie_3_y, $.charlie_3_z] = $.charlie_3.getCoordinates()
+                const _res339 = $.charlie_3.getCoordinates()
+                $.charlie_3_x = _res339.x
+                $.charlie_3_y = _res339.y
+                $.charlie_3_z = _res339.z
                 if ($.timer_as3_dif < 7000) {
                     Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_3_x, $.charlie_3_y, $.charlie_3_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200)
                 }
@@ -844,7 +865,10 @@ async function loop_as3_7() {
                 }
             }
             if ($.flag_charlie_4 == 0) {
-                ;[$.charlie_4_x, $.charlie_4_y, $.charlie_4_z] = $.charlie_4.getCoordinates()
+                const _res340 = $.charlie_4.getCoordinates()
+                $.charlie_4_x = _res340.x
+                $.charlie_4_y = _res340.y
+                $.charlie_4_z = _res340.z
                 if ($.timer_as3_dif < 3500) {
                     Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_4_x, $.charlie_4_y, $.charlie_4_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200)
                 }
@@ -853,7 +877,10 @@ async function loop_as3_7() {
                 }
             }
             if ($.flag_charlie_5 == 0) {
-                ;[$.charlie_5_x, $.charlie_5_y, $.charlie_5_z] = $.charlie_5.getCoordinates()
+                const _res341 = $.charlie_5.getCoordinates()
+                $.charlie_5_x = _res341.x
+                $.charlie_5_y = _res341.y
+                $.charlie_5_z = _res341.z
                 if ($.timer_as3_dif < 8000) {
                     Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_5_x, $.charlie_5_y, $.charlie_5_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200)
                 }
@@ -862,7 +889,10 @@ async function loop_as3_7() {
                 }
             }
             if ($.flag_charlie_6 == 0) {
-                ;[$.charlie_6_x, $.charlie_6_y, $.charlie_6_z] = $.charlie_6.getCoordinates()
+                const _res342 = $.charlie_6.getCoordinates()
+                $.charlie_6_x = _res342.x
+                $.charlie_6_y = _res342.y
+                $.charlie_6_z = _res342.z
                 if ($.timer_as3_dif < 6000) {
                     Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_6_x, $.charlie_6_y, $.charlie_6_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200)
                 }
@@ -871,7 +901,10 @@ async function loop_as3_7() {
                 }
             }
             if ($.flag_charlie_7 == 0) {
-                ;[$.charlie_7_x, $.charlie_7_y, $.charlie_7_z] = $.charlie_7.getCoordinates()
+                const _res343 = $.charlie_7.getCoordinates()
+                $.charlie_7_x = _res343.x
+                $.charlie_7_y = _res343.y
+                $.charlie_7_z = _res343.z
                 if ($.timer_as3_dif < 7500) {
                     Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_7_x, $.charlie_7_y, $.charlie_7_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200)
                 }
@@ -880,7 +913,10 @@ async function loop_as3_7() {
                 }
             }
             if ($.flag_charlie_8 == 0) {
-                ;[$.charlie_8_x, $.charlie_8_y, $.charlie_8_z] = $.charlie_8.getCoordinates()
+                const _res344 = $.charlie_8.getCoordinates()
+                $.charlie_8_x = _res344.x
+                $.charlie_8_y = _res344.y
+                $.charlie_8_z = _res344.z
                 if ($.timer_as3_dif < 4750) {
                     Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_8_x, $.charlie_8_y, $.charlie_8_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200)
                 }

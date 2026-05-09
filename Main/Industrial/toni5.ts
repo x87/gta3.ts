@@ -229,7 +229,10 @@ async function mission_start_toni5() {
             // SCM GOSUB Truck_health
             await Truck_health()
             // fallback if label was not emitted as async function: no-op continues linearly
-            ;[$.truck_x, $.truck_y, $.truck_z] = $.explosive_truck.getCoordinates()
+            const _res291 = $.explosive_truck.getCoordinates()
+            $.truck_x = _res291.x
+            $.truck_y = _res291.y
+            $.truck_z = _res291.z
             if ($.player.isInCar($.explosive_truck)) {
                 if ($.flag_car_blip_displayed_tm5 == 1 /* TRUE */) {
                     $.blip2_tm5 = Blip.AddForCoord(965.0, -1117.0, -100.0)
@@ -284,7 +287,10 @@ async function mission_start_toni5() {
             // SCM GOSUB Truck_health
             await Truck_health()
             // fallback if label was not emitted as async function: no-op continues linearly
-            ;[$.truck_x, $.truck_y, $.truck_z] = $.explosive_truck.getCoordinates()
+            const _res292 = $.explosive_truck.getCoordinates()
+            $.truck_x = _res292.x
+            $.truck_y = _res292.y
+            $.truck_z = _res292.z
             if (!$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
                 // SCM GOTO → toni5_wait_for_van (not lowered; manual jump required)
                 throw new Error('unresolved GOTO toni5_wait_for_van') // fallback: would break linear control flow

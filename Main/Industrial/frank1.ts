@@ -346,7 +346,10 @@ async function mission_start_frankie1() {
 
         Camera.DoFade(0, 0 /* FADE_OUT */)
 
-        ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+        const _res227 = $.chico.getCoordinates()
+        $.chico_x = _res227.x
+        $.chico_y = _res227.y
+        $.chico_z = _res227.z
 
         $.fm1_blip = Blip.AddForCoord(775.5, -557.3, 14.0)
 
@@ -471,7 +474,10 @@ async function mission_start_frankie1() {
                 $.fm1_blip = Blip.AddForChar($.chico)
                 $.flag_blip_on_limo = 0
             }
-            ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+            const _res228 = $.chico.getCoordinates()
+            $.chico_x = _res228.x
+            $.chico_y = _res228.y
+            $.chico_z = _res228.z
             if ($.player.locateInCar2D($.chico_x, $.chico_y, 30.0, 30.0, false) && $.chico_message_flag == 0) {
                 Text.PrintNow(FM1_P, 5000, 1) //THATS CHICO OVER THERE, STOP NEXT TO HIM AND I'LL GET OUT
                 $.chico_message_flag = 1
@@ -534,7 +540,10 @@ async function mission_start_frankie1() {
 
         $.maria.setObjGotoCharOnFoot($.chico)
 
-        ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+        const _res229 = $.chico.getCoordinates()
+        $.chico_x = _res229.x
+        $.chico_y = _res229.y
+        $.chico_z = _res229.z
 
         while (!$.maria.locateStoppedOnFoot2D($.chico_x, $.chico_y, 3.0, 3.0, false)) {
             await asyncWait(0)
@@ -553,7 +562,10 @@ async function mission_start_frankie1() {
                 // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_frankie1_failed') // fallback: would break linear control flow
             }
-            ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+            const _res230 = $.chico.getCoordinates()
+            $.chico_x = _res230.x
+            $.chico_y = _res230.y
+            $.chico_z = _res230.z
             if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
                 $.fm1_blip = Blip.AddForCar($.frankies_limo)
                 Text.PrintNow('FM1_1', 5000, 1) //"Get back into the limo!"
@@ -625,7 +637,10 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 13) {
                 if (Audio.HasMissionAudioLoaded()) {
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+                    const _res231 = $.chico.getCoordinates()
+                    $.chico_x = _res231.x
+                    $.chico_y = _res231.y
+                    $.chico_z = _res231.z
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_U, 2000, 1) //"Ciao baby."
                     $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000)
@@ -643,7 +658,10 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 11) {
                 if (Audio.HasMissionAudioLoaded()) {
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates()
+                    const _res232 = $.maria.getCoordinates()
+                    $.chico_x = _res232.x
+                    $.chico_y = _res232.y
+                    $.chico_z = _res232.z
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_T, 4000, 2) //"Thanks for the tip. C'mon, let's go party. See you around Chico."
                     $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000)
@@ -661,7 +679,10 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 9) {
                 if (Audio.HasMissionAudioLoaded()) {
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+                    const _res233 = $.chico.getCoordinates()
+                    $.chico_x = _res233.x
+                    $.chico_y = _res233.y
+                    $.chico_z = _res233.z
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_S1, 15000, 2) //"You should check out the warehouse party going down at the North end of Portland Harbour."
                     $.chico_audio_flag = 10
@@ -677,7 +698,10 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 7) {
                 if (Audio.HasMissionAudioLoaded()) {
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+                    const _res234 = $.chico.getCoordinates()
+                    $.chico_x = _res234.x
+                    $.chico_y = _res234.y
+                    $.chico_z = _res234.z
                     $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000)
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_S, 5000, 2) //"Here you go lady"
@@ -695,7 +719,10 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 5) {
                 if (Audio.HasMissionAudioLoaded()) {
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates()
+                    const _res235 = $.maria.getCoordinates()
+                    $.chico_x = _res235.x
+                    $.chico_y = _res235.y
+                    $.chico_z = _res235.z
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_R, 6000, 2) //"Hi Chico. Yeah just the usual."
                     $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000)
@@ -713,7 +740,10 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 3) {
                 if (Audio.HasMissionAudioLoaded()) {
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+                    const _res236 = $.chico.getCoordinates()
+                    $.chico_x = _res236.x
+                    $.chico_y = _res236.y
+                    $.chico_z = _res236.z
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_Q1, 6000, 2) //"You looking for some spank?"
                     $.chico_audio_flag = 4
@@ -729,7 +759,10 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 1) {
                 if (Audio.HasMissionAudioLoaded()) {
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates()
+                    const _res237 = $.chico.getCoordinates()
+                    $.chico_x = _res237.x
+                    $.chico_y = _res237.y
+                    $.chico_z = _res237.z
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_Q, 6000, 2) //"Hey it's my favourite lady!"
                     $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000)
@@ -913,7 +946,10 @@ async function mission_start_frankie1() {
             $.chico_audio_flag = 17
         }
 
-        ;[$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates()
+        const _res238 = $.maria.getCoordinates()
+        $.chico_x = _res238.x
+        $.chico_y = _res238.y
+        $.chico_z = _res238.z
         Audio.PlayMissionAudio()
 
         $.player.setControl(false /* OFF */)
@@ -1314,7 +1350,10 @@ async function mission_start_frankie1() {
                 }
             }
             if (!$.swatvan_fm1.locate3D($.swat1_stuck_x, $.swat1_stuck_y, $.swat1_stuck_z, 2.0, 2.0, 2.0, false)) {
-                ;[$.swat1_stuck_x, $.swat1_stuck_y, $.swat1_stuck_z] = $.swatvan_fm1.getCoordinates()
+                const _res239 = $.swatvan_fm1.getCoordinates()
+                $.swat1_stuck_x = _res239.x
+                $.swat1_stuck_y = _res239.y
+                $.swat1_stuck_z = _res239.z
                 $.timerc_reset_flag_f1a = 0
             }
             if (Car.IsDead($.swatvan2_fm1)) {
@@ -1394,7 +1433,10 @@ async function mission_start_frankie1() {
                 }
             }
             if (!$.swatvan2_fm1.locate3D($.swat2_stuck_x, $.swat2_stuck_y, $.swat2_stuck_z, 2.0, 2.0, 2.0, false)) {
-                ;[$.swat2_stuck_x, $.swat2_stuck_y, $.swat2_stuck_z] = $.swatvan2_fm1.getCoordinates()
+                const _res240 = $.swatvan2_fm1.getCoordinates()
+                $.swat2_stuck_x = _res240.x
+                $.swat2_stuck_y = _res240.y
+                $.swat2_stuck_z = _res240.z
                 $.timerc_reset_flag_f1b = 0
             }
             if ($.swatvan_fm1.locate2D(1252.0, -1086.0, 8.0, 8.0, false) && $.swat1_exit_car == 0) {
@@ -1410,12 +1452,18 @@ async function mission_start_frankie1() {
                 }
                 if ($.chico_audio_flag == 21) {
                     if (!Char.IsDead($.doorman1)) {
-                        ;[$.chico_x, $.chico_y, $.chico_z] = $.doorman1.getCoordinates()
+                        const _res241 = $.doorman1.getCoordinates()
+                        $.chico_x = _res241.x
+                        $.chico_y = _res241.y
+                        $.chico_z = _res241.z
                         Audio.SetMissionAudioPosition($.chico_x, $.chico_y, $.chico_z)
                     } else {
                         $.doorman1.markAsNoLongerNeeded()
                         if (!Char.IsDead($.doorman2)) {
-                            ;[$.chico_x, $.chico_y, $.chico_z] = $.doorman2.getCoordinates()
+                            const _res242 = $.doorman2.getCoordinates()
+                            $.chico_x = _res242.x
+                            $.chico_y = _res242.y
+                            $.chico_z = _res242.z
                             Audio.SetMissionAudioPosition($.chico_x, $.chico_y, $.chico_z)
                         } else {
                             $.doorman2.markAsNoLongerNeeded()
@@ -1468,11 +1516,17 @@ async function mission_start_frankie1() {
                 }
                 if ($.chico_audio_flag == 21) {
                     if (!Char.IsDead($.doorman1)) {
-                        ;[$.chico_x, $.chico_y, $.chico_z] = $.doorman1.getCoordinates()
+                        const _res243 = $.doorman1.getCoordinates()
+                        $.chico_x = _res243.x
+                        $.chico_y = _res243.y
+                        $.chico_z = _res243.z
                         Audio.SetMissionAudioPosition($.chico_x, $.chico_y, $.chico_z)
                     } else {
                         if (!Char.IsDead($.doorman2)) {
-                            ;[$.chico_x, $.chico_y, $.chico_z] = $.doorman2.getCoordinates()
+                            const _res244 = $.doorman2.getCoordinates()
+                            $.chico_x = _res244.x
+                            $.chico_y = _res244.y
+                            $.chico_z = _res244.z
                             Audio.SetMissionAudioPosition($.chico_x, $.chico_y, $.chico_z)
                         }
                     }
@@ -1736,7 +1790,10 @@ async function mission_start_frankie1() {
                     Text.PrintNow(FM1_5, 4000, 2) //"Get Maria out of there and back to Frankie's"
                     $.player.alterWantedLevelNoDrop(2)
                     $.maria.setRunning(true /* TRUE */)
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.player.getCoordinates()
+                    const _res245 = $.player.getCoordinates()
+                    $.chico_x = _res245.x
+                    $.chico_y = _res245.y
+                    $.chico_z = _res245.z
                     $.maria.setObjRunToCoord($.chico_x, $.chico_y)
                     $.clubbers_flee_flag = 9
                 } else {
@@ -1761,7 +1818,10 @@ async function mission_start_frankie1() {
                         Text.PrintNow(FM1_5, 4000, 2) //"Get Maria out of there and back to Frankie's"
                         $.player.alterWantedLevelNoDrop(2)
                         $.maria.setRunning(true /* TRUE */)
-                        ;[$.chico_x, $.chico_y, $.chico_z] = $.player.getCoordinates()
+                        const _res246 = $.player.getCoordinates()
+                        $.chico_x = _res246.x
+                        $.chico_y = _res246.y
+                        $.chico_z = _res246.z
                         $.maria.setObjRunToCoord($.chico_x, $.chico_y)
                         $.clubbers_flee_flag = 9
                     }
@@ -1800,12 +1860,18 @@ async function mission_start_frankie1() {
                 if ($.swatvan_fm1.locateStopped2D(1252.0, -1086.0, 18.0, 18.0, false)) {
                     if ($.chico_audio_flag == 21) {
                         if (!Char.IsDead($.doorman1)) {
-                            ;[$.chico_x, $.chico_y, $.chico_z] = $.doorman1.getCoordinates()
+                            const _res247 = $.doorman1.getCoordinates()
+                            $.chico_x = _res247.x
+                            $.chico_y = _res247.y
+                            $.chico_z = _res247.z
                             Audio.SetMissionAudioPosition($.chico_x, $.chico_y, $.chico_z)
                         } else {
                             $.doorman1.markAsNoLongerNeeded()
                             if (!Char.IsDead($.doorman2)) {
-                                ;[$.chico_x, $.chico_y, $.chico_z] = $.doorman2.getCoordinates()
+                                const _res248 = $.doorman2.getCoordinates()
+                                $.chico_x = _res248.x
+                                $.chico_y = _res248.y
+                                $.chico_z = _res248.z
                                 Audio.SetMissionAudioPosition($.chico_x, $.chico_y, $.chico_z)
                             } else {
                                 $.doorman2.markAsNoLongerNeeded()
@@ -1849,12 +1915,18 @@ async function mission_start_frankie1() {
                 if ($.swatvan2_fm1.locateStopped2D(1235.0, -1099.0, 18.0, 18.0, false)) {
                     if ($.chico_audio_flag == 21) {
                         if (!Char.IsDead($.doorman1)) {
-                            ;[$.chico_x, $.chico_y, $.chico_z] = $.doorman1.getCoordinates()
+                            const _res249 = $.doorman1.getCoordinates()
+                            $.chico_x = _res249.x
+                            $.chico_y = _res249.y
+                            $.chico_z = _res249.z
                             Audio.SetMissionAudioPosition($.chico_x, $.chico_y, $.chico_z)
                         } else {
                             $.doorman1.markAsNoLongerNeeded()
                             if (!Char.IsDead($.doorman2)) {
-                                ;[$.chico_x, $.chico_y, $.chico_z] = $.doorman2.getCoordinates()
+                                const _res250 = $.doorman2.getCoordinates()
+                                $.chico_x = _res250.x
+                                $.chico_y = _res250.y
+                                $.chico_z = _res250.z
                                 Audio.SetMissionAudioPosition($.chico_x, $.chico_y, $.chico_z)
                             } else {
                                 $.doorman2.markAsNoLongerNeeded()
@@ -2232,7 +2304,10 @@ async function mission_start_frankie1() {
             }
             if ($.flag_blip_on_maria == 5) {
                 if (Audio.HasMissionAudioLoaded()) {
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates()
+                    const _res251 = $.maria.getCoordinates()
+                    $.chico_x = _res251.x
+                    $.chico_y = _res251.y
+                    $.chico_z = _res251.z
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_AA, 8000, 1) //"I'd better go I'll see you around I hope."
                     $.flag_blip_on_maria = 6
@@ -2250,7 +2325,10 @@ async function mission_start_frankie1() {
                 if (Audio.HasMissionAudioLoaded()) {
                     $.script_controlled_player.turnToFaceChar($.maria)
                     $.maria.turnToFaceChar($.script_controlled_player)
-                    ;[$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates()
+                    const _res252 = $.maria.getCoordinates()
+                    $.chico_x = _res252.x
+                    $.chico_y = _res252.y
+                    $.chico_z = _res252.z
                     Audio.PlayMissionAudio()
                     Text.PrintNow(FM1_Y, 8000, 1) //"I enjoyed myself for the first time in a long while,"
                     $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 20000)

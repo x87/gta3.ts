@@ -192,7 +192,9 @@ async function mission_start_asuka1() {
             $.cs_time = Cutscene.GetTime()
         }
 
-        ;[$.hours_a1, $.mins_a1] = Clock.GetTimeOfDay()
+        const _res1 = Clock.GetTimeOfDay()
+        $.hours_a1 = _res1.hours
+        $.mins_a1 = _res1.minutes
 
         $.hours_a1 = $.hours_a1 + 3
         if ($.hours_a1 > 23) {
@@ -1774,8 +1776,14 @@ async function mission_start_asuka1() {
             if (!Car.IsDead($.beamer1_a1)) {
                 if ($.beamer1_a1.isUpsidedown() && $.beamer1_a1.isStopped()) {
                     if (!$.beamer1_a1.isOnScreen()) {
-                        ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer1_a1.getCoordinates()
-                        ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                        const _res2 = $.beamer1_a1.getCoordinates()
+                        $.a1_x = _res2.x
+                        $.a1_y = _res2.y
+                        $.a1_z = _res2.z
+                        const _res3 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                        $.a1_x = _res3.nodeX
+                        $.a1_y = _res3.nodeY
+                        $.a1_z = _res3.nodeZ
                         //				IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 3.0
                         if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                             $.beamer1_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -1821,8 +1829,14 @@ async function mission_start_asuka1() {
                     }
                     if (TIMERA > 4000 && $.timera_reset_flag_a1 == 1) {
                         if (!$.beamer1_a1.isOnScreen()) {
-                            ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer1_a1.getCoordinates()
-                            ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                            const _res4 = $.beamer1_a1.getCoordinates()
+                            $.a1_x = _res4.x
+                            $.a1_y = _res4.y
+                            $.a1_z = _res4.z
+                            const _res5 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                            $.a1_x = _res5.nodeX
+                            $.a1_y = _res5.nodeY
+                            $.a1_z = _res5.nodeZ
                             //					IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 4.0
                             if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                                 $.beamer1_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -1868,8 +1882,14 @@ async function mission_start_asuka1() {
                         $.timerx = $.timerx_current - $.timerx_started
                         if ($.timerx > 5000) {
                             if (!$.beamer1_a1.isOnScreen()) {
-                                ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer1_a1.getCoordinates()
-                                ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                                const _res6 = $.beamer1_a1.getCoordinates()
+                                $.a1_x = _res6.x
+                                $.a1_y = _res6.y
+                                $.a1_z = _res6.z
+                                const _res7 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                                $.a1_x = _res7.nodeX
+                                $.a1_y = _res7.nodeY
+                                $.a1_z = _res7.nodeZ
                                 //						IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 4.0
                                 if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                                     $.beamer1_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -1907,7 +1927,10 @@ async function mission_start_asuka1() {
                     }
                 }
                 if (!$.beamer1_a1.locate3D($.beamer1_stuck_x, $.beamer1_stuck_y, $.beamer1_stuck_z, 4.0, 4.0, 4.0, false)) {
-                    ;[$.beamer1_stuck_x, $.beamer1_stuck_y, $.beamer1_stuck_z] = $.beamer1_a1.getCoordinates()
+                    const _res8 = $.beamer1_a1.getCoordinates()
+                    $.beamer1_stuck_x = _res8.x
+                    $.beamer1_stuck_y = _res8.y
+                    $.beamer1_stuck_z = _res8.z
                     $.timerx_reset_flag = 0
                 }
             }
@@ -1915,8 +1938,14 @@ async function mission_start_asuka1() {
             if (!Car.IsDead($.beamer2_a1)) {
                 if ($.beamer2_a1.isUpsidedown() && $.beamer2_a1.isStopped()) {
                     if (!$.beamer2_a1.isOnScreen()) {
-                        ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer2_a1.getCoordinates()
-                        ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                        const _res9 = $.beamer2_a1.getCoordinates()
+                        $.a1_x = _res9.x
+                        $.a1_y = _res9.y
+                        $.a1_z = _res9.z
+                        const _res10 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                        $.a1_x = _res10.nodeX
+                        $.a1_y = _res10.nodeY
+                        $.a1_z = _res10.nodeZ
                         //				IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 3.0
                         if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                             $.beamer2_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -1962,8 +1991,14 @@ async function mission_start_asuka1() {
                     }
                     if (TIMERB > 5000 && $.timerb_reset_flag_a1 == 1) {
                         if (!$.beamer2_a1.isOnScreen()) {
-                            ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer2_a1.getCoordinates()
-                            ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                            const _res11 = $.beamer2_a1.getCoordinates()
+                            $.a1_x = _res11.x
+                            $.a1_y = _res11.y
+                            $.a1_z = _res11.z
+                            const _res12 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                            $.a1_x = _res12.nodeX
+                            $.a1_y = _res12.nodeY
+                            $.a1_z = _res12.nodeZ
                             //					IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 4.0
                             if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                                 $.beamer2_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -2009,8 +2044,14 @@ async function mission_start_asuka1() {
                         $.timery = $.timery_current - $.timery_started
                         if ($.timery > 5000) {
                             if (!$.beamer2_a1.isOnScreen()) {
-                                ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer2_a1.getCoordinates()
-                                ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                                const _res13 = $.beamer2_a1.getCoordinates()
+                                $.a1_x = _res13.x
+                                $.a1_y = _res13.y
+                                $.a1_z = _res13.z
+                                const _res14 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                                $.a1_x = _res14.nodeX
+                                $.a1_y = _res14.nodeY
+                                $.a1_z = _res14.nodeZ
                                 //						IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 4.0
                                 if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                                     $.beamer2_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -2048,7 +2089,10 @@ async function mission_start_asuka1() {
                     }
                 }
                 if (!$.beamer2_a1.locate3D($.beamer2_stuck_x, $.beamer2_stuck_y, $.beamer2_stuck_z, 4.0, 4.0, 4.0, false)) {
-                    ;[$.beamer2_stuck_x, $.beamer2_stuck_y, $.beamer2_stuck_z] = $.beamer2_a1.getCoordinates()
+                    const _res15 = $.beamer2_a1.getCoordinates()
+                    $.beamer2_stuck_x = _res15.x
+                    $.beamer2_stuck_y = _res15.y
+                    $.beamer2_stuck_z = _res15.z
                     $.timery_reset_flag = 0
                 }
             }
@@ -2056,8 +2100,14 @@ async function mission_start_asuka1() {
             if (!Car.IsDead($.beamer3_a1)) {
                 if ($.beamer3_a1.isUpsidedown() && $.beamer3_a1.isStopped()) {
                     if (!$.beamer3_a1.isOnScreen()) {
-                        ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer3_a1.getCoordinates()
-                        ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                        const _res16 = $.beamer3_a1.getCoordinates()
+                        $.a1_x = _res16.x
+                        $.a1_y = _res16.y
+                        $.a1_z = _res16.z
+                        const _res17 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                        $.a1_x = _res17.nodeX
+                        $.a1_y = _res17.nodeY
+                        $.a1_z = _res17.nodeZ
                         //				IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 3.0
                         if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                             $.beamer3_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -2112,8 +2162,14 @@ async function mission_start_asuka1() {
                         $.timerc_a1 = $.timerc_current_a1 - $.timerc_started_a1
                         if ($.timerc_a1 > 5000) {
                             if (!$.beamer3_a1.isOnScreen()) {
-                                ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer3_a1.getCoordinates()
-                                ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                                const _res18 = $.beamer3_a1.getCoordinates()
+                                $.a1_x = _res18.x
+                                $.a1_y = _res18.y
+                                $.a1_z = _res18.z
+                                const _res19 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                                $.a1_x = _res19.nodeX
+                                $.a1_y = _res19.nodeY
+                                $.a1_z = _res19.nodeZ
                                 //						IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 4.0
                                 if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                                     $.beamer3_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -2166,8 +2222,14 @@ async function mission_start_asuka1() {
                         $.timerz = $.timerz_current - $.timerz_started
                         if ($.timerz > 5000) {
                             if (!$.beamer3_a1.isOnScreen()) {
-                                ;[$.a1_x, $.a1_y, $.a1_z] = $.beamer3_a1.getCoordinates()
-                                ;[$.a1_x, $.a1_y, $.a1_z] = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                                const _res20 = $.beamer3_a1.getCoordinates()
+                                $.a1_x = _res20.x
+                                $.a1_y = _res20.y
+                                $.a1_z = _res20.z
+                                const _res21 = Path.GetClosestCarNode($.a1_x, $.a1_y, $.a1_z)
+                                $.a1_x = _res21.nodeX
+                                $.a1_y = _res21.nodeY
+                                $.a1_z = _res21.nodeZ
                                 //						IF NOT IS_POINT_ON_SCREEN a1_x a1_y a1_z 4.0
                                 if (!$.player.locateAnyMeans2D($.a1_x, $.a1_y, 80.0, 80.0, false)) {
                                     $.beamer3_a1.setCoordinates($.a1_x, $.a1_y, $.a1_z)
@@ -2211,7 +2273,10 @@ async function mission_start_asuka1() {
                     }
                 }
                 if (!$.beamer3_a1.locate3D($.beamer3_stuck_x, $.beamer3_stuck_y, $.beamer3_stuck_z, 4.0, 4.0, 4.0, false)) {
-                    ;[$.beamer3_stuck_x, $.beamer3_stuck_y, $.beamer3_stuck_z] = $.beamer3_a1.getCoordinates()
+                    const _res22 = $.beamer3_a1.getCoordinates()
+                    $.beamer3_stuck_x = _res22.x
+                    $.beamer3_stuck_y = _res22.y
+                    $.beamer3_stuck_z = _res22.z
                     $.timerz_reset_flag = 0
                 }
             }

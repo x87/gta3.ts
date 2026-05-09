@@ -346,8 +346,14 @@ async function mission_start_toni3() {
         Camera.SetFixedPosition(1200.9, -866.5, 19.0, 0.0, 0.0, 0.0)
         Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */)
 
-        ;[$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates()
-        ;[$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates()
+        const _res287 = $.joeys_garage_door2.getCoordinates()
+        $.joeydoor2_X = _res287.x
+        $.joeydoor2_Y = _res287.y
+        $.joeydoor2_Z = _res287.z
+        const _res288 = $.joeys_garage_door3.getCoordinates()
+        $.joeydoor3_X = _res288.x
+        $.joeydoor3_Y = _res288.y
+        $.joeydoor3_Z = _res288.z
 
         $.joeydoor2_Z = $.joeydoor2_Z + 3.0
         $.joeydoor3_Z = $.joeydoor3_Z + 3.0
@@ -375,8 +381,14 @@ async function mission_start_toni3() {
             }
         }
 
-        ;[$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates()
-        ;[$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates()
+        const _res289 = $.joeys_garage_door2.getCoordinates()
+        $.joeydoor2_X = _res289.x
+        $.joeydoor2_Y = _res289.y
+        $.joeydoor2_Z = _res289.z
+        const _res290 = $.joeys_garage_door3.getCoordinates()
+        $.joeydoor3_X = _res290.x
+        $.joeydoor3_Y = _res290.y
+        $.joeydoor3_Z = _res290.z
 
         $.joeydoor2_Z = $.joeydoor2_Z - 3.0
         $.joeydoor3_Z = $.joeydoor3_Z - 3.0

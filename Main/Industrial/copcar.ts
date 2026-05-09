@@ -47,7 +47,10 @@ async function next_cop_car() {
     $.cop_time_limit_float = 0.0
     $.criminal_heading = 0.0
 
-    ;[$.player_c_x, $.player_c_y, $.player_c_z] = $.player.getCoordinates()
+    const _res179 = $.player.getCoordinates()
+    $.player_c_x = _res179.x
+    $.player_c_y = _res179.y
+    $.player_c_z = _res179.z
     Streaming.RequestModel(car`SENTINEL`)
     {
     }
@@ -104,7 +107,10 @@ async function next_cop_car() {
             throw new Error('unresolved GOTO cop_car_failed') // fallback: would break linear control flow
         }
 
-        ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z] = Path.GetClosestCarNode($.random_crim_x, $.random_crim_y, $.player_c_z)
+        const _res180 = Path.GetClosestCarNode($.random_crim_x, $.random_crim_y, $.player_c_z)
+        $.criminal_coord_x = _res180.nodeX
+        $.criminal_coord_y = _res180.nodeY
+        $.criminal_coord_z = _res180.nodeZ
 
         if ($.criminal_coord_x > 1398.0 && $.criminal_coord_x < 1615.0 && $.criminal_coord_y > -965.0 && $.criminal_coord_y < -902.0) {
             // SCM GOTO → criminal_in_car (not lowered; manual jump required)
@@ -278,7 +284,10 @@ async function next_cop_car() {
         Streaming.MarkModelAsNoLongerNeeded(car`model`)
         $.criminal_car.setHeading($.criminal_heading)
 
-        ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z] = Path.GetClosestCharNode($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
+        const _res181 = Path.GetClosestCharNode($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
+        $.criminal_coord_x = _res181.nodeX
+        $.criminal_coord_y = _res181.nodeY
+        $.criminal_coord_z = _res181.nodeZ
         $.criminal = Char.CreateRandom($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
         $.criminal.setIsChrisCriminal(true /* TRUE */)
         //SET_CHAR_AVOID_LEVEL_TRANSITIONS criminal TRUE
@@ -460,7 +469,10 @@ async function next_cop_car() {
             Text.PrintStringInStringNow(C_BREIF, BIG_DAM, 5000, 1) // The criminal is proceeding south in Cochrane Dam
         }
 
-        ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z] = $.criminal.getCoordinates()
+        const _res182 = $.criminal.getCoordinates()
+        $.criminal_coord_x = _res182.x
+        $.criminal_coord_y = _res182.y
+        $.criminal_coord_z = _res182.z
         Audio.PoliceRadioMessage($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
 
         TIMERB = 0
@@ -513,12 +525,15 @@ async function next_cop_car() {
                             $.criminal.setObjStealAnyCar()
                         } else {
                             if (Streaming.HasModelLoaded(car`SENTINEL`)) {
-                                ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z] = $.criminal.getCoordinates()
-                                ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z, $.warp_heading_cop] = Path.GetClosestCarNodeWithHeading(
-                                    $.criminal_coord_x,
-                                    $.criminal_coord_y,
-                                    $.criminal_coord_z
-                                )
+                                const _res183 = $.criminal.getCoordinates()
+                                $.criminal_coord_x = _res183.x
+                                $.criminal_coord_y = _res183.y
+                                $.criminal_coord_z = _res183.z
+                                const _res184 = Path.GetClosestCarNodeWithHeading($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
+                                $.criminal_coord_x = _res184.nodeX
+                                $.criminal_coord_y = _res184.nodeY
+                                $.criminal_coord_z = _res184.nodeZ
+                                $.warp_heading_cop = _res184.angle
                                 $.criminal_car.markAsNoLongerNeeded()
                                 $.criminal_car = Car.Create(88 /* CAR_SENTINEL */, $.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
                                 $.criminal_car.setHeading($.warp_heading_cop)
@@ -579,12 +594,15 @@ async function next_cop_car() {
                                 $.timer_reset_flag = 0
                             } else {
                                 if (!$.criminal_car.isOnScreen()) {
-                                    ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z] = $.criminal_car.getCoordinates()
-                                    ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z, $.warp_heading_cop] = Path.GetClosestCarNodeWithHeading(
-                                        $.criminal_coord_x,
-                                        $.criminal_coord_y,
-                                        $.criminal_coord_z
-                                    )
+                                    const _res185 = $.criminal_car.getCoordinates()
+                                    $.criminal_coord_x = _res185.x
+                                    $.criminal_coord_y = _res185.y
+                                    $.criminal_coord_z = _res185.z
+                                    const _res186 = Path.GetClosestCarNodeWithHeading($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
+                                    $.criminal_coord_x = _res186.nodeX
+                                    $.criminal_coord_y = _res186.nodeY
+                                    $.criminal_coord_z = _res186.nodeZ
+                                    $.warp_heading_cop = _res186.angle
                                     if (!Camera.IsPointOnScreen($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z, 4.0)) {
                                         $.criminal_car.setCoordinates($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
                                         $.criminal_car.setHeading($.warp_heading_cop)
@@ -600,12 +618,15 @@ async function next_cop_car() {
                             $.criminal_car.setUpsidedownNotDamaged(false /* FALSE */)
                         } else {
                             if (!$.criminal_car.isOnScreen()) {
-                                ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z] = $.criminal_car.getCoordinates()
-                                ;[$.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z, $.warp_heading_cop] = Path.GetClosestCarNodeWithHeading(
-                                    $.criminal_coord_x,
-                                    $.criminal_coord_y,
-                                    $.criminal_coord_z
-                                )
+                                const _res187 = $.criminal_car.getCoordinates()
+                                $.criminal_coord_x = _res187.x
+                                $.criminal_coord_y = _res187.y
+                                $.criminal_coord_z = _res187.z
+                                const _res188 = Path.GetClosestCarNodeWithHeading($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
+                                $.criminal_coord_x = _res188.nodeX
+                                $.criminal_coord_y = _res188.nodeY
+                                $.criminal_coord_z = _res188.nodeZ
+                                $.warp_heading_cop = _res188.angle
                                 if (!Camera.IsPointOnScreen($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z, 4.0)) {
                                     $.criminal_car.setCoordinates($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z)
                                     $.criminal_car.setHeading($.warp_heading_cop)

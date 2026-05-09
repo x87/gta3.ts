@@ -537,7 +537,10 @@ async function mission_start_love4() {
             }
         }
 
-        ;[$.van3_x, $.van3_y, $.van3_z] = $.car_van3_lm4.getCoordinates()
+        const _res346 = $.car_van3_lm4.getCoordinates()
+        $.van3_x = _res346.x
+        $.van3_y = _res346.y
+        $.van3_z = _res346.z
 
         $.x_component = $.car_van3_lm4.getForwardX()
         $.y_component = $.car_van3_lm4.getForwardY()
@@ -580,7 +583,10 @@ async function mission_start_love4() {
 
         $.love_4_blip.remove()
 
-        ;[$.player_lo4_x, $.player_lo4_y, $.player_lo4_z] = $.player.getCoordinates()
+        const _res347 = $.player.getCoordinates()
+        $.player_lo4_x = _res347.x
+        $.player_lo4_y = _res347.y
+        $.player_lo4_z = _res347.z
 
         $.differ_x = $.player_lo4_x - $.result1_x
         $.differ_y = $.player_lo4_y - $.result1_y

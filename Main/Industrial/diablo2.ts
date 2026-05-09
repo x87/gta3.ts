@@ -286,7 +286,10 @@ async function mission_start_diablo2() {
                 $.ojective_creamed_guys_passed++
                 $.ojective_creamed_guy4_done_before = 1
             }
-            ;[$.icecreamx, $.icecreamy, $.icecreamz] = $.icecreamvan_any.getCoordinates()
+            const _res222 = $.icecreamvan_any.getCoordinates()
+            $.icecreamx = _res222.x
+            $.icecreamy = _res222.y
+            $.icecreamz = _res222.z
             if ($.creamed_guy1.isObjectivePassed() && $.ojective_creamed_guy1_done_before == 0) {
                 $.creamed_guy1.setObjGotoCoordOnFoot($.icecreamx, $.icecreamy)
                 $.ojective_creamed_guys_passed++

@@ -63,7 +63,10 @@ async function fish_factory_gate() {
                             //					GET_OBJECT_COORDINATES fish_factory_gate objectx objecty objectz
                             await asyncWait(0)
                         }
-                        ;[$.objectx, $.objecty, $.objectz] = $.fish_factory_gate.getCoordinates()
+                        const _res254 = $.fish_factory_gate.getCoordinates()
+                        $.objectx = _res254.x
+                        $.objecty = _res254.y
+                        $.objectz = _res254.z
                         if ($.gate_sfx2_fish == 1) {
                             $.not_clunked_yet = 1
                             if ($.objectx == 1016.0 && $.objecty == -1107.955 && $.objectz == 12.294) {
@@ -122,7 +125,10 @@ async function dog_food_factory_gate() {
                             //GET_OBJECT_COORDINATES dogfood_factory_gate objectx objecty objectz
                             await asyncWait(0)
                         }
-                        ;[$.objectx, $.objecty, $.objectz] = $.dogfood_factory_gate.getCoordinates()
+                        const _res255 = $.dogfood_factory_gate.getCoordinates()
+                        $.objectx = _res255.x
+                        $.objecty = _res255.y
+                        $.objectz = _res255.z
                         if ($.gate_sfx2_meat == 1) {
                             $.not_clunked_yet = 1
                             if ($.objectx == 1250.4 && $.objecty == -812.0 && $.objectz == 13.97) {
@@ -187,7 +193,10 @@ async function police_gate1() {
                             //					GET_OBJECT_COORDINATES police_door_one objectx objecty objectz
                             await asyncWait(0)
                         }
-                        ;[$.objectx, $.objecty, $.objectz] = $.police_door_one.getCoordinates()
+                        const _res256 = $.police_door_one.getCoordinates()
+                        $.objectx = _res256.x
+                        $.objecty = _res256.y
+                        $.objectz = _res256.z
                         if ($.gate_sfx2 == 1) {
                             $.not_clunked_yet = 1
                             if ($.objectx == 366.158 && $.objecty == -1128.522 && $.objectz == 21.941) {
@@ -248,7 +257,10 @@ async function police_gate2() {
                             //					GET_OBJECT_COORDINATES police_door_two objectx objecty objectz
                             await asyncWait(0)
                         }
-                        ;[$.objectx, $.objecty, $.objectz] = $.police_door_two.getCoordinates()
+                        const _res257 = $.police_door_two.getCoordinates()
+                        $.objectx = _res257.x
+                        $.objecty = _res257.y
+                        $.objectz = _res257.z
                         if ($.gate2_sfx2 == 1) {
                             $.not_clunked_yet = 1
                             if ($.objectx == 326.3 && $.objecty == -1128.522 && $.objectz == 21.941) {
@@ -309,7 +321,10 @@ async function colombian_gate() {
                             //					GET_OBJECT_COORDINATES colombian_gate objectx objecty objectz
                             await asyncWait(0)
                         }
-                        ;[$.objectx, $.objecty, $.objectz] = $.colombian_gate.getCoordinates()
+                        const _res258 = $.colombian_gate.getCoordinates()
+                        $.objectx = _res258.x
+                        $.objecty = _res258.y
+                        $.objectz = _res258.z
                         if ($.gate2_sfx2 == 1) {
                             $.not_clunked_yet = 1
                             if ($.objectx == 91.589 && $.objecty == -318.592 && $.objectz == 15.296) {
@@ -383,7 +398,10 @@ async function phils_gate() {
                             //					GET_OBJECT_COORDINATES phils_compnd_gate objectx objecty objectz
                             await asyncWait(0)
                         }
-                        ;[$.objectx, $.objecty, $.objectz] = $.phils_compnd_gate.getCoordinates()
+                        const _res259 = $.phils_compnd_gate.getCoordinates()
+                        $.objectx = _res259.x
+                        $.objecty = _res259.y
+                        $.objectz = _res259.z
                         if ($.gate2_sfx2 == 1) {
                             $.not_clunked_yet = 1
                             if ($.objectx == 147.249 && $.objecty == 207.323 && $.objectz == 10.599) {
@@ -448,7 +466,10 @@ async function colombian_gate2() {
                             //					GET_OBJECT_COORDINATES Columbian_gate2 objectx objecty objectz
                             await asyncWait(0)
                         }
-                        ;[$.objectx, $.objecty, $.objectz] = $.Columbian_gate2.getCoordinates()
+                        const _res260 = $.Columbian_gate2.getCoordinates()
+                        $.objectx = _res260.x
+                        $.objecty = _res260.y
+                        $.objectz = _res260.z
                         if ($.gate_sfx2 == 1) {
                             $.not_clunked_yet = 1
                             if ($.objectx == -363.05 && $.objecty == 250.455 && $.objectz == 61.355) {

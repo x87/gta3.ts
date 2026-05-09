@@ -345,7 +345,10 @@ async function create_random_injured_ped() {
 async function generate_random_coord() {
     await asyncWait(0)
 
-    ;[$.player1_a_x, $.player1_a_y, $.player1_a_z] = $.player.getCoordinates()
+    const _res165 = $.player.getCoordinates()
+    $.player1_a_x = _res165.x
+    $.player1_a_y = _res165.y
+    $.player1_a_z = _res165.z
 
     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
         $.random_x = Math.RandomFloatInRange(778.0, 1540.0)
@@ -429,7 +432,10 @@ async function generate_random_coord() {
         throw new Error('unresolved GOTO ambulance_failed') // fallback: would break linear control flow
     }
 
-    ;[$.ped_coord_x, $.ped_coord_y, $.ped_coord_z] = Path.GetClosestCharNode($.random_x, $.random_y, $.player1_a_z)
+    const _res166 = Path.GetClosestCharNode($.random_x, $.random_y, $.player1_a_z)
+    $.ped_coord_x = _res166.nodeX
+    $.ped_coord_y = _res166.nodeY
+    $.ped_coord_z = _res166.nodeZ
 
     if ($.ped_coord_x > 1398.0 && $.ped_coord_x < 1615.0 && $.ped_coord_y > -965.0 && $.ped_coord_y < -902.0) {
         // SCM GOTO → generate_random_coord (not lowered; manual jump required)
@@ -798,7 +804,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_1.getCoordinates()
+                const _res167 = $.injured_ped_1.getCoordinates()
+                $.sound_x = _res167.x
+                $.sound_y = _res167.y
+                $.sound_z = _res167.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -867,7 +876,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_2.getCoordinates()
+                const _res168 = $.injured_ped_2.getCoordinates()
+                $.sound_x = _res168.x
+                $.sound_y = _res168.y
+                $.sound_z = _res168.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -936,7 +948,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_3.getCoordinates()
+                const _res169 = $.injured_ped_3.getCoordinates()
+                $.sound_x = _res169.x
+                $.sound_y = _res169.y
+                $.sound_z = _res169.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1005,7 +1020,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_4.getCoordinates()
+                const _res170 = $.injured_ped_4.getCoordinates()
+                $.sound_x = _res170.x
+                $.sound_y = _res170.y
+                $.sound_z = _res170.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1074,7 +1092,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_5.getCoordinates()
+                const _res171 = $.injured_ped_5.getCoordinates()
+                $.sound_x = _res171.x
+                $.sound_y = _res171.y
+                $.sound_z = _res171.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1143,7 +1164,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_6.getCoordinates()
+                const _res172 = $.injured_ped_6.getCoordinates()
+                $.sound_x = _res172.x
+                $.sound_y = _res172.y
+                $.sound_z = _res172.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1212,7 +1236,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_7.getCoordinates()
+                const _res173 = $.injured_ped_7.getCoordinates()
+                $.sound_x = _res173.x
+                $.sound_y = _res173.y
+                $.sound_z = _res173.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1281,7 +1308,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_8.getCoordinates()
+                const _res174 = $.injured_ped_8.getCoordinates()
+                $.sound_x = _res174.x
+                $.sound_y = _res174.y
+                $.sound_z = _res174.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1350,7 +1380,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_9.getCoordinates()
+                const _res175 = $.injured_ped_9.getCoordinates()
+                $.sound_x = _res175.x
+                $.sound_y = _res175.y
+                $.sound_z = _res175.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1419,7 +1452,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_10.getCoordinates()
+                const _res176 = $.injured_ped_10.getCoordinates()
+                $.sound_x = _res176.x
+                $.sound_y = _res176.y
+                $.sound_z = _res176.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1488,7 +1524,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_11.getCoordinates()
+                const _res177 = $.injured_ped_11.getCoordinates()
+                $.sound_x = _res177.x
+                $.sound_y = _res177.y
+                $.sound_z = _res177.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly
@@ -1557,7 +1596,10 @@ async function ambulance_loop() {
                 } else {
                     $.ped_sex_flag = 1
                 }
-                ;[$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_12.getCoordinates()
+                const _res178 = $.injured_ped_12.getCoordinates()
+                $.sound_x = _res178.x
+                $.sound_y = _res178.y
+                $.sound_z = _res178.z
                 // SCM GOSUB chunk1_ambulance
                 await chunk1_ambulance()
                 // fallback if label was not emitted as async function: no-op continues linearly

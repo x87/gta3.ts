@@ -546,7 +546,9 @@ async function meat_mission1_loop() {
             }
 
             if ($.flag_player_on_mission == 0) {
-                ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                const _res348 = Clock.GetTimeOfDay()
+                $.hours = _res348.hours
+                $.minutes = _res348.minutes
                 if ($.hours >= 9 && $.hours < 19) {
                     $.meat_phone.turnOn()
                 } else {
@@ -561,7 +563,9 @@ async function meat_mission1_loop() {
                     if ($.flag_player_on_mission == 0) {
                         if ($.player.canStartMission()) {
                             $.meat_phone.turnOff()
-                            ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                            const _res349 = Clock.GetTimeOfDay()
+                            $.hours = _res349.hours
+                            $.minutes = _res349.minutes
                             if ($.hours >= 9 && $.hours < 19) {
                                 $.player.makeSafeForCutscene()
                                 Camera.SetFadingColor(0, 0, 0)
@@ -605,7 +609,9 @@ async function meat_mission2_loop() {
             }
 
             if ($.flag_player_on_mission == 0) {
-                ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                const _res350 = Clock.GetTimeOfDay()
+                $.hours = _res350.hours
+                $.minutes = _res350.minutes
                 if ($.hours >= 9 && $.hours < 19) {
                     $.meat_phone.turnOn()
                 } else {
@@ -620,7 +626,9 @@ async function meat_mission2_loop() {
                     if ($.flag_player_on_mission == 0) {
                         if ($.player.canStartMission()) {
                             $.meat_phone.turnOff()
-                            ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                            const _res351 = Clock.GetTimeOfDay()
+                            $.hours = _res351.hours
+                            $.minutes = _res351.minutes
                             if ($.hours >= 9 && $.hours < 19) {
                                 $.player.makeSafeForCutscene()
                                 Camera.SetFadingColor(0, 0, 0)
@@ -664,7 +672,9 @@ async function meat_mission3_loop() {
             }
 
             if ($.flag_player_on_mission == 0) {
-                ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                const _res352 = Clock.GetTimeOfDay()
+                $.hours = _res352.hours
+                $.minutes = _res352.minutes
                 if ($.hours >= 9 && $.hours < 19) {
                     $.meat_phone.turnOn()
                 } else {
@@ -679,7 +689,9 @@ async function meat_mission3_loop() {
                     if ($.flag_player_on_mission == 0) {
                         if ($.player.canStartMission()) {
                             $.meat_phone.turnOff()
-                            ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                            const _res353 = Clock.GetTimeOfDay()
+                            $.hours = _res353.hours
+                            $.minutes = _res353.minutes
                             if ($.hours >= 9 && $.hours < 19) {
                                 $.player.makeSafeForCutscene()
                                 Camera.SetFadingColor(0, 0, 0)
@@ -723,7 +735,9 @@ async function meat_mission4_loop() {
             }
 
             if ($.flag_player_on_mission == 0) {
-                ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                const _res354 = Clock.GetTimeOfDay()
+                $.hours = _res354.hours
+                $.minutes = _res354.minutes
                 if ($.hours >= 9 && $.hours < 19) {
                     $.meat_phone.turnOn()
                 } else {
@@ -738,7 +752,9 @@ async function meat_mission4_loop() {
                     if ($.flag_player_on_mission == 0) {
                         if ($.player.canStartMission()) {
                             $.meat_phone.turnOff()
-                            ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                            const _res355 = Clock.GetTimeOfDay()
+                            $.hours = _res355.hours
+                            $.minutes = _res355.minutes
                             if ($.hours >= 9 && $.hours < 19) {
                                 $.player.makeSafeForCutscene()
                                 Camera.SetFadingColor(0, 0, 0)
@@ -1034,7 +1050,9 @@ async function joey_mission1_loop() {
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
                     if ($.flag_player_on_mission == 0) {
-                        ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                        const _res356 = Clock.GetTimeOfDay()
+                        $.hours = _res356.hours
+                        $.minutes = _res356.minutes
                         if ($.hours >= 5 && $.hours < 21) {
                             if ($.player.canStartMission()) {
                                 $.player.makeSafeForCutscene()
@@ -1066,7 +1084,9 @@ async function joey_mission1_loop() {
                                     // SCM GOTO → joey_mission1_loop (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO joey_mission1_loop') // fallback: would break linear control flow
                                 }
-                                ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                                const _res357 = Clock.GetTimeOfDay()
+                                $.hours = _res357.hours
+                                $.minutes = _res357.minutes
                                 if ($.hours >= 5 && $.hours < 21) {
                                     // SCM GOTO → joey_mission1_loop (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO joey_mission1_loop') // fallback: would break linear control flow
@@ -1301,7 +1321,9 @@ async function joey_mission6_loop() {
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
                     if ($.flag_player_on_mission == 0) {
-                        ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                        const _res358 = Clock.GetTimeOfDay()
+                        $.hours = _res358.hours
+                        $.minutes = _res358.minutes
                         if ($.hours >= 6 && $.hours < 14) {
                             if ($.player.canStartMission()) {
                                 $.player.makeSafeForCutscene()
@@ -1333,7 +1355,9 @@ async function joey_mission6_loop() {
                                     // SCM GOTO → joey_mission6_loop (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO joey_mission6_loop') // fallback: would break linear control flow
                                 }
-                                ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                                const _res359 = Clock.GetTimeOfDay()
+                                $.hours = _res359.hours
+                                $.minutes = _res359.minutes
                                 if ($.hours >= 6 && $.hours < 14) {
                                     // SCM GOTO → joey_mission6_loop (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO joey_mission6_loop') // fallback: would break linear control flow
@@ -4006,7 +4030,9 @@ async function joeys_buggy_loop() {
             if ($.player.isPlaying()) {
                 if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
                     //START JOEYS BUGGY GENERATOR AT MISTYS
-                    ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                    const _res360 = Clock.GetTimeOfDay()
+                    $.hours = _res360.hours
+                    $.minutes = _res360.minutes
                     if ($.hours > 17 && $.hours < 24) {
                         if ($.started_buggy_generator_before == 0) {
                             $.joeys_buggy.switch(101)

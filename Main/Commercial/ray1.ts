@@ -446,7 +446,10 @@ async function mission_start_ray1() {
                             }
                         }
                     } else {
-                        ;[$.get_away_car_x, $.get_away_car_y, $.get_away_car_z] = $.get_away_car.getCoordinates()
+                        const _res69 = $.get_away_car.getCoordinates()
+                        $.get_away_car_x = _res69.x
+                        $.get_away_car_y = _res69.y
+                        $.get_away_car_z = _res69.z
                         $.car_moving_stuck_flag = 0
                     }
                 }

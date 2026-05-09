@@ -106,8 +106,14 @@ async function mission_start_joey4() {
 
         //MOVE GARAGE UP
 
-        ;[$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates()
-        ;[$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates()
+        const _res265 = $.joeys_garage_door2.getCoordinates()
+        $.joeydoor2_X = _res265.x
+        $.joeydoor2_Y = _res265.y
+        $.joeydoor2_Z = _res265.z
+        const _res266 = $.joeys_garage_door3.getCoordinates()
+        $.joeydoor3_X = _res266.x
+        $.joeydoor3_Y = _res266.y
+        $.joeydoor3_Z = _res266.z
 
         $.joeydoor2_Z = $.joeydoor2_Z + 3.0
         $.joeydoor3_Z = $.joeydoor3_Z + 3.0
@@ -334,8 +340,14 @@ async function mission_start_joey4() {
         Audio.PlayMissionAudio()
         Text.PrintNow('JM4_12', 5000, 1) //"Go to X, wait for Toni"
 
-        ;[$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates()
-        ;[$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates()
+        const _res267 = $.joeys_garage_door2.getCoordinates()
+        $.joeydoor2_X = _res267.x
+        $.joeydoor2_Y = _res267.y
+        $.joeydoor2_Z = _res267.z
+        const _res268 = $.joeys_garage_door3.getCoordinates()
+        $.joeydoor3_X = _res268.x
+        $.joeydoor3_Y = _res268.y
+        $.joeydoor3_Z = _res268.z
 
         $.joeydoor2_Z = $.joeydoor2_Z - 3.0
         $.joeydoor3_Z = $.joeydoor3_Z - 3.0
@@ -915,7 +927,10 @@ async function mission_start_joey4() {
             }
             if ($.is_char1_dead_jm4 == 1 && $.is_char2_dead_jm4 == 1 && $.is_char3_dead_jm4 == 1 && $.is_char4_dead_jm4 == 1 && $.played_tune_before == 0) {
                 $.player.addScore(2000)
-                ;[$.player_X, $.player_Y, $.player_Z] = $.player.getCoordinates()
+                const _res269 = $.player.getCoordinates()
+                $.player_X = _res269.x
+                $.player_Y = _res269.y
+                $.player_Z = _res269.z
                 Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */)
                 $.played_tune_before = 1
             }

@@ -522,7 +522,9 @@ async function ind_sound() {
                 //TIME OF DAY SOUND EFFECTS	(REDLIGHT)
 
                 if ($.player.isInZone('REDLIGH')) {
-                    ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                    const _res261 = Clock.GetTimeOfDay()
+                    $.hours = _res261.hours
+                    $.minutes = _res261.minutes
                     if ($.hours >= 20 || $.hours <= 5) {
                         if ($.flag_sounds_added_redlight == 0) {
                             $.sound_loop8 = Sound.AddContinuous(891.9, -416.9, 16.1, 32 /* SOUND_STRIP_CLUB_LOOP_2_S */) //Luigi's club
@@ -565,7 +567,9 @@ async function dog_sound() {
                 //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
 
                 if ($.player.isInZone('PORT_I')) {
-                    ;[$.hours, $.minutes] = Clock.GetTimeOfDay()
+                    const _res262 = Clock.GetTimeOfDay()
+                    $.hours = _res262.hours
+                    $.minutes = _res262.minutes
                     if ($.hours >= 9 && $.hours <= 17) {
                         if ($.flag_sounds_added_dog == 0) {
                             //Portland Industrial

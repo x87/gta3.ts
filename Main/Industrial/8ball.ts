@@ -757,11 +757,16 @@ async function mission_start_eightball() {
 
         World.ClearArea(886.8, -310.1, -100.0, 2.0, true /* TRUE */)
 
-        ;[$.car_8ball_x, $.car_8ball_y, $.car_8ball_z] = $.car_eightball.getCoordinates()
+        const _res163 = $.car_eightball.getCoordinates()
+        $.car_8ball_x = _res163.x
+        $.car_8ball_y = _res163.y
+        $.car_8ball_z = _res163.z
 
         $.car_8ball_heading = $.car_eightball.getHeading()
 
-        ;[$.car_colour1_8ball, $.car_colour2_8ball] = $.car_eightball.getColors()
+        const _res164 = $.car_eightball.getColors()
+        $.car_colour1_8ball = _res164.color1
+        $.car_colour2_8ball = _res164.color2
 
         while (!$.playersdoor.rotate(210.0, 10.0, false /* FALSE */)) {
             await asyncWait(0)
