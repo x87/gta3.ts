@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/kenji4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_kenji4() {
     $.flag_player_on_mission = 1
@@ -76,11 +76,11 @@ async function mission_start_kenji4() {
 
         // Cutscene stuff
 
-        Streaming.LoadSpecialCharacter(1, $.kenji)
+        Streaming.LoadSpecialCharacter(1, 'KENJI')
         Streaming.RequestModel(ped`GANG_YAKUZA_A`)
-        Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
-        Streaming.RequestModel(casino_garden)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'KENJIH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
+        Streaming.RequestModel(1570 /* casino_garden */)
 
         Streaming.LoadAllModelsNow()
 
@@ -89,34 +89,34 @@ async function mission_start_kenji4() {
             !Streaming.HasModelLoaded(ped`GANG_YAKUZA_A`) ||
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
-            !Streaming.HasModelLoaded(casino_garden)
+            !Streaming.HasModelLoaded(1570 /* casino_garden */)
         ) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(k4_shi)
+        Cutscene.Load('k4_shi')
 
         Cutscene.SetOffset(476.38, -1382.168, 67.347)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_kenji = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_kenji.setAnim($.kenji)
+        $.cs_kenji.setAnim('kenji')
 
         $.cs_yakuza = CutsceneObject.Create(ped`GANG_YAKUZA_A`)
 
-        $.cs_yakuza.setAnim(gang07)
+        $.cs_yakuza.setAnim('gang07')
 
         $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj01`)
 
-        $.cs_kenjihead.setAnim($.kenji)
+        $.cs_kenjihead.setAnim('kenji')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */)
 
@@ -194,7 +194,7 @@ async function mission_start_kenji4() {
         Streaming.UnloadSpecialCharacter(1)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(casino_garden)
+        Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */)
 
         // *******************************************END OF CUTSCENE*******************************
 
@@ -303,9 +303,9 @@ async function mission_start_kenji4() {
 
         $.script_controlled_player.setObjGotoCoordOnFoot(-92.07, -488.84)
 
-        timerb = 0
+        TIMERB = 0
 
-        while (timerb < 1000) {
+        while (TIMERB < 1000) {
             await asyncWait(0)
         }
 
@@ -331,10 +331,10 @@ async function mission_start_kenji4() {
 
         // Cutscene stuff
 
-        Streaming.LoadSpecialCharacter(2, KEEPER)
-        Streaming.LoadSpecialModel(hier`cutobj01`, KEEPERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, SHDOOR)
+        Streaming.LoadSpecialCharacter(2, 'KEEPER')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'KEEPERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'SHDOOR')
 
         while (Camera.GetFadingStatus()) {
             await asyncWait(0)
@@ -359,7 +359,7 @@ async function mission_start_kenji4() {
 
         World.SetVisibilityOfClosestObjectOfType(-88.3, -487.6, 15.1, 6.0, 415 /* convstore01_door */, false /* FALSE */)
 
-        Cutscene.Load(k4_shi2)
+        Cutscene.Load('k4_shi2')
 
         Cutscene.SetOffset(-88.1829, -491.4236, 15.1439) //Proper one
 
@@ -367,23 +367,23 @@ async function mission_start_kenji4() {
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_keeper = CutsceneObject.Create(ped`SPECIAL2`)
 
-        $.cs_keeper.setAnim(keeper)
+        $.cs_keeper.setAnim('keeper')
 
         $.cs_shopdoor = CutsceneObject.Create(hier`cutobj03`)
 
-        $.cs_shopdoor.setAnim(shdoor)
+        $.cs_shopdoor.setAnim('shdoor')
 
         $.cs_keeperhead = CutsceneHead.Create($.cs_keeper, hier`cutobj01`)
 
-        $.cs_keeperhead.setAnim(keeper)
+        $.cs_keeperhead.setAnim('keeper')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         World.ClearArea(-93.01, -489.43, 15.16, 1.0, true /* TRUE */)
 

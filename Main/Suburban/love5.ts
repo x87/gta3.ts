@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/love5.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_love5() {
     $.flag_player_on_mission = 1
@@ -37,10 +37,10 @@ async function mission_start_love5() {
     //
     //PRINT_BIG LOVE5 15000 2
 
-    Streaming.LoadSpecialCharacter(1, $.love)
-    Streaming.RequestModel(tshrorckgrdn)
-    Streaming.RequestModel(tshrorckgrdn_alfas)
-    Streaming.LoadSpecialModel(hier`cutobj01`, LOVEH)
+    Streaming.LoadSpecialCharacter(1, 'love')
+    Streaming.RequestModel(1731 /* tshrorckgrdn */)
+    Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */)
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'LOVEH')
 
     Streaming.Switch(false /* OFF */)
 
@@ -52,25 +52,25 @@ async function mission_start_love5() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(tshrorckgrdn) ||
-        !Streaming.HasModelLoaded(tshrorckgrdn_alfas) ||
+        !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */) ||
+        !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) ||
         !Streaming.HasModelLoaded(hier`cutobj01`)
     ) {
         await asyncWait(0)
     }
 
-    Cutscene.Load(D5_ES)
+    Cutscene.Load('D5_ES')
 
     Cutscene.SetOffset(85.2162, -1532.9093, 243.5422)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_love = CutsceneObject.Create(ped`SPECIAL1`)
-    $.cs_love.setAnim($.love)
+    $.cs_love.setAnim('love')
 
     $.cs_lovehead = CutsceneHead.Create($.cs_love, hier`cutobj01`)
-    $.cs_lovehead.setAnim($.love)
+    $.cs_lovehead.setAnim('love')
 
     World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */)
 
@@ -133,15 +133,15 @@ async function mission_start_love5() {
     Camera.SetBehindPlayer()
 
     Streaming.UnloadSpecialCharacter(1)
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn)
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas)
+    Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */)
+    Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
 
     Streaming.RequestModel(car`SECURICAR`)
     Streaming.RequestModel(car`COLUMB`)
     Streaming.RequestModel(ped`GANG_COLOMBIAN_A`)
-    Streaming.LoadSpecialCharacter(2, $.ojg)
-    Streaming.LoadSpecialCharacter(3, S_GUARD)
+    Streaming.LoadSpecialCharacter(2, 'OJG')
+    Streaming.LoadSpecialCharacter(3, 'S_GUARD')
 
     Streaming.LoadAllModelsNow()
 

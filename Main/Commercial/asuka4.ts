@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/asuka4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_asuka4() {
     Stat.RegisterMissionGiven()
@@ -10,12 +10,12 @@ async function mission_start_asuka4() {
     await asyncWait(0)
 
     {
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, ASUKAH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, minnote)
-        Streaming.LoadSpecialCharacter(1, $.asuka)
-        Streaming.RequestModel(condo_ivy)
-        Streaming.RequestModel(kmricndo01)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'ASUKAH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'minnote')
+        Streaming.LoadSpecialCharacter(1, 'asuka')
+        Streaming.RequestModel(2216 /* condo_ivy */)
+        Streaming.RequestModel(2215 /* kmricndo01 */)
 
         Streaming.LoadAllModelsNow()
 
@@ -28,27 +28,27 @@ async function mission_start_asuka4() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(condo_ivy) || !Streaming.HasModelLoaded(kmricndo01)) {
+        while (!Streaming.HasModelLoaded(2216 /* condo_ivy */) || !Streaming.HasModelLoaded(2215 /* kmricndo01 */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(A4_PDR)
+        Cutscene.Load('A4_PDR')
         Cutscene.SetOffset(523.102, -636.96, 15.616)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_asuka = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_asuka.setAnim($.asuka)
+        $.cs_asuka.setAnim('asuka')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj02`)
-        $.cs_asukahead.setAnim($.asuka)
+        $.cs_asukahead.setAnim('asuka')
 
         $.cs_note = CutsceneObject.Create(hier`cutobj03`)
-        $.cs_note.setAnim(minnote)
+        $.cs_note.setAnim('minnote')
 
         World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */)
         $.player.setCoordinates(523.6, -639.4, 16.0)
@@ -149,8 +149,8 @@ async function mission_start_asuka4() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
-        Streaming.MarkModelAsNoLongerNeeded(condo_ivy)
-        Streaming.MarkModelAsNoLongerNeeded(kmricndo01)
+        Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */)
+        Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */)
         Streaming.UnloadSpecialCharacter(1)
 
         //GOTO skip_to_ray_cut //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -173,7 +173,7 @@ async function mission_start_asuka4() {
         Hud.DisplayTimer($.countdown_as4)
         $.blip1_as4 = Blip.AddForObject($.phone_1_obj)
         $.Ray_phone1.setMessage('AM4_1A')
-        Audio.LoadMissionAudio(A4_A)
+        Audio.LoadMissionAudio('a4_a' as any)
 
         while (!$.player.locateOnFoot3D(229.2, -1537.6, 26.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
             await asyncWait(0)
@@ -208,7 +208,7 @@ async function mission_start_asuka4() {
         Game.SetPoliceIgnorePlayer($.player, false /* off */)
         Game.SetEveryoneIgnorePlayer($.player, false /* off */)
 
-        Audio.LoadMissionAudio(A4_B)
+        Audio.LoadMissionAudio('a4_b' as any)
 
         while (!$.player.locateOnFoot3D(-53.5, -699.1, 26.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
             await asyncWait(0)
@@ -243,7 +243,7 @@ async function mission_start_asuka4() {
         Game.SetPoliceIgnorePlayer($.player, false /* off */)
         Game.SetEveryoneIgnorePlayer($.player, false /* off */)
 
-        Audio.LoadMissionAudio(A4_C)
+        Audio.LoadMissionAudio('a4_c' as any)
 
         while (!$.player.locateOnFoot3D(204.8, -135.0, 16.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
             await asyncWait(0)
@@ -278,7 +278,7 @@ async function mission_start_asuka4() {
         Game.SetPoliceIgnorePlayer($.player, false /* off */)
         Game.SetEveryoneIgnorePlayer($.player, false /* off */)
 
-        Audio.LoadMissionAudio(A4_D)
+        Audio.LoadMissionAudio('a4_d' as any)
 
         while (!$.player.locateOnFoot3D(60.3, -964.8, 26.1, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
             await asyncWait(0)
@@ -343,9 +343,9 @@ async function mission_start_asuka4() {
 
         Streaming.Switch(false /* OFF */)
 
-        Streaming.LoadSpecialCharacter(2, $.ray)
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, RAYH)
+        Streaming.LoadSpecialCharacter(2, 'ray')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'RAYH')
 
         while (Camera.GetFadingStatus()) {
             await asyncWait(0)
@@ -357,20 +357,20 @@ async function mission_start_asuka4() {
             await asyncWait(0)
         }
 
-        Cutscene.Load(R0_PDR2)
+        Cutscene.Load('R0_PDR2')
         Cutscene.SetOffset(39.424, -726.677, 21.692)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_ray = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_ray.setAnim($.ray)
+        $.cs_ray.setAnim('ray')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`)
-        $.cs_rayhead.setAnim($.ray)
+        $.cs_rayhead.setAnim('ray')
 
         World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */)
 

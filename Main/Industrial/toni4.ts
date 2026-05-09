@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/toni4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_toni4() {
     Stat.RegisterMissionGiven()
@@ -25,9 +25,9 @@ async function mission_start_toni4() {
     {
         Streaming.RequestModel(ped`GANG_MAFIA_A`)
         Streaming.RequestModel(ped`GANG_MAFIA_B`)
-        Streaming.RequestModel(ind_newrizzos)
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, NOTE)
+        Streaming.RequestModel(537 /* ind_newrizzos */)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'NOTE')
 
         Streaming.LoadAllModelsNow()
 
@@ -36,7 +36,7 @@ async function mission_start_toni4() {
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
             !Streaming.HasModelLoaded(ped`GANG_MAFIA_A`) ||
             !Streaming.HasModelLoaded(ped`GANG_MAFIA_B`) ||
-            !Streaming.HasModelLoaded(ind_newrizzos)
+            !Streaming.HasModelLoaded(537 /* ind_newrizzos */)
         ) {
             await asyncWait(0)
         }
@@ -58,17 +58,17 @@ async function mission_start_toni4() {
             $.mafia_goon2.turnToFaceChar($.mafia_goon1)
         }
 
-        Cutscene.Load(T4_TAT)
+        Cutscene.Load('T4_TAT')
         Cutscene.SetOffset(1218.42, -314.5, 28.9)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_note = CutsceneObject.Create(hier`cutobj02`)
-        $.cs_note.setAnim(NOTE)
+        $.cs_note.setAnim('NOTE')
 
         World.ClearArea(1219.6, -323.0, 25.6, 1.0, true /* TRUE */)
         $.player.setCoordinates(1219.6, -323.0, 25.6)
@@ -186,7 +186,7 @@ async function mission_start_toni4() {
 
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(ind_newrizzos)
+        Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */)
 
         Streaming.RequestModel(ped`GANG_TRIAD_A`)
         Streaming.RequestModel(ped`GANG_TRIAD_B`)
@@ -255,7 +255,7 @@ async function mission_start_toni4() {
         $.char_already_dead2 = 0
         $.char_already_dead3 = 0
 
-        Audio.LoadMissionAudio(T4_A)
+        Audio.LoadMissionAudio('t4_a' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)

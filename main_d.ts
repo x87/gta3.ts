@@ -1,6 +1,6 @@
 // Generated from main_d.sc
-import { $ } from '../vars.mts'
-import { car, ped, hier } from '../ide.ts'
+import { $ } from './vars.mts'
+import { car, ped, hier } from './ide.mts'
 
 async function mission_start() {
     // SCM GOTO → mission_start lowered to endless loop
@@ -3879,7 +3879,7 @@ async function ind_save_loop() {
                                         $.player.setControl(false /* Off */)
                                         Camera.SetFixedPosition(884.56, -305.35, 13.53, 0.0, 0.0, 0.0)
                                         Camera.PointAtPoint(885.25, -305.85, 13.0, 2 /* JUMP_CUT */)
-                                        Audio.LoadMissionAudio(DOOR_1)
+                                        Audio.LoadMissionAudio('door_1' as any)
                                         while (!Audio.HasMissionAudioLoaded()) {
                                             await asyncWait(0)
                                         }
@@ -4222,7 +4222,7 @@ async function com_save_loop() {
                                         $.player.setControl(false /* Off */)
                                         Camera.SetFixedPosition(98.53, -472.06, 19.84, 0.0, 0.0, 0.0)
                                         Camera.PointAtPoint(98.94, -472.9, 19.47, 2 /* JUMP_CUT */)
-                                        Audio.LoadMissionAudio(DOOR_3)
+                                        Audio.LoadMissionAudio('door_3' as any)
                                         while (!Audio.HasMissionAudioLoaded()) {
                                             await asyncWait(0)
                                         }
@@ -4612,10 +4612,10 @@ async function luigi_message() {
                 }
             }
             if ($.flag_had_luigi_help_message == 1) {
-                timera = 0
+                TIMERA = 0
                 $.flag_had_luigi_help_message = 2
             }
-            while (timera < 6000) {
+            while (TIMERA < 6000) {
                 await asyncWait(0)
             }
             if ($.flag_had_luigi_help_message == 2) {

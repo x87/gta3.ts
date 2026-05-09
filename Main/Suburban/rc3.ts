@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/rc3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_rc3() {
     $.flag_player_on_mission = 1

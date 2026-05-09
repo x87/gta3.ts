@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/diablo1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_d1() {
     $.flag_player_on_mission = 1
@@ -151,13 +151,13 @@ async function mission_start_d1() {
 
   */
 
-        Cutscene.Load(EL_PH1)
+        Cutscene.Load('EL_PH1')
         //SET_CUTSCENE_OFFSET 939.4 -230.1 3.9
 
         Cutscene.SetOffset(938.27, -229.561, 4.023)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         Camera.DoFade(1500, 1 /* FADE_IN */)
 

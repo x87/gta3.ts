@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/genstuf.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_genstuf() {
     {
@@ -192,7 +192,7 @@ async function ind_ammu() {
                             $.player.setControl(false /* Off */)
                             Camera.SetFadingColor(1, 1, 1)
                             Streaming.Switch(false /* OFF */)
-                            Streaming.LoadSpecialCharacter(4, sam)
+                            Streaming.LoadSpecialCharacter(4, 'sam')
                             Audio.SetMusicDoesFade(false /* FALSE */)
                             Camera.DoFade(500, 0 /* FADE_OUT */)
                             while (!Streaming.HasSpecialCharacterLoaded(4)) {
@@ -455,7 +455,7 @@ async function tramp_tunnel() {
                             if ($.tramps_been_created == 1) {
                                 if ($.tramp_is_dead == 0) {
                                     if (Char.IsDead($.tramp1) || Char.IsDead($.tramp2) || Char.IsDead($.tramp3) || Char.IsDead($.tramp4)) {
-                                        timerA = 0
+                                        TIMERA = 0
                                         $.tramp_is_dead = 1
                                     }
                                 }
@@ -471,7 +471,7 @@ async function tramp_tunnel() {
                                 $.tramps_been_created = 0
                             }
                             if ($.tramp_is_dead == 1) {
-                                if (timerA > 1440000) {
+                                if (TIMERA > 1440000) {
                                     $.tramp_is_dead = 0
                                     $.has_player_been_in_tramp_tunnel_before = 0
                                 }
@@ -490,7 +490,7 @@ async function tramp_tunnel() {
                             $.tramps_been_created = 0
                         }
                         if ($.tramp_is_dead == 1) {
-                            if (timerA > 1440000) {
+                            if (TIMERA > 1440000) {
                                 $.tramp_is_dead = 0
                                 $.has_player_been_in_tramp_tunnel_before = 0
                             }
@@ -610,7 +610,7 @@ async function com_ammu() {
                             $.player.setControl(false /* Off */)
                             Camera.SetFadingColor(1, 1, 1)
                             Streaming.Switch(false /* OFF */)
-                            Streaming.LoadSpecialCharacter(4, sam)
+                            Streaming.LoadSpecialCharacter(4, 'sam')
                             Audio.SetMusicDoesFade(false /* FALSE */)
                             Camera.DoFade(500, 0 /* FADE_OUT */)
                             while (!Streaming.HasSpecialCharacterLoaded(4)) {

@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/luigi5.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_luigi5() {
     $.flag_player_on_mission = 1
@@ -164,16 +164,16 @@ async function mission_start_luigi5() {
   SWITCH_STREAMING OFF
   */
 
-        Streaming.LoadSpecialCharacter(1, $.luigi)
-        Streaming.LoadSpecialCharacter(2, $.micky)
+        Streaming.LoadSpecialCharacter(1, 'LUIGI')
+        Streaming.LoadSpecialCharacter(2, 'MICKY')
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, LUDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, LUIGIH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, MICKYH)
-        Streaming.RequestModel(indhibuild3)
-        Streaming.RequestModel(luigiclubout)
-        Streaming.RequestModel(luigiineerclub)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'LUDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'LUIGIH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'MICKYH')
+        Streaming.RequestModel(257 /* indhibuild3 */)
+        Streaming.RequestModel(256 /* luigiclubout */)
+        Streaming.RequestModel(243 /* luigiineerclub */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -200,43 +200,43 @@ async function mission_start_luigi5() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(indhibuild3) || !Streaming.HasModelLoaded(luigiclubout) || !Streaming.HasModelLoaded(luigiineerclub)) {
+        while (!Streaming.HasModelLoaded(257 /* indhibuild3 */) || !Streaming.HasModelLoaded(256 /* luigiclubout */) || !Streaming.HasModelLoaded(243 /* luigiineerclub */)) {
             await asyncWait(0)
         }
 
         World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */)
 
-        Cutscene.Load(l5_tfb)
+        Cutscene.Load('l5_tfb')
 
         Cutscene.SetOffset(900.782, -427.523, 13.829)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_luigi = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_luigi.setAnim($.luigi)
+        $.cs_luigi.setAnim('luigi')
 
         $.cs_micky = CutsceneObject.Create(ped`SPECIAL2`)
 
-        $.cs_micky.setAnim($.micky)
+        $.cs_micky.setAnim('micky')
 
         $.cs_luigihead = CutsceneHead.Create($.cs_luigi, hier`cutobj02`)
 
-        $.cs_luigihead.setAnim($.luigi)
+        $.cs_luigihead.setAnim('luigi')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj03`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_mickyhead = CutsceneHead.Create($.cs_micky, hier`cutobj04`)
 
-        $.cs_mickyhead.setAnim($.micky)
+        $.cs_mickyhead.setAnim('micky')
 
         $.cs_ludoor = CutsceneObject.Create(hier`cutobj01`)
 
-        $.cs_ludoor.setAnim(LUDOOR)
+        $.cs_ludoor.setAnim('LUDOOR')
 
         //CLEAR_AREA 902.2 -425.8 13.9 1.0 TRUE
         //SET_PLAYER_COORDINATES player 902.2 -425.8 13.9
@@ -342,11 +342,11 @@ async function mission_start_luigi5() {
 
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`)
 
-        Streaming.MarkModelAsNoLongerNeeded(indhibuild3)
+        Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */)
 
-        Streaming.MarkModelAsNoLongerNeeded(luigiclubout)
+        Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */)
 
-        Streaming.MarkModelAsNoLongerNeeded(luigiineerclub)
+        Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */)
 
         World.SetPedDensityMultiplier(1.0)
 
@@ -669,10 +669,10 @@ async function mission_start_luigi5() {
                     if ($.flag_prossie1_told_to_go_into_ball == 1) {
                         if ($.flag_prossie1_at_ball == 0) {
                             if ($.flag_timer_prossie1_lm5 == 0) {
-                                timerb = 0
+                                TIMERB = 0
                                 $.flag_timer_prossie1_lm5 = 1
                             }
-                            if (timerb > 20000) {
+                            if (TIMERB > 20000) {
                                 $.prossie1_lm5.setCoordinates(999.0, -891.0, 14.3)
                             }
                         }
@@ -824,10 +824,10 @@ async function mission_start_luigi5() {
                     if ($.flag_prossie2_told_to_go_into_ball == 1) {
                         if ($.flag_prossie2_at_ball == 0) {
                             if ($.flag_timer_prossie2_lm5 == 0) {
-                                timerb = 0
+                                TIMERB = 0
                                 $.flag_timer_prossie2_lm5 = 1
                             }
-                            if (timerb > 20000) {
+                            if (TIMERB > 20000) {
                                 $.prossie2_lm5.setCoordinates(999.0, -891.0, 14.3)
                             }
                         }
@@ -979,10 +979,10 @@ async function mission_start_luigi5() {
                     if ($.flag_prossie3_told_to_go_into_ball == 1) {
                         if ($.flag_prossie3_at_ball == 0) {
                             if ($.flag_timer_prossie3_lm5 == 0) {
-                                timerb = 0
+                                TIMERB = 0
                                 $.flag_timer_prossie3_lm5 = 1
                             }
-                            if (timerb > 20000) {
+                            if (TIMERB > 20000) {
                                 $.prossie3_lm5.setCoordinates(999.0, -891.0, 14.3)
                             }
                         }
@@ -1135,10 +1135,10 @@ async function mission_start_luigi5() {
                     if ($.flag_prossie4_told_to_go_into_ball == 1) {
                         if ($.flag_prossie4_at_ball == 0) {
                             if ($.flag_timer_prossie4_lm5 == 0) {
-                                timerb = 0
+                                TIMERB = 0
                                 $.flag_timer_prossie4_lm5 = 1
                             }
-                            if (timerb > 20000) {
+                            if (TIMERB > 20000) {
                                 $.prossie4_lm5.setCoordinates(999.0, -891.0, 14.3)
                             }
                         }
@@ -1288,10 +1288,10 @@ async function mission_start_luigi5() {
                     if ($.flag_prossie5_told_to_go_into_ball == 1) {
                         if ($.flag_prossie5_at_ball == 0) {
                             if ($.flag_timer_prossie5_lm5 == 0) {
-                                timerb = 0
+                                TIMERB = 0
                                 $.flag_timer_prossie5_lm5 = 1
                             }
-                            if (timerb > 20000) {
+                            if (TIMERB > 20000) {
                                 $.prossie5_lm5.setCoordinates(999.0, -891.0, 14.3)
                             }
                         }
@@ -1443,10 +1443,10 @@ async function mission_start_luigi5() {
                     if ($.flag_prossie6_told_to_go_into_ball == 1) {
                         if ($.flag_prossie6_at_ball == 0) {
                             if ($.flag_timer_prossie6_lm5 == 0) {
-                                timerb = 0
+                                TIMERB = 0
                                 $.flag_timer_prossie6_lm5 = 1
                             }
-                            if (timerb > 20000) {
+                            if (TIMERB > 20000) {
                                 $.prossie6_lm5.setCoordinates(999.0, -891.0, 14.3)
                             }
                         }
@@ -1597,10 +1597,10 @@ async function mission_start_luigi5() {
                     if ($.flag_prossie7_told_to_go_into_ball == 1) {
                         if ($.flag_prossie7_at_ball == 0) {
                             if ($.flag_timer_prossie7_lm5 == 0) {
-                                timerb = 0
+                                TIMERB = 0
                                 $.flag_timer_prossie7_lm5 = 1
                             }
-                            if (timerb > 20000) {
+                            if (TIMERB > 20000) {
                                 $.prossie7_lm5.setCoordinates(999.0, -891.0, 14.3)
                             }
                         }
@@ -1751,10 +1751,10 @@ async function mission_start_luigi5() {
                     if ($.flag_prossie8_told_to_go_into_ball == 1) {
                         if ($.flag_prossie8_at_ball == 0) {
                             if ($.flag_timer_prossie8_lm5 == 0) {
-                                timerb = 0
+                                TIMERB = 0
                                 $.flag_timer_prossie8_lm5 = 1
                             }
-                            if (timerb > 20000) {
+                            if (TIMERB > 20000) {
                                 $.prossie8_lm5.setCoordinates(999.0, -891.0, 14.3)
                             }
                         }
@@ -1989,14 +1989,14 @@ async function mission_start_luigi5() {
     }
 
     async function mission_end_cutscene2() {
-        timerb = 0
+        TIMERB = 0
 
         while ($.counter_girls_trying_to_get_to_ball > 0) {
             await asyncWait(0)
             World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */) // This should clear the area
             if ($.flag_prossie1_at_ball == 0) {
                 if (!Char.IsDead($.prossie1_lm5)) {
-                    if (timerb > 20000) {
+                    if (TIMERB > 20000) {
                         $.prossie1_lm5.setCoordinates(999.0, -891.0, 14.3)
                     }
                     if ($.prossie1_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
@@ -2012,7 +2012,7 @@ async function mission_start_luigi5() {
             }
             if ($.flag_prossie2_at_ball == 0) {
                 if (!Char.IsDead($.prossie2_lm5)) {
-                    if (timerb > 20000) {
+                    if (TIMERB > 20000) {
                         $.prossie2_lm5.setCoordinates(999.0, -891.0, 14.3)
                     }
                     if ($.prossie2_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
@@ -2028,7 +2028,7 @@ async function mission_start_luigi5() {
             }
             if ($.flag_prossie3_at_ball == 0) {
                 if (!Char.IsDead($.prossie3_lm5)) {
-                    if (timerb > 20000) {
+                    if (TIMERB > 20000) {
                         $.prossie3_lm5.setCoordinates(999.0, -891.0, 14.3)
                     }
                     if ($.prossie3_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
@@ -2044,7 +2044,7 @@ async function mission_start_luigi5() {
             }
             if ($.flag_prossie4_at_ball == 0) {
                 if (!Char.IsDead($.prossie4_lm5)) {
-                    if (timerb > 20000) {
+                    if (TIMERB > 20000) {
                         $.prossie4_lm5.setCoordinates(999.0, -891.0, 14.3)
                     }
                     if ($.prossie4_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
@@ -2060,7 +2060,7 @@ async function mission_start_luigi5() {
             }
             if ($.flag_prossie5_at_ball == 0) {
                 if (!Char.IsDead($.prossie5_lm5)) {
-                    if (timerb > 20000) {
+                    if (TIMERB > 20000) {
                         $.prossie5_lm5.setCoordinates(999.0, -891.0, 14.3)
                     }
                     if ($.prossie5_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
@@ -2076,7 +2076,7 @@ async function mission_start_luigi5() {
             }
             if ($.flag_prossie6_at_ball == 0) {
                 if (!Char.IsDead($.prossie6_lm5)) {
-                    if (timerb > 20000) {
+                    if (TIMERB > 20000) {
                         $.prossie6_lm5.setCoordinates(999.0, -891.0, 14.3)
                     }
                     if ($.prossie6_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
@@ -2092,7 +2092,7 @@ async function mission_start_luigi5() {
             }
             if ($.flag_prossie7_at_ball == 0) {
                 if (!Char.IsDead($.prossie7_lm5)) {
-                    if (timerb > 20000) {
+                    if (TIMERB > 20000) {
                         $.prossie7_lm5.setCoordinates(999.0, -891.0, 14.3)
                     }
                     if ($.prossie7_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
@@ -2108,7 +2108,7 @@ async function mission_start_luigi5() {
             }
             if ($.flag_prossie8_at_ball == 0) {
                 if (!Char.IsDead($.prossie8_lm5)) {
-                    if (timerb > 20000) {
+                    if (TIMERB > 20000) {
                         $.prossie8_lm5.setCoordinates(999.0, -891.0, 14.3)
                     }
                     if ($.prossie8_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {

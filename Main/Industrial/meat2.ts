@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/meat2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_meat2() {
     $.flag_player_on_mission = 1
@@ -68,11 +68,11 @@ async function mission_start_meat2() {
 
         //ENDWHILE
 
-        Cutscene.Load(mt_ph2)
+        Cutscene.Load('mt_ph2')
         Cutscene.SetOffset(1223.88, -839.414, 13.95)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -488,7 +488,7 @@ async function mission_start_meat2() {
 
         World.ClearArea(1201.8, -799.7, 13.8, 10.0, true /* TRUE */)
 
-        timerb = 0
+        TIMERB = 0
 
         // Waiting for the blokes to get to the meat grinding area
 
@@ -538,7 +538,7 @@ async function mission_start_meat2() {
                     $.flag_victim2_in_area = 2
                 }
             }
-            if (timerb >= 30000) {
+            if (TIMERB >= 30000) {
                 if (!($.flag_victim1_in_area == 2) || !($.flag_victim2_in_area == 2)) {
                     $.victim1_meat2.removeElegantly()
                     $.victim2_meat2.removeElegantly()
@@ -555,7 +555,7 @@ async function mission_start_meat2() {
     }
 
     async function mission_bloke_stuck() {
-        Audio.LoadMissionAudio(MF4_B)
+        Audio.LoadMissionAudio('mf4_b' as any)
 
         // Shuts the door
 

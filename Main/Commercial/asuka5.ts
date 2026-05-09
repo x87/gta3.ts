@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/asuka5.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_asuka5() {
     Stat.RegisterMissionGiven()
@@ -15,33 +15,33 @@ async function mission_start_asuka5() {
     $.got_to_coord_once = 0
 
     {
-        Streaming.LoadSpecialModel(hier`cutobj02`, NOTE)
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.RequestModel(condo_ivy)
-        Streaming.RequestModel(kmricndo01)
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'NOTE')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.RequestModel(2216 /* condo_ivy */)
+        Streaming.RequestModel(2215 /* kmricndo01 */)
 
         Streaming.LoadAllModelsNow()
 
         while (
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
-            !Streaming.HasModelLoaded(condo_ivy) ||
-            !Streaming.HasModelLoaded(kmricndo01)
+            !Streaming.HasModelLoaded(2216 /* condo_ivy */) ||
+            !Streaming.HasModelLoaded(2215 /* kmricndo01 */)
         ) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(A5_K2FT)
+        Cutscene.Load('A5_K2FT')
         Cutscene.SetOffset(523.102, -636.96, 15.616)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_note = CutsceneObject.Create(hier`cutobj02`)
-        $.cs_note.setAnim(NOTE)
+        $.cs_note.setAnim('NOTE')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */)
         $.player.setCoordinates(523.6, -639.4, 16.0)
@@ -120,17 +120,17 @@ async function mission_start_asuka5() {
 
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(condo_ivy)
-        Streaming.MarkModelAsNoLongerNeeded(kmricndo01)
+        Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */)
+        Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */)
 
         Streaming.RequestModel(car`ESPERANTO`)
-        Streaming.LoadSpecialCharacter(1, $.tanner)
+        Streaming.LoadSpecialCharacter(1, 'tanner')
 
         while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(car`ESPERANTO`)) {
             await asyncWait(0)
         }
 
-        Audio.LoadMissionAudio(A5_A)
+        Audio.LoadMissionAudio('a5_a' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)

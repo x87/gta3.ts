@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/asuka2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_asuka2() {
     Stat.RegisterMissionGiven()
@@ -15,13 +15,13 @@ async function mission_start_asuka2() {
     $.fbi_spotted_player2 = 0
 
     {
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, ASUKAH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, KENJIH)
-        Streaming.LoadSpecialCharacter(1, $.asuka)
-        Streaming.LoadSpecialCharacter(2, $.kenji)
-        Streaming.RequestModel(condo_ivy)
-        Streaming.RequestModel(kmricndo01)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'ASUKAH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'KENJIH')
+        Streaming.LoadSpecialCharacter(1, 'asuka')
+        Streaming.LoadSpecialCharacter(2, 'kenji')
+        Streaming.RequestModel(2216 /* condo_ivy */)
+        Streaming.RequestModel(2215 /* kmricndo01 */)
 
         Streaming.LoadAllModelsNow()
 
@@ -35,30 +35,30 @@ async function mission_start_asuka2() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(condo_ivy) || !Streaming.HasModelLoaded(kmricndo01)) {
+        while (!Streaming.HasModelLoaded(2216 /* condo_ivy */) || !Streaming.HasModelLoaded(2215 /* kmricndo01 */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(A3_SS)
+        Cutscene.Load('A3_SS')
         Cutscene.SetOffset(523.102, -636.96, 15.616)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_asuka = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_asuka.setAnim($.asuka)
+        $.cs_asuka.setAnim('asuka')
 
         $.cs_kenji = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_kenji.setAnim($.kenji)
+        $.cs_kenji.setAnim('kenji')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj02`)
-        $.cs_asukahead.setAnim($.asuka)
+        $.cs_asukahead.setAnim('asuka')
 
         $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj03`)
-        $.cs_kenjihead.setAnim($.kenji)
+        $.cs_kenjihead.setAnim('kenji')
 
         World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */)
         $.player.setCoordinates(523.6, -639.4, 16.0)
@@ -173,8 +173,8 @@ async function mission_start_asuka2() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
-        Streaming.MarkModelAsNoLongerNeeded(condo_ivy)
-        Streaming.MarkModelAsNoLongerNeeded(kmricndo01)
+        Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */)
+        Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */)
         Streaming.UnloadSpecialCharacter(1)
         Streaming.UnloadSpecialCharacter(2)
 

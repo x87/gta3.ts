@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/yard1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_yd1() {
     Stat.RegisterMissionGiven()
@@ -44,12 +44,12 @@ async function mission_start_yd1() {
 
         //ENDWHILE
 
-        Cutscene.Load(YD_PH1)
+        Cutscene.Load('YD_PH1')
         Cutscene.SetOffset(121.0, -272.3, 15.25)
         World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player

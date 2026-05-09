@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/love2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function create_yakuza() {
     if ($.flag_yak_created_love2 == 0) {
@@ -178,20 +178,20 @@ async function mission_start_love2() {
   SWITCH_STREAMING OFF
   */
 
-    Streaming.RequestModel(tshrorckgrdn)
-    Streaming.RequestModel(tshrorckgrdn_alfas)
+    Streaming.RequestModel(1731 /* tshrorckgrdn */)
+    Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */)
 
-    while (!Streaming.HasModelLoaded(tshrorckgrdn_alfas) || !Streaming.HasModelLoaded(tshrorckgrdn)) {
+    while (!Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) || !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */)) {
         await asyncWait(0)
     }
 
     // ****************************************START OF CUTSCENE********************************
 
-    Streaming.LoadSpecialCharacter(1, $.love)
+    Streaming.LoadSpecialCharacter(1, 'love')
     //LOAD_SPECIAL_CHARACTER 2 butler
 
-    Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-    Streaming.LoadSpecialModel(hier`cutobj02`, LOVEH)
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+    Streaming.LoadSpecialModel(hier`cutobj02`, 'LOVEH')
     //LOAD_SPECIAL_MODEL cut_obj3 BUTLERH
 
     /*
@@ -208,26 +208,26 @@ async function mission_start_love2() {
         await asyncWait(0)
     }
 
-    Cutscene.Load(d2_kk)
+    Cutscene.Load('d2_kk')
 
     Streaming.Switch(true /* ON */)
 
     Cutscene.SetOffset(85.2162, -1532.9093, 243.5422)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_love = CutsceneObject.Create(ped`SPECIAL1`)
-    $.cs_love.setAnim($.love)
+    $.cs_love.setAnim('love')
 
     //CREATE_CUTSCENE_OBJECT PED_SPECIAL2 cs_butler
     //SET_CUTSCENE_ANIM cs_butler butler
 
     $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-    $.cs_playerhead.setAnim($.player)
+    $.cs_playerhead.setAnim('player')
 
     $.cs_lovehead = CutsceneHead.Create($.cs_love, hier`cutobj02`)
-    $.cs_lovehead.setAnim($.love)
+    $.cs_lovehead.setAnim('love')
 
     //CREATE_CUTSCENE_HEAD cs_butler CUT_OBJ3 cs_butlerhead
     //SET_CUTSCENE_HEAD_ANIM cs_butlerhead butler
@@ -349,8 +349,8 @@ async function mission_start_love2() {
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ3
 
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn)
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas)
+    Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */)
+    Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */)
 
     //SWITCH_STREAMING ON
 
@@ -445,7 +445,7 @@ async function mission_start_love2() {
   //++++++++++++++++++++++++++++++++++++++++++++++++CUTSCENE OVER+++++++++++++++++++++++++++++
   */
 
-    Streaming.LoadSpecialCharacter(1, $.kenji)
+    Streaming.LoadSpecialCharacter(1, 'kenji')
     while (!Streaming.HasSpecialCharacterLoaded(1)) {
         await asyncWait(0)
     }
@@ -470,7 +470,7 @@ async function mission_start_love2() {
         await asyncWait(0)
     }
 
-    Audio.LoadMissionAudio(LO2_A)
+    Audio.LoadMissionAudio('lo2_a' as any)
 
     /*
   REQUEST_MODEL CAR_COLUMB//test stuff

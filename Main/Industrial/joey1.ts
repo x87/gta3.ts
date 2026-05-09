@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/joey1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_joey1() {
     Stat.RegisterMissionGiven()
@@ -13,19 +13,19 @@ async function mission_start_joey1() {
     $.flag_displayed_wanted_message_jm1 = 0
 
     {
-        Streaming.LoadSpecialCharacter(1, $.joey)
-        Streaming.LoadSpecialCharacter(2, $.misty)
-        Streaming.LoadSpecialModel(hier`cutobj01`, JOEDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, JOEYH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, MISTYH)
+        Streaming.LoadSpecialCharacter(1, 'joey')
+        Streaming.LoadSpecialCharacter(2, 'misty')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'JOEDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'JOEYH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'MISTYH')
         Streaming.RequestModel(car`IDAHO`)
-        Streaming.RequestModel(jogarageext)
-        Streaming.RequestModel(jogarageint)
+        Streaming.RequestModel(939 /* jogarageext */)
+        Streaming.RequestModel(1074 /* jogarageint */)
 
         Streaming.LoadAllModelsNow()
 
-        while (!Streaming.HasModelLoaded(jogarageext) || !Streaming.HasModelLoaded(jogarageint)) {
+        while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */)) {
             await asyncWait(0)
         }
 
@@ -42,32 +42,32 @@ async function mission_start_joey1() {
             await asyncWait(0)
         }
 
-        Cutscene.Load(J1_LFL)
+        Cutscene.Load('J1_LFL')
         Cutscene.SetOffset(1190.079, -869.861, 13.977)
 
         $.cut_car2_lm3 = Car.Create(84 /* CAR_IDAHO */, 1182.5, -857.0, 14.1)
         $.cut_car2_lm3.setHeading(291.2)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_joey = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_joey.setAnim($.joey)
+        $.cs_joey.setAnim('joey')
 
         $.cs_misty = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_misty.setAnim($.misty)
+        $.cs_misty.setAnim('misty')
 
         $.cs_joeyhead = CutsceneHead.Create($.cs_joey, hier`cutobj02`)
-        $.cs_joeyhead.setAnim($.joey)
+        $.cs_joeyhead.setAnim('joey')
 
         $.cs_mistyhead = CutsceneHead.Create($.cs_misty, hier`cutobj04`)
-        $.cs_mistyhead.setAnim($.misty)
+        $.cs_mistyhead.setAnim('misty')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj03`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_joedoor = CutsceneObject.Create(hier`cutobj01`)
-        $.cs_joedoor.setAnim(JOEDOOR)
+        $.cs_joedoor.setAnim('JOEDOOR')
 
         World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false /* FALSE */)
         World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false /* FALSE */)
@@ -212,14 +212,14 @@ async function mission_start_joey1() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`)
         Streaming.MarkModelAsNoLongerNeeded(car`IDAHO`)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageext)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageint)
+        Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */)
+        Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */)
 
         $.cut_car2_lm3.delete()
 
         // START OF MISSION
 
-        Streaming.LoadSpecialCharacter(3, $.lips)
+        Streaming.LoadSpecialCharacter(3, 'lips')
         Streaming.RequestModel(car`IDAHO`)
 
         while (!Streaming.HasModelLoaded(car`IDAHO`) || !Streaming.HasSpecialCharacterLoaded(3)) {

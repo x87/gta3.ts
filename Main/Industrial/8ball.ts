@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/8ball.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_eightball() {
     $.flag_player_on_mission = 1
@@ -83,7 +83,7 @@ async function mission_start_eightball() {
     {
         if ($.flag_reached_hideout == 0) {
             Streaming.RequestModel(car`KURUMA`)
-            Streaming.LoadSpecialCharacter(1, eight)
+            Streaming.LoadSpecialCharacter(1, 'eight')
             Streaming.LoadAllModelsNow()
             $.car_8ball_x = 0.0
             $.car_8ball_y = 0.0
@@ -148,7 +148,7 @@ async function mission_start_eightball() {
 
         Camera.PointAtChar($.eightball, 15 /* fixed */, 2 /* jump_cut */)
 
-        Audio.LoadMissionAudio(LIB_A1)
+        Audio.LoadMissionAudio('lib_a1' as any)
 
         Camera.SetFadingColor(0, 0, 0)
 
@@ -250,7 +250,7 @@ async function mission_start_eightball() {
 
         Text.ClearThisPrint('EBAL_A')
 
-        Audio.LoadMissionAudio(LIB_A2)
+        Audio.LoadMissionAudio('lib_a2' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -422,7 +422,7 @@ async function mission_start_eightball() {
             Text.PrintHelp('EBAL_1') //"Press Triangle to enter a vehicle."
         }
 
-        timerb = 0
+        TIMERB = 0
 
         await asyncWait(3000)
 
@@ -454,7 +454,7 @@ async function mission_start_eightball() {
 
         while (!$.player.isInCar($.car_eightball) || !$.eightball.isInCar($.car_eightball)) {
             await asyncWait(0)
-            if (timerb < 120000) {
+            if (TIMERB < 120000) {
                 $.player.clearWantedLevel()
             }
             if (Car.IsDead($.car_eightball)) {
@@ -521,7 +521,7 @@ async function mission_start_eightball() {
 
         await asyncWait(500)
 
-        if (timerb < 120000) {
+        if (TIMERB < 120000) {
             $.player.clearWantedLevel()
         }
 
@@ -569,19 +569,19 @@ async function mission_start_eightball() {
 
         $.radar_blip_coord1_eightball = Blip.AddForCoord(875.0, -309.0, -100.0)
 
-        timera = 0
+        TIMERA = 0
 
         $.blob_flag = 1
 
-        if (timerb < 120000) {
+        if (TIMERB < 120000) {
             $.player.clearWantedLevel()
         }
 
-        Audio.LoadMissionAudio(LIB_A)
+        Audio.LoadMissionAudio('lib_a' as any)
 
-        timera = 0
+        TIMERA = 0
 
-        while (timera < 10000) {
+        while (TIMERA < 10000) {
             await asyncWait(0)
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1) //"8-Balls dead!
@@ -631,7 +631,7 @@ async function mission_start_eightball() {
 
         Hud.FlashObject(8 /* HUD_FLASH_RADAR */)
 
-        timera = 0
+        TIMERA = 0
 
         // waiting for the player to get to Luigi's
 
@@ -643,17 +643,17 @@ async function mission_start_eightball() {
             !Audio.HasMissionAudioLoaded()
         ) {
             await asyncWait(0)
-            if (timerb < 120000) {
+            if (TIMERB < 120000) {
                 $.player.clearWantedLevel()
             }
             if ($.flag_timer_stopped_flashing_8ball == 0) {
-                if (timera > 4000) {
+                if (TIMERA > 4000) {
                     Hud.FlashObject(-1)
                     $.flag_timer_stopped_flashing_8ball = 1
                 }
             }
             if ($.flag_brake_message == 0) {
-                if (timera >= 10000) {
+                if (TIMERA >= 10000) {
                     $.controlmode = Pad.GetControllerMode()
                     if ($.controlmode == 0) {
                         Text.PrintHelp('HELP5_A') //"Press the ^ button to brake, when stopped this will make the vehicle reverse."
@@ -668,10 +668,10 @@ async function mission_start_eightball() {
                         Text.PrintHelp('HELP5_D') //"Press the ^ button to brake, when stopped this will make the vehicle reverse."
                     }
                     $.flag_brake_message = 1
-                    timera = 0
+                    TIMERA = 0
                 }
             }
-            if (timera > 10000) {
+            if (TIMERA > 10000) {
                 if ($.flag_hbrake_message == 0) {
                     $.controlmode = Pad.GetControllerMode()
                     if ($.controlmode == 0) {
@@ -917,7 +917,7 @@ async function mission_start_eightball() {
 
         $.script_controlled_player.setObjRunToCoord(892.4, -308.5)
 
-        timerb = 0
+        TIMERB = 0
 
         while (!($.flag_player_in_area == 2) || !($.flag_eightball_in_area == 2)) {
             await asyncWait(0)
@@ -966,7 +966,7 @@ async function mission_start_eightball() {
                     $.flag_eightball_in_area = 2
                 }
             }
-            if (timerb >= 10000) {
+            if (TIMERB >= 10000) {
                 if (!($.flag_player_in_area == 2) || !($.flag_eightball_in_area == 2)) {
                     $.player.setCoordinates(892.4, -305.6, 7.7)
                     $.script_controlled_player.setIdle()
@@ -1029,7 +1029,7 @@ async function mission_start_eightball() {
         //8-BAll change
 
         if (!Char.IsDead($.eightball)) {
-            $.eightball.undress(eight2)
+            $.eightball.undress('eight2')
             while (!Streaming.HasModelLoaded(ped`SPECIAL1`)) {
                 await asyncWait(0)
                 if (Car.IsDead($.car_eightball)) {
@@ -1052,7 +1052,7 @@ async function mission_start_eightball() {
         //Player change
 
         if (!Char.IsDead($.script_controlled_player)) {
-            $.script_controlled_player.undress($.player)
+            $.script_controlled_player.undress('player')
             while (!Streaming.HasModelLoaded(ped`PLAYER`)) {
                 await asyncWait(0)
                 if (Car.IsDead($.car_eightball)) {
@@ -1228,7 +1228,7 @@ async function mission_start_eightball() {
                 Camera.PointAtPoint(869.59, -311.53, 8.53, 2 /* jump_cut */)
             }
             $.playersdoor.setHeading(0.0)
-            Streaming.LoadSpecialCharacter(1, eight2)
+            Streaming.LoadSpecialCharacter(1, 'eight2')
             Streaming.RequestModel(car`KURUMA`)
             Streaming.LoadAllModelsNow()
 
@@ -1299,7 +1299,7 @@ async function mission_start_eightball() {
 
         $.radar_blip_coord2_eightball = Blip.AddForCoord(906.2, -426.0, -100.0) //Luigis blip
 
-        Audio.LoadMissionAudio(LIB_B)
+        Audio.LoadMissionAudio('lib_b' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -1441,7 +1441,7 @@ async function mission_start_eightball() {
 
         // waiting for the player to get to luigi's
 
-        Audio.LoadMissionAudio(LIB_C)
+        Audio.LoadMissionAudio('lib_c' as any)
 
         while (
             !$.player.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, $.blob_flag) ||
@@ -1639,18 +1639,18 @@ async function mission_start_eightball() {
 
         Text.PrintBig('LM1', 15000, 2) //"Luigi's Girls"
 
-        Streaming.RequestModel(indhibuild3)
-        Streaming.RequestModel(luigiclubout)
-        Streaming.RequestModel(luigiineerclub)
+        Streaming.RequestModel(257 /* indhibuild3 */)
+        Streaming.RequestModel(256 /* luigiclubout */)
+        Streaming.RequestModel(243 /* luigiineerclub */)
 
-        Streaming.LoadSpecialCharacter(2, $.micky)
-        Streaming.LoadSpecialCharacter(3, $.luigi)
+        Streaming.LoadSpecialCharacter(2, 'MICKY')
+        Streaming.LoadSpecialCharacter(3, 'LUIGI')
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, LUDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, MICKYH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, EIGHTH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, LUIGIH)
-        Streaming.LoadSpecialModel(hier`cutobj05`, PLAYERH)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'LUDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'MICKYH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'EIGHTH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'LUIGIH')
+        Streaming.LoadSpecialModel(hier`cutobj05`, 'PLAYERH')
 
         while (Camera.GetFadingStatus()) {
             await asyncWait(0)
@@ -1683,9 +1683,9 @@ async function mission_start_eightball() {
             !Streaming.HasModelLoaded(hier`cutobj03`) ||
             !Streaming.HasModelLoaded(hier`cutobj04`) ||
             !Streaming.HasModelLoaded(hier`cutobj05`) ||
-            !Streaming.HasModelLoaded(indhibuild3) ||
-            !Streaming.HasModelLoaded(luigiclubout) ||
-            !Streaming.HasModelLoaded(luigiineerclub)
+            !Streaming.HasModelLoaded(257 /* indhibuild3 */) ||
+            !Streaming.HasModelLoaded(256 /* luigiclubout */) ||
+            !Streaming.HasModelLoaded(243 /* luigiineerclub */)
         ) {
             await asyncWait(0)
         }
@@ -1694,45 +1694,45 @@ async function mission_start_eightball() {
 
         World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */)
 
-        Cutscene.Load(l1_lg)
+        Cutscene.Load('l1_lg')
 
         Cutscene.SetOffset(900.782, -427.523, 13.829)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_micky = CutsceneObject.Create(ped`SPECIAL2`)
 
-        $.cs_micky.setAnim($.micky)
+        $.cs_micky.setAnim('micky')
 
         $.cs_eight = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_eight.setAnim(eight2)
+        $.cs_eight.setAnim('eight2')
 
         $.cs_luigi = CutsceneObject.Create(ped`SPECIAL3`)
 
-        $.cs_luigi.setAnim($.luigi)
+        $.cs_luigi.setAnim('luigi')
 
         $.cs_mickyhead = CutsceneHead.Create($.cs_micky, hier`cutobj02`)
 
-        $.cs_mickyhead.setAnim($.micky)
+        $.cs_mickyhead.setAnim('micky')
 
         $.cs_eighthead = CutsceneHead.Create($.cs_eight, hier`cutobj03`)
 
-        $.cs_eighthead.setAnim(eight)
+        $.cs_eighthead.setAnim('eight')
 
         $.cs_luigihead = CutsceneHead.Create($.cs_luigi, hier`cutobj04`)
 
-        $.cs_luigihead.setAnim($.luigi)
+        $.cs_luigihead.setAnim('luigi')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj05`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_ludoor = CutsceneObject.Create(hier`cutobj01`)
 
-        $.cs_ludoor.setAnim(LUDOOR)
+        $.cs_ludoor.setAnim('LUDOOR')
 
         World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */)
         $.player.setCoordinates(896.6, -426.2, 13.9)
@@ -1879,11 +1879,11 @@ async function mission_start_eightball() {
 
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj05`)
 
-        Streaming.MarkModelAsNoLongerNeeded(indhibuild3)
+        Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */)
 
-        Streaming.MarkModelAsNoLongerNeeded(luigiclubout)
+        Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */)
 
-        Streaming.MarkModelAsNoLongerNeeded(luigiineerclub)
+        Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */)
 
         $.player.setControl(true /* ON */)
 
@@ -1893,7 +1893,7 @@ async function mission_start_eightball() {
 
         // *****************************************LUIGI'S GIRLS***********************************
 
-        Streaming.LoadSpecialCharacter(2, $.misty)
+        Streaming.LoadSpecialCharacter(2, 'MISTY')
 
         Text.PrintNow('EBAL_5', 5000, 1) //"Get a vehicle!"
 
@@ -1917,7 +1917,7 @@ async function mission_start_eightball() {
 
         $.flag_blip_on_girl1_lm1 = 1
 
-        Audio.LoadMissionAudio(LIB_D)
+        Audio.LoadMissionAudio('lib_d' as any)
 
         while (!$.player.isInAnyCar() || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -2132,7 +2132,7 @@ async function mission_start_eightball() {
 
         Text.PrintHelp('LOOK_A') //"Press and hold the ~h~L2 button to look left~w~ while in a vehicle."
 
-        timera = 0
+        TIMERA = 0
 
         // waiting for the player to get to luigi's
 
@@ -2143,7 +2143,7 @@ async function mission_start_eightball() {
             await asyncWait(0)
             if ($.flag_player_had_camera_message_8ball == 0) {
                 $.controlmode = Pad.GetControllerMode()
-                if (timera > 10000) {
+                if (TIMERA > 10000) {
                     if ($.controlmode == 0) {
                         Text.PrintHelp('CAM_A') //"Press the ~h~SELECT button~w~ to change ~h~camera ~w~modes when on foot or in a vehicle."
                         $.flag_player_had_camera_message_8ball = 1
@@ -2203,9 +2203,9 @@ async function mission_start_eightball() {
 
         World.ClearArea(887.4, -417.3, 13.9, 10.0, true /* TRUE */) // This should get rid of any stuff for the cut-scene
 
-        Streaming.RequestModel(indhibuild3)
-        Streaming.RequestModel(luigiclubout)
-        Streaming.RequestModel(luigiineerclub)
+        Streaming.RequestModel(257 /* indhibuild3 */)
+        Streaming.RequestModel(256 /* luigiclubout */)
+        Streaming.RequestModel(243 /* luigiineerclub */)
 
         if ($.girl1_lm1.isInAnyCar()) {
             $.girl1_lm1.setCantBeDraggedOut(false /* FALSE */)
@@ -2221,7 +2221,7 @@ async function mission_start_eightball() {
             }
         }
 
-        while (!Streaming.HasModelLoaded(indhibuild3) || !Streaming.HasModelLoaded(luigiclubout) || !Streaming.HasModelLoaded(luigiineerclub)) {
+        while (!Streaming.HasModelLoaded(257 /* indhibuild3 */) || !Streaming.HasModelLoaded(256 /* luigiclubout */) || !Streaming.HasModelLoaded(243 /* luigiineerclub */)) {
             await asyncWait(0)
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintNow('MISTY1', 5000, 1) //"Misty's dead!
@@ -2234,9 +2234,9 @@ async function mission_start_eightball() {
 
         $.girl1_lm1.setObjGotoCoordOnFoot(900.17, -425.4)
 
-        timerb = 0
+        TIMERB = 0
 
-        while (timerb < 1000) {
+        while (TIMERB < 1000) {
             await asyncWait(0)
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintNow('MISTY1', 5000, 1) //"Misty's dead!
@@ -2265,9 +2265,9 @@ async function mission_start_eightball() {
         $.player.addScore(1500)
         Audio.PlayMissionPassedTune(1) //plays the mission complete tune
 
-        timerb = 0
+        TIMERB = 0
 
-        while (timerb < 5000) {
+        while (TIMERB < 5000) {
             await asyncWait(0)
         }
 
@@ -2352,9 +2352,9 @@ async function mission_cleanup_eightball() {
     World.RemoveParticleEffectsInArea(804.02, -948.03, 30.0, 765.15, -924.32, 50.0)
     $.fire_sound_8ball.remove()
     Camera.SetFadingColor(0, 0, 0)
-    Streaming.MarkModelAsNoLongerNeeded(indhibuild3)
-    Streaming.MarkModelAsNoLongerNeeded(luigiclubout)
-    Streaming.MarkModelAsNoLongerNeeded(luigiineerclub)
+    Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */)
+    Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */)
+    Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */)
     Streaming.MarkModelAsNoLongerNeeded(car`KURUMA`)
     $.radar_blip_coord1_eightball.remove()
     $.radar_blip_coord2_eightball.remove()

@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/wanted.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function wanted_info_start() {
     //REGISTER_MISSION_GIVEN

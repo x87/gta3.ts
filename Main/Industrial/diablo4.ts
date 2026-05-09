@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/diablo4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_diablo4() {
     Stat.RegisterMissionGiven()
@@ -19,11 +19,11 @@ async function mission_start_diablo4() {
         World.SetPedDensityMultiplier(0.0)
         World.ClearAreaOfChars(890.3, -309.1, 0.0, 1038.1, -132.9, 10.0)
 
-        Cutscene.Load(EL_PH3)
+        Cutscene.Load('EL_PH3')
         Cutscene.SetOffset(938.27, -229.561, 4.023)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         Camera.DoFade(1500, 1 /* FADE_IN */)
 
@@ -122,7 +122,7 @@ async function mission_start_diablo4() {
 
         World.SetPedDensityMultiplier(1.0)
 
-        Audio.LoadMissionAudio(EL3_A)
+        Audio.LoadMissionAudio('el3_a' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -136,7 +136,7 @@ async function mission_start_diablo4() {
 
         Streaming.RequestModel(car`RUMPO`)
         Streaming.RequestModel(ped`MALE2`)
-        Streaming.LoadSpecialCharacter(1, DONKY)
+        Streaming.LoadSpecialCharacter(1, 'DONKY')
 
         while (!Streaming.HasModelLoaded(car`RUMPO`) || !Streaming.HasModelLoaded(ped`MALE2`)) {
             await asyncWait(0)

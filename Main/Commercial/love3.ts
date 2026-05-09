@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/love3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_love3() {
     $.flag_player_on_mission = 1
@@ -36,11 +36,11 @@ async function mission_start_love3() {
 
     // ****************************************START OF CUTSCENE********************************
 
-    Streaming.LoadSpecialCharacter(1, love2)
-    Streaming.LoadSpecialCharacter(2, ojg2)
-    Streaming.LoadSpecialModel(hier`cutobj01`, LOVEH)
-    Streaming.RequestModel(tshrorckgrdn)
-    Streaming.RequestModel(tshrorckgrdn_alfas)
+    Streaming.LoadSpecialCharacter(1, 'love2')
+    Streaming.LoadSpecialCharacter(2, 'ojg2')
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'LOVEH')
+    Streaming.RequestModel(1731 /* tshrorckgrdn */)
+    Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */)
 
     Streaming.LoadAllModelsNow()
 
@@ -48,27 +48,27 @@ async function mission_start_love3() {
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
         !Streaming.HasModelLoaded(hier`cutobj01`) ||
-        !Streaming.HasModelLoaded(tshrorckgrdn_alfas) ||
-        !Streaming.HasModelLoaded(tshrorckgrdn)
+        !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) ||
+        !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */)
     ) {
         await asyncWait(0)
     }
 
-    Cutscene.Load(D3_ADO)
+    Cutscene.Load('D3_ADO')
 
     Cutscene.SetOffset(85.2162, -1532.9093, 243.5422)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_love = CutsceneObject.Create(ped`SPECIAL1`)
-    $.cs_love.setAnim(love2)
+    $.cs_love.setAnim('love2')
 
     $.cs_ojg = CutsceneObject.Create(ped`SPECIAL2`)
-    $.cs_ojg.setAnim(ojg2)
+    $.cs_ojg.setAnim('ojg2')
 
     $.cs_lovehead = CutsceneHead.Create($.cs_love, hier`cutobj01`)
-    $.cs_lovehead.setAnim($.love)
+    $.cs_lovehead.setAnim('love')
 
     World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */)
 
@@ -155,8 +155,8 @@ async function mission_start_love3() {
     Streaming.UnloadSpecialCharacter(1)
     Streaming.UnloadSpecialCharacter(2)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn)
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas)
+    Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */)
+    Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */)
 
     // ******************************************END OF CUTSCENE********************************
 

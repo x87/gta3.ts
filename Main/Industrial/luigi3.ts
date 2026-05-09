@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/luigi3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_luigi3() {
     $.flag_player_on_mission = 1
@@ -52,19 +52,19 @@ async function mission_start_luigi3() {
   PRINT_BIG ( LM3 ) 15000 2 //"Drive Misty For Me."
   */
 
-        Streaming.LoadSpecialCharacter(1, $.luigi)
-        Streaming.LoadSpecialCharacter(2, $.micky)
+        Streaming.LoadSpecialCharacter(1, 'LUIGI')
+        Streaming.LoadSpecialCharacter(2, 'MICKY')
 
-        Streaming.RequestModel(indhibuild3)
+        Streaming.RequestModel(257 /* indhibuild3 */)
 
-        Streaming.RequestModel(luigiclubout)
+        Streaming.RequestModel(256 /* luigiclubout */)
 
-        Streaming.RequestModel(luigiineerclub)
+        Streaming.RequestModel(243 /* luigiineerclub */)
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, LUDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, LUIGIH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, MICKYH)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'LUDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'LUIGIH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'MICKYH')
 
         /*
   WHILE GET_FADING_STATUS
@@ -91,43 +91,43 @@ async function mission_start_luigi3() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(indhibuild3) || !Streaming.HasModelLoaded(luigiclubout) || !Streaming.HasModelLoaded(luigiineerclub)) {
+        while (!Streaming.HasModelLoaded(257 /* indhibuild3 */) || !Streaming.HasModelLoaded(256 /* luigiclubout */) || !Streaming.HasModelLoaded(243 /* luigiineerclub */)) {
             await asyncWait(0)
         }
 
         World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */)
 
-        Cutscene.Load(l3_dm)
+        Cutscene.Load('l3_dm')
 
         Cutscene.SetOffset(900.782, -427.523, 13.829)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_luigi = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_luigi.setAnim($.luigi)
+        $.cs_luigi.setAnim('luigi')
 
         $.cs_micky = CutsceneObject.Create(ped`SPECIAL2`)
 
-        $.cs_micky.setAnim($.micky)
+        $.cs_micky.setAnim('micky')
 
         $.cs_luigihead = CutsceneHead.Create($.cs_luigi, hier`cutobj02`)
 
-        $.cs_luigihead.setAnim($.luigi)
+        $.cs_luigihead.setAnim('luigi')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj03`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_mickyhead = CutsceneHead.Create($.cs_micky, hier`cutobj04`)
 
-        $.cs_mickyhead.setAnim($.micky)
+        $.cs_mickyhead.setAnim('micky')
 
         $.cs_ludoor = CutsceneObject.Create(hier`cutobj01`)
 
-        $.cs_ludoor.setAnim(LUDOOR)
+        $.cs_ludoor.setAnim('LUDOOR')
 
         World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */)
         $.player.setCoordinates(896.6, -426.2, 13.9)
@@ -255,17 +255,17 @@ async function mission_start_luigi3() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`)
 
-        Streaming.MarkModelAsNoLongerNeeded(indhibuild3)
+        Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */)
 
-        Streaming.MarkModelAsNoLongerNeeded(luigiclubout)
+        Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */)
 
-        Streaming.MarkModelAsNoLongerNeeded(luigiineerclub)
+        Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */)
 
         World.SetPedDensityMultiplier(1.0)
 
         // *****************************************END OF CUTSCENE*********************************
 
-        Streaming.LoadSpecialCharacter(2, $.misty)
+        Streaming.LoadSpecialCharacter(2, 'misty')
 
         while (!Streaming.HasSpecialCharacterLoaded(2)) {
             await asyncWait(0)
@@ -305,7 +305,7 @@ async function mission_start_luigi3() {
 
         Text.PrintNow('LM3_4', 7000, 1) //"Now Pick up Misty!"
 
-        Audio.LoadMissionAudio(L2_A)
+        Audio.LoadMissionAudio('l2_a' as any)
 
         $.radar_blip_coord1_lm3 = Blip.AddForCoord(937.9, -259.8, -100.0)
 
@@ -497,7 +497,7 @@ async function mission_start_luigi3() {
 
         //POINT_CAMERA_AT_CHAR misty_lm3 FIXED JUMP_CUT
 
-        timerb = 0
+        TIMERB = 0
 
         while (!$.misty_lm3.isObjectivePassed()) {
             await asyncWait(0)
@@ -514,7 +514,7 @@ async function mission_start_luigi3() {
                 // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_luigi3_failed') // fallback: would break linear control flow
             }
-            if (timerb >= 10000) {
+            if (TIMERB >= 10000) {
                 if (!$.misty_lm3.isObjectivePassed()) {
                     $.misty_lm3.setCoordinates(944.1, -270.7, 3.9)
                 }
@@ -795,16 +795,16 @@ async function mission_start_luigi3() {
 
         Streaming.Switch(false /* OFF */)
 
-        Streaming.LoadSpecialCharacter(1, $.joey)
-        Streaming.LoadSpecialModel(hier`cutobj01`, JOEDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, JOEYH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, MISTYH)
+        Streaming.LoadSpecialCharacter(1, 'joey')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'JOEDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'JOEYH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'MISTYH')
         Streaming.RequestModel(car`MAFIA`)
         Streaming.RequestModel(car`IDAHO`)
         Streaming.RequestModel(car`STALLION`)
-        Streaming.RequestModel(jogarageext)
-        Streaming.RequestModel(jogarageint)
+        Streaming.RequestModel(939 /* jogarageext */)
+        Streaming.RequestModel(1074 /* jogarageint */)
 
         while (Camera.GetFadingStatus()) {
             await asyncWait(0)
@@ -832,13 +832,13 @@ async function mission_start_luigi3() {
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
             !Streaming.HasModelLoaded(hier`cutobj04`) ||
             !Streaming.HasModelLoaded(hier`cutobj03`) ||
-            !Streaming.HasModelLoaded(jogarageext) ||
-            !Streaming.HasModelLoaded(jogarageint)
+            !Streaming.HasModelLoaded(939 /* jogarageext */) ||
+            !Streaming.HasModelLoaded(1074 /* jogarageint */)
         ) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(j0_dm2)
+        Cutscene.Load('j0_dm2')
 
         Cutscene.SetOffset(1190.079, -869.861, 13.977)
 
@@ -855,25 +855,25 @@ async function mission_start_luigi3() {
         $.cut_car3_lm3.setHeading(150.0)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_joey = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_joey.setAnim($.joey)
+        $.cs_joey.setAnim('joey')
 
         $.cs_misty = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_misty.setAnim($.misty)
+        $.cs_misty.setAnim('misty')
 
         $.cs_joeyhead = CutsceneHead.Create($.cs_joey, hier`cutobj02`)
-        $.cs_joeyhead.setAnim($.joey)
+        $.cs_joeyhead.setAnim('joey')
 
         $.cs_mistyhead = CutsceneHead.Create($.cs_misty, hier`cutobj04`)
-        $.cs_mistyhead.setAnim($.misty)
+        $.cs_mistyhead.setAnim('misty')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj03`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_joedoor = CutsceneObject.Create(hier`cutobj01`)
-        $.cs_joedoor.setAnim(JOEDOOR)
+        $.cs_joedoor.setAnim('JOEDOOR')
 
         World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false /* FALSE */)
 
@@ -1002,8 +1002,8 @@ async function mission_start_luigi3() {
         Streaming.MarkModelAsNoLongerNeeded(car`MAFIA`)
         Streaming.MarkModelAsNoLongerNeeded(car`IDAHO`)
         Streaming.MarkModelAsNoLongerNeeded(car`STALLION`)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageext)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageint)
+        Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */)
+        Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */)
 
         $.cut_car_lm3.delete()
 

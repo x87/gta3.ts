@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/luigi2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_luigi2() {
     $.flag_player_on_mission = 1
@@ -74,18 +74,18 @@ async function mission_start_luigi2() {
   PRINT_BIG ( LM2 ) 15000 2 //"Don'a SPANK ma bitch up"
   */
 
-        Streaming.RequestModel(indhibuild3)
+        Streaming.RequestModel(257 /* indhibuild3 */)
 
-        Streaming.RequestModel(luigiclubout)
+        Streaming.RequestModel(256 /* luigiclubout */)
 
-        Streaming.RequestModel(luigiineerclub)
+        Streaming.RequestModel(243 /* luigiineerclub */)
 
-        Streaming.LoadSpecialCharacter(1, $.micky)
+        Streaming.LoadSpecialCharacter(1, 'MICKY')
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, LUDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, MICKYH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, NOTE)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'LUDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'MICKYH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'NOTE')
 
         /*
   WHILE GET_FADING_STATUS
@@ -113,39 +113,39 @@ async function mission_start_luigi2() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(indhibuild3) || !Streaming.HasModelLoaded(luigiclubout) || !Streaming.HasModelLoaded(luigiineerclub)) {
+        while (!Streaming.HasModelLoaded(257 /* indhibuild3 */) || !Streaming.HasModelLoaded(256 /* luigiclubout */) || !Streaming.HasModelLoaded(243 /* luigiineerclub */)) {
             await asyncWait(0)
         }
 
         World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */)
 
-        Cutscene.Load(l2_dsb)
+        Cutscene.Load('l2_dsb')
 
         Cutscene.SetOffset(900.782, -427.523, 13.829)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_micky = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_micky.setAnim($.micky)
+        $.cs_micky.setAnim('micky')
 
         $.cs_mickyhead = CutsceneHead.Create($.cs_micky, hier`cutobj02`)
 
-        $.cs_mickyhead.setAnim($.micky)
+        $.cs_mickyhead.setAnim('micky')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj03`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_ludoor = CutsceneObject.Create(hier`cutobj01`)
 
-        $.cs_ludoor.setAnim(LUDOOR)
+        $.cs_ludoor.setAnim('LUDOOR')
 
         $.cs_note = CutsceneObject.Create(hier`cutobj04`)
 
-        $.cs_note.setAnim(NOTE)
+        $.cs_note.setAnim('NOTE')
 
         World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */)
         $.player.setCoordinates(896.6, -426.2, 13.9)
@@ -262,11 +262,11 @@ async function mission_start_luigi2() {
 
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`)
 
-        Streaming.MarkModelAsNoLongerNeeded(indhibuild3)
+        Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */)
 
-        Streaming.MarkModelAsNoLongerNeeded(luigiclubout)
+        Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */)
 
-        Streaming.MarkModelAsNoLongerNeeded(luigiineerclub)
+        Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */)
 
         World.SetPedDensityMultiplier(1.0)
 
@@ -339,7 +339,7 @@ async function mission_start_luigi2() {
 
         await asyncWait(0)
 
-        timerb = 0
+        TIMERB = 0
 
         while (!Char.IsDead($.victim_ped_lm2)) {
             // SCM GOSUB girls_running
@@ -354,7 +354,7 @@ async function mission_start_luigi2() {
                 }
             }
             if ($.flag_had_path_message_lm2 == 0) {
-                if (timerb >= 30000) {
+                if (TIMERB >= 30000) {
                     Text.PrintHelp('HELP13') //"Sometimes you may need to use pathways not shown on the radar."
                     $.flag_had_path_message_lm2 = 1
                 }
@@ -582,14 +582,14 @@ async function mission_start_luigi2() {
 
         //PRINT_NOW ( LM2_3 ) 7000 1 //"Good now get the car to the lockup!"
 
-        timerb = 0
+        TIMERB = 0
 
         // Waiting for the player to get back to luigi's
 
         while (!$.garage_lm2.isCarInMission()) {
             await asyncWait(0)
             if ($.flag_lockup_message_lm2 == 0) {
-                if (timerb >= 3000) {
+                if (TIMERB >= 3000) {
                     Text.PrintNow('LM2_3', 7000, 1) //"Good now get the car to the lockup!"
                     $.flag_lockup_message_lm2 = 1
                 }

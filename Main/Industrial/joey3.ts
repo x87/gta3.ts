@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/joey3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_joey3() {
     Stat.RegisterMissionGiven()
@@ -12,12 +12,12 @@ async function mission_start_joey3() {
     $.in_the_locate_joey3 = 0
 
     {
-        Streaming.LoadSpecialCharacter(1, $.joey)
-        Streaming.LoadSpecialModel(hier`cutobj01`, JOEYH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, TROLL)
-        Streaming.RequestModel(jogarageext)
-        Streaming.RequestModel(jogarageint)
+        Streaming.LoadSpecialCharacter(1, 'joey')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'JOEYH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'TROLL')
+        Streaming.RequestModel(939 /* jogarageext */)
+        Streaming.RequestModel(1074 /* jogarageint */)
 
         Streaming.LoadAllModelsNow()
 
@@ -30,27 +30,27 @@ async function mission_start_joey3() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(jogarageext) || !Streaming.HasModelLoaded(jogarageint)) {
+        while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(J3_VH)
+        Cutscene.Load('J3_VH')
         Cutscene.SetOffset(1190.079, -869.861, 13.977)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_joey = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_joey.setAnim($.joey)
+        $.cs_joey.setAnim('joey')
 
         $.cs_joeyhead = CutsceneHead.Create($.cs_joey, hier`cutobj01`)
-        $.cs_joeyhead.setAnim($.joey)
+        $.cs_joeyhead.setAnim('joey')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_troll = CutsceneObject.Create(hier`cutobj03`)
-        $.cs_troll.setAnim(TROLL)
+        $.cs_troll.setAnim('TROLL')
 
         World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */)
         $.player.setCoordinates(1191.9, -870.4, -100.0)
@@ -145,10 +145,10 @@ async function mission_start_joey3() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageext)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageint)
+        Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */)
+        Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */)
 
-        Streaming.LoadSpecialCharacter(2, S_GUARD)
+        Streaming.LoadSpecialCharacter(2, 'S_GUARD')
         Streaming.RequestModel(car`SECURICAR`)
 
         while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(car`SECURICAR`)) {

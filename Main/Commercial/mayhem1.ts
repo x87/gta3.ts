@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/mayhem1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_mayhem() {
     Stat.RegisterMissionGiven()

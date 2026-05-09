@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/toni2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_toni2() {
     Stat.RegisterMissionGiven()
@@ -20,27 +20,27 @@ async function mission_start_toni2() {
     $.traid_threat_cleared_T2 = 0
 
     {
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, NOTE)
-        Streaming.RequestModel(ind_newrizzos)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'NOTE')
+        Streaming.RequestModel(537 /* ind_newrizzos */)
 
         Streaming.LoadAllModelsNow()
 
-        while (!Streaming.HasModelLoaded(hier`cutobj01`) || !Streaming.HasModelLoaded(hier`cutobj02`) || !Streaming.HasModelLoaded(ind_newrizzos)) {
+        while (!Streaming.HasModelLoaded(hier`cutobj01`) || !Streaming.HasModelLoaded(hier`cutobj02`) || !Streaming.HasModelLoaded(537 /* ind_newrizzos */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(T2_TPU)
+        Cutscene.Load('T2_TPU')
         Cutscene.SetOffset(1218.42, -314.5, 28.9)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_note = CutsceneObject.Create(hier`cutobj02`)
-        $.cs_note.setAnim(NOTE)
+        $.cs_note.setAnim('NOTE')
 
         World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */)
         $.player.setCoordinates(1219.5, -321.1, 26.4)
@@ -134,7 +134,7 @@ async function mission_start_toni2() {
 
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(ind_newrizzos)
+        Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */)
 
         // START OF MISSION
 

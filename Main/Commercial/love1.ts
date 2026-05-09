@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/love1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_love1() {
     $.flag_player_on_mission = 1
@@ -112,11 +112,11 @@ async function mission_start_love1() {
 
         // Cutscene stuff
 
-        Streaming.LoadSpecialCharacter(1, LOVE2)
-        Streaming.RequestModel(tshrorckgrdn)
-        Streaming.RequestModel(tshrorckgrdn_alfas)
-        Streaming.LoadSpecialModel(hier`cutobj01`, LOVEH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
+        Streaming.LoadSpecialCharacter(1, 'LOVE2')
+        Streaming.RequestModel(1731 /* tshrorckgrdn */)
+        Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'LOVEH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
 
         /*
   WHILE GET_FADING_STATUS
@@ -132,33 +132,33 @@ async function mission_start_love1() {
             !Streaming.HasSpecialCharacterLoaded(1) ||
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
-            !Streaming.HasModelLoaded(tshrorckgrdn) ||
-            !Streaming.HasModelLoaded(tshrorckgrdn_alfas)
+            !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */) ||
+            !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */)
         ) {
             await asyncWait(0)
         }
 
         //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
 
-        Cutscene.Load(d1_stog)
+        Cutscene.Load('d1_stog')
 
         Cutscene.SetOffset(85.2162, -1532.9093, 243.5422)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_love = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_love.setAnim(love2)
+        $.cs_love.setAnim('love2')
 
         $.cs_lovehead = CutsceneHead.Create($.cs_love, hier`cutobj01`)
 
-        $.cs_lovehead.setAnim($.love)
+        $.cs_lovehead.setAnim('love')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         World.ClearArea(83.1, -1548.7, 27.3, 1.0, true /* TRUE */)
 
@@ -283,9 +283,9 @@ async function mission_start_love1() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
 
-        Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn)
+        Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */)
 
-        Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas)
+        Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */)
 
         // *******************************************END OF CUTSCENE*******************************
 
@@ -293,7 +293,7 @@ async function mission_start_love1() {
 
         Streaming.RequestModel(car`COLUMB`)
 
-        Streaming.LoadSpecialCharacter(2, $.ojg)
+        Streaming.LoadSpecialCharacter(2, 'OJG')
 
         while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_A`) || !Streaming.HasModelLoaded(car`COLUMB`)) {
             await asyncWait(0)
@@ -912,9 +912,9 @@ async function mission_start_love1() {
 
         $.ojg_love1.setObjRunToCoord(59.5, -1548.7)
 
-        timerb = 0
+        TIMERB = 0
 
-        while (timerb < 1500) {
+        while (TIMERB < 1500) {
             await asyncWait(0)
             if (Char.IsDead($.ojg_love1)) {
                 Text.PrintNow('LOVe1_6', 5000, 1) //"The Old Oriental Gentleman is dead!"
@@ -932,7 +932,7 @@ async function mission_start_love1() {
 
         Camera.PointAtPoint(93.9, -1548.9, 28.3, 2 /* JUMP_CUT */)
 
-        timerb = 0
+        TIMERB = 0
 
         while (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false /* FALSE */)) {
             await asyncWait(0)
@@ -941,7 +941,7 @@ async function mission_start_love1() {
                 // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love1_failed') // fallback: would break linear control flow
             }
-            if (timerb >= 8000) {
+            if (TIMERB >= 8000) {
                 if (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false /* FALSE */)) {
                     $.ojg_love1.removeElegantly()
                     // SCM GOTO → mission_bloke_stuck_love1 (not lowered; manual jump required)

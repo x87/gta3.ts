@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/pickups.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function main_pickups() {
     // VAR_INT ind_pickup1 ind_pickup2 ind_pickup3 ind_pickup4 ind_pickup5 ind_pickup6 ind_pickup7 ind_pickup8 ind_pickup9 ind_pickup10

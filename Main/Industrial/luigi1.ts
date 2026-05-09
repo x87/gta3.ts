@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/luigi1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_luigi1() {
     $.flag_player_on_mission = 1
@@ -31,14 +31,14 @@ async function mission_start_luigi1() {
 
     $.flag_coord_blip_on = 0
 
-    Streaming.LoadSpecialCharacter(1, $.micky)
-    Streaming.LoadSpecialCharacter(2, EIGHT)
-    Streaming.LoadSpecialCharacter(3, $.luigi)
+    Streaming.LoadSpecialCharacter(1, 'MICKY')
+    Streaming.LoadSpecialCharacter(2, 'EIGHT')
+    Streaming.LoadSpecialCharacter(3, 'LUIGI')
 
-    Streaming.LoadSpecialModel(hier`cutobj01`, LUDOOR)
-    Streaming.LoadSpecialModel(hier`cutobj02`, MICKYH)
-    Streaming.LoadSpecialModel(hier`cutobj03`, EIGHT)
-    Streaming.LoadSpecialModel(hier`cutobj04`, $.luigi)
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'LUDOOR')
+    Streaming.LoadSpecialModel(hier`cutobj02`, 'MICKYH')
+    Streaming.LoadSpecialModel(hier`cutobj03`, 'EIGHT')
+    Streaming.LoadSpecialModel(hier`cutobj04`, 'LUIGI')
 
     {
         if ($.flag_failed_luigi1 == 0) {
@@ -68,24 +68,24 @@ async function mission_start_luigi1() {
 
             //ENDWHILE
 
-            Cutscene.Load(luigi1)
+            Cutscene.Load('luigi1')
             Cutscene.SetOffset(901.82, -426.3, 13.85)
             $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-            $.cs_player.setAnim($.player)
+            $.cs_player.setAnim('player')
             $.cs_micky = CutsceneObject.Create(ped`SPECIAL1`)
-            $.cs_micky.setAnim($.micky)
+            $.cs_micky.setAnim('micky')
             $.cs_eight = CutsceneObject.Create(ped`SPECIAL2`)
-            $.cs_eight.setAnim(eight)
+            $.cs_eight.setAnim('eight')
             $.cs_luigi = CutsceneObject.Create(ped`SPECIAL3`)
-            $.cs_luigi.setAnim($.luigi)
+            $.cs_luigi.setAnim('luigi')
             $.cs_mickyhead = CutsceneHead.Create($.cs_micky, hier`cutobj02`)
-            $.cs_mickyhead.setAnim($.micky)
+            $.cs_mickyhead.setAnim('micky')
             $.cs_eighthead = CutsceneHead.Create($.cs_eight, hier`cutobj03`)
-            $.cs_eighthead.setAnim(eight)
+            $.cs_eighthead.setAnim('eight')
             $.cs_luigihead = CutsceneHead.Create($.cs_luigi, hier`cutobj04`)
-            $.cs_luigihead.setAnim($.luigi)
+            $.cs_luigihead.setAnim('luigi')
             $.cs_ludoor = CutsceneObject.Create(hier`cutobj01`)
-            $.cs_ludoor.setAnim(LUDOOR)
+            $.cs_ludoor.setAnim('LUDOOR')
             while (TIMERA < 3500) {
                 await asyncWait(0)
             }
@@ -131,7 +131,7 @@ async function mission_start_luigi1() {
 
         Streaming.RequestModel(ped`PROSTITUTE`)
 
-        Streaming.LoadSpecialCharacter(2, $.misty)
+        Streaming.LoadSpecialCharacter(2, 'misty')
 
         while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(ped`PROSTITUTE`)) {
             await asyncWait(0)

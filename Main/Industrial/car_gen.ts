@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/car_gen.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function car_generators() {
     // *************************************INDUSTRIAL CAR GENERATORS***************************

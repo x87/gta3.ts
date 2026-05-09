@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/asuka1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_asuka1() {
     $.flag_player_on_mission = 1
@@ -85,13 +85,13 @@ async function mission_start_asuka1() {
   PRINT_BIG AM1 15000 2
   */
 
-        Streaming.LoadSpecialCharacter(1, $.asuka)
-        Streaming.LoadSpecialCharacter(2, $.maria)
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, ASUKAH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, MARIAH)
-        Streaming.RequestModel(condo_ivy)
-        Streaming.RequestModel(kmricndo01)
+        Streaming.LoadSpecialCharacter(1, 'asuka')
+        Streaming.LoadSpecialCharacter(2, 'maria')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'ASUKAH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'MARIAH')
+        Streaming.RequestModel(2216 /* condo_ivy */)
+        Streaming.RequestModel(2215 /* kmricndo01 */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -111,31 +111,31 @@ async function mission_start_asuka1() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(condo_ivy) || !Streaming.HasModelLoaded(kmricndo01)) {
+        while (!Streaming.HasModelLoaded(2216 /* condo_ivy */) || !Streaming.HasModelLoaded(2215 /* kmricndo01 */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(A1_SS0)
+        Cutscene.Load('A1_SS0')
 
         Cutscene.SetOffset(523.102, -636.96, 15.616)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_asuka = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_asuka.setAnim($.asuka)
+        $.cs_asuka.setAnim('asuka')
 
         $.cs_maria = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_maria.setAnim($.maria)
+        $.cs_maria.setAnim('maria')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj02`)
-        $.cs_asukahead.setAnim($.asuka)
+        $.cs_asukahead.setAnim('asuka')
 
         $.cs_mariahead = CutsceneHead.Create($.cs_maria, hier`cutobj03`)
-        $.cs_mariahead.setAnim($.maria)
+        $.cs_mariahead.setAnim('maria')
 
         World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */)
         $.player.setCoordinates(523.6, -639.4, 16.0)
@@ -273,15 +273,15 @@ async function mission_start_asuka1() {
 
         Streaming.UnloadSpecialCharacter(1)
         Streaming.UnloadSpecialCharacter(2)
-        Streaming.MarkModelAsNoLongerNeeded(condo_ivy)
-        Streaming.MarkModelAsNoLongerNeeded(kmricndo01)
+        Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */)
+        Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
 
         // ******************************************END OF CUTSCENE********************************
 
-        Streaming.LoadSpecialCharacter(1, $.frankie)
+        Streaming.LoadSpecialCharacter(1, 'frankie')
         Streaming.RequestModel(ped`GANG_MAFIA_A`)
         Streaming.RequestModel(ped`GANG_MAFIA_B`)
         Streaming.RequestModel(car`MAFIA`)
@@ -482,7 +482,7 @@ async function mission_start_asuka1() {
             $.door_position_a1 = $.backdoor.getHeading()
         }
 
-        Audio.LoadMissionAudio(A1_A)
+        Audio.LoadMissionAudio('a1_a' as any)
 
         if (!$.player.isInArea2D(873.0, -443.0, 927.0, -378.0, false)) {
             $.player.setControl(false /* OFF */)
@@ -500,10 +500,10 @@ async function mission_start_asuka1() {
             //	ENDWHILE
             Hud.SwitchWidescreen(true /* ON */)
             World.ClearArea(905.759, -419.944, 8.0, 8.0, false /* FALSE */)
-            Streaming.RequestModel(indhibuild3)
-            Streaming.RequestModel(luigiclubout)
-            Streaming.RequestModel(luigiineerclub)
-            Streaming.RequestModel(ind_customroad016)
+            Streaming.RequestModel(257 /* indhibuild3 */)
+            Streaming.RequestModel(256 /* luigiclubout */)
+            Streaming.RequestModel(243 /* luigiineerclub */)
+            Streaming.RequestModel(620 /* ind_customroad016 */)
             Streaming.LoadAllModelsNow()
             Streaming.Switch(false /* OFF */)
             Camera.SetFixedPosition(881.36, -425.198, 19.727, 0.0, 0.0, 0.0)
@@ -528,10 +528,10 @@ async function mission_start_asuka1() {
                         $.player.applyBrakesToCar(false /* OFF */)
                     }
                     Camera.RestoreJumpcut()
-                    Streaming.MarkModelAsNoLongerNeeded(indhibuild3)
-                    Streaming.MarkModelAsNoLongerNeeded(luigiclubout)
-                    Streaming.MarkModelAsNoLongerNeeded(luigiineerclub)
-                    Streaming.MarkModelAsNoLongerNeeded(ind_customroad016)
+                    Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */)
+                    Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */)
+                    Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */)
+                    Streaming.MarkModelAsNoLongerNeeded(620 /* ind_customroad016 */)
                     Camera.DoFade(250, 1 /* FADE_IN */)
                     $.skip_flag = 2
                     $.beamer1_health = 0
@@ -552,10 +552,10 @@ async function mission_start_asuka1() {
                             $.player.applyBrakesToCar(false /* OFF */)
                         }
                         Camera.RestoreJumpcut()
-                        Streaming.MarkModelAsNoLongerNeeded(indhibuild3)
-                        Streaming.MarkModelAsNoLongerNeeded(luigiclubout)
-                        Streaming.MarkModelAsNoLongerNeeded(luigiineerclub)
-                        Streaming.MarkModelAsNoLongerNeeded(ind_customroad016)
+                        Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */)
+                        Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */)
+                        Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */)
+                        Streaming.MarkModelAsNoLongerNeeded(620 /* ind_customroad016 */)
                         Camera.DoFade(250, 1 /* FADE_IN */)
                         $.beamer1_health = 0
                     }
@@ -884,10 +884,10 @@ async function mission_start_asuka1() {
                             $.player.applyBrakesToCar(false /* OFF */)
                         }
                         Camera.RestoreJumpcut()
-                        Streaming.MarkModelAsNoLongerNeeded(indhibuild3)
-                        Streaming.MarkModelAsNoLongerNeeded(luigiclubout)
-                        Streaming.MarkModelAsNoLongerNeeded(luigiineerclub)
-                        Streaming.MarkModelAsNoLongerNeeded(ind_customroad016)
+                        Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */)
+                        Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */)
+                        Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */)
+                        Streaming.MarkModelAsNoLongerNeeded(620 /* ind_customroad016 */)
                         $.beamer1_health = 0
                     }
                     $.mafia_13_flag = 2

@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/diablo3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_diablo3() {
     Stat.RegisterMissionGiven()
@@ -18,11 +18,11 @@ async function mission_start_diablo3() {
         World.SetPedDensityMultiplier(0.0)
         World.ClearAreaOfChars(890.3, -309.1, 0.0, 1038.1, -132.9, 10.0)
 
-        Cutscene.Load(EL_PH4)
+        Cutscene.Load('EL_PH4')
         Cutscene.SetOffset(938.27, -229.561, 4.023)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         Camera.DoFade(1500, 1 /* FADE_IN */)
 

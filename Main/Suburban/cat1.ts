@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/cat1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_cat1() {
     Stat.RegisterMissionGiven()
@@ -24,20 +24,20 @@ async function mission_start_cat1() {
     {
         $.player.clearWantedLevel()
 
-        Streaming.LoadSpecialCharacter(1, $.maria)
-        Streaming.LoadSpecialCharacter(2, cat)
-        Streaming.LoadSpecialCharacter(3, col2)
-        Streaming.LoadSpecialCharacter(4, colrob)
-        Streaming.LoadSpecialModel(hier`cutobj01`, fulcase)
-        Streaming.LoadSpecialModel(hier`cutobj02`, cath)
+        Streaming.LoadSpecialCharacter(1, 'Maria')
+        Streaming.LoadSpecialCharacter(2, 'cat')
+        Streaming.LoadSpecialCharacter(3, 'col2')
+        Streaming.LoadSpecialCharacter(4, 'colrob')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'fulcase')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'cath')
         Streaming.RequestModel(ped`GANG_COLOMBIAN_A`)
         Streaming.RequestModel(ped`GANG_COLOMBIAN_B`)
         Streaming.RequestModel(car`COLUMB`)
         Streaming.RequestModel(car`FLATBED`)
-        Streaming.RequestModel(New_Colmansn)
-        Streaming.RequestModel(landpart15)
-        Streaming.RequestModel(Security_Hut)
-        Streaming.RequestModel(columansion_wall)
+        Streaming.RequestModel(2570 /* New_Colmansn */)
+        Streaming.RequestModel(2343 /* landpart15 */)
+        Streaming.RequestModel(2559 /* Security_Hut */)
+        Streaming.RequestModel(2384 /* columansion_wall */)
 
         Streaming.LoadAllModelsNow()
 
@@ -57,45 +57,45 @@ async function mission_start_cat1() {
 
         while (
             !Streaming.HasModelLoaded(car`COLUMB`) ||
-            !Streaming.HasModelLoaded(New_Colmansn) ||
-            !Streaming.HasModelLoaded(landpart15) ||
-            !Streaming.HasModelLoaded(Security_Hut) ||
-            !Streaming.HasModelLoaded(columansion_wall)
+            !Streaming.HasModelLoaded(2570 /* New_Colmansn */) ||
+            !Streaming.HasModelLoaded(2343 /* landpart15 */) ||
+            !Streaming.HasModelLoaded(2559 /* Security_Hut */) ||
+            !Streaming.HasModelLoaded(2384 /* columansion_wall */)
         ) {
             await asyncWait(0)
         }
 
         Streaming.LoadScene(-363.5, 243.5, 59.3)
 
-        Cutscene.Load(C1_TEX)
+        Cutscene.Load('C1_TEX')
         Cutscene.SetOffset(-358.553, 249.189, 59.329)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_maria = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_maria.setAnim($.maria)
+        $.cs_maria.setAnim('maria')
 
         $.cs_cat = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_cat.setAnim(cat)
+        $.cs_cat.setAnim('cat')
 
         //CREATE_CUTSCENE_OBJECT PED_SPECIAL3 cs_colub1
         //SET_CUTSCENE_ANIM cs_colub1 col2 //(unarmed)
 
         $.cs_colub2 = CutsceneObject.Create(ped`SPECIAL4`)
-        $.cs_colub2.setAnim(colrob) //(Pistol)
+        $.cs_colub2.setAnim('colrob') //(Pistol)
 
         $.cs_colub3 = CutsceneObject.Create(ped`GANG_COLOMBIAN_A`)
-        $.cs_colub3.setAnim(gang11) //(unarmed)
+        $.cs_colub3.setAnim('gang11') //(unarmed)
 
         $.cs_colub4 = CutsceneObject.Create(ped`GANG_COLOMBIAN_B`)
-        $.cs_colub4.setAnim(gang12) //(unarmed)
+        $.cs_colub4.setAnim('gang12') //(unarmed)
 
         $.cs_case = CutsceneObject.Create(hier`cutobj01`)
-        $.cs_case.setAnim(fulcase)
+        $.cs_case.setAnim('fulcase')
 
         $.cs_cathead = CutsceneHead.Create($.cs_cat, hier`cutobj02`)
-        $.cs_cathead.setAnim(cat)
+        $.cs_cathead.setAnim('cat')
 
         $.colubian_car1 = Car.Create(131 /* CAR_COLUMB */, -422.9, 291.8, 61.8)
         $.colubian_car1.setHeading(226.0)
@@ -258,10 +258,10 @@ async function mission_start_cat1() {
         Streaming.UnloadSpecialCharacter(4)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(New_Colmansn)
-        Streaming.MarkModelAsNoLongerNeeded(landpart15)
-        Streaming.MarkModelAsNoLongerNeeded(Security_Hut)
-        Streaming.MarkModelAsNoLongerNeeded(columansion_wall)
+        Streaming.MarkModelAsNoLongerNeeded(2570 /* New_Colmansn */)
+        Streaming.MarkModelAsNoLongerNeeded(2343 /* landpart15 */)
+        Streaming.MarkModelAsNoLongerNeeded(2559 /* Security_Hut */)
+        Streaming.MarkModelAsNoLongerNeeded(2384 /* columansion_wall */)
 
         while (!Streaming.HasModelLoaded(car`FLATBED`)) {
             await asyncWait(0)
@@ -633,7 +633,7 @@ async function mission_start_cat1() {
             if ($.player.isInAnyCar()) {
                 $.player.applyBrakesToCar(true /* ON */)
             }
-            Audio.LoadMissionAudio(C_1)
+            Audio.LoadMissionAudio('c_1' as any)
             await asyncWait(3000)
             if (!Char.IsDead($.catalina)) {
                 Camera.PointAtChar($.catalina, 15 /* FIXED */, 1 /* INTERPOLATION */)
@@ -853,21 +853,21 @@ async function mission_start_cat1() {
             await asyncWait(0)
         }
 
-        Streaming.LoadSpecialCharacter(1, $.maria)
+        Streaming.LoadSpecialCharacter(1, 'Maria')
 
         while (!Streaming.HasSpecialCharacterLoaded(1)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(END)
+        Cutscene.Load('END')
         Audio.LoadEndOfGameTune()
         Cutscene.SetOffset(-1031.7601, 451.7612, 22.5624)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_maria = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_maria.setAnim($.maria)
+        $.cs_maria.setAnim('maria')
 
         //CREATE_CUTSCENE_HEAD cs_maria CUT_OBJ1 cs_mariahead
         //SET_CUTSCENE_HEAD_ANIM cs_mariahead maria

@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/4x4_3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_4x4three() {
     Stat.RegisterMissionGiven()

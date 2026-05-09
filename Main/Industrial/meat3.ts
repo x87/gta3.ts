@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/meat3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_meat3() {
     $.flag_player_on_mission = 1
@@ -56,11 +56,11 @@ async function mission_start_meat3() {
 
         //ENDWHILE
 
-        Cutscene.Load(mt_ph3)
+        Cutscene.Load('mt_ph3')
         Cutscene.SetOffset(1223.88, -839.414, 13.95)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -142,7 +142,7 @@ async function mission_start_meat3() {
 
         Streaming.RequestModel(car`ESPERANTO`)
 
-        Audio.LoadMissionAudio(MF2_A)
+        Audio.LoadMissionAudio('mf2_a' as any)
 
         while (!Streaming.HasModelLoaded(ped`FEMALE2`) || !Streaming.HasModelLoaded(car`ESPERANTO`) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -374,7 +374,7 @@ async function mission_start_meat3() {
 
         World.ClearArea(1200.8, -799.3, 14.0, 10.0, true /* TRUE */)
 
-        timerb = 0
+        TIMERB = 0
 
         // Waiting for the wifes to get to the meat grinding area
 
@@ -395,7 +395,7 @@ async function mission_start_meat3() {
                     $.flag_wife_in_area = 1
                 }
             }
-            if (timerb >= 25000) {
+            if (TIMERB >= 25000) {
                 if (!($.flag_wife_in_area == 1)) {
                     $.wife_meat3.setCoordinates(1204.2, -801.9, 13.7)
                     // SCM GOTO → wife_stuck1 (not lowered; manual jump required)
@@ -434,7 +434,7 @@ async function mission_start_meat3() {
 
         $.wife_meat3.setObjGotoCoordOnFoot(1205.9, -805.8)
 
-        timerb = 0
+        TIMERB = 0
 
         while (!$.wife_meat3.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false /* FALSE */)) {
             await asyncWait(0)
@@ -448,7 +448,7 @@ async function mission_start_meat3() {
                 // SCM GOTO → mission_failed_meat3 (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_failed_meat3') // fallback: would break linear control flow
             }
-            if (timerb >= 25000) {
+            if (TIMERB >= 25000) {
                 if (!$.wife_meat3.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false /* FALSE */)) {
                     $.wife_meat3.removeElegantly()
                     // SCM GOTO → mission_bloke_stuck_meat3 (not lowered; manual jump required)
@@ -466,7 +466,7 @@ async function mission_start_meat3() {
     }
 
     async function mission_bloke_stuck_meat3() {
-        Audio.LoadMissionAudio(MF4_C)
+        Audio.LoadMissionAudio('mf4_c' as any)
 
         while (!$.doggy_door.rotate(45.0, 5.0, false /* FALSE */) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)

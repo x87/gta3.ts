@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/toni3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_toni3() {
     Stat.RegisterMissionGiven()
@@ -29,9 +29,9 @@ async function mission_start_toni3() {
   */
 
     {
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, NOTE)
-        Streaming.RequestModel(ind_newrizzos)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'NOTE')
+        Streaming.RequestModel(537 /* ind_newrizzos */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -44,21 +44,21 @@ async function mission_start_toni3() {
 
         Streaming.LoadAllModelsNow()
 
-        while (!Streaming.HasModelLoaded(hier`cutobj01`) || !Streaming.HasModelLoaded(hier`cutobj02`) || !Streaming.HasModelLoaded(ind_newrizzos)) {
+        while (!Streaming.HasModelLoaded(hier`cutobj01`) || !Streaming.HasModelLoaded(hier`cutobj02`) || !Streaming.HasModelLoaded(537 /* ind_newrizzos */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(T3_MAS)
+        Cutscene.Load('T3_MAS')
         Cutscene.SetOffset(1218.42, -314.5, 28.9)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_note = CutsceneObject.Create(hier`cutobj02`)
-        $.cs_note.setAnim(NOTE)
+        $.cs_note.setAnim('NOTE')
 
         World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */)
         $.player.setCoordinates(1219.5, -321.1, 26.4)
@@ -187,13 +187,13 @@ async function mission_start_toni3() {
 
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(ind_newrizzos)
+        Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */)
 
         // START OF MISSION
 
-        Streaming.LoadSpecialCharacter(1, tony)
-        Streaming.LoadSpecialCharacter(2, joey2)
-        Streaming.LoadSpecialCharacter(3, $.luigi)
+        Streaming.LoadSpecialCharacter(1, 'tony')
+        Streaming.LoadSpecialCharacter(2, 'joey2')
+        Streaming.LoadSpecialCharacter(3, 'luigi')
 
         Streaming.RequestModel(car`STRETCH`)
         Streaming.RequestModel(car`BELLYUP`)
@@ -312,7 +312,7 @@ async function mission_start_toni3() {
         //POINT_CAMERA_AT_CHAR joey FIXED INTERPOLATION
 
         TIMERB = 0
-        Audio.LoadMissionAudio(T3_A)
+        Audio.LoadMissionAudio('t3_a' as any)
 
         while (!$.joey.isInCar($.carry_car)) {
             await asyncWait(0)
@@ -560,7 +560,7 @@ async function mission_start_toni3() {
         World.SetPedDensityMultiplier(0.0)
 
         TIMERB = 0
-        Audio.LoadMissionAudio(T3_B)
+        Audio.LoadMissionAudio('t3_b' as any)
 
         $.luigi.setObjGotoCoordOnFoot(901.0, -426.4)
 
@@ -786,7 +786,7 @@ async function mission_start_toni3() {
 
         TIMERB = 0
 
-        Audio.LoadMissionAudio(T3_C)
+        Audio.LoadMissionAudio('t3_c' as any)
 
         $.toni.setObjGotoCoordOnFoot(1205.5, -321.0)
 
@@ -1110,17 +1110,17 @@ async function mission_start_toni3() {
         World.SwitchRubbish(false /* OFF */)
         Streaming.Switch(false /* OFF */)
 
-        Streaming.LoadSpecialCharacter(4, $.frankie)
+        Streaming.LoadSpecialCharacter(4, 'frankie')
         Streaming.RequestModel(ped`GANG_MAFIA_B`)
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, FRANKH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, JOEYH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, LUIGIH)
-        Streaming.LoadSpecialModel(hier`cutobj05`, TONYH)
-        Streaming.RequestModel(salvsdetail)
-        Streaming.RequestModel(swank_inside)
-        Streaming.RequestModel(franksclb02)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'FRANKH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'JOEYH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'LUIGIH')
+        Streaming.LoadSpecialModel(hier`cutobj05`, 'TONYH')
+        Streaming.RequestModel(542 /* salvsdetail */)
+        Streaming.RequestModel(540 /* swank_inside */)
+        Streaming.RequestModel(541 /* franksclb02 */)
 
         while (Camera.GetFadingStatus()) {
             await asyncWait(0)
@@ -1131,9 +1131,9 @@ async function mission_start_toni3() {
         while (
             !Streaming.HasSpecialCharacterLoaded(4) ||
             !Streaming.HasModelLoaded(ped`GANG_MAFIA_B`) ||
-            !Streaming.HasModelLoaded(salvsdetail) ||
-            !Streaming.HasModelLoaded(swank_inside) ||
-            !Streaming.HasModelLoaded(franksclb02)
+            !Streaming.HasModelLoaded(542 /* salvsdetail */) ||
+            !Streaming.HasModelLoaded(540 /* swank_inside */) ||
+            !Streaming.HasModelLoaded(541 /* franksclb02 */)
         ) {
             await asyncWait(0)
         }
@@ -1148,41 +1148,41 @@ async function mission_start_toni3() {
             await asyncWait(0)
         }
 
-        Cutscene.Load(S0_MAS)
+        Cutscene.Load('S0_MAS')
         Cutscene.SetOffset(1457.776, -185.348, 54.925)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_tony = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_tony.setAnim(tony)
+        $.cs_tony.setAnim('tony')
 
         $.cs_joey = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_joey.setAnim(joey2)
+        $.cs_joey.setAnim('joey2')
 
         $.cs_luigi = CutsceneObject.Create(ped`SPECIAL3`)
-        $.cs_luigi.setAnim($.luigi)
+        $.cs_luigi.setAnim('luigi')
 
         $.cs_frankie = CutsceneObject.Create(ped`SPECIAL4`)
-        $.cs_frankie.setAnim($.frankie)
+        $.cs_frankie.setAnim('frankie')
 
         $.cs_mafia = CutsceneObject.Create(ped`GANG_MAFIA_B`)
-        $.cs_mafia.setAnim(gang02)
+        $.cs_mafia.setAnim('gang02')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, hier`cutobj02`)
-        $.cs_frankiehead.setAnim(frank)
+        $.cs_frankiehead.setAnim('frank')
 
         $.cs_joeyhead = CutsceneHead.Create($.cs_joey, hier`cutobj03`)
-        $.cs_joeyhead.setAnim($.joey)
+        $.cs_joeyhead.setAnim('joey')
 
         $.cs_luigihead = CutsceneHead.Create($.cs_luigi, hier`cutobj04`)
-        $.cs_luigihead.setAnim($.luigi)
+        $.cs_luigihead.setAnim('luigi')
 
         $.cs_tonyhead = CutsceneHead.Create($.cs_tony, hier`cutobj05`)
-        $.cs_tonyhead.setAnim(tony)
+        $.cs_tonyhead.setAnim('tony')
 
         //SET_PLAYER_COORDINATES player 1455.2 -186.8 55.0
 
@@ -1352,9 +1352,9 @@ async function mission_start_toni3() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj05`)
-        Streaming.MarkModelAsNoLongerNeeded(salvsdetail)
-        Streaming.MarkModelAsNoLongerNeeded(swank_inside)
-        Streaming.MarkModelAsNoLongerNeeded(franksclb02)
+        Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */)
+        Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */)
+        Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */)
 
         await asyncWait(500)
 

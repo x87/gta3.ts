@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/asusb3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_as3() {
     Stat.RegisterMissionGiven()
@@ -65,15 +65,15 @@ async function mission_start_as3() {
   SWITCH_STREAMING OFF
   */
 
-    Streaming.RequestModel(csitecutscene)
+    Streaming.RequestModel(2011 /* csitecutscene */)
 
-    Streaming.LoadSpecialCharacter(1, $.asuka)
-    Streaming.LoadSpecialCharacter(2, $.miguel)
-    Streaming.LoadSpecialCharacter(3, $.maria)
-    Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-    Streaming.LoadSpecialModel(hier`cutobj02`, ASUKAH)
-    Streaming.LoadSpecialModel(hier`cutobj03`, MARIAH)
-    Streaming.LoadSpecialModel(hier`cutobj04`, WHIP)
+    Streaming.LoadSpecialCharacter(1, 'asuka')
+    Streaming.LoadSpecialCharacter(2, 'miguel')
+    Streaming.LoadSpecialCharacter(3, 'maria')
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+    Streaming.LoadSpecialModel(hier`cutobj02`, 'ASUKAH')
+    Streaming.LoadSpecialModel(hier`cutobj03`, 'MARIAH')
+    Streaming.LoadSpecialModel(hier`cutobj04`, 'WHIP')
 
     /*
   WHILE GET_FADING_STATUS
@@ -83,7 +83,7 @@ async function mission_start_as3() {
 
     Streaming.LoadAllModelsNow()
 
-    while (!Streaming.HasModelLoaded(csitecutscene)) {
+    while (!Streaming.HasModelLoaded(2011 /* csitecutscene */)) {
         await asyncWait(0)
     }
 
@@ -100,35 +100,35 @@ async function mission_start_as3() {
         await asyncWait(0)
     }
 
-    Cutscene.Load(a8_ps)
+    Cutscene.Load('a8_ps')
 
     Streaming.Switch(true /* ON */)
 
     Cutscene.SetOffset(369.02, -327.5, 18.46)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_asuka = CutsceneObject.Create(ped`SPECIAL1`)
-    $.cs_asuka.setAnim($.asuka)
+    $.cs_asuka.setAnim('asuka')
 
     $.cs_miguel = CutsceneObject.Create(ped`SPECIAL2`)
-    $.cs_miguel.setAnim($.miguel)
+    $.cs_miguel.setAnim('miguel')
 
     $.cs_maria = CutsceneObject.Create(ped`SPECIAL3`)
-    $.cs_maria.setAnim($.maria)
+    $.cs_maria.setAnim('maria')
 
     $.cs_whip = CutsceneObject.Create(hier`cutobj04`)
-    $.cs_whip.setAnim(WHIP)
+    $.cs_whip.setAnim('WHIP')
 
     $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-    $.cs_playerhead.setAnim($.player)
+    $.cs_playerhead.setAnim('player')
 
     $.cs_mariahead = CutsceneHead.Create($.cs_maria, hier`cutobj03`)
-    $.cs_mariahead.setAnim($.maria)
+    $.cs_mariahead.setAnim('maria')
 
     $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj02`)
-    $.cs_asukahead.setAnim($.asuka)
+    $.cs_asukahead.setAnim('asuka')
     /*
   CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
   SET_CUTSCENE_HEAD_ANIM cs_miguelhead miguel
@@ -288,7 +288,7 @@ async function mission_start_as3() {
     Streaming.UnloadSpecialCharacter(2)
     Streaming.UnloadSpecialCharacter(3)
 
-    Streaming.MarkModelAsNoLongerNeeded(csitecutscene)
+    Streaming.MarkModelAsNoLongerNeeded(2011 /* csitecutscene */)
 
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
@@ -325,13 +325,13 @@ async function mission_start_as3() {
         await asyncWait(0)
     }
 
-    Streaming.RequestModel(packagelarge)
-    while (!Streaming.HasModelLoaded(packagelarge)) {
+    Streaming.RequestModel(1366 /* packagelarge */)
+    while (!Streaming.HasModelLoaded(1366 /* packagelarge */)) {
         await asyncWait(0)
     }
 
-    Streaming.RequestModel(bouy)
-    while (!Streaming.HasModelLoaded(bouy)) {
+    Streaming.RequestModel(1373 /* bouy */)
+    while (!Streaming.HasModelLoaded(1373 /* bouy */)) {
         await asyncWait(0)
     }
 
@@ -1103,13 +1103,13 @@ async function loop_as3_7() {
         await asyncWait(0)
     }
 
-    Streaming.RequestModel(csitecutscene)
+    Streaming.RequestModel(2011 /* csitecutscene */)
 
-    Streaming.LoadSpecialCharacter(1, $.asuka)
-    Streaming.LoadSpecialCharacter(2, $.miguel)
+    Streaming.LoadSpecialCharacter(1, 'asuka')
+    Streaming.LoadSpecialCharacter(2, 'miguel')
 
-    Streaming.LoadSpecialModel(hier`cutobj01`, whip)
-    Streaming.LoadSpecialModel(hier`cutobj02`, note)
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'whip')
+    Streaming.LoadSpecialModel(hier`cutobj02`, 'note')
 
     /*
   WHILE GET_FADING_STATUS
@@ -1125,29 +1125,29 @@ async function loop_as3_7() {
         !Streaming.HasSpecialCharacterLoaded(2) ||
         !Streaming.HasModelLoaded(hier`cutobj01`) ||
         !Streaming.HasModelLoaded(hier`cutobj02`) ||
-        !Streaming.HasModelLoaded(csitecutscene)
+        !Streaming.HasModelLoaded(2011 /* csitecutscene */)
     ) {
         await asyncWait(0)
     }
 
-    Cutscene.Load(a9_asd)
+    Cutscene.Load('a9_asd')
 
     Cutscene.SetOffset(369.02, -327.5, 18.46)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_asuka = CutsceneObject.Create(ped`SPECIAL1`)
-    $.cs_asuka.setAnim($.asuka)
+    $.cs_asuka.setAnim('asuka')
 
     $.cs_miguel = CutsceneObject.Create(ped`SPECIAL2`)
-    $.cs_miguel.setAnim($.miguel)
+    $.cs_miguel.setAnim('miguel')
 
     $.cs_whip = CutsceneObject.Create(hier`cutobj01`)
-    $.cs_whip.setAnim(whip)
+    $.cs_whip.setAnim('whip')
 
     $.cs_note = CutsceneObject.Create(hier`cutobj02`)
-    $.cs_note.setAnim(note)
+    $.cs_note.setAnim('note')
 
     //CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
     //SET_CUTSCENE_HEAD_ANIM cs_miguelhead miguel
@@ -1212,7 +1212,7 @@ async function loop_as3_7() {
 
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-    Streaming.MarkModelAsNoLongerNeeded(csitecutscene)
+    Streaming.MarkModelAsNoLongerNeeded(2011 /* csitecutscene */)
 
     World.SwitchRubbish(true /* ON */)
     // ******************************************END OF CUTSCENE********************************
@@ -1272,9 +1272,9 @@ async function mission_cleanup_as3() {
         $.rocket_as3.remove()
     }
 
-    Streaming.MarkModelAsNoLongerNeeded(bouy)
+    Streaming.MarkModelAsNoLongerNeeded(1373 /* bouy */)
     Streaming.MarkModelAsNoLongerNeeded(car`REEFER`)
-    Streaming.MarkModelAsNoLongerNeeded(packagelarge)
+    Streaming.MarkModelAsNoLongerNeeded(1366 /* packagelarge */)
     Streaming.MarkModelAsNoLongerNeeded(car`DEADDODO`)
     Streaming.MarkModelAsNoLongerNeeded(car`DODO`)
     Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_B`)

@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/kenji1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_kenji1() {
     $.flag_player_on_mission = 1
@@ -101,12 +101,12 @@ async function mission_start_kenji1() {
 
         // Cutscene stuff
 
-        Streaming.LoadSpecialCharacter(1, $.kenji)
+        Streaming.LoadSpecialCharacter(1, 'KENJI')
         Streaming.RequestModel(ped`GANG_YAKUZA_A`)
-        Streaming.RequestModel(casino_garden)
+        Streaming.RequestModel(1570 /* casino_garden */)
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'KENJIH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
 
         /*
   WHILE GET_FADING_STATUS
@@ -123,36 +123,36 @@ async function mission_start_kenji1() {
             !Streaming.HasModelLoaded(ped`GANG_YAKUZA_A`) ||
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
-            !Streaming.HasModelLoaded(casino_garden)
+            !Streaming.HasModelLoaded(1570 /* casino_garden */)
         ) {
             await asyncWait(0)
         }
 
         //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
 
-        Cutscene.Load(k1_kbo)
+        Cutscene.Load('k1_kbo')
 
         Cutscene.SetOffset(476.38, -1382.168, 67.347)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_kenji = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_kenji.setAnim($.kenji)
+        $.cs_kenji.setAnim('kenji')
 
         $.cs_yakuza = CutsceneObject.Create(ped`GANG_YAKUZA_A`)
 
-        $.cs_yakuza.setAnim(gang07)
+        $.cs_yakuza.setAnim('gang07')
 
         $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj01`)
 
-        $.cs_kenjihead.setAnim($.kenji)
+        $.cs_kenjihead.setAnim('kenji')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */)
 
@@ -260,17 +260,17 @@ async function mission_start_kenji1() {
         Streaming.UnloadSpecialCharacter(1)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(casino_garden)
+        Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */)
 
         // *******************************************END OF CUTSCENE*******************************
 
         Text.PrintNow('KM1_1', 5000, 1) //"Steal a cop car!"
 
-        Streaming.RequestModel(rubble01)
-        Streaming.RequestModel(rubble02)
-        Audio.LoadMissionAudio(K1_A)
+        Streaming.RequestModel(1369 /* rubble01 */)
+        Streaming.RequestModel(1370 /* rubble02 */)
+        Audio.LoadMissionAudio('k1_a' as any)
 
-        while (!Streaming.HasModelLoaded(rubble01) || !Streaming.HasModelLoaded(rubble02) || !Audio.HasMissionAudioLoaded()) {
+        while (!Streaming.HasModelLoaded(1369 /* rubble01 */) || !Streaming.HasModelLoaded(1370 /* rubble02 */) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
         }
 
@@ -475,12 +475,12 @@ async function mission_start_kenji1() {
 
         // waiting for the player to get rid of his wanted level
 
-        timera = 0
+        TIMERA = 0
 
         while ($.player.isWantedLevelGreater(0)) {
             await asyncWait(0)
             if ($.flag_played_cop_radio_km1 == 0) {
-                if (timera > 2000) {
+                if (TIMERA > 2000) {
                     Audio.PlayMissionAudio()
                     $.flag_played_cop_radio_km1 = 1
                 }
@@ -514,7 +514,7 @@ async function mission_start_kenji1() {
 
         $.flag_dojo_blip_on = 1
 
-        Audio.LoadMissionAudio(k1_b)
+        Audio.LoadMissionAudio('k1_b' as any)
 
         // Waiting for the player to be back at the safehouse
 
@@ -639,7 +639,7 @@ async function mission_start_kenji1() {
 
         $.yakuza_ped1_km1.setObjRunToCoord(111.05, -1274.75)
 
-        timerb = 0
+        TIMERB = 0
 
         while (!$.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false /* FALSE */)) {
             await asyncWait(0)
@@ -648,7 +648,7 @@ async function mission_start_kenji1() {
                 // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_kenji1_failed') // fallback: would break linear control flow
             }
-            if (timerb >= 8000) {
+            if (TIMERB >= 8000) {
                 if (!$.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false /* FALSE */)) {
                     $.yakuza_ped1_km1.removeElegantly()
                     // SCM GOTO → mission_bloke_got_stuck_km1 (not lowered; manual jump required)
@@ -705,8 +705,8 @@ async function mission_start_kenji1() {
         $.police_alarm.remove()
         $.cell_beating.remove()
         Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_A`)
-        Streaming.MarkModelAsNoLongerNeeded(rubble01)
-        Streaming.MarkModelAsNoLongerNeeded(rubble02)
+        Streaming.MarkModelAsNoLongerNeeded(1369 /* rubble01 */)
+        Streaming.MarkModelAsNoLongerNeeded(1370 /* rubble02 */)
         $.radar_blip_coord1_km1.remove()
         $.radar_blip_coord2_km1.remove()
         $.radar_blip_coord3_km1.remove()

@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/hood2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_hood2() {
     $.flag_player_on_mission = 1
@@ -74,11 +74,11 @@ async function mission_start_hood2() {
 
         //ENDWHILE
 
-        Cutscene.Load(hd_ph2)
+        Cutscene.Load('hd_ph2')
         Cutscene.SetOffset(-444.714, -6.321, 2.9)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -293,13 +293,13 @@ async function mission_start_hood2() {
 
         $.buggies_left_hm2 = $.total_buggy_hm2 - $.counter_no_of_cars_player_had_hm2
 
-        timerb = 0
+        TIMERB = 0
 
         while (!($.counter_all_vans_dead_hm2 == 3)) {
             await asyncWait(0)
             $.buggies_left_hm2 = $.total_buggy_hm2 - $.counter_no_of_cars_player_had_hm2
             if ($.flag_buggy_help2_hm2 == 0 && $.flag_buggy_help1_hm2 == 1) {
-                if (timerb > 7000) {
+                if (TIMERB > 7000) {
                     Text.PrintHelp('HM2_3') //"The buggies can go underneath vehicles but if you touch the wheels the buggy will detonate instantly."
                     $.flag_buggy_help2_hm2 = 1
                     //timerb = 0
@@ -307,7 +307,7 @@ async function mission_start_hood2() {
             }
             if ($.flag_buggy_help3_hm2 == 0) {
                 if ($.flag_buggy_help2_hm2 == 1) {
-                    if (timerb > 14000) {
+                    if (TIMERB > 14000) {
                         Text.PrintHelp('HM2_4') //"The buggy will detonate if you get out of range!"
                         $.flag_buggy_help3_hm2 = 1
                     }

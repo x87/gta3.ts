@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/yard2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_yd2() {
     Stat.RegisterMissionGiven()
@@ -43,12 +43,12 @@ async function mission_start_yd2() {
 
         //ENDWHILE
 
-        Cutscene.Load(YD_PH2)
+        Cutscene.Load('YD_PH2')
         Cutscene.SetOffset(121.0, -272.3, 15.25)
         World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -310,7 +310,7 @@ async function plinky_yd2() {
         throw new Error('unresolved GOTO mission_yd2_failed_assert') // fallback: would break linear control flow
     }
 
-    Audio.LoadMissionAudio(YD2_A)
+    Audio.LoadMissionAudio('yd2_a' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -336,7 +336,7 @@ async function plinky_yd2() {
         $.chaperone_2.setHealth(100)
     }
 
-    Audio.LoadMissionAudio(YD2_B)
+    Audio.LoadMissionAudio('yd2_b' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -362,7 +362,7 @@ async function plinky_yd2() {
         $.chaperone_2.setHealth(100)
     }
 
-    Audio.LoadMissionAudio(YD2_C)
+    Audio.LoadMissionAudio('yd2_c' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -475,7 +475,7 @@ async function poodle() {
     Hud.SwitchWidescreen(false /* off */)
     $.player.setControl(true /* on */)
 
-    Audio.LoadMissionAudio(YD2_C1)
+    Audio.LoadMissionAudio('yd2_c1' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }
@@ -551,7 +551,7 @@ async function getting_there() {
         throw new Error('unresolved GOTO mission_yd2_failed_assert') // fallback: would break linear control flow
     }
 
-    Audio.LoadMissionAudio(YD2_F)
+    Audio.LoadMissionAudio('yd2_f' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }
@@ -561,7 +561,7 @@ async function getting_there() {
         await asyncWait(0)
     }
 
-    Audio.LoadMissionAudio(YD2_G)
+    Audio.LoadMissionAudio('yd2_g' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }
@@ -628,7 +628,7 @@ async function getting_there() {
 
     //------------------------------------BACK TO YARDIE TURF-------------------------------------------------------
 
-    Audio.LoadMissionAudio(YD2_H)
+    Audio.LoadMissionAudio('yd2_h' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }
@@ -742,7 +742,7 @@ async function back_to_yardie_turf() {
         throw new Error('unresolved GOTO mission_yd2_failed_assert') // fallback: would break linear control flow
     }
 
-    Audio.LoadMissionAudio(YD2_OK)
+    Audio.LoadMissionAudio('yd2_ok' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }
@@ -769,7 +769,7 @@ async function mission_yd2_failed() {
     }
 
     if ($.flag_upsidedown == 1) {
-        Audio.LoadMissionAudio(YD2_D)
+        Audio.LoadMissionAudio('yd2_d' as any)
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
         }
@@ -778,7 +778,7 @@ async function mission_yd2_failed() {
     }
 
     if ($.flag_upsidedown == 2) {
-        Audio.LoadMissionAudio(YD2_E)
+        Audio.LoadMissionAudio('yd2_e' as any)
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
         }
@@ -982,7 +982,7 @@ async function player_out_of_car() {
                 }
             }
             if ($.flag_out_of_car_message == 0) {
-                Audio.LoadMissionAudio(YD2_ASS)
+                Audio.LoadMissionAudio('yd2_ass' as any)
                 while (!Audio.HasMissionAudioLoaded()) {
                     await asyncWait(0)
                 }

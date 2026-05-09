@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/joey6.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_joey6() {
     Stat.RegisterMissionGiven()
@@ -10,13 +10,13 @@ async function mission_start_joey6() {
     await asyncWait(0)
 
     {
-        Streaming.LoadSpecialCharacter(1, $.joey)
-        Streaming.LoadSpecialModel(hier`cutobj01`, JOEYH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, TROLL)
+        Streaming.LoadSpecialCharacter(1, 'joey')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'JOEYH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'TROLL')
         Streaming.RequestModel(car`STALLION`)
-        Streaming.RequestModel(jogarageext)
-        Streaming.RequestModel(jogarageint)
+        Streaming.RequestModel(939 /* jogarageext */)
+        Streaming.RequestModel(1074 /* jogarageint */)
 
         Streaming.LoadAllModelsNow()
 
@@ -33,30 +33,30 @@ async function mission_start_joey6() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(jogarageext) || !Streaming.HasModelLoaded(jogarageint) || !Streaming.HasModelLoaded(car`STALLION`)) {
+        while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */) || !Streaming.HasModelLoaded(car`STALLION`)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(J6_TBJ)
+        Cutscene.Load('J6_TBJ')
         Cutscene.SetOffset(1190.079, -869.861, 13.977)
 
         $.cut_car3_lm3 = Car.Create(122 /* CAR_STALLION */, 1192.9, -860.8, 14.0)
         $.cut_car3_lm3.setHeading(150.0)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_joey = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_joey.setAnim($.joey)
+        $.cs_joey.setAnim('joey')
 
         $.cs_joeyhead = CutsceneHead.Create($.cs_joey, hier`cutobj01`)
-        $.cs_joeyhead.setAnim($.joey)
+        $.cs_joeyhead.setAnim('joey')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_troll = CutsceneObject.Create(hier`cutobj03`)
-        $.cs_troll.setAnim(TROLL)
+        $.cs_troll.setAnim('TROLL')
 
         World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */)
         $.player.setCoordinates(1191.9, -870.4, -100.0)
@@ -138,8 +138,8 @@ async function mission_start_joey6() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
         Streaming.MarkModelAsNoLongerNeeded(car`STALLION`)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageext)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageint)
+        Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */)
+        Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */)
 
         $.cut_car3_lm3.delete()
 
@@ -147,7 +147,7 @@ async function mission_start_joey6() {
         $.sound_already_created_before = 0
         $.flag_not_enough_seats = 0
 
-        Streaming.LoadSpecialCharacter(2, $.robber)
+        Streaming.LoadSpecialCharacter(2, 'robber')
 
         while (!Streaming.HasSpecialCharacterLoaded(2)) {
             await asyncWait(0)
@@ -348,7 +348,7 @@ async function mission_start_joey6() {
     async function next_robber_bit() {
         //SAMPLE1*********************************************************
 
-        Audio.LoadMissionAudio(J6_A)
+        Audio.LoadMissionAudio('j6_a' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -520,7 +520,7 @@ async function mission_start_joey6() {
 
         //SAMPLE2*********************************************************
 
-        Audio.LoadMissionAudio(J6_B)
+        Audio.LoadMissionAudio('j6_b' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -783,7 +783,7 @@ async function mission_start_joey6() {
             }
         }
 
-        Audio.LoadMissionAudio(J6_1)
+        Audio.LoadMissionAudio('j6_1' as any)
 
         const _res277 = $.bankdoor1.getCoordinates()
         $.bankdoor_X = _res277.x
@@ -928,7 +928,7 @@ async function mission_start_joey6() {
 
         //SAMPLE3*********************************************************
 
-        Audio.LoadMissionAudio(J6_D)
+        Audio.LoadMissionAudio('j6_d' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -1051,7 +1051,7 @@ async function mission_start_joey6() {
 
         //SAMPLE4*********************************************************
 
-        Audio.LoadMissionAudio(J6_C)
+        Audio.LoadMissionAudio('j6_c' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)

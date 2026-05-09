@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/switch.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function switch_car_generator() {
     $.gen_car1.switch(101)

@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/love4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_love4() {
     $.flag_player_on_mission = 1
@@ -78,34 +78,34 @@ async function mission_start_love4() {
     {
         // ****************************************START OF CUTSCENE********************************
 
-        Streaming.LoadSpecialCharacter(1, $.love)
-        Streaming.RequestModel(tshrorckgrdn)
-        Streaming.RequestModel(tshrorckgrdn_alfas)
-        Streaming.LoadSpecialModel(hier`cutobj01`, LOVEH)
+        Streaming.LoadSpecialCharacter(1, 'love')
+        Streaming.RequestModel(1731 /* tshrorckgrdn */)
+        Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'LOVEH')
 
         Streaming.LoadAllModelsNow()
 
         while (
             !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasModelLoaded(tshrorckgrdn_alfas) ||
-            !Streaming.HasModelLoaded(tshrorckgrdn) ||
+            !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) ||
+            !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */) ||
             !Streaming.HasModelLoaded(hier`cutobj01`)
         ) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(D4_GTA)
+        Cutscene.Load('D4_GTA')
 
         Cutscene.SetOffset(85.2162, -1532.9093, 243.5422)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_love = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_love.setAnim($.love)
+        $.cs_love.setAnim('love')
 
         $.cs_lovehead = CutsceneHead.Create($.cs_love, hier`cutobj01`)
-        $.cs_lovehead.setAnim($.love)
+        $.cs_lovehead.setAnim('love')
 
         World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */)
 
@@ -200,8 +200,8 @@ async function mission_start_love4() {
 
         Streaming.UnloadSpecialCharacter(1)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
-        Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn)
-        Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas)
+        Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */)
+        Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */)
 
         Streaming.RequestModel(car`PANLANT`)
         Streaming.RequestModel(ped`GANG_COLOMBIAN_A`)
@@ -865,15 +865,15 @@ async function mission_start_love4() {
 
         $.player.makeSafeForCutscene()
 
-        Streaming.LoadSpecialCharacter(1, cat)
-        Streaming.LoadSpecialCharacter(2, $.miguel)
-        Streaming.LoadSpecialCharacter(3, $.asuka)
-        Streaming.LoadSpecialModel(hier`cutobj01`, d4props) //lift
-        Streaming.LoadSpecialModel(hier`cutobj02`, cath)
-        Streaming.LoadSpecialModel(hier`cutobj03`, asukah)
-        Streaming.LoadSpecialModel(hier`cutobj04`, miguelh)
-        Streaming.LoadSpecialModel(hier`cutobj05`, $.lift)
-        Streaming.RequestModel(csitecutscene)
+        Streaming.LoadSpecialCharacter(1, 'cat')
+        Streaming.LoadSpecialCharacter(2, 'miguel')
+        Streaming.LoadSpecialCharacter(3, 'asuka')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'd4props') //lift
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'cath')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'asukah')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'miguelh')
+        Streaming.LoadSpecialModel(hier`cutobj05`, 'lift')
+        Streaming.RequestModel(2011 /* csitecutscene */)
 
         Streaming.Switch(false /* OFF */)
 
@@ -894,42 +894,42 @@ async function mission_start_love4() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(hier`cutobj04`) || !Streaming.HasModelLoaded(hier`cutobj05`) || !Streaming.HasModelLoaded(csitecutscene)) {
+        while (!Streaming.HasModelLoaded(hier`cutobj04`) || !Streaming.HasModelLoaded(hier`cutobj05`) || !Streaming.HasModelLoaded(2011 /* csitecutscene */)) {
             await asyncWait(0)
         }
 
         World.SetVisibilityOfClosestObjectOfType(374.7956, -340.4126, 16.0, 16.0, 2002 /* scaffoldlift */, false /* FALSE */)
 
-        Cutscene.Load(D4_GTA2)
+        Cutscene.Load('D4_GTA2')
 
         Cutscene.SetOffset(369.02, -327.5, 18.46)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_catalina = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_catalina.setAnim(cat)
+        $.cs_catalina.setAnim('cat')
 
         $.cs_miguel = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_miguel.setAnim($.miguel)
+        $.cs_miguel.setAnim('miguel')
 
         $.cs_asuka = CutsceneObject.Create(ped`SPECIAL3`)
-        $.cs_asuka.setAnim($.asuka)
+        $.cs_asuka.setAnim('asuka')
 
         $.cs_whip = CutsceneObject.Create(hier`cutobj01`)
-        $.cs_whip.setAnim(d4props)
+        $.cs_whip.setAnim('d4props')
 
         $.cs_lift = CutsceneObject.Create(hier`cutobj05`)
-        $.cs_lift.setAnim($.lift)
+        $.cs_lift.setAnim('lift')
 
         $.cs_cathead = CutsceneHead.Create($.cs_catalina, hier`cutobj02`)
-        $.cs_cathead.setAnim(cat)
+        $.cs_cathead.setAnim('cat')
 
         $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj03`)
-        $.cs_asukahead.setAnim($.asuka)
+        $.cs_asukahead.setAnim('asuka')
 
         $.cs_mariahead = CutsceneHead.Create($.cs_miguel, hier`cutobj04`)
-        $.cs_mariahead.setAnim($.miguel)
+        $.cs_mariahead.setAnim('miguel')
 
         //CREATE_CUTSCENE_OBJECT cut_obj2 cs_loot
         //SET_CUTSCENE_ANIM cs_loot cs_loot
@@ -1269,7 +1269,7 @@ async function mission_start_love4() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj05`)
-        Streaming.MarkModelAsNoLongerNeeded(csitecutscene)
+        Streaming.MarkModelAsNoLongerNeeded(2011 /* csitecutscene */)
 
         Streaming.RequestModel(car`YAKUZA`)
         Streaming.RequestModel(ped`GANG_YAKUZA_A`)

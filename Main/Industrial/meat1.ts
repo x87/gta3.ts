@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/meat1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_meat1() {
     $.flag_player_on_mission = 1
@@ -66,11 +66,11 @@ async function mission_start_meat1() {
 
         //ENDWHILE
 
-        Cutscene.Load(mt_ph1)
+        Cutscene.Load('mt_ph1')
         Cutscene.SetOffset(1223.88, -839.414, 13.95)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -173,7 +173,7 @@ async function mission_start_meat1() {
 
         Streaming.RequestModel(car`PERENNIAL`)
 
-        Audio.LoadMissionAudio(MF1_A)
+        Audio.LoadMissionAudio('mf1_a' as any)
 
         while (!Streaming.HasModelLoaded(ped`B_MAN1`) || !Streaming.HasModelLoaded(car`PERENNIAL`) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -413,7 +413,7 @@ async function mission_start_meat1() {
 
         // Waiting for the blokes to get to the meat grinding area
 
-        timerb = 0
+        TIMERB = 0
 
         while (!($.flag_bankmanager_in_area == 1)) {
             await asyncWait(0)
@@ -438,7 +438,7 @@ async function mission_start_meat1() {
                 }
             }
             if ($.flag_bankman_moved_meat1 == 0) {
-                if (timerb >= 20000) {
+                if (TIMERB >= 20000) {
                     $.bankmanager_meat1.setCoordinates(1204.2, -801.9, 13.7)
                     $.flag_bankman_moved_meat1 = 1
                 }
@@ -468,7 +468,7 @@ async function mission_start_meat1() {
 
         $.bankmanager_meat1.setObjGotoCoordOnFoot(1205.9, -805.8)
 
-        timerb = 0
+        TIMERB = 0
 
         while (!$.bankmanager_meat1.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false /* FALSE */)) {
             await asyncWait(0)
@@ -482,7 +482,7 @@ async function mission_start_meat1() {
                 // SCM GOTO → mission_failed_meat1 (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_failed_meat1') // fallback: would break linear control flow
             }
-            if (timerb >= 20000) {
+            if (TIMERB >= 20000) {
                 if (!$.bankmanager_meat1.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false /* FALSE */)) {
                     $.bankmanager_meat1.removeElegantly()
                     // SCM GOTO → bloke_got_stuck_meat1 (not lowered; manual jump required)
@@ -500,7 +500,7 @@ async function mission_start_meat1() {
     }
 
     async function bloke_got_stuck_meat1() {
-        Audio.LoadMissionAudio(MF4_A)
+        Audio.LoadMissionAudio('mf4_a' as any)
 
         while (!$.doggy_door.rotate(45.0, 5.0, false /* FALSE */) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)

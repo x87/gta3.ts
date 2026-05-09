@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/kenji3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_kenji3() {
     $.flag_player_on_mission = 1
@@ -79,11 +79,11 @@ async function mission_start_kenji3() {
 
         // Cutscene stuff
 
-        Streaming.LoadSpecialCharacter(1, $.kenji)
+        Streaming.LoadSpecialCharacter(1, 'KENJI')
         Streaming.RequestModel(ped`GANG_YAKUZA_A`)
-        Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
-        Streaming.RequestModel(casino_garden)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'KENJIH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
+        Streaming.RequestModel(1570 /* casino_garden */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -100,36 +100,36 @@ async function mission_start_kenji3() {
             !Streaming.HasModelLoaded(ped`GANG_YAKUZA_A`) ||
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
-            !Streaming.HasModelLoaded(casino_garden)
+            !Streaming.HasModelLoaded(1570 /* casino_garden */)
         ) {
             await asyncWait(0)
         }
 
         //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
 
-        Cutscene.Load(k3_ds)
+        Cutscene.Load('k3_ds')
 
         Cutscene.SetOffset(476.38, -1382.168, 67.347)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_kenji = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_kenji.setAnim($.kenji)
+        $.cs_kenji.setAnim('kenji')
 
         $.cs_yakuza = CutsceneObject.Create(ped`GANG_YAKUZA_A`)
 
-        $.cs_yakuza.setAnim(gang07)
+        $.cs_yakuza.setAnim('gang07')
 
         $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj01`)
 
-        $.cs_kenjihead.setAnim($.kenji)
+        $.cs_kenjihead.setAnim('kenji')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */)
 
@@ -230,7 +230,7 @@ async function mission_start_kenji3() {
         Streaming.UnloadSpecialCharacter(1)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(casino_garden)
+        Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */)
 
         // *******************************************END OF CUTSCENE*******************************
 
@@ -255,7 +255,7 @@ async function mission_start_kenji3() {
 
         // waiting for the player to steal a yardie car
 
-        Audio.LoadMissionAudio(K3_A)
+        Audio.LoadMissionAudio('k3_a' as any)
 
         while (!$.player.isInModel(128 /* CAR_YARDIE */) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -722,11 +722,11 @@ async function mission_start_kenji3() {
 
         Text.PrintNow('KM3_12', 5000, 1) //"Kill all of the Colombians, destory the vehicles and recover the briefcase."
 
-        timera = 0
+        TIMERA = 0
 
         while ($.flag_go_for_player_km3 == 0) {
             await asyncWait(0)
-            if (timera >= 4000) {
+            if (TIMERA >= 4000) {
                 $.flag_go_for_player_km3 = 1
             }
             if ($.flag_yakuza1_km3_dead == 0) {
@@ -883,7 +883,7 @@ async function mission_start_kenji3() {
             //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT colombian6_km3 player
         }
 
-        timerb = 0
+        TIMERB = 0
 
         // waiting for all the columbains and their cars to be destroyed
 

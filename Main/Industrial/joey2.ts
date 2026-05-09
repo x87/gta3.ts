@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/joey2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_joey2() {
     Stat.RegisterMissionGiven()
@@ -29,12 +29,12 @@ async function mission_start_joey2() {
   */
 
     {
-        Streaming.LoadSpecialCharacter(1, $.joey)
-        Streaming.LoadSpecialModel(hier`cutobj01`, JOEYH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, TROLL)
-        Streaming.RequestModel(jogarageext)
-        Streaming.RequestModel(jogarageint)
+        Streaming.LoadSpecialCharacter(1, 'joey')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'JOEYH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'TROLL')
+        Streaming.RequestModel(939 /* jogarageext */)
+        Streaming.RequestModel(1074 /* jogarageint */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -56,27 +56,27 @@ async function mission_start_joey2() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(jogarageext) || !Streaming.HasModelLoaded(jogarageint)) {
+        while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(J2_KCL)
+        Cutscene.Load('J2_KCL')
         Cutscene.SetOffset(1190.079, -869.861, 13.977)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_joey = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_joey.setAnim($.joey)
+        $.cs_joey.setAnim('joey')
 
         $.cs_joeyhead = CutsceneHead.Create($.cs_joey, hier`cutobj01`)
-        $.cs_joeyhead.setAnim($.joey)
+        $.cs_joeyhead.setAnim('joey')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_troll = CutsceneObject.Create(hier`cutobj03`)
-        $.cs_troll.setAnim(TROLL)
+        $.cs_troll.setAnim('TROLL')
 
         //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 1192.23 -867.252 14.124 6.0 joey_door1 FALSE
         //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 1192.23 -867.252 14.124 6.0 joey_door2 FALSE
@@ -195,10 +195,10 @@ async function mission_start_joey2() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageext)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageint)
+        Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */)
+        Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */)
 
-        Streaming.LoadSpecialCharacter(2, $.chunky)
+        Streaming.LoadSpecialCharacter(2, 'chunky')
         Streaming.RequestModel(ped`GANG_TRIAD_A`)
         Streaming.RequestModel(car`PERENNIAL`)
 
@@ -857,32 +857,32 @@ async function controller_modes() {
                 if ($.controlmode == 0) {
                     if ($.flag_gun_message_jm2 == 0) {
                         Text.PrintHelp('GUN_1A') //"Use R2 and L2 to cycle through your weapons."
-                        timerb = 0
+                        TIMERB = 0
                         $.flag_gun_message_jm2 = 1
                     }
                     if ($.flag_gun_message_jm2 == 1) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_2A') //"Hold R1 to auto-target, press circle to fire!"
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 2
                         }
                     }
                     if ($.flag_gun_message_jm2 == 2) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_3A') //"While holding the ~h~R1 button,~w~ press the ~h~L2 button~w~ or the ~h~R2 button to switch target."
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 3
                         }
                     }
                     if ($.flag_gun_message_jm2 == 3) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_4A') //"While holding the ~h~R1 button~w~ you can walk or run while remaining locked onto a target."
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 4
                         }
                     }
                     if ($.flag_gun_message_jm2 == 4) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_5') //"You can practice targeting and shooting on these paper targets, when you are finished resume the mission."
                             $.flag_gun_message_jm2 = 5
                             $.flag_player_had_gun_message = 1
@@ -895,32 +895,32 @@ async function controller_modes() {
                 if ($.controlmode == 1) {
                     if ($.flag_gun_message_jm2 == 0) {
                         Text.PrintHelp('GUN_1A') //"Use R2 and L2 to cycle through your weapons."
-                        timerb = 0
+                        TIMERB = 0
                         $.flag_gun_message_jm2 = 1
                     }
                     if ($.flag_gun_message_jm2 == 1) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_2A') //"Hold R1 to auto-target, press circle to fire!"
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 2
                         }
                     }
                     if ($.flag_gun_message_jm2 == 2) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_3A') //"While holding the ~h~R1 button,~w~ press the ~h~L2 button~w~ or the ~h~R2 button to switch target."
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 3
                         }
                     }
                     if ($.flag_gun_message_jm2 == 3) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_4A') //"While holding the ~h~R1 button~w~ you can walk or run while remaining locked onto a target."
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 4
                         }
                     }
                     if ($.flag_gun_message_jm2 == 4) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_5') //"You can practice targeting and shooting on these paper targets, when you are finished resume the mission."
                             $.flag_gun_message_jm2 = 5
                             $.flag_player_had_gun_message = 1
@@ -933,32 +933,32 @@ async function controller_modes() {
                 if ($.controlmode == 2) {
                     if ($.flag_gun_message_jm2 == 0) {
                         Text.PrintHelp('GUN_1A') //"Use R2 and L2 to cycle through your weapons."
-                        timerb = 0
+                        TIMERB = 0
                         $.flag_gun_message_jm2 = 1
                     }
                     if ($.flag_gun_message_jm2 == 1) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_2C') //"Hold R1 to auto-target, press circle to fire!"
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 2
                         }
                     }
                     if ($.flag_gun_message_jm2 == 2) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_3A') //"While holding the ~h~R1 button,~w~ press the ~h~L2 button~w~ or the ~h~R2 button to switch target."
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 3
                         }
                     }
                     if ($.flag_gun_message_jm2 == 3) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_4A') //"While holding the ~h~R1 button~w~ you can walk or run while remaining locked onto a target."
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 4
                         }
                     }
                     if ($.flag_gun_message_jm2 == 4) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_5') //"You can practice targeting and shooting on these paper targets, when you are finished resume the mission."
                             $.flag_gun_message_jm2 = 5
                             $.flag_player_had_gun_message = 1
@@ -971,40 +971,40 @@ async function controller_modes() {
                 if ($.controlmode == 3) {
                     if ($.flag_gun_message_jm2 == 0) {
                         Text.PrintHelp('GUN_1A') //"Use R2 and L2 to cycle through your weapons."
-                        timerb = 0
+                        TIMERB = 0
                         $.flag_gun_message_jm2 = 1
                     }
                     if ($.flag_gun_message_jm2 == 1) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_2D') //"Hold R1 to auto-target, press circle to fire!"
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 2
                             //	flag_player_had_gun_message = 1
                         }
                     }
                     if ($.flag_gun_message_jm2 == 1) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_2C') //"Hold R1 to auto-target, press circle to fire!"
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 2
                         }
                     }
                     if ($.flag_gun_message_jm2 == 2) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_3B') //"While holding the ~h~R1 button,~w~ press the ~h~L2 button~w~ or the ~h~R2 button to switch target."
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 3
                         }
                     }
                     if ($.flag_gun_message_jm2 == 3) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_4B') //"While holding the ~h~R1 button~w~ you can walk or run while remaining locked onto a target."
-                            timerb = 0
+                            TIMERB = 0
                             $.flag_gun_message_jm2 = 4
                         }
                     }
                     if ($.flag_gun_message_jm2 == 4) {
-                        if (timerb > 10000) {
+                        if (TIMERB > 10000) {
                             Text.PrintHelp('GUN_5') //"You can practice targeting and shooting on these paper targets, when you are finished resume the mission."
                             $.flag_gun_message_jm2 = 5
                             $.flag_player_had_gun_message = 1
@@ -1023,7 +1023,7 @@ async function Ammu_bloke_audio() {
         if ($.has_audio_been_activated == 0) {
             if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false /* FALSE */)) {
                 $.special_ammu_audio = 1
-                Audio.LoadMissionAudio(AMMU_B) //AMMU_B
+                Audio.LoadMissionAudio('ammu_b' as any) //AMMU_B
                 if ($.camera_ammu1 == 1) {
                     if (!Char.IsDead($.ammu_shop_bloke1)) {
                         while (!Audio.HasMissionAudioLoaded()) {
@@ -1042,7 +1042,7 @@ async function Ammu_bloke_audio() {
                                 throw new Error('unresolved GOTO clear_audio') // fallback: would break linear control flow
                             }
                         }
-                        Audio.LoadMissionAudio(AMMU_C) //AMMU_C
+                        Audio.LoadMissionAudio('ammu_c' as any) //AMMU_C
                         while (!Audio.HasMissionAudioLoaded()) {
                             await asyncWait(0)
                             if (Char.IsDead($.ammu_shop_bloke1) || $.player.isShooting()) {

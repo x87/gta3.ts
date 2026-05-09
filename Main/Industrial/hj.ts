@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/hj.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_hj() {
     // SCM GOTO → mission_start_hj lowered to endless loop

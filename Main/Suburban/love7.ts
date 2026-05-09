@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/love7.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_love7() {
     $.flag_player_on_mission = 1
@@ -26,8 +26,8 @@ async function mission_start_love7() {
     //
     //PRINT_BIG LOVE7	15000 2
 
-    Streaming.RequestModel(tshrorckgrdn)
-    Streaming.RequestModel(tshrorckgrdn_alfas)
+    Streaming.RequestModel(1731 /* tshrorckgrdn */)
+    Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */)
 
     //WHILE GET_FADING_STATUS
     //	WAIT 0
@@ -35,16 +35,16 @@ async function mission_start_love7() {
 
     Streaming.LoadAllModelsNow()
 
-    while (!Streaming.HasModelLoaded(tshrorckgrdn_alfas) || !Streaming.HasModelLoaded(tshrorckgrdn)) {
+    while (!Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) || !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */)) {
         await asyncWait(0)
     }
 
-    Cutscene.Load(D7_MLD)
+    Cutscene.Load('D7_MLD')
 
     Cutscene.SetOffset(85.2162, -1532.9093, 243.5422)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */)
 
@@ -84,8 +84,8 @@ async function mission_start_love7() {
 
     Camera.DoFade(0, 0 /* FADE_OUT */)
 
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn)
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas)
+    Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */)
+    Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */)
 
     Camera.SetBehindPlayer()
 

@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/joey4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_joey4() {
     Stat.RegisterMissionGiven()
@@ -27,17 +27,17 @@ async function mission_start_joey4() {
     World.SetCarDensityMultiplier(0.0) //TURN ALL THE CARS OFF
 
     {
-        Streaming.LoadSpecialCharacter(1, $.joey)
-        Streaming.LoadSpecialCharacter(2, tony)
-        Streaming.LoadSpecialModel(hier`cutobj01`, JOEDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, JOEYH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, TONYH)
+        Streaming.LoadSpecialCharacter(1, 'joey')
+        Streaming.LoadSpecialCharacter(2, 'tony')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'JOEDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'JOEYH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'TONYH')
         Streaming.RequestModel(car`MAFIA`)
         Streaming.RequestModel(car`IDAHO`)
         Streaming.RequestModel(car`STALLION`)
-        Streaming.RequestModel(jogarageext)
-        Streaming.RequestModel(jogarageint)
+        Streaming.RequestModel(939 /* jogarageext */)
+        Streaming.RequestModel(1074 /* jogarageint */)
 
         Streaming.LoadAllModelsNow()
 
@@ -63,13 +63,13 @@ async function mission_start_joey4() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(jogarageext) || !Streaming.HasModelLoaded(jogarageint)) {
+        while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */)) {
             await asyncWait(0)
         }
 
         //LOAD_SCENE 1190.07 -869.86 13.97
 
-        Cutscene.Load(J4_ETH)
+        Cutscene.Load('J4_ETH')
         Cutscene.SetOffset(1190.079, -869.861, 13.977)
 
         $.cut_car2_lm3 = Car.Create(84 /* CAR_IDAHO */, 1182.5, -857.0, 14.1)
@@ -79,25 +79,25 @@ async function mission_start_joey4() {
         $.cut_car3_lm3.setHeading(150.0)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_joey = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_joey.setAnim($.joey)
+        $.cs_joey.setAnim('joey')
 
         $.cs_tony = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_tony.setAnim(tony)
+        $.cs_tony.setAnim('tony')
 
         $.cs_joeyhead = CutsceneHead.Create($.cs_joey, hier`cutobj02`)
-        $.cs_joeyhead.setAnim($.joey)
+        $.cs_joeyhead.setAnim('joey')
 
         $.cs_tonyhead = CutsceneHead.Create($.cs_tony, hier`cutobj04`)
-        $.cs_tonyhead.setAnim(tony)
+        $.cs_tonyhead.setAnim('tony')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj03`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_joedoor = CutsceneObject.Create(hier`cutobj01`)
-        $.cs_joedoor.setAnim(JOEDOOR)
+        $.cs_joedoor.setAnim('JOEDOOR')
 
         World.ClearArea(1195.0, -870.3, 15.0, 10.0, true /* TRUE */)
 
@@ -258,13 +258,13 @@ async function mission_start_joey4() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`)
         Streaming.MarkModelAsNoLongerNeeded(car`IDAHO`)
         Streaming.MarkModelAsNoLongerNeeded(car`STALLION`)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageext)
-        Streaming.MarkModelAsNoLongerNeeded(jogarageint)
+        Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */)
+        Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */)
 
         $.cut_car2_lm3.delete()
         $.cut_car3_lm3.delete()
 
-        Audio.LoadMissionAudio(J4T_1)
+        Audio.LoadMissionAudio('j4t_1' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -302,7 +302,7 @@ async function mission_start_joey4() {
                         throw new Error('unresolved GOTO mission_joey4_failed') // fallback: would break linear control flow
                     }
                 }
-                Audio.LoadMissionAudio(J4T_2)
+                Audio.LoadMissionAudio('j4t_2' as any)
                 while (!Audio.HasMissionAudioLoaded()) {
                     await asyncWait(0)
                     if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
@@ -321,7 +321,7 @@ async function mission_start_joey4() {
                         throw new Error('unresolved GOTO mission_joey4_failed') // fallback: would break linear control flow
                     }
                 }
-                Audio.LoadMissionAudio(J4T_3)
+                Audio.LoadMissionAudio('j4t_3' as any)
                 $.tonis_audio_all_finished = 1
             }
         }
@@ -378,7 +378,7 @@ async function mission_start_joey4() {
             }
         }
 
-        Audio.LoadMissionAudio(J4T_4)
+        Audio.LoadMissionAudio('j4t_4' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -418,7 +418,7 @@ async function mission_start_joey4() {
 
         Streaming.RequestModel(ped`GANG_TRIAD_A`)
         Streaming.RequestModel(ped`GANG_TRIAD_B`)
-        Audio.LoadMissionAudio(J4_A)
+        Audio.LoadMissionAudio('j4_a' as any)
 
         while (!Streaming.HasModelLoaded(ped`GANG_TRIAD_A`) || !Streaming.HasModelLoaded(ped`GANG_TRIAD_B`) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -507,7 +507,7 @@ async function mission_start_joey4() {
         Camera.SetFixedPosition(825.604, -680.602, 16.567, 0.0, 0.0, 0.0)
         Camera.PointAtPoint(826.336, -679.921, 16.539, 2 /* JUMP_CUT */)
 
-        Audio.LoadMissionAudio(J4_B)
+        Audio.LoadMissionAudio('j4_b' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -823,7 +823,7 @@ async function mission_start_joey4() {
         Hud.SwitchWidescreen(false /* OFF */)
         Camera.Restore()
 
-        Audio.LoadMissionAudio(J4_C)
+        Audio.LoadMissionAudio('j4_c' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -969,7 +969,7 @@ async function mission_start_joey4() {
 
         //SAMPLE 1***************************************************
 
-        Audio.LoadMissionAudio(J4_D)
+        Audio.LoadMissionAudio('j4_d' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -989,7 +989,7 @@ async function mission_start_joey4() {
 
         //SAMPLE 2***************************************************
 
-        Audio.LoadMissionAudio(J4_E)
+        Audio.LoadMissionAudio('j4_e' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -1009,7 +1009,7 @@ async function mission_start_joey4() {
 
         //SAMPLE 3***************************************************
 
-        Audio.LoadMissionAudio(J4_F)
+        Audio.LoadMissionAudio('j4_f' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)

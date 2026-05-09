@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/frank1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_frankie1() {
     $.flag_player_on_mission = 1
@@ -76,15 +76,15 @@ async function mission_start_frankie1() {
     $.G5 = 0
 
     {
-        Streaming.LoadSpecialCharacter(1, $.frankie)
-        Streaming.LoadSpecialCharacter(2, $.maria)
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, FRANKH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, MARIAH)
+        Streaming.LoadSpecialCharacter(1, 'frankie')
+        Streaming.LoadSpecialCharacter(2, 'maria')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'FRANKH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'MARIAH')
         Streaming.RequestModel(ped`GANG_MAFIA_B`)
-        Streaming.RequestModel(salvsdetail)
-        Streaming.RequestModel(swank_inside)
-        Streaming.RequestModel(franksclb02)
+        Streaming.RequestModel(542 /* salvsdetail */)
+        Streaming.RequestModel(540 /* swank_inside */)
+        Streaming.RequestModel(541 /* franksclb02 */)
 
         Streaming.LoadAllModelsNow()
 
@@ -99,7 +99,7 @@ async function mission_start_frankie1() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(salvsdetail) || !Streaming.HasModelLoaded(swank_inside) || !Streaming.HasModelLoaded(franksclb02)) {
+        while (!Streaming.HasModelLoaded(542 /* salvsdetail */) || !Streaming.HasModelLoaded(540 /* swank_inside */) || !Streaming.HasModelLoaded(541 /* franksclb02 */)) {
             await asyncWait(0)
         }
 
@@ -116,34 +116,34 @@ async function mission_start_frankie1() {
         World.SwitchRubbish(false /* OFF */)
         World.ClearArea(1444.99, -186.9, 56.0, 35.0, true /* TRUE */)
 
-        Cutscene.Load(S1_PF)
+        Cutscene.Load('S1_PF')
 
         Cutscene.SetOffset(1457.776, -185.348, 54.925)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_frankie = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_frankie.setAnim($.frankie)
+        $.cs_frankie.setAnim('frankie')
 
         $.cs_maria = CutsceneObject.Create(ped`SPECIAL2`)
 
-        $.cs_maria.setAnim($.maria)
+        $.cs_maria.setAnim('maria')
 
         $.cs_mafia = CutsceneObject.Create(ped`GANG_MAFIA_B`)
 
-        $.cs_mafia.setAnim(gang02)
+        $.cs_mafia.setAnim('gang02')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, hier`cutobj02`)
-        $.cs_frankiehead.setAnim(frank)
+        $.cs_frankiehead.setAnim('frank')
 
         $.cs_mariahead = CutsceneHead.Create($.cs_maria, hier`cutobj03`)
-        $.cs_mariahead.setAnim($.maria)
+        $.cs_mariahead.setAnim('maria')
 
         $.player.setCoordinates(1418.0, -186.0, -100.0)
 
@@ -274,9 +274,9 @@ async function mission_start_frankie1() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
-        Streaming.MarkModelAsNoLongerNeeded(salvsdetail)
-        Streaming.MarkModelAsNoLongerNeeded(swank_inside)
-        Streaming.MarkModelAsNoLongerNeeded(franksclb02)
+        Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */)
+        Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */)
+        Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */)
 
         Streaming.RequestModel(car`STRETCH`)
         Streaming.RequestModel(ped`CRIMINAL1`)
@@ -615,7 +615,7 @@ async function mission_start_frankie1() {
             if ($.skip_cutscene_flag == 2) {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
                     Audio.ClearMissionAudio()
-                    Audio.LoadMissionAudio(S1_F)
+                    Audio.LoadMissionAudio('s1_f' as any)
                     $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100)
                     $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100)
                     $.chico_audio_flag = 15
@@ -625,12 +625,12 @@ async function mission_start_frankie1() {
             if ($.chico_audio_flag == 0) {
                 $.chico.turnToFaceChar($.maria)
                 $.maria.turnToFaceChar($.chico)
-                Audio.LoadMissionAudio(S1_A)
+                Audio.LoadMissionAudio('s1_a' as any)
                 $.chico_audio_flag = 1
             }
             if ($.chico_audio_flag == 14) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio(S1_F)
+                    Audio.LoadMissionAudio('s1_f' as any)
                     $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100)
                     $.chico_audio_flag = 15
                 }
@@ -651,7 +651,7 @@ async function mission_start_frankie1() {
                 if (Audio.HasMissionAudioFinished()) {
                     $.chico.turnToFaceChar($.maria)
                     $.maria.turnToFaceChar($.chico)
-                    Audio.LoadMissionAudio(S1_E)
+                    Audio.LoadMissionAudio('s1_e' as any)
                     $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100)
                     $.chico_audio_flag = 13
                 }
@@ -672,7 +672,7 @@ async function mission_start_frankie1() {
                 if (Audio.HasMissionAudioFinished()) {
                     $.chico.turnToFaceChar($.maria)
                     $.maria.turnToFaceChar($.chico)
-                    Audio.LoadMissionAudio(S1_D)
+                    Audio.LoadMissionAudio('s1_d' as any)
                     $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100)
                     $.chico_audio_flag = 11
                 }
@@ -692,7 +692,7 @@ async function mission_start_frankie1() {
                 if (Audio.HasMissionAudioFinished()) {
                     $.chico.turnToFaceChar($.maria)
                     $.maria.turnToFaceChar($.chico)
-                    Audio.LoadMissionAudio(S1_C1)
+                    Audio.LoadMissionAudio('s1_c1' as any)
                     $.chico_audio_flag = 9
                 }
             }
@@ -712,7 +712,7 @@ async function mission_start_frankie1() {
                 if (Audio.HasMissionAudioFinished()) {
                     $.chico.turnToFaceChar($.maria)
                     $.maria.turnToFaceChar($.chico)
-                    Audio.LoadMissionAudio(S1_C)
+                    Audio.LoadMissionAudio('s1_c' as any)
                     $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100)
                     $.chico_audio_flag = 7
                 }
@@ -733,7 +733,7 @@ async function mission_start_frankie1() {
                 if (Audio.HasMissionAudioFinished()) {
                     $.chico.turnToFaceChar($.maria)
                     $.maria.turnToFaceChar($.chico)
-                    Audio.LoadMissionAudio(S1_B)
+                    Audio.LoadMissionAudio('s1_b' as any)
                     $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100)
                     $.chico_audio_flag = 5
                 }
@@ -753,7 +753,7 @@ async function mission_start_frankie1() {
                 if (Audio.HasMissionAudioFinished()) {
                     $.chico.turnToFaceChar($.maria)
                     $.maria.turnToFaceChar($.chico)
-                    Audio.LoadMissionAudio(S1_A1)
+                    Audio.LoadMissionAudio('s1_a1' as any)
                     $.chico_audio_flag = 3
                 }
             }
@@ -922,7 +922,7 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 15) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio(S1_G)
+                    Audio.LoadMissionAudio('s1_g' as any)
                     $.chico_audio_flag = 16
                 }
             }
@@ -997,7 +997,7 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio(S1_H)
+                    Audio.LoadMissionAudio('s1_h' as any)
                     $.chico_audio_flag = 18
                 }
             }
@@ -1026,7 +1026,7 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio(S1_H)
+                    Audio.LoadMissionAudio('s1_h' as any)
                     $.chico_audio_flag = 18
                 }
             }
@@ -1054,7 +1054,7 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio(S1_H)
+                    Audio.LoadMissionAudio('s1_h' as any)
                     $.chico_audio_flag = 18
                 }
             }
@@ -1097,7 +1097,7 @@ async function mission_start_frankie1() {
                 }
                 if ($.chico_audio_flag == 17) {
                     if (Audio.HasMissionAudioFinished()) {
-                        Audio.LoadMissionAudio(S1_H)
+                        Audio.LoadMissionAudio('s1_h' as any)
                         $.chico_audio_flag = 18
                     }
                 }
@@ -1208,7 +1208,7 @@ async function mission_start_frankie1() {
                     throw new Error('unresolved GOTO mission_frankie1_failed') // fallback: would break linear control flow
                 }
             }
-            Audio.LoadMissionAudio(S1_H)
+            Audio.LoadMissionAudio('s1_h' as any)
             $.chico_audio_flag = 18
         }
 
@@ -1264,7 +1264,7 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 19) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio(S1_I)
+                    Audio.LoadMissionAudio('s1_i' as any)
                     $.chico_audio_flag = 20
                 }
             }
@@ -1589,7 +1589,7 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 22) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio(S1_J)
+                    Audio.LoadMissionAudio('s1_j' as any)
                     $.chico_audio_flag = 23
                 }
             }
@@ -1983,7 +1983,7 @@ async function mission_start_frankie1() {
             }
             if ($.chico_audio_flag == 22) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio(S1_J)
+                    Audio.LoadMissionAudio('s1_j' as any)
                     $.chico_audio_flag = 23
                 }
             }
@@ -2235,7 +2235,7 @@ async function mission_start_frankie1() {
 
         Camera.DoFade(500, 1 /* FADE_IN */)
 
-        Audio.LoadMissionAudio(S1_K)
+        Audio.LoadMissionAudio('s1_k' as any)
 
         //camera 1433.4507 -173.6104 56.66595
         //point at maria maybe 1433.9979 -174.4381 56.542
@@ -2317,7 +2317,7 @@ async function mission_start_frankie1() {
                 if (Audio.HasMissionAudioFinished()) {
                     $.script_controlled_player.turnToFaceChar($.maria)
                     $.maria.turnToFaceChar($.script_controlled_player)
-                    Audio.LoadMissionAudio(S1_L)
+                    Audio.LoadMissionAudio('s1_l' as any)
                     $.flag_blip_on_maria = 5
                 }
             }

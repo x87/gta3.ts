@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/ray6.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_ray6() {
     $.flag_player_on_mission = 1
@@ -52,10 +52,10 @@ async function mission_start_ray6() {
     //
     //PRINT_BIG RM6 15000 2 //"Marked Man"
 
-    Streaming.LoadSpecialCharacter(1, $.ray)
-    Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-    Streaming.LoadSpecialModel(hier`cutobj02`, RAYH)
-    Streaming.RequestModel(toilet)
+    Streaming.LoadSpecialCharacter(1, 'ray')
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+    Streaming.LoadSpecialModel(hier`cutobj02`, 'RAYH')
+    Streaming.RequestModel(2104 /* toilet */)
 
     //WHILE GET_FADING_STATUS
     //	WAIT 0
@@ -63,7 +63,12 @@ async function mission_start_ray6() {
 
     Streaming.LoadAllModelsNow()
 
-    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(hier`cutobj01`) || !Streaming.HasModelLoaded(hier`cutobj02`) || !Streaming.HasModelLoaded(toilet)) {
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasModelLoaded(hier`cutobj01`) ||
+        !Streaming.HasModelLoaded(hier`cutobj02`) ||
+        !Streaming.HasModelLoaded(2104 /* toilet */)
+    ) {
         await asyncWait(0)
     }
 
@@ -73,23 +78,23 @@ async function mission_start_ray6() {
 
     $.player.setHeading(90.0)
 
-    Cutscene.Load(r6_mm)
+    Cutscene.Load('r6_mm')
 
     Cutscene.SetOffset(39.424, -726.677, 21.692)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_ray = CutsceneObject.Create(ped`SPECIAL1`)
 
-    $.cs_ray.setAnim($.ray)
+    $.cs_ray.setAnim('ray')
 
     $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-    $.cs_playerhead.setAnim($.player)
+    $.cs_playerhead.setAnim('player')
 
     $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`)
-    $.cs_rayhead.setAnim($.ray)
+    $.cs_rayhead.setAnim('ray')
 
     //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
     //
@@ -177,7 +182,7 @@ async function mission_start_ray6() {
 
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-    Streaming.MarkModelAsNoLongerNeeded(toilet)
+    Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */)
     Streaming.RequestModel(ped`B_MAN3`)
 
     Streaming.LoadAllModelsNow()
@@ -940,7 +945,7 @@ async function mission_start_ray6() {
         $.script_controlled_player.turnToFaceChar($.ray)
     }
 
-    Audio.LoadMissionAudio(R6_A)
+    Audio.LoadMissionAudio('r6_a' as any)
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
@@ -963,7 +968,7 @@ async function mission_start_ray6() {
         }
     }
 
-    Audio.LoadMissionAudio(R6_A1)
+    Audio.LoadMissionAudio('r6_a1' as any)
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
@@ -986,7 +991,7 @@ async function mission_start_ray6() {
         }
     }
 
-    Audio.LoadMissionAudio(R6_B)
+    Audio.LoadMissionAudio('r6_b' as any)
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)

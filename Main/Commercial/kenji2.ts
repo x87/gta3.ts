@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/kenji2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_kenji2() {
     $.flag_player_on_mission = 1
@@ -108,11 +108,11 @@ async function mission_start_kenji2() {
 
         // Cutscene stuff
 
-        Streaming.LoadSpecialCharacter(1, $.kenji)
-        Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, MINNOTE)
-        Streaming.RequestModel(casino_garden)
+        Streaming.LoadSpecialCharacter(1, 'KENJI')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'KENJIH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'MINNOTE')
+        Streaming.RequestModel(1570 /* casino_garden */)
 
         Streaming.LoadAllModelsNow()
 
@@ -121,24 +121,24 @@ async function mission_start_kenji2() {
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
             !Streaming.HasModelLoaded(hier`cutobj03`) ||
-            !Streaming.HasModelLoaded(casino_garden)
+            !Streaming.HasModelLoaded(1570 /* casino_garden */)
         ) {
             await asyncWait(0)
         }
 
         //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
 
-        Cutscene.Load(k2_gis)
+        Cutscene.Load('k2_gis')
 
         Cutscene.SetOffset(476.38, -1382.168, 67.347)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_kenji = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_kenji.setAnim($.kenji)
+        $.cs_kenji.setAnim('kenji')
 
         //CREATE_CUTSCENE_OBJECT PED_GANG_YAKUZA_A cs_yakuza
 
@@ -146,15 +146,15 @@ async function mission_start_kenji2() {
 
         $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj01`)
 
-        $.cs_kenjihead.setAnim($.kenji)
+        $.cs_kenjihead.setAnim('kenji')
 
         $.cs_note = CutsceneObject.Create(hier`cutobj03`)
 
-        $.cs_note.setAnim(MINNOTE)
+        $.cs_note.setAnim('MINNOTE')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */)
 
@@ -256,7 +256,7 @@ async function mission_start_kenji2() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
-        Streaming.MarkModelAsNoLongerNeeded(casino_garden)
+        Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */)
 
         // **************************************END OF CUSTSCENE***********************************
 

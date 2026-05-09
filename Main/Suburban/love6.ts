@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/love6.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_love6() {
     $.flag_player_on_mission = 1
@@ -29,10 +29,10 @@ async function mission_start_love6() {
     //
     //PRINT_BIG LOVE6	15000 2
 
-    Streaming.LoadSpecialCharacter(1, love2)
-    Streaming.LoadSpecialModel(hier`cutobj01`, LOVEH)
-    Streaming.RequestModel(tshrorckgrdn)
-    Streaming.RequestModel(tshrorckgrdn_alfas)
+    Streaming.LoadSpecialCharacter(1, 'love2')
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'LOVEH')
+    Streaming.RequestModel(1731 /* tshrorckgrdn */)
+    Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */)
 
     //WHILE GET_FADING_STATUS
     //	WAIT 0
@@ -42,25 +42,25 @@ async function mission_start_love6() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(tshrorckgrdn) ||
-        !Streaming.HasModelLoaded(tshrorckgrdn_alfas) ||
+        !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */) ||
+        !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) ||
         !Streaming.HasModelLoaded(hier`cutobj01`)
     ) {
         await asyncWait(0)
     }
 
-    Cutscene.Load(D6_STS)
+    Cutscene.Load('D6_STS')
 
     Cutscene.SetOffset(85.2162, -1532.9093, 243.5422)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_love = CutsceneObject.Create(ped`SPECIAL1`)
-    $.cs_love.setAnim(love2)
+    $.cs_love.setAnim('love2')
 
     $.cs_lovehead = CutsceneHead.Create($.cs_love, hier`cutobj01`)
-    $.cs_lovehead.setAnim($.love)
+    $.cs_lovehead.setAnim('love')
 
     World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */)
 
@@ -140,8 +140,8 @@ async function mission_start_love6() {
     Camera.SetBehindPlayer()
 
     Streaming.UnloadSpecialCharacter(1)
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn)
-    Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas)
+    Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */)
+    Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
 
     Game.SetSwatRequired(true /* TRUE */)
@@ -166,7 +166,7 @@ async function mission_start_love6() {
     Streaming.Switch(true /* ON */)
     Camera.DoFade(1500, 1 /* FADE_IN */)
 
-    Audio.LoadMissionAudio(LO6_A)
+    Audio.LoadMissionAudio('lo6_a' as any)
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0)

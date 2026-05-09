@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/ray4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_ray4() {
     $.flag_player_on_mission = 1
@@ -92,11 +92,11 @@ async function mission_start_ray4() {
   PRINT_BIG RM4 15000 2 //"Gone Fishing"
   */
 
-        Streaming.LoadSpecialCharacter(1, $.ray)
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, RAYH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, BOGDOOR)
-        Streaming.RequestModel(toilet)
+        Streaming.LoadSpecialCharacter(1, 'ray')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'RAYH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'BOGDOOR')
+        Streaming.RequestModel(2104 /* toilet */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -111,7 +111,7 @@ async function mission_start_ray4() {
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
             !Streaming.HasModelLoaded(hier`cutobj03`) ||
-            !Streaming.HasModelLoaded(toilet)
+            !Streaming.HasModelLoaded(2104 /* toilet */)
         ) {
             await asyncWait(0)
         }
@@ -124,26 +124,26 @@ async function mission_start_ray4() {
 
         World.SetVisibilityOfClosestObjectOfType(47.322, -732.055, 22.846, 4.0, 2300 /* toilet_cubicle_dr2 */, false /* FALSE */)
 
-        Cutscene.Load(r4_gf)
+        Cutscene.Load('r4_gf')
 
         Cutscene.SetOffset(39.424, -726.677, 21.692)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_ray = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_ray.setAnim($.ray)
+        $.cs_ray.setAnim('ray')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`)
-        $.cs_rayhead.setAnim($.ray)
+        $.cs_rayhead.setAnim('ray')
 
         $.cs_ludoor = CutsceneObject.Create(hier`cutobj03`)
-        $.cs_ludoor.setAnim(BOGDOOR)
+        $.cs_ludoor.setAnim('BOGDOOR')
 
         World.SwitchRubbish(false /* OFF */)
         Camera.DoFade(1500, 1 /* FADE_IN */)
@@ -232,7 +232,7 @@ async function mission_start_ray4() {
         World.SetVisibilityOfClosestObjectOfType(47.322, -732.055, 22.846, 4.0, 2300 /* toilet_cubicle_dr2 */, true /* TRUE */)
 
         Streaming.UnloadSpecialCharacter(1)
-        Streaming.MarkModelAsNoLongerNeeded(toilet)
+        Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)

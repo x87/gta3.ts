@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/hood3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_hood3() {
     $.flag_player_on_mission = 1
@@ -68,11 +68,11 @@ async function mission_start_hood3() {
 
         //ENDWHILE
 
-        Cutscene.Load(hd_ph3)
+        Cutscene.Load('hd_ph3')
         Cutscene.SetOffset(-444.714, -6.321, 2.9)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player

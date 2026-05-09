@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/ray5.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_ray5() {
     Stat.RegisterMissionGiven()
@@ -43,10 +43,10 @@ async function mission_start_ray5() {
   SWITCH_STREAMING OFF
   */
 
-    Streaming.LoadSpecialCharacter(1, $.ray)
-    Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-    Streaming.LoadSpecialModel(hier`cutobj02`, RAYH)
-    Streaming.RequestModel(toilet)
+    Streaming.LoadSpecialCharacter(1, 'ray')
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+    Streaming.LoadSpecialModel(hier`cutobj02`, 'RAYH')
+    Streaming.RequestModel(2104 /* toilet */)
 
     /*
   WHILE GET_FADING_STATUS
@@ -56,29 +56,34 @@ async function mission_start_ray5() {
 
     Streaming.LoadAllModelsNow()
 
-    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(hier`cutobj02`) || !Streaming.HasModelLoaded(hier`cutobj01`) || !Streaming.HasModelLoaded(toilet)) {
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasModelLoaded(hier`cutobj02`) ||
+        !Streaming.HasModelLoaded(hier`cutobj01`) ||
+        !Streaming.HasModelLoaded(2104 /* toilet */)
+    ) {
         await asyncWait(0)
     }
 
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 47.322 -732.055 22.846 4.0 toilet_cubicle_dr2 FALSE
 
-    Cutscene.Load(r5_pb)
+    Cutscene.Load('r5_pb')
 
     Streaming.Switch(true /* ON */)
 
     Cutscene.SetOffset(39.424, -726.677, 21.692)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_ray = CutsceneObject.Create(ped`SPECIAL1`)
-    $.cs_ray.setAnim($.ray)
+    $.cs_ray.setAnim('ray')
 
     $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-    $.cs_playerhead.setAnim($.player)
+    $.cs_playerhead.setAnim('player')
 
     $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`)
-    $.cs_rayhead.setAnim($.ray)
+    $.cs_rayhead.setAnim('ray')
 
     //CREATE_CUTSCENE_OBJECT cut_obj3 cs_ludoor
     //SET_CUTSCENE_ANIM cs_ludoor LUDOOR
@@ -182,7 +187,7 @@ async function mission_start_ray5() {
     Streaming.UnloadSpecialCharacter(1)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-    Streaming.MarkModelAsNoLongerNeeded(toilet)
+    Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */)
 
     //SET_PLAYER_CONTROL player ON
     //SWITCH_WIDESCREEN OFF
@@ -249,7 +254,7 @@ async function mission_start_ray5() {
     $.swat4_rc5.setStayInSamePlace(true /* true */)
     $.swat4_rc5.addArmor(100)
 
-    Audio.LoadMissionAudio(R5_A)
+    Audio.LoadMissionAudio('r5_a' as any)
 }
 
 async function amb_generator() {

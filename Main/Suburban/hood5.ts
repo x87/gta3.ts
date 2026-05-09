@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/hood5.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_hood5() {
     $.flag_player_on_mission = 1
@@ -100,11 +100,11 @@ async function mission_start_hood5() {
 
         //ENDWHILE
 
-        Cutscene.Load(hd_ph5)
+        Cutscene.Load('hd_ph5')
         Cutscene.SetOffset(-444.714, -6.321, 2.9)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -275,7 +275,7 @@ async function mission_start_hood5() {
         $.goodie_hm5.followPlayer($.player)
         $.radar_blip_goodie_hm5.remove()
 
-        Audio.LoadMissionAudio(H5_A)
+        Audio.LoadMissionAudio('h5_a' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -329,7 +329,7 @@ async function mission_start_hood5() {
 
         Text.ClearThisPrint('HM5_1')
 
-        Audio.LoadMissionAudio(H5_B)
+        Audio.LoadMissionAudio('h5_b' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -371,7 +371,7 @@ async function mission_start_hood5() {
 
         Text.ClearThisPrint('HM5_5')
 
-        Audio.LoadMissionAudio(H5_C)
+        Audio.LoadMissionAudio('h5_c' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)

@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/ray2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_ray2() {
     Stat.RegisterMissionGiven()
@@ -140,10 +140,10 @@ async function mission_start_ray2() {
   SWITCH_STREAMING OFF
   */
 
-    Streaming.LoadSpecialCharacter(1, $.ray)
-    Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-    Streaming.LoadSpecialModel(hier`cutobj02`, RAYH)
-    Streaming.RequestModel(toilet)
+    Streaming.LoadSpecialCharacter(1, 'ray')
+    Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+    Streaming.LoadSpecialModel(hier`cutobj02`, 'RAYH')
+    Streaming.RequestModel(2104 /* toilet */)
     /*
   WHILE GET_FADING_STATUS
   WAIT 0
@@ -152,29 +152,34 @@ async function mission_start_ray2() {
 
     Streaming.LoadAllModelsNow()
 
-    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(hier`cutobj02`) || !Streaming.HasModelLoaded(hier`cutobj01`) || !Streaming.HasModelLoaded(toilet)) {
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasModelLoaded(hier`cutobj02`) ||
+        !Streaming.HasModelLoaded(hier`cutobj01`) ||
+        !Streaming.HasModelLoaded(2104 /* toilet */)
+    ) {
         await asyncWait(0)
     }
 
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
 
-    Cutscene.Load(r2_ap)
+    Cutscene.Load('r2_ap')
 
     Streaming.Switch(true /* ON */)
 
     Cutscene.SetOffset(39.424, -726.677, 21.692)
 
     $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-    $.cs_player.setAnim($.player)
+    $.cs_player.setAnim('player')
 
     $.cs_ray = CutsceneObject.Create(ped`SPECIAL1`)
-    $.cs_ray.setAnim($.ray)
+    $.cs_ray.setAnim('ray')
 
     $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-    $.cs_playerhead.setAnim($.player)
+    $.cs_playerhead.setAnim('player')
 
     $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`)
-    $.cs_rayhead.setAnim($.ray)
+    $.cs_rayhead.setAnim('ray')
 
     //CREATE_CUTSCENE_OBJECT cut_obj1 cs_ludoor
     //SET_CUTSCENE_ANIM cs_ludoor LUDOOR
@@ -282,7 +287,7 @@ async function mission_start_ray2() {
     Streaming.UnloadSpecialCharacter(1)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
     Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-    Streaming.MarkModelAsNoLongerNeeded(toilet)
+    Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */)
 
     Streaming.Switch(true /* ON */)
     World.SwitchRubbish(true /* ON */)
@@ -300,7 +305,7 @@ async function mission_start_ray2() {
         await asyncWait(0)
     }
 
-    Streaming.LoadSpecialCharacter(1, dealer)
+    Streaming.LoadSpecialCharacter(1, 'dealer')
     while (!Streaming.HasSpecialCharacterLoaded(1)) {
         await asyncWait(0)
     }
@@ -448,7 +453,7 @@ async function bibble() {
     }
     //SET_CHAR_OBJ_NO_OBJ player_rm2
 
-    Audio.LoadMissionAudio(R2_A)
+    Audio.LoadMissionAudio('r2_a' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -467,7 +472,7 @@ async function bibble() {
         }
     }
 
-    Audio.LoadMissionAudio(R2_B)
+    Audio.LoadMissionAudio('r2_b' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -486,7 +491,7 @@ async function bibble() {
         }
     }
 
-    Audio.LoadMissionAudio(R2_C)
+    Audio.LoadMissionAudio('r2_c' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -505,7 +510,7 @@ async function bibble() {
         }
     }
 
-    Audio.LoadMissionAudio(R2_D)
+    Audio.LoadMissionAudio('r2_d' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -578,7 +583,7 @@ async function peedle() {
 async function herring() {
     //----LOAD PHIL'S SOUND BITE-----------------------------------------
 
-    Audio.LoadMissionAudio(R2_E)
+    Audio.LoadMissionAudio('r2_e' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }
@@ -874,7 +879,7 @@ async function boobble() {
     //TURN_CHAR_TO_FACE_CHAR phil player_rm2
     //CHAR_LOOK_AT_CHAR_ALWAYS player_rm2 phil
 
-    Audio.LoadMissionAudio(R2_F)
+    Audio.LoadMissionAudio('r2_f' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }
@@ -918,7 +923,7 @@ async function boobble() {
     $.flag_uzi_gone = 1
     $.flag_shotgun_gone = 1
 
-    Audio.LoadMissionAudio(R2_G)
+    Audio.LoadMissionAudio('r2_g' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }
@@ -931,7 +936,7 @@ async function boobble() {
         await asyncWait(0)
     }
 
-    Audio.LoadMissionAudio(R2_H)
+    Audio.LoadMissionAudio('r2_h' as any)
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0)
     }

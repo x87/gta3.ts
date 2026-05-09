@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/yard4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_yardie4() {
     Stat.RegisterMissionGiven()
@@ -43,12 +43,12 @@ async function mission_start_yardie4() {
 
         //ENDWHILE
 
-        Cutscene.Load(YD_PH4)
+        Cutscene.Load('YD_PH4')
         Cutscene.SetOffset(121.0, -272.3, 15.25)
         World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -182,7 +182,7 @@ async function mission_start_yardie4() {
         await asyncWait(0)
     }
 
-    Streaming.LoadSpecialCharacter(1, bomber)
+    Streaming.LoadSpecialCharacter(1, 'bomber')
     while (!Streaming.HasSpecialCharacterLoaded(1)) {
         await asyncWait(0)
     }

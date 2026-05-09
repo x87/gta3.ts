@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/meat4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_meat4() {
     $.flag_player_on_mission = 1
@@ -58,11 +58,11 @@ async function mission_start_meat4() {
 
         //ENDWHILE
 
-        Cutscene.Load(mt_ph4)
+        Cutscene.Load('mt_ph4')
         Cutscene.SetOffset(1223.88, -839.414, 13.95)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -167,7 +167,7 @@ async function mission_start_meat4() {
 
         Streaming.RequestModel(car`STALLION`)
 
-        Audio.LoadMissionAudio(MF3_A)
+        Audio.LoadMissionAudio('mf3_a' as any)
 
         while (!Streaming.HasModelLoaded(ped`FAN_MAN2`) || !Streaming.HasModelLoaded(ped`B_MAN2`) || !Streaming.HasModelLoaded(car`STALLION`) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -418,11 +418,11 @@ async function mission_start_meat4() {
 
         World.ClearArea(1212.0, -792.0, 14.0, 10.0, true /* TRUE */)
 
-        Audio.LoadMissionAudio(MF3_B)
+        Audio.LoadMissionAudio('mf3_b' as any)
 
         // Waiting for the blokes to get to the meat grinding area
 
-        timerb = 0
+        TIMERB = 0
 
         while (!($.flag_loanshark_in_area == 1) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -441,7 +441,7 @@ async function mission_start_meat4() {
                     $.flag_loanshark_in_area = 1
                 }
             }
-            if (timerb >= 25000) {
+            if (TIMERB >= 25000) {
                 if (!($.flag_loanshark_in_area == 1)) {
                     $.loanshark_meat4.setCoordinates(1209.6, -791.0, 13.7)
                     // SCM GOTO → loanshark_got_stuck (not lowered; manual jump required)
@@ -476,7 +476,7 @@ async function mission_start_meat4() {
 
         Text.ClearThisPrint('MEA4_B5')
 
-        Audio.LoadMissionAudio(MF3_B1)
+        Audio.LoadMissionAudio('mf3_b1' as any)
 
         $.loanshark_meat4.turnToFaceChar($.owner_meat4)
 
@@ -518,7 +518,7 @@ async function mission_start_meat4() {
 
         Text.ClearThisPrint('MEA4_B7')
 
-        Audio.LoadMissionAudio(MF3_C)
+        Audio.LoadMissionAudio('mf3_c' as any)
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
@@ -562,7 +562,7 @@ async function mission_start_meat4() {
 
         // Waiting for the owner to be killed
 
-        timera = 0
+        TIMERA = 0
 
         while (!($.flag_owner_dead_meat4 == 1)) {
             await asyncWait(0)
@@ -577,7 +577,7 @@ async function mission_start_meat4() {
                 // SCM GOTO → mission_failed_meat4 (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_failed_meat4') // fallback: would break linear control flow
             }
-            if (timera > 10000) {
+            if (TIMERA > 10000) {
                 if (!Char.IsDead($.owner_meat4)) {
                     $.flag_owner_dead_meat4 = 1
                 }

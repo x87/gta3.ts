@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/kenji5.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_kenji5() {
     $.flag_player_on_mission = 1
@@ -71,12 +71,12 @@ async function mission_start_kenji5() {
   PRINT_BIG KM5 15000 2 // "SMACK DOWN"
   */
 
-        Streaming.LoadSpecialCharacter(1, $.kenji)
+        Streaming.LoadSpecialCharacter(1, 'KENJI')
         Streaming.RequestModel(ped`GANG_YAKUZA_A`)
         Streaming.RequestModel(ped`GANG_YAKUZA_B`)
         Streaming.RequestModel(ped`GANG_YARDIE_A`)
-        Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH)
-        Streaming.RequestModel(casino_garden)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'KENJIH')
+        Streaming.RequestModel(1570 /* casino_garden */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -91,29 +91,29 @@ async function mission_start_kenji5() {
             !Streaming.HasModelLoaded(ped`GANG_YAKUZA_A`) ||
             !Streaming.HasModelLoaded(ped`GANG_YAKUZA_B`) ||
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
-            !Streaming.HasModelLoaded(casino_garden)
+            !Streaming.HasModelLoaded(1570 /* casino_garden */)
         ) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(K5_SD)
+        Cutscene.Load('K5_SD')
 
         Cutscene.SetOffset(476.38, -1382.168, 67.347)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_kenji = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_kenji.setAnim($.kenji)
+        $.cs_kenji.setAnim('kenji')
 
         $.cs_yakuza = CutsceneObject.Create(ped`GANG_YAKUZA_A`)
-        $.cs_yakuza.setAnim(gang07)
+        $.cs_yakuza.setAnim('gang07')
 
         $.cs_yakuza2 = CutsceneObject.Create(ped`GANG_YAKUZA_B`)
-        $.cs_yakuza2.setAnim(gang08)
+        $.cs_yakuza2.setAnim('gang08')
 
         $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj01`)
-        $.cs_kenjihead.setAnim($.kenji)
+        $.cs_kenjihead.setAnim('kenji')
 
         //CREATE_CUTSCENE_HEAD cs_player cut_obj2 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
@@ -214,7 +214,7 @@ async function mission_start_kenji5() {
         Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_A`)
         Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_B`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
-        Streaming.MarkModelAsNoLongerNeeded(casino_garden)
+        Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */)
 
         // *******************************************END OF CUTSCENE*******************************
 

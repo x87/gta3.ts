@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/frank3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_frankie3() {
     $.flag_player_on_mission = 1
@@ -175,13 +175,13 @@ async function mission_start_frankie3() {
   SWITCH_STREAMING OFF
   */
 
-        Streaming.LoadSpecialCharacter(1, EIGHT2)
-        Streaming.LoadSpecialModel(hier`cutobj01`, EITDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, EIGHTH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH)
-        Streaming.RequestModel(ind_land089c)
-        Streaming.RequestModel(mak_semtech)
-        Streaming.RequestModel(mak_bomb01)
+        Streaming.LoadSpecialCharacter(1, 'EIGHT2')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'EITDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'EIGHTH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'PLAYERH')
+        Streaming.RequestModel(605 /* ind_land089c */)
+        Streaming.RequestModel(531 /* mak_semtech */)
+        Streaming.RequestModel(533 /* mak_bomb01 */)
 
         Streaming.LoadAllModelsNow()
 
@@ -196,35 +196,35 @@ async function mission_start_frankie3() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(ind_land089c) || !Streaming.HasModelLoaded(mak_semtech) || !Streaming.HasModelLoaded(mak_bomb01)) {
+        while (!Streaming.HasModelLoaded(605 /* ind_land089c */) || !Streaming.HasModelLoaded(531 /* mak_semtech */) || !Streaming.HasModelLoaded(533 /* mak_bomb01 */)) {
             await asyncWait(0)
         }
 
         World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, false /* FALSE */)
 
-        Cutscene.Load(s4_bdba)
+        Cutscene.Load('s4_bdba')
 
         Cutscene.SetOffset(1272.5, -90.7, 13.8)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_eight = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_eight.setAnim(eight2)
+        $.cs_eight.setAnim('eight2')
 
         $.cs_eighthead = CutsceneHead.Create($.cs_eight, hier`cutobj02`)
 
-        $.cs_eighthead.setAnim(eight)
+        $.cs_eighthead.setAnim('eight')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj03`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_eitdoor = CutsceneObject.Create(hier`cutobj01`)
 
-        $.cs_eitdoor.setAnim(EITDOOR)
+        $.cs_eitdoor.setAnim('EITDOOR')
 
         World.ClearArea(1272.6, -95.6, -100.0, 1.0, true /* TRUE */)
 
@@ -319,9 +319,9 @@ async function mission_start_frankie3() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
-        Streaming.MarkModelAsNoLongerNeeded(ind_land089c)
-        Streaming.MarkModelAsNoLongerNeeded(mak_semtech)
-        Streaming.MarkModelAsNoLongerNeeded(mak_bomb01)
+        Streaming.MarkModelAsNoLongerNeeded(605 /* ind_land089c */)
+        Streaming.MarkModelAsNoLongerNeeded(531 /* mak_semtech */)
+        Streaming.MarkModelAsNoLongerNeeded(533 /* mak_bomb01 */)
 
         // ************************END OF CUTSCENE TWO "PLAYER NOT GOT THE MONEY********************
 
@@ -352,15 +352,15 @@ async function mission_start_frankie3() {
   SWITCH_STREAMING OFF
   */
 
-        Streaming.LoadSpecialCharacter(1, EIGHT2)
-        Streaming.LoadSpecialModel(hier`cutobj01`, EITDOOR)
-        Streaming.LoadSpecialModel(hier`cutobj02`, EIGHTH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj04`, rifle)
-        Streaming.LoadSpecialModel(hier`cutobj05`, $.cs_bomb)
-        Streaming.RequestModel(ind_land089c)
-        Streaming.RequestModel(mak_semtech)
-        Streaming.RequestModel(mak_bomb01)
+        Streaming.LoadSpecialCharacter(1, 'EIGHT2')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'EITDOOR')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'EIGHTH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj04`, 'rifle')
+        Streaming.LoadSpecialModel(hier`cutobj05`, 'cs_bomb')
+        Streaming.RequestModel(605 /* ind_land089c */)
+        Streaming.RequestModel(531 /* mak_semtech */)
+        Streaming.RequestModel(533 /* mak_bomb01 */)
 
         Streaming.LoadAllModelsNow()
 
@@ -377,43 +377,43 @@ async function mission_start_frankie3() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(ind_land089c) || !Streaming.HasModelLoaded(mak_semtech) || !Streaming.HasModelLoaded(mak_bomb01)) {
+        while (!Streaming.HasModelLoaded(605 /* ind_land089c */) || !Streaming.HasModelLoaded(531 /* mak_semtech */) || !Streaming.HasModelLoaded(533 /* mak_bomb01 */)) {
             await asyncWait(0)
         }
 
         World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, false /* FALSE */)
 
-        Cutscene.Load(s4_bdbb)
+        Cutscene.Load('s4_bdbb')
 
         Cutscene.SetOffset(1272.5, -90.7, 13.8)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_eight = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_eight.setAnim(eight2)
+        $.cs_eight.setAnim('eight2')
 
         $.cs_eighthead = CutsceneHead.Create($.cs_eight, hier`cutobj02`)
 
-        $.cs_eighthead.setAnim(eight)
+        $.cs_eighthead.setAnim('eight')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj03`)
 
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_eitdoor = CutsceneObject.Create(hier`cutobj01`)
 
-        $.cs_eitdoor.setAnim(EITDOOR)
+        $.cs_eitdoor.setAnim('EITDOOR')
 
         $.cs_rifle = CutsceneObject.Create(hier`cutobj04`)
 
-        $.cs_rifle.setAnim(rifle)
+        $.cs_rifle.setAnim('rifle')
 
         $.cs_bomb = CutsceneObject.Create(hier`cutobj05`)
 
-        $.cs_bomb.setAnim($.cs_bomb)
+        $.cs_bomb.setAnim('cs_bomb')
 
         World.ClearArea(1272.6, -95.6, -100.0, 1.0, true /* TRUE */)
 
@@ -497,9 +497,9 @@ async function mission_start_frankie3() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj05`)
-        Streaming.MarkModelAsNoLongerNeeded(ind_land089c)
-        Streaming.MarkModelAsNoLongerNeeded(mak_semtech)
-        Streaming.MarkModelAsNoLongerNeeded(mak_bomb01)
+        Streaming.MarkModelAsNoLongerNeeded(605 /* ind_land089c */)
+        Streaming.MarkModelAsNoLongerNeeded(531 /* mak_semtech */)
+        Streaming.MarkModelAsNoLongerNeeded(533 /* mak_bomb01 */)
 
         //GOTO wiltest  //TEST STUFF TO COME OUT!!!!!!!!!!!!!!
 
@@ -517,14 +517,14 @@ async function mission_start_frankie3() {
 
         Streaming.RequestModel(ped`GANG_COLOMBIAN_B`)
 
-        Streaming.RequestModel(barrel4)
+        Streaming.RequestModel(1344 /* barrel4 */)
 
         Streaming.RequestModel(car`COLUMB`)
 
         while (
             !Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_B`) ||
             !Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_A`) ||
-            !Streaming.HasModelLoaded(barrel4) ||
+            !Streaming.HasModelLoaded(1344 /* barrel4 */) ||
             !Streaming.HasModelLoaded(car`COLUMB`)
         ) {
             //OR NOT HAS_SPECIAL_CHARACTER_LOADED 1
@@ -594,11 +594,11 @@ async function mission_start_frankie3() {
 
         $.controlmode = Pad.GetControllerMode()
 
-        Audio.LoadMissionAudio(S3_A)
+        Audio.LoadMissionAudio('s3_a' as any)
 
-        timera = 0
+        TIMERA = 0
 
-        while (timera < 7000 || !Audio.HasMissionAudioLoaded()) {
+        while (TIMERA < 7000 || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0)
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1) //"8-Ball's dead!"
@@ -641,9 +641,9 @@ async function mission_start_frankie3() {
 
         $.controlmode = Pad.GetControllerMode()
 
-        timera = 0
+        TIMERA = 0
 
-        while (timera < 7000) {
+        while (TIMERA < 7000) {
             await asyncWait(0)
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1) //"8-Ball's dead!"
@@ -686,9 +686,9 @@ async function mission_start_frankie3() {
 
         $.controlmode = Pad.GetControllerMode()
 
-        timera = 0
+        TIMERA = 0
 
-        while (timera < 7000) {
+        while (TIMERA < 7000) {
             await asyncWait(0)
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1) //"8-Ball's dead!"
@@ -1064,10 +1064,10 @@ async function mission_start_frankie3() {
                     Camera.SetFixedPosition(1543.01, -877.81, 16.84, 0.0, 0.0, 0.0)
                     Camera.PointAtPoint(1542.43, -878.62, 16.75, 2 /* JUMP_CUT */)
                     if ($.flag_timer_fm3 == 0) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_fm3 = 1
                     }
-                    while (timera <= 5000) {
+                    while (TIMERA <= 5000) {
                         await asyncWait(0)
                         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
                             // SCM GOTO → camera_jump_fm3 (not lowered; manual jump required)
@@ -1092,10 +1092,10 @@ async function mission_start_frankie3() {
                     Camera.SetFixedPosition(1537.1, -899.8, 12.5, 0.0, 0.0, 0.0)
                     Camera.PointAtPoint(1536.4, -900.4, 12.7, 2 /* JUMP_CUT */)
                     if ($.flag_timer_fm3 == 1 && $.flag_timer2_fm3 == 0) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer2_fm3 = 1
                     }
-                    while (timera <= 5000) {
+                    while (TIMERA <= 5000) {
                         await asyncWait(0)
                         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
                             // SCM GOTO → camera_jump_fm3 (not lowered; manual jump required)
@@ -1120,10 +1120,10 @@ async function mission_start_frankie3() {
                     Camera.SetFixedPosition(1522.839, -916.137, 19.602, 0.0, 0.0, 0.0)
                     Camera.PointAtPoint(1521.984, -916.648, 19.699, 2 /* JUMP_CUT */)
                     if ($.flag_timer3_fm3 == 0 && $.flag_timer2_fm3 == 1) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer3_fm3 = 1
                     }
-                    while (timera <= 5000) {
+                    while (TIMERA <= 5000) {
                         await asyncWait(0)
                         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
                             // SCM GOTO → camera_jump_fm3 (not lowered; manual jump required)
@@ -1148,10 +1148,10 @@ async function mission_start_frankie3() {
                     Camera.SetFixedPosition(1476.3, -922.7, 19.0, 0.0, 0.0, 0.0)
                     Camera.PointAtPoint(1477.1, -923.3, 19.1, 2 /* JUMP_CUT */)
                     if ($.flag_timer4_fm3 == 0 && $.flag_timer3_fm3 == 1) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer4_fm3 = 1
                     }
-                    while (timera <= 5000) {
+                    while (TIMERA <= 5000) {
                         await asyncWait(0)
                         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
                             // SCM GOTO → camera_jump_fm3 (not lowered; manual jump required)
@@ -1311,11 +1311,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 1) {
                     if ($.flag_8ball_ordered_area1 == 0) {
                         $.ped_8ball_fm3.setObjRunToCoord(1545.9, -867.7)
-                        timera = 0
+                        TIMERA = 0
                         $.flag_8ball_ordered_area1 = 1
                     }
                     if ($.flag_8ball_moved1 == 0) {
-                        if (timera >= 25000) {
+                        if (TIMERA >= 25000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1545.9, -867.7, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1545.9, -867.7, 10.8)
                                 $.flag_8ball_moved1 = 1
@@ -1362,7 +1362,7 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 2) {
                     $.ped_8ball_fm3.setObjRunToCoord(1527.0, -899.0)
                     if ($.flag_timer_set_fm3 == 0) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 1
                     }
                     if ($.ped_8ball_fm3.locateOnFoot2D(1527.0, -899.0, 2.0, 2.0, false /* FALSE */)) {
@@ -1370,7 +1370,7 @@ async function mission_start_frankie3() {
                         $.flag_bloke_in_area_fm3 = 3
                     }
                     if ($.flag_8ball_moved2 == 0) {
-                        if (timera >= 20000) {
+                        if (TIMERA >= 20000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1527.0, -899.0, 2.0, 2.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1527.0, -899.0, 10.8)
                                 $.flag_8ball_moved2 = 1
@@ -1384,7 +1384,7 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 3) {
                     $.ped_8ball_fm3.setObjRunToCoord(1526.0, -919.0)
                     if ($.flag_timer_set_fm3 == 1) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 2
                     }
                     if ($.ped_8ball_fm3.locateOnFoot2D(1526.0, -919.0, 2.0, 2.0, false /* FALSE */)) {
@@ -1392,7 +1392,7 @@ async function mission_start_frankie3() {
                         $.flag_bloke_in_area_fm3 = 4
                     }
                     if ($.flag_8ball_moved3 == 0) {
-                        if (timera >= 20000) {
+                        if (TIMERA >= 20000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1526.0, -919.0, 2.0, 2.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1526.0, -919.0, 18.4)
                                 $.flag_8ball_moved3 = 1
@@ -1406,11 +1406,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 4) {
                     $.ped_8ball_fm3.setObjRunToCoord(1522.9, -924.3)
                     if ($.flag_timer_set_fm3 == 2) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 3
                     }
                     if ($.flag_8ball_moved4 == 0) {
-                        if (timera >= 25000) {
+                        if (TIMERA >= 25000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1522.9, -924.3, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1522.9, -924.3, 18.4)
                                 $.flag_8ball_moved4 = 1
@@ -1452,11 +1452,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 5) {
                     $.ped_8ball_fm3.setObjRunToCoord(1517.0, -929.0)
                     if ($.flag_timer_set_fm3 == 3) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 4
                     }
                     if ($.flag_8ball_moved5 == 0) {
-                        if (timera >= 25000) {
+                        if (TIMERA >= 25000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1517.0, -929.0, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1517.0, -929.0, 18.4)
                                 $.flag_8ball_moved5 = 1
@@ -1465,7 +1465,7 @@ async function mission_start_frankie3() {
                     }
                     if ($.ped_8ball_fm3.locateOnFoot2D(1517.0, -929.0, 1.0, 1.0, false /* FALSE */)) {
                         $.flag_8ball_moved5 = 1
-                        Audio.LoadMissionAudio(S3_B)
+                        Audio.LoadMissionAudio('s3_b' as any)
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 2) {
                                 $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 5000)
@@ -1509,11 +1509,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 6) {
                     $.ped_8ball_fm3.setObjRunToCoord(1510.0, -923.0)
                     if ($.flag_timer_set_fm3 == 4) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 5
                     }
                     if ($.flag_8ball_moved6 == 0) {
-                        if (timera >= 25000) {
+                        if (TIMERA >= 25000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1510.0, -923.0, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1510.0, -923.0, 18.4)
                                 $.flag_8ball_moved6 = 1
@@ -1555,11 +1555,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 7) {
                     $.ped_8ball_fm3.setObjRunToCoord(1504.4, -928.6)
                     if ($.flag_timer_set_fm3 == 5) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 6
                     }
                     if ($.flag_8ball_moved7 == 0) {
-                        if (timera >= 25000) {
+                        if (TIMERA >= 25000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1504.4, -928.6, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1504.4, -928.6, 18.4)
                                 $.flag_8ball_moved7 = 1
@@ -1601,11 +1601,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 8) {
                     $.ped_8ball_fm3.setObjRunToCoord(1493.7, -922.1)
                     if ($.flag_timer_set_fm3 == 6) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 7
                     }
                     if ($.flag_8ball_moved8 == 0) {
-                        if (timera >= 25000) {
+                        if (TIMERA >= 25000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1493.7, -922.1, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1493.7, -922.1, 18.4)
                                 $.flag_8ball_moved8 = 1
@@ -1647,11 +1647,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 9) {
                     $.ped_8ball_fm3.setObjRunToCoord(1487.0, -930.2)
                     if ($.flag_timer_set_fm3 == 7) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 8
                     }
                     if ($.flag_8ball_moved9 == 0) {
-                        if (timera >= 25000) {
+                        if (TIMERA >= 25000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1487.0, -930.2, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1487.0, -930.2, 18.4)
                                 $.flag_8ball_moved9 = 1
@@ -1693,11 +1693,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 10) {
                     $.ped_8ball_fm3.setObjRunToCoord(1481.5, -926.8)
                     if ($.flag_timer_set_fm3 == 8) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 9
                     }
                     if ($.flag_8ball_moved10 == 0) {
-                        if (timera >= 15000) {
+                        if (TIMERA >= 15000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1481.5, -926.8, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1481.5, -926.8, 18.4)
                                 $.flag_8ball_moved10 = 1
@@ -1715,11 +1715,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 11) {
                     $.ped_8ball_fm3.setObjRunToCoord(1475.8, -940.3)
                     if ($.flag_timer_set_fm3 == 9) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 10
                     }
                     if ($.flag_8ball_moved11 == 0) {
-                        if (timera >= 15000) {
+                        if (TIMERA >= 15000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1475.8, -940.3, 1.0, 1.0, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1475.8, -940.3, 18.4)
                                 $.flag_8ball_moved11 = 1
@@ -1737,11 +1737,11 @@ async function mission_start_frankie3() {
                 if ($.flag_bloke_in_area_fm3 == 12) {
                     $.ped_8ball_fm3.setObjRunToCoord(1474.2, -940.2)
                     if ($.flag_timer_set_fm3 == 10) {
-                        timera = 0
+                        TIMERA = 0
                         $.flag_timer_set_fm3 = 11
                     }
                     if ($.flag_8ball_moved12 == 0) {
-                        if (timera >= 25000) {
+                        if (TIMERA >= 25000) {
                             if (!$.ped_8ball_fm3.locateOnFoot2D(1474.2, -940.2, 0.5, 0.5, false /* FALSE */)) {
                                 $.ped_8ball_fm3.setCoordinates(1474.2, -940.2, 18.4)
                                 $.flag_8ball_moved12 = 1
@@ -1777,9 +1777,9 @@ async function mission_start_frankie3() {
 
         // *********waiting for 8ball to place the bomb and then he legs it off of the boat********
 
-        timera = 0
+        TIMERA = 0
 
-        while (timera < 3000) {
+        while (TIMERA < 3000) {
             await asyncWait(0)
             // SCM GOSUB car_dead_check
             await car_dead_check()
@@ -1823,8 +1823,8 @@ async function mission_start_frankie3() {
 
         // Cutscene stuff
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, ship)
-        Streaming.LoadSpecialModel(hier`cutobj02`, gangp)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'ship')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'gangp')
         //LOAD_SPECIAL_CHARACTER 1 EIGHT2  // TEST STUFF
 
         while (Camera.GetFadingStatus()) {
@@ -1873,21 +1873,21 @@ async function mission_start_frankie3() {
 
         World.SwapNearestBuildingModel(1526.75, -907.423, 14.2965, 50.0, 1033 /* boatramp1 */, 218 /* LOD_land014 */)
 
-        Cutscene.Load(s4_bdbd)
+        Cutscene.Load('s4_bdbd')
 
         Cutscene.SetOffset(1573.8866, -906.0611, 11.1)
 
         $.cs_eight = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_eight.setAnim(eight2)
+        $.cs_eight.setAnim('eight2')
 
         $.cs_ship = CutsceneObject.Create(hier`cutobj01`)
 
-        $.cs_ship.setAnim(ship)
+        $.cs_ship.setAnim('ship')
 
         $.cs_gangplank = CutsceneObject.Create(hier`cutobj02`)
 
-        $.cs_gangplank.setAnim(gangp)
+        $.cs_gangplank.setAnim('gangp')
 
         World.ClearArea(1526.5, -894.8, -100.0, 1.0, true /* TRUE */)
 
@@ -2126,7 +2126,7 @@ async function mission_cleanup_frankie3() {
     $.ped_8ball_fm3.removeElegantly()
     Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_A`)
     Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_B`)
-    Streaming.MarkModelAsNoLongerNeeded(barrel4)
+    Streaming.MarkModelAsNoLongerNeeded(1344 /* barrel4 */)
     $.ped_8ball_fm3.markAsNoLongerNeeded()
     Streaming.MarkModelAsNoLongerNeeded(car`COLUMB`)
     $.radar_blip_coord2_fm3.remove()

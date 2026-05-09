@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/ray3.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_ray3() {
     $.flag_player_on_mission = 1
@@ -51,7 +51,7 @@ async function mission_start_ray3() {
     $.object_current_coords_y = 0.0
     $.object_current_coords_z = 0.0
 
-    Streaming.LoadSpecialCharacter(1, $.ray)
+    Streaming.LoadSpecialCharacter(1, 'ray')
     {
         // ****************************************START OF CUTSCENE********************************
 
@@ -71,9 +71,9 @@ async function mission_start_ray3() {
   PRINT_BIG RM3 15000 2 //"Evidence Dash"
   */
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, RAYH)
-        Streaming.RequestModel(toilet)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'RAYH')
+        Streaming.RequestModel(2104 /* toilet */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -87,7 +87,7 @@ async function mission_start_ray3() {
             !Streaming.HasSpecialCharacterLoaded(1) ||
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
-            !Streaming.HasModelLoaded(toilet)
+            !Streaming.HasModelLoaded(2104 /* toilet */)
         ) {
             await asyncWait(0)
         }
@@ -98,23 +98,23 @@ async function mission_start_ray3() {
 
         $.player.setHeading(90.0)
 
-        Cutscene.Load(r3_ed)
+        Cutscene.Load('r3_ed')
 
         Cutscene.SetOffset(39.424, -726.677, 21.692)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_ray = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_ray.setAnim($.ray)
+        $.cs_ray.setAnim('ray')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`)
-        $.cs_rayhead.setAnim($.ray)
+        $.cs_rayhead.setAnim('ray')
 
         //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
         //
@@ -215,17 +215,17 @@ async function mission_start_ray3() {
         Camera.SetBehindPlayer()
 
         Streaming.UnloadSpecialCharacter(1)
-        Streaming.MarkModelAsNoLongerNeeded(toilet)
+        Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
 
-        Streaming.RequestModel(files)
+        Streaming.RequestModel(1367 /* files */)
         Streaming.RequestModel(car`BOBCAT`)
         Streaming.RequestModel(ped`B_MAN3`)
 
         Streaming.LoadAllModelsNow()
 
-        while (!Streaming.HasModelLoaded(car`BOBCAT`) || !Streaming.HasModelLoaded(ped`B_MAN3`) || !Streaming.HasModelLoaded(files)) {
+        while (!Streaming.HasModelLoaded(car`BOBCAT`) || !Streaming.HasModelLoaded(ped`B_MAN3`) || !Streaming.HasModelLoaded(1367 /* files */)) {
             await asyncWait(0)
         }
 
@@ -739,7 +739,7 @@ async function mission_start_ray3() {
         Hud.ClearCounter($.amount_of_evidence_player_has)
         Streaming.MarkModelAsNoLongerNeeded(car`BOBCAT`)
         Streaming.MarkModelAsNoLongerNeeded(ped`B_MAN3`)
-        Streaming.MarkModelAsNoLongerNeeded(DONKEYMAG)
+        Streaming.MarkModelAsNoLongerNeeded(1325 /* DONKEYMAG */)
         $.flag_player_on_mission = 0
         $.flag_player_on_ray_mission = 0
 

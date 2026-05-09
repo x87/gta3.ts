@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/rampage.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function rampage_pickup_loop() {
     // SCM GOTO → rampage_pickup_loop lowered to endless loop

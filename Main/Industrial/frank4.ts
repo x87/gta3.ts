@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/frank4.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_frank4() {
     Stat.RegisterMissionGiven()
@@ -13,16 +13,16 @@ async function mission_start_frank4() {
     $.car_dead_once = 0
 
     {
-        Streaming.LoadSpecialCharacter(1, $.frankie)
+        Streaming.LoadSpecialCharacter(1, 'frankie')
         //LOAD_SPECIAL_CHARACTER 2 goon
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, FRANKH)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'FRANKH')
 
         Streaming.RequestModel(ped`GANG_MAFIA_B`)
-        Streaming.RequestModel(franksclb02)
-        Streaming.RequestModel(salvsdetail)
-        Streaming.RequestModel(swank_inside)
+        Streaming.RequestModel(541 /* franksclb02 */)
+        Streaming.RequestModel(542 /* salvsdetail */)
+        Streaming.RequestModel(540 /* swank_inside */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -42,27 +42,27 @@ async function mission_start_frank4() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(franksclb02) || !Streaming.HasModelLoaded(salvsdetail) || !Streaming.HasModelLoaded(swank_inside)) {
+        while (!Streaming.HasModelLoaded(541 /* franksclb02 */) || !Streaming.HasModelLoaded(542 /* salvsdetail */) || !Streaming.HasModelLoaded(540 /* swank_inside */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(S5_LRQ)
+        Cutscene.Load('S5_LRQ')
         Cutscene.SetOffset(1457.776, -185.348, 54.925)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_frankie = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_frankie.setAnim($.frankie)
+        $.cs_frankie.setAnim('frankie')
 
         $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, hier`cutobj02`)
-        $.cs_frankiehead.setAnim(frank)
+        $.cs_frankiehead.setAnim('frank')
 
         $.cs_mafia = CutsceneObject.Create(ped`GANG_MAFIA_B`)
-        $.cs_mafia.setAnim(gang02)
+        $.cs_mafia.setAnim('gang02')
 
         //CREATE_CUTSCENE_OBJECT PED_SPECIAL2 cs_mafia
         //SET_CUTSCENE_ANIM cs_mafia gang02
@@ -172,9 +172,9 @@ async function mission_start_frank4() {
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
         Streaming.MarkModelAsNoLongerNeeded(ped`GANG_MAFIA_B`)
-        Streaming.MarkModelAsNoLongerNeeded(franksclb02)
-        Streaming.MarkModelAsNoLongerNeeded(salvsdetail)
-        Streaming.MarkModelAsNoLongerNeeded(swank_inside)
+        Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */)
+        Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */)
+        Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */)
         //REQUEST_MODEL BOAT_SPEEDER
         //REQUEST_MODEL CAR_CHEETAH
         //LOAD_SPECIAL_MODEL cut_obj3 MARIAH
@@ -292,10 +292,10 @@ async function mission_start_frank4() {
 
         Streaming.Switch(false /* OFF */)
 
-        Streaming.LoadSpecialCharacter(2, $.maria)
-        Streaming.LoadSpecialCharacter(3, $.asuka)
-        Streaming.LoadSpecialModel(hier`cutobj02`, MARIAH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, ASUKAH)
+        Streaming.LoadSpecialCharacter(2, 'maria')
+        Streaming.LoadSpecialCharacter(3, 'asuka')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'MARIAH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'ASUKAH')
 
         //PRINT_BIG ( FM4 ) 15000 2 //"Frankie Mission 4"
 
@@ -318,27 +318,27 @@ async function mission_start_frank4() {
             await asyncWait(0)
         }
 
-        Cutscene.Load(S5_LRQB)
+        Cutscene.Load('S5_LRQB')
         Cutscene.SetOffset(831.0839, -1114.2113, 0.1822)
         //SET_CUTSCENE_OFFSET 830.0839 -1114.2113 0.1822
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_maria = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_maria.setAnim($.maria)
+        $.cs_maria.setAnim('maria')
 
         $.cs_asuka = CutsceneObject.Create(ped`SPECIAL3`)
-        $.cs_asuka.setAnim($.asuka)
+        $.cs_asuka.setAnim('asuka')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
         $.cs_mariahead = CutsceneHead.Create($.cs_maria, hier`cutobj02`)
-        $.cs_mariahead.setAnim($.maria)
+        $.cs_mariahead.setAnim('maria')
 
         $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj03`)
-        $.cs_asukahead.setAnim($.asuka)
+        $.cs_asukahead.setAnim('asuka')
 
         //SET_PLAYER_COORDINATES player 835.4 -1108.7 1.0
 
@@ -617,9 +617,9 @@ async function mission_start_frank4() {
 
         Streaming.Switch(false /* OFF */)
 
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, MARIAH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, ASUKAH)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'MARIAH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'ASUKAH')
         Streaming.RequestModel(car`YAKUZA`)
         Streaming.RequestModel(car`BLISTA`)
 
@@ -638,26 +638,26 @@ async function mission_start_frank4() {
         $.maria.delete()
         $.asuka.delete()
 
-        Cutscene.Load(S5_LRQC)
+        Cutscene.Load('S5_LRQC')
         Cutscene.SetOffset(523.102, -636.96, 15.616) //563.0 -683.0 1.8
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_maria = CutsceneObject.Create(ped`SPECIAL2`)
-        $.cs_maria.setAnim($.maria)
+        $.cs_maria.setAnim('maria')
 
         $.cs_asuka = CutsceneObject.Create(ped`SPECIAL3`)
-        $.cs_asuka.setAnim($.asuka)
+        $.cs_asuka.setAnim('asuka')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_mariahead = CutsceneHead.Create($.cs_maria, hier`cutobj02`)
-        $.cs_mariahead.setAnim($.maria)
+        $.cs_mariahead.setAnim('maria')
 
         $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj03`)
-        $.cs_asukahead.setAnim($.asuka)
+        $.cs_asukahead.setAnim('asuka')
 
         Camera.DoFade(1000, 1 /* FADE_IN */)
 

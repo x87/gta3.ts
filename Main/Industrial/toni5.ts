@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/toni5.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_toni5() {
     Stat.RegisterMissionGiven()
@@ -10,10 +10,10 @@ async function mission_start_toni5() {
     await asyncWait(0)
 
     {
-        Streaming.LoadSpecialCharacter(1, tony)
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, TONYH)
-        Streaming.RequestModel(ind_newrizzos)
+        Streaming.LoadSpecialCharacter(1, 'tony')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'TONYH')
+        Streaming.RequestModel(537 /* ind_newrizzos */)
 
         Streaming.LoadAllModelsNow()
 
@@ -21,25 +21,25 @@ async function mission_start_toni5() {
             !Streaming.HasSpecialCharacterLoaded(1) ||
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
-            !Streaming.HasModelLoaded(ind_newrizzos)
+            !Streaming.HasModelLoaded(537 /* ind_newrizzos */)
         ) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(t5_bf)
+        Cutscene.Load('t5_bf')
         Cutscene.SetOffset(1218.42, -314.5, 28.9)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_tony = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_tony.setAnim(tony)
+        $.cs_tony.setAnim('tony')
 
         $.cs_tonyhead = CutsceneHead.Create($.cs_tony, hier`cutobj02`)
-        $.cs_tonyhead.setAnim(tony)
+        $.cs_tonyhead.setAnim('tony')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */)
         $.player.setCoordinates(1219.5, -321.1, 26.4)
@@ -156,7 +156,7 @@ async function mission_start_toni5() {
         Streaming.UnloadSpecialCharacter(1)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
-        Streaming.MarkModelAsNoLongerNeeded(ind_newrizzos)
+        Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */)
 
         Streaming.RequestModel(car`TRASHMASTER`)
 
@@ -264,7 +264,7 @@ async function mission_start_toni5() {
             }
         }
 
-        Streaming.RequestModel(fshfctry_dstryd)
+        Streaming.RequestModel(418 /* fshfctry_dstryd */)
         Text.PrintNow('JM1_3', 5000, 2) //Activate the car bomb then get out of there!
         Weather.Force(0 /* WEATHER_SUNNY */)
 
@@ -493,7 +493,7 @@ async function mission_cleanup_toni5() {
     Hud.ClearTimer($.countdown_tm5)
     Hud.ClearCounter($.explosive_truck_health)
     Streaming.MarkModelAsNoLongerNeeded(car`TRASHMASTER`)
-    Streaming.MarkModelAsNoLongerNeeded(fshfctry_dstryd)
+    Streaming.MarkModelAsNoLongerNeeded(418 /* fshfctry_dstryd */)
     Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */) //TEST
     Camera.SetFadingColor(1, 1, 1)
     Mission.Finish()

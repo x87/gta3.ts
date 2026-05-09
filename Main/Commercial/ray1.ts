@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/ray1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_ray1() {
     $.flag_player_on_mission = 1
@@ -47,10 +47,10 @@ async function mission_start_ray1() {
   PRINT_BIG RM1 15000 2 //"Silence the sneak"
   */
 
-        Streaming.LoadSpecialCharacter(1, $.ray)
-        Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, RAYH)
-        Streaming.RequestModel(toilet)
+        Streaming.LoadSpecialCharacter(1, 'ray')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'PLAYERH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'RAYH')
+        Streaming.RequestModel(2104 /* toilet */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -64,7 +64,7 @@ async function mission_start_ray1() {
             !Streaming.HasSpecialCharacterLoaded(1) ||
             !Streaming.HasModelLoaded(hier`cutobj01`) ||
             !Streaming.HasModelLoaded(hier`cutobj02`) ||
-            !Streaming.HasModelLoaded(toilet)
+            !Streaming.HasModelLoaded(2104 /* toilet */)
         ) {
             await asyncWait(0)
         }
@@ -75,21 +75,21 @@ async function mission_start_ray1() {
 
         $.player.setHeading(90.0)
 
-        Cutscene.Load(r1_sw)
+        Cutscene.Load('r1_sw')
 
         Cutscene.SetOffset(39.424, -726.677, 21.692)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_ray = CutsceneObject.Create(ped`SPECIAL1`)
-        $.cs_ray.setAnim($.ray)
+        $.cs_ray.setAnim('ray')
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`)
-        $.cs_playerhead.setAnim($.player)
+        $.cs_playerhead.setAnim('player')
 
         $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`)
-        $.cs_rayhead.setAnim($.ray)
+        $.cs_rayhead.setAnim('ray')
 
         Camera.DoFade(1500, 1 /* FADE_IN */)
         Camera.SetNearClip(0.2)
@@ -160,7 +160,7 @@ async function mission_start_ray1() {
         Camera.SetBehindPlayer()
 
         Streaming.UnloadSpecialCharacter(1)
-        Streaming.MarkModelAsNoLongerNeeded(toilet)
+        Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`)
         Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`)
 
@@ -184,7 +184,7 @@ async function mission_start_ray1() {
 
         // ******************************************END OF CUTSCENE********************************
 
-        Streaming.RequestModel(safehouse)
+        Streaming.RequestModel(2202 /* safehouse */)
 
         $.ray1_blip = Blip.AddForCoord(378.0, -443.2, 29.9)
 
@@ -209,7 +209,7 @@ async function mission_start_ray1() {
         Game.SetAllCarsCanBeDamaged(true /* TRUE */)
         Camera.Restore()
 
-        Audio.LoadMissionAudio(R1_A)
+        Audio.LoadMissionAudio('r1_a' as any)
 
         $.get_away_car = 0
         $.police_guard1 = 0
@@ -492,7 +492,7 @@ async function mission_cleanup_ray1() {
 
     Streaming.MarkModelAsNoLongerNeeded(ped`LI_MAN2`)
     Streaming.MarkModelAsNoLongerNeeded(car`SENTINEL`)
-    Streaming.MarkModelAsNoLongerNeeded(safehouse)
+    Streaming.MarkModelAsNoLongerNeeded(2202 /* safehouse */)
 
     $.flag_player_on_mission = 0
     $.flag_player_on_ray_mission = 0

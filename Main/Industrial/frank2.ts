@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/frank2.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_frankie2() {
     $.flag_player_on_mission = 1
@@ -96,14 +96,14 @@ async function mission_start_frankie2() {
   SWITCH_STREAMING OFF
   */
 
-        Streaming.LoadSpecialCharacter(1, $.frankie)
+        Streaming.LoadSpecialCharacter(1, 'FRANKIE')
         Streaming.RequestModel(ped`GANG_MAFIA_B`)
-        Streaming.LoadSpecialModel(hier`cutobj01`, FRANKH)
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'FRANKH')
         //LOAD_SPECIAL_MODEL cut_obj2 PLAYERH
 
-        Streaming.RequestModel(franksclb02)
-        Streaming.RequestModel(salvsdetail)
-        Streaming.RequestModel(swank_inside)
+        Streaming.RequestModel(541 /* franksclb02 */)
+        Streaming.RequestModel(542 /* salvsdetail */)
+        Streaming.RequestModel(540 /* swank_inside */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -123,25 +123,25 @@ async function mission_start_frankie2() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(franksclb02) || !Streaming.HasModelLoaded(salvsdetail) || !Streaming.HasModelLoaded(swank_inside)) {
+        while (!Streaming.HasModelLoaded(541 /* franksclb02 */) || !Streaming.HasModelLoaded(542 /* salvsdetail */) || !Streaming.HasModelLoaded(540 /* swank_inside */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(s2_ctg)
+        Cutscene.Load('s2_ctg')
 
         Cutscene.SetOffset(1457.776, -185.348, 54.925)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_frankie = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_frankie.setAnim($.frankie)
+        $.cs_frankie.setAnim('frankie')
 
         $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, hier`cutobj01`)
 
-        $.cs_frankiehead.setAnim(frank)
+        $.cs_frankiehead.setAnim('frank')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ2 cs_playerhead
 
@@ -149,7 +149,7 @@ async function mission_start_frankie2() {
 
         $.cs_mafia = CutsceneObject.Create(ped`GANG_MAFIA_B`)
 
-        $.cs_mafia.setAnim(gang02)
+        $.cs_mafia.setAnim('gang02')
 
         World.ClearArea(1455.1, -187.8, -100.0, 1.0, true /* TRUE */)
 
@@ -280,15 +280,15 @@ async function mission_start_frankie2() {
         Streaming.MarkModelAsNoLongerNeeded(ped`GANG_MAFIA_B`)
         //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ2
 
-        Streaming.MarkModelAsNoLongerNeeded(franksclb02)
+        Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */)
 
-        Streaming.MarkModelAsNoLongerNeeded(salvsdetail)
+        Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */)
 
-        Streaming.MarkModelAsNoLongerNeeded(swank_inside)
+        Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */)
 
         // *******************************************END OF CUTSCENE*******************************
 
-        Streaming.LoadSpecialCharacter(2, curly)
+        Streaming.LoadSpecialCharacter(2, 'curly')
 
         Streaming.RequestModel(car`TAXI`)
         Streaming.RequestModel(ped`TAXI_DRIVER`)
@@ -338,7 +338,7 @@ async function mission_start_frankie2() {
 
         Game.SetPoliceIgnorePlayer($.player, false /* off */)
 
-        timerb = 0
+        TIMERB = 0
 
         //GET_TIME_OF_DAY hours_fm2 minutes_fm2
 
@@ -360,7 +360,7 @@ async function mission_start_frankie2() {
 
         //ENDWHILE
 
-        while (timerb < 60000) {
+        while (TIMERB < 60000) {
             await asyncWait(0)
         }
 
@@ -375,7 +375,7 @@ async function mission_start_frankie2() {
             $.radar_blip_ped1_fm2.changeDisplay(1 /* MARKER_ONLY */)
             $.curley_bob_fm2.clearThreatSearch()
             $.curley_bob_fm2.setObjGotoCoordOnFoot(902.7, -430.4)
-            timerb = 0
+            TIMERB = 0
             while (!$.curley_bob_fm2.locateOnFoot2D(902.7, -430.4, 1.0, 1.0, false /* FALSE */)) {
                 await asyncWait(0)
                 if (Char.IsDead($.curley_bob_fm2)) {
@@ -390,7 +390,7 @@ async function mission_start_frankie2() {
                     }
                 }
                 if ($.flag_curly_moved_fm2 == 0) {
-                    if (timerb >= 15000) {
+                    if (TIMERB >= 15000) {
                         if (!$.curley_bob_fm2.locateOnFoot2D(902.7, -430.4, 1.0, 1.0, false /* FALSE */)) {
                             $.curley_bob_fm2.setCoordinates(902.7, -430.4, 13.7)
                             $.flag_curly_moved_fm2 = 1
@@ -418,7 +418,7 @@ async function mission_start_frankie2() {
 
             //waiting for curly bob to get to the pavement
 
-            timerb = 0
+            TIMERB = 0
             while (!$.curley_bob_fm2.locateOnFoot2D(904.0, -427.3, 1.0, 1.0, false /* FALSE */)) {
                 await asyncWait(0)
                 if (Char.IsDead($.curley_bob_fm2)) {
@@ -440,7 +440,7 @@ async function mission_start_frankie2() {
                     $.curley_bob_fm2.setObjGotoCoordOnFoot(904.0, -427.3)
                 }
                 if ($.flag_curly_moved_fm2 == 0) {
-                    if (timerb >= 25000) {
+                    if (TIMERB >= 25000) {
                         if (!$.curley_bob_fm2.locateOnFoot2D(904.0, -427.3, 1.0, 1.0, false /* FALSE */)) {
                             $.curley_bob_fm2.setCoordinates(904.0, -427.3, 13.9)
                             $.flag_curly_moved_fm2 = 1
@@ -582,13 +582,13 @@ async function mission_start_frankie2() {
                 if ($.mission_taxi_fm2.isStopped()) {
                     if ($.flag_car_has_just_stopped == 0) {
                         //GET_GAME_TIMER time_car_stopped_fm2
-                        timerb = 0
+                        TIMERB = 0
                         $.flag_car_has_just_stopped = 1
                     }
                     //GET_GAME_TIMER current_time_fm2
                     //timer_difference = current_time_fm2 - time_car_stopped_fm2
                     //IF timer_difference > 10000
-                    if (timerb > 10000) {
+                    if (TIMERB > 10000) {
                         $.flag_taxi1_exit_car_fm2 = 1
                         Text.PrintNow('FM2_7', 7000, 1) //"Something's spooked Curly, the meeting's off!"
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
@@ -691,16 +691,16 @@ async function mission_start_frankie2() {
 
         Hud.DisplayCounterWithString($.spooked_counter, 1 /* COUNTER_DISPLAY_BAR */, 'FM2_16')
 
-        timerb = 0
+        TIMERB = 0
 
-        timera = 0
+        TIMERA = 0
 
         // Waiting for the car to get to the bottom of the dock area
 
         while (!$.car_fm2.locate2D(1529.0, -827.0, 3.0, 3.0, false /* FALSE */)) {
             await asyncWait(0)
             if ($.spooked_check == 0) {
-                if (timerb > 1500) {
+                if (TIMERB > 1500) {
                     $.spooked_check = 1
                 }
             }
@@ -740,56 +740,56 @@ async function mission_start_frankie2() {
                         if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 30.0, 30.0, 30.0, false /* FALSE */)) {
                             if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 20.0, 20.0, 20.0, false /* FALSE */)) {
                                 if ($.player.isInModel(127 /* CAR_MAFIA */)) {
-                                    if (timera > 8) {
+                                    if (TIMERA > 8) {
                                         ++$.spooked_counter
-                                        timera = 0
+                                        TIMERA = 0
                                     }
                                 } else {
-                                    if (timera > 16) {
+                                    if (TIMERA > 16) {
                                         ++$.spooked_counter
-                                        timera = 0
+                                        TIMERA = 0
                                     }
                                 }
                             } else {
                                 if ($.player.isInModel(127 /* CAR_MAFIA */)) {
-                                    if (timera > 16) {
+                                    if (TIMERA > 16) {
                                         ++$.spooked_counter
-                                        timera = 0
+                                        TIMERA = 0
                                     }
                                 } else {
-                                    if (timera > 32) {
+                                    if (TIMERA > 32) {
                                         ++$.spooked_counter
-                                        timera = 0
+                                        TIMERA = 0
                                     }
                                 }
                             }
                         } else {
                             if ($.player.isInModel(127 /* CAR_MAFIA */)) {
-                                if (timera > 32) {
+                                if (TIMERA > 32) {
                                     ++$.spooked_counter
-                                    timera = 0
+                                    TIMERA = 0
                                 }
                             } else {
-                                if (timera > 64) {
+                                if (TIMERA > 64) {
                                     ++$.spooked_counter
-                                    timera = 0
+                                    TIMERA = 0
                                 }
                             }
                         }
                     } else {
                         if ($.player.isInModel(127 /* CAR_MAFIA */)) {
-                            if (timera > 500) {
+                            if (TIMERA > 500) {
                                 if ($.spooked_counter > 0) {
                                     --$.spooked_counter
                                 }
-                                timera = 0
+                                TIMERA = 0
                             }
                         } else {
-                            if (timera > 250) {
+                            if (TIMERA > 250) {
                                 if ($.spooked_counter > 0) {
                                     --$.spooked_counter
                                 }
-                                timera = 0
+                                TIMERA = 0
                             }
                         }
                     }
@@ -1000,9 +1000,9 @@ async function mission_start_frankie2() {
 
         $.curley_bob_fm2.setObjRunToCoord(1532.0, -889.0)
 
-        timerb = 0
+        TIMERB = 0
 
-        while (timerb < 1500) {
+        while (TIMERB < 1500) {
             await asyncWait(0)
             World.ClearArea(1532.0, -889.0, -100.0, 3.0, false /* FALSE */) // Clears area curly is running to.
             if (Char.IsDead($.curley_bob_fm2)) {
@@ -1046,11 +1046,11 @@ async function mission_start_frankie2() {
 
         Streaming.Switch(false /* OFF */)
 
-        Streaming.LoadSpecialCharacter(3, $.miguel)
-        Streaming.LoadSpecialCharacter(4, cat)
-        Streaming.LoadSpecialModel(hier`cutobj01`, MIGUELH)
-        Streaming.LoadSpecialModel(hier`cutobj02`, CATH)
-        Streaming.LoadSpecialModel(hier`cutobj03`, CURLYH)
+        Streaming.LoadSpecialCharacter(3, 'miguel')
+        Streaming.LoadSpecialCharacter(4, 'cat')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'MIGUELH')
+        Streaming.LoadSpecialModel(hier`cutobj02`, 'CATH')
+        Streaming.LoadSpecialModel(hier`cutobj03`, 'CURLYH')
         Streaming.RequestModel(car`COLUMB`)
 
         while (Camera.GetFadingStatus()) {
@@ -1084,33 +1084,33 @@ async function mission_start_frankie2() {
 
         //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
 
-        Cutscene.Load(s2_ctg2)
+        Cutscene.Load('s2_ctg2')
 
         Cutscene.SetOffset(1573.8866, -906.0611, 11.1)
 
         $.cs_curly = CutsceneObject.Create(ped`SPECIAL2`)
 
-        $.cs_curly.setAnim(curly)
+        $.cs_curly.setAnim('curly')
 
         $.cs_miguel = CutsceneObject.Create(ped`SPECIAL3`)
 
-        $.cs_miguel.setAnim($.miguel)
+        $.cs_miguel.setAnim('miguel')
 
         $.cs_catalina = CutsceneObject.Create(ped`SPECIAL4`)
 
-        $.cs_catalina.setAnim(cat)
+        $.cs_catalina.setAnim('cat')
 
         $.cs_miguelhead = CutsceneHead.Create($.cs_miguel, hier`cutobj01`)
 
-        $.cs_miguelhead.setAnim($.miguel)
+        $.cs_miguelhead.setAnim('miguel')
 
         $.cs_catalinahead = CutsceneHead.Create($.cs_catalina, hier`cutobj02`)
 
-        $.cs_catalinahead.setAnim(cat)
+        $.cs_catalinahead.setAnim('cat')
 
         $.cs_curlyhead = CutsceneHead.Create($.cs_curly, hier`cutobj03`)
 
-        $.cs_curlyhead.setAnim(curly)
+        $.cs_curlyhead.setAnim('curly')
 
         World.ClearArea(898.6, -425.6, 13.9, 1.0, true /* TRUE */)
 

@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/frank2.1.sc
-import { $ } from '../../../vars.mts'
-import { car, ped, hier } from '../../../ide.ts'
+import { $ } from '../../vars.mts'
+import { car, ped, hier } from '../../ide.mts'
 
 async function mission_start_frankie2_1() {
     $.flag_player_on_mission = 1
@@ -30,15 +30,15 @@ async function mission_start_frankie2_1() {
   SWITCH_STREAMING OFF
   */
 
-        Streaming.LoadSpecialCharacter(1, $.frankie)
-        Streaming.LoadSpecialModel(hier`cutobj01`, FRANKH)
+        Streaming.LoadSpecialCharacter(1, 'FRANKIE')
+        Streaming.LoadSpecialModel(hier`cutobj01`, 'FRANKH')
         //LOAD_SPECIAL_MODEL cut_obj2 PLAYERH
 
         Streaming.RequestModel(ped`GANG_MAFIA_B`)
 
-        Streaming.RequestModel(franksclb02)
-        Streaming.RequestModel(salvsdetail)
-        Streaming.RequestModel(swank_inside)
+        Streaming.RequestModel(541 /* franksclb02 */)
+        Streaming.RequestModel(542 /* salvsdetail */)
+        Streaming.RequestModel(540 /* swank_inside */)
 
         /*
   WHILE GET_FADING_STATUS
@@ -58,25 +58,25 @@ async function mission_start_frankie2_1() {
             await asyncWait(0)
         }
 
-        while (!Streaming.HasModelLoaded(franksclb02) || !Streaming.HasModelLoaded(salvsdetail) || !Streaming.HasModelLoaded(swank_inside)) {
+        while (!Streaming.HasModelLoaded(541 /* franksclb02 */) || !Streaming.HasModelLoaded(542 /* salvsdetail */) || !Streaming.HasModelLoaded(540 /* swank_inside */)) {
             await asyncWait(0)
         }
 
-        Cutscene.Load(s3_rtc)
+        Cutscene.Load('s3_rtc')
 
         Cutscene.SetOffset(1457.776, -185.348, 54.925)
 
         $.cs_player = CutsceneObject.Create(ped`PLAYER`)
 
-        $.cs_player.setAnim($.player)
+        $.cs_player.setAnim('player')
 
         $.cs_frankie = CutsceneObject.Create(ped`SPECIAL1`)
 
-        $.cs_frankie.setAnim($.frankie)
+        $.cs_frankie.setAnim('frankie')
 
         $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, hier`cutobj01`)
 
-        $.cs_frankiehead.setAnim(frank)
+        $.cs_frankiehead.setAnim('frank')
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ2 cs_playerhead
 
@@ -84,7 +84,7 @@ async function mission_start_frankie2_1() {
 
         $.cs_mafia = CutsceneObject.Create(ped`GANG_MAFIA_B`)
 
-        $.cs_mafia.setAnim(gang02)
+        $.cs_mafia.setAnim('gang02')
 
         World.ClearArea(1455.1, -187.8, -100.0, 1.0, true /* TRUE */)
 
@@ -208,11 +208,11 @@ async function mission_start_frankie2_1() {
         Streaming.MarkModelAsNoLongerNeeded(ped`GANG_MAFIA_B`)
         //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ2
 
-        Streaming.MarkModelAsNoLongerNeeded(franksclb02)
+        Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */)
 
-        Streaming.MarkModelAsNoLongerNeeded(salvsdetail)
+        Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */)
 
-        Streaming.MarkModelAsNoLongerNeeded(swank_inside)
+        Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */)
 
         // **************************************END OF CUTSCENE************************************
     }
