@@ -1,0 +1,1100 @@
+// Generated from Main/Commercial/kenji3.sc
+// Imports: vars (../../../vars.mts), ide (../../../ide.ts).
+// Copy or re-point these paths if you move the output tree; repo copies live next to this converter.
+import { $ } from "../../../vars.mts";
+import { car, ped, hier } from "../../../ide.ts";
+
+
+async function mission_start_kenji3() {
+  $.flag_player_on_mission = 1;
+  $.flag_player_on_kenji_mission = 1;
+  Stat.RegisterMissionGiven();
+  await asyncWait(0);
+  $.flag_player_had_car_message_km3 = 0;
+  $.flag_player_been_bad_km3 = 0;
+  $.counter_number_of_colombians_killed_km3 = 0;
+  $.counter_all_colombian_cars_dead_km3 = 0;
+  $.flag_colombian1_dead_km3 = 0;
+  $.flag_colombian2_dead_km3 = 0;
+  $.flag_colombian5_dead_km3 = 0;
+  $.flag_colombian6_dead_km3 = 0;
+  $.flag_colombian_car1_dead_km3 = 0;
+  $.flag_colombian_car2_dead_km3 = 0;
+  $.flag_yakuza1_km3_dead = 0;
+  $.flag_blip_on_yakuza_km3 = 0;
+  $.blob_flag = 1;
+  $.flag_yakuza_message_km3 = 0;
+  $.flag_bloke_in_car_km3 = 0;
+  $.flag_car1_created_km3 = 0;
+  $.flag_car2_created_km3 = 0;
+  $.money_been_picked_up_km3 = 0;
+  $.flag_money_created_km3 = 0;
+  $.flag_go_for_player_km3 = 0;
+  $.flag_trap_audio_removed_km3 = 0;
+  $.flag_helper_not_in_car_km3 = 0;
+  Path.SwitchRoadsOff(121.814, -46.429, 14.0, 363.858, 54.312, 20.0);
+  Path.SwitchPedRoadsOff(121.814, -46.429, 14.0, 363.858, 54.312, 20.0);
+  {
+  Streaming.LoadSpecialCharacter(1, $.kenji);
+  Streaming.RequestModel(ped`GANG_YAKUZA_A`);
+  Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH);
+  Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH);
+  /*
+  WHILE GET_FADING_STATUS
+  WAIT 0
+  ENDWHILE
+  */
+  Streaming.RequestModel(casino_garden);
+  Streaming.LoadAllModelsNow();
+  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
+  while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(ped`GANG_YAKUZA_A`)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(casino_garden))) {
+    await asyncWait(0);
+  }
+  Cutscene.Load(k3_ds);
+  Cutscene.SetOffset(476.380, -1382.168, 67.347);
+  $.cs_player = CutsceneObject.Create(ped`PLAYER`);
+  $.cs_player.setAnim($.player);
+  $.cs_kenji = CutsceneObject.Create(ped`SPECIAL1`);
+  $.cs_kenji.setAnim($.kenji);
+  $.cs_yakuza = CutsceneObject.Create(ped`GANG_YAKUZA_A`);
+  $.cs_yakuza.setAnim(gang07);
+  $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj01`);
+  $.cs_kenjihead.setAnim($.kenji);
+  $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj02`);
+  $.cs_playerhead.setAnim($.player);
+  World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */);
+  $.player.setCoordinates(459.1, -1413.0, 25.11);
+  $.player.setHeading(132.0);
+  Camera.DoFade(1500, 1 /* FADE_IN */);
+  World.SwitchRubbish(false /* OFF */);
+  Streaming.Switch(true /* ON */);
+  // Displays cutscene text
+  Cutscene.Start();
+  $.cs_time = Cutscene.GetTime();
+  while ($.cs_time < 1533) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  //"When trouble looms, the fool turns his back, while the wise man faces it down."
+  Text.PrintNow("KM3_A", 10000, 1);
+  while ($.cs_time < 6549) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  //"The Colombian Cartel have ignored repeated requests to leave our interests in Liberty well alone."
+  Text.PrintNow("KM3_B", 10000, 1);
+  while ($.cs_time < 11426) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  //"Now they are negotiating terms with the Jamaicans in order to humiliate us further."
+  Text.PrintNow("KM3_C", 10000, 1);
+  while ($.cs_time < 15676) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  //"They are finalizing a deal across town. Take some of my men, steal a Yardie car and go pay your respects to the Colombians."
+  Text.PrintNow("KM3_D", 10000, 1);
+  while ($.cs_time < 17697) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  //"Take one of my men, steal a Yardie car and go pay your respects to the Colombians."
+  Text.PrintNow("KM3_F", 10000, 1);
+  while ($.cs_time < 22086) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  //"Our honor demands that you leave no one alive."
+  Text.PrintNow("KM3_E", 10000, 1);
+  while ($.cs_time < 24442) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Text.ClearThisPrint("KM3_E");
+  //24666
+  while ($.cs_time < 25000) {
+    await asyncWait(0);
+    $.cs_time = Cutscene.GetTime();
+  }
+  Camera.DoFade(1500, 0 /* FADE_OUT */);
+  while (!(Cutscene.HasFinished())) {
+    await asyncWait(0);
+  }
+  Text.ClearPrints();
+  while (Camera.GetFadingStatus()) {
+    await asyncWait(0);
+  }
+  Cutscene.Clear();
+  World.SwitchRubbish(true /* ON */);
+  Camera.SetInFrontOfPlayer();
+  await asyncWait(500);
+  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
+  Camera.DoFade(1500, 1 /* FADE_IN */);
+  Streaming.UnloadSpecialCharacter(1);
+  Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
+  Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
+  // *******************************************END OF CUTSCENE*******************************
+  Streaming.MarkModelAsNoLongerNeeded(casino_garden);
+  Streaming.RequestModel(car`YARDIE`);
+  Streaming.RequestModel(car`COLUMB`);
+  Streaming.RequestModel(ped`GANG_YARDIE_A`);
+  Streaming.RequestModel(ped`GANG_COLOMBIAN_A`);
+  while (!(Streaming.HasModelLoaded(car`YARDIE`)) || !(Streaming.HasModelLoaded(ped`GANG_YARDIE_A`)) || !(Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_A`)) || !(Streaming.HasModelLoaded(car`COLUMB`))) {
+    await asyncWait(0);
+  }
+  //"First go and get the yardie car!"
+  // waiting for the player to steal a yardie car
+  Text.PrintNow("KM3_1", 7000, 1);
+  Audio.LoadMissionAudio(K3_A);
+  while (!($.player.isInModel(128 /* CAR_YARDIE */)) || !(Audio.HasMissionAudioLoaded())) {
+    await asyncWait(0);
+  }
+  //"Good now pick up the boys in the yardie car, press the horn to get them into the car!"
+  // yakuza bloke 1
+  Text.PrintNow("KM3_2", 7000, 1);
+  $.yakuza1_km3 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_YAKUZA_A`, 99.6, -414.3, -100.0);
+  $.yakuza1_km3.clearThreatSearch();
+  $.yakuza1_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  $.yakuza1_km3.setHeading(0.0);
+  // sets weapon to infinate ammo
+  $.yakuza1_km3.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  // waiting for the player to reach the yakuza gang members
+  $.radar_blip_ped1_km3 = Blip.AddForChar($.yakuza1_km3);
+  //"The contact is dead!"
+  //"Get a Yardie car and get on with the mission!"
+  while (!($.player.locateInCarChar3D($.yakuza1_km3, 8.0, 8.0, 8.0, false /* FALSE */)) || !($.player.isInModel(128 /* CAR_YARDIE */)) || !($.player.isStopped())) {
+    await asyncWait(0);
+    //"The contact is dead!"
+    if (Char.IsDead($.yakuza1_km3)) {
+      //"The contact is dead!"
+      Text.PrintNow("KM3_10", 5000, 1);
+      $.flag_yakuza1_km3_dead = 1;
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"Get a Yardie car and get on with the mission!"
+    if (!($.player.isInModel(128 /* CAR_YARDIE */)) && $.flag_player_had_car_message_km3 == 0) {
+      //"Get a Yardie car and get on with the mission!"
+      Text.PrintNow("KM3_8", 7000, 1);
+      $.radar_blip_ped1_km3.remove();
+      $.flag_player_had_car_message_km3 = 1;
+      $.blob_flag = 0;
+    }
+    if ($.player.isInModel(128 /* CAR_YARDIE */) && $.flag_player_had_car_message_km3 == 1) {
+      $.radar_blip_ped1_km3 = Blip.AddForChar($.yakuza1_km3);
+      $.flag_player_had_car_message_km3 = 0;
+      $.blob_flag = 1;
+    }
+  }
+  $.yakuza1_km3.followPlayer($.player);
+  // waiting for the yakuza guy to get into the players car and give his message
+  $.radar_blip_ped1_km3.remove();
+  //OR NOT IS_PLAYER_STOPPED player
+  //"The contact is dead!"
+  //"Get a Yardie car and get on with the mission!"
+  //"You have not got the information from the contact go back and get it."
+  while (!($.player.locateInCarChar3D($.yakuza1_km3, 1.0, 1.0, 3.0, false /* FALSE */)) || !($.player.isInModel(128 /* CAR_YARDIE */))) {
+    await asyncWait(0);
+    //"The contact is dead!"
+    if (Char.IsDead($.yakuza1_km3)) {
+      //"The contact is dead!"
+      Text.PrintNow("KM3_10", 5000, 1);
+      $.flag_yakuza1_km3_dead = 1;
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"Get a Yardie car and get on with the mission!"
+    if (!($.player.isInModel(128 /* CAR_YARDIE */)) && $.flag_player_had_car_message_km3 == 0) {
+      //"Get a Yardie car and get on with the mission!"
+      Text.PrintNow("KM3_8", 7000, 1);
+      $.radar_blip_ped1_km3.remove();
+      $.flag_player_had_car_message_km3 = 1;
+      $.blob_flag = 0;
+    }
+    if ($.player.isInModel(128 /* CAR_YARDIE */) && $.flag_player_had_car_message_km3 == 1) {
+      $.radar_blip_ped1_km3 = Blip.AddForChar($.yakuza1_km3);
+      $.flag_player_had_car_message_km3 = 0;
+      $.blob_flag = 1;
+    }
+    //"You have not got the information from the contact go back and get it."
+    if (!($.yakuza1_km3.isInPlayersGroup($.player)) && $.flag_yakuza_message_km3 == 0) {
+      //"You have not got the information from the contact go back and get it."
+      Text.PrintNow("HEY9", 5000, 1);
+      $.radar_blip_ped1_km3 = Blip.AddForChar($.yakuza1_km3);
+      $.flag_yakuza_message_km3 = 1;
+    }
+    if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false /* FALSE */) && $.flag_yakuza_message_km3 == 1) {
+      $.yakuza1_km3.followPlayer($.player);
+      $.radar_blip_ped1_km3.remove();
+      $.flag_yakuza_message_km3 = 0;
+    }
+  }
+  $.radar_blip_ped1_km3.remove();
+  //"Okay the meeting is being held at XXXXXXX!"
+  Text.PrintNow("KM3_3", 5000, 1);
+  // Colombian car 1
+  $.radar_blip_coord2_km3 = Blip.AddForCoord(231.1, -26.3, -100.0);
+  $.colombian_car1_km3 = Car.Create(131 /* CAR_COLUMB */, 230.3, -42.2, -100.0);
+  $.colombian_car1_km3.setHeading(0.0);
+  $.colombian_car1_km3.setOnlyDamagedByPlayer(true /* TRUE */);
+  $.colombian_car1_km3.changeLock(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+  // Colombian car 2
+  $.flag_car1_created_km3 = 1;
+  $.colombian_car2_km3 = Car.Create(131 /* CAR_COLUMB */, 235.9, -41.3, -100.0);
+  $.colombian_car2_km3.setHeading(0.0);
+  $.colombian_car2_km3.setOnlyDamagedByPlayer(true /* TRUE */);
+  $.colombian_car2_km3.changeLock(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+  // creates colombian 1 in car 1
+  $.flag_car2_created_km3 = 1;
+  $.colombian1_km3 = Char.CreateInsideCar($.colombian_car1_km3, 12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`);
+  //AK47 set to infinate ammo
+  $.colombian1_km3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000);
+  $.colombian1_km3.clearThreatSearch();
+  // creates colombian 2 in car 1
+  $.colombian_car1_km3.setIdle();
+  $.colombian2_km3 = Char.CreateAsPassenger($.colombian_car1_km3, 12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 0);
+  //set to infinate ammo
+  $.colombian2_km3.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  // creates colombian 5 in car 2
+  $.colombian2_km3.clearThreatSearch();
+  $.colombian5_km3 = Char.CreateInsideCar($.colombian_car2_km3, 12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`);
+  //set to infinate ammo
+  $.colombian5_km3.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  $.colombian_car2_km3.setIdle();
+  // creates colombian 6 in car 2
+  $.colombian5_km3.clearThreatSearch();
+  $.colombian6_km3 = Char.CreateAsPassenger($.colombian_car2_km3, 12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 0);
+  //AK47 set to infinate ammo
+  $.colombian6_km3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000);
+  // waiting for the player to get to the meeting
+  $.colombian6_km3.clearThreatSearch();
+  $.blob_flag = 1;
+  //"You have left your contact behind go and get him!"
+  //"The Cartel have been attacked and the briefcase has not been recovered.!"
+  //"The Cartel have been attacked and the briefcase has not been recovered.!
+  //"One of the Colombians is dead, the deals off."
+  //"Get a Yardie car and get on with the mission!
+  //"You have been seen the deals off"
+  while (!($.player.locateStoppedInCar2D(231.1, -26.3, 6.0, 6.0, $.blob_flag)) || !($.player.isInModel(128 /* CAR_YARDIE */))) {
+    await asyncWait(0);
+    //"You have left your contact behind go and get him!"
+    if ($.flag_yakuza1_km3_dead == 0) {
+      //"You have left your contact behind go and get him!"
+      if (Char.IsDead($.yakuza1_km3)) {
+        $.flag_yakuza1_km3_dead = 1;
+      }
+      else {
+        //"You have left your contact behind go and get him!"
+        if (!($.yakuza1_km3.isInPlayersGroup($.player)) && $.flag_blip_on_yakuza_km3 == 0) {
+          //"You have left your contact behind go and get him!"
+          Text.PrintNow("HEY7", 5000, 1);
+          $.radar_blip_ped1_km3 = Blip.AddForChar($.yakuza1_km3);
+          $.radar_blip_coord2_km3.remove();
+          $.flag_blip_on_yakuza_km3 = 1;
+          $.blob_flag = 0;
+        }
+        if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_yakuza_km3 == 1) {
+          $.yakuza1_km3.followPlayer($.player);
+          $.radar_blip_ped1_km3.remove();
+          $.radar_blip_coord2_km3 = Blip.AddForCoord(231.1, -26.3, -100.0);
+          $.flag_blip_on_yakuza_km3 = 0;
+          $.blob_flag = 1;
+        }
+      }
+    }
+    //"The Cartel have been attacked and the briefcase has not been recovered.!"
+    if (Car.IsDead($.colombian_car1_km3)) {
+      $.flag_colombian_car1_dead_km3 = 1;
+      //"The Cartel have been attacked and the briefcase has not been recovered.!"
+      Text.PrintNow("KM3_11", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"The Cartel have been attacked and the briefcase has not been recovered.!
+    if (Car.IsDead($.colombian_car2_km3)) {
+      $.flag_colombian_car2_dead_km3 = 1;
+      //"The Cartel have been attacked and the briefcase has not been recovered.!
+      Text.PrintNow("KM3_11", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian1_km3)) {
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian2_km3)) {
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian5_km3)) {
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian6_km3)) {
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"Get a Yardie car and get on with the mission!
+    if (!($.player.isInModel(128 /* CAR_YARDIE */)) && $.flag_player_had_car_message_km3 == 0) {
+      //"Get a Yardie car and get on with the mission!
+      Text.PrintNow("KM3_8", 7000, 1);
+      $.radar_blip_coord2_km3.remove();
+      $.flag_player_had_car_message_km3 = 1;
+      $.blob_flag = 0;
+    }
+    if ($.player.isInModel(128 /* CAR_YARDIE */) && $.flag_player_had_car_message_km3 == 1) {
+      $.radar_blip_coord2_km3 = Blip.AddForCoord(231.1, -26.3, -100.0);
+      $.flag_player_had_car_message_km3 = 0;
+      $.blob_flag = 1;
+    }
+    //"You have been seen the deals off"
+    if ($.player.locateAnyMeans2D(231.1, -26.3, 10.0, 10.0, false /* FALSE */)) {
+      //"You have been seen the deals off"
+      if (!($.player.isInModel(128 /* CAR_YARDIE */)) || $.player.isShooting()) {
+        //"You have been seen the deals off"
+        Text.PrintNow("KM3_14", 7000, 1);
+        // SCM GOSUB attack_player
+        await attack_player();
+        // fallback if label was not emitted as async function: no-op continues linearly
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+    }
+  }
+  $.radar_blip_coord2_km3.remove();
+  if ($.flag_colombian_car1_dead_km3 == 0) {
+    $.colombian_car1_km3.setOnlyDamagedByPlayer(false /* FALSE */);
+  }
+  if ($.flag_colombian_car2_dead_km3 == 0) {
+    $.colombian_car2_km3.setOnlyDamagedByPlayer(false /* FALSE */);
+  }
+  //"Press the horn to get the deal going, as soon as the Columbians are out of the car kill them all!"
+  // waiting for the player to press the horn
+  Text.PrintNow("KM3_5", 7000, 1);
+  $.blob_flag = 1;
+  //"You have left your contact behind go and get him!"
+  //"The vehicle's KM3_11!
+  //"One of the Colombians is dead, the deals off."
+  //"You have been seen the deals off"
+  while (!($.player.isPressingHorn()) || !($.player.locateStoppedInCar2D(231.1, -26.3, 6.0, 6.0, $.blob_flag)) || !($.player.isInModel(128 /* CAR_YARDIE */))) {
+    await asyncWait(0);
+    //"You have left your contact behind go and get him!"
+    if ($.flag_yakuza1_km3_dead == 0) {
+      //"You have left your contact behind go and get him!"
+      if (Char.IsDead($.yakuza1_km3)) {
+        $.flag_yakuza1_km3_dead = 1;
+      }
+      else {
+        //"You have left your contact behind go and get him!"
+        if (!($.yakuza1_km3.isInPlayersGroup($.player)) && $.flag_blip_on_yakuza_km3 == 0) {
+          //"You have left your contact behind go and get him!"
+          Text.PrintNow("HEY7", 5000, 1);
+          $.radar_blip_ped1_km3 = Blip.AddForChar($.yakuza1_km3);
+          $.radar_blip_coord2_km3.remove();
+          $.flag_blip_on_yakuza_km3 = 1;
+          $.blob_flag = 0;
+        }
+        if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_yakuza_km3 == 1) {
+          $.yakuza1_km3.followPlayer($.player);
+          $.radar_blip_ped1_km3.remove();
+          $.radar_blip_coord2_km3 = Blip.AddForCoord(231.1, -26.3, -100.0);
+          $.flag_blip_on_yakuza_km3 = 0;
+          $.blob_flag = 1;
+        }
+        $.yakuza1_km3.setThreatSearch(12 /* THREAT_GANG_COLOMBIAN */);
+      }
+    }
+    //"The vehicle's KM3_11!
+    if (Car.IsDead($.colombian_car1_km3)) {
+      $.flag_colombian_car1_dead_km3 = 1;
+      //"The vehicle's KM3_11!
+      Text.PrintNow("KM3_11", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"The vehicle's KM3_11!
+    if (Car.IsDead($.colombian_car2_km3)) {
+      $.flag_colombian_car2_dead_km3 = 1;
+      //"The vehicle's KM3_11!
+      Text.PrintNow("KM3_11", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian1_km3)) {
+      $.flag_colombian1_dead_km3 = 1;
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian2_km3)) {
+      $.flag_colombian2_dead_km3 = 1;
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian5_km3)) {
+      $.flag_colombian5_dead_km3 = 1;
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian6_km3)) {
+      $.flag_colombian6_dead_km3 = 1;
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"You have been seen the deals off"
+    if ($.player.locateAnyMeans2D(231.1, -26.3, 10.0, 10.0, false /* FALSE */)) {
+      //"You have been seen the deals off"
+      if (!($.player.isInModel(128 /* CAR_YARDIE */)) || $.player.isShooting()) {
+        //"You have been seen the deals off"
+        Text.PrintNow("KM3_14", 7000, 1);
+        // SCM GOSUB attack_player
+        await attack_player();
+        // fallback if label was not emitted as async function: no-op continues linearly
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+    }
+  }
+  Text.ClearThisPrint("KM3_5");
+  Hud.SwitchWidescreen(true /* ON */);
+  $.player.setControl(false /* OFF */);
+  Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+  Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+  World.ClearArea(252.0, -45.75, 20.8, 1.0, true /* TRUE */);
+  Camera.SetFixedPosition(252.0, -45.75, 20.8, 0.0, 0.0, 0.0);
+  Camera.PointAtPoint(251.1, -45.2, 20.6, 2 /* JUMP_CUT */);
+  $.colombian1_km3.setObjLeaveCar($.colombian_car1_km3);
+  $.colombian2_km3.setObjLeaveCar($.colombian_car1_km3);
+  $.colombian5_km3.setObjLeaveCar($.colombian_car2_km3);
+  $.colombian6_km3.setObjLeaveCar($.colombian_car2_km3);
+  if (!(Car.IsDead($.colombian_car1_km3))) {
+    $.colombian_car1_km3.changeLock(1 /* CARLOCK_UNLOCKED */);
+  }
+  // waiting for the guys to get out of the car
+  if (!(Car.IsDead($.colombian_car2_km3))) {
+    $.colombian_car2_km3.changeLock(1 /* CARLOCK_UNLOCKED */);
+  }
+  //"The Cartel have been attacked and the briefcase has not been recovered."
+  //"One of the Colombians is dead, the deals off."
+  //IF NOT IS_CHAR_DEAD colombian2_km3
+  //	POINT_CAMERA_AT_CHAR colombian2_km3 FOLLOWPED JUMP_CUT
+  //ENDIF
+  while ($.colombian1_km3.isInCar($.colombian_car1_km3) && $.colombian2_km3.isInCar($.colombian_car1_km3) && $.colombian5_km3.isInCar($.colombian_car2_km3) && $.colombian6_km3.isInCar($.colombian_car2_km3)) {
+    await asyncWait(0);
+    if ($.flag_yakuza1_km3_dead == 0) {
+      if (Char.IsDead($.yakuza1_km3)) {
+        $.flag_yakuza1_km3_dead = 1;
+      }
+    }
+    //"The Cartel have been attacked and the briefcase has not been recovered."
+    if (Car.IsDead($.colombian_car1_km3)) {
+      $.flag_colombian_car1_dead_km3 = 1;
+      //"The Cartel have been attacked and the briefcase has not been recovered."
+      Text.PrintNow("KM3_11", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"The Cartel have been attacked and the briefcase has not been recovered."
+    if (Car.IsDead($.colombian_car2_km3)) {
+      $.flag_colombian_car2_dead_km3 = 1;
+      //"The Cartel have been attacked and the briefcase has not been recovered."
+      Text.PrintNow("KM3_11", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian1_km3)) {
+      $.flag_colombian1_dead_km3 = 1;
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian2_km3)) {
+      $.flag_colombian2_dead_km3 = 1;
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian5_km3)) {
+      $.flag_colombian5_dead_km3 = 1;
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+    //"One of the Colombians is dead, the deals off."
+    if (Char.IsDead($.colombian6_km3)) {
+      $.flag_colombian6_dead_km3 = 1;
+      //"One of the Colombians is dead, the deals off."
+      Text.PrintNow("KM3_9", 5000, 1);
+      // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+      throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+    }
+  }
+  //"The Cartel have been attacked and the briefcase has not been recovered."
+  //"One of the Colombians is dead, the deals off."
+  if ($.flag_colombian2_dead_km3 == 0) {
+    $.colombian2_km3.setObjGotoCoordOnFoot(233.3, -37.1);
+    //"The Cartel have been attacked and the briefcase has not been recovered."
+    //"One of the Colombians is dead, the deals off."
+    while (!($.colombian2_km3.isObjectivePassed())) {
+      await asyncWait(0);
+      if ($.flag_yakuza1_km3_dead == 0) {
+        if (Char.IsDead($.yakuza1_km3)) {
+          $.flag_yakuza1_km3_dead = 1;
+        }
+      }
+      //"The Cartel have been attacked and the briefcase has not been recovered."
+      if (Car.IsDead($.colombian_car1_km3)) {
+        $.flag_colombian_car1_dead_km3 = 1;
+        //"The Cartel have been attacked and the briefcase has not been recovered."
+        Text.PrintNow("KM3_11", 5000, 1);
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+      //"The Cartel have been attacked and the briefcase has not been recovered."
+      if (Car.IsDead($.colombian_car2_km3)) {
+        $.flag_colombian_car2_dead_km3 = 1;
+        //"The Cartel have been attacked and the briefcase has not been recovered."
+        Text.PrintNow("KM3_11", 5000, 1);
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+      //"One of the Colombians is dead, the deals off."
+      if (Char.IsDead($.colombian1_km3)) {
+        $.flag_colombian1_dead_km3 = 1;
+        //"One of the Colombians is dead, the deals off."
+        Text.PrintNow("KM3_9", 5000, 1);
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+      //"One of the Colombians is dead, the deals off."
+      if (Char.IsDead($.colombian2_km3)) {
+        $.flag_colombian2_dead_km3 = 1;
+        //"One of the Colombians is dead, the deals off."
+        Text.PrintNow("KM3_9", 5000, 1);
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+      //"One of the Colombians is dead, the deals off."
+      if (Char.IsDead($.colombian5_km3)) {
+        $.flag_colombian5_dead_km3 = 1;
+        //"One of the Colombians is dead, the deals off."
+        Text.PrintNow("KM3_9", 5000, 1);
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+      //"One of the Colombians is dead, the deals off."
+      if (Char.IsDead($.colombian6_km3)) {
+        $.flag_colombian6_dead_km3 = 1;
+        //"One of the Colombians is dead, the deals off."
+        Text.PrintNow("KM3_9", 5000, 1);
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+    }
+    $.money_km3 = Pickup.Create(1319 /* briefcase */, 3 /* PICKUP_ONCE */, 233.7, -36.0, 15.8);
+    $.flag_money_created_km3 = 1;
+  }
+  Hud.SwitchWidescreen(false /* OFF */);
+  Camera.RestoreJumpcut();
+  $.player.setControl(true /* ON */);
+  Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+  Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+  //"Kill all of the Colombians, destory the vehicles and recover the briefcase."
+  Text.PrintNow("KM3_12", 5000, 1);
+  timera = 0;
+  //"Briefcase collected!"
+  while ($.flag_go_for_player_km3 == 0) {
+    await asyncWait(0);
+    if (timera >= 4000) {
+      $.flag_go_for_player_km3 = 1;
+    }
+    if ($.flag_yakuza1_km3_dead == 0) {
+      if (Char.IsDead($.yakuza1_km3)) {
+        $.flag_yakuza1_km3_dead = 1;
+      }
+      else {
+        if ($.flag_helper_not_in_car_km3 == 0) {
+          if ($.yakuza1_km3.isInAnyCar()) {
+            $.car3_km3 = $.yakuza1_km3.storeCarIsIn();
+            if (!(Car.IsDead($.car3_km3))) {
+              $.yakuza1_km3.leaveGroup();
+              $.yakuza1_km3.setObjLeaveCar($.car3_km3);
+            }
+          }
+          else {
+            $.flag_helper_not_in_car_km3 = 1;
+          }
+        }
+        if ($.flag_helper_not_in_car_km3 == 1) {
+          $.yakuza1_km3.setThreatSearch(12 /* THREAT_GANG_COLOMBIAN */);
+          $.yakuza1_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        }
+      }
+    }
+    if ($.flag_colombian1_dead_km3 == 0) {
+      if (Char.IsDead($.colombian1_km3)) {
+        ++$.counter_number_of_colombians_killed_km3;
+        $.flag_go_for_player_km3 = 1;
+        $.flag_colombian1_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian2_dead_km3 == 0) {
+      if (Char.IsDead($.colombian2_km3)) {
+        ++$.counter_number_of_colombians_killed_km3;
+        $.flag_go_for_player_km3 = 1;
+        $.flag_colombian2_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian5_dead_km3 == 0) {
+      if (Char.IsDead($.colombian5_km3)) {
+        ++$.counter_number_of_colombians_killed_km3;
+        $.flag_go_for_player_km3 = 1;
+        $.flag_colombian5_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian6_dead_km3 == 0) {
+      if (Char.IsDead($.colombian6_km3)) {
+        ++$.counter_number_of_colombians_killed_km3;
+        $.flag_go_for_player_km3 = 1;
+        $.flag_colombian6_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian_car1_dead_km3 == 0) {
+      if (Car.IsDead($.colombian_car1_km3)) {
+        ++$.counter_all_colombian_cars_dead_km3;
+        $.flag_go_for_player_km3 = 1;
+        $.flag_colombian_car1_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian_car2_dead_km3 == 0) {
+      if (Car.IsDead($.colombian_car2_km3)) {
+        ++$.counter_all_colombian_cars_dead_km3;
+        $.flag_go_for_player_km3 = 1;
+        $.flag_colombian_car2_dead_km3 = 1;
+      }
+    }
+    if (!($.player.isInModel(128 /* CAR_YARDIE */))) {
+      $.flag_go_for_player_km3 = 1;
+    }
+    if (!($.player.locateAnyMeans2D(231.1, -26.3, 6.0, 6.0, false /* FALSE */))) {
+      $.flag_go_for_player_km3 = 1;
+    }
+    if ($.player.locateAnyMeans2D(231.1, -26.3, 6.0, 6.0, false /* FALSE */)) {
+      if ($.player.isShooting()) {
+        $.flag_go_for_player_km3 = 1;
+      }
+    }
+    //"Briefcase collected!"
+    if ($.money_been_picked_up_km3 == 0) {
+      //"Briefcase collected!"
+      if ($.money_km3.hasBeenCollected()) {
+        //"Briefcase collected!"
+        Text.PrintNow("KM4_8", 5000, 1);
+        $.flag_go_for_player_km3 = 1;
+        $.money_been_picked_up_km3 = 1;
+      }
+    }
+  }
+}
+
+async function kill_player_km3() {
+  Audio.PlayMissionAudio();
+  //"Hey... your not who we were expecting!"
+  // briefcase
+  Text.PrintNow("KM3_7", 7000, 1);
+  // car 1
+  if ($.money_been_picked_up_km3 == 0) {
+    $.radar_blip_money_km3 = Blip.AddForPickup($.money_km3);
+  }
+  // car 2
+  if ($.flag_colombian_car1_dead_km3 == 0) {
+    $.radar_blip_colombian_car1_km3 = Blip.AddForCar($.colombian_car1_km3);
+  }
+  // colombian1
+  if ($.flag_colombian_car2_dead_km3 == 0) {
+    $.radar_blip_colombian_car2_km3 = Blip.AddForCar($.colombian_car2_km3);
+  }
+  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT colombian1_km3 player
+  // colombian2
+  if ($.flag_colombian1_dead_km3 == 0) {
+    $.colombian1_km3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+    $.colombian1_km3.setThreatSearch(10 /* THREAT_GANG_YAKUZA */);
+    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT colombian1_km3 player
+    $.colombian1_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.radar_blip_colombian1_km3 = Blip.AddForChar($.colombian1_km3);
+  }
+  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT colombian2_km3 player
+  // colombian5
+  if ($.flag_colombian2_dead_km3 == 0) {
+    $.colombian2_km3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+    $.colombian2_km3.setThreatSearch(10 /* THREAT_GANG_YAKUZA */);
+    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT colombian2_km3 player
+    $.colombian2_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.radar_blip_colombian2_km3 = Blip.AddForChar($.colombian2_km3);
+  }
+  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS colombian5_km3 player
+  // colombian6
+  if ($.flag_colombian5_dead_km3 == 0) {
+    $.radar_blip_colombian5_km3 = Blip.AddForChar($.colombian5_km3);
+    $.colombian5_km3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+    $.colombian5_km3.setThreatSearch(10 /* THREAT_GANG_YAKUZA */);
+    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS colombian5_km3 player
+    $.colombian5_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  }
+  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT colombian6_km3 player
+  if ($.flag_colombian6_dead_km3 == 0) {
+    $.radar_blip_colombian6_km3 = Blip.AddForChar($.colombian6_km3);
+    $.colombian6_km3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+    $.colombian6_km3.setThreatSearch(10 /* THREAT_GANG_YAKUZA */);
+    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT colombian6_km3 player
+    $.colombian6_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  }
+  // waiting for all the columbains and their cars to be destroyed
+  timerb = 0;
+  //"Briefcase collected!"
+  while (!($.counter_number_of_colombians_killed_km3 == 4) || !($.counter_all_colombian_cars_dead_km3 == 2) || !($.money_been_picked_up_km3 == 1)) {
+    await asyncWait(0);
+    if ($.flag_trap_audio_removed_km3 == 0) {
+      if (Audio.HasMissionAudioFinished()) {
+        Text.ClearThisPrint("KM3_7");
+        $.flag_trap_audio_removed_km3 = 1;
+      }
+    }
+    //"Briefcase collected!"
+    if ($.money_been_picked_up_km3 == 0) {
+      //"Briefcase collected!"
+      if ($.money_km3.hasBeenCollected()) {
+        //"Briefcase collected!"
+        Text.PrintNow("KM4_8", 5000, 1);
+        $.radar_blip_money_km3.remove();
+        $.money_been_picked_up_km3 = 1;
+      }
+    }
+    if ($.flag_yakuza1_km3_dead == 0) {
+      if (Char.IsDead($.yakuza1_km3)) {
+        $.flag_yakuza1_km3_dead = 1;
+      }
+      else {
+        if ($.flag_helper_not_in_car_km3 == 0) {
+          if ($.yakuza1_km3.isInAnyCar()) {
+            $.car3_km3 = $.yakuza1_km3.storeCarIsIn();
+            if (!(Car.IsDead($.car3_km3))) {
+              $.yakuza1_km3.leaveGroup();
+              $.yakuza1_km3.setObjLeaveCar($.car3_km3);
+            }
+          }
+          else {
+            $.flag_helper_not_in_car_km3 = 1;
+          }
+        }
+        if ($.flag_helper_not_in_car_km3 == 1) {
+          $.yakuza1_km3.setThreatSearch(12 /* THREAT_GANG_COLOMBIAN */);
+          $.yakuza1_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        }
+      }
+    }
+    if ($.counter_number_of_colombians_killed_km3 == 4) {
+      if (!(Char.IsDead($.yakuza1_km3))) {
+        if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 20.0, 20.0, false /* FALSE */)) {
+          $.yakuza1_km3.followPlayer($.player);
+        }
+      }
+    }
+    if ($.flag_colombian1_dead_km3 == 0) {
+      if (Char.IsDead($.colombian1_km3)) {
+        $.radar_blip_colombian1_km3.remove();
+        ++$.counter_number_of_colombians_killed_km3;
+        $.flag_colombian1_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian2_dead_km3 == 0) {
+      if (Char.IsDead($.colombian2_km3)) {
+        $.radar_blip_colombian2_km3.remove();
+        ++$.counter_number_of_colombians_killed_km3;
+        $.flag_colombian2_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian5_dead_km3 == 0) {
+      if (Char.IsDead($.colombian5_km3)) {
+        $.radar_blip_colombian5_km3.remove();
+        ++$.counter_number_of_colombians_killed_km3;
+        $.flag_colombian5_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian6_dead_km3 == 0) {
+      if (Char.IsDead($.colombian6_km3)) {
+        $.radar_blip_colombian6_km3.remove();
+        ++$.counter_number_of_colombians_killed_km3;
+        $.flag_colombian6_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian_car1_dead_km3 == 0) {
+      if (Car.IsDead($.colombian_car1_km3)) {
+        $.radar_blip_colombian_car1_km3.remove();
+        ++$.counter_all_colombian_cars_dead_km3;
+        $.flag_colombian_car1_dead_km3 = 1;
+      }
+    }
+    if ($.flag_colombian_car2_dead_km3 == 0) {
+      if (Car.IsDead($.colombian_car2_km3)) {
+        $.radar_blip_colombian_car2_km3.remove();
+        ++$.counter_all_colombian_cars_dead_km3;
+        $.flag_colombian_car2_dead_km3 = 1;
+      }
+    }
+  }
+  if (!(Char.IsDead($.yakuza1_km3))) {
+    if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 20.0, 20.0, false /* FALSE */)) {
+      $.yakuza1_km3.followPlayer($.player);
+    }
+  }
+  //"Take the briefcase back to the casino."
+  Text.PrintNow("KM3_13", 5000, 1);
+  $.radar_blip_coord3_km3 = Blip.AddForCoord(452.3, -1465.8, 17.6);
+  $.blob_flag = 1;
+  while (!($.player.locateStoppedAnyMeans3D(452.3, -1465.8, 17.6, 4.0, 4.0, 4.0, $.blob_flag))) {
+    await asyncWait(0);
+  }
+  $.radar_blip_coord3_km3.remove();
+  Hud.SwitchWidescreen(true /* ON */);
+  $.player.setControl(false /* OFF */);
+  Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+  Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+  $.script_controlled_player = $.player.getChar();
+  //"The vehicles wrecked!"
+  if ($.player.isInAnyCar()) {
+    $.car_cut_km3 = $.player.storeCarIsIn();
+    $.script_controlled_player.setObjLeaveCar($.car_cut_km3);
+    //"The vehicles wrecked!"
+    while ($.player.isInCar($.car_cut_km3)) {
+      await asyncWait(0);
+      //"The vehicles wrecked!"
+      if (Car.IsDead($.car_cut_km3)) {
+        //"The vehicles wrecked!"
+        Text.PrintNow("WRECKED", 5000, 1);
+        // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO mission_kenji3_failed"); // fallback: would break linear control flow
+      }
+    }
+  }
+  Camera.SetFixedPosition(420.41, -1479.59, 26.13, 0.0, 0.0, 0.0);
+  Camera.PointAtPoint(420.87, -1478.75, 26.38, 2 /* JUMP_CUT */);
+  $.player.setCoordinates(425.85, -1477.16, -100.0);
+  $.script_controlled_player.setObjGotoCoordOnFoot(428.57, -1465.01);
+  while (!($.script_controlled_player.isObjectivePassed())) {
+    await asyncWait(0);
+  }
+  Camera.SetFadingColor(0, 0, 0);
+  Camera.DoFade(1000, 0 /* FADE_OUT */);
+  while (Camera.GetFadingStatus()) {
+    await asyncWait(0);
+  }
+  $.player.setCoordinates(426.81, -1486.40, 17.64);
+  $.player.setHeading(180.0);
+  Camera.RestoreJumpcut();
+  Camera.SetInFrontOfPlayer();
+  Camera.SetFadingColor(0, 0, 0);
+  Camera.DoFade(1000, 1 /* FADE_IN */);
+  while (Camera.GetFadingStatus()) {
+    await asyncWait(0);
+  }
+  Hud.SwitchWidescreen(false /* OFF */);
+  $.player.setControl(true /* ON */);
+  Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+  Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+  }
+  // Mission Kenji3 failed
+  // SCM GOTO → mission_kenji3_passed (not lowered; manual jump required)
+  throw new Error("unresolved GOTO mission_kenji3_passed"); // fallback: would break linear control flow
+}
+
+async function mission_kenji3_failed() {
+  //"Mission Failed!"
+  Text.PrintBig("M_FAIL", 5000, 1);
+  // mission Kenji3 passed
+  return;
+}
+
+async function mission_kenji3_passed() {
+  $.flag_kenji_mission3_passed = 1;
+  Stat.RegisterMissionPassed("KM3");
+  Stat.PlayerMadeProgress(1);
+  //"Mission Passed!"
+  Text.PrintWithNumberBig("m_pass", 25000, 5000, 1);
+  Audio.PlayMissionPassedTune(1);
+  $.player.addScore(25000);
+  $.player.clearWantedLevel();
+  // START_NEW_SCRIPT kenji_mission4_loop
+  // mission cleanup
+  return;
+}
+
+async function mission_cleanup_kenji3() {
+  $.flag_player_on_mission = 0;
+  $.flag_player_on_kenji_mission = 0;
+  if (!(Car.IsDead($.colombian_car1_km3))) {
+    if ($.flag_colombian_car1_dead_km3 == 0) {
+      $.colombian_car1_km3.changeLock(1 /* CARLOCK_UNLOCKED */);
+      $.colombian_car1_km3.setOnlyDamagedByPlayer(false /* FALSE */);
+    }
+  }
+  if (!(Car.IsDead($.colombian_car2_km3))) {
+    if ($.flag_colombian_car2_dead_km3 == 0) {
+      $.colombian_car2_km3.changeLock(1 /* CARLOCK_UNLOCKED */);
+      $.colombian_car2_km3.setOnlyDamagedByPlayer(false /* FALSE */);
+    }
+  }
+  if ($.flag_money_created_km3 == 1) {
+    if ($.money_been_picked_up_km3 == 0) {
+      $.money_km3.remove();
+    }
+  }
+  Streaming.MarkModelAsNoLongerNeeded(car`YARDIE`);
+  Streaming.MarkModelAsNoLongerNeeded(car`COLUMB`);
+  Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_A`);
+  Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YARDIE_A`);
+  Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_A`);
+  $.radar_blip_ped1_km3.remove();
+  $.radar_blip_coord2_km3.remove();
+  $.radar_blip_colombian_car1_km3.remove();
+  $.radar_blip_colombian_car2_km3.remove();
+  $.radar_blip_colombian1_km3.remove();
+  $.radar_blip_colombian2_km3.remove();
+  $.radar_blip_colombian5_km3.remove();
+  $.radar_blip_colombian6_km3.remove();
+  $.radar_blip_money_km3.remove();
+  $.radar_blip_coord3_km3.remove();
+  Mission.Finish();
+  return;
+}
+
+async function attack_player() {
+  // colombian2
+  if ($.flag_colombian1_dead_km3 == 0) {
+    $.colombian1_km3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+    $.colombian1_km3.setThreatSearch(10 /* THREAT_GANG_YAKUZA */);
+    $.colombian1_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.colombian1_km3.setObjKillPlayerAnyMeans($.player);
+  }
+  // colombian5
+  if ($.flag_colombian2_dead_km3 == 0) {
+    $.colombian2_km3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+    $.colombian2_km3.setThreatSearch(10 /* THREAT_GANG_YAKUZA */);
+    $.colombian2_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.colombian2_km3.setObjKillPlayerAnyMeans($.player);
+  }
+  // colombian6
+  if ($.flag_colombian5_dead_km3 == 0) {
+    $.colombian5_km3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+    $.colombian5_km3.setThreatSearch(10 /* THREAT_GANG_YAKUZA */);
+    $.colombian5_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.colombian5_km3.setObjKillPlayerAnyMeans($.player);
+  }
+  if ($.flag_colombian6_dead_km3 == 0) {
+    $.colombian6_km3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+    $.colombian6_km3.setThreatSearch(10 /* THREAT_GANG_YAKUZA */);
+    $.colombian6_km3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.colombian6_km3.setObjKillPlayerAnyMeans($.player);
+  }
+  return;
+}
+
+export async function kenji3() {
+  // *****************************************************************************************
+  // *****************************************Kenji Mission 3*********************************
+  // *******************************************Deal Steal************************************
+  // MissionBoundary
+  // Mission start stuff
+  // ScriptName
+  // SCM GOSUB mission_start_kenji3
+  await mission_start_kenji3();
+  // fallback if label was not emitted as async function: no-op continues linearly
+  if (HAS_DEATHARREST_BEEN_EXECUTED()) {
+    // SCM GOSUB mission_kenji3_failed
+    await mission_kenji3_failed();
+    // fallback if label was not emitted as async function: no-op continues linearly
+  }
+  // SCM GOSUB mission_cleanup_kenji3
+  await mission_cleanup_kenji3();
+  // fallback if label was not emitted as async function: no-op continues linearly
+  // Variables for mission
+  // MissionBoundary
+  // VAR_INT colombian_car1_km3
+  // VAR_INT colombian_car2_km3
+  // VAR_INT colombian1_km3
+  // VAR_INT colombian2_km3
+  // VAR_INT colombian5_km3
+  // VAR_INT colombian6_km3
+  // VAR_INT yakuza1_km3
+  // VAR_INT counter_number_of_yardies_dead_km3
+  // VAR_INT radar_blip_yardie_car_km3
+  // VAR_INT radar_blip_ped1_km3
+  // VAR_INT radar_blip_coord2_km3
+  // VAR_INT flag_player_had_car_message_km3
+  // VAR_INT flag_player_had_repair_message_km3
+  // VAR_INT flag_player_been_bad_km3
+  // VAR_INT radar_blip_colombian_car1_km3
+  // VAR_INT radar_blip_colombian_car2_km3
+  // VAR_INT radar_blip_colombian1_km3
+  // VAR_INT radar_blip_colombian2_km3
+  // VAR_INT radar_blip_colombian5_km3
+  // VAR_INT radar_blip_colombian6_km3
+  // VAR_INT counter_number_of_colombians_killed_km3
+  // VAR_INT counter_all_colombian_cars_dead_km3
+  // VAR_INT flag_colombian1_dead_km3
+  // VAR_INT flag_colombian2_dead_km3
+  // VAR_INT flag_colombian5_dead_km3
+  // VAR_INT flag_colombian6_dead_km3
+  // VAR_INT flag_colombian_car1_dead_km3
+  // VAR_INT flag_colombian_car2_dead_km3
+  // TEST TO COME OUT
+  // VAR_INT car_km3
+  // VAR_INT flag_yakuza1_km3_dead
+  // VAR_INT car2_km3
+  // VAR_INT car3_km3
+  // VAR_INT car_cut_km3
+  // VAR_INT flag_blip_on_yakuza_km3
+  // VAR_INT flag_yakuza_message_km3
+  // VAR_INT flag_bloke_in_car_km3
+  // VAR_INT flag_car1_created_km3
+  // VAR_INT flag_car2_created_km3
+  // VAR_INT money_km3
+  // VAR_INT radar_blip_money_km3
+  // VAR_INT money_been_picked_up_km3
+  // VAR_INT radar_blip_coord3_km3
+  // VAR_INT flag_money_created_km3
+  // VAR_INT flag_go_for_player_km3
+  // VAR_INT flag_trap_audio_removed_km3
+  // ****************************************Mission Start************************************
+  // VAR_INT flag_helper_not_in_car_km3
+}
