@@ -43,38 +43,26 @@ async function mission_start_kenji1() {
   $.flag_player_had_dome_message_km1 = 0;
   $.flag_played_cop_radio_km1 = 0;
   {
-  // ****************************************START OF CUTSCENE********************************
-  /*
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_kenji1_failed
-  ENDIF
-  SET_FADING_COLOUR 0 0 0
-  DO_FADE 1500 FADE_OUT
-  PRINT_BIG ( KM1 ) 15000 2 //"Kanbu Bust out"
-  SWITCH_STREAMING OFF
-  */
-  // Cutscene stuff
   if ($.flag_need_wall_change_km1 == 1) {
     World.SwapNearestBuildingModel(328.026, -1090.262, 26.941, 2.0, 1332 /* police_celhole */, 1331 /* police_cell_wall */);
     $.flag_need_wall_change_km1 = 0;
   }
+  // Cutscene stuff
   Streaming.LoadSpecialCharacter(1, $.kenji);
   Streaming.RequestModel(ped`GANG_YAKUZA_A`);
   Streaming.RequestModel(casino_garden);
   Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH);
+  Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH);
   Streaming.LoadAllModelsNow();
-  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(ped`GANG_YAKUZA_A`)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(casino_garden))) {
     await asyncWait(0);
   }
+  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
   Cutscene.Load(k1_kbo);
   Cutscene.SetOffset(476.380, -1382.168, 67.347);
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
@@ -93,51 +81,44 @@ async function mission_start_kenji1() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 8392) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"My sister speaks highly of you,"
-  Text.PrintNow("KM1_A", 10000, 1);
+  Text.PrintNow("KM1_A", 10000, 1); //"My sister speaks highly of you,"
   while ($.cs_time < 9918) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"though I am yet to be convinced that a gaijin can offer anything but disappointment. We shall see..."
-  Text.PrintNow("KM1_E", 10000, 1);
+  Text.PrintNow("KM1_E", 10000, 1); //"though I am yet to be convinced that a gaijin can offer anything but disappointment. We shall see..."
   while ($.cs_time < 13732) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Perhaps you could help deal with a situation that has me at a disadvantage."
-  Text.PrintNow("KM1_B", 10000, 1);
+  Text.PrintNow("KM1_B", 10000, 1); //"Perhaps you could help deal with a situation that has me at a disadvantage."
   while ($.cs_time < 17547) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Of course failure has it's own disgrace."
-  Text.PrintNow("KM1_F", 10000, 1);
+  Text.PrintNow("KM1_F", 10000, 1); //"Of course failure has it's own disgrace."
   while ($.cs_time < 20683) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"A Yakuza Kanbu is in custody awaiting transfer for trial."
-  Text.PrintNow("KM1_C", 10000, 1);
+  Text.PrintNow("KM1_C", 10000, 1); //"A Yakuza Kanbu is in custody awaiting transfer for trial."
   while ($.cs_time < 23650) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"He is a valued member of the family."
-  Text.PrintNow("KM1_G", 10000, 1);
+  Text.PrintNow("KM1_G", 10000, 1); //"He is a valued member of the family."
   while ($.cs_time < 25430) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Break him out of custody and get him to the dojo."
-  Text.PrintNow("KM1_H", 10000, 1);
+  Text.PrintNow("KM1_H", 10000, 1); //"Break him out of custody and get him to the dojo."
   while ($.cs_time < 28749) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -159,39 +140,32 @@ async function mission_start_kenji1() {
   World.SwitchRubbish(true /* ON */);
   Camera.SetInFrontOfPlayer();
   await asyncWait(500);
-  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
   Camera.DoFade(1500, 1 /* FADE_IN */);
+  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
-  // *******************************************END OF CUTSCENE*******************************
   Streaming.MarkModelAsNoLongerNeeded(casino_garden);
-  //"Steal a cop car!"
-  Text.PrintNow("KM1_1", 5000, 1);
+  // *******************************************END OF CUTSCENE*******************************
+  Text.PrintNow("KM1_1", 5000, 1); //"Steal a cop car!"
   Streaming.RequestModel(rubble01);
   Streaming.RequestModel(rubble02);
   Audio.LoadMissionAudio(K1_A);
-  // waiting for the player to be in a cop car
   while (!(Streaming.HasModelLoaded(rubble01)) || !(Streaming.HasModelLoaded(rubble02)) || !(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
+  // waiting for the player to be in a cop car
   $.cell_beating = Sound.AddContinuous(326.4, -1092.4, 26.0, 77 /* SOUND_POLICE_CELL_BEATING_LOOP_L */);
   while (!($.player.isInModel(109 /* CAR_POLICE */))) {
     await asyncWait(0);
   }
   $.mission_cop_car_km1 = $.player.storeCarIsIn();
-  //"Get the car rigged with a bomb!"
-  Text.PrintNow("KM1_2", 5000, 1);
+  Text.PrintNow("KM1_2", 5000, 1); //"Get the car rigged with a bomb!"
   $.sphere_km1 = Sphere.Create(373.9, -576.4, 25.1, 4.0);
-  // waiting for the cop car to be rigged
   $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, 2 /* RADAR_SPRITE_BOMB */);
-  //"Get the car rigged with a bomb!"
-  //"Get a cop car and get on with the mission"
-  //"Drive the car...
+  // waiting for the cop car to be rigged
   while (!($.flag_car_got_bomb_km1 == 1)) {
     await asyncWait(0);
-    //"Get the car rigged with a bomb!"
-    //"Get a cop car and get on with the mission"
     if ($.player.isInModel(109 /* CAR_POLICE */)) {
       $.mission_cop_car_km1 = $.player.storeCarIsIn();
       if ($.flag_player_had_car_message_km1 == 1) {
@@ -201,36 +175,28 @@ async function mission_start_kenji1() {
         }
         $.flag_player_had_car_message_km1 = 0;
       }
-      //"Get the car rigged with a bomb!"
       if ($.mission_cop_car_km1.isArmedWithBomb(1 /* CARBOMB_TIMED */)) {
         $.flag_car_got_bomb_km1 = 1;
       }
       else {
-        //"Get the car rigged with a bomb!"
         if ($.flag_had_bomb_message_km1 == 0) {
-          //"Get the car rigged with a bomb!"
-          Text.PrintNow("KM1_2", 5000, 1);
+          Text.PrintNow("KM1_2", 5000, 1); //"Get the car rigged with a bomb!"
           $.flag_had_bomb_message_km1 = 1;
         }
       }
     }
     else {
-      //"Get a cop car and get on with the mission"
       if ($.flag_player_had_car_message_km1 == 0) {
-        //"Get a cop car and get on with the mission"
-        Text.PrintNow("KM1_4", 7000, 1);
+        Text.PrintNow("KM1_4", 7000, 1); //"Get a cop car and get on with the mission"
         $.radar_blip_coord1_km1.remove();
         $.sphere_km1.remove();
         $.flag_player_had_car_message_km1 = 1;
       }
       $.flag_had_bomb_message_km1 = 0;
     }
-    //"Drive the car...
     if ($.player.locateInCar2D(373.9, -576.4, 2.0, 2.0, false /* FALSE */)) {
-      //"Drive the car...
       if ($.flag_player_had_dome_message_km1 == 0) {
-        //"Drive the car...
-        Text.PrintHelp("KM1_13");
+        Text.PrintHelp("KM1_13"); //"Drive the car...
         $.sphere_km1.remove();
         $.flag_player_had_dome_message_km1 = 1;
       }
@@ -241,120 +207,63 @@ async function mission_start_kenji1() {
   }
   $.radar_blip_coord1_km1.remove();
   $.sphere_km1.remove();
-  //"Okay now go to the police station
-  Text.PrintNow("KM1_5", 7000, 1);
+  Text.PrintNow("KM1_5", 7000, 1); //"Okay now go to the police station
   $.radar_blip_coord2_km1 = Blip.AddForCoord(327.0, -1086.0, -100.0);
   $.blob_flag = 1;
-  // waiting for the player to activate the car bomb and the car to be in the area
   $.flag_blip_on_km1 = 1;
+  // waiting for the player to activate the car bomb and the car to be in the area
   $.blob_flag = 1;
-  // bombshop
-  // police station
-  //"Press circle to detonate the bomb, remember to get out of the way!"
-  //counter_bomb_km1 = 0
-  //"Get a bomb fitted to the car!"
-  //bombshop
-  //"Get a cop car and get on with the mission"
-  // Police station
   while ($.counter_bomb_km1 == 0) {
     await asyncWait(0);
-    // bombshop
-    // police station
-    //"Press circle to detonate the bomb, remember to get out of the way!"
-    //counter_bomb_km1 = 0
-    //"Get a bomb fitted to the car!"
-    //bombshop
-    //"Get a cop car and get on with the mission"
-    // Police station
     if ($.flag_area_bomb_message_km1 == 0) {
-      // bombshop
-      // police station
-      //"Press circle to detonate the bomb, remember to get out of the way!"
-      //counter_bomb_km1 = 0
-      //"Get a bomb fitted to the car!"
-      //bombshop
-      //"Get a cop car and get on with the mission"
-      // Police station
       if ($.player.isInModel(109 /* CAR_POLICE */)) {
         $.mission_cop_car_km1 = $.player.storeCarIsIn();
         $.flag_player_had_car_message_km1 = 0;
-        // bombshop
-        // police station
-        //"Press circle to detonate the bomb, remember to get out of the way!"
-        //counter_bomb_km1 = 0
-        //"Get a bomb fitted to the car!"
-        //bombshop
         if ($.mission_cop_car_km1.isArmedWithBomb(1 /* CARBOMB_TIMED */) || $.mission_cop_car_km1.isArmedWithBomb(4 /* CARBOMB_TIMEDACTIVE */)) {
-          // bombshop
           if ($.flag_player_had_bomb_message_km1 == 1) {
-            // bombshop
-            $.radar_blip_coord1_km1.remove();
+            $.radar_blip_coord1_km1.remove(); // bombshop
             $.flag_player_had_bomb_message_km1 = 0;
           }
-          // police station
           if ($.flag_blip_on_km1 == 0) {
-            // police station
-            $.radar_blip_coord2_km1 = Blip.AddForCoord(327.0, -1086.0, -100.0);
+            $.radar_blip_coord2_km1 = Blip.AddForCoord(327.0, -1086.0, -100.0); // police station
             $.flag_blip_on_km1 = 1;
             $.blob_flag = 1;
           }
-          //"Press circle to detonate the bomb, remember to get out of the way!"
-          //counter_bomb_km1 = 0
           if ($.mission_cop_car_km1.isInArea3D(331.7, -1091.0, 24.0, 323.7, -1078.3, 33.0, $.blob_flag)) {
             $.controlmode = Pad.GetControllerMode();
-            //"Press circle to detonate the bomb, remember to get out of the way!"
             if ($.flag_bomb_km1 == 0) {
-              //"Press circle to detonate the bomb, remember to get out of the way!"
               if ($.controlmode == 0) {
-                //"Press circle to detonate the bomb, remember to get out of the way!"
-                Text.PrintHelp("KM1_8A");
+                Text.PrintHelp("KM1_8A"); //"Press circle to detonate the bomb, remember to get out of the way!"
               }
-              //"Press circle to detonate the bomb, remember to get out of the way!"
               if ($.controlmode == 1) {
-                //"Press circle to detonate the bomb, remember to get out of the way!"
-                Text.PrintHelp("KM1_8A");
+                Text.PrintHelp("KM1_8A"); //"Press circle to detonate the bomb, remember to get out of the way!"
               }
-              //"Press circle to detonate the bomb, remember to get out of the way!"
               if ($.controlmode == 2) {
-                //"Press circle to detonate the bomb, remember to get out of the way!"
-                Text.PrintHelp("KM1_8A");
+                Text.PrintHelp("KM1_8A"); //"Press circle to detonate the bomb, remember to get out of the way!"
               }
-              //"Press circle to detonate the bomb, remember to get out of the way!"
               if ($.controlmode == 3) {
-                //"Press circle to detonate the bomb, remember to get out of the way!"
-                Text.PrintHelp("KM1_8D");
+                Text.PrintHelp("KM1_8D"); //"Press circle to detonate the bomb, remember to get out of the way!"
               }
               $.flag_bomb_km1 = 1;
             }
-            //counter_bomb_km1 = 0
             if ($.mission_cop_car_km1.isArmedWithBomb(4 /* CARBOMB_TIMEDACTIVE */)) {
               $.counter_bomb_km1 = 1;
               $.flag_area_bomb_message_km1 = 1;
             }
             else {
-              //counter_bomb_km1 = 0
               $.flag_area_bomb_message_km1 = 0;
+              //counter_bomb_km1 = 0
             }
           }
         }
         else {
-          //"Get a bomb fitted to the car!"
-          //bombshop
-          // police station
           if ($.flag_area_bomb_message_km1 == 0) {
-            //"Get a bomb fitted to the car!"
-            //bombshop
-            // police station
             if ($.flag_player_had_bomb_message_km1 == 0) {
-              //"Get a bomb fitted to the car!"
-              Text.PrintNow("KM1_6", 7000, 1);
-              //bombshop
-              $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, 2 /* RADAR_SPRITE_BOMB */);
+              Text.PrintNow("KM1_6", 7000, 1); //"Get a bomb fitted to the car!"
+              $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, 2 /* RADAR_SPRITE_BOMB */); //bombshop
               $.flag_player_had_bomb_message_km1 = 1;
-              // police station
               if ($.flag_blip_on_km1 == 1) {
-                // police station
-                $.radar_blip_coord2_km1.remove();
+                $.radar_blip_coord2_km1.remove(); // police station
                 $.flag_blip_on_km1 = 0;
                 $.blob_flag = 0;
               }
@@ -364,45 +273,33 @@ async function mission_start_kenji1() {
       }
       else {
         $.blob_flag = 0;
-        //"Get a cop car and get on with the mission"
-        // Police station
         if ($.flag_player_had_car_message_km1 == 0) {
-          //"Get a cop car and get on with the mission"
-          Text.PrintNow("KM1_4", 7000, 1);
-          // Police station
-          $.radar_blip_coord2_km1.remove();
+          Text.PrintNow("KM1_4", 7000, 1); //"Get a cop car and get on with the mission"
+          $.radar_blip_coord2_km1.remove(); // Police station
           $.flag_blip_on_km1 = 0;
           $.flag_player_had_car_message_km1 = 1;
         }
-        // bombshop
         if ($.flag_player_had_bomb_message_km1 == 1) {
-          // bombshop
-          $.radar_blip_coord1_km1.remove();
+          $.radar_blip_coord1_km1.remove(); // bombshop
           $.flag_player_had_bomb_message_km1 = 0;
         }
       }
     }
   }
   Text.ClearHelp();
-  // police station
+  $.radar_blip_coord2_km1.remove(); // police station
   // Waiting for the player to destroy the car outside the cell
-  $.radar_blip_coord2_km1.remove();
-  //"You have alerted the cops"
   while (!(World.IsExplosionInArea(3 /* EXPLOSION_CAR */, 323.3, -1072.6, 24.0, 335.5, -1094.0, 33.0))) {
-    //"You have alerted the cops"
     if (Car.IsDead($.mission_cop_car_km1)) {
-      //"You have alerted the cops"
-      Text.PrintNow("KM1_11", 5000, 1);
+      Text.PrintNow("KM1_11", 5000, 1); //"You have alerted the cops"
       $.player.alterWantedLevelNoDrop(3);
       // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_kenji1_failed"); // fallback: would break linear control flow
     }
     await asyncWait(0);
   }
-  //"You have alerted the cops"
   if (!(Car.IsDead($.mission_cop_car_km1))) {
-    //"You have alerted the cops"
-    Text.PrintNow("KM1_11", 5000, 1);
+    Text.PrintNow("KM1_11", 5000, 1); //"You have alerted the cops"
     $.player.alterWantedLevelNoDrop(3);
     // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_kenji1_failed"); // fallback: would break linear control flow
@@ -416,7 +313,6 @@ async function mission_start_kenji1() {
   $.police_alarm = Sound.AddContinuous(328.418, -1088.174, 28.3, 69 /* SOUND_BANK_ALARM_LOOP_L */);
   World.ClearArea(327.0, -1086.0, -100.0, 4.0, true /* TRUE */);
   World.SwapNearestBuildingModel(328.026, -1090.262, 26.941, 2.0, 1331 /* police_cell_wall */, 1332 /* police_celhole */);
-  // If player fails the wall needs to be changed back
   $.flag_need_wall_change_km1 = 1;
   $.radar_blip_coord2_km1.remove();
   await asyncWait(500);
@@ -424,14 +320,11 @@ async function mission_start_kenji1() {
   $.yakuza_ped1_km1.setRunning(true /* TRUE */);
   $.yakuza_ped1_km1.clearThreatSearch();
   $.yakuza_ped1_km1.followPlayer($.player);
-  //"Get him to the dojo but get rid of the cops first!"
-  Text.PrintNow("KM1_12", 7000, 1);
+  Text.PrintNow("KM1_12", 7000, 1); //"Get him to the dojo but get rid of the cops first!"
   $.player.alterWantedLevelNoDrop(3);
-  // waiting for the player to get rid of his wanted level
   $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
+  // waiting for the player to get rid of his wanted level
   timera = 0;
-  //"The Yakuza Kanbu is dead!"
-  //You have left the Yakuza Kanbu behind go and get him!"
   while ($.player.isWantedLevelGreater(0)) {
     await asyncWait(0);
     if ($.flag_played_cop_radio_km1 == 0) {
@@ -440,19 +333,14 @@ async function mission_start_kenji1() {
         $.flag_played_cop_radio_km1 = 1;
       }
     }
-    //"The Yakuza Kanbu is dead!"
     if (Char.IsDead($.yakuza_ped1_km1)) {
-      //"The Yakuza Kanbu is dead!"
-      Text.PrintNow("KM1_10", 5000, 1);
+      Text.PrintNow("KM1_10", 5000, 1); //"The Yakuza Kanbu is dead!"
       // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_kenji1_failed"); // fallback: would break linear control flow
     }
-    //You have left the Yakuza Kanbu behind go and get him!"
     if (!($.yakuza_ped1_km1.isInPlayersGroup($.player))) {
-      //You have left the Yakuza Kanbu behind go and get him!"
       if ($.flag_blip_on_yakuza_ped1_km1 == 0) {
-        //You have left the Yakuza Kanbu behind go and get him!"
-        Text.PrintNow("HEY6", 5000, 1);
+        Text.PrintNow("HEY6", 5000, 1); //You have left the Yakuza Kanbu behind go and get him!"
         $.radar_blip_ped1_km1 = Blip.AddForChar($.yakuza_ped1_km1);
         $.spray_blip_km1.remove();
         $.flag_blip_on_yakuza_ped1_km1 = 1;
@@ -466,32 +354,22 @@ async function mission_start_kenji1() {
     }
   }
   $.spray_blip_km1.remove();
-  //"Get me to the Dojo!"
-  Text.PrintNow("KM1_3", 7000, 1);
+  Text.PrintNow("KM1_3", 7000, 1); //"Get me to the Dojo!"
   $.radar_blip_coord3_km1 = Blip.AddForCoord(105.6, -1292.68, -100.0);
   $.flag_dojo_blip_on = 1;
-  // Waiting for the player to be back at the safehouse
   Audio.LoadMissionAudio(k1_b);
+  // Waiting for the player to be back at the safehouse
   $.blob_flag = 1;
-  //"The Yakuza Kanbu is dead!"
-  //You have left the Yakuza Kanbu behind go and get him!"
-  //"Get rid of the cops!"
-  //"Get me to the Dojo!"
   while (!($.player.locateStoppedAnyMeans2D(105.6, -1292.68, 3.0, 4.0, $.blob_flag)) || !($.yakuza_ped1_km1.locateStoppedAnyMeans2D(105.6, -1292.68, 3.0, 4.0, false /* FALSE */)) || !(Audio.HasMissionAudioLoaded()) || $.player.isWantedLevelGreater(0)) {
     await asyncWait(0);
-    //"The Yakuza Kanbu is dead!"
     if (Char.IsDead($.yakuza_ped1_km1)) {
-      //"The Yakuza Kanbu is dead!"
-      Text.PrintNow("KM1_10", 5000, 1);
+      Text.PrintNow("KM1_10", 5000, 1); //"The Yakuza Kanbu is dead!"
       // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_kenji1_failed"); // fallback: would break linear control flow
     }
-    //You have left the Yakuza Kanbu behind go and get him!"
     if (!($.yakuza_ped1_km1.isInPlayersGroup($.player))) {
-      //You have left the Yakuza Kanbu behind go and get him!"
       if ($.flag_blip_on_yakuza_ped1_km1 == 0) {
-        //You have left the Yakuza Kanbu behind go and get him!"
-        Text.PrintNow("HEY6", 5000, 1);
+        Text.PrintNow("HEY6", 5000, 1); //You have left the Yakuza Kanbu behind go and get him!"
         $.radar_blip_ped1_km1 = Blip.AddForChar($.yakuza_ped1_km1);
         $.flag_blip_on_yakuza_ped1_km1 = 1;
         $.blob_flag = 0;
@@ -508,14 +386,10 @@ async function mission_start_kenji1() {
       $.flag_blip_on_yakuza_ped1_km1 = 0;
       $.blob_flag = 1;
     }
-    //"Get rid of the cops!"
     if ($.player.isWantedLevelGreater(0)) {
-      //"Get rid of the cops!"
       if ($.flag_player_got_cops_message_km1 == 0) {
-        //"Get rid of the cops!"
         if ($.flag_blip_on_yakuza_ped1_km1 == 0) {
-          //"Get rid of the cops!"
-          Text.PrintNow("WANTED1", 7000, 1);
+          Text.PrintNow("WANTED1", 7000, 1); //"Get rid of the cops!"
           $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
           $.flag_player_got_cops_message_km1 = 1;
           $.flag_spray_blip_on_km1 = 1;
@@ -529,15 +403,11 @@ async function mission_start_kenji1() {
         $.flag_spray_blip_on_km1 = 0;
       }
     }
-    //"Get me to the Dojo!"
     if ($.flag_spray_blip_on_km1 == 0) {
-      //"Get me to the Dojo!"
       if ($.flag_blip_on_yakuza_ped1_km1 == 0) {
-        //"Get me to the Dojo!"
         if ($.flag_dojo_blip_on == 0) {
           $.radar_blip_coord3_km1 = Blip.AddForCoord(105.6, -1292.68, -100.0);
-          //"Get me to the Dojo!"
-          Text.PrintNow("KM1_3", 7000, 1);
+          Text.PrintNow("KM1_3", 7000, 1); //"Get me to the Dojo!"
           $.blob_flag = 1;
           $.flag_dojo_blip_on = 1;
         }
@@ -558,41 +428,30 @@ async function mission_start_kenji1() {
   Hud.SwitchWidescreen(true /* ON */);
   $.yakuza_ped1_km1.leaveGroup();
   Audio.PlayMissionAudio();
-  //"The Yakuza Kanbu is dead!"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
-    //"The Yakuza Kanbu is dead!"
     if (Char.IsDead($.yakuza_ped1_km1)) {
-      //"The Yakuza Kanbu is dead!"
-      Text.PrintNow("KM1_10", 5000, 1);
+      Text.PrintNow("KM1_10", 5000, 1); //"The Yakuza Kanbu is dead!"
       // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_kenji1_failed"); // fallback: would break linear control flow
     }
   }
   Camera.SetFixedPosition(93.45, -1279.27, 35.08, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(94.19, -1279.91, 34.79, 2 /* JUMP_CUT */);
-  // Tells ped to get out of car
   $.yakuza_ped1_km1.setRunning(false /* FALSE */);
-  //"The Yakuza Kanbu is dead!"
-  //"The vehicle's wrecked!"
+  // Tells ped to get out of car
   if ($.yakuza_ped1_km1.isInAnyCar()) {
     $.car_km1 = $.yakuza_ped1_km1.storeCarIsIn();
     $.yakuza_ped1_km1.setObjLeaveCar($.car_km1);
-    //"The Yakuza Kanbu is dead!"
-    //"The vehicle's wrecked!"
     while ($.yakuza_ped1_km1.isInCar($.car_km1)) {
       await asyncWait(0);
-      //"The Yakuza Kanbu is dead!"
       if (Char.IsDead($.yakuza_ped1_km1)) {
-        //"The Yakuza Kanbu is dead!"
-        Text.PrintNow("KM1_10", 5000, 1);
+        Text.PrintNow("KM1_10", 5000, 1); //"The Yakuza Kanbu is dead!"
         // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_kenji1_failed"); // fallback: would break linear control flow
       }
-      //"The vehicle's wrecked!"
       if (Car.IsDead($.car_km1)) {
-        //"The vehicle's wrecked!"
-        Text.PrintNow("WRECKED", 5000, 1);
+        Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
         // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_kenji1_failed"); // fallback: would break linear control flow
       }
@@ -601,13 +460,10 @@ async function mission_start_kenji1() {
   World.ClearArea(111.05, -1274.75, 25.16, 6.0, true /* TRUE */);
   $.yakuza_ped1_km1.setObjRunToCoord(111.05, -1274.75);
   timerb = 0;
-  //"The Yakuza Kanbu is dead!"
   while (!($.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false /* FALSE */))) {
     await asyncWait(0);
-    //"The Yakuza Kanbu is dead!"
     if (Char.IsDead($.yakuza_ped1_km1)) {
-      //"The Yakuza Kanbu is dead!"
-      Text.PrintNow("KM1_10", 5000, 1);
+      Text.PrintNow("KM1_10", 5000, 1); //"The Yakuza Kanbu is dead!"
       // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_kenji1_failed"); // fallback: would break linear control flow
     }
@@ -628,30 +484,28 @@ async function mission_bloke_got_stuck_km1() {
   Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
   Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
   Camera.RestoreJumpcut();
-  // Mission Kemuri1 failed
   // SCM GOTO → mission_kenji1_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_kenji1_passed"); // fallback: would break linear control flow
+  // Mission Kemuri1 failed
 }
 
 async function mission_kenji1_failed() {
-  //"Mission Failed!"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission Kemuri1 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed!"
   return;
+  // mission Kemuri1 passed
 }
 
 async function mission_kenji1_passed() {
   $.flag_kenji_mission1_passed = 1;
   Stat.RegisterMissionPassed("KM1");
   Stat.PlayerMadeProgress(1);
-  //"Mission Passed"
-  Text.PrintWithNumberBig("m_pass", 30000, 5000, 1);
+  Text.PrintWithNumberBig("m_pass", 30000, 5000, 1); //"Mission Passed"
   Audio.PlayMissionPassedTune(1);
   $.player.addScore(30000);
   $.player.clearWantedLevel();
   // START_NEW_SCRIPT kenji_mission2_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_kenji1() {
@@ -692,12 +546,12 @@ async function wall_explosion() {
 }
 
 export async function kenji1() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************Kenji mission 1*********************************
   // ******************************************KANBU BUST OUT*********************************
-  // MissionBoundary
-  // Mission start stuff
   // ScriptName
+  // Mission start stuff
   // SCM GOSUB mission_start_kenji1
   await mission_start_kenji1();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -709,8 +563,8 @@ export async function kenji1() {
   // SCM GOSUB mission_cleanup_kenji1
   await mission_cleanup_kenji1();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT mission_cop_car_km1
   // VAR_INT radar_blip_coord1_km1
   // VAR_INT radar_blip_coord2_km1
@@ -727,7 +581,6 @@ export async function kenji1() {
   // VAR_INT total_counter_km1
   // VAR_INT counter_bomb_km1
   // VAR_INT counter_police_km1
-  //Car at end at dojo
   // VAR_INT car_km1
   // VAR_INT flag_had_bomb_message_km1
   // VAR_INT flag_blip_on_km1
@@ -758,6 +611,6 @@ export async function kenji1() {
   // VAR_INT flag_kanbu_in_group
   // VAR_INT sphere_km1
   // VAR_INT flag_player_had_dome_message_km1
-  // ****************************************Mission Start************************************
   // VAR_INT flag_played_cop_radio_km1
+  // ****************************************Mission Start************************************
 }

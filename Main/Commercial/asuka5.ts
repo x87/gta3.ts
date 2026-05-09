@@ -37,8 +37,8 @@ async function mission_start_asuka5() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2220) {
     await asyncWait(0);
@@ -92,12 +92,11 @@ async function mission_start_asuka5() {
     await asyncWait(0);
   }
   Audio.LoadMissionAudio(A5_A);
-  //START MISSION
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
-  //TEST INDUSTRIAL!!!!!!!!!
-  $.tanner_car = Car.Create(102 /* CAR_ESPERANTO */, 420.9, -1396.5, 26.0);
+  //START MISSION
+  $.tanner_car = Car.Create(102 /* CAR_ESPERANTO */, 420.9, -1396.5, 26.0); //TEST INDUSTRIAL!!!!!!!!!
   $.tanner_car.setHeading(90.0);
   $.tanner_car.setOnlyDamagedByPlayer(true /* TRUE */);
   $.tanner_car.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
@@ -123,11 +122,9 @@ async function mission_start_asuka5() {
   World.ClearArea(427.9, -1392.7, 21.1, 20.0, true /* TRUE */);
   Game.SetPoliceIgnorePlayer($.player, true /* On */);
   Hud.SwitchWidescreen(true /* ON */);
-  //TEST INDUSTRIAL!!!!!!!!
-  $.tanner = Char.Create(21 /* PEDTYPE_SPECIAL */, ped`SPECIAL1`, 436.5, -1399.8, 33.7);
+  $.tanner = Char.Create(21 /* PEDTYPE_SPECIAL */, ped`SPECIAL1`, 436.5, -1399.8, 33.7); //TEST INDUSTRIAL!!!!!!!!
   $.tanner.setRunning(true /* TRUE */);
-  //TEST INDUSTRIAL!!!!!!!!
-  Camera.SetFixedPosition(437.4, -1387.4, 30.9, 0.0, 0.0, 0.0);
+  Camera.SetFixedPosition(437.4, -1387.4, 30.9, 0.0, 0.0, 0.0); //TEST INDUSTRIAL!!!!!!!!
   Camera.PointAtChar($.tanner, 15 /* FIXED */, 2 /* JUMP_CUT */);
   TIMERB = 0;
   $.tanner.setObjRunToCoord(435.7, -1388.8);
@@ -183,8 +180,7 @@ async function mission_start_asuka5() {
       }
     }
   }
-  //TEST INDUSTRIAL!!!!!!!!
-  Camera.SetFixedPosition(436.0, -1390.8, 31.0, 0.0, 0.0, 0.0);
+  Camera.SetFixedPosition(436.0, -1390.8, 31.0, 0.0, 0.0, 0.0); //TEST INDUSTRIAL!!!!!!!!
   Camera.PointAtChar($.tanner, 15 /* FIXED */, 1 /* INTERPOLATION */);
   $.tanner.setObjEnterCarAsDriver($.tanner_car);
   while (!($.tanner.isInCar($.tanner_car))) {
@@ -338,24 +334,22 @@ async function tanner_shits_it() {
 }
 
 async function mission_asuka5_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission asuka5 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission asuka5 passed
 }
 
 async function mission_asuka5_passed() {
   $.flag_asuka_mission5_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(20000);
   $.asuka_contact_blip.remove();
   Stat.RegisterMissionPassed(AM5);
   Stat.PlayerMadeProgress(1);
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_asuka5() {
@@ -393,11 +387,11 @@ async function tanner_health() {
 }
 
 export async function asuka5() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************asuka mission 5********************************
   // ********************************************Kill Tanner**********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_asuka5
   await mission_start_asuka5();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -409,12 +403,12 @@ export async function asuka5() {
   // SCM GOSUB mission_cleanup_asuka5
   await mission_cleanup_asuka5();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT blip1_as5 blip2_as5 blip3_as5
   // VAR_INT tanner_car got_to_coord_once old_tanner_health
   // VAR_INT tanner cleared_timer_once_asuka5
   // VAR_INT test_tanner_health_counter test_tanner_health_counter2
-  // ****************************************Mission Start************************************
   // VAR_FLOAT test_tanner_health_float
+  // ****************************************Mission Start************************************
 }

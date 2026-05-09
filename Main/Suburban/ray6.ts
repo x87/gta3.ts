@@ -35,6 +35,7 @@ async function mission_start_ray6() {
   $.cia_14_flag = 0;
   $.cia_15_flag = 0;
   $.cia_16_flag = 0;
+  $.cia_17_flag = 0;
   // ****************************************START OF CUTSCENE********************************
   //SET_FADING_COLOUR 0 0 0
   //
@@ -45,14 +46,13 @@ async function mission_start_ray6() {
   //	GOTO mission_ray6_failed
   //ENDIF
   //PRINT_BIG RM6 15000 2 //"Marked Man"
-  $.cia_17_flag = 0;
   Streaming.LoadSpecialCharacter(1, $.ray);
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, RAYH);
+  Streaming.RequestModel(toilet);
   //WHILE GET_FADING_STATUS
   //	WAIT 0
   //ENDWHILE
-  Streaming.RequestModel(toilet);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(toilet))) {
     await asyncWait(0);
@@ -69,53 +69,47 @@ async function mission_start_ray6() {
   $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`);
   $.cs_playerhead.setAnim($.player);
   $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`);
+  $.cs_rayhead.setAnim($.ray);
   //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
   //
   //SET_PLAYER_HEADING player 270.0
-  $.cs_rayhead.setAnim($.ray);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   Camera.SetNearClip(0.2);
   Cutscene.Start();
   Streaming.Switch(false /* OFF */);
-  // Displays cutscene text
   World.SwitchRubbish(false /* OFF */);
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 1807) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"You weren't followed? Good."
-  Text.PrintNow(RM6_A, 4000, 1);
+  Text.PrintNow(RM6_A, 4000, 1); //"You weren't followed? Good."
   while ($.cs_time < 4920) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"This is it, I'm in way over my fucking head and I'm starting to fucking drown here!"
-  Text.PrintNow(RM6_B, 4000, 1);
+  Text.PrintNow(RM6_B, 4000, 1); //"This is it, I'm in way over my fucking head and I'm starting to fucking drown here!"
   while ($.cs_time < 8597) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The CIA seem to have a vested interest in SPANK"
-  Text.PrintNow(RM6_C, 4000, 1);
+  Text.PrintNow(RM6_C, 4000, 1); //"The CIA seem to have a vested interest in SPANK"
   while ($.cs_time < 11482) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"and they don't like us fucking with the Cartel!"
-  Text.PrintNow(RM6_C1, 4000, 1);
+  Text.PrintNow(RM6_C1, 4000, 1); //"and they don't like us fucking with the Cartel!"
   while ($.cs_time < 14220) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I'm a marked man, so I'm getting out of here."
-  Text.PrintNow(RM6_D, 4000, 1);
+  Text.PrintNow(RM6_D, 4000, 1); //"I'm a marked man, so I'm getting out of here."
   while ($.cs_time < 17464) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Get me to my flight at the airport and I'll make it worth your while!!"
-  Text.PrintNow(RM6_E, 4000, 1);
+  Text.PrintNow(RM6_E, 4000, 1); //"Get me to my flight at the airport and I'll make it worth your while!!"
   while ($.cs_time < 21666) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -146,57 +140,32 @@ async function mission_start_ray6() {
   $.ray.followPlayer($.player);
   Streaming.Switch(true /* ON */);
   Camera.DoFade(1500, 1 /* FADE_IN */);
-  // ******************************************END OF CUTSCENE********************************
   $.rays_cutscene_flag = 0;
+  // ******************************************END OF CUTSCENE********************************
   Hud.DisplayTimer($.time_till_flight);
   $.rays_blip = Blip.AddForCoord(-739.0, -583.0, -100.0);
-  //"~r~Ray is dead!"
   if (Char.IsDead($.ray)) {
-    //"~r~Ray is dead!"
-    Text.PrintNow(RM6_6, 5000, 1);
+    Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
     // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
   }
   $.ray.setRunning(true /* TRUE */);
-  //"The CIA have the bridge under surveillance, find another route across."
-  Text.PrintNow(RM6_5, 15000, 1);
-  //"~r~Ray is dead!"
-  //"~r~Ray has missed his flight."
-  ////////
-  // Commercial End of lift bridge
-  // Commercial End of lift bridge, by lift bit
-  // Suburban End of lift bridge, by lift bit
-  // Suburban End of lift bridge
-  // ontop of tunnel exit out
-  // ontop of tunnel exit in
-  //Suburban End of lift bridge by tunnel exit in
-  //Opposite turning into the airport
-  //On concrete island	opposite turning into the airport
-  // up on grass by airport turning
-  //on wall by tunnel exit in
-  //"You have left Ray behind, go back and get him."
+  Text.PrintNow(RM6_5, 15000, 1); //"The CIA have the bridge under surveillance, find another route across."
   while (!($.ray.locateStoppedAnyMeans2D(-738.3010, -582.8834, 8.0, 8.0, true))) {
     await asyncWait(0);
-    //"~r~Ray is dead!"
     if (Char.IsDead($.ray)) {
-      //"~r~Ray is dead!"
-      Text.PrintNow(RM6_6, 5000, 1);
+      Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
-    //"~r~Ray has missed his flight."
-    ////////
     if ($.time_till_flight < 1) {
-      //"~r~Ray has missed his flight."
-      Text.PrintNow(RM6_7, 5000, 1);
+      Text.PrintNow(RM6_7, 5000, 1); //"~r~Ray has missed his flight."
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
-    // Commercial End of lift bridge
+    ////////
     if ($.total_cia < 16) {
-      // Commercial End of lift bridge
       if ($.cia_1_flag == 0) {
-        // Commercial End of lift bridge
         if ($.player.locateAnyMeans2D(-25.8545, -612.5001, 100.0, 100.0, false)) {
           $.cia_1 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -25.8545, -612.5001, 42.1683);
           $.cia_1.setHeading(239.6049);
@@ -219,7 +188,6 @@ async function mission_start_ray6() {
         $.cia_1_flag = 0;
       }
     }
-    ////////
     if ($.cia_1_flag == 1) {
       if (Char.IsDead($.cia_1)) {
         $.cia_1_flag = 2;
@@ -234,11 +202,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // Commercial End of lift bridge
+    ////////
     if ($.total_cia < 16) {
-      // Commercial End of lift bridge
       if ($.cia_2_flag == 0) {
-        // Commercial End of lift bridge
         if ($.player.locateAnyMeans2D(-24.0225, -630.3363, 100.0, 100.0, false)) {
           $.cia_2 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -24.0225, -630.3363, 42.1125);
           $.cia_2.setHeading(293.6046);
@@ -261,7 +227,6 @@ async function mission_start_ray6() {
         $.cia_2_flag = 0;
       }
     }
-    ////////
     if ($.cia_2_flag == 1) {
       if (Char.IsDead($.cia_2)) {
         $.cia_2_flag = 2;
@@ -276,11 +241,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // Commercial End of lift bridge
+    ////////
     if ($.total_cia < 16) {
-      // Commercial End of lift bridge
       if ($.cia_3_flag == 0) {
-        // Commercial End of lift bridge
         if ($.player.locateAnyMeans2D(-35.1159, -632.8395, 100.0, 100.0, false)) {
           $.cia_3 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -35.1159, -632.8395, 42.4257);
           $.cia_3.setHeading(255.4109);
@@ -303,7 +266,6 @@ async function mission_start_ray6() {
         $.cia_3_flag = 0;
       }
     }
-    ////////
     if ($.cia_3_flag == 1) {
       if (Char.IsDead($.cia_3)) {
         $.cia_3_flag = 2;
@@ -318,11 +280,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // Commercial End of lift bridge
+    ////////
     if ($.total_cia < 16) {
-      // Commercial End of lift bridge
       if ($.cia_4_flag == 0) {
-        // Commercial End of lift bridge
         if ($.player.locateAnyMeans2D(-24.3022, -650.4634, 100.0, 100.0, false)) {
           $.cia_4 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -24.3022, -650.4634, 46.5876);
           $.cia_4.setHeading(344.2893);
@@ -345,7 +305,6 @@ async function mission_start_ray6() {
         $.cia_4_flag = 0;
       }
     }
-    ////////
     if ($.cia_4_flag == 1) {
       if (Char.IsDead($.cia_4)) {
         $.cia_4_flag = 2;
@@ -360,11 +319,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // Commercial End of lift bridge, by lift bit
+    ////////
     if ($.total_cia < 16) {
-      // Commercial End of lift bridge, by lift bit
       if ($.cia_5_flag == 0) {
-        // Commercial End of lift bridge, by lift bit
         if ($.player.locateAnyMeans2D(-217.9545, -630.4070, 100.0, 100.0, false)) {
           $.cia_5 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -217.9545, -630.4070, 45.9975);
           $.cia_5.setHeading(344.2893);
@@ -387,7 +344,6 @@ async function mission_start_ray6() {
         $.cia_5_flag = 0;
       }
     }
-    ////////
     if ($.cia_5_flag == 1) {
       if (Char.IsDead($.cia_5)) {
         $.cia_5_flag = 2;
@@ -402,11 +358,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // Commercial End of lift bridge, by lift bit
+    ////////
     if ($.total_cia < 16) {
-      // Commercial End of lift bridge, by lift bit
       if ($.cia_6_flag == 0) {
-        // Commercial End of lift bridge, by lift bit
         if ($.player.locateAnyMeans2D(-212.4922, -632.7455, 100.0, 100.0, false)) {
           $.cia_6 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -212.4922, -632.7455, 45.9514);
           $.cia_6.setHeading(247.0256);
@@ -429,7 +383,6 @@ async function mission_start_ray6() {
         $.cia_6_flag = 0;
       }
     }
-    ////////
     if ($.cia_6_flag == 1) {
       if (Char.IsDead($.cia_6)) {
         $.cia_6_flag = 2;
@@ -444,11 +397,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // Suburban End of lift bridge, by lift bit
+    ////////
     if ($.total_cia < 16) {
-      // Suburban End of lift bridge, by lift bit
       if ($.cia_7_flag == 0) {
-        // Suburban End of lift bridge, by lift bit
         if ($.player.locateAnyMeans2D(-437.0927, -612.5157, 100.0, 100.0, false)) {
           $.cia_7 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -437.0927, -612.5157, 44.5994);
           $.cia_7.setHeading(247.0256);
@@ -471,7 +422,6 @@ async function mission_start_ray6() {
         $.cia_7_flag = 0;
       }
     }
-    ////////
     if ($.cia_7_flag == 1) {
       if (Char.IsDead($.cia_7)) {
         $.cia_7_flag = 2;
@@ -486,11 +436,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // Suburban End of lift bridge
+    ////////
     if ($.total_cia < 16) {
-      // Suburban End of lift bridge
       if ($.cia_8_flag == 0) {
-        // Suburban End of lift bridge
         if ($.player.locateAnyMeans2D(-534.6777, -631.2995, 100.0, 100.0, false)) {
           $.cia_8 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -534.6777, -631.2995, 42.2770);
           $.cia_8.setHeading(247.0256);
@@ -513,7 +461,6 @@ async function mission_start_ray6() {
         $.cia_8_flag = 0;
       }
     }
-    ////////
     if ($.cia_8_flag == 1) {
       if (Char.IsDead($.cia_8)) {
         $.cia_8_flag = 2;
@@ -528,11 +475,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // Suburban End of lift bridge
+    ////////
     if ($.total_cia < 16) {
-      // Suburban End of lift bridge
       if ($.cia_9_flag == 0) {
-        // Suburban End of lift bridge
         if ($.player.locateAnyMeans2D(-523.4218, -650.3831, 100.0, 100.0, false)) {
           $.cia_9 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -523.4218, -650.3831, 42.5261);
           $.cia_9.setHeading(316.7352);
@@ -555,7 +500,6 @@ async function mission_start_ray6() {
         $.cia_9_flag = 0;
       }
     }
-    ////////
     if ($.cia_9_flag == 1) {
       if (Char.IsDead($.cia_9)) {
         $.cia_9_flag = 2;
@@ -570,11 +514,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // ontop of tunnel exit out
+    ////////
     if ($.total_cia < 16) {
-      // ontop of tunnel exit out
       if ($.cia_10_flag == 0) {
-        // ontop of tunnel exit out
         if ($.player.locateAnyMeans2D(-628.0785, -498.4106, 100.0, 100.0, false)) {
           $.cia_10 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -628.0785, -498.4106, 22.3884);
           $.cia_10.setHeading(76.5552);
@@ -597,7 +539,6 @@ async function mission_start_ray6() {
         $.cia_10_flag = 0;
       }
     }
-    ////////
     if ($.cia_10_flag == 1) {
       if (Char.IsDead($.cia_10)) {
         $.cia_10_flag = 2;
@@ -612,11 +553,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // ontop of tunnel exit out
+    ////////
     if ($.total_cia < 16) {
-      // ontop of tunnel exit out
       if ($.cia_11_flag == 0) {
-        // ontop of tunnel exit out
         if ($.player.locateAnyMeans2D(-637.6517, -501.7922, 100.0, 100.0, false)) {
           $.cia_11 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -637.6517, -501.7922, 22.3455);
           $.cia_11.setHeading(76.5552);
@@ -639,7 +578,6 @@ async function mission_start_ray6() {
         $.cia_11_flag = 0;
       }
     }
-    ////////
     if ($.cia_11_flag == 1) {
       if (Char.IsDead($.cia_11)) {
         $.cia_11_flag = 2;
@@ -654,11 +592,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // ontop of tunnel exit in
+    ////////
     if ($.total_cia < 16) {
-      // ontop of tunnel exit in
       if ($.cia_12_flag == 0) {
-        // ontop of tunnel exit in
         if ($.player.locateAnyMeans2D(-692.3098, -563.0333, 100.0, 100.0, false)) {
           $.cia_12 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -692.3098, -563.0333, 21.5110);
           $.cia_12.setHeading(344.2857);
@@ -681,7 +617,6 @@ async function mission_start_ray6() {
         $.cia_12_flag = 0;
       }
     }
-    ////////
     if ($.cia_12_flag == 1) {
       if (Char.IsDead($.cia_12)) {
         $.cia_12_flag = 2;
@@ -696,11 +631,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    //Suburban End of lift bridge by tunnel exit in
+    ////////
     if ($.total_cia < 16) {
-      //Suburban End of lift bridge by tunnel exit in
       if ($.cia_13_flag == 0) {
-        //Suburban End of lift bridge by tunnel exit in
         if ($.player.locateAnyMeans2D(-671.1359, -540.5952, 100.0, 100.0, false)) {
           $.cia_13 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -671.1359, -540.5952, 22.9211);
           $.cia_13.setHeading(281.8996);
@@ -723,7 +656,6 @@ async function mission_start_ray6() {
         $.cia_13_flag = 0;
       }
     }
-    ////////
     if ($.cia_13_flag == 1) {
       if (Char.IsDead($.cia_13)) {
         $.cia_13_flag = 2;
@@ -738,11 +670,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    //Opposite turning into the airport
+    ////////
     if ($.total_cia < 16) {
-      //Opposite turning into the airport
       if ($.cia_14_flag == 0) {
-        //Opposite turning into the airport
         if ($.player.locateAnyMeans2D(-638.4215, -419.2620, 100.0, 100.0, false)) {
           $.cia_14 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -638.4215, -419.2620, 17.8198);
           $.cia_14.setHeading(113.6173);
@@ -765,7 +695,6 @@ async function mission_start_ray6() {
         $.cia_14_flag = 0;
       }
     }
-    ////////
     if ($.cia_14_flag == 1) {
       if (Char.IsDead($.cia_14)) {
         $.cia_14_flag = 2;
@@ -780,11 +709,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    //On concrete island	opposite turning into the airport
+    ////////
     if ($.total_cia < 16) {
-      //On concrete island	opposite turning into the airport
       if ($.cia_15_flag == 0) {
-        //On concrete island	opposite turning into the airport
         if ($.player.locateAnyMeans2D(-655.3353, -404.4556, 100.0, 100.0, false)) {
           $.cia_15 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -655.3353, -404.4556, 17.8198);
           $.cia_15.setHeading(191.1247);
@@ -807,7 +734,6 @@ async function mission_start_ray6() {
         $.cia_15_flag = 0;
       }
     }
-    ////////
     if ($.cia_15_flag == 1) {
       if (Char.IsDead($.cia_15)) {
         $.cia_15_flag = 2;
@@ -822,11 +748,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    // up on grass by airport turning
+    ////////
     if ($.total_cia < 16) {
-      // up on grass by airport turning
       if ($.cia_16_flag == 0) {
-        // up on grass by airport turning
         if ($.player.locateAnyMeans2D(-677.0261, -425.0470, 100.0, 100.0, false)) {
           $.cia_16 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -677.0261, -425.0470, 18.5140);
           $.cia_16.setHeading(265.4145);
@@ -849,7 +773,6 @@ async function mission_start_ray6() {
         $.cia_16_flag = 0;
       }
     }
-    ////////
     if ($.cia_16_flag == 1) {
       if (Char.IsDead($.cia_16)) {
         $.cia_16_flag = 2;
@@ -864,11 +787,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    //on wall by tunnel exit in
+    ////////
     if ($.total_cia < 16) {
-      //on wall by tunnel exit in
       if ($.cia_17_flag == 0) {
-        //on wall by tunnel exit in
         if ($.player.locateAnyMeans2D(-679.1292, -485.1575, 100.0, 100.0, false)) {
           $.cia_17 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`, -679.1292, -485.1575, 18.2578);
           $.cia_17.setHeading(260.2034);
@@ -891,7 +812,6 @@ async function mission_start_ray6() {
         $.cia_17_flag = 0;
       }
     }
-    ////////
     if ($.cia_17_flag == 1) {
       if (Char.IsDead($.cia_17)) {
         $.cia_17_flag = 2;
@@ -906,10 +826,9 @@ async function mission_start_ray6() {
         }
       }
     }
-    //"You have left Ray behind, go back and get him."
+    ////////
     if (!($.ray.isInPlayersGroup($.player)) && $.flag_blip_on_ray == 0) {
-      //"You have left Ray behind, go back and get him."
-      Text.PrintNow(RM6_8, 5000, 1);
+      Text.PrintNow(RM6_8, 5000, 1); //"You have left Ray behind, go back and get him."
       $.rays_blip.remove();
       $.rays_blip = Blip.AddForChar($.ray);
       $.flag_blip_on_ray = 1;
@@ -926,8 +845,8 @@ async function mission_start_ray6() {
   $.rays_blip.remove();
   Hud.ClearTimer($.time_till_flight);
   $.player.setControl(false /* OFF */);
-  //SET_ALL_CARS_CAN_BE_DAMAGED FALSE
   Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+  //SET_ALL_CARS_CAN_BE_DAMAGED FALSE
   Hud.SwitchWidescreen(true /* ON */);
   Camera.SetFixedPosition(-732.0104, -571.0955, 14.0482, 0.0, 0.0, 0.0);
   Camera.PointAtChar($.ray, 15 /* FIXED */, 2 /* JUMP_CUT */);
@@ -937,88 +856,64 @@ async function mission_start_ray6() {
     $.script_controlled_player.turnToFaceChar($.ray);
   }
   Audio.LoadMissionAudio(R6_A);
-  //"~r~Ray is dead!"
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
-    //"~r~Ray is dead!"
     if (Char.IsDead($.ray)) {
-      //"~r~Ray is dead!"
-      Text.PrintNow(RM6_6, 5000, 1);
+      Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
   }
   Audio.PlayMissionAudio();
-  //"Here's a key to a lock-up."
-  Text.PrintNow(RM6_1, 5000, 1);
-  //"~r~Ray is dead!"
+  Text.PrintNow(RM6_1, 5000, 1); //"Here's a key to a lock-up."
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
-    //"~r~Ray is dead!"
     if (Char.IsDead($.ray)) {
-      //"~r~Ray is dead!"
-      Text.PrintNow(RM6_6, 5000, 1);
+      Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
   }
   Audio.LoadMissionAudio(R6_A1);
-  //"~r~Ray is dead!"
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
-    //"~r~Ray is dead!"
     if (Char.IsDead($.ray)) {
-      //"~r~Ray is dead!"
-      Text.PrintNow(RM6_6, 5000, 1);
+      Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
   }
   Audio.PlayMissionAudio();
-  //"You'll find some cash and some 'supplies' I'd stashed in case things got tight."
-  Text.PrintNow(RM6_2, 5000, 1);
-  //"~r~Ray is dead!"
+  Text.PrintNow(RM6_2, 5000, 1); //"You'll find some cash and some 'supplies' I'd stashed in case things got tight."
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
-    //"~r~Ray is dead!"
     if (Char.IsDead($.ray)) {
-      //"~r~Ray is dead!"
-      Text.PrintNow(RM6_6, 5000, 1);
+      Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
   }
   Audio.LoadMissionAudio(R6_B);
-  //"~r~Ray is dead!"
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
-    //"~r~Ray is dead!"
     if (Char.IsDead($.ray)) {
-      //"~r~Ray is dead!"
-      Text.PrintNow(RM6_6, 5000, 1);
+      Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
       // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
     }
   }
   Audio.PlayMissionAudio();
-  //"See y'around."
-  Text.PrintNow(RM6_3, 5000, 1);
+  Text.PrintNow(RM6_3, 5000, 1); //"See y'around."
   if ($.ray.isInAnyCar()) {
     $.ray.leaveGroup();
     $.player_death_car = $.ray.storeCarIsIn();
     $.ray.setObjLeaveCar($.player_death_car);
   }
-  //"~r~Ray is dead!"
-  //open doors here
-  //CLOSE doors here
   while (!($.airport_door_flag == 6) || !($.door1_closed == 0) || !($.door2_closed == 0)) {
     await asyncWait(0);
-    //"~r~Ray is dead!"
     if (!($.airport_door_flag == 6)) {
-      //"~r~Ray is dead!"
       if (Char.IsDead($.ray)) {
-        //"~r~Ray is dead!"
-        Text.PrintNow(RM6_6, 5000, 1);
+        Text.PrintNow(RM6_6, 5000, 1); //"~r~Ray is dead!"
         // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_ray6_failed"); // fallback: would break linear control flow
       }
@@ -1050,13 +945,11 @@ async function mission_start_ray6() {
         $.airport_door_flag = 4;
       }
     }
-    //open doors here
     if ($.airport_door_flag > 3 && $.door1_closed == 0) {
       if ($.airportdoor1.slide(-770.414, -597.865, 11.847, 0.1, 0.1, 0.1, false)) {
         $.door1_closed = 1;
       }
     }
-    //open doors here
     if ($.airport_door_flag > 3 && $.door2_closed == 0) {
       if ($.airportdoor2.slide(-770.414, -602.885, 11.847, 0.1, 0.1, 0.1, false)) {
         $.door2_closed = 1;
@@ -1068,7 +961,6 @@ async function mission_start_ray6() {
         $.airport_door_flag = 5;
       }
     }
-    //CLOSE doors here
     if ($.airport_door_flag > 4 && $.door1_closed == 1) {
       if (!($.player.isInArea2D(-773.75, -605.205, -768.76, -595.613, false))) {
         if ($.airportdoor1.slide(-770.414, -599.292, 11.847, 0.1, 0.1, 0.1, false)) {
@@ -1076,7 +968,6 @@ async function mission_start_ray6() {
         }
       }
     }
-    //CLOSE doors here
     if ($.airport_door_flag > 4 && $.door2_closed == 1) {
       if (!($.player.isInArea2D(-773.75, -605.205, -768.76, -595.613, false))) {
         if ($.airportdoor2.slide(-770.414, -601.369, 11.846, 0.1, 0.1, 0.1, false)) {
@@ -1095,8 +986,7 @@ async function mission_start_ray6() {
       }
     }
   }
-  //GO TO THE LOCKUP TO GET YOUR REWARD
-  Text.PrintNow(RM6_4, 5000, 1);
+  Text.PrintNow(RM6_4, 5000, 1); //GO TO THE LOCKUP TO GET YOUR REWARD
   $.rays_blip = Blip.AddForCoord(241.1441, -997.7660, 20.9853);
   Streaming.RequestModel(car`PATRIOT`);
   while (!($.player.locateAnyMeans2D(241.1441, -997.7660, 50.0, 50.0, false))) {
@@ -1105,10 +995,10 @@ async function mission_start_ray6() {
   while (!(Streaming.HasModelLoaded(car`PATRIOT`))) {
     await asyncWait(0);
   }
+  $.rays_prize_car = Car.Create(89 /* CAR_PATRIOT */, 241.1441, -997.7660, 20.9853);
   //SET_CAR_COLOUR 256 256/WHITE
   //SET_CAR_CANT_BE_RESPRAYED
   //SET_CAR_DO_NOT_DELETE	maybe
-  $.rays_prize_car = Car.Create(89 /* CAR_PATRIOT */, 241.1441, -997.7660, 20.9853);
   $.rays_prize_car.setHeading(270.0);
   $.rays_prize_car.setProofs(true /* TRUE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
   $.rays_prize_car.setStrong(true /* TRUE */);
@@ -1122,12 +1012,11 @@ async function mission_start_ray6() {
     await asyncWait(0);
   }
   $.rays_prize_garage.open();
-  //"Take care of my armoured Cheetah, I had it modified to be bullet proof. See you in Miami, Ray"
-  Pager.AddMessage(RM6_666, 140, 666, 1);
+  Pager.AddMessage(RM6_666, 140, 666, 1); //"Take care of my armoured Cheetah, I had it modified to be bullet proof. See you in Miami, Ray"
   await asyncWait(13000);
-  // Mission Ray 6 failed
   // SCM GOTO → mission_ray6_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_ray6_passed"); // fallback: would break linear control flow
+  // Mission Ray 6 failed
 }
 
 async function mission_ray6_failed() {
@@ -1142,8 +1031,8 @@ async function mission_ray6_failed() {
   }
   $.ray.removeElegantly();
   Text.PrintBig(M_FAIL, 5000, 1);
-  // mission Ray 6 passed
   return;
+  // mission Ray 6 passed
 }
 
 async function mission_ray6_passed() {
@@ -1155,8 +1044,8 @@ async function mission_ray6_passed() {
   Audio.PlayMissionPassedTune(1);
   Stat.PlayerMadeProgress(1);
   $.ray_contact_blip.remove();
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_ray6() {
@@ -1183,6 +1072,7 @@ async function mission_cleanup_ray6() {
 }
 
 export async function ray6() {
+  // MissionBoundary
   // *****************************************************************************************
   // ************************************   Ray 6    *****************************************
   // ************************************ Marked Man *****************************************
@@ -1193,7 +1083,6 @@ export async function ray6() {
   // *** followed by the C.I.A Ray is dressed in a Hawaiian shirt and has two cases packed.***
   // *** He's booked on a flight (timed mission). The CIA give chase.						 ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_ray6
   await mission_start_ray6();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1205,8 +1094,8 @@ export async function ray6() {
   // SCM GOSUB mission_cleanup_ray6
   await mission_cleanup_ray6();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT time_till_flight flag_blip_on_ray rays_blip total_cia player_death_car airport_door_flag door1_closed door2_closed
   // VAR_INT cia_1 cia_1_flag
   // VAR_INT cia_2 cia_2_flag
@@ -1225,6 +1114,6 @@ export async function ray6() {
   // VAR_INT cia_15 cia_15_flag
   // VAR_INT cia_16 cia_16_flag
   // VAR_INT cia_17 cia_17_flag
-  // ****************************************Mission Start************************************
   // VAR_INT rays_prize_car rays_prize_weapon1 rays_prize_weapon2 rays_prize_weapon3 rays_prize_weapon4 rays_cash pickups_created_rm6
+  // ****************************************Mission Start************************************
 }

@@ -19,8 +19,8 @@ async function mission_start_joey6() {
   Streaming.RequestModel(car`STALLION`);
   Streaming.RequestModel(jogarageext);
   Streaming.RequestModel(jogarageint);
-  //LOAD_SCENE 1190.07 -869.86 13.97
   Streaming.LoadAllModelsNow();
+  //LOAD_SCENE 1190.07 -869.86 13.97
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(hier`cutobj03`))) {
     await asyncWait(0);
@@ -48,39 +48,34 @@ async function mission_start_joey6() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 4434) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM6_A", 10000, 2);
+  Text.PrintNow("JM6_A", 10000, 2); // Mission brief
   while ($.cs_time < 6704) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM6_B", 10000, 2);
+  Text.PrintNow("JM6_B", 10000, 2); // Mission brief
   while ($.cs_time < 12000) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM6_C", 10000, 2);
+  Text.PrintNow("JM6_C", 10000, 2); // Mission brief
   while ($.cs_time < 14274) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM6_D", 10000, 2);
+  Text.PrintNow("JM6_D", 10000, 2); // Mission brief
   while ($.cs_time < 17302) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM6_E", 10000, 2);
+  Text.PrintNow("JM6_E", 10000, 2); // Mission brief
   while ($.cs_time < 21000) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -110,10 +105,10 @@ async function mission_start_joey6() {
   $.sound_already_created_before = 0;
   $.flag_not_enough_seats = 0;
   Streaming.LoadSpecialCharacter(2, $.robber);
-  // START OF MISSION
   while (!(Streaming.HasSpecialCharacterLoaded(2))) {
     await asyncWait(0);
   }
+  // START OF MISSION
   $.blip1_jm6 = Blip.AddForCoord(1086.0, -227.0, -100.0);
   $.blip1_jm6.changeDisplay(2 /* BLIP_ONLY */);
   $.flag_displayed_horn_message_jm6 = 0;
@@ -123,13 +118,12 @@ async function mission_start_joey6() {
   $.thug3_is_dead = 0;
   $.blip_for_thug_added1 = 0;
   $.blip_for_thug_added2 = 0;
-  //PICK UP THE THUGS
   $.blip_for_thug_added3 = 0;
+  //PICK UP THE THUGS
 }
 
 async function pick_up_thugs() {
   await asyncWait(0);
-  //"We need a getaway vehicle"
   while (!($.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, true /* TRUE */)) || !($.player.isPressingHorn()) || $.player.isWantedLevelGreater(0)) {
     await asyncWait(0);
     if ($.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, false /* FALSE */)) {
@@ -151,10 +145,8 @@ async function pick_up_thugs() {
       Text.ClearThisPrint("WANTED1");
       Text.ClearThisPrint("HORN");
     }
-    //"We need a getaway vehicle"
     if ($.player.isInAreaOnFoot2D(1089.9, -223.9, 1084.5, -228.5, false /* FALSE */)) {
-      //"We need a getaway vehicle"
-      Text.PrintNow("JM6_5", 5000, 1);
+      Text.PrintNow("JM6_5", 5000, 1); //"We need a getaway vehicle"
     }
     else {
       Text.ClearThisPrint("JM6_5");
@@ -170,24 +162,19 @@ async function pick_up_thugs() {
   $.maxpassengers = $.any_car_jm6.getMaximumNumberOfPassengers();
   Text.ClearThisPrint("WANTED1");
   Text.ClearThisPrint("HORN");
-  //	GSW - Changed this from a WHILE
-  //Car not big enough
   if (!($.maxpassengers > 2)) {
-    //Car not big enough
-    Text.PrintNow("NODOORS", 5000, 1);
+    Text.PrintNow("NODOORS", 5000, 1); //Car not big enough
     $.flag_not_enough_seats = 1;
     // SCM GOTO → pick_up_thugs (not lowered; manual jump required)
     throw new Error("unresolved GOTO pick_up_thugs"); // fallback: would break linear control flow
   }
-  //Go and get a vehicle less conspicuous
-  //PICK UP THUGS CUT_SCENE**************************************************************************************
   if ($.player.isInModel(120 /* CAR_COACH */) || $.player.isInModel(114 /* CAR_BUS */)) {
-    //Go and get a vehicle less conspicuous
-    Text.PrintNow("JM6_6", 5000, 1);
+    Text.PrintNow("JM6_6", 5000, 1); //Go and get a vehicle less conspicuous
     $.flag_not_enough_seats = 1;
     // SCM GOTO → pick_up_thugs (not lowered; manual jump required)
     throw new Error("unresolved GOTO pick_up_thugs"); // fallback: would break linear control flow
   }
+  //PICK UP THUGS CUT_SCENE**************************************************************************************
   World.ClearArea(1087.7, -229.2, 8.0, 6.0, true /* TRUE */);
   if (!(Car.IsDead($.any_car_jm6))) {
     $.any_car_jm6.lockDoors(4 /* CARLOCK_LOCKED_PLAYER_INSIDE */);
@@ -214,8 +201,8 @@ async function pick_up_thugs() {
   $.thug2.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 50);
   $.thug3.giveWeapon(3 /* WEAPONTYPE_UZI */, 100);
   Camera.SetFixedPosition(1078.773, -232.474, 12.190, 0.0, 0.0, 0.0);
-  //APPLY_BRAKES_TO_PLAYERS_CAR Player On
   Camera.PointAtPoint(1079.691, -232.132, 11.990, 2 /* JUMP_CUT */);
+  //APPLY_BRAKES_TO_PLAYERS_CAR Player On
   $.thug1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
   $.thug2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
   $.thug3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
@@ -247,11 +234,10 @@ async function pick_up_thugs() {
     $.thug2.setRunning(true /* TRUE */);
     await asyncWait(800);
   }
-  //WAIT 400
   if (!(Char.IsDead($.thug3))) {
     $.thug3.followPlayer($.player);
-    //WAIT 400
     $.thug3.setRunning(true /* TRUE */);
+    //WAIT 400
   }
   if (!(Car.IsDead($.any_car_jm6)) && !(Char.IsDead($.thug1)) && !(Char.IsDead($.thug2)) && !(Char.IsDead($.thug3))) {
     TIMERB = 0;
@@ -291,10 +277,9 @@ async function next_robber_bit() {
   $.player.setControl(true /* ON */);
   Hud.SwitchWidescreen(false /* OFF */);
   Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-  //END OF PICK UP THUGS CUT_SCENE*******************************************************************************
   Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-  //"Lets go"
-  Text.PrintNow("JM6_1", 5000, 1);
+  //END OF PICK UP THUGS CUT_SCENE*******************************************************************************
+  Text.PrintNow("JM6_1", 5000, 1); //"Lets go"
   while (!($.Bank_job_door.slide(1087.523, -233.801, 11.012, 0.0, 0.0, 0.2, false /* FALSE */))) {
     await asyncWait(0);
     [$.hours, $.minutes] = Clock.GetTimeOfDay();
@@ -309,22 +294,18 @@ async function next_robber_bit() {
       throw new Error("unresolved GOTO mission_joey6_failed"); // fallback: would break linear control flow
     }
   }
-  //CHANGE_BLIP_DISPLAY blip3_jm6 BLIP_ONLY
   $.blip3_jm6 = Blip.AddForCoord(1038.0, -700.0, -100.0);
-  //GET TO THE BANK
+  //CHANGE_BLIP_DISPLAY blip3_jm6 BLIP_ONLY
   $.flag_displayed_wanted_message_jm6 = 0;
+  //GET TO THE BANK
 }
 
 async function get_to_the_bank() {
   await asyncWait(0);
-  //Do nothing
   if (Car.IsDead($.any_car_jm6)) {
   }
-  //GO GET ANOTHER ONE
-  //"We need a getaway vehicle"
   while (!($.player.isStoppedInArea3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, true /* TRUE */)) || !($.player.isInAnyCar()) || $.player.isWantedLevelGreater(0)) {
     await asyncWait(0);
-    //GO GET ANOTHER ONE
     if (Car.IsDead($.any_car_jm6)) {
     }
     if ($.player.isInAnyCar()) {
@@ -393,10 +374,8 @@ async function get_to_the_bank() {
         $.flag_displayed_wanted_message_jm6 = 0;
       }
     }
-    //"We need a getaway vehicle"
     if ($.player.isInAreaOnFoot3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, false /* FALSE */)) {
-      //"We need a getaway vehicle"
-      Text.PrintNow("JM6_5", 5000, 1);
+      Text.PrintNow("JM6_5", 5000, 1); //"We need a getaway vehicle"
     }
     else {
       Text.ClearThisPrint("JM6_5");
@@ -408,12 +387,9 @@ async function get_to_the_bank() {
       throw new Error("unresolved GOTO mission_joey6_failed"); // fallback: would break linear control flow
     }
   }
-  //Go and get a vehicle less conspicuous
-  //WAIT 3000
   if ($.player.isInModel(120 /* CAR_COACH */) || $.player.isInModel(114 /* CAR_BUS */)) {
-    //Go and get a vehicle less conspicuous
+    Text.PrintNow("JM6_6", 5000, 1); //Go and get a vehicle less conspicuous
     //WAIT 3000
-    Text.PrintNow("JM6_6", 5000, 1);
     // SCM GOTO → get_to_the_bank (not lowered; manual jump required)
     throw new Error("unresolved GOTO get_to_the_bank"); // fallback: would break linear control flow
   }
@@ -422,16 +398,13 @@ async function get_to_the_bank() {
     // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_joey6_failed"); // fallback: would break linear control flow
   }
-  //Go and get a vehicle less conspicuous
-  //WAIT 3000
-  // BANK ROBBERY CUT SCENE**************************************************************************************
   if (!($.thug1.isInCar($.any_car_jm6)) || !($.thug2.isInCar($.any_car_jm6)) || !($.thug3.isInCar($.any_car_jm6))) {
-    //Go and get a vehicle less conspicuous
+    Text.PrintNow("JM6_7", 5000, 1); //Go and get a vehicle less conspicuous
     //WAIT 3000
-    Text.PrintNow("JM6_7", 5000, 1);
     // SCM GOTO → get_to_the_bank (not lowered; manual jump required)
     throw new Error("unresolved GOTO get_to_the_bank"); // fallback: would break linear control flow
   }
+  // BANK ROBBERY CUT SCENE**************************************************************************************
   World.ClearArea(1037.3, -699.6, 15.0, 6.0, true /* TRUE */);
   World.SetPedDensityMultiplier(0.0);
   $.player.setControl(false /* OFF */);
@@ -441,15 +414,14 @@ async function get_to_the_bank() {
   $.player.applyBrakesToCar(true /* ON */);
   Camera.SetFixedPosition(1036.448, -705.615, 14.512, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(1036.637, -704.639, 14.624, 2 /* JUMP_CUT */);
-  //SAMPLE2*********************************************************
   $.blip3_jm6.remove();
+  //SAMPLE2*********************************************************
   Audio.LoadMissionAudio(J6_B);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"Wait here"
-  Text.PrintNow("JM6_2", 5000, 1);
+  Text.PrintNow("JM6_2", 5000, 1); //"Wait here"
   $.any_car_jm6 = $.player.storeCarIsIn();
   if (!(Car.IsDead($.any_car_jm6))) {
     if (!(Char.IsDead($.thug1))) {
@@ -474,22 +446,8 @@ async function get_to_the_bank() {
   $.objective_count = 0;
   $.objective_count_done_before1 = 0;
   $.objective_count_done_before2 = 0;
-  //WAITING FOR THUGS TO GET OUT OF CAR
   $.objective_count_done_before3 = 0;
-  //THUGS GO IN THE BANK
-  /*
-  IF NOT IS_CHAR_DEAD thug1
-  SET_CHAR_OBJ_RUN_TO_COORD thug1 1037.4 -699.9
-  WAIT 400
-  ENDIF
-  IF NOT IS_CHAR_DEAD thug2
-  SET_CHAR_OBJ_RUN_TO_COORD thug2 1037.4 -699.9
-  WAIT 400
-  ENDIF
-  IF NOT IS_CHAR_DEAD thug3
-  SET_CHAR_OBJ_RUN_TO_COORD thug3 1037.4 -699.9
-  ENDIF
-  */
+  //WAITING FOR THUGS TO GET OUT OF CAR
   while (!($.objective_count == 3)) {
     await asyncWait(0);
     if (Char.IsDead($.thug1) && $.objective_count_done_before1 == 0) {
@@ -678,10 +636,10 @@ async function get_to_the_bank() {
   $.bankdoor_Y = $.bankdoor_Y + 1.0;
   [$.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z] = $.bankdoor2.getCoordinates();
   $.bankdoor2_Y = $.bankdoor2_Y - 1.0;
-  //WAIT 1000
   while (!($.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false /* FALSE */)) || !($.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false /* FALSE */))) {
     await asyncWait(0);
   }
+  //WAIT 1000
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
@@ -689,8 +647,8 @@ async function get_to_the_bank() {
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
   }
-  //THUGS COME OUT OF BANK
   await asyncWait(1000);
+  //THUGS COME OUT OF BANK
   World.ClearArea(1037.3, -699.6, 15.0, 4.0, true /* TRUE */);
   [$.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z] = $.bankdoor1.getCoordinates();
   $.bankdoor_Y = $.bankdoor_Y - 1.0;
@@ -699,11 +657,10 @@ async function get_to_the_bank() {
   while (!($.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false /* FALSE */)) || !($.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false /* FALSE */))) {
     await asyncWait(0);
   }
-  //SET_PLAYER_AS_LEADER thug1 player
   if (!(Char.IsDead($.thug1))) {
     $.thug1.setCoordinates(1032.9, -700.2, 15.0);
-    //SET_PLAYER_AS_LEADER thug1 player
     $.thug1.setObjRunToCoord(1036.9, -700.2);
+    //SET_PLAYER_AS_LEADER thug1 player
   }
   await asyncWait(800);
   if (!(Char.IsDead($.thug2))) {
@@ -775,8 +732,8 @@ async function get_to_the_bank() {
     }
   }
   $.joey_alarm_loop = Sound.AddContinuous(1034.8, -700.1, 15.0, 69 /* SOUND_BANK_ALARM_LOOP_L */);
-  //SAMPLE3*********************************************************
   $.sound_already_created_before = 1;
+  //SAMPLE3*********************************************************
   Audio.LoadMissionAudio(J6_D);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
@@ -805,28 +762,6 @@ async function get_to_the_bank() {
   $.player.applyBrakesToCar(false /* Off */);
   World.SetPedDensityMultiplier(1.0);
   TIMERB = 0;
-  //WAITING FOR THUGS TO GET BACK INTO CAR
-  //	STORE_CAR_PLAYER_IS_IN player any_car_jm6
-  //	maybe should stop player leaving this car while the thugs get in
-  /*
-  IF TIMERB > 15000
-  IF NOT IS_CAR_DEAD any_car_jm6
-  IF NOT IS_CHAR_DEAD	thug1
-  //WARP_CHAR_INTO_CAR thug1 any_car_jm6
-  //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-  ENDIF
-  IF NOT IS_CHAR_DEAD	thug2
-  //WARP_CHAR_INTO_CAR thug2 any_car_jm6
-  //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-  ENDIF
-  IF NOT IS_CHAR_DEAD	thug3
-  //WARP_CHAR_INTO_CAR thug3 any_car_jm6
-  //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-  ENDIF
-  ENDIF
-  ENDIF
-  */
-  //END OF BANK ROBBERY CUT SCENE********************************************************************************
   while (!($.objective_count == 3)) {
     await asyncWait(0);
     if (Char.IsDead($.thug1) && $.objective_count_done_before1 == 0) {
@@ -844,12 +779,12 @@ async function get_to_the_bank() {
       $.objective_count_done_before3 = 1;
       $.thug3_is_dead = 1;
     }
-    //	STORE_CAR_PLAYER_IS_IN player any_car_jm6
-    //	maybe should stop player leaving this car while the thugs get in
     if ($.thug1_is_dead == 1 && $.thug2_is_dead == 1 && $.thug3_is_dead == 1) {
       // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey6_failed"); // fallback: would break linear control flow
     }
+    //	STORE_CAR_PLAYER_IS_IN player any_car_jm6
+    //	maybe should stop player leaving this car while the thugs get in
     if (Car.IsDead($.any_car_jm6)) {
       // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey6_failed"); // fallback: would break linear control flow
@@ -866,24 +801,6 @@ async function get_to_the_bank() {
         $.objective_count_done_before2 = 1;
       }
     }
-    /*
-    IF TIMERB > 15000
-    IF NOT IS_CAR_DEAD any_car_jm6
-    IF NOT IS_CHAR_DEAD	thug1
-    //WARP_CHAR_INTO_CAR thug1 any_car_jm6
-    //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-    ENDIF
-    IF NOT IS_CHAR_DEAD	thug2
-    //WARP_CHAR_INTO_CAR thug2 any_car_jm6
-    //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-    ENDIF
-    IF NOT IS_CHAR_DEAD	thug3
-    //WARP_CHAR_INTO_CAR thug3 any_car_jm6
-    //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-    ENDIF
-    ENDIF
-    ENDIF
-    */
     if ($.thug3_is_dead == 0) {
       if ($.thug3.isInCar($.any_car_jm6) && $.objective_count_done_before3 == 0) {
         $.objective_count++;
@@ -891,30 +808,26 @@ async function get_to_the_bank() {
       }
     }
   }
+  //END OF BANK ROBBERY CUT SCENE********************************************************************************
   $.blip2_jm6 = Blip.AddForCoord(1086.0, -227.0, -100.0);
-  //SAMPLE4*********************************************************
   $.blip2_jm6.changeDisplay(2 /* BLIP_ONLY */);
+  //SAMPLE4*********************************************************
   Audio.LoadMissionAudio(J6_C);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"get us out of here"
+  Text.PrintNow("JM6_3", 3000, 1); //"get us out of here"
   //PRINT_SOON ( JM6_4 ) 5000 1 //"get us out of here"
   //Get back to warehouse
-  Text.PrintNow("JM6_3", 3000, 1);
 }
 
 async function back_to_safe_house() {
   await asyncWait(0);
-  //GO GET ANOTHER ONE
   if (Car.IsDead($.any_car_jm6)) {
   }
-  //GO GET ANOTHER ONE
-  //THUGS GO BACK INTO SAFEHOUSE CUT_SCENE***********************************************************************
   while (!($.player.isStoppedInArea2D(1089.9, -223.9, 1084.5, -228.5, true /* TRUE */)) || !($.player.isInAnyCar()) || $.player.isWantedLevelGreater(0)) {
     await asyncWait(0);
-    //GO GET ANOTHER ONE
     if (Car.IsDead($.any_car_jm6)) {
     }
     if ($.player.isInAnyCar()) {
@@ -990,6 +903,7 @@ async function back_to_safe_house() {
       Text.ClearThisPrint(EBAL_5);
     }
   }
+  //THUGS GO BACK INTO SAFEHOUSE CUT_SCENE***********************************************************************
   if (!(Char.IsDead($.thug1))) {
     if (!($.thug1.isInPlayersGroup($.player))) {
       Text.PrintNow("HEY2", 4000, 1);
@@ -1044,34 +958,28 @@ async function back_to_safe_house() {
       }
     }
   }
-  //thug1_is_dead = 1
   if (!(Char.IsDead($.thug1))) {
-    //thug1_is_dead = 1
     if (!($.player.locateAnyMeansChar2D($.thug1, 30.0, 30.0, false /* FALSE */))) {
-      //thug1_is_dead = 1
       if (!(Char.IsDead($.thug1))) {
         $.thug1.markAsNoLongerNeeded();
       }
+      //thug1_is_dead = 1
     }
   }
-  //thug2_is_dead = 1
   if (!(Char.IsDead($.thug2))) {
-    //thug2_is_dead = 1
     if (!($.player.locateAnyMeansChar2D($.thug2, 30.0, 30.0, false /* FALSE */))) {
-      //thug2_is_dead = 1
       if (!(Char.IsDead($.thug2))) {
         $.thug2.markAsNoLongerNeeded();
       }
+      //thug2_is_dead = 1
     }
   }
-  //thug3_is_dead = 1
   if (!(Char.IsDead($.thug3))) {
-    //thug3_is_dead = 1
     if (!($.player.locateAnyMeansChar2D($.thug3, 30.0, 30.0, false /* FALSE */))) {
-      //thug3_is_dead = 1
       if (!(Char.IsDead($.thug3))) {
         $.thug3.markAsNoLongerNeeded();
       }
+      //thug3_is_dead = 1
     }
   }
   $.objective_count = 0;
@@ -1081,10 +989,6 @@ async function back_to_safe_house() {
   while (!($.Bank_job_door.slide(1087.523, -233.801, 14.012, 0.0, 0.0, 0.2, false /* FALSE */))) {
     await asyncWait(0);
   }
-  //WAITING FOR THUGS TO GET OUT OF CAR
-  //SET_CHAR_OBJ_WAIT_ON_FOOT thug1
-  //SET_CHAR_OBJ_WAIT_ON_FOOT thug2
-  //SET_CHAR_OBJ_WAIT_ON_FOOT thug3
   while (!($.objective_count == 3)) {
     await asyncWait(0);
     if (Char.IsDead($.thug1)) {
@@ -1108,31 +1012,22 @@ async function back_to_safe_house() {
       // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey6_failed"); // fallback: would break linear control flow
     }
-    //SET_CHAR_OBJ_WAIT_ON_FOOT thug1
-    //SET_CHAR_OBJ_WAIT_ON_FOOT thug2
-    //SET_CHAR_OBJ_WAIT_ON_FOOT thug3
     if (!(Car.IsDead($.any_car_jm6))) {
-      //SET_CHAR_OBJ_WAIT_ON_FOOT thug1
       if ($.thug1_is_dead == 0) {
-        //SET_CHAR_OBJ_WAIT_ON_FOOT thug1
         if (!($.thug1.isInCar($.any_car_jm6)) && $.objective_count_done_before1 == 0) {
           $.thug1.setObjRunToCoord(1087.0, -238.6);
           $.objective_count++;
           $.objective_count_done_before1 = 1;
         }
       }
-      //SET_CHAR_OBJ_WAIT_ON_FOOT thug2
       if ($.thug2_is_dead == 0) {
-        //SET_CHAR_OBJ_WAIT_ON_FOOT thug2
         if (!($.thug2.isInCar($.any_car_jm6)) && $.objective_count_done_before2 == 0) {
           $.thug2.setObjRunToCoord(1087.5, -238.6);
           $.objective_count++;
           $.objective_count_done_before2 = 1;
         }
       }
-      //SET_CHAR_OBJ_WAIT_ON_FOOT thug3
       if ($.thug3_is_dead == 0) {
-        //SET_CHAR_OBJ_WAIT_ON_FOOT thug3
         if (!($.thug3.isInCar($.any_car_jm6)) && $.objective_count_done_before3 == 0) {
           $.thug3.setObjRunToCoord(1088.0, -238.6);
           $.objective_count++;
@@ -1156,9 +1051,6 @@ async function back_to_safe_house() {
   $.objective_count_done_before2 = 0;
   $.objective_count_done_before3 = 0;
   TIMERB = 0;
-  // GSW - could maybe use objective_count_done_before1 here
-  // GSW - could maybe use objective_count_done_before2 here
-  // GSW - could maybe use objective_count_done_before3 here
   while (!($.objective_count == 3)) {
     await asyncWait(0);
     if (Char.IsDead($.thug1) && $.objective_count_done_before1 == 0) {
@@ -1180,30 +1072,21 @@ async function back_to_safe_house() {
       // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey6_failed"); // fallback: would break linear control flow
     }
-    // GSW - could maybe use objective_count_done_before1 here
     if ($.thug1_is_dead == 0) {
-      // GSW - could maybe use objective_count_done_before1 here
       if ($.thug1.isObjectivePassed() && $.objective_count_done_before1 == 0) {
         $.objective_count++;
-        // GSW - could maybe use objective_count_done_before1 here
         $.objective_count_done_before1 = 1;
       }
     }
-    // GSW - could maybe use objective_count_done_before2 here
     if ($.thug2_is_dead == 0) {
-      // GSW - could maybe use objective_count_done_before2 here
       if ($.thug2.isObjectivePassed() && $.objective_count_done_before2 == 0) {
         $.objective_count++;
-        // GSW - could maybe use objective_count_done_before2 here
         $.objective_count_done_before2 = 1;
       }
     }
-    // GSW - could maybe use objective_count_done_before3 here
     if ($.thug3_is_dead == 0) {
-      // GSW - could maybe use objective_count_done_before3 here
       if ($.thug3.isObjectivePassed() && $.objective_count_done_before3 == 0) {
         $.objective_count++;
-        // GSW - could maybe use objective_count_done_before3 here
         $.objective_count_done_before3 = 1;
       }
     }
@@ -1236,19 +1119,18 @@ async function back_to_safe_house() {
   Camera.RestoreJumpcut();
   Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
   Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-  //THUGS GO BACK INTO SAFEHOUSE CUT_SCENE***********************************************************************
   $.player.applyBrakesToCar(false /* Off */);
+  //THUGS GO BACK INTO SAFEHOUSE CUT_SCENE***********************************************************************
   }
-  // Mission Joey6 failed
   // SCM GOTO → mission_joey6_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_joey6_passed"); // fallback: would break linear control flow
+  // Mission Joey6 failed
 }
 
 async function mission_joey6_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission joey6 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission joey6 passed
 }
 
 async function mission_joey6_passed() {
@@ -1266,15 +1148,14 @@ async function mission_joey6_passed() {
   }
   $.thug3.delete();
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", $.thugs_score, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", $.thugs_score, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore($.thugs_score);
   Stat.RegisterMissionPassed(JM6);
   Stat.PlayerMadeProgress(1);
   $.joey_contact_blip.remove();
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_joey6() {
@@ -1296,11 +1177,11 @@ async function mission_cleanup_joey6() {
 }
 
 export async function joey6() {
+  // MissionBoundary
   // *******************************************************************************************
   // **************************************Joey Mission 6***************************************
   // ****************************************Bank Job*******************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_joey6
   await mission_start_joey6();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1312,14 +1193,14 @@ export async function joey6() {
   // SCM GOSUB mission_cleanup_joey6
   await mission_cleanup_joey6();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT thug1 thug2 thug3 thugs_score joey_alarm_loop flag_not_enough_seats
   // VAR_INT blip1_jm6 blip2_jm6 blip3_jm6 thug1_blip thug2_blip thug3_blip
   // VAR_INT any_car_jm6 maxpassengers sound_already_created_before
   // VAR_INT flag_displayed_horn_message_jm6 flag_displayed_wanted_message_jm6
   // VAR_INT thug1_is_dead thug2_is_dead thug3_is_dead blip_for_thug_added1 blip_for_thug_added2 blip_for_thug_added3
   // VAR_INT objective_count objective_count_done_before1 objective_count_done_before2 objective_count_done_before3
-  // ***************************************Mission Start*************************************
   // VAR_FLOAT bankdoor_X bankdoor_Y bankdoor_Z bankdoor2_X bankdoor2_Y bankdoor2_Z
+  // ***************************************Mission Start*************************************
 }

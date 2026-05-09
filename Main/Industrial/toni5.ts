@@ -33,68 +33,58 @@ async function mission_start_toni5() {
   World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
   $.player.setCoordinates(1219.5, -321.1, 26.4);
   $.player.setHeading(180.0);
-  //TONIS RESTAURANT
-  World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */);
+  World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 1350) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_B", 10000, 1);
+  Text.PrintNow("TM5_B", 10000, 1); // Mission brief
   while ($.cs_time < 3169) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_C", 10000, 1);
+  Text.PrintNow("TM5_C", 10000, 1); // Mission brief
   while ($.cs_time < 5730) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_D", 10000, 1);
+  Text.PrintNow("TM5_D", 10000, 1); // Mission brief
   while ($.cs_time < 7755) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_E", 10000, 1);
+  Text.PrintNow("TM5_E", 10000, 1); // Mission brief
   while ($.cs_time < 12490) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_F", 10000, 1);
+  Text.PrintNow("TM5_F", 10000, 1); // Mission brief
   while ($.cs_time < 17220) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_G", 10000, 1);
+  Text.PrintNow("TM5_G", 10000, 1); // Mission brief
   while ($.cs_time < 21330) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_H", 10000, 1);
+  Text.PrintNow("TM5_H", 10000, 1); // Mission brief
   while ($.cs_time < 24141) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_I", 10000, 1);
+  Text.PrintNow("TM5_I", 10000, 1); // Mission brief
   while ($.cs_time < 25817) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM5_J", 10000, 1);
+  Text.PrintNow("TM5_J", 10000, 1); // Mission brief
   while ($.cs_time < 28632) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -126,8 +116,8 @@ async function mission_start_toni5() {
     await asyncWait(0);
   }
   $.triads_spot_you = 0;
-  // START MISSION
   $.clear_triads_threats = 0;
+  // START MISSION
   $.explosive_truck = Car.Create(91 /* CAR_TRASHMASTER */, 1314.0, -106.0, -100.0);
   $.explosive_truck.setProofs(true /* TRUE */, true /* TRUE */, false /* FALSE */, false /* FALSE */, true /* TRUE */);
   $.explosive_truck.armWithBomb(1 /* CARBOMB_TIMED */);
@@ -167,7 +157,6 @@ async function toni5_wait_for_van() {
     // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_toni5_failed"); // fallback: would break linear control flow
   }
-  //"Get back in the car!"
   while (!($.explosive_truck.isStoppedInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, $.blob_flag))) {
     await asyncWait(0);
     if (Car.IsDead($.explosive_truck)) {
@@ -190,15 +179,12 @@ async function toni5_wait_for_van() {
         $.flag_car_blip_displayed_tm5 = 0 /* FALSE */;
       }
     }
-    //"Get back in the car!"
     if (!($.player.isInCar($.explosive_truck))) {
-      //"Get back in the car!"
       if ($.flag_car_blip_displayed_tm5 == 0 /* FALSE */) {
         $.blip1_tm5 = Blip.AddForCar($.explosive_truck);
         $.blob_flag = 0;
         $.blip2_tm5.remove();
-        //"Get back in the car!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
         $.flag_car_blip_displayed_tm5 = 1 /* TRUE */;
       }
     }
@@ -216,15 +202,13 @@ async function toni5_wait_for_van() {
     }
   }
   Streaming.RequestModel(fshfctry_dstryd);
-  //Activate the car bomb then get out of there!
-  Text.PrintNow("JM1_3", 5000, 2);
+  Text.PrintNow("JM1_3", 5000, 2); //Activate the car bomb then get out of there!
   Weather.Force(0 /* WEATHER_SUNNY */);
   if (Car.IsDead($.explosive_truck)) {
     Text.PrintNow("WRECKED", 5000, 1);
     // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_toni5_failed"); // fallback: would break linear control flow
   }
-  // The vehicle bomb's not set!
   while (!(World.IsExplosionInArea(3 /* EXPLOSION_CAR */, 961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0))) {
     await asyncWait(0);
     if (Car.IsDead($.explosive_truck)) {
@@ -243,10 +227,8 @@ async function toni5_wait_for_van() {
       // SCM GOTO → toni5_wait_for_van (not lowered; manual jump required)
       throw new Error("unresolved GOTO toni5_wait_for_van"); // fallback: would break linear control flow
     }
-    // The vehicle bomb's not set!
     if (!($.player.isInCar($.explosive_truck)) && !($.explosive_truck.isArmedWithBomb(4 /* CARBOMB_TIMEDACTIVE */))) {
-      // The vehicle bomb's not set!
-      Text.PrintNow("JM1_5", 5000, 1);
+      Text.PrintNow("JM1_5", 5000, 1); // The vehicle bomb's not set!
     }
     if (!($.explosive_truck.isHealthGreater(900))) {
       $.explosive_truck.explode();
@@ -274,14 +256,14 @@ async function explosion() {
   $.blip1_tm5.remove();
   $.blip2_tm5.remove();
   await asyncWait(300);
-  //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 965.8 -1111.9 15.5 0.0 0.0 0.0 4.0 0 0 0 4000
   Camera.Shake(300);
-  //ADD_ONE_OFF_SOUND 965.8 -1111.9 15.5 sound_test_1
+  //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 965.8 -1111.9 15.5 0.0 0.0 0.0 4.0 0 0 0 4000
   Fx.AddExplosion(965.8, -1111.9, 15.5, 5 /* EXPLOSION_HELI */);
-  //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 966.0 -1123.0 15.4 0.0 0.0 0.0 4.0 0 0 0 4000
+  //ADD_ONE_OFF_SOUND 965.8 -1111.9 15.5 sound_test_1
   $.fish_Fire3 = ScriptFire.Create(966.0, -1111.8, 13.8);
-  //ADD_ONE_OFF_SOUND 966.0 -1123.0 15.4 sound_test_1
+  //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 966.0 -1123.0 15.4 0.0 0.0 0.0 4.0 0 0 0 4000
   Fx.AddExplosion(966.0, -1123.0, 15.4, 5 /* EXPLOSION_HELI */);
+  //ADD_ONE_OFF_SOUND 966.0 -1123.0 15.4 sound_test_1
   await asyncWait(600);
   Camera.Shake(400);
   Fx.AddExplosion(970.0, -1119.0, 16.0, 5 /* EXPLOSION_HELI */);
@@ -307,8 +289,8 @@ async function explosion() {
   Fx.AddExplosion(976.0, -1108.3, 21.4, 5 /* EXPLOSION_HELI */);
   await asyncWait(300);
   Camera.Shake(300);
-  //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 986.3 -1103.4 14.7 0.0 0.0 0.0 4.0 0 0 0 4000
   Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, 969.8, -1104.9, 18.7, 0.0, 0.0, 0.0, 5.0, 0, 0, 0, 5000);
+  //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 986.3 -1103.4 14.7 0.0 0.0 0.0 4.0 0 0 0 4000
   Fx.AddExplosion(972.7, -1102.2, 18.5, 5 /* EXPLOSION_HELI */);
   Fx.AddExplosion(986.3, -1103.4, 14.7, 5 /* EXPLOSION_HELI */);
   $.debris1_tm5 = Object.Create(1413 /* fish01 */, 972.7, -1103.6, 20.6);
@@ -323,12 +305,12 @@ async function explosion() {
   $.debris2_tm5.setVelocity(8.0, 7.0, 16.0);
   $.debris3_tm5.setVelocity(-7.0, 10.0, 14.0);
   $.debris4_tm5.setVelocity(9.0, 6.0, 15.0);
-  //ADD_ONE_OFF_SOUND 971.7 -1101.2 17.5 sound_test_1
   Sound.AddOneOffSound(969.8, -1104.9, 18.7, 0 /* sound_test_1 */);
+  //ADD_ONE_OFF_SOUND 971.7 -1101.2 17.5 sound_test_1
   await asyncWait(400);
   Camera.Shake(500);
-  //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 973.6 -1128.8 19.6 0.0 0.0 0.0 4.0 0 0 0 4000
   Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, 974.2, -1129.8, 19.5, 0.0, 0.0, 0.0, 5.0, 0, 0, 0, 5000);
+  //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 973.6 -1128.8 19.6 0.0 0.0 0.0 4.0 0 0 0 4000
   Fx.AddExplosion(982.0, -1102.8, 17.4, 5 /* EXPLOSION_HELI */);
   Fx.AddExplosion(973.6, -1128.8, 19.6, 5 /* EXPLOSION_HELI */);
   $.debris5_tm5 = Object.Create(1413 /* fish01 */, 982.0, -1103.8, 20.4);
@@ -349,8 +331,8 @@ async function explosion() {
   $.debris8_tm5.setVelocity(8.0, 9.0, 16.0);
   $.debris9_tm5.setVelocity(-7.0, 8.0, 14.0);
   $.debris10_tm5.setVelocity(-1.0, 10.0, 14.0);
-  //ADD_ONE_OFF_SOUND 983.0 -1103.8 18.4 sound_test_1
   Sound.AddOneOffSound(974.2, -1129.8, 19.5, 0 /* sound_test_1 */);
+  //ADD_ONE_OFF_SOUND 983.0 -1103.8 18.4 sound_test_1
   Camera.SetFadingColor(255, 255, 255);
   Camera.DoFade(400, 0 /* FADE_OUT */);
   if (!($.player.isDead())) {
@@ -370,29 +352,26 @@ async function explosion() {
   Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
   Camera.RestoreJumpcut();
   }
-  // Mission toni5 failed
   // SCM GOTO → mission_toni5_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_toni5_passed"); // fallback: would break linear control flow
+  // Mission toni5 failed
 }
 
 async function mission_toni5_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission toni5 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission toni5 passed
 }
 
 async function mission_toni5_passed() {
   $.flag_toni_mission5_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(30000);
   $.frankie_contact_blip.remove();
   $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, 16 /* RADAR_SPRITE_SAL */);
-  //Fish factory
-  Zone.SetPedInfo("FISHFAC", 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+  Zone.SetPedInfo("FISHFAC", 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Fish factory
   Zone.SetPedInfo("FISHFAC", 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   $.gen_car47.switch(0);
   $.gen_car48.switch(0);
@@ -402,8 +381,8 @@ async function mission_toni5_passed() {
   Stat.PlayerMadeProgress(1);
   $.toni_contact_blip.remove();
   // START_NEW_SCRIPT toni5_flames_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_toni5() {
@@ -415,8 +394,7 @@ async function mission_cleanup_toni5() {
   Hud.ClearCounter($.explosive_truck_health);
   Streaming.MarkModelAsNoLongerNeeded(car`TRASHMASTER`);
   Streaming.MarkModelAsNoLongerNeeded(fshfctry_dstryd);
-  //TEST
-  Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
+  Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */); //TEST
   Camera.SetFadingColor(1, 1, 1);
   Mission.Finish();
   return;
@@ -446,11 +424,8 @@ async function triad_AI() {
     Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
     $.clear_triads_threats = 1;
   }
-  //TEST
   if ($.player.isInZone("FISHFAC")) {
-    //TEST
     if ($.triads_spot_you == 0) {
-      //TEST
       if (!($.player.isInAnyCar())) {
         if (!(Char.IsDead($.fish_triad1))) {
           $.fish_triad1.setThreatSearch(0 /* THREAT_PLAYER1 */);
@@ -470,11 +445,9 @@ async function triad_AI() {
         if (!(Char.IsDead($.fish_triad6))) {
           $.fish_triad6.setThreatSearch(0 /* THREAT_PLAYER1 */);
         }
-        //TEST
-        Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
+        Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */); //TEST
         $.triads_spot_you = 1;
       }
-      //TEST
       if (Char.IsDead($.fish_triad1) || Char.IsDead($.fish_triad2) || Char.IsDead($.fish_triad3) || Char.IsDead($.fish_triad4) || Char.IsDead($.fish_triad5) || Char.IsDead($.fish_triad6)) {
         if (!(Char.IsDead($.fish_triad1))) {
           $.fish_triad1.setThreatSearch(0 /* THREAT_PLAYER1 */);
@@ -494,8 +467,7 @@ async function triad_AI() {
         if (!(Char.IsDead($.fish_triad6))) {
           $.fish_triad6.setThreatSearch(0 /* THREAT_PLAYER1 */);
         }
-        //TEST
-        Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
+        Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */); //TEST
         $.triads_spot_you = 1;
       }
     }
@@ -519,11 +491,11 @@ async function Truck_health() {
 }
 
 export async function toni5() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Toni mission 5****************************************
   // **********************************Destroy Fish Factory*************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_toni5
   await mission_start_toni5();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -535,14 +507,14 @@ export async function toni5() {
   // SCM GOSUB mission_cleanup_toni5
   await mission_cleanup_toni5();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT blip1_tm5 blip2_tm5
   // VAR_INT explosive_truck countdown_tm5
   // VAR_INT fish_factory_destroyed triads_spot_you
   // VAR_INT flag_car_blip_displayed_tm5 explosive_truck_health explosive_truck_health2
   // VAR_INT fish_fire2 fish_fire3 fish_fire4 fish_fire5 fish_fire6 fish_fire7
   // VAR_INT debris1_tm5 debris2_tm5 debris3_tm5 debris4_tm5 debris5_tm5 debris6_tm5 debris7_tm5 debris8_tm5 debris9_tm5 debris10_tm5
-  // ***************************************Mission Start*************************************
   // VAR_FLOAT truck_x truck_y truck_z
+  // ***************************************Mission Start*************************************
 }

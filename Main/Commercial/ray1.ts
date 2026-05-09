@@ -31,12 +31,12 @@ async function mission_start_ray1() {
   Streaming.LoadSpecialCharacter(1, $.ray);
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, RAYH);
+  Streaming.RequestModel(toilet);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.RequestModel(toilet);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(toilet))) {
     await asyncWait(0);
@@ -62,32 +62,27 @@ async function mission_start_ray1() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"That scum bag McAffrey he took more bribes than anyone, and now he's gone too far."
-  Text.PrintNow(RM1_A, 8000, 1);
+  Text.PrintNow(RM1_A, 8000, 1); //"That scum bag McAffrey he took more bribes than anyone, and now he's gone too far."
   while ($.cs_time < 6097) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Reckons he'll get an honorable discharge if he turns states evidence."
-  Text.PrintNow(RM1_B, 8000, 1);
+  Text.PrintNow(RM1_B, 8000, 1); //"Reckons he'll get an honorable discharge if he turns states evidence."
   while ($.cs_time < 9509) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"He just squealed."
-  Text.PrintNow(RM1_C, 8000, 1);
+  Text.PrintNow(RM1_C, 8000, 1); //"He just squealed."
   while ($.cs_time < 11019) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"He's under armed protection in a WitSec property down Newport some apartment behind the car park."
-  Text.PrintNow(RM1_D, 8000, 1);
+  Text.PrintNow(RM1_D, 8000, 1); //"He's under armed protection in a WitSec property down Newport some apartment behind the car park."
   while ($.cs_time < 16109) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Torch the place and that should flush 'em out, then make sure he never talks to no one."
-  Text.PrintNow(RM1_E, 8000, 1);
+  Text.PrintNow(RM1_E, 8000, 1); //"Torch the place and that should flush 'em out, then make sure he never talks to no one."
   while ($.cs_time < 21333) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -118,14 +113,13 @@ async function mission_start_ray1() {
   Streaming.Switch(true /* ON */);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   $.rays_cutscene_flag = 0;
-  // ******************************************END OF CUTSCENE********************************
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
+  // ******************************************END OF CUTSCENE********************************
   Streaming.RequestModel(safehouse);
   $.ray1_blip = Blip.AddForCoord(378.0, -443.2, 29.9);
-  //"Check out the witness protection house."
-  Text.PrintNow(RM1_1, 5000, 1);
+  Text.PrintNow(RM1_1, 5000, 1); //"Check out the witness protection house."
   while (!($.player.isStoppedInArea2D(330.35, -471.43, 375.982, -431.119, false))) {
     await asyncWait(0);
   }
@@ -145,31 +139,22 @@ async function mission_start_ray1() {
   $.get_away_car = 0;
   $.police_guard1 = 0;
   $.police_guard2 = 0;
-  // THE WINDOW
-  //"You have run out of grenades! Get some more from ammunation"
-  //"Get back to the safehouse and torch it"
   while (!(World.IsProjectileInArea(376.5, -445.2, 28.1, 380.1, -441.2, 31.7))) {
     await asyncWait(0);
     $.get_away_car = $.player.getAmmoInWeapon(11 /* WEAPONTYPE_GRENADE */);
     $.police_guard1 = $.player.getAmmoInWeapon(8 /* WEAPONTYPE_ROCKET */);
     $.get_away_car += $.police_guard1;
-    //"You have run out of grenades! Get some more from ammunation"
     if ($.police_guard2 == 0) {
-      //"You have run out of grenades! Get some more from ammunation"
       if ($.get_away_car == 0) {
-        //"You have run out of grenades! Get some more from ammunation"
-        Text.PrintNow(RM1_4, 5000, 1);
+        Text.PrintNow(RM1_4, 5000, 1); //"You have run out of grenades! Get some more from ammunation"
         $.ray1_blip.remove();
         $.ray1_blip = Blip.AddSpriteForCoord(345.5, -713.5, 26.1, 20 /* RADAR_SPRITE_WEAPON */);
         $.police_guard2 = 1;
       }
     }
-    //"Get back to the safehouse and torch it"
     if ($.police_guard2 == 1) {
-      //"Get back to the safehouse and torch it"
       if ($.get_away_car > 0) {
-        //"Get back to the safehouse and torch it"
-        Text.PrintNow(RM1_5, 5000, 1);
+        Text.PrintNow(RM1_5, 5000, 1); //"Get back to the safehouse and torch it"
         $.ray1_blip.remove();
         $.ray1_blip = Blip.AddForCoord(378.0, -443.2, 29.9);
         $.police_guard2 = 0;
@@ -210,12 +195,11 @@ async function mission_start_ray1() {
   Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
   Game.SetAllCarsCanBeDamaged(true /* TRUE */);
   Camera.RestoreJumpcut();
+  Camera.SetBehindPlayer();
   //get_away_car  = 0
   //police_guard1 = 0
   //police_guard2 = 0
-  Camera.SetBehindPlayer();
-  // IN GARAGE
-  $.get_away_car = Car.Create(88 /* CAR_SENTINEL */, 380.0, -437.5, 21.1);
+  $.get_away_car = Car.Create(88 /* CAR_SENTINEL */, 380.0, -437.5, 21.1); // IN GARAGE
   $.get_away_car.setHeading(90.0);
   $.get_away_car.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
   $.get_away_car.setStrong(true /* TRUE */);
@@ -234,10 +218,8 @@ async function mission_start_ray1() {
   $.get_away_car.setDrivingStyle(2);
   $.get_away_car.wanderRandomly();
   $.get_away_car.setAvoidLevelTransitions(true /* TRUE */);
-  //"Take out the witness!"
-  Text.PrintNow(RM1_2, 5000, 1);
+  Text.PrintNow(RM1_2, 5000, 1); //"Take out the witness!"
   $.game_timer_start_r1 = Clock.GetGameTimer();
-  //"McAffrey got away!"
   while (Char.IsStillAlive($.the_witness)) {
     if (!(Char.IsDead($.police_guard2))) {
       if (!($.police_guard2.isInArea2D(375.0, -441.5, 386.0, -434.0, false))) {
@@ -261,27 +243,21 @@ async function mission_start_ray1() {
         $.wanted_lvl_flag_r1 = 1;
       }
     }
-    //"McAffrey got away!"
     if ($.wanted_lvl_flag_r1 == 1) {
-      //"McAffrey got away!"
       if (!($.player.locateAnyMeansChar2D($.the_witness, 160.0, 160.0, false)) && !($.the_witness.isOnScreen())) {
         if ($.mfail_timer_reset_flag == 0) {
           $.ray1_blip.remove();
           $.mfail_timer_started = Clock.GetGameTimer();
           $.mfail_timer_reset_flag = 1;
         }
-        //"McAffrey got away!"
         if ($.mfail_timer_reset_flag == 1) {
           $.mfail_timer_current = Clock.GetGameTimer();
           $.mfail_timer = $.mfail_timer_current - $.mfail_timer_started;
-          //"McAffrey got away!"
           if ($.mfail_timer > 4000) {
-            //"McAffrey got away!"
             if (!($.the_witness.isOnScreen())) {
               $.mfail_timer_reset_flag = 0;
               $.the_witness.delete();
-              //"McAffrey got away!"
-              Text.PrintNow(RM1_3, 5000, 1);
+              Text.PrintNow(RM1_3, 5000, 1); //"McAffrey got away!"
               // SCM GOTO → mission_ray1_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_ray1_failed"); // fallback: would break linear control flow
             }
@@ -382,8 +358,8 @@ async function mission_start_ray1() {
 
 async function mission_ray1_failed() {
   Text.PrintBig(M_FAIL, 5000, 1);
-  // mission Ray 1 passed
   return;
+  // mission Ray 1 passed
 }
 
 async function mission_ray1_passed() {
@@ -395,8 +371,8 @@ async function mission_ray1_passed() {
   Stat.RegisterMissionPassed(RM1);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT ray_mission2_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_ray1() {
@@ -413,6 +389,7 @@ async function mission_cleanup_ray1() {
 }
 
 export async function ray1() {
+  // MissionBoundary
   // *****************************************************************************************
   // ************************************ Ray mission 1  *************************************
   // ************************************ Silent Witness *************************************
@@ -420,7 +397,6 @@ export async function ray1() {
   // *** house and flush him out by throwing a grenade through the window. The witness and ***
   // *** some police escorts run out and leg it in a car, chase them and kill them.		 ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_ray1
   await mission_start_ray1();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -432,12 +408,12 @@ export async function ray1() {
   // SCM GOSUB mission_cleanup_ray1
   await mission_cleanup_ray1();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT get_away_car police_guard1 police_guard2 the_witness ray1_blip burning_cop
   // VAR_INT police_guard3 fire_1 fire_2 fire_3 fire_4 wanted_lvl_flag_r1 game_timer_r1 game_timer_start_r1
   // VAR_INT car_moving_stuck_flag getaway_stuck_flag get_away_car_health game_timer_current_r1
   // VAR_INT mfail_timer mfail_timer_current mfail_timer_started mfail_timer_reset_flag carlock_flag
-  // ****************************************Mission Start************************************
   // VAR_FLOAT get_away_car_x get_away_car_y get_away_car_z
+  // ****************************************Mission Start************************************
 }

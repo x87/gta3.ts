@@ -44,45 +44,39 @@ async function mission_start_joey3() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 5515) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM3_A", 10000, 2);
+  Text.PrintNow("JM3_A", 10000, 2); // Mission brief
   while ($.cs_time < 7894) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM3_B", 10000, 2);
+  Text.PrintNow("JM3_B", 10000, 2); // Mission brief
   while ($.cs_time < 10381) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM3_C", 10000, 2);
+  Text.PrintNow("JM3_C", 10000, 2); // Mission brief
   while ($.cs_time < 14589) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM3_D", 10000, 2);
+  Text.PrintNow("JM3_D", 10000, 2); // Mission brief
   while ($.cs_time < 17518) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM3_E", 10000, 2);
+  Text.PrintNow("JM3_E", 10000, 2); // Mission brief
   while ($.cs_time < 21627) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM3_F", 10000, 2);
+  Text.PrintNow("JM3_F", 10000, 2); // Mission brief
   while ($.cs_time < 24675) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -113,10 +107,10 @@ async function mission_start_joey3() {
   Streaming.MarkModelAsNoLongerNeeded(jogarageint);
   Streaming.LoadSpecialCharacter(2, S_GUARD);
   Streaming.RequestModel(car`SECURICAR`);
-  // START OF MISSION
   while (!(Streaming.HasSpecialCharacterLoaded(2)) || !(Streaming.HasModelLoaded(car`SECURICAR`))) {
     await asyncWait(0);
   }
+  // START OF MISSION
   $.van_jm3 = Car.Create(111 /* CAR_SECURICAR */, 1063.0, -805.0, 14.6);
   $.van_jm3.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
   $.van_jm3.setOnlyDamagedByPlayer(true /* TRUE */);
@@ -129,8 +123,7 @@ async function mission_start_joey3() {
   $.van_man2_jm3 = Char.CreateAsPassenger($.van_jm3, 21 /* PEDTYPE_SPECIAL */, ped`SPECIAL2`, 0);
   $.van_man2_jm3.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
   $.test_van_health_counter = $.van_jm3.getHealth();
-  //TEST STUFF!!!!!!!!!!!!!
-  Hud.DisplayCounterWithString($.test_van_health_counter, 1 /* COUNTER_DISPLAY_BAR */, "DAM");
+  Hud.DisplayCounterWithString($.test_van_health_counter, 1 /* COUNTER_DISPLAY_BAR */, "DAM"); //TEST STUFF!!!!!!!!!!!!!
   $.test_van_health_counter = $.van_jm3.getHealth();
   $.test_van_health_counter2 = 1000 - $.test_van_health_counter;
   if ($.test_van_health_counter2 > 400) {
@@ -258,7 +251,6 @@ async function mission_start_joey3() {
 
 async function garage_stop() {
   TIMERB = 0;
-  //"Get back in the Van!"
   while (!($.van_jm3.isStoppedInArea3D(1440.7, -805.6, 10.9, 1449.8, -782.1, 15.9, false /* FALSE */)) || !($.player.isInCar($.van_jm3))) {
     await asyncWait(0);
     if (Car.IsDead($.van_jm3)) {
@@ -275,14 +267,11 @@ async function garage_stop() {
         $.flag_car_blip_displayed_jm3 = 0 /* FALSE */;
       }
     }
-    //"Get back in the Van!"
     if (!($.player.isInCar($.van_jm3))) {
-      //"Get back in the Van!"
       if ($.flag_car_blip_displayed_jm3 == 0 /* FALSE */) {
         $.blip1_jm3 = Blip.AddForCar($.van_jm3);
         $.blip2_jm3.remove();
-        //"Get back in the Van!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the Van!"
         $.flag_car_blip_displayed_jm3 = 1 /* TRUE */;
       }
     }
@@ -308,8 +297,7 @@ async function garage_stop() {
       }
     }
   }
-  //Get out of the van
-  Text.PrintNow("OUT_VEH", 5000, 2);
+  Text.PrintNow("OUT_VEH", 5000, 2); //Get out of the van
   while (!($.Garage_bank.isCarInMission())) {
     if (Car.IsDead($.van_jm3)) {
       Text.PrintNow("WRECKED", 5000, 1);
@@ -328,22 +316,21 @@ async function garage_stop() {
   }
   $.blip2_jm3.remove();
   }
-  // Mission joey3 failed
   // SCM GOTO → mission_joey3_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_joey3_passed"); // fallback: would break linear control flow
+  // Mission joey3 failed
 }
 
 async function mission_joey3_failed() {
   Text.PrintBig("m_fail", 2000, 1);
-  // mission joey3 passed
   return;
+  // mission joey3 passed
 }
 
 async function mission_joey3_passed() {
   $.flag_joey_mission3_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(20000);
   Stat.RegisterMissionPassed(JM3);
@@ -352,8 +339,8 @@ async function mission_joey3_passed() {
   // START_NEW_SCRIPT joey_mission4_loop
   // START_NEW_SCRIPT diablo_phone_start
   // START_NEW_SCRIPT van_heist_garage_pager
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_joey3() {
@@ -370,11 +357,11 @@ async function mission_cleanup_joey3() {
 }
 
 export async function joey3() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Joey mission 3****************************************
   // ***************************************Van heist*******************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_joey3
   await mission_start_joey3();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -386,12 +373,12 @@ export async function joey3() {
   // SCM GOSUB mission_cleanup_joey3
   await mission_cleanup_joey3();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT van_jm3 in_the_locate_joey3
   // VAR_INT blip1_jm3 blip2_jm3
   // VAR_INT flag_car_blip_displayed_jm3
   // VAR_INT van_man1_jm3 van_man2_jm3 old_van_health
-  // ***************************************Mission Start*************************************
   // VAR_INT test_van_health_counter test_van_health_counter2
+  // ***************************************Mission Start*************************************
 }

@@ -43,8 +43,8 @@ async function mission_start_asuka4() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 805) {
     await asyncWait(0);
@@ -108,9 +108,9 @@ async function mission_start_asuka4() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`);
   Streaming.MarkModelAsNoLongerNeeded(condo_ivy);
   Streaming.MarkModelAsNoLongerNeeded(kmricndo01);
+  Streaming.UnloadSpecialCharacter(1);
   //GOTO skip_to_ray_cut //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   // MISSION START
-  Streaming.UnloadSpecialCharacter(1);
   $.phone_1_obj = Object.CreateNoOffset(1385 /* faketarget */, 229.2, -1537.6, 26.0);
   $.phone_1_obj.dontRemove();
   $.phone_2_obj = Object.CreateNoOffset(1385 /* faketarget */, -53.5, -699.1, 26.0);
@@ -124,7 +124,6 @@ async function mission_start_asuka4() {
   $.blip1_as4 = Blip.AddForObject($.phone_1_obj);
   $.Ray_phone1.setMessage("AM4_1A");
   Audio.LoadMissionAudio(A4_A);
-  //PHONE1
   while (!($.player.locateOnFoot3D(229.2, -1537.6, 26.0, 1.0, 1.0, 3.0, false /* FALSE */)) || !($.player.isLiftingAPhone())) {
     await asyncWait(0);
     if ($.countdown_as4 == 0) {
@@ -153,7 +152,6 @@ async function mission_start_asuka4() {
   Game.SetPoliceIgnorePlayer($.player, false /* off */);
   Game.SetEveryoneIgnorePlayer($.player, false /* off */);
   Audio.LoadMissionAudio(A4_B);
-  //PHONE2
   while (!($.player.locateOnFoot3D(-53.5, -699.1, 26.0, 1.0, 1.0, 3.0, false /* FALSE */)) || !($.player.isLiftingAPhone())) {
     await asyncWait(0);
     if ($.countdown_as4 == 0) {
@@ -182,7 +180,6 @@ async function mission_start_asuka4() {
   Game.SetPoliceIgnorePlayer($.player, false /* off */);
   Game.SetEveryoneIgnorePlayer($.player, false /* off */);
   Audio.LoadMissionAudio(A4_C);
-  //PHONE3
   while (!($.player.locateOnFoot3D(204.8, -135.0, 16.0, 1.0, 1.0, 3.0, false /* FALSE */)) || !($.player.isLiftingAPhone())) {
     await asyncWait(0);
     if ($.countdown_as4 == 0) {
@@ -211,7 +208,6 @@ async function mission_start_asuka4() {
   Game.SetPoliceIgnorePlayer($.player, false /* off */);
   Game.SetEveryoneIgnorePlayer($.player, false /* off */);
   Audio.LoadMissionAudio(A4_D);
-  //PHONE4
   while (!($.player.locateOnFoot3D(60.3, -964.8, 26.1, 1.0, 1.0, 3.0, false /* FALSE */)) || !($.player.isLiftingAPhone())) {
     await asyncWait(0);
     if ($.countdown_as4 == 0) {
@@ -242,19 +238,18 @@ async function mission_start_asuka4() {
   while (!($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.0, 1.0, 2.0, true /* TRUE */))) {
     await asyncWait(0);
   }
+  $.blip1_as4.remove();
   //skip_to_ray_cut: //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //SET_PLAYER_COORDINATES player 44.2 -725.0 24.7 //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  $.blip1_as4.remove();
   $.breakout_timer_start = Clock.GetGameTimer();
   $.breakout_diff = 0;
-  //	if player is not in control after 5 secs do the cutscene anyway
   while (!($.player.canStartMission()) && $.breakout_diff < 5000) {
     await asyncWait(0);
     $.breakout_timer = Clock.GetGameTimer();
     $.breakout_diff = $.breakout_timer - $.breakout_timer_start;
   }
-  //RAY CUT SCENE*************************************************************************
   $.player.makeSafeForCutscene();
+  //RAY CUT SCENE*************************************************************************
   $.player.clearWantedLevel();
   Camera.SetFadingColor(0, 0, 0);
   Camera.DoFade(1500, 0 /* FADE_OUT */);
@@ -285,8 +280,8 @@ async function mission_start_asuka4() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2887) {
     await asyncWait(0);
@@ -359,23 +354,21 @@ async function mission_start_asuka4() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
   }
-  // Mission asuka4 failed
   // SCM GOTO → mission_asuka4_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_asuka4_passed"); // fallback: would break linear control flow
+  // Mission asuka4 failed
 }
 
 async function mission_asuka4_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission asuka4 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission asuka4 passed
 }
 
 async function mission_asuka4_passed() {
   $.flag_asuka_mission4_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 11000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 11000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(11000);
   Stat.RegisterMissionPassed(AM4);
@@ -384,8 +377,8 @@ async function mission_asuka4_passed() {
   Camera.SetBehindPlayer();
   // START_NEW_SCRIPT asuka_mission5_loop
   // START_NEW_SCRIPT ray_mission1_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_asuka4() {
@@ -408,11 +401,11 @@ async function mission_cleanup_asuka4() {
 }
 
 export async function asuka4() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************asuka mission 4********************************
   // ******************************************Pay day for Ray********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_asuka4
   await mission_start_asuka4();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -424,9 +417,9 @@ export async function asuka4() {
   // SCM GOSUB mission_cleanup_asuka4
   await mission_cleanup_asuka4();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT blip1_as4 timer_frozen
-  // ****************************************Mission Start************************************
   // VAR_INT countdown_as4 phone_1_obj phone_2_obj phone_3_obj phone_4_obj
+  // ****************************************Mission Start************************************
 }

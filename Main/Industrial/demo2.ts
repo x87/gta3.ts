@@ -14,8 +14,8 @@ async function demo_start() {
   while (true) {
     Restart.OverrideNext(892.9, -445.0, 14.0);
     $.flag_player_on_mission = 1;
-    // Player position Luigi's
     await asyncWait(0);
+    // Player position Luigi's
     $.player.setVisible(false /* FALSE */);
     $.player.setControl(false /* OFF */);
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
@@ -28,8 +28,8 @@ async function demo_start() {
     await asyncWait(15000);
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
-    // player position China Town/Market
     await asyncWait(1000);
+    // player position China Town/Market
     $.player.setCoordinates(928.8, -687.9, 14.0);
     $.player.setHeading(0.0);
     $.player.setVisible(true /* ON */);
@@ -42,8 +42,8 @@ async function demo_start() {
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
     await asyncWait(1000);
-    // player position Docks
     $.player.setVisible(false /* FALSE */);
+    // player position Docks
     $.player.setCoordinates(1313.5, -954.1, 14.0);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(1356.3, -921.5, 11.7, 0.0, 0.0, 0.0);
@@ -56,8 +56,8 @@ async function demo_start() {
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
     Weather.Release();
-    // player position Signs by skyrail
     await asyncWait(1000);
+    // player position Signs by skyrail
     $.player.setCoordinates(842.4, -780.7, 14.0);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(846.0, -787.7, 20.4, 0.0, 0.0, 0.0);
@@ -70,9 +70,9 @@ async function demo_start() {
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
     Weather.Release();
+    await asyncWait(1000);
     // Player position subway with cops
     //SET_PLAYER_COORDINATES player 1017.9 -479.2 23.0
-    await asyncWait(1000);
     $.player.setCoordinates(1027.1, -445.7, 20.3);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(1021.0, -441.0, 14.8, 0.0, 0.0, 0.0);
@@ -89,8 +89,8 @@ async function demo_start() {
     Weather.Release();
     $.player.clearWantedLevel();
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-    // Player position Trees and bridge
     await asyncWait(1000);
+    // Player position Trees and bridge
     $.player.setCoordinates(898.5, -95.1, -100.0);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(856.0, -65.0, 10.6, 0.0, 0.0, 0.0);
@@ -102,8 +102,8 @@ async function demo_start() {
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
     Weather.Release();
-    // Player position Hepburn Heights
     await asyncWait(1000);
+    // Player position Hepburn Heights
     $.player.setCoordinates(899.7, -264.7, 4.0);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(902.1, -262.9, 4.47, 0.0, 0.0, 0.0);
@@ -113,8 +113,8 @@ async function demo_start() {
     await asyncWait(15000);
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
-    // Player position Tonis
     await asyncWait(1000);
+    // Player position Tonis
     $.player.setCoordinates(1187.5, -367.3, 24.0);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(1188.0, -351.0, 31.0, 0.0, 0.0, 0.0);
@@ -127,8 +127,8 @@ async function demo_start() {
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
     Weather.Release();
-    // Player position Red Light/Porn Cinema
     await asyncWait(1000);
+    // Player position Red Light/Porn Cinema
     $.player.setCoordinates(889.3, -447.7, 14.0);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(899.7, -442.3, 15.0, 0.0, 0.0, 0.0);
@@ -140,8 +140,8 @@ async function demo_start() {
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
     Weather.Release();
-    // Player position China Town with banners
     await asyncWait(1000);
+    // Player position China Town with banners
     $.player.setCoordinates(889.8, -706.9, 14.0);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(891.5, -718.4, 14.5, 0.0, 0.0, 0.0);
@@ -154,8 +154,8 @@ async function demo_start() {
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
     Weather.Release();
-    // Player position looking to Commercial
     await asyncWait(1000);
+    // Player position looking to Commercial
     $.player.setCoordinates(1021.4, -337.2, 14.5);
     $.player.setHeading(90.0);
     Camera.SetFixedPosition(1043.3, -299.1, 46.0, 0.0, 0.0, 0.0);
@@ -173,8 +173,8 @@ async function demo_start() {
 }
 
 async function mission_demo_passed() {
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_demo() {
@@ -190,18 +190,18 @@ async function mission_cleanup_demo() {
 }
 
 export async function demo2() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Player Demo2****************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_demo
   await mission_start_demo();
   // fallback if label was not emitted as async function: no-op continues linearly
   // SCM GOSUB mission_cleanup_demo
   await mission_cleanup_demo();
   // fallback if label was not emitted as async function: no-op continues linearly
+  // MissionBoundary
   // Variables for mission
   //VAR_INT flag_done_loop_once
   // ***************************************Mission Start*************************************
-  // MissionBoundary
 }

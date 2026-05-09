@@ -32,6 +32,7 @@ async function mission_start_luigi2() {
   Streaming.RequestModel(ped`PROSTITUTE`);
   Streaming.RequestModel(ped`PROSTITUTE2`);
   Streaming.RequestModel(car`STALLION`);
+  Text.ClearHelp();
   // ****************************************START OF CUTSCENE********************************
   /*
   IF CAN_PLAYER_START_MISSION player
@@ -44,7 +45,6 @@ async function mission_start_luigi2() {
   SWITCH_STREAMING OFF
   PRINT_BIG ( LM2 ) 15000 2 //"Don'a SPANK ma bitch up"
   */
-  Text.ClearHelp();
   Streaming.RequestModel(indhibuild3);
   Streaming.RequestModel(luigiclubout);
   Streaming.RequestModel(luigiineerclub);
@@ -52,16 +52,16 @@ async function mission_start_luigi2() {
   Streaming.LoadSpecialModel(hier`cutobj01`, LUDOOR);
   Streaming.LoadSpecialModel(hier`cutobj02`, MICKYH);
   Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH);
+  Streaming.LoadSpecialModel(hier`cutobj04`, NOTE);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.LoadSpecialModel(hier`cutobj04`, NOTE);
   World.SetPedDensityMultiplier(0.0);
   World.ClearAreaOfChars(926.54, -471.72, 1.0, 830.76, -257.96, 25.0);
-  // Cutscene stuff
   Streaming.LoadAllModelsNow();
+  // Cutscene stuff
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(hier`cutobj03`)) || !(Streaming.HasModelLoaded(hier`cutobj04`))) {
     await asyncWait(0);
   }
@@ -88,51 +88,44 @@ async function mission_start_luigi2() {
   $.player.setHeading(270.0);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 5634) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Luigi said to give you this so..."
-  Text.PrintNow("LM2_C", 10000, 1);
+  Text.PrintNow("LM2_C", 10000, 1); //"Luigi said to give you this so..."
   while ($.cs_time < 7989) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"So here, here take it"
-  Text.PrintNow("LM2_D", 10000, 1);
+  Text.PrintNow("LM2_D", 10000, 1); //"So here, here take it"
   while ($.cs_time < 12078) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"There's a new high on the street goes by the name of SPANK."
-  Text.PrintNow("LM2_A", 10000, 1);
+  Text.PrintNow("LM2_A", 10000, 1); //"There's a new high on the street goes by the name of SPANK."
   while ($.cs_time < 15287) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Some wiseguy's been introducing this trash to my girls down Portland Harbour."
-  Text.PrintNow("LM2_E", 10000, 1);
+  Text.PrintNow("LM2_E", 10000, 1); //"Some wiseguy's been introducing this trash to my girls down Portland Harbour."
   while ($.cs_time < 19558) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go and introduce a bat to his face!
-  Text.PrintNow("LM2_B", 10000, 1);
+  Text.PrintNow("LM2_B", 10000, 1); //"Go and introduce a bat to his face!
   while ($.cs_time < 23042) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Then take his car, respray it and bring it back here."
-  Text.PrintNow("LM2_F", 10000, 1);
+  Text.PrintNow("LM2_F", 10000, 1); //"Then take his car, respray it and bring it back here."
   while ($.cs_time < 25852) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I want compensation for this insult!"
-  Text.PrintNow("LM2_G", 10000, 1);
+  Text.PrintNow("LM2_G", 10000, 1); //"I want compensation for this insult!"
   while ($.cs_time < 28632) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -167,8 +160,8 @@ async function mission_start_luigi2() {
   Streaming.MarkModelAsNoLongerNeeded(indhibuild3);
   Streaming.MarkModelAsNoLongerNeeded(luigiclubout);
   Streaming.MarkModelAsNoLongerNeeded(luigiineerclub);
-  // ******************************************END OF CUTSCENE********************************
   World.SetPedDensityMultiplier(1.0);
+  // ******************************************END OF CUTSCENE********************************
   Path.SwitchPedRoadsOff(1609.8, -615.2, 9.0, 1557.8, -673.4, 20.0);
   $.bat_lm2 = Pickup.Create(153 /* WEAPON_BAT */, 3 /* PICKUP_ONCE */, 917.2, -425.3, 14.5);
   $.bat_blip_lm2 = Blip.AddForPickup($.bat_lm2);
@@ -179,87 +172,32 @@ async function mission_start_luigi2() {
     await asyncWait(0);
   }
   $.player.setControl(true /* ON */);
-  //"Pick up the bat!"
-  Text.PrintNow("BAT1", 5000, 1);
-  //"To pick up weapons walk through them. These cannot be collected while in a vehicle"
+  Text.PrintNow("BAT1", 5000, 1); //"Pick up the bat!"
+  Text.PrintHelp("HELP14"); //"To pick up weapons walk through them. These cannot be collected while in a vehicle"
   // creates the dealer
-  Text.PrintHelp("HELP14");
   $.victim_ped_lm2 = Char.Create(5 /* PEDTYPE_CIVFEMALE */, ped`DOCKER2`, 1399.64, -833.72, -100.0);
   $.victim_ped_lm2.turnToFaceCoord(1397.46, -835.52, 10.8);
-  // creates prostitute one
   $.victim_ped_lm2.clearThreatSearch();
-  //proper one
-  $.buyer1_lm2 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE`, 1397.21, -832.86, -100.0);
+  // creates prostitute one
+  $.buyer1_lm2 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE`, 1397.21, -832.86, -100.0); //proper one
   $.buyer1_lm2.clearThreatSearch();
-  // creates prostitute two
   $.buyer1_lm2.turnToFaceCoord(1399.64, -833.72, 10.8);
+  // creates prostitute two
   $.buyer2_lm2 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE2`, 1397.28, -834.43, -100.0);
   $.buyer2_lm2.clearThreatSearch();
-  // dealers car
   $.buyer2_lm2.turnToFaceCoord(1399.64, -833.72, 10.8);
+  // dealers car
   $.car_lm2 = Car.Create(122 /* CAR_STALLION */, 1396.67, -837.69, -100.0);
   $.car_lm2.setHeading(301.0);
   $.car_lm2.changeLock(2 /* CARLOCK_LOCKED */);
   $.radar_blip_ped1_lm2 = Blip.AddForChar($.victim_ped_lm2);
-  // try -1 when this has been fixed
   if (!(Char.IsDead($.victim_ped_lm2))) {
-    // try -1 when this has been fixed
     if (!(Char.IsDead($.buyer1_lm2))) {
-      // try -1 when this has been fixed
-      Game.SetCharsChatting($.victim_ped_lm2, $.buyer1_lm2, -1);
+      Game.SetCharsChatting($.victim_ped_lm2, $.buyer1_lm2, -1); // try -1 when this has been fixed
     }
   }
   await asyncWait(0);
   timerb = 0;
-  //"Sometimes you may need to use pathways not shown on the radar."
-  /*
-  // Camera point at dealer stuff
-  IF flag_done_looking_bit_lm2 = 0
-  IF IS_PLAYER_IN_AREA_3D player 1535.2 -615.1 10.0 1610.5 -681.0 20.0 FALSE
-  IF IS_PLAYER_IN_ANY_CAR player
-  APPLY_BRAKES_TO_PLAYERS_CAR player ON
-  ENDIF
-  SWITCH_WIDESCREEN ON
-  CLEAR_WANTED_LEVEL player
-  SET_POLICE_IGNORE_PLAYER player ON
-  SET_PLAYER_CONTROL player OFF
-  IF LOCATE_PLAYER_ANY_MEANS_3D player 1589.1 -641.4 11.1 1.0 1.0 1.0 FALSE
-  SET_FIXED_CAMERA_POSITION 1587.8 -651.7 18.3 0.0 0.0 0.0
-  POINT_CAMERA_AT_POINT 1587.5 -651.0 17.6 JUMP_CUT
-  ELSE
-  SET_FIXED_CAMERA_POSITION 1589.1 -641.4 11.1 0.0 0.0 0.0
-  POINT_CAMERA_AT_POINT 1588.3 -642.0 11.3 JUMP_CUT
-  ENDIF
-  WAIT 4500
-  IF IS_CHAR_DEAD victim_ped_lm2
-  REMOVE_BLIP radar_blip_ped1_lm2
-  flag_victim_dead_lm2 = 1
-  ENDIF
-  IF IS_CAR_DEAD car_lm2
-  PRINT_NOW ( WRECKED ) 5000 1 //"The vehicle's wrecked!"
-  GOTO mission_luigi2_failed
-  ELSE
-  IF IS_CAR_UPSIDEDOWN car_lm2
-  AND IS_CAR_STOPPED car_lm2
-  PRINT_NOW ( UPSIDE ) 5000 1 //You've flipped your wheels!"
-  GOTO mission_luigi2_failed
-  ENDIF
-  ENDIF
-  IF IS_PLAYER_IN_ANY_CAR player
-  APPLY_BRAKES_TO_PLAYERS_CAR player FALSE
-  ENDIF
-  SWITCH_WIDESCREEN OFF
-  RESTORE_CAMERA_JUMPCUT
-  SET_POLICE_IGNORE_PLAYER player OFF
-  SET_PLAYER_CONTROL player ON
-  flag_done_looking_bit_lm2 = 1
-  ENDIF
-  ENDIF
-  */
-  //"The vehicle's wrecked!"
-  //You've flipped your wheels!"
-  // set this here also to stop bloke going for player once he has got out of his car
-  //"Use the circle button to punch and kick!"
   while (!(Char.IsDead($.victim_ped_lm2))) {
     // SCM GOSUB girls_running
     await girls_running();
@@ -272,56 +210,9 @@ async function mission_start_luigi2() {
         $.flag_player_had_bat_message_lm2 = 1;
       }
     }
-    //"Sometimes you may need to use pathways not shown on the radar."
-    /*
-    // Camera point at dealer stuff
-    IF flag_done_looking_bit_lm2 = 0
-    IF IS_PLAYER_IN_AREA_3D player 1535.2 -615.1 10.0 1610.5 -681.0 20.0 FALSE
-    IF IS_PLAYER_IN_ANY_CAR player
-    APPLY_BRAKES_TO_PLAYERS_CAR player ON
-    ENDIF
-    SWITCH_WIDESCREEN ON
-    CLEAR_WANTED_LEVEL player
-    SET_POLICE_IGNORE_PLAYER player ON
-    SET_PLAYER_CONTROL player OFF
-    IF LOCATE_PLAYER_ANY_MEANS_3D player 1589.1 -641.4 11.1 1.0 1.0 1.0 FALSE
-    SET_FIXED_CAMERA_POSITION 1587.8 -651.7 18.3 0.0 0.0 0.0
-    POINT_CAMERA_AT_POINT 1587.5 -651.0 17.6 JUMP_CUT
-    ELSE
-    SET_FIXED_CAMERA_POSITION 1589.1 -641.4 11.1 0.0 0.0 0.0
-    POINT_CAMERA_AT_POINT 1588.3 -642.0 11.3 JUMP_CUT
-    ENDIF
-    WAIT 4500
-    IF IS_CHAR_DEAD victim_ped_lm2
-    REMOVE_BLIP radar_blip_ped1_lm2
-    flag_victim_dead_lm2 = 1
-    ENDIF
-    IF IS_CAR_DEAD car_lm2
-    PRINT_NOW ( WRECKED ) 5000 1 //"The vehicle's wrecked!"
-    GOTO mission_luigi2_failed
-    ELSE
-    IF IS_CAR_UPSIDEDOWN car_lm2
-    AND IS_CAR_STOPPED car_lm2
-    PRINT_NOW ( UPSIDE ) 5000 1 //You've flipped your wheels!"
-    GOTO mission_luigi2_failed
-    ENDIF
-    ENDIF
-    IF IS_PLAYER_IN_ANY_CAR player
-    APPLY_BRAKES_TO_PLAYERS_CAR player FALSE
-    ENDIF
-    SWITCH_WIDESCREEN OFF
-    RESTORE_CAMERA_JUMPCUT
-    SET_POLICE_IGNORE_PLAYER player OFF
-    SET_PLAYER_CONTROL player ON
-    flag_done_looking_bit_lm2 = 1
-    ENDIF
-    ENDIF
-    */
     if ($.flag_had_path_message_lm2 == 0) {
-      //"Sometimes you may need to use pathways not shown on the radar."
       if (timerb >= 30000) {
-        //"Sometimes you may need to use pathways not shown on the radar."
-        Text.PrintHelp("HELP13");
+        Text.PrintHelp("HELP13"); //"Sometimes you may need to use pathways not shown on the radar."
         $.flag_had_path_message_lm2 = 1;
       }
     }
@@ -329,30 +220,21 @@ async function mission_start_luigi2() {
       $.radar_blip_ped1_lm2.remove();
       $.flag_victim_dead_lm2 = 1;
     }
-    //"The vehicle's wrecked!"
-    //You've flipped your wheels!"
     if (Car.IsDead($.car_lm2)) {
-      //"The vehicle's wrecked!"
-      Text.PrintNow("WRECKED", 5000, 1);
+      Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
       // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
     }
     else {
-      //You've flipped your wheels!"
       if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
-        //You've flipped your wheels!"
-        Text.PrintNow("UPSIDE", 5000, 1);
+        Text.PrintNow("UPSIDE", 5000, 1); //You've flipped your wheels!"
         // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
       }
     }
-    // set this here also to stop bloke going for player once he has got out of his car
-    //"Use the circle button to punch and kick!"
     if ($.flag_done_looking_bit_lm2 == 1 || $.player.isInArea3D(1430.75, -807.0, 9.0, 1355.2, -883.2, 20.0, false /* FALSE */)) {
-      // set this here also to stop bloke going for player once he has got out of his car
       $.flag_done_looking_bit_lm2 = 1;
       $.flag_player_in_area_lm2 = 1;
-      //"Use the circle button to punch and kick!"
       if ($.flag_victim_dead_lm2 == 0) {
         if ($.player.locateAnyMeansChar3D($.victim_ped_lm2, 10.0, 10.0, 10.0, false /* FALSE */) && $.flag_victim_ped_lm2_changed == 0) {
           $.victim_ped_lm2.turnToFacePlayer($.player);
@@ -362,31 +244,22 @@ async function mission_start_luigi2() {
           $.victim_ped_lm2.setObjKillPlayerOnFoot($.player);
           $.flag_victim_ped_lm2_changed = 1;
         }
-        //"Use the circle button to punch and kick!"
         if ($.player.locateAnyMeansChar3D($.victim_ped_lm2, 6.0, 6.0, 15.0, false /* FALSE */) && $.flag_player_got_help_message_lm2 == 0) {
           $.controlmode = Pad.GetControllerMode();
-          //"Use the circle button to punch and kick!"
           if ($.controlmode == 0) {
-            //"Use the circle button to punch and kick!"
-            Text.PrintHelp("LM2_2A");
+            Text.PrintHelp("LM2_2A"); //"Use the circle button to punch and kick!"
             $.flag_player_got_help_message_lm2 = 1;
           }
-          //"Use the circle button to punch and kick!"
           if ($.controlmode == 1) {
-            //"Use the circle button to punch and kick!"
-            Text.PrintHelp("LM2_2A");
+            Text.PrintHelp("LM2_2A"); //"Use the circle button to punch and kick!"
             $.flag_player_got_help_message_lm2 = 1;
           }
-          //"Use the circle button to punch and kick!"
           if ($.controlmode == 2) {
-            //"Use the circle button to punch and kick!"
-            Text.PrintHelp("LM2_2C");
+            Text.PrintHelp("LM2_2C"); //"Use the circle button to punch and kick!"
             $.flag_player_got_help_message_lm2 = 1;
           }
-          //"Use the circle button to punch and kick!"
           if ($.controlmode == 3) {
-            //"Use the circle button to punch and kick!"
-            Text.PrintHelp("LM2_2D");
+            Text.PrintHelp("LM2_2D"); //"Use the circle button to punch and kick!"
             $.flag_player_got_help_message_lm2 = 1;
           }
         }
@@ -400,48 +273,35 @@ async function mission_start_luigi2() {
     $.flag_player_had_bat_message_lm2 = 1;
   }
   $.radar_blip_ped1_lm2.remove();
-  //"The vehicle's wrecked!"
-  //You've flipped your wheels!"
   if (Car.IsDead($.car_lm2)) {
-    //"The vehicle's wrecked!"
-    Text.PrintNow("WRECKED", 5000, 1);
+    Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
     // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
   }
   else {
-    //You've flipped your wheels!"
     if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
-      //You've flipped your wheels!"
-      Text.PrintNow("UPSIDE", 5000, 1);
+      Text.PrintNow("UPSIDE", 5000, 1); //You've flipped your wheels!"
       // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
     }
   }
   $.car_lm2.changeLock(1 /* CARLOCK_UNLOCKED */);
   $.radar_blip_car1_lm2 = Blip.AddForCar($.car_lm2);
-  //"Take the car and get it resprayed."
+  Text.PrintNow("LM2_1", 7000, 1); //"Take the car and get it resprayed."
   // waiting for the player to get into the car
-  Text.PrintNow("LM2_1", 7000, 1);
-  //"The vehicle's wrecked!"
-  //You've flipped your wheels!"
   while (!($.player.isInCar($.car_lm2))) {
     await asyncWait(0);
     // SCM GOSUB girls_running
     await girls_running();
     // fallback if label was not emitted as async function: no-op continues linearly
-    //"The vehicle's wrecked!"
-    //You've flipped your wheels!"
     if (Car.IsDead($.car_lm2)) {
-      //"The vehicle's wrecked!"
-      Text.PrintNow("WRECKED", 5000, 1);
+      Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
       // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
     }
     else {
-      //You've flipped your wheels!"
       if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
-        //You've flipped your wheels!"
-        Text.PrintNow("UPSIDE", 5000, 1);
+        Text.PrintNow("UPSIDE", 5000, 1); //You've flipped your wheels!"
         // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
       }
@@ -452,34 +312,24 @@ async function mission_start_luigi2() {
   $.radar_blip_car1_lm2.remove();
   $.radar_blip_coord1_lm2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, 18 /* RADAR_SPRITE_SPRAY */);
   $.sphere1_lm2 = Sphere.Create(925.1, -350.5, 9.3, 2.5);
-  // waiting for the player to respray the car
   $.sprayshop1.hasResprayHappened();
-  //"The vehicle's wrecked!"
-  //You've flipped your wheels!"
-  //"Get back into the car and get on with the mission!"
+  // waiting for the player to respray the car
   while (!($.sprayshop1.hasResprayHappened()) || !($.player.isInCar($.car_lm2)) || !($.player.isStoppedInArea2D(922.6, -366.1, 928.6, -354.3, false /* FALSE */))) {
     await asyncWait(0);
-    //"The vehicle's wrecked!"
-    //You've flipped your wheels!"
     if (Car.IsDead($.car_lm2)) {
-      //"The vehicle's wrecked!"
-      Text.PrintNow("WRECKED", 5000, 1);
+      Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
       // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
     }
     else {
-      //You've flipped your wheels!"
       if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
-        //You've flipped your wheels!"
-        Text.PrintNow("UPSIDE", 5000, 1);
+        Text.PrintNow("UPSIDE", 5000, 1); //You've flipped your wheels!"
         // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
       }
     }
-    //"Get back into the car and get on with the mission!"
     if (!($.player.isInCar($.car_lm2)) && $.flag_player_had_car_message_lm2 == 0) {
-      //"Get back into the car and get on with the mission!"
-      Text.PrintNow("IN_VEH", 7000, 1);
+      Text.PrintNow("IN_VEH", 7000, 1); //"Get back into the car and get on with the mission!"
       $.radar_blip_coord1_lm2.remove();
       $.sphere1_lm2.remove();
       $.radar_blip_car1_lm2 = Blip.AddForCar($.car_lm2);
@@ -506,53 +356,33 @@ async function mission_start_luigi2() {
   $.radar_blip_coord2_lm2 = Blip.AddForCoord(1087.0, -574.0, -100.0);
   $.sphere2_lm2 = Sphere.Create(1088.4, -574.4, 13.7, 2.5);
   $.flag_blip2_on_lm2 = 1;
-  //PRINT_NOW ( LM2_3 ) 7000 1 //"Good now get the car to the lockup!"
   $.garage_lm2.setTargetCarForMission($.car_lm2);
-  // Waiting for the player to get back to luigi's
+  //PRINT_NOW ( LM2_3 ) 7000 1 //"Good now get the car to the lockup!"
   timerb = 0;
-  //"Good now get the car to the lockup!"
-  //"The vehicle's wrecked!"
-  //You've flipped your wheels!"
-  //" Get back in the car and get on with the mission!"
-  //"Drive the car into the garage, get out of the car and walk outside of the garage"
-  //	IF IS_CAR_STOPPED_IN_AREA_2D car_lm2 1074.0 -578.0 1085.0 -568.0 FALSE
+  // Waiting for the player to get back to luigi's
   while (!($.garage_lm2.isCarInMission())) {
     await asyncWait(0);
-    //"Good now get the car to the lockup!"
     if ($.flag_lockup_message_lm2 == 0) {
-      //"Good now get the car to the lockup!"
       if (timerb >= 3000) {
-        //"Good now get the car to the lockup!"
-        Text.PrintNow("LM2_3", 7000, 1);
+        Text.PrintNow("LM2_3", 7000, 1); //"Good now get the car to the lockup!"
         $.flag_lockup_message_lm2 = 1;
       }
     }
-    //"The vehicle's wrecked!"
-    //You've flipped your wheels!"
-    //" Get back in the car and get on with the mission!"
-    //"Drive the car into the garage, get out of the car and walk outside of the garage"
     if ($.flag_car_in_garage_lm2 == 0) {
-      //"The vehicle's wrecked!"
-      //You've flipped your wheels!"
       if (Car.IsDead($.car_lm2)) {
-        //"The vehicle's wrecked!"
-        Text.PrintNow("WRECKED", 5000, 1);
+        Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
         // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
       }
       else {
-        //You've flipped your wheels!"
         if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
-          //You've flipped your wheels!"
-          Text.PrintNow("UPSIDE", 5000, 1);
+          Text.PrintNow("UPSIDE", 5000, 1); //You've flipped your wheels!"
           // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO mission_luigi2_failed"); // fallback: would break linear control flow
         }
       }
-      //" Get back in the car and get on with the mission!"
       if (!($.player.isInCar($.car_lm2)) && $.flag_player_had_car_message_lm2 == 0) {
-        //" Get back in the car and get on with the mission!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //" Get back in the car and get on with the mission!"
         $.sphere2_lm2.remove();
         $.radar_blip_car1_lm2 = Blip.AddForCar($.car_lm2);
         $.radar_blip_coord2_lm2.remove();
@@ -566,12 +396,9 @@ async function mission_start_luigi2() {
         }
         $.flag_player_had_car_message_lm2 = 0;
       }
-      //"Drive the car into the garage, get out of the car and walk outside of the garage"
       if ($.flag_player_had_garage_message_lm2 == 0) {
-        //"Drive the car into the garage, get out of the car and walk outside of the garage"
         if ($.player.locateInCar3D(1088.4, -574.4, 13.7, 2.5, 2.5, 2.5, false /* FALSE */) && $.player.isInCar($.car_lm2)) {
-          //"Drive the car into the garage, get out of the car and walk outside of the garage"
-          Text.PrintHelp("GARAGE");
+          Text.PrintHelp("GARAGE"); //"Drive the car into the garage, get out of the car and walk outside of the garage"
           $.sphere2_lm2.remove();
           $.flag_player_had_garage_message_lm2 = 1;
         }
@@ -580,7 +407,6 @@ async function mission_start_luigi2() {
         $.flag_player_had_garage_message_lm2 = 0;
       }
     }
-    //	IF IS_CAR_STOPPED_IN_AREA_2D car_lm2 1074.0 -578.0 1085.0 -568.0 FALSE
     if (!(Car.IsDead($.car_lm2))) {
       if ($.garage_lm2.doesContainCar($.car_lm2)) {
         $.flag_car_in_garage_lm2 = 1;
@@ -593,30 +419,28 @@ async function mission_start_luigi2() {
   $.radar_blip_coord2_lm2.remove();
   $.sphere2_lm2.remove();
   }
-  // Mission luigi1 failed
   // SCM GOTO → mission_luigi2_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_luigi2_passed"); // fallback: would break linear control flow
+  // Mission luigi1 failed
 }
 
 async function mission_luigi2_failed() {
-  //"Mission Failed!"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission Luigi1 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed!"
   return;
+  // mission Luigi1 passed
 }
 
 async function mission_luigi2_passed() {
   $.flag_luigi_mission2_passed = 1;
   Stat.RegisterMissionPassed("LM2");
   Stat.PlayerMadeProgress(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 4000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 4000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.addScore(4000);
   $.player.clearWantedLevel();
   // START_NEW_SCRIPT luigi_mission3_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_luigi2() {
@@ -648,13 +472,9 @@ async function mission_cleanup_luigi2() {
 }
 
 async function girls_running() {
-  // checks for girl2
   if ($.flag_player_in_car_lm2 == 0) {
-    // checks for girl2
     if ($.flag_player_in_area_lm2 == 1) {
-      // checks for girl2
       if ($.flag_victim_ped_lm2_changed == 1) {
-        // checks for girl2
         if ($.flag_buyer1_dead_lm2 == 0) {
           if (Char.IsDead($.buyer1_lm2)) {
             $.flag_buyer1_dead_lm2 = 1;
@@ -672,6 +492,7 @@ async function girls_running() {
             }
           }
         }
+        // checks for girl2
         if ($.flag_buyer2_dead_lm2 == 0) {
           if (Char.IsDead($.buyer2_lm2)) {
             $.flag_buyer2_dead_lm2 = 1;
@@ -696,12 +517,12 @@ async function girls_running() {
 }
 
 export async function luigi2() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***********************************Luigi Mission 2***************************************
   // *******************************Donna' "Spank" Ma Bitch Up********************************
-  // MissionBoundary
-  // Mission start stuff
   // ScriptName
+  // Mission start stuff
   // SCM GOSUB mission_start_luigi2
   await mission_start_luigi2();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -713,8 +534,8 @@ export async function luigi2() {
   // SCM GOSUB mission_cleanup_luigi2
   await mission_cleanup_luigi2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT radar_blip_ped1_lm2
   // VAR_INT victim_ped_lm2
   // VAR_INT flag_player_got_help_message_lm2
@@ -745,6 +566,6 @@ export async function luigi2() {
   // VAR_INT flag_girl1_running_lm2
   // VAR_INT flag_girl2_running_lm2
   // VAR_INT flag_player_in_area_lm2
-  // ********************************************Mission Start********************************
   // VAR_INT flag_player_in_car_lm2
+  // ********************************************Mission Start********************************
 }

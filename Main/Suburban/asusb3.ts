@@ -7,12 +7,12 @@ import { car, ped, hier } from "../../../ide.ts";
 
 async function mission_start_as3() {
   Stat.RegisterMissionGiven();
-  //PRINT_BIG ( AS3 ) 5000 1
   // ScriptName
+  //PRINT_BIG ( AS3 ) 5000 1
   $.flag_player_on_mission = 1;
   $.flag_player_on_asuka_mission = 1;
-  //----------------------------SET FLAGS & VARIABLES--------------------------------------------
   await asyncWait(0);
+  //----------------------------SET FLAGS & VARIABLES--------------------------------------------
   $.timer_as3 = 210000;
   $.counter_charlie = 0;
   $.flag_commence_approach = 0;
@@ -33,25 +33,13 @@ async function mission_start_as3() {
   $.flag_messages = 0;
   $.flag_created_baddies = 0;
   $.flag_mission_as3_failed = 0;
-  // ---------------------------LOCATION COORDS--------------------------------------------------
   $.flag_boat_message = 0;
+  // ---------------------------LOCATION COORDS--------------------------------------------------
   $.platform_x = -805.0;
   $.platform_y = -1310.0;
   $.killzone_min_x = -1460.0;
   $.killzone_min_y = -1050.0;
   $.killzone_max_x = -1450.0;
-  //  ******************************************* START OF CUTSCENE ***************************
-  /*
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_as3_failed
-  ENDIF
-  SET_FADING_COLOUR 0 0 0
-  DO_FADE 250 FADE_OUT
-  PRINT_BIG ( AS3 ) 15000 2
-  SWITCH_STREAMING OFF
-  */
   $.killzone_max_y = -1040.0;
   Streaming.RequestModel(csitecutscene);
   Streaming.LoadSpecialCharacter(1, $.asuka);
@@ -60,12 +48,12 @@ async function mission_start_as3() {
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, ASUKAH);
   Streaming.LoadSpecialModel(hier`cutobj03`, MARIAH);
+  Streaming.LoadSpecialModel(hier`cutobj04`, WHIP);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.LoadSpecialModel(hier`cutobj04`, WHIP);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasModelLoaded(csitecutscene))) {
     await asyncWait(0);
@@ -94,19 +82,19 @@ async function mission_start_as3() {
   $.cs_mariahead = CutsceneHead.Create($.cs_maria, hier`cutobj03`);
   $.cs_mariahead.setAnim($.maria);
   $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj02`);
+  $.cs_asukahead.setAnim($.asuka);
   /*
   CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
   SET_CUTSCENE_HEAD_ANIM cs_miguelhead miguel
   */
-  $.cs_asukahead.setAnim($.asuka);
   $.player.setCoordinates(373.7523, -327.2676, 17.1950);
   $.player.setHeading(270.0);
   Camera.DoFade(250, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
-  //SWITCH_WORLD_PROCESSING OFF
   Streaming.Switch(false /* OFF */);
-  //------CUTSCENE TEXT-----------------------------
+  //SWITCH_WORLD_PROCESSING OFF
   Cutscene.Start();
+  //------CUTSCENE TEXT-----------------------------
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 459) {
     await asyncWait(0);
@@ -182,8 +170,8 @@ async function mission_start_as3() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //WHILE cs_time < 12000
   Text.PrintNow("AS3_K", 3000, 1);
+  //WHILE cs_time < 12000
   while ($.cs_time < 44333) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -210,12 +198,12 @@ async function mission_start_as3() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`);
   Streaming.Switch(true /* ON */);
+  World.SwitchRubbish(true /* ON */);
   //SWITCH_WORLD_PROCESSING ON
   // ******************************************END OF CUTSCENE********************************
   // Mission stuff goes here
-  World.SwitchRubbish(true /* ON */);
-  //----------------------------LOAD MODELS------------------------------------------------------
   Hud.DisplayTimer($.timer_as3);
+  //----------------------------LOAD MODELS------------------------------------------------------
   Streaming.RequestModel(car`REEFER`);
   while (!(Streaming.HasModelLoaded(car`REEFER`))) {
     await asyncWait(0);
@@ -238,14 +226,6 @@ async function mission_start_as3() {
     await asyncWait(0);
   }
   Streaming.RequestModel(car`DODO`);
-  /*
-  PRINT AS3_A 5000 1//"There is a plane coming into Francis International in (2/3/4/5/6) hours time. It is full of Catalina's poison."
-  MESSAGE_WAIT 5000 1
-  PRINT AS3_B 5000 1//"You can avoid airport security by getting a boat out to the runway-light pontoons and shooting the plane down on it's approach."
-  MESSAGE_WAIT 5000 1
-  PRINT AS3_C 5000 1//"Collect the charlie from the debris and stash it!"
-  MESSAGE_WAIT 5000 1
-  */
   while (!(Streaming.HasModelLoaded(car`DODO`))) {
     await asyncWait(0);
   }
@@ -281,10 +261,10 @@ async function mission_start_as3() {
   $.bouy_10_as3.setCollision(true /* true */);
   $.bouy_10_as3.setDynamic(true /* true */);
   $.bouy_point.setCollision(true /* true */);
+  $.bouy_point.setDynamic(true /* true */);
   //ADD_BLIP_FOR_OBJECT bouy_point blip_as3_bouy
   //CHANGE_BLIP_COLOUR blip_as3_bouy 4
   //-----------------CREATE CARTEL BADDIES--------------------------------------
-  $.bouy_point.setDynamic(true /* true */);
   Streaming.RequestModel(ped`GANG_COLOMBIAN_A`);
   while (!(Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_A`))) {
     await asyncWait(0);
@@ -306,22 +286,16 @@ async function loop_as3_1() {
   // SCM GOTO → loop_as3_1 lowered to endless loop
   while (true) {
     await asyncWait(0);
-    //Find the boat and get to the runway marker bouys!
     if ($.flag_messages == 0) {
-      //Find the boat and get to the runway marker bouys!
       if ($.flag_boat_message == 0) {
-        //Find the boat and get to the runway marker bouys!
-        Text.PrintNow("AS3_1", 4000, 1);
+        Text.PrintNow("AS3_1", 4000, 1); //Find the boat and get to the runway marker bouys!
         $.flag_boat_message = 1;
         $.flag_messages = 1;
       }
     }
-    //~g~Now get to the ~b~marker buoy!
     if ($.flag_messages == 0) {
-      //~g~Now get to the ~b~marker buoy!
       if ($.flag_boat_message == 1) {
-        //~g~Now get to the ~b~marker buoy!
-        Text.PrintNow("AS3_1A", 4000, 1);
+        Text.PrintNow("AS3_1A", 4000, 1); //~g~Now get to the ~b~marker buoy!
         $.flag_boat_message = 2;
         $.flag_messages = 1;
       }
@@ -387,22 +361,16 @@ async function loop_as3_2() {
   while (true) {
     await asyncWait(0);
     $.blip_as3_dodo.remove();
-    //Find the boat and get to the runway marker bouys!
     if ($.flag_messages == 0) {
-      //Find the boat and get to the runway marker bouys!
       if ($.flag_boat_message == 0) {
-        //Find the boat and get to the runway marker bouys!
-        Text.PrintNow("AS3_1", 4000, 1);
+        Text.PrintNow("AS3_1", 4000, 1); //Find the boat and get to the runway marker bouys!
         $.flag_boat_message = 1;
         $.flag_messages = 1;
       }
     }
-    //Get to the runway marker buoys! The plane is on its final approach!!
     if ($.flag_messages == 0) {
-      //Get to the runway marker buoys! The plane is on its final approach!!
       if ($.flag_boat_message == 1) {
-        //Get to the runway marker buoys! The plane is on its final approach!!
-        Text.PrintNow("AS3_2", 4000, 1);
+        Text.PrintNow("AS3_2", 4000, 1); //Get to the runway marker buoys! The plane is on its final approach!!
         $.flag_boat_message = 2;
         $.flag_messages = 1;
       }
@@ -454,10 +422,10 @@ async function loop_as3_2() {
       // SCM GOTO → loop_as3_6 (not lowered; manual jump required)
       throw new Error("unresolved GOTO loop_as3_6"); // fallback: would break linear control flow
     }
-    //TEST BLIP FOR PLANE
     if ($.timer_as3 < 1) {
       Hud.ClearTimer($.timer_as3);
     }
+    //TEST BLIP FOR PLANE
     [$.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z] = DrugRun.FindPlaneCoordinates();
     $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
     $.blip_as3_dodo.changeScale(3);
@@ -478,10 +446,8 @@ async function loop_as3_3() {
   // SCM GOTO → loop_as3_3 lowered to endless loop
   while (true) {
     await asyncWait(0);
-    //Wait for the plane to start its approach!
     if ($.flag_messages == 0) {
-      //Wait for the plane to start its approach!
-      Text.PrintNow("AS3_3", 4000, 1);
+      Text.PrintNow("AS3_3", 4000, 1); //Wait for the plane to start its approach!
       $.flag_messages = 0;
     }
     if ($.player.isInModel(136 /* BOAT_REEFER */) || $.player.isInModel(113 /* BOAT_PREDATOR */) || $.player.isInModel(135 /* BOAT_SPEEDER */)) {
@@ -532,12 +498,10 @@ async function loop_as3_4() {
   // SCM GOTO → loop_as3_4 lowered to endless loop
   while (true) {
     await asyncWait(0);
-    //IF NOT IS_CURRENT_PLAYER_WEAPON player WEAPONTYPE_ROCKET
     $.blip_as3_dodo.remove();
-    //Use a rocket launcher to shoot the plane down!
+    //IF NOT IS_CURRENT_PLAYER_WEAPON player WEAPONTYPE_ROCKET
     if ($.flag_messages == 0) {
-      //Use a rocket launcher to shoot the plane down!
-      Text.PrintNow("AS3_4", 4000, 1);
+      Text.PrintNow("AS3_4", 4000, 1); //Use a rocket launcher to shoot the plane down!
       $.flag_messages = 1;
     }
     if (!(Car.IsDead($.player_as3_boat))) {
@@ -562,10 +526,10 @@ async function loop_as3_4() {
       // SCM GOTO → loop_as3_6 (not lowered; manual jump required)
       throw new Error("unresolved GOTO loop_as3_6"); // fallback: would break linear control flow
     }
-    //TEST BLIP FOR PLANE
     if ($.timer_as3 < 1) {
       Hud.ClearTimer($.timer_as3);
     }
+    //TEST BLIP FOR PLANE
     [$.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z] = DrugRun.FindPlaneCoordinates();
     $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
     $.blip_as3_dodo.changeScale(2);
@@ -593,9 +557,8 @@ async function loop_as3_6() {
   $.charlie_1.setCollision(true /* TRUE */);
   $.charlie_1.setDynamic(true /* TRUE */);
   $.blip_charlie_1 = Blip.AddForObject($.charlie_1);
-  //blossom pattern
+  $.charlie_1.addToVelocity(18.0, 12.0, 6.0); //blossom pattern
   //ADD_TO_OBJECT_VELOCITY charlie_1 10.0 0.0 0.0 //dodo velocity
-  $.charlie_1.addToVelocity(18.0, 12.0, 6.0);
   $.dodo_as3_y = $.dodo_as3_y - 1.0;
   $.charlie_2 = Object.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
   $.charlie_2.flash(true /* On */);
@@ -649,26 +612,13 @@ async function loop_as3_6() {
 }
 
 async function loop_as3_7() {
-  //Collect the cargo!
-  /*
-  min_x = charlie_1_x - 0.2
-  max_x = charlie_1_x	+ 0.2
-  min_y = charlie_1_y	- 0.2
-  max_y = charlie_1_y	+ 0.2
-  min_z = charlie_1_z	- 0.2
-  max_z = charlie_1_z	+ 0.2
-  REMOVE_PARTICLE_EFFECTS_IN_AREA Min_x Min_y Min_z Max_x Max_y Max_z
-  */
-  //loop_as3_8: //------------------------------Stashing the Charlie-----------------------------------
   while ($.counter_charlie < 8) {
     await asyncWait(0);
     // SCM GOSUB baddies
     await baddies();
     // fallback if label was not emitted as async function: no-op continues linearly
-    //Collect the cargo!
     if ($.flag_counter_message == 0) {
-      //Collect the cargo!
-      Text.PrintNow("AS3_5", 5000, 1);
+      Text.PrintNow("AS3_5", 5000, 1); //Collect the cargo!
       $.flag_counter_message = 1;
     }
     $.timer_as3_now = Clock.GetGameTimer();
@@ -677,26 +627,9 @@ async function loop_as3_7() {
       $.particle_time = $.timer_as3_dif + 200;
       $.flag_particle = 1;
     }
-    /*
-    min_x = charlie_1_x - 0.2
-    max_x = charlie_1_x	+ 0.2
-    min_y = charlie_1_y	- 0.2
-    max_y = charlie_1_y	+ 0.2
-    min_z = charlie_1_z	- 0.2
-    max_z = charlie_1_z	+ 0.2
-    REMOVE_PARTICLE_EFFECTS_IN_AREA Min_x Min_y Min_z Max_x Max_y Max_z
-    */
     if ($.flag_particle == 1) {
-      /*
-      min_x = charlie_1_x - 0.2
-      max_x = charlie_1_x	+ 0.2
-      min_y = charlie_1_y	- 0.2
-      max_y = charlie_1_y	+ 0.2
-      min_z = charlie_1_z	- 0.2
-      max_z = charlie_1_z	+ 0.2
-      REMOVE_PARTICLE_EFFECTS_IN_AREA Min_x Min_y Min_z Max_x Max_y Max_z
-      */
       if ($.flag_charlie_1 == 0) {
+        [$.charlie_1_x, $.charlie_1_y, $.charlie_1_z] = $.charlie_1.getCoordinates();
         /*
         min_x = charlie_1_x - 0.2
         max_x = charlie_1_x	+ 0.2
@@ -706,7 +639,6 @@ async function loop_as3_7() {
         max_z = charlie_1_z	+ 0.2
         REMOVE_PARTICLE_EFFECTS_IN_AREA Min_x Min_y Min_z Max_x Max_y Max_z
         */
-        [$.charlie_1_x, $.charlie_1_y, $.charlie_1_z] = $.charlie_1.getCoordinates();
         if ($.timer_as3_dif < 6000) {
           Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
         }
@@ -928,13 +860,14 @@ async function loop_as3_7() {
       }
     }
   }
+  //loop_as3_8: //------------------------------Stashing the Charlie-----------------------------------
   Text.PrintNow("STASH", 4000, 1);
   $.blip_stash = Blip.AddForCoord(367.25, -328.0, 19.5);
   while (!($.player.locateOnFoot3D(366.939, -328.025, 18.5, 1.0, 1.0, 4.0, true /* true */))) {
     await asyncWait(0);
   }
-  //  ******************************************* START OF CUTSCENE ***************************
   $.blip_stash.remove();
+  //  ******************************************* START OF CUTSCENE ***************************
   $.player.makeSafeForCutscene();
   Camera.SetFadingColor(0, 0, 0);
   Camera.DoFade(1500, 0 /* FADE_OUT */);
@@ -947,12 +880,12 @@ async function loop_as3_7() {
   Streaming.LoadSpecialCharacter(1, $.asuka);
   Streaming.LoadSpecialCharacter(2, $.miguel);
   Streaming.LoadSpecialModel(hier`cutobj01`, whip);
+  Streaming.LoadSpecialModel(hier`cutobj02`, note);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.LoadSpecialModel(hier`cutobj02`, note);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasSpecialCharacterLoaded(2)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(csitecutscene))) {
     await asyncWait(0);
@@ -968,16 +901,16 @@ async function loop_as3_7() {
   $.cs_whip = CutsceneObject.Create(hier`cutobj01`);
   $.cs_whip.setAnim(whip);
   $.cs_note = CutsceneObject.Create(hier`cutobj02`);
+  $.cs_note.setAnim(note);
   //CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
   //SET_CUTSCENE_HEAD_ANIM cs_miguelhead miguel
-  $.cs_note.setAnim(note);
   $.player.setCoordinates(373.7523, -327.2676, 17.1950);
   $.player.setHeading(270.0);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  //------CUTSCENE TEXT-----------------------------
   Cutscene.Start();
+  //------CUTSCENE TEXT-----------------------------
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 3000) {
     await asyncWait(0);
@@ -1001,8 +934,8 @@ async function loop_as3_7() {
     await asyncWait(0);
   }
   Text.ClearPrints();
-  //DO_FADE 0 FADE_OUT
   Cutscene.Clear();
+  //DO_FADE 0 FADE_OUT
   Camera.SetBehindPlayer();
   await asyncWait(500);
   Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -1011,11 +944,11 @@ async function loop_as3_7() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
   Streaming.MarkModelAsNoLongerNeeded(csitecutscene);
-  // ******************************************END OF CUTSCENE********************************
   World.SwitchRubbish(true /* ON */);
-  // Mission Asuka Sub3 failed
+  // ******************************************END OF CUTSCENE********************************
   // SCM GOTO → mission_as3_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_as3_passed"); // fallback: would break linear control flow
+  // Mission Asuka Sub3 failed
 }
 
 async function mission_as3_failed() {
@@ -1026,8 +959,8 @@ async function mission_as3_failed() {
   if ($.player.isDead()) {
     Restart.OverrideHospital(2 /* LEVEL_COMMERCIAL */);
   }
-  // mission Asuka Sub3 passed
   return;
+  // mission Asuka Sub3 passed
 }
 
 async function mission_as3_passed() {
@@ -1041,10 +974,10 @@ async function mission_as3_passed() {
   $.maria_contact_blip = Blip.AddSpriteForContactPoint(-362.8, 245.9, 60.0, 3 /* RADAR_SPRITE_CAT */);
   // START_NEW_SCRIPT cat_mission1_loop
   Stat.RegisterMissionPassed(AS3);
-  //START_NEW_SCRIPT asuka_suburban_mission4_loop
   Stat.PlayerMadeProgress(1);
-  // mission cleanup
+  //START_NEW_SCRIPT asuka_suburban_mission4_loop
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_as3() {
@@ -1067,81 +1000,67 @@ async function mission_cleanup_as3() {
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_A`);
   Streaming.MarkModelAsNoLongerNeeded(car`COLUMB`);
   Mission.Finish();
-  ///________________________________GOSUBS_______GOSUBS________________________________BYTHEWAY
   return;
+  ///________________________________GOSUBS_______GOSUBS________________________________BYTHEWAY
 }
 
 async function baddies() {
-  //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
-  //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel2 true
-  //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel3 true
-  //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel4 true
-  //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel5 true
-  //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel6 true
-  //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel7 true
   if ($.flag_created_baddies == 0) {
-    //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
-    //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel2 true
-    //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel3 true
-    //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel4 true
-    //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel5 true
-    //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel6 true
-    //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel7 true
     if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
       $.kappa_cartel1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, -1015.0, -1269.0, -100.0);
       $.kappa_cartel1.setHeading(265.0);
       $.kappa_cartel1.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
       $.kappa_cartel1.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
       $.kappa_cartel2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, -1013.0, -1260.7, -100.0);
       $.kappa_cartel2.setHeading(300.0);
       $.kappa_cartel2.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel2.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel2 true
       $.kappa_cartel2.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel2 true
       $.kappa_cartel3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, -1027.3, -1265.2, -100.0);
       $.kappa_cartel3.setHeading(265.0);
       $.kappa_cartel3.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel3 true
       $.kappa_cartel3.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel3 true
       $.kappa_cartel4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, -1380.0, -1043.0, -100.0);
       $.kappa_cartel4.setHeading(340.0);
       $.kappa_cartel4.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel4.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel4 true
       $.kappa_cartel4.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel4 true
       $.kappa_cartel5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, -1392.0, -1043.3, -100.0);
       $.kappa_cartel5.setHeading(240.0);
       $.kappa_cartel5.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel5 true
       $.kappa_cartel5.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel5 true
       $.kappa_cartel6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, -1488.0, -1056.0, -100.0);
       $.kappa_cartel6.setHeading(110.0);
       $.kappa_cartel6.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel6.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel6 true
       $.kappa_cartel6.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel6 true
       $.kappa_cartel7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, -1473.0, -1062.0, -100.0);
       $.kappa_cartel7.setHeading(280.0);
       $.kappa_cartel7.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel7.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel7 true
       $.kappa_cartel7.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel7 true
       $.kappa_cartel8 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, -849.0, -1235.0, -100.0);
       $.kappa_cartel8.setHeading(250.0);
       $.kappa_cartel8.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel8.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
       $.kappa_cartel8.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
       $.kappa_cartel9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, -1478.0, -1055.0, -100.0);
       $.kappa_cartel9.setHeading(250.0);
       $.kappa_cartel9.setThreatSearch(0 /* THREAT_PLAYER1 */);
       $.kappa_cartel9.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
-      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
       $.kappa_cartel9.addArmor(100);
+      //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
       $.cartel_car_a_as1 = Car.Create(131 /* CAR_COLUMB */, -1019.0, -1263.0, -100.0);
       $.cartel_car_a_as1.setHeading(50.0);
       $.cartel_car_b_as1 = Car.Create(131 /* CAR_COLUMB */, -1383.3, -1045.0, -100.0);
@@ -1198,11 +1117,11 @@ async function area_check() {
 }
 
 export async function asusb3() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***********************************ASUKA SUBURBAN MISSION 3******************************
   // ***************************************'Plane to Sea'************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_as3
   await mission_start_as3();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1214,8 +1133,8 @@ export async function asusb3() {
   // SCM GOSUB mission_cleanup_as3
   await mission_cleanup_as3();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT timer_as3 player_as3_boat dodo_as3
   // VAR_INT bouy_1_as3 bouy_2_as3 bouy_3_as3 bouy_4_as3 bouy_5_as3
   // VAR_INT bouy_6_as3 bouy_7_as3 bouy_8_as3 bouy_9_as3 bouy_10_as3
@@ -1242,6 +1161,6 @@ export async function asusb3() {
   // VAR_INT flag_charlie_5 flag_charlie_6 flag_charlie_7 flag_charlie_8
   // VAR_INT flag_commence_approach flag_runway_blip flag_boat_blip flag_bouy_blip
   // VAR_INT timer_as3_start timer_as3_now timer_as3_dif
-  // ****************************************Mission Start************************************
   // VAR_INT flag_created_baddies flag_mission_as3_failed
+  // ****************************************Mission Start************************************
 }

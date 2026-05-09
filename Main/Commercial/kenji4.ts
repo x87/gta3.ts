@@ -60,27 +60,24 @@ async function mission_start_kenji4() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 3580) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"To be truly strong, it is important that you never show weakness."
-  Text.PrintNow("KM4_A", 10000, 1);
+  Text.PrintNow("KM4_A", 10000, 1); //"To be truly strong, it is important that you never show weakness."
   while ($.cs_time < 8316) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The business's that are fortunate enough to have our protection settle their accounts today."
-  Text.PrintNow("KM4_B", 10000, 1);
+  Text.PrintNow("KM4_B", 10000, 1); //"The business's that are fortunate enough to have our protection settle their accounts today."
   while ($.cs_time < 13513) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Please go and collect the money immediately, so we can enter it into the casino accounts."
-  Text.PrintNow("KM4_C", 10000, 1);
+  Text.PrintNow("KM4_C", 10000, 1); //"Please go and collect the money immediately, so we can enter it into the casino accounts."
   while ($.cs_time < 17808) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -106,33 +103,31 @@ async function mission_start_kenji4() {
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
-  // *******************************************END OF CUTSCENE*******************************
   Streaming.MarkModelAsNoLongerNeeded(casino_garden);
+  // *******************************************END OF CUTSCENE*******************************
   Streaming.RequestModel(ped`GANG_DIABLO_A`);
   while (!(Streaming.HasModelLoaded(ped`GANG_DIABLO_A`))) {
     await asyncWait(0);
   }
   $.briefcase1_km4 = Pickup.Create(1319 /* briefcase */, 3 /* pickup_once */, 236.8, -1580.0, 25.7);
   $.flag_briefcase1_created_km4 = 1;
-  // waits for the player to get the first briefcase
   $.radar_blip_coord2_km4 = Blip.AddForPickup($.briefcase1_km4);
+  // waits for the player to get the first briefcase
   while (!($.briefcase1_km4.hasBeenCollected())) {
     await asyncWait(0);
   }
   $.flag_briefcase1_collected_km4 = 1;
-  //"Briefcase collected!"
-  Text.PrintNow("KM4_8", 5000, 1);
+  Text.PrintNow("KM4_8", 5000, 1); //"Briefcase collected!"
   $.radar_blip_coord2_km4.remove();
   $.briefcase2_km4 = Pickup.Create(1319 /* briefcase */, 3 /* pickup_once */, 119.56, -1110.51, 25.66);
   $.flag_briefcase2_created_km4 = 1;
-  // creates Diablo 6 who is by the second briefcase
   $.radar_blip_coord3_km4 = Blip.AddForPickup($.briefcase2_km4);
+  // creates Diablo 6 who is by the second briefcase
   $.hispanic6_km4 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_DIABLO_A`, 122.2, -1113.2, 25.2);
-  // sets weapon to have infinate bullets
-  $.hispanic6_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  $.hispanic6_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
   $.hispanic6_km4.clearThreatSearch();
-  // waiting for the player to get the second briefcase
   $.hispanic6_km4.turnToFaceCoord(120.6, -1111.8, -100.0);
+  // waiting for the player to get the second briefcase
   Zone.SetPedDensity("park", 1 /* DAY */, 0);
   Zone.SetPedDensity("park", 0 /* NIGHT */, 0);
   while (!($.briefcase2_km4.hasBeenCollected())) {
@@ -151,8 +146,7 @@ async function mission_start_kenji4() {
     }
   }
   $.flag_briefcase2_collected_km4 = 1;
-  //"Briefcase collected!"
-  Text.PrintNow("KM4_8", 5000, 1);
+  Text.PrintNow("KM4_8", 5000, 1); //"Briefcase collected!"
   $.radar_blip_coord3_km4.remove();
   $.radar_blip_coord5_km4 = Blip.AddForCoord(-91.5, -484.2, 15.2);
   while (!($.player.locateStoppedAnyMeans3D(-91.5, -484.2, 15.2, 4.0, 4.0, 3.0, true /* TRUE */))) {
@@ -167,17 +161,13 @@ async function mission_start_kenji4() {
   Camera.SetFixedPosition(-87.33, -502.99, 21.33, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(-87.37, -502.06, 20.97, 2 /* JUMP_CUT */);
   $.script_controlled_player = $.player.getChar();
-  //"The vehicles dead!"
   if ($.player.isInAnyCar()) {
     $.car_km4 = $.player.storeCarIsIn();
     $.script_controlled_player.setObjLeaveCar($.car_km4);
-    //"The vehicles dead!"
     while ($.script_controlled_player.isInCar($.car_km4)) {
       await asyncWait(0);
-      //"The vehicles dead!"
       if (Car.IsDead($.car_km4)) {
-        //"The vehicles dead!"
-        Text.PrintNow("WRECKED", 5000, 1);
+        Text.PrintNow("WRECKED", 5000, 1); //"The vehicles dead!"
         // SCM GOTO → mission_kenji4_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_kenji4_failed"); // fallback: would break linear control flow
       }
@@ -185,13 +175,12 @@ async function mission_start_kenji4() {
   }
   $.script_controlled_player.setObjGotoCoordOnFoot(-92.07, -488.84);
   timerb = 0;
-  // **************************************CUT SCENE WITH SHOP KEEPER*************************
   while (timerb < 1000) {
     await asyncWait(0);
   }
+  // **************************************CUT SCENE WITH SHOP KEEPER*************************
   $.breakout_timer_start = Clock.GetGameTimer();
   $.breakout_diff = 0;
-  //	if player is not in control after 5 secs do the cutscene anyway
   while (!($.player.canStartMission()) && $.breakout_diff < 5000) {
     await asyncWait(0);
     $.breakout_timer = Clock.GetGameTimer();
@@ -200,8 +189,8 @@ async function mission_start_kenji4() {
   $.player.makeSafeForCutscene();
   Camera.SetFadingColor(0, 0, 0);
   Camera.DoFade(1500, 0 /* FADE_OUT */);
-  // Cutscene stuff
   Streaming.Switch(false /* OFF */);
+  // Cutscene stuff
   Streaming.LoadSpecialCharacter(2, KEEPER);
   Streaming.LoadSpecialModel(hier`cutobj01`, KEEPERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, PLAYERH);
@@ -218,9 +207,8 @@ async function mission_start_kenji4() {
   }
   World.SetVisibilityOfClosestObjectOfType(-88.3, -487.6, 15.1, 6.0, 415 /* convstore01_door */, false /* FALSE */);
   Cutscene.Load(k4_shi2);
-  //Proper one
+  Cutscene.SetOffset(-88.1829, -491.4236, 15.1439); //Proper one
   //SET_CUTSCENE_OFFSET -90.1829 -491.4236 15.143  // Test one
-  Cutscene.SetOffset(-88.1829, -491.4236, 15.1439);
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
   $.cs_player.setAnim($.player);
   $.cs_keeper = CutsceneObject.Create(ped`SPECIAL2`);
@@ -237,33 +225,29 @@ async function mission_start_kenji4() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2690) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I can't pay you and I wouldn't pay you if I could!"
-  Text.PrintNow("KM4_1", 10000, 1);
+  Text.PrintNow("KM4_1", 10000, 1); //"I can't pay you and I wouldn't pay you if I could!"
   while ($.cs_time < 4898) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Some young gang just jacked out the place, they took everything."
-  Text.PrintNow("KM4_9", 10000, 1);
+  Text.PrintNow("KM4_9", 10000, 1); //"Some young gang just jacked out the place, they took everything."
   while ($.cs_time < 7467) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"You guys are useless."
-  Text.PrintNow("KM4_2", 10000, 1);
+  Text.PrintNow("KM4_2", 10000, 1); //"You guys are useless."
   while ($.cs_time < 8511) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"What kind of Yakuza are you anyway?"
-  Text.PrintNow("KM4_10", 10000, 1);
+  Text.PrintNow("KM4_10", 10000, 1); //"What kind of Yakuza are you anyway?"
   while ($.cs_time < 10710) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -292,8 +276,8 @@ async function mission_start_kenji4() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`);
-  // **********************************END OF CUTSCENE WITH SHOPKEEPER************************
   World.SetPedDensityMultiplier(1.0);
+  // **********************************END OF CUTSCENE WITH SHOPKEEPER************************
   Hud.SwitchWidescreen(false /* OFF */);
   Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
   $.player.setControl(true /* ON */);
@@ -312,57 +296,50 @@ async function mission_start_kenji4() {
   $.radar_blip_dummy4_km4.changeScale(3);
   $.radar_blip_dummy5_km4 = Blip.AddForCoordOld(939.0, -183.0, -100.0, 1, 3 /* BOTH */);
   $.radar_blip_dummy5_km4.changeScale(3);
-  //"Punish the gang responsible and retrieve the protection money!"
+  Text.PrintNow("KM4_4", 7000, 1); //"Punish the gang responsible and retrieve the protection money!"
   // creates the final briefcase and the hispanics
-  Text.PrintNow("KM4_4", 7000, 1);
   while (!(Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */))) {
     await asyncWait(0);
   }
   $.briefcase3_km4 = Pickup.Create(1319 /* briefcase */, 3 /* pickup_once */, 938.0, -180.0, 4.5);
   $.flag_briefcase3_created_km4 = 1;
   $.radar_blip_coord4_km4 = Blip.AddForPickup($.briefcase3_km4);
-  // hispanic 1
   $.radar_blip_coord1_km4.remove();
+  // hispanic 1
   $.hispanic1_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, ped`GANG_DIABLO_A`, 930.0, -190.0, -100.0);
   $.radar_blip_diablo1_km4 = Blip.AddForChar($.hispanic1_km4);
   $.radar_blip_dummy1_km4.remove();
-  // sets weapon to have infinate bullets
-  $.hispanic1_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  $.hispanic1_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
   $.hispanic1_km4.clearThreatSearch();
-  // hispanic 2
   $.hispanic1_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  // hispanic 2
   $.hispanic2_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, ped`GANG_DIABLO_A`, 931.0, -184.0, -100.0);
   $.radar_blip_diablo2_km4 = Blip.AddForChar($.hispanic2_km4);
   $.radar_blip_dummy2_km4.remove();
-  // sets weapon to have infinate bullets
-  $.hispanic2_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  $.hispanic2_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
   $.hispanic2_km4.clearThreatSearch();
-  // hispanic 3
   $.hispanic2_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  // hispanic 3
   $.hispanic3_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, ped`GANG_DIABLO_A`, 943.0, -182.0, -100.0);
   $.radar_blip_diablo3_km4 = Blip.AddForChar($.hispanic3_km4);
   $.radar_blip_dummy3_km4.remove();
-  // sets weapon to have infinate bullets
-  $.hispanic3_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  $.hispanic3_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
   $.hispanic3_km4.clearThreatSearch();
-  // hispanic 4
   $.hispanic3_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  // hispanic 4
   $.hispanic4_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, ped`GANG_DIABLO_A`, 943.0, -190.0, -100.0);
   $.radar_blip_diablo4_km4 = Blip.AddForChar($.hispanic4_km4);
   $.radar_blip_dummy4_km4.remove();
-  // sets weapon to have infinate bullets
-  $.hispanic4_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  $.hispanic4_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
   $.hispanic4_km4.clearThreatSearch();
-  // hispanic 5
   $.hispanic4_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  // hispanic 5
   $.hispanic5_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, ped`GANG_DIABLO_A`, 939.0, -183.0, -100.0);
   $.radar_blip_diablo5_km4 = Blip.AddForChar($.hispanic5_km4);
   $.radar_blip_dummy5_km4.remove();
-  // sets weapon to have infinate bullets
-  $.hispanic5_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+  $.hispanic5_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
   $.hispanic5_km4.clearThreatSearch();
   $.hispanic5_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  //"Briefcase collected!"
   while ($.flag_briefcase3_pickedup_km4 == 0 || $.counter_number_of_hispanics_dead < 5) {
     await asyncWait(0);
     if ($.flag_hispanic1_km4_dead == 0) {
@@ -400,13 +377,10 @@ async function mission_start_kenji4() {
         $.flag_hispanic5_km4_dead = 1;
       }
     }
-    //"Briefcase collected!"
     if ($.flag_briefcase3_pickedup_km4 == 0) {
-      //"Briefcase collected!"
       if ($.briefcase3_km4.hasBeenCollected()) {
         $.radar_blip_coord4_km4.remove();
-        //"Briefcase collected!"
-        Text.PrintNow("KM4_8", 5000, 1);
+        Text.PrintNow("KM4_8", 5000, 1); //"Briefcase collected!"
         $.flag_briefcase3_collected_km4 = 1;
         $.flag_briefcase3_pickedup_km4 = 1;
       }
@@ -444,8 +418,7 @@ async function mission_start_kenji4() {
       }
     }
   }
-  //"Take the money back to the casino!"
-  Text.PrintNow("KM4_11", 5000, 1);
+  Text.PrintNow("KM4_11", 5000, 1); //"Take the money back to the casino!"
   $.radar_blip_coord6_km4 = Blip.AddForCoord(452.3, -1465.8, 17.6);
   $.blob_flag = 1;
   while (!($.player.locateStoppedAnyMeans3D(452.3, -1465.8, 17.6, 4.0, 4.0, 4.0, $.blob_flag))) {
@@ -457,17 +430,13 @@ async function mission_start_kenji4() {
   Game.SetPoliceIgnorePlayer($.player, true /* ON */);
   Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
   $.script_controlled_player = $.player.getChar();
-  //"The vehicles wrecked!"
   if ($.player.isInAnyCar()) {
     $.car_cut_km4 = $.player.storeCarIsIn();
     $.script_controlled_player.setObjLeaveCar($.car_cut_km4);
-    //"The vehicles wrecked!"
     while ($.player.isInCar($.car_cut_km4)) {
       await asyncWait(0);
-      //"The vehicles wrecked!"
       if (Car.IsDead($.car_cut_km4)) {
-        //"The vehicles wrecked!"
-        Text.PrintNow("WRECKED", 5000, 1);
+        Text.PrintNow("WRECKED", 5000, 1); //"The vehicles wrecked!"
         // SCM GOTO → mission_kenji4_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_kenji4_failed"); // fallback: would break linear control flow
       }
@@ -499,30 +468,28 @@ async function mission_start_kenji4() {
   Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
   Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
   }
-  // Mission Kenji3 failed
   // SCM GOTO → mission_kenji4_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_kenji4_passed"); // fallback: would break linear control flow
+  // Mission Kenji3 failed
 }
 
 async function mission_kenji4_failed() {
-  //"Mission Failed!"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission Kenji3 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed!"
   return;
+  // mission Kenji3 passed
 }
 
 async function mission_kenji4_passed() {
   $.flag_kenji_mission4_passed = 1;
   Stat.RegisterMissionPassed("KM4");
   Stat.PlayerMadeProgress(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("m_pass", 10000, 5000, 1);
+  Text.PrintWithNumberBig("m_pass", 10000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.addScore(10000);
   $.player.clearWantedLevel();
   // START_NEW_SCRIPT kenji_mission5_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_kenji4() {
@@ -569,12 +536,12 @@ async function mission_cleanup_kenji4() {
 }
 
 export async function kenji4() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************Kenji mission 4*********************************
   // *********************************************"Shima"*************************************
-  // MissionBoundary
-  // Mission start stuff
   // ScriptName
+  // Mission start stuff
   // SCM GOSUB mission_start_kenji4
   await mission_start_kenji4();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -586,8 +553,8 @@ export async function kenji4() {
   // SCM GOSUB mission_cleanup_kenji4
   await mission_cleanup_kenji4();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT briefcase1_km4
   // VAR_INT briefcase2_km4
   // VAR_INT briefcase3_km4
@@ -635,6 +602,6 @@ export async function kenji4() {
   // VAR_INT flag_briefcase2_collected_km4
   // VAR_INT flag_briefcase3_collected_km4
   // VAR_INT radar_blip_coord6_km4
-  // ****************************************Mission Start************************************
   // VAR_INT car_cut_km4
+  // ****************************************Mission Start************************************
 }

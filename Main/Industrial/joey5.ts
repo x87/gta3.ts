@@ -22,8 +22,8 @@ async function mission_start_joey5() {
   Streaming.LoadSpecialModel(hier`cutobj03`, TROLL);
   Streaming.RequestModel(car`IDAHO`);
   Streaming.RequestModel(jogarageext);
-  //LOAD_SCENE 1190.07 -869.86 13.97
   Streaming.RequestModel(jogarageint);
+  //LOAD_SCENE 1190.07 -869.86 13.97
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(hier`cutobj03`))) {
     await asyncWait(0);
@@ -51,39 +51,34 @@ async function mission_start_joey5() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 1250) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM5_A", 10000, 2);
+  Text.PrintNow("JM5_A", 10000, 2); // Mission brief
   while ($.cs_time < 5658) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM5_B", 10000, 2);
+  Text.PrintNow("JM5_B", 10000, 2); // Mission brief
   while ($.cs_time < 8419) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM5_C", 10000, 2);
+  Text.PrintNow("JM5_C", 10000, 2); // Mission brief
   while ($.cs_time < 12522) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM5_D", 10000, 2);
+  Text.PrintNow("JM5_D", 10000, 2); // Mission brief
   while ($.cs_time < 16368) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM5_E", 10000, 2);
+  Text.PrintNow("JM5_E", 10000, 2); // Mission brief
   while ($.cs_time < 18855) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -123,10 +118,10 @@ async function mission_start_joey5() {
   Streaming.RequestModel(ped`GANG_MAFIA_B`);
   Streaming.RequestModel(car`CORPSE`);
   Streaming.RequestModel(car`SENTINEL`);
-  // START OF MISSION
   while (!(Streaming.HasModelLoaded(ped`GANG_MAFIA_B`)) || !(Streaming.HasModelLoaded(car`CORPSE`)) || !(Streaming.HasModelLoaded(car`SENTINEL`))) {
     await asyncWait(0);
   }
+  // START OF MISSION
   $.deadman_car = Car.Create(108 /* CAR_CORPSE */, 867.2, -992.8, -100.0);
   $.blip1_j5 = Blip.AddForCar($.deadman_car);
   $.lipsbrother1_car = Car.Create(88 /* CAR_SENTINEL */, 892.0, -992.3, 4.6);
@@ -145,7 +140,6 @@ async function mission_start_joey5() {
   $.lipsbrother2_car.setIdle();
   $.lipsbrother2_car.lockDoors(2 /* CARLOCK_LOCKED */);
   $.lipsbrother2_car.setOnlyDamagedByPlayer(true /* TRUE */);
-  // Gosh! it's the Forelis!
   while (!($.player.isInCar($.deadman_car))) {
     await asyncWait(0);
     if (Car.IsDead($.deadman_car)) {
@@ -166,22 +160,16 @@ async function mission_start_joey5() {
       $.player.addScore(5000);
       $.is_lipsbrother2_car_dead = 1;
     }
-    // Gosh! it's the Forelis!
     if (!(Car.IsDead($.lipsbrother1_car))) {
-      // Gosh! it's the Forelis!
       if (!($.lipsbrother1_car.isHealthGreater(999))) {
-        // Gosh! it's the Forelis!
-        Text.PrintNow("JM5_2", 5000, 1);
+        Text.PrintNow("JM5_2", 5000, 1); // Gosh! it's the Forelis!
         // SCM GOTO → kill_the_player (not lowered; manual jump required)
         throw new Error("unresolved GOTO kill_the_player"); // fallback: would break linear control flow
       }
     }
-    // Gosh! it's the Forelis!
     if (!(Car.IsDead($.lipsbrother2_car))) {
-      // Gosh! it's the Forelis!
       if (!($.lipsbrother2_car.isHealthGreater(999))) {
-        // Gosh! it's the Forelis!
-        Text.PrintNow("JM5_2", 5000, 1);
+        Text.PrintNow("JM5_2", 5000, 1); // Gosh! it's the Forelis!
         // SCM GOTO → kill_the_player (not lowered; manual jump required)
         throw new Error("unresolved GOTO kill_the_player"); // fallback: would break linear control flow
       }
@@ -193,8 +181,7 @@ async function mission_start_joey5() {
   Camera.SetFixedPosition(863.389, -988.698, 4.350, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(864.217, -989.236, 4.507, 2 /* JUMP_CUT */);
   World.SetPedDensityMultiplier(0.0);
-  // Gosh! it's the Forelis!
-  Text.PrintNow("JM5_2", 5000, 1);
+  Text.PrintNow("JM5_2", 5000, 1); // Gosh! it's the Forelis!
   await asyncWait(1500);
   if (!(Char.IsDead($.lipsbrother1))) {
     if (!(Car.IsDead($.lipsbrother1_car))) {
@@ -241,9 +228,9 @@ async function kill_the_player() {
       $.lipsbrother2.setThreatSearch(0 /* THREAT_PLAYER1 */);
     }
   }
+  $.blip2_j5 = Blip.AddForCoord(1139.0, 54.5, .0, -100.0);
   //	char_dead1 = 0
   //	char_dead2 = 0
-  $.blip2_j5 = Blip.AddForCoord(1139.0, 54.5, .0, -100.0);
   $.blip2_j5.remove();
   $.blob_flag = 1;
 }
@@ -255,29 +242,21 @@ async function car_not_quite_under_crane() {
     // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_joey5_failed"); // fallback: would break linear control flow
   }
-  //"Get out of the car!"
-  //"Get back in the car!"
-  //"To crush the car..."
-  // Take it to the crusher
   while (!($.deadman_car.isStoppedInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 30.0, $.blob_flag))) {
     await asyncWait(0);
     // SCM GOSUB skunk_car_check
     await skunk_car_check();
     // fallback if label was not emitted as async function: no-op continues linearly
-    //"Get out of the car!"
     if (Car.IsDead($.deadman_car)) {
       Text.PrintNow("WRECKED", 5000, 1);
       // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey5_failed"); // fallback: would break linear control flow
     }
     else {
-      //"Get out of the car!"
       if ($.deadman_car.isInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 30.0, false /* FALSE */)) {
         $.flag_dont_do_car_check_joey5 = 1;
-        //"Get out of the car!"
         if ($.flag_leave_car_message_joey5 == 0) {
-          //"Get out of the car!"
-          Text.PrintNow("OUT_VEH", 4000, 1);
+          Text.PrintNow("OUT_VEH", 4000, 1); //"Get out of the car!"
           $.flag_leave_car_message_joey5 = 1;
         }
       }
@@ -291,9 +270,7 @@ async function car_not_quite_under_crane() {
       // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey5_failed"); // fallback: would break linear control flow
     }
-    //"Get back in the car!"
     if ($.flag_dont_do_car_check_joey5 == 0) {
-      //"Get back in the car!"
       if (!(Car.IsDead($.deadman_car))) {
         if ($.player.isInCar($.deadman_car)) {
           if ($.flag_car_blip_displayed_j5 == 1 /* TRUE */) {
@@ -304,36 +281,27 @@ async function car_not_quite_under_crane() {
             $.blob_flag = 1;
           }
         }
-        //"Get back in the car!"
         if (!($.player.isInCar($.deadman_car))) {
-          //"Get back in the car!"
           if ($.flag_car_blip_displayed_j5 == 0 /* FALSE */) {
             $.blip1_j5 = Blip.AddForCar($.deadman_car);
             $.blip2_j5.remove();
-            //"Get back in the car!"
-            Text.PrintNow("IN_VEH", 5000, 1);
+            Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
             $.flag_car_blip_displayed_j5 = 1 /* TRUE */;
             $.blob_flag = 0;
           }
         }
       }
     }
-    //"To crush the car..."
     if ($.flag_player_had_crusher_help_hm5 == 0) {
-      //"To crush the car..."
       if ($.player.locateAnyMeans2D(1140.3, 50.1, 20.0, 20.0, false /* FALSE */)) {
-        //"To crush the car..."
         if ($.player.isInCar($.deadman_car)) {
-          //"To crush the car..."
-          Text.PrintHelp("CRUSH");
+          Text.PrintHelp("CRUSH"); //"To crush the car..."
           $.flag_player_had_crusher_help_hm5 = 1;
         }
       }
     }
-    // Take it to the crusher
     if ($.player.isInCar($.deadman_car) && $.skunk_message_played_before == 0) {
-      // Take it to the crusher
-      Text.PrintNow("JM5_1", 4000, 1);
+      Text.PrintNow("JM5_1", 4000, 1); // Take it to the crusher
       $.skunk_message_played_before = 1;
     }
   }
@@ -343,7 +311,6 @@ async function car_not_quite_under_crane() {
     throw new Error("unresolved GOTO mission_joey5_failed"); // fallback: would break linear control flow
   }
   $.blob_flag = 1;
-  //"Get back in the car!"
   while (!(Crane.IsLiftingCar(1120.0, 46.0, $.deadman_car))) {
     await asyncWait(0);
     // SCM GOSUB skunk_car_check
@@ -365,9 +332,7 @@ async function car_not_quite_under_crane() {
     else {
       $.flag_car_in_area_joey5 = 0;
     }
-    //"Get back in the car!"
     if ($.flag_car_in_area_joey5 == 0) {
-      //"Get back in the car!"
       if (!(Car.IsDead($.deadman_car))) {
         if ($.player.isInCar($.deadman_car)) {
           if ($.flag_car_blip_displayed_j5 == 1 /* TRUE */) {
@@ -378,14 +343,11 @@ async function car_not_quite_under_crane() {
             $.blob_flag = 1;
           }
         }
-        //"Get back in the car!"
         if (!($.player.isInCar($.deadman_car))) {
-          //"Get back in the car!"
           if ($.flag_car_blip_displayed_j5 == 0 /* FALSE */) {
             $.blip1_j5 = Blip.AddForCar($.deadman_car);
             $.blip2_j5.remove();
-            //"Get back in the car!"
-            Text.PrintNow("IN_VEH", 5000, 1);
+            Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
             $.flag_car_blip_displayed_j5 = 1 /* TRUE */;
             $.blob_flag = 0;
           }
@@ -422,24 +384,22 @@ async function car_not_quite_under_crane() {
 }
 
 async function mission_joey5_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission joey5 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission joey5 passed
 }
 
 async function mission_joey5_passed() {
   $.flag_joey_mission5_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(10000);
   Stat.RegisterMissionPassed(JM5);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT joey_mission6_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_joey5() {
@@ -457,8 +417,8 @@ async function mission_cleanup_joey5() {
     $.lipsbrother2_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
   }
   Mission.Finish();
-  // *********************************************************
   return;
+  // *********************************************************
 }
 
 async function skunk_car_check() {
@@ -510,11 +470,11 @@ async function skunk_car_check() {
 }
 
 export async function joey5() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Joey mission 5****************************************
   // *********************************Dead Skunk in the Trunk***********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_joey5
   await mission_start_joey5();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -526,13 +486,13 @@ export async function joey5() {
   // SCM GOSUB mission_cleanup_joey5
   await mission_cleanup_joey5();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT deadman_car blip1_j5 blip2_j5
   // VAR_INT lipsbrother1_car lipsbrother2_car is_lipsbrother1_car_dead is_lipsbrother2_car_dead
   // VAR_INT lipsbrother1 lipsbrother2 skunk_message_played_before
   // VAR_INT flag_car_blip_displayed_j5 flag_car_crushed_joey5
   // VAR_INT on_new_objective_joey5_1 on_new_objective_joey5_2
-  // ***************************************Mission Start*************************************
   // VAR_INT flag_dont_do_car_check_joey5 flag_leave_car_message_joey5 flag_car_in_area_joey5
+  // ***************************************Mission Start*************************************
 }

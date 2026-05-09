@@ -16,36 +16,9 @@ async function mission_import_start() {
 
 async function mission_import_start_inner() {
   await asyncWait(500);
-  //	player is not in area (828.9 -283.8 0.0 894.2 -323.5 26.0)
-  //	IF IS_PLAYER_IN_AREA_3D player 828.9 -283.8 0.0 894.2 -323.5 26.0 FALSE
-  //	player is not in REDLIGH
-  //	IF IS_PLAYER_IN_ZONE player REDLIGH
-  //	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //	player is not in area (39.5 -443.8 53.0 167.5 -484.6 15.0)
-  //	IF IS_PLAYER_IN_AREA_3D player 39.5 -443.8 53.0 167.5 -484.6 15.0 FALSE
-  //	player is not in PARK
-  //	IF IS_PLAYER_IN_ZONE player PARK
-  //	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  //	player is not in area (-595.8 -68.2 10.0 -700.7 3.1 30.0)
-  //	IF IS_PLAYER_IN_AREA_3D player -595.8 -68.2 10.0 -700.7 3.1 30.0 FALSE
-  //	player is not in PROJECT
-  //	IF IS_PLAYER_IN_ZONE player PROJECT
-  //	IF IS_COLLISION_IN_MEMORY LEVEL_SUBURBAN
-  //IS_PLAYER_PLAYING
   if ($.player.isPlaying()) {
-    //	player is not in area (828.9 -283.8 0.0 894.2 -323.5 26.0)
-    //	IF IS_PLAYER_IN_AREA_3D player 828.9 -283.8 0.0 894.2 -323.5 26.0 FALSE
-    //	player is not in REDLIGH
-    //	IF IS_PLAYER_IN_ZONE player REDLIGH
-    //	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-      //	player is not in area (828.9 -283.8 0.0 894.2 -323.5 26.0)
-      //	IF IS_PLAYER_IN_AREA_3D player 828.9 -283.8 0.0 894.2 -323.5 26.0 FALSE
-      //	player is not in REDLIGH
-      //	IF IS_PLAYER_IN_ZONE player REDLIGH
       if ($.player.isInZone("REDLIGH")) {
-        //	player is not in area (828.9 -283.8 0.0 894.2 -323.5 26.0)
-        //	IF IS_PLAYER_IN_AREA_3D player 828.9 -283.8 0.0 894.2 -323.5 26.0 FALSE
         if ($.player.isInArea3D(828.9, -283.8, 0.0, 894.2, -323.5, 26.0, false /* FALSE */)) {
           if ($.bonus_weapons_created == 0) {
             if ($.earned_free_pistol == 1) {
@@ -126,19 +99,8 @@ async function mission_import_start_inner() {
         }
       }
     }
-    //	player is not in area (39.5 -443.8 53.0 167.5 -484.6 15.0)
-    //	IF IS_PLAYER_IN_AREA_3D player 39.5 -443.8 53.0 167.5 -484.6 15.0 FALSE
-    //	player is not in PARK
-    //	IF IS_PLAYER_IN_ZONE player PARK
-    //	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
     if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-      //	player is not in area (39.5 -443.8 53.0 167.5 -484.6 15.0)
-      //	IF IS_PLAYER_IN_AREA_3D player 39.5 -443.8 53.0 167.5 -484.6 15.0 FALSE
-      //	player is not in PARK
-      //	IF IS_PLAYER_IN_ZONE player PARK
       if ($.player.isInZone("PARK")) {
-        //	player is not in area (39.5 -443.8 53.0 167.5 -484.6 15.0)
-        //	IF IS_PLAYER_IN_AREA_3D player 39.5 -443.8 53.0 167.5 -484.6 15.0 FALSE
         if ($.player.isInArea3D(39.5, -443.8, 53.0, 167.5, -484.6, 15.0, false /* FALSE */)) {
           if ($.bonus_weapons_created == 0) {
             if ($.earned_free_pistol == 1) {
@@ -219,19 +181,8 @@ async function mission_import_start_inner() {
         }
       }
     }
-    //	player is not in area (-595.8 -68.2 10.0 -700.7 3.1 30.0)
-    //	IF IS_PLAYER_IN_AREA_3D player -595.8 -68.2 10.0 -700.7 3.1 30.0 FALSE
-    //	player is not in PROJECT
-    //	IF IS_PLAYER_IN_ZONE player PROJECT
-    //	IF IS_COLLISION_IN_MEMORY LEVEL_SUBURBAN
     if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-      //	player is not in area (-595.8 -68.2 10.0 -700.7 3.1 30.0)
-      //	IF IS_PLAYER_IN_AREA_3D player -595.8 -68.2 10.0 -700.7 3.1 30.0 FALSE
-      //	player is not in PROJECT
-      //	IF IS_PLAYER_IN_ZONE player PROJECT
       if ($.player.isInZone("PROJECT")) {
-        //	player is not in area (-595.8 -68.2 10.0 -700.7 3.1 30.0)
-        //	IF IS_PLAYER_IN_AREA_3D player -595.8 -68.2 10.0 -700.7 3.1 30.0 FALSE
         if ($.player.isInArea3D(-595.8, -68.2, 10.0, -700.7, 3.1, 30.0, false /* FALSE */)) {
           if ($.bonus_weapons_created == 0) {
             if ($.earned_free_pistol == 1) {
@@ -326,29 +277,8 @@ async function import1_loop() {
 
 async function import1_loop_inner() {
   await asyncWait(500);
-  //IF industrial_garage_slots_filled = 16
-  //	IF import_car_been_created_before = 0
-  //	player not in area (1486.9 -686.2 1524.1 -666.8)
-  //IS_PLAYER_IN_AREA_2D
-  //IS_PLAYER_PLAYING
-  //IF industrial_garage_slots = 16
-  //	IF IS_PLAYER_IN_ZONE player PORT_E
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    //IF industrial_garage_slots_filled = 16
-    //	IF import_car_been_created_before = 0
-    //	player not in area (1486.9 -686.2 1524.1 -666.8)
-    //IS_PLAYER_IN_AREA_2D
-    //IS_PLAYER_PLAYING
-    //IF industrial_garage_slots = 16
-    //	IF IS_PLAYER_IN_ZONE player PORT_E
     if ($.player.isInZone("PORT_E")) {
-      //IF industrial_garage_slots_filled = 16
-      //	IF import_car_been_created_before = 0
-      //	player not in area (1486.9 -686.2 1524.1 -666.8)
-      //IS_PLAYER_IN_AREA_2D
-      //IS_PLAYER_PLAYING
-      //IF industrial_garage_slots = 16
       if (!($.industrial_garage_slots_filled == 16)) {
         if ($.collect_all_cars1.hasSlotBeenFilled(1) && $.industrial_slot1 == 0) {
           $.industrial_garage_slots_filled++;
@@ -486,14 +416,7 @@ async function import1_loop_inner() {
         }
         // SCM label pick_up_pick_ups
         await asyncWait(0);
-        //	IF import_car_been_created_before = 0
-        //	player not in area (1486.9 -686.2 1524.1 -666.8)
-        //IS_PLAYER_IN_AREA_2D
-        //IS_PLAYER_PLAYING
         if ($.player.isPlaying()) {
-          //	IF import_car_been_created_before = 0
-          //	player not in area (1486.9 -686.2 1524.1 -666.8)
-          //IS_PLAYER_IN_AREA_2D
           if ($.player.isInArea2D(1486.9, -686.2, 1524.1, -666.8, false /* FALSE */)) {
             if ($.create_car_pickups_industrial == 0) {
               $.securicar_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 1, 1501.0, -683.0, 12.1);
@@ -516,7 +439,6 @@ async function import1_loop_inner() {
               $.collect_all_cars1.open();
               $.create_car_pickups_industrial = 1;
             }
-            //	IF import_car_been_created_before = 0
             if ($.import_car_been_created_before == 0) {
               if ($.securicar_pickup.hasBeenCollected()) {
                 $.import_car_type = 118;
@@ -674,20 +596,8 @@ async function military_crane_loop() {
 
 async function military_crane_loop_inner() {
   await asyncWait(500);
-  //IF IS_PLAYER_IN_AREA_2D player 1558.1 -716.4 1583.0 -675.1 FALSE
-  //pick_up_pick_ups3
-  //	IF HAS_MILITARY_CRANE_COLLECTED_ALL_CARS
-  //	IF IS_PLAYER_IN_ZONE player PORT_E
-  //IS_PLAYER_PLAYING
   if ($.player.isPlaying()) {
-    //IF IS_PLAYER_IN_AREA_2D player 1558.1 -716.4 1583.0 -675.1 FALSE
-    //pick_up_pick_ups3
-    //	IF HAS_MILITARY_CRANE_COLLECTED_ALL_CARS
-    //	IF IS_PLAYER_IN_ZONE player PORT_E
     if ($.player.isInArea2D(1548.1, -745.5, 1583.0, -675.1, false /* FALSE */)) {
-      //IF IS_PLAYER_IN_AREA_2D player 1558.1 -716.4 1583.0 -675.1 FALSE
-      //pick_up_pick_ups3
-      //	IF HAS_MILITARY_CRANE_COLLECTED_ALL_CARS
       if (Crane.HasMilitaryCollectedAllCars()) {
         if ($.cran_activated_before == 0) {
           Crane.Deactivate(1570.3, -675.4);
@@ -696,7 +606,6 @@ async function military_crane_loop_inner() {
           Stat.PlayerMadeProgress(7);
           $.cran_activated_before = 1;
         }
-        //IF IS_PLAYER_IN_AREA_2D player 1558.1 -716.4 1583.0 -675.1 FALSE
         if (!(World.IsAreaOccupied(1565.9, -706.7, 9.0, 1577.2, -686.3, 20.0, false /* FALSE */, true /* TRUE */, false /* FALSE */, false /* FALSE */, false /* FALSE */))) {
           if ($.create_military_pickups == 0 && $.military_car_been_created_before == 0) {
             $.copcar_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 39, 1571.0, -687.0, 11.8);
@@ -709,7 +618,7 @@ async function military_crane_loop_inner() {
             $.create_military_pickups = 1;
           }
         }
-        //pick_up_pick_ups3
+        //IF IS_PLAYER_IN_AREA_2D player 1558.1 -716.4 1583.0 -675.1 FALSE
         if ($.military_car_been_created_before == 0) {
           if ($.copcar_pickup.hasBeenCollected()) {
             $.military_car_type3 = 116;
@@ -746,7 +655,6 @@ async function military_crane_loop_inner() {
             // SCM GOTO → load_vehicle3 (not lowered; manual jump required)
             throw new Error("unresolved GOTO load_vehicle3"); // fallback: would break linear control flow
           }
-          //pick_up_pick_ups3
           // SCM GOTO → military_crane_loop_inner (not lowered; manual jump required)
           throw new Error("unresolved GOTO military_crane_loop_inner"); // fallback: would break linear control flow
           // SCM label load_vehicle3
@@ -803,29 +711,8 @@ async function import2_loop() {
 
 async function import2_loop_inner() {
   await asyncWait(500);
-  //IMPORT EXPORT GARAGE2***************************************************************************************
-  //IF suburban_garage_slots_filled = 16
-  //	IF import_car_been_created_before2 = 0
-  //	player not in area (-1117.4 158.1 -1098.0 121.5)
-  //IS_PLAYER_IN_AREA_2D
-  //IS_PLAYER_PLAYING
-  //	IF NOT suburban_garage_slots_filled = 16
-  //	IF IS_PLAYER_IN_ZONE player BIG_DAM
   if ($.player.isPlaying()) {
-    //IF suburban_garage_slots_filled = 16
-    //	IF import_car_been_created_before2 = 0
-    //	player not in area (-1117.4 158.1 -1098.0 121.5)
-    //IS_PLAYER_IN_AREA_2D
-    //IS_PLAYER_PLAYING
-    //	IF NOT suburban_garage_slots_filled = 16
-    //	IF IS_PLAYER_IN_ZONE player BIG_DAM
     if ($.player.isInZone("BIG_DAM")) {
-      //IF suburban_garage_slots_filled = 16
-      //	IF import_car_been_created_before2 = 0
-      //	player not in area (-1117.4 158.1 -1098.0 121.5)
-      //IS_PLAYER_IN_AREA_2D
-      //IS_PLAYER_PLAYING
-      //	IF NOT suburban_garage_slots_filled = 16
       if (!($.suburban_garage_slots_filled == 16)) {
         if ($.collect_all_cars2.hasSlotBeenFilled(1) && $.suburban_slot1 == 0) {
           $.suburban_garage_slots_filled++;
@@ -963,14 +850,7 @@ async function import2_loop_inner() {
         }
         // SCM label pick_up_pick_ups2
         await asyncWait(0);
-        //	IF import_car_been_created_before2 = 0
-        //	player not in area (-1117.4 158.1 -1098.0 121.5)
-        //IS_PLAYER_IN_AREA_2D
-        //IS_PLAYER_PLAYING
         if ($.player.isPlaying()) {
-          //	IF import_car_been_created_before2 = 0
-          //	player not in area (-1117.4 158.1 -1098.0 121.5)
-          //IS_PLAYER_IN_AREA_2D
           if ($.player.isInArea2D(-1117.4, 158.1, -1098.0, 121.5, false /* FALSE */)) {
             if ($.create_car_pickups_suburban == 0) {
               $.sentinet_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 17, -1115.0, 145.5, 59.0);
@@ -993,7 +873,6 @@ async function import2_loop_inner() {
               $.collect_all_cars2.open();
               $.create_car_pickups_suburban = 1;
             }
-            //	IF import_car_been_created_before2 = 0
             if ($.import_car_been_created_before2 == 0) {
               if ($.sentinet_pickup.hasBeenCollected()) {
                 $.import_car_type2 = 95;
@@ -1306,8 +1185,8 @@ async function remove_bonus_pickups() {
 }
 
 export async function import_() {
-  //IMPORT EXPORT VARIABLES
   // MissionBoundary
+  //IMPORT EXPORT VARIABLES
   // VAR_INT imported_car import_car_been_created_before import_car_type
   // VAR_INT imported_car2 import_car_been_created_before2 import_car_type2
   // VAR_INT industrial_garage_slots_filled create_car_pickups_industrial changed_industrial_garage_before
@@ -1370,6 +1249,6 @@ export async function import_() {
   $.changed_industrial_garage_before = 0;
   $.cran_activated_before = 0;
   // ScriptName
-  //IMPORT EXPORT GARAGE1***************************************************************************************
   // SET_DEATHARREST_STATE(false /* OFF */);
+  //IMPORT EXPORT GARAGE1***************************************************************************************
 }

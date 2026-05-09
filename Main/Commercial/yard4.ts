@@ -10,6 +10,7 @@ async function mission_start_yardie4() {
   // ScriptName
   $.flag_player_on_mission = 1;
   $.flag_player_on_yardie_mission = 1;
+  await asyncWait(0);
   /*
   IF CAN_PLAYER_START_MISSION Player
   MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
@@ -26,27 +27,26 @@ async function mission_start_yardie4() {
   ENDWHILE
   */
   // ******************************************CUTSCENE***************************************
-  await asyncWait(0);
   {
   World.SetPedDensityMultiplier(0.0);
+  Game.SetPoliceIgnorePlayer($.player, true /* on */);
   //WHILE NOT HAS_MODEL_LOADED cut_obj1
   //	WAIT 0
   //ENDWHILE
-  Game.SetPoliceIgnorePlayer($.player, true /* on */);
   Cutscene.Load(YD_PH4);
   Cutscene.SetOffset(121.0, -272.3, 15.25);
   World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
+  $.cs_player.setAnim($.player);
   //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
   //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
   //CLEAR_AREA 1219.5 -321.1 27.5 1.0 TRUE
   //SET_PLAYER_COORDINATES player 1219.5 -321.1 26.4
   //SET_PLAYER_HEADING player 180.0
-  $.cs_player.setAnim($.player);
-  //SWITCH_STREAMING OFF
   Camera.DoFade(1500, 1 /* FADE_IN */);
-  // Displays cutscene text
+  //SWITCH_STREAMING OFF
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2000) {
     await asyncWait(0);
@@ -62,6 +62,7 @@ async function mission_start_yardie4() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+  Text.PrintNow("YD4_A2", 10000, 1);
   /*
   WHILE cs_time < 10759
   WAIT 0
@@ -89,7 +90,6 @@ async function mission_start_yardie4() {
   ENDWHILE
   PRINT_NOW ( DIAB2_H ) 10000 1
   */
-  Text.PrintNow("YD4_A2", 10000, 1);
   while ($.cs_time < 8600) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -103,8 +103,8 @@ async function mission_start_yardie4() {
   }
   Streaming.Switch(true /* ON */);
   Text.ClearPrints();
-  //SET_CAMERA_IN_FRONT_OF_PLAYER
   Cutscene.Clear();
+  //SET_CAMERA_IN_FRONT_OF_PLAYER
   await asyncWait(500);
   World.SetPedDensityMultiplier(1.0);
   Game.SetPoliceIgnorePlayer($.player, false /* off */);
@@ -122,11 +122,11 @@ async function mission_start_yardie4() {
   $.gen3_x = -38.4;
   $.gen3_y = -1447.0;
   $.gen4_x = -53.2;
+  $.gen4_y = -1501.0;
   //counter_bomb1 = 0
   //counter_bomb4 = 0
   //counter_bomb7 = 0
   //counter_bomb9 = 0
-  $.gen4_y = -1501.0;
   $.abandoned_car_x = -71.5;
   $.abandoned_car_y = -1471.0;
   Streaming.RequestModel(car`ESPERANTO`);
@@ -135,13 +135,13 @@ async function mission_start_yardie4() {
     await asyncWait(0);
   }
   Streaming.LoadSpecialCharacter(1, bomber);
+  while (!(Streaming.HasSpecialCharacterLoaded(1))) {
+    await asyncWait(0);
+  }
   //PRINT_BIG ( YD4 ) 15000 2
   //WAIT 1000
   //PRINT_NOW ( YD4_A ) 8000 2
   //WAIT 8000
-  while (!(Streaming.HasSpecialCharacterLoaded(1))) {
-    await asyncWait(0);
-  }
   $.timer_y4 = 90000;
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
@@ -157,8 +157,8 @@ async function create_car_yd5() {
   $.gen2_van = Car.Create(96 /* CAR_PONY */, $.gen2_x, $.gen2_y, 27.0);
   $.gen2_van.setHeading(345.0);
   $.gen2_van.setIdle();
-  // Mission stuff goes here
   $.gen2_van.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+  // Mission stuff goes here
   if (!(Car.IsDead($.abandoned_car_y4))) {
     while (!($.player.isInCar($.abandoned_car_y4))) {
       await asyncWait(0);
@@ -197,10 +197,10 @@ async function create_car_yd5() {
   $.gen4_van.setIdle();
   $.gen4_van.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
   Camera.SetFixedPosition(-82.0, -1472.0, 27.5, 0.0, 0.0, 0.0);
-  //POINT_CAMERA_AT_PLAYER player FIXED JUMP_CUT
   if (!(Car.IsDead($.abandoned_car_y4))) {
     Camera.PointAtCar($.abandoned_car_y4, 15 /* FIXED */, 2 /* JUMP_CUT */);
   }
+  //POINT_CAMERA_AT_PLAYER player FIXED JUMP_CUT
   Hud.SwitchWidescreen(true /* on */);
   Text.PrintNow("YD4_B", 3500, 2);
   // MESSAGE_WAIT(3500, true /* true */);
@@ -247,8 +247,8 @@ async function create_car_yd5() {
   $.human_bomb_demo.setHeading(180.0);
   Camera.SetFixedPosition(-115.76, -1455.0, 25.9, 0.0, 0.0, 0.0);
   $.human_bomb_demo.setIdle();
-  //SET_CAMERA_ZOOM CAM_ZOOM_TWO
   Camera.PointAtChar($.human_bomb_demo, 15 /* FIXED */, 2 /* JUMP_CUT */);
+  //SET_CAMERA_ZOOM CAM_ZOOM_TWO
   Text.PrintNow("YD4_1", 3000, 1);
   if (!(Char.IsDead($.human_bomb_demo))) {
     $.human_bomb_demo.setObjRunToCoord(-114.5, -1452.4);
@@ -291,12 +291,12 @@ async function selkirk() {
   $.player.setControl(true /* on */);
   await asyncWait(0);
   $.human_bomb_demo.markAsNoLongerNeeded();
-  // Bomber generation loop
   Text.PrintNow("YD4_2", 3000, 1);
-  // GENERATORS*****GENERATORS*****GENERATORS*****GENERATORS*****GENERATORS*****GENERATORS*****
-  //111111111111111111111111111111111111111111111111111111111111111111111
+  // Bomber generation loop
   // SCM GOTO → le_loop_de_mort (not lowered; manual jump required)
   throw new Error("unresolved GOTO le_loop_de_mort"); // fallback: would break linear control flow
+  // GENERATORS*****GENERATORS*****GENERATORS*****GENERATORS*****GENERATORS*****GENERATORS*****
+  //111111111111111111111111111111111111111111111111111111111111111111111
 }
 
 async function generator_1_easy() {
@@ -313,8 +313,8 @@ async function generator_1_easy() {
       }
     }
   }
-  //222222222222222222222222222222222222222222222222222222222222222222222222
   return;
+  //222222222222222222222222222222222222222222222222222222222222222222222222
 }
 
 async function generator_2_easy() {
@@ -331,8 +331,8 @@ async function generator_2_easy() {
       }
     }
   }
-  //333333333333333333333333333333333333333333333333333333333333333333333333
   return;
+  //333333333333333333333333333333333333333333333333333333333333333333333333
 }
 
 async function generator_3_easy() {
@@ -349,8 +349,8 @@ async function generator_3_easy() {
       }
     }
   }
-  //444444444444444444444444444444444444444444444444444444444444444444444444
   return;
+  //444444444444444444444444444444444444444444444444444444444444444444444444
 }
 
 async function generator_4_easy() {
@@ -367,8 +367,8 @@ async function generator_4_easy() {
       }
     }
   }
-  // MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****
   return;
+  // MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****
 }
 
 async function le_loop_de_mort() {
@@ -535,20 +535,19 @@ async function detonate_9() {
     $.flag_bomb9_active = 0;
     $.blip_bomber_9.remove();
   }
-  // Mission yardie4 failed
   return;
+  // Mission yardie4 failed
 }
 
 async function mission_yd4_failed() {
   Text.PrintBig("M_FAIL", 2000, 1);
-  // mission yardie4 passed
   return;
+  // mission yardie4 passed
 }
 
 async function mission_yardie4_passed() {
   $.flag_yardie_mission4_passed = 1;
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.clearWantedLevel();
   $.player.addScore(10000);
@@ -558,8 +557,8 @@ async function mission_yardie4_passed() {
   $.yardie_contact_blip.remove();
   // START_NEW_SCRIPT yardie_mission1_loop
   $.flag_yardie_mission1_passed = 0;
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_yardie4() {
@@ -576,10 +575,10 @@ async function mission_cleanup_yardie4() {
 }
 
 export async function yard4() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************Yardie mission 4********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_yardie4
   await mission_start_yardie4();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -591,45 +590,40 @@ export async function yard4() {
   // SCM GOSUB mission_cleanup_yardie4
   await mission_cleanup_yardie4();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT abandoned_car_y4 flag_van1_arrived
   // VAR_INT timer_y4
   // VAR_INT blip_abandoned_car_y4
   // VAR_INT gen1_van gen2_van gen3_van gen4_van
+  // VAR_INT human_bomb_1
   //VAR_INT human_bomb_2
   //VAR_INT human_bomb_3
-  // VAR_INT human_bomb_1
+  // VAR_INT human_bomb_4
   //VAR_INT human_bomb_5
   //VAR_INT human_bomb_6
-  // VAR_INT human_bomb_4
-  //VAR_INT human_bomb_8
   // VAR_INT human_bomb_7
+  //VAR_INT human_bomb_8
   // VAR_INT human_bomb_9
   // VAR_INT human_bomb_demo
   // VAR_INT blip_bomber_1 blip_bomber_4 blip_bomber_7 blip_bomber_9
   // VAR_INT flag_bomb1_active
   // VAR_INT flag_bomb4_active
   // VAR_INT flag_bomb7_active
+  // VAR_INT flag_bomb9_active
   //VAR_INT counter_bomb1 counter_bomb4 counter_bomb7
   //VAR_INT counter_bomb9
   //VAR_INT bomber_collective_1 bomber_collective_2 bomber_collective_3
   //CO-ORD VARIABLES*****************************************************
-  // VAR_INT flag_bomb9_active
-  //gen1_z
   // VAR_FLOAT gen1_x gen1_y
-  //gen2_z
   // VAR_FLOAT gen2_x gen2_y
-  //gen3_z
   // VAR_FLOAT gen3_x gen3_y
-  //gen4_z
   // VAR_FLOAT gen4_x gen4_y
-  //abandoned_car_z
   // VAR_FLOAT abandoned_car_x abandoned_car_y
   // VAR_FLOAT y4_x y4_y y4_z
   // VAR_FLOAT bomb_x bomb_y bomb_z
   // VAR_FLOAT bomb4_x bomb4_y bomb4_z
   // VAR_FLOAT bomb7_x bomb7_y bomb7_z
-  // ****************************************Mission Start************************************
   // VAR_FLOAT bomb9_x bomb9_y bomb9_z
+  // ****************************************Mission Start************************************
 }

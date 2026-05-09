@@ -24,8 +24,8 @@ async function mission_start_diablo4() {
   $.cs_player.setAnim($.player);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2000) {
     await asyncWait(0);
@@ -93,10 +93,8 @@ async function mission_start_diablo4() {
     await asyncWait(0);
   }
   $.NumEaten_diablo4 = 0;
-  //The Mafia
   if ($.flag_asuka_mission1_passed == 1) {
-    //The Mafia
-    Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */);
+    Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */); //The Mafia
   }
   Streaming.RequestModel(car`RUMPO`);
   Streaming.RequestModel(ped`MALE2`);
@@ -107,11 +105,11 @@ async function mission_start_diablo4() {
   World.ClearArea(918.2, -269.7, 5.0, 5.0, true /* TRUE */);
   $.diablo_collect_porn_van = Car.Create(123 /* CAR_RUMPO */, 918.2, -269.7, -100.0);
   $.blip1_porn_van = Blip.AddForCar($.diablo_collect_porn_van);
-  //GOTO pervert_test //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   if (Car.IsDead($.diablo_collect_porn_van)) {
     // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_diablo4_failed"); // fallback: would break linear control flow
   }
+  //GOTO pervert_test //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   while (!($.player.isInCar($.diablo_collect_porn_van))) {
     await asyncWait(0);
     if (Car.IsDead($.diablo_collect_porn_van)) {
@@ -149,7 +147,6 @@ async function mission_start_diablo4() {
     throw new Error("unresolved GOTO mission_diablo4_failed"); // fallback: would break linear control flow
   }
   $.flag_car_blip_displayed_dm4 = 1 /* TRUE */;
-  //"Get back in the car!"
   while (!(Char.IsDead($.porn_man))) {
     await asyncWait(0);
     if (Car.IsDead($.diablo_collect_porn_van)) {
@@ -184,13 +181,10 @@ async function mission_start_diablo4() {
         $.flag_car_blip_displayed_dm4 = 0 /* FALSE */;
       }
     }
-    //"Get back in the car!"
     if (!($.player.isInCar($.diablo_collect_porn_van))) {
-      //"Get back in the car!"
       if ($.flag_car_blip_displayed_dm4 == 0 /* FALSE */) {
         $.blip1_porn_van = Blip.AddForCar($.diablo_collect_porn_van);
-        //"Get back in the car!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
         $.flag_car_blip_displayed_dm4 = 1 /* TRUE */;
       }
     }
@@ -207,8 +201,7 @@ async function mission_start_diablo4() {
   $.blip2_porn_shop.remove();
   Hud.ClearTimer($.counter_diablo4);
   Pacman.Clear();
-  // Mission brief
-  Text.PrintNow("DIAB4_1", 5000, 1);
+  Text.PrintNow("DIAB4_1", 5000, 1); // Mission brief
   if (Car.IsDead($.diablo_collect_porn_van)) {
     // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_diablo4_failed"); // fallback: would break linear control flow
@@ -219,9 +212,6 @@ async function mission_start_diablo4() {
   else {
     $.flag_car_blip_displayed_dm4 = 0 /* FALSE */;
   }
-  //"Get back in the car!"
-  //PERVERTS CUT SCENE*********************************************************************
-  //pervert_test:
   while (!($.diablo_collect_porn_van.isStoppedInArea3D(976.5, -422.8, 14.5, 970.8, -433.4, 16.9, true /* TRUE */))) {
     await asyncWait(0);
     if (Car.IsDead($.diablo_collect_porn_van)) {
@@ -237,18 +227,17 @@ async function mission_start_diablo4() {
         $.flag_car_blip_displayed_dm4 = 0 /* FALSE */;
       }
     }
-    //"Get back in the car!"
     if (!($.player.isInCar($.diablo_collect_porn_van))) {
-      //"Get back in the car!"
       if ($.flag_car_blip_displayed_dm4 == 0 /* FALSE */) {
         $.blip1_porn_van = Blip.AddForCar($.diablo_collect_porn_van);
         $.blip2_porn_shop.remove();
-        //"Get back in the car!"
-        Text.PrintSoon("IN_VEH", 5000, 1);
+        Text.PrintSoon("IN_VEH", 5000, 1); //"Get back in the car!"
         $.flag_car_blip_displayed_dm4 = 1 /* TRUE */;
       }
     }
   }
+  //PERVERTS CUT SCENE*********************************************************************
+  //pervert_test:
   Game.SetPoliceIgnorePlayer($.player, true /* On */);
   $.player.setControl(false /* Off */);
   Hud.SwitchWidescreen(true /* ON */);
@@ -310,10 +299,10 @@ async function mission_start_diablo4() {
   if (!(Char.IsDead($.pervert2))) {
     $.pervert2.wanderDir(90);
   }
-  //PERVERTS CUT SCENE END******************************************************************
   if (!(Char.IsDead($.pervert1))) {
     $.pervert1.wanderDir(90);
   }
+  //PERVERTS CUT SCENE END******************************************************************
   if (!(Car.IsDead($.diablo_collect_porn_van))) {
     if ($.player.isInCar($.diablo_collect_porn_van)) {
       World.ClearArea(978.3, -442.7, 13.9, 1.0, true /* TRUE */);
@@ -332,17 +321,15 @@ async function mission_start_diablo4() {
 }
 
 async function mission_diablo4_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission toni1 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission toni1 passed
 }
 
 async function mission_diablo4_passed() {
   $.flag_diablo_mission4_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(20000);
   $.donkeymag1 = Object.Create(1325 /* donkeymag */, 895.2, -308.2, 7.4);
@@ -359,8 +346,8 @@ async function mission_diablo4_passed() {
   // START_NEW_SCRIPT diablo_mission1_loop
   Stat.RegisterMissionPassed(DIAB4);
   Stat.PlayerMadeProgress(1);
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_diablo4() {
@@ -376,21 +363,19 @@ async function mission_cleanup_diablo4() {
   Pacman.Clear();
   Audio.SetMusicDoesFade(true /* TRUE */);
   Streaming.UnloadSpecialCharacter(1);
-  //The Mafia
   if ($.flag_asuka_mission1_passed == 1) {
-    //The Mafia
-    Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */);
+    Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */); //The Mafia
   }
   Mission.Finish();
   return;
 }
 
 export async function diablo4() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Deablo mission 4**************************************
   // ***************************************Donkey Porn*****************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_diablo4
   await mission_start_diablo4();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -402,15 +387,14 @@ export async function diablo4() {
   // SCM GOSUB mission_cleanup_diablo4
   await mission_cleanup_diablo4();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
-  // Counts up number of mission vans destroyed
+  // Variables for mission
   // VAR_INT counter_diablo4
   // VAR_INT porn_man porn_van blip1_porn_van blip2_porn_shop blip3_pornman
   // VAR_INT NumEaten_diablo4 NumEaten_diablo4_total eaten_all_the_porn
   // VAR_INT diablo_collect_porn_van audio_loop_diablo4
   // VAR_INT flag_car_blip_displayed_dm4 found_perv_before
+  // VAR_INT donkeymag1 donkeymag2 donkeymag3 pervert1 pervert2 pervert3 pervert4 pervert5 pervert6 pervert7 pervert8
   //VAR_INT pac_man_record_on	//Create a new race
   // ***************************************Mission Start*************************************
-  // VAR_INT donkeymag1 donkeymag2 donkeymag3 pervert1 pervert2 pervert3 pervert4 pervert5 pervert6 pervert7 pervert8
 }

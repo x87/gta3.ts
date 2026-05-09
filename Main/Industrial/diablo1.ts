@@ -44,11 +44,11 @@ async function mission_start_d1() {
   $.car2_stuck_z = 0.0;
   $.car3_stuck_x = 0.0;
   $.car3_stuck_y = 0.0;
+  $.car3_stuck_z = 0.0;
   //_____________Check Points____________//
   //cp1_x_d1 = 776.0
   //cp1_y_d1 = -917.5
   //cp1_z_d1 = 39.0
-  $.car3_stuck_z = 0.0;
   $.cp2_x_d1 = 1050.859;
   $.cp2_y_d1 = -929.54;
   $.cp2_z_d1 = 14.4;
@@ -99,28 +99,14 @@ async function mission_start_d1() {
   $.cp17_z_d1 = 5.0;
   $.cp18_x_d1 = 980.0;
   $.cp18_y_d1 = -565.0;
-  //______________________________________//
   $.cp18_z_d1 = 14.5;
+  //______________________________________//
   {
   World.SetPedDensityMultiplier(0.0);
   World.ClearAreaOfChars(890.3, -309.1, 0.0, 1038.1, -132.9, 10.0);
-  /*
-  SET_FADING_COLOUR 0 0 0
-  DO_FADE 1500 FADE_OUT
-  //	SWITCH_STREAMING OFF
-  PRINT_BIG ( DIAB1 ) 15000 2 //"Diablo Mission 1"
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_d1_failed
-  ENDIF
-  WHILE TIMERA < 1500
-  WAIT 0
-  ENDWHILE
-  */
   TIMERA = 0;
-  //SET_CUTSCENE_OFFSET 939.4 -230.1 3.9
   Cutscene.Load(EL_PH1);
+  //SET_CUTSCENE_OFFSET 939.4 -230.1 3.9
   Cutscene.SetOffset(938.27, -229.561, 4.023);
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
   $.cs_player.setAnim($.player);
@@ -131,26 +117,22 @@ async function mission_start_d1() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"This is El Buro of the Diablos."
-  Text.PrintNow(DIAB1_B, 10000, 1);
+  Text.PrintNow(DIAB1_B, 10000, 1); //"This is El Buro of the Diablos."
   while ($.cs_time < 4731) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"You're new in Liberty, but already you are gaining a reputation on the streets."
-  Text.PrintNow(DIAB1_D, 10000, 1);
+  Text.PrintNow(DIAB1_D, 10000, 1); //"You're new in Liberty, but already you are gaining a reputation on the streets."
   while ($.cs_time < 10501) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"There's a street race starting by the old school hall near the Callahan Bridge."
-  Text.PrintNow(DIAB1_E, 10000, 1);
+  Text.PrintNow(DIAB1_E, 10000, 1); //"There's a street race starting by the old school hall near the Callahan Bridge."
   while ($.cs_time < 15111) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Get yourself some wheels and first through all the checkpoints wins the prize."
-  Text.PrintNow(DIAB1_F, 10000, 1);
+  Text.PrintNow(DIAB1_F, 10000, 1); //"Get yourself some wheels and first through all the checkpoints wins the prize."
   while ($.cs_time < 20500) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -167,17 +149,17 @@ async function mission_start_d1() {
   Cutscene.Clear();
   World.SetPedDensityMultiplier(1.0);
   await asyncWait(500);
-  //____________________________________________________________________//
   Camera.DoFade(1500, 1 /* FADE_IN */);
+  //____________________________________________________________________//
   Streaming.RequestModel(ped`GANG_DIABLO_A`);
   Streaming.RequestModel(ped`GANG_DIABLO_B`);
   Streaming.RequestModel(car`CHEETAH`);
-  //WHILE NOT IS_BUTTON_PRESSED PAD1 LEFTSHOCK
-  //	WAIT 0
-  //ENDWHILE
   while (!(Streaming.HasModelLoaded(car`CHEETAH`)) || !(Streaming.HasModelLoaded(ped`GANG_DIABLO_A`)) || !(Streaming.HasModelLoaded(ped`GANG_DIABLO_B`))) {
     await asyncWait(0);
   }
+  //WHILE NOT IS_BUTTON_PRESSED PAD1 LEFTSHOCK
+  //	WAIT 0
+  //ENDWHILE
   Path.SwitchRoadsOff(1034.0, -956.0, 12.0, 1063.0, -847.0, 20.0);
   $.car1_d1 = Car.Create(98 /* CAR_CHEETAH */, 1048.1465, -858.6693, 13.7827);
   $.car1_d1.lockDoors(2 /* CARLOCK_LOCKED */);
@@ -219,14 +201,7 @@ async function mission_start_d1() {
   $.car2_d1.setOnlyDamagedByPlayer(true /* TRUE */);
   $.car3_d1.setOnlyDamagedByPlayer(true /* TRUE */);
   $.blip_chase_d1 = Blip.AddForCoord(1042.9772, -858.7398, 13.7827);
-  //"~g~Get a fast car and get to the starting grid."
-  Text.PrintNow(DIAB1_4, 5000, 1);
-  //	IF IS_PLAYER_IN_ANY_CAR player
-  //		STORE_CAR_PLAYER_IS_IN player players_car
-  //		GET_CAR_SPEED players_car players_car_speed
-  //		players_car_speed_int =# players_car_speed
-  //		PRINT_WITH_NUMBER_NOW NUMBER players_car_speed_int 50 1
-  //	ENDIF
+  Text.PrintNow(DIAB1_4, 5000, 1); //"~g~Get a fast car and get to the starting grid."
   while (!($.player.locateStoppedInCar3D(1042.9772, -858.7398, 13.7827, 2.0, 2.0, 2.0, true))) {
     await asyncWait(0);
     if ($.player.locateStoppedOnFoot3D(1042.9772, -858.7398, 13.7827, 2.0, 2.0, 2.0, true)) {
@@ -257,17 +232,17 @@ async function mission_start_d1() {
       throw new Error("unresolved GOTO race_start"); // fallback: would break linear control flow
     }
     $.timerc = $.car3_d1.getHealth();
+    if ($.timerc < 1000) {
+      $.timerc = 9;
+      // SCM GOTO → race_start (not lowered; manual jump required)
+      throw new Error("unresolved GOTO race_start"); // fallback: would break linear control flow
+    }
     //	IF IS_PLAYER_IN_ANY_CAR player
     //		STORE_CAR_PLAYER_IS_IN player players_car
     //		GET_CAR_SPEED players_car players_car_speed
     //		players_car_speed_int =# players_car_speed
     //		PRINT_WITH_NUMBER_NOW NUMBER players_car_speed_int 50 1
     //	ENDIF
-    if ($.timerc < 1000) {
-      $.timerc = 9;
-      // SCM GOTO → race_start (not lowered; manual jump required)
-      throw new Error("unresolved GOTO race_start"); // fallback: would break linear control flow
-    }
   }
 }
 
@@ -275,10 +250,8 @@ async function race_start() {
   $.car1_d1.setOnlyDamagedByPlayer(false /* FALSE */);
   $.car2_d1.setOnlyDamagedByPlayer(false /* FALSE */);
   $.car3_d1.setOnlyDamagedByPlayer(false /* FALSE */);
-  // "3..2..1.. GO GO GO!"
   if ($.timerc == 9) {
-    // "3..2..1.. GO GO GO!"
-    Text.PrintBig(DIAB1_1, 1200, 4);
+    Text.PrintBig(DIAB1_1, 1200, 4); // "3..2..1.. GO GO GO!"
   }
   else {
     $.player.setControl(false /* OFF */);
@@ -353,25 +326,17 @@ async function loop1() {
   $.position = 0 + $.behind_car1;
   $.position += $.behind_car2;
   $.position += $.behind_car3;
-  //"1st"
   if ($.position == 0) {
-    //"1st"
-    Text.PrintNow(FIRST, 100, 1);
+    Text.PrintNow(FIRST, 100, 1); //"1st"
   }
-  //"2nd"
   if ($.position == 1) {
-    //"2nd"
-    Text.PrintNow(SECOND, 100, 1);
+    Text.PrintNow(SECOND, 100, 1); //"2nd"
   }
-  //"3rd"
   if ($.position == 2) {
-    //"3rd"
-    Text.PrintNow(THIRD, 100, 1);
+    Text.PrintNow(THIRD, 100, 1); //"3rd"
   }
-  //"4th"
   if ($.position == 3) {
-    //"4th"
-    Text.PrintNow(FOURTH, 100, 1);
+    Text.PrintNow(FOURTH, 100, 1); //"4th"
   }
   if ($.player_cpcounter == 17) {
     Fx.DrawCorona($.player_x_d1, $.player_y_d1, $.player_z_d1, 5.5, 6 /* CORONATYPE_CIRCLE */, 0 /* FLARETYPE_NONE */, 100, 0, 0);
@@ -379,7 +344,6 @@ async function loop1() {
   else {
     Fx.DrawCorona($.player_x_d1, $.player_y_d1, $.player_z_d1, 5.5, 6 /* CORONATYPE_CIRCLE */, 0 /* FLARETYPE_NONE */, 0, 0, 100);
   }
-  //	AND	position = 0
   if ($.player.locateInCar3D($.player_x_d1, $.player_y_d1, $.player_z_d1, 6.0, 6.0, 6.0, false)) {
     ++$.player_cpcounter;
     $.blip_chase_d1.remove();
@@ -520,7 +484,6 @@ async function loop1() {
       $.blip_2nd_y = $.cp2_y_d1;
       $.blip_2nd_z = $.cp2_z_d1;
     }
-    //	AND	position = 0
     if ($.player_cpcounter == 18) {
       // SCM GOTO → mission_d1_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_d1_passed"); // fallback: would break linear control flow
@@ -530,8 +493,6 @@ async function loop1() {
     $.second_blip.changeScale(2);
     $.blip_chase_d1 = Blip.AddForCoord($.player_x_d1, $.player_y_d1, $.player_z_d1);
   }
-  //		AND	position > 0
-  //"~r~You failed to win the race!"
   if (!(Car.IsDead($.car1_d1))) {
     $.car1_health = $.car1_d1.getHealth();
     if ($.car1_health < 500) {
@@ -630,8 +591,6 @@ async function loop1() {
         }
       }
     }
-    //		AND	position > 0
-    //"~r~You failed to win the race!"
     if ($.car1_d1.locate3D($.car1_x_d1, $.car1_y_d1, $.car1_z_d1, $.ai_car1_locate_size, $.ai_car1_locate_size, $.ai_car1_locate_size, false)) {
       ++$.car1_cpcounter;
       if ($.car1_cpcounter == 1) {
@@ -721,11 +680,8 @@ async function loop1() {
         $.car1_z_d1 = $.cp2_z_d1;
         $.ai_car1_locate_size = 6.0;
       }
-      //		AND	position > 0
-      //"~r~You failed to win the race!"
       if ($.car1_cpcounter == 18) {
-        //"~r~You failed to win the race!"
-        Text.PrintNow(DIAB1_3, 5000, 1);
+        Text.PrintNow(DIAB1_3, 5000, 1); //"~r~You failed to win the race!"
         // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_d1_failed"); // fallback: would break linear control flow
       }
@@ -755,8 +711,6 @@ async function loop1() {
       }
     }
   }
-  //		AND	position > 0
-  //"~r~You failed to win the race!"
   if (!(Car.IsDead($.car2_d1))) {
     $.car2_health = $.car2_d1.getHealth();
     if ($.car2_health < 500) {
@@ -855,8 +809,6 @@ async function loop1() {
         }
       }
     }
-    //		AND	position > 0
-    //"~r~You failed to win the race!"
     if ($.car2_d1.locate3D($.car2_x_d1, $.car2_y_d1, $.car2_z_d1, $.ai_car2_locate_size, $.ai_car2_locate_size, $.ai_car2_locate_size, false)) {
       ++$.car2_cpcounter;
       if ($.car2_cpcounter == 1) {
@@ -945,11 +897,8 @@ async function loop1() {
         $.car2_z_d1 = $.cp2_z_d1;
         $.ai_car2_locate_size = 6.0;
       }
-      //		AND	position > 0
-      //"~r~You failed to win the race!"
       if ($.car2_cpcounter == 18) {
-        //"~r~You failed to win the race!"
-        Text.PrintNow(DIAB1_3, 5000, 1);
+        Text.PrintNow(DIAB1_3, 5000, 1); //"~r~You failed to win the race!"
         // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_d1_failed"); // fallback: would break linear control flow
       }
@@ -979,8 +928,6 @@ async function loop1() {
       }
     }
   }
-  //		AND	position > 0
-  //"~r~You failed to win the race!"
   if (!(Car.IsDead($.car3_d1))) {
     $.car3_health = $.car3_d1.getHealth();
     if ($.car3_health < 500) {
@@ -1083,8 +1030,6 @@ async function loop1() {
         }
       }
     }
-    //		AND	position > 0
-    //"~r~You failed to win the race!"
     if ($.car3_d1.locate3D($.car3_x_d1, $.car3_y_d1, $.car3_z_d1, $.ai_car3_locate_size, $.ai_car3_locate_size, $.ai_car3_locate_size, false)) {
       ++$.car3_cpcounter;
       if ($.car3_cpcounter == 1) {
@@ -1173,11 +1118,8 @@ async function loop1() {
         $.car3_z_d1 = $.cp2_z_d1;
         $.ai_car3_locate_size = 6.0;
       }
-      //		AND	position > 0
-      //"~r~You failed to win the race!"
       if ($.car3_cpcounter == 18) {
-        //"~r~You failed to win the race!"
-        Text.PrintNow(DIAB1_3, 5000, 1);
+        Text.PrintNow(DIAB1_3, 5000, 1); //"~r~You failed to win the race!"
         // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_d1_failed"); // fallback: would break linear control flow
       }
@@ -1214,8 +1156,8 @@ async function loop1() {
 
 async function mission_d1_failed() {
   Text.PrintBig(M_FAIL, 2000, 1);
-  // mission d1 passed
   return;
+  // mission d1 passed
 }
 
 async function mission_d1_passed() {
@@ -1224,12 +1166,11 @@ async function mission_d1_passed() {
   $.game_timer_end_d1 = $.game_timer_end_d1 / 1000;
   $.player.addScore(10000);
   Text.PrintWithNumberBig(M_PASS, 10000, 5000, 1);
-  //"Race time: ~1~ seconds"
-  Text.PrintWithNumberNow(DIAB1_2, $.game_timer_end_d1, 5000, 1);
+  Text.PrintWithNumberNow(DIAB1_2, $.game_timer_end_d1, 5000, 1); //"Race time: ~1~ seconds"
   Stat.RegisterElBurroTime($.game_timer_end_d1);
   $.player.clearWantedLevel();
-  //CLEAR_THREAT_FOR_PED_TYPE PEDTYPE_GANG_DIABLO THREAT_PLAYER1
   Audio.PlayMissionPassedTune(1);
+  //CLEAR_THREAT_FOR_PED_TYPE PEDTYPE_GANG_DIABLO THREAT_PLAYER1
   if ($.flag_diablo1_passed_before == 0) {
     Stat.RegisterMissionPassed(DIAB1);
     Stat.PlayerMadeProgress(1);
@@ -1237,8 +1178,8 @@ async function mission_d1_passed() {
     // START_NEW_SCRIPT diablo_mission2_loop
     $.flag_diablo1_passed_before = 1;
   }
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_d1() {
@@ -1259,6 +1200,7 @@ async function mission_cleanup_d1() {
 }
 
 export async function diablo1() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***********************************    Diablo 1 	  **************************************
   // *********************************** Low Rider Race **************************************
@@ -1266,7 +1208,6 @@ export async function diablo1() {
   // *** bridge and encompass most of the industrial sector. The player must get to the 	 ***
   // *** end before his three Hispanic rivals.											 ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_d1
   await mission_start_d1();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1278,9 +1219,9 @@ export async function diablo1() {
   // SCM GOSUB mission_cleanup_d1
   await mission_cleanup_d1();
   // fallback if label was not emitted as async function: no-op continues linearly
+  // MissionBoundary
   // Variables for mission
   //VAR_INT	player_cpcounter_test//TEST VARS
-  // MissionBoundary
   // VAR_FLOAT car1_x car1_y car1_z car2_x car2_y car2_z car3_x car3_y car3_z players_x players_y players_z
   // VAR_FLOAT difference_x_float_d difference_y_float_d sum_difference_d_xy ai_car1_locate_size ai_car2_locate_size ai_car3_locate_size
   // VAR_FLOAT car2_distance_from_cp car1_distance_from_cp car3_distance_from_cp players_distance_from_cp
@@ -1308,9 +1249,7 @@ export async function diablo1() {
   // VAR_FLOAT cp15_x_d1 cp15_y_d1 cp15_z_d1
   // VAR_FLOAT cp16_x_d1 cp16_y_d1 cp16_z_d1
   // VAR_FLOAT cp17_x_d1 cp17_y_d1 cp17_z_d1
-  //players_car_speed
   // VAR_FLOAT cp18_x_d1 cp18_y_d1 cp18_z_d1
-  //players_car_speed_int
   // VAR_INT blip_chase_d1 second_blip blip_car1_d1 blip_car2_d1 blip_car3_d1
   // VAR_INT car1_d1 car2_d1 car3_d1 car1_health car2_health car3_health
   // VAR_INT ped_car1_driver_d1 ped_car2_driver_d1 ped_car3_driver_d1
@@ -1319,6 +1258,6 @@ export async function diablo1() {
   // VAR_INT timerc timerc_started timerc_current timerc_reset_flag_d1
   // VAR_INT timerd timerd_started timerd_current timerd_reset_flag
   // VAR_INT timere timere_started timere_current timere_reset_flag
-  // ****************************************Mission Start************************************
   // VAR_INT timerf timerf_started timerf_current timerf_reset_flag
+  // ****************************************Mission Start************************************
 }

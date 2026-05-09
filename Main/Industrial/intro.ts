@@ -16,10 +16,10 @@ async function mission_start_intro() {
   Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
   $.player.setControl(false /* OFF */);
   $.player.setVisible(false /* FALSE */);
-  //SET_DEATHARREST_STATE OFF
   Streaming.Switch(false /* OFF */);
-  // **********************************START OF BANK CUTSCENE****************************
+  //SET_DEATHARREST_STATE OFF
   World.SwitchRubbish(false /* OFF */);
+  // **********************************START OF BANK CUTSCENE****************************
   $.player.makeSafeForCutscene();
   Game.SetIntroIsPlaying(true /* TRUE */);
   Streaming.LoadCollision(0 /* LEVEL_GENERIC */);
@@ -81,7 +81,6 @@ async function mission_start_intro() {
   Cutscene.Start();
   Camera.DoFade(2000, 1 /* FADE_IN */);
   $.cs_time = Cutscene.GetTime();
-  //17033
   while ($.cs_time < 17166) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -93,9 +92,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //SETS UP THE GREEN SECURITY CAMERA
-  Camera.SetMotionBlur(3);
-  //18266
+  Camera.SetMotionBlur(3); //SETS UP THE GREEN SECURITY CAMERA
   while ($.cs_time < 18126) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -108,10 +105,8 @@ async function mission_start_intro() {
     $.cs_time = Cutscene.GetTime();
   }
   Audio.SetMusicDoesFade(false /* FALSE */);
-  //FLASH SCREEN FOR PLAYER SHOOTING CAMERA
   if (!(Cutscene.HasFinished())) {
-    //FLASH SCREEN FOR PLAYER SHOOTING CAMERA
-    Camera.SetFadingColor(255, 255, 255);
+    Camera.SetFadingColor(255, 255, 255); //FLASH SCREEN FOR PLAYER SHOOTING CAMERA
     Camera.DoFade(100, 0 /* FADE_OUT */);
     $.particle_x = -537.42 + 1.759;
     $.particle_y = 1051.204 - 0.416;
@@ -140,15 +135,9 @@ async function mission_start_intro() {
   if (!(Cutscene.HasFinished())) {
     Hud.LoadSplash(NEWS);
   }
-  //	WHILE GET_FADING_STATUS
-  //		WAIT 0
-  //		GOSUB skip_intro_button
-  //		IF skip_flag = 2
-  //			GOTO skip_intro_here
-  //		ENDIF
-  //	ENDWHILE
   if (!(Cutscene.HasFinished())) {
     Camera.SetFadingColor(1, 1, 1);
+    Camera.DoFade(0, 0 /* FADE_OUT */);
     //	WHILE GET_FADING_STATUS
     //		WAIT 0
     //		GOSUB skip_intro_button
@@ -156,7 +145,6 @@ async function mission_start_intro() {
     //			GOTO skip_intro_here
     //		ENDIF
     //	ENDWHILE
-    Camera.DoFade(0, 0 /* FADE_OUT */);
   }
   while ($.cs_time < 18733) {
     await asyncWait(0);
@@ -185,8 +173,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"Sorry babe."
-  Text.PrintNow(BETRA_A, 4000, 1);
+  Text.PrintNow(BETRA_A, 4000, 1); //"Sorry babe."
   while ($.cs_time < 26060) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -198,8 +185,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"I'm an ambituos girl and you,"
-  Text.PrintNow(BETRA_B, 5000, 1);
+  Text.PrintNow(BETRA_B, 5000, 1); //"I'm an ambituos girl and you,"
   while ($.cs_time < 27000) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -259,8 +245,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //PLAYER IS SHOT MOTION BLUR
-  Camera.SetMotionBlur(8);
+  Camera.SetMotionBlur(8); //PLAYER IS SHOT MOTION BLUR
   if (!(Cutscene.HasFinished())) {
     Camera.SetFadingColor(255, 255, 255);
     Camera.DoFade(100, 0 /* FADE_OUT */);
@@ -300,8 +285,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"you're just small time."
-  Text.PrintNow(BETRA_C, 2282, 1);
+  Text.PrintNow(BETRA_C, 2282, 1); //"you're just small time."
   Audio.SetMusicDoesFade(true /* TRUE */);
   while ($.cs_time < 29200) {
     await asyncWait(0);
@@ -326,8 +310,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //PLAYER IS SHOT MOTION BLUR
-  Camera.SetMotionBlur(8);
+  Camera.SetMotionBlur(8); //PLAYER IS SHOT MOTION BLUR
   while ($.cs_time < 30992) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -341,7 +324,6 @@ async function mission_start_intro() {
   }
   Text.ClearPrints();
   Text.ClearSmallPrints();
-  //36000
   while ($.cs_time < 33333) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -374,12 +356,6 @@ async function mission_start_intro() {
       throw new Error("unresolved GOTO skip_intro_here"); // fallback: would break linear control flow
     }
   }
-  //LOAD_TEXTURE_DICTIONARY INTRO
-  //LOAD_SPRITE 1 gtalogo
-  //LOAD_SPRITE 2 gta3bit
-  //DRAW_SPRITE 1 192.0 96.0 256.0 256.0 255 255 255 text_alpha
-  //DRAW_SPRITE 2 339.0 224.0 128.0 128.0 255 255 255 text_alpha
-  //REMOVE_TEXTURE_DICTIONARY
   while (!(Cutscene.HasFinished())) {
     await asyncWait(0);
     // SCM GOSUB draw_intro_text
@@ -393,6 +369,12 @@ async function mission_start_intro() {
       throw new Error("unresolved GOTO skip_intro_here"); // fallback: would break linear control flow
     }
   }
+  //LOAD_TEXTURE_DICTIONARY INTRO
+  //LOAD_SPRITE 1 gtalogo
+  //LOAD_SPRITE 2 gta3bit
+  //DRAW_SPRITE 1 192.0 96.0 256.0 256.0 255 255 255 text_alpha
+  //DRAW_SPRITE 2 339.0 224.0 128.0 128.0 255 255 255 text_alpha
+  //REMOVE_TEXTURE_DICTIONARY
   Text.ClearPrints();
   Text.ClearSmallPrints();
   Cutscene.Clear();
@@ -407,9 +389,9 @@ async function mission_start_intro() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`);
+  Streaming.MarkModelAsNoLongerNeeded(hier`cutobj05`);
   // **********************************END OF BANK CUTSCENE******************************
   // ******************************START OF JAIL BREAK CUTSCENE**************************
-  Streaming.MarkModelAsNoLongerNeeded(hier`cutobj05`);
   Streaming.Switch(false /* OFF */);
   Streaming.LoadCollision(2 /* LEVEL_COMMERCIAL */);
   $.player.setCoordinates(820.9, -941.1, -100.0);
@@ -582,8 +564,7 @@ async function mission_start_intro() {
     $.cs_time = Cutscene.GetTime();
   }
   Text.UseCommands(false /* FALSE */);
-  //"Liberty city is in shock today."
-  Text.PrintNow(JAILB_V, 10000, 1);
+  Text.PrintNow(JAILB_V, 10000, 1); //"Liberty city is in shock today."
   while ($.cs_time < 14500) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -597,8 +578,7 @@ async function mission_start_intro() {
     Fx.DrawLight(196.077, -1126.984, 25.626, 235, 255, 250);
     $.cs_time = Cutscene.GetTime();
   }
-  //"As the police and emergency services deal with the aftermath..."
-  Text.PrintNow(JAILB_A, 10000, 1);
+  Text.PrintNow(JAILB_A, 10000, 1); //"As the police and emergency services deal with the aftermath..."
   while ($.cs_time < 15933) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -652,8 +632,7 @@ async function mission_start_intro() {
     Fx.DrawLight(196.077, -1126.984, 25.626, 235, 255, 250);
     $.cs_time = Cutscene.GetTime();
   }
-  //"of a devastating attack on a police convoy this morning."
-  Text.PrintNow(JAILB_B, 10000, 1);
+  Text.PrintNow(JAILB_B, 10000, 1); //"of a devastating attack on a police convoy this morning."
   while ($.cs_time < 18933) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -718,8 +697,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"No details have been released about the prisoners being transferred in the convoy,"
-  Text.PrintNow(JAILB_C, 10000, 1);
+  Text.PrintNow(JAILB_C, 10000, 1); //"No details have been released about the prisoners being transferred in the convoy,"
   while ($.cs_time < 22181) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -743,8 +721,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"And no group, terrorists or otherwise have claimed responsibility."
-  Text.PrintNow(JAILB_D, 10000, 1);
+  Text.PrintNow(JAILB_D, 10000, 1); //"And no group, terrorists or otherwise have claimed responsibility."
   while ($.cs_time < 27208) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -756,8 +733,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"The convoy left Police head quarters early this morning..."
-  Text.PrintNow(JAILB_E, 10000, 1);
+  Text.PrintNow(JAILB_E, 10000, 1); //"The convoy left Police head quarters early this morning..."
   while ($.cs_time < 29793) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -769,9 +745,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"for a routine transfer to Liberty penitentiary."
-  Text.PrintNow(JAILB_F, 10000, 1);
-  //VERY HIGH SHOT TOWARDS BRIDGE
+  Text.PrintNow(JAILB_F, 10000, 1); //"for a routine transfer to Liberty penitentiary."
   while ($.cs_time < 30599) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -805,8 +779,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"The attack took place on Callahan bridge,"
-  Text.PrintNow(JAILB_G, 10000, 1);
+  Text.PrintNow(JAILB_G, 10000, 1); //"The attack took place on Callahan bridge,"
   while ($.cs_time < 34817) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -818,8 +791,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"leaving few witness', several dead officers and bridge itself severely damaged."
-  Text.PrintNow(JAILB_H, 10000, 1);
+  Text.PrintNow(JAILB_H, 10000, 1); //"leaving few witness', several dead officers and bridge itself severely damaged."
   while ($.cs_time < 38590) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -831,8 +803,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"Some of the convicts are thought to have perished in the explosion..."
-  Text.PrintNow(JAILB_I, 10000, 1);
+  Text.PrintNow(JAILB_I, 10000, 1); //"Some of the convicts are thought to have perished in the explosion..."
   while ($.cs_time < 40842) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -844,8 +815,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"that followed the initial attack, although police divers are yet to find any remains."
-  Text.PrintNow(JAILB_J, 10000, 1);
+  Text.PrintNow(JAILB_J, 10000, 1); //"that followed the initial attack, although police divers are yet to find any remains."
   while ($.cs_time < 42066) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -876,8 +846,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"Revelations as to the professionalism of the attack struck police hours afterward,"
-  Text.PrintNow(JAILB_W, 10000, 1);
+  Text.PrintNow(JAILB_W, 10000, 1); //"Revelations as to the professionalism of the attack struck police hours afterward,"
   while ($.cs_time < 46683) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -889,8 +858,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"When identification of the missing felons was further hampered..."
-  Text.PrintNow(JAILB_K, 10000, 1);
+  Text.PrintNow(JAILB_K, 10000, 1); //"When identification of the missing felons was further hampered..."
   while ($.cs_time < 49483) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -902,8 +870,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"by an attack by computer hackers on police head quarter databases."
-  Text.PrintNow(JAILB_L, 10000, 1);
+  Text.PrintNow(JAILB_L, 10000, 1); //"by an attack by computer hackers on police head quarter databases."
   while ($.cs_time < 53406) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -915,8 +882,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"With the Porter tunnel project falling behind schedule,"
-  Text.PrintNow(JAILB_O, 10000, 1);
+  Text.PrintNow(JAILB_O, 10000, 1); //"With the Porter tunnel project falling behind schedule,"
   while ($.cs_time < 53666) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -940,8 +906,7 @@ async function mission_start_intro() {
     }
     $.cs_time = Cutscene.GetTime();
   }
-  //"this disaster leaves Portland isolated from the rest of the city."
-  Text.PrintNow(JAILB_P, 5000, 1);
+  Text.PrintNow(JAILB_P, 5000, 1); //"this disaster leaves Portland isolated from the rest of the city."
   while ($.cs_time < 64200) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -1015,8 +980,7 @@ async function mission_start_intro() {
     Fx.DrawLight(780.55, -942.901, 39.022, 235, 255, 250);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Come on."
-  Text.PrintNow(JAILB_Q, 1200, 1);
+  Text.PrintNow(JAILB_Q, 1200, 1); //"Come on."
   while ($.cs_time < 69378) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -1029,8 +993,7 @@ async function mission_start_intro() {
     Fx.DrawLight(780.55, -942.901, 39.022, 235, 255, 250);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Senor dickhead."
-  Text.PrintNow(JAILB_R, 1600, 1);
+  Text.PrintNow(JAILB_R, 1600, 1); //"Senor dickhead."
   while ($.cs_time < 71994) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -1043,8 +1006,7 @@ async function mission_start_intro() {
     Fx.DrawLight(780.55, -942.901, 39.022, 235, 255, 250);
     $.cs_time = Cutscene.GetTime();
   }
-  //"It's no problem to kill you."
-  Text.PrintNow(JAILB_S, 2000, 1);
+  Text.PrintNow(JAILB_S, 2000, 1); //"It's no problem to kill you."
   while ($.cs_time < 75623) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -1057,8 +1019,7 @@ async function mission_start_intro() {
     Fx.DrawLight(780.55, -942.901, 39.022, 235, 255, 250);
     $.cs_time = Cutscene.GetTime();
   }
-  //"You gonna be sorry."
-  Text.PrintNow(JAILB_T, 1800, 1);
+  Text.PrintNow(JAILB_T, 1800, 1); //"You gonna be sorry."
   while ($.cs_time < 79633) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -1091,8 +1052,7 @@ async function mission_start_intro() {
     Fx.DrawLight(780.55, -942.901, 39.022, 235, 255, 250);
     $.cs_time = Cutscene.GetTime();
   }
-  //"A'right, a'right. Get lost."
-  Text.PrintNow(JAILB_U, 1800, 1);
+  Text.PrintNow(JAILB_U, 1800, 1); //"A'right, a'right. Get lost."
   while ($.cs_time < 87592) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -1119,7 +1079,6 @@ async function mission_start_intro() {
     Fx.DrawLight(780.55, -942.901, 39.022, 205, 255, 230);
     $.cs_time = Cutscene.GetTime();
   }
-  //102256
   while ($.cs_time < 101866) {
     await asyncWait(0);
     // SCM GOSUB skip_intro_button
@@ -1133,8 +1092,7 @@ async function mission_start_intro() {
     $.cs_time = Cutscene.GetTime();
   }
   Audio.SetMusicDoesFade(false /* FALSE */);
-  //THE EXPLOSION
-  Camera.SetMotionBlur(7);
+  Camera.SetMotionBlur(7); //THE EXPLOSION
   if (!(Cutscene.HasFinished())) {
     Camera.SetFadingColor(255, 255, 255);
     Camera.DoFade(100, 0 /* FADE_OUT */);
@@ -1147,8 +1105,6 @@ async function mission_start_intro() {
 
 async function skip_intro_here() {
   Hud.LoadSplash(splash1);
-  //FADE OUT AFTER EXPLOSION....
-  //SWAP BRIDGE FROM FIXED TO DAMAGED
   if ($.skip_flag == 2) {
     await asyncWait(0);
     Text.UseCommands(false /* FALSE */);
@@ -1156,6 +1112,8 @@ async function skip_intro_here() {
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(0, 0 /* FADE_OUT */);
   }
+  //FADE OUT AFTER EXPLOSION....
+  //SWAP BRIDGE FROM FIXED TO DAMAGED
   Streaming.MarkModelAsNoLongerNeeded(trafficlight1);
   Streaming.MarkModelAsNoLongerNeeded(rd_SrRoad2A50);
   Streaming.MarkModelAsNoLongerNeeded(rd_SrRoad2A20);
@@ -1276,6 +1234,7 @@ async function skip_intro_here() {
   $.player.setHeading(180.0);
   World.SwitchProcessing(true /* ON */);
   Streaming.Switch(true /* ON */);
+  Text.UseCommands(false /* FALSE */);
   //ADD_PARTICLE_EFFECT 4 791.661 -936.916 38.313 TRUE //SMOKE ON CARS
   //ADD_PARTICLE_EFFECT 4 788.337 -938.467 38.073 TRUE
   //ADD_PARTICLE_EFFECT	4 786.493 -942.398 39.8 TRUE
@@ -1283,33 +1242,12 @@ async function skip_intro_here() {
   //ADD_PARTICLE_EFFECT 10 783.572 -938.549 38.448 TRUE //FIRE ON CARS
   //ADD_PARTICLE_EFFECT 10 790.537 -935.67  38.005 TRUE
   //ADD_PARTICLE_EFFECT 10 789.295 -938.882 38.127 TRUE
-  Text.UseCommands(false /* FALSE */);
   TIMERA = 6001;
   // SCM GOSUB do_bridge_particles
   await do_bridge_particles();
   // fallback if label was not emitted as async function: no-op continues linearly
   $.fire_sound_8ball = Sound.AddContinuous(790.537, -935.67, 38.005, 102 /* SOUND_PRETEND_FIRE_LOOP */);
   Text.UseCommands(false /* FALSE */);
-  //	REMOVE_CAR_FROM_CHASE 0
-  //	REMOVE_CAR_FROM_CHASE 3
-  //	REMOVE_CAR_FROM_CHASE 4
-  //	REMOVE_CAR_FROM_CHASE 5
-  //	REMOVE_CAR_FROM_CHASE 6
-  //	REMOVE_CAR_FROM_CHASE 7
-  //	REMOVE_CAR_FROM_CHASE 8
-  //	REMOVE_CAR_FROM_CHASE 9
-  //	REMOVE_CAR_FROM_CHASE 10
-  //	REMOVE_CAR_FROM_CHASE 11
-  //	REMOVE_CAR_FROM_CHASE 12
-  //	REMOVE_CAR_FROM_CHASE 13
-  //	REMOVE_CAR_FROM_CHASE 14
-  //	REMOVE_CAR_FROM_CHASE 15
-  //	REMOVE_CAR_FROM_CHASE 16
-  //	REMOVE_CAR_FROM_CHASE 17
-  //	REMOVE_CAR_FROM_CHASE 18
-  //	REMOVE_CAR_FROM_CHASE 19
-  //111172 //103333//3100
-  //3650
   if (!($.skip_flag == 2)) {
     $.player.setVisible(true /* TRUE */);
     Streaming.RequestModel(car`KURUMA`);
@@ -1328,6 +1266,7 @@ async function skip_intro_here() {
     $.eightball.clearThreatSearch();
     $.eightball.turnToFaceCoord(811.90, -939.95, 35.8);
     $.eightball.lookAtPlayerAlways($.player);
+    ChaseScene.Stop();
     //	REMOVE_CAR_FROM_CHASE 0
     //	REMOVE_CAR_FROM_CHASE 3
     //	REMOVE_CAR_FROM_CHASE 4
@@ -1346,12 +1285,10 @@ async function skip_intro_here() {
     //	REMOVE_CAR_FROM_CHASE 17
     //	REMOVE_CAR_FROM_CHASE 18
     //	REMOVE_CAR_FROM_CHASE 19
-    ChaseScene.Stop();
     Streaming.MarkModelAsNoLongerNeeded(LODridgspprt01);
     Streaming.MarkModelAsNoLongerNeeded(LODom_roadkb01);
     Streaming.MarkModelAsNoLongerNeeded(LODridgerda);
     Streaming.MarkModelAsNoLongerNeeded(LODridgerdb);
-    //111172 //103333//3100
     while ($.cs_time < 107172) {
       await asyncWait(0);
       // SCM GOSUB do_bridge_particles
@@ -1378,7 +1315,6 @@ async function skip_intro_here() {
         // fallback if label was not emitted as async function: no-op continues linearly
       }
     }
-    //3650
     while ($.cs_time < 121666) {
       await asyncWait(0);
       // SCM GOSUB do_bridge_particles
@@ -1444,8 +1380,8 @@ async function skip_intro_here() {
       $.script_controlled_player.dress();
     }
   }
-  //UNLOAD_SPECIAL_CHARACTER 1
   Camera.SetBehindPlayer();
+  //UNLOAD_SPECIAL_CHARACTER 1
   Streaming.UnloadSpecialCharacter(2);
   Streaming.UnloadSpecialCharacter(3);
   Streaming.UnloadSpecialCharacter(4);
@@ -1453,8 +1389,8 @@ async function skip_intro_here() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj04`);
-  // *******************************END OF JAIL BREAK CUTSCENE***************************
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj05`);
+  // *******************************END OF JAIL BREAK CUTSCENE***************************
   Game.SetIntroIsPlaying(false /* FALSE */);
   Audio.SetMusicDoesFade(true /* TRUE */);
   Weather.ForceRain(false /* FALSE */);
@@ -1475,18 +1411,15 @@ async function skip_intro_button() {
       $.skip_flag = 2;
     }
   }
-  //////////////////////////////////////////////////////////////////////
   return;
 }
 
 async function draw_intro_text() {
   Text.SetCenterSize(580.0);
-  //FONT_PAGER//FONT_HEADING
-  Text.SetFont(0 /* FONT_BANK */);
+  Text.SetFont(0 /* FONT_BANK */); //FONT_PAGER//FONT_HEADING
   Text.SetCenter(true /* ON */);
   Text.SetColor(190, 190, 190, $.text_alpha);
-  //0.5 0.75
-  Text.SetScale(0.8, 1.0);
+  Text.SetScale(0.8, 1.0); //0.5 0.75
   Text.SetProportional(true /* ON */);
   Text.SetBackgroundColor(0, 0, 0, $.text_alpha);
   Text.SetBackground(true /* ON */);
@@ -1503,7 +1436,6 @@ async function draw_intro_text() {
       $.text_alpha = 0;
     }
   }
-  //////////////////////////////////////////////////////////////////////
   return;
 }
 
@@ -1514,12 +1446,12 @@ async function do_bridge_particles() {
     Fx.AddMovingParticleEffect(10, 788.337, -938.467, 38.073, 0.0, 0.0, 0.0, 1.0, 0, 0, 0, 6000);
     Fx.AddMovingParticleEffect(10, 786.493, -942.398, 39.8, 0.0, 0.0, 0.0, 1.0, 0, 0, 0, 6000);
   }
-  //////////////////////////////////////////////////////////////////////
   return;
   }
 }
 
 export async function intro() {
+  // MissionBoundary
   // *****************************************************************************************
   // ************************************   The Intro    *************************************
   // Mission start stuff
@@ -1528,9 +1460,8 @@ export async function intro() {
   //GOSUB mission_cleanup_intro
   //MISSION_END
   // Variables for mission
-  // MissionBoundary
   // VAR_INT cs_cathead cs_robb robber cs_cs_ban cs_loot cs_colt1 cs_colt2 cs_bankd csbexpos skip_flag text_fading_flag
   // VAR_INT cs_colombian1 cs_colombian2 cs_cop1 cs_cop2 damagea damageb brbomb cs_colombian1head text_alpha
-  // ****************************************Mission Start************************************
   // VAR_FLOAT particle_x particle_y particle_z particle_target_x particle_target_y particle_target_z temp_var
+  // ****************************************Mission Start************************************
 }

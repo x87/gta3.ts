@@ -10,6 +10,7 @@ async function mission_start_love7() {
   $.flag_player_on_love_mission = 1;
   Stat.RegisterMissionGiven();
   await asyncWait(0);
+  // ScriptName
   // ****************************************START OF CUTSCENE********************************
   //SET_FADING_COLOUR 0 0 0
   //
@@ -20,12 +21,11 @@ async function mission_start_love7() {
   //	GOTO mission_love7_failed
   //ENDIF
   //PRINT_BIG LOVE7	15000 2
-  // ScriptName
   Streaming.RequestModel(tshrorckgrdn);
+  Streaming.RequestModel(tshrorckgrdn_alfas);
   //WHILE GET_FADING_STATUS
   //	WAIT 0
   //ENDWHILE
-  Streaming.RequestModel(tshrorckgrdn_alfas);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasModelLoaded(tshrorckgrdn_alfas)) || !(Streaming.HasModelLoaded(tshrorckgrdn))) {
     await asyncWait(0);
@@ -61,18 +61,18 @@ async function mission_start_love7() {
   Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas);
   Camera.SetBehindPlayer();
   Camera.DoFade(1500, 1 /* FADE_IN */);
-  // ******************************************END OF CUTSCENE********************************
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
-  // Mission Love 7 failed
+  // ******************************************END OF CUTSCENE********************************
   // SCM GOTO → mission_love7_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_love7_passed"); // fallback: would break linear control flow
+  // Mission Love 7 failed
 }
 
 async function mission_love7_failed() {
-  // mission Love 7 passed
   return;
+  // mission Love 7 passed
 }
 
 async function mission_love7_passed() {
@@ -82,8 +82,8 @@ async function mission_love7_passed() {
   $.player.clearWantedLevel();
   Audio.PlayMissionPassedTune(1);
   Stat.RegisterMissionPassed(LOVE7);
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_love7() {
@@ -94,18 +94,18 @@ async function mission_cleanup_love7() {
 }
 
 export async function love7() {
+  // MissionBoundary
   // *****************************************************************************************
   // *******************************    Donald Love 7    *************************************
   // *******************************    Left the Scene   *************************************
   // ***************************    	Love has disapeared!   *********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_love7
   await mission_start_love7();
   // fallback if label was not emitted as async function: no-op continues linearly
   // SCM GOSUB mission_cleanup_love7
   await mission_cleanup_love7();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // ****************************************Mission Start************************************
   // MissionBoundary
+  // ****************************************Mission Start************************************
 }

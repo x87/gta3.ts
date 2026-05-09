@@ -59,75 +59,64 @@ async function mission_start_joey1() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 433) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_A", 10000, 2);
+  Text.PrintNow("JM1_A", 10000, 2); // Mission brief
   while ($.cs_time < 2739) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_B", 10000, 2);
+  Text.PrintNow("JM1_B", 10000, 2); // Mission brief
   while ($.cs_time < 6344) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_C", 10000, 2);
+  Text.PrintNow("JM1_C", 10000, 2); // Mission brief
   while ($.cs_time < 8362) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_D", 10000, 2);
+  Text.PrintNow("JM1_D", 10000, 2); // Mission brief
   while ($.cs_time < 10700) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_E", 10000, 2);
+  Text.PrintNow("JM1_E", 10000, 2); // Mission brief
   while ($.cs_time < 12688) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_F", 10000, 2);
+  Text.PrintNow("JM1_F", 10000, 2); // Mission brief
   while ($.cs_time < 15858) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_G", 10000, 2);
+  Text.PrintNow("JM1_G", 10000, 2); // Mission brief
   while ($.cs_time < 19969) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_H", 10000, 2);
+  Text.PrintNow("JM1_H", 10000, 2); // Mission brief
   while ($.cs_time < 21519) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_I", 3000, 2);
+  Text.PrintNow("JM1_I", 3000, 2); // Mission brief
   while ($.cs_time < 24979) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_J", 10000, 2);
+  Text.PrintNow("JM1_J", 10000, 2); // Mission brief
   while ($.cs_time < 27466) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("JM1_K", 10000, 2);
+  Text.PrintNow("JM1_K", 10000, 2); // Mission brief
   while ($.cs_time < 29204) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -167,8 +156,8 @@ async function mission_start_joey1() {
   Streaming.MarkModelAsNoLongerNeeded(car`IDAHO`);
   Streaming.MarkModelAsNoLongerNeeded(jogarageext);
   Streaming.MarkModelAsNoLongerNeeded(jogarageint);
-  // START OF MISSION
   $.cut_car2_lm3.delete();
+  // START OF MISSION
   Streaming.LoadSpecialCharacter(3, $.lips);
   Streaming.RequestModel(car`IDAHO`);
   while (!(Streaming.HasModelLoaded(car`IDAHO`)) || !(Streaming.HasSpecialCharacterLoaded(3))) {
@@ -209,15 +198,12 @@ async function mission_start_joey1() {
       throw new Error("unresolved GOTO mission_joey1_failed"); // fallback: would break linear control flow
     }
   }
-  //"Go to 8 Balls"
-  Text.PrintNow("JM1_1", 5000, 1);
+  Text.PrintNow("JM1_1", 5000, 1); //"Go to 8 Balls"
   Game.SetFreeBombs(true /* On */);
 }
 
 async function Go_to_8Balls() {
   $.flag_car_blip_displayed_jm1 = 1 /* TRUE */;
-  //"Get back in the car!"
-  //Repair the car!
   while (!($.mike_car.isArmedWithBomb(2 /* CARBOMB_ONIGNITION */)) && !($.mike_car.isArmedWithBomb(5 /* CARBOMB_ONIGNITIONACTIVE */))) {
     await asyncWait(0);
     if (Car.IsDead($.mike_car)) {
@@ -245,27 +231,20 @@ async function Go_to_8Balls() {
         $.flag_car_blip_displayed_jm1 = 0 /* FALSE */;
       }
     }
-    //"Get back in the car!"
     if (!($.player.isInCar($.mike_car))) {
-      //"Get back in the car!"
       if ($.flag_car_blip_displayed_jm1 == 0 /* FALSE */) {
         $.blip1_jm1 = Blip.AddForCar($.mike_car);
         $.blip2_jm1.remove();
-        //"Get back in the car!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
         $.flag_car_blip_displayed_jm1 = 1 /* TRUE */;
       }
     }
-    //Repair the car!
-    //"Get back in the car!"
     if (!($.mike_car.isHealthGreater(700)) || $.mike_car.isVisiblyDamaged()) {
-      //Repair the car!
-      Text.PrintSoon("JM1_4", 5000, 2);
+      Text.PrintSoon("JM1_4", 5000, 2); //Repair the car!
       $.blip1_jm1.remove();
       $.blip1_jm1 = Blip.AddForCar($.mike_car);
       $.blip1_jm1.changeDisplay(2 /* BLIP_ONLY */);
       $.flag_car_blip_displayed_jm1 = 1 /* TRUE */;
-      //"Get back in the car!"
       while ($.mike_car.isVisiblyDamaged()) {
         await asyncWait(0);
         if (Car.IsDead($.mike_car)) {
@@ -294,14 +273,11 @@ async function Go_to_8Balls() {
             $.flag_car_blip_displayed_jm1 = 0 /* FALSE */;
           }
         }
-        //"Get back in the car!"
         if (!($.player.isInCar($.mike_car))) {
-          //"Get back in the car!"
           if ($.flag_car_blip_displayed_jm1 == 0 /* FALSE */) {
             $.blip1_jm1 = Blip.AddForCar($.mike_car);
             $.blip4_jm1.remove();
-            //"Get back in the car!"
-            Text.PrintNow("IN_VEH", 5000, 1);
+            Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
             $.flag_car_blip_displayed_jm1 = 1 /* TRUE */;
           }
         }
@@ -312,8 +288,7 @@ async function Go_to_8Balls() {
     }
   }
   await asyncWait(4000);
-  // Car rigged
-  Text.PrintNow("jm1_2", 5000, 2);
+  Text.PrintNow("jm1_2", 5000, 2); // Car rigged
   $.blip1_jm1.remove();
   $.blip2_jm1.remove();
   $.blip4_jm1.remove();
@@ -332,8 +307,6 @@ async function joey_label1() {
     throw new Error("unresolved GOTO mission_joey1_failed"); // fallback: would break linear control flow
   }
   $.blob_flag = 1;
-  //"Get back in the car!"
-  //Repair the car!
   while (!($.mike_car.isStoppedInArea3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, $.blob_flag)) || $.player.isWantedLevelGreater(0) || $.mike_car.isVisiblyDamaged()) {
     await asyncWait(0);
     if (Car.IsDead($.mike_car)) {
@@ -360,29 +333,22 @@ async function joey_label1() {
         $.flag_car_blip_displayed_jm1 = 0 /* FALSE */;
       }
     }
-    //"Get back in the car!"
     if (!($.player.isInCar($.mike_car))) {
-      //"Get back in the car!"
       if ($.flag_car_blip_displayed_jm1 == 0 /* FALSE */) {
         $.blip1_jm1 = Blip.AddForCar($.mike_car);
         $.blip3_jm1.remove();
-        //"Get back in the car!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
         $.blob_flag = 0;
         $.flag_car_blip_displayed_jm1 = 1 /* TRUE */;
       }
     }
-    //Repair the car!
-    //"Get back in the car!"
     if (!($.mike_car.isHealthGreater(700)) || $.mike_car.isVisiblyDamaged()) {
-      //Repair the car!
-      Text.PrintSoon("JM1_4", 5000, 2);
+      Text.PrintSoon("JM1_4", 5000, 2); //Repair the car!
       $.blip3_jm1.remove();
       $.blip1_jm1.remove();
       $.blip1_jm1 = Blip.AddForCar($.mike_car);
       $.blip1_jm1.changeDisplay(2 /* BLIP_ONLY */);
       $.flag_car_blip_displayed_jm1 = 1 /* TRUE */;
-      //"Get back in the car!"
       while ($.mike_car.isVisiblyDamaged()) {
         await asyncWait(0);
         if (Car.IsDead($.mike_car)) {
@@ -409,14 +375,11 @@ async function joey_label1() {
             $.flag_car_blip_displayed_jm1 = 0 /* FALSE */;
           }
         }
-        //"Get back in the car!"
         if (!($.player.isInCar($.mike_car))) {
-          //"Get back in the car!"
           if ($.flag_car_blip_displayed_jm1 == 0 /* FALSE */) {
             $.blip1_jm1 = Blip.AddForCar($.mike_car);
             $.blip4_jm1.remove();
-            //"Get back in the car!"
-            Text.PrintNow("IN_VEH", 5000, 1);
+            Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
             $.blob_flag = 0;
             $.flag_car_blip_displayed_jm1 = 1 /* TRUE */;
           }
@@ -449,21 +412,15 @@ async function joey_label1() {
     // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_joey1_failed"); // fallback: would break linear control flow
   }
-  //Put the car back in the correct position
-  //Activate the car bomb then get out of there!
   if (!(Car.IsDead($.mike_car))) {
     $.mikes_car_heading = $.mike_car.getHeading();
-    //Put the car back in the correct position
     if ($.mikes_car_heading > 100.0 || $.mikes_car_heading < 80.0) {
-      //Put the car back in the correct position
-      Text.PrintNow("JM1_6", 5000, 1);
+      Text.PrintNow("JM1_6", 5000, 1); //Put the car back in the correct position
       // SCM GOTO → joey_label1 (not lowered; manual jump required)
       throw new Error("unresolved GOTO joey_label1"); // fallback: would break linear control flow
     }
-    //Activate the car bomb then get out of there!
     if ($.player.isInCar($.mike_car)) {
-      //Activate the car bomb then get out of there!
-      Text.PrintNow("JM1_3", 5000, 2);
+      Text.PrintNow("JM1_3", 5000, 2); //Activate the car bomb then get out of there!
     }
   }
 }
@@ -513,14 +470,12 @@ async function cars_rigged() {
     // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_joey1_failed"); // fallback: would break linear control flow
   }
-  // The vehicle bomb's not set!
-  //LIPS CUT_SCENE
   if (!($.mike_car.isArmedWithBomb(5 /* CARBOMB_ONIGNITIONACTIVE */))) {
-    // The vehicle bomb's not set!
-    Text.PrintNow("JM1_5", 5000, 1);
+    Text.PrintNow("JM1_5", 5000, 1); // The vehicle bomb's not set!
     // SCM GOTO → cars_rigged (not lowered; manual jump required)
     throw new Error("unresolved GOTO cars_rigged"); // fallback: would break linear control flow
   }
+  //LIPS CUT_SCENE
   World.ClearArea(1325.5, -452.5, 54.0, 4.0, true /* TRUE */);
   World.ClearArea(1328.4, -453.0, 54.0, 4.0, true /* TRUE */);
   World.ClearArea(1330.0, -466.1, 49.0, 4.0, true /* TRUE */);
@@ -644,8 +599,7 @@ async function cars_rigged() {
   Game.SetAllCarsCanBeDamaged(true /* TRUE */);
   await asyncWait(2500);
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
   $.player.addScore(10000);
   $.mission_passed_for_lips_finished = 1;
   await asyncWait(5000);
@@ -653,25 +607,22 @@ async function cars_rigged() {
   Hud.SwitchWidescreen(false /* OFF */);
   Game.SetPoliceIgnorePlayer($.player, false /* Off */);
   }
-  // Mission joey1 failed
   // SCM GOTO → mission_joey1_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_joey1_passed"); // fallback: would break linear control flow
+  // Mission joey1 failed
 }
 
 async function mission_joey1_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission joey1 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission joey1 passed
 }
 
 async function mission_joey1_passed() {
   $.flag_joey_mission1_passed = 1;
-  //"Mission Passed!"
   if ($.mission_passed_for_lips_finished == 0) {
     Audio.PlayMissionPassedTune(1);
-    //"Mission Passed!"
-    Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+    Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
     $.player.addScore(10000);
     $.mission_passed_for_lips_finished = 1;
   }
@@ -679,8 +630,8 @@ async function mission_joey1_passed() {
   Stat.PlayerMadeProgress(1);
   $.lips.removeElegantly();
   // START_NEW_SCRIPT joey_mission2_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_joey1() {
@@ -704,11 +655,11 @@ async function mission_cleanup_joey1() {
 }
 
 export async function joey1() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Joey mission 1****************************************
   // ************************************Kill Mike Lips*****************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_joey1
   await mission_start_joey1();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -720,14 +671,13 @@ export async function joey1() {
   // SCM GOSUB mission_cleanup_joey1
   await mission_cleanup_joey1();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
-  // mission specific ped
+  // Variables for mission
   // VAR_INT mike_car
   // VAR_FLOAT mikes_car_heading
   // VAR_INT blip1_jm1 blip2_jm1 blip3_jm1 blip4_jm1
   // VAR_INT flag_player_got_joey1_message flag_car_blip_displayed_jm1
   // VAR_INT flag_displayed_wanted_message_jm1
-  // ***************************************Mission Start*************************************
   // VAR_INT countdown_jm1 mission_passed_for_lips_finished
+  // ***************************************Mission Start*************************************
 }

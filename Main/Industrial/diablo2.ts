@@ -20,8 +20,8 @@ async function mission_start_diablo2() {
   $.cs_player.setAnim($.player);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2000) {
     await asyncWait(0);
@@ -100,8 +100,7 @@ async function mission_start_diablo2() {
   await asyncWait(2000);
   $.briefcase_diablo2 = Pickup.Create(1319 /* briefcase */, 3 /* PICKUP_ONCE */, 934.9, -69.8, 8.1);
   $.blip1_diablo2 = Blip.AddForPickup($.briefcase_diablo2);
-  // Pick up briefcase
-  Text.Print("DIAB2_1", 5000, 1);
+  Text.Print("DIAB2_1", 5000, 1); // Pick up briefcase
   while (!($.briefcase_diablo2.hasBeenCollected())) {
     await asyncWait(0);
   }
@@ -110,8 +109,7 @@ async function mission_start_diablo2() {
   $.icecream_man1 = Char.CreateInsideCar($.icecream_van1, 4 /* PEDTYPE_CIVMALE */, ped`LI_MAN1`);
   $.icecream_van1.setDrivingStyle(0 /* DRIVINGMODE_STOPFORCARS */);
   $.blip1_icecream1 = Blip.AddForCar($.icecream_van1);
-  // Find an icecream van
-  Text.PrintNow("DIAB2_2", 5000, 1);
+  Text.PrintNow("DIAB2_2", 5000, 1); // Find an icecream van
   while (!($.player.isInModel(106 /* CAR_MRWHOOPEE */))) {
     await asyncWait(0);
     if (Car.IsDead($.icecream_van1)) {
@@ -126,44 +124,28 @@ async function mission_start_diablo2() {
     Player.GiveDetonator();
     $.player.setCurrentWeapon(12 /* WEAPONTYPE_DETONATOR */);
   }
-  // Park the icecream van down at atlantic quays
-  Text.PrintNow("DIAB2_3", 5000, 1);
+  Text.PrintNow("DIAB2_3", 5000, 1); // Park the icecream van down at atlantic quays
   $.flag_car_blip_displayed_dm2 = 1 /* TRUE */;
   $.blob_flag = 1;
-  // Tap L3 quickly to set the Icecream jingle
-  // Tap L1 quickly to set the Icecream jingle
-  // Tap R1 quickly to set the Icecream jingle
-  //"Get back in the car!"
   while (!($.icecreamvan_any.isStoppedInArea3D(1215.9, -1128.7, 11.2, 1210.4, -1123.3, 14.2, $.blob_flag)) || !($.player.isInCar($.icecreamvan_any)) || !($.icecreamvan_any.isIcecreamJingleOn())) {
     await asyncWait(0);
     if (Car.IsDead($.icecreamvan_any)) {
       // SCM GOTO → mission_diablo2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_diablo2_failed"); // fallback: would break linear control flow
     }
-    // Tap L3 quickly to set the Icecream jingle
-    // Tap L1 quickly to set the Icecream jingle
-    // Tap R1 quickly to set the Icecream jingle
     if ($.icecreamvan_any.isStoppedInArea3D(1215.9, -1128.7, 11.2, 1210.4, -1123.3, 14.2, false /* FALSE */) && $.player.isInCar($.icecreamvan_any)) {
       $.controlmode = Pad.GetControllerMode();
-      // Tap L3 quickly to set the Icecream jingle
       if ($.controlmode == 0) {
-        // Tap L3 quickly to set the Icecream jingle
-        Text.PrintNow("DIAB2_6", 1000, 1);
+        Text.PrintNow("DIAB2_6", 1000, 1); // Tap L3 quickly to set the Icecream jingle
       }
-      // Tap L1 quickly to set the Icecream jingle
       if ($.controlmode == 1) {
-        // Tap L1 quickly to set the Icecream jingle
-        Text.PrintNow("DIAB2_4", 1000, 1);
+        Text.PrintNow("DIAB2_4", 1000, 1); // Tap L1 quickly to set the Icecream jingle
       }
-      // Tap R1 quickly to set the Icecream jingle
       if ($.controlmode == 2) {
-        // Tap R1 quickly to set the Icecream jingle
-        Text.PrintNow("DIAB2_7", 1000, 1);
+        Text.PrintNow("DIAB2_7", 1000, 1); // Tap R1 quickly to set the Icecream jingle
       }
-      // Tap L3 quickly to set the Icecream jingle
       if ($.controlmode == 3) {
-        // Tap L3 quickly to set the Icecream jingle
-        Text.PrintNow("DIAB2_6", 1000, 1);
+        Text.PrintNow("DIAB2_6", 1000, 1); // Tap L3 quickly to set the Icecream jingle
       }
     }
     if ($.player.isInCar($.icecreamvan_any)) {
@@ -174,15 +156,12 @@ async function mission_start_diablo2() {
         $.flag_car_blip_displayed_dm2 = 0 /* FALSE */;
       }
     }
-    //"Get back in the car!"
     if (!($.player.isInCar($.icecreamvan_any))) {
-      //"Get back in the car!"
       if ($.flag_car_blip_displayed_dm2 == 0 /* FALSE */) {
         $.blip1_icecream1 = Blip.AddForCar($.icecreamvan_any);
         $.blob_flag = 0;
         $.blip2_diablo2.remove();
-        //"Get back in the car!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
         $.flag_car_blip_displayed_dm2 = 1 /* TRUE */;
       }
     }
@@ -203,8 +182,7 @@ async function mission_start_diablo2() {
   $.creamed_guy2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
   $.creamed_guy3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
   $.creamed_guy4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  // Use the remote to detonate the icecream van
-  Text.PrintNow("DIAB2_5", 5000, 1);
+  Text.PrintNow("DIAB2_5", 5000, 1); // Use the remote to detonate the icecream van
   await asyncWait(2000);
   World.ClearArea(1205.6, -1141.1, 11.6, 10.0, true /* TRUE */);
   if (!(Char.IsDead($.creamed_guy1))) {
@@ -394,24 +372,22 @@ async function mission_start_diablo2() {
 }
 
 async function mission_diablo2_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission Diablo2 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission Diablo2 passed
 }
 
 async function mission_diablo2_passed() {
   $.flag_diablo_mission2_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 6000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 6000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(8000);
   Stat.RegisterMissionPassed(DIAB2);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT diablo_mission3_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_diablo2() {
@@ -430,11 +406,11 @@ async function mission_cleanup_diablo2() {
 }
 
 export async function diablo2() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Deablo mission 2**************************************
   // ***********************************Destroy Icream Vans*************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_diablo2
   await mission_start_diablo2();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -446,18 +422,15 @@ export async function diablo2() {
   // SCM GOSUB mission_cleanup_diablo2
   await mission_cleanup_diablo2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
-  // Vehicle for mission
+  // Variables for mission
   // VAR_INT icecream_van1 flag_car_blip_displayed_dm2
   // VAR_INT blip1_icecream1 blip1_diablo2 blip2_diablo2 creamers_spotted_you
-  // Counts up number of mission vans destroyed
   // VAR_INT briefcase_diablo2 removed_ice_cream_blip
-  //ice_creamvan_stored_before
   // VAR_INT ojective_creamed_guys_passed
   // VAR_INT icecream_man1 icecreamvan_any creamed_guy1 creamed_guy2 creamed_guy3 creamed_guy4
   // VAR_INT ojective_creamed_guy1_done_before ojective_creamed_guy2_done_before ojective_creamed_guy3_done_before ojective_creamed_guy4_done_before
   // VAR_FLOAT icecreamx icecreamy icecreamz
-  // ***************************************Mission Start*************************************
   // VAR_INT creamed_guy1_health creamed_guy2_health creamed_guy3_health creamed_guy4_health
+  // ***************************************Mission Start*************************************
 }

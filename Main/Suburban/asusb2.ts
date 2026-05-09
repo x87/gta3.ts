@@ -10,9 +10,9 @@ async function mission_start_as2() {
   // ScriptName
   $.flag_player_on_mission = 1;
   $.flag_player_on_asuka_suburban_mission = 1;
+  await asyncWait(0);
   //WAIT 1000
   //---------------------------------SET FLAGS & VARIABLES-------------------------------------------
-  await asyncWait(0);
   $.flag_kappa1_dead = 0;
   $.flag_kappa2_dead = 0;
   $.flag_kappa3_dead = 0;
@@ -60,68 +60,43 @@ async function mission_start_as2() {
   $.flag_particle_as2 = 0;
   $.flag_guard1_created = 0;
   $.kappa_time = 470000;
-  // ****************************************LOCATION COORDS**************************************
   $.flag_timer_started = 0;
+  // ****************************************LOCATION COORDS**************************************
   $.kappa1_x = 1342.0;
-  //dock entrance
   $.kappa1_y = -821.0;
   $.kappa2_x = 1024.1;
-  //tube station
   $.kappa2_y = -465.57;
   $.kappa3_x = 1351.22;
-  //St Marks
   $.kappa3_y = -259.56;
   $.kappa4_x = 286.4;
-  //NEWPORT
   $.kappa4_y = -667.8;
   $.kappa5_x = 28.0;
-  //PARK
   $.kappa5_y = -850.0;
   $.kappa6_x = 14.16;
-  //BED POINT
   $.kappa6_y = -1140.0;
   $.kappa7_x = 73.16;
-  //BED POINT
   $.kappa7_y = -1359.8;
   $.kappa8_x = -221.0;
-  //ASPATRIA
   $.kappa8_y = -197.0;
   $.kappa9_x = 282.8;
-  // TORRINGTON
   $.kappa9_y = -1492.4;
   $.kappa10_x = -644.0;
-  // AIRPORT
   $.kappa10_y = -721.5;
   $.kappa11_x = -212.0;
-  //cedar grove
   $.kappa11_y = 310.0;
   $.kappa12_x = -1255.0;
-  //Pike Creek
-  //  ******************************************* START OF CUTSCENE ***************************
-  /*
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_as2_failed
-  ENDIF
-  //	PRINT_BIG ( AS2 ) 15000 2
-  SET_FADING_COLOUR 0 0 0
-  DO_FADE 250 FADE_OUT
-  PRINT_BIG ( AS2 ) 15000 2
-  SWITCH_STREAMING OFF
-  */
   $.kappa12_y = -113.0;
   Streaming.RequestModel(csitecutscene);
   Streaming.LoadSpecialCharacter(1, $.asuka);
   Streaming.LoadSpecialCharacter(2, $.miguel);
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, ASUKAH);
+  Streaming.LoadSpecialModel(hier`cutobj03`, WHIP);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.LoadSpecialModel(hier`cutobj03`, WHIP);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasModelLoaded(csitecutscene))) {
     await asyncWait(0);
@@ -146,17 +121,17 @@ async function mission_start_as2() {
   $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`);
   $.cs_playerhead.setAnim($.player);
   $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj02`);
+  $.cs_asukahead.setAnim($.asuka);
   //CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
   //SET_CUTSCENE_HEAD_ANIM cs_miguelhead miguel
-  $.cs_asukahead.setAnim($.asuka);
   $.player.setCoordinates(373.7523, -327.2676, 17.1950);
   $.player.setHeading(270.0);
   Camera.DoFade(250, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(false /* OFF */);
   World.SwitchProcessing(false /* OFF */);
-  //------CUTSCENE TEXT-----------------------------
   Cutscene.Start();
+  //------CUTSCENE TEXT-----------------------------
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 3445) {
     await asyncWait(0);
@@ -223,22 +198,20 @@ async function mission_start_as2() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj03`);
   World.SwitchRubbish(true /* ON */);
   Streaming.Switch(true /* ON */);
+  World.SwitchProcessing(true /* ON */);
   // ******************************************END OF CUTSCENE********************************
   // Mission stuff goes here
-  World.SwitchProcessing(true /* ON */);
   Hud.DisplayCounterWithString($.counter_kappa_dead, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS);
   $.timer_as2_start = Clock.GetGameTimer();
-  //Cruise Liberty's districts to find etc. etc.
-  Text.PrintNow("AS2_12", 5000, 1);
+  Text.PrintNow("AS2_12", 5000, 1); //Cruise Liberty's districts to find etc. etc.
   Text.PrintSoon("AS2_12A", 5000, 1);
-  //The Mafia
+  Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */); //The Mafia
   /*
   REQUEST_MODEL PED_FEMALE1
   WHILE NOT HAS_MODEL_LOADED PED_FEMALE1
   WAIT 0
   ENDWHILE
   */
-  Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */);
   Streaming.RequestModel(coffee);
   while (!(Streaming.HasModelLoaded(coffee))) {
     await asyncWait(0);
@@ -252,507 +225,26 @@ async function mission_start_as2() {
     await asyncWait(0);
   }
   Streaming.RequestModel(ped`GANG_COLOMBIAN_B`);
-  /*
-  PRINT_NOW (AS2_A) 4000 1 //We underestimated Catalina's plans for SPANK. It reaches far beyond the Yardies selling it on street corners.
-  MESSAGE_WAIT 4000 true
-  PRINT_NOW (AS2_B) 4000 1 //The Cartel have a front company; The Kappa Coffee House franchise.
-  MESSAGE_WAIT 4000 true
-  PRINT_NOW (AS2_C) 4000 1 //They've been selling SPANK through street stalls all over Liberty's three districts.
-  MESSAGE_WAIT 4000 true
-  PRINT_NOW (AS2_D) 4000 1 //Put all these drug barrows out of operation!!
-  MESSAGE_WAIT 4000 true
-  PRINT_NOW (AS2_E) 4000 1 //Once you've done the first hit, you'll have eight minutes before the Cartel can warn their pushers.
-  MESSAGE_WAIT 4000 true
-  //-----test stuff-----
-  test_x = 354.0
-  test_y = -327.0
-  CREATE_OBJECT coffee test_x test_y -100.0 kappa_test
-  //SET_OBJECT_HEADING kappa_test 0.0
-  */
   while (!(Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_B`))) {
     await asyncWait(0);
   }
-  //-------------------------------------------CREATE KAPPAS------------------------------------------------------------------------------------
-  //SET_CHAR_HEADING kappa_cartel1 270.0
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -1350.4 -259.6 49.7 false
-  /*
-  IF flag_kappa2_created = 0
-  IF LOCATE_PLAYER_ANY_MEANS_2D player kappa2_x kappa2_y 70.0 70.0 false
-  CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_B kappa2_x kappa2_y -100.0 kappa_cartel2
-  //SET_CHAR_HEADING kappa_cartel2 270.0
-  SET_CHAR_THREAT_SEARCH kappa_cartel2 THREAT_PLAYER1
-  GIVE_WEAPON_TO_CHAR kappa_cartel2 WEAPONTYPE_UZI 60
-  SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel2 true
-  CREATE_OBJECT coffee kappa2_x kappa2_y -100.0 kappa_2
-  SET_OBJECT_HEADING kappa_2 270.0
-  SET_OBJECT_COLLISION kappa_2 true
-  SET_OBJECT_DYNAMIC kappa_2 false
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1024.2 -466.5 14.9 false
-  IF blip_kappa2_created = 0
-  ADD_BLIP_FOR_OBJECT kappa_2 blip_kappa2
-  blip_kappa2_created = 1
-  ENDIF
-  flag_Kappa2_created = 1
-  ENDIF
-  ENDIF
-  */
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1343.3 -845.5 15.0 false
-  /*	ELSE
-  IF flag_kappa1_created = 1
-  IF flag_kappa1_dead = 0
-  DELETE_CHAR kappa_cartel1
-  DELETE_OBJECT kappa_1
-  flag_kappa1_created = 0
-  blip_kappa1_created = 0
-  ENDIF
-  IF flag_kappa1_dead = 1
-  DELETE_CHAR kappa_cartel1
-  DELETE_OBJECT kappa_1
-  ENDIF
-  ENDIF
-  IF flag_kappa2_created = 1
-  IF flag_kappa2_dead = 0
-  DELETE_CHAR kappa_cartel2
-  DELETE_OBJECT kappa_2
-  flag_kappa2_created = 0
-  blip_kappa2_created = 0
-  ENDIF
-  IF flag_kappa2_dead = 1
-  DELETE_CHAR kappa_cartel2
-  DELETE_OBJECT kappa_2
-  ENDIF
-  ENDIF
-  IF flag_kappa3_created = 1
-  IF flag_kappa3_dead = 0
-  DELETE_CHAR kappa_cartel3
-  DELETE_OBJECT kappa_3
-  flag_kappa3_created = 0
-  blip_kappa3_created = 0
-  ENDIF
-  IF flag_kappa3_dead = 1
-  DELETE_CHAR kappa_cartel3
-  DELETE_OBJECT kappa_3
-  ENDIF
-  ENDIF
-  */
-  //IF IS_PLAYER_IN_ZONE player COM_EAS
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION 286.5 -668.5 26.2 false
-  //ENDIF
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 28.6 -849.9 32.7 false
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 13.67 -1140.5 26.19 false
-  //SET_CHAR_HEADING kappa_cartel7 190.0
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 74.0 -1359.6 26.2 false
-  /*
-  IF flag_kappa8_created = 0
-  IF IS_PLAYER_IN_ZONE player	STADIUM
-  CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_B kappa8_x kappa8_y -100.0 kappa_cartel8
-  SET_CHAR_HEADING kappa_cartel8 350.0
-  SET_CHAR_THREAT_SEARCH kappa_cartel8 THREAT_PLAYER1
-  GIVE_WEAPON_TO_CHAR kappa_cartel8 WEAPONTYPE_SHOTGUN 10
-  SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel8 true
-  CREATE_OBJECT coffee kappa8_x kappa8_y -100.0 kappa_8
-  SET_OBJECT_HEADING kappa_8 270.0
-  SET_OBJECT_COLLISION kappa_8 true
-  SET_OBJECT_DYNAMIC kappa_8 false
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -220.8 -197.5 12.1 false
-  IF blip_kappa8_created = 0
-  ADD_BLIP_FOR_OBJECT kappa_8 blip_kappa8
-  blip_kappa8_created = 1
-  ENDIF
-  flag_Kappa8_created = 1
-  ENDIF
-  ENDIF
-  */
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 282.9 -1493.1 23.7 false
-  /*	ELSE
-  IF flag_kappa10_created = 1
-  IF flag_kappa4_dead = 0
-  DELETE_CHAR kappa_cartel4
-  DELETE_OBJECT kappa_4
-  flag_kappa4_created = 0
-  blip_kappa4_created = 0
-  ENDIF
-  IF flag_kappa4_dead = 1
-  DELETE_CHAR kappa_cartel4
-  DELETE_OBJECT kappa_4
-  ENDIF
-  ENDIF
-  IF flag_kappa5_created = 1
-  IF flag_kappa5_dead = 0
-  DELETE_CHAR kappa_cartel5
-  DELETE_OBJECT kappa_5
-  flag_kappa5_created = 0
-  blip_kappa5_created = 0
-  ENDIF
-  IF flag_kappa5_dead = 1
-  DELETE_CHAR kappa_cartel5
-  DELETE_OBJECT kappa_5
-  ENDIF
-  ENDIF
-  IF flag_kappa6_created = 1
-  IF flag_kappa6_dead = 0
-  DELETE_CHAR kappa_cartel6
-  DELETE_OBJECT kappa_6
-  flag_kappa6_created = 0
-  blip_kappa6_created = 0
-  ENDIF
-  IF flag_kappa6_dead = 1
-  DELETE_CHAR kappa_cartel6
-  DELETE_OBJECT kappa_6
-  ENDIF
-  ENDIF
-  IF flag_kappa7_created = 1
-  IF flag_kappa7_dead = 0
-  DELETE_CHAR kappa_cartel7
-  DELETE_OBJECT kappa_7
-  flag_kappa7_created = 0
-  blip_kappa7_created = 0
-  ENDIF
-  IF flag_kappa7_dead = 1
-  DELETE_CHAR kappa_cartel7
-  DELETE_OBJECT kappa_7
-  ENDIF
-  ENDIF
-  IF flag_kappa8_created = 1
-  IF flag_kappa8_dead = 0
-  DELETE_CHAR kappa_cartel8
-  DELETE_OBJECT kappa_8
-  flag_kappa8_created = 0
-  blip_kappa8_created = 0
-  ENDIF
-  IF flag_kappa8_dead = 1
-  DELETE_CHAR kappa_cartel8
-  DELETE_OBJECT kappa_8
-  ENDIF
-  ENDIF
-  IF flag_kappa9_created = 1
-  IF flag_kappa9_dead = 0
-  DELETE_CHAR kappa_cartel9
-  DELETE_OBJECT kappa_9
-  flag_kappa9_created = 0
-  blip_kappa9_created = 0
-  ENDIF
-  IF flag_kappa9_dead = 1
-  DELETE_CHAR kappa_cartel9
-  DELETE_OBJECT kappa_9
-  ENDIF
-  ENDIF
-  */
-  //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -724.3 -548.8 9.1 false
-  /*
-  IF flag_kappa11_created = 0
-  IF IS_PLAYER_IN_ZONE player SWANKS
-  OR IS_PLAYER_IN_ZONE player PROJECT
-  CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_A kappa11_x kappa11_y -100.0 kappa_cartel11
-  SET_CHAR_HEADING kappa_cartel11 90.0
-  SET_CHAR_THREAT_SEARCH kappa_cartel11 THREAT_PLAYER1
-  GIVE_WEAPON_TO_CHAR kappa_cartel11 WEAPONTYPE_UZI 60
-  SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel11 true
-  CREATE_OBJECT coffee kappa11_x kappa11_y -100.0 kappa_11
-  SET_OBJECT_HEADING kappa_11 0.0
-  SET_OBJECT_COLLISION kappa_11 true
-  SET_OBJECT_DYNAMIC kappa_11 false
-  IF blip_kappa11_created = 0
-  ADD_BLIP_FOR_OBJECT kappa_11 blip_kappa11
-  blip_kappa11_created = 1
-  ENDIF
-  flag_Kappa11_created = 1
-  ENDIF
-  ENDIF
-  */
-  /*	ELSE
-  IF flag_kappa10_created = 1
-  IF flag_kappa10_dead = 0
-  DELETE_CHAR kappa_cartel10
-  DELETE_OBJECT kappa_10
-  flag_kappa10_created = 0
-  blip_kappa10_created = 0
-  ENDIF
-  IF flag_kappa10_dead = 1
-  DELETE_CHAR kappa_cartel10
-  DELETE_OBJECT kappa_10
-  ENDIF
-  ENDIF
-  IF flag_kappa11_created = 1
-  IF flag_kappa11_dead = 0
-  DELETE_CHAR kappa_cartel11
-  DELETE_OBJECT kappa_11
-  flag_kappa11_created = 0
-  blip_kappa11_created = 0
-  ENDIF
-  IF flag_kappa11_dead = 1
-  DELETE_CHAR kappa_cartel11
-  DELETE_OBJECT kappa_11
-  ENDIF
-  ENDIF
-  IF flag_kappa12_created = 1
-  IF flag_kappa12_dead = 0
-  DELETE_CHAR kappa_cartel12
-  DELETE_OBJECT kappa_12
-  flag_kappa12_created = 0
-  blip_kappa12_created = 0
-  ENDIF
-  IF flag_kappa12_dead = 1
-  DELETE_CHAR kappa_cartel12
-  DELETE_OBJECT kappa_12
-  ENDIF
-  ENDIF
-  */
-  //---------------------------------------KAPPA DEATH CHECK---------------------------------------------------------------------------------------
-  //kappa_time = kappa_time + 10000
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel1
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel1 player
-  /*
-  IF flag_kappa2_dead = 0
-  AND flag_kappa2_created = 1
-  IF HAS_OBJECT_BEEN_DAMAGED kappa_2
-  flag_kappa2_dead = 1
-  ++ counter_kappa_dead
-  ++ counter_kappa_dead_ind
-  kappa_time = kappa_time + 10000
-  PRINT_WITH_NUMBER_BIG (AS2_11) counter_kappa_dead 2000 1
-  REMOVE_BLIP blip_kappa2
-  MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel2
-  ENDIF
-  IF NOT IS_CHAR_DEAD	kappa_cartel2
-  TURN_CHAR_TO_FACE_PLAYER kappa_cartel2 player
-  ENDIF
-  ENDIF
-  */
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel3
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel3 player
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel4
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel4 player
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel5
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel5 player
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel6
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel6 player
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel7
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel7 player
-  /*
-  IF flag_kappa8_dead = 0
-  AND flag_kappa8_created = 1
-  IF HAS_OBJECT_BEEN_DAMAGED kappa_8
-  flag_kappa8_dead = 1
-  ++ counter_kappa_dead
-  ++ counter_kappa_dead_com
-  kappa_time = kappa_time + 10000
-  PRINT_WITH_NUMBER_BIG (AS2_11) counter_kappa_dead 2000 1
-  REMOVE_BLIP blip_kappa8
-  MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel8
-  ENDIF
-  IF NOT IS_CHAR_DEAD	kappa_cartel8
-  TURN_CHAR_TO_FACE_PLAYER kappa_cartel8 player
-  ENDIF
-  ENDIF
-  */
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel9
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel9 player
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel10
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel10 player
-  /*
-  IF flag_kappa11_dead = 0
-  AND flag_kappa11_created = 1
-  IF HAS_OBJECT_BEEN_DAMAGED kappa_11
-  flag_kappa11_dead = 1
-  ++ counter_kappa_dead
-  ++ counter_kappa_dead_sub
-  kappa_time = kappa_time + 10000
-  PRINT_WITH_NUMBER_BIG (AS2_11) counter_kappa_dead 2000 1
-  REMOVE_BLIP blip_kappa11
-  MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel11
-  ENDIF
-  IF NOT IS_CHAR_DEAD	kappa_cartel11
-  TURN_CHAR_TO_FACE_PLAYER kappa_cartel11 player
-  ENDIF
-  ENDIF
-  */
-  //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel12
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel12 player
-  //---------------------STEAM--------------------------
-  //steam_x = steam_x + 1.0
-  //steam_y = steam_y + 1.0
-  //steam_x = steam_x - 1.0
-  /*
-  IF flag_kappa2_dead = 0
-  AND flag_kappa2_created = 1
-  GET_OBJECT_COORDINATES kappa_2 steam_x steam_y steam_z
-  steam_x = steam_x + 1.0
-  //steam_y = steam_y + 1.0
-  //steam_x = steam_x - 1.0
-  //steam_y = steam_y - 1.0
-  ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-  ENDIF
-  IF flag_kappa2_dead = 1
-  AND flag_kappa2_created = 1
-  GET_OBJECT_COORDINATES kappa_2 steam_x steam_y steam_z
-  steam_x = steam_x + 1.0
-  //steam_y = steam_y + 1.0
-  //steam_x = steam_x - 1.0
-  //steam_y = steam_y - 1.0
-  START_SCRIPT_FIRE steam_x steam_y steam_z kappa_2_fire
-  flag_kappa2_dead = 2
-  ENDIF
-  */
-  //steam_y = steam_y - 1.0
-  /*
-  IF flag_kappa8_dead = 0
-  AND flag_kappa8_created = 1
-  GET_OBJECT_COORDINATES kappa_8 steam_x steam_y steam_z
-  steam_x = steam_x + 1.0
-  //steam_y = steam_y + 1.0
-  //steam_x = steam_x - 1.0
-  //steam_y = steam_y - 1.0
-  ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-  ENDIF
-  IF flag_kappa8_dead = 1
-  AND flag_kappa8_created = 1
-  GET_OBJECT_COORDINATES kappa_8 steam_x steam_y steam_z
-  steam_x = steam_x + 1.0
-  //steam_y = steam_y + 1.0
-  //steam_x = steam_x - 1.0
-  //steam_y = steam_y - 1.0
-  START_SCRIPT_FIRE steam_x steam_y steam_z kappa_8_fire
-  flag_kappa8_dead = 2
-  ENDIF
-  */
-  /*
-  IF flag_kappa11_dead = 0
-  AND flag_kappa11_created = 1
-  GET_OBJECT_COORDINATES kappa_11 steam_x steam_y steam_z
-  //steam_x = steam_x + 1.0
-  steam_y = steam_y + 1.0
-  //steam_x = steam_x - 1.0
-  //steam_y = steam_y - 1.0
-  ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-  ENDIF
-  IF flag_kappa11_dead = 1
-  AND flag_kappa11_created = 1
-  GET_OBJECT_COORDINATES kappa_11 steam_x steam_y steam_z
-  //steam_x = steam_x + 1.0
-  steam_y = steam_y + 1.0
-  //steam_x = steam_x - 1.0
-  //steam_y = steam_y - 1.0
-  START_SCRIPT_FIRE steam_x steam_y steam_z kappa_11_fire
-  flag_kappa11_dead = 2
-  ENDIF
-  */
-  //-------------------------------------------TIMER-------TIMER----TIMER----------------------------------------
-  //The Cartel have warned their pushers!!
-  //WAIT 3000
-  //----------------------------------------PLAYER INFO----------------------------------------------------------
-  //All Espresso Carts in Portland wrecked!
-  //There are still coffee carts in Staunton Island and Shoreside Vale!
-  //There are still coffee carts in Shoreside Vale!
-  //There are still coffee carts on Staunton Island!
-  //All Espresso Carts in Downtown wrecked!
-  //There are still coffee carts in Portland and Shoreside Vale!
-  //There are still coffee carts in Portland!
-  //All Espresso Carts in Shoreside Vale wrecked!
-  //There are still coffee carts in Portland and Staunton Island!
+  //SET_OBJECT_HEADING kappa_test 0.0
   while ($.counter_kappa_dead < 9) {
-    //-------------------------------------------CREATE KAPPAS------------------------------------------------------------------------------------
     await asyncWait(0);
-    //SET_CHAR_HEADING kappa_cartel1 270.0
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -1350.4 -259.6 49.7 false
-    /*
-    IF flag_kappa2_created = 0
-    IF LOCATE_PLAYER_ANY_MEANS_2D player kappa2_x kappa2_y 70.0 70.0 false
-    CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_B kappa2_x kappa2_y -100.0 kappa_cartel2
-    //SET_CHAR_HEADING kappa_cartel2 270.0
-    SET_CHAR_THREAT_SEARCH kappa_cartel2 THREAT_PLAYER1
-    GIVE_WEAPON_TO_CHAR kappa_cartel2 WEAPONTYPE_UZI 60
-    SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel2 true
-    CREATE_OBJECT coffee kappa2_x kappa2_y -100.0 kappa_2
-    SET_OBJECT_HEADING kappa_2 270.0
-    SET_OBJECT_COLLISION kappa_2 true
-    SET_OBJECT_DYNAMIC kappa_2 false
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1024.2 -466.5 14.9 false
-    IF blip_kappa2_created = 0
-    ADD_BLIP_FOR_OBJECT kappa_2 blip_kappa2
-    blip_kappa2_created = 1
-    ENDIF
-    flag_Kappa2_created = 1
-    ENDIF
-    ENDIF
-    */
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1343.3 -845.5 15.0 false
-    /*	ELSE
-    IF flag_kappa1_created = 1
-    IF flag_kappa1_dead = 0
-    DELETE_CHAR kappa_cartel1
-    DELETE_OBJECT kappa_1
-    flag_kappa1_created = 0
-    blip_kappa1_created = 0
-    ENDIF
-    IF flag_kappa1_dead = 1
-    DELETE_CHAR kappa_cartel1
-    DELETE_OBJECT kappa_1
-    ENDIF
-    ENDIF
-    IF flag_kappa2_created = 1
-    IF flag_kappa2_dead = 0
-    DELETE_CHAR kappa_cartel2
-    DELETE_OBJECT kappa_2
-    flag_kappa2_created = 0
-    blip_kappa2_created = 0
-    ENDIF
-    IF flag_kappa2_dead = 1
-    DELETE_CHAR kappa_cartel2
-    DELETE_OBJECT kappa_2
-    ENDIF
-    ENDIF
-    IF flag_kappa3_created = 1
-    IF flag_kappa3_dead = 0
-    DELETE_CHAR kappa_cartel3
-    DELETE_OBJECT kappa_3
-    flag_kappa3_created = 0
-    blip_kappa3_created = 0
-    ENDIF
-    IF flag_kappa3_dead = 1
-    DELETE_CHAR kappa_cartel3
-    DELETE_OBJECT kappa_3
-    ENDIF
-    ENDIF
-    */
+    //-------------------------------------------CREATE KAPPAS------------------------------------------------------------------------------------
     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-      //SET_CHAR_HEADING kappa_cartel1 270.0
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -1350.4 -259.6 49.7 false
-      /*
-      IF flag_kappa2_created = 0
-      IF LOCATE_PLAYER_ANY_MEANS_2D player kappa2_x kappa2_y 70.0 70.0 false
-      CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_B kappa2_x kappa2_y -100.0 kappa_cartel2
-      //SET_CHAR_HEADING kappa_cartel2 270.0
-      SET_CHAR_THREAT_SEARCH kappa_cartel2 THREAT_PLAYER1
-      GIVE_WEAPON_TO_CHAR kappa_cartel2 WEAPONTYPE_UZI 60
-      SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel2 true
-      CREATE_OBJECT coffee kappa2_x kappa2_y -100.0 kappa_2
-      SET_OBJECT_HEADING kappa_2 270.0
-      SET_OBJECT_COLLISION kappa_2 true
-      SET_OBJECT_DYNAMIC kappa_2 false
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1024.2 -466.5 14.9 false
-      IF blip_kappa2_created = 0
-      ADD_BLIP_FOR_OBJECT kappa_2 blip_kappa2
-      blip_kappa2_created = 1
-      ENDIF
-      flag_Kappa2_created = 1
-      ENDIF
-      ENDIF
-      */
       if ($.flag_kappa1_created == 0) {
-        //SET_CHAR_HEADING kappa_cartel1 270.0
-        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -1350.4 -259.6 49.7 false
         if ($.player.locateAnyMeans2D($.kappa1_x, $.kappa1_y, 150.0, 150.0, false /* false */)) {
-          //SET_CHAR_HEADING kappa_cartel1 270.0
           $.kappa_cartel1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa1_x, $.kappa1_y, -100.0);
+          //SET_CHAR_HEADING kappa_cartel1 270.0
           $.kappa_cartel1.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.kappa_cartel1.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
           $.kappa_cartel1.setStayInSamePlace(true /* true */);
           $.kappa_1 = Object.Create(1403 /* coffee */, $.kappa1_x, $.kappa1_y, -100.0);
           $.kappa_1.setHeading(180.0);
           $.kappa_1.setCollision(true /* true */);
-          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -1350.4 -259.6 49.7 false
           $.kappa_1.setDynamic(false /* false */);
+          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -1350.4 -259.6 49.7 false
           if ($.blip_kappa1_created == 0) {
             $.blip_kappa1 = Blip.AddForObject($.kappa_1);
             $.blip_kappa1_created = 1;
@@ -760,47 +252,7 @@ async function mission_start_as2() {
           $.flag_kappa1_created = 1;
         }
       }
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1343.3 -845.5 15.0 false
-      /*	ELSE
-      IF flag_kappa1_created = 1
-      IF flag_kappa1_dead = 0
-      DELETE_CHAR kappa_cartel1
-      DELETE_OBJECT kappa_1
-      flag_kappa1_created = 0
-      blip_kappa1_created = 0
-      ENDIF
-      IF flag_kappa1_dead = 1
-      DELETE_CHAR kappa_cartel1
-      DELETE_OBJECT kappa_1
-      ENDIF
-      ENDIF
-      IF flag_kappa2_created = 1
-      IF flag_kappa2_dead = 0
-      DELETE_CHAR kappa_cartel2
-      DELETE_OBJECT kappa_2
-      flag_kappa2_created = 0
-      blip_kappa2_created = 0
-      ENDIF
-      IF flag_kappa2_dead = 1
-      DELETE_CHAR kappa_cartel2
-      DELETE_OBJECT kappa_2
-      ENDIF
-      ENDIF
-      IF flag_kappa3_created = 1
-      IF flag_kappa3_dead = 0
-      DELETE_CHAR kappa_cartel3
-      DELETE_OBJECT kappa_3
-      flag_kappa3_created = 0
-      blip_kappa3_created = 0
-      ENDIF
-      IF flag_kappa3_dead = 1
-      DELETE_CHAR kappa_cartel3
-      DELETE_OBJECT kappa_3
-      ENDIF
-      ENDIF
-      */
       if ($.flag_kappa3_created == 0) {
-        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1343.3 -845.5 15.0 false
         if ($.player.isInZone("LITTLEI")) {
           $.kappa_cartel3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa3_x, $.kappa3_y, -100.0);
           $.kappa_cartel3.setHeading(270.0);
@@ -810,8 +262,8 @@ async function mission_start_as2() {
           $.kappa_3 = Object.Create(1403 /* coffee */, $.kappa3_x, $.kappa3_y, -100.0);
           $.kappa_3.setHeading(180.0);
           $.kappa_3.setCollision(true /* true */);
-          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1343.3 -845.5 15.0 false
           $.kappa_3.setDynamic(false /* false */);
+          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1343.3 -845.5 15.0 false
           if ($.blip_kappa3_created == 0) {
             $.blip_kappa3 = Blip.AddForObject($.kappa_3);
             $.blip_kappa3_created = 1;
@@ -820,113 +272,7 @@ async function mission_start_as2() {
         }
       }
     }
-    //IF IS_PLAYER_IN_ZONE player COM_EAS
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION 286.5 -668.5 26.2 false
-    //ENDIF
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 28.6 -849.9 32.7 false
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 13.67 -1140.5 26.19 false
-    //SET_CHAR_HEADING kappa_cartel7 190.0
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 74.0 -1359.6 26.2 false
-    /*
-    IF flag_kappa8_created = 0
-    IF IS_PLAYER_IN_ZONE player	STADIUM
-    CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_B kappa8_x kappa8_y -100.0 kappa_cartel8
-    SET_CHAR_HEADING kappa_cartel8 350.0
-    SET_CHAR_THREAT_SEARCH kappa_cartel8 THREAT_PLAYER1
-    GIVE_WEAPON_TO_CHAR kappa_cartel8 WEAPONTYPE_SHOTGUN 10
-    SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel8 true
-    CREATE_OBJECT coffee kappa8_x kappa8_y -100.0 kappa_8
-    SET_OBJECT_HEADING kappa_8 270.0
-    SET_OBJECT_COLLISION kappa_8 true
-    SET_OBJECT_DYNAMIC kappa_8 false
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -220.8 -197.5 12.1 false
-    IF blip_kappa8_created = 0
-    ADD_BLIP_FOR_OBJECT kappa_8 blip_kappa8
-    blip_kappa8_created = 1
-    ENDIF
-    flag_Kappa8_created = 1
-    ENDIF
-    ENDIF
-    */
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 282.9 -1493.1 23.7 false
-    /*	ELSE
-    IF flag_kappa10_created = 1
-    IF flag_kappa4_dead = 0
-    DELETE_CHAR kappa_cartel4
-    DELETE_OBJECT kappa_4
-    flag_kappa4_created = 0
-    blip_kappa4_created = 0
-    ENDIF
-    IF flag_kappa4_dead = 1
-    DELETE_CHAR kappa_cartel4
-    DELETE_OBJECT kappa_4
-    ENDIF
-    ENDIF
-    IF flag_kappa5_created = 1
-    IF flag_kappa5_dead = 0
-    DELETE_CHAR kappa_cartel5
-    DELETE_OBJECT kappa_5
-    flag_kappa5_created = 0
-    blip_kappa5_created = 0
-    ENDIF
-    IF flag_kappa5_dead = 1
-    DELETE_CHAR kappa_cartel5
-    DELETE_OBJECT kappa_5
-    ENDIF
-    ENDIF
-    IF flag_kappa6_created = 1
-    IF flag_kappa6_dead = 0
-    DELETE_CHAR kappa_cartel6
-    DELETE_OBJECT kappa_6
-    flag_kappa6_created = 0
-    blip_kappa6_created = 0
-    ENDIF
-    IF flag_kappa6_dead = 1
-    DELETE_CHAR kappa_cartel6
-    DELETE_OBJECT kappa_6
-    ENDIF
-    ENDIF
-    IF flag_kappa7_created = 1
-    IF flag_kappa7_dead = 0
-    DELETE_CHAR kappa_cartel7
-    DELETE_OBJECT kappa_7
-    flag_kappa7_created = 0
-    blip_kappa7_created = 0
-    ENDIF
-    IF flag_kappa7_dead = 1
-    DELETE_CHAR kappa_cartel7
-    DELETE_OBJECT kappa_7
-    ENDIF
-    ENDIF
-    IF flag_kappa8_created = 1
-    IF flag_kappa8_dead = 0
-    DELETE_CHAR kappa_cartel8
-    DELETE_OBJECT kappa_8
-    flag_kappa8_created = 0
-    blip_kappa8_created = 0
-    ENDIF
-    IF flag_kappa8_dead = 1
-    DELETE_CHAR kappa_cartel8
-    DELETE_OBJECT kappa_8
-    ENDIF
-    ENDIF
-    IF flag_kappa9_created = 1
-    IF flag_kappa9_dead = 0
-    DELETE_CHAR kappa_cartel9
-    DELETE_OBJECT kappa_9
-    flag_kappa9_created = 0
-    blip_kappa9_created = 0
-    ENDIF
-    IF flag_kappa9_dead = 1
-    DELETE_CHAR kappa_cartel9
-    DELETE_OBJECT kappa_9
-    ENDIF
-    ENDIF
-    */
     if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-      //IF IS_PLAYER_IN_ZONE player COM_EAS
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION 286.5 -668.5 26.2 false
-      //ENDIF
       if ($.flag_kappa4_created == 0) {
         $.kappa_cartel4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, $.kappa4_x, $.kappa4_y, -100.0);
         $.kappa_cartel4.setHeading(360.0);
@@ -934,8 +280,8 @@ async function mission_start_as2() {
         $.kappa_cartel4.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
         $.kappa_cartel4.setStayInSamePlace(true /* true */);
         $.kappa_cartel4.addArmor(100);
-        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION 286.5 -668.5 26.2 false
         $.kappa_4 = Object.Create(1403 /* coffee */, $.kappa4_x, $.kappa4_y, -100.0);
+        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION 286.5 -668.5 26.2 false
         $.kappa_4.setHeading(270.0);
         $.kappa_4.setCollision(true /* true */);
         $.kappa_4.setDynamic(false /* false */);
@@ -943,12 +289,10 @@ async function mission_start_as2() {
           $.blip_kappa4 = Blip.AddForObject($.kappa_4);
           $.blip_kappa4_created = 1;
         }
-        //ENDIF
         $.flag_kappa4_created = 1;
+        //ENDIF
       }
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 28.6 -849.9 32.7 false
       if ($.flag_kappa5_created == 0) {
-        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 28.6 -849.9 32.7 false
         if ($.player.isInZone("PARK")) {
           $.kappa_cartel5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa5_x, $.kappa5_y, -100.0);
           $.kappa_cartel5.setThreatSearch(0 /* THREAT_PLAYER1 */);
@@ -956,8 +300,8 @@ async function mission_start_as2() {
           $.kappa_cartel5.setStayInSamePlace(true /* true */);
           $.kappa_5 = Object.Create(1403 /* coffee */, $.kappa5_x, $.kappa5_y, -100.0);
           $.kappa_5.setCollision(true /* true */);
-          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 28.6 -849.9 32.7 false
           $.kappa_5.setDynamic(false /* false */);
+          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 28.6 -849.9 32.7 false
           if ($.blip_kappa5_created == 0) {
             $.blip_kappa5 = Blip.AddForObject($.kappa_5);
             $.blip_kappa5_created = 1;
@@ -965,9 +309,7 @@ async function mission_start_as2() {
           $.flag_kappa5_created = 1;
         }
       }
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 13.67 -1140.5 26.19 false
       if ($.flag_kappa6_created == 0) {
-        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 13.67 -1140.5 26.19 false
         if ($.player.isInZone("SHOPING")) {
           $.kappa_cartel6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, $.kappa6_x, $.kappa6_y, -100.0);
           $.kappa_cartel6.setHeading(190.0);
@@ -977,8 +319,8 @@ async function mission_start_as2() {
           $.kappa_6 = Object.Create(1403 /* coffee */, $.kappa6_x, $.kappa6_y, -100.0);
           $.kappa_6.setHeading(145.0);
           $.kappa_6.setCollision(true /* true */);
-          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 13.67 -1140.5 26.19 false
           $.kappa_6.setDynamic(false /* false */);
+          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 13.67 -1140.5 26.19 false
           if ($.blip_kappa6_created == 0) {
             $.blip_kappa6 = Blip.AddForObject($.kappa_6);
             $.blip_kappa6_created = 1;
@@ -986,42 +328,17 @@ async function mission_start_as2() {
           $.flag_kappa6_created = 1;
         }
       }
-      //SET_CHAR_HEADING kappa_cartel7 190.0
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 74.0 -1359.6 26.2 false
-      /*
-      IF flag_kappa8_created = 0
-      IF IS_PLAYER_IN_ZONE player	STADIUM
-      CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_B kappa8_x kappa8_y -100.0 kappa_cartel8
-      SET_CHAR_HEADING kappa_cartel8 350.0
-      SET_CHAR_THREAT_SEARCH kappa_cartel8 THREAT_PLAYER1
-      GIVE_WEAPON_TO_CHAR kappa_cartel8 WEAPONTYPE_SHOTGUN 10
-      SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel8 true
-      CREATE_OBJECT coffee kappa8_x kappa8_y -100.0 kappa_8
-      SET_OBJECT_HEADING kappa_8 270.0
-      SET_OBJECT_COLLISION kappa_8 true
-      SET_OBJECT_DYNAMIC kappa_8 false
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -220.8 -197.5 12.1 false
-      IF blip_kappa8_created = 0
-      ADD_BLIP_FOR_OBJECT kappa_8 blip_kappa8
-      blip_kappa8_created = 1
-      ENDIF
-      flag_Kappa8_created = 1
-      ENDIF
-      ENDIF
-      */
       if ($.flag_kappa7_created == 0) {
-        //SET_CHAR_HEADING kappa_cartel7 190.0
-        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 74.0 -1359.6 26.2 false
         if ($.player.isInZone("SHOPING")) {
-          //SET_CHAR_HEADING kappa_cartel7 190.0
           $.kappa_cartel7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa7_x, $.kappa7_y, -100.0);
+          //SET_CHAR_HEADING kappa_cartel7 190.0
           $.kappa_cartel7.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.kappa_cartel7.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
           $.kappa_cartel7.setStayInSamePlace(true /* true */);
           $.kappa_7 = Object.Create(1403 /* coffee */, $.kappa7_x, $.kappa7_y, -100.0);
           $.kappa_7.setCollision(true /* true */);
-          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 74.0 -1359.6 26.2 false
           $.kappa_7.setDynamic(false /* false */);
+          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 74.0 -1359.6 26.2 false
           if ($.blip_kappa7_created == 0) {
             $.blip_kappa7 = Blip.AddForObject($.kappa_7);
             $.blip_kappa7_created = 1;
@@ -1029,83 +346,7 @@ async function mission_start_as2() {
           $.flag_kappa7_created = 1;
         }
       }
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 282.9 -1493.1 23.7 false
-      /*	ELSE
-      IF flag_kappa10_created = 1
-      IF flag_kappa4_dead = 0
-      DELETE_CHAR kappa_cartel4
-      DELETE_OBJECT kappa_4
-      flag_kappa4_created = 0
-      blip_kappa4_created = 0
-      ENDIF
-      IF flag_kappa4_dead = 1
-      DELETE_CHAR kappa_cartel4
-      DELETE_OBJECT kappa_4
-      ENDIF
-      ENDIF
-      IF flag_kappa5_created = 1
-      IF flag_kappa5_dead = 0
-      DELETE_CHAR kappa_cartel5
-      DELETE_OBJECT kappa_5
-      flag_kappa5_created = 0
-      blip_kappa5_created = 0
-      ENDIF
-      IF flag_kappa5_dead = 1
-      DELETE_CHAR kappa_cartel5
-      DELETE_OBJECT kappa_5
-      ENDIF
-      ENDIF
-      IF flag_kappa6_created = 1
-      IF flag_kappa6_dead = 0
-      DELETE_CHAR kappa_cartel6
-      DELETE_OBJECT kappa_6
-      flag_kappa6_created = 0
-      blip_kappa6_created = 0
-      ENDIF
-      IF flag_kappa6_dead = 1
-      DELETE_CHAR kappa_cartel6
-      DELETE_OBJECT kappa_6
-      ENDIF
-      ENDIF
-      IF flag_kappa7_created = 1
-      IF flag_kappa7_dead = 0
-      DELETE_CHAR kappa_cartel7
-      DELETE_OBJECT kappa_7
-      flag_kappa7_created = 0
-      blip_kappa7_created = 0
-      ENDIF
-      IF flag_kappa7_dead = 1
-      DELETE_CHAR kappa_cartel7
-      DELETE_OBJECT kappa_7
-      ENDIF
-      ENDIF
-      IF flag_kappa8_created = 1
-      IF flag_kappa8_dead = 0
-      DELETE_CHAR kappa_cartel8
-      DELETE_OBJECT kappa_8
-      flag_kappa8_created = 0
-      blip_kappa8_created = 0
-      ENDIF
-      IF flag_kappa8_dead = 1
-      DELETE_CHAR kappa_cartel8
-      DELETE_OBJECT kappa_8
-      ENDIF
-      ENDIF
-      IF flag_kappa9_created = 1
-      IF flag_kappa9_dead = 0
-      DELETE_CHAR kappa_cartel9
-      DELETE_OBJECT kappa_9
-      flag_kappa9_created = 0
-      blip_kappa9_created = 0
-      ENDIF
-      IF flag_kappa9_dead = 1
-      DELETE_CHAR kappa_cartel9
-      DELETE_OBJECT kappa_9
-      ENDIF
-      ENDIF
-      */
       if ($.flag_kappa9_created == 0) {
-        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 282.9 -1493.1 23.7 false
         if ($.player.isInZone("YAKUSA")) {
           $.kappa_cartel9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, $.kappa9_x, $.kappa9_y, 23.7);
           $.kappa_cartel9.setThreatSearch(0 /* THREAT_PLAYER1 */);
@@ -1114,8 +355,8 @@ async function mission_start_as2() {
           $.kappa_9 = Object.Create(1403 /* coffee */, $.kappa9_x, $.kappa9_y, -100.0);
           $.kappa_9.setHeading(270.0);
           $.kappa_9.setCollision(true /* true */);
-          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 282.9 -1493.1 23.7 false
           $.kappa_9.setDynamic(false /* false */);
+          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 282.9 -1493.1 23.7 false
           if ($.blip_kappa9_created == 0) {
             $.blip_kappa9 = Blip.AddForObject($.kappa_9);
             $.blip_kappa9_created = 1;
@@ -1124,92 +365,8 @@ async function mission_start_as2() {
         }
       }
     }
-    //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -724.3 -548.8 9.1 false
-    /*
-    IF flag_kappa11_created = 0
-    IF IS_PLAYER_IN_ZONE player SWANKS
-    OR IS_PLAYER_IN_ZONE player PROJECT
-    CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_A kappa11_x kappa11_y -100.0 kappa_cartel11
-    SET_CHAR_HEADING kappa_cartel11 90.0
-    SET_CHAR_THREAT_SEARCH kappa_cartel11 THREAT_PLAYER1
-    GIVE_WEAPON_TO_CHAR kappa_cartel11 WEAPONTYPE_UZI 60
-    SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel11 true
-    CREATE_OBJECT coffee kappa11_x kappa11_y -100.0 kappa_11
-    SET_OBJECT_HEADING kappa_11 0.0
-    SET_OBJECT_COLLISION kappa_11 true
-    SET_OBJECT_DYNAMIC kappa_11 false
-    IF blip_kappa11_created = 0
-    ADD_BLIP_FOR_OBJECT kappa_11 blip_kappa11
-    blip_kappa11_created = 1
-    ENDIF
-    flag_Kappa11_created = 1
-    ENDIF
-    ENDIF
-    */
-    /*	ELSE
-    IF flag_kappa10_created = 1
-    IF flag_kappa10_dead = 0
-    DELETE_CHAR kappa_cartel10
-    DELETE_OBJECT kappa_10
-    flag_kappa10_created = 0
-    blip_kappa10_created = 0
-    ENDIF
-    IF flag_kappa10_dead = 1
-    DELETE_CHAR kappa_cartel10
-    DELETE_OBJECT kappa_10
-    ENDIF
-    ENDIF
-    IF flag_kappa11_created = 1
-    IF flag_kappa11_dead = 0
-    DELETE_CHAR kappa_cartel11
-    DELETE_OBJECT kappa_11
-    flag_kappa11_created = 0
-    blip_kappa11_created = 0
-    ENDIF
-    IF flag_kappa11_dead = 1
-    DELETE_CHAR kappa_cartel11
-    DELETE_OBJECT kappa_11
-    ENDIF
-    ENDIF
-    IF flag_kappa12_created = 1
-    IF flag_kappa12_dead = 0
-    DELETE_CHAR kappa_cartel12
-    DELETE_OBJECT kappa_12
-    flag_kappa12_created = 0
-    blip_kappa12_created = 0
-    ENDIF
-    IF flag_kappa12_dead = 1
-    DELETE_CHAR kappa_cartel12
-    DELETE_OBJECT kappa_12
-    ENDIF
-    ENDIF
-    */
-    //---------------------------------------KAPPA DEATH CHECK---------------------------------------------------------------------------------------
     if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-      //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -724.3 -548.8 9.1 false
-      /*
-      IF flag_kappa11_created = 0
-      IF IS_PLAYER_IN_ZONE player SWANKS
-      OR IS_PLAYER_IN_ZONE player PROJECT
-      CREATE_CHAR PEDTYPE_GANG_COLOMBIAN PED_GANG_COLOMBIAN_A kappa11_x kappa11_y -100.0 kappa_cartel11
-      SET_CHAR_HEADING kappa_cartel11 90.0
-      SET_CHAR_THREAT_SEARCH kappa_cartel11 THREAT_PLAYER1
-      GIVE_WEAPON_TO_CHAR kappa_cartel11 WEAPONTYPE_UZI 60
-      SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel11 true
-      CREATE_OBJECT coffee kappa11_x kappa11_y -100.0 kappa_11
-      SET_OBJECT_HEADING kappa_11 0.0
-      SET_OBJECT_COLLISION kappa_11 true
-      SET_OBJECT_DYNAMIC kappa_11 false
-      IF blip_kappa11_created = 0
-      ADD_BLIP_FOR_OBJECT kappa_11 blip_kappa11
-      blip_kappa11_created = 1
-      ENDIF
-      flag_Kappa11_created = 1
-      ENDIF
-      ENDIF
-      */
       if ($.flag_kappa10_created == 0) {
-        //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -724.3 -548.8 9.1 false
         if ($.player.isInZone("AIRPORT")) {
           $.kappa_cartel10 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_B`, $.kappa10_x, $.kappa10_y, 18.9);
           $.kappa_cartel10.setHeading(50.0);
@@ -1218,8 +375,8 @@ async function mission_start_as2() {
           $.kappa_cartel10.setStayInSamePlace(true /* true */);
           $.kappa_10 = Object.Create(1403 /* coffee */, $.kappa10_x, $.kappa10_y, -100.0);
           $.kappa_10.setCollision(true /* true */);
-          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -724.3 -548.8 9.1 false
           $.kappa_10.setDynamic(false /* false */);
+          //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -724.3 -548.8 9.1 false
           if ($.blip_kappa10_created == 0) {
             $.blip_kappa10 = Blip.AddForObject($.kappa_10);
             $.blip_kappa10_created = 1;
@@ -1243,44 +400,6 @@ async function mission_start_as2() {
           $.flag_kappa12_created = 1;
         }
       }
-      /*	ELSE
-      IF flag_kappa10_created = 1
-      IF flag_kappa10_dead = 0
-      DELETE_CHAR kappa_cartel10
-      DELETE_OBJECT kappa_10
-      flag_kappa10_created = 0
-      blip_kappa10_created = 0
-      ENDIF
-      IF flag_kappa10_dead = 1
-      DELETE_CHAR kappa_cartel10
-      DELETE_OBJECT kappa_10
-      ENDIF
-      ENDIF
-      IF flag_kappa11_created = 1
-      IF flag_kappa11_dead = 0
-      DELETE_CHAR kappa_cartel11
-      DELETE_OBJECT kappa_11
-      flag_kappa11_created = 0
-      blip_kappa11_created = 0
-      ENDIF
-      IF flag_kappa11_dead = 1
-      DELETE_CHAR kappa_cartel11
-      DELETE_OBJECT kappa_11
-      ENDIF
-      ENDIF
-      IF flag_kappa12_created = 1
-      IF flag_kappa12_dead = 0
-      DELETE_CHAR kappa_cartel12
-      DELETE_OBJECT kappa_12
-      flag_kappa12_created = 0
-      blip_kappa12_created = 0
-      ENDIF
-      IF flag_kappa12_dead = 1
-      DELETE_CHAR kappa_cartel12
-      DELETE_OBJECT kappa_12
-      ENDIF
-      ENDIF
-      */
       if ($.flag_kappa10_created == 1 || $.flag_kappa12_created == 1) {
         if ($.flag_guard1_created == 0) {
           $.patriot_1 = Car.Create(131 /* CAR_COLUMB */, -706.3, -285.7, 18.3);
@@ -1291,14 +410,13 @@ async function mission_start_as2() {
         }
       }
     }
-    //kappa_time = kappa_time + 10000
+    //---------------------------------------KAPPA DEATH CHECK---------------------------------------------------------------------------------------
     if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_1.hasBeenDamaged()) {
         $.flag_kappa1_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_ind;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa1.remove();
         if (!(Char.IsDead($.kappa_cartel1))) {
@@ -1310,48 +428,23 @@ async function mission_start_as2() {
         $.kappa_cartel1.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel1
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel1 player
-    /*
-    IF flag_kappa2_dead = 0
-    AND flag_kappa2_created = 1
-    IF HAS_OBJECT_BEEN_DAMAGED kappa_2
-    flag_kappa2_dead = 1
-    ++ counter_kappa_dead
-    ++ counter_kappa_dead_ind
-    kappa_time = kappa_time + 10000
-    PRINT_WITH_NUMBER_BIG (AS2_11) counter_kappa_dead 2000 1
-    REMOVE_BLIP blip_kappa2
-    MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel2
-    ENDIF
-    IF NOT IS_CHAR_DEAD	kappa_cartel2
-    TURN_CHAR_TO_FACE_PLAYER kappa_cartel2 player
-    ENDIF
-    ENDIF
-    */
     if ($.flag_kappa1_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel1
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel1 player
       if (!(Char.IsDead($.kappa_cartel1))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel1
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel1 player
         if ($.kappa_cartel1.isObjectivePassed()) {
           $.kappa_cartel1.turnToFacePlayer($.player);
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel1
           $.kappa_cartel1.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel1 player
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel1
           $.kappa_cartel1.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel1 player
         }
       }
     }
-    //kappa_time = kappa_time + 10000
     if ($.flag_kappa3_dead == 0 && $.flag_kappa3_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_3.hasBeenDamaged()) {
         $.flag_kappa3_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_ind;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa3.remove();
         if (!(Char.IsDead($.kappa_cartel3))) {
@@ -1363,31 +456,23 @@ async function mission_start_as2() {
         $.kappa_cartel3.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel3
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel3 player
     if ($.flag_kappa3_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel3
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel3 player
       if (!(Char.IsDead($.kappa_cartel3))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel3
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel3 player
         if ($.kappa_cartel3.isObjectivePassed()) {
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel3
           $.kappa_cartel3.turnToFacePlayer($.player);
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel3
           $.kappa_cartel3.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel3 player
           $.kappa_cartel3.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel3 player
         }
       }
     }
-    //kappa_time = kappa_time + 10000
     if ($.flag_kappa4_dead == 0 && $.flag_kappa4_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_4.hasBeenDamaged()) {
         $.flag_kappa4_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_com;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa4.remove();
         if (!(Char.IsDead($.kappa_cartel4))) {
@@ -1399,31 +484,23 @@ async function mission_start_as2() {
         $.kappa_cartel4.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel4
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel4 player
     if ($.flag_kappa4_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel4
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel4 player
       if (!(Char.IsDead($.kappa_cartel4))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel4
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel4 player
         if ($.kappa_cartel4.isObjectivePassed()) {
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel4
           $.kappa_cartel4.turnToFacePlayer($.player);
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel4
           $.kappa_cartel4.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel4 player
           $.kappa_cartel4.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel4 player
         }
       }
     }
-    //kappa_time = kappa_time + 10000
     if ($.flag_kappa5_dead == 0 && $.flag_kappa5_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_5.hasBeenDamaged()) {
         $.flag_kappa5_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_com;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa5.remove();
         if (!(Char.IsDead($.kappa_cartel5))) {
@@ -1435,31 +512,23 @@ async function mission_start_as2() {
         $.kappa_cartel5.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel5
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel5 player
     if ($.flag_kappa5_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel5
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel5 player
       if (!(Char.IsDead($.kappa_cartel5))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel5
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel5 player
         if ($.kappa_cartel5.isObjectivePassed()) {
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel5
           $.kappa_cartel5.turnToFacePlayer($.player);
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel5
           $.kappa_cartel5.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel5 player
           $.kappa_cartel5.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel5 player
         }
       }
     }
-    //kappa_time = kappa_time + 10000
     if ($.flag_kappa6_dead == 0 && $.flag_kappa6_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_6.hasBeenDamaged()) {
         $.flag_kappa6_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_com;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa6.remove();
         if (!(Char.IsDead($.kappa_cartel6))) {
@@ -1471,31 +540,23 @@ async function mission_start_as2() {
         $.kappa_cartel6.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel6
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel6 player
     if ($.flag_kappa6_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel6
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel6 player
       if (!(Char.IsDead($.kappa_cartel6))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel6
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel6 player
         if ($.kappa_cartel6.isObjectivePassed()) {
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel6
           $.kappa_cartel6.turnToFacePlayer($.player);
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel6
           $.kappa_cartel6.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel6 player
           $.kappa_cartel6.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel6 player
         }
       }
     }
-    //kappa_time = kappa_time + 10000
     if ($.flag_kappa7_dead == 0 && $.flag_kappa7_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_7.hasBeenDamaged()) {
         $.flag_kappa7_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_com;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa7.remove();
         if (!(Char.IsDead($.kappa_cartel7))) {
@@ -1507,48 +568,23 @@ async function mission_start_as2() {
         $.kappa_cartel7.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel7
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel7 player
-    /*
-    IF flag_kappa8_dead = 0
-    AND flag_kappa8_created = 1
-    IF HAS_OBJECT_BEEN_DAMAGED kappa_8
-    flag_kappa8_dead = 1
-    ++ counter_kappa_dead
-    ++ counter_kappa_dead_com
-    kappa_time = kappa_time + 10000
-    PRINT_WITH_NUMBER_BIG (AS2_11) counter_kappa_dead 2000 1
-    REMOVE_BLIP blip_kappa8
-    MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel8
-    ENDIF
-    IF NOT IS_CHAR_DEAD	kappa_cartel8
-    TURN_CHAR_TO_FACE_PLAYER kappa_cartel8 player
-    ENDIF
-    ENDIF
-    */
     if ($.flag_kappa7_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel7
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel7 player
       if (!(Char.IsDead($.kappa_cartel7))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel7
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel7 player
         if ($.kappa_cartel7.isObjectivePassed()) {
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel7
           $.kappa_cartel7.turnToFacePlayer($.player);
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel7
           $.kappa_cartel7.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel7 player
           $.kappa_cartel7.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel7 player
         }
       }
     }
-    //kappa_time = kappa_time + 10000
     if ($.flag_kappa9_dead == 0 && $.flag_kappa9_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_9.hasBeenDamaged()) {
         $.flag_kappa9_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_com;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa9.remove();
         if (!(Char.IsDead($.kappa_cartel9))) {
@@ -1560,31 +596,23 @@ async function mission_start_as2() {
         $.kappa_cartel9.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel9
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel9 player
     if ($.flag_kappa9_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel9
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel9 player
       if (!(Char.IsDead($.kappa_cartel9))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel9
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel9 player
         if ($.kappa_cartel9.isObjectivePassed()) {
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel9
           $.kappa_cartel9.turnToFacePlayer($.player);
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel9
           $.kappa_cartel9.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel9 player
           $.kappa_cartel9.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel9 player
         }
       }
     }
-    //kappa_time = kappa_time + 10000
     if ($.flag_kappa10_dead == 0 && $.flag_kappa10_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_10.hasBeenDamaged()) {
         $.flag_kappa10_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_sub;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa10.remove();
         if (!(Char.IsDead($.kappa_cartel10))) {
@@ -1596,48 +624,23 @@ async function mission_start_as2() {
         $.kappa_cartel10.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel10
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel10 player
-    /*
-    IF flag_kappa11_dead = 0
-    AND flag_kappa11_created = 1
-    IF HAS_OBJECT_BEEN_DAMAGED kappa_11
-    flag_kappa11_dead = 1
-    ++ counter_kappa_dead
-    ++ counter_kappa_dead_sub
-    kappa_time = kappa_time + 10000
-    PRINT_WITH_NUMBER_BIG (AS2_11) counter_kappa_dead 2000 1
-    REMOVE_BLIP blip_kappa11
-    MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel11
-    ENDIF
-    IF NOT IS_CHAR_DEAD	kappa_cartel11
-    TURN_CHAR_TO_FACE_PLAYER kappa_cartel11 player
-    ENDIF
-    ENDIF
-    */
     if ($.flag_kappa10_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel10
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel10 player
       if (!(Char.IsDead($.kappa_cartel10))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel10
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel10 player
         if ($.kappa_cartel10.isObjectivePassed()) {
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel10
           $.kappa_cartel10.turnToFacePlayer($.player);
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel10
           $.kappa_cartel10.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel10 player
           $.kappa_cartel10.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel10 player
         }
       }
     }
-    //kappa_time = kappa_time + 10000
     if ($.flag_kappa12_dead == 0 && $.flag_kappa12_created == 1) {
-      //kappa_time = kappa_time + 10000
       if ($.kappa_12.hasBeenDamaged()) {
         $.flag_kappa12_dead = 1;
         ++$.counter_kappa_dead;
-        //kappa_time = kappa_time + 10000
         ++$.counter_kappa_dead_sub;
+        //kappa_time = kappa_time + 10000
         Text.PrintWithNumberBig("AS2_11", $.counter_kappa_dead, 2000, 1);
         $.blip_kappa12.remove();
         if (!(Char.IsDead($.kappa_cartel12))) {
@@ -1649,471 +652,247 @@ async function mission_start_as2() {
         $.kappa_cartel12.turnToFacePlayer($.player);
       }
     }
-    //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel12
-    //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel12 player
-    //---------------------STEAM--------------------------
     if ($.flag_kappa12_dead > 0) {
-      //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel12
-      //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel12 player
       if (!(Char.IsDead($.kappa_cartel12))) {
-        //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel12
-        //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel12 player
         if ($.kappa_cartel12.isObjectivePassed()) {
-          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel12
           $.kappa_cartel12.turnToFacePlayer($.player);
+          //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel12
           $.kappa_cartel12.setStayInSamePlace(false /* false */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel12 player
           $.kappa_cartel12.setThreatSearch(0 /* THREAT_PLAYER1 */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel12 player
         }
       }
     }
+    //---------------------STEAM--------------------------
     $.timer_as2_now = Clock.GetGameTimer();
     $.timer_as2_dif = $.timer_as2_now - $.timer_as2_start;
     if ($.timer_as2_dif > $.particle_time_as2) {
       $.particle_time_as2 = $.particle_time_as2 + 50;
       $.flag_particle_as2 = 1;
     }
-    //steam_x = steam_x + 1.0
-    //steam_y = steam_y + 1.0
-    //steam_x = steam_x - 1.0
-    /*
-    IF flag_kappa2_dead = 0
-    AND flag_kappa2_created = 1
-    GET_OBJECT_COORDINATES kappa_2 steam_x steam_y steam_z
-    steam_x = steam_x + 1.0
-    //steam_y = steam_y + 1.0
-    //steam_x = steam_x - 1.0
-    //steam_y = steam_y - 1.0
-    ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-    ENDIF
-    IF flag_kappa2_dead = 1
-    AND flag_kappa2_created = 1
-    GET_OBJECT_COORDINATES kappa_2 steam_x steam_y steam_z
-    steam_x = steam_x + 1.0
-    //steam_y = steam_y + 1.0
-    //steam_x = steam_x - 1.0
-    //steam_y = steam_y - 1.0
-    START_SCRIPT_FIRE steam_x steam_y steam_z kappa_2_fire
-    flag_kappa2_dead = 2
-    ENDIF
-    */
-    //steam_y = steam_y - 1.0
-    /*
-    IF flag_kappa8_dead = 0
-    AND flag_kappa8_created = 1
-    GET_OBJECT_COORDINATES kappa_8 steam_x steam_y steam_z
-    steam_x = steam_x + 1.0
-    //steam_y = steam_y + 1.0
-    //steam_x = steam_x - 1.0
-    //steam_y = steam_y - 1.0
-    ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-    ENDIF
-    IF flag_kappa8_dead = 1
-    AND flag_kappa8_created = 1
-    GET_OBJECT_COORDINATES kappa_8 steam_x steam_y steam_z
-    steam_x = steam_x + 1.0
-    //steam_y = steam_y + 1.0
-    //steam_x = steam_x - 1.0
-    //steam_y = steam_y - 1.0
-    START_SCRIPT_FIRE steam_x steam_y steam_z kappa_8_fire
-    flag_kappa8_dead = 2
-    ENDIF
-    */
-    /*
-    IF flag_kappa11_dead = 0
-    AND flag_kappa11_created = 1
-    GET_OBJECT_COORDINATES kappa_11 steam_x steam_y steam_z
-    //steam_x = steam_x + 1.0
-    steam_y = steam_y + 1.0
-    //steam_x = steam_x - 1.0
-    //steam_y = steam_y - 1.0
-    ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-    ENDIF
-    IF flag_kappa11_dead = 1
-    AND flag_kappa11_created = 1
-    GET_OBJECT_COORDINATES kappa_11 steam_x steam_y steam_z
-    //steam_x = steam_x + 1.0
-    steam_y = steam_y + 1.0
-    //steam_x = steam_x - 1.0
-    //steam_y = steam_y - 1.0
-    START_SCRIPT_FIRE steam_x steam_y steam_z kappa_11_fire
-    flag_kappa11_dead = 2
-    ENDIF
-    */
-    //-------------------------------------------TIMER-------TIMER----TIMER----------------------------------------
     if ($.flag_particle_as2 == 1) {
-      //steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
       if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_1.getCoordinates();
         //steam_x = steam_x + 1.0
         //steam_y = steam_y + 1.0
         //steam_x = steam_x - 1.0
-        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_1.getCoordinates();
         $.steam_y = $.steam_y - 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      /*
-      IF flag_kappa2_dead = 0
-      AND flag_kappa2_created = 1
-      GET_OBJECT_COORDINATES kappa_2 steam_x steam_y steam_z
-      steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
-      ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-      ENDIF
-      IF flag_kappa2_dead = 1
-      AND flag_kappa2_created = 1
-      GET_OBJECT_COORDINATES kappa_2 steam_x steam_y steam_z
-      steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
-      START_SCRIPT_FIRE steam_x steam_y steam_z kappa_2_fire
-      flag_kappa2_dead = 2
-      ENDIF
-      */
       if ($.flag_kappa1_dead == 1 && $.flag_kappa1_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_1.getCoordinates();
         //steam_x = steam_x + 1.0
         //steam_y = steam_y + 1.0
         //steam_x = steam_x - 1.0
-        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_1.getCoordinates();
         $.steam_y = $.steam_y - 1.0;
         $.kappa_1_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa1_dead = 2;
       }
-      //steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
       if ($.flag_kappa3_dead == 0 && $.flag_kappa3_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_3.getCoordinates();
         //steam_x = steam_x + 1.0
         //steam_y = steam_y + 1.0
         //steam_x = steam_x - 1.0
-        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_3.getCoordinates();
         $.steam_y = $.steam_y - 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
       if ($.flag_kappa3_dead == 1 && $.flag_kappa3_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_3.getCoordinates();
         //steam_x = steam_x + 1.0
         //steam_y = steam_y + 1.0
         //steam_x = steam_x - 1.0
-        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_3.getCoordinates();
         $.steam_y = $.steam_y - 1.0;
         $.kappa_3_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa3_dead = 2;
       }
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa4_dead == 0 && $.flag_kappa4_created == 1) {
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_4.getCoordinates();
+        $.steam_x = $.steam_x + 1.0;
         //steam_y = steam_y + 1.0
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_x = $.steam_x + 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa4_dead == 1 && $.flag_kappa4_created == 1) {
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_4.getCoordinates();
+        $.steam_x = $.steam_x + 1.0;
         //steam_y = steam_y + 1.0
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_x = $.steam_x + 1.0;
         $.kappa_4_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa4_dead = 2;
       }
-      //steam_x = steam_x + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa5_dead == 0 && $.flag_kappa5_created == 1) {
-        //steam_x = steam_x + 1.0
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_5.getCoordinates();
+        //steam_x = steam_x + 1.0
+        $.steam_y = $.steam_y + 1.0;
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_y = $.steam_y + 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_x = steam_x + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa5_dead == 1 && $.flag_kappa5_created == 1) {
-        //steam_x = steam_x + 1.0
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_5.getCoordinates();
+        //steam_x = steam_x + 1.0
+        $.steam_y = $.steam_y + 1.0;
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_y = $.steam_y + 1.0;
         $.kappa_5_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa5_dead = 2;
       }
-      //steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
       if ($.flag_kappa6_dead == 0 && $.flag_kappa6_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_6.getCoordinates();
         //steam_x = steam_x + 1.0
         //steam_y = steam_y + 1.0
-        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_6.getCoordinates();
         $.steam_x = $.steam_x - 1.0;
         $.steam_y = $.steam_y - 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
       if ($.flag_kappa6_dead == 1 && $.flag_kappa6_created == 1) {
+        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_6.getCoordinates();
         //steam_x = steam_x + 1.0
         //steam_y = steam_y + 1.0
-        [$.steam_x, $.steam_y, $.steam_z] = $.kappa_6.getCoordinates();
         $.steam_x = $.steam_x - 1.0;
         $.steam_y = $.steam_y - 1.0;
         $.kappa_6_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa6_dead = 2;
       }
-      //steam_x = steam_x + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa7_dead == 0 && $.flag_kappa7_created == 1) {
-        //steam_x = steam_x + 1.0
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_7.getCoordinates();
+        //steam_x = steam_x + 1.0
+        $.steam_y = $.steam_y + 1.0;
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_y = $.steam_y + 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_x = steam_x + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
-      /*
-      IF flag_kappa8_dead = 0
-      AND flag_kappa8_created = 1
-      GET_OBJECT_COORDINATES kappa_8 steam_x steam_y steam_z
-      steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
-      ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-      ENDIF
-      IF flag_kappa8_dead = 1
-      AND flag_kappa8_created = 1
-      GET_OBJECT_COORDINATES kappa_8 steam_x steam_y steam_z
-      steam_x = steam_x + 1.0
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
-      START_SCRIPT_FIRE steam_x steam_y steam_z kappa_8_fire
-      flag_kappa8_dead = 2
-      ENDIF
-      */
       if ($.flag_kappa7_dead == 1 && $.flag_kappa7_created == 1) {
-        //steam_x = steam_x + 1.0
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_7.getCoordinates();
+        //steam_x = steam_x + 1.0
+        $.steam_y = $.steam_y + 1.0;
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_y = $.steam_y + 1.0;
         $.kappa_7_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa7_dead = 2;
       }
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa9_dead == 0 && $.flag_kappa9_created == 1) {
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_9.getCoordinates();
+        $.steam_x = $.steam_x + 1.0;
         //steam_y = steam_y + 1.0
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_x = $.steam_x + 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa9_dead == 1 && $.flag_kappa9_created == 1) {
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_9.getCoordinates();
+        $.steam_x = $.steam_x + 1.0;
         //steam_y = steam_y + 1.0
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_x = $.steam_x + 1.0;
         $.kappa_9_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa9_dead = 2;
       }
-      //steam_x = steam_x + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa10_dead == 0 && $.flag_kappa10_created == 1) {
-        //steam_x = steam_x + 1.0
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_10.getCoordinates();
+        //steam_x = steam_x + 1.0
+        $.steam_y = $.steam_y + 1.0;
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_y = $.steam_y + 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_x = steam_x + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
-      /*
-      IF flag_kappa11_dead = 0
-      AND flag_kappa11_created = 1
-      GET_OBJECT_COORDINATES kappa_11 steam_x steam_y steam_z
-      //steam_x = steam_x + 1.0
-      steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
-      ADD_MOVING_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION steam_x steam_y steam_z 0.0 0.0 0.0 0.3 0 0 0 50
-      ENDIF
-      IF flag_kappa11_dead = 1
-      AND flag_kappa11_created = 1
-      GET_OBJECT_COORDINATES kappa_11 steam_x steam_y steam_z
-      //steam_x = steam_x + 1.0
-      steam_y = steam_y + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
-      START_SCRIPT_FIRE steam_x steam_y steam_z kappa_11_fire
-      flag_kappa11_dead = 2
-      ENDIF
-      */
       if ($.flag_kappa10_dead == 1 && $.flag_kappa10_created == 1) {
-        //steam_x = steam_x + 1.0
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_10.getCoordinates();
+        //steam_x = steam_x + 1.0
+        $.steam_y = $.steam_y + 1.0;
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_y = $.steam_y + 1.0;
         $.kappa_10_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa10_dead = 2;
       }
-      //steam_x = steam_x + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa12_dead == 0 && $.flag_kappa12_created == 1) {
-        //steam_x = steam_x + 1.0
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_12.getCoordinates();
+        //steam_x = steam_x + 1.0
+        $.steam_y = $.steam_y + 1.0;
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_y = $.steam_y + 1.0;
         Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
       }
-      //steam_x = steam_x + 1.0
-      //steam_x = steam_x - 1.0
-      //steam_y = steam_y - 1.0
       if ($.flag_kappa12_dead == 1 && $.flag_kappa12_created == 1) {
-        //steam_x = steam_x + 1.0
         [$.steam_x, $.steam_y, $.steam_z] = $.kappa_12.getCoordinates();
+        //steam_x = steam_x + 1.0
+        $.steam_y = $.steam_y + 1.0;
         //steam_x = steam_x - 1.0
         //steam_y = steam_y - 1.0
-        $.steam_y = $.steam_y + 1.0;
         $.kappa_12_fire = ScriptFire.Create($.steam_x, $.steam_y, $.steam_z);
         $.flag_kappa12_dead = 2;
       }
       $.flag_particle_as2 = 0;
     }
-    //The Cartel have warned their pushers!!
-    //WAIT 3000
+    //-------------------------------------------TIMER-------TIMER----TIMER----------------------------------------
     if ($.kappa_time < 1) {
-      //The Cartel have warned their pushers!!
+      Text.PrintNow("AS2_4", 3000, 1); //The Cartel have warned their pushers!!
       //WAIT 3000
-      Text.PrintNow("AS2_4", 3000, 1);
       // SCM GOTO → mission_as2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_as2_failed"); // fallback: would break linear control flow
     }
-    //----------------------------------------PLAYER INFO----------------------------------------------------------
     if ($.counter_kappa_dead == 1 && $.flag_timer_started == 0) {
       Hud.DisplayTimer($.kappa_time);
       $.flag_timer_started = 1;
     }
-    //All Espresso Carts in Portland wrecked!
-    //There are still coffee carts in Staunton Island and Shoreside Vale!
-    //There are still coffee carts in Shoreside Vale!
-    //There are still coffee carts on Staunton Island!
+    //----------------------------------------PLAYER INFO----------------------------------------------------------
     if ($.counter_kappa_dead_ind == 2 && $.flag_as2_1 == 0) {
-      //All Espresso Carts in Portland wrecked!
-      Text.PrintNow("AS2_1", 3000, 1);
+      Text.PrintNow("AS2_1", 3000, 1); //All Espresso Carts in Portland wrecked!
       await asyncWait(3000);
       $.flag_as2_1 = 1;
-      //There are still coffee carts in Staunton Island and Shoreside Vale!
       if ($.flag_as2_2 == 0 && $.flag_as2_3 == 0) {
-        //There are still coffee carts in Staunton Island and Shoreside Vale!
-        Text.PrintNow("AS2_5", 4000, 1);
+        Text.PrintNow("AS2_5", 4000, 1); //There are still coffee carts in Staunton Island and Shoreside Vale!
         await asyncWait(3000);
       }
-      //There are still coffee carts in Shoreside Vale!
       if ($.flag_as2_2 == 1 && $.flag_as2_3 == 0) {
-        //There are still coffee carts in Shoreside Vale!
-        Text.PrintNow("AS2_6", 4000, 1);
+        Text.PrintNow("AS2_6", 4000, 1); //There are still coffee carts in Shoreside Vale!
         await asyncWait(3000);
       }
-      //There are still coffee carts on Staunton Island!
       if ($.flag_as2_2 == 0 && $.flag_as2_3 == 1) {
-        //There are still coffee carts on Staunton Island!
-        Text.PrintNow("AS2_7", 4000, 1);
+        Text.PrintNow("AS2_7", 4000, 1); //There are still coffee carts on Staunton Island!
         await asyncWait(3000);
       }
     }
-    //All Espresso Carts in Downtown wrecked!
-    //There are still coffee carts in Portland and Shoreside Vale!
-    //There are still coffee carts in Shoreside Vale!
-    //There are still coffee carts in Portland!
     if ($.counter_kappa_dead_com == 5 && $.flag_as2_2 == 0) {
-      //All Espresso Carts in Downtown wrecked!
-      Text.PrintNow("AS2_2", 3000, 1);
+      Text.PrintNow("AS2_2", 3000, 1); //All Espresso Carts in Downtown wrecked!
       await asyncWait(3000);
       $.flag_as2_2 = 1;
-      //There are still coffee carts in Portland and Shoreside Vale!
       if ($.flag_as2_1 == 0 && $.flag_as2_3 == 0) {
-        //There are still coffee carts in Portland and Shoreside Vale!
-        Text.PrintNow("AS2_9", 4000, 1);
+        Text.PrintNow("AS2_9", 4000, 1); //There are still coffee carts in Portland and Shoreside Vale!
         await asyncWait(3000);
       }
-      //There are still coffee carts in Shoreside Vale!
       if ($.flag_as2_1 == 1 && $.flag_as2_3 == 0) {
-        //There are still coffee carts in Shoreside Vale!
-        Text.PrintNow("AS2_6", 4000, 1);
+        Text.PrintNow("AS2_6", 4000, 1); //There are still coffee carts in Shoreside Vale!
         await asyncWait(3000);
       }
-      //There are still coffee carts in Portland!
       if ($.flag_as2_1 == 0 && $.flag_as2_3 == 1) {
-        //There are still coffee carts in Portland!
-        Text.PrintNow("AS2_8", 4000, 1);
+        Text.PrintNow("AS2_8", 4000, 1); //There are still coffee carts in Portland!
         await asyncWait(3000);
       }
     }
-    //All Espresso Carts in Shoreside Vale wrecked!
-    //There are still coffee carts in Portland and Staunton Island!
-    //There are still coffee carts on Staunton Island!
-    //There are still coffee carts in Portland!
     if ($.counter_kappa_dead_sub == 2 && $.flag_as2_3 == 0) {
-      //All Espresso Carts in Shoreside Vale wrecked!
-      Text.PrintNow("AS2_3", 3000, 1);
+      Text.PrintNow("AS2_3", 3000, 1); //All Espresso Carts in Shoreside Vale wrecked!
       await asyncWait(3000);
       $.flag_as2_3 = 1;
-      //There are still coffee carts in Portland and Staunton Island!
       if ($.flag_as2_1 == 0 && $.flag_as2_2 == 0) {
-        //There are still coffee carts in Portland and Staunton Island!
-        Text.PrintNow("AS2_10", 4000, 1);
+        Text.PrintNow("AS2_10", 4000, 1); //There are still coffee carts in Portland and Staunton Island!
         await asyncWait(3000);
       }
-      //There are still coffee carts on Staunton Island!
       if ($.flag_as2_1 == 1 && $.flag_as2_2 == 0) {
-        //There are still coffee carts on Staunton Island!
-        Text.PrintNow("AS2_7", 4000, 1);
+        Text.PrintNow("AS2_7", 4000, 1); //There are still coffee carts on Staunton Island!
         await asyncWait(3000);
       }
-      //There are still coffee carts in Portland!
       if ($.flag_as2_1 == 0 && $.flag_as2_2 == 1) {
-        //There are still coffee carts in Portland!
-        Text.PrintNow("AS2_8", 4000, 1);
+        Text.PrintNow("AS2_8", 4000, 1); //There are still coffee carts in Portland!
         await asyncWait(3000);
       }
     }
   }
-  // Mission Asuka Sub2 failed
   // SCM GOTO → mission_as2_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_as2_passed"); // fallback: would break linear control flow
+  // Mission Asuka Sub2 failed
 }
 
 async function mission_as2_failed() {
@@ -2124,22 +903,21 @@ async function mission_as2_failed() {
   if ($.player.isDead()) {
     Restart.OverrideHospital(2 /* LEVEL_COMMERCIAL */);
   }
-  // mission Asuka Sub2 passed
   return;
+  // mission Asuka Sub2 passed
 }
 
 async function mission_as2_passed() {
   $.flag_asuka_suburban_mission2_passed = 1;
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 40000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 40000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.clearWantedLevel();
   $.player.addScore(40000);
   Stat.RegisterMissionPassed(AS2);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT asuka_suburban_mission3_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_as2() {
@@ -2147,12 +925,7 @@ async function mission_cleanup_as2() {
   $.flag_player_on_asuka_suburban_mission = 0;
   Hud.ClearTimer($.kappa_time);
   Hud.ClearCounter($.counter_kappa_dead);
-  //The Mafia
-  Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */);
-  /*IF flag_kappa2_dead = 0
-  AND flag_kappa2_created = 1
-  REMOVE_BLIP blip_kappa2
-  ENDIF*/
+  Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */); //The Mafia
   if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
     $.blip_kappa1.remove();
   }
@@ -2168,20 +941,12 @@ async function mission_cleanup_as2() {
   if ($.flag_kappa6_dead == 0 && $.flag_kappa6_created == 1) {
     $.blip_kappa6.remove();
   }
-  /*IF flag_kappa8_dead = 0
-  AND flag_kappa8_created = 1
-  REMOVE_BLIP blip_kappa8
-  ENDIF*/
   if ($.flag_kappa7_dead == 0 && $.flag_kappa7_created == 1) {
     $.blip_kappa7.remove();
   }
   if ($.flag_kappa9_dead == 0 && $.flag_kappa9_created == 1) {
     $.blip_kappa9.remove();
   }
-  /*IF flag_kappa11_dead = 0
-  AND flag_kappa11_created = 1
-  REMOVE_BLIP blip_kappa11
-  ENDIF*/
   if ($.flag_kappa10_dead == 0 && $.flag_kappa10_created == 1) {
     $.blip_kappa10.remove();
   }
@@ -2189,33 +954,33 @@ async function mission_cleanup_as2() {
     $.blip_kappa12.remove();
   }
   World.RemoveAllScriptFires();
-  //MARK_OBJECT_AS_NO_LONGER_NEEDED kappa_2
   $.kappa_1.markAsNoLongerNeeded();
+  //MARK_OBJECT_AS_NO_LONGER_NEEDED kappa_2
   $.kappa_3.markAsNoLongerNeeded();
   $.kappa_4.markAsNoLongerNeeded();
   $.kappa_5.markAsNoLongerNeeded();
   $.kappa_6.markAsNoLongerNeeded();
-  //MARK_OBJECT_AS_NO_LONGER_NEEDED kappa_8
   $.kappa_7.markAsNoLongerNeeded();
+  //MARK_OBJECT_AS_NO_LONGER_NEEDED kappa_8
   $.kappa_9.markAsNoLongerNeeded();
-  //MARK_OBJECT_AS_NO_LONGER_NEEDED kappa_11
   $.kappa_10.markAsNoLongerNeeded();
+  //MARK_OBJECT_AS_NO_LONGER_NEEDED kappa_11
   $.kappa_12.markAsNoLongerNeeded();
   Streaming.MarkModelAsNoLongerNeeded(car`COLUMB`);
   Streaming.MarkModelAsNoLongerNeeded(coffee);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_A`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_B`);
   Mission.Finish();
-  ///________________________________GOSUBS_______GOSUBS________________________________BYTHEWAY
   return;
+  ///________________________________GOSUBS_______GOSUBS________________________________BYTHEWAY
 }
 
 export async function asusb2() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***********************************ASUKA SUBURBAN MISSION 2******************************
   // **************************************'Espresso-2-Go'***********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_as2
   await mission_start_as2();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -2227,16 +992,12 @@ export async function asusb2() {
   // SCM GOSUB mission_cleanup_as2
   await mission_cleanup_as2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
-  //kappa_2
+  // Variables for mission
   // VAR_INT kappa_1 kappa_3 kappa_4
-  //kappa_8
   // VAR_INT kappa_5 kappa_6 kappa_7
-  //kappa_11
-  //VAR_INT varmint_1 varmint_2
   // VAR_INT kappa_9 kappa_10 kappa_12
-  //patriot_2
+  //VAR_INT varmint_1 varmint_2
   // VAR_INT patriot_1
   // VAR_INT flag_guard1_created flag_guard2_created
   // VAR_INT kappa_1_fire kappa_2_fire kappa_3_fire kappa_4_fire
@@ -2258,8 +1019,8 @@ export async function asusb2() {
   // VAR_INT blip_kappa5 blip_kappa6 blip_kappa7 blip_kappa8
   // VAR_INT blip_kappa9 blip_kappa10 blip_kappa11 blip_kappa12
   // VAR_INT kappa_time
-  //VAR_INT cs_whip
   // VAR_INT flag_timer_started
+  //VAR_INT cs_whip
   // VAR_INT timer_as2_dif timer_as2_now timer_as2_start flag_particle_as2 particle_time_as2
   // VAR_INT counter_kappa_dead
   // VAR_INT counter_kappa_dead_ind
@@ -2278,10 +1039,10 @@ export async function asusb2() {
   // VAR_FLOAT kappa10_x kappa10_y
   // VAR_FLOAT kappa11_x kappa11_y
   // VAR_FLOAT kappa12_x kappa12_y
-  //--test stuff-------------
   // VAR_FLOAT steam_x steam_y steam_z
+  //--test stuff-------------
   // VAR_FLOAT test_x test_y
+  // VAR_INT kappa_test
   //VAR_FLOAT min_x_as2 min_y_as2 min_z_as2 max_x_as2 max_y_as2 max_z_as2
   // ****************************************Mission Start************************************
-  // VAR_INT kappa_test
 }

@@ -61,23 +61,6 @@ async function start_pickup_script() {
   if (message_num == 5) {
     Text.PrintHelp("SAVE1");
   }
-  /*
-  IF message_num = 7
-  PRINT_HELP ( BRIDGE1 )
-  ENDIF
-  IF message_num = 8
-  PRINT_HELP ( TUNNEL )
-  ENDIF
-  IF message_num = 9
-  PRINT_HELP ( TUBE )
-  ENDIF
-  IF message_num = 10
-  PRINT_HELP ( A_TRAIN )
-  ENDIF
-  WHILE HAS_PICKUP_BEEN_COLLECTED pickup
-  WAIT 500
-  ENDWHILE
-  */
   if (message_num == 6) {
     Text.PrintHelp("CRUSH");
   }
@@ -95,6 +78,7 @@ async function start_pickup_script_2() {
   while (!(pickup.hasBeenCollected())) {
     await asyncWait(500);
   }
+  $.controlmode = Pad.GetControllerMode();
   /*
   IF message_num = 1
   PRINT_HELP ( SPRAY )
@@ -115,7 +99,6 @@ async function start_pickup_script_2() {
   PRINT_HELP ( CRUSH )
   ENDIF
   */
-  $.controlmode = Pad.GetControllerMode();
   if (message_num == 7) {
     Text.PrintHelp("BRIDGE1");
   }
@@ -125,37 +108,20 @@ async function start_pickup_script_2() {
   if (message_num == 9) {
     Text.PrintHelp("TUBE1");
   }
-  //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-  //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
   if (message_num == 10) {
-    //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
     if ($.controlmode == 0 || $.controlmode == 1 || $.controlmode == 3) {
-      //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-      Text.PrintHelp("L_TRN_1");
+      Text.PrintHelp("L_TRN_1"); //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
     }
-    //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
     if ($.controlmode == 2) {
-      //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-      Text.PrintHelp("L_TRN_2");
+      Text.PrintHelp("L_TRN_2"); //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
     }
   }
-  //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-  //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-  /*
-  WHILE HAS_PICKUP_BEEN_COLLECTED pickup
-  WAIT 500
-  ENDWHILE
-  */
   if (message_num == 11) {
-    //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
     if ($.controlmode == 0 || $.controlmode == 1 || $.controlmode == 3) {
-      //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-      Text.PrintHelp("S_TRN_1");
+      Text.PrintHelp("S_TRN_1"); //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
     }
-    //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
     if ($.controlmode == 2) {
-      //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-      Text.PrintHelp("S_TRN_2");
+      Text.PrintHelp("S_TRN_2"); //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
     }
   }
   // SCM GOTO → start_pickup_script_2 (not lowered; manual jump required)
@@ -170,29 +136,9 @@ async function ind_ammu() {
 
 async function ind_ammu_inner() {
   await asyncWait(70);
-  //	camera_ammu1 = 1
-  //	player not in area (1066.6 -403.5 14.0 1072.8 -394.0 18.0)
-  //time_difference is greater than 60,000 means shopkeeper has been created
-  //IS_PLAYER_IN_AREA_3D
-  //	not in LITTLEI
-  //time_difference is greater than 30,000 means shopkeeper has been created
-  //	IF IS_PLAYER_IN_ZONE player LITTLEI
-  //IS_PLAYER_PLAYING
   if ($.player.isPlaying()) {
-    //	camera_ammu1 = 1
-    //	player not in area (1066.6 -403.5 14.0 1072.8 -394.0 18.0)
-    //time_difference is greater than 60,000 means shopkeeper has been created
-    //IS_PLAYER_IN_AREA_3D
-    //	not in LITTLEI
-    //time_difference is greater than 30,000 means shopkeeper has been created
-    //	IF IS_PLAYER_IN_ZONE player LITTLEI
     if ($.player.isInZone("LITTLEI")) {
-      //	camera_ammu1 = 1
-      //	player not in area (1066.6 -403.5 14.0 1072.8 -394.0 18.0)
-      //time_difference is greater than 60,000 means shopkeeper has been created
-      //IS_PLAYER_IN_AREA_3D
       if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false /* FALSE */)) {
-        //	camera_ammu1 = 1
         if ($.camera_ammu1 == 0) {
           $.player.setControl(false /* Off */);
           Camera.SetFadingColor(1, 1, 1);
@@ -264,14 +210,12 @@ async function ind_ammu_inner() {
         }
       }
       else {
-        //time_difference is greater than 60,000 means shopkeeper has been created
         if ($.camera_ammu1 == 1) {
           $.player.setControl(false /* Off */);
           Camera.DoFade(500, 0 /* FADE_OUT */);
           while (Camera.GetFadingStatus()) {
             await asyncWait(0);
           }
-          //time_difference is greater than 60,000 means shopkeeper has been created
           if (Char.IsDead($.ammu_shop_bloke1) && $.time_difference > 60000) {
             $.time_since_murdering_shopkeeper1 = Clock.GetGameTimer();
           }
@@ -301,9 +245,7 @@ async function ind_ammu_inner() {
       }
     }
     else {
-      //time_difference is greater than 30,000 means shopkeeper has been created
       if ($.camera_ammu1 == 1) {
-        //time_difference is greater than 30,000 means shopkeeper has been created
         if (Char.IsDead($.ammu_shop_bloke1) && $.time_difference > 60000) {
           $.time_since_murdering_shopkeeper1 = Clock.GetGameTimer();
         }
@@ -327,49 +269,9 @@ async function fish_factory_gen() {
 
 async function fish_factory_gen_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //FISH FACTORY SET UP
-  //CREATES A GANG OF TRIADS DOWN AT THE FISH FACTORY
-  //SET_CHAR_THREAT_SEARCH fish_triad1 THREAT_GANG_MAFIA
-  //SET_CHAR_THREAT_SEARCH fish_triad2 THREAT_GANG_MAFIA
-  //SET_CHAR_THREAT_SEARCH fish_triad3 THREAT_GANG_MAFIA
-  //SET_CHAR_THREAT_SEARCH fish_triad4 THREAT_GANG_MAFIA
-  //SET_CHAR_THREAT_SEARCH fish_triad5 THREAT_GANG_MAFIA
-  //SET_CHAR_THREAT_SEARCH fish_triad6 THREAT_GANG_MAFIA
-  //	Player not in PORT_W
-  //IS PLAYER IN ZONE
-  //fish_factory_destroyed
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //IS_PLAYER_PLAYING
   if ($.player.isPlaying()) {
-    //CREATES A GANG OF TRIADS DOWN AT THE FISH FACTORY
-    //SET_CHAR_THREAT_SEARCH fish_triad1 THREAT_GANG_MAFIA
-    //SET_CHAR_THREAT_SEARCH fish_triad2 THREAT_GANG_MAFIA
-    //SET_CHAR_THREAT_SEARCH fish_triad3 THREAT_GANG_MAFIA
-    //SET_CHAR_THREAT_SEARCH fish_triad4 THREAT_GANG_MAFIA
-    //SET_CHAR_THREAT_SEARCH fish_triad5 THREAT_GANG_MAFIA
-    //SET_CHAR_THREAT_SEARCH fish_triad6 THREAT_GANG_MAFIA
-    //	Player not in PORT_W
-    //IS PLAYER IN ZONE
-    //fish_factory_destroyed
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
     if ($.fish_factory_destroyed == 0) {
-      //CREATES A GANG OF TRIADS DOWN AT THE FISH FACTORY
-      //SET_CHAR_THREAT_SEARCH fish_triad1 THREAT_GANG_MAFIA
-      //SET_CHAR_THREAT_SEARCH fish_triad2 THREAT_GANG_MAFIA
-      //SET_CHAR_THREAT_SEARCH fish_triad3 THREAT_GANG_MAFIA
-      //SET_CHAR_THREAT_SEARCH fish_triad4 THREAT_GANG_MAFIA
-      //SET_CHAR_THREAT_SEARCH fish_triad5 THREAT_GANG_MAFIA
-      //SET_CHAR_THREAT_SEARCH fish_triad6 THREAT_GANG_MAFIA
-      //	Player not in PORT_W
-      //IS PLAYER IN ZONE
       if ($.player.isInZone("PORT_W")) {
-        //SET_CHAR_THREAT_SEARCH fish_triad1 THREAT_GANG_MAFIA
-        //SET_CHAR_THREAT_SEARCH fish_triad2 THREAT_GANG_MAFIA
-        //SET_CHAR_THREAT_SEARCH fish_triad3 THREAT_GANG_MAFIA
-        //SET_CHAR_THREAT_SEARCH fish_triad4 THREAT_GANG_MAFIA
-        //SET_CHAR_THREAT_SEARCH fish_triad5 THREAT_GANG_MAFIA
-        //SET_CHAR_THREAT_SEARCH fish_triad6 THREAT_GANG_MAFIA
         if ($.has_player_been_at_fish_before == 0) {
           Streaming.RequestModel(ped`GANG_TRIAD_A`);
           Streaming.RequestModel(ped`GANG_TRIAD_B`);
@@ -377,28 +279,28 @@ async function fish_factory_gen_inner() {
             await asyncWait(0);
           }
           $.fish_triad1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_A`, 997.0, -1112.0, -100.0);
-          //SET_CHAR_THREAT_SEARCH fish_triad1 THREAT_GANG_MAFIA
           $.fish_triad1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+          //SET_CHAR_THREAT_SEARCH fish_triad1 THREAT_GANG_MAFIA
           $.fish_triad1.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.fish_triad2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 964.0, -1095.0, -100.0);
-          //SET_CHAR_THREAT_SEARCH fish_triad2 THREAT_GANG_MAFIA
           $.fish_triad2.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+          //SET_CHAR_THREAT_SEARCH fish_triad2 THREAT_GANG_MAFIA
           $.fish_triad2.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.fish_triad3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_A`, 982.0, -1085.0, -100.0);
-          //SET_CHAR_THREAT_SEARCH fish_triad3 THREAT_GANG_MAFIA
           $.fish_triad3.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+          //SET_CHAR_THREAT_SEARCH fish_triad3 THREAT_GANG_MAFIA
           $.fish_triad3.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.fish_triad4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 953.0, -1122.0, -100.0);
-          //SET_CHAR_THREAT_SEARCH fish_triad4 THREAT_GANG_MAFIA
           $.fish_triad4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+          //SET_CHAR_THREAT_SEARCH fish_triad4 THREAT_GANG_MAFIA
           $.fish_triad4.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.fish_triad5 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_A`, 1008.0, -1126.0, -100.0);
-          //SET_CHAR_THREAT_SEARCH fish_triad5 THREAT_GANG_MAFIA
           $.fish_triad5.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+          //SET_CHAR_THREAT_SEARCH fish_triad5 THREAT_GANG_MAFIA
           $.fish_triad5.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.fish_triad6 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_A`, 974.0, -1142.0, -100.0);
-          //SET_CHAR_THREAT_SEARCH fish_triad6 THREAT_GANG_MAFIA
           $.fish_triad6.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+          //SET_CHAR_THREAT_SEARCH fish_triad6 THREAT_GANG_MAFIA
           $.fish_triad6.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.fish_triad1.wanderDir(0);
           $.fish_triad2.wanderDir(0);
@@ -440,6 +342,7 @@ async function fish_factory_gen_inner() {
         }
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
   }
   // SCM GOTO → fish_factory_gen_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO fish_factory_gen_inner"); // fallback: would break linear control flow
@@ -453,18 +356,8 @@ async function tramp_tunnel() {
 
 async function tramp_tunnel_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //CREATES TRAMPS IN ABANDONED TUNNEL
-  //	IF IS_PLAYER_IN_AREA_3D Player 1325.0 -512.0 14.0 1315.0 -165.8 17.0 FALSE
-  //	IF IS_PLAYER_IN_ZONE Player LITTLEI
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //IS_PLAYER_PLAYING
   if ($.player.isPlaying()) {
-    //	IF IS_PLAYER_IN_AREA_3D Player 1325.0 -512.0 14.0 1315.0 -165.8 17.0 FALSE
-    //	IF IS_PLAYER_IN_ZONE Player LITTLEI
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
     if ($.player.isInZone("LITTLEI")) {
-      //	IF IS_PLAYER_IN_AREA_3D Player 1325.0 -512.0 14.0 1315.0 -165.8 17.0 FALSE
       if ($.player.isInArea3D(1325.0, -512.0, 14.0, 1315.0, -165.8, 17.0, false /* FALSE */)) {
         if ($.has_player_been_in_tramp_tunnel_before == 0) {
           Streaming.RequestModel(ped`SCUM_MAN`);
@@ -552,6 +445,7 @@ async function tramp_tunnel_inner() {
         }
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
   }
   // SCM GOTO → tramp_tunnel_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO tramp_tunnel_inner"); // fallback: would break linear control flow
@@ -565,48 +459,16 @@ async function ind_sound() {
 
 async function ind_sound_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //TIME OF DAY SOUND EFFECTS	(REDLIGHT)
-  //Luigi's club
-  //Sex Kitten Club
-  //XXX Cinema1
-  //XXX Cinema2
-  //XXX Cinema
-  //	IF IS_PLAYER_IN_ZONE Player REDLIGH
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    //Luigi's club
-    //Sex Kitten Club
-    //XXX Cinema1
-    //XXX Cinema2
-    //XXX Cinema
-    //	IF IS_PLAYER_IN_ZONE Player REDLIGH
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
     if ($.player.isInZone("REDLIGH")) {
       [$.hours, $.minutes] = Clock.GetTimeOfDay();
-      //Luigi's club
-      //Sex Kitten Club
-      //XXX Cinema1
-      //XXX Cinema2
-      //XXX Cinema
       if ($.hours >= 20 || $.hours <= 5) {
-        //Luigi's club
-        //Sex Kitten Club
-        //XXX Cinema1
-        //XXX Cinema2
-        //XXX Cinema
         if ($.flag_sounds_added_redlight == 0) {
-          //Luigi's club
-          $.sound_loop8 = Sound.AddContinuous(891.9, -416.9, 16.1, 32 /* SOUND_STRIP_CLUB_LOOP_2_S */);
-          //Sex Kitten Club
-          $.sound_loop9 = Sound.AddContinuous(924.2, -464.3, 16.0, 30 /* SOUND_STRIP_CLUB_LOOP_1_S */);
-          //XXX Cinema1
-          $.sound_loop10 = Sound.AddContinuous(901.1, -392.0, 15.0, 62 /* SOUND_PORN_CINEMA_1_S */);
-          //XXX Cinema2
-          $.sound_loop11 = Sound.AddContinuous(901.2, -339.0, 10.0, 64 /* SOUND_PORN_CINEMA_2_S */);
-          //XXX Cinema
-          $.sound_loop12 = Sound.AddContinuous(960.1, -379.0, 15.0, 66 /* SOUND_PORN_CINEMA_3_S */);
+          $.sound_loop8 = Sound.AddContinuous(891.9, -416.9, 16.1, 32 /* SOUND_STRIP_CLUB_LOOP_2_S */); //Luigi's club
+          $.sound_loop9 = Sound.AddContinuous(924.2, -464.3, 16.0, 30 /* SOUND_STRIP_CLUB_LOOP_1_S */); //Sex Kitten Club
+          $.sound_loop10 = Sound.AddContinuous(901.1, -392.0, 15.0, 62 /* SOUND_PORN_CINEMA_1_S */); //XXX Cinema1
+          $.sound_loop11 = Sound.AddContinuous(901.2, -339.0, 10.0, 64 /* SOUND_PORN_CINEMA_2_S */); //XXX Cinema2
+          $.sound_loop12 = Sound.AddContinuous(960.1, -379.0, 15.0, 66 /* SOUND_PORN_CINEMA_3_S */); //XXX Cinema
           $.flag_sounds_added_redlight = 1;
         }
       }
@@ -621,6 +483,7 @@ async function ind_sound_inner() {
         }
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
   }
   // SCM GOTO → ind_sound_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO ind_sound_inner"); // fallback: would break linear control flow
@@ -634,27 +497,12 @@ async function dog_sound() {
 
 async function dog_sound_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //Portland Industrial
-  //Dog food factory
-  //	IF IS_PLAYER_IN_ZONE Player REDLIGH
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    //Portland Industrial
-    //Dog food factory
-    //	IF IS_PLAYER_IN_ZONE Player REDLIGH
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
     if ($.player.isInZone("PORT_I")) {
       [$.hours, $.minutes] = Clock.GetTimeOfDay();
-      //Portland Industrial
-      //Dog food factory
       if ($.hours >= 9 && $.hours <= 17) {
-        //Portland Industrial
-        //Dog food factory
         if ($.flag_sounds_added_dog == 0) {
-          //Dog food factory
-          $.sound_loop7 = Sound.AddContinuous(1210.9, -802.2, 15.0, 37 /* SOUND_SAWMILL_LOOP_L */);
+          $.sound_loop7 = Sound.AddContinuous(1210.9, -802.2, 15.0, 37 /* SOUND_SAWMILL_LOOP_L */); //Dog food factory
           $.flag_sounds_added_dog = 1;
         }
       }
@@ -665,6 +513,7 @@ async function dog_sound_inner() {
         }
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
   }
   // SCM GOTO → dog_sound_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO dog_sound_inner"); // fallback: would break linear control flow
@@ -678,30 +527,9 @@ async function com_ammu() {
 
 async function com_ammu_inner() {
   await asyncWait(70);
-  // AMMU NATION COMMERCIAL
-  //	camera_ammu2 = 1
-  //	player not in area (353.3 -711.7 24.0 340.3 -718.0 28.0)
-  //time_difference is greater than 60,000 means shopkeeper has been created
-  //IS_PLAYER_IN_AREA_3D
-  //	player not in COM_EAS
-  //time_difference is greater than 30,000 means shopkeeper has been created
-  //	IF IS_PLAYER_IN_ZONE player COM_EAS
-  //IS_PLAYER_PLAYING
   if ($.player.isPlaying()) {
-    //	camera_ammu2 = 1
-    //	player not in area (353.3 -711.7 24.0 340.3 -718.0 28.0)
-    //time_difference is greater than 60,000 means shopkeeper has been created
-    //IS_PLAYER_IN_AREA_3D
-    //	player not in COM_EAS
-    //time_difference is greater than 30,000 means shopkeeper has been created
-    //	IF IS_PLAYER_IN_ZONE player COM_EAS
     if ($.player.isInZone("COM_EAS")) {
-      //	camera_ammu2 = 1
-      //	player not in area (353.3 -711.7 24.0 340.3 -718.0 28.0)
-      //time_difference is greater than 60,000 means shopkeeper has been created
-      //IS_PLAYER_IN_AREA_3D
       if ($.player.isInArea3D(353.3, -711.7, 24.0, 339.8, -722.4, 28.0, false /* FALSE */)) {
-        //	camera_ammu2 = 1
         if ($.camera_ammu2 == 0) {
           $.player.setControl(false /* Off */);
           Camera.SetFadingColor(1, 1, 1);
@@ -773,14 +601,12 @@ async function com_ammu_inner() {
         }
       }
       else {
-        //time_difference is greater than 60,000 means shopkeeper has been created
         if ($.camera_ammu2 == 1) {
           $.player.setControl(false /* Off */);
           Camera.DoFade(500, 0 /* FADE_OUT */);
           while (Camera.GetFadingStatus()) {
             await asyncWait(0);
           }
-          //time_difference is greater than 60,000 means shopkeeper has been created
           if (Char.IsDead($.ammu_shop_bloke1) && $.time_difference > 60000) {
             $.time_since_murdering_shopkeeper1 = Clock.GetGameTimer();
           }
@@ -810,9 +636,7 @@ async function com_ammu_inner() {
       }
     }
     else {
-      //time_difference is greater than 30,000 means shopkeeper has been created
       if ($.camera_ammu2 == 1) {
-        //time_difference is greater than 30,000 means shopkeeper has been created
         if (Char.IsDead($.ammu_shop_bloke1) && $.time_difference > 60000) {
           $.time_since_murdering_shopkeeper1 = Clock.GetGameTimer();
         }
@@ -836,51 +660,9 @@ async function com_car_park() {
 
 async function com_car_park_inner() {
   await asyncWait(250);
-  // PARKED CARS GENERATOR FOR THE MULTISTORY CARPARK IN NEWPORT
-  // 1ST FLOOR LOCATE
-  // 3RD FLOOR CLEAR
-  // 4TH FLOOR CLEAR
-  // 5TH FLOOR CLEAR
-  // 2ND FLOOR LOCATE
-  // 3RD FLOOR LOCATE
-  // 4TH FLOOR LOCATE
-  // 2ND FLOOR CLEAR
-  // 5TH FLOOR LOCATE
-  // ENTIRE CARPARK LOCATE
-  //IS_PLAYER_IN_ZONE player COM_EAS // CARPARK STUFF
-  //	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  //IS_PLAYER_PLAYING
   if ($.player.isPlaying()) {
-    // PARKED CARS GENERATOR FOR THE MULTISTORY CARPARK IN NEWPORT
-    // 1ST FLOOR LOCATE
-    // 3RD FLOOR CLEAR
-    // 4TH FLOOR CLEAR
-    // 5TH FLOOR CLEAR
-    // 2ND FLOOR LOCATE
-    // 3RD FLOOR LOCATE
-    // 4TH FLOOR LOCATE
-    // 2ND FLOOR CLEAR
-    // 5TH FLOOR LOCATE
-    // ENTIRE CARPARK LOCATE
-    //IS_PLAYER_IN_ZONE player COM_EAS // CARPARK STUFF
-    //	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
     if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-      // 1ST FLOOR LOCATE
-      // 3RD FLOOR CLEAR
-      // 4TH FLOOR CLEAR
-      // 5TH FLOOR CLEAR
-      // 2ND FLOOR LOCATE
-      // 3RD FLOOR LOCATE
-      // 4TH FLOOR LOCATE
-      // 2ND FLOOR CLEAR
-      // 5TH FLOOR LOCATE
-      // ENTIRE CARPARK LOCATE
-      //IS_PLAYER_IN_ZONE player COM_EAS // CARPARK STUFF
       if ($.player.isInZone("COM_EAS")) {
-        // 1ST FLOOR LOCATE
-        // 3RD FLOOR CLEAR
-        // 4TH FLOOR CLEAR
-        // 5TH FLOOR CLEAR
         if ($.player.isInArea3D(266.83, -610.93, 25.0, 306.31, -479.92, 30.0, false)) {
           World.SetCarDensityMultiplier(0.0);
           if ($.second_floor_cars_exist == 0) {
@@ -889,33 +671,21 @@ async function com_car_park_inner() {
             // fallback if label was not emitted as async function: no-op continues linearly
             $.second_floor_cars_exist = 1;
           }
-          // 3RD FLOOR CLEAR
           if ($.third_floor_cars_exist == 1) {
-            // 3RD FLOOR CLEAR
-            World.ClearAreaOfCars(266.83, -610.93, 30.4, 306.31, -479.92, 34.84);
+            World.ClearAreaOfCars(266.83, -610.93, 30.4, 306.31, -479.92, 34.84); // 3RD FLOOR CLEAR
             $.third_floor_cars_exist = 0;
           }
-          // 4TH FLOOR CLEAR
           if ($.fourth_floor_cars_exist == 1) {
-            // 4TH FLOOR CLEAR
-            World.ClearAreaOfCars(306.31, -610.93, 32.84, 346.81, -479.92, 40.0);
+            World.ClearAreaOfCars(306.31, -610.93, 32.84, 346.81, -479.92, 40.0); // 4TH FLOOR CLEAR
             $.fourth_floor_cars_exist = 0;
           }
-          // 5TH FLOOR CLEAR
           if ($.fifth_floor_cars_exist == 1) {
-            // 5TH FLOOR CLEAR
-            World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0);
+            World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0); // 5TH FLOOR CLEAR
             $.fifth_floor_cars_exist = 0;
           }
           $.need_to_clear_area_flag = 1;
         }
-        // 2ND FLOOR LOCATE
-        // 4TH FLOOR CLEAR
-        // 5TH FLOOR CLEAR
         if ($.need_to_clear_area_flag > 0) {
-          // 2ND FLOOR LOCATE
-          // 4TH FLOOR CLEAR
-          // 5TH FLOOR CLEAR
           if ($.player.isInArea3D(306.31, -610.93, 28.0, 346.81, -479.92, 32.42, false)) {
             if ($.second_floor_cars_exist == 0) {
               // SCM GOSUB second_floor_of_cars
@@ -929,26 +699,18 @@ async function com_car_park_inner() {
               // fallback if label was not emitted as async function: no-op continues linearly
               $.third_floor_cars_exist = 1;
             }
-            // 4TH FLOOR CLEAR
             if ($.fourth_floor_cars_exist == 1) {
-              // 4TH FLOOR CLEAR
-              World.ClearAreaOfCars(306.31, -610.93, 32.84, 346.81, -479.92, 40.0);
+              World.ClearAreaOfCars(306.31, -610.93, 32.84, 346.81, -479.92, 40.0); // 4TH FLOOR CLEAR
               $.fourth_floor_cars_exist = 0;
             }
-            // 5TH FLOOR CLEAR
             if ($.fifth_floor_cars_exist == 1) {
-              // 5TH FLOOR CLEAR
-              World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0);
+              World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0); // 5TH FLOOR CLEAR
               $.fifth_floor_cars_exist = 0;
             }
             $.need_to_clear_area_flag = 2;
           }
         }
-        // 3RD FLOOR LOCATE
-        // 5TH FLOOR CLEAR
         if ($.need_to_clear_area_flag > 1) {
-          // 3RD FLOOR LOCATE
-          // 5TH FLOOR CLEAR
           if ($.player.isInArea3D(266.83, -610.93, 30.4, 306.31, -479.92, 34.84, false)) {
             if ($.second_floor_cars_exist == 0) {
               // SCM GOSUB second_floor_of_cars
@@ -968,25 +730,17 @@ async function com_car_park_inner() {
               // fallback if label was not emitted as async function: no-op continues linearly
               $.fourth_floor_cars_exist = 1;
             }
-            // 5TH FLOOR CLEAR
             if ($.fifth_floor_cars_exist == 1) {
-              // 5TH FLOOR CLEAR
-              World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0);
+              World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0); // 5TH FLOOR CLEAR
               $.fifth_floor_cars_exist = 0;
             }
             $.need_to_clear_area_flag = 3;
           }
         }
-        // 4TH FLOOR LOCATE
-        // 2ND FLOOR CLEAR
         if ($.need_to_clear_area_flag > 2) {
-          // 4TH FLOOR LOCATE
-          // 2ND FLOOR CLEAR
           if ($.player.isInArea3D(306.31, -610.93, 32.84, 346.81, -479.92, 40.0, false)) {
-            // 2ND FLOOR CLEAR
             if ($.second_floor_cars_exist == 1) {
-              // 2ND FLOOR CLEAR
-              World.ClearAreaOfCars(306.31, -610.93, 28.0, 346.81, -479.92, 32.42);
+              World.ClearAreaOfCars(306.31, -610.93, 28.0, 346.81, -479.92, 32.42); // 2ND FLOOR CLEAR
               $.second_floor_cars_exist = 0;
             }
             if ($.third_floor_cars_exist == 0) {
@@ -1010,24 +764,14 @@ async function com_car_park_inner() {
             $.need_to_clear_area_flag = 4;
           }
         }
-        // 5TH FLOOR LOCATE
-        // 2ND FLOOR CLEAR
-        // 3RD FLOOR CLEAR
         if ($.need_to_clear_area_flag > 3) {
-          // 5TH FLOOR LOCATE
-          // 2ND FLOOR CLEAR
-          // 3RD FLOOR CLEAR
           if ($.player.isInArea3D(266.83, -610.93, 35.23, 306.31, -479.92, 40.0, false)) {
-            // 2ND FLOOR CLEAR
             if ($.second_floor_cars_exist == 1) {
-              // 2ND FLOOR CLEAR
-              World.ClearAreaOfCars(306.31, -610.93, 28.0, 346.81, -479.92, 32.42);
+              World.ClearAreaOfCars(306.31, -610.93, 28.0, 346.81, -479.92, 32.42); // 2ND FLOOR CLEAR
               $.second_floor_cars_exist = 0;
             }
-            // 3RD FLOOR CLEAR
             if ($.third_floor_cars_exist == 1) {
-              // 3RD FLOOR CLEAR
-              World.ClearAreaOfCars(266.83, -610.93, 30.4, 306.31, -479.92, 34.84);
+              World.ClearAreaOfCars(266.83, -610.93, 30.4, 306.31, -479.92, 34.84); // 3RD FLOOR CLEAR
               $.third_floor_cars_exist = 0;
             }
             if ($.fourth_floor_cars_exist == 0) {
@@ -1045,27 +789,13 @@ async function com_car_park_inner() {
             $.need_to_clear_area_flag = 5;
           }
         }
-        // ENTIRE CARPARK LOCATE
-        // 2ND FLOOR CLEAR
-        // 3RD FLOOR CLEAR
-        // 4TH FLOOR CLEAR
-        // 5TH FLOOR CLEAR
         if ($.need_to_clear_area_flag > 0) {
-          // ENTIRE CARPARK LOCATE
-          // 2ND FLOOR CLEAR
-          // 3RD FLOOR CLEAR
-          // 4TH FLOOR CLEAR
-          // 5TH FLOOR CLEAR
           if (!($.player.isInArea3D(266.83, -610.93, 25.0, 346.81, -479.92, 40.0, false))) {
             World.SetCarDensityMultiplier(1.0);
-            // 2ND FLOOR CLEAR
-            World.ClearAreaOfCars(306.31, -610.93, 28.0, 346.81, -479.92, 32.42);
-            // 3RD FLOOR CLEAR
-            World.ClearAreaOfCars(266.83, -610.93, 30.4, 306.31, -479.92, 34.84);
-            // 4TH FLOOR CLEAR
-            World.ClearAreaOfCars(306.31, -610.93, 32.84, 346.81, -479.92, 40.0);
-            // 5TH FLOOR CLEAR
-            World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0);
+            World.ClearAreaOfCars(306.31, -610.93, 28.0, 346.81, -479.92, 32.42); // 2ND FLOOR CLEAR
+            World.ClearAreaOfCars(266.83, -610.93, 30.4, 306.31, -479.92, 34.84); // 3RD FLOOR CLEAR
+            World.ClearAreaOfCars(306.31, -610.93, 32.84, 346.81, -479.92, 40.0); // 4TH FLOOR CLEAR
+            World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0); // 5TH FLOOR CLEAR
             $.second_floor_cars_exist = 0;
             $.third_floor_cars_exist = 0;
             $.fourth_floor_cars_exist = 0;
@@ -1075,27 +805,13 @@ async function com_car_park_inner() {
         }
       }
     }
-    // ENTIRE CARPARK LOCATE
-    // 2ND FLOOR CLEAR
-    // 3RD FLOOR CLEAR
-    // 4TH FLOOR CLEAR
-    // 5TH FLOOR CLEAR
     if ($.need_to_clear_area_flag > 0) {
-      // ENTIRE CARPARK LOCATE
-      // 2ND FLOOR CLEAR
-      // 3RD FLOOR CLEAR
-      // 4TH FLOOR CLEAR
-      // 5TH FLOOR CLEAR
       if (!($.player.isInArea3D(266.83, -610.93, 25.0, 346.81, -479.92, 40.0, false))) {
         World.SetCarDensityMultiplier(1.0);
-        // 2ND FLOOR CLEAR
-        World.ClearAreaOfCars(306.31, -610.93, 28.0, 346.81, -479.92, 32.42);
-        // 3RD FLOOR CLEAR
-        World.ClearAreaOfCars(266.83, -610.93, 30.4, 306.31, -479.92, 34.84);
-        // 4TH FLOOR CLEAR
-        World.ClearAreaOfCars(306.31, -610.93, 32.84, 346.81, -479.92, 40.0);
-        // 5TH FLOOR CLEAR
-        World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0);
+        World.ClearAreaOfCars(306.31, -610.93, 28.0, 346.81, -479.92, 32.42); // 2ND FLOOR CLEAR
+        World.ClearAreaOfCars(266.83, -610.93, 30.4, 306.31, -479.92, 34.84); // 3RD FLOOR CLEAR
+        World.ClearAreaOfCars(306.31, -610.93, 32.84, 346.81, -479.92, 40.0); // 4TH FLOOR CLEAR
+        World.ClearAreaOfCars(266.83, -610.93, 35.23, 306.31, -479.92, 40.0); // 5TH FLOOR CLEAR
         $.second_floor_cars_exist = 0;
         $.third_floor_cars_exist = 0;
         $.fourth_floor_cars_exist = 0;
@@ -1110,72 +826,40 @@ async function com_car_park_inner() {
 }
 
 async function second_floor_of_cars() {
-  // 2ND FLOOR CARS
-  World.CreateRandomCarForCarPark(311.5469, -510.2604, 28.1100, 91.0159);
+  World.CreateRandomCarForCarPark(311.5469, -510.2604, 28.1100, 91.0159); // 2ND FLOOR CARS
   World.CreateRandomCarForCarPark(323.5103, -526.5427, 28.1100, 270.3409);
   World.CreateRandomCarForCarPark(342.6624, -542.3556, 28.1100, 268.3777);
   World.CreateRandomCarForCarPark(311.4912, -554.4299, 28.1100, 91.0689);
   World.CreateRandomCarForCarPark(310.4685, -574.6492, 28.1100, 269.4606);
   World.CreateRandomCarForCarPark(342.7477, -590.4939, 28.1100, 268.4776);
-  /////////////////////////////////////////////////////////////
   return;
 }
 
 async function third_floor_of_cars() {
-  // 3RD FLOOR CARS
-  World.CreateRandomCarForCarPark(302.2802, -580.5526, 30.5114, 270.3723);
+  World.CreateRandomCarForCarPark(302.2802, -580.5526, 30.5114, 270.3723); // 3RD FLOOR CARS
   World.CreateRandomCarForCarPark(289.5574, -564.5915, 30.5114, 88.0410);
   World.CreateRandomCarForCarPark(283.8795, -548.4308, 30.5114, 92.5479);
   World.CreateRandomCarForCarPark(270.6312, -528.4613, 30.5114, 88.6249);
   World.CreateRandomCarForCarPark(301.5385, -484.7673, 30.3863, 271.6668);
-  /////////////////////////////////////////////////////////////
   return;
 }
 
 async function fourth_floor_of_cars() {
-  // 4TH FLOOR CARS
-  World.CreateRandomCarForCarPark(311.0863, -512.6859, 32.8451, 91.1545);
+  World.CreateRandomCarForCarPark(311.0863, -512.6859, 32.8451, 91.1545); // 4TH FLOOR CARS
   World.CreateRandomCarForCarPark(342.6769, -536.3028, 32.8375, 266.6709);
   World.CreateRandomCarForCarPark(311.4744, -564.1841, 32.8375, 267.5539);
   World.CreateRandomCarForCarPark(330.5274, -584.3387, 32.8375, 267.7581);
   World.CreateRandomCarForCarPark(342.9128, -600.6630, 32.8375, 87.2900);
-  /////////////////////////////////////////////////////////////
   return;
 }
 
 async function fifth_floor_of_cars() {
-  // 5TH FLOOR CARS
-  World.CreateRandomCarForCarPark(282.3572, -582.5417, 35.2389, 267.0331);
+  World.CreateRandomCarForCarPark(282.3572, -582.5417, 35.2389, 267.0331); // 5TH FLOOR CARS
   World.CreateRandomCarForCarPark(302.7462, -574.5422, 35.2465, 271.0973);
   World.CreateRandomCarForCarPark(270.9382, -530.4745, 35.2389, 88.3213);
   World.CreateRandomCarForCarPark(303.2198, -510.6057, 35.2389, 88.6673);
   World.CreateRandomCarForCarPark(283.2274, -502.7662, 35.2389, 89.4868);
   World.CreateRandomCarForCarPark(302.4006, -485.5503, 35.2389, 266.0503);
-  /////////////////////////////////////////////////////////////
-  /*
-  check_for_dead_peds_in_genstuf:
-  IF IS_CHAR_DEAD tramp1
-  tramp1_dead = 1
-  ELSE
-  tramp1_dead = 0
-  ENDIF
-  IF IS_CHAR_DEAD tramp2
-  tramp2_dead = 1
-  ELSE
-  tramp2_dead = 0
-  ENDIF
-  IF IS_CHAR_DEAD tramp3
-  tramp3_dead = 1
-  ELSE
-  tramp3_dead = 0
-  ENDIF
-  IF IS_CHAR_DEAD tramp4
-  tramp4_dead = 1
-  ELSE
-  tramp4_dead = 0
-  ENDIF
-  RETURN
-  */
   return;
 }
 
@@ -1189,17 +873,14 @@ export async function genstuf() {
   // VAR_INT has_player_been_at_fish_before
   // VAR_INT flag_need_wall_change_km1 ammu_bloke_kill_player
   // VAR_INT flag_failed_love1 special_ammu_audio
-  // VARIABLE FOR PARKED CARS GENERATOR FOR THE MULTISTORY CARPARK IN NEWPORT
   // VAR_INT need_to_clear_area_flag
   // VAR_INT fish_triad1 fish_triad2 fish_triad3 fish_triad4 fish_triad5 fish_triad6
-  // Sound effects for the dog food factory
   // VAR_INT flag_sounds_added_dog
   // VAR_INT second_floor_cars_exist third_floor_cars_exist fourth_floor_cars_exist fifth_floor_cars_exist
   $.second_floor_cars_exist = 0;
   $.third_floor_cars_exist = 0;
   $.fourth_floor_cars_exist = 0;
   $.fifth_floor_cars_exist = 0;
-  // VARIABLE FOR PARKED CARS GENERATOR FOR THE MULTISTORY CARPARK IN NEWPORT
   $.need_to_clear_area_flag = 0;
   $.has_player_been_at_fish_before = 0;
   $.has_player_been_in_tramp_tunnel_before = 0;
@@ -1208,11 +889,10 @@ export async function genstuf() {
   $.tramp_is_dead = 0;
   $.camera_ammu1 = 0;
   $.camera_ammu2 = 0;
-  // Sound effects for the dog food factory
+  $.flag_sounds_added_dog = 0;
   //loaded_all_industrial_models_before = 0
   //loaded_all_commercial_models_before = 0
   //loaded_all_suburban_models_before = 0
-  $.flag_sounds_added_dog = 0;
   $.flag_failed_love1 = 0;
   $.flag_need_wall_change_km1 = 0;
   $.flag_player_on_phil_mission = 0;

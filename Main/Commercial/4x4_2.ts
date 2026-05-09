@@ -8,11 +8,11 @@ import { car, ped, hier } from "../../../ide.ts";
 async function mission_start_4x4two() {
   Stat.RegisterMissionGiven();
   // ScriptName
-  //flag_player_on_4x4_mission = 1
   $.flag_player_on_mission = 1;
+  //flag_player_on_4x4_mission = 1
   Text.PrintBig("T4X4_2", 15000, 2);
-  //Set Variables
   await asyncWait(0);
+  //Set Variables
   $.counter_4x4_pickups = 0;
   $.timer_4x4 = 0;
   $.flag_intro = 0;
@@ -31,8 +31,8 @@ async function mission_start_4x4two() {
   $.flag_blip_10 = 0;
   $.flag_blip_11 = 0;
   $.flag_blip_12 = 0;
-  //Set Coords
   $.record_temp = 0;
+  //Set Coords
   $.x_1 = 6.52;
   $.y_1 = -701.37;
   $.z_1 = 29.0;
@@ -68,8 +68,8 @@ async function mission_start_4x4two() {
   $.z_11 = 28.54;
   $.x_12 = 68.55;
   $.y_12 = -773.13;
-  //Mission Script
   $.z_12 = 22.92;
+  //Mission Script
   $.wanted_4x4 = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   $.player_4x4 = $.player.storeCarIsIn();
@@ -90,7 +90,6 @@ async function mission_start_4x4two() {
   $.blip_10 = Blip.AddForCoord($.x_10, $.y_10, $.z_10);
   $.blip_11 = Blip.AddForCoord($.x_11, $.y_11, $.z_11);
   $.blip_12 = Blip.AddForCoord($.x_12, $.y_12, $.z_12);
-  //WAIT 1500
   while ($.counter_4x4_pickups < 12) {
     await asyncWait(0);
     if ($.counter_4x4_pickups == 1 && $.flag_timer == 0) {
@@ -238,23 +237,22 @@ async function mission_start_4x4two() {
         }
       }
     }
-    //WAIT 1500
     if ($.flag_intro == 0) {
       $.timer_intro_start = Clock.GetGameTimer();
       Camera.SetFixedPosition(50.48, -727.5, 27.0, 0.0, 0.0, 0.0);
       Audio.SetMusicDoesFade(false /* FALSE */);
       Camera.DoFade(1500, 0 /* FADE_OUT */);
-      //WAIT 1500
       while (Camera.GetFadingStatus()) {
         await asyncWait(0);
       }
+      //WAIT 1500
       Streaming.LoadScene(50.48, -727.5, 27.0);
       Camera.PointAtPoint($.x_8, $.y_8, $.z_8, 2 /* JUMP_CUT */);
       Camera.DoFade(1500, 1 /* FADE_IN */);
-      //WAIT 1500
       while (Camera.GetFadingStatus()) {
         await asyncWait(0);
       }
+      //WAIT 1500
       Text.PrintNow("T4X4_2A", 5000, 1);
       $.flag_intro = 1;
     }
@@ -309,17 +307,17 @@ async function mission_start_4x4two() {
       throw new Error("unresolved GOTO mission_4x4two_failed"); // fallback: would break linear control flow
     }
   }
-  // --------------------------Mission failed-----------------------------------------------
   if ($.counter_4x4_pickups == 12) {
     // SCM GOTO → mission_4x4two_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_4x4two_passed"); // fallback: would break linear control flow
   }
+  // --------------------------Mission failed-----------------------------------------------
 }
 
 async function mission_4x4two_failed() {
   Text.PrintBig("M_FAIL", 2000, 1);
-  // -------------------------Mission passed-------------------------------------------------
   return;
+  // -------------------------Mission passed-------------------------------------------------
 }
 
 async function mission_4x4two_passed() {
@@ -334,21 +332,20 @@ async function mission_4x4two_passed() {
       $.record_4x4_two = $.record_temp;
     }
   }
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1);
-  //PRINT_WITH_NUMBER_NOW (Y1_1ST) counter_player_points 4000 1
+  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
+  //PRINT_WITH_NUMBER_NOW (Y1_1ST) counter_player_points 4000 1
   $.player.clearWantedLevel();
   $.player.addScore(30000);
   Stat.Register4X4TwoTime($.record_4x4_two);
-  //START_NEW_SCRIPT t4x4_mission3_loop
   if ($.flag_4x4_mission2_passed == 0) {
     Stat.RegisterMissionPassed(T4X4_2);
     $.flag_4x4_mission2_passed = 1;
     Stat.PlayerMadeProgress(1);
   }
-  // mission cleanup
+  //START_NEW_SCRIPT t4x4_mission3_loop
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_4x4two() {
@@ -368,17 +365,17 @@ async function mission_cleanup_4x4two() {
   $.blip_10.remove();
   $.blip_11.remove();
   $.blip_12.remove();
-  //flag_player_on_4x4_mission = 0
   $.flag_player_on_mission = 0;
+  //flag_player_on_4x4_mission = 0
   Mission.Finish();
   return;
 }
 
 export async function _4x4_2() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***************************************A ride in the Park********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_4x4two
   await mission_start_4x4two();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -390,34 +387,6 @@ export async function _4x4_2() {
   // SCM GOSUB mission_cleanup_4x4two
   await mission_cleanup_4x4two();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
-  //VAR_INT player_4x4_two
-  //VAR_INT counter_4x4_pickups timer_4x4
-  //VAR_INT wanted_4x4
-  //VAR_INT intro_time_lapsed timer_intro_now timer_intro_start flag_intro
-  //VAR_INT flag_timer
-  /*
-  VAR_INT blip_1 blip_2 blip_3
-  VAR_INT blip_4 blip_5 blip_6
-  VAR_INT blip_7 blip_8 blip_9
-  VAR_INT blip_10 blip_11 blip_12
-  VAR_INT flag_blip_1 flag_blip_2 flag_blip_3 flag_blip_4
-  VAR_INT flag_blip_5 flag_blip_6 flag_blip_7 flag_blip_8
-  VAR_INT flag_blip_9 flag_blip_10 flag_blip_11 flag_blip_12
-  //variables called in 4x4_1.sc
-  VAR_FLOAT x_1 y_1 z_1
-  VAR_FLOAT x_2 y_2 z_2
-  VAR_FLOAT x_3 y_3 z_3
-  VAR_FLOAT x_4 y_4 z_4
-  VAR_FLOAT x_5 y_5 z_5
-  VAR_FLOAT x_6 y_6 z_6
-  VAR_FLOAT x_7 y_7 z_7
-  VAR_FLOAT x_8 y_8 z_8
-  VAR_FLOAT x_9 y_9 z_9
-  VAR_FLOAT x_10 y_10 z_10
-  VAR_FLOAT x_11 y_11 z_11
-  VAR_FLOAT x_12 y_12 z_12
-  */
-  // ****************************************Mission Start************************************
   // MissionBoundary
+  // ****************************************Mission Start************************************
 }

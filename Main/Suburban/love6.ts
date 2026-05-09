@@ -12,6 +12,7 @@ async function mission_start_love6() {
   await asyncWait(0);
   // ScriptName
   $.get_in_van = 0;
+  $.survival_time = 180000;
   // ****************************************START OF CUTSCENE********************************
   //SET_FADING_COLOUR 0 0 0
   //
@@ -22,14 +23,13 @@ async function mission_start_love6() {
   //	GOTO mission_love6_failed
   //ENDIF
   //PRINT_BIG LOVE6	15000 2
-  $.survival_time = 180000;
   Streaming.LoadSpecialCharacter(1, love2);
   Streaming.LoadSpecialModel(hier`cutobj01`, LOVEH);
   Streaming.RequestModel(tshrorckgrdn);
+  Streaming.RequestModel(tshrorckgrdn_alfas);
   //WHILE GET_FADING_STATUS
   //	WAIT 0
   //ENDWHILE
-  Streaming.RequestModel(tshrorckgrdn_alfas);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(tshrorckgrdn)) || !(Streaming.HasModelLoaded(tshrorckgrdn_alfas)) || !(Streaming.HasModelLoaded(hier`cutobj01`))) {
     await asyncWait(0);
@@ -53,38 +53,32 @@ async function mission_start_love6() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"A lesson in business, my friend;"
-  Text.PrintNow(LOVE6_A, 5000, 1);
+  Text.PrintNow(LOVE6_A, 5000, 1); //"A lesson in business, my friend;"
   while ($.cs_time < 3011) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"if you have a unique commodity, the world and his wife will try to wrestle it from your grasp."
-  Text.PrintNow(LOVE6_E, 5000, 1);
+  Text.PrintNow(LOVE6_E, 5000, 1); //"if you have a unique commodity, the world and his wife will try to wrestle it from your grasp."
   while ($.cs_time < 7026) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Even if they have little understanding as to its true value."
-  Text.PrintNow(LOVE6_B, 5000, 1);
+  Text.PrintNow(LOVE6_B, 5000, 1); //"Even if they have little understanding as to its true value."
   while ($.cs_time < 10679) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"SWAT teams have cordoned the area around my friend and the package."
-  Text.PrintNow(LOVE6_C, 5000, 1);
+  Text.PrintNow(LOVE6_C, 5000, 1); //"SWAT teams have cordoned the area around my friend and the package."
   while ($.cs_time < 14011) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Get over there, pick up the van and bust out as a decoy."
-  Text.PrintNow(LOVE6_D, 5000, 1);
+  Text.PrintNow(LOVE6_D, 5000, 1); //"Get over there, pick up the van and bust out as a decoy."
   while ($.cs_time < 16741) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Keep them busy for 5 minutes and he should make good his escape!"
-  Text.PrintNow(LOVE6_F, 5000, 1);
+  Text.PrintNow(LOVE6_F, 5000, 1); //"Keep them busy for 5 minutes and he should make good his escape!"
   while ($.cs_time < 20333) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -115,10 +109,10 @@ async function mission_start_love6() {
   Streaming.Switch(true /* ON */);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   Audio.LoadMissionAudio(LO6_A);
-  // ******************************************END OF CUTSCENE********************************
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
+  // ******************************************END OF CUTSCENE********************************
   $.decoy_van_blip = Blip.AddForCoordOld(-1026.5, -73.5, 39.0, 0 /* RED */, 2 /* BLIP_ONLY */);
   $.decoy_van_blip.changeScale(3);
   while (!(Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */))) {
@@ -237,8 +231,8 @@ async function mission_start_love6() {
       throw new Error("unresolved GOTO mission_love6_failed"); // fallback: would break linear control flow
     }
   }
-  //PRINT_NOW GOGO 5000 1 //GO GO GO!!
   $.decoy_van_blip.remove();
+  //PRINT_NOW GOGO 5000 1 //GO GO GO!!
   if (!(Char.IsDead($.ped_swat_6))) {
     $.ped_swat_6.setObjKillPlayerAnyMeans($.player);
     $.ped_swat_6.markAsNoLongerNeeded();
@@ -313,14 +307,13 @@ async function mission_start_love6() {
   }
   $.player.alterWantedLevel(6);
   Hud.DisplayTimer($.survival_time);
-  //"Now lead the cops away!"
-  Text.PrintNow(LOVE6_1, 5000, 1);
+  Text.PrintNow(LOVE6_1, 5000, 1); //"Now lead the cops away!"
   if (Audio.HasMissionAudioLoaded()) {
     Audio.PlayMissionAudio();
   }
+  $.decoy_van_health = $.decoy_van.getHealth();
   //escort_truck_health += dummy_health
   //escort_truck_health = escort_truck_health / 2
-  $.decoy_van_health = $.decoy_van.getHealth();
   $.decoy_van_health = $.decoy_van_health - 250;
   $.decoy_van_health = $.decoy_van_health * 100;
   $.decoy_van_health = $.decoy_van_health / 750;
@@ -330,10 +323,6 @@ async function mission_start_love6() {
     $.decoy_van_health = 100;
   }
   Hud.DisplayCounterWithString($.decoy_van_health, 1 /* COUNTER_DISPLAY_BAR */, DAM);
-  //	escort_truck_health += dummy_health
-  //	escort_truck_health = escort_truck_health / 2
-  //~g~You have ~1~ seconds to return to the Securicar before you fail the mission.
-  //~r~You ditched the Decoy Securicar!
   while ($.survival_time > 0) {
     await asyncWait(0);
     if (Car.IsDead($.decoy_van)) {
@@ -341,9 +330,9 @@ async function mission_start_love6() {
       throw new Error("unresolved GOTO mission_love6_failed"); // fallback: would break linear control flow
     }
     $.player.alterWantedLevel(6);
+    $.decoy_van_health = $.decoy_van.getHealth();
     //	escort_truck_health += dummy_health
     //	escort_truck_health = escort_truck_health / 2
-    $.decoy_van_health = $.decoy_van.getHealth();
     $.decoy_van_health = $.decoy_van_health - 250;
     $.decoy_van_health = $.decoy_van_health * 100;
     $.decoy_van_health = $.decoy_van_health / 750;
@@ -352,8 +341,6 @@ async function mission_start_love6() {
     if ($.decoy_van_health > 100) {
       $.decoy_van_health = 100;
     }
-    //~g~You have ~1~ seconds to return to the Securicar before you fail the mission.
-    //~r~You ditched the Decoy Securicar!
     if (!($.player.isInCar($.decoy_van))) {
       if ($.get_in_van == 0) {
         $.out_of_car_timer_start = Clock.GetGameTimer();
@@ -371,12 +358,9 @@ async function mission_start_love6() {
       $.out_of_car_timer -= $.out_of_car_timer_diff;
       $.out_of_car_timer_start = $.out_of_car_timer_present;
       $.out_of_car_timer_secs = $.out_of_car_timer / 1000;
-      //~g~You have ~1~ seconds to return to the Securicar before you fail the mission.
-      Text.PrintWithNumberNow(LOVE6_3, $.out_of_car_timer_secs, 200, 1);
-      //~r~You ditched the Decoy Securicar!
+      Text.PrintWithNumberNow(LOVE6_3, $.out_of_car_timer_secs, 200, 1); //~g~You have ~1~ seconds to return to the Securicar before you fail the mission.
       if ($.out_of_car_timer_secs < 1) {
-        //~r~You ditched the Decoy Securicar!
-        Text.PrintNow(LOVE6_4, 3000, 1);
+        Text.PrintNow(LOVE6_4, 3000, 1); //~r~You ditched the Decoy Securicar!
         // SCM GOTO → mission_love6_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_love6_failed"); // fallback: would break linear control flow
       }
@@ -386,22 +370,20 @@ async function mission_start_love6() {
       $.get_in_van = 0;
     }
   }
-  //"You failed to lead the police far enough away."
   if ($.player.locateAnyMeans2D(-1026.5, -73.5, 160.0, 160.0, false)) {
-    //"You failed to lead the police far enough away."
-    Text.PrintNow(LOVE6_2, 5000, 1);
+    Text.PrintNow(LOVE6_2, 5000, 1); //"You failed to lead the police far enough away."
     // SCM GOTO → mission_love6_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_love6_failed"); // fallback: would break linear control flow
   }
-  // Mission Love 6 failed
   // SCM GOTO → mission_love6_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_love6_passed"); // fallback: would break linear control flow
+  // Mission Love 6 failed
 }
 
 async function mission_love6_failed() {
   Text.PrintBig(M_FAIL, 5000, 1);
-  // mission Love 6 passed
   return;
+  // mission Love 6 passed
 }
 
 async function mission_love6_passed() {
@@ -413,8 +395,8 @@ async function mission_love6_passed() {
   Audio.PlayMissionPassedTune(1);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT love_mission7_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_love6() {
@@ -434,6 +416,7 @@ async function mission_cleanup_love6() {
 }
 
 export async function love6() {
+  // MissionBoundary
   // *****************************************************************************************
   // *******************************    Donald Love 6    *************************************
   // *******************************    Swat the SWAT    *************************************
@@ -441,7 +424,6 @@ export async function love6() {
   // *** Three SWAT vans are going to approach the contact point from different directions ***
   // *** to trap any one escaping.  The player must take out the SWAT teams.				 ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_love6
   await mission_start_love6();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -453,16 +435,12 @@ export async function love6() {
   // SCM GOSUB mission_cleanup_love6
   await mission_cleanup_love6();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables For Mission
   // MissionBoundary
-  //CARS
+  // Variables For Mission
   // VAR_INT decoy_van swat_1 swat_2 swat_3 swat_4 swat_5 cop_1 cop_2 cop_3
-  //SWAT PEDS
   // VAR_INT ped_swat_1 ped_swat_2 ped_swat_3 ped_swat_4 ped_swat_5 ped_swat_6 ped_swat_7 ped_swat_8
-  //COP PEDS
   // VAR_INT ped_cop_1 ped_cop_2 ped_cop_3 ped_cop_4 ped_cop_5 ped_cop_6
-  //TIMER BLIPS ETC
   // VAR_INT survival_time decoy_van_blip get_in_van decoy_van_health decoy_van_health2
-  // ****************************************Mission Start************************************
   // VAR_INT out_of_car_timer_present out_of_car_timer_start out_of_car_timer out_of_car_timer_diff out_of_car_timer_secs
+  // ****************************************Mission Start************************************
 }

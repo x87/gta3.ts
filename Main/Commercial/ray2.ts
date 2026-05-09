@@ -7,13 +7,14 @@ import { car, ped, hier } from "../../../ide.ts";
 
 async function mission_start_ray2() {
   Stat.RegisterMissionGiven();
+  // ScriptName
   //	PRINT_BIG ( RM2 ) 15000 2
   // *****************************************Set Flags************************************
-  // ScriptName
   $.flag_player_on_mission = 1;
   $.flag_player_on_ray_mission = 1;
   $.flag_player_on_phil_mission = 1;
   $.rays_cutscene_flag = 1;
+  await asyncWait(0);
   /*
   IF NOT rays_camera_1 = 0
   OR NOT rays_camera_2 = 0
@@ -25,7 +26,6 @@ async function mission_start_ray2() {
   ENDIF
   */
   //set flags
-  await asyncWait(0);
   $.flag_m16_gone = 0;
   $.flag_uzi_gone = 0;
   $.flag_rocket_gone = 0;
@@ -47,10 +47,10 @@ async function mission_start_ray2() {
   $.flag_v10_dead = 0;
   $.flag_v11_dead = 0;
   $.flag_v12_dead = 0;
-  //condition_1 = 0
   $.counter_dead_varmints = 0;
-  //flag_camera = 0
+  //condition_1 = 0
   $.flag_cartel_arrived = 0;
+  //flag_camera = 0
   $.stallion_bailout = 0;
   $.sentinel_bailout = 0;
   $.perenial_bailout = 0;
@@ -60,14 +60,14 @@ async function mission_start_ray2() {
   $.flag_stallion_created = 0;
   $.flag_sentinel_created = 0;
   $.flag_perenial_created = 0;
-  //flag_launch_sentinel = 0
   $.flag_launch_stallion = 0;
+  //flag_launch_sentinel = 0
   $.flag_launch_perenial = 0;
   $.flag_sneaky_1 = 0;
   $.flag_sneaky_2 = 0;
   $.flag_audio = 0;
-  // *******************************************Set Coord*****************************************
   $.flag_gate = 0;
+  // *******************************************Set Coord*****************************************
   $.wh_x_rm2 = 137.15;
   $.wh_y_rm2 = 192.43;
   $.wh2_x_rm2 = 121.5;
@@ -82,12 +82,6 @@ async function mission_start_ray2() {
   $.stage_2_y = 204.0;
   $.phils_defcon_x = 136.5;
   $.phils_defcon_y = 176.7;
-  /*
-  phils_defcon_minx = 119.0
-  phils_defcon_miny = 168.0
-  phils_defcon_maxx = 146.0
-  phils_defcon_maxy = 198.0
-  */
   $.phils_defcon_z = 11.6;
   $.m16_x = 145.5;
   $.m16_y = 170.0;
@@ -100,33 +94,21 @@ async function mission_start_ray2() {
   $.rocket_z = 14.53;
   $.molotov_x = 126.98;
   $.molotov_y = 191.73;
-  // ****************************************START OF CUTSCENE********************************
-  /*
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_ray2_failed
-  ENDIF
-  SET_FADING_COLOUR 0 0 0
-  DO_FADE 250 FADE_OUT
-  PRINT_BIG RM2 15000 2 //"Arms Shortage"
-  SWITCH_STREAMING OFF
-  */
   $.molotov_z = 14.53;
   Streaming.LoadSpecialCharacter(1, $.ray);
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, RAYH);
+  Streaming.RequestModel(toilet);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.RequestModel(toilet);
   Streaming.LoadAllModelsNow();
-  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(toilet))) {
     await asyncWait(0);
   }
+  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor FALSE
   Cutscene.Load(r2_ap);
   Streaming.Switch(true /* ON */);
   Cutscene.SetOffset(39.424, -726.677, 21.692);
@@ -137,11 +119,11 @@ async function mission_start_ray2() {
   $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`);
   $.cs_playerhead.setAnim($.player);
   $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`);
+  $.cs_rayhead.setAnim($.ray);
   //CREATE_CUTSCENE_OBJECT cut_obj1 cs_ludoor
   //SET_CUTSCENE_ANIM cs_ludoor LUDOOR
   //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
   //SET_PLAYER_HEADING player 270.0
-  $.cs_rayhead.setAnim($.ray);
   World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
   $.player.setCoordinates(39.0, -723.5, 22.0);
   $.player.setHeading(90.0);
@@ -149,54 +131,48 @@ async function mission_start_ray2() {
   Camera.SetNearClip(0.2);
   Cutscene.Start();
   Streaming.Switch(false /* OFF */);
-  // Displays cutscene text
   World.SwitchRubbish(false /* OFF */);
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 6426) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Hey kid, over here!"
-  Text.PrintNow(RM2_A1, 10000, 1);
+  Text.PrintNow(RM2_A1, 10000, 1); //"Hey kid, over here!"
   while ($.cs_time < 8218) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"An old army buddy of mine runs a business up in Rockford."
-  Text.PrintNow(RM2_A, 10000, 1);
+  Text.PrintNow(RM2_A, 10000, 1); //"An old army buddy of mine runs a business up in Rockford."
   while ($.cs_time < 11093) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"We saw action in Nicaragua, back when this country knew what it was doing."
-  Text.PrintNow(RM2_B, 10000, 1);
+  Text.PrintNow(RM2_B, 10000, 1); //"We saw action in Nicaragua, back when this country knew what it was doing."
   while ($.cs_time < 14634) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Some Cartel scum roughed him up yesterday and said they'd be back for some of his stock today.
-  Text.PrintNow(RM2_C, 10000, 1);
+  Text.PrintNow(RM2_C, 10000, 1); //"Some Cartel scum roughed him up yesterday and said they'd be back for some of his stock today.
   while ($.cs_time < 20938) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"He could do with some back-up and in return he'll give you knock-down rates on any hardware you buy."
-  Text.PrintNow(RM2_D, 10000, 1);
+  Text.PrintNow(RM2_D, 10000, 1); //"He could do with some back-up and in return he'll give you knock-down rates on any hardware you buy."
   while ($.cs_time < 26599) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I'd go myself but the old siatica's playing up again -cough cough- so, eerr, good luck."
-  Text.PrintNow(RM2_D1, 10000, 1);
+  Text.PrintNow(RM2_D1, 10000, 1); //"I'd go myself but the old siatica's playing up again -cough cough- so, eerr, good luck."
   while ($.cs_time < 38333) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
   Camera.DoFade(1000, 0 /* FADE_OUT */);
-  //DO_FADE 1000 FADE_IN
   while (!(Cutscene.HasFinished())) {
     await asyncWait(0);
   }
+  //DO_FADE 1000 FADE_IN
   Text.ClearPrints();
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
@@ -206,22 +182,22 @@ async function mission_start_ray2() {
   Camera.SetBehindPlayer();
   Camera.SetNearClip(0.9);
   await asyncWait(500);
+  Camera.DoFade(1000, 1 /* FADE_IN */);
   //WHILE GET_FADING_STATUS
   // WAIT 0
   //ENDWHILE
   //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
-  Camera.DoFade(1000, 1 /* FADE_IN */);
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
   Streaming.MarkModelAsNoLongerNeeded(toilet);
   Streaming.Switch(true /* ON */);
   World.SwitchRubbish(true /* ON */);
+  $.rays_cutscene_flag = 0;
   // ******************************************END OF CUTSCENE********************************
   // Mission stuff goes here
-  $.rays_cutscene_flag = 0;
-  //------------------REQUEST_MODELS ------------------------------
   $.blip_warehouse_rm2 = Blip.AddForCoord($.wh_x_rm2, $.wh_y_rm2, -100.0);
+  //------------------REQUEST_MODELS ------------------------------
   Streaming.RequestModel(ped`GANG_COLOMBIAN_A`);
   while (!(Streaming.HasModelLoaded(ped`GANG_COLOMBIAN_A`))) {
     await asyncWait(0);
@@ -235,16 +211,6 @@ async function mission_start_ray2() {
     await asyncWait(0);
   }
   Streaming.RequestModel(car`COLUMB`);
-  /*
-  REQUEST_MODEL CAR_STALLION
-  WHILE NOT HAS_MODEL_LOADED CAR_STALLION
-  WAIT 0
-  ENDWHILE
-  REQUEST_MODEL CAR_PERENNIAL
-  WHILE NOT HAS_MODEL_LOADED CAR_PERENNIAL
-  WAIT 0
-  ENDWHILE
-  */
   while (!(Streaming.HasModelLoaded(car`COLUMB`))) {
     await asyncWait(0);
   }
@@ -253,37 +219,12 @@ async function mission_start_ray2() {
     await asyncWait(0);
   }
   Streaming.RequestModel(car`RHINO`);
-  /*
-  REQUEST_MODEL CAR_PATRIOT
-  WHILE NOT HAS_MODEL_LOADED CAR_PATRIOT
-  WAIT 0
-  ENDWHILE
-  */
-  //------------------WAITING FOR PLAYER TO ARRIVE---------------------------------------
   while (!(Streaming.HasModelLoaded(car`RHINO`))) {
     await asyncWait(0);
   }
-  //AND NOT LOCATE_PLAYER_ANY_MEANS_2D player wh2_x_rm2 wh2_y_rm2 2.0 2.0 false
-  //--------------------CREATE PHIL'S TRUCKS---------------------------------------------
-  /*
-  CREATE_CAR CAR_PATRIOT 141.23 192.52 11.6 phil_truck_3
-  SET_CAR_HEADING phil_truck_3 60.0
-  CAR_SET_IDLE phil_truck_3
-  SET_CAR_PROOFS phil_truck_3 TRUE FALSE FALSE FALSE FALSE
-  LOCK_CAR_DOORS phil_truck_3 CARLOCK_LOCKED
-  */
-  //--------------------PLAYER ARRIVED (CUTSCENE)------------------------------------------
-  //-----------------------CREATE PHIL-------------------
+  //------------------WAITING FOR PLAYER TO ARRIVE---------------------------------------
   while (!($.player.locateAnyMeans2D($.wh_x_rm2, $.wh_y_rm2, 4.0, 4.0, true /* true */))) {
     await asyncWait(0);
-    //--------------------CREATE PHIL'S TRUCKS---------------------------------------------
-    /*
-    CREATE_CAR CAR_PATRIOT 141.23 192.52 11.6 phil_truck_3
-    SET_CAR_HEADING phil_truck_3 60.0
-    CAR_SET_IDLE phil_truck_3
-    SET_CAR_PROOFS phil_truck_3 TRUE FALSE FALSE FALSE FALSE
-    LOCK_CAR_DOORS phil_truck_3 CARLOCK_LOCKED
-    */
     if ($.player.isInZone("HOSPI_2") && $.flag_trucks == 0) {
       $.phil_truck_1 = Car.Create(115 /* CAR_RHINO */, 132.0, 173.9, 11.6);
       $.phil_truck_1.setHeading(0.0);
@@ -294,6 +235,7 @@ async function mission_start_ray2() {
       $.phil_truck_2.setHeading(180.0);
       $.phil_truck_2.setIdle();
       $.phil_truck_2.setProofs(true /* TRUE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+      $.phil_truck_2.lockDoors(2 /* CARLOCK_LOCKED */);
       /*
       CREATE_CAR CAR_PATRIOT 141.23 192.52 11.6 phil_truck_3
       SET_CAR_HEADING phil_truck_3 60.0
@@ -301,7 +243,6 @@ async function mission_start_ray2() {
       SET_CAR_PROOFS phil_truck_3 TRUE FALSE FALSE FALSE FALSE
       LOCK_CAR_DOORS phil_truck_3 CARLOCK_LOCKED
       */
-      $.phil_truck_2.lockDoors(2 /* CARLOCK_LOCKED */);
       $.flag_trucks = 1;
     }
     if ($.flag_gate == 0) {
@@ -323,6 +264,8 @@ async function mission_start_ray2() {
       $.flag_gate = 1;
     }
   }
+  //--------------------PLAYER ARRIVED (CUTSCENE)------------------------------------------
+  //-----------------------CREATE PHIL-------------------
   World.ClearArea($.phils_defcon_x, $.phils_defcon_y, 11.5, 20.0, true /* true */);
   $.phil = Char.Create(21 /* PEDTYPE_SPECIAL */, ped`SPECIAL1`, $.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
   $.phil.setHeading(360.0);
@@ -331,9 +274,9 @@ async function mission_start_ray2() {
   $.phil.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
   $.phil.clearThreatSearch();
   $.phil.setThreatSearch(12 /* THREAT_GANG_COLOMBIAN */);
+  $.phil.setStayInSamePlace(true /* true */);
   //CHAR_SET_IDLE phil
   //-----------------------CREATE PHIL'S 'SUPPLIES'-------------------------------------
-  $.phil.setStayInSamePlace(true /* true */);
   $.phils_m16 = Pickup.CreateWithAmmo(161 /* WEAPON_M16 */, 3 /* PICKUP_ONCE */, 60, $.m16_x, $.m16_y, 11.5);
   $.phils_uzi = Pickup.Create(159 /* WEAPON_UZI */, 3 /* PICKUP_ONCE */, $.uzi_x, $.uzi_y, 11.5);
   $.phils_shotgun = Pickup.Create(157 /* WEAPON_SHOTGUN */, 3 /* PICKUP_ONCE */, $.shotgun_x, $.shotgun_y, 11.5);
@@ -366,10 +309,10 @@ async function bibble() {
   await asyncWait(0);
   $.phils_defcon_y = $.phils_defcon_y + 3.0;
   $.player_rm2.setObjRunToCoord($.phils_defcon_x, $.phils_defcon_y);
-  //SET_CHAR_OBJ_NO_OBJ player_rm2
   while (!($.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false /* false */))) {
     await asyncWait(0);
   }
+  //SET_CHAR_OBJ_NO_OBJ player_rm2
   Audio.LoadMissionAudio(R2_A);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
@@ -380,8 +323,7 @@ async function bibble() {
   }
   Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
   Audio.PlayMissionAudio();
-  //"Ray phoned ahead....but I thought there'd be more of you.
-  Text.PrintNow("RM2_E", 4000, 1);
+  Text.PrintNow("RM2_E", 4000, 1); //"Ray phoned ahead....but I thought there'd be more of you.
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -399,8 +341,7 @@ async function bibble() {
   }
   Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
   Audio.PlayMissionAudio();
-  //"I can't believe the yellow bastard's left me without proper cover again!"
-  Text.PrintNow("RM2_E1", 4000, 1);
+  Text.PrintNow("RM2_E1", 4000, 1); //"I can't believe the yellow bastard's left me without proper cover again!"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -418,8 +359,7 @@ async function bibble() {
   }
   Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
   Audio.PlayMissionAudio();
-  //"Well three arms are better than one, so grab whatever you need."
-  Text.PrintNow("RM2_F", 4000, 1);
+  Text.PrintNow("RM2_F", 4000, 1); //"Well three arms are better than one, so grab whatever you need."
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -437,8 +377,7 @@ async function bibble() {
   }
   Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
   Audio.PlayMissionAudio();
-  //"Those Colombians will be here any minute."
-  Text.PrintNow("RM2_F1", 4000, 1);
+  Text.PrintNow("RM2_F1", 4000, 1); //"Those Colombians will be here any minute."
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -456,15 +395,15 @@ async function peedle() {
   Hud.SwitchWidescreen(false /* off */);
   $.timer_start_rm2 = Clock.GetGameTimer();
   $.timer_now_rm2 = Clock.GetGameTimer();
-  //-------GIVE PLAYER TIME TO GET PICKUPS WITHOUT LEAVING COMPOUND-------
   $.timer_dif_rm2 = $.timer_now_rm2 - $.timer_start_rm2;
+  //-------GIVE PLAYER TIME TO GET PICKUPS WITHOUT LEAVING COMPOUND-------
   World.ClearArea($.varmint_gen1_x, $.varmint_gen1_y, 11.5, 20.0, true /* true */);
   World.ClearArea($.stage_3_x, $.stage_3_y, 11.5, 20.0, true /* true */);
   World.ClearArea($.stage_1_x, $.stage_1_y, 11.5, 20.0, true /* true */);
+  World.ClearArea($.stage_2_x, $.stage_2_y, 11.5, 20.0, true /* true */);
   /*IF NOT IS_CAR_DEAD phil_truck_3
   LOCK_CAR_DOORS phil_truck_3 CARLOCK_UNLOCKED
   ENDIF*/
-  World.ClearArea($.stage_2_x, $.stage_2_y, 11.5, 20.0, true /* true */);
   if (!(Car.IsDead($.phil_truck_2))) {
     $.phil_truck_2.lockDoors(1 /* CARLOCK_UNLOCKED */);
   }
@@ -493,32 +432,19 @@ async function peedle() {
 
 async function herring() {
   Audio.LoadMissionAudio(R2_E);
-  //-----------------MAIN LOOP-----------------------------------------
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
+  //-----------------MAIN LOOP-----------------------------------------
   $.timer_start_rm2 = Clock.GetGameTimer();
-  //--------sentinel gen stuff--------------------------------------------
-  //-----stallion gen stuff------------------------------------------------
-  //-----perenial gen stuff-----------------------------------------------
-  //----------------Sneaky backstab----------------------------------------
-  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_11 player
-  /*IF NOT IS_CHAR_DEAD phil
-  SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_12 phil
-  ENDIF*/
-  //"SHIT They're here! LOCK'N'LOAD!!"
-  /*WHILE NOT SLIDE_OBJECT phils_compnd_gate 147.249 214.323 10.599 0.0 0.1 0.0 FALSE
-  WAIT 0
-  ENDWHILE*/
-  //-------All Cartel Varmints dead-----------------------------------------------
   while ($.counter_dead_varmints < 12) {
     await asyncWait(0);
     $.timer_now_rm2 = Clock.GetGameTimer();
     $.timer_dif_rm2 = $.timer_now_rm2 - $.timer_start_rm2;
-    //--------sentinel gen stuff--------------------------------------------
     // SCM GOSUB pickups
     await pickups();
     // fallback if label was not emitted as async function: no-op continues linearly
+    //--------sentinel gen stuff--------------------------------------------
     if ($.timer_dif_rm2 > 2000 && $.flag_sentinel_created == 0) {
       $.sentinel1_rm2 = Car.Create(131 /* CAR_COLUMB */, $.varmint_gen1_x, $.varmint_gen1_y, -100.0);
       $.sentinel1_rm2.setOnlyDamagedByPlayer(true /* TRUE */);
@@ -554,7 +480,6 @@ async function herring() {
         }
       }
     }
-    //-----stallion gen stuff------------------------------------------------
     if ($.flag_sentinel_created == 1) {
       if (Car.IsDead($.sentinel1_rm2)) {
         $.flag_launch_stallion = 1;
@@ -572,6 +497,7 @@ async function herring() {
         }
       }
     }
+    //-----stallion gen stuff------------------------------------------------
     if ($.timer_dif_rm2 > 4000 && $.flag_stallion_created == 0 && $.flag_launch_stallion > 0) {
       $.stallion1_rm2 = Car.Create(131 /* CAR_COLUMB */, $.varmint_gen1_x, $.varmint_gen1_y, -100.0);
       $.stallion1_rm2.setOnlyDamagedByPlayer(true /* TRUE */);
@@ -605,7 +531,6 @@ async function herring() {
         }
       }
     }
-    //-----perenial gen stuff-----------------------------------------------
     if ($.flag_stallion_created == 1) {
       if (Car.IsDead($.stallion1_rm2)) {
         $.flag_launch_perenial = 1;
@@ -620,6 +545,7 @@ async function herring() {
         }
       }
     }
+    //-----perenial gen stuff-----------------------------------------------
     if ($.timer_dif_rm2 > 6000 && $.flag_perenial_created == 0 && $.flag_launch_perenial > 0) {
       $.perenial1_rm2 = Car.Create(131 /* CAR_COLUMB */, $.varmint_gen1_x, $.varmint_gen1_y, -100.0);
       $.perenial1_rm2.setOnlyDamagedByPlayer(true /* TRUE */);
@@ -646,7 +572,6 @@ async function herring() {
         }
       }
     }
-    //----------------Sneaky backstab----------------------------------------
     if ($.flag_perenial_created == 1) {
       if (Car.IsDead($.perenial1_rm2)) {
         $.blip_perenial1.remove();
@@ -660,20 +585,15 @@ async function herring() {
         }
       }
     }
-    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_11 player
-    /*IF NOT IS_CHAR_DEAD phil
-    SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_12 phil
-    ENDIF*/
+    //----------------Sneaky backstab----------------------------------------
     if ($.flag_cartel_arrived > 0 && $.timer_dif_rm2 > 12000) {
-      //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_11 player
       if ($.flag_sneaky_1 == 0) {
-        //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_11 player
         if (!(Camera.IsPointOnScreen(121.3, 217.7, 11.5, 2.5))) {
           $.varmint_11 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 121.3, 235.7, 11.5);
           $.varmint_11.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 80);
           $.varmint_11.addArmor(100);
-          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_11 player
           $.blip_v11 = Blip.AddForCharOld($.varmint_11, 1, 2 /* BLIP_ONLY */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_11 player
           $.varmint_11.setObjRunToCoord($.phils_defcon_x, $.phils_defcon_y);
           $.varmint_11.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_11.setThreatSearch(19 /* THREAT_SPECIAL */);
@@ -681,13 +601,7 @@ async function herring() {
           $.flag_sneaky_1 = 1;
         }
       }
-      /*IF NOT IS_CHAR_DEAD phil
-      SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_12 phil
-      ENDIF*/
       if ($.flag_sneaky_2 == 0) {
-        /*IF NOT IS_CHAR_DEAD phil
-        SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_12 phil
-        ENDIF*/
         if (!(Camera.IsPointOnScreen(121.3, 241.6, 11.5, 2.5))) {
           $.varmint_12 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 121.3, 241.6, 11.5);
           $.varmint_12.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 20);
@@ -696,10 +610,10 @@ async function herring() {
           $.varmint_12.setObjRunToCoord(124.15, 184.7);
           $.varmint_12.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_12.setThreatSearch(19 /* THREAT_SPECIAL */);
+          $.varmint_12.setHeedThreats(true /* true */);
           /*IF NOT IS_CHAR_DEAD phil
           SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_12 phil
           ENDIF*/
-          $.varmint_12.setHeedThreats(true /* true */);
           $.flag_sneaky_2 = 1;
         }
       }
@@ -709,18 +623,10 @@ async function herring() {
       // SCM GOTO → mission_ray2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_ray2_failed"); // fallback: would break linear control flow
     }
-    //"SHIT They're here! LOCK'N'LOAD!!"
-    /*WHILE NOT SLIDE_OBJECT phils_compnd_gate 147.249 214.323 10.599 0.0 0.1 0.0 FALSE
-    WAIT 0
-    ENDWHILE*/
     if ($.flag_cartel_arrived == 1) {
       Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
       Audio.PlayMissionAudio();
-      //"SHIT They're here! LOCK'N'LOAD!!"
-      Text.PrintNow("RM2_K", 4000, 1);
-      /*WHILE NOT SLIDE_OBJECT phils_compnd_gate 147.249 214.323 10.599 0.0 0.1 0.0 FALSE
-      WAIT 0
-      ENDWHILE*/
+      Text.PrintNow("RM2_K", 4000, 1); //"SHIT They're here! LOCK'N'LOAD!!"
       $.flag_cartel_arrived = 2;
     }
     // SCM GOSUB varmint_deaths
@@ -730,17 +636,15 @@ async function herring() {
     await big_bailout_routine();
     // fallback if label was not emitted as async function: no-op continues linearly
   }
+  //-------All Cartel Varmints dead-----------------------------------------------
   if (!(Char.IsDead($.phil))) {
     $.phil.setHealth(5);
   }
-  //"Go check on Phil!"
   if (!(Char.IsDead($.phil))) {
     $.phil.setStayInSamePlace(true /* true */);
     [$.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z] = $.phil.getCoordinates();
-    //"Go check on Phil!"
     if (!($.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false /* false */))) {
-      //"Go check on Phil!"
-      Text.PrintNow("RM2_G", 2500, 1);
+      Text.PrintNow("RM2_G", 2500, 1); //"Go check on Phil!"
       $.blip_phil = Blip.AddForChar($.phil);
       while (!($.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false /* false */))) {
         await asyncWait(0);
@@ -790,21 +694,20 @@ async function herring() {
 
 async function boobble() {
   $.player_rm2 = $.player.getChar();
-  //TURN_CHAR_TO_FACE_CHAR player_rm2 phil
-  //TURN_CHAR_TO_FACE_CHAR phil player_rm2
-  //CHAR_LOOK_AT_CHAR_ALWAYS player_rm2 phil
   if (!(Char.IsDead($.phil))) {
     $.phil.turnToFaceChar($.player_rm2);
     Camera.PointAtChar($.phil, 15 /* FIXED */, 2 /* JUMP_CUT */);
   }
+  //TURN_CHAR_TO_FACE_CHAR player_rm2 phil
+  //TURN_CHAR_TO_FACE_CHAR phil player_rm2
+  //CHAR_LOOK_AT_CHAR_ALWAYS player_rm2 phil
   Audio.LoadMissionAudio(R2_F);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
   Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
   Audio.PlayMissionAudio();
-  // Heh-hey! If I'd teamed up with you in Nicaragua maybe I'd still have my arm!
-  Text.PrintNow("RM2_L", 3000, 1);
+  Text.PrintNow("RM2_L", 3000, 1); // Heh-hey! If I'd teamed up with you in Nicaragua maybe I'd still have my arm!
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
   }
@@ -844,8 +747,7 @@ async function boobble() {
   }
   Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
   Audio.PlayMissionAudio();
-  // If you need any firepower just drop by and take what you need from the rack
-  Text.PrintNow("RM2_M", 3000, 1);
+  Text.PrintNow("RM2_M", 3000, 1); // If you need any firepower just drop by and take what you need from the rack
   Camera.SetFixedPosition(143.5, 179.0, 11.5, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(144.0, 170.7, 11.5, 2 /* JUMP_CUT */);
   while (!(Audio.HasMissionAudioFinished())) {
@@ -857,14 +759,13 @@ async function boobble() {
   }
   Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
   Audio.PlayMissionAudio();
-  //-leave the cash under the bench. Now get out of here, I'll handle the cops
-  Text.PrintNow("RM2_N", 3000, 1);
+  Text.PrintNow("RM2_N", 3000, 1); //-leave the cash under the bench. Now get out of here, I'll handle the cops
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
   }
   Camera.PointAtPlayer($.player, 15 /* FIXED */, 1 /* INTERPOLATION */);
-  //ALTER_WANTED_LEVEL_NO_DROP player 3
   await asyncWait(2000);
+  //ALTER_WANTED_LEVEL_NO_DROP player 3
   if (!(Char.IsDead($.phil))) {
     $.phil.setObjNoObj();
     $.phil.setObjGotoCoordOnFoot(144.0, 174.4);
@@ -885,20 +786,18 @@ async function boobble() {
   Hud.SwitchWidescreen(false /* off */);
   Camera.RestoreJumpcut();
   $.player.setControl(true /* on */);
-  // Mission Ray2 failed
   // SCM GOTO → mission_ray2_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_ray2_passed"); // fallback: would break linear control flow
+  // Mission Ray2 failed
 }
 
 async function mission_ray2_failed() {
-  //Phil has been killed!!
   if ($.flag_phil_dead == 1) {
-    //Phil has been killed!!
-    Text.PrintNow("RM2_H", 3000, 1);
+    Text.PrintNow("RM2_H", 3000, 1); //Phil has been killed!!
   }
   Text.PrintBig("M_FAIL", 2000, 1);
-  // mission Ray2 passed
   return;
+  // mission Ray2 passed
 }
 
 async function mission_ray2_passed() {
@@ -923,16 +822,15 @@ async function mission_ray2_passed() {
     $.flag_rocket_gone = 1;
   }
   $.flag_ray_mission2_passed = 1;
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.clearWantedLevel();
   $.player.addScore(10000);
   Stat.RegisterMissionPassed(RM2);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT ray_mission3_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_ray2() {
@@ -947,8 +845,8 @@ async function mission_cleanup_ray2() {
   Streaming.MarkModelAsNoLongerNeeded(car`PATRIOT`);
   Streaming.MarkModelAsNoLongerNeeded(car`BARRACKS`);
   Streaming.MarkModelAsNoLongerNeeded(car`SENTINEL`);
-  //MARK_MODEL_AS_NO_LONGER_NEEDED CAR_PERENNIAL
   Streaming.MarkModelAsNoLongerNeeded(car`STALLION`);
+  //MARK_MODEL_AS_NO_LONGER_NEEDED CAR_PERENNIAL
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_A`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_COLOMBIAN_B`);
   Streaming.UnloadSpecialCharacter(1);
@@ -978,19 +876,14 @@ async function mission_cleanup_ray2() {
     $.phils_armour.remove();
   }
   Mission.Finish();
+  return;
   //---------------------------GOSUBS----------------GOSUBS---------------------------actuallydon'tchaknow
   //-------------------------------BAILOUT----------------------------------------------
-  return;
 }
 
 async function big_bailout_routine() {
-  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_5 player
-  //AND NOT IS_CHAR_DEAD phil
-  //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_6 phil
   if ($.stallion_bailout == 0 && $.flag_stallion_arrived == 1) {
-    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_5 player
     if (!(Char.IsDead($.varmint_5))) {
-      //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_5 player
       if (!(Car.IsDead($.stallion1_rm2))) {
         $.varmint_5.setObjLeaveCar($.stallion1_rm2);
         while ($.varmint_5.isInCar($.stallion1_rm2)) {
@@ -1004,7 +897,6 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook1"); // fallback: would break linear control flow
           }
         }
-        //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_5 player
         if (!(Char.IsDead($.varmint_5))) {
           $.blip_v5 = Blip.AddForCharOld($.varmint_5, 1, 2 /* BLIP_ONLY */);
           $.varmint_5.addArmor(100);
@@ -1012,17 +904,13 @@ async function big_bailout_routine() {
           $.varmint_5.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
           $.varmint_5.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_5.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_5 player
           $.varmint_5.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_5 player
         }
       }
     }
     // SCM label plook1
-    //AND NOT IS_CHAR_DEAD phil
-    //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_6 phil
     if (!(Char.IsDead($.varmint_6))) {
-      //AND NOT IS_CHAR_DEAD phil
-      //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_6 phil
       if (!(Car.IsDead($.stallion1_rm2))) {
         $.varmint_6.setObjLeaveCar($.stallion1_rm2);
         while ($.varmint_6.isInCar($.stallion1_rm2)) {
@@ -1036,16 +924,14 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook2"); // fallback: would break linear control flow
           }
         }
-        //AND NOT IS_CHAR_DEAD phil
-        //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_6 phil
         if (!(Char.IsDead($.varmint_6))) {
           $.blip_v6 = Blip.AddForCharOld($.varmint_6, 1, 2 /* BLIP_ONLY */);
           $.varmint_6.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
           $.varmint_6.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
           $.varmint_6.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_6.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_6 phil
           $.varmint_6.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_6 phil
         }
       }
     }
@@ -1053,15 +939,8 @@ async function big_bailout_routine() {
     $.blip_stallion1.remove();
     $.stallion_bailout = 1;
   }
-  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_1 player
-  //AND NOT IS_CHAR_DEAD phil
-  //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_2 phil
-  //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_3 phil
-  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_4 player
   if ($.sentinel_bailout == 0 && $.flag_sentinel_arrived == 1) {
-    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_1 player
     if (!(Char.IsDead($.varmint_1))) {
-      //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_1 player
       if (!(Car.IsDead($.sentinel1_rm2))) {
         $.varmint_1.setObjLeaveCar($.sentinel1_rm2);
         while ($.varmint_1.isInCar($.sentinel1_rm2)) {
@@ -1075,24 +954,19 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook3"); // fallback: would break linear control flow
           }
         }
-        //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_1 player
         if (!(Char.IsDead($.varmint_1))) {
           $.blip_v1 = Blip.AddForCharOld($.varmint_1, 1, 2 /* BLIP_ONLY */);
           $.varmint_1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 20);
           $.varmint_1.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
           $.varmint_1.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_1.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_1 player
           $.varmint_1.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_1 player
         }
       }
     }
     // SCM label plook3
-    //AND NOT IS_CHAR_DEAD phil
-    //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_2 phil
     if (!(Char.IsDead($.varmint_2))) {
-      //AND NOT IS_CHAR_DEAD phil
-      //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_2 phil
       if (!(Car.IsDead($.sentinel1_rm2))) {
         $.varmint_2.setObjLeaveCar($.sentinel1_rm2);
         while ($.varmint_2.isInCar($.sentinel1_rm2)) {
@@ -1106,25 +980,19 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook4"); // fallback: would break linear control flow
           }
         }
-        //AND NOT IS_CHAR_DEAD phil
-        //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_2 phil
         if (!(Char.IsDead($.varmint_2))) {
           $.blip_v2 = Blip.AddForCharOld($.varmint_2, 1, 2 /* BLIP_ONLY */);
           $.varmint_2.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 20);
           $.varmint_2.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
           $.varmint_2.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_2.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_2 phil
           $.varmint_2.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_2 phil
         }
       }
     }
     // SCM label plook4
-    //AND NOT IS_CHAR_DEAD phil
-    //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_3 phil
     if (!(Char.IsDead($.varmint_3))) {
-      //AND NOT IS_CHAR_DEAD phil
-      //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_3 phil
       if (!(Car.IsDead($.sentinel1_rm2))) {
         $.varmint_3.setObjLeaveCar($.sentinel1_rm2);
         while ($.varmint_3.isInCar($.sentinel1_rm2)) {
@@ -1138,23 +1006,19 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook5"); // fallback: would break linear control flow
           }
         }
-        //AND NOT IS_CHAR_DEAD phil
-        //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_3 phil
         if (!(Char.IsDead($.varmint_3))) {
           $.blip_v3 = Blip.AddForCharOld($.varmint_3, 1, 2 /* BLIP_ONLY */);
           $.varmint_3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 80);
           $.varmint_3.setObjRunToCoord(140.0, 209.5);
           $.varmint_3.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_3.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_3 phil
           $.varmint_3.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_3 phil
         }
       }
     }
     // SCM label plook5
-    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_4 player
     if (!(Char.IsDead($.varmint_4))) {
-      //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_4 player
       if (!(Car.IsDead($.sentinel1_rm2))) {
         $.varmint_4.setObjLeaveCar($.sentinel1_rm2);
         while ($.varmint_4.isInCar($.sentinel1_rm2)) {
@@ -1168,7 +1032,6 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook6"); // fallback: would break linear control flow
           }
         }
-        //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_4 player
         if (!(Char.IsDead($.varmint_4))) {
           $.blip_v4 = Blip.AddForCharOld($.varmint_4, 1, 2 /* BLIP_ONLY */);
           $.varmint_4.addArmor(100);
@@ -1176,8 +1039,8 @@ async function big_bailout_routine() {
           $.varmint_4.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
           $.varmint_4.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_4.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_4 player
           $.varmint_4.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_4 player
         }
       }
     }
@@ -1185,15 +1048,8 @@ async function big_bailout_routine() {
     $.blip_sentinel1.remove();
     $.sentinel_bailout = 1;
   }
-  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_7 player
-  //AND NOT IS_CHAR_DEAD phil
-  //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_8 phil
-  //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_9 phil
-  //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_10 player
   if ($.perenial_bailout == 0 && $.flag_perenial_arrived == 1) {
-    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_7 player
     if (!(Char.IsDead($.varmint_7))) {
-      //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_7 player
       if (!(Car.IsDead($.perenial1_rm2))) {
         $.varmint_7.setObjLeaveCar($.perenial1_rm2);
         while ($.varmint_7.isInCar($.perenial1_rm2)) {
@@ -1207,24 +1063,19 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook7"); // fallback: would break linear control flow
           }
         }
-        //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_7 player
         if (!(Char.IsDead($.varmint_7))) {
           $.blip_v7 = Blip.AddForCharOld($.varmint_7, 1, 2 /* BLIP_ONLY */);
           $.varmint_7.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
           $.varmint_7.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
           $.varmint_7.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_7.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_7 player
           $.varmint_7.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_7 player
         }
       }
     }
     // SCM label plook7
-    //AND NOT IS_CHAR_DEAD phil
-    //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_8 phil
     if (!(Char.IsDead($.varmint_8))) {
-      //AND NOT IS_CHAR_DEAD phil
-      //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_8 phil
       if (!(Car.IsDead($.perenial1_rm2))) {
         $.varmint_8.setObjLeaveCar($.perenial1_rm2);
         while ($.varmint_8.isInCar($.perenial1_rm2)) {
@@ -1238,25 +1089,19 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook8"); // fallback: would break linear control flow
           }
         }
-        //AND NOT IS_CHAR_DEAD phil
-        //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_8 phil
         if (!(Char.IsDead($.varmint_8))) {
           $.blip_v8 = Blip.AddForCharOld($.varmint_8, 1, 2 /* BLIP_ONLY */);
           $.varmint_8.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 45);
           $.varmint_8.setObjRunToCoord(129.7, 199.8);
           $.varmint_8.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_8.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_8 phil
           $.varmint_8.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_8 phil
         }
       }
     }
     // SCM label plook8
-    //AND NOT IS_CHAR_DEAD phil
-    //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_9 phil
     if (!(Char.IsDead($.varmint_9))) {
-      //AND NOT IS_CHAR_DEAD phil
-      //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_9 phil
       if (!(Car.IsDead($.perenial1_rm2))) {
         $.varmint_9.setObjLeaveCar($.perenial1_rm2);
         while ($.varmint_9.isInCar($.perenial1_rm2)) {
@@ -1270,23 +1115,19 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook9"); // fallback: would break linear control flow
           }
         }
-        //AND NOT IS_CHAR_DEAD phil
-        //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_9 phil
         if (!(Char.IsDead($.varmint_9))) {
           $.blip_v9 = Blip.AddForCharOld($.varmint_9, 1, 2 /* BLIP_ONLY */);
           $.varmint_9.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 30);
           $.varmint_9.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
           $.varmint_9.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_9.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_9 phil
           $.varmint_9.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_9 phil
         }
       }
     }
     // SCM label plook9
-    //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_10 player
     if (!(Char.IsDead($.varmint_10))) {
-      //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_10 player
       if (!(Car.IsDead($.perenial1_rm2))) {
         $.varmint_10.setObjLeaveCar($.perenial1_rm2);
         while ($.varmint_10.isInCar($.perenial1_rm2)) {
@@ -1300,7 +1141,6 @@ async function big_bailout_routine() {
             throw new Error("unresolved GOTO plook10"); // fallback: would break linear control flow
           }
         }
-        //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_10 player
         if (!(Char.IsDead($.varmint_10))) {
           $.blip_v10 = Blip.AddForCharOld($.varmint_10, 1, 2 /* BLIP_ONLY */);
           $.varmint_10.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 20);
@@ -1308,8 +1148,8 @@ async function big_bailout_routine() {
           $.varmint_10.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
           $.varmint_10.setThreatSearch(0 /* THREAT_PLAYER1 */);
           $.varmint_10.setThreatSearch(19 /* THREAT_SPECIAL */);
-          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_10 player
           $.varmint_10.setHeedThreats(true /* true */);
+          //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_10 player
         }
       }
     }
@@ -1317,8 +1157,8 @@ async function big_bailout_routine() {
     $.blip_perenial1.remove();
     $.perenial_bailout = 1;
   }
-  //-------------------VARMINT DEATHS-----------------------------------------
   return;
+  //-------------------VARMINT DEATHS-----------------------------------------
 }
 
 async function varmint_deaths() {
@@ -1416,53 +1256,43 @@ async function varmint_deaths() {
       }
     }
   }
-  //---------------PICKUPS------------------------
   return;
+  //---------------PICKUPS------------------------
 }
 
 async function pickups() {
-  //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_M16 80
   if ($.flag_m16_gone == 0) {
-    //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_M16 80
     if ($.phils_m16.hasBeenCollected()) {
       $.player.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
       $.flag_m16_gone = 1;
     }
   }
-  //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_UZI 100
   if ($.flag_uzi_gone == 0) {
-    //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_UZI 100
     if ($.phils_uzi.hasBeenCollected()) {
       $.player.setCurrentWeapon(3 /* WEAPONTYPE_UZI */);
       $.flag_uzi_gone = 1;
     }
   }
-  //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_ROCKET 3
   if ($.flag_rocket_gone == 0) {
-    //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_ROCKET 3
     if ($.phils_rocket.hasBeenCollected()) {
       $.player.setCurrentWeapon(8 /* WEAPONTYPE_ROCKET */);
       $.flag_rocket_gone = 1;
     }
   }
-  //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_SHOTGUN 100
   if ($.flag_shotgun_gone == 0) {
-    //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_SHOTGUN 100
     if ($.phils_shotgun.hasBeenCollected()) {
       $.player.setCurrentWeapon(4 /* WEAPONTYPE_SHOTGUN */);
       $.flag_shotgun_gone = 1;
     }
   }
-  //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_SHOTGUN 100
   if ($.flag_molotov_gone == 0) {
-    //GIVE_WEAPON_TO_PLAYER player WEAPONTYPE_SHOTGUN 100
     if ($.phils_molotov.hasBeenCollected()) {
       $.player.setCurrentWeapon(10 /* WEAPONTYPE_MOLOTOV */);
       $.flag_molotov_gone = 1;
     }
   }
-  //------blip removal-------------------------------
   return;
+  //------blip removal-------------------------------
 }
 
 async function blip_removal_rm2() {
@@ -1482,10 +1312,10 @@ async function blip_removal_rm2() {
 }
 
 export async function ray2() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************Ray mission 2***********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_ray2
   await mission_start_ray2();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1497,14 +1327,14 @@ export async function ray2() {
   // SCM GOSUB mission_cleanup_ray2
   await mission_cleanup_ray2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT blip_warehouse_rm2
   // VAR_FLOAT wh_x_rm2 wh_y_rm2 wh2_x_rm2 wh2_y_rm2
-  //VAR_FLOAT phils_defcon_minx phils_defcon_miny phils_defcon_maxx phils_defcon_maxy
   // VAR_FLOAT phils_defcon_x phils_defcon_y phils_defcon_z
-  //VAR_INT phils_m16 phils_uzi phils_shotgun
+  //VAR_FLOAT phils_defcon_minx phils_defcon_miny phils_defcon_maxx phils_defcon_maxy
   // VAR_INT flag_phil_in_area flag_phil_arrived
+  //VAR_INT phils_m16 phils_uzi phils_shotgun
   // VAR_INT phils_molotov phils_rocket phils_m16 phils_uzi phils_shotgun phils_armour
   // VAR_INT flag_m16_gone flag_uzi_gone flag_rocket_gone flag_shotgun_gone
   // VAR_INT flag_molotov_gone
@@ -1514,8 +1344,8 @@ export async function ray2() {
   // VAR_FLOAT molotov_x molotov_y molotov_z
   // VAR_FLOAT shotgun_x shotgun_y
   // VAR_INT player_rm2 player_car_rm2
-  //VAR_INT phil_truck_3
   // VAR_INT phil phil_truck_1 phil_truck_2 blip_phil
+  //VAR_INT phil_truck_3
   // VAR_INT flag_phil_dead flag_trucks
   // VAR_INT varmint_1 varmint_2 varmint_3
   // VAR_INT varmint_4 varmint_5 varmint_6
@@ -1528,25 +1358,24 @@ export async function ray2() {
   // VAR_INT flag_v4_dead flag_v5_dead flag_v6_dead
   // VAR_INT flag_v7_dead flag_v8_dead flag_v9_dead
   // VAR_INT flag_v10_dead flag_v11_dead flag_v12_dead
-  //VAR_INT condition_1
   // VAR_INT counter_dead_varmints
-  //flag_camera
+  //VAR_INT condition_1
   // VAR_INT flag_cartel_arrived flag_sneaky_1 flag_sneaky_2
   // VAR_INT sentinel1_rm2 stallion1_rm2 perenial1_rm2
   // VAR_INT stallion_bailout sentinel_bailout perenial_bailout
   // VAR_INT flag_stallion_arrived flag_sentinel_arrived flag_perenial_arrived
   // VAR_INT flag_stallion_created flag_sentinel_created flag_perenial_created
-  //VAR_INT flag_launch_sentinel
   // VAR_INT flag_launch_perenial flag_launch_stallion
+  //VAR_INT flag_launch_sentinel
   // VAR_INT blip_stallion1 blip_perenial1 blip_sentinel1
+  // VAR_FLOAT varmint_gen1_x varmint_gen1_y
   //VAR_FLOAT varmint_gen2_x varmint_gen2_y
   //VAR_FLOAT varmint_gen3_x varmint_gen3_y
-  // VAR_FLOAT varmint_gen1_x varmint_gen1_y
   // VAR_FLOAT stage_1_x stage_1_y
   // VAR_FLOAT stage_2_x stage_2_y
   // VAR_FLOAT stage_3_x stage_3_y
-  //VAR_FLOAT player_rm2_x player_rm2_y player_rm2_z
   // VAR_INT timer_dif_rm2 timer_now_rm2 timer_start_rm2
-  // ****************************************Mission Start************************************
+  //VAR_FLOAT player_rm2_x player_rm2_y player_rm2_z
   // VAR_INT flag_audio flag_gate
+  // ****************************************Mission Start************************************
 }

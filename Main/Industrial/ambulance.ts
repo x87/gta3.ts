@@ -32,10 +32,10 @@ async function mission_start_ambulance() {
   $.injured_ped_9_flag = 0;
   $.injured_ped_10_flag = 0;
   $.injured_ped_11_flag = 0;
+  $.injured_ped_12_flag = 0;
   //injured_ped_13_flag		= 0
   //injured_ped_14_flag		= 0
   //injured_ped_15_flag		= 0
-  $.injured_ped_12_flag = 0;
   $.saved_peds = 0;
   $.first_rescue_flag = 0;
   $.first_chunk_flag = 0;
@@ -51,42 +51,29 @@ async function mission_start_ambulance() {
   $.car_full_flag = 0;
   $.saved_peds_this_go = 0;
   $.paramedic_location = 0;
-  // Take the injured people to the Hospital
-  Text.PrintNow(ATUTOR2, 3000, 1);
+  Text.PrintNow(ATUTOR2, 3000, 1); // Take the injured people to the Hospital
   await asyncWait(3000);
   Game.SetWantedMultiplier(0.5);
 }
 
 async function mission_root() {
-  // Ambulance Mission Level ~1~
-  Text.PrintWithNumberNow(ALEVEL, $.ambulance_level, 5000, 4);
+  Text.PrintWithNumberNow(ALEVEL, $.ambulance_level, 5000, 4); // Ambulance Mission Level ~1~
   Hud.ClearTimer($.ped_time_limit);
   $.ped_time_limit = 0;
   Text.ClearHelp();
-  //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
-  //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
-  //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
   if ($.got_siren_help_before == 0) {
     $.controlmode = Pad.GetControllerMode();
-    //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
     if ($.controlmode == 0) {
-      //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
-      Text.PrintHelp(SIREN_1);
+      Text.PrintHelp(SIREN_1); //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
     }
-    //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
     if ($.controlmode == 1) {
-      //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
-      Text.PrintHelp(SIREN_2);
+      Text.PrintHelp(SIREN_2); //"To turn on this vehicles sirens tap the ~h~L1 button~w~."
     }
-    //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
     if ($.controlmode == 2) {
-      //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
-      Text.PrintHelp(SIREN_3);
+      Text.PrintHelp(SIREN_3); //"To turn on this vehicles sirens tap the ~h~R1 button~w~."
     }
-    //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
     if ($.controlmode == 3) {
-      //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
-      Text.PrintHelp(SIREN_4);
+      Text.PrintHelp(SIREN_4); //"To turn on this vehicles sirens tap the ~h~L3 button~w~."
     }
     $.got_siren_help_before = 1;
   }
@@ -120,9 +107,9 @@ async function mission_root() {
   if ($.flag_player_on_mission == 0) {
     $.hospital_blip = Blip.AddForCoord($.hospital_x, $.hospital_y, $.hospital_z);
   }
-  ////////////////
   // SCM GOTO → ambulance_loop (not lowered; manual jump required)
   throw new Error("unresolved GOTO ambulance_loop"); // fallback: would break linear control flow
+  ////////////////
 }
 
 async function create_random_injured_ped() {
@@ -269,6 +256,19 @@ async function create_random_injured_ped() {
     $.injured_ped_11.setObjWaitOnFoot();
     return;
   }
+  if ($.number_of_injured_peds > 11 && $.injured_ped_12_flag == 0) {
+    $.injured_ped_12 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
+    $.injured_ped_12_flag = 1;
+    $.injured_ped_12.setBleeding(true /* TRUE */);
+    $.injured_ped_12.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
+    $.injured_ped_12.setHeading($.random_ped_heading);
+    $.injured_ped_12.setRunning(true /* TRUE */);
+    $.injured_ped_12.clearThreatSearch();
+    $.injured_ped_12_blip = Blip.AddForChar($.injured_ped_12);
+    $.injured_ped_12.setObjWaitOnFoot();
+    return;
+  }
   //IF number_of_injured_peds > 12
   //AND injured_ped_13_flag = 0
   //	CREATE_RANDOM_CHAR ped_coord_x ped_coord_y ped_coord_z injured_ped_13
@@ -303,21 +303,8 @@ async function create_random_injured_ped() {
   //	CLEAR_CHAR_THREAT_SEARCH injured_ped_15
   //	ADD_BLIP_FOR_CHAR injured_ped_15 injured_ped_15_blip
   //	SET_CHAR_OBJ_WAIT_ON_FOOT injured_ped_15
-  if ($.number_of_injured_peds > 11 && $.injured_ped_12_flag == 0) {
-    $.injured_ped_12 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
-    $.injured_ped_12_flag = 1;
-    $.injured_ped_12.setBleeding(true /* TRUE */);
-    $.injured_ped_12.setOnlyDamagedByPlayer(true /* TRUE */);
-    $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
-    $.injured_ped_12.setHeading($.random_ped_heading);
-    $.injured_ped_12.setRunning(true /* TRUE */);
-    $.injured_ped_12.clearThreatSearch();
-    $.injured_ped_12_blip = Blip.AddForChar($.injured_ped_12);
-    $.injured_ped_12.setObjWaitOnFoot();
-    return;
-  }
-  ////////////////
   return;
+  ////////////////
 }
 
 async function generate_random_coord() {
@@ -359,12 +346,9 @@ async function generate_random_coord() {
     $.player_in_range_flag = 1;
     $.paramedic_location = 3;
   }
-  //"The ambulance radio is out of range, get closer to a hospital."
   if ($.player_in_range_flag == 0 && $.flag_got_range_message == 0) {
-    //"The ambulance radio is out of range, get closer to a hospital."
     if ($.flag_got_range_message == 0) {
-      //"The ambulance radio is out of range, get closer to a hospital."
-      Text.PrintNow(A_RANGE, 5000, 1);
+      Text.PrintNow(A_RANGE, 5000, 1); //"The ambulance radio is out of range, get closer to a hospital."
       $.flag_got_range_message = 1;
     }
     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
@@ -381,201 +365,105 @@ async function generate_random_coord() {
       $.mission_end_button_ambulance = 1;
     }
   }
-  //"~r~Ambulance mission cancelled!"
   if ($.mission_end_button_ambulance == 1) {
-    //"~r~Ambulance mission cancelled!"
     if (!($.controlmode == 3)) {
-      //"~r~Ambulance mission cancelled!"
       if (!(Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */))) {
-        //"~r~Ambulance mission cancelled!"
-        Text.PrintNow(A_CANC, 3000, 1);
+        Text.PrintNow(A_CANC, 3000, 1); //"~r~Ambulance mission cancelled!"
         // SCM GOTO → ambulance_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
       }
     }
     else {
-      //"~r~Ambulance mission cancelled!"
       if (!(Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */))) {
-        //"~r~Ambulance mission cancelled!"
-        Text.PrintNow(A_CANC, 3000, 1);
+        Text.PrintNow(A_CANC, 3000, 1); //"~r~Ambulance mission cancelled!"
         // SCM GOTO → ambulance_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
       }
     }
   }
-  //"~r~Ambulance mission cancelled!"
   if (!($.player.isInModel(99 /* CAR_AMBULANCE */))) {
-    //"~r~Ambulance mission cancelled!"
-    Text.PrintNow(A_CANC, 3000, 1);
+    Text.PrintNow(A_CANC, 3000, 1); //"~r~Ambulance mission cancelled!"
     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
   }
   [$.ped_coord_x, $.ped_coord_y, $.ped_coord_z] = Path.GetClosestCharNode($.random_x, $.random_y, $.player1_a_z);
-  //MIN_X // COLOMBIAN BOAT
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 1398.0 && $.ped_coord_x < 1615.0 && $.ped_coord_y > -965.0 && $.ped_coord_y < -902.0) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // BACK OF LUIGI'S
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 879.0 && $.ped_coord_x < 892.0 && $.ped_coord_y > -427.0 && $.ped_coord_y < -407.0) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // FISH FACTORY
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 944.8 && $.ped_coord_x < 1017.1 && $.ped_coord_y > -1148.8 && $.ped_coord_y < -1076.6) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // CHINATOWN MARKET
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 920.8 && $.ped_coord_x < 1004.0 && $.ped_coord_y > -754.2 && $.ped_coord_y < -670.0) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // CALAHAN BRIDGE
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 670.0 && $.ped_coord_x < 1035.0 && $.ped_coord_y > -953.0 && $.ped_coord_y < -912.0) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // DOCKS INDUSTRIAL
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 1364.0 && $.ped_coord_x < 1641.0 && $.ped_coord_y > -1165.0 && $.ped_coord_y < -617.0) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // TUNNEL ENTRANCE INDUSTRIAL
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 649.0 && $.ped_coord_x < 1066.0 && $.ped_coord_y > 25.0 && $.ped_coord_y < 217.0) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // AIRPORT SUBURBAN
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > -1611.5 && $.ped_coord_x < -745.3 && $.ped_coord_y > -1001.9 && $.ped_coord_y < -371.2) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // OLD SCHOOL HALL AND PARK AREA
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 939.8 && $.ped_coord_x < 1035.6 && $.ped_coord_y > -901.3 && $.ped_coord_y < -828.2) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // DOG FOOD FACTORY
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 1215.3 && $.ped_coord_x < 1223.7 && $.ped_coord_y > -839.4 && $.ped_coord_y < -763.6) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // INDUSTRIAL SAFEHOUSE
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 845.3 && $.ped_coord_x < 899.6 && $.ped_coord_y > -312.6 && $.ped_coord_y < -295.7) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // DOJO COMMERCIAL
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 113.3 && $.ped_coord_x < 99.7 && $.ped_coord_y > -1284.8 && $.ped_coord_y < -1273.0) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // COLOMBIAN OJG COMPOUND
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 18.33 && $.ped_coord_x < 92.06 && $.ped_coord_y > -388.7 && $.ped_coord_y < -312.38) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // BAIT WAREHOUSE CARPARK SUBURBIA
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > -1255.4 && $.ped_coord_x < -1187.9 && $.ped_coord_y > 80.6 && $.ped_coord_y < 123.4) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // FRANKIES HOUSE
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 1386.4 && $.ped_coord_x < 1475.8 && $.ped_coord_y > -292.1 && $.ped_coord_y < -168.0) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // FOOT BRIDGE CHINATOWN
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.ped_coord_x > 766.7 && $.ped_coord_x < 851.8 && $.ped_coord_y > -604.1 && $.ped_coord_y < -558.2) {
     // SCM GOTO → generate_random_coord (not lowered; manual jump required)
     throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
   }
-  //MIN_X // INDUSTRIAL
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.paramedic_location == 1) {
-    //MIN_X // INDUSTRIAL
-    //MAX_X
-    //MIN_Y
-    //MAX_Y
     if (!($.ped_coord_x > 778.0) || !($.ped_coord_x < 1540.0) || !($.ped_coord_y > -1110.0) || !($.ped_coord_y < 190.0)) {
       // SCM GOTO → generate_random_coord (not lowered; manual jump required)
       throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
     }
   }
-  //MIN_X // COMMERCIAL
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.paramedic_location == 2) {
-    //MIN_X // COMMERCIAL
-    //MAX_X
-    //MIN_Y
-    //MAX_Y
     if (!($.ped_coord_x > -192.0) || !($.ped_coord_x < 545.0) || !($.ped_coord_y > -1626.0) || !($.ped_coord_y < 98.0)) {
       // SCM GOTO → generate_random_coord (not lowered; manual jump required)
       throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
     }
   }
-  //MIN_X // SUBURBIA
-  //MAX_X
-  //MIN_Y
-  //MAX_Y
   if ($.paramedic_location == 3) {
-    //MIN_X // SUBURBIA
-    //MAX_X
-    //MIN_Y
-    //MAX_Y
     if (!($.ped_coord_x > -1300.0) || !($.ped_coord_x < -414.0) || !($.ped_coord_y > -608.8) || !($.ped_coord_y < 380.0)) {
       // SCM GOTO → generate_random_coord (not lowered; manual jump required)
       throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
@@ -685,6 +573,14 @@ async function generate_random_coord() {
       }
     }
   }
+  if ($.injured_ped_11_flag > 0) {
+    if (!(Char.IsDead($.injured_ped_11))) {
+      if ($.injured_ped_11.locateAnyMeans2D($.ped_coord_x, $.ped_coord_y, 25.0, 25.0, false)) {
+        // SCM GOTO → generate_random_coord (not lowered; manual jump required)
+        throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
+      }
+    }
+  }
   //IF injured_ped_12_flag > 0
   //	IF NOT IS_CHAR_DEAD injured_ped_12
   //		IF LOCATE_CHAR_ANY_MEANS_2D injured_ped_12 ped_coord_x ped_coord_y 25.0 25.0 0
@@ -699,16 +595,8 @@ async function generate_random_coord() {
   //IF injured_ped_14_flag > 0
   //	IF NOT IS_CHAR_DEAD injured_ped_14
   //		IF LOCATE_CHAR_ANY_MEANS_2D injured_ped_14 ped_coord_x ped_coord_y 25.0 25.0 0
-  if ($.injured_ped_11_flag > 0) {
-    if (!(Char.IsDead($.injured_ped_11))) {
-      if ($.injured_ped_11.locateAnyMeans2D($.ped_coord_x, $.ped_coord_y, 25.0, 25.0, false)) {
-        // SCM GOTO → generate_random_coord (not lowered; manual jump required)
-        throw new Error("unresolved GOTO generate_random_coord"); // fallback: would break linear control flow
-      }
-    }
-  }
-  ////////////////
   return;
+  ////////////////
 }
 
 async function generate_timelimit() {
@@ -719,8 +607,8 @@ async function generate_timelimit() {
   $.ped_time_limit_float = $.ped_time_limit_float * 1000.0;
   $.ped_time_limit_temp = $.ped_time_limit_float;
   $.ped_time_limit += $.ped_time_limit_temp;
-  ///////////////
   return;
+  ///////////////
 }
 
 async function ambulance_loop() {
@@ -738,32 +626,24 @@ async function ambulance_loop() {
         $.mission_end_button_ambulance = 1;
       }
     }
-    //"~r~Ambulance mission cancelled!"
     if ($.mission_end_button_ambulance == 1) {
-      //"~r~Ambulance mission cancelled!"
       if (!($.controlmode == 3)) {
-        //"~r~Ambulance mission cancelled!"
         if (!(Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */))) {
-          //"~r~Ambulance mission cancelled!"
-          Text.PrintNow(A_CANC, 3000, 1);
+          Text.PrintNow(A_CANC, 3000, 1); //"~r~Ambulance mission cancelled!"
           // SCM GOTO → ambulance_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
         }
       }
       else {
-        //"~r~Ambulance mission cancelled!"
         if (!(Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */))) {
-          //"~r~Ambulance mission cancelled!"
-          Text.PrintNow(A_CANC, 3000, 1);
+          Text.PrintNow(A_CANC, 3000, 1); //"~r~Ambulance mission cancelled!"
           // SCM GOTO → ambulance_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
         }
       }
     }
-    //"~r~Ambulance mission cancelled!"
     if (!($.player.isInModel(99 /* CAR_AMBULANCE */))) {
-      //"~r~Ambulance mission cancelled!"
-      Text.PrintNow(A_CANC, 3000, 1);
+      Text.PrintNow(A_CANC, 3000, 1); //"~r~Ambulance mission cancelled!"
       // SCM GOTO → ambulance_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
     }
@@ -782,47 +662,34 @@ async function ambulance_loop() {
       $.bonus_time_flag = 1;
       ++$.drop_off_time_bonus;
     }
-    //"Health delivered to hideout"
     if ($.ambulance_pager_flag == 0) {
-      //"Health delivered to hideout"
       if ($.total_saved_peds > 34) {
-        //"Health delivered to hideout"
-        Pager.AddMessage(PAGEB13, 140, 100, 1);
+        Pager.AddMessage(PAGEB13, 140, 100, 1); //"Health delivered to hideout"
         // SCM GOSUB progress_counter1
         await progress_counter1();
         // fallback if label was not emitted as async function: no-op continues linearly
         $.ambulance_pager_flag = 1;
       }
     }
-    //"Adrenaline delivered to hideout"
     if ($.ambulance_pager_flag == 1) {
-      //"Adrenaline delivered to hideout"
       if ($.total_saved_peds > 69) {
-        //"Adrenaline delivered to hideout"
-        Pager.AddMessage(PAGEB14, 140, 100, 1);
+        Pager.AddMessage(PAGEB14, 140, 100, 1); //"Adrenaline delivered to hideout"
         // SCM GOSUB progress_counter2
         await progress_counter2();
         // fallback if label was not emitted as async function: no-op continues linearly
         $.ambulance_pager_flag = 2;
       }
     }
-    //The patient is dead
-    //"Your too late"
-    /////////////////
     if ($.injured_ped_1_flag > 0) {
-      //The patient is dead
       if (Char.IsDead($.injured_ped_1)) {
-        //The patient is dead
-        Text.PrintNow(A_FAIL3, 3000, 1);
+        Text.PrintNow(A_FAIL3, 3000, 1); //The patient is dead
         // SCM GOTO → ambulance_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
       }
-      //"Your too late"
       if ($.ped_time_limit == 0) {
         $.injured_ped_1.explodeHead();
         $.injured_ped_1.removeElegantly();
-        //"Your too late"
-        Text.PrintNow(A_FAIL2, 3000, 1);
+        Text.PrintNow(A_FAIL2, 3000, 1); //"Your too late"
         // SCM GOTO → ambulance_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
       }
@@ -880,7 +747,7 @@ async function ambulance_loop() {
         }
       }
     }
-    //////////////////
+    /////////////////
     if ($.injured_ped_2_flag > 0) {
       if (Char.IsDead($.injured_ped_2)) {
         Text.PrintNow(A_FAIL3, 3000, 1);
@@ -948,7 +815,7 @@ async function ambulance_loop() {
         }
       }
     }
-    ////////////////
+    //////////////////
     if ($.injured_ped_3_flag > 0) {
       if (Char.IsDead($.injured_ped_3)) {
         Text.PrintNow(A_FAIL3, 3000, 1);
@@ -1561,6 +1428,74 @@ async function ambulance_loop() {
       }
     }
     ////////////////
+    if ($.injured_ped_12_flag > 0) {
+      if (Char.IsDead($.injured_ped_12)) {
+        Text.PrintNow(A_FAIL3, 3000, 1);
+        // SCM GOTO → ambulance_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
+      }
+      if ($.ped_time_limit == 0) {
+        $.injured_ped_12.explodeHead();
+        $.injured_ped_12.removeElegantly();
+        Text.PrintNow(A_FAIL2, 3000, 1);
+        // SCM GOTO → ambulance_failed (not lowered; manual jump required)
+        throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
+      }
+      if ($.injured_ped_12_flag == 3) {
+        if ($.injured_ped_12.isMale()) {
+          $.ped_sex_flag = 0;
+        }
+        else {
+          $.ped_sex_flag = 1;
+        }
+        [$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_12.getCoordinates();
+        // SCM GOSUB chunk1_ambulance
+        await chunk1_ambulance();
+        // fallback if label was not emitted as async function: no-op continues linearly
+      }
+      if ($.injured_ped_12_flag == 1) {
+        if ($.player.locateInCarChar3D($.injured_ped_12, 10.0, 10.0, 2.0, false)) {
+          // SCM GOSUB chunk2_ambulance
+          await chunk2_ambulance();
+          // fallback if label was not emitted as async function: no-op continues linearly
+          if ($.car_full_flag == 0) {
+            $.injured_ped_12.setObjEnterCarAsPassenger($.players_ambulance);
+            $.injured_ped_12_flag = 2;
+          }
+        }
+      }
+      if ($.injured_ped_12_flag == 2) {
+        if (!($.player.locateInCarChar2D($.injured_ped_12, 25.0, 25.0, false))) {
+          $.injured_ped_12_flag = 1;
+        }
+      }
+      if ($.injured_ped_12_flag == 2) {
+        if ($.injured_ped_12.isInAnyCar()) {
+          $.injured_ped_12_blip.remove();
+          // SCM GOSUB chunk3_ambulance
+          await chunk3_ambulance();
+          // fallback if label was not emitted as async function: no-op continues linearly
+          $.injured_ped_12_flag = 3;
+        }
+      }
+      if ($.injured_ped_12_flag == 3) {
+        if ($.player.locateStoppedInCar3D($.hospital_x, $.hospital_y, $.hospital_z, 6.0, 6.0, 2.0, true)) {
+          $.injured_ped_12.setObjLeaveCar($.players_ambulance);
+          $.injured_ped_12_flag = 4;
+        }
+      }
+      if ($.injured_ped_12_flag == 4) {
+        if (!($.injured_ped_12.isInAnyCar())) {
+          $.injured_ped_12.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
+          $.injured_ped_12.markAsNoLongerNeeded();
+          // SCM GOSUB chunk4_ambulance
+          await chunk4_ambulance();
+          // fallback if label was not emitted as async function: no-op continues linearly
+          $.injured_ped_12_flag = 0;
+        }
+      }
+    }
+    ////////////////
     //IF injured_ped_13_flag > 0
     //	IF IS_CHAR_DEAD injured_ped_13
     //		PRINT_NOW A_FAIL3 3000 1
@@ -1652,104 +1587,23 @@ async function ambulance_loop() {
     //			MARK_CHAR_AS_NO_LONGER_NEEDED injured_ped_15
     //			injured_ped_15_flag = 0
     /////////////////
-    if ($.injured_ped_12_flag > 0) {
-      if (Char.IsDead($.injured_ped_12)) {
-        Text.PrintNow(A_FAIL3, 3000, 1);
-        // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-        throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
-      }
-      if ($.ped_time_limit == 0) {
-        $.injured_ped_12.explodeHead();
-        $.injured_ped_12.removeElegantly();
-        Text.PrintNow(A_FAIL2, 3000, 1);
-        // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-        throw new Error("unresolved GOTO ambulance_failed"); // fallback: would break linear control flow
-      }
-      if ($.injured_ped_12_flag == 3) {
-        if ($.injured_ped_12.isMale()) {
-          $.ped_sex_flag = 0;
-        }
-        else {
-          $.ped_sex_flag = 1;
-        }
-        [$.sound_x, $.sound_y, $.sound_z] = $.injured_ped_12.getCoordinates();
-        // SCM GOSUB chunk1_ambulance
-        await chunk1_ambulance();
-        // fallback if label was not emitted as async function: no-op continues linearly
-      }
-      if ($.injured_ped_12_flag == 1) {
-        if ($.player.locateInCarChar3D($.injured_ped_12, 10.0, 10.0, 2.0, false)) {
-          // SCM GOSUB chunk2_ambulance
-          await chunk2_ambulance();
-          // fallback if label was not emitted as async function: no-op continues linearly
-          if ($.car_full_flag == 0) {
-            $.injured_ped_12.setObjEnterCarAsPassenger($.players_ambulance);
-            $.injured_ped_12_flag = 2;
-          }
-        }
-      }
-      if ($.injured_ped_12_flag == 2) {
-        if (!($.player.locateInCarChar2D($.injured_ped_12, 25.0, 25.0, false))) {
-          $.injured_ped_12_flag = 1;
-        }
-      }
-      if ($.injured_ped_12_flag == 2) {
-        if ($.injured_ped_12.isInAnyCar()) {
-          $.injured_ped_12_blip.remove();
-          // SCM GOSUB chunk3_ambulance
-          await chunk3_ambulance();
-          // fallback if label was not emitted as async function: no-op continues linearly
-          $.injured_ped_12_flag = 3;
-        }
-      }
-      if ($.injured_ped_12_flag == 3) {
-        if ($.player.locateStoppedInCar3D($.hospital_x, $.hospital_y, $.hospital_z, 6.0, 6.0, 2.0, true)) {
-          $.injured_ped_12.setObjLeaveCar($.players_ambulance);
-          $.injured_ped_12_flag = 4;
-        }
-      }
-      if ($.injured_ped_12_flag == 4) {
-        if (!($.injured_ped_12.isInAnyCar())) {
-          $.injured_ped_12.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
-          $.injured_ped_12.markAsNoLongerNeeded();
-          // SCM GOSUB chunk4_ambulance
-          await chunk4_ambulance();
-          // fallback if label was not emitted as async function: no-op continues linearly
-          $.injured_ped_12_flag = 0;
-        }
-      }
-    }
-    //"Health delivered to hideout"
-    //"Adrenaline delivered to hideout"
-    //	REMOVE_BLIP injured_ped_13_blip
-    //	REMOVE_BLIP injured_ped_14_blip
-    //	REMOVE_BLIP injured_ped_15_blip
-    //"Ambulance missions complete!"
-    //"You will never get tired!"
-    //"Ambulance missions complete! You will never get tired when running!"
     if ($.saved_peds == $.number_of_injured_peds) {
       $.score_am = $.saved_peds * $.ambulance_level;
       $.score_am *= 100;
       Text.PrintWithNumberBig(REWARD, $.score_am, 6000, 6);
       $.total_saved_peds += $.saved_peds;
-      //"Health delivered to hideout"
       if ($.ambulance_pager_flag == 0) {
-        //"Health delivered to hideout"
         if ($.total_saved_peds > 34) {
-          //"Health delivered to hideout"
-          Pager.AddMessage(PAGEB13, 140, 100, 1);
+          Pager.AddMessage(PAGEB13, 140, 100, 1); //"Health delivered to hideout"
           // SCM GOSUB progress_counter1
           await progress_counter1();
           // fallback if label was not emitted as async function: no-op continues linearly
           $.ambulance_pager_flag = 1;
         }
       }
-      //"Adrenaline delivered to hideout"
       if ($.ambulance_pager_flag == 1) {
-        //"Adrenaline delivered to hideout"
         if ($.total_saved_peds > 69) {
-          //"Adrenaline delivered to hideout"
-          Pager.AddMessage(PAGEB14, 140, 100, 1);
+          Pager.AddMessage(PAGEB14, 140, 100, 1); //"Adrenaline delivered to hideout"
           // SCM GOSUB progress_counter2
           await progress_counter2();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -1774,22 +1628,16 @@ async function ambulance_loop() {
       $.injured_ped_9_blip.remove();
       $.injured_ped_10_blip.remove();
       $.injured_ped_11_blip.remove();
+      $.injured_ped_12_blip.remove();
       //	REMOVE_BLIP injured_ped_13_blip
       //	REMOVE_BLIP injured_ped_14_blip
       //	REMOVE_BLIP injured_ped_15_blip
-      $.injured_ped_12_blip.remove();
       Stat.RegisterAmbulanceLevel($.ambulance_level);
       ++$.ambulance_level;
-      //"Ambulance missions complete!"
-      //"You will never get tired!"
-      //"Ambulance missions complete! You will never get tired when running!"
       if ($.ambulance_level == 13) {
-        //"Ambulance missions complete!"
-        Text.PrintBig(A_COMP1, 5000, 5);
-        //"You will never get tired!"
-        Text.PrintBig(A_COMP2, 6000, 6);
-        //"Ambulance missions complete! You will never get tired when running!"
-        Pager.AddMessage(A_COMP3, 140, 100, 1);
+        Text.PrintBig(A_COMP1, 5000, 5); //"Ambulance missions complete!"
+        Text.PrintBig(A_COMP2, 6000, 6); //"You will never get tired!"
+        Pager.AddMessage(A_COMP3, 140, 100, 1); //"Ambulance missions complete! You will never get tired when running!"
         Audio.PlayMissionPassedTune(1);
         $.player.setNeverGetsTired(true /* TRUE */);
         Stat.PlayerMadeProgress(1);
@@ -1805,8 +1653,7 @@ async function ambulance_failed() {
   Hud.ClearTimer($.ped_time_limit);
   Text.ClearHelp();
   Text.PrintBig(A_FAIL1, 5000, 5);
-  //PEOPLE SAVED: ~1~
-  Text.PrintWithNumberBig(A_SAVES, $.saved_peds_this_go, 6000, 6);
+  Text.PrintWithNumberBig(A_SAVES, $.saved_peds_this_go, 6000, 6); //PEOPLE SAVED: ~1~
   $.hospital_blip_flag = 0;
   $.hospital_blip.remove();
   $.injured_ped_1_blip.remove();
@@ -1820,16 +1667,16 @@ async function ambulance_failed() {
   $.injured_ped_9_blip.remove();
   $.injured_ped_10_blip.remove();
   $.injured_ped_11_blip.remove();
+  $.injured_ped_12_blip.remove();
   //REMOVE_BLIP injured_ped_13_blip
   //REMOVE_BLIP injured_ped_14_blip
   //REMOVE_BLIP injured_ped_15_blip
-  $.injured_ped_12_blip.remove();
   Game.SetWantedMultiplier(1.0);
   $.flag_player_on_mission = 0;
   $.flag_player_on_ambulance_mission = 0;
   Mission.Finish();
-  //////////////////////////////////////////////////////////////////////
   return;
+  //////////////////////////////////////////////////////////////////////
 }
 
 async function chunk1_ambulance() {
@@ -1860,25 +1707,23 @@ async function chunk1_ambulance() {
     }
     $.ambulance_health_last = $.ambulance_health_now;
   }
-  //////////////////////////////////////////////////////////////////////
   return;
+  //////////////////////////////////////////////////////////////////////
 }
 
 async function chunk2_ambulance() {
   $.peds_in_car = $.players_ambulance.getNumberOfPassengers();
   $.max_peds_in_car = $.players_ambulance.getMaximumNumberOfPassengers();
-  //"I'm not getting in there, its full of injured people."
   if ($.peds_in_car == $.max_peds_in_car) {
-    //"I'm not getting in there, its full of injured people."
-    Text.PrintNow(A_FULL, 5000, 1);
+    Text.PrintNow(A_FULL, 5000, 1); //"I'm not getting in there, its full of injured people."
     $.car_full_flag = 1;
   }
   else {
     $.car_full_flag = 0;
   }
   $.ambulance_health_last = $.players_ambulance.getHealth();
-  //////////////////////////////////////////////////////////////////////
   return;
+  //////////////////////////////////////////////////////////////////////
 }
 
 async function chunk3_ambulance() {
@@ -1887,20 +1732,17 @@ async function chunk3_ambulance() {
     $.hospital_blip_flag = 1;
   }
   $.time_chunk_in_secs = $.time_chunk / 1000;
-  //+~1~ Seconds
-  Text.PrintWithNumberBig(A_TIME, $.time_chunk_in_secs, 6000, 6);
+  Text.PrintWithNumberBig(A_TIME, $.time_chunk_in_secs, 6000, 6); //+~1~ Seconds
   $.ped_time_limit += $.time_chunk;
-  //////////////////////////////////////////////////////////////////////
   return;
+  //////////////////////////////////////////////////////////////////////
 }
 
 async function chunk4_ambulance() {
   Text.PrintBig(A_PASS, 3000, 5);
-  //+~1~ Seconds
   if ($.bonus_time_flag == 1) {
     $.time_chunk_in_secs = $.time_chunk / 1000;
-    //+~1~ Seconds
-    Text.PrintWithNumberBig(A_TIME, $.time_chunk_in_secs, 6000, 6);
+    Text.PrintWithNumberBig(A_TIME, $.time_chunk_in_secs, 6000, 6); //+~1~ Seconds
     $.players_ambulance = $.player.storeCarIsIn();
     $.players_ambulance_health = $.players_ambulance.getHealth();
     $.players_ambulance_health += 110;
@@ -1911,35 +1753,35 @@ async function chunk4_ambulance() {
   Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
   ++$.saved_peds;
   Stat.RegisterLifeSaved();
-  //////////////////////////////////////////////////////////////////////
   return;
+  //////////////////////////////////////////////////////////////////////
 }
 
 async function progress_counter1() {
   Stat.PlayerMadeProgress(1);
-  //////////////////////////////////////////////////////////////////////
   return;
+  //////////////////////////////////////////////////////////////////////
 }
 
 async function progress_counter2() {
   Stat.PlayerMadeProgress(1);
-  //////////////////////////////////////////////////////////////////////
   return;
+  //////////////////////////////////////////////////////////////////////
 }
 
 export async function ambulance() {
+  // MissionBoundary
   // *****************************************************************************************
   // *********************************** Ambulance missions **********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_ambulance
   await mission_start_ambulance();
   // fallback if label was not emitted as async function: no-op continues linearly
   // SCM GOSUB ambulance_failed
   await ambulance_failed();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT ped_time_limit players_ambulance flag_got_range_message ped_time_limit_temp ped_counter number_of_injured_peds brackets_var
   // VAR_INT ambulance_health_last ambulance_health_now time_drop max_peds_in_car peds_in_car player_in_range_flag score_am bonus_time_flag
   // VAR_INT saved_peds hospital_blip first_rescue_flag time_chunk first_chunk_flag ambulance_level time_chunk_in_secs car_full_flag paramedic_location
@@ -1955,14 +1797,14 @@ export async function ambulance() {
   // VAR_INT injured_ped_9 injured_ped_9_blip injured_ped_9_flag
   // VAR_INT injured_ped_10 injured_ped_10_blip injured_ped_10_flag
   // VAR_INT injured_ped_11 injured_ped_11_blip injured_ped_11_flag
+  // VAR_INT injured_ped_12 injured_ped_12_blip injured_ped_12_flag
   //VAR_INT injured_ped_13 injured_ped_13_blip injured_ped_13_flag
   //VAR_INT injured_ped_14 injured_ped_14_blip injured_ped_14_flag
   //VAR_INT injured_ped_15 injured_ped_15_blip injured_ped_15_flag
-  // VAR_INT injured_ped_12 injured_ped_12_blip injured_ped_12_flag
   // VAR_FLOAT random_x random_y hospital_x hospital_y hospital_z
   // VAR_FLOAT player1_a_x player1_a_y player1_a_z hospital_door_x hospital_door_y
   // VAR_FLOAT ped_coord_x ped_coord_y ped_coord_z sound_x sound_y sound_z
   // VAR_FLOAT difference_x_float_a difference_y_float_a sum_difference_a_xy
-  // ****************************************Mission Start************************************
   // VAR_FLOAT players_distance_from_ped peds_distance_from_hospital ped_time_limit_float random_ped_heading time_chunk_divider
+  // ****************************************Mission Start************************************
 }

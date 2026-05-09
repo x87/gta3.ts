@@ -25,22 +25,8 @@ async function fish_factory_gate() {
 
 async function fish_factory_gate_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  // Fish Factory Gate
-  //					GET_OBJECT_COORDINATES fish_factory_gate objectx objecty objectz
-  //	IF IS_PLAYER_IN_AREA_3D player 1025.2 -1108.4 12.0 1008.2 -1098.4 16.0 FALSE
-  //	IF IS_PLAYER_IN_ZONE Player PORT_W
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    // Fish Factory Gate
-    //					GET_OBJECT_COORDINATES fish_factory_gate objectx objecty objectz
-    //	IF IS_PLAYER_IN_AREA_3D player 1025.2 -1108.4 12.0 1008.2 -1098.4 16.0 FALSE
-    //	IF IS_PLAYER_IN_ZONE Player PORT_W
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
     if ($.player.isInZone("PORT_W")) {
-      //					GET_OBJECT_COORDINATES fish_factory_gate objectx objecty objectz
-      //	IF IS_PLAYER_IN_AREA_3D player 1025.2 -1108.4 12.0 1008.2 -1098.4 16.0 FALSE
       if ($.player.isInArea3D(1025.2, -1108.4, 12.0, 1008.2, -1098.4, 16.0, false /* FALSE */)) {
         if ($.player.isInModel(125 /* CAR_BELLYUP */) || $.player.isInModel(91 /* CAR_TRASHMASTER */) || $.player.isInArea3D(1015.6, -1100.5, 12.0, 1009.2, -1108.1, 16.0, false /* FALSE */)) {
           if ($.gate_sfx1_fish == 0) {
@@ -64,7 +50,6 @@ async function fish_factory_gate_inner() {
         if ($.gate_sfx1_fish == 1) {
           Sound.AddOneOffSound(1016.0, -1099.455, 12.294, 92 /* SOUND_GATE_START_CLUNK */);
         }
-        //					GET_OBJECT_COORDINATES fish_factory_gate objectx objecty objectz
         while (!($.fish_factory_gate.slide(1016.0, -1107.955, 12.294, 0.0, 0.1, 0.0, true /* TRUE */))) {
           await asyncWait(0);
         }
@@ -80,6 +65,7 @@ async function fish_factory_gate_inner() {
         $.gate_sfx1_fish = 0;
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
   }
   // SCM GOTO → fish_factory_gate_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO fish_factory_gate_inner"); // fallback: would break linear control flow
@@ -93,22 +79,8 @@ async function dog_food_factory_gate() {
 
 async function dog_food_factory_gate_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  // Dog Food Factory Gate
-  //GET_OBJECT_COORDINATES dogfood_factory_gate objectx objecty objectz
-  //	IF IS_PLAYER_IN_ANGLED_AREA_3D player 1247.58 -822.0 12.0 1253.94 -815.0 18.0 14.0 FALSE
-  //	IF IS_PLAYER_IN_ZONE Player PORT_I
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    // Dog Food Factory Gate
-    //GET_OBJECT_COORDINATES dogfood_factory_gate objectx objecty objectz
-    //	IF IS_PLAYER_IN_ANGLED_AREA_3D player 1247.58 -822.0 12.0 1253.94 -815.0 18.0 14.0 FALSE
-    //	IF IS_PLAYER_IN_ZONE Player PORT_I
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
     if ($.player.isInZone("PORT_I")) {
-      //GET_OBJECT_COORDINATES dogfood_factory_gate objectx objecty objectz
-      //	IF IS_PLAYER_IN_ANGLED_AREA_3D player 1247.58 -822.0 12.0 1253.94 -815.0 18.0 14.0 FALSE
       if ($.player.isInAngledArea3D(1247.58, -822.0, 12.0, 1253.94, -815.0, 18.0, 14.0, false /* FALSE */)) {
         if ($.gate_sfx1_meat == 0) {
           Sound.AddOneOffSound(1250.4, -812.0, 13.97, 92 /* SOUND_GATE_START_CLUNK */);
@@ -130,7 +102,6 @@ async function dog_food_factory_gate_inner() {
         if ($.gate_sfx1_meat == 1) {
           Sound.AddOneOffSound(1244.4, -818.0, 13.97, 92 /* SOUND_GATE_START_CLUNK */);
         }
-        //GET_OBJECT_COORDINATES dogfood_factory_gate objectx objecty objectz
         while (!($.dogfood_factory_gate.slide(1250.4, -812.0, 13.97, 0.1, 0.1, 0.0, true /* TRUE */))) {
           await asyncWait(0);
         }
@@ -146,6 +117,7 @@ async function dog_food_factory_gate_inner() {
         $.gate_sfx1_meat = 0;
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
   }
   // SCM GOTO → dog_food_factory_gate_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO dog_food_factory_gate_inner"); // fallback: would break linear control flow
@@ -159,22 +131,8 @@ async function police_gate1() {
 
 async function police_gate1_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  // Commercial Police Gate one
-  //					GET_OBJECT_COORDINATES police_door_one objectx objecty objectz
-  //	IF IS_PLAYER_IN_AREA_3D player 358.0 -1138.0 18.0 366.0 -1121.0 30.0 FALSE
-  //	IF IS_PLAYER_IN_ZONE player YAKUSA
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    // Commercial Police Gate one
-    //					GET_OBJECT_COORDINATES police_door_one objectx objecty objectz
-    //	IF IS_PLAYER_IN_AREA_3D player 358.0 -1138.0 18.0 366.0 -1121.0 30.0 FALSE
-    //	IF IS_PLAYER_IN_ZONE player YAKUSA
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
     if ($.player.isInZone("YAKUSA")) {
-      //					GET_OBJECT_COORDINATES police_door_one objectx objecty objectz
-      //	IF IS_PLAYER_IN_AREA_3D player 358.0 -1138.0 18.0 366.0 -1121.0 30.0 FALSE
       if ($.player.isInArea3D(358.0, -1138.0, 18.0, 366.0, -1121.0, 30.0, false /* FALSE */)) {
         if ($.player.isInModel(109 /* CAR_POLICE */) || $.player.isInArea3D(365.9, -1128.2, 21.9, 358.5, -1119.5, 26.0, false /* FALSE */)) {
           if ($.gate_sfx1 == 0) {
@@ -198,7 +156,6 @@ async function police_gate1_inner() {
         if ($.gate_sfx1 == 1) {
           Sound.AddOneOffSound(358.158, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
         }
-        //					GET_OBJECT_COORDINATES police_door_one objectx objecty objectz
         while (!($.police_door_one.slide(366.158, -1128.522, 21.941, 0.1, 0.0, 0.0, true /* TRUE */))) {
           await asyncWait(0);
         }
@@ -214,6 +171,7 @@ async function police_gate1_inner() {
         $.gate_sfx1 = 0;
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
   }
   // SCM GOTO → police_gate1_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO police_gate1_inner"); // fallback: would break linear control flow
@@ -227,22 +185,8 @@ async function police_gate2() {
 
 async function police_gate2_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  // commercial police gate two
-  //					GET_OBJECT_COORDINATES police_door_two objectx objecty objectz
-  //	IF IS_PLAYER_IN_AREA_3D player 317.87 -1136.0 18.0 322.84 -1119.82 30.0 FALSE
-  //	IF IS_PLAYER_IN_ZONE player YAKUSA
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    // commercial police gate two
-    //					GET_OBJECT_COORDINATES police_door_two objectx objecty objectz
-    //	IF IS_PLAYER_IN_AREA_3D player 317.87 -1136.0 18.0 322.84 -1119.82 30.0 FALSE
-    //	IF IS_PLAYER_IN_ZONE player YAKUSA
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
     if ($.player.isInZone("YAKUSA")) {
-      //					GET_OBJECT_COORDINATES police_door_two objectx objecty objectz
-      //	IF IS_PLAYER_IN_AREA_3D player 317.87 -1136.0 18.0 322.84 -1119.82 30.0 FALSE
       if ($.player.isInArea3D(317.87, -1136.0, 18.0, 322.84, -1119.82, 30.0, false /* FALSE */)) {
         if ($.player.isInModel(109 /* CAR_POLICE */) || $.player.isInArea3D(322.7, -1128.1, 21.9, 318.0, -1119.3, 26.0, false /* FALSE */)) {
           if ($.gate2_sfx1 == 0) {
@@ -266,7 +210,6 @@ async function police_gate2_inner() {
         if ($.gate2_sfx1 == 1) {
           Sound.AddOneOffSound(332.0, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
         }
-        //					GET_OBJECT_COORDINATES police_door_two objectx objecty objectz
         while (!($.police_door_two.slide(326.3, -1128.522, 21.941, 0.1, 0.0, 0.0, true /* TRUE */))) {
           await asyncWait(0);
         }
@@ -282,6 +225,7 @@ async function police_gate2_inner() {
         $.gate2_sfx1 = 0;
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
   }
   // SCM GOTO → police_gate2_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO police_gate2_inner"); // fallback: would break linear control flow
@@ -295,22 +239,8 @@ async function colombian_gate() {
 
 async function colombian_gate_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  // Colombian Compound Gate
-  //					GET_OBJECT_COORDINATES colombian_gate objectx objecty objectz
-  //	IF IS_PLAYER_IN_AREA_3D player 98.6 -337.53 14.0 81.9 -317.56 20.0 FALSE
-  //	IF IS_PLAYER_IN_ZONE player STADIUM
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    // Colombian Compound Gate
-    //					GET_OBJECT_COORDINATES colombian_gate objectx objecty objectz
-    //	IF IS_PLAYER_IN_AREA_3D player 98.6 -337.53 14.0 81.9 -317.56 20.0 FALSE
-    //	IF IS_PLAYER_IN_ZONE player STADIUM
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
     if ($.player.isInZone("STADIUM")) {
-      //					GET_OBJECT_COORDINATES colombian_gate objectx objecty objectz
-      //	IF IS_PLAYER_IN_AREA_3D player 98.6 -337.53 14.0 81.9 -317.56 20.0 FALSE
       if ($.player.isInArea3D(98.6, -337.53, 14.0, 81.9, -317.56, 20.0, false /* FALSE */)) {
         if ($.player.isInModel(131 /* CAR_COLUMB */) || $.player.isInArea3D(31.0, -317.0, 14.0, 91.0, -394.0, 25.0, false /* FALSE */)) {
           if ($.gate2_sfx1 == 0) {
@@ -334,7 +264,6 @@ async function colombian_gate_inner() {
         if ($.gate2_sfx1 == 1) {
           Sound.AddOneOffSound(91.589, -327.365, 15.296, 92 /* SOUND_GATE_START_CLUNK */);
         }
-        //					GET_OBJECT_COORDINATES colombian_gate objectx objecty objectz
         while (!($.colombian_gate.slide(91.589, -318.592, 15.296, 0.0, 0.1, 0.0, true /* TRUE */))) {
           await asyncWait(0);
         }
@@ -350,6 +279,7 @@ async function colombian_gate_inner() {
         $.gate2_sfx1 = 0;
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
   }
   // SCM GOTO → colombian_gate_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO colombian_gate_inner"); // fallback: would break linear control flow
@@ -363,41 +293,16 @@ async function phils_gate() {
 
 async function phils_gate_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  //PHIL'S GATE
-  //	If player is doing phil mission
-  //	then this script doesn't move the gate at all.
-  //	The phil script should do all gate moving.
-  //					GET_OBJECT_COORDINATES phils_compnd_gate objectx objecty objectz
-  //	IF open_phils_gate = TRUE
-  //	IF IS_PLAYER_IN_ZONE player HOSPI_2
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    //PHIL'S GATE
-    //	If player is doing phil mission
-    //	then this script doesn't move the gate at all.
-    //	The phil script should do all gate moving.
-    //					GET_OBJECT_COORDINATES phils_compnd_gate objectx objecty objectz
-    //	IF open_phils_gate = TRUE
-    //	IF IS_PLAYER_IN_ZONE player HOSPI_2
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
     if ($.player.isInZone("HOSPI_2")) {
       $.open_phils_gate = 0 /* FALSE */;
-      //	If player is doing phil mission
-      //	then this script doesn't move the gate at all.
-      //	The phil script should do all gate moving.
       if ($.flag_ray_mission2_passed == 1) {
         if ($.player.isInArea2D(134.0, 198.0, 156.0, 207.0, false /* FALSE */)) {
           $.open_phils_gate = 1 /* TRUE */;
         }
       }
       else {
-        //	If player is doing phil mission
-        //	then this script doesn't move the gate at all.
-        //	The phil script should do all gate moving.
         if ($.flag_player_on_phil_mission == 1) {
-          //	then this script doesn't move the gate at all.
           // SCM GOTO → phils_gate_inner (not lowered; manual jump required)
           throw new Error("unresolved GOTO phils_gate_inner"); // fallback: would break linear control flow
         }
@@ -405,8 +310,6 @@ async function phils_gate_inner() {
           $.open_phils_gate = 1 /* TRUE */;
         }
       }
-      //					GET_OBJECT_COORDINATES phils_compnd_gate objectx objecty objectz
-      //	IF open_phils_gate = TRUE
       if ($.open_phils_gate == 1 /* TRUE */) {
         if ($.gate2_sfx1 == 0) {
           Sound.AddOneOffSound(147.249, 207.323, 10.599, 92 /* SOUND_GATE_START_CLUNK */);
@@ -428,7 +331,6 @@ async function phils_gate_inner() {
         if ($.gate2_sfx1 == 1) {
           Sound.AddOneOffSound(147.249, 214.523, 10.599, 92 /* SOUND_GATE_START_CLUNK */);
         }
-        //					GET_OBJECT_COORDINATES phils_compnd_gate objectx objecty objectz
         while (!($.phils_compnd_gate.slide(147.249, 207.323, 10.599, 0.0, 0.1, 0.0, true /* TRUE */))) {
           await asyncWait(0);
         }
@@ -444,6 +346,7 @@ async function phils_gate_inner() {
         $.gate2_sfx1 = 0;
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
   }
   // SCM GOTO → phils_gate_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO phils_gate_inner"); // fallback: would break linear control flow
@@ -457,22 +360,8 @@ async function colombian_gate2() {
 
 async function colombian_gate2_inner() {
   await asyncWait(1000);
-  //IF IS_COLLISION_IN_MEMORY LEVEL_SUBURBAN
-  // Columbian gate
-  //					GET_OBJECT_COORDINATES Columbian_gate2 objectx objecty objectz
-  //	IF IS_PLAYER_IN_AREA_3D player -367.3 241.0 59.0 -358.8 259.6 65.0 FALSE
-  //	IF IS_PLAYER_IN_ZONE player SWANKS
-  //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_SUBURBAN
-  //	IF IS_PLAYER_PLAYING Player
   if ($.player.isPlaying()) {
-    // Columbian gate
-    //					GET_OBJECT_COORDINATES Columbian_gate2 objectx objecty objectz
-    //	IF IS_PLAYER_IN_AREA_3D player -367.3 241.0 59.0 -358.8 259.6 65.0 FALSE
-    //	IF IS_PLAYER_IN_ZONE player SWANKS
-    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_SUBURBAN
     if ($.player.isInZone("SWANKS")) {
-      //					GET_OBJECT_COORDINATES Columbian_gate2 objectx objecty objectz
-      //	IF IS_PLAYER_IN_AREA_3D player -367.3 241.0 59.0 -358.8 259.6 65.0 FALSE
       if ($.player.isInArea3D(-367.3, 241.0, 59.0, -358.8, 259.6, 65.0, false /* FALSE */)) {
         if ($.player.isInModel(131 /* CAR_COLUMB */) || $.player.isInArea3D(-367.3, 251.0, 59.0, -358.8, 259.6, 65.0, false /* FALSE */)) {
           if ($.gate_sfx1 == 0) {
@@ -496,7 +385,6 @@ async function colombian_gate2_inner() {
         if ($.gate_sfx1 == 1) {
           Sound.AddOneOffSound(-370.05, 250.455, 61.355, 92 /* SOUND_GATE_START_CLUNK */);
         }
-        //					GET_OBJECT_COORDINATES Columbian_gate2 objectx objecty objectz
         while (!($.Columbian_gate2.slide(-363.05, 250.455, 61.355, 0.1, 0.0, 0.0, true /* TRUE */))) {
           await asyncWait(0);
         }
@@ -512,6 +400,7 @@ async function colombian_gate2_inner() {
         $.gate_sfx1 = 0;
       }
     }
+    //ENDIF	//	IF IS_COLLISION_IN_MEMORY LEVEL_SUBURBAN
   }
   // SCM GOTO → colombian_gate2_inner (not lowered; manual jump required)
   throw new Error("unresolved GOTO colombian_gate2_inner"); // fallback: would break linear control flow
@@ -520,7 +409,6 @@ async function colombian_gate2_inner() {
 
 export async function gates() {
   // MissionBoundary
-  // Checks for the sliding doors to tell them to close if an object is in the way
   // VAR_FLOAT objectx objecty objectz
   // VAR_INT gate_sfx1_fish gate_sfx2_fish not_clunked_yet
   // VAR_INT gate_sfx1_meat gate_sfx2_meat

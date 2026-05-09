@@ -20,8 +20,8 @@ async function mission_start_luigi3() {
   $.flag_blip_on_misty_lm3 = 0;
   $.blob_flag = 1;
   $.flag_had_bus_message_lm3 = 0;
-  // *****************************************START OF CUT_SCENE******************************
   $.flag_camera_mode_lm3 = 0;
+  // *****************************************START OF CUT_SCENE******************************
   {
   Streaming.LoadSpecialCharacter(1, $.luigi);
   Streaming.LoadSpecialCharacter(2, $.micky);
@@ -31,12 +31,12 @@ async function mission_start_luigi3() {
   Streaming.LoadSpecialModel(hier`cutobj01`, LUDOOR);
   Streaming.LoadSpecialModel(hier`cutobj02`, LUIGIH);
   Streaming.LoadSpecialModel(hier`cutobj03`, PLAYERH);
+  Streaming.LoadSpecialModel(hier`cutobj04`, MICKYH);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.LoadSpecialModel(hier`cutobj04`, MICKYH);
   World.SetPedDensityMultiplier(0.0);
   World.ClearAreaOfChars(926.54, -471.72, 1.0, 830.76, -257.96, 25.0);
   Streaming.LoadAllModelsNow();
@@ -68,15 +68,14 @@ async function mission_start_luigi3() {
   $.player.setHeading(270.0);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2433) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Hey I've gotta talk to you... All right Mick I talk to yah later"
-  Text.PrintNow("LM3_A", 10000, 1);
+  Text.PrintNow("LM3_A", 10000, 1); //"Hey I've gotta talk to you... All right Mick I talk to yah later"
   while ($.cs_time < 5504) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -86,44 +85,37 @@ async function mission_start_luigi3() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"How yah doing kid?
-  Text.PrintNow("LM3_B", 10000, 1);
+  Text.PrintNow("LM3_B", 10000, 1); //"How yah doing kid?
   while ($.cs_time < 9667) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The Don's son, Joey Leone, he wants some action from his regular girl Misty"
-  Text.PrintNow("LM3_C", 10000, 1);
+  Text.PrintNow("LM3_C", 10000, 1); //"The Don's son, Joey Leone, he wants some action from his regular girl Misty"
   while ($.cs_time < 13833) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go pick her up at Hepburn Heights..."
-  Text.PrintNow("LM3_D", 10000, 1);
+  Text.PrintNow("LM3_D", 10000, 1); //"Go pick her up at Hepburn Heights..."
   while ($.cs_time < 15467) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"but watch yourself that's Diablo turf."
-  Text.PrintNow("LM3_E", 10000, 1);
+  Text.PrintNow("LM3_E", 10000, 1); //"but watch yourself that's Diablo turf."
   while ($.cs_time < 18233) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Then run her over to his garage in Trenton and make it quick,"
-  Text.PrintNow("LM3_F", 10000, 1);
+  Text.PrintNow("LM3_F", 10000, 1); //"Then run her over to his garage in Trenton and make it quick,"
   while ($.cs_time < 21100) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Joey ain't the kinda you keep waiting, remember, this is your foot in the door..."
-  Text.PrintNow("LM3_G", 10000, 1);
+  Text.PrintNow("LM3_G", 10000, 1); //"Joey ain't the kinda you keep waiting, remember, this is your foot in the door..."
   while ($.cs_time < 25333) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"so keep your eyes on the road and off Misty!"
-  Text.PrintNow("LM3_H", 10000, 1);
+  Text.PrintNow("LM3_H", 10000, 1); //"so keep your eyes on the road and off Misty!"
   while ($.cs_time < 27701) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -158,8 +150,8 @@ async function mission_start_luigi3() {
   Streaming.MarkModelAsNoLongerNeeded(indhibuild3);
   Streaming.MarkModelAsNoLongerNeeded(luigiclubout);
   Streaming.MarkModelAsNoLongerNeeded(luigiineerclub);
-  // *****************************************END OF CUTSCENE*********************************
   World.SetPedDensityMultiplier(1.0);
+  // *****************************************END OF CUTSCENE*********************************
   Streaming.LoadSpecialCharacter(2, $.misty);
   while (!(Streaming.HasSpecialCharacterLoaded(2))) {
     await asyncWait(0);
@@ -167,47 +159,34 @@ async function mission_start_luigi3() {
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
-  //Get a vehicle!"
-  Text.PrintNow("LM3_10", 5000, 1);
+  Text.PrintNow("LM3_10", 5000, 1); //Get a vehicle!"
   $.controlmode = Pad.GetControllerMode();
-  //"Press the...."
   if ($.controlmode == 0) {
-    //"Press the...."
-    Text.PrintHelp("HELP15");
+    Text.PrintHelp("HELP15"); //"Press the...."
   }
-  //"Press the...."
   if ($.controlmode == 1) {
-    //"Press the...."
-    Text.PrintHelp("HELP15");
+    Text.PrintHelp("HELP15"); //"Press the...."
   }
-  //"Press the...."
   if ($.controlmode == 2) {
-    //"Press the...."
-    Text.PrintHelp("HELP15");
+    Text.PrintHelp("HELP15"); //"Press the...."
   }
-  //"Press the...."
-  // waiting for the player to get into a car
   if ($.controlmode == 3) {
-    //"Press the...."
-    Text.PrintHelp("HELP15");
+    Text.PrintHelp("HELP15"); //"Press the...."
   }
+  // waiting for the player to get into a car
   while (!($.player.isInAnyCar())) {
     await asyncWait(0);
   }
   $.car_lm3 = $.player.storeCarIsIn();
-  //"Now Pick up Misty!"
-  Text.PrintNow("LM3_4", 7000, 1);
+  Text.PrintNow("LM3_4", 7000, 1); //"Now Pick up Misty!"
   Audio.LoadMissionAudio(L2_A);
-  // waiting for the player to get to Misty's flat
   $.radar_blip_coord1_lm3 = Blip.AddForCoord(937.9, -259.8, -100.0);
+  // waiting for the player to get to Misty's flat
   $.blob_flag = 1;
-  //"Get a vehicle and get on with the mission!"
   while (!($.player.locateStoppedInCar2D(937.9, -259.8, 3.0, 3.0, $.blob_flag)) || !(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
-    //"Get a vehicle and get on with the mission!"
     if (!($.player.isInAnyCar()) && $.flag_player_got_message_lm3 == 0) {
-      //"Get a vehicle and get on with the mission!"
-      Text.PrintNow("IN_VEH2", 5000, 1);
+      Text.PrintNow("IN_VEH2", 5000, 1); //"Get a vehicle and get on with the mission!"
       $.radar_blip_coord1_lm3.remove();
       $.flag_player_got_message_lm3 = 1;
       $.blob_flag = 0;
@@ -220,34 +199,23 @@ async function mission_start_luigi3() {
     }
   }
   $.controlmode = Pad.GetControllerMode();
-  //"Press the~h~ L3 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
   if ($.controlmode == 0) {
-    //"Press the~h~ L3 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
-    Text.PrintHelp("LM3_1A");
+    Text.PrintHelp("LM3_1A"); //"Press the~h~ L3 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
   }
-  //"Press the~h~ L1 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
   if ($.controlmode == 1) {
-    //"Press the~h~ L1 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
-    Text.PrintHelp("LM3_1B");
+    Text.PrintHelp("LM3_1B"); //"Press the~h~ L1 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
   }
-  //"Press the~h~ R1 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
   if ($.controlmode == 2) {
-    //"Press the~h~ R1 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
-    Text.PrintHelp("LM3_1C");
+    Text.PrintHelp("LM3_1C"); //"Press the~h~ R1 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
   }
-  //"Press the~h~ L3 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
   if ($.controlmode == 3) {
-    //"Press the~h~ L3 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
-    Text.PrintHelp("LM3_1A");
+    Text.PrintHelp("LM3_1A"); //"Press the~h~ L3 button~w~ to activate the ~h~horn~w~ and let Misty know you are here."
   }
   $.blob_flag = 1;
-  //"Get a vehicle and get on with the mission!"
   while (!($.player.isPressingHorn()) || !($.player.locateStoppedInCar2D(937.9, -259.8, 3.0, 3.0, $.blob_flag)) || !($.player.isSittingInAnyCar())) {
     await asyncWait(0);
-    //"Get a vehicle and get on with the mission!"
     if (!($.player.isInAnyCar()) && $.flag_player_got_message_lm3 == 0) {
-      //"Get a vehicle and get on with the mission!"
-      Text.PrintNow("IN_VEH2", 5000, 1);
+      Text.PrintNow("IN_VEH2", 5000, 1); //"Get a vehicle and get on with the mission!"
       $.radar_blip_coord1_lm3.remove();
       $.flag_player_got_message_lm3 = 1;
       $.blob_flag = 0;
@@ -261,6 +229,7 @@ async function mission_start_luigi3() {
   }
   Text.ClearHelp();
   $.script_controlled_player = $.player.getChar();
+  $.script_controlled_player.setCantBeDraggedOut(true /* TRUE */);
   /*
   IF IS_PLAYER_IN_ANY_CAR player
   STORE_CAR_PLAYER_IS_IN player car_lm3
@@ -269,9 +238,9 @@ async function mission_start_luigi3() {
   ENDIF
   ENDIF
   */
-  $.script_controlled_player.setCantBeDraggedOut(true /* TRUE */);
   await asyncWait(500);
   Hud.SwitchWidescreen(true /* ON */);
+  $.player.setControl(false /* OFF */);
   /*
   IF IS_PLAYER_IN_ANY_CAR player
   STORE_CAR_PLAYER_IS_IN player car_lm3
@@ -280,7 +249,6 @@ async function mission_start_luigi3() {
   ENDIF
   ENDIF
   */
-  $.player.setControl(false /* OFF */);
   World.ClearArea(936.2, -263.9, 5.0, 1.0, true /* TRUE */);
   if ($.player.locateInCar2D(937.9, -259.8, 3.0, 3.0, false /* FALSE */)) {
     if ($.player.isInModel(114 /* CAR_BUS */) || $.player.isInModel(120 /* CAR_COACH */) || $.player.isInModel(138 /* CAR_FLATBED */) || $.player.isInModel(90 /* CAR_FIRETRUCK */) || $.player.isInModel(83 /* CAR_LANDSTALKER */) || $.player.isInModel(86 /* CAR_LINERUNNER */)) {
@@ -304,24 +272,20 @@ async function mission_start_luigi3() {
     Camera.PointAtPoint(929.162, -267.43, 5.656, 2 /* JUMP_CUT */);
   }
   Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-  //CLEAR_AREA 943.8 -271.5 4.0 4.0 TRUE // This should get rid of any stuff to block the cut-scene area
   Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-  // Location misty is going to run to
-  World.ClearArea(941.7, -269.2, 4.0, 1.0, true /* TRUE */);
+  //CLEAR_AREA 943.8 -271.5 4.0 4.0 TRUE // This should get rid of any stuff to block the cut-scene area
+  World.ClearArea(941.7, -269.2, 4.0, 1.0, true /* TRUE */); // Location misty is going to run to
   $.radar_blip_coord1_lm3.remove();
   $.misty_lm3 = Char.Create(21 /* PEDTYPE_SPECIAL */, ped`SPECIAL2`, 946.47, -275.50, 3.9);
   $.misty_lm3.turnToFaceCoord(942.0, -268.0, -100.0);
   $.misty_lm3.clearThreatSearch();
-  // opens the doors
   $.misty_lm3.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
+  // opens the doors
   $.door1_position_lm3 = $.misty_door1.getHeading();
-  //"Misty's dead!"
   while (!($.door1_position_lm3 == 90.0)) {
     await asyncWait(0);
-    //"Misty's dead!"
     if (Char.IsDead($.misty_lm3)) {
-      //"Misty's dead!"
-      Text.PrintNow("MISTY1", 5000, 1);
+      Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
       // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
     }
@@ -335,37 +299,27 @@ async function mission_start_luigi3() {
     $.misty_door1.setHeading($.door1_position_lm3);
   }
   await asyncWait(0);
-  //"Misty's dead!"
   if (Char.IsDead($.misty_lm3)) {
-    //"Misty's dead!"
-    Text.PrintNow("MISTY1", 5000, 1);
+    Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
     // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
   }
   World.ClearArea(944.1, -270.7, 4.0, 2.0, true /* TRUE */);
-  //POINT_CAMERA_AT_CHAR misty_lm3 FIXED JUMP_CUT
   $.misty_lm3.setObjGotoCoordOnFoot(944.1, -270.7);
+  //POINT_CAMERA_AT_CHAR misty_lm3 FIXED JUMP_CUT
   timerb = 0;
-  // Try this one to see if it passes ok
-  //"The vehicle's wrecked!"
-  //"Misty's dead!"
   while (!($.misty_lm3.isObjectivePassed())) {
     await asyncWait(0);
-    //"The vehicle's wrecked!"
     if ($.player.isInAnyCar()) {
       $.car_lm3 = $.player.storeCarIsIn();
-      //"The vehicle's wrecked!"
       if (Car.IsDead($.car_lm3)) {
-        //"The vehicle's wrecked!"
-        Text.PrintNow("WRECKED", 5000, 1);
+        Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
         // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
       }
     }
-    //"Misty's dead!"
     if (Char.IsDead($.misty_lm3)) {
-      //"Misty's dead!"
-      Text.PrintNow("MISTY1", 5000, 1);
+      Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
       // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
     }
@@ -375,6 +329,7 @@ async function mission_start_luigi3() {
       }
     }
   }
+  World.ClearArea(941.0, -264.0, -100.0, 4.0, true /* TRUE */);
   /*
   // Close the door
   WHILE NOT door1_position_lm3 = 0.0
@@ -399,7 +354,6 @@ async function mission_start_luigi3() {
   SET_OBJECT_HEADING misty_door1 door1_position_lm3
   ENDWHILE
   */
-  World.ClearArea(941.0, -264.0, -100.0, 4.0, true /* TRUE */);
   Camera.SetFixedPosition(934.2, -265.8, 5.9, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(934.7, -264.9, 5.7, 2 /* JUMP_CUT */);
   $.misty_door1.setHeading(0.0);
@@ -409,52 +363,34 @@ async function mission_start_luigi3() {
       $.misty_lm3.setCoordinates(934.79, -267.47, 3.9);
     }
   }
-  //	IF NOT IS_CAR_DEAD car_lm3
-  //		LOCK_CAR_DOORS car_lm3 CARLOCK_UNLOCKED
-  //	ENDIF
-  //"The vehicle's wrecked!"
-  // waiting for Misty to get into the car
-  //"Misty's dead!"
   if ($.player.isInAnyCar()) {
     $.car_lm3 = $.player.storeCarIsIn();
+    $.misty_lm3.setObjEnterCarAsPassenger($.car_lm3);
     //	IF NOT IS_CAR_DEAD car_lm3
     //		LOCK_CAR_DOORS car_lm3 CARLOCK_UNLOCKED
     //	ENDIF
-    $.misty_lm3.setObjEnterCarAsPassenger($.car_lm3);
-    //"The vehicle's wrecked!"
-    // waiting for Misty to get into the car
     if (Car.IsDead($.car_lm3)) {
-      //"The vehicle's wrecked!"
-      Text.PrintNow("WRECKED", 5000, 1);
+      Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
       // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
     }
-    //"Misty's dead!"
-    //"The vehicle's wrecked!"
+    // waiting for Misty to get into the car
     while (!($.misty_lm3.isInCar($.car_lm3))) {
       await asyncWait(0);
-      //"Misty's dead!"
-      //"The vehicle's wrecked!"
       if (Car.IsDead($.car_lm3)) {
-        //"Misty's dead!"
-        //"The vehicle's wrecked!"
         if (Char.IsDead($.misty_lm3)) {
-          //"Misty's dead!"
-          Text.PrintNow("MISTY1", 5000, 1);
+          Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
           // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
         }
         else {
-          //"The vehicle's wrecked!"
-          Text.PrintNow("WRECKED", 5000, 1);
+          Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
           // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
         }
       }
-      //"Misty's dead!"
       if (Char.IsDead($.misty_lm3)) {
-        //"Misty's dead!"
-        Text.PrintNow("MISTY1", 5000, 1);
+        Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
         // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
       }
@@ -462,25 +398,18 @@ async function mission_start_luigi3() {
   }
   else {
     $.misty_lm3.setObjGotoPlayerOnFoot($.player);
-    //"The vehicle's wrecked!"
-    //"Misty's dead!"
     while (!($.misty_lm3.isObjectivePassed())) {
       await asyncWait(0);
-      //"The vehicle's wrecked!"
       if ($.player.isInAnyCar()) {
         $.car_lm3 = $.player.storeCarIsIn();
-        //"The vehicle's wrecked!"
         if (Car.IsDead($.car_lm3)) {
-          //"The vehicle's wrecked!"
-          Text.PrintNow("WRECKED", 5000, 1);
+          Text.PrintNow("WRECKED", 5000, 1); //"The vehicle's wrecked!"
           // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
         }
       }
-      //"Misty's dead!"
       if (Char.IsDead($.misty_lm3)) {
-        //"Misty's dead!"
-        Text.PrintNow("MISTY1", 5000, 1);
+        Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
         // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
       }
@@ -494,74 +423,51 @@ async function mission_start_luigi3() {
   Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
   Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
   Audio.PlayMissionAudio();
-  //"You working for Luigi regular huh? It's about time he got a driver we can trust!"
-  Text.PrintNow("LM3_5", 7000, 1);
-  //"Misty's dead!"
-  //"You have left Misty behind go and get her!"
-  //REMOVE_BLIP radar_blip_coord2_lm3
-  //PRINT_NOW ( LM3_2 ) 5000 1 //"Take Misty to see Joey Leone."
-  //ADD_BLIP_FOR_COORD 1196.0 -874.0 -100.0 radar_blip_coord2_lm3
+  Text.PrintNow("LM3_5", 7000, 1); //"You working for Luigi regular huh? It's about time he got a driver we can trust!"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
-    //"Misty's dead!"
     if (Char.IsDead($.misty_lm3)) {
-      //"Misty's dead!"
-      Text.PrintNow("MISTY1", 5000, 1);
+      Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
       // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
     }
-    //"You have left Misty behind go and get her!"
-    //REMOVE_BLIP radar_blip_coord2_lm3
     if (!($.misty_lm3.isInPlayersGroup($.player)) && $.flag_blip_on_misty_lm3 == 0) {
-      //"You have left Misty behind go and get her!"
-      Text.PrintNow("HEY4", 5000, 1);
-      //REMOVE_BLIP radar_blip_coord2_lm3
+      Text.PrintNow("HEY4", 5000, 1); //"You have left Misty behind go and get her!"
       $.radar_blip_ped1_lm3 = Blip.AddForChar($.misty_lm3);
+      //REMOVE_BLIP radar_blip_coord2_lm3
       $.flag_blip_on_misty_lm3 = 1;
       $.blob_flag = 0;
     }
-    //PRINT_NOW ( LM3_2 ) 5000 1 //"Take Misty to see Joey Leone."
-    //ADD_BLIP_FOR_COORD 1196.0 -874.0 -100.0 radar_blip_coord2_lm3
     if ($.player.locateAnyMeansChar2D($.misty_lm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_misty_lm3 == 1) {
-      //PRINT_NOW ( LM3_2 ) 5000 1 //"Take Misty to see Joey Leone."
       $.misty_lm3.followPlayer($.player);
-      //ADD_BLIP_FOR_COORD 1196.0 -874.0 -100.0 radar_blip_coord2_lm3
+      //PRINT_NOW ( LM3_2 ) 5000 1 //"Take Misty to see Joey Leone."
       $.radar_blip_ped1_lm3.remove();
+      //ADD_BLIP_FOR_COORD 1196.0 -874.0 -100.0 radar_blip_coord2_lm3
       $.flag_blip_on_misty_lm3 = 0;
       $.blob_flag = 1;
     }
   }
   Text.ClearThisPrint("LM3_5");
-  //"Take Misty to see Joey Leone."
-  Text.PrintNow("LM3_2", 5000, 1);
+  Text.PrintNow("LM3_2", 5000, 1); //"Take Misty to see Joey Leone."
   $.radar_blip_coord2_lm3 = Blip.AddForCoord(1196.0, -874.0, -100.0);
   $.blob_flag = 1;
-  //"Misty's dead!"
-  //"You have left Misty behind go and get her!"
-  //"Take Misty to see Joey Leone."
   while (!($.player.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, $.blob_flag)) || !($.misty_lm3.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, false /* FALSE */))) {
     await asyncWait(0);
-    //"Misty's dead!"
     if (Char.IsDead($.misty_lm3)) {
-      //"Misty's dead!"
-      Text.PrintNow("MISTY1", 5000, 1);
+      Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
       // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
     }
-    //"You have left Misty behind go and get her!"
     if (!($.misty_lm3.isInPlayersGroup($.player)) && $.flag_blip_on_misty_lm3 == 0) {
-      //"You have left Misty behind go and get her!"
-      Text.PrintNow("HEY4", 5000, 1);
+      Text.PrintNow("HEY4", 5000, 1); //"You have left Misty behind go and get her!"
       $.radar_blip_ped1_lm3 = Blip.AddForChar($.misty_lm3);
       $.radar_blip_coord2_lm3.remove();
       $.flag_blip_on_misty_lm3 = 1;
       $.blob_flag = 0;
     }
-    //"Take Misty to see Joey Leone."
     if ($.player.locateAnyMeansChar2D($.misty_lm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_misty_lm3 == 1) {
       $.misty_lm3.followPlayer($.player);
-      //"Take Misty to see Joey Leone."
-      Text.PrintNow("LM3_2", 5000, 1);
+      Text.PrintNow("LM3_2", 5000, 1); //"Take Misty to see Joey Leone."
       $.radar_blip_ped1_lm3.remove();
       $.radar_blip_coord2_lm3 = Blip.AddForCoord(1196.0, -874.0, -100.0);
       $.flag_blip_on_misty_lm3 = 0;
@@ -571,10 +477,8 @@ async function mission_start_luigi3() {
   $.radar_blip_coord2_lm3.remove();
   Camera.SetFixedPosition(1211.85, -882.40, 19.42, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(1210.99, -881.90, 19.34, 2 /* JUMP_CUT */);
-  //"Misty's dead!"
   if (Char.IsDead($.misty_lm3)) {
-    //"Misty's dead!"
-    Text.PrintNow("MISTY1", 5000, 1);
+    Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
     // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
   }
@@ -582,21 +486,17 @@ async function mission_start_luigi3() {
   Hud.SwitchWidescreen(true /* ON */);
   $.player.setControl(false /* OFF */);
   $.player.clearWantedLevel();
-  // This should get rid of any stuff to block the cut-scene area
-  World.ClearArea(1190.6, -869.1, -100.0, 6.0, true /* TRUE */);
+  World.ClearArea(1190.6, -869.1, -100.0, 6.0, true /* TRUE */); // This should get rid of any stuff to block the cut-scene area
   Game.SetPoliceIgnorePlayer($.player, true /* ON */);
   $.script_controlled_player = $.player.getChar();
   if ($.misty_lm3.isInAnyCar()) {
     $.car_lm3 = $.misty_lm3.storeCarIsIn();
     $.misty_lm3.setObjLeaveCar($.car_lm3);
   }
-  //"Misty's dead!"
   while ($.misty_lm3.isInAnyCar()) {
     await asyncWait(0);
-    //"Misty's dead!"
     if (Char.IsDead($.misty_lm3)) {
-      //"Misty's dead!"
-      Text.PrintNow("MISTY1", 5000, 1);
+      Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
       // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
     }
@@ -606,38 +506,29 @@ async function mission_start_luigi3() {
     $.script_controlled_player.setObjLeaveCar($.car_lm3);
   }
   $.misty_lm3.setObjGotoCoordOnFoot(1193.1, -868.3);
-  //"Misty's dead!"
   while ($.script_controlled_player.isInAnyCar()) {
     await asyncWait(0);
-    //"Misty's dead!"
     if (Char.IsDead($.misty_lm3)) {
-      //"Misty's dead!"
-      Text.PrintNow("MISTY1", 5000, 1);
+      Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
       // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
     }
   }
   $.script_controlled_player.setObjGotoCoordOnFoot(1193.1, -868.3);
   await asyncWait(500);
-  //"Misty's dead!"
   if (Char.IsDead($.misty_lm3)) {
-    //"Misty's dead!"
-    Text.PrintNow("MISTY1", 5000, 1);
+    Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
     // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
   }
-  // ********************************START OF CUT-SCENE PART TWO******************************
   $.car_lm3.markAsNoLongerNeeded();
+  // ********************************START OF CUT-SCENE PART TWO******************************
   $.breakout_timer_start = Clock.GetGameTimer();
   $.breakout_diff = 0;
-  //	if player is not in control after 5 secs do the cutscene anyway
-  //"Misty's dead!"
   while (!($.player.canStartMission()) && $.breakout_diff < 5000) {
     await asyncWait(0);
-    //"Misty's dead!"
     if (Char.IsDead($.misty_lm3)) {
-      //"Misty's dead!"
-      Text.PrintNow("MISTY1", 5000, 1);
+      Text.PrintNow("MISTY1", 5000, 1); //"Misty's dead!"
       // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi3_failed"); // fallback: would break linear control flow
     }
@@ -702,15 +593,14 @@ async function mission_start_luigi3() {
   $.misty_lm3.delete();
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 10538) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Joey..."
-  Text.PrintNow("LM3_6", 10000, 1);
+  Text.PrintNow("LM3_6", 10000, 1); //"Joey..."
   while ($.cs_time < 11896) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -720,38 +610,32 @@ async function mission_start_luigi3() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Am I goin' to play with our big end again?"
-  Text.PrintNow("LM3_6A", 10000, 1);
+  Text.PrintNow("LM3_6A", 10000, 1); //"Am I goin' to play with our big end again?"
   while ($.cs_time < 16869) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I'll be with you In a minute spark plug."
-  Text.PrintNow("LM3_7", 10000, 1);
+  Text.PrintNow("LM3_7", 10000, 1); //"I'll be with you In a minute spark plug."
   while ($.cs_time < 20173) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Hey, I'm Joey."
-  Text.PrintNow("LM3_8", 10000, 1);
+  Text.PrintNow("LM3_8", 10000, 1); //"Hey, I'm Joey."
   while ($.cs_time < 21116) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Luigi said you were reliable so come back later,"
-  Text.PrintNow("LM3_9", 10000, 1);
+  Text.PrintNow("LM3_9", 10000, 1); //"Luigi said you were reliable so come back later,"
   while ($.cs_time < 23397) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"There might be some work for you."
-  Text.PrintNow("LM3_9A", 10000, 1);
+  Text.PrintNow("LM3_9A", 10000, 1); //"There might be some work for you."
   while ($.cs_time < 25088) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Alright."
-  Text.PrintNow("LM3_9B", 10000, 1);
+  Text.PrintNow("LM3_9B", 10000, 1); //"Alright."
   while ($.cs_time < 25723) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -790,27 +674,25 @@ async function mission_start_luigi3() {
   Streaming.MarkModelAsNoLongerNeeded(jogarageint);
   $.cut_car_lm3.delete();
   $.cut_car2_lm3.delete();
-  // **********************************END OF CUT-SCENE PART TWO***********************************
   $.cut_car3_lm3.delete();
+  // **********************************END OF CUT-SCENE PART TWO***********************************
   }
-  // Mission Luigi1 failed
   // SCM GOTO → mission_luigi3_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_luigi3_passed"); // fallback: would break linear control flow
+  // Mission Luigi1 failed
 }
 
 async function mission_luigi3_failed() {
-  //"Mission Failed!"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission Luigi1 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed!"
   return;
+  // mission Luigi1 passed
 }
 
 async function mission_luigi3_passed() {
   $.flag_luigi_mission3_passed = 1;
   Stat.RegisterMissionPassed("LM3");
   Stat.PlayerMadeProgress(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("m_pass", 1000, 5000, 1);
+  Text.PrintWithNumberBig("m_pass", 1000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.addScore(1000);
   $.player.clearWantedLevel();
@@ -818,17 +700,12 @@ async function mission_luigi3_passed() {
   // START_NEW_SCRIPT luigi_mission4_loop
   // START_NEW_SCRIPT joey_mission1_loop
   // START_NEW_SCRIPT meat_mission1_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_luigi3() {
   $.flag_player_on_mission = 0;
-  /*
-  IF NOT IS_CAR_DEAD car_lm3
-  LOCK_CAR_DOORS car_lm3 CARLOCK_UNLOCKED
-  ENDIF
-  */
   $.flag_player_on_luigi_mission = 0;
   $.misty_lm3.removeElegantly();
   Streaming.MarkModelAsNoLongerNeeded(car`MAFIA`);
@@ -841,12 +718,12 @@ async function mission_cleanup_luigi3() {
 }
 
 export async function luigi3() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************Luigi mission 3*********************************
   // ***************************************"Drive Misty For Me"******************************
-  // MissionBoundary
-  // Mission Start Stuff
   // ScriptName
+  // Mission Start Stuff
   // SCM GOSUB mission_start_luigi3
   await mission_start_luigi3();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -858,8 +735,8 @@ export async function luigi3() {
   // SCM GOSUB mission_cleanup_luigi3
   await mission_cleanup_luigi3();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variable for mission
   // MissionBoundary
+  // Variable for mission
   // VAR_INT radar_blip_coord1_lm3
   // VAR_INT radar_blip_coord2_lm3
   // VAR_INT misty_lm3
@@ -877,6 +754,6 @@ export async function luigi3() {
   // VAR_INT flag_camera_mode_lm3
   // VAR_INT cut_car_lm3
   // VAR_INT cut_car2_lm3
-  // ****************************************Mission Start************************************
   // VAR_INT cut_car3_lm3
+  // ****************************************Mission Start************************************
 }

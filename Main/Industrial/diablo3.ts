@@ -23,8 +23,8 @@ async function mission_start_diablo3() {
   $.cs_player.setAnim($.player);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2000) {
     await asyncWait(0);
@@ -83,8 +83,8 @@ async function mission_start_diablo3() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SetPedDensityMultiplier(1.0);
   Zone.SetPedInfo("CHINA", 1 /* DAY */, 30, 0, 650, 0, 0, 0, 0, 0, 0);
-  // START MISSION
   Zone.SetPedInfo("CHINA", 0 /* NIGHT */, 30, 0, 650, 0, 0, 0, 0, 0, 0);
+  // START MISSION
   $.all_gang_created_before = 0;
   $.counter_diablo3 = 0;
   $.dead_burn_man1 = 0;
@@ -100,8 +100,8 @@ async function mission_start_diablo3() {
   }
   Player.ResetNumOfModelsKilled();
   $.flamethrower_diablo3 = Pickup.CreateWithAmmo(162 /* WEAPON_FLAME */, 3 /* PICKUP_ONCE */, 0, 879.2, -810.0, -100.0);
-  //CHANGE_BLIP_DISPLAY blip1_diablo3 BLIP_ONLY
   $.blip1_diablo3 = Blip.AddSpriteForCoord(879.2, -810.0, -100.0, 20 /* RADAR_SPRITE_WEAPON */);
+  //CHANGE_BLIP_DISPLAY blip1_diablo3 BLIP_ONLY
   while (!(Streaming.HasModelLoaded(ped`GANG_TRIAD_A`)) || !(Streaming.HasModelLoaded(ped`GANG_TRIAD_B`))) {
     await asyncWait(0);
   }
@@ -202,25 +202,23 @@ async function Diablo3_loop() {
 }
 
 async function mission_diablo3_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission toni1 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission toni1 passed
 }
 
 async function mission_diablo3_passed() {
   $.flag_diablo_mission3_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(10000);
   Stat.RegisterMissionPassed(DIAB3);
   Stat.PlayerMadeProgress(1);
   Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
   // START_NEW_SCRIPT diablo_mission4_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_diablo3() {
@@ -230,8 +228,7 @@ async function mission_cleanup_diablo3() {
   $.flamethrower_diablo3.remove();
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_TRIAD_A`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_TRIAD_B`);
-  //China town
-  Zone.SetPedInfo("CHINA", 1 /* DAY */, 20, 0, 200, 0, 0, 0, 0, 0, 20);
+  Zone.SetPedInfo("CHINA", 1 /* DAY */, 20, 0, 200, 0, 0, 0, 0, 0, 20); //China town
   Zone.SetPedInfo("CHINA", 0 /* NIGHT */, 10, 0, 300, 0, 0, 0, 0, 0, 10);
   if ($.traid_threat_cleared_D3 == 1) {
     Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
@@ -241,11 +238,11 @@ async function mission_cleanup_diablo3() {
 }
 
 export async function diablo3() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Deablo mission 3**************************************
   // ***********************************BURN, BURN THEM ALL!!!!*********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_diablo3
   await mission_start_diablo3();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -257,16 +254,15 @@ export async function diablo3() {
   // SCM GOSUB mission_cleanup_diablo3
   await mission_cleanup_diablo3();
   // fallback if label was not emitted as async function: no-op continues linearly
+  // MissionBoundary
   // Variables for mission
   //VAR_INT countdown_diablo3 // On screen countdown timer
   //VAR_INT counter1_dm3
-  // MissionBoundary
-  // Counts up number of mission triads killed
   // VAR_INT counter_diablo3
   // VAR_INT burn_man1 burn_man2 burn_man3 burn_man4 burn_man5 burn_man6
   // VAR_INT dead_burn_man1 dead_burn_man2 dead_burn_man3 dead_burn_man4 dead_burn_man5 dead_burn_man6
   // VAR_INT blip1_diablo3 flamethrower_diablo3
   // VAR_INT all_gang_created_before traid_threat_cleared_D3
-  // ***************************************Mission Start*************************************
   // VAR_INT CurrentStatus given_money_before
+  // ***************************************Mission Start*************************************
 }

@@ -24,12 +24,12 @@ async function mission_start_love3() {
   $.packge_04 = 0;
   $.packge_05 = 0;
   $.packge_06 = 0;
-  //garage_flag_l3 = 0
   $.counter_display_flag = 0;
+  //garage_flag_l3 = 0
   $.PlaneX = 0.0;
   $.PlaneY = 0.0;
-  // ****************************************START OF CUTSCENE********************************
   $.PlaneZ = 0.0;
+  // ****************************************START OF CUTSCENE********************************
   Streaming.LoadSpecialCharacter(1, love2);
   Streaming.LoadSpecialCharacter(2, ojg2);
   Streaming.LoadSpecialModel(hier`cutobj01`, LOVEH);
@@ -61,26 +61,22 @@ async function mission_start_love3() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"In these days of moral hypocrisy certain valuable commodities can be hard to import."
-  Text.PrintNow(LOVE3_A, 5000, 1);
+  Text.PrintNow(LOVE3_A, 5000, 1); //"In these days of moral hypocrisy certain valuable commodities can be hard to import."
   while ($.cs_time < 16652) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"On it's approach to Liberty airport tonight, a light aircraft will pass over the bay."
-  Text.PrintNow(LOVE3_B, 5000, 1);
+  Text.PrintNow(LOVE3_B, 5000, 1); //"On it's approach to Liberty airport tonight, a light aircraft will pass over the bay."
   while ($.cs_time < 20065) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"It will drop several packages into the water."
-  Text.PrintNow(LOVE3_C, 5000, 1);
+  Text.PrintNow(LOVE3_C, 5000, 1); //"It will drop several packages into the water."
   while ($.cs_time < 22434) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Make sure you pick them up before anyone else does."
-  Text.PrintNow(LOVE3_D, 5000, 1);
+  Text.PrintNow(LOVE3_D, 5000, 1); //"Make sure you pick them up before anyone else does."
   while ($.cs_time < 25333) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -110,8 +106,8 @@ async function mission_start_love3() {
   Streaming.UnloadSpecialCharacter(2);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn);
-  // ******************************************END OF CUTSCENE********************************
   Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas);
+  // ******************************************END OF CUTSCENE********************************
   while (!(Streaming.HasModelLoaded(car`DEADDODO`)) || !(Streaming.HasModelLoaded(car`SPEEDER`)) || !(Streaming.HasModelLoaded(car`PREDATOR`))) {
     await asyncWait(0);
   }
@@ -120,12 +116,8 @@ async function mission_start_love3() {
   $.players_boat_blip = Blip.AddForCar($.players_boat);
   Text.PrintNow(LOVE3_1, 5000, 1);
   DrugDropOff.Start();
-  // IMPOSSIBLE IF STATEMENT
-  // JUST SO I CAN REMOVE THE
-  // BLIP BEFORE ADDING IT
   if ($.flag_player_on_mission == 0) {
-    // JUST SO I CAN REMOVE THE
-    $.plane_blip = Blip.AddForCoord($.PlaneX, $.PlaneY, $.PlaneZ);
+    $.plane_blip = Blip.AddForCoord($.PlaneX, $.PlaneY, $.PlaneZ); // JUST SO I CAN REMOVE THE
   }
   await asyncWait(1000);
   $.plane_timer = 120000;
@@ -141,11 +133,9 @@ async function plane_drop_loop() {
       // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_love3_failed"); // fallback: would break linear control flow
     }
-    // "The plane is now in range."
     if ($.plane_timer == 0) {
       Hud.ClearTimer($.plane_timer);
-      // "The plane is now in range."
-      Text.PrintNow(LOVE3_5, 5000, 1);
+      Text.PrintNow(LOVE3_5, 5000, 1); // "The plane is now in range."
       $.plane_timer = -1000;
     }
     if ($.player.isInModel(113 /* BOAT_PREDATOR */) || $.player.isInModel(135 /* BOAT_SPEEDER */) || $.player.isInModel(136 /* BOAT_REEFER */)) {
@@ -202,10 +192,8 @@ async function plane_drop_loop() {
         }
       }
     }
-    //"The plane has dropped ~1~ of 8 packages."
     if ($.packge_01 > 0 && $.packages_collected < 6) {
-      //"The plane has dropped ~1~ of 8 packages."
-      Text.PrintWithNumberNow(LOVE3_3, $.package_numbers, 5000, 1);
+      Text.PrintWithNumberNow(LOVE3_3, $.package_numbers, 5000, 1); //"The plane has dropped ~1~ of 8 packages."
     }
     if ($.packge_01 == 1) {
       if ($.float_packge_01.hasBeenCollected()) {
@@ -285,7 +273,6 @@ async function plane_drop_loop() {
         $.packge_06 = 2;
       }
     }
-    // "~r~The Police got the the package first!"
     if ($.packge_06 > 0) {
       if ($.police_boat_flag == 0) {
         if (!(Camera.IsPointOnScreen(560.5223, -474.0232, -0.2, 5.0))) {
@@ -296,13 +283,9 @@ async function plane_drop_loop() {
           $.police_boat_flag = 1;
         }
       }
-      // "~r~The Police got the the package first!"
       if (!(Car.IsDead($.police_boat))) {
-        // "~r~The Police got the the package first!"
         if ($.police_boat_flag == 1) {
-          // "~r~The Police got the the package first!"
           if ($.police_boat.locate2D($.package_6_x, $.package_6_y, 4.0, 4.0, false)) {
-            // "~r~The Police got the the package first!"
             if ($.packge_06 == 1) {
               $.float_packge_01.remove();
               $.float_packge_02.remove();
@@ -310,8 +293,7 @@ async function plane_drop_loop() {
               $.float_packge_04.remove();
               $.float_packge_05.remove();
               $.float_packge_06.remove();
-              // "~r~The Police got the the package first!"
-              Text.PrintNow(LOVE3_6, 5000, 1);
+              Text.PrintNow(LOVE3_6, 5000, 1); // "~r~The Police got the the package first!"
               $.police_boat.goto(641.5550, 594.6697, 0.0);
               $.police_boat.setCruiseSpeed(100.0);
               // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -323,11 +305,8 @@ async function plane_drop_loop() {
             }
           }
         }
-        // "~r~The Police got the the package first!"
         if ($.police_boat_flag == 2) {
-          // "~r~The Police got the the package first!"
           if ($.police_boat.locate2D($.package_5_x, $.package_5_y, 4.0, 4.0, false)) {
-            // "~r~The Police got the the package first!"
             if ($.packge_05 == 1) {
               $.float_packge_01.remove();
               $.float_packge_02.remove();
@@ -335,8 +314,7 @@ async function plane_drop_loop() {
               $.float_packge_04.remove();
               $.float_packge_05.remove();
               $.float_packge_06.remove();
-              // "~r~The Police got the the package first!"
-              Text.PrintNow(LOVE3_6, 5000, 1);
+              Text.PrintNow(LOVE3_6, 5000, 1); // "~r~The Police got the the package first!"
               $.police_boat.goto(641.5550, 594.6697, 0.0);
               $.police_boat.setCruiseSpeed(100.0);
               // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -348,11 +326,8 @@ async function plane_drop_loop() {
             }
           }
         }
-        // "~r~The Police got the the package first!"
         if ($.police_boat_flag == 3) {
-          // "~r~The Police got the the package first!"
           if ($.police_boat.locate2D($.package_4_x, $.package_4_y, 4.0, 4.0, false)) {
-            // "~r~The Police got the the package first!"
             if ($.packge_04 == 1) {
               $.float_packge_01.remove();
               $.float_packge_02.remove();
@@ -360,8 +335,7 @@ async function plane_drop_loop() {
               $.float_packge_04.remove();
               $.float_packge_05.remove();
               $.float_packge_06.remove();
-              // "~r~The Police got the the package first!"
-              Text.PrintNow(LOVE3_6, 5000, 1);
+              Text.PrintNow(LOVE3_6, 5000, 1); // "~r~The Police got the the package first!"
               $.police_boat.goto(641.5550, 594.6697, 0.0);
               $.police_boat.setCruiseSpeed(100.0);
               // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -373,11 +347,8 @@ async function plane_drop_loop() {
             }
           }
         }
-        // "~r~The Police got the the package first!"
         if ($.police_boat_flag == 4) {
-          // "~r~The Police got the the package first!"
           if ($.police_boat.locate2D($.package_3_x, $.package_3_y, 4.0, 4.0, false)) {
-            // "~r~The Police got the the package first!"
             if ($.packge_03 == 1) {
               $.float_packge_01.remove();
               $.float_packge_02.remove();
@@ -385,8 +356,7 @@ async function plane_drop_loop() {
               $.float_packge_04.remove();
               $.float_packge_05.remove();
               $.float_packge_06.remove();
-              // "~r~The Police got the the package first!"
-              Text.PrintNow(LOVE3_6, 5000, 1);
+              Text.PrintNow(LOVE3_6, 5000, 1); // "~r~The Police got the the package first!"
               $.police_boat.goto(641.5550, 594.6697, 0.0);
               $.police_boat.setCruiseSpeed(100.0);
               // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -398,11 +368,8 @@ async function plane_drop_loop() {
             }
           }
         }
-        // "~r~The Police got the the package first!"
         if ($.police_boat_flag == 5) {
-          // "~r~The Police got the the package first!"
           if ($.police_boat.locate2D($.package_2_x, $.package_2_y, 4.0, 4.0, false)) {
-            // "~r~The Police got the the package first!"
             if ($.packge_02 == 1) {
               $.float_packge_01.remove();
               $.float_packge_02.remove();
@@ -410,8 +377,7 @@ async function plane_drop_loop() {
               $.float_packge_04.remove();
               $.float_packge_05.remove();
               $.float_packge_06.remove();
-              // "~r~The Police got the the package first!"
-              Text.PrintNow(LOVE3_6, 5000, 1);
+              Text.PrintNow(LOVE3_6, 5000, 1); // "~r~The Police got the the package first!"
               $.police_boat.goto(641.5550, 594.6697, 0.0);
               $.police_boat.setCruiseSpeed(100.0);
               // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -423,11 +389,8 @@ async function plane_drop_loop() {
             }
           }
         }
-        // "~r~The Police got the the package first!"
         if ($.police_boat_flag == 6) {
-          // "~r~The Police got the the package first!"
           if ($.police_boat.locate2D($.package_1_x, $.package_1_y, 4.0, 4.0, false)) {
-            // "~r~The Police got the the package first!"
             if ($.packge_01 == 1) {
               $.float_packge_01.remove();
               $.float_packge_02.remove();
@@ -435,8 +398,7 @@ async function plane_drop_loop() {
               $.float_packge_04.remove();
               $.float_packge_05.remove();
               $.float_packge_06.remove();
-              // "~r~The Police got the the package first!"
-              Text.PrintNow(LOVE3_6, 5000, 1);
+              Text.PrintNow(LOVE3_6, 5000, 1); // "~r~The Police got the the package first!"
               $.police_boat.goto(641.5550, 594.6697, 0.0);
               $.police_boat.setCruiseSpeed(100.0);
               // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
@@ -450,14 +412,10 @@ async function plane_drop_loop() {
         }
       }
     }
-    // "You have them all.  Take the package to Donald Love"
-    //130.0 -1585.0 26.0
     if ($.packages_collected == 6) {
-      // "You have them all.  Take the package to Donald Love"
-      Text.PrintNow(LOVE3_2, 5000, 1);
+      Text.PrintNow(LOVE3_2, 5000, 1); // "You have them all.  Take the package to Donald Love"
       $.plane_blip.remove();
-      //130.0 -1585.0 26.0
-      $.plane_blip = Blip.AddForCoord(87.3, -1548.6, 27.255);
+      $.plane_blip = Blip.AddForCoord(87.3, -1548.6, 27.255); //130.0 -1585.0 26.0
       $.temporary_time_drug = 0;
       // SCM GOTO → garage_loop_l3 (not lowered; manual jump required)
       throw new Error("unresolved GOTO garage_loop_l3"); // fallback: would break linear control flow
@@ -515,15 +473,15 @@ async function get_out_of_loop_l3() {
   Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
   Game.SetAllCarsCanBeDamaged(true /* TRUE */);
   Camera.DoFade(1000, 1 /* FADE_IN */);
-  // Mission love 3 failed
   // SCM GOTO → mission_love3_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_love3_passed"); // fallback: would break linear control flow
+  // Mission love 3 failed
 }
 
 async function mission_love3_failed() {
   Text.PrintBig(M_FAIL, 5000, 1);
-  // mission love 3 passed
   return;
+  // mission love 3 passed
 }
 
 async function mission_love3_passed() {
@@ -542,10 +500,8 @@ async function mission_love3_passed() {
   if (Object.DoesExist($.helix_barrier)) {
     $.helix_barrier.delete();
   }
-  //tunnel to suburbia
-  Path.SwitchRoadsOn(496.7, 75.5, -30.0, 484.0, 44.2, 0.0);
-  //Commercial to Suburbia Bridge
-  Path.SwitchRoadsOn(-46.8, -648.0, 39.0, -69.1, -614.0, 50.0);
+  Path.SwitchRoadsOn(496.7, 75.5, -30.0, 484.0, 44.2, 0.0); //tunnel to suburbia
+  Path.SwitchRoadsOn(-46.8, -648.0, 39.0, -69.1, -614.0, 50.0); //Commercial to Suburbia Bridge
   if ($.flag_ray_mission5_passed == 1) {
     $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, 15 /* RADAR_SPRITE_RAY */);
     // START_NEW_SCRIPT ray_mission6_loop
@@ -558,8 +514,8 @@ async function mission_love3_passed() {
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT love_mission4_loop
   // START_NEW_SCRIPT hood_phone_start
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_love3() {
@@ -568,8 +524,8 @@ async function mission_cleanup_love3() {
   Hud.ClearTimer($.plane_timer);
   Hud.ClearCounter($.packages_collected);
   Streaming.MarkModelAsNoLongerNeeded(car`SPEEDER`);
-  //SET_TARGET_CAR_FOR_MISSION_GARAGE loves_garage -1
   Streaming.MarkModelAsNoLongerNeeded(car`DEADDODO`);
+  //SET_TARGET_CAR_FOR_MISSION_GARAGE loves_garage -1
   $.players_boat_blip.remove();
   $.plane_blip.remove();
   Mission.Finish();
@@ -577,6 +533,7 @@ async function mission_cleanup_love3() {
 }
 
 export async function love3() {
+  // MissionBoundary
   // *****************************************************************************************
   // *********************************    Love mission 3   ***********************************
   // ********************************* A Drop in the Ocean ***********************************
@@ -587,7 +544,6 @@ export async function love3() {
   // *** Once the player has collected them all he must get them back to land and to his 	 ***
   // *** hideout in a car with the ensuing police chase. 									 ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_love3
   await mission_start_love3();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -599,9 +555,8 @@ export async function love3() {
   // SCM GOSUB mission_cleanup_love3
   await mission_cleanup_love3();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
-  /*garage_flag_l3 player_car_l3*/
+  // Variables for mission
   // VAR_INT players_boat players_boat_blip police_boat_flag police_boat
   // VAR_INT plane_blip random_int_l3 counter_display_flag plane_timer police_boat_driver police_rating
   // VAR_INT float_packge_01 float_packge_02 float_packge_03 float_packge_04 float_packge_05 float_packge_06
@@ -613,6 +568,6 @@ export async function love3() {
   // VAR_FLOAT package_3_x package_3_y
   // VAR_FLOAT package_4_x package_4_y
   // VAR_FLOAT package_5_x package_5_y
-  // ****************************************Mission Start************************************
   // VAR_FLOAT package_6_x package_6_y
+  // ****************************************Mission Start************************************
 }

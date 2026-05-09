@@ -10,6 +10,7 @@ async function mission_start_yd2() {
   // ScriptName
   $.flag_player_on_mission = 1;
   $.flag_player_on_yardie_mission = 1;
+  await asyncWait(0);
   /*
   IF CAN_PLAYER_START_MISSION Player
   MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
@@ -26,27 +27,26 @@ async function mission_start_yd2() {
   ENDWHILE
   */
   // ******************************************CUTSCENE***************************************
-  await asyncWait(0);
   {
   World.SetPedDensityMultiplier(0.0);
+  Game.SetPoliceIgnorePlayer($.player, true /* on */);
   //WHILE NOT HAS_MODEL_LOADED cut_obj1
   //	WAIT 0
   //ENDWHILE
-  Game.SetPoliceIgnorePlayer($.player, true /* on */);
   Cutscene.Load(YD_PH2);
   Cutscene.SetOffset(121.0, -272.3, 15.25);
   World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
+  $.cs_player.setAnim($.player);
   //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
   //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
   //CLEAR_AREA 1219.5 -321.1 27.5 1.0 TRUE
   //SET_PLAYER_COORDINATES player 1219.5 -321.1 26.4
   //SET_PLAYER_HEADING player 180.0
-  $.cs_player.setAnim($.player);
-  //SWITCH_STREAMING OFF
   Camera.DoFade(1500, 1 /* FADE_IN */);
-  // Displays cutscene text
+  //SWITCH_STREAMING OFF
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2000) {
     await asyncWait(0);
@@ -67,6 +67,7 @@ async function mission_start_yd2() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+  Text.PrintNow("YD2_B1", 10000, 1);
   /*
   WHILE cs_time < 13770
   WAIT 0
@@ -89,7 +90,6 @@ async function mission_start_yd2() {
   ENDWHILE
   PRINT_NOW ( DIAB2_H ) 10000 1
   */
-  Text.PrintNow("YD2_B1", 10000, 1);
   while ($.cs_time < 13900) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -103,17 +103,17 @@ async function mission_start_yd2() {
   }
   Streaming.Switch(true /* ON */);
   Text.ClearPrints();
-  //SET_CAMERA_IN_FRONT_OF_PLAYER
   Cutscene.Clear();
+  //SET_CAMERA_IN_FRONT_OF_PLAYER
   }
   await asyncWait(0);
   Streaming.RequestModel(car`PERENNIAL`);
   Streaming.RequestModel(ped`GANG_YARDIE_A`);
   Streaming.RequestModel(ped`GANG_YARDIE_B`);
-  //PRINT_BIG ( YD2 ) 15000 2
   while (!(Streaming.HasModelLoaded(car`PERENNIAL`)) || !(Streaming.HasModelLoaded(ped`GANG_YARDIE_A`)) || !(Streaming.HasModelLoaded(ped`GANG_YARDIE_B`))) {
     await asyncWait(0);
   }
+  //PRINT_BIG ( YD2 ) 15000 2
   $.timer_dif_yd2 = 0;
   $.flag_out_of_car_message = 0;
   $.flag_upsidedown = 0;
@@ -123,23 +123,24 @@ async function mission_start_yd2() {
   $.body_count_yd2 = 0;
   $.driveby_total_1 = 0;
   $.driveby_total_2 = 0;
-  //------------COORDS-----------------------
   Player.ResetNumOfModelsKilled();
+  //------------COORDS-----------------------
   $.driveby_x = 940.0;
   $.driveby_y = -220.0;
   $.yd2turf_x = 231.0;
-  //------------------CUTSCENE-------------------------------
   $.yd2turf_y = -531.0;
+  //------------------CUTSCENE-------------------------------
   $.wanted_yd2 = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   $.player.setControl(false /* off */);
   $.player_yd2 = $.player.getChar();
   Camera.SetFixedPosition(117.3, -266.3, 17.0, 0.0, 0.0, 0.0);
   Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
+  Hud.SwitchWidescreen(true /* on */);
   //clear traffic--------------------------
   // SETUP_ZONE_CAR_INFO STADIUM DAY   (10) (0 0 0) 0 0 0 0 20 300 300 300 0 0 0
   // SETUP_ZONE_CAR_INFO STADIUM NIGHT ( 7) (0 0 0) 0 0 0 0 10 300 300 300 0 0 0
-  Hud.SwitchWidescreen(true /* on */);
+  World.SetCarDensityMultiplier(0.0);
   /*
   PRINT_NOW ( YD2_A ) 4000 1//I need to see if you're capable of doing my dirty work
   WAIT 4000
@@ -149,7 +150,6 @@ async function mission_start_yd2() {
   // Mission stuff goes here
   //DO_FADE 1500 FADE_OUT
   //WAIT 1500
-  World.SetCarDensityMultiplier(0.0);
   World.ClearArea(4.2, -310.1, 16.0, 40.0, true /* true */);
   World.ClearArea(97.0, -285.5, 16.0, 50.0, true /* true */);
   Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -208,16 +208,14 @@ async function mission_start_yd2() {
 async function plinky_yd2() {
   await asyncWait(0);
   [$.y2_x, $.y2_y, $.y2_z] = $.player.getCoordinates();
-  //y2_x = y2_x + 1.0
-  //GET_CHAR_COORDINATES chaperone_2 yd2_x yd2_y yd2_z
   if (!(Char.IsDead($.chaperone_2)) && !(Char.IsDead($.chaperone_1))) {
     $.chaperone_1.setHealth(100);
-    //y2_x = y2_x + 1.0
     $.chaperone_2.setHealth(100);
+    //y2_x = y2_x + 1.0
     $.y2_y = $.y2_y - 1.0;
     $.chaperone_2.setObjGotoCoordOnFoot($.y2_x, $.y2_y);
-    //GET_CHAR_COORDINATES chaperone_2 yd2_x yd2_y yd2_z
     $.chaperone_1.setObjWaitOnFoot();
+    //GET_CHAR_COORDINATES chaperone_2 yd2_x yd2_y yd2_z
     $.chaperone_2.lookAtCharAlways($.player_yd2);
     $.player_yd2.lookAtCharAlways($.chaperone_2);
     if (!($.chaperone_2.locateOnFoot2D($.y2_x, $.y2_y, 2.0, 2.0, false /* false */))) {
@@ -247,8 +245,7 @@ async function plinky_yd2() {
     }
   }
   Audio.PlayMissionAudio();
-  //We're going for a little ride into Hepburn Heights, Whack us some Diablo's.
-  Text.PrintNow("YD2_C", 10000, 1);
+  Text.PrintNow("YD2_C", 10000, 1); //We're going for a little ride into Hepburn Heights, Whack us some Diablo's.
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -272,8 +269,7 @@ async function plinky_yd2() {
     }
   }
   Audio.PlayMissionAudio();
-  //You do the driving and shooting. We'll make sure you don't get cold feet
-  Text.PrintNow("YD2_D", 10000, 1);
+  Text.PrintNow("YD2_D", 10000, 1); //You do the driving and shooting. We'll make sure you don't get cold feet
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -297,8 +293,7 @@ async function plinky_yd2() {
     }
   }
   Audio.PlayMissionAudio();
-  //Here, you'll need a 'piece'
-  Text.PrintNow("YD2_CC", 10000, 1);
+  Text.PrintNow("YD2_CC", 10000, 1); //Here, you'll need a 'piece'
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -310,16 +305,16 @@ async function plinky_yd2() {
 }
 
 async function poodle() {
+  $.player_yd2.stopLooking();
   //SET_CHAR_OBJ_NO_OBJ player_yd2
   //SET_PLAYER_CONTROL player on
-  $.player_yd2.stopLooking();
   $.player.giveWeapon(3 /* WEAPONTYPE_UZI */, 150);
   await asyncWait(1000);
   $.player.setCurrentWeapon(3 /* WEAPONTYPE_UZI */);
-  //SET_PLAYER_CONTROL player off
   while (!($.player.isCurrentWeapon(3 /* WEAPONTYPE_UZI */))) {
     await asyncWait(0);
   }
+  //SET_PLAYER_CONTROL player off
   Camera.PointAtPlayer($.player, 15 /* FIXED */, 1 /* INTERPOLATION */);
   if (!(Char.IsDead($.chaperone_1))) {
     $.chaperone_1.setHealth(100);
@@ -353,12 +348,10 @@ async function poodle() {
       $.chaperone_2.setHealth(100);
     }
   }
-  //LOCK_CAR_DOORS gang_car_yd2 CARLOCK_LOCKED
   if (!(Car.IsDead($.gang_car_yd2)) && !(Char.IsDead($.chaperone_2)) && !(Char.IsDead($.chaperone_1))) {
     $.chaperone_1.stopLooking();
     $.chaperone_2.stopLooking();
     $.chaperone_2.setObjEnterCarAsPassenger($.gang_car_yd2);
-    //LOCK_CAR_DOORS gang_car_yd2 CARLOCK_LOCKED
     while (!($.chaperone_2.isInCar($.gang_car_yd2)) || !($.chaperone_1.isInCar($.gang_car_yd2))) {
       await asyncWait(0);
       if (Char.IsDead($.chaperone_2) || Char.IsDead($.chaperone_1) || Car.IsDead($.gang_car_yd2)) {
@@ -372,15 +365,15 @@ async function poodle() {
         $.chaperone_2.setHealth(100);
       }
     }
+    //LOCK_CAR_DOORS gang_car_yd2 CARLOCK_LOCKED
   }
   else {
     // SCM GOTO → mission_yd2_failed_assert (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_yd2_failed_assert"); // fallback: would break linear control flow
   }
-  //LOCK_CAR_DOORS gang_car_yd2 CARLOCK_LOCKED
   if (!(Car.IsDead($.gang_car_yd2))) {
-    //LOCK_CAR_DOORS gang_car_yd2 CARLOCK_LOCKED
     $.gang_car_yd2.setOnlyDamagedByPlayer(false /* false */);
+    //LOCK_CAR_DOORS gang_car_yd2 CARLOCK_LOCKED
   }
   if (!(Char.IsDead($.chaperone_1))) {
     $.chaperone_1.setCantBeDraggedOut(true /* TRUE */);
@@ -398,48 +391,33 @@ async function poodle() {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //Let's drive!!
-  Text.PrintSoon("YD2_E", 4000, 1);
+  Text.PrintSoon("YD2_E", 4000, 1); //Let's drive!!
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
   }
   $.blip_driveby_yd2 = Blip.AddForCoord($.driveby_x, $.driveby_y, -100.0);
   World.SetPedDensityMultiplier(1.0);
-  //----reset traffic density--------------------------
   Game.SetPoliceIgnorePlayer($.player, false /* off */);
-  //---------------------SET PED DENSITIES----------------------------------------------------
+  //----reset traffic density--------------------------
   World.SetCarDensityMultiplier(1.0);
+  //---------------------SET PED DENSITIES----------------------------------------------------
   Zone.SetPedInfo("TOWERS", 1 /* DAY */, 15, 0, 0, 700, 0, 0, 0, 0, 20);
-  //-----------------------GETTING TO THE HIT-------------------------------------------------
   Zone.SetPedInfo("TOWERS", 0 /* NIGHT */, 10, 0, 0, 800, 0, 0, 0, 0, 10);
+  //-----------------------GETTING TO THE HIT-------------------------------------------------
   $.player.alterWantedLevel($.wanted_yd2);
 }
 
 async function getting_there() {
-  //NB!! Add Sub spray shop
-  //comm spray shop
-  //ind spray shop
   if (!(Car.IsDead($.gang_car_yd2))) {
-    //NB!! Add Sub spray shop
-    //comm spray shop
-    //ind spray shop
     while (!($.player.isInZone("TOWERS"))) {
       await asyncWait(0);
-      //NB!! Add Sub spray shop
-      //comm spray shop
-      //ind spray shop
       if (!(Car.IsDead($.gang_car_yd2))) {
         if ($.gang_car_yd2.isUpsidedown() && $.gang_car_yd2.isStopped()) {
           $.flag_upsidedown = 1;
           // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO mission_yd2_failed"); // fallback: would break linear control flow
         }
-        //NB!! Add Sub spray shop
-        //comm spray shop
-        //ind spray shop
         if (!($.gang_car_yd2.isHealthGreater(250))) {
-          //comm spray shop
-          //ind spray shop
           if (!($.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false /* false */)) && !($.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false /* false */))) {
             $.flag_upsidedown = 1;
             // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
@@ -480,8 +458,7 @@ async function getting_there() {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //Hepburn Heights -Diablo turf.
-  Text.PrintNow("YD2_G1", 2500, 1);
+  Text.PrintNow("YD2_G1", 2500, 1); //Hepburn Heights -Diablo turf.
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
   }
@@ -490,43 +467,22 @@ async function getting_there() {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"Whack us five Diablos, but remember; you don't leave this car!"
-  Text.PrintSoon("YD2_G2", 2500, 1);
-  //------------------------------THE HIT-----------------------------------------------------------------
+  Text.PrintSoon("YD2_G2", 2500, 1); //"Whack us five Diablos, but remember; you don't leave this car!"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
   }
+  //------------------------------THE HIT-----------------------------------------------------------------
   $.blip_driveby_yd2.remove();
   Hud.DisplayCounterWithString($.body_count_yd2, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS);
-  //NB!! Add Sub spray shop
-  //comm spray shop
-  //ind spray shop
-  /*
-  IF body_count_yd2 > 1
-  SET_GANG_PLAYER_ATTITUDE GANG_DIABLO HATES player
-  SET_GANG_WEAPONS GANG_DIABLO WEAPONTYPE_BASEBALLBAT WEAPONTYPE_UZI
-  ELSE
-  SET_GANG_PLAYER_ATTITUDE GANG_DIABLO NEUTRAL player
-  ENDIF
-  */
-  //------------------------------------BACK TO YARDIE TURF-------------------------------------------------------
   while ($.body_count_yd2 < 10) {
     await asyncWait(0);
-    //NB!! Add Sub spray shop
-    //comm spray shop
-    //ind spray shop
     if (!(Car.IsDead($.gang_car_yd2))) {
       if ($.gang_car_yd2.isUpsidedown() && $.gang_car_yd2.isStopped()) {
         $.flag_upsidedown = 1;
         // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_yd2_failed"); // fallback: would break linear control flow
       }
-      //NB!! Add Sub spray shop
-      //comm spray shop
-      //ind spray shop
       if (!($.gang_car_yd2.isHealthGreater(250))) {
-        //comm spray shop
-        //ind spray shop
         if (!($.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false /* false */)) && !($.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false /* false */))) {
           $.flag_upsidedown = 1;
           // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
@@ -556,23 +512,15 @@ async function getting_there() {
     }
     $.driveby_total_1 = Player.GetNumOfModelsKilled(ped`GANG_DIABLO_A`);
     $.driveby_total_2 = Player.GetNumOfModelsKilled(ped`GANG_DIABLO_B`);
-    /*
-    IF body_count_yd2 > 1
-    SET_GANG_PLAYER_ATTITUDE GANG_DIABLO HATES player
-    SET_GANG_WEAPONS GANG_DIABLO WEAPONTYPE_BASEBALLBAT WEAPONTYPE_UZI
-    ELSE
-    SET_GANG_PLAYER_ATTITUDE GANG_DIABLO NEUTRAL player
-    ENDIF
-    */
     $.body_count_yd2 = $.driveby_total_1 + $.driveby_total_2;
   }
+  //------------------------------------BACK TO YARDIE TURF-------------------------------------------------------
   Audio.LoadMissionAudio(YD2_H);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"OK, Get us back to Yardie turf, GO GO GO!!"
-  Text.PrintNow("YD2_H", 2500, 1);
+  Text.PrintNow("YD2_H", 2500, 1); //"OK, Get us back to Yardie turf, GO GO GO!!"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
   }
@@ -581,69 +529,16 @@ async function getting_there() {
 
 async function back_to_yardie_turf() {
   $.blip_driveby_yd2 = Blip.AddForCoord($.yd2turf_x, $.yd2turf_y, 26.0);
-  //NB!! Add Sub spray shop
-  //comm spray shop
-  //ind spray shop
-  /*
-  PRINT_NOW (YD2_I) 4000 1//"OK, stop and drop us off."
-  //REMOVE_BLIP blip_driveby_yd2
-  IF NOT IS_CAR_DEAD gang_car_yd2
-  WHILE NOT IS_CAR_STOPPED_IN_AREA_2D gang_car_yd2 yd2turf_x yd2turf_y 5.0 5.0 true
-  WAIT 0
-  IF NOT IS_CAR_DEAD gang_car_yd2
-  IF NOT LOCATE_CAR_2D gang_car_yd2 yd2turf_x yd2turf_y 30.0 30.0 false
-  PRINT_SOON (YD2_J) 4000 1//HEY! Where you going? Get us back to our turf!
-  GOTO back_to_yardie_turf
-  ENDIF
-  IF IS_CAR_UPSIDEDOWN gang_car_yd2
-  AND IS_CAR_STOPPED gang_car_yd2
-  flag_upsidedown = 1
-  GOTO mission_yd2_failed
-  ENDIF
-  IF NOT IS_CAR_HEALTH_GREATER gang_car_yd2 50
-  flag_upsidedown = 1
-  GOTO mission_yd2_failed
-  ENDIF
-  IF NOT IS_PLAYER_IN_CAR player gang_car_yd2
-  GOSUB player_out_of_car
-  IF NOT IS_CAR_DEAD gang_car_yd2
-  IF NOT IS_PLAYER_IN_CAR player gang_car_yd2
-  flag_upsidedown = 2
-  GOTO mission_yd2_failed
-  ENDIF
-  ELSE
-  GOTO mission_yd2_failed_assert
-  ENDIF
-  ENDIF
-  ELSE
-  GOTO mission_yd2_failed_assert
-  ENDIF
-  ENDWHILE
-  ELSE
-  GOTO mission_yd2_failed_assert
-  ENDIF
-  */
   if (!(Car.IsDead($.gang_car_yd2))) {
-    //NB!! Add Sub spray shop
-    //comm spray shop
-    //ind spray shop
     while (!($.gang_car_yd2.locateStopped3D($.yd2turf_x, $.yd2turf_y, 26.0, 5.0, 5.0, 5.0, true /* true */))) {
       await asyncWait(0);
-      //NB!! Add Sub spray shop
-      //comm spray shop
-      //ind spray shop
       if (!(Car.IsDead($.gang_car_yd2))) {
         if ($.gang_car_yd2.isUpsidedown() && $.gang_car_yd2.isStopped()) {
           $.flag_upsidedown = 1;
           // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO mission_yd2_failed"); // fallback: would break linear control flow
         }
-        //NB!! Add Sub spray shop
-        //comm spray shop
-        //ind spray shop
         if (!($.gang_car_yd2.isHealthGreater(250))) {
-          //comm spray shop
-          //ind spray shop
           if (!($.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false /* false */)) && !($.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false /* false */))) {
             $.flag_upsidedown = 1;
             // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
@@ -692,15 +587,14 @@ async function back_to_yardie_turf() {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"You did good Reaper Man!"
-  Text.PrintNow("YD2_L", 4000, 1);
+  Text.PrintNow("YD2_L", 4000, 1); //"You did good Reaper Man!"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
   }
   $.player.setControl(true /* on */);
-  // Mission Yardie2 failed
   // SCM GOTO → mission_yd2_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_yd2_passed"); // fallback: would break linear control flow
+  // Mission Yardie2 failed
 }
 
 async function mission_yd2_failed() {
@@ -710,25 +604,21 @@ async function mission_yd2_failed() {
   if (!(Char.IsDead($.chaperone_2)) && !(Car.IsDead($.gang_car_yd2))) {
     $.chaperone_2.setObjLeaveCar($.gang_car_yd2);
   }
-  //"He's wrecked my car!! Waste him!!"
   if ($.flag_upsidedown == 1) {
     Audio.LoadMissionAudio(YD2_D);
     while (!(Audio.HasMissionAudioLoaded())) {
       await asyncWait(0);
     }
     Audio.PlayMissionAudio();
-    //"He's wrecked my car!! Waste him!!"
-    Text.PrintNow("YD2_M", 4000, 1);
+    Text.PrintNow("YD2_M", 4000, 1); //"He's wrecked my car!! Waste him!!"
   }
-  //"He's bailing out on us!"
   if ($.flag_upsidedown == 2) {
     Audio.LoadMissionAudio(YD2_E);
     while (!(Audio.HasMissionAudioLoaded())) {
       await asyncWait(0);
     }
     Audio.PlayMissionAudio();
-    //"He's bailing out on us!"
-    Text.PrintNow("YD2_F", 4000, 1);
+    Text.PrintNow("YD2_F", 4000, 1); //"He's bailing out on us!"
   }
   if (!(Char.IsDead($.chaperone_1)) && !(Car.IsDead($.gang_car_yd2))) {
     while ($.chaperone_1.isInCar($.gang_car_yd2)) {
@@ -804,8 +694,8 @@ async function poink() {
 
 async function mission_yd2_failed_assert() {
   Text.PrintBig("M_FAIL", 2000, 1);
-  // mission yd2 passed
   return;
+  // mission yd2 passed
 }
 
 async function mission_yd2_passed() {
@@ -832,8 +722,7 @@ async function filby() {
   if (!(Char.IsDead($.chaperone_2))) {
     $.chaperone_2.setObjFleeOnFootTillSafe();
   }
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.clearWantedLevel();
   $.player.addScore(10000);
@@ -841,8 +730,8 @@ async function filby() {
   Stat.PlayerMadeProgress(1);
   Game.SetThreatForPedType(9 /* PEDTYPE_GANG_DIABLO */, 0 /* THREAT_PLAYER1 */);
   // START_NEW_SCRIPT yardie_mission3_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_yd2() {
@@ -850,8 +739,8 @@ async function mission_cleanup_yd2() {
   $.flag_player_on_mission = 0;
   $.flag_player_on_yardie_mission = 0;
   Hud.ClearCounter($.body_count_yd2);
-  //SET_PLAYER_CONTROL player on
   $.blip_driveby_yd2.remove();
+  //SET_PLAYER_CONTROL player on
   Hud.SwitchWidescreen(false /* off */);
   Camera.RestoreJumpcut();
   if (!(Car.IsDead($.gang_car_yd2))) {
@@ -859,51 +748,36 @@ async function mission_cleanup_yd2() {
   }
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YARDIE_A`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YARDIE_B`);
-  //------------RESTORE PED DENSITIES---------------------------------------
   Streaming.MarkModelAsNoLongerNeeded(car`PERENNIAL`);
+  //------------RESTORE PED DENSITIES---------------------------------------
   Zone.SetPedInfo("TOWERS", 1 /* DAY */, 15, 0, 0, 300, 0, 0, 0, 0, 20);
   Zone.SetPedInfo("TOWERS", 0 /* NIGHT */, 10, 0, 0, 500, 0, 0, 0, 0, 10);
   Mission.Finish();
-  //-----------------------------GOSUBS----------------------------------------------
   return;
+  //-----------------------------GOSUBS----------------------------------------------
 }
 
 async function player_out_of_car() {
   if (!(Car.IsDead($.gang_car_yd2))) {
     $.gang_car_yd2.lockDoors(1 /* CARLOCK_UNLOCKED */);
   }
-  //NB!! Add Sub spray shop
-  //comm spray shop
-  //ind spray shop
-  //you got five seconds to get back in this car.
   while ($.timer_dif_yd2 < 7500) {
     await asyncWait(0);
-    //NB!! Add Sub spray shop
-    //comm spray shop
-    //ind spray shop
-    //you got five seconds to get back in this car.
     if (!(Car.IsDead($.gang_car_yd2))) {
-      //NB!! Add Sub spray shop
-      //comm spray shop
-      //ind spray shop
       if (!($.gang_car_yd2.isHealthGreater(250))) {
-        //comm spray shop
-        //ind spray shop
         if (!($.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false /* false */)) && !($.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false /* false */))) {
           $.flag_upsidedown = 1;
           // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO mission_yd2_failed"); // fallback: would break linear control flow
         }
       }
-      //you got five seconds to get back in this car.
       if ($.flag_out_of_car_message == 0) {
         Audio.LoadMissionAudio(YD2_ASS);
         while (!(Audio.HasMissionAudioLoaded())) {
           await asyncWait(0);
         }
         Audio.PlayMissionAudio();
-        //you got five seconds to get back in this car.
-        Text.PrintNow("YD2_N", 3000, 1);
+        Text.PrintNow("YD2_N", 3000, 1); //you got five seconds to get back in this car.
         $.flag_out_of_car_message = 1;
         $.timer_start_yd2 = Clock.GetGameTimer();
       }
@@ -922,11 +796,11 @@ async function player_out_of_car() {
 }
 
 export async function yard2() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************YARDIE MISSION 2********************************
   // ********************************************'UZI RIDER'**********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_yd2
   await mission_start_yd2();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -938,8 +812,8 @@ export async function yard2() {
   // SCM GOSUB mission_cleanup_yd2
   await mission_cleanup_yd2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT gang_car_yd2
   // VAR_INT chaperone_1 chaperone_2
   // VAR_INT body_count_yd2
@@ -950,9 +824,9 @@ export async function yard2() {
   // VAR_INT timer_dif_yd2 timer_start_yd2 timer_now_yd2
   // VAR_FLOAT driveby_x driveby_y
   // VAR_FLOAT yd2turf_x yd2turf_y
+  // VAR_FLOAT y2_x y2_y y2_z
   //VAR_FLOAT yd2_x yd2_y yd2_z
   //VAR_FLOAT chap_1_x chap_1_y chap_1_z
   //VAR_FLOAT chap_2_x chap_2_y chap_2_z
   // ****************************************Mission Start************************************
-  // VAR_FLOAT y2_x y2_y y2_z
 }

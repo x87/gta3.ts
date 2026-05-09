@@ -59,63 +59,54 @@ async function mission_start_toni4() {
   World.ClearArea(1219.6, -323.0, 25.6, 1.0, true /* TRUE */);
   $.player.setCoordinates(1219.6, -323.0, 25.6);
   $.player.setHeading(180.0);
-  //TONIS RESTAURANT
-  World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */);
-  //SWITCH_WORLD_PROCESSING OFF
+  World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
   Camera.DoFade(1500, 1 /* FADE_IN */);
+  //SWITCH_WORLD_PROCESSING OFF
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 82) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM4_A", 10000, 1);
+  Text.PrintNow("TM4_A", 10000, 1); // Mission brief
   while ($.cs_time < 2415) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM4_A2", 10000, 1);
+  Text.PrintNow("TM4_A2", 10000, 1); // Mission brief
   while ($.cs_time < 4420) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM4_B", 10000, 1);
+  Text.PrintNow("TM4_B", 10000, 1); // Mission brief
   while ($.cs_time < 7629) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM4_C", 10000, 1);
+  Text.PrintNow("TM4_C", 10000, 1); // Mission brief
   while ($.cs_time < 11110) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM4_D", 10000, 1);
+  Text.PrintNow("TM4_D", 10000, 1); // Mission brief
   while ($.cs_time < 13283) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM4_E", 10000, 1);
+  Text.PrintNow("TM4_E", 10000, 1); // Mission brief
   while ($.cs_time < 18058) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM4_F", 10000, 1);
+  Text.PrintNow("TM4_F", 10000, 1); // Mission brief
   while ($.cs_time < 21248) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM4_G", 10000, 1);
+  Text.PrintNow("TM4_G", 10000, 1); // Mission brief
   while ($.cs_time < 24000) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -125,10 +116,10 @@ async function mission_start_toni4() {
     await asyncWait(0);
   }
   Text.ClearPrints();
-  //SWITCH_WORLD_PROCESSING ON
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
+  //SWITCH_WORLD_PROCESSING ON
   World.SwitchRubbish(true /* ON */);
   Cutscene.Clear();
   Camera.SetInFrontOfPlayer();
@@ -151,8 +142,7 @@ async function mission_start_toni4() {
   while (!(Streaming.HasModelLoaded(ped`GANG_TRIAD_A`)) || !(Streaming.HasModelLoaded(ped`GANG_TRIAD_B`))) {
     await asyncWait(0);
   }
-  //TEST
-  Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
+  Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */); //TEST
   $.warlords_dead = 0;
   $.triads_spot_you = 0;
   $.clear_triads_threats = 0;
@@ -165,35 +155,32 @@ async function mission_start_toni4() {
   Zone.SetPedInfo("LITTLEI", 1 /* DAY */, 15, 500, 250, 0, 0, 0, 0, 0, 0);
   Zone.SetPedInfo("LITTLEI", 0 /* NIGHT */, 8, 500, 250, 0, 0, 0, 0, 0, 0);
   Zone.SetPedInfo("CHINA", 1 /* DAY */, 30, 350, 600, 0, 0, 0, 0, 0, 0);
+  Zone.SetPedInfo("CHINA", 0 /* NIGHT */, 30, 350, 600, 0, 0, 0, 0, 0, 0);
   // START MISSION
   //RESET_NUM_OF_MODELS_KILLED_BY_PLAYER
-  Zone.SetPedInfo("CHINA", 0 /* NIGHT */, 30, 350, 600, 0, 0, 0, 0, 0, 0);
-  //Fish warhouse (Chinatown)
-  $.triad_head1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 906.4, -541.4, 14.4);
+  $.triad_head1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 906.4, -541.4, 14.4); //Fish warhouse (Chinatown)
   $.triad_head1.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
   $.triad_head1.setHeading(109.0);
   $.blip1_tm4 = Blip.AddForChar($.triad_head1);
-  //SET_CHAR_THREAT_SEARCH triad_head1 THREAT_GANG_MAFIA
   $.triad_head1.addArmor(100);
+  //SET_CHAR_THREAT_SEARCH triad_head1 THREAT_GANG_MAFIA
   $.triad_head1.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.triad_head1.setOnlyDamagedByPlayer(true /* TRUE */);
   $.triad_head1.setStayInSamePlace(true /* TRUE */);
-  //Market place
-  $.triad_head2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 968.6, -682.2, 14.3);
+  $.triad_head2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 968.6, -682.2, 14.3); //Market place
   $.triad_head2.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
   $.blip2_tm4 = Blip.AddForChar($.triad_head2);
-  //SET_CHAR_THREAT_SEARCH triad_head2 THREAT_GANG_MAFIA
   $.triad_head2.addArmor(100);
+  //SET_CHAR_THREAT_SEARCH triad_head2 THREAT_GANG_MAFIA
   $.triad_head2.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.triad_head2.setOnlyDamagedByPlayer(true /* TRUE */);
   $.triad_head2.setStayInSamePlace(true /* TRUE */);
-  //Fish factory
-  $.triad_head3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 968.3, -1136.8, 15.0);
+  $.triad_head3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 968.3, -1136.8, 15.0); //Fish factory
   $.triad_head3.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
   $.triad_head3.setHeading(38.0);
   $.blip3_tm4 = Blip.AddForChar($.triad_head3);
-  //SET_CHAR_THREAT_SEARCH triad_head3 THREAT_GANG_MAFIA
   $.triad_head3.addArmor(100);
+  //SET_CHAR_THREAT_SEARCH triad_head3 THREAT_GANG_MAFIA
   $.triad_head3.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.triad_head3.setOnlyDamagedByPlayer(true /* TRUE */);
   $.triad_head3.setStayInSamePlace(true /* TRUE */);
@@ -204,7 +191,6 @@ async function mission_start_toni4() {
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
-  // Need Belly-up
   while (!($.warlords_dead == 3)) {
     await asyncWait(0);
     if (Char.IsDead($.triad_head1) && $.char_already_dead1 == 0) {
@@ -425,50 +411,43 @@ async function mission_start_toni4() {
         }
       }
     }
-    // Need Belly-up
     if ($.player.isInArea3D(1025.2, -1108.4, 12.0, 1009.2, -1098.4, 16.0, false /* FALSE */)) {
-      // Need Belly-up
       if (!($.player.isInModel(125 /* CAR_BELLYUP */)) && !($.player.isInModel(91 /* CAR_TRASHMASTER */))) {
         if ($.player.isInArea3D(1015.6, -1100.5, 12.0, 1009.2, -1108.1, 16.0, false /* FALSE */) && $.been_in_fish_factory == 0) {
           $.been_in_fish_factory = 1;
         }
-        // Need Belly-up
         if ($.been_in_fish_factory == 0) {
-          // Need Belly-up
-          Text.PrintNow("TM4_GAT", 5000, 1);
+          Text.PrintNow("TM4_GAT", 5000, 1); // Need Belly-up
         }
       }
     }
   }
   }
-  // Mission toni4 failed
   // SCM GOTO → mission_toni4_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_toni4_passed"); // fallback: would break linear control flow
+  // Mission toni4 failed
 }
 
 async function mission_toni4_failed() {
-  //China town
-  Zone.SetPedInfo("CHINA", 1 /* DAY */, 20, 0, 300, 0, 0, 0, 0, 0, 20);
+  Zone.SetPedInfo("CHINA", 1 /* DAY */, 20, 0, 300, 0, 0, 0, 0, 0, 20); //China town
   Zone.SetPedInfo("CHINA", 0 /* NIGHT */, 10, 0, 400, 0, 0, 0, 0, 0, 10);
-  // mission toni4 passed
   return;
+  // mission toni4 passed
 }
 
 async function mission_toni4_passed() {
   $.flag_toni_mission4_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(30000);
   Stat.RegisterMissionPassed(TM4);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT toni_mission5_loop
-  //China town
-  Zone.SetPedInfo("CHINA", 1 /* DAY */, 20, 0, 200, 0, 0, 0, 0, 0, 20);
+  Zone.SetPedInfo("CHINA", 1 /* DAY */, 20, 0, 200, 0, 0, 0, 0, 0, 20); //China town
   Zone.SetPedInfo("CHINA", 0 /* NIGHT */, 10, 0, 300, 0, 0, 0, 0, 0, 10);
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_toni4() {
@@ -480,23 +459,21 @@ async function mission_cleanup_toni4() {
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_MAFIA_A`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_MAFIA_B`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_TRIAD_A`);
-  //UNLOAD_SPECIAL_CHARACTER 1
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_TRIAD_B`);
-  //TEST
-  Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
-  //St Marks
-  Zone.SetPedInfo("LITTLEI", 1 /* DAY */, 17, 300, 0, 0, 0, 0, 0, 0, 20);
+  //UNLOAD_SPECIAL_CHARACTER 1
+  Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */); //TEST
+  Zone.SetPedInfo("LITTLEI", 1 /* DAY */, 17, 300, 0, 0, 0, 0, 0, 0, 20); //St Marks
   Zone.SetPedInfo("LITTLEI", 0 /* NIGHT */, 11, 400, 0, 0, 0, 0, 0, 0, 10);
   Mission.Finish();
   return;
 }
 
 export async function toni4() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Toni mission 4****************************************
   // ********************************Kill the Triad Warlords************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_toni4
   await mission_start_toni4();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -508,8 +485,8 @@ export async function toni4() {
   // SCM GOSUB mission_cleanup_toni4
   await mission_cleanup_toni4();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT blip1_tm4 blip2_tm4 blip3_tm4 triad1_can_leg_it triad2_can_leg_it triad3_can_leg_it
   // VAR_INT triad_head1 triad_head2 triad_head3 warlords_dead
   // VAR_INT triad_grunt1 triad_grunt1B triad_grunt2 triad_grunt2B triad_grunt3 triad_grunt3B
@@ -517,6 +494,6 @@ export async function toni4() {
   // VAR_INT mafia_goon1 mafia_goon2 been_in_fish_factory clear_triads_threats
   // VAR_INT grabbed_peds_before Fishbastards audio_played_tm4
   // VAR_INT char_already_dead1 char_already_dead2 char_already_dead3
-  // ***************************************Mission Start*************************************
   // VAR_INT pay_back_for_traids1 pay_back_for_traids2 pay_back_for_traids3
+  // ***************************************Mission Start*************************************
 }

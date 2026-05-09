@@ -85,50 +85,42 @@ async function mission_start_love4() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Thank you for retrieving those packages, but they were only a decoy."
-  Text.PrintNow(LOVE4_A, 10000, 1);
+  Text.PrintNow(LOVE4_A, 10000, 1); //"Thank you for retrieving those packages, but they were only a decoy."
   while ($.cs_time < 4000) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Sorry about that, but that's sometimes the way in business."
-  Text.PrintNow(LOVE4_B, 10000, 1);
+  Text.PrintNow(LOVE4_B, 10000, 1); //"Sorry about that, but that's sometimes the way in business."
   while ($.cs_time < 6851) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"My real objective was hidden on the plane all along."
-  Text.PrintNow(LOVE4_C, 10000, 1);
+  Text.PrintNow(LOVE4_C, 10000, 1); //"My real objective was hidden on the plane all along."
   while ($.cs_time < 9951) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Unfortunately the port authorities seized the plane and were stripping it down"
-  Text.PrintNow(LOVE4_D, 10000, 1);
+  Text.PrintNow(LOVE4_D, 10000, 1); //"Unfortunately the port authorities seized the plane and were stripping it down"
   while ($.cs_time < 13204) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"until I intervened at great personal expense."
-  Text.PrintNow(LOVE4_H, 10000, 1);
+  Text.PrintNow(LOVE4_H, 10000, 1); //"until I intervened at great personal expense."
   while ($.cs_time < 16457) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Cross the bridge to and go to Francis International Airport."
-  Text.PrintNow(LOVE4_E, 10000, 1);
+  Text.PrintNow(LOVE4_E, 10000, 1); //"Cross the bridge to and go to Francis International Airport."
   while ($.cs_time < 19710) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I've paid off the officials."
-  Text.PrintNow(LOVE4_F, 10000, 1);
+  Text.PrintNow(LOVE4_F, 10000, 1); //"I've paid off the officials."
   while ($.cs_time < 21394) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"My property will be waiting for you at the customs hanger in the aircraft's fuselage."
-  Text.PrintNow(LOVE4_G, 10000, 1);
+  Text.PrintNow(LOVE4_G, 10000, 1); //"My property will be waiting for you at the customs hanger in the aircraft's fuselage."
   while ($.cs_time < 27666) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -158,20 +150,14 @@ async function mission_start_love4() {
   }
   Streaming.Switch(true /* ON */);
   Camera.DoFade(1500, 1 /* FADE_IN */);
-  // ******************************************END OF CUTSCENE********************************
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
+  // ******************************************END OF CUTSCENE********************************
   $.love_4_blip = Blip.AddForCoordOld(-1268.4851, -528.6431, 9.8341, 0 /* RED */, 2 /* BLIP_ONLY */);
   $.love_4_blip.changeScale(3);
-  //	IF IS_BUTTON_PRESSED PAD1 TRIANGLE
-  //	AND IS_BUTTON_PRESSED PAD1 SQUARE
-  //	AND IS_BUTTON_PRESSED PAD1 CIRCLE
-  //		WAIT 500
-  //		SET_PLAYER_COORDINATES player 338.2069 -274.6978 15.8
-  //		GOTO second_cutscene
-  //	ENDIF
   while (!(Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */))) {
+    await asyncWait(0);
     //	IF IS_BUTTON_PRESSED PAD1 TRIANGLE
     //	AND IS_BUTTON_PRESSED PAD1 SQUARE
     //	AND IS_BUTTON_PRESSED PAD1 CIRCLE
@@ -179,16 +165,12 @@ async function mission_start_love4() {
     //		SET_PLAYER_COORDINATES player 338.2069 -274.6978 15.8
     //		GOTO second_cutscene
     //	ENDIF
-    await asyncWait(0);
   }
-  //-1276.983 -527.532 9.951 deadman1
   if (Game.IsNasty()) {
-    //-1276.983 -527.532 9.951 deadman1
-    $.deadman1 = Object.CreateNoOffset(2780 /* deadman1 */, -1276.834, -528.049, 10.568);
+    $.deadman1 = Object.CreateNoOffset(2780 /* deadman1 */, -1276.834, -528.049, 10.568); //-1276.983 -527.532 9.951 deadman1
   }
   else {
-    //-1276.983 -527.532 9.951 deadman1
-    $.deadman1 = Object.CreateNoOffset(2799 /* deadmanoblood */, -1276.834, -528.049, 10.568);
+    $.deadman1 = Object.CreateNoOffset(2799 /* deadmanoblood */, -1276.834, -528.049, 10.568); //-1276.983 -527.532 9.951 deadman1
   }
   while (!($.player.locateAnyMeans2D(-1268.4851, -528.6431, 200.0, 200.0, false))) {
     await asyncWait(0);
@@ -233,7 +215,6 @@ async function mission_start_love4() {
     $.goon_in_hangar3_blip = Blip.AddForChar($.goon_in_hangar3);
     $.goon_in_hangar4_blip = Blip.AddForChar($.goon_in_hangar4);
   }
-  // CESSNA
   while (!($.player.locateAnyMeans2D(-1281.3341, -561.8243, 90.0, 90.0, false))) {
     await asyncWait(0);
     if (Car.IsDead($.wingless_cessna)) {
@@ -256,11 +237,6 @@ async function mission_start_love4() {
   if (!(Char.IsDead($.goon_in_hangar4))) {
     $.goon_in_hangar4.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 1000000);
   }
-  //OUT THE FRONT OF THE HANGAR (AREA1)
-  //INSIDE HANGAR (AREA2)
-  //INSIDE HANGAR (AREA3)
-  //INSIDE HANGAR (AREA4)
-  //-1256.4 -520.5
   while (!(Char.IsDead($.goon_in_hangar1)) || !(Char.IsDead($.goon_in_hangar2)) || !(Char.IsDead($.goon_in_hangar3)) || !(Char.IsDead($.goon_in_hangar4))) {
     await asyncWait(0);
     if (Car.IsDead($.wingless_cessna)) {
@@ -305,13 +281,11 @@ async function mission_start_love4() {
       await set_death_flags();
       // fallback if label was not emitted as async function: no-op continues linearly
     }
-    //OUT THE FRONT OF THE HANGAR (AREA1)
     if ($.player.isInArea2D(-1285.05, -586.535, -1254.959, -542.262, false) && $.wingless_cessna.isOnScreen()) {
       // SCM GOSUB set_death_flags
       await set_death_flags();
       // fallback if label was not emitted as async function: no-op continues linearly
     }
-    //INSIDE HANGAR (AREA2)
     if ($.player.isInArea2D(-1290.216, -542.262, -1244.057, -531.793, false)) {
       if (!(Char.IsDead($.goon_in_hangar2))) {
         $.goon_in_hangar2.setObjKillPlayerAnyMeans($.player);
@@ -322,7 +296,6 @@ async function mission_start_love4() {
       await set_death_flags();
       // fallback if label was not emitted as async function: no-op continues linearly
     }
-    //INSIDE HANGAR (AREA3)
     if ($.player.isInArea2D(-1290.216, -531.793, -1244.057, -522.926, false)) {
       if (!(Char.IsDead($.goon_in_hangar4))) {
         $.goon_in_hangar4.setObjKillPlayerAnyMeans($.player);
@@ -333,7 +306,6 @@ async function mission_start_love4() {
       await set_death_flags();
       // fallback if label was not emitted as async function: no-op continues linearly
     }
-    //INSIDE HANGAR (AREA4)
     if ($.player.isInArea2D(-1290.216, -522.926, -1244.057, -496.88, false)) {
       if (!(Char.IsDead($.goon_in_hangar1))) {
         $.goon_in_hangar1.setObjKillPlayerAnyMeans($.player);
@@ -366,14 +338,11 @@ async function mission_start_love4() {
         }
       }
     }
-    //-1256.4 -520.5
     if ($.goon_in_hangar2_ducking > -1) {
-      //-1256.4 -520.5
       if ($.goon_in_hangar2_flag == 0) {
         $.goon_in_hangar2.setIdle();
         $.goon_in_hangar2.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-        //-1256.4 -520.5
-        $.goon_in_hangar2.setObjRunToCoord(-1256.4, -521.3);
+        $.goon_in_hangar2.setObjRunToCoord(-1256.4, -521.3); //-1256.4 -520.5
         $.goon_in_hangar2_flag = 1;
       }
       if ($.goon_in_hangar2_flag == 1) {
@@ -422,8 +391,7 @@ async function mission_start_love4() {
   $.goon_in_hangar3.markAsNoLongerNeeded();
   $.goon_in_hangar4.markAsNoLongerNeeded();
   $.script_controlled_player = $.player.getChar();
-  //CHECK OUT THE CESSNA
-  Text.PrintNow(LOVE4_5, 5000, 1);
+  Text.PrintNow(LOVE4_5, 5000, 1); //CHECK OUT THE CESSNA
   if (Car.IsDead($.wingless_cessna)) {
     Text.PrintNow(LOVE4_9, 5000, 1);
     // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
@@ -443,8 +411,7 @@ async function mission_start_love4() {
     }
   }
   await asyncWait(1000);
-  // "The package is not here"
-  Text.PrintNow(LOVE4_2, 3000, 1);
+  Text.PrintNow(LOVE4_2, 3000, 1); // "The package is not here"
   $.love_4_blip.remove();
   if (Car.IsDead($.car_van3_lm4)) {
     Text.PrintNow(LOV4_10, 5000, 1);
@@ -463,33 +430,25 @@ async function mission_start_love4() {
   [$.van3_x, $.van3_y, $.van3_z] = $.car_van3_lm4.getCoordinates();
   $.x_component = $.car_van3_lm4.getForwardX();
   $.y_component = $.car_van3_lm4.getForwardY();
-  //change both of these to move on the vehicles x axis
   $.temp_result_x = 2.8 * $.y_component;
-  //
   $.temp_result_y = -2.8 * $.x_component;
-  //change both of these to move on the vehicles y axis
   $.temp_var_x = 0.3 * $.x_component;
-  //
   $.temp_var_y = 0.3 * $.y_component;
   $.result1_x = $.temp_result_x - $.temp_var_x;
   $.result1_y = $.temp_result_y - $.temp_var_y;
   $.result1_x = $.result1_x + $.van3_x;
-  /////////////////
   $.result1_y = $.result1_y + $.van3_y;
-  //change both of these to move on the vehicles x axis
+  /////////////////
   $.temp_result_x = -2.8 * $.y_component;
-  //
   $.temp_result_y = 2.8 * $.x_component;
-  //change both of these to move on the vehicles y axis
   $.temp_var_x = 0.3 * $.x_component;
-  //
   $.temp_var_y = 0.3 * $.y_component;
   $.result2_x = $.temp_result_x - $.temp_var_x;
   $.result2_y = $.temp_result_y - $.temp_var_y;
   $.result2_x = $.result2_x + $.van3_x;
   $.result2_y = $.result2_y + $.van3_y;
-  ////////////////////////////////////////////////////////////////////////////////
   $.van3_z += 0.15;
+  ////////////////////////////////////////////////////////////////////////////////
   $.player.setControl(false /* OFF */);
   Hud.SwitchWidescreen(true /* ON */);
   $.script_controlled_player.setObjWaitOnFoot();
@@ -523,24 +482,21 @@ async function mission_start_love4() {
     Camera.PointAtPoint($.result1_x, $.result1_y, $.van3_z, 1 /* INTERPOLATION */);
   }
   await asyncWait(1000);
-  //Construction....yard!
-  Text.PrintNow(LOVE4_3, 3000, 1);
+  Text.PrintNow(LOVE4_3, 3000, 1); //Construction....yard!
   await asyncWait(2000);
   Camera.Restore();
   Hud.SwitchWidescreen(false /* OFF */);
   $.player.setControl(true /* ON */);
-  //GET THERE
-  Text.Print(LOVE4_7, 5000, 1);
-  // CONSTRUCTION SITE
-  $.love_4_blip = Blip.AddForCoord(366.939, -328.025, 20.268);
+  Text.Print(LOVE4_7, 5000, 1); //GET THERE
+  $.love_4_blip = Blip.AddForCoord(366.939, -328.025, 20.268); // CONSTRUCTION SITE
   $.goon_in_hangar1.markAsNoLongerNeeded();
   $.goon_in_hangar2.markAsNoLongerNeeded();
   $.goon_in_hangar3.markAsNoLongerNeeded();
   $.goon_in_hangar4.markAsNoLongerNeeded();
   $.van1_driver.markAsNoLongerNeeded();
   $.car_van1_lm4.markAsNoLongerNeeded();
-  ////////////////////////////////////////////////////////////////////////////////
   $.car_van3_lm4.markAsNoLongerNeeded();
+  ////////////////////////////////////////////////////////////////////////////////
   while (!(Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */))) {
     await asyncWait(0);
   }
@@ -553,14 +509,12 @@ async function second_cutscene() {
   $.car_van2_lm4.setHeading(222.9);
   $.colombian_car = Car.Create(131 /* CAR_COLUMB */, 346.8934, -298.4600, 15.8);
   $.colombian_car.setHeading(111.7);
-  // area 1 chatting
-  $.goon_at_yard1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 343.9994, -306.3081, 15.8);
+  $.goon_at_yard1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 343.9994, -306.3081, 15.8); // area 1 chatting
   $.goon_at_yard1.clearThreatSearch();
   $.goon_at_yard1.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard1.setStayInSamePlace(true /* TRUE */);
   $.goon_at_yard1.setUsePednodeSeek(false /* FALSE */);
-  // area 1 chatting
-  $.goon_at_yard2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 341.5678, -306.8592, 15.8);
+  $.goon_at_yard2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 341.5678, -306.8592, 15.8); // area 1 chatting
   $.goon_at_yard2.clearThreatSearch();
   $.goon_at_yard2.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard2.turnToFaceChar($.goon_at_yard1);
@@ -568,16 +522,14 @@ async function second_cutscene() {
   Game.SetCharsChatting($.goon_at_yard2, $.goon_at_yard1, 10000000);
   $.goon_at_yard2.setStayInSamePlace(true /* TRUE */);
   $.goon_at_yard2.setUsePednodeSeek(false /* FALSE */);
-  // by concrete area
-  $.goon_at_yard3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 327.7796, -316.6461, 15.9);
+  $.goon_at_yard3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 327.7796, -316.6461, 15.9); // by concrete area
   $.goon_at_yard3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
   $.goon_at_yard3.clearThreatSearch();
   $.goon_at_yard3.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard3.setHeading(315.0);
   $.goon_at_yard3.setStayInSamePlace(true /* TRUE */);
   $.goon_at_yard3.setUsePednodeSeek(false /* FALSE */);
-  // by pile of wood SW
-  $.goon_at_yard4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 335.0769, -338.2184, 15.8);
+  $.goon_at_yard4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 335.0769, -338.2184, 15.8); // by pile of wood SW
   $.goon_at_yard4.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
   $.goon_at_yard4.clearThreatSearch();
   $.goon_at_yard4.setThreatSearch(0 /* THREAT_PLAYER1 */);
@@ -585,32 +537,28 @@ async function second_cutscene() {
   $.goon_at_yard4.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 10000000);
   $.goon_at_yard4.setStayInSamePlace(true /* TRUE */);
   $.goon_at_yard4.setUsePednodeSeek(false /* FALSE */);
-  // by wooden steps
-  $.goon_at_yard5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 348.7184, -320.0932, 15.8);
+  $.goon_at_yard5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 348.7184, -320.0932, 15.8); // by wooden steps
   $.goon_at_yard5.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
   $.goon_at_yard5.clearThreatSearch();
   $.goon_at_yard5.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard5.setHeading(250.0);
   $.goon_at_yard5.setStayInSamePlace(true /* TRUE */);
   $.goon_at_yard5.setUsePednodeSeek(false /* FALSE */);
-  // by concrete steps
-  $.goon_at_yard6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 357.1986, -319.7162, 15.9);
+  $.goon_at_yard6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 357.1986, -319.7162, 15.9); // by concrete steps
   $.goon_at_yard6.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
   $.goon_at_yard6.clearThreatSearch();
   $.goon_at_yard6.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard6.setHeading(250.0);
   $.goon_at_yard6.setStayInSamePlace(true /* TRUE */);
   $.goon_at_yard6.setUsePednodeSeek(false /* FALSE */);
-  // behind last box
-  $.goon_at_yard7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 358.6874, -340.7191, 16.0);
+  $.goon_at_yard7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 358.6874, -340.7191, 16.0); // behind last box
   $.goon_at_yard7.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
   $.goon_at_yard7.clearThreatSearch();
   $.goon_at_yard7.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard7.setHeading(90.0);
   $.goon_at_yard7.setStayInSamePlace(true /* TRUE */);
   $.goon_at_yard7.setUsePednodeSeek(false /* FALSE */);
-  // by last box
-  $.goon_at_yard8 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 360.1730, -336.0494, 16.0);
+  $.goon_at_yard8 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 360.1730, -336.0494, 16.0); // by last box
   $.goon_at_yard8.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
   Path.AddRoutePoint($.yard_route3, 360.1730, -336.0494, 16.0);
   Path.AddRoutePoint($.yard_route3, 372.2496, -335.3521, 17.0);
@@ -618,8 +566,7 @@ async function second_cutscene() {
   $.goon_at_yard8.clearThreatSearch();
   $.goon_at_yard8.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard8.setUsePednodeSeek(false /* FALSE */);
-  // behind lift
-  $.goon_at_yard9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 374.7956, -340.4126, 16.0);
+  $.goon_at_yard9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 374.7956, -340.4126, 16.0); // behind lift
   $.goon_at_yard9.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 9999);
   Path.AddRoutePoint($.yard_route2, 374.7956, -340.4126, 16.0);
   Path.AddRoutePoint($.yard_route2, 375.2283, -316.6560, 18.3);
@@ -627,8 +574,7 @@ async function second_cutscene() {
   $.goon_at_yard9.clearThreatSearch();
   $.goon_at_yard9.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard9.setUsePednodeSeek(false /* FALSE */);
-  // on building near maze
-  $.goon_at_yard10 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 391.0353, -298.6616, 17.2);
+  $.goon_at_yard10 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, ped`GANG_COLOMBIAN_A`, 391.0353, -298.6616, 17.2); // on building near maze
   $.goon_at_yard10.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
   Path.AddRoutePoint($.yard_route1, 391.0353, -298.6616, 17.2);
   Path.AddRoutePoint($.yard_route1, 372.7149, -298.7406, 17.2);
@@ -637,14 +583,6 @@ async function second_cutscene() {
   $.goon_at_yard10.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.goon_at_yard10.setHeedThreats(true /* TRUE */);
   $.goon_at_yard10.setUsePednodeSeek(false /* FALSE */);
-  //LIFT
-  // AREA 1
-  // AREA 2
-  // AREA 3
-  // AREA 4
-  // AREA 5
-  // AREA 6
-  //GET INTO THE LIFT
   while (!($.player.locateOnFoot3D(366.939, -328.025, 20.268, 1.0, 1.0, 2.0, true))) {
     await asyncWait(0);
     if ($.c_site_area_flag == 0) {
@@ -676,44 +614,32 @@ async function second_cutscene() {
         $.c_site_area_flag = 5;
       }
     }
-    // AREA 1
     if ($.c_site_area_flag == 0) {
-      // AREA 1
       if ($.player.isInArea2D(331.8, -303.2, 354.5, -280.2, false)) {
         $.c_site_area_flag = 1;
       }
     }
-    // AREA 2
     if ($.c_site_area_flag == 1) {
-      // AREA 2
       if ($.player.isInArea2D(334.4, -314.6, 348.2, -303.2, false)) {
         $.c_site_area_flag = 2;
       }
     }
-    // AREA 3
     if ($.c_site_area_flag == 2) {
-      // AREA 3
       if ($.player.isInArea2D(326.4, -327.9, 334.4, -303.2, false)) {
         $.c_site_area_flag = 3;
       }
     }
-    // AREA 4
     if ($.c_site_area_flag == 3) {
-      // AREA 4
       if ($.player.isInArea2D(326.4, -341.8, 334.4, -327.9, false)) {
         $.c_site_area_flag = 4;
       }
     }
-    // AREA 5
     if ($.c_site_area_flag == 4) {
-      // AREA 5
       if ($.player.isInArea2D(334.4, -341.8, 355.9, -314.6, false)) {
         $.c_site_area_flag = 5;
       }
     }
-    // AREA 6
     if ($.c_site_area_flag == 5) {
-      // AREA 6
       if ($.player.isInArea2D(355.9, -341.8, 380.3, -314.6, false)) {
         $.c_site_area_flag = 6;
       }
@@ -749,30 +675,25 @@ async function second_cutscene() {
     // SCM GOSUB goon_at_yard10_routine
     await goon_at_yard10_routine();
     // fallback if label was not emitted as async function: no-op continues linearly
-    //GET INTO THE LIFT
     if (Char.IsDead($.goon_at_yard1) && Char.IsDead($.goon_at_yard2) && Char.IsDead($.goon_at_yard3) && Char.IsDead($.goon_at_yard4) && Char.IsDead($.goon_at_yard5)) {
-      //GET INTO THE LIFT
       if (Char.IsDead($.goon_at_yard6) && Char.IsDead($.goon_at_yard7) && Char.IsDead($.goon_at_yard8) && Char.IsDead($.goon_at_yard9)) {
         if ($.reset_timera_flag == 0) {
           TIMERA = 0;
           $.reset_timera_flag = 1;
         }
-        //GET INTO THE LIFT
         if (TIMERA > 10000 && $.reset_timera_flag == 1) {
-          //GET INTO THE LIFT
-          Text.PrintNow(LOVE4_6, 10000, 1);
+          Text.PrintNow(LOVE4_6, 10000, 1); //GET INTO THE LIFT
           $.reset_timera_flag = 2;
         }
       }
     }
   }
-  // ****************************************START OF CUTSCENE********************************
   $.love_4_blip.remove();
+  // ****************************************START OF CUTSCENE********************************
   Camera.SetFadingColor(0, 0, 0);
   Camera.DoFade(1500, 0 /* FADE_OUT */);
   $.break_timer_start = Clock.GetGameTimer();
   $.break_timer = 0;
-  //	If player is not in control after 5 secs do the cutscene anyway
   while (!($.player.canStartMission()) && $.break_timer < 5000) {
     await asyncWait(0);
     $.break_timer = Clock.GetGameTimer();
@@ -782,8 +703,7 @@ async function second_cutscene() {
   Streaming.LoadSpecialCharacter(1, cat);
   Streaming.LoadSpecialCharacter(2, $.miguel);
   Streaming.LoadSpecialCharacter(3, $.asuka);
-  //lift
-  Streaming.LoadSpecialModel(hier`cutobj01`, d4props);
+  Streaming.LoadSpecialModel(hier`cutobj01`, d4props); //lift
   Streaming.LoadSpecialModel(hier`cutobj02`, cath);
   Streaming.LoadSpecialModel(hier`cutobj03`, asukah);
   Streaming.LoadSpecialModel(hier`cutobj04`, miguelh);
@@ -820,6 +740,7 @@ async function second_cutscene() {
   $.cs_asukahead = CutsceneHead.Create($.cs_asuka, hier`cutobj03`);
   $.cs_asukahead.setAnim($.asuka);
   $.cs_mariahead = CutsceneHead.Create($.cs_miguel, hier`cutobj04`);
+  $.cs_mariahead.setAnim($.miguel);
   //CREATE_CUTSCENE_OBJECT cut_obj2 cs_loot
   //SET_CUTSCENE_ANIM cs_loot cs_loot
   //
@@ -829,7 +750,6 @@ async function second_cutscene() {
   //SET_CUTSCENE_ANIM cs_colt2 colt2
   //CREATE_CUTSCENE_OBJECT cut_obj5 cs_whip
   //SET_CUTSCENE_ANIM cs_whip whip
-  $.cs_mariahead.setAnim($.miguel);
   $.player.setCoordinates(373.7523, -327.2676, 17.1950);
   $.player.setHeading(270.0);
   Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -839,20 +759,17 @@ async function second_cutscene() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //Hey, let's get this out of here. God knows what it is
-  Text.PrintNow(GTAB_A, 15000, 1);
+  Text.PrintNow(GTAB_A, 15000, 1); //Hey, let's get this out of here. God knows what it is
   while ($.cs_time < 18600) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //but he seems to want it badly enough so it must be worth something.
-  Text.PrintNow(GTAB_B, 15000, 1);
+  Text.PrintNow(GTAB_B, 15000, 1); //but he seems to want it badly enough so it must be worth something.
   while ($.cs_time < 21318) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //Who the Heck!
-  Text.PrintNow(GTAB_C, 15000, 1);
+  Text.PrintNow(GTAB_C, 15000, 1); //Who the Heck!
   while ($.cs_time < 21933) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -891,38 +808,32 @@ async function second_cutscene() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //YOU!
-  Text.PrintNow(GTAB_D, 15000, 1);
+  Text.PrintNow(GTAB_D, 15000, 1); //YOU!
   while ($.cs_time < 23270) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //Hey take it easy amigo! De nada! De nada!
-  Text.PrintNow(GTAB_E, 15000, 1);
+  Text.PrintNow(GTAB_E, 15000, 1); //Hey take it easy amigo! De nada! De nada!
   while ($.cs_time < 26829) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //I left you pouring your heart out into the gutter!
-  Text.PrintNow(GTAB_F, 15000, 1);
+  Text.PrintNow(GTAB_F, 15000, 1); //I left you pouring your heart out into the gutter!
   while ($.cs_time < 29508) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //Don't shoot amigo. No problem. We all friends. Here, take this.
-  Text.PrintNow(GTAB_G, 15000, 1);
+  Text.PrintNow(GTAB_G, 15000, 1); //Don't shoot amigo. No problem. We all friends. Here, take this.
   while ($.cs_time < 33871) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //Don't be such a pussy!
-  Text.PrintNow(GTAB_H, 15000, 1);
+  Text.PrintNow(GTAB_H, 15000, 1); //Don't be such a pussy!
   while ($.cs_time < 35408) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //We got no choice baby!
-  Text.PrintNow(GTAB_I, 15000, 1);
+  Text.PrintNow(GTAB_I, 15000, 1); //We got no choice baby!
   while ($.cs_time < 36700) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -973,74 +884,62 @@ async function second_cutscene() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //We always got a choice you dumb bastard!
-  Text.PrintNow(GTAB_J, 15000, 1);
+  Text.PrintNow(GTAB_J, 15000, 1); //We always got a choice you dumb bastard!
   while ($.cs_time < 41684) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //I'm sorry about that crazy bitch man, they all the same�..por favor??
-  Text.PrintNow(GTAB_K, 15000, 1);
+  Text.PrintNow(GTAB_K, 15000, 1); //I'm sorry about that crazy bitch man, they all the same�..por favor??
   while ($.cs_time < 46468) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //So the whore got away.
-  Text.PrintNow(GTAB_L, 15000, 1);
+  Text.PrintNow(GTAB_L, 15000, 1); //So the whore got away.
   while ($.cs_time < 48918) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //But you've done me a favour,
-  Text.PrintNow(GTAB_M, 15000, 1);
+  Text.PrintNow(GTAB_M, 15000, 1); //But you've done me a favour,
   while ($.cs_time < 50755) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //you're not the only one that has a score to settle with the Cartel -
-  Text.PrintNow(GTAB_N, 15000, 1);
+  Text.PrintNow(GTAB_N, 15000, 1); //you're not the only one that has a score to settle with the Cartel -
   while ($.cs_time < 54352) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //this worm killed my brother!
-  Text.PrintNow(GTAB_O, 15000, 1);
+  Text.PrintNow(GTAB_O, 15000, 1); //this worm killed my brother!
   while ($.cs_time < 56266) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //I never killed no Yakuza!
-  Text.PrintNow(GTAB_P, 15000, 1);
+  Text.PrintNow(GTAB_P, 15000, 1); //I never killed no Yakuza!
   while ($.cs_time < 57299) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //LIAR! We all saw the Cartel assassin.
-  Text.PrintNow(GTAB_Q, 15000, 1);
+  Text.PrintNow(GTAB_Q, 15000, 1); //LIAR! We all saw the Cartel assassin.
   while ($.cs_time < 60721) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //We are going to hunt down and kill all you Colombian dogs!
-  Text.PrintNow(GTAB_R, 15000, 1);
+  Text.PrintNow(GTAB_R, 15000, 1); //We are going to hunt down and kill all you Colombian dogs!
   while ($.cs_time < 64778) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //I'll be operating on our friend here to extract information and a little pleasure.
-  Text.PrintNow(GTAB_S, 15000, 1);
+  Text.PrintNow(GTAB_S, 15000, 1); //I'll be operating on our friend here to extract information and a little pleasure.
   while ($.cs_time < 70710) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //You, drop by later, I'm sure I'll require your services.
-  Text.PrintNow(GTAB_T, 15000, 1);
+  Text.PrintNow(GTAB_T, 15000, 1); //You, drop by later, I'm sure I'll require your services.
   while ($.cs_time < 75150) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //Please amigo, don't leave me with her, she psycho chica! Amigo? Hey AMEEEGO!!! ��.Aiiieeeeaaargghh!
-  Text.PrintNow(GTAB_U, 15000, 1);
+  Text.PrintNow(GTAB_U, 15000, 1); //Please amigo, don't leave me with her, she psycho chica! Amigo? Hey AMEEEGO!!! ��.Aiiieeeeaaargghh!
   while ($.cs_time < 86666) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -1082,12 +981,9 @@ async function second_cutscene() {
   $.inside_fence.dontRemove();
   $.outside_fence = Object.CreateNoOffset(1411 /* broken_outside */, 360.852, -390.891, 22.622);
   $.outside_fence.dontRemove();
-  // out front
-  $.yakuza_car1 = Car.Create(129 /* CAR_YAKUZA */, 339.8449, -290.6314, 16.0);
-  // out front
-  $.yakuza_car2 = Car.Create(129 /* CAR_YAKUZA */, 359.1079, -291.0880, 16.0);
-  // smash fence car
-  $.yakuza_car3 = Car.Create(129 /* CAR_YAKUZA */, 363.6012, -339.1167, 16.0);
+  $.yakuza_car1 = Car.Create(129 /* CAR_YAKUZA */, 339.8449, -290.6314, 16.0); // out front
+  $.yakuza_car2 = Car.Create(129 /* CAR_YAKUZA */, 359.1079, -291.0880, 16.0); // out front
+  $.yakuza_car3 = Car.Create(129 /* CAR_YAKUZA */, 363.6012, -339.1167, 16.0); // smash fence car
   $.yakuza_car1.setHeading(158.2191);
   $.yakuza_car2.setHeading(146.8412);
   $.yakuza_car3.setHeading(339.3615);
@@ -1145,20 +1041,18 @@ async function second_cutscene() {
   }
   Streaming.Switch(true /* ON */);
   Camera.DoFade(1500, 1 /* FADE_IN */);
-  // ******************************************END OF CUTSCENE********************************
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
-  //"Take the package to Love."
-  Text.PrintNow(LOVE4_4, 5000, 1);
+  // ******************************************END OF CUTSCENE********************************
+  Text.PrintNow(LOVE4_4, 5000, 1); //"Take the package to Love."
   if (!(Car.IsDead($.colombian_car))) {
     if (!(Char.IsDead($.yakuza_guard5))) {
       $.colombian_car.setHealth(2500);
       $.yakuza_guard5.setObjDestroyCar($.colombian_car);
     }
   }
-  // LOVES PAD
-  $.love_4_blip = Blip.AddForCoord(87.3, -1548.6, 27.255);
+  $.love_4_blip = Blip.AddForCoord(87.3, -1548.6, 27.255); // LOVES PAD
   while (!($.player.locateStoppedOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, true))) {
     await asyncWait(0);
   }
@@ -1224,15 +1118,15 @@ async function get_out_of_loop() {
   Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
   Game.SetAllCarsCanBeDamaged(true /* TRUE */);
   Camera.DoFade(1000, 1 /* FADE_IN */);
-  // Mission Love 4 failed
   // SCM GOTO → mission_love4_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_love4_passed"); // fallback: would break linear control flow
+  // Mission Love 4 failed
 }
 
 async function mission_love4_failed() {
   Text.PrintBig(M_FAIL, 2000, 1);
-  // mission Love 4 passed
   return;
+  // mission Love 4 passed
 }
 
 async function mission_love4_passed() {
@@ -1243,23 +1137,21 @@ async function mission_love4_passed() {
   $.gen_car61.switch(101);
   $.gen_car62.switch(101);
   $.gen_car63.switch(101);
-  //Commercial to Suburbia Bridge
-  Path.SwitchRoadsOn(-46.8, -648.0, 39.0, -69.1, -614.0, 50.0);
+  Path.SwitchRoadsOn(-46.8, -648.0, 39.0, -69.1, -614.0, 50.0); //Commercial to Suburbia Bridge
   $.asuka_contact_blip.remove();
   Text.PrintWithNumberBig(M_PASS, 50000, 2000, 1);
   $.player.addScore(50000);
   $.player.clearWantedLevel();
   Stat.RegisterMissionPassed(LOVE4);
-  //Fort staunton
-  Zone.SetPedInfo("CONSTRU", 1 /* DAY */, 30, 0, 0, 0, 250, 0, 50, 0, 20);
+  Zone.SetPedInfo("CONSTRU", 1 /* DAY */, 30, 0, 0, 0, 250, 0, 50, 0, 20); //Fort staunton
   Zone.SetPedInfo("CONSTRU", 0 /* NIGHT */, 15, 0, 0, 0, 300, 0, 70, 0, 10);
   Audio.PlayMissionPassedTune(1);
   Stat.PlayerMadeProgress(1);
   $.asuka_contact_blip = Blip.AddSpriteForContactPoint(366.939, -328.025, 20.268, 1 /* RADAR_SPRITE_ASUKA */);
   // START_NEW_SCRIPT asuka_suburban_mission1_loop
   // START_NEW_SCRIPT love_mission5_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_love4() {
@@ -1278,13 +1170,13 @@ async function mission_cleanup_love4() {
   Streaming.MarkModelAsNoLongerNeeded(car`YAKUZA`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_A`);
   $.deadman1.markAsNoLongerNeeded();
-  //SET_TARGET_CAR_FOR_MISSION_GARAGE loves_garage -1
   Streaming.MarkModelAsNoLongerNeeded(car`COLUMB`);
+  //SET_TARGET_CAR_FOR_MISSION_GARAGE loves_garage -1
   $.flag_player_on_mission = 0;
   $.flag_player_on_love_mission = 0;
   Mission.Finish();
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function set_death_flags() {
@@ -1312,48 +1204,36 @@ async function set_death_flags() {
   if ($.goon_in_hangar4_ducking == -1) {
     $.goon_in_hangar4_ducking = 0;
   }
-  //"KILL them all!!"
   if ($.goon_in_hangar1_blip_flag == 0) {
-    //"KILL them all!!"
     if (!(Char.IsDead($.goon_in_hangar1))) {
       $.goon_in_hangar1_blip = Blip.AddForChar($.goon_in_hangar1);
-      //"KILL them all!!"
-      Text.PrintNow(LOVE4_1, 5000, 1);
+      Text.PrintNow(LOVE4_1, 5000, 1); //"KILL them all!!"
       $.goon_in_hangar1_blip_flag = 1;
     }
   }
-  //"KILL them all!!"
   if ($.goon_in_hangar2_blip_flag == 0) {
-    //"KILL them all!!"
     if (!(Char.IsDead($.goon_in_hangar2))) {
       $.goon_in_hangar2_blip = Blip.AddForChar($.goon_in_hangar2);
-      //"KILL them all!!"
-      Text.PrintNow(LOVE4_1, 5000, 1);
+      Text.PrintNow(LOVE4_1, 5000, 1); //"KILL them all!!"
       $.goon_in_hangar2_blip_flag = 1;
     }
   }
-  //"KILL them all!!"
   if ($.goon_in_hangar3_blip_flag == 0) {
-    //"KILL them all!!"
     if (!(Char.IsDead($.goon_in_hangar3))) {
       $.goon_in_hangar3_blip = Blip.AddForChar($.goon_in_hangar3);
-      //"KILL them all!!"
-      Text.PrintNow(LOVE4_1, 5000, 1);
+      Text.PrintNow(LOVE4_1, 5000, 1); //"KILL them all!!"
       $.goon_in_hangar3_blip_flag = 1;
     }
   }
-  //"KILL them all!!"
   if ($.goon_in_hangar4_blip_flag == 0) {
-    //"KILL them all!!"
     if (!(Char.IsDead($.goon_in_hangar4))) {
       $.goon_in_hangar4_blip = Blip.AddForChar($.goon_in_hangar4);
-      //"KILL them all!!"
-      Text.PrintNow(LOVE4_1, 5000, 1);
+      Text.PrintNow(LOVE4_1, 5000, 1); //"KILL them all!!"
       $.goon_in_hangar4_blip_flag = 1;
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function ducking_routine() {
@@ -1502,14 +1382,12 @@ async function ducking_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard1_routine() {
-  // IS_CHAR_DEAD goon_at_yard1
   if ($.c_site_area_flag > 0) {
-    // IS_CHAR_DEAD goon_at_yard1
     if (!(Char.IsDead($.goon_at_yard1))) {
       if ($.goon_at_yard1_flag == 0) {
         $.goon_at_yard1.setStayInSamePlace(false /* FALSE */);
@@ -1561,14 +1439,12 @@ async function goon_at_yard1_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard2_routine() {
-  // IS_CHAR_DEAD goon_at_yard2
   if ($.c_site_area_flag > 0) {
-    // IS_CHAR_DEAD goon_at_yard2
     if (!(Char.IsDead($.goon_at_yard2))) {
       if ($.goon_at_yard2_flag == 0) {
         $.goon_at_yard2.setWaitState(0 /* WAITSTATE_FALSE */, 100);
@@ -1628,8 +1504,8 @@ async function goon_at_yard2_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard3_routine() {
@@ -1692,8 +1568,8 @@ async function goon_at_yard3_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard4_routine() {
@@ -1755,8 +1631,8 @@ async function goon_at_yard4_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard5_routine() {
@@ -1795,8 +1671,8 @@ async function goon_at_yard5_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard6_routine() {
@@ -1829,8 +1705,8 @@ async function goon_at_yard6_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard7_routine() {
@@ -1860,14 +1736,12 @@ async function goon_at_yard7_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard8_routine() {
-  //363.9961 -330.8928
   if ($.c_site_area_flag > 3) {
-    //363.9961 -330.8928
     if (!(Char.IsDead($.goon_at_yard8))) {
       if ($.goon_at_yard8_flag == 0) {
         $.goon_at_yard8.setObjWaitOnFoot();
@@ -1878,12 +1752,9 @@ async function goon_at_yard8_routine() {
         $.goon_at_yard8.setObjRunToCoord(375.4750, -331.2);
         $.goon_at_yard8_flag = 1;
       }
-      //363.9961 -330.8928
       if ($.goon_at_yard8_flag == 1) {
-        //363.9961 -330.8928
         if ($.goon_at_yard8.locateOnFoot2D(375.4750, -331.2, 1.0, 1.0, false)) {
-          //363.9961 -330.8928
-          $.goon_at_yard8.setObjRunToCoord(363.7481, -330.9657);
+          $.goon_at_yard8.setObjRunToCoord(363.7481, -330.9657); //363.9961 -330.8928
           $.goon_at_yard8_flag = 2;
         }
       }
@@ -1921,8 +1792,8 @@ async function goon_at_yard8_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard9_routine() {
@@ -2007,14 +1878,12 @@ async function goon_at_yard9_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
 }
 
 async function goon_at_yard10_routine() {
-  // IS_CHAR_DEAD goon_at_yard10
   if ($.c_site_area_flag > 0) {
-    // IS_CHAR_DEAD goon_at_yard10
     if (!(Char.IsDead($.goon_at_yard10))) {
       if ($.goon_at_yard10_flag == 0) {
         $.goon_at_yard10.setHeedThreats(false /* FALSE */);
@@ -2162,12 +2031,13 @@ async function goon_at_yard10_routine() {
       }
     }
   }
-  ///////////////////////////////////////////////////////////////////////////////
   return;
+  ///////////////////////////////////////////////////////////////////////////////
   }
 }
 
 export async function love4() {
+  // MissionBoundary
   // *****************************************************************************************
   // *********************************  Love Mission 4  **************************************
   // ********************************* Grand Theft Aero **************************************
@@ -2179,7 +2049,6 @@ export async function love4() {
   // *** site. There the player will have to fight his way through the Colombians to 		 ***
   // *** Catalina & Miguel and the packages.                                               ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_love4
   await mission_start_love4();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -2191,9 +2060,9 @@ export async function love4() {
   // SCM GOSUB mission_cleanup_love4
   await mission_cleanup_love4();
   // fallback if label was not emitted as async function: no-op continues linearly
+  // MissionBoundary
   // Variables for mission
   //VAR_INT flag_player_on_love_mission flag_love_mission4_passed// TEST VARS
-  // MissionBoundary
   // VAR_INT love_4_blip goon_in_hangar1_blip goon_in_hangar2_blip goon_in_hangar3_blip goon_in_hangar4_blip
   // VAR_INT van1_driver goon_in_hangar1 goon_in_hangar2 goon_in_hangar3 goon_in_hangar4 ducking_flag
   // VAR_INT car_van1_lm4 car_van2_lm4 car_van3_lm4 wingless_cessna cs_cat cs_lift lift players_vehicle
@@ -2218,6 +2087,6 @@ export async function love4() {
   // VAR_INT goon_at_yard10_flag goon_at_yard10_duck goon_at_yard10_duck_timer
   // VAR_FLOAT van3_x van3_y van3_z x_component y_component differ_x differ_y distance_result1 distance_result2 sum_difference
   // VAR_FLOAT temp_result_x temp_result_y result1_x result1_y result2_x result2_y
-  // ****************************************Mission Start************************************
   // VAR_FLOAT player_lo4_x player_lo4_y player_lo4_z temp_var_x temp_var_y
+  // ****************************************Mission Start************************************
 }

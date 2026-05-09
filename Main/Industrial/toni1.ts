@@ -15,34 +15,22 @@ async function mission_start_toni1() {
   $.counter1_toni1 = 0;
   $.dead_van1 = 0;
   $.dead_van2 = 0;
-  //dead_van4 = 0
   $.dead_van3 = 0;
+  //dead_van4 = 0
   $.in_van1 = 0;
   $.in_van2 = 0;
-  //in_van4	= 0
-  /*
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_toni1_failed
-  ENDIF
-  SET_FADING_COLOUR 0 0 0
-  DO_FADE 1500 FADE_OUT
-  SWITCH_STREAMING OFF
-  PRINT_BIG ( TM1 ) 15000 2 //"Toni Mission 1"
-  */
   $.in_van3 = 0;
   {
   Streaming.LoadSpecialCharacter(1, tony);
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, TONYH);
+  Streaming.RequestModel(ind_newrizzos);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
   //LOAD_SCENE 1218.4 -314.5 28.9
-  Streaming.RequestModel(ind_newrizzos);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(ind_newrizzos))) {
     await asyncWait(0);
@@ -60,38 +48,33 @@ async function mission_start_toni1() {
   World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
   $.player.setCoordinates(1219.5, -321.1, 26.4);
   $.player.setHeading(180.0);
-  //TONIS RESTAURANT
-  World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */);
+  World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 171) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM1_A", 10000, 1);
+  Text.PrintNow("TM1_A", 10000, 1); // Mission brief
   while ($.cs_time < 3769) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM1_B", 10000, 1);
+  Text.PrintNow("TM1_B", 10000, 1); // Mission brief
   while ($.cs_time < 5825) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM1_C", 10000, 1);
+  Text.PrintNow("TM1_C", 10000, 1); // Mission brief
   while ($.cs_time < 8026) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM1_D", 10000, 1);
+  Text.PrintNow("TM1_D", 10000, 1); // Mission brief
   while ($.cs_time < 11500) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -101,26 +84,22 @@ async function mission_start_toni1() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM1_G", 10000, 1);
+  Text.PrintNow("TM1_G", 10000, 1); // Mission brief
   while ($.cs_time < 21005) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM1_H", 10000, 1);
+  Text.PrintNow("TM1_H", 10000, 1); // Mission brief
   while ($.cs_time < 22997) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM1_I", 10000, 1);
+  Text.PrintNow("TM1_I", 10000, 1); // Mission brief
   while ($.cs_time < 27589) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  // Mission brief
-  Text.PrintNow("TM1_J", 10000, 1);
+  Text.PrintNow("TM1_J", 10000, 1); // Mission brief
   while ($.cs_time < 29796) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -149,10 +128,10 @@ async function mission_start_toni1() {
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
   Streaming.MarkModelAsNoLongerNeeded(ind_newrizzos);
-  // START OF MISSION
   while (!(Streaming.HasModelLoaded(car`MRWONGS`)) || !(Streaming.HasModelLoaded(ped`CT_MAN1`))) {
     await asyncWait(0);
   }
+  // START OF MISSION
   $.gen_car31.switch(0);
   $.free_greandes = Pickup.CreateWithAmmo(151 /* WEAPON_GRENADE */, 3 /* PICKUP_ONCE */, 10, 1278.8, -81.5, 15.1);
   $.grenade_blip = Blip.AddSpriteForPickup($.free_greandes, 20 /* RADAR_SPRITE_WEAPON */);
@@ -162,22 +141,23 @@ async function mission_start_toni1() {
   $.t1_triad_van1.setCruiseSpeed(17.0);
   $.t1_triad_van1.setDrivingStyle(0);
   $.t1_triad_van1.setOnlyDamagedByPlayer(true /* TRUE */);
-  //SET_CAR_HEALTH t1_triad_van1 600
   $.vanman1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  //SET_CAR_HEALTH t1_triad_van1 600
   $.t1_triad_van2 = Car.Create(126 /* CAR_MRWONGS */, 1020.0, -677.0, -100.0);
   $.vanman2 = Char.CreateInsideCar($.t1_triad_van2, 4 /* PEDTYPE_CIVMALE */, ped`CT_MAN1`);
   $.blip2_van2 = Blip.AddForCar($.t1_triad_van2);
   $.t1_triad_van2.setCruiseSpeed(17.0);
   $.t1_triad_van2.setDrivingStyle(0);
   $.t1_triad_van2.setOnlyDamagedByPlayer(true /* TRUE */);
-  //SET_CAR_HEALTH t1_triad_van2 600
   $.vanman2.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
+  //SET_CAR_HEALTH t1_triad_van2 600
   $.t1_triad_van3 = Car.Create(126 /* CAR_MRWONGS */, 904.0, -579.0, -100.0);
   $.vanman3 = Char.CreateInsideCar($.t1_triad_van3, 4 /* PEDTYPE_CIVMALE */, ped`CT_MAN1`);
   $.blip3_van3 = Blip.AddForCar($.t1_triad_van3);
   $.t1_triad_van3.setCruiseSpeed(17.0);
   $.t1_triad_van3.setDrivingStyle(0);
   $.t1_triad_van3.setOnlyDamagedByPlayer(true /* TRUE */);
+  $.vanman3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
   //SET_CAR_HEALTH t1_triad_van3 600
   /*
   CREATE_CAR CAR_MRWONGS 996.0 -463.0 14.0 t1_triad_van4
@@ -188,33 +168,6 @@ async function mission_start_toni1() {
   SET_CAR_ONLY_DAMAGED_BY_PLAYER t1_triad_van4 TRUE
   SET_CHAR_PERSONALITY vanman4 PEDSTAT_GEEK_GUY
   SET_CAR_HEALTH t1_triad_van4 600
-  */
-  $.vanman3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  /*
-  IF IS_CAR_DEAD t1_triad_van4
-  AND dead_van4 = 0
-  REMOVE_BLIP blip4_van4
-  dead_van4 = 1
-  ++ counter1_toni1
-  ENDIF
-  IF NOT IS_CAR_DEAD t1_triad_van4
-  IF NOT IS_CAR_HEALTH_GREATER t1_triad_van4 599
-  IF NOT IS_CHAR_DEAD vanman4
-  IF IS_CHAR_IN_CAR vanman4 t1_triad_van4
-  SET_CAR_CRUISE_SPEED t1_triad_van4 20.0
-  SET_CAR_DRIVING_STYLE t1_triad_van4 2
-  SET_CAR_ONLY_DAMAGED_BY_PLAYER t1_triad_van4 FALSE
-  ENDIF
-  ENDIF
-  ENDIF
-  ENDIF
-  IF NOT IS_CAR_DEAD t1_triad_van4
-  IF IS_PLAYER_IN_CAR player t1_triad_van4
-  AND in_van4 = 0
-  SET_CAR_ONLY_DAMAGED_BY_PLAYER t1_triad_van4 FALSE
-  in_van4 = 1
-  ENDIF
-  ENDIF
   */
   while (!($.counter1_toni1 == 3)) {
     await asyncWait(0);
@@ -278,32 +231,6 @@ async function mission_start_toni1() {
         }
       }
     }
-    /*
-    IF IS_CAR_DEAD t1_triad_van4
-    AND dead_van4 = 0
-    REMOVE_BLIP blip4_van4
-    dead_van4 = 1
-    ++ counter1_toni1
-    ENDIF
-    IF NOT IS_CAR_DEAD t1_triad_van4
-    IF NOT IS_CAR_HEALTH_GREATER t1_triad_van4 599
-    IF NOT IS_CHAR_DEAD vanman4
-    IF IS_CHAR_IN_CAR vanman4 t1_triad_van4
-    SET_CAR_CRUISE_SPEED t1_triad_van4 20.0
-    SET_CAR_DRIVING_STYLE t1_triad_van4 2
-    SET_CAR_ONLY_DAMAGED_BY_PLAYER t1_triad_van4 FALSE
-    ENDIF
-    ENDIF
-    ENDIF
-    ENDIF
-    IF NOT IS_CAR_DEAD t1_triad_van4
-    IF IS_PLAYER_IN_CAR player t1_triad_van4
-    AND in_van4 = 0
-    SET_CAR_ONLY_DAMAGED_BY_PLAYER t1_triad_van4 FALSE
-    in_van4 = 1
-    ENDIF
-    ENDIF
-    */
     if (!(Car.IsDead($.t1_triad_van3))) {
       if ($.player.isInCar($.t1_triad_van3) && $.in_van3 == 0) {
         $.t1_triad_van3.setOnlyDamagedByPlayer(false /* FALSE */);
@@ -326,30 +253,28 @@ async function mission_start_toni1() {
     }
   }
   }
-  // Mission toni1 failed
   // SCM GOTO → mission_toni1_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_toni1_passed"); // fallback: would break linear control flow
+  // Mission toni1 failed
 }
 
 async function mission_toni1_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission toni1 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission toni1 passed
 }
 
 async function mission_toni1_passed() {
   $.flag_toni_mission1_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(20000);
   Stat.RegisterMissionPassed(TM1);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT toni_mission2_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_toni1() {
@@ -357,8 +282,8 @@ async function mission_cleanup_toni1() {
   $.flag_player_on_toni_mission = 0;
   $.blip1_van1.remove();
   $.blip2_van2.remove();
-  //REMOVE_BLIP blip4_van4
   $.blip3_van3.remove();
+  //REMOVE_BLIP blip4_van4
   $.grenade_blip.remove();
   $.free_greandes.remove();
   $.gen_car31.switch(101);
@@ -369,11 +294,11 @@ async function mission_cleanup_toni1() {
 }
 
 export async function toni1() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Toni mission 1****************************************
   // ***************************************Laundry day*****************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_toni1
   await mission_start_toni1();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -385,19 +310,14 @@ export async function toni1() {
   // SCM GOSUB mission_cleanup_toni1
   await mission_cleanup_toni1();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
-  //t1_triad_van4 // Vehicle for mission
+  // Variables for mission
   // VAR_INT t1_triad_van1 t1_triad_van2 t1_triad_van3
-  //blip4_van4
   // VAR_INT blip1_van1 blip2_van2 blip3_van3
-  // Counts up number of mission vans destroyed
   // VAR_INT counter1_toni1
-  //vanman4 in_van4
   // VAR_INT vanman1 vanman2 vanman3 in_van1 in_van2 in_van3
-  //dead_van4
   // VAR_INT dead_van1 dead_van2 dead_van3
   // VAR_INT grenade_blip picked_up_grenades
-  // ***************************************Mission Start*************************************
   // VAR_INT triad_hates_you free_greandes
+  // ***************************************Mission Start*************************************
 }

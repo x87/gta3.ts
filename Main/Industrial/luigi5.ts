@@ -28,7 +28,6 @@ async function mission_start_luigi5() {
   $.flag_prossie2_told_to_go_into_ball = 0;
   $.flag_prossie1_in_car_park = 0;
   $.flag_prossie1_told_to_go_into_ball = 0;
-  // 5 mins
   $.timer_lm5 = 301000;
   $.flag_blip_on_prossie1_lm5 = 0;
   $.flag_blip_on_prossie2_lm5 = 0;
@@ -70,23 +69,15 @@ async function mission_start_luigi5() {
   $.flag_had_car_message7_lm5 = 0;
   $.flag_had_car_message8_lm5 = 0;
   $.counter_girls_trying_to_get_to_ball = 0;
-  // If the girls get stuck
   $.flag_timer_prossie1_lm5 = 0;
-  // If the girls get stuck
   $.flag_timer_prossie2_lm5 = 0;
-  // If the girls get stuck
   $.flag_timer_prossie3_lm5 = 0;
-  // If the girls get stuck
   $.flag_timer_prossie4_lm5 = 0;
-  // If the girls get stuck
   $.flag_timer_prossie5_lm5 = 0;
-  // If the girls get stuck
   $.flag_timer_prossie6_lm5 = 0;
-  // If the girls get stuck
   $.flag_timer_prossie7_lm5 = 0;
-  // If the girls get stuck
-  // *****************************************START OF CUTSCENE*******************************
   $.flag_timer_prossie8_lm5 = 0;
+  // *****************************************START OF CUTSCENE*******************************
   {
   Streaming.LoadSpecialCharacter(1, $.luigi);
   Streaming.LoadSpecialCharacter(2, $.micky);
@@ -96,12 +87,12 @@ async function mission_start_luigi5() {
   Streaming.LoadSpecialModel(hier`cutobj04`, MICKYH);
   Streaming.RequestModel(indhibuild3);
   Streaming.RequestModel(luigiclubout);
+  Streaming.RequestModel(luigiineerclub);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.RequestModel(luigiineerclub);
   World.SetPedDensityMultiplier(0.0);
   World.ClearAreaOfChars(926.54, -471.72, 1.0, 830.76, -257.96, 25.0);
   Streaming.LoadAllModelsNow();
@@ -127,47 +118,42 @@ async function mission_start_luigi5() {
   $.cs_mickyhead = CutsceneHead.Create($.cs_micky, hier`cutobj04`);
   $.cs_mickyhead.setAnim($.micky);
   $.cs_ludoor = CutsceneObject.Create(hier`cutobj01`);
+  $.cs_ludoor.setAnim(LUDOOR);
   //CLEAR_AREA 902.2 -425.8 13.9 1.0 TRUE
   //SET_PLAYER_COORDINATES player 902.2 -425.8 13.9
-  $.cs_ludoor.setAnim(LUDOOR);
   World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */);
   $.player.setCoordinates(896.6, -426.2, 13.9);
   $.player.setHeading(270.0);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 11950) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The Policeman's Ball is being held at the old school hall near the Callahan Bridge"
-  Text.PrintNow("LM5_A", 10000, 1);
+  Text.PrintNow("LM5_A", 10000, 1); //"The Policeman's Ball is being held at the old school hall near the Callahan Bridge"
   while ($.cs_time < 15702) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"and they'll be looking for some "old school action."
-  Text.PrintNow("LM5_B", 10000, 1);
+  Text.PrintNow("LM5_B", 10000, 1); //"and they'll be looking for some "old school action."
   while ($.cs_time < 17617) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Now I got girls all over town walking the streets."
-  Text.PrintNow("LM5_C", 10000, 1);
+  Text.PrintNow("LM5_C", 10000, 1); //"Now I got girls all over town walking the streets."
   while ($.cs_time < 20281) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Get 'em to the ball they'll make a bundle"
-  Text.PrintNow("LM5_D", 10000, 1);
+  Text.PrintNow("LM5_D", 10000, 1); //"Get 'em to the ball they'll make a bundle"
   while ($.cs_time < 22295) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Get as many of them there as you can before those cops have drunk away their green."
-  Text.PrintNow("LM5_E", 10000, 1);
+  Text.PrintNow("LM5_E", 10000, 1); //"Get as many of them there as you can before those cops have drunk away their green."
   while ($.cs_time < 25606) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -202,8 +188,8 @@ async function mission_start_luigi5() {
   Streaming.MarkModelAsNoLongerNeeded(indhibuild3);
   Streaming.MarkModelAsNoLongerNeeded(luigiclubout);
   Streaming.MarkModelAsNoLongerNeeded(luigiineerclub);
-  // *****************************************END OF CUTSCENE*********************************
   World.SetPedDensityMultiplier(1.0);
+  // *****************************************END OF CUTSCENE*********************************
   $.gen_car28.switch(0);
   $.sphere_lm5 = Sphere.Create(999.9, -879.3, 14.0, 4.0);
   Streaming.RequestModel(ped`PROSTITUTE`);
@@ -225,106 +211,77 @@ async function mission_start_luigi5() {
   $.fuzz_door1.setHeading(270.0);
   $.fuzz_door2.setHeading(270.0);
   Hud.DisplayTimer($.timer_lm5);
-  // creates prossie 1
   $.radar_blip_coord1_lm5 = Blip.AddForCoord(999.9, -879.3, -100.0);
+  // creates prossie 1
   $.prossie1_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE2`, 870.0, -482.0, -100.0);
   $.prossie1_lm5.setHeading(180.0);
   $.prossie1_lm5.clearThreatSearch();
   $.radarped_prossie1_lm5 = Blip.AddForChar($.prossie1_lm5);
   $.flag_blip_on_prossie1_lm5 = 1;
-  // creates prossie 2
   $.prossie1_lm5.setRunning(true /* TRUE */);
+  // creates prossie 2
   $.prossie2_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE`, 916.0, -90.0, -100.0);
   $.prossie2_lm5.setHeading(180.0);
   $.prossie2_lm5.clearThreatSearch();
   $.radarped_prossie2_lm5 = Blip.AddForChar($.prossie2_lm5);
   $.flag_blip_on_prossie2_lm5 = 1;
-  // creates prossie 3
   $.prossie2_lm5.setRunning(true /* TRUE */);
+  // creates prossie 3
   $.prossie3_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE2`, 1203.0, 23.0, -100.0);
   $.prossie3_lm5.clearThreatSearch();
   $.radarped_prossie3_lm5 = Blip.AddForChar($.prossie3_lm5);
   $.flag_blip_on_prossie3_lm5 = 1;
-  // creates prossie 4
   $.prossie3_lm5.setRunning(true /* TRUE */);
+  // creates prossie 4
   $.prossie4_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE`, 1240.0, -336.0, -100.0);
   $.prossie4_lm5.setHeading(180.0);
   $.prossie4_lm5.clearThreatSearch();
   $.radarped_prossie4_lm5 = Blip.AddForChar($.prossie4_lm5);
   $.flag_blip_on_prossie4_lm5 = 1;
-  // creates prossie 5
   $.prossie4_lm5.setRunning(true /* TRUE */);
+  // creates prossie 5
   $.prossie5_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE2`, 1231.0, -511.0, -100.0);
   $.prossie5_lm5.clearThreatSearch();
   $.radarped_prossie5_lm5 = Blip.AddForChar($.prossie5_lm5);
   $.flag_blip_on_prossie5_lm5 = 1;
-  // creates prossie 6
   $.prossie5_lm5.setRunning(true /* TRUE */);
+  // creates prossie 6
   $.prossie6_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE`, 1360.0, -798.0, -100.0);
   $.prossie6_lm5.clearThreatSearch();
   $.radarped_prossie6_lm5 = Blip.AddForChar($.prossie6_lm5);
   $.flag_blip_on_prossie6_lm5 = 1;
-  // creates prossie 7
   $.prossie6_lm5.setRunning(true /* TRUE */);
+  // creates prossie 7
   $.prossie7_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE2`, 1093.0, -973.0, -100.0);
   $.prossie7_lm5.clearThreatSearch();
   $.radarped_prossie7_lm5 = Blip.AddForChar($.prossie7_lm5);
   $.flag_blip_on_prossie7_lm5 = 1;
-  // creates prossie 8
   $.prossie7_lm5.setRunning(true /* TRUE */);
+  // creates prossie 8
   $.prossie8_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, ped`PROSTITUTE`, 975.0, -754.0, -100.0);
   $.prossie8_lm5.setHeading(180.0);
   $.prossie8_lm5.clearThreatSearch();
   $.radarped_prossie8_lm5 = Blip.AddForChar($.prossie8_lm5);
   $.flag_blip_on_prossie8_lm5 = 1;
   $.prossie8_lm5.setRunning(true /* TRUE */);
-  //"This is a timed mission, you must complete it before the timer runs out."
   if ($.timer_help_message_displayed == 0) {
-    //"This is a timed mission, you must complete it before the timer runs out."
-    Text.PrintHelp("TIMER");
+    Text.PrintHelp("TIMER"); //"This is a timed mission, you must complete it before the timer runs out."
     $.timer_help_message_displayed = 1;
   }
-  //"You need to get a minimum of four girls to the ball!"
-  Text.PrintNow("LM5_7", 7000, 1);
-  // checking to see how many girls the player get to the ball
+  Text.PrintNow("LM5_7", 7000, 1); //"You need to get a minimum of four girls to the ball!"
   Hud.DisplayCounterWithString($.counter_no_of_girls_at_the_ball, 0 /* COUNTER_DISPLAY_NUMBER */, "LM5_9");
+  // checking to see how many girls the player get to the ball
 }
 
 async function prossie_checks() {
-  // This should clear the area
-  //"A girl has died!"
-  //starts checking for prossie1
-  //"You need a car!"
-  //"The vehicle is wrecked!"
-  //"You have left one of the girls behind go and get her!"
-  //"Get a bigger car!"
-  //room message
-  //room left in car
-  //stopped
-  // locate
-  //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-  //++ counter_no_of_girls_at_the_ball
-  //starts checking for prossie2
-  //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-  // starts check for prossie 3
-  //"The vehicle has been wrecked!"
-  // checks for prossie 4
-  // checks for prossie 5
-  // checks for prossie 6
-  // checks for prossie 7
-  // checks for prossie 8
-  // pass or fail checks
   while ($.timer_lm5 > 0) {
     await asyncWait(0);
-    // This should clear the area
-    World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */);
+    World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */); // This should clear the area
     // SCM GOSUB check_for_dead_prossies
     await check_for_dead_prossies();
     // fallback if label was not emitted as async function: no-op continues linearly
-    //"A girl has died!"
     if ($.number_of_dead_prossies > 0) {
-      //"A girl has died!"
-      Text.PrintNow("LM5_2", 5000, 1);
+      Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
       // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
     }
@@ -337,59 +294,21 @@ async function prossie_checks() {
       $.max_no_of_passengers_lm5 = $.vehicle_lm5.getMaximumNumberOfPassengers();
       $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
     }
-    //starts checking for prossie1
     $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
-    //"You need a car!"
-    //"A girl has died!"
-    //"The vehicle is wrecked!"
-    //"You have left one of the girls behind go and get her!"
-    //"Get a bigger car!"
-    //room message
-    //room left in car
-    //stopped
-    // locate
-    //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    //++ counter_no_of_girls_at_the_ball
-    //starts checking for prossie2
+    //starts checking for prossie1
     if ($.flag_prossie1_at_ball == 0) {
-      //"You need a car!"
-      //"A girl has died!"
-      //"The vehicle is wrecked!"
-      //"You have left one of the girls behind go and get her!"
-      //"Get a bigger car!"
-      //room message
-      //room left in car
-      //stopped
-      // locate
       if ($.flag_prossie1_lm5_in_car == 0) {
-        //"You need a car!"
         if ($.player.locateOnFootChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message1_lm5 == 0) {
-          //"You need a car!"
-          Text.PrintNow("LM5_3", 5000, 1);
+          Text.PrintNow("LM5_3", 5000, 1); //"You need a car!"
           $.flag_had_car_message1_lm5 = 1;
         }
         if (!($.player.locateAnyMeansChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false /* FALSE */))) {
           $.flag_had_car_message1_lm5 = 0;
         }
-        //"A girl has died!"
-        //"The vehicle is wrecked!"
-        //"You have left one of the girls behind go and get her!"
-        //"Get a bigger car!"
-        //room message
-        //room left in car
-        //stopped
-        // locate
         if ($.player.locateInCarChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
           if ($.flag_prossie1_lm5_in_car == 0) {
             $.prossie1_lm5.turnToFacePlayer($.player);
           }
-          //"A girl has died!"
-          //"The vehicle is wrecked!"
-          //"You have left one of the girls behind go and get her!"
-          //"Get a bigger car!"
-          //room message
-          //room left in car
-          //stopped
           if ($.player.isStopped()) {
             if ($.player.isInAnyCar()) {
               $.vehicle_lm5 = $.player.storeCarIsIn();
@@ -397,54 +316,34 @@ async function prossie_checks() {
               $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
               $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
             }
-            //"A girl has died!"
-            //"The vehicle is wrecked!"
-            //"You have left one of the girls behind go and get her!"
-            //"Get a bigger car!"
-            //room message
-            //room left in car
             if ($.room_left_in_car_lm5 > 0) {
               $.prossie1_lm5.followPlayer($.player);
               $.radarped_prossie1_lm5.remove();
               $.flag_blip_on_prossie1_lm5 = 0;
-              //"A girl has died!"
-              //"The vehicle is wrecked!"
-              //"You have left one of the girls behind go and get her!"
               while (!($.prossie1_lm5.isInCar($.vehicle_lm5))) {
                 await asyncWait(0);
                 // SCM GOSUB check_for_dead_prossies
                 await check_for_dead_prossies();
                 // fallback if label was not emitted as async function: no-op continues linearly
-                //"A girl has died!"
                 if ($.number_of_dead_prossies > 0) {
-                  //"A girl has died!"
-                  Text.PrintNow("LM5_2", 5000, 1);
+                  Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"The vehicle is wrecked!"
                 if (Car.IsDead($.vehicle_lm5)) {
-                  //"The vehicle is wrecked!"
-                  Text.PrintNow("WRECKED", 5000, 1);
+                  Text.PrintNow("WRECKED", 5000, 1); //"The vehicle is wrecked!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"A girl has died!"
-                //"You have left one of the girls behind go and get her!"
                 if ($.flag_prossie1_at_ball == 0) {
-                  //"A girl has died!"
-                  //"You have left one of the girls behind go and get her!"
                   if (Char.IsDead($.prossie1_lm5)) {
-                    //"A girl has died!"
-                    Text.PrintNow("LM5_2", 5000, 1);
+                    Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                   }
                   else {
-                    //"You have left one of the girls behind go and get her!"
                     if (!($.prossie1_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie1_lm5 == 0) {
-                      //"You have left one of the girls behind go and get her!"
-                      Text.PrintNow("HEY5", 5000, 1);
+                      Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
                       $.radarped_prossie1_lm5 = Blip.AddForChar($.prossie1_lm5);
                       $.flag_blip_on_prossie1_lm5 = 1;
                       // SCM GOTO → prossie_checks (not lowered; manual jump required)
@@ -462,11 +361,8 @@ async function prossie_checks() {
               $.prossie1_lm5.setRunning(false /* FALSE */);
             }
             else {
-              //"Get a bigger car!"
-              //room message
               if ($.flag_had_room_message_lm5 == 0) {
-                //"Get a bigger car!"
-                Text.PrintNow("LM5_1", 7000, 1);
+                Text.PrintNow("LM5_1", 7000, 1); //"Get a bigger car!"
                 $.flag_had_room_message_lm5 = 1;
               }
             }
@@ -476,15 +372,10 @@ async function prossie_checks() {
           $.flag_had_room_message_lm5 = 0;
         }
       }
-      //"You have left one of the girls behind go and get her!"
-      //"A girl has died!"
       if ($.flag_prossie1_lm5_in_car == 1) {
-        //"You have left one of the girls behind go and get her!"
         if ($.flag_prossie1_in_car_park == 0) {
-          //"You have left one of the girls behind go and get her!"
           if (!($.prossie1_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie1_lm5 == 0) {
-            //"You have left one of the girls behind go and get her!"
-            Text.PrintNow("HEY5", 5000, 1);
+            Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
             $.radarped_prossie1_lm5 = Blip.AddForChar($.prossie1_lm5);
             $.flag_blip_on_prossie1_lm5 = 1;
             $.flag_prossie1_lm5_in_car = 0;
@@ -495,15 +386,11 @@ async function prossie_checks() {
             $.flag_blip_on_prossie1_lm5 = 0;
           }
         }
-        //"A girl has died!"
         if ($.prossie1_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) && $.flag_prossie1_at_ball == 0 && $.flag_prossie1_in_car_park == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie1_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie1_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
@@ -516,38 +403,28 @@ async function prossie_checks() {
           $.flag_prossie1_in_car_park = 1;
         }
       }
-      //"A girl has died!"
-      //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-      //++ counter_no_of_girls_at_the_ball
       if ($.flag_prossie1_in_car_park == 1) {
-        //"A girl has died!"
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if (!($.prossie1_lm5.isInAnyCar()) && $.flag_prossie1_told_to_go_into_ball == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie1_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie1_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
           }
           $.prossie1_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
           ++$.counter_no_of_girls_at_the_ball;
-          //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+          //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           $.player.clearWantedLevel();
           $.flag_prossie1_told_to_go_into_ball = 1;
         }
-        //++ counter_no_of_girls_at_the_ball
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if ($.prossie1_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
           $.prossie1_lm5.setIdle();
+          $.prossie1_lm5.removeElegantly();
           //++ counter_no_of_girls_at_the_ball
           //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-          $.prossie1_lm5.removeElegantly();
           $.flag_prossie1_at_ball = 1;
         }
         if ($.flag_prossie1_told_to_go_into_ball == 1) {
@@ -563,65 +440,25 @@ async function prossie_checks() {
         }
       }
     }
-    //"A girl has died!"
-    //"You need a car!"
-    //"The vehicle is wrecked!"
-    //"You have left one of the girls behind go and get her!"
-    //"Get a bigger car!"
-    //room message
-    //room left in car
-    //stopped
-    // locate
-    //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    //++ counter_no_of_girls_at_the_ball
-    //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    // starts check for prossie 3
+    //starts checking for prossie2
     if ($.flag_prossie2_at_ball == 0) {
-      //"A girl has died!"
       if (Char.IsDead($.prossie2_lm5)) {
-        //"A girl has died!"
-        Text.PrintNow("LM5_2", 5000, 1);
+        Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
         // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
       }
-      //"You need a car!"
-      //"A girl has died!"
-      //"The vehicle is wrecked!"
-      //"You have left one of the girls behind go and get her!"
-      //"Get a bigger car!"
-      //room message
-      //room left in car
-      //stopped
-      // locate
       if ($.flag_prossie2_lm5_in_car == 0) {
-        //"You need a car!"
         if ($.player.locateOnFootChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message2_lm5 == 0) {
-          //"You need a car!"
-          Text.PrintNow("LM5_3", 5000, 1);
+          Text.PrintNow("LM5_3", 5000, 1); //"You need a car!"
           $.flag_had_car_message2_lm5 = 1;
         }
         if (!($.player.locateAnyMeansChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false /* FALSE */))) {
           $.flag_had_car_message2_lm5 = 0;
         }
-        //"A girl has died!"
-        //"The vehicle is wrecked!"
-        //"You have left one of the girls behind go and get her!"
-        //"Get a bigger car!"
-        //room message
-        //room left in car
-        //stopped
-        // locate
         if ($.player.locateInCarChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
           if ($.flag_prossie2_lm5_in_car == 0) {
             $.prossie2_lm5.turnToFacePlayer($.player);
           }
-          //"A girl has died!"
-          //"The vehicle is wrecked!"
-          //"You have left one of the girls behind go and get her!"
-          //"Get a bigger car!"
-          //room message
-          //room left in car
-          //stopped
           if ($.player.isStopped()) {
             if ($.player.isInAnyCar()) {
               $.vehicle_lm5 = $.player.storeCarIsIn();
@@ -629,54 +466,34 @@ async function prossie_checks() {
               $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
               $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
             }
-            //"A girl has died!"
-            //"The vehicle is wrecked!"
-            //"You have left one of the girls behind go and get her!"
-            //"Get a bigger car!"
-            //room message
-            //room left in car
             if ($.room_left_in_car_lm5 > 0) {
               $.prossie2_lm5.followPlayer($.player);
               $.radarped_prossie2_lm5.remove();
               $.flag_blip_on_prossie2_lm5 = 0;
-              //"A girl has died!"
-              //"The vehicle is wrecked!"
-              //"You have left one of the girls behind go and get her!"
               while (!($.prossie2_lm5.isInCar($.vehicle_lm5))) {
                 await asyncWait(0);
                 // SCM GOSUB check_for_dead_prossies
                 await check_for_dead_prossies();
                 // fallback if label was not emitted as async function: no-op continues linearly
-                //"A girl has died!"
                 if ($.number_of_dead_prossies > 0) {
-                  //"A girl has died!"
-                  Text.PrintNow("LM5_2", 5000, 1);
+                  Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"The vehicle is wrecked!"
                 if (Car.IsDead($.vehicle_lm5)) {
-                  //"The vehicle is wrecked!"
-                  Text.PrintNow("WRECKED", 5000, 1);
+                  Text.PrintNow("WRECKED", 5000, 1); //"The vehicle is wrecked!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"A girl has died!"
-                //"You have left one of the girls behind go and get her!"
                 if ($.flag_prossie2_at_ball == 0) {
-                  //"A girl has died!"
-                  //"You have left one of the girls behind go and get her!"
                   if (Char.IsDead($.prossie2_lm5)) {
-                    //"A girl has died!"
-                    Text.PrintNow("LM5_2", 5000, 1);
+                    Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                   }
                   else {
-                    //"You have left one of the girls behind go and get her!"
                     if (!($.prossie2_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie2_lm5 == 0) {
-                      //"You have left one of the girls behind go and get her!"
-                      Text.PrintNow("HEY5", 5000, 1);
+                      Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
                       $.radarped_prossie2_lm5 = Blip.AddForChar($.prossie2_lm5);
                       $.flag_blip_on_prossie2_lm5 = 1;
                       // SCM GOTO → prossie_checks (not lowered; manual jump required)
@@ -694,11 +511,8 @@ async function prossie_checks() {
               $.prossie2_lm5.setRunning(false /* FALSE */);
             }
             else {
-              //"Get a bigger car!"
-              //room message
               if ($.flag_had_room_message_lm5 == 0) {
-                //"Get a bigger car!"
-                Text.PrintNow("LM5_1", 7000, 1);
+                Text.PrintNow("LM5_1", 7000, 1); //"Get a bigger car!"
                 $.flag_had_room_message_lm5 = 1;
               }
             }
@@ -708,15 +522,10 @@ async function prossie_checks() {
           $.flag_had_room_message_lm5 = 0;
         }
       }
-      //"You have left one of the girls behind go and get her!"
-      //"A girl has died!"
       if ($.flag_prossie2_lm5_in_car == 1) {
-        //"You have left one of the girls behind go and get her!"
         if ($.flag_prossie2_in_car_park == 0) {
-          //"You have left one of the girls behind go and get her!"
           if (!($.prossie2_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie2_lm5 == 0) {
-            //"You have left one of the girls behind go and get her!"
-            Text.PrintNow("HEY5", 5000, 1);
+            Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
             $.radarped_prossie2_lm5 = Blip.AddForChar($.prossie2_lm5);
             $.flag_blip_on_prossie2_lm5 = 1;
             $.flag_prossie2_lm5_in_car = 0;
@@ -727,15 +536,11 @@ async function prossie_checks() {
             $.flag_blip_on_prossie2_lm5 = 0;
           }
         }
-        //"A girl has died!"
         if ($.prossie2_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) && $.flag_prossie2_at_ball == 0 && $.flag_prossie2_in_car_park == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie2_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie2_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
@@ -748,39 +553,28 @@ async function prossie_checks() {
           $.flag_prossie2_in_car_park = 1;
         }
       }
-      //"A girl has died!"
-      //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-      //++ counter_no_of_girls_at_the_ball
-      //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
       if ($.flag_prossie2_in_car_park == 1) {
-        //"A girl has died!"
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if (!($.prossie2_lm5.isInAnyCar()) && $.flag_prossie2_told_to_go_into_ball == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie2_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie2_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
           }
           $.prossie2_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
           ++$.counter_no_of_girls_at_the_ball;
-          //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+          //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           $.player.clearWantedLevel();
           $.flag_prossie2_told_to_go_into_ball = 1;
         }
-        //++ counter_no_of_girls_at_the_ball
-        //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if ($.prossie2_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
           $.prossie2_lm5.setIdle();
+          $.prossie2_lm5.removeElegantly();
           //++ counter_no_of_girls_at_the_ball
           //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-          $.prossie2_lm5.removeElegantly();
           $.flag_prossie2_at_ball = 1;
         }
         if ($.flag_prossie2_told_to_go_into_ball == 1) {
@@ -796,64 +590,25 @@ async function prossie_checks() {
         }
       }
     }
-    //"A girl has died!"
-    //"You need a car!"
-    //"The vehicle has been wrecked!"
-    //"You have left one of the girls behind go and get her!"
-    //"Get a bigger car!"
-    //room message
-    //room left in car
-    //stopped
-    // locate
-    //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    //++ counter_no_of_girls_at_the_ball
-    // checks for prossie 4
+    // starts check for prossie 3
     if ($.flag_prossie3_at_ball == 0) {
-      //"A girl has died!"
       if (Char.IsDead($.prossie3_lm5)) {
-        //"A girl has died!"
-        Text.PrintNow("LM5_2", 5000, 1);
+        Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
         // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
       }
-      //"You need a car!"
-      //"The vehicle has been wrecked!"
-      //"A girl has died!"
-      //"You have left one of the girls behind go and get her!"
-      //"Get a bigger car!"
-      //room message
-      //room left in car
-      //stopped
-      // locate
       if ($.flag_prossie3_lm5_in_car == 0) {
-        //"You need a car!"
         if ($.player.locateOnFootChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message3_lm5 == 0) {
-          //"You need a car!"
-          Text.PrintNow("LM5_3", 5000, 1);
+          Text.PrintNow("LM5_3", 5000, 1); //"You need a car!"
           $.flag_had_car_message3_lm5 = 1;
         }
         if (!($.player.locateAnyMeansChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false /* FALSE */))) {
           $.flag_had_car_message3_lm5 = 0;
         }
-        //"The vehicle has been wrecked!"
-        //"A girl has died!"
-        //"You have left one of the girls behind go and get her!"
-        //"Get a bigger car!"
-        //room message
-        //room left in car
-        //stopped
-        // locate
         if ($.player.locateInCarChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
           if ($.flag_prossie3_lm5_in_car == 0) {
             $.prossie3_lm5.turnToFacePlayer($.player);
           }
-          //"The vehicle has been wrecked!"
-          //"A girl has died!"
-          //"You have left one of the girls behind go and get her!"
-          //"Get a bigger car!"
-          //room message
-          //room left in car
-          //stopped
           if ($.player.isStopped()) {
             if ($.player.isInAnyCar()) {
               $.vehicle_lm5 = $.player.storeCarIsIn();
@@ -861,54 +616,34 @@ async function prossie_checks() {
               $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
               $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
             }
-            //"The vehicle has been wrecked!"
-            //"A girl has died!"
-            //"You have left one of the girls behind go and get her!"
-            //"Get a bigger car!"
-            //room message
-            //room left in car
             if ($.room_left_in_car_lm5 > 0) {
               $.prossie3_lm5.followPlayer($.player);
               $.radarped_prossie3_lm5.remove();
               $.flag_blip_on_prossie3_lm5 = 0;
-              //"The vehicle has been wrecked!"
-              //"A girl has died!"
-              //"You have left one of the girls behind go and get her!"
               while (!($.prossie3_lm5.isInCar($.vehicle_lm5))) {
                 await asyncWait(0);
-                //"The vehicle has been wrecked!"
                 if (Car.IsDead($.vehicle_lm5)) {
-                  //"The vehicle has been wrecked!"
-                  Text.PrintNow("WRECKED", 5000, 1);
+                  Text.PrintNow("WRECKED", 5000, 1); //"The vehicle has been wrecked!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
                 // SCM GOSUB check_for_dead_prossies
                 await check_for_dead_prossies();
                 // fallback if label was not emitted as async function: no-op continues linearly
-                //"A girl has died!"
                 if ($.number_of_dead_prossies > 0) {
-                  //"A girl has died!"
-                  Text.PrintNow("LM5_2", 5000, 1);
+                  Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"A girl has died!"
-                //"You have left one of the girls behind go and get her!"
                 if ($.flag_prossie3_at_ball == 0) {
-                  //"A girl has died!"
-                  //"You have left one of the girls behind go and get her!"
                   if (Char.IsDead($.prossie3_lm5)) {
-                    //"A girl has died!"
-                    Text.PrintNow("LM5_2", 5000, 1);
+                    Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                   }
                   else {
-                    //"You have left one of the girls behind go and get her!"
                     if (!($.prossie3_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie3_lm5 == 0) {
-                      //"You have left one of the girls behind go and get her!"
-                      Text.PrintNow("HEY5", 5000, 1);
+                      Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
                       $.radarped_prossie3_lm5 = Blip.AddForChar($.prossie3_lm5);
                       $.flag_blip_on_prossie3_lm5 = 1;
                       // SCM GOTO → prossie_checks (not lowered; manual jump required)
@@ -926,11 +661,8 @@ async function prossie_checks() {
               $.prossie3_lm5.setRunning(false /* FALSE */);
             }
             else {
-              //"Get a bigger car!"
-              //room message
               if ($.flag_had_room_message_lm5 == 0) {
-                //"Get a bigger car!"
-                Text.PrintNow("LM5_1", 7000, 1);
+                Text.PrintNow("LM5_1", 7000, 1); //"Get a bigger car!"
                 $.flag_had_room_message_lm5 = 1;
               }
             }
@@ -940,15 +672,10 @@ async function prossie_checks() {
           $.flag_had_room_message_lm5 = 0;
         }
       }
-      //"You have left one of the girls behind go and get her!"
-      //"A girl has died!"
       if ($.flag_prossie3_lm5_in_car == 1) {
-        //"You have left one of the girls behind go and get her!"
         if ($.flag_prossie3_in_car_park == 0) {
-          //"You have left one of the girls behind go and get her!"
           if (!($.prossie3_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie3_lm5 == 0) {
-            //"You have left one of the girls behind go and get her!"
-            Text.PrintNow("HEY5", 5000, 1);
+            Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
             $.radarped_prossie3_lm5 = Blip.AddForChar($.prossie3_lm5);
             $.flag_blip_on_prossie3_lm5 = 1;
             $.flag_prossie3_lm5_in_car = 0;
@@ -959,15 +686,11 @@ async function prossie_checks() {
             $.flag_blip_on_prossie3_lm5 = 0;
           }
         }
-        //"A girl has died!"
         if ($.prossie3_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) && $.flag_prossie3_at_ball == 0 && $.flag_prossie3_in_car_park == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie3_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie3_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
@@ -980,38 +703,28 @@ async function prossie_checks() {
           $.flag_prossie3_in_car_park = 1;
         }
       }
-      //"A girl has died!"
-      //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-      //++ counter_no_of_girls_at_the_ball
       if ($.flag_prossie3_in_car_park == 1) {
-        //"A girl has died!"
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if (!($.prossie3_lm5.isInAnyCar()) && $.flag_prossie3_told_to_go_into_ball == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie3_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie3_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
           }
           $.prossie3_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
           ++$.counter_no_of_girls_at_the_ball;
-          //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+          //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           $.player.clearWantedLevel();
           $.flag_prossie3_told_to_go_into_ball = 1;
         }
-        //++ counter_no_of_girls_at_the_ball
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if ($.prossie3_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
           $.prossie3_lm5.setIdle();
+          $.prossie3_lm5.removeElegantly();
           //++ counter_no_of_girls_at_the_ball
           //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-          $.prossie3_lm5.removeElegantly();
           $.flag_prossie3_at_ball = 1;
         }
         if ($.flag_prossie3_told_to_go_into_ball == 1) {
@@ -1027,65 +740,25 @@ async function prossie_checks() {
         }
       }
     }
-    //"A girl has died!"
-    //"You need a car!"
-    //"The vehicle is wrecked!"
-    //"You have left one of the girls behind go and get her!"
-    //"Get a bigger car!"
-    //room message
-    //room left in car
-    //stopped
-    // locate
-    //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    //++ counter_no_of_girls_at_the_ball
-    //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    // checks for prossie 5
+    // checks for prossie 4
     if ($.flag_prossie4_at_ball == 0) {
-      //"A girl has died!"
       if (Char.IsDead($.prossie4_lm5)) {
-        //"A girl has died!"
-        Text.PrintNow("LM5_2", 5000, 1);
+        Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
         // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
       }
-      //"You need a car!"
-      //"A girl has died!"
-      //"The vehicle is wrecked!"
-      //"You have left one of the girls behind go and get her!"
-      //"Get a bigger car!"
-      //room message
-      //room left in car
-      //stopped
-      // locate
       if ($.flag_prossie4_lm5_in_car == 0) {
-        //"You need a car!"
         if ($.player.locateOnFootChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message4_lm5 == 0) {
-          //"You need a car!"
-          Text.PrintNow("LM5_3", 5000, 1);
+          Text.PrintNow("LM5_3", 5000, 1); //"You need a car!"
           $.flag_had_car_message4_lm5 = 1;
         }
         if (!($.player.locateAnyMeansChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false /* FALSE */))) {
           $.flag_had_car_message4_lm5 = 0;
         }
-        //"A girl has died!"
-        //"The vehicle is wrecked!"
-        //"You have left one of the girls behind go and get her!"
-        //"Get a bigger car!"
-        //room message
-        //room left in car
-        //stopped
-        // locate
         if ($.player.locateInCarChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
           if ($.flag_prossie4_lm5_in_car == 0) {
             $.prossie4_lm5.turnToFacePlayer($.player);
           }
-          //"A girl has died!"
-          //"The vehicle is wrecked!"
-          //"You have left one of the girls behind go and get her!"
-          //"Get a bigger car!"
-          //room message
-          //room left in car
-          //stopped
           if ($.player.isStopped()) {
             if ($.player.isInAnyCar()) {
               $.vehicle_lm5 = $.player.storeCarIsIn();
@@ -1093,54 +766,34 @@ async function prossie_checks() {
               $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
               $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
             }
-            //"A girl has died!"
-            //"The vehicle is wrecked!"
-            //"You have left one of the girls behind go and get her!"
-            //"Get a bigger car!"
-            //room message
-            //room left in car
             if ($.room_left_in_car_lm5 > 0) {
               $.prossie4_lm5.followPlayer($.player);
               $.radarped_prossie4_lm5.remove();
               $.flag_blip_on_prossie4_lm5 = 0;
-              //"A girl has died!"
-              //"The vehicle is wrecked!"
-              //"You have left one of the girls behind go and get her!"
               while (!($.prossie4_lm5.isInCar($.vehicle_lm5))) {
                 await asyncWait(0);
                 // SCM GOSUB check_for_dead_prossies
                 await check_for_dead_prossies();
                 // fallback if label was not emitted as async function: no-op continues linearly
-                //"A girl has died!"
                 if ($.number_of_dead_prossies > 0) {
-                  //"A girl has died!"
-                  Text.PrintNow("LM5_2", 5000, 1);
+                  Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"The vehicle is wrecked!"
                 if (Car.IsDead($.vehicle_lm5)) {
-                  //"The vehicle is wrecked!"
-                  Text.PrintNow("WRECKED", 5000, 1);
+                  Text.PrintNow("WRECKED", 5000, 1); //"The vehicle is wrecked!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"A girl has died!"
-                //"You have left one of the girls behind go and get her!"
                 if ($.flag_prossie4_at_ball == 0) {
-                  //"A girl has died!"
-                  //"You have left one of the girls behind go and get her!"
                   if (Char.IsDead($.prossie4_lm5)) {
-                    //"A girl has died!"
-                    Text.PrintNow("LM5_2", 5000, 1);
+                    Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                   }
                   else {
-                    //"You have left one of the girls behind go and get her!"
                     if (!($.prossie4_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie4_lm5 == 0) {
-                      //"You have left one of the girls behind go and get her!"
-                      Text.PrintNow("HEY5", 5000, 1);
+                      Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
                       $.radarped_prossie4_lm5 = Blip.AddForChar($.prossie4_lm5);
                       $.flag_blip_on_prossie4_lm5 = 1;
                       // SCM GOTO → prossie_checks (not lowered; manual jump required)
@@ -1158,11 +811,8 @@ async function prossie_checks() {
               $.prossie4_lm5.setRunning(false /* FALSE */);
             }
             else {
-              //"Get a bigger car!"
-              //room message
               if ($.flag_had_room_message_lm5 == 0) {
-                //"Get a bigger car!"
-                Text.PrintNow("LM5_1", 7000, 1);
+                Text.PrintNow("LM5_1", 7000, 1); //"Get a bigger car!"
                 $.flag_had_room_message_lm5 = 1;
               }
             }
@@ -1172,15 +822,10 @@ async function prossie_checks() {
           $.flag_had_room_message_lm5 = 0;
         }
       }
-      //"You have left one of the girls behind go and get her!"
-      //"A girl has died!"
       if ($.flag_prossie4_lm5_in_car == 1) {
-        //"You have left one of the girls behind go and get her!"
         if ($.flag_prossie4_in_car_park == 0) {
-          //"You have left one of the girls behind go and get her!"
           if (!($.prossie4_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie4_lm5 == 0) {
-            //"You have left one of the girls behind go and get her!"
-            Text.PrintNow("HEY5", 5000, 1);
+            Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
             $.radarped_prossie4_lm5 = Blip.AddForChar($.prossie4_lm5);
             $.flag_blip_on_prossie4_lm5 = 1;
             $.flag_prossie4_lm5_in_car = 0;
@@ -1191,15 +836,11 @@ async function prossie_checks() {
             $.flag_blip_on_prossie4_lm5 = 0;
           }
         }
-        //"A girl has died!"
         if ($.prossie4_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) && $.flag_prossie4_at_ball == 0 && $.flag_prossie4_in_car_park == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie4_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie4_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
@@ -1212,39 +853,28 @@ async function prossie_checks() {
           $.flag_prossie4_in_car_park = 1;
         }
       }
-      //"A girl has died!"
-      //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-      //++ counter_no_of_girls_at_the_ball
-      //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
       if ($.flag_prossie4_in_car_park == 1) {
-        //"A girl has died!"
-        //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if (!($.prossie4_lm5.isInAnyCar()) && $.flag_prossie4_told_to_go_into_ball == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie4_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie4_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
           }
           $.prossie4_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
           ++$.counter_no_of_girls_at_the_ball;
-          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           $.player.clearWantedLevel();
           $.flag_prossie4_told_to_go_into_ball = 1;
         }
-        //++ counter_no_of_girls_at_the_ball
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if ($.prossie4_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
           $.prossie4_lm5.setIdle();
+          $.prossie4_lm5.removeElegantly();
           //++ counter_no_of_girls_at_the_ball
           //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-          $.prossie4_lm5.removeElegantly();
           $.flag_prossie4_at_ball = 1;
         }
         if ($.flag_prossie4_told_to_go_into_ball == 1) {
@@ -1260,65 +890,25 @@ async function prossie_checks() {
         }
       }
     }
-    //"A girl has died!"
-    //"You need a car!"
-    //"The vehicle is wrecked!"
-    //"You have left one of the girls behind go and get her!"
-    //"Get a bigger car!"
-    //room message
-    //room left in car
-    //stopped
-    // locate
-    //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    //++ counter_no_of_girls_at_the_ball
-    //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    // checks for prossie 6
+    // checks for prossie 5
     if ($.flag_prossie5_at_ball == 0) {
-      //"A girl has died!"
       if (Char.IsDead($.prossie5_lm5)) {
-        //"A girl has died!"
-        Text.PrintNow("LM5_2", 5000, 1);
+        Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
         // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
       }
-      //"You need a car!"
-      //"A girl has died!"
-      //"The vehicle is wrecked!"
-      //"You have left one of the girls behind go and get her!"
-      //"Get a bigger car!"
-      //room message
-      //room left in car
-      //stopped
-      // locate
       if ($.flag_prossie5_lm5_in_car == 0) {
-        //"You need a car!"
         if ($.player.locateOnFootChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message5_lm5 == 0) {
-          //"You need a car!"
-          Text.PrintNow("LM5_3", 5000, 1);
+          Text.PrintNow("LM5_3", 5000, 1); //"You need a car!"
           $.flag_had_car_message5_lm5 = 1;
         }
         if (!($.player.locateAnyMeansChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false /* FALSE */))) {
           $.flag_had_car_message5_lm5 = 0;
         }
-        //"A girl has died!"
-        //"The vehicle is wrecked!"
-        //"You have left one of the girls behind go and get her!"
-        //"Get a bigger car!"
-        //room message
-        //room left in car
-        //stopped
-        // locate
         if ($.player.locateInCarChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
           if ($.flag_prossie5_lm5_in_car == 0) {
             $.prossie5_lm5.turnToFacePlayer($.player);
           }
-          //"A girl has died!"
-          //"The vehicle is wrecked!"
-          //"You have left one of the girls behind go and get her!"
-          //"Get a bigger car!"
-          //room message
-          //room left in car
-          //stopped
           if ($.player.isStopped()) {
             if ($.player.isInAnyCar()) {
               $.vehicle_lm5 = $.player.storeCarIsIn();
@@ -1326,54 +916,34 @@ async function prossie_checks() {
               $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
               $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
             }
-            //"A girl has died!"
-            //"The vehicle is wrecked!"
-            //"You have left one of the girls behind go and get her!"
-            //"Get a bigger car!"
-            //room message
-            //room left in car
             if ($.room_left_in_car_lm5 > 0) {
               $.prossie5_lm5.followPlayer($.player);
               $.radarped_prossie5_lm5.remove();
               $.flag_blip_on_prossie5_lm5 = 0;
-              //"A girl has died!"
-              //"The vehicle is wrecked!"
-              //"You have left one of the girls behind go and get her!"
               while (!($.prossie5_lm5.isInCar($.vehicle_lm5))) {
                 await asyncWait(0);
                 // SCM GOSUB check_for_dead_prossies
                 await check_for_dead_prossies();
                 // fallback if label was not emitted as async function: no-op continues linearly
-                //"A girl has died!"
                 if ($.number_of_dead_prossies > 0) {
-                  //"A girl has died!"
-                  Text.PrintNow("LM5_2", 5000, 1);
+                  Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"The vehicle is wrecked!"
                 if (Car.IsDead($.vehicle_lm5)) {
-                  //"The vehicle is wrecked!"
-                  Text.PrintNow("WRECKED", 5000, 1);
+                  Text.PrintNow("WRECKED", 5000, 1); //"The vehicle is wrecked!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"A girl has died!"
-                //"You have left one of the girls behind go and get her!"
                 if ($.flag_prossie5_at_ball == 0) {
-                  //"A girl has died!"
-                  //"You have left one of the girls behind go and get her!"
                   if (Char.IsDead($.prossie5_lm5)) {
-                    //"A girl has died!"
-                    Text.PrintNow("LM5_2", 5000, 1);
+                    Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                   }
                   else {
-                    //"You have left one of the girls behind go and get her!"
                     if (!($.prossie5_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie5_lm5 == 0) {
-                      //"You have left one of the girls behind go and get her!"
-                      Text.PrintNow("HEY5", 5000, 1);
+                      Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
                       $.radarped_prossie5_lm5 = Blip.AddForChar($.prossie5_lm5);
                       $.flag_blip_on_prossie5_lm5 = 1;
                       // SCM GOTO → prossie_checks (not lowered; manual jump required)
@@ -1391,11 +961,8 @@ async function prossie_checks() {
               $.prossie5_lm5.setRunning(false /* FALSE */);
             }
             else {
-              //"Get a bigger car!"
-              //room message
               if ($.flag_had_room_message_lm5 == 0) {
-                //"Get a bigger car!"
-                Text.PrintNow("LM5_1", 7000, 1);
+                Text.PrintNow("LM5_1", 7000, 1); //"Get a bigger car!"
                 $.flag_had_room_message_lm5 = 1;
               }
             }
@@ -1405,15 +972,10 @@ async function prossie_checks() {
           $.flag_had_room_message_lm5 = 0;
         }
       }
-      //"You have left one of the girls behind go and get her!"
-      //"A girl has died!"
       if ($.flag_prossie5_lm5_in_car == 1) {
-        //"You have left one of the girls behind go and get her!"
         if ($.flag_prossie5_in_car_park == 0) {
-          //"You have left one of the girls behind go and get her!"
           if (!($.prossie5_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie5_lm5 == 0) {
-            //"You have left one of the girls behind go and get her!"
-            Text.PrintNow("HEY5", 5000, 1);
+            Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
             $.radarped_prossie5_lm5 = Blip.AddForChar($.prossie5_lm5);
             $.flag_blip_on_prossie5_lm5 = 1;
             $.flag_prossie5_lm5_in_car = 0;
@@ -1424,15 +986,11 @@ async function prossie_checks() {
             $.flag_blip_on_prossie5_lm5 = 0;
           }
         }
-        //"A girl has died!"
         if ($.prossie5_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) && $.flag_prossie5_at_ball == 0 && $.flag_prossie5_in_car_park == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie5_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie5_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
@@ -1445,38 +1003,27 @@ async function prossie_checks() {
           $.flag_prossie5_in_car_park = 1;
         }
       }
-      //"A girl has died!"
-      //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-      //++ counter_no_of_girls_at_the_ball
-      //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
       if ($.flag_prossie5_in_car_park == 1) {
-        //"A girl has died!"
-        //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if (!($.prossie5_lm5.isInAnyCar()) && $.flag_prossie5_told_to_go_into_ball == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie5_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie5_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
           }
           $.prossie5_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           ++$.counter_no_of_girls_at_the_ball;
+          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           $.player.clearWantedLevel();
           $.flag_prossie5_told_to_go_into_ball = 1;
         }
-        //++ counter_no_of_girls_at_the_ball
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if ($.prossie5_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
           $.prossie5_lm5.setIdle();
+          $.prossie5_lm5.removeElegantly();
           //++ counter_no_of_girls_at_the_ball
           //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-          $.prossie5_lm5.removeElegantly();
           $.flag_prossie5_at_ball = 1;
         }
         if ($.flag_prossie5_told_to_go_into_ball == 1) {
@@ -1492,65 +1039,25 @@ async function prossie_checks() {
         }
       }
     }
-    //"A girl has died!"
-    //"You need a car!"
-    //"The vehicle is wrecked!"
-    //"You have left one of the girls behind go and get her!"
-    //"Get a bigger car!"
-    //room message
-    //room left in car
-    //stopped
-    // locate
-    //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    //++ counter_no_of_girls_at_the_ball
-    //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    // checks for prossie 7
+    // checks for prossie 6
     if ($.flag_prossie6_at_ball == 0) {
-      //"A girl has died!"
       if (Char.IsDead($.prossie6_lm5)) {
-        //"A girl has died!"
-        Text.PrintNow("LM5_2", 5000, 1);
+        Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
         // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
       }
-      //"You need a car!"
-      //"A girl has died!"
-      //"The vehicle is wrecked!"
-      //"You have left one of the girls behind go and get her!"
-      //"Get a bigger car!"
-      //room message
-      //room left in car
-      //stopped
-      // locate
       if ($.flag_prossie6_lm5_in_car == 0) {
-        //"You need a car!"
         if ($.player.locateOnFootChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message6_lm5 == 0) {
-          //"You need a car!"
-          Text.PrintNow("LM5_3", 5000, 1);
+          Text.PrintNow("LM5_3", 5000, 1); //"You need a car!"
           $.flag_had_car_message6_lm5 = 1;
         }
         if (!($.player.locateAnyMeansChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false /* FALSE */))) {
           $.flag_had_car_message6_lm5 = 0;
         }
-        //"A girl has died!"
-        //"The vehicle is wrecked!"
-        //"You have left one of the girls behind go and get her!"
-        //"Get a bigger car!"
-        //room message
-        //room left in car
-        //stopped
-        // locate
         if ($.player.locateInCarChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
           if ($.flag_prossie6_lm5_in_car == 0) {
             $.prossie6_lm5.turnToFacePlayer($.player);
           }
-          //"A girl has died!"
-          //"The vehicle is wrecked!"
-          //"You have left one of the girls behind go and get her!"
-          //"Get a bigger car!"
-          //room message
-          //room left in car
-          //stopped
           if ($.player.isStopped()) {
             if ($.player.isInAnyCar()) {
               $.vehicle_lm5 = $.player.storeCarIsIn();
@@ -1558,54 +1065,34 @@ async function prossie_checks() {
               $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
               $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
             }
-            //"A girl has died!"
-            //"The vehicle is wrecked!"
-            //"You have left one of the girls behind go and get her!"
-            //"Get a bigger car!"
-            //room message
-            //room left in car
             if ($.room_left_in_car_lm5 > 0) {
               $.prossie6_lm5.followPlayer($.player);
               $.radarped_prossie6_lm5.remove();
               $.flag_blip_on_prossie6_lm5 = 0;
-              //"A girl has died!"
-              //"The vehicle is wrecked!"
-              //"You have left one of the girls behind go and get her!"
               while (!($.prossie6_lm5.isInCar($.vehicle_lm5))) {
                 await asyncWait(0);
                 // SCM GOSUB check_for_dead_prossies
                 await check_for_dead_prossies();
                 // fallback if label was not emitted as async function: no-op continues linearly
-                //"A girl has died!"
                 if ($.number_of_dead_prossies > 0) {
-                  //"A girl has died!"
-                  Text.PrintNow("LM5_2", 5000, 1);
+                  Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"The vehicle is wrecked!"
                 if (Car.IsDead($.vehicle_lm5)) {
-                  //"The vehicle is wrecked!"
-                  Text.PrintNow("WRECKED", 5000, 1);
+                  Text.PrintNow("WRECKED", 5000, 1); //"The vehicle is wrecked!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"A girl has died!"
-                //"You have left one of the girls behind go and get her!"
                 if ($.flag_prossie6_at_ball == 0) {
-                  //"A girl has died!"
-                  //"You have left one of the girls behind go and get her!"
                   if (Char.IsDead($.prossie6_lm5)) {
-                    //"A girl has died!"
-                    Text.PrintNow("LM5_2", 5000, 1);
+                    Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                   }
                   else {
-                    //"You have left one of the girls behind go and get her!"
                     if (!($.prossie6_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie6_lm5 == 0) {
-                      //"You have left one of the girls behind go and get her!"
-                      Text.PrintNow("HEY5", 5000, 1);
+                      Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
                       $.radarped_prossie6_lm5 = Blip.AddForChar($.prossie6_lm5);
                       $.flag_blip_on_prossie6_lm5 = 1;
                       // SCM GOTO → prossie_checks (not lowered; manual jump required)
@@ -1623,11 +1110,8 @@ async function prossie_checks() {
               $.prossie6_lm5.setRunning(false /* FALSE */);
             }
             else {
-              //"Get a bigger car!"
-              //room message
               if ($.flag_had_room_message_lm5 == 0) {
-                //"Get a bigger car!"
-                Text.PrintNow("LM5_1", 7000, 1);
+                Text.PrintNow("LM5_1", 7000, 1); //"Get a bigger car!"
                 $.flag_had_room_message_lm5 = 1;
               }
             }
@@ -1637,15 +1121,10 @@ async function prossie_checks() {
           $.flag_had_room_message_lm5 = 0;
         }
       }
-      //"You have left one of the girls behind go and get her!"
-      //"A girl has died!"
       if ($.flag_prossie6_lm5_in_car == 1) {
-        //"You have left one of the girls behind go and get her!"
         if ($.flag_prossie6_in_car_park == 0) {
-          //"You have left one of the girls behind go and get her!"
           if (!($.prossie6_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie6_lm5 == 0) {
-            //"You have left one of the girls behind go and get her!"
-            Text.PrintNow("HEY5", 5000, 1);
+            Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
             $.radarped_prossie6_lm5 = Blip.AddForChar($.prossie6_lm5);
             $.flag_blip_on_prossie6_lm5 = 1;
             $.flag_prossie6_lm5_in_car = 0;
@@ -1656,15 +1135,11 @@ async function prossie_checks() {
             $.flag_blip_on_prossie6_lm5 = 0;
           }
         }
-        //"A girl has died!"
         if ($.prossie6_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) && $.flag_prossie6_at_ball == 0 && $.flag_prossie6_in_car_park == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie6_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie6_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
@@ -1677,39 +1152,28 @@ async function prossie_checks() {
           $.flag_prossie6_in_car_park = 1;
         }
       }
-      //"A girl has died!"
-      //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-      //++ counter_no_of_girls_at_the_ball
-      //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
       if ($.flag_prossie6_in_car_park == 1) {
-        //"A girl has died!"
-        //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if (!($.prossie6_lm5.isInAnyCar()) && $.flag_prossie6_told_to_go_into_ball == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie6_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie6_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
           }
           $.prossie6_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
           ++$.counter_no_of_girls_at_the_ball;
-          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           $.player.clearWantedLevel();
           $.flag_prossie6_told_to_go_into_ball = 1;
         }
-        //++ counter_no_of_girls_at_the_ball
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if ($.prossie6_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
           $.prossie6_lm5.setIdle();
+          $.prossie6_lm5.removeElegantly();
           //++ counter_no_of_girls_at_the_ball
           //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-          $.prossie6_lm5.removeElegantly();
           $.flag_prossie6_at_ball = 1;
         }
         if ($.flag_prossie6_told_to_go_into_ball == 1) {
@@ -1725,65 +1189,25 @@ async function prossie_checks() {
         }
       }
     }
-    //"A girl has died!"
-    //"You need a car!"
-    //"The vehicle is wrecked!"
-    //"You have left one of the girls behind go and get her!"
-    //"Get a bigger car!"
-    //room message
-    //room left in car
-    //stopped
-    // locate
-    //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    //++ counter_no_of_girls_at_the_ball
-    //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    // checks for prossie 8
+    // checks for prossie 7
     if ($.flag_prossie7_at_ball == 0) {
-      //"A girl has died!"
       if (Char.IsDead($.prossie7_lm5)) {
-        //"A girl has died!"
-        Text.PrintNow("LM5_2", 5000, 1);
+        Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
         // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
       }
-      //"You need a car!"
-      //"A girl has died!"
-      //"The vehicle is wrecked!"
-      //"You have left one of the girls behind go and get her!"
-      //"Get a bigger car!"
-      //room message
-      //room left in car
-      //stopped
-      // locate
       if ($.flag_prossie7_lm5_in_car == 0) {
-        //"You need a car!"
         if ($.player.locateOnFootChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message7_lm5 == 0) {
-          //"You need a car!"
-          Text.PrintNow("LM5_3", 5000, 1);
+          Text.PrintNow("LM5_3", 5000, 1); //"You need a car!"
           $.flag_had_car_message7_lm5 = 1;
         }
         if (!($.player.locateAnyMeansChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false /* FALSE */))) {
           $.flag_had_car_message7_lm5 = 0;
         }
-        //"A girl has died!"
-        //"The vehicle is wrecked!"
-        //"You have left one of the girls behind go and get her!"
-        //"Get a bigger car!"
-        //room message
-        //room left in car
-        //stopped
-        // locate
         if ($.player.locateInCarChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
           if ($.flag_prossie7_lm5_in_car == 0) {
             $.prossie7_lm5.turnToFacePlayer($.player);
           }
-          //"A girl has died!"
-          //"The vehicle is wrecked!"
-          //"You have left one of the girls behind go and get her!"
-          //"Get a bigger car!"
-          //room message
-          //room left in car
-          //stopped
           if ($.player.isStopped()) {
             if ($.player.isInAnyCar()) {
               $.vehicle_lm5 = $.player.storeCarIsIn();
@@ -1791,54 +1215,34 @@ async function prossie_checks() {
               $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
               $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
             }
-            //"A girl has died!"
-            //"The vehicle is wrecked!"
-            //"You have left one of the girls behind go and get her!"
-            //"Get a bigger car!"
-            //room message
-            //room left in car
             if ($.room_left_in_car_lm5 > 0) {
               $.prossie7_lm5.followPlayer($.player);
               $.radarped_prossie7_lm5.remove();
               $.flag_blip_on_prossie7_lm5 = 0;
-              //"A girl has died!"
-              //"The vehicle is wrecked!"
-              //"You have left one of the girls behind go and get her!"
               while (!($.prossie7_lm5.isInCar($.vehicle_lm5))) {
                 await asyncWait(0);
                 // SCM GOSUB check_for_dead_prossies
                 await check_for_dead_prossies();
                 // fallback if label was not emitted as async function: no-op continues linearly
-                //"A girl has died!"
                 if ($.number_of_dead_prossies > 0) {
-                  //"A girl has died!"
-                  Text.PrintNow("LM5_2", 5000, 1);
+                  Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"The vehicle is wrecked!"
                 if (Car.IsDead($.vehicle_lm5)) {
-                  //"The vehicle is wrecked!"
-                  Text.PrintNow("WRECKED", 5000, 1);
+                  Text.PrintNow("WRECKED", 5000, 1); //"The vehicle is wrecked!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"A girl has died!"
-                //"You have left one of the girls behind go and get her!"
                 if ($.flag_prossie7_at_ball == 0) {
-                  //"A girl has died!"
-                  //"You have left one of the girls behind go and get her!"
                   if (Char.IsDead($.prossie7_lm5)) {
-                    //"A girl has died!"
-                    Text.PrintNow("LM5_2", 5000, 1);
+                    Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                   }
                   else {
-                    //"You have left one of the girls behind go and get her!"
                     if (!($.prossie7_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie7_lm5 == 0) {
-                      //"You have left one of the girls behind go and get her!"
-                      Text.PrintNow("HEY5", 5000, 1);
+                      Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
                       $.radarped_prossie7_lm5 = Blip.AddForChar($.prossie7_lm5);
                       $.flag_blip_on_prossie7_lm5 = 1;
                       // SCM GOTO → prossie_checks (not lowered; manual jump required)
@@ -1856,11 +1260,8 @@ async function prossie_checks() {
               $.prossie7_lm5.setRunning(false /* FALSE */);
             }
             else {
-              //"Get a bigger car!"
-              //room message
               if ($.flag_had_room_message_lm5 == 0) {
-                //"Get a bigger car!"
-                Text.PrintNow("LM5_1", 7000, 1);
+                Text.PrintNow("LM5_1", 7000, 1); //"Get a bigger car!"
                 $.flag_had_room_message_lm5 = 1;
               }
             }
@@ -1870,15 +1271,10 @@ async function prossie_checks() {
           $.flag_had_room_message_lm5 = 0;
         }
       }
-      //"You have left one of the girls behind go and get her!"
-      //"A girl has died!"
       if ($.flag_prossie7_lm5_in_car == 1) {
-        //"You have left one of the girls behind go and get her!"
         if ($.flag_prossie7_in_car_park == 0) {
-          //"You have left one of the girls behind go and get her!"
           if (!($.prossie7_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie7_lm5 == 0) {
-            //"You have left one of the girls behind go and get her!"
-            Text.PrintNow("HEY5", 5000, 1);
+            Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
             $.radarped_prossie7_lm5 = Blip.AddForChar($.prossie7_lm5);
             $.flag_blip_on_prossie7_lm5 = 1;
             $.flag_prossie7_lm5_in_car = 0;
@@ -1889,15 +1285,11 @@ async function prossie_checks() {
             $.flag_blip_on_prossie7_lm5 = 0;
           }
         }
-        //"A girl has died!"
         if ($.prossie7_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) && $.flag_prossie7_at_ball == 0 && $.flag_prossie7_in_car_park == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie7_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie7_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
@@ -1910,39 +1302,28 @@ async function prossie_checks() {
           $.flag_prossie7_in_car_park = 1;
         }
       }
-      //"A girl has died!"
-      //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-      //++ counter_no_of_girls_at_the_ball
-      //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
       if ($.flag_prossie7_in_car_park == 1) {
-        //"A girl has died!"
-        //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if (!($.prossie7_lm5.isInAnyCar()) && $.flag_prossie7_told_to_go_into_ball == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie7_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie7_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
           }
           $.prossie7_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
           ++$.counter_no_of_girls_at_the_ball;
-          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           $.player.clearWantedLevel();
           $.flag_prossie7_told_to_go_into_ball = 1;
         }
-        //++ counter_no_of_girls_at_the_ball
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if ($.prossie7_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
           $.prossie7_lm5.setIdle();
+          $.prossie7_lm5.removeElegantly();
           //++ counter_no_of_girls_at_the_ball
           //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-          $.prossie7_lm5.removeElegantly();
           $.flag_prossie7_at_ball = 1;
         }
         if ($.flag_prossie7_told_to_go_into_ball == 1) {
@@ -1958,64 +1339,25 @@ async function prossie_checks() {
         }
       }
     }
-    //"A girl has died!"
-    //"You need a car!"
-    //"The vehicle is wrecked!"
-    //"You have left one of the girls behind go and get her!"
-    //"Get a bigger car!"
-    //room message
-    //room left in car
-    //stopped
-    // locate
-    //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-    //++ counter_no_of_girls_at_the_ball
-    //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
+    // checks for prossie 8
     if ($.flag_prossie8_at_ball == 0) {
-      //"A girl has died!"
       if (Char.IsDead($.prossie8_lm5)) {
-        //"A girl has died!"
-        Text.PrintNow("LM5_2", 5000, 1);
+        Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
         // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
       }
-      //"You need a car!"
-      //"A girl has died!"
-      //"The vehicle is wrecked!"
-      //"You have left one of the girls behind go and get her!"
-      //"Get a bigger car!"
-      //room message
-      //room left in car
-      //stopped
-      // locate
       if ($.flag_prossie8_lm5_in_car == 0) {
-        //"You need a car!"
         if ($.player.locateOnFootChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message8_lm5 == 0) {
-          //"You need a car!"
-          Text.PrintNow("LM5_3", 5000, 1);
+          Text.PrintNow("LM5_3", 5000, 1); //"You need a car!"
           $.flag_had_car_message8_lm5 = 1;
         }
         if (!($.player.locateAnyMeansChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false /* FALSE */))) {
           $.flag_had_car_message8_lm5 = 0;
         }
-        //"A girl has died!"
-        //"The vehicle is wrecked!"
-        //"You have left one of the girls behind go and get her!"
-        //"Get a bigger car!"
-        //room message
-        //room left in car
-        //stopped
-        // locate
         if ($.player.locateInCarChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
           if ($.flag_prossie8_lm5_in_car == 0) {
             $.prossie8_lm5.turnToFacePlayer($.player);
           }
-          //"A girl has died!"
-          //"The vehicle is wrecked!"
-          //"You have left one of the girls behind go and get her!"
-          //"Get a bigger car!"
-          //room message
-          //room left in car
-          //stopped
           if ($.player.isStopped()) {
             if ($.player.isInAnyCar()) {
               $.vehicle_lm5 = $.player.storeCarIsIn();
@@ -2023,54 +1365,34 @@ async function prossie_checks() {
               $.no_of_passengers_lm5 = $.vehicle_lm5.getNumberOfPassengers();
               $.room_left_in_car_lm5 = $.max_no_of_passengers_lm5 - $.no_of_passengers_lm5;
             }
-            //"A girl has died!"
-            //"The vehicle is wrecked!"
-            //"You have left one of the girls behind go and get her!"
-            //"Get a bigger car!"
-            //room message
-            //room left in car
             if ($.room_left_in_car_lm5 > 0) {
               $.prossie8_lm5.followPlayer($.player);
               $.radarped_prossie8_lm5.remove();
               $.flag_blip_on_prossie8_lm5 = 0;
-              //"A girl has died!"
-              //"The vehicle is wrecked!"
-              //"You have left one of the girls behind go and get her!"
               while (!($.prossie8_lm5.isInCar($.vehicle_lm5))) {
                 await asyncWait(0);
                 // SCM GOSUB check_for_dead_prossies
                 await check_for_dead_prossies();
                 // fallback if label was not emitted as async function: no-op continues linearly
-                //"A girl has died!"
                 if ($.number_of_dead_prossies > 0) {
-                  //"A girl has died!"
-                  Text.PrintNow("LM5_2", 5000, 1);
+                  Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"The vehicle is wrecked!"
                 if (Car.IsDead($.vehicle_lm5)) {
-                  //"The vehicle is wrecked!"
-                  Text.PrintNow("WRECKED", 5000, 1);
+                  Text.PrintNow("WRECKED", 5000, 1); //"The vehicle is wrecked!"
                   // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                   throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                 }
-                //"A girl has died!"
-                //"You have left one of the girls behind go and get her!"
                 if ($.flag_prossie8_at_ball == 0) {
-                  //"A girl has died!"
-                  //"You have left one of the girls behind go and get her!"
                   if (Char.IsDead($.prossie8_lm5)) {
-                    //"A girl has died!"
-                    Text.PrintNow("LM5_2", 5000, 1);
+                    Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
                   }
                   else {
-                    //"You have left one of the girls behind go and get her!"
                     if (!($.prossie8_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie8_lm5 == 0) {
-                      //"You have left one of the girls behind go and get her!"
-                      Text.PrintNow("HEY5", 5000, 1);
+                      Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
                       $.radarped_prossie8_lm5 = Blip.AddForChar($.prossie8_lm5);
                       $.flag_blip_on_prossie8_lm5 = 1;
                       // SCM GOTO → prossie_checks (not lowered; manual jump required)
@@ -2088,11 +1410,8 @@ async function prossie_checks() {
               $.prossie8_lm5.setRunning(false /* FALSE */);
             }
             else {
-              //"Get a bigger car!"
-              //room message
               if ($.flag_had_room_message_lm5 == 0) {
-                //"Get a bigger car!"
-                Text.PrintNow("LM5_1", 7000, 1);
+                Text.PrintNow("LM5_1", 7000, 1); //"Get a bigger car!"
                 $.flag_had_room_message_lm5 = 1;
               }
             }
@@ -2102,15 +1421,10 @@ async function prossie_checks() {
           $.flag_had_room_message_lm5 = 0;
         }
       }
-      //"You have left one of the girls behind go and get her!"
-      //"A girl has died!"
       if ($.flag_prossie8_lm5_in_car == 1) {
-        //"You have left one of the girls behind go and get her!"
         if ($.flag_prossie8_in_car_park == 0) {
-          //"You have left one of the girls behind go and get her!"
           if (!($.prossie8_lm5.isInPlayersGroup($.player)) && $.flag_blip_on_prossie8_lm5 == 0) {
-            //"You have left one of the girls behind go and get her!"
-            Text.PrintNow("HEY5", 5000, 1);
+            Text.PrintNow("HEY5", 5000, 1); //"You have left one of the girls behind go and get her!"
             $.radarped_prossie8_lm5 = Blip.AddForChar($.prossie8_lm5);
             $.flag_blip_on_prossie8_lm5 = 1;
             $.flag_prossie8_lm5_in_car = 0;
@@ -2121,15 +1435,11 @@ async function prossie_checks() {
             $.flag_blip_on_prossie8_lm5 = 0;
           }
         }
-        //"A girl has died!"
         if ($.prossie8_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) && $.flag_prossie8_at_ball == 0 && $.flag_prossie8_in_car_park == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie8_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie8_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
@@ -2142,39 +1452,28 @@ async function prossie_checks() {
           $.flag_prossie8_in_car_park = 1;
         }
       }
-      //"A girl has died!"
-      //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-      //++ counter_no_of_girls_at_the_ball
-      //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
       if ($.flag_prossie8_in_car_park == 1) {
-        //"A girl has died!"
-        //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if (!($.prossie8_lm5.isInAnyCar()) && $.flag_prossie8_told_to_go_into_ball == 0) {
           await asyncWait(0);
-          //"A girl has died!"
           if ($.flag_prossie8_at_ball == 0) {
-            //"A girl has died!"
             if (Char.IsDead($.prossie8_lm5)) {
-              //"A girl has died!"
-              Text.PrintNow("LM5_2", 5000, 1);
+              Text.PrintNow("LM5_2", 5000, 1); //"A girl has died!"
               // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
               throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
             }
           }
           $.prossie8_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
           ++$.counter_no_of_girls_at_the_ball;
-          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+          //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
           $.player.clearWantedLevel();
           $.flag_prossie8_told_to_go_into_ball = 1;
         }
-        //++ counter_no_of_girls_at_the_ball
-        //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
         if ($.prossie8_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
           $.prossie8_lm5.setIdle();
+          $.prossie8_lm5.removeElegantly();
           //++ counter_no_of_girls_at_the_ball
           //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
-          $.prossie8_lm5.removeElegantly();
           $.flag_prossie8_at_ball = 1;
         }
         if ($.flag_prossie8_told_to_go_into_ball == 1) {
@@ -2191,11 +1490,9 @@ async function prossie_checks() {
       }
     }
   }
-  //"You ran out of time!"
-  // Mission Luigi1 failed
+  // pass or fail checks
   if ($.counter_no_of_girls_at_the_ball < 4) {
-    //"You ran out of time!"
-    Text.PrintNow("OUTTIME", 5000, 1);
+    Text.PrintNow("OUTTIME", 5000, 1); //"You ran out of time!"
     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_luigi5_failed"); // fallback: would break linear control flow
   }
@@ -2203,13 +1500,13 @@ async function prossie_checks() {
     // SCM GOTO → mission_luigi5_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_luigi5_passed"); // fallback: would break linear control flow
   }
+  // Mission Luigi1 failed
 }
 
 async function mission_luigi5_failed() {
-  //"Mission Failed!"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission Luigi1 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed!"
   return;
+  // mission Luigi1 passed
 }
 
 async function mission_luigi5_passed() {
@@ -2241,19 +1538,16 @@ async function mission_luigi5_passed() {
   Stat.PlayerMadeProgress(1);
   Audio.PlayMissionPassedTune(1);
   $.score_lm5 = $.counter_no_of_girls_at_the_ball * 500;
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", $.score_lm5, 10000, 1);
+  Text.PrintWithNumberBig("M_PASS", $.score_lm5, 10000, 1); //"Mission Passed!"
   $.player.addScore($.score_lm5);
   $.player.clearWantedLevel();
-  //"Bonus of $2000!"
   if ($.counter_no_of_girls_at_the_ball == 8) {
-    //"Bonus of $2000!"
-    Text.PrintWithNumberNow("BONUS", 2000, 5000, 1);
+    Text.PrintWithNumberNow("BONUS", 2000, 5000, 1); //"Bonus of $2000!"
     $.player.addScore(2000);
   }
   $.luigi_contact_blip.remove();
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_luigi5() {
@@ -2397,11 +1691,9 @@ async function mission_end_cutscene() {
 
 async function mission_end_cutscene2() {
   timerb = 0;
-  // This should clear the area
   while ($.counter_girls_trying_to_get_to_ball > 0) {
     await asyncWait(0);
-    // This should clear the area
-    World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */);
+    World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */); // This should clear the area
     if ($.flag_prossie1_at_ball == 0) {
       if (!(Char.IsDead($.prossie1_lm5))) {
         if (timerb > 20000) {
@@ -2544,11 +1836,11 @@ async function mission_end_cutscene2() {
 }
 
 export async function luigi5() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************************Luigi mission 5*********************************
-  // MissionBoundary
-  // Mission Start Stuff
   // ScriptName
+  // Mission Start Stuff
   // SCM GOSUB mission_start_luigi5
   await mission_start_luigi5();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -2560,10 +1852,10 @@ export async function luigi5() {
   // SCM GOSUB mission_cleanup_luigi5
   await mission_cleanup_luigi5();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Vehicles for mission
   // MissionBoundary
-  // radar_blips
+  // Vehicles for mission
   // VAR_INT vehicle_lm5
+  // radar_blips
   // VAR_INT flag_blip_on_prossie1_lm5
   // VAR_INT flag_blip_on_prossie2_lm5
   // VAR_INT flag_blip_on_prossie3_lm5
@@ -2572,27 +1864,18 @@ export async function luigi5() {
   // VAR_INT flag_blip_on_prossie6_lm5
   // VAR_INT flag_blip_on_prossie7_lm5
   // VAR_INT flag_blip_on_prossie8_lm5
-  //location of the fuzz ball
   // VAR_INT radar_blip_coord1_lm5
-  //blip for real char
   // VAR_INT radarped_prossie1_lm5
-  //blip for real char
   // VAR_INT radarped_prossie2_lm5
-  //blip for real char
   // VAR_INT radarped_prossie3_lm5
-  //blip for real char
   // VAR_INT radarped_prossie4_lm5
-  //blip for real char
   // VAR_INT radarped_prossie5_lm5
-  //blip for real char
   // VAR_INT radarped_prossie6_lm5
-  //blip for real char
   // VAR_INT radarped_prossie7_lm5
-  //blip for real char
-  // timers
   // VAR_INT radarped_prossie8_lm5
-  // Characters for mission
+  // timers
   // VAR_INT timer_lm5
+  // Characters for mission
   // VAR_INT prossie1_lm5
   // VAR_INT prossie2_lm5
   // VAR_INT prossie3_lm5
@@ -2600,8 +1883,8 @@ export async function luigi5() {
   // VAR_INT prossie5_lm5
   // VAR_INT prossie6_lm5
   // VAR_INT prossie7_lm5
-  //Character created and at ball flags
   // VAR_INT prossie8_lm5
+  //Character created and at ball flags
   // VAR_INT flag_prossie1_at_ball
   // VAR_INT flag_prossie2_at_ball
   // VAR_INT flag_prossie3_at_ball
@@ -2609,8 +1892,8 @@ export async function luigi5() {
   // VAR_INT flag_prossie5_at_ball
   // VAR_INT flag_prossie6_at_ball
   // VAR_INT flag_prossie7_at_ball
-  // girls in car flag
   // VAR_INT flag_prossie8_at_ball
+  // girls in car flag
   // VAR_INT flag_prossie1_lm5_in_car
   // VAR_INT flag_prossie2_lm5_in_car
   // VAR_INT flag_prossie3_lm5_in_car
@@ -2618,16 +1901,16 @@ export async function luigi5() {
   // VAR_INT flag_prossie5_lm5_in_car
   // VAR_INT flag_prossie6_lm5_in_car
   // VAR_INT flag_prossie7_lm5_in_car
-  // no of passenger stuff
   // VAR_INT flag_prossie8_lm5_in_car
+  // no of passenger stuff
   // VAR_INT max_no_of_passengers_lm5
   // VAR_INT room_left_in_car_lm5
   // VAR_INT no_of_passengers_lm5
-  // Scoreing stuff
   // VAR_INT flag_had_room_message_lm5
+  // Scoreing stuff
   // VAR_INT counter_no_of_girls_at_the_ball
-  // PEds in to the building stuff
   // VAR_INT score_lm5
+  // PEds in to the building stuff
   // VAR_INT flag_prossie2_in_car_park
   // VAR_INT flag_prossie2_told_to_go_into_ball
   // VAR_INT flag_prossie1_in_car_park
@@ -2646,11 +1929,11 @@ export async function luigi5() {
   // VAR_INT flag_prossie8_told_to_go_into_ball
   // VAR_INT fuzzball_sign
   // VAR_INT number_of_dead_prossies
-  // Door Stuff
   // VAR_INT ball_sounds
+  // Door Stuff
   // VAR_INT flag_moved_door1_lm5
-  // Message from girl to tell player to get a car
   // VAR_INT flag_moved_door2_lm5
+  // Message from girl to tell player to get a car
   // VAR_INT flag_had_car_message1_lm5
   // VAR_INT flag_had_car_message2_lm5
   // VAR_INT flag_had_car_message3_lm5
@@ -2663,21 +1946,13 @@ export async function luigi5() {
   // VAR_INT cop_car1_lm5
   // VAR_INT cop_car2_lm5
   // VAR_INT counter_girls_trying_to_get_to_ball
-  // If the girls get stuck
   // VAR_INT flag_timer_prossie1_lm5
-  // If the girls get stuck
   // VAR_INT flag_timer_prossie2_lm5
-  // If the girls get stuck
   // VAR_INT flag_timer_prossie3_lm5
-  // If the girls get stuck
   // VAR_INT flag_timer_prossie4_lm5
-  // If the girls get stuck
   // VAR_INT flag_timer_prossie5_lm5
-  // If the girls get stuck
   // VAR_INT flag_timer_prossie6_lm5
-  // If the girls get stuck
   // VAR_INT flag_timer_prossie7_lm5
-  // If the girls get stuck
-  // ******************************************Mission Start**********************************
   // VAR_INT flag_timer_prossie8_lm5
+  // ******************************************Mission Start**********************************
 }

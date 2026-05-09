@@ -42,8 +42,8 @@ async function mission_start_asuka3() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 3406) {
     await asyncWait(0);
@@ -96,8 +96,8 @@ async function mission_start_asuka3() {
   $.asuka_boat.setHeading(180.0);
   World.ClearArea(554.8, -767.6, 0.0, 6.0, true /* TRUE */);
   $.cop_boat = Car.Create(113 /* BOAT_PREDATOR */, 554.8, -767.6, 0.0);
-  // START MISSION
   $.blip1_as3 = Blip.AddForCar($.cop_boat);
+  // START MISSION
   if (!(Char.IsDead($.spy_bloke))) {
     $.blip2_as3 = Blip.AddForChar($.spy_bloke);
     $.blip2_as3.changeDisplay(1 /* MARKER_ONLY */);
@@ -164,25 +164,20 @@ async function mission_start_asuka3() {
     $.spy_boat.setOnlyDamagedByPlayer(false /* FALSE */);
     $.spy_boat.setCruiseSpeed(48.0);
   }
-  //LOCATION1
   await asyncWait(0);
+  //LOCATION1
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(744.8, -350.1, 0.0);
   }
-  // Mission brief
-  //LOCATION2
   while (!($.spy_boat.locate3D(744.8, -350.1, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -200,24 +195,20 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION2
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(728.9, -133.7, 0.0);
     $.spy_boat.setCruiseSpeed(45.0);
   }
-  // Mission brief
-  //LOCATION3
   while (!($.spy_boat.locate3D(728.9, -133.7, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -235,23 +226,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION3
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(635.5, 24.7, 0.0);
   }
-  // Mission brief
-  //LOCATION4
   while (!($.spy_boat.locate3D(635.5, 24.7, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -269,23 +256,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION4
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(746.6, 252.9, 0.0);
   }
-  // Mission brief
-  //LOCATION5
   while (!($.spy_boat.locate3D(746.6, 252.9, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -303,23 +286,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION5
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(872.1, 335.9, 0.0);
   }
-  // Mission brief
-  //LOCATION6
   while (!($.spy_boat.locate3D(872.1, 335.9, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -337,23 +316,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION6
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1064.5, 180.8, 0.0);
   }
-  // Mission brief
-  //LOCATION7
   while (!($.spy_boat.locate3D(1064.5, 180.8, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -371,23 +346,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION7
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1262.0, 166.0, 0.0);
   }
-  // Mission brief
-  //LOCATION8
   while (!($.spy_boat.locate3D(1262.0, 166.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -405,23 +376,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION8
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1566.0, 52.0, 0.0);
   }
-  // Mission brief
-  //LOCATION9
   while (!($.spy_boat.locate3D(1566.0, 52.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -439,23 +406,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION9
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1595.0, -154.0, 0.0);
   }
-  // Mission brief
-  //LOCATION10
   while (!($.spy_boat.locate3D(1595.0, -154.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -473,23 +436,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION10
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1555.0, -299.0, 0.0);
   }
-  // Mission brief
-  //LOCATION11
   while (!($.spy_boat.locate3D(1555.0, -299.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -507,23 +466,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION11
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1617.0, -600.0, 0.0);
   }
-  // Mission brief
-  //LOCATION12
   while (!($.spy_boat.locate3D(1617.0, -600.0, 0.0, 5.0, 5.0, 5.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -541,23 +496,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION12
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1617.0, -762.0, 0.0);
   }
-  // Mission brief
-  //LOCATION13
   while (!($.spy_boat.locate3D(1617.0, -762.0, 0.0, 5.0, 5.0, 5.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -575,23 +526,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION13
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1637.0, -950.0, 0.0);
   }
-  // Mission brief
-  //LOCATION14
   while (!($.spy_boat.locate3D(1637.0, -950.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -609,23 +556,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION14
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1535.0, -1173.0, 0.0);
   }
-  // Mission brief
-  //LOCATION15
   while (!($.spy_boat.locate3D(1535.0, -1173.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -643,23 +586,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION15
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(1268.0, -1273.0, 0.0);
   }
-  // Mission brief
-  //LOCATION16
   while (!($.spy_boat.locate3D(1268.0, -1273.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -677,23 +616,19 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION16
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.goto(938.1, -1226.4, 0.0);
   }
-  // Mission brief
-  //LOCATION17
   while (!($.spy_boat.locate3D(938.1, -1226.4, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -711,24 +646,20 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION17
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.setCruiseSpeed(45.0);
     $.spy_boat.goto(618.0, -1083.0, 0.0);
   }
-  // Mission brief
-  //LOCATION18
   while (!($.spy_boat.locate3D(618.0, -1083.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -746,24 +677,20 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION18
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.setCruiseSpeed(35.0);
     $.spy_boat.goto(560.0, -899.0, 0.0);
   }
-  // Mission brief
-  //LOCATION19
   while (!($.spy_boat.locate3D(560.0, -899.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -781,23 +708,20 @@ async function mission_start_asuka3() {
       // fallback if label was not emitted as async function: no-op continues linearly
     }
   }
+  //LOCATION19
   if (!(Car.IsDead($.spy_boat))) {
     $.spy_boat.setCruiseSpeed(20.0);
     $.spy_boat.goto(548.0, -795.0, 0.0);
   }
-  // Mission brief
   while (!($.spy_boat.locate3D(548.0, -795.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_boat)) {
       // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_asuka3_passed"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_boat))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_boat)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_boat.delete();
           $.spy_bloke.delete();
@@ -881,7 +805,6 @@ async function mission_start_asuka3() {
     $.spy_car.setDrivingStyle(1);
     $.spy_car.setCruiseSpeed(15.0);
   }
-  // Mission brief
   while (!($.spy_car.locate3D(463.0, -727.4, 16.1, 3.0, 3.0, 3.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_car)) {
@@ -896,12 +819,9 @@ async function mission_start_asuka3() {
       // SCM GOTO → is_he_dead_yet (not lowered; manual jump required)
       throw new Error("unresolved GOTO is_he_dead_yet"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_car))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_car, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_car)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_car.delete();
           $.spy_bloke.delete();
@@ -918,7 +838,6 @@ async function mission_start_asuka3() {
     $.spy_car.gotoCoordinatesAccurate(456.0, -707.1, 16.0);
     $.spy_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
   }
-  // Mission brief
   while (!($.spy_car.locate3D(456.0, -707.1, 16.0, 3.0, 3.0, 3.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_car)) {
@@ -933,12 +852,9 @@ async function mission_start_asuka3() {
       // SCM GOTO → is_he_dead_yet (not lowered; manual jump required)
       throw new Error("unresolved GOTO is_he_dead_yet"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_car))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_car, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_car)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_car.delete();
           $.spy_bloke.delete();
@@ -955,7 +871,6 @@ async function mission_start_asuka3() {
     $.spy_car.gotoCoordinatesAccurate(459.0, -678.1, 16.0);
     $.spy_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
   }
-  // Mission brief
   while (!($.spy_car.locate3D(459.0, -678.1, 16.0, 3.0, 3.0, 3.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.spy_car)) {
@@ -970,12 +885,9 @@ async function mission_start_asuka3() {
       // SCM GOTO → is_he_dead_yet (not lowered; manual jump required)
       throw new Error("unresolved GOTO is_he_dead_yet"); // fallback: would break linear control flow
     }
-    // Mission brief
     if (!(Car.IsDead($.spy_car))) {
-      // Mission brief
       if (!($.player.locateAnyMeansCar2D($.spy_car, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Car.IsDead($.spy_car)) && !(Char.IsDead($.spy_bloke))) {
           $.spy_car.delete();
           $.spy_bloke.delete();
@@ -993,15 +905,11 @@ async function mission_start_asuka3() {
     $.spy_car.setDrivingStyle(2);
     $.spy_car.setCruiseSpeed(25.0);
   }
-  // Mission brief
   while (!(Char.IsDead($.spy_bloke))) {
     await asyncWait(0);
-    // Mission brief
     if (!(Char.IsDead($.spy_bloke))) {
-      // Mission brief
       if (!($.player.locateAnyMeansChar2D($.spy_bloke, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Char.IsDead($.spy_bloke))) {
           $.spy_bloke.delete();
         }
@@ -1025,15 +933,11 @@ async function mission_start_asuka3() {
 
 async function is_he_dead_yet() {
   $.spy_bloke.setObjFleePlayerOnFootAlways($.player);
-  // Mission brief
   while (!(Char.IsDead($.spy_bloke))) {
     await asyncWait(0);
-    // Mission brief
     if (!(Char.IsDead($.spy_bloke))) {
-      // Mission brief
       if (!($.player.locateAnyMeansChar2D($.spy_bloke, 160.0, 160.0, false /* FALSE */))) {
-        // Mission brief
-        Text.PrintNow("AWAY", 5000, 2);
+        Text.PrintNow("AWAY", 5000, 2); // Mission brief
         if (!(Char.IsDead($.spy_bloke))) {
           $.spy_bloke.delete();
         }
@@ -1051,25 +955,23 @@ async function is_he_dead_yet() {
 }
 
 async function mission_asuka3_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission asuka3 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission asuka3 passed
 }
 
 async function mission_asuka3_passed() {
   Hud.ClearCounter($.boat_health);
   $.flag_asuka_mission3_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(10000);
   Stat.RegisterMissionPassed(AM3);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT asuka_mission4_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_asuka3() {
@@ -1125,11 +1027,11 @@ async function check_boats_dead() {
 }
 
 export async function asuka3() {
+  // MissionBoundary
   // *****************************************************************************************
   // *************************************Asuka mission 3*************************************
   // *************************************Boat Spy thing**************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_asuka3
   await mission_start_asuka3();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1141,12 +1043,12 @@ export async function asuka3() {
   // SCM GOSUB mission_cleanup_asuka3
   await mission_cleanup_asuka3();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT blip1_as3 blip2_as3 cop_boat been_in_cop_boat_before
   // VAR_INT spy_boat spy_bloke spy_car
   // VAR_INT spy_blokes_car asuka_boat
   // VAR_INT boat_coord_number boat_health boat_health2
-  // ****************************************Mission Start************************************
   // VAR_INT help1_displayed help2_displayed
+  // ****************************************Mission Start************************************
 }

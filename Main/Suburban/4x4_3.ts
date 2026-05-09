@@ -8,11 +8,11 @@ import { car, ped, hier } from "../../../ide.ts";
 async function mission_start_4x4three() {
   Stat.RegisterMissionGiven();
   // ScriptName
-  //flag_player_on_4x4_mission = 1
   $.flag_player_on_mission = 1;
+  //flag_player_on_4x4_mission = 1
   Text.PrintBig("T4X4_3", 5000, 2);
-  //Set Variables
   await asyncWait(0);
+  //Set Variables
   $.counter_4x4_pickups = 0;
   $.timer_4x4 = 0;
   $.flag_intro = 0;
@@ -39,8 +39,8 @@ async function mission_start_4x4three() {
   $.flag_blip_18 = 0;
   $.flag_blip_19 = 0;
   $.flag_blip_20 = 0;
-  //Set Coords
   $.record_temp = 0;
+  //Set Coords
   $.x_1 = -236.5;
   $.y_1 = 188.8;
   $.z_1 = 11.6;
@@ -100,8 +100,8 @@ async function mission_start_4x4three() {
   $.z_19 = 94.0;
   $.x_20 = -829.3;
   $.y_20 = 412.3;
-  //Mission Script
   $.z_20 = 93.5;
+  //Mission Script
   $.wanted_4x4 = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   $.player_4x4 = $.player.storeCarIsIn();
@@ -430,17 +430,17 @@ async function mission_start_4x4three() {
       throw new Error("unresolved GOTO mission_4x4three_failed"); // fallback: would break linear control flow
     }
   }
-  // --------------------------Mission failed-----------------------------------------------
   if ($.counter_4x4_pickups == 20) {
     // SCM GOTO → mission_4x4three_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_4x4three_passed"); // fallback: would break linear control flow
   }
+  // --------------------------Mission failed-----------------------------------------------
 }
 
 async function mission_4x4three_failed() {
   Text.PrintBig("M_FAIL", 2000, 1);
-  // -------------------------Mission passed-------------------------------------------------
   return;
+  // -------------------------Mission passed-------------------------------------------------
 }
 
 async function mission_4x4three_passed() {
@@ -455,20 +455,19 @@ async function mission_4x4three_passed() {
       $.record_4x4_three = $.record_temp;
     }
   }
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 40000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 40000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(40000);
   Stat.Register4X4ThreeTime($.record_4x4_three);
-  //START_NEW_SCRIPT t4x4_mission2_loop
-  //START_NEW_SCRIPT multistorey_mission_loop
   if ($.flag_4x4_mission3_passed == 0) {
     Stat.RegisterMissionPassed(T4X4_3);
     $.flag_4x4_mission3_passed = 1;
     Stat.PlayerMadeProgress(1);
   }
-  // mission cleanup
+  //START_NEW_SCRIPT t4x4_mission2_loop
+  //START_NEW_SCRIPT multistorey_mission_loop
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_4x4three() {
@@ -496,59 +495,23 @@ async function mission_cleanup_4x4three() {
   $.blip_19.remove();
   $.blip_20.remove();
   Hud.ClearTimer($.timer_4x4);
-  //flag_player_on_4x4_mission = 0
   $.flag_player_on_mission = 0;
+  //flag_player_on_4x4_mission = 0
   Mission.Finish();
   return;
 }
 
 export async function _4x4_3() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***************************************GRIPPED, SORTED***********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_4x4three
   await mission_start_4x4three();
   // fallback if label was not emitted as async function: no-op continues linearly
   // SCM GOSUB mission_cleanup_4x4three
   await mission_cleanup_4x4three();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
-  //VAR_INT player_4x4_three
-  //VAR_INT counter_4x4_pickups timer_4x4
-  //VAR_INT flag_timer_patriot
-  //VAR_INT intro_time_lapsed timer_intro_now timer_intro_start flag_intro
-  /*
-  VAR_INT blip_1 blip_2 blip_3
-  VAR_INT blip_4 blip_5 blip_6
-  VAR_INT blip_7 blip_8 blip_9
-  VAR_INT blip_10 blip_11 blip_12
-  VAR_INT blip_13 blip_14 blip_15
-  VAR_INT flag_blip_17 flag_blip_2 flag_blip_3 flag_blip_4
-  VAR_INT flag_blip_5 flag_blip_6 flag_blip_7 flag_blip_8
-  VAR_INT flag_blip_9 flag_blip_10 flag_blip_11 flag_blip_12
-  VAR_INT flag_blip_13 flag_blip_14 flag_blip_15 flag_blip_16
-  VAR_FLOAT x_1 y_1 z_1
-  VAR_FLOAT x_2 y_2 z_2
-  VAR_FLOAT x_3 y_3 z_3
-  VAR_FLOAT x_4 y_4 z_4
-  VAR_FLOAT x_5 y_5 z_5
-  VAR_FLOAT x_6 y_6 z_6
-  VAR_FLOAT x_7 y_7 z_7
-  VAR_FLOAT x_8 y_8 z_8
-  VAR_FLOAT x_9 y_9 z_9
-  VAR_FLOAT x_10 y_10 z_10
-  VAR_FLOAT x_11 y_11 z_11
-  VAR_FLOAT x_12 y_12 z_12
-  VAR_FLOAT x_13 y_13 z_13
-  VAR_FLOAT x_14 y_14 z_14
-  VAR_FLOAT x_15 y_15 z_15
-  VAR_FLOAT x_16 y_16 z_16
-  VAR_FLOAT x_17 y_17 z_17
-  VAR_FLOAT x_18 y_18 z_18
-  VAR_FLOAT x_19 y_19 z_19
-  VAR_FLOAT x_20 y_20 z_20
-  */
-  // ****************************************Mission Start************************************
   // MissionBoundary
+  // ****************************************Mission Start************************************
 }

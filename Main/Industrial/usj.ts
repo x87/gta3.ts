@@ -31,25 +31,8 @@ async function mission_start_usj() {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
-    //BETWEEN CALLAHAN BRIDGE
-    //OVER CALLAHAN BRIDGE
-    //853.8542
-    //-927.6523
-    //34.0808
-    //1156.0 -1154.0 4.0 8.0 0 //OVER DOCKS
-    //OVER WAREHOUSE NEAR RAVE
-    // OVER FOOTBRIDGE
-    //ONTO LTRAIN TRACKS BY SUBWAY
-    //OVER FREIGHT BACKS
-    //OVER WAREHOUSE BY SAWMILLS
     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-      //BETWEEN CALLAHAN BRIDGE
-      //OVER CALLAHAN BRIDGE
-      //853.8542
-      //-927.6523
-      //34.0808
       if ($.player.isInZone("ROADBR1")) {
-        //BETWEEN CALLAHAN BRIDGE
         if ($.player.locateInCar2D(940.4, -933.7, 4.0, 4.0, false)) {
           $.usj_number = 1;
           $.camera_x = 998.0;
@@ -58,26 +41,16 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        //OVER CALLAHAN BRIDGE
-        //853.8542
-        //-927.6523
-        //34.0808
         if ($.player.locateInCar3D(793.17, -929.963, 42.166, 4.0, 2.0, 3.0, false)) {
           $.usj_number = 11;
-          //853.8542
           $.camera_x = 841.8475;
-          //-927.6523
           $.camera_y = -930.1524;
-          //34.0808
           $.camera_z = 34.3645;
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
       }
-      //1156.0 -1154.0 4.0 8.0 0 //OVER DOCKS
-      //OVER WAREHOUSE NEAR RAVE
       if ($.player.isInZone("PORT_S")) {
-        //1156.0 -1154.0 4.0 8.0 0 //OVER DOCKS
         if ($.player.locateInCar2D(1168.983, -1156.913, 10.0, 7.0, false)) {
           $.usj_number = 2;
           $.camera_x = 1217.2;
@@ -86,7 +59,6 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        //OVER WAREHOUSE NEAR RAVE
         if ($.player.locateInCar2D(1231.858, -1129.855, 4.0, 2.5, false)) {
           $.usj_number = 5;
           $.camera_x = 1201.384;
@@ -96,10 +68,7 @@ async function mission_start_usj() {
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
       }
-      // OVER FOOTBRIDGE
-      //ONTO LTRAIN TRACKS BY SUBWAY
       if ($.player.isInZone("CHINA")) {
-        // OVER FOOTBRIDGE
         if ($.player.locateInCar2D(789.697, -572.312, 2.7, 5.0, false)) {
           $.usj_number = 3;
           $.camera_x = 779.957;
@@ -108,7 +77,6 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        //ONTO LTRAIN TRACKS BY SUBWAY
         if ($.player.locateInCar3D(991.727, -470.397, 19.785, 2.0, 4.0, 3.0, false)) {
           $.usj_number = 10;
           $.camera_x = 987.5289;
@@ -118,9 +86,7 @@ async function mission_start_usj() {
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
       }
-      //OVER FREIGHT BACKS
       if ($.player.isInZone("PORT_I")) {
-        //OVER FREIGHT BACKS
         if ($.player.locateInCar2D(1136.621, -976.864, 4.0, 2.5, false)) {
           $.usj_number = 6;
           $.camera_x = 1107.076;
@@ -130,9 +96,7 @@ async function mission_start_usj() {
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
       }
-      //OVER WAREHOUSE BY SAWMILLS
       if ($.player.isInZone("PORT_E")) {
-        //OVER WAREHOUSE BY SAWMILLS
         if ($.player.locateInCar2D(1375.758, -952.149, 5.0, 5.0, false)) {
           $.usj_number = 7;
           $.camera_x = 1369.274;
@@ -145,16 +109,8 @@ async function mission_start_usj() {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
-    //UNDER CALLAHAN BRIDGE
-    //OUT OF CARPARK
-    //ONTO CALLAHAN BRIDGE
-    //159.987 -998.158 30.379 0.5 2.8 2.0 0 //TWAT CAFE
     if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-      //UNDER CALLAHAN BRIDGE
-      //OUT OF CARPARK
-      //ONTO CALLAHAN BRIDGE
       if ($.player.isInZone("COM_EAS")) {
-        //UNDER CALLAHAN BRIDGE
         if ($.player.locateInCar3D(470.728, -918.38, 19.828, 6.0, 3.0, 3.0, false)) {
           $.usj_number = 4;
           $.camera_x = 460.954;
@@ -163,7 +119,6 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        //OUT OF CARPARK
         if ($.player.locateInCar2D(271.152, -607.027, 4.0, 5.0, false)) {
           $.usj_number = 13;
           $.camera_x = 281.8645;
@@ -172,7 +127,6 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        //ONTO CALLAHAN BRIDGE
         if ($.player.locateInCar2D(320.223, -896.357, 6.0, 5.0, false)) {
           $.usj_number = 14;
           $.camera_x = 332.8589;
@@ -182,9 +136,7 @@ async function mission_start_usj() {
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
       }
-      //159.987 -998.158 30.379 0.5 2.8 2.0 0 //TWAT CAFE
       if ($.player.isInZone("PARK")) {
-        //159.987 -998.158 30.379 0.5 2.8 2.0 0 //TWAT CAFE
         if ($.player.locateInCar3D(157.584, -998.192, 30.39, 2.5, 2.8, 2.0, false)) {
           $.usj_number = 12;
           $.camera_x = 141.5205;
@@ -197,24 +149,8 @@ async function mission_start_usj() {
       // SCM GOTO → mission_start_usj (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
     }
-    //BAIT WAREHOUSE GOING EAST
-    //BAIT WAREHOUSE GOING SOUTH
-    //BY COCHRANE BRIDGE
-    //-1039.1022
-    //265.3116
-    //3.4568
-    //	JAMES BOND BRIDGE
-    // AIRPORT HANGAR SE
-    // AIRPORT HANGAR SW
-    // AIRPORT HANGAR NW
-    // AIRPORT PLANE
-    //-1192.1388
-    //-556.9338
-    //11.134
     if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-      //BAIT WAREHOUSE GOING EAST
       if ($.player.isInZone("SUB_IND")) {
-        //BAIT WAREHOUSE GOING EAST
         if ($.player.locateInCar3D(-1182.442, 22.213, 74.03, 3.0, 4.0, 3.0, false)) {
           $.usj_number = 8;
           $.camera_x = -1204.47;
@@ -224,13 +160,7 @@ async function mission_start_usj() {
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
       }
-      //BAIT WAREHOUSE GOING SOUTH
-      //BY COCHRANE BRIDGE
-      //-1039.1022
-      //265.3116
-      //3.4568
       if ($.player.isInZone("BIG_DAM")) {
-        //BAIT WAREHOUSE GOING SOUTH
         if ($.player.locateInCar3D(-1160.622, 105.944, 73.531, 4.0, 3.5, 3.0, false)) {
           $.usj_number = 9;
           $.camera_x = -1137.7355;
@@ -239,25 +169,16 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        //BY COCHRANE BRIDGE
-        //-1039.1022
-        //265.3116
-        //3.4568
         if ($.player.locateInCar2D(-994.754, 253.616, 10.0, 15.0, false)) {
           $.usj_number = 15;
-          //-1039.1022
           $.camera_x = -1014.4852;
-          //265.3116
           $.camera_y = 268.1786;
-          //3.4568
           $.camera_z = 38.8862;
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
       }
-      //	JAMES BOND BRIDGE
       if ($.player.isInZone("PROJECT")) {
-        //	JAMES BOND BRIDGE
         if ($.player.locateInCar2D(-699.058, -172.26, 6.0, 7.0, false)) {
           $.usj_number = 16;
           $.camera_x = -738.03;
@@ -267,15 +188,7 @@ async function mission_start_usj() {
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
       }
-      // AIRPORT HANGAR SE
-      // AIRPORT HANGAR SW
-      // AIRPORT HANGAR NW
-      // AIRPORT PLANE
-      //-1192.1388
-      //-556.9338
-      //11.134
       if ($.player.isInZone("AIRPORT")) {
-        // AIRPORT HANGAR SE
         if ($.player.locateInCar2D(-1100.542, -847.44, 4.0, 12.0, false)) {
           $.usj_number = 17;
           $.camera_x = -1068.0343;
@@ -284,7 +197,6 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        // AIRPORT HANGAR SW
         if ($.player.locateInCar2D(-1375.772, -848.662, 4.0, 12.0, false)) {
           $.usj_number = 18;
           $.camera_x = -1337.7358;
@@ -293,7 +205,6 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        // AIRPORT HANGAR NW
         if ($.player.locateInCar2D(-1379.849, -625.095, 12.0, 4.0, false)) {
           $.usj_number = 19;
           $.camera_x = -1397.5281;
@@ -302,17 +213,10 @@ async function mission_start_usj() {
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
         }
-        // AIRPORT PLANE
-        //-1192.1388
-        //-556.9338
-        //11.134
         if ($.player.locateInCar2D(-1177.38, -569.913, 3.3, 2.0, false)) {
           $.usj_number = 20;
-          //-1192.1388
           $.camera_x = -1195.1605;
-          //-556.9338
           $.camera_y = -560.7097;
-          //11.134
           $.camera_z = 18.9029;
           // SCM GOTO → the_jump (not lowered; manual jump required)
           throw new Error("unresolved GOTO the_jump"); // fallback: would break linear control flow
@@ -512,9 +416,9 @@ async function the_jump() {
 async function camera_restore_if_fail() {
   Clock.SetTimeScale(1.0);
   Camera.RestoreJumpcut();
-  // mission usj1 passed
   // SCM GOTO → mission_start_usj (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_start_usj"); // fallback: would break linear control flow
+  // mission usj1 passed
 }
 
 async function mission_usj_passed() {
@@ -688,17 +592,13 @@ async function camera_restore_if_passed() {
 }
 
 async function reward_usj() {
-  //UNIQUE STUNT BONUS!
-  //ALL UNIQUE STUNTS COMPLETED!
   if ($.total_completed_usj < 20) {
-    //UNIQUE STUNT BONUS!
-    Text.PrintBigQ(USJ, 5000, 5);
+    Text.PrintBigQ(USJ, 5000, 5); //UNIQUE STUNT BONUS!
     Text.PrintWithNumberBig(REWARD, $.cash_reward_usj, 6000, 6);
     $.player.addScore($.cash_reward_usj);
   }
   else {
-    //ALL UNIQUE STUNTS COMPLETED!
-    Text.PrintBigQ(USJ_ALL, 5000, 5);
+    Text.PrintBigQ(USJ_ALL, 5000, 5); //ALL UNIQUE STUNTS COMPLETED!
     Text.PrintWithNumberBig(REWARD, 1000000, 6000, 6);
     $.player.addScore(1000000);
   }
@@ -711,17 +611,17 @@ async function reward_usj() {
 }
 
 export async function usj() {
+  // MissionBoundary
   // *****************************************************************************************
   // ********************************** Unique Stunt Jumps ***********************************
   // Variables for mission
-  // MissionBoundary
   // VAR_INT players_car_usj cash_reward_usj total_completed_usj
   // VAR_INT flag_1st_locate_usj flag_2nd_locate_usj usj_number collision_counter_usj
   // VAR_INT flag_usj1_passed flag_usj2_passed flag_usj3_passed flag_usj4_passed flag_usj5_passed flag_usj6_passed flag_usj7_passed
   // VAR_INT flag_usj8_passed flag_usj9_passed flag_usj10_passed flag_usj11_passed flag_usj12_passed flag_usj13_passed flag_usj14_passed
   // VAR_INT flag_usj15_passed flag_usj16_passed flag_usj17_passed flag_usj18_passed flag_usj19_passed flag_usj20_passed
-  // ****************************************Mission Start************************************
   // VAR_FLOAT car_speed_usj camera_x camera_y camera_z
+  // ****************************************Mission Start************************************
   $.flag_usj1_passed = 0;
   $.flag_usj2_passed = 0;
   $.flag_usj3_passed = 0;

@@ -39,13 +39,12 @@ async function mission_start_toni2() {
   World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
   $.player.setCoordinates(1219.5, -321.1, 26.4);
   $.player.setHeading(180.0);
-  //TONIS RESTAURANT
-  World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */);
+  World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 151) {
     await asyncWait(0);
@@ -101,8 +100,8 @@ async function mission_start_toni2() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
-  // START OF MISSION
   Streaming.MarkModelAsNoLongerNeeded(ind_newrizzos);
+  // START OF MISSION
   if (Game.IsThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */)) {
     Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
     $.traid_threat_cleared_T2 = 1;
@@ -134,8 +133,8 @@ async function main_toni2() {
   World.ClearArea(868.5, -637.0, 15.0, 1.0, true /* TRUE */);
   $.thong1B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_A`, 868.5, -637.0, -100.0);
   $.thong1B.setHeading(180.0);
-  //SET_CHAR_OBJ_GOTO_COORD_ON_FOOT thong1B 869.4 -656.0
   $.thong1B.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 200);
+  //SET_CHAR_OBJ_GOTO_COORD_ON_FOOT thong1B 869.4 -656.0
   Camera.SetFixedPosition(869.7, -666.0, 16.0, 0.0, 0.0, 0.0);
   Camera.PointAtChar($.thong1, 15 /* FIXED */, 1 /* INTERPOLATION */);
   await asyncWait(2500);
@@ -145,8 +144,8 @@ async function main_toni2() {
   $.thong2.setObjGotoCoordOnFoot(869.4, -678.0);
   World.ClearArea(868.5, -690.0, 15.0, 1.0, true /* TRUE */);
   $.thong2B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, ped`GANG_TRIAD_B`, 868.5, -690.0, -100.0);
-  //SET_CHAR_OBJ_GOTO_COORD_ON_FOOT thong2B 869.4 -678.0
   $.thong2B.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+  //SET_CHAR_OBJ_GOTO_COORD_ON_FOOT thong2B 869.4 -678.0
   Camera.PointAtChar($.thong2, 15 /* FIXED */, 1 /* INTERPOLATION */);
   await asyncWait(2500);
   World.ClearArea(892.6, -666.0, 15.0, 4.0, true /* TRUE */);
@@ -182,7 +181,6 @@ async function next_bit_tm2() {
     $.thong1.setObjKillPlayerAnyMeans($.player);
     $.thong1.setThreatSearch(0 /* THREAT_PLAYER1 */);
   }
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS thong1B player
   if (!(Char.IsDead($.thong1B))) {
     $.thong1B.setThreatSearch(0 /* THREAT_PLAYER1 */);
   }
@@ -190,7 +188,6 @@ async function next_bit_tm2() {
     $.thong2.setObjKillPlayerAnyMeans($.player);
     $.thong2.setThreatSearch(0 /* THREAT_PLAYER1 */);
   }
-  //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS thong2B player
   if (!(Char.IsDead($.thong2B))) {
     $.thong2B.setThreatSearch(0 /* THREAT_PLAYER1 */);
   }
@@ -198,8 +195,7 @@ async function next_bit_tm2() {
     $.thong3B.setObjKillPlayerAnyMeans($.player);
     $.thong3B.setThreatSearch(0 /* THREAT_PLAYER1 */);
   }
-  // " Get back to Toni's!"
-  Text.PrintNow("TM2_3", 5000, 1);
+  Text.PrintNow("TM2_3", 5000, 1); // " Get back to Toni's!"
   if (!(Char.IsDead($.thong1))) {
     $.thong_blip1 = Blip.AddForChar($.thong1);
   }
@@ -218,63 +214,52 @@ async function next_bit_tm2() {
   if (!(Char.IsDead($.thong3B))) {
     $.thong_blip3B = Blip.AddForChar($.thong3B);
   }
-  //ADD_SCORE player 500
-  //SET_CHAR_THREAT_SEARCH thong1B THREAT_PLAYER1
   while (!($.thongs_killed == 6)) {
     await asyncWait(0);
-    //ADD_SCORE player 500
     if (Char.IsDead($.thong1) && $.thong1_dead == 0) {
-      //ADD_SCORE player 500
       $.thongs_killed++;
+      //ADD_SCORE player 500
       $.thong_blip1.remove();
       $.thong1_dead = 1;
     }
-    //ADD_SCORE player 500
     if (Char.IsDead($.thong1B) && $.thong1B_dead == 0) {
-      //ADD_SCORE player 500
       $.thongs_killed++;
+      //ADD_SCORE player 500
       $.thong_blip1B.remove();
       $.thong1B_dead = 1;
     }
-    //ADD_SCORE player 500
     if (Char.IsDead($.thong2) && $.thong2_dead == 0) {
-      //ADD_SCORE player 500
       $.thongs_killed++;
+      //ADD_SCORE player 500
       $.thong_blip2.remove();
       $.thong2_dead = 1;
     }
-    //ADD_SCORE player 500
     if (Char.IsDead($.thong2B) && $.thong2B_dead == 0) {
-      //ADD_SCORE player 500
       $.thongs_killed++;
+      //ADD_SCORE player 500
       $.thong_blip2B.remove();
       $.thong2B_dead = 1;
     }
-    //ADD_SCORE player 500
     if (Char.IsDead($.thong3) && $.thong3_dead == 0) {
-      //ADD_SCORE player 500
       $.thongs_killed++;
+      //ADD_SCORE player 500
       $.thong_blip3.remove();
       $.thong3_dead = 1;
     }
-    //ADD_SCORE player 500
     if (Char.IsDead($.thong3B) && $.thong3B_dead == 0) {
-      //ADD_SCORE player 500
       $.thongs_killed++;
+      //ADD_SCORE player 500
       $.thong_blip3B.remove();
       $.thong3B_dead = 1;
     }
-    //SET_CHAR_THREAT_SEARCH thong1B THREAT_PLAYER1
     if (!($.player.isInArea2D(890.0, -639.3, 846.6, -688.0, false /* FALSE */))) {
-      //SET_CHAR_THREAT_SEARCH thong1B THREAT_PLAYER1
       if (!(Char.IsDead($.thong1B))) {
-        //SET_CHAR_THREAT_SEARCH thong1B THREAT_PLAYER1
         $.thong1B.setObjKillPlayerAnyMeans($.player);
-      }
-      //SET_CHAR_THREAT_SEARCH thong1B THREAT_PLAYER1
-      if (!(Char.IsDead($.thong2B))) {
         //SET_CHAR_THREAT_SEARCH thong1B THREAT_PLAYER1
+      }
+      if (!(Char.IsDead($.thong2B))) {
         $.thong2B.setObjKillPlayerAnyMeans($.player);
+        //SET_CHAR_THREAT_SEARCH thong1B THREAT_PLAYER1
       }
       if (!(Char.IsDead($.thong3))) {
         $.thong3.setObjKillPlayerAnyMeans($.player);
@@ -282,19 +267,11 @@ async function next_bit_tm2() {
       }
     }
   }
-  // " Get back to Toni's!"
-  Text.PrintNow("TM2_1", 5000, 1);
-  //CHANGE_BLIP_DISPLAY blip2_t2 BLIP_ONLY
+  Text.PrintNow("TM2_1", 5000, 1); // " Get back to Toni's!"
   $.blip2_t2 = Blip.AddForCoord(1223.0, -327.0, -100.0);
-  /*
-  IF thongs_killed = 6
-  AND thongs_killed_message = 0
-  PRINT_NOW ( TM2_2 ) 6000 1
-  ADD_SCORE player 500
-  thongs_killed_message = 1
-  ENDIF
-  */
+  //CHANGE_BLIP_DISPLAY blip2_t2 BLIP_ONLY
   while (!($.player.locateOnFoot3D(1219.6, -320.7, 27.4, 1.0, 1.0, 2.0, true /* TRUE */))) {
+    await asyncWait(0);
     /*
     IF thongs_killed = 6
     AND thongs_killed_message = 0
@@ -303,7 +280,6 @@ async function next_bit_tm2() {
     thongs_killed_message = 1
     ENDIF
     */
-    await asyncWait(0);
   }
   $.player.setControl(false /* OFF */);
   Game.SetPoliceIgnorePlayer($.player, true /* ON */);
@@ -315,8 +291,7 @@ async function next_bit_tm2() {
   World.ClearArea(1219.6, -314.0, 29.7, 2.0, true /* TRUE */);
   $.script_controlled_player.setObjRunToCoord(1219.6, -314.0);
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 10000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(10000);
   TIMERB = 0;
@@ -345,28 +320,28 @@ async function next_bit_tm2() {
   Camera.RestoreJumpcut();
   $.script_controlled_player.setRunning(false /* FALSE */);
   }
-  // Mission toni2 failed
   // SCM GOTO → mission_toni2_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_toni2_passed"); // fallback: would break linear control flow
+  // Mission toni2 failed
 }
 
 async function mission_toni2_failed() {
-  // mission toni2 passed
   return;
+  // mission toni2 passed
 }
 
 async function mission_toni2_passed() {
+  $.flag_toni_mission2_passed = 1;
   //PLAY_MISSION_PASSED_TUNE 1
   //PRINT_WITH_NUMBER_BIG ( M_PASS ) 10000 5000 1 //"Mission Passed!"
   //CLEAR_WANTED_LEVEL player
   //ADD_SCORE player 10000
-  $.flag_toni_mission2_passed = 1;
   Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 0 /* THREAT_PLAYER1 */);
   Stat.RegisterMissionPassed(TM2);
   Stat.PlayerMadeProgress(1);
   // START_NEW_SCRIPT toni_mission3_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_toni2() {
@@ -393,11 +368,11 @@ async function mission_cleanup_toni2() {
 }
 
 export async function toni2() {
+  // MissionBoundary
   // *******************************************************************************************
   // *************************************Toni mission 2****************************************
   // **************************************Triad Ambush*****************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_toni2
   await mission_start_toni2();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -409,12 +384,11 @@ export async function toni2() {
   // SCM GOSUB mission_cleanup_toni2
   await mission_cleanup_toni2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
-  // gang members for mission
+  // Variables for mission
   // VAR_INT thong1 thong1B thong2 thong2B thong3 thong3B thong_car
   // VAR_INT blip1_t2 blip2_t2 thong_blip1 thong_blip1B thong_blip2 thong_blip2B thong_blip3 thong_blip3B
   // VAR_INT thong1_dead thong1B_dead thong2_dead thong2B_dead thong3_dead thong3B_dead thongs_killed thongs_killed_message
-  // ***************************************Mission Start*************************************
   // VAR_INT briefcase_tm2 traid_threat_cleared_T2
+  // ***************************************Mission Start*************************************
 }

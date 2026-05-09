@@ -7,6 +7,7 @@ import { car, ped, hier } from "../../../ide.ts";
 
 async function mission_start_camera() {
   {
+  await asyncWait(70);
   //INDUSTRIAL******************************************************************************************************
   /*
   IF IS_PLAYER_PLAYING Player
@@ -33,173 +34,8 @@ async function mission_start_camera() {
   ENDIF //IS_PLAYER_PLAYING
   */
   //COMMERCIAL*****************************************************************************************************
-  await asyncWait(70);
-  //RAYS TOILETS FIXED CAM STUFF //rays_camera_1
-  //END OF RAYS TOILETS FIXED CAM STUFF
-  /*
-  IF IS_PLAYER_PLAYING Player
-  // Police cell wall camera zoom
-  IF IS_PLAYER_IN_AREA_3D player 332.1 -1093.3 24.0 323.3 -1089.1 30.0 FALSE
-  IF camera_stuff4 = 0
-  SET_FIXED_CAMERA_POSITION 328.2  -1086.4  28.2 0.0 0.0 0.0
-  POINT_CAMERA_AT_PLAYER player FIXED INTERPOLATION
-  camera_stuff4 = 1
-  ENDIF
-  ELSE
-  IF camera_stuff4 = 1
-  RESTORE_CAMERA
-  SET_CAMERA_IN_FRONT_OF_PLAYER
-  camera_stuff4 = 0
-  ENDIF
-  ENDIF
-  ENDIF
-  */
-  /*
-  IF IS_PLAYER_PLAYING player
-  IF IS_PLAYER_IN_ZONE player SHOPING
-  // Dojo building camera zoom
-  IF IS_PLAYER_IN_AREA_3D player 106.1 -1277.7 24.0 96.3 -1273.0 29.0 FALSE
-  IF camera_stuff2 = 0
-  SET_FIXED_CAMERA_POSITION 110.634 -1275.475 28.018 0.0 0.0 0.0
-  POINT_CAMERA_AT_POINT 109.649 -1275.441 27.842 INTERPOLATION
-  camera_stuff2 = 1
-  ENDIF
-  ELSE
-  IF camera_stuff2 = 1
-  RESTORE_CAMERA
-  SET_CAMERA_IN_FRONT_OF_PLAYER
-  camera_stuff2 = 0
-  ENDIF
-  ENDIF
-  // Love building door camera zoom
-  IF IS_PLAYER_IN_AREA_3D player 87.8 -1545.7 27.0 94.9 -1551.7 30.0 FALSE
-  IF camera_stuff3 = 0
-  SET_FIXED_CAMERA_POSITION 84.303 -1548.550 30.503 0.0 0.0 0.0
-  POINT_CAMERA_AT_POINT 85.271 -1548.602 30.257 INTERPOLATION
-  camera_stuff3 = 1
-  ENDIF
-  ELSE
-  IF camera_stuff3 = 1
-  RESTORE_CAMERA
-  SET_CAMERA_IN_FRONT_OF_PLAYER
-  camera_stuff3 = 0
-  ENDIF
-  ENDIF
-  ENDIF //IS_PLAYER_IN_ZONE
-  ENDIF //IS_PLAYER_PLAYING
-  */
-  //IS_PLAYER_IN_ZONE
-  //IS_PLAYER_PLAYING
   if ($.player.isPlaying()) {
-    //RAYS TOILETS FIXED CAM STUFF //rays_camera_1
-    //END OF RAYS TOILETS FIXED CAM STUFF
-    /*
-    IF IS_PLAYER_PLAYING Player
-    // Police cell wall camera zoom
-    IF IS_PLAYER_IN_AREA_3D player 332.1 -1093.3 24.0 323.3 -1089.1 30.0 FALSE
-    IF camera_stuff4 = 0
-    SET_FIXED_CAMERA_POSITION 328.2  -1086.4  28.2 0.0 0.0 0.0
-    POINT_CAMERA_AT_PLAYER player FIXED INTERPOLATION
-    camera_stuff4 = 1
-    ENDIF
-    ELSE
-    IF camera_stuff4 = 1
-    RESTORE_CAMERA
-    SET_CAMERA_IN_FRONT_OF_PLAYER
-    camera_stuff4 = 0
-    ENDIF
-    ENDIF
-    ENDIF
-    */
-    /*
-    IF IS_PLAYER_PLAYING player
-    IF IS_PLAYER_IN_ZONE player SHOPING
-    // Dojo building camera zoom
-    IF IS_PLAYER_IN_AREA_3D player 106.1 -1277.7 24.0 96.3 -1273.0 29.0 FALSE
-    IF camera_stuff2 = 0
-    SET_FIXED_CAMERA_POSITION 110.634 -1275.475 28.018 0.0 0.0 0.0
-    POINT_CAMERA_AT_POINT 109.649 -1275.441 27.842 INTERPOLATION
-    camera_stuff2 = 1
-    ENDIF
-    ELSE
-    IF camera_stuff2 = 1
-    RESTORE_CAMERA
-    SET_CAMERA_IN_FRONT_OF_PLAYER
-    camera_stuff2 = 0
-    ENDIF
-    ENDIF
-    // Love building door camera zoom
-    IF IS_PLAYER_IN_AREA_3D player 87.8 -1545.7 27.0 94.9 -1551.7 30.0 FALSE
-    IF camera_stuff3 = 0
-    SET_FIXED_CAMERA_POSITION 84.303 -1548.550 30.503 0.0 0.0 0.0
-    POINT_CAMERA_AT_POINT 85.271 -1548.602 30.257 INTERPOLATION
-    camera_stuff3 = 1
-    ENDIF
-    ELSE
-    IF camera_stuff3 = 1
-    RESTORE_CAMERA
-    SET_CAMERA_IN_FRONT_OF_PLAYER
-    camera_stuff3 = 0
-    ENDIF
-    ENDIF
-    ENDIF //IS_PLAYER_IN_ZONE
-    ENDIF //IS_PLAYER_PLAYING
-    */
-    //IS_PLAYER_IN_ZONE
     if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-      //END OF RAYS TOILETS FIXED CAM STUFF
-      /*
-      IF IS_PLAYER_PLAYING Player
-      // Police cell wall camera zoom
-      IF IS_PLAYER_IN_AREA_3D player 332.1 -1093.3 24.0 323.3 -1089.1 30.0 FALSE
-      IF camera_stuff4 = 0
-      SET_FIXED_CAMERA_POSITION 328.2  -1086.4  28.2 0.0 0.0 0.0
-      POINT_CAMERA_AT_PLAYER player FIXED INTERPOLATION
-      camera_stuff4 = 1
-      ENDIF
-      ELSE
-      IF camera_stuff4 = 1
-      RESTORE_CAMERA
-      SET_CAMERA_IN_FRONT_OF_PLAYER
-      camera_stuff4 = 0
-      ENDIF
-      ENDIF
-      ENDIF
-      */
-      /*
-      IF IS_PLAYER_PLAYING player
-      IF IS_PLAYER_IN_ZONE player SHOPING
-      // Dojo building camera zoom
-      IF IS_PLAYER_IN_AREA_3D player 106.1 -1277.7 24.0 96.3 -1273.0 29.0 FALSE
-      IF camera_stuff2 = 0
-      SET_FIXED_CAMERA_POSITION 110.634 -1275.475 28.018 0.0 0.0 0.0
-      POINT_CAMERA_AT_POINT 109.649 -1275.441 27.842 INTERPOLATION
-      camera_stuff2 = 1
-      ENDIF
-      ELSE
-      IF camera_stuff2 = 1
-      RESTORE_CAMERA
-      SET_CAMERA_IN_FRONT_OF_PLAYER
-      camera_stuff2 = 0
-      ENDIF
-      ENDIF
-      // Love building door camera zoom
-      IF IS_PLAYER_IN_AREA_3D player 87.8 -1545.7 27.0 94.9 -1551.7 30.0 FALSE
-      IF camera_stuff3 = 0
-      SET_FIXED_CAMERA_POSITION 84.303 -1548.550 30.503 0.0 0.0 0.0
-      POINT_CAMERA_AT_POINT 85.271 -1548.602 30.257 INTERPOLATION
-      camera_stuff3 = 1
-      ENDIF
-      ELSE
-      IF camera_stuff3 = 1
-      RESTORE_CAMERA
-      SET_CAMERA_IN_FRONT_OF_PLAYER
-      camera_stuff3 = 0
-      ENDIF
-      ENDIF
-      ENDIF //IS_PLAYER_IN_ZONE
-      ENDIF //IS_PLAYER_PLAYING
-      */
       if ($.rays_cutscene_flag == 0) {
         if ($.player.isPlaying()) {
           if ($.player.isInZone("PARK")) {
@@ -330,13 +166,6 @@ async function mission_start_camera() {
 
 export async function camera() {
   // MissionBoundary
-  //VAR_INT camera_stuff1 camera_stuff2	camera_stuff3 camera_stuff4
-  /*
-  camera_stuff1 = 0
-  camera_stuff2 = 0
-  camera_stuff3 = 0
-  camera_stuff4 = 0
-  */
   // VAR_INT rays_cutscene_flag rays_camera_1 rays_camera_2 rays_camera_3
   $.rays_camera_1 = 0;
   $.rays_camera_2 = 0;

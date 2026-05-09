@@ -24,8 +24,7 @@ async function mission_start_joey4() {
   $.triads_ojective_passed = 0;
   $.tonis_audio_all_finished = 0;
   $.played_tune_before = 0;
-  //TURN ALL THE CARS OFF
-  World.SetCarDensityMultiplier(0.0);
+  World.SetCarDensityMultiplier(0.0); //TURN ALL THE CARS OFF
   {
   Streaming.LoadSpecialCharacter(1, $.joey);
   Streaming.LoadSpecialCharacter(2, tony);
@@ -52,10 +51,10 @@ async function mission_start_joey4() {
   while (!(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(hier`cutobj03`)) || !(Streaming.HasModelLoaded(hier`cutobj04`))) {
     await asyncWait(0);
   }
-  //LOAD_SCENE 1190.07 -869.86 13.97
   while (!(Streaming.HasModelLoaded(jogarageext)) || !(Streaming.HasModelLoaded(jogarageint))) {
     await asyncWait(0);
   }
+  //LOAD_SCENE 1190.07 -869.86 13.97
   Cutscene.Load(J4_ETH);
   Cutscene.SetOffset(1190.079, -869.861, 13.977);
   $.cut_car2_lm3 = Car.Create(84 /* CAR_IDAHO */, 1182.5, -857.0, 14.1);
@@ -78,8 +77,8 @@ async function mission_start_joey4() {
   $.cs_joedoor.setAnim(JOEDOOR);
   World.ClearArea(1195.0, -870.3, 15.0, 10.0, true /* TRUE */);
   World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false /* FALSE */);
-  //MOVE GARAGE UP
   World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false /* FALSE */);
+  //MOVE GARAGE UP
   [$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates();
   [$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates();
   $.joeydoor2_Z = $.joeydoor2_Z + 3.0;
@@ -97,72 +96,65 @@ async function mission_start_joey4() {
       throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
     }
   }
-  //SWITCH_WORLD_PROCESSING OFF
   Camera.DoFade(1800, 1 /* FADE_IN */);
+  //SWITCH_WORLD_PROCESSING OFF
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 1) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_A", 10000, 1);
+  Text.PrintNow("JM4_A", 10000, 1); //"Go to X, wait for Toni"
   while ($.cs_time < 4000) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_B", 10000, 1);
+  Text.PrintNow("JM4_B", 10000, 1); //"Go to X, wait for Toni"
   while ($.cs_time < 6180) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_C", 10000, 1);
+  Text.PrintNow("JM4_C", 10000, 1); //"Go to X, wait for Toni"
   while ($.cs_time < 10230) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_D", 10000, 1);
+  Text.PrintNow("JM4_D", 10000, 1); //"Go to X, wait for Toni"
   while ($.cs_time < 13040) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_E", 10000, 1);
+  Text.PrintNow("JM4_E", 10000, 1); //"Go to X, wait for Toni"
   while ($.cs_time < 15110) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_F", 10000, 1);
+  Text.PrintNow("JM4_F", 10000, 1); //"Go to X, wait for Toni"
   while ($.cs_time < 18080) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_G", 10000, 1);
+  Text.PrintNow("JM4_G", 10000, 1); //"Go to X, wait for Toni"
   while ($.cs_time < 23511) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
   Text.ClearPrints();
-  //DO_FADE 1000 FADE_OUT
-  //WHILE GET_FADING_STATUS
-  //	WAIT 0
-  //ENDWHILE
   while ($.cs_time < 23833) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //SWITCH_WORLD_PROCESSING ON
+  //DO_FADE 1000 FADE_OUT
+  //WHILE GET_FADING_STATUS
+  //	WAIT 0
+  //ENDWHILE
   while (!(Cutscene.HasFinished())) {
     await asyncWait(0);
   }
+  //SWITCH_WORLD_PROCESSING ON
   World.SwitchRubbish(true /* ON */);
   Text.ClearPrints();
   Cutscene.Clear();
@@ -175,17 +167,17 @@ async function mission_start_joey4() {
   }
   World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, true /* TRUE */);
   World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, true /* TRUE */);
+  World.ClearArea(1198.5, -871.4, 15.0, 10.0, true /* TRUE */);
   //SET_FIXED_CAMERA_POSITION 1206.0 -864.6 15.4 0.0 0.0 0.0
   //POINT_CAMERA_AT_PLAYER player FIXED JUMP_CUT
-  World.ClearArea(1198.5, -871.4, 15.0, 10.0, true /* TRUE */);
   Camera.SetFixedPosition(1200.831, -869.373, 15.001, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(1199.887, -869.701, 15.025, 2 /* JUMP_CUT */);
   await asyncWait(0);
   Hud.SwitchWidescreen(true /* ON */);
   Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+  $.player.setControl(false /* OFF */);
   //WAIT 500
   //DO_FADE 1000 FADE_IN
-  $.player.setControl(false /* OFF */);
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
@@ -202,28 +194,24 @@ async function mission_start_joey4() {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"Go to X, wait for Toni"
+  Text.PrintNow("JM4_10", 5000, 1); //"Go to X, wait for Toni"
   //CAR DRIVING OUT OF GARAGE CUT SCENE
-  Text.PrintNow("JM4_10", 5000, 1);
   if (!(Car.IsDead($.tonis_ride))) {
     $.tonis_ride.gotoCoordinatesAccurate(1198.5, -871.4, -100.0);
     $.tonis_ride.setCruiseSpeed(2.0);
     $.tonis_ride.setDrivingStyle(3);
   }
-  //SET_ANIM_GROUP_FOR_CHAR toni ANIM_OLDFAT_PED
   if (!(Char.IsDead($.toni))) {
     $.toni.lookAtPlayerAlways($.player);
-    //SET_ANIM_GROUP_FOR_CHAR toni ANIM_OLDFAT_PED
     $.player.lookAtCharAlways($.toni);
+    //SET_ANIM_GROUP_FOR_CHAR toni ANIM_OLDFAT_PED
   }
-  //"Go to X, wait for Toni"
   while (!($.tonis_ride.locate2D(1198.5, -871.4, 2.0, 2.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Car.IsDead($.tonis_ride)) {
       // SCM GOTO → mission_joey4_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
     }
-    //"Go to X, wait for Toni"
     if ($.tonis_audio_all_finished == 0) {
       while (!(Audio.HasMissionAudioFinished())) {
         await asyncWait(0);
@@ -243,8 +231,7 @@ async function mission_start_joey4() {
         }
       }
       Audio.PlayMissionAudio();
-      //"Go to X, wait for Toni"
-      Text.PrintNow("JM4_11", 5000, 1);
+      Text.PrintNow("JM4_11", 5000, 1); //"Go to X, wait for Toni"
       while (!(Audio.HasMissionAudioFinished())) {
         await asyncWait(0);
         if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
@@ -267,8 +254,7 @@ async function mission_start_joey4() {
     }
   }
   Audio.PlayMissionAudio();
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_12", 5000, 1);
+  Text.PrintNow("JM4_12", 5000, 1); //"Go to X, wait for Toni"
   [$.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z] = $.joeys_garage_door2.getCoordinates();
   [$.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z] = $.joeys_garage_door3.getCoordinates();
   $.joeydoor2_Z = $.joeydoor2_Z - 3.0;
@@ -304,8 +290,7 @@ async function mission_start_joey4() {
     }
   }
   Audio.PlayMissionAudio();
-  //"Go to X, wait for Toni"
-  Text.PrintNow("JM4_13", 5000, 1);
+  Text.PrintNow("JM4_13", 5000, 1); //"Go to X, wait for Toni"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
@@ -324,8 +309,7 @@ async function mission_start_joey4() {
   $.tonis_ride.setStatus(0 /* STATUS_PLAYER */);
   Game.SetPoliceIgnorePlayer($.player, false /* Off */);
   Camera.Restore();
-  // TURN ALL THE CARS BACK ON
-  World.SetCarDensityMultiplier(1.0);
+  World.SetCarDensityMultiplier(1.0); // TURN ALL THE CARS BACK ON
   $.gen_car12.switch(0);
   Streaming.RequestModel(ped`GANG_TRIAD_A`);
   Streaming.RequestModel(ped`GANG_TRIAD_B`);
@@ -354,8 +338,6 @@ async function mission_start_joey4() {
     // SCM GOTO → mission_joey4_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
   }
-  //"Get back in the car!"
-  //"Watch the fuckin CAR!"
   while (!($.player.isStoppedInAreaInCar3D(839.2, -667.4, 14.0, 842.1, -673.9, 17.0, $.blob_flag)) || $.player.isWantedLevelGreater(0) || !($.player.isInCar($.tonis_ride))) {
     await asyncWait(0);
     if (Car.IsDead($.tonis_ride)) {
@@ -368,15 +350,12 @@ async function mission_start_joey4() {
       // SCM GOTO → mission_joey4_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
     }
-    //"Get back in the car!"
     if (!($.player.isInCar($.tonis_ride))) {
-      //"Get back in the car!"
       if ($.flag_car_blip_displayed_jm4 == 0 /* FALSE */) {
         $.blip2_jm4 = Blip.AddForCar($.tonis_ride);
         $.blob_flag = 0;
         $.blip1_jm4.remove();
-        //"Get back in the car!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
         $.flag_car_blip_displayed_jm4 = 1 /* TRUE */;
       }
     }
@@ -388,10 +367,8 @@ async function mission_start_joey4() {
         $.flag_car_blip_displayed_jm4 = 0 /* FALSE */;
       }
     }
-    //"Watch the fuckin CAR!"
     if (!($.tonis_ride.isHealthGreater(900)) && $.Toni_abuse1_done_before == 0) {
-      //"Watch the fuckin CAR!"
-      Text.PrintNow("JM4_6", 5000, 1);
+      Text.PrintNow("JM4_6", 5000, 1); //"Watch the fuckin CAR!"
       Audio.PlayMissionAudio();
       $.Toni_abuse1_done_before = 1;
     }
@@ -416,10 +393,10 @@ async function mission_start_joey4() {
   Camera.SetFixedPosition(825.604, -680.602, 16.567, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(826.336, -679.921, 16.539, 2 /* JUMP_CUT */);
   Audio.LoadMissionAudio(J4_B);
-  //TONI LANDRETTE CUT_SCENE
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
+  //TONI LANDRETTE CUT_SCENE
   if (!(Char.IsDead($.triad1_jm4)) && !(Char.IsDead($.triad2_jm4))) {
     Game.SetCharsChatting($.triad1_jm4, $.triad2_jm4, 999999);
   }
@@ -427,8 +404,7 @@ async function mission_start_joey4() {
     $.toni.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
   }
   Audio.PlayMissionAudio();
-  //wait here
-  Text.PrintNow("JM4_2", 5000, 1);
+  Text.PrintNow("JM4_2", 5000, 1); //wait here
   World.ClearArea(843.4, -663.8, 15.0, 10.0, true /* TRUE */);
   await asyncWait(4000);
   if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
@@ -438,9 +414,6 @@ async function mission_start_joey4() {
   }
   $.toni.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 0);
   $.toni.setObjLeaveCar($.tonis_ride);
-  //SET_FIXED_CAMERA_POSITION 840.0 -672.4 17.0 0.0 0.0 0.0
-  //SET_FIXED_CAMERA_POSITION 836.632 -670.922 17.843 0.0 0.0 0.0
-  //POINT_CAMERA_AT_CHAR toni FIXED INTERPOLATION
   while ($.toni.isInCar($.tonis_ride)) {
     await asyncWait(0);
     if (Char.IsDead($.toni)) {
@@ -458,9 +431,12 @@ async function mission_start_joey4() {
       throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
     }
   }
+  //SET_FIXED_CAMERA_POSITION 840.0 -672.4 17.0 0.0 0.0 0.0
+  //SET_FIXED_CAMERA_POSITION 836.632 -670.922 17.843 0.0 0.0 0.0
+  //POINT_CAMERA_AT_CHAR toni FIXED INTERPOLATION
   Camera.SetFixedPosition(841.312, -669.063, 16.536, 0.0, 0.0, 0.0);
-  //TONI WALKS TO DOORS
   Camera.PointAtPoint(842.117, -668.501, 16.343, 2 /* JUMP_CUT */);
+  //TONI WALKS TO DOORS
   if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
     Text.PrintNow("JM4_8", 5000, 1);
     // SCM GOTO → mission_joey4_failed (not lowered; manual jump required)
@@ -469,7 +445,6 @@ async function mission_start_joey4() {
   $.toni.turnToFaceCoord(843.9, -663.7, 15.1);
   TIMERB = 0;
   $.toni.setObjGotoCoordOnFoot(843.9, -663.7);
-  //OPEN DOORS
   while (!($.toni.isObjectivePassed())) {
     await asyncWait(0);
     if (Char.IsDead($.toni)) {
@@ -492,7 +467,7 @@ async function mission_start_joey4() {
       }
     }
   }
-  //TONI WALKS IN
+  //OPEN DOORS
   while (!($.laundrete_door1.rotate(90.0, 10.0, false /* FALSE */)) || !($.laundrete_door2.rotate(90.0, 10.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Char.IsDead($.toni)) {
@@ -510,6 +485,7 @@ async function mission_start_joey4() {
       throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
     }
   }
+  //TONI WALKS IN
   if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
     Text.PrintNow("JM4_8", 5000, 1);
     // SCM GOTO → mission_joey4_failed (not lowered; manual jump required)
@@ -551,8 +527,7 @@ async function mission_start_joey4() {
     $.triad2_jm4.lookAtCharAlways($.toni);
   }
   await asyncWait(5000);
-  //Need Sound event
-  Sound.AddOneOffSound(845.0, -663.0, 14.0, 0 /* sound_test_1 */);
+  Sound.AddOneOffSound(845.0, -663.0, 14.0, 0 /* sound_test_1 */); //Need Sound event
   $.door1_position_jm4 = $.laundrete_door1.getHeading();
   $.door2_position_jm4 = $.laundrete_door2.getHeading();
   if (Char.IsDead($.toni)) {
@@ -566,13 +541,13 @@ async function mission_start_joey4() {
     $.triad2_jm4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
   }
   $.toni.setRunning(true /* TRUE */);
-  //TONI RUNS OUT
   if (!(Char.IsDead($.triad1_jm4)) || !(Char.IsDead($.triad2_jm4))) {
     $.triad1_jm4.setStayInSamePlace(true /* TRUE */);
     $.triad2_jm4.setStayInSamePlace(true /* TRUE */);
     $.triad1_jm4.setObjKillCharOnFoot($.toni);
     $.triad2_jm4.setObjKillCharOnFoot($.toni);
   }
+  //TONI RUNS OUT
   World.ClearArea(843.4, -663.8, 15.0, 10.0, true /* TRUE */);
   TIMERB = 0;
   if (!(Char.IsDead($.triad1_jm4)) && !(Char.IsDead($.triad2_jm4))) {
@@ -606,13 +581,13 @@ async function mission_start_joey4() {
   Camera.SetFixedPosition(836.029, -677.868, 15.840, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(836.713, -677.156, 15.680, 2 /* JUMP_CUT */);
   await asyncWait(1500);
-  //TRIADS RUN OUT
   if (!(Char.IsDead($.triad1_jm4)) && !(Char.IsDead($.triad2_jm4))) {
     $.triad1_jm4.setStayInSamePlace(false /* FALSE */);
     $.triad2_jm4.setStayInSamePlace(false /* FALSE */);
     $.triad1_jm4.setObjRunToCoord(842.0, -663.8);
     $.triad2_jm4.setObjRunToCoord(843.5, -663.8);
   }
+  //TRIADS RUN OUT
   while (!($.triads_ojective_passed == 2)) {
     await asyncWait(0);
     if (Char.IsDead($.toni)) {
@@ -683,12 +658,11 @@ async function mission_start_joey4() {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"GO GO GO!"
-  Text.PrintNow("JM4_3", 4000, 1);
+  Text.PrintNow("JM4_3", 4000, 1); //"GO GO GO!"
   Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
   $.blip3_jm4 = Blip.AddForCoord(1216.8, -327.6, -100.0);
-  // CLOSE DOORS
   $.blip3_jm4.changeDisplay(2 /* BLIP_ONLY */);
+  // CLOSE DOORS
   while (!($.laundrete_door1.rotate(0.0, 10.0, false /* FALSE */)) || !($.laundrete_door2.rotate(180.0, 10.0, false /* FALSE */))) {
     await asyncWait(0);
     if (Char.IsDead($.toni)) {
@@ -711,8 +685,8 @@ async function mission_start_joey4() {
   $.is_char3_dead_jm4 = 0;
   $.is_char4_dead_jm4 = 0;
   $.flag_car_blip_displayed_jm4 = 1 /* TRUE */;
-  // waiting for the player to get to Toni's
   $.blip3_jm4.remove();
+  // waiting for the player to get to Toni's
   if (!(Char.IsDead($.triad1_jm4))) {
     $.triad1_jm4.setThreatSearch(0 /* THREAT_PLAYER1 */);
   }
@@ -722,7 +696,6 @@ async function mission_start_joey4() {
   World.ClearArea(1216.7, -328.1, 26.0, 6.0, true /* TRUE */);
   $.flag_displayed_wanted_message_jm4 = 0;
   $.blob_flag = 1;
-  //"Get back in the car!"
   while (!($.player.isStoppedInAreaInCar3D(1215.0, -326.9, 25.0, 1220.2, -330.5, 27.0, $.blob_flag)) || $.player.isWantedLevelGreater(0) || !($.player.isInCar($.tonis_ride))) {
     await asyncWait(0);
     if (Char.IsDead($.toni)) {
@@ -734,14 +707,11 @@ async function mission_start_joey4() {
       // SCM GOTO → mission_joey4_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
     }
-    //"Get back in the car!"
     if (!($.player.isInCar($.tonis_ride))) {
-      //"Get back in the car!"
       if ($.flag_car_blip_displayed_jm4 == 0 /* FALSE */) {
         $.blip2_jm4 = Blip.AddForCar($.tonis_ride);
         $.blip3_jm4.remove();
-        //"Get back in the car!"
-        Text.PrintNow("IN_VEH", 5000, 1);
+        Text.PrintNow("IN_VEH", 5000, 1); //"Get back in the car!"
         $.blob_flag = 0;
         $.flag_car_blip_displayed_jm4 = 1 /* TRUE */;
       }
@@ -804,16 +774,14 @@ async function mission_start_joey4() {
     $.toni.lookAtPlayerAlways($.player);
     $.player.lookAtCharAlways($.toni);
   }
-  //SAMPLE 1***************************************************
   $.blip2_jm4.remove();
+  //SAMPLE 1***************************************************
   Audio.LoadMissionAudio(J4_D);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"come back for job"
-  Text.PrintNow("JM4_4", 4000, 1);
-  //SAMPLE 2***************************************************
+  Text.PrintNow("JM4_4", 4000, 1); //"come back for job"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
@@ -822,14 +790,13 @@ async function mission_start_joey4() {
       throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
     }
   }
+  //SAMPLE 2***************************************************
   Audio.LoadMissionAudio(J4_E);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
   }
   Audio.PlayMissionAudio();
-  //"come back for job"
-  Text.PrintNow("JM4_5", 5000, 1);
-  //SAMPLE 3***************************************************
+  Text.PrintNow("JM4_5", 5000, 1); //"come back for job"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
     if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
@@ -838,6 +805,7 @@ async function mission_start_joey4() {
       throw new Error("unresolved GOTO mission_joey4_failed"); // fallback: would break linear control flow
     }
   }
+  //SAMPLE 3***************************************************
   Audio.LoadMissionAudio(J4_F);
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
@@ -905,8 +873,7 @@ async function mission_start_joey4() {
   World.ClearArea(1219.5, -315.4, 29.9, 2.0, true /* TRUE */);
   $.toni.setObjGotoCoordOnFoot(1219.5, -318.6);
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 3000, 7000, 1);
+  Text.PrintWithNumberBig("M_PASS", 3000, 7000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(3000);
   while (!($.toni.isObjectivePassed())) {
@@ -928,24 +895,23 @@ async function mission_start_joey4() {
   Camera.RestoreJumpcut();
   $.toni.delete();
   }
-  // Mission Joey4 failed
   // SCM GOTO → mission_joey4_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_joey4_passed"); // fallback: would break linear control flow
+  // Mission Joey4 failed
 }
 
 async function mission_joey4_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission Joey4 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission Joey4 passed
 }
 
 async function mission_joey4_passed() {
+  $.flag_joey_mission4_passed = 1;
   //PLAY_MISSION_PASSED_TUNE 1
   //PRINT_WITH_NUMBER_BIG ( M_PASS ) 3000 5000 1 //"Mission Passed!"
   //CLEAR_WANTED_LEVEL player
   //ADD_SCORE player 3000
-  $.flag_joey_mission4_passed = 1;
   Stat.RegisterMissionPassed(JM4);
   Stat.PlayerMadeProgress(1);
   $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, 26.4, 19 /* RADAR_SPRITE_TONY */);
@@ -954,8 +920,8 @@ async function mission_joey4_passed() {
   // START_NEW_SCRIPT toni_mission1_loop
   // START_NEW_SCRIPT joey_mission5_loop
   // START_NEW_SCRIPT uzi_message
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_joey4() {
@@ -984,11 +950,11 @@ async function delete_tonis_car() {
 }
 
 export async function joey4() {
+  // MissionBoundary
   // *******************************************************************************************
   // **************************************Joey Mission 4***************************************
   // ***************************************pick up Toni****************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_joey4
   await mission_start_joey4();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1000,14 +966,14 @@ export async function joey4() {
   // SCM GOSUB mission_cleanup_joey4
   await mission_cleanup_joey4();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT blip1_jm4 blip2_jm4 blip3_jm4 flag_car_blip_displayed_jm4 triads_ojective_passed
   // VAR_INT ojective_triad1_done_before ojective_triad2_done_before
   // VAR_INT Toni_abuse1_done_before tonis_car_created_before played_tune_before
   // VAR_INT flag_displayed_wanted_message_jm4 flag_displayed_horn_message_jm4
   // VAR_INT tonis_ride is_char1_dead_jm4 is_char2_dead_jm4 is_char3_dead_jm4 is_char4_dead_jm4
   // VAR_INT triad1_jm4 triad2_jm4 triad3_jm4 triad4_jm4 tonis_audio_all_finished
-  // ***************************************Mission Start*************************************
   // VAR_FLOAT door1_position_jm4 door2_position_jm4
+  // ***************************************Mission Start*************************************
 }

@@ -50,8 +50,8 @@ async function mission_start_asuka2() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
   Streaming.Switch(true /* ON */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 1892) {
     await asyncWait(0);
@@ -130,10 +130,10 @@ async function mission_start_asuka2() {
   Streaming.RequestModel(ped`GANG_MAFIA_A`);
   Streaming.RequestModel(ped`GANG_MAFIA_B`);
   Streaming.RequestModel(car`RUMPO`);
-  // MISSION START
   while (!(Streaming.HasModelLoaded(ped`GANG_MAFIA_A`)) || !(Streaming.HasModelLoaded(ped`GANG_MAFIA_B`)) || !(Streaming.HasModelLoaded(car`RUMPO`))) {
     await asyncWait(0);
   }
+  // MISSION START
   $.fed1_already_dead = 0;
   $.fed2_already_dead = 0;
   $.fed3_already_dead = 0;
@@ -144,85 +144,77 @@ async function mission_start_asuka2() {
   $.fed8_already_dead = 0;
   $.fed9_already_dead = 0;
   $.fed10_already_dead = 0;
-  //ADD_BLIP_FOR_COORD 430.0 -1448.7 -100.0 blip1_FBI1
   $.fedvan1_already_dead = 0;
+  //ADD_BLIP_FOR_COORD 430.0 -1448.7 -100.0 blip1_FBI1
   $.countdown_as2 = 391000;
-  //FEDS ON TOWER BLOCK*****************************************************************************
   Hud.DisplayTimer($.countdown_as2);
-  //Floor4
-  $.FBI1 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_A`, 383.0, -1447.9, 51.4);
+  //FEDS ON TOWER BLOCK*****************************************************************************
+  $.FBI1 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_A`, 383.0, -1447.9, 51.4); //Floor4
   $.FBI1.setHeading(304.0);
   $.FBI1.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.FBI1.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
   $.FBI1.setStayInSamePlace(true /* TRUE */);
   $.FBI1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  //ADD_ARMOUR_TO_CHAR FBI1 99
   $.blip1_FBI1 = Blip.AddForChar($.FBI1);
-  //floor6
-  $.FBI2 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_B`, 381.2, -1438.2, 63.4);
+  //ADD_ARMOUR_TO_CHAR FBI1 99
+  $.FBI2 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_B`, 381.2, -1438.2, 63.4); //floor6
   $.FBI2.setHeading(304.0);
   $.FBI2.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.FBI2.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
   $.FBI2.setStayInSamePlace(true /* TRUE */);
   $.FBI2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  //ADD_ARMOUR_TO_CHAR FBI2 99
   $.blip2_FBI2 = Blip.AddForChar($.FBI2);
-  //floor7
-  $.FBI3 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_A`, 383.5, -1452.3, 69.4);
+  //ADD_ARMOUR_TO_CHAR FBI2 99
+  $.FBI3 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_A`, 383.5, -1452.3, 69.4); //floor7
   $.FBI3.setHeading(304.0);
   $.FBI3.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.FBI3.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
   $.FBI3.setStayInSamePlace(true /* TRUE */);
   $.FBI3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  //ADD_ARMOUR_TO_CHAR FBI3 99
   $.blip3_FBI3 = Blip.AddForChar($.FBI3);
-  //floor5
-  $.FBI8 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_B`, 381.6, -1451.7, 57.5);
+  //ADD_ARMOUR_TO_CHAR FBI3 99
+  $.FBI8 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_B`, 381.6, -1451.7, 57.5); //floor5
   $.FBI8.setHeading(304.0);
   $.FBI8.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.FBI8.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
   $.FBI8.setStayInSamePlace(true /* TRUE */);
   $.FBI8.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  //ADD_ARMOUR_TO_CHAR FBI8 99
   $.blip8_FBI8 = Blip.AddForChar($.FBI8);
-  //floor8
-  $.FBI9 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_A`, 381.4, -1443.5, 75.5);
+  //ADD_ARMOUR_TO_CHAR FBI8 99
+  $.FBI9 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_A`, 381.4, -1443.5, 75.5); //floor8
   $.FBI9.setHeading(304.0);
   $.FBI9.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.FBI9.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
   $.FBI9.setStayInSamePlace(true /* TRUE */);
   $.FBI9.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  //ADD_ARMOUR_TO_CHAR FBI9 99
   $.blip9_FBI9 = Blip.AddForChar($.FBI9);
-  //floor9 (Top)
-  $.FBI10 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_B`, 379.0, -1449.6, 81.4);
+  //ADD_ARMOUR_TO_CHAR FBI9 99
+  $.FBI10 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_B`, 379.0, -1449.6, 81.4); //floor9 (Top)
   $.FBI10.setHeading(304.0);
   $.FBI10.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.FBI10.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
   $.FBI10.setStayInSamePlace(true /* TRUE */);
   $.FBI10.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  $.blip10_FBI10 = Blip.AddForChar($.FBI10);
   //ADD_ARMOUR_TO_CHAR FBI10 99
   //FEDS AT PARK**********************************************************************************
-  $.blip10_FBI10 = Blip.AddForChar($.FBI10);
-  //Park
-  $.FBI4 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_A`, 48.4, -642.8, 29.0);
+  $.FBI4 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_A`, 48.4, -642.8, 29.0); //Park
   $.FBI4.setHeading(169.0);
   $.FBI4.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.FBI4.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
   $.FBI4.setStayInSamePlace(true /* TRUE */);
   $.FBI4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-  //ADD_ARMOUR_TO_CHAR FBI4 99
   $.blip4_FBI4 = Blip.AddForChar($.FBI4);
-  //Park
-  $.FBI7 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_B`, 42.2, -641.3, 27.8);
+  //ADD_ARMOUR_TO_CHAR FBI4 99
+  $.FBI7 = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`GANG_MAFIA_B`, 42.2, -641.3, 27.8); //Park
   $.FBI7.setHeading(208.0);
   $.FBI7.setThreatSearch(0 /* THREAT_PLAYER1 */);
   $.FBI7.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
   $.FBI7.setStayInSamePlace(true /* TRUE */);
   $.FBI7.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+  $.blip7_FBI7 = Blip.AddForChar($.FBI7);
   //ADD_ARMOUR_TO_CHAR FBI7 99
   //FEDS IN VAN**********************************************************************************
-  $.blip7_FBI7 = Blip.AddForChar($.FBI7);
   $.FBI_VAN1 = Car.Create(123 /* CAR_RUMPO */, 61.3, -1389.4, 26.3);
   $.FBI_VAN1.changeColor(0 /* CARCOLOUR_BLACK */, 0 /* CARCOLOUR_BLACK */);
   $.FBI_VAN1.setOnlyDamagedByPlayer(true /* True */);
@@ -238,17 +230,13 @@ async function mission_start_asuka2() {
   $.FBI5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
   $.FBI6.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
   $.FBI5.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
+  $.FBI6.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
   /*
   LOAD_MISSION_AUDIO A3_A
   WHILE NOT HAS_MISSION_AUDIO_LOADED
   WAIT 0
   ENDWHILE
   */
-  $.FBI6.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
-  //CHECK PED HEALTH
-  //PARK
-  //ROOFTOP
-  //PLAY_MISSION_AUDIO
   while (!($.number_of_feds_killed == 10)) {
     await asyncWait(0);
     if (Char.IsDead($.FBI1) && $.fed1_already_dead == 0) {
@@ -296,12 +284,12 @@ async function mission_start_asuka2() {
       $.number_of_feds_killed++;
       $.fed9_already_dead = 1;
     }
-    //CHECK PED HEALTH
     if (Char.IsDead($.FBI10) && $.fed10_already_dead == 0) {
       $.blip10_FBI10.remove();
       $.number_of_feds_killed++;
       $.fed10_already_dead = 1;
     }
+    //CHECK PED HEALTH
     if (!(Char.IsDead($.FBI1))) {
       $.FBI1health = $.FBI1.getHealth();
     }
@@ -323,7 +311,6 @@ async function mission_start_asuka2() {
     if (!(Char.IsDead($.FBI9))) {
       $.FBI9health = $.FBI9.getHealth();
     }
-    //PARK
     if (!(Char.IsDead($.FBI10))) {
       $.FBI10health = $.FBI10.getHealth();
     }
@@ -341,7 +328,7 @@ async function mission_start_asuka2() {
         $.fbi_spotted_player2 = 1;
       }
     }
-    //ROOFTOP
+    //PARK
     if (Char.IsDead($.FBI4) || Char.IsDead($.FBI7)) {
       if ($.fbi_spotted_player2 == 0) {
         if (!(Char.IsDead($.FBI4))) {
@@ -355,10 +342,8 @@ async function mission_start_asuka2() {
         $.fbi_spotted_player2 = 1;
       }
     }
-    //PLAY_MISSION_AUDIO
     //ROOFTOP
     if ($.FBI1health < 100 || $.FBI2health < 100 || $.FBI3health < 100 || $.FBI8health < 100 || $.FBI9health < 100 || $.FBI10health < 100) {
-      //PLAY_MISSION_AUDIO
       if ($.fbi_spotted_player == 0) {
         if (!(Char.IsDead($.FBI1))) {
           $.FBI1.setObjKillPlayerOnFoot($.player);
@@ -396,9 +381,8 @@ async function mission_start_asuka2() {
         $.fbi_spotted_player = 1;
       }
     }
-    //PLAY_MISSION_AUDIO
+    //ROOFTOP
     if (Char.IsDead($.FBI1) || Char.IsDead($.FBI2) || Char.IsDead($.FBI3) || Char.IsDead($.FBI8) || Char.IsDead($.FBI9) || Char.IsDead($.FBI10)) {
-      //PLAY_MISSION_AUDIO
       if ($.fbi_spotted_player == 0) {
         if (!(Char.IsDead($.FBI1))) {
           $.FBI1.setObjKillPlayerOnFoot($.player);
@@ -453,35 +437,32 @@ async function mission_start_asuka2() {
     }
   }
   }
-  // Mission asuka2 failed
   // SCM GOTO → mission_asuka2_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_asuka2_passed"); // fallback: would break linear control flow
+  // Mission asuka2 failed
 }
 
 async function mission_asuka2_failed() {
-  //"Mission Failed"
-  Text.PrintBig("M_FAIL", 5000, 1);
-  // mission asuka2 passed
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed"
   return;
+  // mission asuka2 passed
 }
 
 async function mission_asuka2_passed() {
   $.flag_asuka_mission2_passed = 1;
   Audio.PlayMissionPassedTune(1);
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 15000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 15000, 5000, 1); //"Mission Passed!"
   $.player.clearWantedLevel();
   $.player.addScore(15000);
   Stat.RegisterMissionPassed(AM2);
   Stat.PlayerMadeProgress(1);
-  //TEST STUFF
-  $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, 11 /* RADAR_SPRITE_KENJI */);
+  $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, 11 /* RADAR_SPRITE_KENJI */); //TEST STUFF
   $.com_ammu_nation2.remove();
   $.com_sprayshop2.remove();
   // START_NEW_SCRIPT asuka_mission3_loop
   // START_NEW_SCRIPT kenji_mission1_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_asuka2() {
@@ -506,11 +487,11 @@ async function mission_cleanup_asuka2() {
 }
 
 export async function asuka2() {
+  // MissionBoundary
   // *****************************************************************************************
   // ****************************************Asuka mission 2**********************************
   // **************************************Sniper Surveillance********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_asuka2
   await mission_start_asuka2();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -522,8 +503,8 @@ export async function asuka2() {
   // SCM GOSUB mission_cleanup_asuka2
   await mission_cleanup_asuka2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT tail_car_asuka2
   // VAR_INT blip1_FBI1 blip2_FBI2 blip3_FBI3 blip4_FBI4 blip5_FBI5 blip6_FBI6 blip7_FBI7 blip8_FBI8 blip9_FBI9 blip10_FBI10 blip1_FBI_VAN
   // VAR_INT countdown_as2 FBI1health FBI2health FBI3health FBI4health FBI7health FBI8health FBI9health FBI10health
@@ -531,6 +512,6 @@ export async function asuka2() {
   // VAR_INT sniper_asuka been_damaged_before
   // VAR_INT number_of_feds_killed fed1_already_dead fed2_already_dead fed3_already_dead fed4_already_dead fed5_already_dead fed6_already_dead
   // VAR_INT fed7_already_dead fed8_already_dead fed9_already_dead fed10_already_dead
-  // ****************************************Mission Start************************************
   // VAR_INT fedvan1_already_dead fbi_spotted_player fbi_spotted_player2
+  // ****************************************Mission Start************************************
 }

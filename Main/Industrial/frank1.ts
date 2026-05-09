@@ -111,8 +111,8 @@ async function mission_start_frankie1() {
   $.cs_mariahead.setAnim($.maria);
   $.player.setCoordinates(1418.0, -186.0, -100.0);
   $.player.setHeading(270.0);
-  //SWITCH_STREAMING ON
   Camera.DoFade(1500, 1 /* FADE_IN */);
+  //SWITCH_STREAMING ON
   Cutscene.Start();
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 219) {
@@ -224,8 +224,7 @@ async function mission_start_frankie1() {
   $.frankies_limo = Car.Create(92 /* CAR_STRETCH */, 1436.0, -183.0, 50.0);
   Audio.SetRadioChannel(3, -1);
   $.frankies_limo.setHeading(90.0);
-  // FRANKIES LIMO NEEDS A UNIQUE COLOUR
-  $.frankies_limo.changeColor(0, 0);
+  $.frankies_limo.changeColor(0, 0); // FRANKIES LIMO NEEDS A UNIQUE COLOUR
   $.frankies_limo.setStrong(true /* TRUE */);
   $.frankies_limo.setCanRespray(false /* FALSE */);
   $.player.setControl(false /* OFF */);
@@ -275,10 +274,8 @@ async function mission_start_frankie1() {
     await asyncWait(0);
   }
   Streaming.Switch(true /* ON */);
-  // "You failed to protect Maria!"
   if (Char.IsDead($.maria)) {
-    // "You failed to protect Maria!"
-    Text.PrintNow(FM1_7, 5000, 1);
+    Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
     // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
   }
@@ -293,10 +290,8 @@ async function mission_start_frankie1() {
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
-  // "You failed to protect Maria!"
   if (Char.IsDead($.maria)) {
-    // "You failed to protect Maria!"
-    Text.PrintNow(FM1_7, 5000, 1);
+    Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
     // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
   }
@@ -319,10 +314,8 @@ async function mission_start_frankie1() {
   }
   $.frankie_garage.close();
   $.player.applyBrakesToCar(true /* ON */);
-  // "You failed to protect Maria!"
   if (Char.IsDead($.maria)) {
-    // "You failed to protect Maria!"
-    Text.PrintNow(FM1_7, 5000, 1);
+    Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
     // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
   }
@@ -336,44 +329,30 @@ async function mission_start_frankie1() {
   Streaming.RequestModel(ped`SWAT`);
   Streaming.RequestModel(ped`P_MAN1`);
   Streaming.RequestModel(ped`FEMALE1`);
-  //WHILE NOT LOCATE_STOPPED_CHAR_IN_CAR_2D maria chico_x chico_y 10.0 10.0 0
   Streaming.RequestModel(ped`FEMALE2`);
-  // "You failed to protect Maria!"
-  // "You killed Chico!"
-  // "The vehicle is wrecked!"
-  //"Get back into the limo!"
-  //THATS CHICO OVER THERE, STOP NEXT TO HIM AND I'LL GET OUT
-  //WHERE ARE YOU GOING, I WANT TO SEE CHICO
+  //WHILE NOT LOCATE_STOPPED_CHAR_IN_CAR_2D maria chico_x chico_y 10.0 10.0 0
   while (!($.maria.locateStoppedInCar3D(775.5, -557.3, 14.0, 3.0, 3.0, 2.0, $.locate_dome_flag))) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "You killed Chico!"
     if (Char.IsDead($.chico)) {
-      // "You killed Chico!"
-      Text.PrintNow(FM1_8, 5000, 1);
+      Text.PrintNow(FM1_8, 5000, 1); // "You killed Chico!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    //"Get back into the limo!"
     if (!($.player.isInCar($.frankies_limo)) && $.flag_blip_on_limo == 0) {
       $.locate_dome_flag = 0;
       $.fm1_blip.remove();
       $.fm1_blip = Blip.AddForCar($.frankies_limo);
-      //"Get back into the limo!"
-      Text.PrintNow("FM1_1", 5000, 1);
+      Text.PrintNow("FM1_1", 5000, 1); //"Get back into the limo!"
       $.flag_blip_on_limo = 1;
     }
     if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
@@ -383,157 +362,107 @@ async function mission_start_frankie1() {
       $.flag_blip_on_limo = 0;
     }
     [$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates();
-    //THATS CHICO OVER THERE, STOP NEXT TO HIM AND I'LL GET OUT
     if ($.player.locateInCar2D($.chico_x, $.chico_y, 30.0, 30.0, false) && $.chico_message_flag == 0) {
-      //THATS CHICO OVER THERE, STOP NEXT TO HIM AND I'LL GET OUT
-      Text.PrintNow(FM1_P, 5000, 1);
+      Text.PrintNow(FM1_P, 5000, 1); //THATS CHICO OVER THERE, STOP NEXT TO HIM AND I'LL GET OUT
       $.chico_message_flag = 1;
     }
-    //WHERE ARE YOU GOING, I WANT TO SEE CHICO
     if ($.chico_message_flag == 1 && !($.player.locateInCar2D($.chico_x, $.chico_y, 30.0, 30.0, false))) {
-      //WHERE ARE YOU GOING, I WANT TO SEE CHICO
-      Text.PrintNow(FM1_6, 5000, 1);
+      Text.PrintNow(FM1_6, 5000, 1); //WHERE ARE YOU GOING, I WANT TO SEE CHICO
       $.chico_message_flag = 0;
     }
   }
   $.player.setControl(false /* OFF */);
   Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
-  //MAKE_PLAYER_SAFE player
   Hud.SwitchWidescreen(true /* ON */);
+  //MAKE_PLAYER_SAFE player
+  Game.SetAllCarsCanBeDamaged(false /* FALSE */);
   //SET_FIXED_CAMERA_POSITION 769.86 -569.95 14.462 0.0 0.0 0.0
   //POINT_CAMERA_AT_CHAR maria FIXED JUMP_CUT
-  Game.SetAllCarsCanBeDamaged(false /* FALSE */);
   Camera.SetFixedPosition(770.7659, -569.9462, 14.3248, 0.0, 0.0, 0.0);
   Camera.PointAtPoint(770.7453, -568.9474, 14.4, 2 /* JUMP_CUT */);
   $.fm1_blip.remove();
   $.frankie_garage.close();
   $.maria.setObjLeaveCar($.frankies_limo);
-  // "You failed to protect Maria!"
-  // "You killed Chico!"
-  // "The vehicle is wrecked!"
-  //"Get back into the limo!"
-  //COMEBACK
   while ($.maria.isInAnyCar()) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "You killed Chico!"
     if (Char.IsDead($.chico)) {
-      // "You killed Chico!"
-      Text.PrintNow(FM1_8, 5000, 1);
+      Text.PrintNow(FM1_8, 5000, 1); // "You killed Chico!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    //"Get back into the limo!"
     if (!($.player.isInCar($.frankies_limo)) && $.flag_blip_on_limo == 0) {
       $.fm1_blip = Blip.AddForCar($.frankies_limo);
-      //"Get back into the limo!"
-      Text.PrintNow("FM1_1", 5000, 1);
+      Text.PrintNow("FM1_1", 5000, 1); //"Get back into the limo!"
       $.flag_blip_on_limo = 1;
     }
     if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
       $.fm1_blip.remove();
       $.flag_blip_on_limo = 0;
     }
-    //COMEBACK
     if (!($.player.locateAnyMeansChar2D($.maria, 20.0, 20.0, false))) {
-      //COMEBACK
-      Text.PrintNow(FM1_3, 5000, 1);
+      Text.PrintNow(FM1_3, 5000, 1); //COMEBACK
     }
   }
   $.maria.setObjGotoCharOnFoot($.chico);
   [$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates();
-  // "You failed to protect Maria!"
-  // "You killed Chico!"
-  // "The vehicle is wrecked!"
-  //"Get back into the limo!"
-  //COMEBACK
   while (!($.maria.locateStoppedOnFoot2D($.chico_x, $.chico_y, 3.0, 3.0, false))) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "You killed Chico!"
     if (Char.IsDead($.chico)) {
-      // "You killed Chico!"
-      Text.PrintNow(FM1_8, 5000, 1);
+      Text.PrintNow(FM1_8, 5000, 1); // "You killed Chico!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
     [$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates();
-    //"Get back into the limo!"
     if (!($.player.isInCar($.frankies_limo)) && $.flag_blip_on_limo == 0) {
       $.fm1_blip = Blip.AddForCar($.frankies_limo);
-      //"Get back into the limo!"
-      Text.PrintNow("FM1_1", 5000, 1);
+      Text.PrintNow("FM1_1", 5000, 1); //"Get back into the limo!"
       $.flag_blip_on_limo = 1;
     }
     if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
       $.fm1_blip.remove();
       $.flag_blip_on_limo = 0;
     }
-    //COMEBACK
     if (!($.player.locateAnyMeansChar2D($.maria, 20.0, 20.0, false))) {
-      //COMEBACK
-      Text.PrintNow(FM1_3, 5000, 1);
+      Text.PrintNow(FM1_3, 5000, 1); //COMEBACK
     }
   }
   Text.ClearSmallPrints();
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
-  // "You killed Chico!"
-  //"Ciao baby."
-  //"Thanks for the tip. C'mon, let's go party. See you around Chico."
-  //"You should check out the warehouse party going down at the North end of Portland Harbour."
-  //"Here you go lady"
-  //"Hi Chico. Yeah just the usual."
-  //"You looking for some spank?"
-  //"Hey it's my favourite lady!"
   while (!($.chico_audio_flag == 15)) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       Audio.ClearMissionAudio();
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       Audio.ClearMissionAudio();
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "You killed Chico!"
     if (Char.IsDead($.chico)) {
-      // "You killed Chico!"
-      Text.PrintNow(FM1_8, 5000, 1);
+      Text.PrintNow(FM1_8, 5000, 1); // "You killed Chico!"
       Audio.ClearMissionAudio();
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
@@ -571,14 +500,11 @@ async function mission_start_frankie1() {
         $.chico_audio_flag = 15;
       }
     }
-    //"Ciao baby."
     if ($.chico_audio_flag == 13) {
-      //"Ciao baby."
       if (Audio.HasMissionAudioLoaded()) {
         [$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates();
         Audio.PlayMissionAudio();
-        //"Ciao baby."
-        Text.PrintNow(FM1_U, 2000, 1);
+        Text.PrintNow(FM1_U, 2000, 1); //"Ciao baby."
         $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
         $.chico_audio_flag = 14;
       }
@@ -592,14 +518,11 @@ async function mission_start_frankie1() {
         $.chico_audio_flag = 13;
       }
     }
-    //"Thanks for the tip. C'mon, let's go party. See you around Chico."
     if ($.chico_audio_flag == 11) {
-      //"Thanks for the tip. C'mon, let's go party. See you around Chico."
       if (Audio.HasMissionAudioLoaded()) {
         [$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates();
         Audio.PlayMissionAudio();
-        //"Thanks for the tip. C'mon, let's go party. See you around Chico."
-        Text.PrintNow(FM1_T, 4000, 2);
+        Text.PrintNow(FM1_T, 4000, 2); //"Thanks for the tip. C'mon, let's go party. See you around Chico."
         $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
         $.chico_audio_flag = 12;
       }
@@ -613,14 +536,11 @@ async function mission_start_frankie1() {
         $.chico_audio_flag = 11;
       }
     }
-    //"You should check out the warehouse party going down at the North end of Portland Harbour."
     if ($.chico_audio_flag == 9) {
-      //"You should check out the warehouse party going down at the North end of Portland Harbour."
       if (Audio.HasMissionAudioLoaded()) {
         [$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates();
         Audio.PlayMissionAudio();
-        //"You should check out the warehouse party going down at the North end of Portland Harbour."
-        Text.PrintNow(FM1_S1, 15000, 2);
+        Text.PrintNow(FM1_S1, 15000, 2); //"You should check out the warehouse party going down at the North end of Portland Harbour."
         $.chico_audio_flag = 10;
       }
     }
@@ -632,15 +552,12 @@ async function mission_start_frankie1() {
         $.chico_audio_flag = 9;
       }
     }
-    //"Here you go lady"
     if ($.chico_audio_flag == 7) {
-      //"Here you go lady"
       if (Audio.HasMissionAudioLoaded()) {
         [$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates();
         $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
         Audio.PlayMissionAudio();
-        //"Here you go lady"
-        Text.PrintNow(FM1_S, 5000, 2);
+        Text.PrintNow(FM1_S, 5000, 2); //"Here you go lady"
         $.chico_audio_flag = 8;
       }
     }
@@ -653,14 +570,11 @@ async function mission_start_frankie1() {
         $.chico_audio_flag = 7;
       }
     }
-    //"Hi Chico. Yeah just the usual."
     if ($.chico_audio_flag == 5) {
-      //"Hi Chico. Yeah just the usual."
       if (Audio.HasMissionAudioLoaded()) {
         [$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates();
         Audio.PlayMissionAudio();
-        //"Hi Chico. Yeah just the usual."
-        Text.PrintNow(FM1_R, 6000, 2);
+        Text.PrintNow(FM1_R, 6000, 2); //"Hi Chico. Yeah just the usual."
         $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
         $.chico_audio_flag = 6;
       }
@@ -674,14 +588,11 @@ async function mission_start_frankie1() {
         $.chico_audio_flag = 5;
       }
     }
-    //"You looking for some spank?"
     if ($.chico_audio_flag == 3) {
-      //"You looking for some spank?"
       if (Audio.HasMissionAudioLoaded()) {
         [$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates();
         Audio.PlayMissionAudio();
-        //"You looking for some spank?"
-        Text.PrintNow(FM1_Q1, 6000, 2);
+        Text.PrintNow(FM1_Q1, 6000, 2); //"You looking for some spank?"
         $.chico_audio_flag = 4;
       }
     }
@@ -693,14 +604,11 @@ async function mission_start_frankie1() {
         $.chico_audio_flag = 3;
       }
     }
-    //"Hey it's my favourite lady!"
     if ($.chico_audio_flag == 1) {
-      //"Hey it's my favourite lady!"
       if (Audio.HasMissionAudioLoaded()) {
         [$.chico_x, $.chico_y, $.chico_z] = $.chico.getCoordinates();
         Audio.PlayMissionAudio();
-        //"Hey it's my favourite lady!"
-        Text.PrintNow(FM1_Q, 6000, 2);
+        Text.PrintNow(FM1_Q, 6000, 2); //"Hey it's my favourite lady!"
         $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
         $.chico_audio_flag = 2;
       }
@@ -709,17 +617,13 @@ async function mission_start_frankie1() {
 }
 
 async function maria_getting_into_car() {
-  // "You failed to protect Maria!"
   if (Char.IsDead($.maria)) {
-    // "You failed to protect Maria!"
-    Text.PrintNow(FM1_7, 5000, 1);
+    Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
     // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
   }
-  // "The vehicle is wrecked!"
   if (Car.IsDead($.frankies_limo)) {
-    // "The vehicle is wrecked!"
-    Text.PrintNow(WRECKED, 5000, 1);
+    Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
     // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
   }
@@ -728,21 +632,15 @@ async function maria_getting_into_car() {
   $.maria.setRunning(true /* TRUE */);
   $.chico.markAsNoLongerNeeded();
   Path.SwitchPedRoadsOn(759.0, -616.0, 11.0, 782.0, -536.0, 26.0);
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
   while (!($.maria.isInCar($.frankies_limo))) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
@@ -758,28 +656,21 @@ async function maria_getting_into_car() {
   $.maria.setRunning(false /* FALSE */);
   Camera.RestoreJumpcut();
   Camera.SetInFrontOfPlayer();
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
   while (!(Audio.HasMissionAudioLoaded())) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
   }
   Audio.PlayMissionAudio();
-  //"C'mon Fido, let's go check out this party!"
-  Text.PrintNow(FM1_V, 5000, 1);
+  Text.PrintNow(FM1_V, 5000, 1); //"C'mon Fido, let's go check out this party!"
   $.fm1_blip.remove();
   $.maria_blip.remove();
   $.fm1_blip = Blip.AddForCoord(1256.6, -1099.3, -11.7);
@@ -799,10 +690,9 @@ async function maria_getting_into_car() {
   $.doorman2.setHeedThreats(true /* TRUE */);
   $.parked_car1 = Car.Create(88 /* CAR_SENTINEL */, 1243.0, -1112.0, 11.0);
   $.parked_car2 = Car.Create(98 /* CAR_CHEETAH */, 1247.0, -1112.0, 11.0);
-  /////////////CLUB STUFF////
   $.parked_car3 = Car.Create(93 /* CAR_MANANA */, 1251.0, -1112.0, 11.0);
-  // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
-  Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1270.8430, -1107.7288, 11.1079, 0.0, 1.0, 0, 255, 0, 0);
+  /////////////CLUB STUFF////
+  Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1270.8430, -1107.7288, 11.1079, 0.0, 1.0, 0, 255, 0, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
   Fx.DrawLight(1273.1917, -1107.3098, 11.1079, 255, 0, 0);
   $.warehouse_rave_loop = Sound.AddContinuous(1269.7494, -1100.4137, 14.0, 73 /* SOUND_RAVE_LOOP_INDUSTRIAL_L */);
   Fx.AddParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, 1273.0, -1107.2, 10.7, false);
@@ -814,46 +704,33 @@ async function maria_getting_into_car() {
   $.add_sound_flag = 1;
   $.locate_dome_flag = 1;
   $.chico_message_flag = 0;
-  ///////////////////////////
   $.flag_blip_on_limo = 0;
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
-  //"Thats the club up ahead"
-  //"Get back into the limo!"
+  ///////////////////////////
   while (!($.maria.locateStoppedInCar2D(1259.0410, -1107.7825, 3.0, 3.0, $.locate_dome_flag))) {
     await asyncWait(0);
     // SCM GOSUB draw_disco_lights
     await draw_disco_lights();
     // fallback if label was not emitted as async function: no-op continues linearly
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    //"Thats the club up ahead"
     if ($.chico_message_flag == 0) {
-      //"Thats the club up ahead"
       if ($.maria.locateAnyMeans2D(1258.0, -1100.0, 50.0, 50.0, false)) {
-        //"Thats the club up ahead"
-        Text.PrintNow(FM1_9, 5000, 1);
+        Text.PrintNow(FM1_9, 5000, 1); //"Thats the club up ahead"
         $.chico_message_flag = 1;
       }
     }
-    //"Get back into the limo!"
     if (!($.player.isInCar($.frankies_limo)) && $.flag_blip_on_limo == 0) {
       $.fm1_blip.remove();
       $.fm1_blip = Blip.AddForCar($.frankies_limo);
-      //"Get back into the limo!"
-      Text.PrintNow("FM1_1", 5000, 1);
+      Text.PrintNow("FM1_1", 5000, 1); //"Get back into the limo!"
       $.locate_dome_flag = 0;
       $.flag_blip_on_limo = 1;
     }
@@ -875,25 +752,17 @@ async function maria_getting_into_car() {
       }
     }
   }
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
   if (!($.chico_audio_flag == 17)) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
-    // "The vehicle is wrecked!"
     while (!(Audio.HasMissionAudioLoaded())) {
       await asyncWait(0);
-      // "You failed to protect Maria!"
       if (Char.IsDead($.maria)) {
-        // "You failed to protect Maria!"
-        Text.PrintNow(FM1_7, 5000, 1);
+        Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
         // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
       }
-      // "The vehicle is wrecked!"
       if (Car.IsDead($.frankies_limo)) {
-        // "The vehicle is wrecked!"
-        Text.PrintNow(WRECKED, 5000, 1);
+        Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
         // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
       }
@@ -905,24 +774,17 @@ async function maria_getting_into_car() {
   $.player.setControl(false /* OFF */);
   Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
   Game.SetAllCarsCanBeDamaged(false /* FALSE */);
-  //"OK Fido, you wait here and look after the car while I go and shake my butt."
-  Text.PrintNow(FM1_W, 5000, 1);
+  Text.PrintNow(FM1_W, 5000, 1); //"OK Fido, you wait here and look after the car while I go and shake my butt."
   await asyncWait(0);
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
   while (!(Audio.HasMissionAudioFinished())) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
@@ -931,24 +793,18 @@ async function maria_getting_into_car() {
   Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
   Game.SetAllCarsCanBeDamaged(true /* TRUE */);
   $.maria.setObjLeaveCar($.frankies_limo);
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
   while ($.maria.isInCar($.frankies_limo)) {
     await asyncWait(0);
     // SCM GOSUB draw_disco_lights
     await draw_disco_lights();
     // fallback if label was not emitted as async function: no-op continues linearly
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
@@ -961,8 +817,6 @@ async function maria_getting_into_car() {
   }
   $.maria.setObjGotoCoordOnFoot(1266.85, -1107.65);
   TIMERA = 0;
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
   while (!($.maria.locateOnFoot2D(1266.85, -1107.65, 1.0, 1.0, false))) {
     await asyncWait(0);
     // SCM GOSUB draw_disco_lights
@@ -971,17 +825,13 @@ async function maria_getting_into_car() {
     if (TIMERA > 20000) {
       World.ClearArea(1267.665, -1107.569, 11.38, 3.0, false /* FALSE */);
     }
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
@@ -993,8 +843,6 @@ async function maria_getting_into_car() {
     }
   }
   $.maria.setObjGotoCoordOnFoot($.inside_warehouse_x, $.inside_warehouse_y);
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
   while (!($.maria.locateOnFoot2D($.inside_warehouse_x, $.inside_warehouse_y, 1.0, 1.0, false))) {
     await asyncWait(0);
     // SCM GOSUB draw_disco_lights
@@ -1003,17 +851,13 @@ async function maria_getting_into_car() {
     if (TIMERA > 20000) {
       World.ClearArea(1267.665, -1107.569, 11.38, 4.0, false /* FALSE */);
     }
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
@@ -1035,15 +879,12 @@ async function wait_for_maria() {
     // SCM GOSUB draw_disco_lights
     await draw_disco_lights();
     // fallback if label was not emitted as async function: no-op continues linearly
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
     TIMERA = 0;
-    // "The vehicle is wrecked!"
     while ($.player.locateAnyMeans2D(1262.1, -1099.4, 22.0, 22.0, false)) {
       await asyncWait(0);
       // SCM GOSUB draw_disco_lights
@@ -1053,10 +894,8 @@ async function wait_for_maria() {
         // SCM GOTO → club_busted (not lowered; manual jump required)
         throw new Error("unresolved GOTO club_busted"); // fallback: would break linear control flow
       }
-      // "The vehicle is wrecked!"
       if (Car.IsDead($.frankies_limo)) {
-        // "The vehicle is wrecked!"
-        Text.PrintNow(WRECKED, 5000, 1);
+        Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
         // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
       }
@@ -1067,8 +906,7 @@ async function wait_for_maria() {
         }
       }
     }
-    //You're supposed to be waiting for Maria! Get back to the warehouse!
-    Text.PrintNow("FM1_4", 500, 2);
+    Text.PrintNow("FM1_4", 500, 2); //You're supposed to be waiting for Maria! Get back to the warehouse!
   }
 }
 
@@ -1144,15 +982,11 @@ async function swat_car_two() {
     $.create_more_swat2 = 0;
     return;
   }
-  // "The vehicle is wrecked!"
   if (!($.chico_audio_flag == 18)) {
-    // "The vehicle is wrecked!"
     while (!(Audio.HasMissionAudioFinished())) {
       await asyncWait(0);
-      // "The vehicle is wrecked!"
       if (Car.IsDead($.frankies_limo)) {
-        // "The vehicle is wrecked!"
-        Text.PrintNow(WRECKED, 5000, 1);
+        Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
         // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
       }
@@ -1161,15 +995,11 @@ async function swat_car_two() {
     $.chico_audio_flag = 18;
   }
   await asyncWait(0);
-  // "The vehicle is wrecked!"
   if ($.chico_audio_flag == 18) {
-    // "The vehicle is wrecked!"
     while (!(Audio.HasMissionAudioLoaded())) {
       await asyncWait(0);
-      // "The vehicle is wrecked!"
       if (Car.IsDead($.frankies_limo)) {
-        // "The vehicle is wrecked!"
-        Text.PrintNow(WRECKED, 5000, 1);
+        Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
         // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
       }
@@ -1177,10 +1007,7 @@ async function swat_car_two() {
     $.chico_audio_flag = 19;
   }
   Audio.PlayMissionAudio();
-  //"Calling all cars, request back-up for narcotics raid. Warehouse party Portland Harbour East."
-  Text.PrintNow("FM1_SS", 4000, 2);
-  // "The vehicle is wrecked!"
-  //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
+  Text.PrintNow("FM1_SS", 4000, 2); //"Calling all cars, request back-up for narcotics raid. Warehouse party Portland Harbour East."
   while ($.swat1_exit_car == 0 || $.swat2_exit_car == 0) {
     await asyncWait(0);
     if ($.fuckup_flag == 0) {
@@ -1220,10 +1047,8 @@ async function swat_car_two() {
         $.chico_audio_flag = 20;
       }
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
@@ -1387,7 +1212,6 @@ async function swat_car_two() {
       [$.swat2_stuck_x, $.swat2_stuck_y, $.swat2_stuck_z] = $.swatvan2_fm1.getCoordinates();
       $.timerc_reset_flag_f1b = 0;
     }
-    //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
     if ($.swatvan_fm1.locate2D(1252.0, -1086.0, 8.0, 8.0, false) && $.swat1_exit_car == 0) {
       if ($.swat_cam_needs_restoring == 1) {
         Camera.SetBehindPlayer();
@@ -1399,7 +1223,6 @@ async function swat_car_two() {
         Camera.SetGenerateCarsAround(false /* FALSE */);
         $.swat_cam_needs_restoring = 0;
       }
-      //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
       if ($.chico_audio_flag == 21) {
         if (!(Char.IsDead($.doorman1))) {
           [$.chico_x, $.chico_y, $.chico_z] = $.doorman1.getCoordinates();
@@ -1416,8 +1239,7 @@ async function swat_car_two() {
           }
         }
         Audio.PlayMissionAudio();
-        //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
-        Text.PrintNow(FM1_TT, 5000, 1);
+        Text.PrintNow(FM1_TT, 5000, 1); //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
         $.chico_audio_flag = 22;
       }
       $.swatvan_fm1.setCruiseSpeed(0.0);
@@ -1454,7 +1276,6 @@ async function swat_car_two() {
       }
       $.swat1_exit_car = 1;
     }
-    //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
     if ($.swatvan2_fm1.locate2D(1235.0, -1099.0, 8.0, 8.0, false) && $.swat2_exit_car == 0) {
       if ($.swat_cam_needs_restoring == 1) {
         Camera.RestoreJumpcut();
@@ -1466,7 +1287,6 @@ async function swat_car_two() {
         Camera.SetGenerateCarsAround(false /* FALSE */);
         $.swat_cam_needs_restoring = 0;
       }
-      //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
       if ($.chico_audio_flag == 21) {
         if (!(Char.IsDead($.doorman1))) {
           [$.chico_x, $.chico_y, $.chico_z] = $.doorman1.getCoordinates();
@@ -1479,8 +1299,7 @@ async function swat_car_two() {
           }
         }
         Audio.PlayMissionAudio();
-        //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
-        Text.PrintNow(FM1_TT, 5000, 1);
+        Text.PrintNow(FM1_TT, 5000, 1); //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
         $.chico_audio_flag = 22;
       }
       $.swatvan2_fm1.setCruiseSpeed(0.0);
@@ -1528,9 +1347,6 @@ async function swat_car_two() {
     Camera.SetGenerateCarsAround(false /* FALSE */);
     $.swat_cam_needs_restoring = 0;
   }
-  // "The vehicle is wrecked!"
-  //"Get Maria out of there and back to Frankie's"
-  //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
   while ($.clubbers_flee_flag < 10) {
     await asyncWait(0);
     // SCM GOSUB draw_disco_lights
@@ -1547,10 +1363,8 @@ async function swat_car_two() {
         $.chico_audio_flag = 23;
       }
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
@@ -1730,9 +1544,7 @@ async function swat_car_two() {
         }
       }
     }
-    //"Get Maria out of there and back to Frankie's"
     if ($.clubbers_flee_flag == 8) {
-      //"Get Maria out of there and back to Frankie's"
       if (Char.IsDead($.clubber8_fm1)) {
         $.clubber8_fm1.markAsNoLongerNeeded();
         if ($.swat_cam_needs_restoring == 1) {
@@ -1752,8 +1564,7 @@ async function swat_car_two() {
         $.maria.clearThreatSearch();
         $.fm1_blip.remove();
         $.fm1_blip = Blip.AddForChar($.maria);
-        //"Get Maria out of there and back to Frankie's"
-        Text.PrintNow(FM1_5, 4000, 2);
+        Text.PrintNow(FM1_5, 4000, 2); //"Get Maria out of there and back to Frankie's"
         $.player.alterWantedLevelNoDrop(2);
         $.maria.setRunning(true /* TRUE */);
         [$.chico_x, $.chico_y, $.chico_z] = $.player.getCoordinates();
@@ -1761,7 +1572,6 @@ async function swat_car_two() {
         $.clubbers_flee_flag = 9;
       }
       else {
-        //"Get Maria out of there and back to Frankie's"
         if (!($.clubber8_fm1.locateAnyMeans2D($.inside_warehouse_x, $.inside_warehouse_y, 2.0, 2.0, false))) {
           if ($.swat_cam_needs_restoring == 1) {
             Camera.RestoreJumpcut();
@@ -1780,8 +1590,7 @@ async function swat_car_two() {
           $.maria.clearThreatSearch();
           $.fm1_blip.remove();
           $.fm1_blip = Blip.AddForChar($.maria);
-          //"Get Maria out of there and back to Frankie's"
-          Text.PrintNow(FM1_5, 4000, 2);
+          Text.PrintNow(FM1_5, 4000, 2); //"Get Maria out of there and back to Frankie's"
           $.player.alterWantedLevelNoDrop(2);
           $.maria.setRunning(true /* TRUE */);
           [$.chico_x, $.chico_y, $.chico_z] = $.player.getCoordinates();
@@ -1820,11 +1629,8 @@ async function swat_car_two() {
       $.swat2_exit_car = 0;
       $.fuckup_flag = 3;
     }
-    //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
     if ($.swat1_exit_car == 0) {
-      //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
       if ($.swatvan_fm1.locateStopped2D(1252.0, -1086.0, 18.0, 18.0, false)) {
-        //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
         if ($.chico_audio_flag == 21) {
           if (!(Char.IsDead($.doorman1))) {
             [$.chico_x, $.chico_y, $.chico_z] = $.doorman1.getCoordinates();
@@ -1841,8 +1647,7 @@ async function swat_car_two() {
             }
           }
           Audio.PlayMissionAudio();
-          //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
-          Text.PrintNow(FM1_TT, 5000, 1);
+          Text.PrintNow(FM1_TT, 5000, 1); //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
           $.chico_audio_flag = 22;
         }
         if (!(Char.IsDead($.cop1_fm1))) {
@@ -1879,11 +1684,8 @@ async function swat_car_two() {
         $.swat1_exit_car = 1;
       }
     }
-    //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
     if ($.swat2_exit_car == 0) {
-      //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
       if ($.swatvan2_fm1.locateStopped2D(1235.0, -1099.0, 18.0, 18.0, false)) {
-        //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
         if ($.chico_audio_flag == 21) {
           if (!(Char.IsDead($.doorman1))) {
             [$.chico_x, $.chico_y, $.chico_z] = $.doorman1.getCoordinates();
@@ -1900,8 +1702,7 @@ async function swat_car_two() {
             }
           }
           Audio.PlayMissionAudio();
-          //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
-          Text.PrintNow(FM1_TT, 5000, 1);
+          Text.PrintNow(FM1_TT, 5000, 1); //"IT'S A POLICE RAID! EVERYBODY FOR THEMSELVES!!"
           $.chico_audio_flag = 22;
         }
         if (!(Char.IsDead($.cop5_fm1))) {
@@ -1941,23 +1742,6 @@ async function swat_car_two() {
   }
   $.swatvan_fm1.markAsNoLongerNeeded();
   $.swatvan2_fm1.markAsNoLongerNeeded();
-  //frankies_limo
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
-  //"Hey wait for me!"
-  //"Get back into the limo!"
-  //	IF NOT IS_PLAYER_IN_CAR player frankies_limo
-  //	AND flag_blip_on_limo = 0
-  //		REMOVE_BLIP fm1_blip
-  //		ADD_BLIP_FOR_CAR frankies_limo fm1_blip
-  //		PRINT_NOW (FM1_1) 5000 1 //"Get back into the limo!"
-  //		flag_blip_on_limo = 1
-  //	ENDIF
-  //
-  //	IF IS_PLAYER_IN_CAR player frankies_limo
-  //	AND flag_blip_on_limo = 1
-  //		ADD_BLIP_FOR_CHAR maria fm1_blip//COORD 1424.0 -183.5 50.0 fm1_blip
-  //		flag_blip_on_limo = 0
   while (!($.maria.isInAnyCar())) {
     await asyncWait(0);
     // SCM GOSUB draw_disco_lights
@@ -1974,24 +1758,18 @@ async function swat_car_two() {
         $.chico_audio_flag = 23;
       }
     }
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    //"Hey wait for me!"
     if (!($.maria.isInPlayersGroup($.player)) && $.flag_blip_on_maria == 0) {
-      //"Hey wait for me!"
-      Text.PrintNow(FM1_10, 5000, 1);
+      Text.PrintNow(FM1_10, 5000, 1); //"Hey wait for me!"
       $.fm1_blip.remove();
       $.fm1_blip = Blip.AddForChar($.maria);
       $.flag_blip_on_maria = 1;
@@ -2002,7 +1780,19 @@ async function swat_car_two() {
       $.fm1_blip = Blip.AddForCoord(1424.0, -183.5, 50.0);
       $.flag_blip_on_maria = 0;
     }
-    //"Get back into the limo!"
+    if ($.flag_blip_on_maria == 0) {
+      if (!($.player.isInCar($.frankies_limo)) && $.flag_blip_on_limo == 0) {
+        $.fm1_blip.remove();
+        $.fm1_blip = Blip.AddForCar($.frankies_limo);
+        Text.PrintNow("FM1_1", 5000, 1); //"Get back into the limo!"
+        $.flag_blip_on_limo = 1;
+      }
+      if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
+        $.fm1_blip.remove();
+        $.fm1_blip = Blip.AddForChar($.maria);
+        $.flag_blip_on_limo = 0;
+      }
+    }
     //	IF NOT IS_PLAYER_IN_CAR player frankies_limo
     //	AND flag_blip_on_limo = 0
     //		REMOVE_BLIP fm1_blip
@@ -2015,21 +1805,6 @@ async function swat_car_two() {
     //	AND flag_blip_on_limo = 1
     //		ADD_BLIP_FOR_CHAR maria fm1_blip//COORD 1424.0 -183.5 50.0 fm1_blip
     //		flag_blip_on_limo = 0
-    if ($.flag_blip_on_maria == 0) {
-      //"Get back into the limo!"
-      if (!($.player.isInCar($.frankies_limo)) && $.flag_blip_on_limo == 0) {
-        $.fm1_blip.remove();
-        $.fm1_blip = Blip.AddForCar($.frankies_limo);
-        //"Get back into the limo!"
-        Text.PrintNow("FM1_1", 5000, 1);
-        $.flag_blip_on_limo = 1;
-      }
-      if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
-        $.fm1_blip.remove();
-        $.fm1_blip = Blip.AddForChar($.maria);
-        $.flag_blip_on_limo = 0;
-      }
-    }
     if (!($.clubber3_car1 == 3) || !($.clubber5_car2 == 3) || !($.clubber8_car3 == 3)) {
       // SCM GOSUB clubbers_into_cars
       await clubbers_into_cars();
@@ -2047,15 +1822,7 @@ async function swat_car_two() {
   $.flag_blip_on_limo = 0;
   $.fm1_blip = Blip.AddForCoord(1424.0, -183.5, 50.0);
   await asyncWait(0);
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
-  //"Hey wait for me!"
-  //"Get back into the limo!"
   if (!($.chico_audio_flag == 24)) {
-    // "You failed to protect Maria!"
-    // "The vehicle is wrecked!"
-    //"Hey wait for me!"
-    //"Get back into the limo!"
     while (!(Audio.HasMissionAudioLoaded())) {
       await asyncWait(0);
       // SCM GOSUB draw_disco_lights
@@ -2072,24 +1839,18 @@ async function swat_car_two() {
       // SCM GOSUB clubber_idle_checks
       await clubber_idle_checks();
       // fallback if label was not emitted as async function: no-op continues linearly
-      // "You failed to protect Maria!"
       if (Char.IsDead($.maria)) {
-        // "You failed to protect Maria!"
-        Text.PrintNow(FM1_7, 5000, 1);
+        Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
         // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
       }
-      // "The vehicle is wrecked!"
       if (Car.IsDead($.frankies_limo)) {
-        // "The vehicle is wrecked!"
-        Text.PrintNow(WRECKED, 5000, 1);
+        Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
         // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
         throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
       }
-      //"Hey wait for me!"
       if (!($.maria.isInPlayersGroup($.player)) && $.flag_blip_on_maria == 0) {
-        //"Hey wait for me!"
-        Text.PrintNow(FM1_10, 5000, 1);
+        Text.PrintNow(FM1_10, 5000, 1); //"Hey wait for me!"
         $.fm1_blip.remove();
         $.fm1_blip = Blip.AddForChar($.maria);
         $.flag_blip_on_maria = 1;
@@ -2100,14 +1861,11 @@ async function swat_car_two() {
         $.fm1_blip = Blip.AddForCoord(1424.0, -183.5, 50.0);
         $.flag_blip_on_maria = 0;
       }
-      //"Get back into the limo!"
       if ($.flag_blip_on_maria == 0) {
-        //"Get back into the limo!"
         if (!($.player.isInCar($.frankies_limo)) && $.flag_blip_on_limo == 0) {
           $.fm1_blip.remove();
           $.fm1_blip = Blip.AddForCar($.frankies_limo);
-          //"Get back into the limo!"
-          Text.PrintNow("FM1_1", 5000, 1);
+          Text.PrintNow("FM1_1", 5000, 1); //"Get back into the limo!"
           $.flag_blip_on_limo = 1;
         }
         if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
@@ -2126,44 +1884,33 @@ async function swat_car_two() {
     $.chico_audio_flag = 24;
   }
   Audio.PlayMissionAudio();
-  //"OK Fido, let's get out of here. YeeEEHAAA"
-  Text.PrintNow(FM1_X, 5000, 1);
+  Text.PrintNow(FM1_X, 5000, 1); //"OK Fido, let's get out of here. YeeEEHAAA"
   $.frankie_garage.changeType(21 /* GARAGE_MISSION_KEEPCAR_REMAINCLOSED */);
-  //WHILE NOT LOCATE_PLAYER_IN_CAR_2D player 1424.0 -183.5 10.0 10.0 0
-  //WHILE NOT IS_PLAYER_STOPPED_IN_AREA_3D player 1428.8 -187.0 50.0 1442.5 -179.9 53.0 0
   if (!(Car.IsDead($.frankies_limo))) {
     $.frankie_garage.setTargetCarForMission($.frankies_limo);
   }
-  // "You failed to protect Maria!"
-  // "The vehicle is wrecked!"
-  //"Hey wait for me!"
-  //"Get back into the limo!"
+  //WHILE NOT LOCATE_PLAYER_IN_CAR_2D player 1424.0 -183.5 10.0 10.0 0
+  //WHILE NOT IS_PLAYER_STOPPED_IN_AREA_3D player 1428.8 -187.0 50.0 1442.5 -179.9 53.0 0
   while (!($.frankie_garage.isCarInMission())) {
     await asyncWait(0);
     // SCM GOSUB draw_disco_lights
     await draw_disco_lights();
     // fallback if label was not emitted as async function: no-op continues linearly
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
-    // "The vehicle is wrecked!"
     if (Car.IsDead($.frankies_limo)) {
-      // "The vehicle is wrecked!"
-      Text.PrintNow(WRECKED, 5000, 1);
+      Text.PrintNow(WRECKED, 5000, 1); // "The vehicle is wrecked!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
     if ($.frankies_limo.locate2D(1424.8, -183.0, 20.0, 20.0, false)) {
       $.player.clearWantedLevel();
     }
-    //"Hey wait for me!"
     if (!($.maria.isInPlayersGroup($.player)) && $.flag_blip_on_maria == 0) {
-      //"Hey wait for me!"
-      Text.PrintNow(FM1_10, 5000, 1);
+      Text.PrintNow(FM1_10, 5000, 1); //"Hey wait for me!"
       $.fm1_blip.remove();
       $.fm1_blip = Blip.AddForChar($.maria);
       $.flag_blip_on_maria = 1;
@@ -2175,14 +1922,11 @@ async function swat_car_two() {
       $.flag_blip_on_limo = 0;
       $.flag_blip_on_maria = 0;
     }
-    //"Get back into the limo!"
     if ($.flag_blip_on_maria == 0) {
-      //"Get back into the limo!"
       if (!($.player.isInCar($.frankies_limo)) && $.flag_blip_on_limo == 0) {
         $.fm1_blip.remove();
         $.fm1_blip = Blip.AddForCar($.frankies_limo);
-        //"Get back into the limo!"
-        Text.PrintNow("FM1_1", 5000, 1);
+        Text.PrintNow("FM1_1", 5000, 1); //"Get back into the limo!"
         $.flag_blip_on_limo = 1;
       }
       if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
@@ -2210,10 +1954,8 @@ async function swat_car_two() {
   Hud.SwitchWidescreen(true /* ON */);
   Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
   Game.SetAllCarsCanBeDamaged(false /* FALSE */);
-  // "You failed to protect Maria!"
   if (Char.IsDead($.maria)) {
-    // "You failed to protect Maria!"
-    Text.PrintNow(FM1_7, 5000, 1);
+    Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
     // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
   }
@@ -2236,23 +1978,18 @@ async function swat_car_two() {
   $.frankies_limo.delete();
   World.ClearArea(1423.9675, -189.2235, 49.2032, 5.0, false /* FALSE */);
   Camera.DoFade(500, 1 /* FADE_IN */);
+  Audio.LoadMissionAudio(S1_K);
   //camera 1433.4507 -173.6104 56.66595
   //point at maria maybe 1433.9979 -174.4381 56.542
   //chat
   //maria goto 1453.5276 -179.3224
   //player goto 1443.6184 -188.2894
-  Audio.LoadMissionAudio(S1_K);
   $.flag_blip_on_maria = 0;
   $.skip_cutscene_flag = 0;
-  // "You failed to protect Maria!"
-  //"I'd better go I'll see you around I hope."
-  //"I enjoyed myself for the first time in a long while,"
   while (!($.flag_blip_on_maria == 8)) {
     await asyncWait(0);
-    // "You failed to protect Maria!"
     if (Char.IsDead($.maria)) {
-      // "You failed to protect Maria!"
-      Text.PrintNow(FM1_7, 5000, 1);
+      Text.PrintNow(FM1_7, 5000, 1); // "You failed to protect Maria!"
       // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_frankie1_failed"); // fallback: would break linear control flow
     }
@@ -2305,14 +2042,11 @@ async function swat_car_two() {
         $.flag_blip_on_maria = 7;
       }
     }
-    //"I'd better go I'll see you around I hope."
     if ($.flag_blip_on_maria == 5) {
-      //"I'd better go I'll see you around I hope."
       if (Audio.HasMissionAudioLoaded()) {
         [$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates();
         Audio.PlayMissionAudio();
-        //"I'd better go I'll see you around I hope."
-        Text.PrintNow(FM1_AA, 8000, 1);
+        Text.PrintNow(FM1_AA, 8000, 1); //"I'd better go I'll see you around I hope."
         $.flag_blip_on_maria = 6;
       }
     }
@@ -2324,16 +2058,13 @@ async function swat_car_two() {
         $.flag_blip_on_maria = 5;
       }
     }
-    //"I enjoyed myself for the first time in a long while,"
     if ($.flag_blip_on_maria == 3) {
-      //"I enjoyed myself for the first time in a long while,"
       if (Audio.HasMissionAudioLoaded()) {
         $.script_controlled_player.turnToFaceChar($.maria);
         $.maria.turnToFaceChar($.script_controlled_player);
         [$.chico_x, $.chico_y, $.chico_z] = $.maria.getCoordinates();
         Audio.PlayMissionAudio();
-        //"I enjoyed myself for the first time in a long while,"
-        Text.PrintNow(FM1_Y, 8000, 1);
+        Text.PrintNow(FM1_Y, 8000, 1); //"I enjoyed myself for the first time in a long while,"
         $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 20000);
         $.flag_blip_on_maria = 4;
       }
@@ -2388,18 +2119,17 @@ async function swat_car_two() {
 
 async function mission_frankie1_failed() {
   Text.PrintBig("m_fail", 5000, 1);
-  // mission Frankie1 passed
   return;
+  // mission Frankie1 passed
 }
 
 async function mission_frankie1_passed() {
   $.flag_frankie_mission1_passed = 1;
-  //	ADD_SPRITE_BLIP_FOR_CONTACT_POINT 886.2 -417.1 -100.0 RADAR_SPRITE_LUIGI luigi_contact_blip
   if ($.flag_luigi_mission4_terminated == 1) {
     // START_NEW_SCRIPT luigi_mission4_loop
     $.luigi_contact_blip.remove();
-    //	ADD_SPRITE_BLIP_FOR_CONTACT_POINT 886.2 -417.1 -100.0 RADAR_SPRITE_LUIGI luigi_contact_blip
     $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, 13 /* RADAR_SPRITE_LUIGI */);
+    //	ADD_SPRITE_BLIP_FOR_CONTACT_POINT 886.2 -417.1 -100.0 RADAR_SPRITE_LUIGI luigi_contact_blip
   }
   if ($.flag_luigi_mission5_terminated == 1) {
     // START_NEW_SCRIPT luigi_mission5_loop
@@ -2426,8 +2156,8 @@ async function mission_frankie1_passed() {
   // START_NEW_SCRIPT toni_mission4_loop
   // START_NEW_SCRIPT frankie_mission2_loop
   // START_NEW_SCRIPT imp_exp_pager
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_frankie1() {
@@ -2457,13 +2187,12 @@ async function mission_cleanup_frankie1() {
   Streaming.UnloadSpecialCharacter(1);
   Streaming.UnloadSpecialCharacter(2);
   Mission.Finish();
+  return;
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////// Functions ///////////////////////////////////////////////
-  return;
 }
 
 async function clubbers_into_cars() {
-  //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber3_fm1
   if ($.clubbers_flee_flag > 2) {
     if ($.clubber3_car1 == 1) {
       if (!(Char.IsDead($.clubber3_fm1))) {
@@ -2494,20 +2223,16 @@ async function clubbers_into_cars() {
         $.clubber3_car1 = 3;
       }
     }
-    //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber3_fm1
     if ($.clubber3_car1 == 2) {
-      //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber3_fm1
       if (!(Char.IsDead($.clubber3_fm1))) {
-        //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber3_fm1
         if (!(Car.IsDead($.parked_car1))) {
-          //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber3_fm1
           if ($.clubber3_fm1.isInCar($.parked_car1)) {
             $.parked_car1.setDrivingStyle(2);
             $.parked_car1.setCruiseSpeed(100.0);
             $.parked_car1.wanderRandomly();
             $.parked_car1.setAvoidLevelTransitions(true /* TRUE */);
-            //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber3_fm1
             $.parked_car1.markAsNoLongerNeeded();
+            //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber3_fm1
             $.clubber3_car1 = 3;
           }
         }
@@ -2525,7 +2250,6 @@ async function clubbers_into_cars() {
       }
     }
   }
-  //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber5_fm1
   if ($.clubbers_flee_flag > 4) {
     if ($.clubber5_car2 == 1) {
       if (!(Char.IsDead($.clubber5_fm1))) {
@@ -2556,20 +2280,16 @@ async function clubbers_into_cars() {
         $.clubber5_car2 = 3;
       }
     }
-    //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber5_fm1
     if ($.clubber5_car2 == 2) {
-      //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber5_fm1
       if (!(Char.IsDead($.clubber5_fm1))) {
-        //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber5_fm1
         if (!(Car.IsDead($.parked_car2))) {
-          //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber5_fm1
           if ($.clubber5_fm1.isInCar($.parked_car2)) {
             $.parked_car2.setDrivingStyle(2);
             $.parked_car2.setCruiseSpeed(100.0);
             $.parked_car2.wanderRandomly();
             $.parked_car2.setAvoidLevelTransitions(true /* TRUE */);
-            //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber5_fm1
             $.parked_car2.markAsNoLongerNeeded();
+            //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber5_fm1
             $.clubber5_car2 = 3;
           }
         }
@@ -2587,7 +2307,6 @@ async function clubbers_into_cars() {
       }
     }
   }
-  //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber8_fm1
   if ($.clubbers_flee_flag > 7) {
     if ($.clubber8_car3 == 1) {
       if (!(Char.IsDead($.clubber8_fm1))) {
@@ -2618,20 +2337,16 @@ async function clubbers_into_cars() {
         $.clubber8_car3 = 3;
       }
     }
-    //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber8_fm1
     if ($.clubber8_car3 == 2) {
-      //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber8_fm1
       if (!(Char.IsDead($.clubber8_fm1))) {
-        //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber8_fm1
         if (!(Car.IsDead($.parked_car3))) {
-          //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber8_fm1
           if ($.clubber8_fm1.isInCar($.parked_car3)) {
             $.parked_car3.setDrivingStyle(2);
             $.parked_car3.setCruiseSpeed(100.0);
             $.parked_car3.wanderRandomly();
             $.parked_car3.setAvoidLevelTransitions(true /* TRUE */);
-            //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber8_fm1
             $.parked_car3.markAsNoLongerNeeded();
+            //					MARK_CHAR_AS_NO_LONGER_NEEDED clubber8_fm1
             $.clubber8_car3 = 3;
           }
         }
@@ -3101,60 +2816,48 @@ async function police_idle_checks() {
 
 async function draw_disco_lights() {
   ++$.shadow_counter;
-  // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
   if ($.shadow_counter > 28 && $.shadow_counter < 32) {
-    // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
-    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1272.5963, -1107.4248, 12.0, 30.0, 0.8, 0, $.R, $.G, 0);
+    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1272.5963, -1107.4248, 12.0, 30.0, 0.8, 0, $.R, $.G, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
     Fx.DrawLight(1272.45, -1107.6, 13.1, $.R, $.G, 0);
   }
   else {
     $.G = Math.RandomIntInRange(0, 101);
     $.R = Math.RandomIntInRange(0, 101);
   }
-  // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
   if ($.shadow_counter > 15 && $.shadow_counter < 20) {
-    // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
-    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1270.9584, -1107.6783, 12.0, 0.0, 1.2, 0, $.R1, $.G1, 0);
+    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1270.9584, -1107.6783, 12.0, 0.0, 1.2, 0, $.R1, $.G1, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
     Fx.DrawLight(1272.45, -1107.18, 13.1, $.R1, $.G1, 0);
   }
   else {
     $.G1 = Math.RandomIntInRange(0, 101);
     $.R1 = Math.RandomIntInRange(0, 101);
   }
-  // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
   if ($.shadow_counter > 20 && $.shadow_counter < 40) {
-    // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
-    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1273.3, -1107.0, 12.0, 80.0, 1.0, 0, $.R2, $.G2, 0);
+    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1273.3, -1107.0, 12.0, 80.0, 1.0, 0, $.R2, $.G2, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
     Fx.DrawLight(1272.45, -1107.6, 12.8, $.R2, $.G2, 0);
   }
   else {
     $.G2 = Math.RandomIntInRange(0, 101);
     $.R2 = Math.RandomIntInRange(0, 101);
   }
-  // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
   if ($.shadow_counter > 18 && $.shadow_counter < 40) {
-    // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
-    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1273.3, -1107.7, 12.0, 140.0, 0.8, 0, $.R3, $.G3, 0);
+    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1273.3, -1107.7, 12.0, 140.0, 0.8, 0, $.R3, $.G3, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
     Fx.DrawLight(1272.45, -1107.18, 12.8, $.R3, $.G3, 0);
   }
   else {
     $.G3 = Math.RandomIntInRange(0, 101);
     $.R3 = Math.RandomIntInRange(0, 101);
   }
-  // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
   if ($.shadow_counter > 5 && $.shadow_counter < 14) {
-    // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
-    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1271.4812, -1108.0588, 12.0, 235.0, 1.1, 0, $.R4, $.G4, 0);
+    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1271.4812, -1108.0588, 12.0, 235.0, 1.1, 0, $.R4, $.G4, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
     Fx.DrawLight(1272.45, -1107.6, 12.5, $.R4, $.G4, 0);
   }
   else {
     $.G4 = Math.RandomIntInRange(0, 101);
     $.R4 = Math.RandomIntInRange(0, 101);
   }
-  // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
   if ($.shadow_counter > 9 && $.shadow_counter < 26) {
-    // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
-    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1271.5570, -1107.0217, 12.0, 325.0, 1.8, 0, $.R5, $.G5, 0);
+    Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1271.5570, -1107.0217, 12.0, 325.0, 1.8, 0, $.R5, $.G5, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
     Fx.DrawLight(1272.45, -1107.18, 12.5, $.R5, $.G5, 0);
   }
   else {
@@ -3173,6 +2876,7 @@ async function delete_char_maria() {
 }
 
 export async function frank1() {
+  // MissionBoundary
   // *****************************************************************************************
   // ********************************* Frankie Mission 1 *************************************
   // *********************************   Pulp Friction   *************************************
@@ -3182,7 +2886,6 @@ export async function frank1() {
   // *** waiting for Maria the police will decide to 'raid the joint'. The player must get ***
   // *** Maria out and back to Frankie's safely.											 ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_frankie1
   await mission_start_frankie1();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -3194,8 +2897,8 @@ export async function frank1() {
   // SCM GOSUB mission_cleanup_frankie1
   await mission_cleanup_frankie1();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT frankies_limo chico chico_message_flag fm1_blip flag_blip_on_limo doorman1 doorman2 parked_car1 parked_car2 parked_car3 timera_reset timerb_reset
   // VAR_INT swatvan_fm1 swatvan2_fm1 cop1_fm1 cop2_fm1 cop3_fm1 cop4_fm1 cop5_fm1 cop6_fm1 cop7_fm1 cop8_fm1 clubbers_flee_flag
   // VAR_INT R G R1 G1 R2 G2 R3 G3 R4 G4 R5 G5 shadow_counter add_sound_flag camera_mode chico_audio_flag
@@ -3205,6 +2908,6 @@ export async function frank1() {
   // VAR_INT timerc_reset_flag_f1b timerc_current_f1b timerc_started_f1b timerc_f1b locate_dome_flag swat_cam_needs_restoring skip_cutscene_flag
   // VAR_FLOAT swat1_stuck_x swat1_stuck_y swat1_stuck_z
   // VAR_FLOAT swat2_stuck_x swat2_stuck_y swat2_stuck_z
-  // ****************************************Mission Start************************************
   // VAR_FLOAT chico_x chico_y chico_z inside_warehouse_x inside_warehouse_y inside_warehouse_z outside_warehouse_x outside_warehouse_y
+  // ****************************************Mission Start************************************
 }

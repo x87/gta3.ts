@@ -6,11 +6,6 @@ import { car, ped, hier } from "../../../ide.ts";
 
 
 async function create_yakuza() {
-  //SET_CHAR_OBJ_GUARD_AREA yak_1_love2 267.7 -592.0 306.0 -480.0
-  //SET_CHAR_OBJ_GUARD_AREA yak_2_love2 MinX MinY MaxX MaxY
-  //SET_CHAR_OBJ_GUARD_AREA yak_3_love2 MinX MinY MaxX MaxY
-  //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
-  //SET_CHAR_OBJ_GUARD_AREA yak_5_love2 267.7 -592.0 306.0 -480.0
   if ($.flag_yak_created_love2 == 0) {
     $.kenji_car_love2 = Car.Create(129 /* CAR_YAKUZA */, 302.0, -550.0, 37.0);
     $.kenji_car_love2.setHeading(90.0);
@@ -29,31 +24,31 @@ async function create_yakuza() {
     $.yak_car_1_love2.setIdle();
     $.yak_car_1_love2.setOnlyDamagedByPlayer(false /* False */);
     $.yak_1_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_A`, 286.4, -543.5, 37.0);
-    //SET_CHAR_OBJ_GUARD_AREA yak_1_love2 267.7 -592.0 306.0 -480.0
     $.yak_1_love2.setHeading(180.0);
+    //SET_CHAR_OBJ_GUARD_AREA yak_1_love2 267.7 -592.0 306.0 -480.0
     $.yak_2_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_B`, 304.5, -544.3, 37.0);
-    //SET_CHAR_OBJ_GUARD_AREA yak_2_love2 MinX MinY MaxX MaxY
     $.yak_2_love2.setHeading(40.0);
+    //SET_CHAR_OBJ_GUARD_AREA yak_2_love2 MinX MinY MaxX MaxY
     $.yak_2_love2.addArmor(100);
     $.yak_3_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_A`, 299.25, -534.0, 37.0);
-    //SET_CHAR_OBJ_GUARD_AREA yak_3_love2 MinX MinY MaxX MaxY
     $.yak_3_love2.setHeading(20.0);
+    //SET_CHAR_OBJ_GUARD_AREA yak_3_love2 MinX MinY MaxX MaxY
     $.yak_4_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_B`, 295.0, -562.0, 37.0);
-    //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
     $.yak_4_love2.setHeading(180.0);
+    //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
     $.yak_5_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_A`, 295.0, -544.0, 37.0);
-    //SET_CHAR_OBJ_GUARD_AREA yak_5_love2 267.7 -592.0 306.0 -480.0
     $.yak_5_love2.setHeading(15.0);
+    //SET_CHAR_OBJ_GUARD_AREA yak_5_love2 267.7 -592.0 306.0 -480.0
     $.yak_5_love2.addArmor(100);
     $.yak_6_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_B`, 300.0, -556.0, 37.0);
-    //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
     $.yak_6_love2.setHeading(160.0);
+    //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
     $.yak_7_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_B`, 301.0, -516.0, 37.0);
-    //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
     $.yak_7_love2.setHeading(45.0);
-    $.yak_8_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_B`, 273.0, -570.0, 37.0);
     //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
+    $.yak_8_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, ped`GANG_YAKUZA_B`, 273.0, -570.0, 37.0);
     $.yak_8_love2.setHeading(260.0);
+    //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
     $.yak_1_love2.giveWeapon(6 /* WEAPONTYPE_M16 */, 80);
     $.yak_2_love2.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
     $.yak_3_love2.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
@@ -121,8 +116,8 @@ async function player_wanted_love2() {
       $.flag_wanted_love2 = 1;
     }
   }
-  // ****************************************Mission Start************************************
   return;
+  // ****************************************Mission Start************************************
 }
 
 async function mission_start_love2() {
@@ -154,37 +149,24 @@ async function mission_start_love2() {
   $.carpark_maxx = 345.5;
   $.carpark_maxy = -479.5;
   $.carpark_minz = 32.5;
-  /*
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_love2_failed
-  ENDIF
-  SET_FADING_COLOUR 0 0 0
-  DO_FADE 1500 FADE_OUT
-  PRINT_BIG ( LOVE2 ) 15000 2	//"Love Mission 2"
-  SWITCH_STREAMING OFF
-  */
   $.carpark_maxz = 50.0;
   Streaming.RequestModel(tshrorckgrdn);
   Streaming.RequestModel(tshrorckgrdn_alfas);
-  // ****************************************START OF CUTSCENE********************************
   while (!(Streaming.HasModelLoaded(tshrorckgrdn_alfas)) || !(Streaming.HasModelLoaded(tshrorckgrdn))) {
     await asyncWait(0);
   }
-  //LOAD_SPECIAL_CHARACTER 2 butler
+  // ****************************************START OF CUTSCENE********************************
   Streaming.LoadSpecialCharacter(1, $.love);
+  //LOAD_SPECIAL_CHARACTER 2 butler
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
+  Streaming.LoadSpecialModel(hier`cutobj02`, LOVEH);
   //LOAD_SPECIAL_MODEL cut_obj3 BUTLERH
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.LoadSpecialModel(hier`cutobj02`, LOVEH);
   Streaming.LoadAllModelsNow();
-  //OR NOT HAS_SPECIAL_CHARACTER_LOADED 2
-  //OR NOT HAS_MODEL_LOADED cut_obj3
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`))) {
     await asyncWait(0);
   }
@@ -194,79 +176,71 @@ async function mission_start_love2() {
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
   $.cs_player.setAnim($.player);
   $.cs_love = CutsceneObject.Create(ped`SPECIAL1`);
+  $.cs_love.setAnim($.love);
   //CREATE_CUTSCENE_OBJECT PED_SPECIAL2 cs_butler
   //SET_CUTSCENE_ANIM cs_butler butler
-  $.cs_love.setAnim($.love);
   $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`);
   $.cs_playerhead.setAnim($.player);
   $.cs_lovehead = CutsceneHead.Create($.cs_love, hier`cutobj02`);
+  $.cs_lovehead.setAnim($.love);
   //CREATE_CUTSCENE_HEAD cs_butler CUT_OBJ3 cs_butlerhead
   //SET_CUTSCENE_HEAD_ANIM cs_butlerhead butler
-  $.cs_lovehead.setAnim($.love);
   $.player.setCoordinates(85.0, -1548.2, 28.3);
   $.player.setHeading(90.0);
   Camera.DoFade(250, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
+  Cutscene.Start();
   //SWITCH_STREAMING OFF
   // Displays cutscene text
-  Cutscene.Start();
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 5434) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Nothing drives down real estate prices like a good old fashi etc..."
+  Text.PrintNow("LOVE2_A", 4000, 1); //"Nothing drives down real estate prices like a good old fashi etc..."
   //MESSAGE_WAIT 3000 true
-  Text.PrintNow("LOVE2_A", 4000, 1);
   while ($.cs_time < 9893) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"....but that might be going too far in this etc."
+  Text.PrintNow("LOVE2_B", 4500, 1); //"....but that might be going too far in this etc."
   //MESSAGE_WAIT 3000 true
-  Text.PrintNow("LOVE2_B", 4500, 1);
   while ($.cs_time < 14631) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I want you to kill the Yakuza WAKA-gashira, Kenji Kasen."
+  Text.PrintNow("LOVE2_C", 4000, 1); //"I want you to kill the Yakuza WAKA-gashira, Kenji Kasen."
   //MESSAGE_WAIT 3000 true
-  Text.PrintNow("LOVE2_C", 4000, 1);
   while ($.cs_time < 18811) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I've learned .....t the top of the multi-story carpark in Newport."
+  Text.PrintNow("LOVE2_D", 3000, 1); //"I've learned .....t the top of the multi-story carpark in Newport."
   //MESSAGE_WAIT 3000 true
-  Text.PrintNow("LOVE2_D", 3000, 1);
   while ($.cs_time < 21947) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The Yakuza must blame.....Steal a Cartel car and take out Kenji!"
+  Text.PrintNow("LOVE2_E", 3500, 1); //"The Yakuza must blame.....Steal a Cartel car and take out Kenji!"
   //MESSAGE_WAIT 3000 true
-  Text.PrintNow("LOVE2_E", 3500, 1);
   while ($.cs_time < 26266) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The Yakuza must blame.....Steal a Cartel car and take out Kenji!"
+  Text.PrintNow("LOVE2_F", 3500, 1); //"The Yakuza must blame.....Steal a Cartel car and take out Kenji!"
   //MESSAGE_WAIT 3000 true
-  Text.PrintNow("LOVE2_F", 3500, 1);
   while ($.cs_time < 30656) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The Yakuza must blame.....Steal a Cartel car and take out Kenji!"
+  Text.PrintNow("LOVE2_G", 3000, 1); //"The Yakuza must blame.....Steal a Cartel car and take out Kenji!"
   //MESSAGE_WAIT 3000 true
-  Text.PrintNow("LOVE2_G", 3000, 1);
   while ($.cs_time < 33442) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The Yakuza must blame.....Steal a Cartel car and take out Kenji!"
+  Text.PrintNow("LOVE2_H", 4500, 1); //"The Yakuza must blame.....Steal a Cartel car and take out Kenji!"
   //MESSAGE_WAIT 3000 true
-  Text.PrintNow("LOVE2_H", 4500, 1);
   while ($.cs_time < 41066) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -283,18 +257,19 @@ async function mission_start_love2() {
   Camera.DoFade(0, 0 /* FADE_OUT */);
   Camera.SetBehindPlayer();
   await asyncWait(500);
+  Camera.DoFade(1500, 1 /* FADE_IN */);
   //WHILE GET_FADING_STATUS
   // WAIT 0
   //ENDWHILE
   //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE
-  Camera.DoFade(1500, 1 /* FADE_IN */);
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
-  //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ3
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj02`);
+  //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ3
   Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn);
-  //SWITCH_STREAMING ON
   Streaming.MarkModelAsNoLongerNeeded(tshrorckgrdn_alfas);
+  //SWITCH_STREAMING ON
+  World.SwitchRubbish(true /* ON */);
   // ******************************************END OF CUTSCENE********************************
   /*
   //++++++++++++++++++++++++++++++++++++++++++++CUT SCENE++++++++++++++++++++++++++++++++++
@@ -355,7 +330,6 @@ async function mission_start_love2() {
   SET_PLAYER_CONTROL player ON
   //++++++++++++++++++++++++++++++++++++++++++++++++CUTSCENE OVER+++++++++++++++++++++++++++++
   */
-  World.SwitchRubbish(true /* ON */);
   Streaming.LoadSpecialCharacter(1, $.kenji);
   while (!(Streaming.HasSpecialCharacterLoaded(1))) {
     await asyncWait(0);
@@ -376,6 +350,7 @@ async function mission_start_love2() {
   while (!(Streaming.HasModelLoaded(car`STRETCH`))) {
     await asyncWait(0);
   }
+  Audio.LoadMissionAudio(LO2_A);
   /*
   REQUEST_MODEL CAR_COLUMB//test stuff
   WHILE NOT HAS_MODEL_LOADED CAR_COLUMB
@@ -386,12 +361,9 @@ async function mission_start_love2() {
   CAR_SET_IDLE test_car_love2//test stuff
   */
   //While loop 1: player not at carpark AND player not in CAR_COLUMB
-  Audio.LoadMissionAudio(LO2_A);
 }
 
 async function while_loop_1() {
-  //"Go and steal a Colombian Gangcar!"
-  //While loop 2: player not at carpark AND player in CAR_COLUMB
   while ($.flag_kenji_dead == 0) {
     await asyncWait(0);
     if ($.player.isInModel(131 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
@@ -409,19 +381,16 @@ async function while_loop_1() {
       // SCM GOTO → while_loop_3 (not lowered; manual jump required)
       throw new Error("unresolved GOTO while_loop_3"); // fallback: would break linear control flow
     }
-    //"Go and steal a Colombian Gangcar!"
     if ($.flag_message == 0) {
-      //"Go and steal a Colombian Gangcar!"
-      Text.PrintNow("LOVE2_1", 6000, 1);
+      Text.PrintNow("LOVE2_1", 6000, 1); //"Go and steal a Colombian Gangcar!"
       await asyncWait(3000);
       $.flag_message = 1;
     }
   }
+  //While loop 2: player not at carpark AND player in CAR_COLUMB
 }
 
 async function while_loop_2() {
-  //"Now get to the multi-storey in Newport and kill Kenji!"
-  //While loop 3: player at carpark AND NOT in CAR_COLUMB
   while ($.flag_kenji_dead == 0) {
     await asyncWait(0);
     if ($.player.isInModel(131 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
@@ -439,10 +408,8 @@ async function while_loop_2() {
       // SCM GOTO → while_loop_3 (not lowered; manual jump required)
       throw new Error("unresolved GOTO while_loop_3"); // fallback: would break linear control flow
     }
-    //"Now get to the multi-storey in Newport and kill Kenji!"
     if ($.flag_message == 1) {
-      //"Now get to the multi-storey in Newport and kill Kenji!"
-      Text.PrintNow("LOVE2_2", 4000, 1);
+      Text.PrintNow("LOVE2_2", 4000, 1); //"Now get to the multi-storey in Newport and kill Kenji!"
       await asyncWait(3000);
       $.flag_message = 0;
     }
@@ -451,6 +418,7 @@ async function while_loop_2() {
       $.flag_carpark_blip = 1;
     }
   }
+  //While loop 3: player at carpark AND NOT in CAR_COLUMB
 }
 
 async function while_loop_3() {
@@ -458,9 +426,6 @@ async function while_loop_3() {
     $.blip_carpark.remove();
     $.flag_carpark_blip = 0;
   }
-  //If you proceed without a Cartel car you will be identified!
-  //The Yakuza have identified you!
-  //While loop 4: player at carpark AND in CAR_COLUMB
   while ($.flag_kenji_dead == 0) {
     await asyncWait(0);
     if ($.player.isInModel(131 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
@@ -478,16 +443,12 @@ async function while_loop_3() {
       // SCM GOTO → while_loop_2 (not lowered; manual jump required)
       throw new Error("unresolved GOTO while_loop_2"); // fallback: would break linear control flow
     }
-    //If you proceed without a Cartel car you will be identified!
     if ($.flag_message == 2) {
-      //If you proceed without a Cartel car you will be identified!
-      Text.PrintNow("LOVE2_3", 3000, 1);
+      Text.PrintNow("LOVE2_3", 3000, 1); //If you proceed without a Cartel car you will be identified!
       $.flag_message = 0;
     }
-    //The Yakuza have identified you!
     if (!($.player.isInAnyCar()) && $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)) {
-      //The Yakuza have identified you!
-      Text.PrintNow("LOVE2_4", 3000, 1);
+      Text.PrintNow("LOVE2_4", 3000, 1); //The Yakuza have identified you!
       if ($.flag_yak_created_love2 == 1) {
         if (!(Char.IsDead($.kenji)) && !(Car.IsDead($.kenji_car_love2))) {
           $.kenji.setObjEnterCarAsDriver($.kenji_car_love2);
@@ -496,12 +457,9 @@ async function while_loop_3() {
       // SCM GOTO → mission_love2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_love2_failed"); // fallback: would break linear control flow
     }
-    //The Yakuza have identified you!
     if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)) {
-      //The Yakuza have identified you!
       if (!($.player.isInModel(131 /* CAR_COLUMB */))) {
-        //The Yakuza have identified you!
-        Text.PrintNow("LOVE2_4", 3000, 1);
+        Text.PrintNow("LOVE2_4", 3000, 1); //The Yakuza have identified you!
         if ($.flag_yak_created_love2 == 1) {
           if (!(Char.IsDead($.kenji)) && !(Car.IsDead($.kenji_car_love2))) {
             $.kenji.setObjEnterCarAsDriver($.kenji_car_love2);
@@ -522,6 +480,7 @@ async function while_loop_3() {
       $.flag_wanted_love2 = 2;
     }
   }
+  //While loop 4: player at carpark AND in CAR_COLUMB
 }
 
 async function while_loop_4() {
@@ -529,23 +488,8 @@ async function while_loop_4() {
     $.blip_carpark.remove();
     $.flag_carpark_blip = 0;
   }
-  /*
-  IF NOT IS_PLAYER_IN_MODEL player CAR_COLUMB
-  AND IS_PLAYER_IN_AREA_3D	player carpark_minx carpark_miny carpark_minz carpark_maxx carpark_maxy carpark_maxz false
-  PRINT_NOW (LOVE2_4) 3000 1 //The Yakuza have identified you!
-  GOTO mission_love2_failed
-  ENDIF
-  */
-  //The Yakuza have identified you!
   while ($.flag_kenji_dead == 0) {
     await asyncWait(0);
-    /*
-    IF NOT IS_PLAYER_IN_MODEL player CAR_COLUMB
-    AND IS_PLAYER_IN_AREA_3D	player carpark_minx carpark_miny carpark_minz carpark_maxx carpark_maxy carpark_maxz false
-    PRINT_NOW (LOVE2_4) 3000 1 //The Yakuza have identified you!
-    GOTO mission_love2_failed
-    ENDIF
-    */
     if ($.player.isInModel(131 /* CAR_COLUMB */)) {
       $.player_car = $.player.storeCarIsIn();
       $.player_car.setStrong(true /* true */);
@@ -559,10 +503,8 @@ async function while_loop_4() {
       }
       $.flag_yak_attack_love2 = 1;
     }
-    //The Yakuza have identified you!
     if (!($.player.isInAnyCar()) && $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)) {
-      //The Yakuza have identified you!
-      Text.PrintNow("LOVE2_4", 3000, 1);
+      Text.PrintNow("LOVE2_4", 3000, 1); //The Yakuza have identified you!
       if ($.flag_yak_created_love2 == 1) {
         if (!(Char.IsDead($.kenji)) && !(Car.IsDead($.kenji_car_love2))) {
           $.kenji.setObjEnterCarAsDriver($.kenji_car_love2);
@@ -571,12 +513,9 @@ async function while_loop_4() {
       // SCM GOTO → mission_love2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_love2_failed"); // fallback: would break linear control flow
     }
-    //The Yakuza have identified you!
     if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)) {
-      //The Yakuza have identified you!
       if (!($.player.isInModel(131 /* CAR_COLUMB */))) {
-        //The Yakuza have identified you!
-        Text.PrintNow("LOVE2_4", 3000, 1);
+        Text.PrintNow("LOVE2_4", 3000, 1); //The Yakuza have identified you!
         if ($.flag_yak_created_love2 == 1) {
           if (!(Char.IsDead($.kenji)) && !(Car.IsDead($.kenji_car_love2))) {
             $.kenji.setObjEnterCarAsDriver($.kenji_car_love2);
@@ -645,69 +584,53 @@ async function while_loop_4() {
       $.blip_kenji_love2.remove();
     }
   }
-  //Kenji is dead!! Get out of NEWPORT and dump the Cartel car!!
-  //You've killed all the witnesses!!
-  //The Yakuza have identified you!
-  //Now dump the car!
-  //Now get out of Newport!
   while ($.flag_player_clear == 0) {
     await asyncWait(0);
-    //Kenji is dead!! Get out of NEWPORT and dump the Cartel car!!
     if ($.flag_kenji_dead == 1) {
-      //Kenji is dead!! Get out of NEWPORT and dump the Cartel car!!
-      Text.PrintNow("LOVE2_5", 3000, 1);
+      Text.PrintNow("LOVE2_5", 3000, 1); //Kenji is dead!! Get out of NEWPORT and dump the Cartel car!!
       $.flag_kenji_dead = 2;
     }
     // SCM GOSUB yak_death_count
     await yak_death_count();
     // fallback if label was not emitted as async function: no-op continues linearly
-    //You've killed all the witnesses!!
     if ($.counter_kenji_guards_dead == 8) {
-      //You've killed all the witnesses!!
-      Text.PrintNow("LOVE2_6", 3000, 1);
+      Text.PrintNow("LOVE2_6", 3000, 1); //You've killed all the witnesses!!
       // SCM GOTO → mission_love2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_love2_failed"); // fallback: would break linear control flow
     }
-    //The Yakuza have identified you!
     if (!($.player.isInModel(131 /* CAR_COLUMB */)) && $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)) {
-      //The Yakuza have identified you!
-      Text.PrintNow("LOVE2_4", 3000, 1);
+      Text.PrintNow("LOVE2_4", 3000, 1); //The Yakuza have identified you!
       // SCM GOTO → mission_love2_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_love2_failed"); // fallback: would break linear control flow
     }
-    //Now dump the car!
     if (!($.player.isInZone("COM_EAS")) && $.player.isInModel(131 /* CAR_COLUMB */) && $.flag_kenji_dead == 2) {
-      //Now dump the car!
-      Text.PrintNow("LOVE2_7", 3000, 1);
+      Text.PrintNow("LOVE2_7", 3000, 1); //Now dump the car!
       $.flag_kenji_dead = 3;
     }
-    //Now get out of Newport!
     if ($.player.isInZone("COM_EAS") && !($.player.isInModel(131 /* CAR_COLUMB */)) && $.flag_kenji_dead == 2) {
-      //Now get out of Newport!
-      Text.PrintNow("LOVE2_8", 3000, 1);
+      Text.PrintNow("LOVE2_8", 3000, 1); //Now get out of Newport!
       $.flag_kenji_dead = 3;
     }
     if (!($.player.isInZone("COM_EAS")) && !($.player.isInModel(131 /* CAR_COLUMB */))) {
       $.flag_player_clear = 1;
     }
   }
-  // Mission Love 2 failed
   // SCM GOTO → mission_love2_passed (not lowered; manual jump required)
   throw new Error("unresolved GOTO mission_love2_passed"); // fallback: would break linear control flow
+  // Mission Love 2 failed
 }
 
 async function mission_love2_failed() {
   Text.PrintBig("M_FAIL", 2000, 1);
   $.blip_kenji_love2.remove();
   $.kenji.removeElegantly();
-  // mission Love 2 passed
   return;
+  // mission Love 2 passed
 }
 
 async function mission_love2_passed() {
   $.flag_love_mission2_passed = 1;
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.clearWantedLevel();
   $.player.addScore(30000);
@@ -715,8 +638,8 @@ async function mission_love2_passed() {
   Stat.PlayerMadeProgress(1);
   $.kenji_contact_blip.remove();
   // START_NEW_SCRIPT love_mission3_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_love2() {
@@ -736,8 +659,8 @@ async function mission_cleanup_love2() {
   Streaming.MarkModelAsNoLongerNeeded(car`STRETCH`);
   Streaming.MarkModelAsNoLongerNeeded(car`YAKUZA`);
   Mission.Finish();
-  //-----------------------------GOSUBS--------------------------------------
   return;
+  //-----------------------------GOSUBS--------------------------------------
 }
 
 async function yak_death_count() {
@@ -777,11 +700,6 @@ async function yak_death_count() {
 }
 
 async function kenji_cut() {
-  //PRINT_WITH_NUMBER_NOW ( Z ) timer_kenji_cut_dif 1000 1
-  //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_3_love2
-  /*IF NOT IS_CHAR_DEAD kenji
-  STOP_CHAR_LOOKING kenji
-  ENDIF*/
   if ($.flag_kenji_cut == 1) {
     $.player.applyBrakesToCar(true /* On */);
     Hud.SwitchWidescreen(true /* on */);
@@ -790,28 +708,18 @@ async function kenji_cut() {
     Camera.PointAtPoint(303.67, -543.36, 36.92, 2 /* JUMP_CUT */);
     $.timer_kenji_cut_start = Clock.GetGameTimer();
     $.timer_kenji_cut_dif = $.timer_kenji_cut_start - $.timer_kenji_cut_start;
-    //PRINT_WITH_NUMBER_NOW ( Z ) timer_kenji_cut_dif 1000 1
-    //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_3_love2
-    /*IF NOT IS_CHAR_DEAD kenji
-    STOP_CHAR_LOOKING kenji
-    ENDIF*/
     while ($.timer_kenji_cut_dif < 7500) {
-      //PRINT_WITH_NUMBER_NOW ( Z ) timer_kenji_cut_dif 1000 1
       await asyncWait(0);
+      //PRINT_WITH_NUMBER_NOW ( Z ) timer_kenji_cut_dif 1000 1
       $.timer_kenji_cut_now = Clock.GetGameTimer();
       $.timer_kenji_cut_dif = $.timer_kenji_cut_now - $.timer_kenji_cut_start;
-      //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_3_love2
       if ($.timer_kenji_cut_dif > 1000 && $.flag_kenji_look == 0) {
-        //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_3_love2
         if (!(Char.IsDead($.kenji)) && !(Char.IsDead($.yak_2_love2))) {
           $.kenji.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 4000);
           $.yak_2_love2.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 4000);
           $.flag_kenji_look = 1;
         }
       }
-      /*IF NOT IS_CHAR_DEAD kenji
-      STOP_CHAR_LOOKING kenji
-      ENDIF*/
       if ($.timer_kenji_cut_dif > 2500 && $.flag_kenji_cut == 1) {
         if (!(Char.IsDead($.yak_3_love2))) {
           Camera.PointAtChar($.yak_3_love2, 15 /* FIXED */, 1 /* INTERPOLATION */);
@@ -829,11 +737,6 @@ async function kenji_cut() {
     $.player.setControl(true /* on */);
     Hud.SwitchWidescreen(false /* off */);
   }
-  //PRINT_WITH_NUMBER_NOW ( Z ) timer_kenji_cut_dif 1000 1
-  //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_1_love2
-  /*IF NOT IS_CHAR_DEAD kenji
-  STOP_CHAR_LOOKING kenji
-  ENDIF*/
   if ($.flag_kenji_cut == 2) {
     $.player.applyBrakesToCar(true /* On */);
     Hud.SwitchWidescreen(true /* on */);
@@ -842,28 +745,18 @@ async function kenji_cut() {
     Camera.PointAtPoint(303.83, -543.85, 36.96, 2 /* JUMP_CUT */);
     $.timer_kenji_cut_start = Clock.GetGameTimer();
     $.timer_kenji_cut_dif = $.timer_kenji_cut_start - $.timer_kenji_cut_start;
-    //PRINT_WITH_NUMBER_NOW ( Z ) timer_kenji_cut_dif 1000 1
-    //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_1_love2
-    /*IF NOT IS_CHAR_DEAD kenji
-    STOP_CHAR_LOOKING kenji
-    ENDIF*/
     while ($.timer_kenji_cut_dif < 7500) {
-      //PRINT_WITH_NUMBER_NOW ( Z ) timer_kenji_cut_dif 1000 1
       await asyncWait(0);
+      //PRINT_WITH_NUMBER_NOW ( Z ) timer_kenji_cut_dif 1000 1
       $.timer_kenji_cut_now = Clock.GetGameTimer();
       $.timer_kenji_cut_dif = $.timer_kenji_cut_now - $.timer_kenji_cut_start;
-      //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_1_love2
       if ($.timer_kenji_cut_dif > 1000 && $.flag_kenji_look == 0) {
-        //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_1_love2
         if (!(Char.IsDead($.kenji)) && !(Char.IsDead($.yak_2_love2))) {
           $.kenji.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 4000);
           $.yak_2_love2.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 4000);
           $.flag_kenji_look = 1;
         }
       }
-      /*IF NOT IS_CHAR_DEAD kenji
-      STOP_CHAR_LOOKING kenji
-      ENDIF*/
       if ($.timer_kenji_cut_dif > 2500 && $.flag_kenji_cut == 2) {
         if (!(Char.IsDead($.yak_1_love2))) {
           Camera.PointAtChar($.yak_1_love2, 15 /* FIXED */, 1 /* INTERPOLATION */);
@@ -885,11 +778,11 @@ async function kenji_cut() {
 }
 
 export async function love2() {
+  // MissionBoundary
   // *****************************************************************************************
   // *********************************    Love mission 2   ***********************************
   // *********************************  Assassinate Kenji  ***********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_love2
   await mission_start_love2();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -901,13 +794,13 @@ export async function love2() {
   // SCM GOSUB mission_cleanup_love2
   await mission_cleanup_love2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_FLOAT carpark_minx carpark_miny carpark_maxx carpark_maxy
   // VAR_FLOAT carpark_minz carpark_maxz
   // VAR_INT blip_carpark blip_kenji_love2
-  //VAR_INT test_car_love2//test stuff
   // VAR_INT flag_carpark_blip
+  //VAR_INT test_car_love2//test stuff
   // VAR_INT flag_kenji_dead flag_yak_created_love2 flag_wanted_love2 flag_kenji_look
   // VAR_INT flag_message flag_yak_attack_love2 flag_player_clear flag_kenji_cut
   // VAR_INT timer_kenji_cut_start timer_kenji_cut_dif timer_kenji_cut_now
@@ -916,9 +809,9 @@ export async function love2() {
   // VAR_INT yak_5_love2 yak_6_love2 yak_7_love2 yak_8_love2
   // VAR_INT counter_kenji_guards_dead
   // VAR_INT flag_1_dead_love2 flag_2_dead_love2 flag_3_dead_love2 flag_4_dead_love2
+  // VAR_INT flag_5_dead_love2 flag_6_dead_love2 flag_7_dead_love2 flag_8_dead_love2
   //VAR_INT flag_1_dead_love2 flag_1_dead_love2 flag_1_dead_love2 flag_1_dead_love2
   //VAR_INT yak_9_love2 yak_10_love2 yak_11_love2 yak_12_love2
   //VAR_INT kenji
   //+++++++++++++++++++++++++++CREATE PEDS GOSUB++++++++++++++++++++++++++++++++++++++++++++
-  // VAR_INT flag_5_dead_love2 flag_6_dead_love2 flag_7_dead_love2 flag_8_dead_love2
 }

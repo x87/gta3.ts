@@ -8,11 +8,11 @@ import { car, ped, hier } from "../../../ide.ts";
 async function mission_start_mayhem() {
   Stat.RegisterMissionGiven();
   // ScriptName
-  //flag_player_on_carpark_mission = 1
   $.flag_player_on_mission = 1;
+  //flag_player_on_carpark_mission = 1
   Text.PrintBig("MM_1", 15000, 2);
-  //Set Variables
   await asyncWait(0);
+  //Set Variables
   $.counter_4x4_pickups = 0;
   $.timer_4x4 = 20000;
   $.flag_intro = 0;
@@ -38,9 +38,8 @@ async function mission_start_mayhem() {
   $.flag_blip_17 = 0;
   $.flag_blip_18 = 0;
   $.flag_blip_19 = 0;
-  //Set Coords
   $.flag_blip_20 = 0;
-  //ground floor
+  //Set Coords
   $.x_1 = 286.0;
   $.y_1 = -519.0;
   $.z_1 = 26.2;
@@ -53,7 +52,6 @@ async function mission_start_mayhem() {
   $.x_4 = 303.0;
   $.y_4 = -577.0;
   $.z_4 = 26.2;
-  //first tier
   $.x_5 = 327.5;
   $.y_5 = -583.0;
   $.z_5 = 29.2;
@@ -66,7 +64,6 @@ async function mission_start_mayhem() {
   $.x_8 = 311.0;
   $.y_8 = -510.0;
   $.z_8 = 29.2;
-  //2nd tier
   $.x_9 = 293.0;
   $.y_9 = -484.0;
   $.z_9 = 31.6;
@@ -79,7 +76,6 @@ async function mission_start_mayhem() {
   $.x_12 = 301.0;
   $.y_12 = -606.0;
   $.z_12 = 31.6;
-  //3rd tier
   $.x_13 = 314.5;
   $.y_13 = -595.0;
   $.z_13 = 33.9;
@@ -92,7 +88,6 @@ async function mission_start_mayhem() {
   $.x_16 = 337.0;
   $.y_16 = -523.0;
   $.z_16 = 33.9;
-  //4th tier
   $.x_17 = 302.0;
   $.y_17 = -606.5;
   $.z_17 = 36.3;
@@ -104,8 +99,8 @@ async function mission_start_mayhem() {
   $.z_19 = 40.5;
   $.x_20 = 272.0;
   $.y_20 = -537.0;
-  //Mission Script
   $.z_20 = 36.3;
+  //Mission Script
   $.wanted_4x4 = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   $.player_4x4 = $.player.storeCarIsIn();
@@ -430,17 +425,17 @@ async function mission_start_mayhem() {
       throw new Error("unresolved GOTO mission_mayhem_failed"); // fallback: would break linear control flow
     }
   }
-  // --------------------------Mission failed-----------------------------------------------
   if ($.counter_4x4_pickups == 20) {
     // SCM GOTO → mission_mayhem_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_mayhem_passed"); // fallback: would break linear control flow
   }
+  // --------------------------Mission failed-----------------------------------------------
 }
 
 async function mission_mayhem_failed() {
   Text.PrintBig("M_FAIL", 2000, 1);
-  // -------------------------Mission passed-------------------------------------------------
   return;
+  // -------------------------Mission passed-------------------------------------------------
 }
 
 async function mission_mayhem_passed() {
@@ -455,21 +450,20 @@ async function mission_mayhem_passed() {
       $.record_mayhem = $.record_temp;
     }
   }
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1);
-  //PRINT_WITH_NUMBER_NOW (Y1_1ST) counter_player_points 4000 1
+  Text.PrintWithNumberBig("M_PASS", 30000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
+  //PRINT_WITH_NUMBER_NOW (Y1_1ST) counter_player_points 4000 1
   $.player.clearWantedLevel();
   $.player.addScore(30000);
   Stat.Register4X4MayhemTime($.record_mayhem);
-  //START_NEW_SCRIPT carpark_mission2_loop
   if ($.flag_mayhem_mission1_passed == 0) {
     Stat.RegisterMissionPassed(MM_1);
     $.flag_mayhem_mission1_passed = 1;
     Stat.PlayerMadeProgress(1);
   }
-  // mission cleanup
+  //START_NEW_SCRIPT carpark_mission2_loop
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_mayhem() {
@@ -497,17 +491,17 @@ async function mission_cleanup_mayhem() {
   $.blip_18.remove();
   $.blip_19.remove();
   $.blip_20.remove();
-  //flag_player_on_carpark_mission = 0
   $.flag_player_on_mission = 0;
+  //flag_player_on_carpark_mission = 0
   Mission.Finish();
   return;
 }
 
 export async function mayhem1() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***************************************Multi-storey Mayhem*******************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_mayhem
   await mission_start_mayhem();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -519,36 +513,6 @@ export async function mayhem1() {
   // SCM GOSUB mission_cleanup_mayhem
   await mission_cleanup_mayhem();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
-  /* variables called in T4x4_1.sc
-  VAR_INT player_carpark
-  VAR_INT counter_4x4_pickups timer_4x4
-  VAR_INT wanted_4x4
-  VAR_INT intro_time_lapsed timer_intro_now timer_intro_start flag_intro
-  VAR_INT record_mayhem
-  VAR_INT flag_blip_1 flag_blip_2 flag_blip_3 flag_blip_4
-  VAR_INT flag_blip_5 flag_blip_6 flag_blip_7 flag_blip_8
-  VAR_INT flag_blip_9 flag_blip_10 flag_blip_11 flag_blip_12
-  VAR_INT flag_blip_13 flag_blip_14 flag_blip_15 flag_blip_16
-  VAR_INT flag_blip_17 flag_blip_18 flag_blip_19 flag_blip_20
-  VAR_INT blip_1 blip_2 blip_3 blip_4
-  VAR_INT blip_5 blip_6 blip_7 blip_8
-  VAR_INT blip_9 blip_10 blip_11 blip_12
-  VAR_INT blip_13 blip_14 blip_15 blip_16
-  VAR_INT blip_17 blip_18 blip_19 blip_20
-  VAR_FLOAT x_1 y_1 z_1
-  VAR_FLOAT x_2 y_2 z_2
-  VAR_FLOAT x_3 y_3 z_3
-  VAR_FLOAT x_4 y_4 z_4
-  VAR_FLOAT x_5 y_5 z_5
-  VAR_FLOAT x_6 y_6 z_6
-  VAR_FLOAT x_7 y_7 z_7
-  VAR_FLOAT x_8 y_8 z_8
-  VAR_FLOAT x_9 y_9 z_9
-  VAR_FLOAT x_10 y_10 z_10
-  VAR_FLOAT x_11 y_11 z_11
-  VAR_FLOAT x_12 y_12 z_12
-  */
-  // ****************************************Mission Start************************************
   // MissionBoundary
+  // ****************************************Mission Start************************************
 }

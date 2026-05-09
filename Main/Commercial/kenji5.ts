@@ -56,12 +56,12 @@ async function mission_start_kenji5() {
   Streaming.RequestModel(ped`GANG_YAKUZA_B`);
   Streaming.RequestModel(ped`GANG_YARDIE_A`);
   Streaming.LoadSpecialModel(hier`cutobj01`, KENJIH);
+  Streaming.RequestModel(casino_garden);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.RequestModel(casino_garden);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(ped`GANG_YAKUZA_A`)) || !(Streaming.HasModelLoaded(ped`GANG_YAKUZA_B`)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(casino_garden))) {
     await asyncWait(0);
@@ -77,59 +77,52 @@ async function mission_start_kenji5() {
   $.cs_yakuza2 = CutsceneObject.Create(ped`GANG_YAKUZA_B`);
   $.cs_yakuza2.setAnim(gang08);
   $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, hier`cutobj01`);
+  $.cs_kenjihead.setAnim($.kenji);
   //CREATE_CUTSCENE_HEAD cs_player cut_obj2 cs_playerhead
   //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
-  $.cs_kenjihead.setAnim($.kenji);
   World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */);
   $.player.setCoordinates(459.1, -1413.0, 25.11);
   $.player.setHeading(132.0);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   World.SwitchRubbish(false /* OFF */);
-  // Displays cutscene text
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 6121) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"YOU! How fitting you should choose this moment to show your worthless face!"
-  Text.PrintNow(KM5_A, 7000, 1);
+  Text.PrintNow(KM5_A, 7000, 1); //"YOU! How fitting you should choose this moment to show your worthless face!"
   while ($.cs_time < 11088) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"It would appear your attempts to dissuade the Jamaicans"
-  Text.PrintNow(KM5_B, 7000, 1);
+  Text.PrintNow(KM5_B, 7000, 1); //"It would appear your attempts to dissuade the Jamaicans"
   while ($.cs_time < 13770) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"from becoming bed fellows with the Cartel were wholly inadequate!"
-  Text.PrintNow(KM5_B1, 7000, 1);
+  Text.PrintNow(KM5_B1, 7000, 1); //"from becoming bed fellows with the Cartel were wholly inadequate!"
   while ($.cs_time < 17324) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Yardie pushers line Liberty's streets selling packets of SPANK like they were selling hotdogs!"
-  Text.PrintNow(KM5_C, 7000, 1);
+  Text.PrintNow(KM5_C, 7000, 1); //"Yardie pushers line Liberty's streets selling packets of SPANK like they were selling hotdogs!"
   while ($.cs_time < 22060) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Those Cartel pigs are laughing at us, at me!"
-  Text.PrintNow(KM5_D, 7000, 1);
+  Text.PrintNow(KM5_D, 7000, 1); //"Those Cartel pigs are laughing at us, at me!"
   while ($.cs_time < 24716) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I will give you one last chance to prove my sister's faith in you to be well founded!"
-  Text.PrintNow(KM5_E, 7000, 1);
+  Text.PrintNow(KM5_E, 7000, 1); //"I will give you one last chance to prove my sister's faith in you to be well founded!"
   while ($.cs_time < 29220) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"Run these scumbags into the ground and wash your shame in rivers of our enemies' blood!!!"
-  Text.PrintNow(KM5_F, 7000, 1);
+  Text.PrintNow(KM5_F, 7000, 1); //"Run these scumbags into the ground and wash your shame in rivers of our enemies' blood!!!"
   while ($.cs_time < 33666) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -146,14 +139,14 @@ async function mission_start_kenji5() {
   Streaming.Switch(true /* ON */);
   World.SwitchRubbish(true /* ON */);
   Camera.DoFade(1500, 1 /* FADE_IN */);
-  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
   Camera.SetInFrontOfPlayer();
+  //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
   Streaming.UnloadSpecialCharacter(1);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_A`);
   Streaming.MarkModelAsNoLongerNeeded(ped`GANG_YAKUZA_B`);
   Streaming.MarkModelAsNoLongerNeeded(hier`cutobj01`);
-  // *******************************************END OF CUTSCENE*******************************
   Streaming.MarkModelAsNoLongerNeeded(casino_garden);
+  // *******************************************END OF CUTSCENE*******************************
   while (!(Streaming.HasModelLoaded(ped`GANG_YARDIE_A`))) {
     await asyncWait(0);
   }
@@ -525,17 +518,13 @@ async function main_part_of_script() {
   $.ped_1_blip.changeScale(3);
   $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
   $.ped_2_blip.changeScale(3);
-  //"You must murder at least 8 Yardie dealers."
-  Text.PrintNow(KM5_6, 5000, 1);
-  //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
-  Text.PrintSoon(KM5_7, 6000, 1);
+  Text.PrintNow(KM5_6, 5000, 1); //"You must murder at least 8 Yardie dealers."
+  Text.PrintSoon(KM5_7, 6000, 1); //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
   Hud.DisplayCounterWithString($.dead_peds, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS);
   $.ped_1_exists = 1;
   $.ped_2_exists = 1;
   $.number_of_peds = 2;
   TIMERA = 0;
-  // "One down, two more to kill."
-  //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
   while ($.number_of_peds > 0) {
     await asyncWait(0);
     if ($.dead_peds > 0) {
@@ -546,8 +535,6 @@ async function main_part_of_script() {
         // fallback if label was not emitted as async function: no-op continues linearly
       }
     }
-    // "One down, two more to kill."
-    //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
     if ($.ped_1_exists > 0) {
       if ($.ped_1_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_1_x, $.ped_1_y, 90.0, 90.0, false)) {
@@ -569,23 +556,16 @@ async function main_part_of_script() {
           $.ped_1_exists = 2;
         }
       }
-      // "One down, two more to kill."
-      //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
       if ($.ped_1_exists == 2) {
-        // "One down, two more to kill."
-        //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
         if (Char.IsDead($.ped_1)) {
           $.ped_1_blip.remove();
           $.ped_1.markAsNoLongerNeeded();
           $.ped_1_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
-          //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           if ($.on_screen_counter_flag == 0) {
-            //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
-            Text.PrintSoon(KM5_7, 6000, 1);
+            Text.PrintSoon(KM5_7, 6000, 1); //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
             TIMERA = 0;
             $.on_screen_counter_flag = 1;
           }
@@ -608,8 +588,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
-    //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
     if ($.ped_2_exists > 0) {
       if ($.ped_2_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_2_x, $.ped_2_y, 90.0, 90.0, false)) {
@@ -629,23 +607,16 @@ async function main_part_of_script() {
           $.ped_2_exists = 2;
         }
       }
-      // "One down, two more to kill."
-      //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
       if ($.ped_2_exists == 2) {
-        // "One down, two more to kill."
-        //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
         if (Char.IsDead($.ped_2)) {
           $.ped_2_blip.remove();
           $.ped_2.markAsNoLongerNeeded();
           $.ped_2_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
-          //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           if ($.on_screen_counter_flag == 0) {
-            //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
-            Text.PrintSoon(KM5_7, 6000, 1);
+            Text.PrintSoon(KM5_7, 6000, 1); //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
             TIMERA = 0;
             $.on_screen_counter_flag = 1;
           }
@@ -668,7 +639,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_3_exists > 0) {
       if ($.ped_3_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_3_x, $.ped_3_y, 90.0, 90.0, false)) {
@@ -690,17 +660,14 @@ async function main_part_of_script() {
           $.ped_3_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_3_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_3)) {
           $.ped_3_blip.remove();
           $.ped_3.markAsNoLongerNeeded();
           $.ped_3_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -720,7 +687,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_4_exists > 0) {
       if ($.ped_4_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_4_x, $.ped_4_y, 90.0, 90.0, false)) {
@@ -742,17 +708,14 @@ async function main_part_of_script() {
           $.ped_4_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_4_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_4)) {
           $.ped_4_blip.remove();
           $.ped_4.markAsNoLongerNeeded();
           $.ped_4_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -772,7 +735,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_5_exists > 0) {
       if ($.ped_5_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_5_x, $.ped_5_y, 90.0, 90.0, false)) {
@@ -794,17 +756,14 @@ async function main_part_of_script() {
           $.ped_5_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_5_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_5)) {
           $.ped_5_blip.remove();
           $.ped_5.markAsNoLongerNeeded();
           $.ped_5_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -824,7 +783,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_6_exists > 0) {
       if ($.ped_6_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_6_x, $.ped_6_y, 90.0, 90.0, false)) {
@@ -846,17 +804,14 @@ async function main_part_of_script() {
           $.ped_6_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_6_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_6)) {
           $.ped_6_blip.remove();
           $.ped_6.markAsNoLongerNeeded();
           $.ped_6_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -876,7 +831,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_7_exists > 0) {
       if ($.ped_7_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_7_x, $.ped_7_y, 90.0, 90.0, false)) {
@@ -898,17 +852,14 @@ async function main_part_of_script() {
           $.ped_7_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_7_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_7)) {
           $.ped_7_blip.remove();
           $.ped_7.markAsNoLongerNeeded();
           $.ped_7_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -928,7 +879,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_8_exists > 0) {
       if ($.ped_8_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_8_x, $.ped_8_y, 90.0, 90.0, false)) {
@@ -950,17 +900,14 @@ async function main_part_of_script() {
           $.ped_8_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_8_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_8)) {
           $.ped_8_blip.remove();
           $.ped_8.markAsNoLongerNeeded();
           $.ped_8_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -980,7 +927,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_9_exists > 0) {
       if ($.ped_9_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_9_x, $.ped_9_y, 90.0, 90.0, false)) {
@@ -1002,17 +948,14 @@ async function main_part_of_script() {
           $.ped_9_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_9_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_9)) {
           $.ped_9_blip.remove();
           $.ped_9.markAsNoLongerNeeded();
           $.ped_9_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -1032,7 +975,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_10_exists > 0) {
       if ($.ped_10_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_10_x, $.ped_10_y, 90.0, 90.0, false)) {
@@ -1054,17 +996,14 @@ async function main_part_of_script() {
           $.ped_10_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_10_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_10)) {
           $.ped_10_blip.remove();
           $.ped_10.markAsNoLongerNeeded();
           $.ped_10_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -1084,7 +1023,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_11_exists > 0) {
       if ($.ped_11_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_11_x, $.ped_11_y, 90.0, 90.0, false)) {
@@ -1106,17 +1044,14 @@ async function main_part_of_script() {
           $.ped_11_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_11_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_11)) {
           $.ped_11_blip.remove();
           $.ped_11.markAsNoLongerNeeded();
           $.ped_11_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -1136,7 +1071,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_12_exists > 0) {
       if ($.ped_12_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_12_x, $.ped_12_y, 90.0, 90.0, false)) {
@@ -1158,17 +1092,14 @@ async function main_part_of_script() {
           $.ped_12_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_12_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_12)) {
           $.ped_12_blip.remove();
           $.ped_12.markAsNoLongerNeeded();
           $.ped_12_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -1188,7 +1119,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_13_exists > 0) {
       if ($.ped_13_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_13_x, $.ped_13_y, 90.0, 90.0, false)) {
@@ -1210,17 +1140,14 @@ async function main_part_of_script() {
           $.ped_13_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_13_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_13)) {
           $.ped_13_blip.remove();
           $.ped_13.markAsNoLongerNeeded();
           $.ped_13_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -1240,7 +1167,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_14_exists > 0) {
       if ($.ped_14_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_14_x, $.ped_14_y, 90.0, 90.0, false)) {
@@ -1262,17 +1188,14 @@ async function main_part_of_script() {
           $.ped_14_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_14_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_14)) {
           $.ped_14_blip.remove();
           $.ped_14.markAsNoLongerNeeded();
           $.ped_14_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -1292,7 +1215,6 @@ async function main_part_of_script() {
         }
       }
     }
-    // "One down, two more to kill."
     if ($.ped_15_exists > 0) {
       if ($.ped_15_exists == 1) {
         if ($.player.locateAnyMeans2D($.ped_15_x, $.ped_15_y, 90.0, 90.0, false)) {
@@ -1314,17 +1236,14 @@ async function main_part_of_script() {
           $.ped_15_exists = 2;
         }
       }
-      // "One down, two more to kill."
       if ($.ped_15_exists == 2) {
-        // "One down, two more to kill."
         if (Char.IsDead($.ped_15)) {
           $.ped_15_blip.remove();
           $.ped_15.markAsNoLongerNeeded();
           $.ped_15_exists = 0;
           ++$.dead_peds;
           --$.number_of_peds;
-          // "One down, two more to kill."
-          Text.PrintNow(KM5_1, 2000, 1);
+          Text.PrintNow(KM5_1, 2000, 1); // "One down, two more to kill."
           // SCM GOSUB create_random_ped
           await create_random_ped();
           // fallback if label was not emitted as async function: no-op continues linearly
@@ -1414,143 +1333,113 @@ async function delete_oldest_ped() {
     $.oldest_ped = 14;
     $.oldest_ped_time = $.ped_14_time;
   }
-  ///////////////////////////////////////
   if ($.ped_15_exists == 1 && $.ped_15_time < $.oldest_ped_time) {
     $.oldest_ped = 15;
     $.oldest_ped_time = $.ped_15_time;
   }
-  // "A Yardie has gone to ground."
+  ///////////////////////////////////////
   if ($.oldest_ped == 1) {
     $.ped_1_blip.remove();
     $.ped_1.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_1_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 2) {
     $.ped_2_blip.remove();
     $.ped_2.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_2_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 3) {
     $.ped_3_blip.remove();
     $.ped_3.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_3_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 4) {
     $.ped_4_blip.remove();
     $.ped_4.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_4_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 5) {
     $.ped_5_blip.remove();
     $.ped_5.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_5_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 6) {
     $.ped_6_blip.remove();
     $.ped_6.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_6_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 7) {
     $.ped_7_blip.remove();
     $.ped_7.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_7_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 8) {
     $.ped_8_blip.remove();
     $.ped_8.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_8_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 9) {
     $.ped_9_blip.remove();
     $.ped_9.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_9_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 10) {
     $.ped_10_blip.remove();
     $.ped_10.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_10_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 11) {
     $.ped_11_blip.remove();
     $.ped_11.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_11_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 12) {
     $.ped_12_blip.remove();
     $.ped_12.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_12_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 13) {
     $.ped_13_blip.remove();
     $.ped_13.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_13_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 14) {
     $.ped_14_blip.remove();
     $.ped_14.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_14_exists = 0;
     --$.number_of_peds;
   }
-  // "A Yardie has gone to ground."
   if ($.oldest_ped == 15) {
     $.ped_15_blip.remove();
     $.ped_15.markAsNoLongerNeeded();
-    // "A Yardie has gone to ground."
-    Text.PrintNow(KM5_2, 2000, 1);
+    Text.PrintNow(KM5_2, 2000, 1); // "A Yardie has gone to ground."
     $.ped_15_exists = 0;
     --$.number_of_peds;
   }
@@ -1560,34 +1449,30 @@ async function delete_oldest_ped() {
 
 async function mission_kenji5_failed() {
   Text.PrintBig("M_FAIL", 5000, 1);
-  // "You failed to kill at least ~1~ yardies."
-  Text.PrintWithNumberNow(KM5_3, $.minimum_kills, 3000, 1);
-  // mission Kenji5 passed
+  Text.PrintWithNumberNow(KM5_3, $.minimum_kills, 3000, 1); // "You failed to kill at least ~1~ yardies."
   return;
+  // mission Kenji5 passed
 }
 
 async function mission_kenji5_passed() {
   $.flag_kenji_mission5_passed = 1;
   Text.PrintWithNumberBig(m_pass, 10000, 5000, 1);
   $.player.addScore(10000);
-  // "Congratulations you killed ~1~ Yardies."
   if ($.dead_peds == 8) {
-    // "Congratulations you killed ~1~ Yardies."
-    Text.PrintWithNumberNow(KM5_4, $.dead_peds, 3000, 1);
+    Text.PrintWithNumberNow(KM5_4, $.dead_peds, 3000, 1); // "Congratulations you killed ~1~ Yardies."
   }
   else {
     $.reward_kills = $.dead_peds - $.minimum_kills;
     $.reward_kills = $.reward_kills * 1000;
-    // "Congratulations you killed ~1~ Yardies."
-    Text.PrintWith2NumbersNow(KM5_5, $.dead_peds, $.reward_kills, 3000, 1);
+    Text.PrintWith2NumbersNow(KM5_5, $.dead_peds, $.reward_kills, 3000, 1); // "Congratulations you killed ~1~ Yardies."
   }
   $.player.clearWantedLevel();
   Stat.RegisterMissionPassed(KM5);
   Audio.PlayMissionPassedTune(1);
   Stat.PlayerMadeProgress(1);
   $.kenji_contact_blip.remove();
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_kenji5() {
@@ -1615,6 +1500,7 @@ async function mission_cleanup_kenji5() {
 }
 
 export async function kenji5() {
+  // MissionBoundary
   // *****************************************************************************************
   // *******************************   Kenji Mission 5   *************************************
   // *******************************     Smack Down      *************************************
@@ -1623,7 +1509,6 @@ export async function kenji5() {
   // *** city splattering and killing all the dealers within a time limit. Occasionally 	 ***
   // *** they may have a 'backup vehicle' that will give chase to make the mission harder. ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_kenji5
   await mission_start_kenji5();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1635,8 +1520,8 @@ export async function kenji5() {
   // SCM GOSUB mission_cleanup_kenji5
   await mission_cleanup_kenji5();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables For Mission
   // MissionBoundary
+  // Variables For Mission
   // VAR_INT number_of_peds ped_2_exists ped_2_blip ped_2 delete_oldest_ped_time on_screen_counter_flag
   // VAR_INT ped_3_exists ped_3_blip ped_3 ped_4_exists ped_4_blip ped_4 dead_peds minimum_kills reward_kills
   // VAR_INT ped_1_time ped_2_time ped_3_time ped_4_time oldest_ped_time oldest_ped random_direction
@@ -1666,6 +1551,6 @@ export async function kenji5() {
   // VAR_FLOAT ped_1_x ped_1_y ped_1_z
   // VAR_FLOAT ped_2_x ped_2_y ped_2_z ped_3_x ped_3_y ped_3_z
   // VAR_FLOAT ped_4_x ped_4_y ped_4_z random_commercial_x random_commercial_y garbage_x garbage_y garbage_z
-  // ****************************************Mission Start************************************
   // VAR_FLOAT difference_x difference_y sum_diff distance
+  // ****************************************Mission Start************************************
 }

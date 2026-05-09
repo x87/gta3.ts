@@ -46,12 +46,12 @@ async function mission_start_ray3() {
   {
   Streaming.LoadSpecialModel(hier`cutobj01`, PLAYERH);
   Streaming.LoadSpecialModel(hier`cutobj02`, RAYH);
+  Streaming.RequestModel(toilet);
   /*
   WHILE GET_FADING_STATUS
   WAIT 0
   ENDWHILE
   */
-  Streaming.RequestModel(toilet);
   Streaming.LoadAllModelsNow();
   while (!(Streaming.HasSpecialCharacterLoaded(1)) || !(Streaming.HasModelLoaded(hier`cutobj01`)) || !(Streaming.HasModelLoaded(hier`cutobj02`)) || !(Streaming.HasModelLoaded(toilet))) {
     await asyncWait(0);
@@ -68,73 +68,65 @@ async function mission_start_ray3() {
   $.cs_playerhead = CutsceneHead.Create($.cs_player, hier`cutobj01`);
   $.cs_playerhead.setAnim($.player);
   $.cs_rayhead = CutsceneHead.Create($.cs_ray, hier`cutobj02`);
+  $.cs_rayhead.setAnim($.ray);
   //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
   //
   //SET_PLAYER_HEADING player 270.0
-  $.cs_rayhead.setAnim($.ray);
   Camera.DoFade(1500, 1 /* FADE_IN */);
   Camera.SetNearClip(0.2);
   Cutscene.Start();
-  // Displays cutscene text
   Streaming.Switch(false /* OFF */);
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 10381) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"I know a real important man in town, a soft touch
-  Text.PrintNow(RM3_A, 10000, 1);
+  Text.PrintNow(RM3_A, 10000, 1); //"I know a real important man in town, a soft touch
   while ($.cs_time < 13529) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"with shall we say, exotic tastes and the money to indulge them.
-  Text.PrintNow(RM3_H, 10000, 1);
+  Text.PrintNow(RM3_H, 10000, 1); //"with shall we say, exotic tastes and the money to indulge them.
   while ($.cs_time < 17950) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"He's involved in a legal matter and the prosecution has some rather embarrassing photos of him..."
-  Text.PrintNow(RM3_B, 10000, 1);
+  Text.PrintNow(RM3_B, 10000, 1); //"He's involved in a legal matter and the prosecution has some rather embarrassing photos of him..."
   while ($.cs_time < 23502) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"...at a morgue party or something."
-  Text.PrintNow(RM3_C, 10000, 1);
+  Text.PrintNow(RM3_C, 10000, 1); //"...at a morgue party or something."
   while ($.cs_time < 26180) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"The evidence is being driven across town."
-  Text.PrintNow(RM3_D, 10000, 1);
+  Text.PrintNow(RM3_D, 10000, 1); //"The evidence is being driven across town."
   while ($.cs_time < 29179) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"You are going to have to ram the car and collect each bit of evidence as it falls out."
-  Text.PrintNow(RM3_E, 10000, 1);
+  Text.PrintNow(RM3_E, 10000, 1); //"You are going to have to ram the car and collect each bit of evidence as it falls out."
   while ($.cs_time < 34865) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"When you've got it all, leave it in the car and torch it."
-  Text.PrintNow(RM3_F, 10000, 1);
+  Text.PrintNow(RM3_F, 10000, 1); //"When you've got it all, leave it in the car and torch it."
   while ($.cs_time < 39290) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
-  //"We're both gonna do well out of this."
-  Text.PrintNow(RM3_G, 10000, 1);
+  Text.PrintNow(RM3_G, 10000, 1); //"We're both gonna do well out of this."
   while ($.cs_time < 41666) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
   Camera.DoFade(1500, 0 /* FADE_OUT */);
-  //DO_FADE 1000 FADE_IN
   while (!(Cutscene.HasFinished())) {
     await asyncWait(0);
   }
+  //DO_FADE 1000 FADE_IN
   Text.ClearPrints();
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
@@ -158,15 +150,15 @@ async function mission_start_ray3() {
   Camera.DoFade(1500, 1 /* FADE_IN */);
   Streaming.Switch(true /* ON */);
   $.rays_cutscene_flag = 0;
-  // ******************************************END OF CUTSCENE********************************
   while (Camera.GetFadingStatus()) {
     await asyncWait(0);
   }
+  // ******************************************END OF CUTSCENE********************************
   $.ia_car_rm3 = Car.Create(105 /* CAR_BOBCAT */, $.ia_start_x, $.ia_start_y, $.ia_start_z);
   $.ia_car_rm3.setAvoidLevelTransitions(true /* TRUE */);
   $.ia_car_rm3.setWatertight(true /* TRUE */);
-  //SET_CHAR_AVOID_LEVEL_TRANSITIONS ia_car_driver_1 TRUE
   $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, 4 /* PEDTYPE_CIVMALE */, ped`B_MAN3`);
+  //SET_CHAR_AVOID_LEVEL_TRANSITIONS ia_car_driver_1 TRUE
   $.ia_car_driver_1.setCantBeDraggedOut(true /* TRUE */);
   $.ia_car_rm3.setOnlyDamagedByPlayer(true /* TRUE */);
   $.ia_car_rm3.setUpsidedownNotDamaged(true /* TRUE */);
@@ -204,10 +196,10 @@ async function mission_start_ray3() {
   $.evidence_3.placeRelativeToCar($.ia_car_rm3, -0.3, -1.2, -0.1);
   $.evidence_4.placeRelativeToCar($.ia_car_rm3, 0.3, -0.7, -0.1);
   $.evidence_5.placeRelativeToCar($.ia_car_rm3, -0.3, -0.7, -0.1);
+  $.evidence_6.placeRelativeToCar($.ia_car_rm3, -0.3, -1.7, -0.1);
   //SWITCH_ROADS_OFF -90.0 -791.0 24.0 -56.0 -587.0 36.0
   //SWITCH_ROADS_OFF 320.0 -948.0 30.0 350.0 -913.0 40.0
   //SWITCH_ROADS_OFF 251.0 -46.0 -21.0 320.0 68.0 27.0
-  $.evidence_6.placeRelativeToCar($.ia_car_rm3, -0.3, -1.7, -0.1);
   $.ia_have_evidence_flag = 1;
 }
 
@@ -215,11 +207,8 @@ async function evidence_loop() {
   // SCM GOTO → evidence_loop lowered to endless loop
   while (true) {
     await asyncWait(0);
-    //"The evidence will be washed up all over Liberty!"
     if (Car.IsDead($.ia_car_rm3)) {
-      //"The evidence will be washed up all over Liberty!"
       if ($.ia_car_rm3.isInWater()) {
-        //"The evidence will be washed up all over Liberty!"
         if (!($.player.locateAnyMeansCar2D($.ia_car_rm3, 50.0, 50.0, false))) {
           if (!($.ia_car_rm3.isOnScreen())) {
             [$.ia_car_x, $.ia_car_y, $.ia_car_z] = $.ia_car_rm3.getCoordinates();
@@ -231,8 +220,7 @@ async function evidence_loop() {
           }
         }
         else {
-          //"The evidence will be washed up all over Liberty!"
-          Text.PrintNow(RM3_6, 5000, 1);
+          Text.PrintNow(RM3_6, 5000, 1); //"The evidence will be washed up all over Liberty!"
           // SCM GOTO → mission_ray3_failed (not lowered; manual jump required)
           throw new Error("unresolved GOTO mission_ray3_failed"); // fallback: would break linear control flow
         }
@@ -373,15 +361,11 @@ async function evidence_loop() {
     }
     $.ia_car_previous_health = $.ia_car_current_health;
     $.ia_car_current_health = $.ia_car_rm3.getHealth();
-    //"IA HAVE DROPPED THE EVIDENCE"
     if ($.ia_have_evidence_flag == 1) {
-      //"IA HAVE DROPPED THE EVIDENCE"
       if ($.ia_car_rm3.isUpright()) {
         $.temporary_health_var = $.ia_car_previous_health - $.amount_damage_ia_drop_evidence;
-        //"IA HAVE DROPPED THE EVIDENCE"
         if ($.temporary_health_var > $.ia_car_current_health) {
-          //"IA HAVE DROPPED THE EVIDENCE"
-          Text.PrintNow("RM3_4", 3000, 1);
+          Text.PrintNow("RM3_4", 3000, 1); //"IA HAVE DROPPED THE EVIDENCE"
           $.ia_car_rm3.setHealth(1000);
           $.ia_car_current_health = 1000;
           $.ia_car_previous_health = 1000;
@@ -391,11 +375,9 @@ async function evidence_loop() {
         }
       }
     }
-    // Play sound for police scanner here
     if ($.ia_have_evidence_flag == 0 && $.drop_one_flag == 0) {
       $.drop_evidence++;
       $.rays_evidence_blip.remove();
-      // Play sound for police scanner here
       if ($.drop_evidence == 1) {
         $.evidence_1.placeRelativeToCar($.ia_car_rm3, 0.3, -1.7, 0.2);
         $.rays_evidence_blip = Blip.AddForObject($.evidence_1);
@@ -405,8 +387,8 @@ async function evidence_loop() {
         $.evidence_1.makeTargetable();
         $.player.alterWantedLevelNoDrop(2);
         $.ia_car_rm3.setCruiseSpeed(100.0);
-        // Play sound for police scanner here
         $.ia_car_rm3.setDrivingStyle(2);
+        // Play sound for police scanner here
         TIMERB = 0;
       }
       if ($.drop_evidence == 2) {
@@ -526,7 +508,6 @@ async function evidence_loop() {
     if ($.drop_evidence < 6) {
       $.evidence_6.placeRelativeToCar($.ia_car_rm3, -0.3, -1.7, -0.1);
     }
-    // "Now torch the car!"
     if ($.amount_of_evidence_player_has == 6) {
       $.rays_evidence_blip.remove();
       Text.PrintNow(RM3_1, 5000, 1);
@@ -537,12 +518,10 @@ async function evidence_loop() {
       while ($.player.isInAnyCar()) {
         await asyncWait(0);
       }
-      // "Now torch the car!"
       if (!(Car.IsDead($.players_car))) {
         $.rays_evidence_blip = Blip.AddForCar($.players_car);
         Hud.ClearCounter($.amount_of_evidence_player_has);
-        // "Now torch the car!"
-        Text.PrintNow(RM3_7, 5000, 1);
+        Text.PrintNow(RM3_7, 5000, 1); // "Now torch the car!"
         while (!(Car.IsDead($.players_car))) {
           await asyncWait(0);
         }
@@ -559,8 +538,8 @@ async function evidence_loop() {
 
 async function mission_ray3_failed() {
   Text.PrintBig("m_fail", 5000, 1);
-  // mission Ray3 passed
   return;
+  // mission Ray3 passed
 }
 
 async function mission_ray3_passed() {
@@ -574,8 +553,8 @@ async function mission_ray3_passed() {
   $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, 6 /* RADAR_SPRITE_DON */);
   // START_NEW_SCRIPT ray_mission4_loop
   // START_NEW_SCRIPT love_mission1_loop
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_ray3() {
@@ -596,14 +575,11 @@ async function create_another_car() {
     $.timerd_started_r3 = Clock.GetGameTimer();
     $.timerd_reset_flag_r3 = 1;
   }
-  //"That car is a decoy!!"
   if ($.timerd_reset_flag_r3 == 1) {
     $.timerd_current_r3 = Clock.GetGameTimer();
     $.timerd_r3 = $.timerd_current_r3 - $.timerd_started_r3;
-    //"That car is a decoy!!"
     if ($.timerd_r3 > 15000) {
-      //"That car is a decoy!!"
-      Text.PrintNow(RM3_8, 5000, 1);
+      Text.PrintNow(RM3_8, 5000, 1); //"That car is a decoy!!"
       $.prosecution_car_blip.remove();
       $.ia_car_rm3.markAsNoLongerNeeded();
       $.ia_car_driver_1.markAsNoLongerNeeded();
@@ -655,8 +631,7 @@ async function evidence_collected() {
     $.evidence_6.delete();
   }
   ++$.amount_of_evidence_player_has;
-  //"You have ~1~ evidence packages."
-  Text.PrintWithNumberNow(RM3_5, $.amount_of_evidence_player_has, 5000, 1);
+  Text.PrintWithNumberNow(RM3_5, $.amount_of_evidence_player_has, 5000, 1); //"You have ~1~ evidence packages."
   $.ia_have_evidence_flag = 1;
   TIMERB = 0;
   return;
@@ -664,6 +639,7 @@ async function evidence_collected() {
 }
 
 export async function ray3() {
+  // MissionBoundary
   // *****************************************************************************************
   // ************************************ Ray mission 3 **************************************
   // ************************************ Evidence Dash **************************************
@@ -674,7 +650,6 @@ export async function ray3() {
   // *** must grab that first and then go get the next package off them. There will be 8 to***
   // *** retrieve. Once the player has the stash he must get it back to his hideout.		 ***
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_ray3
   await mission_start_ray3();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -686,9 +661,8 @@ export async function ray3() {
   // SCM GOSUB mission_cleanup_ray3
   await mission_cleanup_ray3();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
-  //evidence_7 evidence_8 evidence_9
+  // Variables for mission
   // VAR_INT rays_evidence_blip timera_reset_flag evidence_1 evidence_2 evidence_3 evidence_4 evidence_5 evidence_6
   // VAR_INT ia_car_rm3 ia_car_driver_1 wanted_level_change stored_wanted_level
   // VAR_INT ia_have_evidence_flag players_car prosecution_car_blip timer_for_speed reset_for_timer
@@ -698,6 +672,6 @@ export async function ray3() {
   // VAR_INT timerc_reset_flag_r3 timerc_current_r3 timerc_started_r3 timerc_r3
   // VAR_INT timerd_reset_flag_r3 timerd_current_r3 timerd_started_r3 timerd_r3
   // VAR_FLOAT ia_start_x ia_start_y ia_start_z ia_car_x ia_car_y ia_car_z warp_heading
-  // ****************************************Mission Start************************************
   // VAR_FLOAT object_current_coords_x object_current_coords_y object_current_coords_z car_stuck_x car_stuck_y car_stuck_z
+  // ****************************************Mission Start************************************
 }

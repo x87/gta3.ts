@@ -8,11 +8,11 @@ import { car, ped, hier } from "../../../ide.ts";
 async function mission_start_4x4one() {
   Stat.RegisterMissionGiven();
   // ScriptName
-  //flag_player_on_4x4_mission = 1
   $.flag_player_on_mission = 1;
+  //flag_player_on_4x4_mission = 1
   Text.PrintBig("T4X4_1", 5000, 2);
-  //Set Variables
   await asyncWait(0);
+  //Set Variables
   $.counter_4x4_pickups = 0;
   $.timer_4x4 = 0;
   $.flag_intro = 0;
@@ -34,8 +34,8 @@ async function mission_start_4x4one() {
   $.flag_blip_13 = 0;
   $.flag_blip_14 = 0;
   $.flag_blip_15 = 0;
-  //Set Coords
   $.record_temp = 0;
+  //Set Coords
   $.x_1 = 1391.7;
   $.y_1 = -135.0;
   $.z_1 = 54.8;
@@ -80,8 +80,8 @@ async function mission_start_4x4one() {
   $.z_14 = 36.57;
   $.x_15 = 1320.99;
   $.y_15 = -541.66;
-  //Mission Script
   $.z_15 = 37.82;
+  //Mission Script
   $.wanted_4x4 = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   $.player_4x4 = $.player.storeCarIsIn();
@@ -105,7 +105,6 @@ async function mission_start_4x4one() {
   $.blip_13 = Blip.AddForCoord($.x_13, $.y_13, $.z_13);
   $.blip_14 = Blip.AddForCoord($.x_14, $.y_14, $.z_14);
   $.blip_15 = Blip.AddForCoord($.x_15, $.y_15, $.z_15);
-  //PRINT_NOW (T4X4_1C) 5500 1
   while ($.counter_4x4_pickups < 15) {
     await asyncWait(0);
     if ($.counter_4x4_pickups == 1 && $.flag_timer == 0) {
@@ -315,10 +314,9 @@ async function mission_start_4x4one() {
       Text.PrintNow("T4X4_1C", 5500, 1);
       $.flag_intro = 3;
     }
-    //PRINT_NOW (T4X4_1C) 5500 1
     if ($.intro_time_lapsed > 7000 && $.flag_intro == 3) {
-      //PRINT_NOW (T4X4_1C) 5500 1
       Camera.PointAtPoint($.x_13, $.y_13, $.z_13, 1 /* INTERPOLATION */);
+      //PRINT_NOW (T4X4_1C) 5500 1
       $.flag_intro = 4;
     }
     if ($.intro_time_lapsed > 10500 && $.flag_intro == 4) {
@@ -356,17 +354,17 @@ async function mission_start_4x4one() {
       throw new Error("unresolved GOTO mission_4x4one_failed"); // fallback: would break linear control flow
     }
   }
-  // --------------------------Mission failed-----------------------------------------------
   if ($.counter_4x4_pickups == 15) {
     // SCM GOTO → mission_4x4one_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_4x4one_passed"); // fallback: would break linear control flow
   }
+  // --------------------------Mission failed-----------------------------------------------
 }
 
 async function mission_4x4one_failed() {
   Text.PrintBig("M_FAIL", 2000, 1);
-  // -------------------------Mission passed-------------------------------------------------
   return;
+  // -------------------------Mission passed-------------------------------------------------
 }
 
 async function mission_4x4one_passed() {
@@ -381,21 +379,20 @@ async function mission_4x4one_passed() {
       $.record_4x4_one = $.record_temp;
     }
   }
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", 20000, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   $.player.clearWantedLevel();
   $.player.addScore(20000);
   Stat.Register4X4OneTime($.record_4x4_one);
-  //START_NEW_SCRIPT t4x4_mission2_loop
-  //START_NEW_SCRIPT multistorey_mission_loop
   if ($.flag_4x4_mission1_passed == 0) {
     Stat.RegisterMissionPassed(T4X4_1);
     $.flag_4x4_mission1_passed = 1;
     Stat.PlayerMadeProgress(1);
   }
-  // mission cleanup
+  //START_NEW_SCRIPT t4x4_mission2_loop
+  //START_NEW_SCRIPT multistorey_mission_loop
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_4x4one() {
@@ -418,25 +415,25 @@ async function mission_cleanup_4x4one() {
   Hud.SwitchWidescreen(false /* off */);
   $.player.setControl(true /* on */);
   Hud.ClearTimer($.timer_4x4);
-  //flag_player_on_4x4_mission = 0
   $.flag_player_on_mission = 0;
+  //flag_player_on_4x4_mission = 0
   Mission.Finish();
   return;
 }
 
 export async function _4x4_1() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***************************************4x4 by Far****************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_4x4one
   await mission_start_4x4one();
   // fallback if label was not emitted as async function: no-op continues linearly
   // SCM GOSUB mission_cleanup_4x4one
   await mission_cleanup_4x4one();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT player_4x4
   // VAR_INT counter_4x4_pickups timer_4x4
   // VAR_INT wanted_4x4 flag_timer
@@ -471,6 +468,6 @@ export async function _4x4_1() {
   // VAR_FLOAT x_17 y_17 z_17
   // VAR_FLOAT x_18 y_18 z_18
   // VAR_FLOAT x_19 y_19 z_19
-  // ****************************************Mission Start************************************
   // VAR_FLOAT x_20 y_20 z_20
+  // ****************************************Mission Start************************************
 }

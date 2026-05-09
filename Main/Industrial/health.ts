@@ -8,22 +8,22 @@ import { car, ped, hier } from "../../../ide.ts";
 async function health_info_start() {
   // ScriptName
   $.flag_player_on_mission = 1;
-  //Set Variables
   await asyncWait(0);
+  //Set Variables
   $.info_time_lapsed = 0;
   $.info_time_now = 0;
   $.info_time_start = 0;
   $.flag_info = 0;
   $.flag_bottom = 0;
   $.wanted_level = 0;
+  $.flag_intro_jump = 0;
   //Set Coords
   //Mission Script
-  $.flag_intro_jump = 0;
   $.player.setControl(false /* off */);
   $.wanted_level = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
-  //SWITCH_WIDESCREEN on
   Game.SetPoliceIgnorePlayer($.player, true /* on */);
+  //SWITCH_WIDESCREEN on
   Streaming.RequestModel(car`AMBULANCE`);
   Streaming.RequestModel(ped`MEDIC`);
   while (!(Streaming.HasModelLoaded(car`AMBULANCE`)) || !(Streaming.HasModelLoaded(ped`MEDIC`))) {
@@ -31,28 +31,13 @@ async function health_info_start() {
   }
   Camera.SetFixedPosition(1138.6, -600.0, 18.0, 0.0, 0.0, 0.0);
   Camera.PointAtPlayer($.player, 15 /* FIXED */, 1 /* INTERPOLATION */);
-  /*SET_FADING_COLOUR 0 0 0
-  DO_FADE 1500 FADE_OUT
-  WAIT 1500*/
-  //CAR_SET_IDLE amb_info
-  /*SET_FADING_COLOUR 0 0 0
-  DO_FADE 1500 FADE_IN
-  WAIT 1500*/
-  //SWITCH_WIDESCREEN off
   while ($.flag_info < 8) {
     await asyncWait(0);
-    /*SET_FADING_COLOUR 0 0 0
-    DO_FADE 1500 FADE_OUT
-    WAIT 1500*/
-    //CAR_SET_IDLE amb_info
-    /*SET_FADING_COLOUR 0 0 0
-    DO_FADE 1500 FADE_IN
-    WAIT 1500*/
     if ($.flag_info == 0) {
+      $.info_time_start = Clock.GetGameTimer();
       /*SET_FADING_COLOUR 0 0 0
       DO_FADE 1500 FADE_OUT
       WAIT 1500*/
-      $.info_time_start = Clock.GetGameTimer();
       World.ClearArea(1141.0, -622.0, 14.8, 30.0, true /* true */);
       World.ClearArea(1125.77, -594.0, 14.8, 10.0, true /* true */);
       World.SetCarDensityMultiplier(0.0);
@@ -62,11 +47,11 @@ async function health_info_start() {
       $.medic_info = Char.Create(4 /* PEDTYPE_CIVMALE */, ped`MEDIC`, 1136.75, -617.8, 14.7);
       $.medic_info.setHeading(25.0);
       $.medic_info.setIdle();
+      $.medic_info.setStayInSamePlace(true /* true */);
       //CAR_SET_IDLE amb_info
       /*SET_FADING_COLOUR 0 0 0
       DO_FADE 1500 FADE_IN
       WAIT 1500*/
-      $.medic_info.setStayInSamePlace(true /* true */);
       Text.PrintHelp("HEAL_A");
       Hud.FlashObject(4 /* HUD_FLASH_HEALTH */);
       $.flag_info = 1;
@@ -114,7 +99,6 @@ async function health_info_start() {
       $.armour_pickup_info = Pickup.Create(1364 /* bodyarmour */, 14 /* PICKUP_ON_STREET_SLOW */, 1147.0, -601.1, 15.0);
       $.flag_info = 7;
     }
-    //SWITCH_WIDESCREEN off
     if ($.info_time_lapsed > 24000 && $.flag_info == 7) {
       Camera.SetFadingColor(0, 0, 0);
       Camera.DoFade(1500, 0 /* FADE_OUT */);
@@ -126,8 +110,8 @@ async function health_info_start() {
       $.medic_info.delete();
       $.health_pickup_info.remove();
       $.armour_pickup_info.remove();
-      //SWITCH_WIDESCREEN off
       Camera.RestoreJumpcut();
+      //SWITCH_WIDESCREEN off
       $.player.setControl(true /* on */);
       $.player.alterWantedLevel($.wanted_level);
       Camera.SetFadingColor(0, 0, 0);
@@ -156,8 +140,8 @@ async function health_info_start() {
       }
     }
   }
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function health_info_cleanup() {
@@ -170,20 +154,20 @@ async function health_info_cleanup() {
   Streaming.MarkModelAsNoLongerNeeded(car`AMBULANCE`);
   Streaming.MarkModelAsNoLongerNeeded(ped`MEDIC`);
   World.SetCarDensityMultiplier(1.0);
-  //REMOVE_PICKUP heal_info
   World.SetPedDensityMultiplier(1.0);
+  //REMOVE_PICKUP heal_info
   $.flag_player_on_mission = 0;
   $.flag_health_info = 1;
   Mission.Finish();
-  //----main stuff-------
   return;
+  //----main stuff-------
 }
 
 export async function health() {
+  // MissionBoundary
   // *****************************************************************************************
   // ***************************************HEALTH INFO***************************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB health_info_start
   await health_info_start();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -195,10 +179,10 @@ export async function health() {
   // SCM GOSUB health_info_cleanup
   await health_info_cleanup();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for info script
   // MissionBoundary
+  // Variables for info script
   // VAR_INT amb_info medic_info flag_bottom
   // VAR_INT health_pickup_info armour_pickup_info
-  // ****************************************Mission Start************************************
   // VAR_INT info_time_lapsed info_time_now info_time_start flag_info
+  // ****************************************Mission Start************************************
 }

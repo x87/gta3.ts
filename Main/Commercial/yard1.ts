@@ -10,6 +10,7 @@ async function mission_start_yd1() {
   // ScriptName
   $.flag_player_on_mission = 1;
   $.flag_player_on_yardie_mission = 1;
+  await asyncWait(0);
   /*
   IF CAN_PLAYER_START_MISSION Player
   MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
@@ -26,27 +27,26 @@ async function mission_start_yd1() {
   ENDWHILE
   */
   // ******************************************CUTSCENE***************************************
-  await asyncWait(0);
   {
   World.SetPedDensityMultiplier(0.0);
+  Game.SetPoliceIgnorePlayer($.player, true /* on */);
   //WHILE NOT HAS_MODEL_LOADED cut_obj1
   //	WAIT 0
   //ENDWHILE
-  Game.SetPoliceIgnorePlayer($.player, true /* on */);
   Cutscene.Load(YD_PH1);
   Cutscene.SetOffset(121.0, -272.3, 15.25);
   World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
   $.cs_player = CutsceneObject.Create(ped`PLAYER`);
+  $.cs_player.setAnim($.player);
   //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
   //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
   //CLEAR_AREA 1219.5 -321.1 27.5 1.0 TRUE
   //SET_PLAYER_COORDINATES player 1219.5 -321.1 26.4
   //SET_PLAYER_HEADING player 180.0
-  $.cs_player.setAnim($.player);
-  //SWITCH_STREAMING OFF
   Camera.DoFade(1500, 1 /* FADE_IN */);
-  // Displays cutscene text
+  //SWITCH_STREAMING OFF
   Cutscene.Start();
+  // Displays cutscene text
   $.cs_time = Cutscene.GetTime();
   while ($.cs_time < 2237) {
     await asyncWait(0);
@@ -77,6 +77,7 @@ async function mission_start_yd1() {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
   }
+  Text.PrintNow("YD1_D1", 10000, 1);
   /*
   WHILE cs_time < 24139
   WAIT 0
@@ -89,7 +90,6 @@ async function mission_start_yd1() {
   ENDWHILE
   PRINT_NOW ( DIAB2_H ) 10000 1
   */
-  Text.PrintNow("YD1_D1", 10000, 1);
   while ($.cs_time < 25166) {
     await asyncWait(0);
     $.cs_time = Cutscene.GetTime();
@@ -103,8 +103,8 @@ async function mission_start_yd1() {
   }
   Streaming.Switch(true /* ON */);
   Text.ClearPrints();
-  //SET_CAMERA_IN_FRONT_OF_PLAYER
   Cutscene.Clear();
+  //SET_CAMERA_IN_FRONT_OF_PLAYER
   World.SetPedDensityMultiplier(1.0);
   Game.SetPoliceIgnorePlayer($.player, false /* off */);
   await asyncWait(500);
@@ -134,10 +134,10 @@ async function mission_start_yd1() {
   Streaming.RequestModel(car`PATRIOT`);
   Streaming.RequestModel(car`CHEETAH`);
   Streaming.RequestModel(car`BOBCAT`);
-  // --------Mission stuff goes here-----------------------------------------------------
   while (!(Streaming.HasModelLoaded(ped`MALE2`)) || !(Streaming.HasModelLoaded(car`PATRIOT`)) || !(Streaming.HasModelLoaded(car`CHEETAH`)) || !(Streaming.HasModelLoaded(car`BOBCAT`))) {
     await asyncWait(1000);
   }
+  // --------Mission stuff goes here-----------------------------------------------------
 }
 
 async function is_player_there() {
@@ -202,8 +202,8 @@ async function player_is_there() {
   $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, 4 /* PEDTYPE_CIVMALE */, ped`MALE2`);
   $.hot_rod_3.setWatertight(true /* true */);
   $.hot_rod_3.setUpsidedownNotDamaged(true /* true */);
-  //SET_CAR_HEADING hot_rod_3 360.0
   $.hot_rod_3.lockDoors(2 /* CARLOCK_LOCKED */);
+  //SET_CAR_HEADING hot_rod_3 360.0
   $.hot_rod_3.setCruiseSpeed(10.0);
   $.hot_rod_3.setDrivingStyle(0);
   $.hot_rod_3.gotoCoordinatesAccurate(93.0, 43.0, 16.0);
@@ -252,19 +252,19 @@ async function player_is_there() {
     $.player_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
   }
   World.SetCarDensityMultiplier(1.0);
-  //----------------GENERATE ROUTE FLAG--------------------------------------------
   World.SetPedDensityMultiplier(1.0);
+  //----------------GENERATE ROUTE FLAG--------------------------------------------
   $.random_yd1 = Math.Random();
   if ($.random_yd1 > 21845 && $.random_yd1 < 43691) {
     $.flag_random_yd1 = 1;
   }
-  //-----------TURN OFF TUNNEL NODES-------------------------
   if ($.random_yd1 > 43690) {
     $.flag_random_yd1 = 2;
   }
+  //-----------TURN OFF TUNNEL NODES-------------------------
   Path.SwitchRoadsOff(500.0, 60.0, -25.0, 600.0, 140.0, 0.0);
-  //-----------------RACE COUNTDOWN-----------------------------------------------
   Path.SwitchRoadsOff(-400.0, 60.0, -25.0, -300.0, 140.0, 0.0);
+  //-----------------RACE COUNTDOWN-----------------------------------------------
   if ($.player.isInAnyCar()) {
     $.player_car = $.player.storeCarIsIn();
   }
@@ -296,8 +296,8 @@ async function player_is_there() {
       Sound.AddOneOffSound(0.0, 0.0, 0.0, 97 /* SOUND_RACE_START_3 */);
     }
   }
-  //-------------------RACE START-------------------------------------------------------------
   Text.PrintNow("YD1_F", 4000, 2);
+  //-------------------RACE START-------------------------------------------------------------
 }
 
 async function and_its_go_go_go() {
@@ -307,30 +307,20 @@ async function and_its_go_go_go() {
   // SCM GOSUB driving_style_car_2
   await driving_style_car_2();
   // fallback if label was not emitted as async function: no-op continues linearly
-  //------------------MAIN LOOP--------------------------------------------------------------
   // SCM GOSUB driving_style_car_3
   await driving_style_car_3();
   // fallback if label was not emitted as async function: no-op continues linearly
+  //------------------MAIN LOOP--------------------------------------------------------------
 }
 
 async function main_loop() {
   // SCM GOTO → main_loop lowered to endless loop
   while (true) {
-    /*ELSE
-    DRAW_CORONA finish_x finish_y 16.1 2.0 CORONATYPE_HEX FLARETYPE_NONE 0 200 200*/
     if ($.flag_corona_yd1 == 0) {
+      Fx.DrawCorona($.finish_x, $.finish_y, -100.0, 2.0, 6 /* CORONATYPE_CIRCLE */, 0 /* FLARETYPE_NONE */, 200, 120, 120);
       /*ELSE
       DRAW_CORONA finish_x finish_y 16.1 2.0 CORONATYPE_HEX FLARETYPE_NONE 0 200 200*/
-      Fx.DrawCorona($.finish_x, $.finish_y, -100.0, 2.0, 6 /* CORONATYPE_CIRCLE */, 0 /* FLARETYPE_NONE */, 200, 120, 120);
     }
-    //no collision warp
-    //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
-    //PRINT_BIG (Y1_TEST) 2000 1//CAR IN WATER!!
-    //MISSION_RAMPLAYER_FARAWAY
-    //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
-    //PRINT_BIG (Y1_TEST) 2000 1
-    //RAMPLAYER_FARAWAY
-    //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
     if ($.player.isInAnyCar()) {
       $.player_car = $.player.storeCarIsIn();
       [$.player_car_x, $.player_car_y, $.player_car_z] = $.player_car.getCoordinates();
@@ -339,22 +329,12 @@ async function main_loop() {
       $.x_sum = $.x_sum * $.x_sum;
       $.y_sum = $.y_sum * $.y_sum;
       $.player_dist = $.x_sum + $.y_sum;
-      //no collision warp
-      //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
-      //PRINT_BIG (Y1_TEST) 2000 1//CAR IN WATER!!
-      //MISSION_RAMPLAYER_FARAWAY
       if (!(Car.IsDead($.hot_rod_1)) || $.hot_rod_1.isInWater()) {
-        //no collision warp
-        //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
-        //PRINT_BIG (Y1_TEST) 2000 1//CAR IN WATER!!
-        //MISSION_RAMPLAYER_FARAWAY
         if (!(Char.IsDead($.street_racer_1)) && !($.player.isInCar($.hot_rod_1))) {
           [$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates();
-          //no collision warp
-          //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
           if ($.hot_rod_1_z < 0.0) {
-            //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
             [$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
+            //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
             if (!(Camera.IsPointOnScreen($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, 3.0))) {
               $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
               $.hot_rod_1.setHeading($.hot_rod_heading);
@@ -363,14 +343,12 @@ async function main_loop() {
           if (!($.hot_rod_1.isHealthGreater(450))) {
             $.hot_rod_1.setHealth(600);
           }
-          //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
           if ($.hot_rod_1.isUpsidedown() && $.hot_rod_1.isStopped()) {
             $.street_racer_1.setObjLeaveCar($.hot_rod_1);
-            //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
             if (!($.hot_rod_1.isOnScreen())) {
               [$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates();
-              //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
               [$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
+              //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
               if (!(Camera.IsPointOnScreen($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, 3.0))) {
                 $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
                 $.hot_rod_1.setHeading($.hot_rod_heading);
@@ -379,14 +357,11 @@ async function main_loop() {
               }
             }
           }
-          //PRINT_BIG (Y1_TEST) 2000 1//CAR IN WATER!!
-          //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
           if ($.hot_rod_1.isInWater()) {
-            //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
             if (!($.hot_rod_1.isOnScreen())) {
               [$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates();
-              //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
               [$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
+              //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
               if (!(Camera.IsPointOnScreen($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, 3.0))) {
                 $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
                 $.hot_rod_1.setHeading($.hot_rod_heading);
@@ -400,7 +375,6 @@ async function main_loop() {
               $.timer_reset_hr1 = 0;
             }
           }
-          //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
           if ($.hot_rod_1.isStopped()) {
             if ($.timer_reset_hr1 == 0) {
               $.timer_start_hr1 = Clock.GetGameTimer();
@@ -410,13 +384,11 @@ async function main_loop() {
               $.timer_current_hr1 = Clock.GetGameTimer();
               $.hr1_time_dif = $.timer_current_hr1 - $.timer_start_hr1;
             }
-            //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
             if ($.hr1_time_dif > 4000) {
-              //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
               if (!($.hot_rod_1.isOnScreen())) {
                 [$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z] = $.hot_rod_1.getCoordinates();
-                //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
                 [$.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
+                //GET_CLOSEST_CAR_NODE hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_x hot_rod_1_y hot_rod_1_z
                 if (!(Camera.IsPointOnScreen($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z, 3.0))) {
                   $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
                   $.hot_rod_1.setHeading($.hot_rod_heading);
@@ -431,10 +403,8 @@ async function main_loop() {
           $.x_sum = $.x_sum * $.x_sum;
           $.y_sum = $.y_sum * $.y_sum;
           $.hot_rod_1_dist = $.x_sum + $.y_sum;
-          //MISSION_RAMPLAYER_FARAWAY
           if ($.hot_rod_1_dist > $.player_dist) {
-            //MISSION_RAMPLAYER_FARAWAY
-            $.hot_rod_1.setMission(2);
+            $.hot_rod_1.setMission(2); //MISSION_RAMPLAYER_FARAWAY
           }
           if ($.player_dist > $.hot_rod_1_dist) {
             // SCM GOSUB driving_style_car_1
@@ -446,22 +416,12 @@ async function main_loop() {
           $.hot_rod_1.setIdle();
         }
       }
-      //no collision warp
-      //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
-      //PRINT_BIG (Y1_TEST) 2000 1
-      //RAMPLAYER_FARAWAY
       if (!(Car.IsDead($.hot_rod_2)) || $.hot_rod_2.isInWater()) {
-        //no collision warp
-        //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
-        //PRINT_BIG (Y1_TEST) 2000 1
-        //RAMPLAYER_FARAWAY
         if (!(Char.IsDead($.street_racer_2)) && !($.player.isInCar($.hot_rod_2))) {
           [$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates();
-          //no collision warp
-          //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
           if ($.hot_rod_2_z < 0.0) {
-            //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
             [$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
+            //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
             if (!(Camera.IsPointOnScreen($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, 3.0))) {
               $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
               $.hot_rod_2.setHeading($.hot_rod_heading);
@@ -470,14 +430,12 @@ async function main_loop() {
           if (!($.hot_rod_2.isHealthGreater(450))) {
             $.hot_rod_2.setHealth(600);
           }
-          //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
           if ($.hot_rod_2.isUpsidedown() && $.hot_rod_2.isStopped()) {
             $.street_racer_2.setObjLeaveCar($.hot_rod_2);
-            //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
             if (!($.hot_rod_2.isOnScreen())) {
               [$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates();
-              //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
               [$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
+              //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
               if (!(Camera.IsPointOnScreen($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, 3.0))) {
                 $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
                 $.hot_rod_2.setHeading($.hot_rod_heading);
@@ -486,14 +444,11 @@ async function main_loop() {
               }
             }
           }
-          //PRINT_BIG (Y1_TEST) 2000 1
-          //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
           if ($.hot_rod_2.isInWater()) {
-            //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
             if (!($.hot_rod_2.isOnScreen())) {
               [$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates();
-              //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
               [$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
+              //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
               if (!(Camera.IsPointOnScreen($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, 3.0))) {
                 $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
                 $.hot_rod_2.setHeading($.hot_rod_heading);
@@ -507,7 +462,6 @@ async function main_loop() {
               $.timer_reset_hr2 = 0;
             }
           }
-          //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
           if ($.hot_rod_2.isStopped()) {
             if ($.timer_reset_hr2 == 0) {
               $.timer_start_hr2 = Clock.GetGameTimer();
@@ -517,13 +471,11 @@ async function main_loop() {
               $.timer_current_hr2 = Clock.GetGameTimer();
               $.hr2_time_dif = $.timer_current_hr2 - $.timer_start_hr2;
             }
-            //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
             if ($.hr2_time_dif > 4000) {
-              //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
               if (!($.hot_rod_2.isOnScreen())) {
                 [$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z] = $.hot_rod_2.getCoordinates();
-                //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
                 [$.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
+                //GET_CLOSEST_CAR_NODE hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_x hot_rod_2_y hot_rod_2_z
                 if (!(Camera.IsPointOnScreen($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z, 3.0))) {
                   $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
                   $.hot_rod_2.setHeading($.hot_rod_heading);
@@ -538,10 +490,8 @@ async function main_loop() {
           $.x_sum = $.x_sum * $.x_sum;
           $.y_sum = $.y_sum * $.y_sum;
           $.hot_rod_2_dist = $.x_sum + $.y_sum;
-          //RAMPLAYER_FARAWAY
           if ($.hot_rod_2_dist > $.player_dist) {
-            //RAMPLAYER_FARAWAY
-            $.hot_rod_2.setMission(2);
+            $.hot_rod_2.setMission(2); //RAMPLAYER_FARAWAY
           }
           if ($.player_dist > $.hot_rod_2_dist) {
             // SCM GOSUB driving_style_car_2
@@ -553,20 +503,12 @@ async function main_loop() {
           $.hot_rod_2.setIdle();
         }
       }
-      //no collision warp
-      //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
-      //PRINT_BIG (Y1_TEST) 2000 1
       if (!(Car.IsDead($.hot_rod_3)) || $.hot_rod_3.isInWater()) {
-        //no collision warp
-        //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
-        //PRINT_BIG (Y1_TEST) 2000 1
         if (!(Char.IsDead($.street_racer_3)) && !($.player.isInCar($.hot_rod_3))) {
           [$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z] = $.hot_rod_3.getCoordinates();
-          //no collision warp
-          //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
           if ($.hot_rod_3_z < 0.0) {
-            //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
             [$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
+            //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
             if (!(Camera.IsPointOnScreen($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, 3.0))) {
               $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
               $.hot_rod_3.setHeading($.hot_rod_heading);
@@ -575,14 +517,12 @@ async function main_loop() {
           if (!($.hot_rod_3.isHealthGreater(450))) {
             $.hot_rod_3.setHealth(600);
           }
-          //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
           if ($.hot_rod_3.isUpsidedown() && $.hot_rod_3.isStopped()) {
             $.street_racer_3.setObjLeaveCar($.hot_rod_3);
-            //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
             if (!($.hot_rod_3.isOnScreen())) {
               [$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z] = $.hot_rod_3.getCoordinates();
-              //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
               [$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
+              //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
               if (!(Camera.IsPointOnScreen($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, 3.0))) {
                 $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
                 $.hot_rod_3.setHeading($.hot_rod_heading);
@@ -591,14 +531,11 @@ async function main_loop() {
               }
             }
           }
-          //PRINT_BIG (Y1_TEST) 2000 1
-          //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
           if ($.hot_rod_3.isInWater()) {
-            //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
             if (!($.hot_rod_3.isOnScreen())) {
               [$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z] = $.hot_rod_3.getCoordinates();
-              //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
               [$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
+              //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
               if (!(Camera.IsPointOnScreen($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, 3.0))) {
                 $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
                 $.hot_rod_3.setHeading($.hot_rod_heading);
@@ -612,7 +549,6 @@ async function main_loop() {
               $.timer_reset_hr3 = 0;
             }
           }
-          //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
           if ($.hot_rod_3.isStopped()) {
             if ($.timer_reset_hr3 == 0) {
               $.timer_start_hr3 = Clock.GetGameTimer();
@@ -622,13 +558,11 @@ async function main_loop() {
               $.timer_current_hr3 = Clock.GetGameTimer();
               $.hr3_time_dif = $.timer_current_hr3 - $.timer_start_hr3;
             }
-            //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
             if ($.hr3_time_dif > 4000) {
-              //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
               if (!($.hot_rod_3.isOnScreen())) {
                 [$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z] = $.hot_rod_3.getCoordinates();
-                //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
                 [$.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, $.hot_rod_heading] = Path.GetClosestCarNodeWithHeading($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
+                //GET_CLOSEST_CAR_NODE hot_rod_3_x hot_rod_3_y hot_rod_3_z hot_rod_3_x hot_rod_3_y hot_rod_3_z
                 if (!(Camera.IsPointOnScreen($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z, 3.0))) {
                   $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
                   $.hot_rod_3.setHeading($.hot_rod_heading);
@@ -714,11 +648,11 @@ async function race_finished() {
     // SCM GOTO → mission_yd1_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_yd1_passed"); // fallback: would break linear control flow
   }
-  // --------------------------Race failed-----------------------------------------------
   if ($.counter_placing < 3) {
     // SCM GOTO → mission_yd1_failed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_yd1_failed"); // fallback: would break linear control flow
   }
+  // --------------------------Race failed-----------------------------------------------
 }
 
 async function mission_yd1_failed() {
@@ -762,8 +696,8 @@ async function mission_yd1_failed() {
       await asyncWait(2000);
     }
   }
-  // Race passed
   return;
+  // Race passed
 }
 
 async function mission_yd1_passed() {
@@ -774,21 +708,20 @@ async function mission_yd1_passed() {
     // START_NEW_SCRIPT yardie_mission2_loop
   }
   $.reward_yd1 = 1000 * $.counter_player_points;
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", $.reward_yd1, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", $.reward_yd1, 5000, 1); //"Mission Passed!"
   Audio.PlayMissionPassedTune(1);
   Text.PrintWithNumberNow("Y1_1ST", $.counter_player_points, 4000, 1);
   $.player.clearWantedLevel();
   $.player.addScore($.reward_yd1);
   Stat.RegisterHighestScore(0, $.counter_player_points);
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_yd1() {
   Camera.RestoreJumpcut();
-  //SET_PLAYER_CONTROL player on
   Hud.SwitchWidescreen(false /* off */);
+  //SET_PLAYER_CONTROL player on
   $.blip_hot_rod_1.remove();
   $.blip_hot_rod_2.remove();
   $.blip_hot_rod_3.remove();
@@ -800,12 +733,12 @@ async function mission_cleanup_yd1() {
   Path.SwitchRoadsOn(500.0, 60.0, -25.0, 600.0, 140.0, 0.0);
   Path.SwitchRoadsOn(-400.0, 60.0, -25.0, -300.0, 140.0, 0.0);
   $.flag_player_on_mission = 0;
-  //DELETE_CHAR street_racer_1
   $.flag_player_on_ray_mission = 0;
+  //DELETE_CHAR street_racer_1
   $.blip_rush_destination.remove();
   Mission.Finish();
-  //---------------------------GOSUBS-----------------------------------------------
   return;
+  //---------------------------GOSUBS-----------------------------------------------
 }
 
 async function driving_style_car_1() {
@@ -840,9 +773,9 @@ async function driving_style_car_3() {
 
 async function player_points() {
   ++$.counter_player_points;
+  ++$.counter_finish;
   //ADD_SCORE player 1000
   //PRINT_BIG ( YD1_BON ) 1000 4
-  ++$.counter_finish;
   Text.PrintWithNumberBig("YD1_CNT", $.counter_player_points, 2000, 4);
   Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
   // SCM GOSUB finish_coord_generator
@@ -878,61 +811,25 @@ async function nonplayer_points_3() {
   // SCM GOSUB finish_coord_generator
   await finish_coord_generator();
   // fallback if label was not emitted as async function: no-op continues linearly
-  //----------------FINISH COORD GENERATOR--------------------------------------
   return;
+  //----------------FINISH COORD GENERATOR--------------------------------------
 }
 
 async function finish_coord_generator() {
-  //flag_corona_yd1 = 1
-  //flag_corona_yd1 = 0
-  /*
-  IF counter_finish = 14
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 524.3
-  finish_y = -519.6
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 15
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 530.4
-  finish_y = -55.2
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 16
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 548.5
-  finish_y = -370.5
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 17
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 69.8
-  finish_y = 107.0
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 18
-  REMOVE_BLIP blip_rush_destination
-  finish_x = -41.6
-  finish_y = -1353.5
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  */
   if ($.flag_random_yd1 == 0) {
-    //flag_corona_yd1 = 1
     if ($.counter_finish == 1) {
       $.blip_rush_destination.remove();
       $.finish_x = 106.0;
       $.finish_y = -403.36;
-      //flag_corona_yd1 = 1
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
+      //flag_corona_yd1 = 1
     }
-    //flag_corona_yd1 = 0
     if ($.counter_finish == 2) {
       $.blip_rush_destination.remove();
       $.finish_x = 86.8;
       $.finish_y = -538.6;
-      //flag_corona_yd1 = 0
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
+      //flag_corona_yd1 = 0
     }
     if ($.counter_finish == 3) {
       $.blip_rush_destination.remove();
@@ -994,38 +891,6 @@ async function finish_coord_generator() {
       $.finish_y = -463.1;
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
     }
-    /*
-    IF counter_finish = 14
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 524.3
-    finish_y = -519.6
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 15
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 530.4
-    finish_y = -55.2
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 16
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 548.5
-    finish_y = -370.5
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 17
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 69.8
-    finish_y = 107.0
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 18
-    REMOVE_BLIP blip_rush_destination
-    finish_x = -41.6
-    finish_y = -1353.5
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    */
     if ($.counter_finish == 13) {
       $.blip_rush_destination.remove();
       $.finish_x = 346.0;
@@ -1042,40 +907,6 @@ async function finish_coord_generator() {
       $.blip_rush_destination.remove();
     }
   }
-  //flag_corona_yd1 = 0
-  /*
-  IF counter_finish = 14
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 548.5
-  finish_y = -370.5
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 15
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 165.0
-  finish_y = -886.0
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 16
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 69.8
-  finish_y = 107.0
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 17
-  REMOVE_BLIP blip_rush_destination
-  finish_x = -41.6
-  finish_y = -1353.5
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 18
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 106.0
-  finish_y = -403.36
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  //flag_corona_yd1 = 1
-  ENDIF
-  */
   if ($.flag_random_yd1 == 1) {
     if ($.counter_finish == 1) {
       $.blip_rush_destination.remove();
@@ -1119,13 +950,12 @@ async function finish_coord_generator() {
       $.finish_y = -1041.5;
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
     }
-    //flag_corona_yd1 = 0
     if ($.counter_finish == 8) {
       $.blip_rush_destination.remove();
       $.finish_x = 86.8;
       $.finish_y = -538.6;
-      //flag_corona_yd1 = 0
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
+      //flag_corona_yd1 = 0
     }
     if ($.counter_finish == 9) {
       $.blip_rush_destination.remove();
@@ -1151,39 +981,6 @@ async function finish_coord_generator() {
       $.finish_y = -1211.4;
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
     }
-    /*
-    IF counter_finish = 14
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 548.5
-    finish_y = -370.5
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 15
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 165.0
-    finish_y = -886.0
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 16
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 69.8
-    finish_y = 107.0
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 17
-    REMOVE_BLIP blip_rush_destination
-    finish_x = -41.6
-    finish_y = -1353.5
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 18
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 106.0
-    finish_y = -403.36
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    //flag_corona_yd1 = 1
-    ENDIF
-    */
     if ($.counter_finish == 13) {
       $.blip_rush_destination.remove();
       $.finish_x = -8.4;
@@ -1200,86 +997,19 @@ async function finish_coord_generator() {
       $.blip_rush_destination.remove();
     }
   }
-  /*
-  IF counter_finish = 18
-  REMOVE_BLIP blip_rush_destination
-  finish_x = -10.79
-  finish_y = -463.1
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 17
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 78.5
-  finish_y = -945.0
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 16
-  REMOVE_BLIP blip_rush_destination
-  finish_x = -69.4
-  finish_y = -926.2
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 15
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 524.3
-  finish_y = -519.6
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  IF counter_finish = 14
-  REMOVE_BLIP blip_rush_destination
-  finish_x = 172.8
-  finish_y = -1066.9
-  ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-  ENDIF
-  */
-  //flag_corona_yd1 = 0
-  //flag_corona_yd1 = 1
   if ($.flag_random_yd1 == 2) {
-    /*
-    IF counter_finish = 18
-    REMOVE_BLIP blip_rush_destination
-    finish_x = -10.79
-    finish_y = -463.1
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 17
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 78.5
-    finish_y = -945.0
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 16
-    REMOVE_BLIP blip_rush_destination
-    finish_x = -69.4
-    finish_y = -926.2
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 15
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 524.3
-    finish_y = -519.6
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    IF counter_finish = 14
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 172.8
-    finish_y = -1066.9
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    */
     if ($.counter_finish == 14) {
       $.blip_rush_destination.remove();
       $.finish_x = $.start_x;
       $.finish_y = $.start_y;
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
     }
-    //flag_corona_yd1 = 0
     if ($.counter_finish == 13) {
       $.blip_rush_destination.remove();
       $.finish_x = 86.8;
       $.finish_y = -538.6;
-      //flag_corona_yd1 = 0
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
+      //flag_corona_yd1 = 0
     }
     if ($.counter_finish == 12) {
       $.blip_rush_destination.remove();
@@ -1335,13 +1065,12 @@ async function finish_coord_generator() {
       $.finish_y = -1353.5;
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
     }
-    //flag_corona_yd1 = 1
     if ($.counter_finish == 3) {
       $.blip_rush_destination.remove();
       $.finish_x = 106.0;
       $.finish_y = -403.36;
-      //flag_corona_yd1 = 1
       $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
+      //flag_corona_yd1 = 1
     }
     if ($.counter_finish == 2) {
       $.blip_rush_destination.remove();
@@ -1363,10 +1092,10 @@ async function finish_coord_generator() {
 }
 
 export async function yard1() {
+  // MissionBoundary
   // *****************************************************************************************
   // *****************************YARDIE MISSION ONE DRUG RUSH********************************
   // Mission start stuff
-  // MissionBoundary
   // SCM GOSUB mission_start_yd1
   await mission_start_yd1();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -1378,8 +1107,8 @@ export async function yard1() {
   // SCM GOSUB mission_cleanup_yd1
   await mission_cleanup_yd1();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
   // MissionBoundary
+  // Variables for mission
   // VAR_INT hot_rod_1 hot_rod_2 hot_rod_3
   // VAR_INT player_car wanted_yd1
   // VAR_INT street_racer_1 street_racer_2 street_racer_3
@@ -1406,6 +1135,6 @@ export async function yard1() {
   // VAR_INT timer_reset_hr1 timer_reset_hr2 timer_reset_hr3
   // VAR_INT timer_start_hr1 timer_start_hr2 timer_start_hr3
   // VAR_INT timer_current_hr1 timer_current_hr2 timer_current_hr3
-  // ****************************************Mission Start************************************
   // VAR_INT hr1_time_dif hr2_time_dif hr3_time_dif
+  // ****************************************Mission Start************************************
 }

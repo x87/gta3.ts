@@ -29,8 +29,8 @@ async function mission_start_rc3() {
   $.wanted_4x4 = $.player.storeWantedLevel();
   $.player.clearWantedLevel();
   $.rc_van = $.player.storeCarIsIn();
-  //UP GANGCAR NUMBERS AND DENSITY
   Hud.SwitchWidescreen(true /* on */);
+  //UP GANGCAR NUMBERS AND DENSITY
   Zone.SetCarInfo("PROJECT", 1 /* DAY */, 15, 0, 0, 0, 0, 0, 0, 300, 20, 400, 50, 50, 0, 0, 0);
   Zone.SetCarInfo("PROJECT", 0 /* NIGHT */, 10, 0, 0, 0, 0, 0, 0, 400, 10, 400, 50, 50, 0, 0, 0);
   Camera.SetFixedPosition($.cam_x, $.cam_y, $.cam_z, 0.0, 0.0, 0.0);
@@ -39,62 +39,43 @@ async function mission_start_rc3() {
     Camera.PointAtCar($.rc_van, 15 /* FIXED */, 2 /* JUMP_CUT */);
     World.ClearArea($.rc_x, $.rc_y, $.rc_z, 5.0, true /* true */);
   }
-  //You have 4 minutes to blow up as many Diablo Gang Cars as possible!
-  Text.PrintNow("RC_5", 4000, 1);
-  //REQUEST_MODEL car_hoods
+  Text.PrintNow("RC_5", 4000, 1); //You have 4 minutes to blow up as many Diablo Gang Cars as possible!
   Streaming.RequestModel(car`rcbandit`);
-  //OR NOT HAS_MODEL_LOADED car_hoods
-  //GIVE_REMOTE_CONTROLLED_CAR_TO_PLAYER player rc_x rc_y rc_z 180.0
+  //REQUEST_MODEL car_hoods
   while (!(Streaming.HasModelLoaded(car`rcbandit`))) {
     await asyncWait(0);
   }
+  //GIVE_REMOTE_CONTROLLED_CAR_TO_PLAYER player rc_x rc_y rc_z 180.0
   Hud.DisplayCounterWithString($.counter_RCDD, 0 /* COUNTER_DISPLAY_NUMBER */, KILLS);
   Hud.DisplayTimer($.timer_RCDD);
   $.timer_intro_start = Clock.GetGameTimer();
-  //"The vehicle's wrecked!"
-  //"Press |, or drive the RC car into a vehicle's wheels to detonate"
-  //"Press the R1 button, or drive the RC car into a vehicle's wheels to detonate"
   while (!($.timer_RCDD < 1)) {
     await asyncWait(0);
     $.timer_intro_now = Clock.GetGameTimer();
     $.intro_time_lapsed = $.timer_intro_now - $.timer_intro_start;
-    //"The vehicle's wrecked!"
     if (Car.IsDead($.rc_van)) {
-      //"The vehicle's wrecked!"
-      Text.PrintNow("WRECKED", 3000, 1);
+      Text.PrintNow("WRECKED", 3000, 1); //"The vehicle's wrecked!"
       // SCM GOTO → mission_rc3_failed (not lowered; manual jump required)
       throw new Error("unresolved GOTO mission_rc3_failed"); // fallback: would break linear control flow
     }
-    //"Press |, or drive the RC car into a vehicle's wheels to detonate"
-    //"Press the R1 button, or drive the RC car into a vehicle's wheels to detonate"
     if ($.player.isPlaying()) {
       $.player.clearWantedLevel();
-      //"Press |, or drive the RC car into a vehicle's wheels to detonate"
-      //"Press the R1 button, or drive the RC car into a vehicle's wheels to detonate"
       if ($.intro_time_lapsed > 4000 && $.flag_buggy_help1_hm2 == 0) {
         $.controlmode = Pad.GetControllerMode();
-        //"Press |, or drive the RC car into a vehicle's wheels to detonate"
         if ($.controlmode == 0) {
-          //"Press |, or drive the RC car into a vehicle's wheels to detonate"
-          Text.PrintHelp("RCHELP");
+          Text.PrintHelp("RCHELP"); //"Press |, or drive the RC car into a vehicle's wheels to detonate"
           $.flag_buggy_help1_hm2 = 1;
         }
-        //"Press |, or drive the RC car into a vehicle's wheels to detonate"
         if ($.controlmode == 1) {
-          //"Press |, or drive the RC car into a vehicle's wheels to detonate"
-          Text.PrintHelp("RCHELP");
+          Text.PrintHelp("RCHELP"); //"Press |, or drive the RC car into a vehicle's wheels to detonate"
           $.flag_buggy_help1_hm2 = 1;
         }
-        //"Press |, or drive the RC car into a vehicle's wheels to detonate"
         if ($.controlmode == 2) {
-          //"Press |, or drive the RC car into a vehicle's wheels to detonate"
-          Text.PrintHelp("RCHELP");
+          Text.PrintHelp("RCHELP"); //"Press |, or drive the RC car into a vehicle's wheels to detonate"
           $.flag_buggy_help1_hm2 = 1;
         }
-        //"Press the R1 button, or drive the RC car into a vehicle's wheels to detonate"
         if ($.controlmode == 3) {
-          //"Press the R1 button, or drive the RC car into a vehicle's wheels to detonate"
-          Text.PrintHelp("RCHELPA");
+          Text.PrintHelp("RCHELPA"); //"Press the R1 button, or drive the RC car into a vehicle's wheels to detonate"
           $.flag_buggy_help1_hm2 = 1;
         }
         Hud.SwitchWidescreen(false /* off */);
@@ -126,7 +107,6 @@ async function mission_start_rc3() {
     await asyncWait(0);
   }
   }
-  // Mission rc3 failed
   if ($.counter_RCDD > $.rec_rc3) {
     $.reward_RCDD = $.counter_RCDD - $.rec_rc3;
     $.reward_RCDD = $.reward_RCDD * 1000;
@@ -134,19 +114,18 @@ async function mission_start_rc3() {
     // SCM GOTO → mission_rc3_passed (not lowered; manual jump required)
     throw new Error("unresolved GOTO mission_rc3_passed"); // fallback: would break linear control flow
   }
+  // Mission rc3 failed
 }
 
 async function mission_rc3_failed() {
-  //"Mission Failed!"
-  Text.PrintBig("M_FAIL", 5000, 1);
+  Text.PrintBig("M_FAIL", 5000, 1); //"Mission Failed!"
   Text.PrintNow("NRECORD", 5000, 1);
-  // mission rc3 passed
   return;
+  // mission rc3 passed
 }
 
 async function mission_rc3_passed() {
-  //"Mission Passed!"
-  Text.PrintWithNumberBig("M_PASS", $.reward_RCDD, 5000, 1);
+  Text.PrintWithNumberBig("M_PASS", $.reward_RCDD, 5000, 1); //"Mission Passed!"
   Text.PrintNow("RECORD", 3000, 1);
   Audio.PlayMissionPassedTune(1);
   $.player.addScore($.reward_RCDD);
@@ -156,8 +135,8 @@ async function mission_rc3_passed() {
     Stat.RegisterMissionPassed(RC4);
   }
   Stat.RegisterHighestScore(4, $.rec_rc3);
-  // mission cleanup
   return;
+  // mission cleanup
 }
 
 async function mission_cleanup_rc3() {
@@ -177,19 +156,19 @@ async function mission_cleanup_rc3() {
     $.rc_van.lockDoors(1 /* CARLOCK_UNLOCKED */);
   }
   Zone.SetCarInfo("PROJECT", 1 /* DAY */, 15, 0, 0, 0, 0, 0, 0, 100, 20, 400, 50, 50, 0, 0, 0);
-  //MARK_MODEL_AS_NO_LONGER_NEEDED car_hoods
   Zone.SetCarInfo("PROJECT", 0 /* NIGHT */, 10, 0, 0, 0, 0, 0, 0, 150, 10, 400, 50, 50, 0, 0, 0);
+  //MARK_MODEL_AS_NO_LONGER_NEEDED car_hoods
   Mission.Finish();
   return;
 }
 
 export async function rc3() {
+  // MissionBoundary
   // *******************************************************************************************
   // **************************************RC Destruction Derby*********************************
   // ***************************************Diablo Demolition***********************************
-  // MissionBoundary
-  // Mission start stuff
   // ScriptName
+  // Mission start stuff
   // SCM GOSUB mission_start_rc3
   await mission_start_rc3();
   // fallback if label was not emitted as async function: no-op continues linearly
@@ -201,14 +180,6 @@ export async function rc3() {
   // SCM GOSUB mission_cleanup_rc3
   await mission_cleanup_rc3();
   // fallback if label was not emitted as async function: no-op continues linearly
-  // Variables for mission
-  /*
-  VAR_INT counter_RCDD rc_van
-  VAR_INT timer_RCDD
-  VAR_INT reward_RCDD
-  VAR_FLOAT cam_x cam_y cam_z
-  VAR_FLOAT rc_x rc_y rc_z
-  */
-  // ***************************************Mission Start*************************************
   // MissionBoundary
+  // ***************************************Mission Start*************************************
 }
