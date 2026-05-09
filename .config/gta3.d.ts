@@ -2018,6 +2018,36 @@ interface Hud {
     SwitchWidescreen(state: boolean): void;
 }
 declare var Hud: Hud
+/** Reading and writing .ini files
+ * 
+ * https://library.sannybuilder.com/#/gta3/classes/IniFile */
+interface IniFile {
+    /** Reads a floating-point value from the ini file
+    *
+    * https://library.sannybuilder.com/#/gta3?q=READ_FLOAT_FROM_INI_FILE [0AF2]*/
+    ReadFloat(path: string, section: string, key: string): float | undefined;
+    /** Reads an integer value from the ini file
+    *
+    * https://library.sannybuilder.com/#/gta3?q=READ_INT_FROM_INI_FILE [0AF0]*/
+    ReadInt(path: string, section: string, key: string): int | undefined;
+    /** Reads a string value from the ini file
+    *
+    * https://library.sannybuilder.com/#/gta3?q=READ_STRING_FROM_INI_FILE [0AF4]*/
+    ReadString(path: string, section: string, key: string): string | undefined;
+    /** Writes the floating-point value to the ini file
+    *
+    * https://library.sannybuilder.com/#/gta3?q=WRITE_FLOAT_TO_INI_FILE [0AF3]*/
+    WriteFloat(value: float, path: string, section: string, key: string): boolean;
+    /** Writes the integer value to the ini file
+    *
+    * https://library.sannybuilder.com/#/gta3?q=WRITE_INT_TO_INI_FILE [0AF1]*/
+    WriteInt(value: int, path: string, section: string, key: string): boolean;
+    /** Writes the string value to the ini file
+    *
+    * https://library.sannybuilder.com/#/gta3?q=WRITE_STRING_TO_INI_FILE [0AF5]*/
+    WriteString(value: string, path: string, section: string, key: string): boolean;
+}
+declare var IniFile: IniFile
 /** Rampages Logic
  * 
  * https://library.sannybuilder.com/#/gta3/classes/KillFrenzy */

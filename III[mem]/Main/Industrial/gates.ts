@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/gates.sc
-import { $ } from '../../vars.mts'
-import { car, ped, hier } from '../../ide.mts'
+import { $ } from '../../vars.mts';
+import { car, ped, hier } from '../../ide.mts';
 
 async function mission_start_gates() {
     {
@@ -26,7 +26,7 @@ async function fish_factory_gate() {
     async function fish_factory_gate_inner() {
         // SCM GOTO → fish_factory_gate_inner lowered to endless loop
         while (true) {
-            await asyncWait(1000)
+            await asyncWait(1000);
 
             if ($.player.isPlaying()) {
                 //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
@@ -40,42 +40,42 @@ async function fish_factory_gate() {
                             $.player.isInArea3D(1015.6, -1100.5, 12.0, 1009.2, -1108.1, 16.0, false /* FALSE */)
                         ) {
                             if ($.gate_sfx1_fish == 0) {
-                                Sound.AddOneOffSound(1016.0, -1107.955, 12.294, 92 /* SOUND_GATE_START_CLUNK */)
-                                $.gate_sfx1_fish = 1
+                                Sound.AddOneOffSound(1016.0, -1107.955, 12.294, 92 /* SOUND_GATE_START_CLUNK */);
+                                $.gate_sfx1_fish = 1;
                             }
                             while (!$.fish_factory_gate.slide(1016.0, -1099.455, 12.294, 0.0, 0.1, 0.0, false /* FALSE */)) {
-                                await asyncWait(0)
+                                await asyncWait(0);
                             }
                             if ($.not_clunked_yet == 1) {
-                                $.gate_sfx2_fish = 0
-                                $.not_clunked_yet = 0
+                                $.gate_sfx2_fish = 0;
+                                $.not_clunked_yet = 0;
                             }
                             if ($.gate_sfx2_fish == 0) {
-                                Sound.AddOneOffSound(1016.0, -1099.455, 12.294, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate_sfx2_fish = 1
+                                Sound.AddOneOffSound(1016.0, -1099.455, 12.294, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate_sfx2_fish = 1;
                             }
                         }
                     } else {
                         if ($.gate_sfx1_fish == 1) {
-                            Sound.AddOneOffSound(1016.0, -1099.455, 12.294, 92 /* SOUND_GATE_START_CLUNK */)
+                            Sound.AddOneOffSound(1016.0, -1099.455, 12.294, 92 /* SOUND_GATE_START_CLUNK */);
                         }
                         while (!$.fish_factory_gate.slide(1016.0, -1107.955, 12.294, 0.0, 0.1, 0.0, true /* TRUE */)) {
                             //					GET_OBJECT_COORDINATES fish_factory_gate objectx objecty objectz
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
-                        const _res254 = $.fish_factory_gate.getCoordinates()
-                        $.objectx = _res254.x
-                        $.objecty = _res254.y
-                        $.objectz = _res254.z
+                        const _res254 = $.fish_factory_gate.getCoordinates();
+                        $.objectx = _res254.x;
+                        $.objecty = _res254.y;
+                        $.objectz = _res254.z;
                         if ($.gate_sfx2_fish == 1) {
-                            $.not_clunked_yet = 1
+                            $.not_clunked_yet = 1;
                             if ($.objectx == 1016.0 && $.objecty == -1107.955 && $.objectz == 12.294) {
-                                Sound.AddOneOffSound(1016.0, -1107.955, 12.294, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate_sfx2_fish = 0
-                                $.not_clunked_yet = 0
+                                Sound.AddOneOffSound(1016.0, -1107.955, 12.294, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate_sfx2_fish = 0;
+                                $.not_clunked_yet = 0;
                             }
                         }
-                        $.gate_sfx1_fish = 0
+                        $.gate_sfx1_fish = 0;
                     }
                 }
 
@@ -94,7 +94,7 @@ async function dog_food_factory_gate() {
     async function dog_food_factory_gate_inner() {
         // SCM GOTO → dog_food_factory_gate_inner lowered to endless loop
         while (true) {
-            await asyncWait(1000)
+            await asyncWait(1000);
 
             if ($.player.isPlaying()) {
                 //IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
@@ -103,41 +103,41 @@ async function dog_food_factory_gate() {
                     // Dog Food Factory Gate
                     if ($.player.isInAngledArea3D(1247.58, -822.0, 12.0, 1253.94, -815.0, 18.0, 14.0, false /* FALSE */)) {
                         if ($.gate_sfx1_meat == 0) {
-                            Sound.AddOneOffSound(1250.4, -812.0, 13.97, 92 /* SOUND_GATE_START_CLUNK */)
-                            $.gate_sfx1_meat = 1
+                            Sound.AddOneOffSound(1250.4, -812.0, 13.97, 92 /* SOUND_GATE_START_CLUNK */);
+                            $.gate_sfx1_meat = 1;
                         }
                         while (!$.dogfood_factory_gate.slide(1244.4, -818.0, 13.97, 0.1, 0.1, 0.0, false /* FALSE */)) {
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
                         if ($.not_clunked_yet == 1) {
-                            $.gate_sfx2_meat = 0
-                            $.not_clunked_yet = 0
+                            $.gate_sfx2_meat = 0;
+                            $.not_clunked_yet = 0;
                         }
                         if ($.gate_sfx2_meat == 0) {
-                            Sound.AddOneOffSound(1244.4, -818.0, 13.97, 93 /* SOUND_GATE_STOP_CLUNK */)
-                            $.gate_sfx2_meat = 1
+                            Sound.AddOneOffSound(1244.4, -818.0, 13.97, 93 /* SOUND_GATE_STOP_CLUNK */);
+                            $.gate_sfx2_meat = 1;
                         }
                     } else {
                         if ($.gate_sfx1_meat == 1) {
-                            Sound.AddOneOffSound(1244.4, -818.0, 13.97, 92 /* SOUND_GATE_START_CLUNK */)
+                            Sound.AddOneOffSound(1244.4, -818.0, 13.97, 92 /* SOUND_GATE_START_CLUNK */);
                         }
                         while (!$.dogfood_factory_gate.slide(1250.4, -812.0, 13.97, 0.1, 0.1, 0.0, true /* TRUE */)) {
                             //GET_OBJECT_COORDINATES dogfood_factory_gate objectx objecty objectz
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
-                        const _res255 = $.dogfood_factory_gate.getCoordinates()
-                        $.objectx = _res255.x
-                        $.objecty = _res255.y
-                        $.objectz = _res255.z
+                        const _res255 = $.dogfood_factory_gate.getCoordinates();
+                        $.objectx = _res255.x;
+                        $.objecty = _res255.y;
+                        $.objectz = _res255.z;
                         if ($.gate_sfx2_meat == 1) {
-                            $.not_clunked_yet = 1
+                            $.not_clunked_yet = 1;
                             if ($.objectx == 1250.4 && $.objecty == -812.0 && $.objectz == 13.97) {
-                                Sound.AddOneOffSound(1250.4, -812.0, 13.97, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate_sfx2_meat = 0
-                                $.not_clunked_yet = 0
+                                Sound.AddOneOffSound(1250.4, -812.0, 13.97, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate_sfx2_meat = 0;
+                                $.not_clunked_yet = 0;
                             }
                         }
-                        $.gate_sfx1_meat = 0
+                        $.gate_sfx1_meat = 0;
                     }
                 }
 
@@ -160,7 +160,7 @@ async function police_gate1() {
     async function police_gate1_inner() {
         // SCM GOTO → police_gate1_inner lowered to endless loop
         while (true) {
-            await asyncWait(1000)
+            await asyncWait(1000);
 
             if ($.player.isPlaying()) {
                 //IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
@@ -170,42 +170,42 @@ async function police_gate1() {
                     if ($.player.isInArea3D(358.0, -1138.0, 18.0, 366.0, -1121.0, 30.0, false /* FALSE */)) {
                         if ($.player.isInModel(116 /* CAR_POLICE */) || $.player.isInArea3D(365.9, -1128.2, 21.9, 358.5, -1119.5, 26.0, false /* FALSE */)) {
                             if ($.gate_sfx1 == 0) {
-                                Sound.AddOneOffSound(366.158, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */)
-                                $.gate_sfx1 = 1
+                                Sound.AddOneOffSound(366.158, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
+                                $.gate_sfx1 = 1;
                             }
                             while (!$.police_door_one.slide(358.158, -1128.522, 21.941, 0.1, 0.0, 0.0, false /* FALSE */)) {
-                                await asyncWait(0)
+                                await asyncWait(0);
                             }
                             if ($.not_clunked_yet == 1) {
-                                $.gate_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                $.gate_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                             if ($.gate_sfx2 == 0) {
-                                Sound.AddOneOffSound(358.158, -1128.522, 21.941, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate_sfx2 = 1
+                                Sound.AddOneOffSound(358.158, -1128.522, 21.941, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate_sfx2 = 1;
                             }
                         }
                     } else {
                         if ($.gate_sfx1 == 1) {
-                            Sound.AddOneOffSound(358.158, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */)
+                            Sound.AddOneOffSound(358.158, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
                         }
                         while (!$.police_door_one.slide(366.158, -1128.522, 21.941, 0.1, 0.0, 0.0, true /* TRUE */)) {
                             //					GET_OBJECT_COORDINATES police_door_one objectx objecty objectz
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
-                        const _res256 = $.police_door_one.getCoordinates()
-                        $.objectx = _res256.x
-                        $.objecty = _res256.y
-                        $.objectz = _res256.z
+                        const _res256 = $.police_door_one.getCoordinates();
+                        $.objectx = _res256.x;
+                        $.objecty = _res256.y;
+                        $.objectz = _res256.z;
                         if ($.gate_sfx2 == 1) {
-                            $.not_clunked_yet = 1
+                            $.not_clunked_yet = 1;
                             if ($.objectx == 366.158 && $.objecty == -1128.522 && $.objectz == 21.941) {
-                                Sound.AddOneOffSound(366.158, -1128.522, 21.941, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                Sound.AddOneOffSound(366.158, -1128.522, 21.941, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                         }
-                        $.gate_sfx1 = 0
+                        $.gate_sfx1 = 0;
                     }
                 }
 
@@ -224,7 +224,7 @@ async function police_gate2() {
     async function police_gate2_inner() {
         // SCM GOTO → police_gate2_inner lowered to endless loop
         while (true) {
-            await asyncWait(1000)
+            await asyncWait(1000);
 
             if ($.player.isPlaying()) {
                 //IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
@@ -234,42 +234,42 @@ async function police_gate2() {
                     if ($.player.isInArea3D(317.87, -1136.0, 18.0, 322.84, -1119.82, 30.0, false /* FALSE */)) {
                         if ($.player.isInModel(116 /* CAR_POLICE */) || $.player.isInArea3D(322.7, -1128.1, 21.9, 318.0, -1119.3, 26.0, false /* FALSE */)) {
                             if ($.gate2_sfx1 == 0) {
-                                Sound.AddOneOffSound(326.3, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */)
-                                $.gate2_sfx1 = 1
+                                Sound.AddOneOffSound(326.3, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
+                                $.gate2_sfx1 = 1;
                             }
                             while (!$.police_door_two.slide(332.0, -1128.522, 21.941, 0.1, 0.0, 0.0, false /* FALSE */)) {
-                                await asyncWait(0)
+                                await asyncWait(0);
                             }
                             if ($.not_clunked_yet == 1) {
-                                $.gate2_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                $.gate2_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                             if ($.gate2_sfx2 == 0) {
-                                Sound.AddOneOffSound(332.0, -1128.522, 21.941, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate2_sfx2 = 1
+                                Sound.AddOneOffSound(332.0, -1128.522, 21.941, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate2_sfx2 = 1;
                             }
                         }
                     } else {
                         if ($.gate2_sfx1 == 1) {
-                            Sound.AddOneOffSound(332.0, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */)
+                            Sound.AddOneOffSound(332.0, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
                         }
                         while (!$.police_door_two.slide(326.3, -1128.522, 21.941, 0.1, 0.0, 0.0, true /* TRUE */)) {
                             //					GET_OBJECT_COORDINATES police_door_two objectx objecty objectz
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
-                        const _res257 = $.police_door_two.getCoordinates()
-                        $.objectx = _res257.x
-                        $.objecty = _res257.y
-                        $.objectz = _res257.z
+                        const _res257 = $.police_door_two.getCoordinates();
+                        $.objectx = _res257.x;
+                        $.objecty = _res257.y;
+                        $.objectz = _res257.z;
                         if ($.gate2_sfx2 == 1) {
-                            $.not_clunked_yet = 1
+                            $.not_clunked_yet = 1;
                             if ($.objectx == 326.3 && $.objecty == -1128.522 && $.objectz == 21.941) {
-                                Sound.AddOneOffSound(326.3, -1128.522, 21.941, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate2_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                Sound.AddOneOffSound(326.3, -1128.522, 21.941, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate2_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                         }
-                        $.gate2_sfx1 = 0
+                        $.gate2_sfx1 = 0;
                     }
                 }
 
@@ -288,7 +288,7 @@ async function colombian_gate() {
     async function colombian_gate_inner() {
         // SCM GOTO → colombian_gate_inner lowered to endless loop
         while (true) {
-            await asyncWait(1000)
+            await asyncWait(1000);
 
             if ($.player.isPlaying()) {
                 //IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
@@ -298,42 +298,42 @@ async function colombian_gate() {
                     if ($.player.isInArea3D(98.6, -337.53, 14.0, 81.9, -317.56, 20.0, false /* FALSE */)) {
                         if ($.player.isInModel(138 /* CAR_COLUMB */) || $.player.isInArea3D(31.0, -317.0, 14.0, 91.0, -394.0, 25.0, false /* FALSE */)) {
                             if ($.gate2_sfx1 == 0) {
-                                Sound.AddOneOffSound(91.589, -318.592, 15.296, 92 /* SOUND_GATE_START_CLUNK */)
-                                $.gate2_sfx1 = 1
+                                Sound.AddOneOffSound(91.589, -318.592, 15.296, 92 /* SOUND_GATE_START_CLUNK */);
+                                $.gate2_sfx1 = 1;
                             }
                             while (!$.colombian_gate.slide(91.589, -327.365, 15.296, 0.0, 0.1, 0.0, false /* FALSE */)) {
-                                await asyncWait(0)
+                                await asyncWait(0);
                             }
                             if ($.not_clunked_yet == 1) {
-                                $.gate_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                $.gate_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                             if ($.gate2_sfx2 == 0) {
-                                Sound.AddOneOffSound(91.589, -327.365, 15.296, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate2_sfx2 = 1
+                                Sound.AddOneOffSound(91.589, -327.365, 15.296, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate2_sfx2 = 1;
                             }
                         }
                     } else {
                         if ($.gate2_sfx1 == 1) {
-                            Sound.AddOneOffSound(91.589, -327.365, 15.296, 92 /* SOUND_GATE_START_CLUNK */)
+                            Sound.AddOneOffSound(91.589, -327.365, 15.296, 92 /* SOUND_GATE_START_CLUNK */);
                         }
                         while (!$.colombian_gate.slide(91.589, -318.592, 15.296, 0.0, 0.1, 0.0, true /* TRUE */)) {
                             //					GET_OBJECT_COORDINATES colombian_gate objectx objecty objectz
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
-                        const _res258 = $.colombian_gate.getCoordinates()
-                        $.objectx = _res258.x
-                        $.objecty = _res258.y
-                        $.objectz = _res258.z
+                        const _res258 = $.colombian_gate.getCoordinates();
+                        $.objectx = _res258.x;
+                        $.objecty = _res258.y;
+                        $.objectz = _res258.z;
                         if ($.gate2_sfx2 == 1) {
-                            $.not_clunked_yet = 1
+                            $.not_clunked_yet = 1;
                             if ($.objectx == 91.589 && $.objecty == -318.592 && $.objectz == 15.296) {
-                                Sound.AddOneOffSound(91.589, -318.592, 15.296, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate2_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                Sound.AddOneOffSound(91.589, -318.592, 15.296, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate2_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                         }
-                        $.gate2_sfx1 = 0
+                        $.gate2_sfx1 = 0;
                     }
                 }
 
@@ -352,7 +352,7 @@ async function phils_gate() {
     async function phils_gate_inner() {
         // SCM GOTO → phils_gate_inner lowered to endless loop
         while (true) {
-            await asyncWait(1000)
+            await asyncWait(1000);
 
             if ($.player.isPlaying()) {
                 //IF IS_COLLISION_IN_MEMORY LEVEL_COMMERCIAL
@@ -360,57 +360,57 @@ async function phils_gate() {
                 if ($.player.isInZone('HOSPI_2')) {
                     //PHIL'S GATE
 
-                    $.open_phils_gate = 0 /* FALSE */
+                    $.open_phils_gate = 0 /* FALSE */;
                     if ($.flag_ray_mission2_passed == 1) {
                         if ($.player.isInArea2D(134.0, 198.0, 156.0, 207.0, false /* FALSE */)) {
-                            $.open_phils_gate = 1 /* TRUE */
+                            $.open_phils_gate = 1 /* TRUE */;
                         }
                     } else {
                         if ($.flag_player_on_phil_mission == 1) {
                             // SCM GOTO → phils_gate_inner (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO phils_gate_inner') // fallback: would break linear control flow
+                            throw new Error('unresolved GOTO phils_gate_inner'); // fallback: would break linear control flow
                         }
                         if ($.player.isInArea2D(138.0, 198.0, 146.0, 207.0, false /* FALSE */)) {
-                            $.open_phils_gate = 1 /* TRUE */
+                            $.open_phils_gate = 1 /* TRUE */;
                         }
                     }
                     if ($.open_phils_gate == 1 /* TRUE */) {
                         if ($.gate2_sfx1 == 0) {
-                            Sound.AddOneOffSound(147.249, 207.323, 10.599, 92 /* SOUND_GATE_START_CLUNK */)
-                            $.gate2_sfx1 = 1
+                            Sound.AddOneOffSound(147.249, 207.323, 10.599, 92 /* SOUND_GATE_START_CLUNK */);
+                            $.gate2_sfx1 = 1;
                         }
                         while (!$.phils_compnd_gate.slide(147.249, 214.523, 10.599, 0.0, 0.1, 0.0, false /* FALSE */)) {
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
                         if ($.not_clunked_yet == 1) {
-                            $.gate_sfx2 = 0
-                            $.not_clunked_yet = 0
+                            $.gate_sfx2 = 0;
+                            $.not_clunked_yet = 0;
                         }
                         if ($.gate2_sfx2 == 0) {
-                            Sound.AddOneOffSound(147.249, 214.523, 10.599, 93 /* SOUND_GATE_STOP_CLUNK */)
-                            $.gate2_sfx2 = 1
+                            Sound.AddOneOffSound(147.249, 214.523, 10.599, 93 /* SOUND_GATE_STOP_CLUNK */);
+                            $.gate2_sfx2 = 1;
                         }
                     } else {
                         if ($.gate2_sfx1 == 1) {
-                            Sound.AddOneOffSound(147.249, 214.523, 10.599, 92 /* SOUND_GATE_START_CLUNK */)
+                            Sound.AddOneOffSound(147.249, 214.523, 10.599, 92 /* SOUND_GATE_START_CLUNK */);
                         }
                         while (!$.phils_compnd_gate.slide(147.249, 207.323, 10.599, 0.0, 0.1, 0.0, true /* TRUE */)) {
                             //					GET_OBJECT_COORDINATES phils_compnd_gate objectx objecty objectz
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
-                        const _res259 = $.phils_compnd_gate.getCoordinates()
-                        $.objectx = _res259.x
-                        $.objecty = _res259.y
-                        $.objectz = _res259.z
+                        const _res259 = $.phils_compnd_gate.getCoordinates();
+                        $.objectx = _res259.x;
+                        $.objecty = _res259.y;
+                        $.objectz = _res259.z;
                         if ($.gate2_sfx2 == 1) {
-                            $.not_clunked_yet = 1
+                            $.not_clunked_yet = 1;
                             if ($.objectx == 147.249 && $.objecty == 207.323 && $.objectz == 10.599) {
-                                Sound.AddOneOffSound(147.249, 207.323, 10.599, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate2_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                Sound.AddOneOffSound(147.249, 207.323, 10.599, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate2_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                         }
-                        $.gate2_sfx1 = 0
+                        $.gate2_sfx1 = 0;
                     }
                 }
 
@@ -433,7 +433,7 @@ async function colombian_gate2() {
     async function colombian_gate2_inner() {
         // SCM GOTO → colombian_gate2_inner lowered to endless loop
         while (true) {
-            await asyncWait(1000)
+            await asyncWait(1000);
 
             if ($.player.isPlaying()) {
                 //IF IS_COLLISION_IN_MEMORY LEVEL_SUBURBAN
@@ -443,42 +443,42 @@ async function colombian_gate2() {
                     if ($.player.isInArea3D(-367.3, 241.0, 59.0, -358.8, 259.6, 65.0, false /* FALSE */)) {
                         if ($.player.isInModel(138 /* CAR_COLUMB */) || $.player.isInArea3D(-367.3, 251.0, 59.0, -358.8, 259.6, 65.0, false /* FALSE */)) {
                             if ($.gate_sfx1 == 0) {
-                                Sound.AddOneOffSound(-363.05, 250.455, 61.355, 92 /* SOUND_GATE_START_CLUNK */)
-                                $.gate_sfx1 = 1
+                                Sound.AddOneOffSound(-363.05, 250.455, 61.355, 92 /* SOUND_GATE_START_CLUNK */);
+                                $.gate_sfx1 = 1;
                             }
                             while (!$.Columbian_gate2.slide(-370.05, 250.455, 61.355, 0.1, 0.0, 0.0, false /* FALSE */)) {
-                                await asyncWait(0)
+                                await asyncWait(0);
                             }
                             if ($.not_clunked_yet == 1) {
-                                $.gate_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                $.gate_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                             if ($.gate_sfx2 == 0) {
-                                Sound.AddOneOffSound(-370.05, 250.455, 61.355, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate_sfx2 = 1
+                                Sound.AddOneOffSound(-370.05, 250.455, 61.355, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate_sfx2 = 1;
                             }
                         }
                     } else {
                         if ($.gate_sfx1 == 1) {
-                            Sound.AddOneOffSound(-370.05, 250.455, 61.355, 92 /* SOUND_GATE_START_CLUNK */)
+                            Sound.AddOneOffSound(-370.05, 250.455, 61.355, 92 /* SOUND_GATE_START_CLUNK */);
                         }
                         while (!$.Columbian_gate2.slide(-363.05, 250.455, 61.355, 0.1, 0.0, 0.0, true /* TRUE */)) {
                             //					GET_OBJECT_COORDINATES Columbian_gate2 objectx objecty objectz
-                            await asyncWait(0)
+                            await asyncWait(0);
                         }
-                        const _res260 = $.Columbian_gate2.getCoordinates()
-                        $.objectx = _res260.x
-                        $.objecty = _res260.y
-                        $.objectz = _res260.z
+                        const _res260 = $.Columbian_gate2.getCoordinates();
+                        $.objectx = _res260.x;
+                        $.objecty = _res260.y;
+                        $.objectz = _res260.z;
                         if ($.gate_sfx2 == 1) {
-                            $.not_clunked_yet = 1
+                            $.not_clunked_yet = 1;
                             if ($.objectx == -363.05 && $.objecty == 250.455 && $.objectz == 61.355) {
-                                Sound.AddOneOffSound(-363.05, 250.455, 61.355, 93 /* SOUND_GATE_STOP_CLUNK */)
-                                $.gate_sfx2 = 0
-                                $.not_clunked_yet = 0
+                                Sound.AddOneOffSound(-363.05, 250.455, 61.355, 93 /* SOUND_GATE_STOP_CLUNK */);
+                                $.gate_sfx2 = 0;
+                                $.not_clunked_yet = 0;
                             }
                         }
-                        $.gate_sfx1 = 0
+                        $.gate_sfx1 = 0;
                     }
                 }
 
@@ -499,18 +499,18 @@ export async function gates() {
     // VAR_INT gate_sfx1 gate_sfx2 gate2_sfx1 gate2_sfx2
     // VAR_INT open_phils_gate
 
-    $.gate_sfx1 = 0
-    $.gate_sfx2 = 0
-    $.gate2_sfx1 = 0
-    $.gate2_sfx2 = 0
+    $.gate_sfx1 = 0;
+    $.gate_sfx2 = 0;
+    $.gate2_sfx1 = 0;
+    $.gate2_sfx2 = 0;
 
-    $.gate_sfx1_fish = 0
-    $.gate_sfx2_fish = 0
+    $.gate_sfx1_fish = 0;
+    $.gate_sfx2_fish = 0;
 
-    $.gate_sfx1_meat = 0
-    $.gate_sfx2_meat = 0
+    $.gate_sfx1_meat = 0;
+    $.gate_sfx2_meat = 0;
 
-    $.not_clunked_yet = 0
+    $.not_clunked_yet = 0;
 
     // SCRIPT_NAME gates
 

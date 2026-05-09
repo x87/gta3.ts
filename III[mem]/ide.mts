@@ -1,4 +1,4 @@
-import defaultIde from "../../data/default.ide";
+import defaultIde from "./../../data/default.ide";
 
 /**
  *
@@ -41,10 +41,11 @@ export function hier([name] : TemplateStringsArray) {
  */
 export function ped([name] : TemplateStringsArray) {
   let nameLower = name.toLowerCase();
+  if (nameLower === 'player') {
+    return 0;
+  }
   const models = defaultIde.peds;
-
   const model = models.find((line) => line[1].toLowerCase() === nameLower);
-
   if (model) {
     return parseInt(model[0]);
   }

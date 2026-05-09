@@ -1,10 +1,10 @@
 // Generated from Main/Industrial/camera.sc
-import { $ } from '../../vars.mts'
-import { car, ped, hier } from '../../ide.mts'
+import { $ } from '../../vars.mts';
+import { car, ped, hier } from '../../ide.mts';
 
 async function mission_start_camera() {
     {
-        await asyncWait(70)
+        await asyncWait(70);
 
         //INDUSTRIAL******************************************************************************************************
         /*
@@ -47,114 +47,114 @@ async function mission_start_camera() {
                             if ($.player.isInArea3D(36.5302, -734.5862, 21.67, 47.4772, -726.9442, 24.457, false)) {
                                 if ($.player.isInArea2D(36.5302, -729.3754, 47.4772, -726.9442, false)) {
                                     if ($.rays_camera_1 == 0) {
-                                        $.player.setControl(false /* OFF */)
-                                        Camera.SetFadingColor(1, 1, 1)
-                                        Camera.DoFade(200, 0 /* FADE_OUT */)
-                                        $.rays_camera_1 = 1
+                                        $.player.setControl(false /* OFF */);
+                                        Camera.SetFadingColor(1, 1, 1);
+                                        Camera.DoFade(200, 0 /* FADE_OUT */);
+                                        $.rays_camera_1 = 1;
                                     }
                                     if ($.rays_camera_1 == 1) {
                                         if (!Camera.GetFadingStatus()) {
                                             if ($.rays_camera_2 == 0) {
-                                                $.player.setCoordinates(38.9775, -727.8468, 21.6)
-                                                $.player.setHeading(225.0)
+                                                $.player.setCoordinates(38.9775, -727.8468, 21.6);
+                                                $.player.setHeading(225.0);
                                             }
-                                            Camera.SetFixedPosition(36.0301, -728.3186, 24.2803, 0.0, 0.0, 0.0)
-                                            Camera.EnablePlayerControl()
-                                            Camera.PointAtPoint(36.9545, -728.3175, 23.8989, 2 /* JUMP_CUT */)
-                                            Camera.DoFade(200, 1 /* FADE_IN */)
-                                            $.rays_camera_1 = 2
+                                            Camera.SetFixedPosition(36.0301, -728.3186, 24.2803, 0.0, 0.0, 0.0);
+                                            Camera.EnablePlayerControl();
+                                            Camera.PointAtPoint(36.9545, -728.3175, 23.8989, 2 /* JUMP_CUT */);
+                                            Camera.DoFade(200, 1 /* FADE_IN */);
+                                            $.rays_camera_1 = 2;
                                         }
                                     }
                                     if ($.rays_camera_1 == 2) {
                                         if (!Camera.GetFadingStatus()) {
-                                            $.player.setControl(true /* ON */)
-                                            $.rays_camera_1 = 3
-                                            $.rays_camera_2 = 0
-                                            $.rays_camera_3 = 0
+                                            $.player.setControl(true /* ON */);
+                                            $.rays_camera_1 = 3;
+                                            $.rays_camera_2 = 0;
+                                            $.rays_camera_3 = 0;
                                         }
                                     }
                                 }
                                 if ($.player.isInArea2D(44.2774, -734.5862, 47.4772, -729.3754, false)) {
                                     if ($.rays_camera_2 == 0) {
-                                        $.player.setControl(false /* OFF */)
-                                        Camera.DoFade(200, 0 /* FADE_OUT */)
-                                        $.rays_camera_2 = 1
+                                        $.player.setControl(false /* OFF */);
+                                        Camera.DoFade(200, 0 /* FADE_OUT */);
+                                        $.rays_camera_2 = 1;
                                     }
                                     if ($.rays_camera_2 == 1) {
                                         if (!Camera.GetFadingStatus()) {
-                                            Camera.SetFixedPosition(46.7275, -727.1589, 22.5274, 0.0, 0.0, 0.0)
-                                            Camera.EnablePlayerControl()
-                                            Camera.PointAtPoint(46.4612, -728.1208, 22.5895, 2 /* JUMP_CUT */)
-                                            Camera.DoFade(200, 1 /* FADE_IN */)
-                                            $.rays_camera_2 = 2
+                                            Camera.SetFixedPosition(46.7275, -727.1589, 22.5274, 0.0, 0.0, 0.0);
+                                            Camera.EnablePlayerControl();
+                                            Camera.PointAtPoint(46.4612, -728.1208, 22.5895, 2 /* JUMP_CUT */);
+                                            Camera.DoFade(200, 1 /* FADE_IN */);
+                                            $.rays_camera_2 = 2;
                                         }
                                     }
                                     if ($.rays_camera_2 == 2) {
                                         if (!Camera.GetFadingStatus()) {
-                                            $.player.setControl(true /* ON */)
-                                            $.rays_camera_1 = 0
-                                            $.rays_camera_2 = 3
-                                            $.rays_camera_3 = 0
+                                            $.player.setControl(true /* ON */);
+                                            $.rays_camera_1 = 0;
+                                            $.rays_camera_2 = 3;
+                                            $.rays_camera_3 = 0;
                                         }
                                     }
                                 }
                                 if ($.player.isInArea2D(36.5302, -734.5862, 44.2774, -729.3754, false)) {
                                     if ($.rays_camera_3 == 0) {
-                                        $.player.setControl(false /* OFF */)
-                                        Camera.DoFade(200, 0 /* FADE_OUT */)
-                                        $.rays_camera_3 = 1
+                                        $.player.setControl(false /* OFF */);
+                                        Camera.DoFade(200, 0 /* FADE_OUT */);
+                                        $.rays_camera_3 = 1;
                                     }
                                     if ($.rays_camera_3 == 1) {
                                         if (!Camera.GetFadingStatus()) {
-                                            Camera.SetFixedPosition(46.5875, -733.8959, 23.9757, 0.0, 0.0, 0.0)
-                                            Camera.EnablePlayerControl()
-                                            Camera.PointAtPoint(45.6562, -733.6129, 23.7464, 2 /* JUMP_CUT */)
-                                            Camera.DoFade(200, 1 /* FADE_IN */)
-                                            $.rays_camera_3 = 2
+                                            Camera.SetFixedPosition(46.5875, -733.8959, 23.9757, 0.0, 0.0, 0.0);
+                                            Camera.EnablePlayerControl();
+                                            Camera.PointAtPoint(45.6562, -733.6129, 23.7464, 2 /* JUMP_CUT */);
+                                            Camera.DoFade(200, 1 /* FADE_IN */);
+                                            $.rays_camera_3 = 2;
                                         }
                                     }
                                     if ($.rays_camera_3 == 2) {
                                         if (!Camera.GetFadingStatus()) {
-                                            $.player.setControl(true /* ON */)
-                                            $.rays_camera_1 = 0
-                                            $.rays_camera_2 = 0
-                                            $.rays_camera_3 = 3
+                                            $.player.setControl(true /* ON */);
+                                            $.rays_camera_1 = 0;
+                                            $.rays_camera_2 = 0;
+                                            $.rays_camera_3 = 3;
                                         }
                                     }
                                 }
                             } else {
                                 if ($.rays_camera_1 == 3) {
-                                    $.player.setControl(false /* OFF */)
-                                    Camera.DoFade(200, 0 /* FADE_OUT */)
-                                    $.rays_camera_1 = 4
+                                    $.player.setControl(false /* OFF */);
+                                    Camera.DoFade(200, 0 /* FADE_OUT */);
+                                    $.rays_camera_1 = 4;
                                 }
                                 if ($.rays_camera_1 == 4) {
                                     if (!Camera.GetFadingStatus()) {
-                                        World.ClearArea(38.9115, -726.0132, 22.2, 2.0, true /* TRUE */)
-                                        $.player.setCoordinates(38.9115, -726.0132, 21.6)
-                                        $.player.setHeading(0.0)
-                                        Camera.RestoreJumpcut()
-                                        Camera.SetInFrontOfPlayer()
-                                        Camera.DoFade(200, 1 /* FADE_IN */)
-                                        $.rays_camera_1 = 5
+                                        World.ClearArea(38.9115, -726.0132, 22.2, 2.0, true /* TRUE */);
+                                        $.player.setCoordinates(38.9115, -726.0132, 21.6);
+                                        $.player.setHeading(0.0);
+                                        Camera.RestoreJumpcut();
+                                        Camera.SetInFrontOfPlayer();
+                                        Camera.DoFade(200, 1 /* FADE_IN */);
+                                        $.rays_camera_1 = 5;
                                     }
                                 }
                                 if ($.rays_camera_1 == 5) {
                                     if (!Camera.GetFadingStatus()) {
-                                        $.player.setControl(true /* ON */)
-                                        $.rays_camera_1 = 0
-                                        $.rays_camera_2 = 0
-                                        $.rays_camera_3 = 0
+                                        $.player.setControl(true /* ON */);
+                                        $.rays_camera_1 = 0;
+                                        $.rays_camera_2 = 0;
+                                        $.rays_camera_3 = 0;
                                     }
                                 }
                             }
                         } else {
                             if (!($.rays_camera_1 == 0) || !($.rays_camera_2 == 0) || !($.rays_camera_3 == 0)) {
-                                Camera.SetInFrontOfPlayer()
-                                Camera.RestoreJumpcut()
-                                $.rays_camera_1 = 0
-                                $.rays_camera_2 = 0
-                                $.rays_camera_3 = 0
+                                Camera.SetInFrontOfPlayer();
+                                Camera.RestoreJumpcut();
+                                $.rays_camera_1 = 0;
+                                $.rays_camera_2 = 0;
+                                $.rays_camera_3 = 0;
                             }
                         }
                     }
@@ -220,7 +220,7 @@ async function mission_start_camera() {
         }
 
         // SCM GOTO → mission_start_camera (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_start_camera') // fallback: would break linear control flow
+        throw new Error('unresolved GOTO mission_start_camera'); // fallback: would break linear control flow
 
         // MissionBoundary
     }
@@ -238,10 +238,10 @@ export async function camera() {
   camera_stuff4 = 0
   */
 
-    $.rays_camera_1 = 0
-    $.rays_camera_2 = 0
-    $.rays_camera_3 = 0
-    $.rays_cutscene_flag = 0
+    $.rays_camera_1 = 0;
+    $.rays_camera_2 = 0;
+    $.rays_camera_3 = 0;
+    $.rays_cutscene_flag = 0;
 
     // SCRIPT_NAME camera
 
