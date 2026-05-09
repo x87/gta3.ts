@@ -105,7 +105,7 @@ async function rc_loop() {
             //SCRIPT_NAME rcloop
 
             if ($.player.isPlaying() && $.flag_just_done_rc_mission == 0) {
-                if ($.player.isInModel(142 /* CAR_TOYZ */)) {
+                if ($.player.isInModel(149 /* CAR_TOYZ */)) {
                     if ($.flag_player_on_mission == 0) {
                         if ($.player.locateAnyMeans3D(1014.0, -120.0, 5.0, 5.0, 5.0, 5.0, false /* false */)) {
                             Text.PrintBig('RC1', 15000, 2)
@@ -138,7 +138,7 @@ async function rc_loop() {
             }
 
             if ($.player.isPlaying()) {
-                if (!$.player.isInModel(142 /* CAR_TOYZ */)) {
+                if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
                     $.flag_just_done_rc_mission = 0
                 }
             }
@@ -160,10 +160,10 @@ async function t4x4_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.flag_player_on_mission == 0 && $.player.isInZone('S_VIEW')) {
-                    if ($.player.isInModel(89 /* CAR_PATRIOT */) && !$.player.isInArea2D(1294.0, -656.0, 1316.0, -638.0, false /* false */)) {
+                    if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(1294.0, -656.0, 1316.0, -638.0, false /* false */)) {
                         $.flag_4x4one_trigger = 1
                     }
-                    if ($.player.isInModel(89 /* CAR_PATRIOT */) && $.flag_4x4one_trigger == 0) {
+                    if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4one_trigger == 0) {
                         Text.PrintBig('T4X4_1', 15000, 2)
                         await asyncWait(0)
                         // LoadLaunchMission 4x4_1.sc
@@ -191,10 +191,10 @@ async function t4x4_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.flag_player_on_mission == 0 && $.player.isInZone('PARK')) {
-                    if ($.player.isInModel(83 /* CAR_LANDSTALKER */) && !$.player.isInArea2D(58.0, -585.0, 68.0, -595.0, false /* false */)) {
+                    if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && !$.player.isInArea2D(58.0, -585.0, 68.0, -595.0, false /* false */)) {
                         $.flag_4x4two_trigger = 1
                     }
-                    if ($.player.isInModel(83 /* CAR_LANDSTALKER */) && $.flag_4x4two_trigger == 0) {
+                    if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && $.flag_4x4two_trigger == 0) {
                         Text.PrintBig('T4X4_2', 15000, 2)
                         await asyncWait(0)
                         // LoadLaunchMission 4x4_2.sc
@@ -222,10 +222,10 @@ async function t4x4_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.flag_player_on_mission == 0 && $.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
-                    if ($.player.isInModel(89 /* CAR_PATRIOT */) && !$.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
+                    if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
                         $.flag_4x4three_trigger = 1
                     }
-                    if ($.player.isInModel(89 /* CAR_PATRIOT */) && $.flag_4x4three_trigger == 0) {
+                    if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4three_trigger == 0) {
                         Text.PrintBig('T4X4_3', 15000, 2)
                         await asyncWait(0)
                         // LoadLaunchMission 4x4_3.sc
@@ -253,10 +253,10 @@ async function multistorey_mission_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.flag_player_on_mission == 0 && $.player.isInZone('COM_EAS')) {
-                    if ($.player.isInModel(122 /* CAR_STALLION */) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false /* false */)) {
+                    if ($.player.isInModel(129 /* CAR_STALLION */) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false /* false */)) {
                         $.flag_mayhem_trigger = 1
                     }
-                    if ($.player.isInModel(122 /* CAR_STALLION */) && $.flag_mayhem_trigger == 0) {
+                    if ($.player.isInModel(129 /* CAR_STALLION */) && $.flag_mayhem_trigger == 0) {
                         Text.PrintBig('MM_1', 15000, 2)
                         await asyncWait(0)
                         // LoadLaunchMission mayhem1.sc
@@ -283,7 +283,7 @@ async function ambulance_mission_loop() {
             await asyncWait(0)
 
             if ($.player.isPlaying()) {
-                if ($.player.isInModel(99 /* CAR_AMBULANCE */)) {
+                if ($.player.isInModel(106 /* CAR_AMBULANCE */)) {
                     if ($.flag_player_on_mission == 0 && $.flag_player_on_ambulance_mission == 0) {
                         $.controlmode = Pad.GetControllerMode()
                         if ($.been_in_ambulance_before == 0) {
@@ -346,7 +346,7 @@ async function fire_truck_mission_loop() {
             await asyncWait(0)
 
             if ($.player.isPlaying()) {
-                if ($.player.isInModel(90 /* CAR_FIRETRUCK */)) {
+                if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
                     if ($.flag_player_on_mission == 0 && $.flag_player_on_fire_mission == 0) {
                         $.controlmode = Pad.GetControllerMode()
                         if ($.been_in_a_firetruk_before == 0) {
@@ -410,10 +410,10 @@ async function cop_mission_loop() {
 
             if ($.player.isPlaying()) {
                 if (
-                    $.player.isInModel(109 /* CAR_POLICE */) ||
-                    $.player.isInModel(110 /* CAR_ENFORCER */) ||
-                    $.player.isInModel(115 /* CAR_RHINO */) ||
-                    $.player.isInModel(100 /* CAR_FBI */)
+                    $.player.isInModel(116 /* CAR_POLICE */) ||
+                    $.player.isInModel(117 /* CAR_ENFORCER */) ||
+                    $.player.isInModel(122 /* CAR_RHINO */) ||
+                    $.player.isInModel(107 /* CAR_FBI */)
                 ) {
                     if ($.flag_player_on_mission == 0 && $.flag_player_on_cop_mission == 0) {
                         $.controlmode = Pad.GetControllerMode()
@@ -4646,7 +4646,7 @@ async function pistol_message() {
                 if ($.flag_player_on_mission == 0) {
                     if ($.out_of_stock_pistol == 0) {
                         $.SHOP_COLT45.remove()
-                        $.SHOP_COLT45_2 = Pickup.Create(154 /* WEAPON_COLT45 */, 1 /* PICKUP_IN_SHOP */, 1068.5, -400.8, 15.2) //AMMU NATION
+                        $.SHOP_COLT45_2 = Pickup.Create(173 /* WEAPON_COLT45 */, 1 /* PICKUP_IN_SHOP */, 1068.5, -400.8, 15.2) //AMMU NATION
                         Pager.AddMessage('COLT_IN', 140, 2, 0)
                         $.out_of_stock_pistol = 1
                     }
@@ -5492,10 +5492,10 @@ export async function main() {
 
     //SPECIAL CAR GENERATORS****************************************************************************
 
-    $.joeys_buggy = CarGenerator.Create(930.93, -267.63, -100.0, 340.0, 107 /* CAR_BFINJECT */, -1, -1, false, 100, 0, 0, 10000) //Joeys Buggy
+    $.joeys_buggy = CarGenerator.Create(930.93, -267.63, -100.0, 340.0, 114 /* CAR_BFINJECT */, -1, -1, false, 100, 0, 0, 10000) //Joeys Buggy
     $.joeys_buggy.switch(0)
 
-    $.swank_taxi = CarGenerator.Create(933.7, -65.6, -100.0, 0.0, 141 /* CAR_BORGNINE */, -1, -1, false, 50, 0, 0, 10000) //Car park behind radio station
+    $.swank_taxi = CarGenerator.Create(933.7, -65.6, -100.0, 0.0, 148 /* CAR_BORGNINE */, -1, -1, false, 50, 0, 0, 10000) //Car park behind radio station
     $.swank_taxi.switch(0)
 
     // *****************************************PICK_UPS**************************************************
@@ -5512,21 +5512,21 @@ export async function main() {
 
     //Industrial
 
-    $.SHOP_COLT45 = Pickup.Create(154 /* WEAPON_COLT45 */, 6 /* PICKUP_IN_SHOP_OUT_OF_STOCK */, 1068.5, -400.8, 15.2) //AMMUNATION
-    $.SHOP_UZI = Pickup.Create(159 /* WEAPON_UZI */, 6 /* PICKUP_IN_SHOP_OUT_OF_STOCK */, 1070.5, -400.8, 15.2) //AMMUNATION
+    $.SHOP_COLT45 = Pickup.Create(173 /* WEAPON_COLT45 */, 6 /* PICKUP_IN_SHOP_OUT_OF_STOCK */, 1068.5, -400.8, 15.2) //AMMUNATION
+    $.SHOP_UZI = Pickup.Create(178 /* WEAPON_UZI */, 6 /* PICKUP_IN_SHOP_OUT_OF_STOCK */, 1070.5, -400.8, 15.2) //AMMUNATION
 
     //Commercial
 
-    $.SHOP_AK47_2 = Pickup.Create(152 /* WEAPON_AK47 */, 1 /* PICKUP_IN_SHOP */, 342.5, -713.0, 26.4) //AMMUNATION
-    $.SHOP_SNIPER_2 = Pickup.Create(158 /* WEAPON_SNIPER */, 1 /* PICKUP_IN_SHOP */, 342.5, -716.0, 26.4) //AMMUNATION
-    $.SHOP_GRENADE2 = Pickup.Create(151 /* WEAPON_GRENADE */, 1 /* PICKUP_IN_SHOP */, 344.5, -719.0, 26.4) //AMMUNATION
-    $.SHOP_UZI_2 = Pickup.Create(159 /* WEAPON_UZI */, 1 /* PICKUP_IN_SHOP */, 346.5, -719.0, 26.4) //AMMUNATION
+    $.SHOP_AK47_2 = Pickup.Create(171 /* WEAPON_AK47 */, 1 /* PICKUP_IN_SHOP */, 342.5, -713.0, 26.4) //AMMUNATION
+    $.SHOP_SNIPER_2 = Pickup.Create(177 /* WEAPON_SNIPER */, 1 /* PICKUP_IN_SHOP */, 342.5, -716.0, 26.4) //AMMUNATION
+    $.SHOP_GRENADE2 = Pickup.Create(170 /* WEAPON_GRENADE */, 1 /* PICKUP_IN_SHOP */, 344.5, -719.0, 26.4) //AMMUNATION
+    $.SHOP_UZI_2 = Pickup.Create(178 /* WEAPON_UZI */, 1 /* PICKUP_IN_SHOP */, 346.5, -719.0, 26.4) //AMMUNATION
     $.SHOP_ARMOUR = Pickup.Create(1364 /* bodyarmour */, 1 /* PICKUP_IN_SHOP */, 342.5, -719.0, 26.4) //AMMUNATION
 
     //Suburbia
 
-    $.SHOP_FLAME = Pickup.Create(162 /* WEAPON_FLAME */, 1 /* PICKUP_IN_SHOP */, -1206.6, -6.6, 53.3) //AMMUNATION
-    $.SHOP_MOLOTOV = Pickup.Create(155 /* WEAPON_MOLOTOV */, 1 /* PICKUP_IN_SHOP */, -1210.6, -6.6, 53.3) //AMMUNATION
+    $.SHOP_FLAME = Pickup.Create(181 /* WEAPON_FLAME */, 1 /* PICKUP_IN_SHOP */, -1206.6, -6.6, 53.3) //AMMUNATION
+    $.SHOP_MOLOTOV = Pickup.Create(174 /* WEAPON_MOLOTOV */, 1 /* PICKUP_IN_SHOP */, -1210.6, -6.6, 53.3) //AMMUNATION
 
     //BONUS PICKUPS**************************************************************************************
 
@@ -5796,9 +5796,9 @@ export async function main() {
 
     // *****************************************Industrial Default Gangs****************************
 
-    Gang.SetCarModel(0 /* GANG_MAFIA */, 127 /* CAR_MAFIA */) //The Mafia
-    Gang.SetCarModel(1 /* GANG_TRIAD */, 125 /* CAR_BELLYUP */) //The Triads
-    Gang.SetCarModel(2 /* GANG_DIABLO */, 130 /* CAR_DIABLOS */) //The Diablos
+    Gang.SetCarModel(0 /* GANG_MAFIA */, 134 /* CAR_MAFIA */) //The Mafia
+    Gang.SetCarModel(1 /* GANG_TRIAD */, 132 /* CAR_BELLYUP */) //The Triads
+    Gang.SetCarModel(2 /* GANG_DIABLO */, 137 /* CAR_DIABLOS */) //The Diablos
 
     Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 2 /* WEAPONTYPE_PISTOL */) //The Mafia
     Gang.SetWeapons(1 /* GANG_TRIAD */, 2 /* WEAPONTYPE_PISTOL */, 1 /* WEAPONTYPE_BASEBALLBAT */) //The Triads
@@ -5806,11 +5806,11 @@ export async function main() {
 
     // *************************************Commercial Default Gangs****************************
 
-    Game.SetThreatForPedType(12 /* PEDTYPE_GANG_COLOMBIAN */, 0 /* THREAT_PLAYER1 */)
+    Game.SetThreatForPedType(12 /* PEDTYPE_GANG_COLOMBIAN */, 1 /* THREAT_PLAYER1 */)
 
-    Gang.SetCarModel(3 /* GANG_YAKUZA */, 129 /* CAR_YAKUZA */) //The YAKUZA
-    Gang.SetCarModel(5 /* GANG_COLOMBIAN */, 131 /* CAR_COLUMB */) //The COLUMBIANS
-    Gang.SetCarModel(4 /* GANG_YARDIE */, 128 /* CAR_YARDIE */) //The YARDIES
+    Gang.SetCarModel(3 /* GANG_YAKUZA */, 136 /* CAR_YAKUZA */) //The YAKUZA
+    Gang.SetCarModel(5 /* GANG_COLOMBIAN */, 138 /* CAR_COLUMB */) //The COLUMBIANS
+    Gang.SetCarModel(4 /* GANG_YARDIE */, 135 /* CAR_YARDIE */) //The YARDIES
 
     Gang.SetWeapons(3 /* GANG_YAKUZA */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */) //The YAKUZA
     Gang.SetWeapons(5 /* GANG_COLOMBIAN */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */) //The COLUMBIANS
@@ -5818,7 +5818,7 @@ export async function main() {
 
     // *************************************Suburban Default Gangs****************************
 
-    Gang.SetCarModel(6 /* GANG_HOOD */, 132 /* CAR_HOODS */) //The HOODS
+    Gang.SetCarModel(6 /* GANG_HOOD */, 139 /* CAR_HOODS */) //The HOODS
 
     Gang.SetWeapons(6 /* GANG_HOOD */, 3 /* WEAPONTYPE_UZI */, 2 /* WEAPONTYPE_PISTOL */) //The HOODS
 
@@ -6528,6 +6528,3 @@ export async function main() {
         $.player.setControl(true /* on */)
     }
 }
-
-CLEO.debug.trace(true);
-main()
