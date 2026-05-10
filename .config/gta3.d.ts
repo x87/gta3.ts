@@ -1648,20 +1648,6 @@ declare class CutsceneHead {
     * https://library.sannybuilder.com/#/gta3?q=SET_CUTSCENE_HEAD_ANIM [02F5]*/
     setAnim(animation: string): CutsceneHead;
 }
-/** Cutscene Objects
- * 
- * https://library.sannybuilder.com/#/gta3/classes/CutsceneObject */
-declare class CutsceneObject {
-    constructor(handle: number);
-    /** Creates a new cutscene object with the model
-    *
-    * https://library.sannybuilder.com/#/gta3?q=CREATE_CUTSCENE_OBJECT [02E5]*/
-    static Create(modelId: int): CutsceneObject;
-    /** Sets the animation of the cutscene object
-    *
-    * https://library.sannybuilder.com/#/gta3?q=SET_CUTSCENE_ANIM [02E6]*/
-    setAnim(animation: string): CutsceneObject;
-}
 /** Various Debugging Utilities
  * 
  * https://library.sannybuilder.com/#/gta3/classes/Debugger */
@@ -4315,4 +4301,21 @@ declare class Boat extends Car {
     *
     * https://library.sannybuilder.com/#/gta3?q=BOAT_STOP [02D4]*/
     stop(): Boat;
+}
+/** Cutscene Objects
+ * 
+ * https://library.sannybuilder.com/#/gta3/classes/CutsceneObject */
+declare class CutsceneObject extends ScriptObject {
+    /** Creates an object without offset at the location
+    *
+    * https://library.sannybuilder.com/#/gta3?q=CREATE_OBJECT_NO_OFFSET [029B]*/
+    static CreateNoOffset(modelId: int, x: float, y: float, z: float): CutsceneObject;
+    /** Creates a new cutscene object with the model
+    *
+    * https://library.sannybuilder.com/#/gta3?q=CREATE_CUTSCENE_OBJECT [02E5]*/
+    static Create(modelId: int): CutsceneObject;
+    /** Sets the animation of the cutscene object
+    *
+    * https://library.sannybuilder.com/#/gta3?q=SET_CUTSCENE_ANIM [02E6]*/
+    setAnim(animation: string): CutsceneObject;
 }
