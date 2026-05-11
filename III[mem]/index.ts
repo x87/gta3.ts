@@ -64,7 +64,7 @@ async function main() {
     // *****************************************************************************************
 
     Stat.SetTotalNumberOfMissions(73);
-    Stat.SetProgressTotal(0);
+    Stat.SetProgressTotal(154);
 
     // ********************************Player name for Cut-scene stuff**************************
 
@@ -791,7 +791,7 @@ async function main() {
 
     //BONUS PICKUPS**************************************************************************************
 
-    Game.SetCollectableTotal(0);
+    Game.SetCollectableTotal(100);
 
     //INDUSTRIAL*****************************************************************************************
 
@@ -1051,9 +1051,10 @@ async function main() {
 
     // *****************************************CREATE PLAYER***************************************
 
-    $.player = Player.Create(0, 811.9, -939.95, 35.8); //8Ball mission
-    $.player.setHeading(180.0);
-    $.script_controlled_player = $.player.getChar();
+    // this is belongs to stripped MAIN.SCM
+    // $.player = Player.Create(0, 811.9, -939.95, 35.8); //8Ball mission
+    // $.player.setHeading(180.0);
+    // $.script_controlled_player = $.player.getChar();
 
     // *****************************************Industrial Default Gangs****************************
 

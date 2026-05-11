@@ -10,7 +10,7 @@ export const $ = SCM.bind({
   flag_reached_hideout: 8,
   flag_had_luigi_help_message: 9,
   blob_flag: 10,
-  scplayer: 11,
+  scplayer: new Char(11),
   script_controlled_player: new Char(11),
   controlmode: 12,
   backdoor: new ScriptObject(13),

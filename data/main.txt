@@ -1,0 +1,50 @@
+DEFINE OBJECTS 0
+DEFINE MISSIONS 0
+
+//-------------MAIN---------------
+script_name 'MAIN'
+$132 = create_player {playerIndex} 0 {x} 811.875 {y} -939.875 {z} 35.75
+set_player_heading $132 {heading} 180.0
+$11 = get_player_char $132
+declare_mission_flag {var_flag} $207
+declare_mission_flag_for_contact {contactId} 12 {var_flag} $231
+declare_mission_flag_for_contact {contactId} 0 {var_flag} $232
+declare_mission_flag_for_contact {contactId} 1 {var_flag} $233
+declare_mission_flag_for_contact {contactId} 2 {var_flag} $234
+declare_mission_flag_for_contact {contactId} 3 {var_flag} $235
+declare_mission_flag_for_contact {contactId} 13 {var_flag} $236
+declare_mission_flag_for_contact {contactId} 4 {var_flag} $237
+declare_mission_flag_for_contact {contactId} 5 {var_flag} $238
+declare_mission_flag_for_contact {contactId} 7 {var_flag} $239
+declare_mission_flag_for_contact {contactId} 14 {var_flag} $240
+declare_mission_flag_for_contact {contactId} 6 {var_flag} $241
+declare_mission_flag_for_contact {contactId} 10 {var_flag} $242
+declare_mission_flag_for_contact {contactId} 15 {var_flag} $244
+declare_base_brief_id_for_contact {contactId} 12 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 0 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 1 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 2 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 3 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 13 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 4 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 5 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 7 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 14 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 6 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 10 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 9 {baseBriefId} 1000
+declare_base_brief_id_for_contact {contactId} 15 {baseBriefId} 1000
+
+while true
+    wait 250 ms
+end
+
+$16000 = 0 // allocate max var space
+
+:TEMP_STORAGE
+
+hex
+00(1024)
+end
+
+terminate_this_script
