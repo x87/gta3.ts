@@ -5,24 +5,24 @@ import { $ } from '../../vars.mts';
 // ************************************   The Intro    *************************************
 // *****************************************************************************************
 
-// Mission start stuff
+async function body() {
+    // Mission start stuff
 
-//GOSUB mission_start_intro
-//
-//GOSUB mission_cleanup_intro
-//
-//MISSION_END
+    //GOSUB mission_start_intro
+    //
+    //GOSUB mission_cleanup_intro
+    //
+    //MISSION_END
 
-// Variables for mission
+    // Variables for mission
 
-// VAR_INT cs_cathead cs_robb robber cs_cs_ban cs_loot cs_colt1 cs_colt2 cs_bankd csbexpos skip_flag text_fading_flag
-// VAR_INT cs_colombian1 cs_colombian2 cs_cop1 cs_cop2 damagea damageb brbomb cs_colombian1head text_alpha
+    // VAR_INT cs_cathead cs_robb robber cs_cs_ban cs_loot cs_colt1 cs_colt2 cs_bankd csbexpos skip_flag text_fading_flag
+    // VAR_INT cs_colombian1 cs_colombian2 cs_cop1 cs_cop2 damagea damageb brbomb cs_colombian1head text_alpha
 
-// VAR_FLOAT particle_x particle_y particle_z particle_target_x particle_target_y particle_target_z temp_var
+    // VAR_FLOAT particle_x particle_y particle_z particle_target_x particle_target_y particle_target_z temp_var
 
-// ****************************************Mission Start************************************
+    // ****************************************Mission Start************************************
 
-async function mission_start_intro() {
     ONMISSION = true;
     // $.flag_player_on_mission = 1;
     $.skip_flag = 0;
@@ -71,7 +71,6 @@ async function mission_start_intro() {
         if (!Char.IsDead($.script_controlled_player)) {
             $.script_controlled_player.dress();
         }
-
     }
 
     Camera.SetMotionBlur(5);
@@ -211,6 +210,7 @@ async function mission_start_intro() {
     Weather.ForceRain(false /* FALSE */);
 
     // START_NEW_SCRIPT eightball_mission_loop
+    $._flag_intro_passed = 1;
 
     // $.flag_player_on_mission = 0;
     ONMISSION = false;
@@ -1619,6 +1619,4 @@ async function do_bridge_particles() {
     }
 }
 
-mission_start_intro().catch((err) => {
-    log('Error in mission_start_intro:', err.message);
-});
+export default () => body();

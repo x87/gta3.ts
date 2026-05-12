@@ -4315,4 +4315,7 @@ export const $ = SCM.bind({
   playerx_cat: 4310,
   playery_cat: 4311,
   playerz_cat: 4312,
+
+  _flag_is_loaded_game: 4313,
+  _flag_intro_passed: 4314,
 });
