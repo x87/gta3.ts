@@ -5,6 +5,6 @@ Work in progress. Help welcome.
 # TODO
 
 - [x] batch conversion 
-- [ ] first mission playable 
+- [x] first mission playable 
 - [ ] save system works 
 - [ ] 100% game completion possible
