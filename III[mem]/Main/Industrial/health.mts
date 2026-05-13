@@ -2,11 +2,44 @@
 import { $ } from '../../vars.mts';
 import { car, ped, hier } from '../../ide.mts';
 
-async function health_info_start() {
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// ***************************************HEALTH INFO***************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+
+// Mission start stuff
+
+// GOSUB health_info_start
+// IF HAS_DEATHARREST_BEEN_EXECUTED
+// 	GOSUB health_info_cleanup
+// ENDIF
+// GOSUB health_info_cleanup
+// MISSION_END
+
+// Variables for info script
+
+// VAR_INT amb_info medic_info flag_bottom
+// VAR_INT health_pickup_info armour_pickup_info
+// VAR_INT info_time_lapsed info_time_now info_time_start flag_info
+
+// ****************************************Mission Start************************************
+
+async function body() {
+    
+    // from starter loop
+    $.player.setControl(false /* off */);
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
     //REGISTER_MISSION_GIVEN
 
     // SCRIPT_NAME health
-    $.flag_player_on_mission = 1;
+    // $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     await asyncWait(0);
 
@@ -150,13 +183,9 @@ async function health_info_start() {
             }
         }
     }
-
-    return;
-
-    // mission cleanup
 }
 
-async function health_info_cleanup() {
+async function cleanup() {
     Camera.RestoreJumpcut();
     Hud.SwitchWidescreen(false /* off */);
     $.player.setControl(true /* on */);
@@ -173,45 +202,11 @@ async function health_info_cleanup() {
 
     //REMOVE_PICKUP heal_info
 
-    $.flag_player_on_mission = 0;
+    // $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_health_info = 1;
 
     Mission.Finish();
-    return;
-
-    //----main stuff-------
 }
 
-export async function health() {
-    // MissionBoundary
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // ***************************************HEALTH INFO***************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-
-    // Mission start stuff
-
-    // SCM GOSUB health_info_start
-    await health_info_start();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    if (HAS_DEATHARREST_BEEN_EXECUTED()) {
-        // SCM GOSUB health_info_cleanup
-        await health_info_cleanup();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-    // SCM GOSUB health_info_cleanup
-    await health_info_cleanup();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    // MissionBoundary
-
-    // Variables for info script
-
-    // VAR_INT amb_info medic_info flag_bottom
-    // VAR_INT health_pickup_info armour_pickup_info
-    // VAR_INT info_time_lapsed info_time_now info_time_start flag_info
-
-    // ****************************************Mission Start************************************
-}
+export default () => body().finally(cleanup);

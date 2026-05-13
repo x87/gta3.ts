@@ -2,11 +2,39 @@
 import { $ } from '../../vars.mts';
 import { car, ped, hier } from '../../ide.mts';
 
-async function wanted_info_start() {
+
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// ***************************************WANTED INFO***************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+
+// Mission start stuff
+
+// GOSUB wanted_info_start
+// GOSUB wanted_info_cleanup
+// MISSION_END
+
+// Variables for info script
+
+// VAR_INT copcar_info copcar2_info swatvan_info cop_info cop2_info flag_copcar_progress
+// VAR_INT swat1_info swat2_info flag_swat_progress bribe_pickup
+// VAR_INT wanted_level diablocar_info diablo_info
+//VAR_INT health_pickup_info	armour_pickup_info
+//VAR_INT info_time_lapsed info_time_now info_time_start flag_info
+
+// VAR_FLOAT car_x car_y car_z
+
+// ****************************************Mission Start************************************
+
+async function body() {
     //REGISTER_MISSION_GIVEN
 
     // SCRIPT_NAME wanted
-    $.flag_player_on_mission = 1;
+    // $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     await asyncWait(0);
 
@@ -243,22 +271,22 @@ async function wanted_info_start() {
             $.flag_info = 13;
         }
         /*
-    IF NOT IS_CAR_DEAD copcar_info
-    IF LOCATE_CAR_2D copcar_info 1132.0 -671.4 4.0 4.0 false
-    AND flag_copcar_progress = 0
-    CAR_GOTO_COORDINATES_ACCURATE copcar_info 1124.0 -505.0 19.7
-    SET_CAR_CRUISE_SPEED copcar_info 18.0
-    SET_CAR_DRIVING_STYLE  copcar_info 2
-    SWITCH_CAR_SIREN copcar_info ON
-    flag_copcar_progress = 1
-    ENDIF
-    ENDIF
+            IF NOT IS_CAR_DEAD copcar_info
+            IF LOCATE_CAR_2D copcar_info 1132.0 -671.4 4.0 4.0 false
+            AND flag_copcar_progress = 0
+            CAR_GOTO_COORDINATES_ACCURATE copcar_info 1124.0 -505.0 19.7
+            SET_CAR_CRUISE_SPEED copcar_info 18.0
+            SET_CAR_DRIVING_STYLE  copcar_info 2
+            SWITCH_CAR_SIREN copcar_info ON
+            flag_copcar_progress = 1
+            ENDIF
+            ENDIF
 
-    IF NOT IS_CAR_DEAD copcar_info
-    AND flag_copcar_progress = 1
-    CAR_GOTO_COORDINATES copcar_info car_x car_y car_z
-    ENDIF
-    */
+            IF NOT IS_CAR_DEAD copcar_info
+            AND flag_copcar_progress = 1
+            CAR_GOTO_COORDINATES copcar_info car_x car_y car_z
+            ENDIF
+        */
         if (!Car.IsDead($.swatvan_info) && !Char.IsDead($.swat1_info) && !Char.IsDead($.swat2_info)) {
             if ($.flag_swat_progress == 0 && $.info_time_lapsed > 21000) {
                 if ($.swat1_info.isInCar($.swatvan_info) && $.swat2_info.isInCar($.swatvan_info)) {
@@ -286,13 +314,9 @@ async function wanted_info_start() {
             }
         }
     }
-
-    return;
-
-    // mission cleanup
 }
 
-async function wanted_info_cleanup() {
+async function cleanup() {
     Camera.RestoreJumpcut();
     Hud.SwitchWidescreen(false /* off */);
     $.player.setControl(true /* on */);
@@ -328,44 +352,12 @@ async function wanted_info_cleanup() {
     Game.SetSwatRequired(false /* FALSE */);
     //REMOVE_PICKUP heal_info
 
-    $.flag_player_on_mission = 0;
+    // $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_wanted_info = 1;
 
     Mission.Finish();
-    return;
-
-    //----main stuff-------
 }
 
-export async function wanted() {
-    // MissionBoundary
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // ***************************************WANTED INFO***************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
+export default () => body().finally(cleanup);
 
-    // Mission start stuff
-
-    // SCM GOSUB wanted_info_start
-    await wanted_info_start();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    // SCM GOSUB wanted_info_cleanup
-    await wanted_info_cleanup();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    // MissionBoundary
-
-    // Variables for info script
-
-    // VAR_INT copcar_info copcar2_info swatvan_info cop_info cop2_info flag_copcar_progress
-    // VAR_INT swat1_info swat2_info flag_swat_progress bribe_pickup
-    // VAR_INT wanted_level diablocar_info diablo_info
-    //VAR_INT health_pickup_info	armour_pickup_info
-    //VAR_INT info_time_lapsed info_time_now info_time_start flag_info
-
-    // VAR_FLOAT car_x car_y car_z
-
-    // ****************************************Mission Start************************************
-}

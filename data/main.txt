@@ -1,5 +1,6 @@
 DEFINE OBJECTS 0
-DEFINE MISSIONS 0
+DEFINE MISSIONS 1
+DEFINE MISSION 0 at @TEMP_STORAGE
 
 //-------------MAIN---------------
 script_name 'MAIN'
@@ -39,7 +40,7 @@ while true
     wait 250 ms
 end
 
-$16000 = 0 // allocate max var space
+$12800 = 0 // allocate max var space
 
 :TEMP_STORAGE
 

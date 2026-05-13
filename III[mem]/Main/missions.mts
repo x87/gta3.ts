@@ -43,6 +43,32 @@ const missions: MissionDefinition[] = [
             return false;
         },
     },
+
+    //  ***********************wanted/health info************************************************
+    {
+        scriptPath: `./Industrial/health.mts`,
+        name: 'health info',
+        canStart() {
+            if ($.player.isInZone('S_VIEW') && $.heal_info_trip == 1 /*&& $.flag_health_info == 0*/) {
+                if ($.heal_info.hasBeenCollected()) {
+                    return true;
+                }
+            }
+            return false;
+        },
+    },
+    {
+        scriptPath: `./Industrial/wanted.mts`,
+        name: 'wanted info',
+        canStart() {
+            if ($.player.isInZone('S_VIEW') && $.wanted_info_trip == 1 /*&& $.flag_wanted_info == 0*/) {
+                if ($.wanted_info.hasBeenCollected()) {
+                    return true;
+                }
+            }
+            return false;
+        },
+    }
 ];
 
 export { missions, type MissionDefinition };

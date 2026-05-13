@@ -1775,13 +1775,13 @@ async function main() {
 
         $._flag_is_loaded_game = 1;
     }
+
     //FULL GAME LOAD***********************************************************************************************
 
     // LoadLaunchMission intro.sc
-    // CLEO.runScript('./Main/Industrial/intro.ts');
-    CLEO.runScript('./Main/missionMon.ts');
+    CLEO.runScript('./Main/missionMon.ts'); // must run as a separate script as it mutates ONMISSION flag and enables mission-only behavior
 
-    // START_NEW_SCRIPT ind_save_loop
+    ind_save_loop(); // START_NEW_SCRIPT ind_save_loop
     // START_NEW_SCRIPT com_save_loop
     // START_NEW_SCRIPT sub_save_loop
 
@@ -1797,7 +1797,6 @@ async function main() {
     }
 
     mission_start: {
-        // SCM GOTO → mission_start lowered to endless loop
         while (true) {
             await asyncWait(1000);
 
@@ -1806,21 +1805,21 @@ async function main() {
 
                 if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
                     //HOSPITAL INFO PICKUPS
-                    if ($.flag_player_on_mission == 0 && $.heal_info_trip == 0 && $.flag_health_info == 0) {
+                    if (!ONMISSION /*$.flag_player_on_mission == 0*/ && $.heal_info_trip == 0 && $.flag_health_info == 0) {
                         $.heal_info = Pickup.Create(1361 /* info */, 3 /* PICKUP_ONCE */, 1144.2, -596.9, 14.9); //hospital info cut
                         $.heal_info_trip = 1;
                     }
-                    if ($.flag_player_on_mission == 1 && $.heal_info_trip == 1) {
+                    if (ONMISSION /*$.flag_player_on_mission == 1*/ && $.heal_info_trip == 1) {
                         $.heal_info.remove(); //hospital info cut
                         $.heal_info_trip = 0;
                     }
 
                     //POLICE INFO PICKUPS
-                    if ($.flag_player_on_mission == 0 && $.wanted_info_trip == 0 && $.flag_wanted_info == 0) {
+                    if (!ONMISSION /*$.flag_player_on_mission == 0*/ && $.wanted_info_trip == 0 && $.flag_wanted_info == 0) {
                         $.wanted_info = Pickup.Create(1361 /* info */, 3 /* PICKUP_ONCE */, 1143.9, -675.2, 15.0); //police info cut
                         $.wanted_info_trip = 1;
                     }
-                    if ($.flag_player_on_mission == 1 && $.wanted_info_trip == 1) {
+                    if (ONMISSION /*$.flag_player_on_mission == 1*/ && $.wanted_info_trip == 1) {
                         $.wanted_info.remove(); //police info cut
                         $.wanted_info_trip = 0;
                     }
@@ -1844,54 +1843,54 @@ async function main() {
     }
 }
 
-async function hospital_info_loop() {
-    //  ***********************wanted/health info************************************************
-    // SCM GOTO → hospital_info_loop
-    while (true) {
-        {
-            await asyncWait(0);
+//  ***********************wanted/health info************************************************
 
-            if ($.player.isPlaying()) {
-                if ($.player.isInZone('S_VIEW') && $.flag_player_on_mission == 0 && $.heal_info_trip == 1) {
-                    if ($.heal_info.hasBeenCollected()) {
-                        $.player.setControl(false /* off */);
-                        while (Camera.GetFadingStatus()) {
-                            await asyncWait(0);
-                        }
-                        // LoadLaunchMission health.sc
-                        return; // TERMINATE_THIS_SCRIPT
-                    }
-                }
-            }
-        }
-    }
-}
+// async function hospital_info_loop() {
+//     while (true) {
+//         {
+//             await asyncWait(0);
 
-async function police_info_loop() {
-    // SCM GOTO → police_info_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInZone('S_VIEW') && $.flag_player_on_mission == 0 && $.heal_info_trip == 1) {
+//                     if ($.heal_info.hasBeenCollected()) {
+//                         $.player.setControl(false /* off */);
+//                         while (Camera.GetFadingStatus()) {
+//                             await asyncWait(0);
+//                         }
+//                         // LoadLaunchMission health.sc
+//                         log('Load health.sc');
+//                         return; // TERMINATE_THIS_SCRIPT
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-            if ($.player.isPlaying()) {
-                if ($.player.isInZone('S_VIEW') && $.flag_player_on_mission == 0 && $.wanted_info_trip == 1) {
-                    if ($.wanted_info.hasBeenCollected()) {
-                        $.player.setControl(false /* off */);
-                        while (Camera.GetFadingStatus()) {
-                            await asyncWait(0);
-                        }
-                        // LoadLaunchMission wanted.sc
-                        return; // TERMINATE_THIS_SCRIPT
-                    }
-                }
-            }
-        }
+// async function police_info_loop() {
+//     while (true) {
+//         {
+//             await asyncWait(0);
 
-        // *************************************RC Demolition****************************************
-    }
-}
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInZone('S_VIEW') && $.flag_player_on_mission == 0 && $.wanted_info_trip == 1) {
+//                     if ($.wanted_info.hasBeenCollected()) {
+//                         $.player.setControl(false /* off */);
+//                         while (Camera.GetFadingStatus()) {
+//                             await asyncWait(0);
+//                         }
+//                         // LoadLaunchMission wanted.sc
+//                         return; // TERMINATE_THIS_SCRIPT
+//                     }
+//                 }
+//             }
+//         }
+
+//     }
+// }
 
 async function rc_loop() {
+    // *************************************RC Demolition****************************************
     // SCM GOTO → rc_loop lowered to endless loop
     while (true) {
         {
@@ -5631,13 +5630,16 @@ async function cat_mission1_loop() {
 }
 
 async function ind_save_loop() {
-    {
-        //	Should be called before main loop
-        // SCRIPT_NAME I_SAVE
+    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false /* FALSE */)) {
+        log('[*] Loading from industrial area save...');
+        await postSave();
     }
 
-    async function ind_save_loop_inner() {
-        // SCM GOTO → ind_save_loop_inner lowered to endless loop
+    //	Should be called before main loop
+
+    // SCRIPT_NAME I_SAVE
+
+    ind_save_loop_inner: {
         while (true) {
             await asyncWait(250);
 
@@ -5689,34 +5691,7 @@ async function ind_save_loop() {
                                         while (!Game.HasSaveGameFinished()) {
                                             await asyncWait(0);
                                         }
-                                        Camera.SetFadingColor(0, 0, 0);
-                                        Camera.DoFade(1000, 0 /* FADE_OUT */);
-                                        if ($.player.isPlaying()) {
-                                            $.player.setControl(false /* Off */);
-                                        }
-                                        await asyncWait(1000);
-                                        /*
-                  LOAD_MISSION_AUDIO DOOR_2
-                  WHILE NOT HAS_MISSION_AUDIO_LOADED
-                  WAIT 0
-                  ENDWHILE
-                  PLAY_MISSION_AUDIO
-                  */
-                                        while (!$.playersdoor.rotate(210.0, 10.0, false /* FALSE */)) {
-                                            await asyncWait(0);
-                                        }
-                                        World.ClearArea(888.6, -308.4, -100.0, 1.0, true /* TRUE */);
-                                        if ($.player.isPlaying()) {
-                                            $.player.setCoordinates(888.6, -308.4, -100.0);
-                                            $.player.setHeading(90.0);
-                                            Camera.DoFade(1000, 1 /* FADE_IN */);
-                                            Camera.RestoreJumpcut();
-                                            Camera.SetInFrontOfPlayer();
-                                        }
-                                        await asyncWait(1000);
-                                        if ($.player.isPlaying()) {
-                                            $.player.setControl(true /* on */);
-                                        }
+                                        await postSave();
                                     }
                                 }
                             }
@@ -5729,6 +5704,37 @@ async function ind_save_loop() {
                     }
                 }
             }
+        }
+    }
+
+    async function postSave() {
+        Camera.SetFadingColor(0, 0, 0);
+        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        if ($.player.isPlaying()) {
+            $.player.setControl(false /* Off */);
+        }
+        await asyncWait(1000);
+        /*
+            LOAD_MISSION_AUDIO DOOR_2
+            WHILE NOT HAS_MISSION_AUDIO_LOADED
+            WAIT 0
+            ENDWHILE
+            PLAY_MISSION_AUDIO
+            */
+        while (!$.playersdoor.rotate(210.0, 10.0, false /* FALSE */)) {
+            await asyncWait(0);
+        }
+        World.ClearArea(888.6, -308.4, -100.0, 1.0, true /* TRUE */);
+        if ($.player.isPlaying()) {
+            $.player.setCoordinates(888.6, -308.4, -100.0);
+            $.player.setHeading(90.0);
+            Camera.DoFade(1000, 1 /* FADE_IN */);
+            Camera.RestoreJumpcut();
+            Camera.SetInFrontOfPlayer();
+        }
+        await asyncWait(1000);
+        if ($.player.isPlaying()) {
+            $.player.setControl(true /* on */);
         }
     }
 }
@@ -6042,12 +6048,12 @@ async function com_save_loop() {
                                         }
                                         await asyncWait(1000);
                                         /*
-                  LOAD_MISSION_AUDIO DOOR_4
-                  WHILE NOT HAS_MISSION_AUDIO_LOADED
-                  WAIT 0
-                  ENDWHILE
-                  PLAY_MISSION_AUDIO
-                  */
+                                            LOAD_MISSION_AUDIO DOOR_4
+                                            WHILE NOT HAS_MISSION_AUDIO_LOADED
+                                            WAIT 0
+                                            ENDWHILE
+                                            PLAY_MISSION_AUDIO
+                                        */
                                         while (
                                             !$.plysav_lftdr_lft.slide(105.35, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */) ||
                                             !$.plysav_lftdr_rght.slide(100.692, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */)
