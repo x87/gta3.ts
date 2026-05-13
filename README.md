@@ -6,5 +6,5 @@ Work in progress. Help welcome.
 
 - [x] batch conversion 
 - [x] first mission playable 
-- [ ] save system works 
+- [x] save system works 
 - [ ] 100% game completion possible
