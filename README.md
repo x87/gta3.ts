@@ -8,3 +8,7 @@ Work in progress. Help welcome.
 - [x] first mission playable 
 - [x] save system works 
 - [ ] 100% game completion possible
+  - [ ] Portland
+  - [ ] Staunton
+  - [ ] Shoreside Valley
+  - [ ] Odd Jobs
