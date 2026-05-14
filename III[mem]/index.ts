@@ -1,6 +1,5 @@
 // Generated from main.sc
 import { $, GOSUB_FILE, run_on_newgame, START_NEW_SCRIPT, verbose, run_gated } from './utils';
-import { check_info_pickup, check_info_pickup_2 } from './Main/Industrial/genstuf.ts';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -1389,22 +1388,6 @@ async function main() {
 
         //OTHER STUFF
 
-        // VAR_INT phils_guns_created_before
-        // VAR_INT started_buggy_generator_before
-        // VAR_INT flag_joey_mission5_terminated flag_joey_mission6_terminated
-        // VAR_INT flag_luigi_mission4_terminated flag_luigi_mission5_terminated
-        // VAR_INT the_scripts_started_again
-        // VAR_INT timer_help_message_displayed
-        // VAR_INT nicked_half_a_mil_before
-        // VAR_INT flag_done_radio_8ball
-        // VAR_INT van_once_a_day
-        // VAR_INT breakout_timer breakout_timer_start breakout_diff
-        // VAR_INT maria_exists barriers_been_added
-        // VAR_INT door_crash_flag
-        // VAR_FLOAT door_position_a1
-        // VAR_INT flag_bridge_created_8ball
-        // VAR_INT com_ammu_nation2 com_sprayshop2 ammu2_blip_added
-
         $.ammu2_blip_added = 0;
         $.flag_bridge_created_8ball = 0;
         $.flag_done_radio_8ball = 0;
@@ -1428,36 +1411,22 @@ async function main() {
 
         // ********************************************Odd Jobs*************************************
 
-        // START_NEW_SCRIPT t4x4_mission1_loop
-
-        // START_NEW_SCRIPT t4x4_mission2_loop
-
-        // START_NEW_SCRIPT t4x4_mission3_loop
-
-        // START_NEW_SCRIPT multistorey_mission_loop
-
-        // START_NEW_SCRIPT taxi_mission1_loop
-
-        // START_NEW_SCRIPT fire_truck_mission_loop
-
-        // START_NEW_SCRIPT ambulance_mission_loop
-
-        // START_NEW_SCRIPT cop_mission_loop
-
-        // START_NEW_SCRIPT rc_loop
+        // START_NEW_SCRIPT t4x4_mission1_loop // xxx: moved to mission monitor
+        // START_NEW_SCRIPT t4x4_mission2_loop // xxx: moved to mission monitor
+        // START_NEW_SCRIPT t4x4_mission3_loop // xxx: moved to mission monitor
+        // START_NEW_SCRIPT multistorey_mission_loop // xxx: moved to mission monitor
+        // START_NEW_SCRIPT taxi_mission1_loop // xxx: moved to mission monitor
+        // START_NEW_SCRIPT fire_truck_mission_loop // xxx: moved to mission monitor
+        // START_NEW_SCRIPT ambulance_mission_loop // xxx: moved to mission monitor
+        // START_NEW_SCRIPT cop_mission_loop // xxx: moved to mission monitor
+        // START_NEW_SCRIPT rc_loop // xxx: moved to mission monitor
 
         // LaunchMission hj.sc
-
         // LaunchMission usj.sc
-
         // LaunchMission genstuf.sc
-
         // LaunchMission rampage.sc
-
         // LaunchMission import.sc
-
         // LaunchMission camera.sc
-
         // LaunchMission gates.sc
 
         await asyncWait(0);
@@ -1574,9 +1543,10 @@ async function main() {
 
     // Start Monitors
     START_NEW_SCRIPT(__dirname + '/Main/missionMon.ts'); // must run as a separate script as it mutates ONMISSION flag and enables mission-only behavior
-    GOSUB_FILE(__dirname + '/Main/Industrial/hj.sc');
+    GOSUB_FILE(__dirname + '/Main/Industrial/hj.mts');
     // await import(__dirname + '/Main/Industrial/usj.ts');
     // await import(__dirname + '/Main/Industrial/genstuf.ts');
+    GOSUB_FILE(__dirname + '/Main/Industrial/genstuf.mts');
     // await import(__dirname + '/Main/Industrial/rampage.ts');
     // await import(__dirname + '/Main/Industrial/import.ts');
     // await import(__dirname + '/Main/Industrial/camera.ts');
@@ -1593,27 +1563,12 @@ async function main() {
     run_gated('_flag_com_restart_complete', com_restart); // START_NEW_SCRIPT com_restart
     run_gated('_flag_sub_restart_complete', sub_restart); // START_NEW_SCRIPT sub_restart
 
-    // START_NEW_SCRIPT hospital_info_loop
-    // START_NEW_SCRIPT police_info_loop
+    // START_NEW_SCRIPT hospital_info_loop // xxx: moved to mission monitor
+    // START_NEW_SCRIPT police_info_loop // xxx: moved to mission monitor
 
     if ($.player.isPlaying()) {
         $.player.setControl(true /* on */);
     }
-
-    // from pickups.sc
-    check_info_pickup($.info_pickup1, 1);
-    check_info_pickup($.info_pickup2, 2);
-    check_info_pickup($.info_pickup3, 3);
-    check_info_pickup($.info_pickup4, 4);
-    check_info_pickup($.info_pickup5, 5);
-    check_info_pickup($.info_pickup6, 6);
-    check_info_pickup_2($.info_pickup7a, 7);
-    check_info_pickup_2($.info_pickup7b, 11);
-    check_info_pickup_2($.info_pickup8, 8);
-    check_info_pickup_2($.info_pickup9, 9);
-    check_info_pickup_2($.info_pickup10a, 10);
-    check_info_pickup_2($.info_pickup10b, 10);
-    check_info_pickup_2($.info_pickup10c, 10);
 
     run_gated('_flag_luigi_message_complete', luigi_message);
     run_gated('_flag_blob_help_loop_complete', blob_help_loop);
@@ -1670,6 +1625,7 @@ async function main() {
 }
 
 // *************************************Meat Factory Mission 1******************************
+
 // Meat Factory Mission 1
 async function meat_mission1_loop() {
     // SCM GOTO → meat_mission1_loop lowered to endless loop
@@ -1730,11 +1686,10 @@ async function meat_mission1_loop() {
                 }
             }
         }
-
-        // Meat Factory Mission 2
     }
 }
 
+// Meat Factory Mission 2
 async function meat_mission2_loop() {
     // SCM GOTO → meat_mission2_loop lowered to endless loop
     while (true) {
@@ -1793,11 +1748,10 @@ async function meat_mission2_loop() {
                 }
             }
         }
-
-        // Meat Factory Mission 3
     }
 }
 
+// Meat Factory Mission 3
 async function meat_mission3_loop() {
     // SCM GOTO → meat_mission3_loop lowered to endless loop
     while (true) {
@@ -1919,15 +1873,14 @@ async function meat_mission4_loop() {
                 }
             }
         }
-
-        // ***************************************Industrial Level**********************************
-
-        // ******************************************8Ball Mission**********************************
-
-        // 8Ball Mission
     }
 }
 
+// ***************************************Industrial Level**********************************
+
+// ******************************************8Ball Mission**********************************
+
+// 8Ball Mission
 async function eightball_mission_loop() {
     // SCM GOTO → eightball_mission_loop lowered to endless loop
     while (true) {

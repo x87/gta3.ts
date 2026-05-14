@@ -94,7 +94,7 @@ export const $ = SCM.bind({
   escort_garage: new Garage(91),
   collect_all_cars2: new Garage(92),
   sprayshop3: new Garage(93),
-  ammu_shop_bloke1: new Garage(94),
+  ammu_shop_bloke1: new Char(94),
   time_difference: 95,
   current_time: 96,
   time_since_murdering_shopkeeper1: 97,
@@ -4323,4 +4323,5 @@ export const $ = SCM.bind({
   _flag_sub_restart_complete: 4317,
   _flag_blob_help_loop_complete: 4318,
   _flag_luigi_message_complete: 4319,
+  _flag_cobblers_complete: 4320,
 });
