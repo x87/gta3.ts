@@ -566,7 +566,7 @@ async function mission_failed_meat3() {
 }
 
 async function mission_passed_meat3() {
-    Text.PrintWithNumberBig('m_pass', 2000, 5000, 1); //"Mission Passed!"
+    Text.PrintWithNumberBig('M_PASS', 2000, 5000, 1); //"Mission Passed!"
     Stat.RegisterMissionPassed('MEA3');
     Stat.PlayerMadeProgress(1);
     Audio.PlayMissionPassedTune(1);

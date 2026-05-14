@@ -2388,7 +2388,7 @@ async function mission_start_frankie1() {
 }
 
 async function mission_frankie1_failed() {
-    Text.PrintBig('m_fail', 5000, 1);
+    Text.PrintBig('M_FAIL', 5000, 1);
     return;
 
     // mission Frankie1 passed
@@ -2417,7 +2417,7 @@ async function mission_frankie1_passed() {
         $.joey_contact_blip.remove();
         $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, 10 /* RADAR_SPRITE_JOEY */);
     }
-    Text.PrintWithNumberBig('m_pass', 10000, 5000, 1);
+    Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1);
     $.player.addScore(10000);
     $.player.clearWantedLevel();
     Audio.PlayMissionPassedTune(1);

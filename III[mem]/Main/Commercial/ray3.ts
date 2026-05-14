@@ -707,7 +707,7 @@ async function mission_start_ray3() {
     }
 
     async function mission_ray3_failed() {
-        Text.PrintBig('m_fail', 5000, 1);
+        Text.PrintBig('M_FAIL', 5000, 1);
         return;
 
         // mission Ray3 passed

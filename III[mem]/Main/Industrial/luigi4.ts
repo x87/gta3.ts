@@ -440,7 +440,7 @@ async function mission_start_luigi4() {
         $.flag_luigi_mission4_passed = 1;
         Stat.RegisterMissionPassed('LM4');
         Stat.PlayerMadeProgress(1);
-        Text.PrintWithNumberBig('m_pass', 4000, 5000, 1); //"Mission Passed!"
+        Text.PrintWithNumberBig('M_PASS', 4000, 5000, 1); //"Mission Passed!"
         Audio.PlayMissionPassedTune(1);
         $.player.addScore(4000);
         $.player.clearWantedLevel();

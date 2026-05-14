@@ -221,7 +221,7 @@ async function create_car_yd5() {
         while (!$.player.isInCar($.abandoned_car_y4)) {
             await asyncWait(0);
             if ($.timer_y4 < 1) {
-                Text.PrintNow('taxi2', 3000, 1);
+                Text.PrintNow('TAXI2', 3000, 1);
                 // SCM GOTO → mission_yd4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_yd4_failed'); // fallback: would break linear control flow
             }

@@ -1723,7 +1723,7 @@ async function mission_kenji5_failed() {
 
 async function mission_kenji5_passed() {
     $.flag_kenji_mission5_passed = 1;
-    Text.PrintWithNumberBig('m_pass', 10000, 5000, 1);
+    Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1);
     $.player.addScore(10000);
     if ($.dead_peds == 8) {
         Text.PrintWithNumberNow('KM5_4', $.dead_peds, 3000, 1); // "Congratulations you killed ~1~ Yardies."

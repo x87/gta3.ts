@@ -1319,7 +1319,7 @@ async function mission_frankie2_passed() {
     $.flag_frankie_mission2_passed = 1;
     Stat.RegisterMissionPassed('FM2');
     Stat.PlayerMadeProgress(1);
-    Text.PrintWithNumberBig('m_pass', 15000, 5000, 1); //"Mission Passed!"
+    Text.PrintWithNumberBig('M_PASS', 15000, 5000, 1); //"Mission Passed!"
     Audio.PlayMissionPassedTune(1);
     $.player.addScore(15000);
     $.player.clearWantedLevel();

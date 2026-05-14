@@ -525,7 +525,7 @@ async function mission_luigi1_failed() {
 
 async function mission_luigi1_passed() {
     $.flag_luigi_mission1_passed = 1;
-    Text.PrintBig('m_pass', 2000, 1);
+    Text.PrintBig('M_PASS', 2000, 1);
     $.player.clearWantedLevel();
     $.player.addScore(1500);
     // START_NEW_SCRIPT luigi_mission2_loop

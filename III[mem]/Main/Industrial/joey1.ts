@@ -359,7 +359,7 @@ async function mission_start_joey1() {
 
         await asyncWait(4000);
 
-        Text.PrintNow('jm1_2', 5000, 2); // Car rigged
+        Text.PrintNow('JM1_2', 5000, 2); // Car rigged
         $.blip1_jm1.remove();
         $.blip2_jm1.remove();
         $.blip4_jm1.remove();

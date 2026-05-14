@@ -1067,7 +1067,7 @@ async function mission_start_debug() {
                         }
                         if (button_pressed_com == 20) {
                             $.flag_love_mission1_passed = 1;
-                            Text.PrintBig('love1', 1000, 4); //"love Mission 1"
+                            Text.PrintBig('LOVE1', 1000, 4); //"love Mission 1"
                             Text.PrintNow('LOVE', 2000, 1);
                             await asyncWait(300);
                             $.flag_love_mission1_passed = 0;
@@ -1079,7 +1079,7 @@ async function mission_start_debug() {
                         }
                         if (button_pressed_com == 21) {
                             $.flag_love_mission2_passed = 1;
-                            Text.PrintBig('love2', 1000, 4); //"love Mission 2"
+                            Text.PrintBig('LOVE2', 1000, 4); //"love Mission 2"
                             await asyncWait(300);
                             $.flag_love_mission2_passed = 0;
                             // START_NEW_SCRIPT love_mission2_loop
@@ -1087,7 +1087,7 @@ async function mission_start_debug() {
                         }
                         if (button_pressed_com == 22) {
                             $.flag_love_mission3_passed = 1;
-                            Text.PrintBig('love3', 1000, 4); //"love Mission 3"
+                            Text.PrintBig('LOVE3', 1000, 4); //"love Mission 3"
                             await asyncWait(300);
                             $.flag_love_mission3_passed = 0;
                             // START_NEW_SCRIPT love_mission3_loop
@@ -1095,7 +1095,7 @@ async function mission_start_debug() {
                         }
                         if (button_pressed_com == 23) {
                             $.flag_love_mission4_passed = 1;
-                            Text.PrintBig('love4', 1000, 4); //"love Mission 4"
+                            Text.PrintBig('LOVE4', 1000, 4); //"love Mission 4"
                             await asyncWait(300);
                             $.flag_love_mission4_passed = 0;
                             $.flag_asuka_suburban_mission1_passed = 0;
@@ -1105,7 +1105,7 @@ async function mission_start_debug() {
                         }
                         if (button_pressed_com == 24) {
                             $.flag_love_mission5_passed = 1;
-                            Text.PrintBig('love5', 1000, 4); //"love Mission 5"
+                            Text.PrintBig('LOVE5', 1000, 4); //"love Mission 5"
                             await asyncWait(300);
                             $.flag_love_mission5_passed = 0;
                             // START_NEW_SCRIPT love_mission5_loop
@@ -1116,7 +1116,7 @@ async function mission_start_debug() {
                         }
                         if (button_pressed_com == 25) {
                             $.flag_love_mission6_passed = 1;
-                            Text.PrintBig('love6', 1000, 4); //"love Mission 6"
+                            Text.PrintBig('LOVE6', 1000, 4); //"love Mission 6"
                             await asyncWait(300);
                             $.flag_love_mission6_passed = 0;
                             // START_NEW_SCRIPT love_mission6_loop
@@ -1126,7 +1126,7 @@ async function mission_start_debug() {
                         }
                         if (button_pressed_com == 26) {
                             $.flag_love_mission7_passed = 1;
-                            Text.PrintBig('love7', 1000, 4); //"love Mission 7"
+                            Text.PrintBig('LOVE7', 1000, 4); //"love Mission 7"
                             await asyncWait(300);
                             $.flag_love_mission7_passed = 0;
                             // START_NEW_SCRIPT love_mission7_loop

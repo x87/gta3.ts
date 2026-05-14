@@ -901,7 +901,7 @@ async function mission_start_love1() {
             while ($.ojg_love1.isInAnyCar()) {
                 await asyncWait(0);
                 if (Char.IsDead($.ojg_love1)) {
-                    Text.PrintNow('LOVe1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
+                    Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
                     // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
                 }
@@ -917,7 +917,7 @@ async function mission_start_love1() {
         while (TIMERB < 1500) {
             await asyncWait(0);
             if (Char.IsDead($.ojg_love1)) {
-                Text.PrintNow('LOVe1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
+                Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
                 // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
             }
@@ -937,7 +937,7 @@ async function mission_start_love1() {
         while (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Char.IsDead($.ojg_love1)) {
-                Text.PrintNow('LOVe1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
+                Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
                 // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
             }
@@ -986,7 +986,7 @@ async function mission_love1_passed() {
     $.flag_love_mission1_passed = 1;
     Stat.RegisterMissionPassed('LOVE1');
     Stat.PlayerMadeProgress(1);
-    Text.PrintWithNumberBig('m_pass', 40000, 5000, 1); //"Mission Passed!"
+    Text.PrintWithNumberBig('M_PASS', 40000, 5000, 1); //"Mission Passed!"
     Audio.PlayMissionPassedTune(1);
     $.player.addScore(40000);
     $.player.clearWantedLevel();

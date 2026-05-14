@@ -36,7 +36,7 @@ export const $ = SCM.bind({
   target3: new ScriptObject(33),
   subway_gate_industrial: new ScriptObject(34),
   tunnel_gate_industrial: new ScriptObject(35),
-  bridge_is_damaged: new ScriptObject(36),
+  bridge_is_damaged: 36,
   subway_gate_suburban1: new ScriptObject(37),
   subway_gate_suburban2: new ScriptObject(38),
   tunnel_gate_suburban: new ScriptObject(39),

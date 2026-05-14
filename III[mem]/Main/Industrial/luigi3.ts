@@ -1032,7 +1032,7 @@ async function mission_luigi3_passed() {
     $.flag_luigi_mission3_passed = 1;
     Stat.RegisterMissionPassed('LM3');
     Stat.PlayerMadeProgress(1);
-    Text.PrintWithNumberBig('m_pass', 1000, 5000, 1); //"Mission Passed!"
+    Text.PrintWithNumberBig('M_PASS', 1000, 5000, 1); //"Mission Passed!"
     Audio.PlayMissionPassedTune(1);
     $.player.addScore(1000);
     $.player.clearWantedLevel();

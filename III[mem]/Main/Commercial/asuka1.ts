@@ -2361,7 +2361,7 @@ async function mission_start_asuka1() {
             $.mafia_14X.setObjKillPlayerAnyMeans($.player);
         }
 
-        Text.PrintBig('m_fail', 5000, 1);
+        Text.PrintBig('M_FAIL', 5000, 1);
         return;
 
         // mission Asuka1 passed
@@ -2413,7 +2413,7 @@ async function mission_start_asuka1() {
             $.mafia_14X.setObjKillPlayerAnyMeans($.player);
         }
 
-        Text.PrintWithNumberBig('m_pass', 25000, 5000, 1);
+        Text.PrintWithNumberBig('M_PASS', 25000, 5000, 1);
         $.player.addScore(25000);
         Game.SetThreatForPedType(7 /* PEDTYPE_GANG_MAFIA */, 1 /* THREAT_PLAYER1 */);
         Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */); //The Mafia

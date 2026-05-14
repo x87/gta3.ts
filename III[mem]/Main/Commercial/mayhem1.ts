@@ -445,12 +445,12 @@ async function mission_start_mayhem() {
             $.flag_intro_mayhem_before = 1;
         }
         if ($.timer_4x4 < 1) {
-            Text.PrintNow('taxi2', 3000, 1);
+            Text.PrintNow('TAXI2', 3000, 1);
             // SCM GOTO → mission_mayhem_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_mayhem_failed'); // fallback: would break linear control flow
         }
         if (!$.player.isInModel(129 /* CAR_STALLION */)) {
-            Text.PrintNow('T4x4_F', 3000, 1);
+            Text.PrintNow('T4X4_F', 3000, 1);
             // SCM GOTO → mission_mayhem_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_mayhem_failed'); // fallback: would break linear control flow
         }

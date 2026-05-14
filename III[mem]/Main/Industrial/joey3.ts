@@ -328,7 +328,7 @@ async function mission_start_joey3() {
                     $.blip2_jm3 = Blip.AddForCoord(1445.8, -796.7, -100.0);
                     $.blip2_jm3.changeDisplay(2 /* BLIP_ONLY */);
                     $.blip1_jm3.remove();
-                    Text.PrintNow('jm3_1', 5000, 1);
+                    Text.PrintNow('JM3_1', 5000, 1);
                     $.flag_car_blip_displayed_jm3 = 0 /* FALSE */;
                 }
             }
@@ -395,7 +395,7 @@ async function mission_start_joey3() {
 }
 
 async function mission_joey3_failed() {
-    Text.PrintBig('m_fail', 2000, 1);
+    Text.PrintBig('M_FAIL', 2000, 1);
     return;
 
     // mission joey3 passed

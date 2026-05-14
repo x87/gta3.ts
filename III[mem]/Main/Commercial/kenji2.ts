@@ -855,7 +855,7 @@ async function mission_start_kenji2() {
         $.flag_kenji_mission2_passed = 1;
         Stat.RegisterMissionPassed('KM2');
         Stat.PlayerMadeProgress(1);
-        Text.PrintWithNumberBig('m_pass', 25000, 5000, 1); //"Mission Passed!"
+        Text.PrintWithNumberBig('M_PASS', 25000, 5000, 1); //"Mission Passed!"
         Audio.PlayMissionPassedTune(1);
         $.player.addScore(25000);
         $.player.clearWantedLevel();

@@ -2057,7 +2057,7 @@ async function mission_frankie3_passed() {
     Stat.RegisterMissionPassed('FM3');
     Stat.PlayerMadeProgress(1);
     Restart.CancelOverride();
-    Text.PrintWithNumberBig('m_pass', 150000, 5000, 1); //"Mission Passed!"
+    Text.PrintWithNumberBig('M_PASS', 150000, 5000, 1); //"Mission Passed!"
     Audio.PlayMissionPassedTune(1);
     $.player.addScore(150000);
     $.player.clearWantedLevel();
