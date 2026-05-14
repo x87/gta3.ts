@@ -12,7 +12,6 @@ async function mission_start_genstuf() {
         // START_NEW_SCRIPT com_car_park
         // START_NEW_SCRIPT dog_sound
         // START_NEW_SCRIPT cobblers
-        // MissionBoundary
     }
 }
 
@@ -35,143 +34,140 @@ async function cobblers() {
     }
 }
 
-async function check_info_pickup() {
+export async function check_info_pickup(pickup: Pickup, message_num: int) {
     {
         // LVAR_INT pickup message_num
     }
 
-    async function start_pickup_script() {
-        // SCM GOTO → start_pickup_script lowered to endless loop
-        while (true) {
-            while (!pickup.hasBeenCollected()) {
-                await asyncWait(500);
-            }
 
-            if (message_num == 1) {
-                Text.PrintHelp('SPRAY');
-            }
-
-            if (message_num == 2) {
-                Text.PrintHelp('BOMB');
-            }
-
-            if (message_num == 3) {
-                Text.PrintHelp('AMMU');
-            }
-
-            if (message_num == 4) {
-                Text.PrintHelp('SAVE2');
-            }
-
-            if (message_num == 5) {
-                Text.PrintHelp('SAVE1');
-            }
-
-            if (message_num == 6) {
-                Text.PrintHelp('CRUSH');
-            }
-            /*
-    IF message_num = 7
-    PRINT_HELP ( BRIDGE1 )
-    ENDIF
-
-    IF message_num = 8
-    PRINT_HELP ( TUNNEL )
-    ENDIF
-
-    IF message_num = 9
-    PRINT_HELP ( TUBE )
-    ENDIF
-
-    IF message_num = 10
-    PRINT_HELP ( A_TRAIN )
-    ENDIF
-
-    WHILE HAS_PICKUP_BEEN_COLLECTED pickup
-    WAIT 500
-    ENDWHILE
-    */
+    start_pickup_script: while (true) {
+        while (!pickup.hasBeenCollected()) {
+            await asyncWait(500);
         }
+
+        if (message_num == 1) {
+            Text.PrintHelp('SPRAY');
+        }
+
+        if (message_num == 2) {
+            Text.PrintHelp('BOMB');
+        }
+
+        if (message_num == 3) {
+            Text.PrintHelp('AMMU');
+        }
+
+        if (message_num == 4) {
+            Text.PrintHelp('SAVE2');
+        }
+
+        if (message_num == 5) {
+            Text.PrintHelp('SAVE1');
+        }
+
+        if (message_num == 6) {
+            Text.PrintHelp('CRUSH');
+        }
+        /*
+            IF message_num = 7
+            PRINT_HELP ( BRIDGE1 )
+            ENDIF
+
+            IF message_num = 8
+            PRINT_HELP ( TUNNEL )
+            ENDIF
+
+            IF message_num = 9
+            PRINT_HELP ( TUBE )
+            ENDIF
+
+            IF message_num = 10
+            PRINT_HELP ( A_TRAIN )
+            ENDIF
+
+            WHILE HAS_PICKUP_BEEN_COLLECTED pickup
+            WAIT 500
+            ENDWHILE
+        */
     }
+    // SCM GOTO → start_pickup_script
 }
 
-async function check_info_pickup_2() {
+export async function check_info_pickup_2(pickup: Pickup, message_num: int) {
     {
         // LVAR_INT pickup message_num
     }
 
-    async function start_pickup_script_2() {
-        // SCM GOTO → start_pickup_script_2 lowered to endless loop
-        while (true) {
-            while (!pickup.hasBeenCollected()) {
-                await asyncWait(500);
-            }
-
-            $.controlmode = Pad.GetControllerMode();
-
-            /*
-    IF message_num = 1
-    PRINT_HELP ( SPRAY )
-    ENDIF
-
-    IF message_num = 2
-    PRINT_HELP ( BOMB )
-    ENDIF
-
-    IF message_num = 3
-    PRINT_HELP ( AMMU )
-    ENDIF
-
-    IF message_num = 4
-    PRINT_HELP ( SAVE2 )
-    ENDIF
-
-    IF message_num = 5
-    PRINT_HELP ( SAVE1 )
-    ENDIF
-
-    IF message_num = 6
-    PRINT_HELP ( CRUSH )
-    ENDIF
-    */
-
-            if (message_num == 7) {
-                Text.PrintHelp('BRIDGE1');
-            }
-
-            if (message_num == 8) {
-                Text.PrintHelp('TUNNEL');
-            }
-
-            if (message_num == 9) {
-                Text.PrintHelp('TUBE1');
-            }
-
-            if (message_num == 10) {
-                if ($.controlmode == 0 || $.controlmode == 1 || $.controlmode == 3) {
-                    Text.PrintHelp('L_TRN_1'); //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-                }
-                if ($.controlmode == 2) {
-                    Text.PrintHelp('L_TRN_2'); //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-                }
-            }
-
-            if (message_num == 11) {
-                if ($.controlmode == 0 || $.controlmode == 1 || $.controlmode == 3) {
-                    Text.PrintHelp('S_TRN_1'); //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-                }
-                if ($.controlmode == 2) {
-                    Text.PrintHelp('S_TRN_2'); //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
-                }
-            }
-
-            /*
-    WHILE HAS_PICKUP_BEEN_COLLECTED pickup
-    WAIT 500
-    ENDWHILE
-    */
+    start_pickup_script_2: while (true) {
+        while (!pickup.hasBeenCollected()) {
+            await asyncWait(500);
         }
+
+        $.controlmode = Pad.GetControllerMode();
+
+        /*
+            IF message_num = 1
+            PRINT_HELP ( SPRAY )
+            ENDIF
+
+            IF message_num = 2
+            PRINT_HELP ( BOMB )
+            ENDIF
+
+            IF message_num = 3
+            PRINT_HELP ( AMMU )
+            ENDIF
+
+            IF message_num = 4
+            PRINT_HELP ( SAVE2 )
+            ENDIF
+
+            IF message_num = 5
+            PRINT_HELP ( SAVE1 )
+            ENDIF
+
+            IF message_num = 6
+            PRINT_HELP ( CRUSH )
+            ENDIF
+        */
+
+        if (message_num == 7) {
+            Text.PrintHelp('BRIDGE1');
+        }
+
+        if (message_num == 8) {
+            Text.PrintHelp('TUNNEL');
+        }
+
+        if (message_num == 9) {
+            Text.PrintHelp('TUBE1');
+        }
+
+        if (message_num == 10) {
+            if ($.controlmode == 0 || $.controlmode == 1 || $.controlmode == 3) {
+                Text.PrintHelp('L_TRN_1'); //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
+            }
+            if ($.controlmode == 2) {
+                Text.PrintHelp('L_TRN_2'); //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
+            }
+        }
+
+        if (message_num == 11) {
+            if ($.controlmode == 0 || $.controlmode == 1 || $.controlmode == 3) {
+                Text.PrintHelp('S_TRN_1'); //"Press the~h~ \ button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
+            }
+            if ($.controlmode == 2) {
+                Text.PrintHelp('S_TRN_2'); //"Press the~h~ L1 button~w~ to ~h~enter ~w~or ~h~exit~w~ a vehicle."
+            }
+        }
+
+        /*
+            WHILE HAS_PICKUP_BEEN_COLLECTED pickup
+            WAIT 500
+            ENDWHILE
+        */
     }
+    // SCM GOTO → start_pickup_script_2
 }
 
 async function ind_ammu() {

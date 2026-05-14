@@ -11,7 +11,6 @@ import { $ } from '../../vars.mts';
 // *****************************************************************************************
 
 async function body() {
-    $.flag_eightball_mission_launched = 1;
 
     // SCRIPT_NAME eight
 

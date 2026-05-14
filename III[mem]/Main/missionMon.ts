@@ -23,7 +23,14 @@ class DeatharrestBeenExecutedError extends Error {
         await _asyncWait(0);
         if (!ONMISSION && p.isPlaying() && p.canStartMission()) {
             for (const mission of missions) {
-                if (mission.canStart()) {
+                if (await mission.canStart()) {
+                    if (mission.beforeStart) {
+                        try {
+                            await mission.beforeStart();
+                        } catch (e) {
+                            log(`[-] Error in beforeStart for mission ${mission.name}: ${e}`);
+                        }
+                    }
                     await loadAndLaunchMission(mission);
                     break;
                 }

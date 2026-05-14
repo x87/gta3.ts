@@ -1,6 +1,5 @@
 // Generated from Main/Industrial/health.sc
 import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -29,12 +28,6 @@ import { car, ped, hier } from '../../ide.mts';
 
 async function body() {
     
-    // from starter loop
-    $.player.setControl(false /* off */);
-    while (Camera.GetFadingStatus()) {
-        await asyncWait(0);
-    }
-
     //REGISTER_MISSION_GIVEN
 
     // SCRIPT_NAME health
