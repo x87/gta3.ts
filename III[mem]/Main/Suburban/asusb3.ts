@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/asusb3.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function mission_start_as3() {
     Stat.RegisterMissionGiven();

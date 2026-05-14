@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/love2.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function create_yakuza() {
     if ($.flag_yak_created_love2 == 0) {

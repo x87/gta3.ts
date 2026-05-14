@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/yard2.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function mission_start_yd2() {
     Stat.RegisterMissionGiven();

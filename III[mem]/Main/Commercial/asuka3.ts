@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/asuka3.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function mission_start_asuka3() {
     Stat.RegisterMissionGiven();

@@ -1,6 +1,7 @@
 import { type MissionDefinition, missions } from './missions.mts';
+import { unwrapError, verbose } from '../utils';
 
-log('[*] Mission Monitor started');
+verbose('[*] Mission Monitor started');
 
 class DeatharrestBeenExecutedError extends Error {
     constructor() {
@@ -28,7 +29,7 @@ class DeatharrestBeenExecutedError extends Error {
                         try {
                             await mission.beforeStart();
                         } catch (e) {
-                            log(`[-] Error in beforeStart for mission ${mission.name}: ${e}`);
+                            log(`[-] Error in beforeStart of mission ${mission.name}: ${unwrapError(e)}`);
                         }
                     }
                     await loadAndLaunchMission(mission);
@@ -47,7 +48,7 @@ async function loadAndLaunchMission(mission: MissionDefinition) {
             if (e instanceof DeatharrestBeenExecutedError) {
                 log(`[-] Mission ${mission.scriptPath} failed due to death or arrest`);
             } else {
-                log(`[-] Unhandled error in mission ${mission.name}: ${e.message}`);
+                log(`[-] Unhandled error in mission ${mission.name}: ${unwrapError(e)}`);
             }
         })
         .finally(() => {

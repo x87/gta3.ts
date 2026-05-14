@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/usj.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function mission_start_usj() {
     // SCM GOTO → mission_start_usj lowered to endless loop

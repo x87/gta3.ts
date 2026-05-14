@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/hood2.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function mission_start_hood2() {
     $.flag_player_on_mission = 1;

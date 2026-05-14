@@ -1,4 +1,4 @@
-import { $ } from '../vars.mts';
+import { $ } from '../utils';
 
 const p = new Player(0);
 

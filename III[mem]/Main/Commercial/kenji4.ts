@@ -1,6 +1,6 @@
 // Generated from Main/Commercial/kenji4.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function mission_start_kenji4() {
     $.flag_player_on_mission = 1;

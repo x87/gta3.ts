@@ -1,59 +1,44 @@
 // Generated from main.sc
-import { $ } from './vars.mts';
+import { $, GOSUB_FILE, run_once, START_NEW_SCRIPT, verbose } from './utils';
+import { check_info_pickup, check_info_pickup_2 } from './Main/Industrial/genstuf.ts';
+
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// ****************************************Main Script**************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
 
 async function main() {
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // ****************************************Main Script**************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-
-    if (!$._flag_is_loaded_game) {
+    await run_once(async () => {
         // SCRIPT_NAME Main
 
-        // VAR_FLOAT one_sixteenth one_thirtysecond one_sixtyfourth
+        verbose('[*] Starting a new game.');
 
         $.one_sixteenth = 0.0625;
-
         $.one_thirtysecond = $.one_sixteenth / 2.0;
-
         $.one_sixtyfourth = $.one_thirtysecond / 2.0;
-
-        // VAR_INT mission_trigger_wait_time
-
         $.mission_trigger_wait_time = 250;
 
         // ***************************************Frankie 3 Warp Stuff******************************
         // ******************************************DO NOT REMOVE!*********************************
-
-        // VAR_INT flag_taken_money_off_fm3
 
         $.flag_taken_money_off_fm3 = 0;
 
         // ********************************************Help Message*********************************
         // ********************************************DO NOT REMOVE********************************
 
-        // VAR_INT flag_player_had_gun_message
-
         $.flag_player_had_gun_message = 0;
 
         // *********************************8Ball/Luigi Girls Warp Stuff****************************
         // ***************************************DO NOT REMOVE*************************************
 
-        // VAR_INT flag_reached_hideout
-
         $.flag_reached_hideout = 0;
-
-        // VAR_INT flag_had_luigi_help_message
-
         $.flag_had_luigi_help_message = 0;
 
         // *************************************LOCATE BLOB VARIABLE STUFF**************************
         // ********************************************DO NOT REMOVE********************************
-
-        // VAR_INT blob_flag
 
         $.blob_flag = 0;
 
@@ -71,25 +56,9 @@ async function main() {
 
         // VAR_INT script_controlled_player
 
-        // VAR_INT controlmode
-
         // ********************************CREATE INDUSTRIAL OBJECTS********************************
 
-        // VAR_INT backdoor playersdoor
-        // VAR_INT dogfood_factory_gate doggy_door
-        // VAR_INT misty_door1 misty_door2
         // VAR_INT explosive_drum1 explosive_drum2
-        // VAR_INT laundrete_door1 laundrete_door2
-        // VAR_INT fish_factory_gate
-        // VAR_INT Bank_job_door bankdoor1 bankdoor2
-        // VAR_INT fuzz_door1 fuzz_door2
-        // VAR_INT joeys_garage_door2 joeys_garage_door3
-        // VAR_INT target1 target2 target3
-        // VAR_INT subway_gate_industrial tunnel_gate_industrial
-        // VAR_INT bridge_is_damaged
-        // VAR_INT subway_gate_suburban1 subway_gate_suburban2 tunnel_gate_suburban
-
-        // VAR_FLOAT joeydoor2_X joeydoor2_Y joeydoor2_Z joeydoor3_X joeydoor3_Y joeydoor3_Z
 
         $.playersdoor = ScriptObject.CreateNoOffset(1380 /* playersdoor */, 890.883, -307.74, 8.75);
         $.playersdoor.dontRemove();
@@ -165,12 +134,6 @@ async function main() {
 
         // ********************************CREATE COMMERCIAL OBJECTS********************************
 
-        // VAR_INT plysav_lftdr_lft plysav_lftdr_rght
-        // VAR_INT police_door_one police_door_two
-        // VAR_INT colombian_gate helix_barrier
-        // VAR_INT phils_compnd_gate flag_player_on_phil_mission
-        // VAR_INT inside_fence outside_fence
-
         $.helix_barrier = ScriptObject.CreateNoOffset(1299 /* helix_barrier */, -73.137, -630.333, 25.932);
         $.helix_barrier.dontRemove();
 
@@ -205,9 +168,6 @@ async function main() {
 
         // ********************************CREATE SUBURBAN OBJECTS*********************************
 
-        // VAR_INT newtowerdoor1 Columbian_gate2
-        // VAR_INT airportdoor1 airportdoor2
-
         $.newtowerdoor1 = ScriptObject.CreateNoOffset(1286 /* newtowerdoor1 */, -664.313, 2.883, 19.51);
         $.newtowerdoor1.dontRemove();
         $.newtowerdoor1.setHeading(180.0);
@@ -228,8 +188,7 @@ async function main() {
 
         // **************************************Industrial Garages*********************************
 
-        // VAR_INT save_cars1 bombshop1 sprayshop1 collect_all_cars1 special_garage1 hours minutes
-        // VAR_INT frankie_garage Garage_bank garage_lm2
+        // VAR_INT special_garage1
 
         $.save_cars1 = Garage.Create(891.3, -311.1, 7.7, 898.4, -315.5, 12.7, 16 /* GARAGE_HIDEOUT_INDUSTRIAL */); //Saves current car to memory
 
@@ -748,8 +707,7 @@ async function main() {
 
         // **************************************CAR GENERATORS**********************************************
 
-        // GOSUB_FILE car_generators car_gen.sc
-        await import('./Main/Industrial/car_gen.ts');
+        GOSUB_FILE(__dirname + '/Main/Industrial/car_gen.mts');
 
         //SPECIAL CAR GENERATORS****************************************************************************
 
@@ -761,8 +719,7 @@ async function main() {
 
         // *****************************************PICK_UPS**************************************************
 
-        // GOSUB_FILE main_pickups pickups.sc
-        await import('./Main/Industrial/pickups.ts');
+        GOSUB_FILE(__dirname + '/Main/Industrial/pickups.mts');
 
         //AMMU NATION*****************************************************************************************
 
@@ -1772,15 +1729,21 @@ async function main() {
             GOTO mission_start
             ENDIF
         */
-
-        $._flag_is_loaded_game = 1;
-    }
+    });
 
     //FULL GAME LOAD***********************************************************************************************
 
-    // LoadLaunchMission intro.sc
-    CLEO.runScript('./Main/missionMon.ts'); // must run as a separate script as it mutates ONMISSION flag and enables mission-only behavior
+    // Start Monitors
+    START_NEW_SCRIPT(__dirname + '/Main/missionMon.ts'); // must run as a separate script as it mutates ONMISSION flag and enables mission-only behavior
+    GOSUB_FILE(__dirname + '/Main/Industrial/hj.sc');
+    // await import(__dirname + '/Main/Industrial/usj.ts');
+    // await import(__dirname + '/Main/Industrial/genstuf.ts');
+    // await import(__dirname + '/Main/Industrial/rampage.ts');
+    // await import(__dirname + '/Main/Industrial/import.ts');
+    // await import(__dirname + '/Main/Industrial/camera.ts');
+    // await import(__dirname + '/Main/Industrial/gates.ts');
 
+    // Save monitor
     ind_save_loop(); // START_NEW_SCRIPT ind_save_loop
     // START_NEW_SCRIPT com_save_loop
     // START_NEW_SCRIPT sub_save_loop
@@ -1795,6 +1758,27 @@ async function main() {
     if ($.player.isPlaying()) {
         $.player.setControl(true /* on */);
     }
+
+    // from pickups.sc
+    check_info_pickup($.info_pickup1, 1);
+    check_info_pickup($.info_pickup2, 2);
+    check_info_pickup($.info_pickup3, 3);
+    check_info_pickup($.info_pickup4, 4);
+    check_info_pickup($.info_pickup5, 5);
+    check_info_pickup($.info_pickup6, 6);
+    check_info_pickup_2($.info_pickup7a, 7);
+    check_info_pickup_2($.info_pickup7b, 11);
+    check_info_pickup_2($.info_pickup8, 8);
+    check_info_pickup_2($.info_pickup9, 9);
+    check_info_pickup_2($.info_pickup10a, 10);
+    check_info_pickup_2($.info_pickup10b, 10);
+    check_info_pickup_2($.info_pickup10c, 10);
+
+    luigi_message();
+
+    $._flag_is_loaded_game = 1;
+
+    verbose('[*] Game Initialization Complete. Starting Main Loop');
 
     mission_start: {
         while (true) {
@@ -1889,312 +1873,310 @@ async function main() {
 //     }
 // }
 
-async function rc_loop() {
-    // *************************************RC Demolition****************************************
-    // SCM GOTO → rc_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
-            //SCRIPT_NAME rcloop
+// async function rc_loop() {
+//     // *************************************RC Demolition****************************************
+//     while (true) {
+//         {
+//             await asyncWait(0);
+//             //SCRIPT_NAME rcloop
 
-            if ($.player.isPlaying() && $.flag_just_done_rc_mission == 0) {
-                if ($.player.isInModel(149 /* CAR_TOYZ */)) {
-                    if ($.flag_player_on_mission == 0) {
-                        if ($.player.locateAnyMeans3D(1014.0, -120.0, 5.0, 5.0, 5.0, 5.0, false /* false */)) {
-                            Text.PrintBig('RC1', 15000, 2);
-                            await asyncWait(0);
-                            // LoadLaunchMission rc1.sc
-                        }
-                        if ($.player.isPlaying()) {
-                            if ($.player.locateAnyMeans3D(1158.0, -309.0, 23.0, 5.0, 5.0, 5.0, false /* false */)) {
-                                Text.PrintBig('RC2', 15000, 2);
-                                await asyncWait(0);
-                                // LoadLaunchMission rc2.sc
-                            }
-                        }
-                        if ($.player.isPlaying()) {
-                            if ($.player.locateAnyMeans3D(-636.0, 65.0, 19.0, 5.0, 5.0, 5.0, false /* false */)) {
-                                Text.PrintBig('RC4', 15000, 2);
-                                await asyncWait(0);
-                                // LoadLaunchMission rc3.sc
-                            }
-                        }
-                        if ($.player.isPlaying()) {
-                            if ($.player.locateAnyMeans3D(366.0, -1312.0, 26.0, 5.0, 5.0, 5.0, false /* false */)) {
-                                Text.PrintBig('RC3', 15000, 2);
-                                await asyncWait(0);
-                                // LoadLaunchMission rc4.sc
-                            }
-                        }
-                    }
-                }
-            }
+//             if ($.player.isPlaying() && $.flag_just_done_rc_mission == 0) {
+//                 if ($.player.isInModel(149 /* CAR_TOYZ */)) {
+//                     if ($.flag_player_on_mission == 0) {
+//                         if ($.player.locateAnyMeans3D(1014.0, -120.0, 5.0, 5.0, 5.0, 5.0, false /* false */)) {
+//                             Text.PrintBig('RC1', 15000, 2);
+//                             await asyncWait(0);
+//                             // LoadLaunchMission rc1.sc
+//                         }
+//                         if ($.player.isPlaying()) {
+//                             if ($.player.locateAnyMeans3D(1158.0, -309.0, 23.0, 5.0, 5.0, 5.0, false /* false */)) {
+//                                 Text.PrintBig('RC2', 15000, 2);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission rc2.sc
+//                             }
+//                         }
+//                         if ($.player.isPlaying()) {
+//                             if ($.player.locateAnyMeans3D(-636.0, 65.0, 19.0, 5.0, 5.0, 5.0, false /* false */)) {
+//                                 Text.PrintBig('RC4', 15000, 2);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission rc3.sc
+//                             }
+//                         }
+//                         if ($.player.isPlaying()) {
+//                             if ($.player.locateAnyMeans3D(366.0, -1312.0, 26.0, 5.0, 5.0, 5.0, false /* false */)) {
+//                                 Text.PrintBig('RC3', 15000, 2);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission rc4.sc
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
 
-            if ($.player.isPlaying()) {
-                if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
-                    $.flag_just_done_rc_mission = 0;
-                }
-            }
-        }
+//             if ($.player.isPlaying()) {
+//                 if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
+//                     $.flag_just_done_rc_mission = 0;
+//                 }
+//             }
+//         }
 
-        // *******************************************4x4 Missions***********************************
-    }
-}
+//     }
+// }
 
-async function t4x4_mission1_loop() {
-    // SCM GOTO → t4x4_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
+// *******************************************4x4 Missions***********************************
+// async function t4x4_mission1_loop() {
+//     // SCM GOTO → t4x4_mission1_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait($.mission_trigger_wait_time);
 
-            if ($.flag_4x4_mission1_passed == 0) {
-                $.record_4x4_one = 300;
-            }
+//             if ($.flag_4x4_mission1_passed == 0) {
+//                 $.record_4x4_one = 300;
+//             }
 
-            if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0 && $.player.isInZone('S_VIEW')) {
-                    if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(1294.0, -656.0, 1316.0, -638.0, false /* false */)) {
-                        $.flag_4x4one_trigger = 1;
-                    }
-                    if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4one_trigger == 0) {
-                        Text.PrintBig('T4X4_1', 15000, 2);
-                        await asyncWait(0);
-                        // LoadLaunchMission 4x4_1.sc
-                    }
-                    if ($.player.isPlaying()) {
-                        if (!$.player.isInAnyCar()) {
-                            $.flag_4x4one_trigger = 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//             if ($.player.isPlaying()) {
+//                 if ($.flag_player_on_mission == 0 && $.player.isInZone('S_VIEW')) {
+//                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(1294.0, -656.0, 1316.0, -638.0, false /* false */)) {
+//                         $.flag_4x4one_trigger = 1;
+//                     }
+//                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4one_trigger == 0) {
+//                         Text.PrintBig('T4X4_1', 15000, 2);
+//                         await asyncWait(0);
+//                         // LoadLaunchMission 4x4_1.sc
+//                     }
+//                     if ($.player.isPlaying()) {
+//                         if (!$.player.isInAnyCar()) {
+//                             $.flag_4x4one_trigger = 0;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-async function t4x4_mission2_loop() {
-    // SCM GOTO → t4x4_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
+// async function t4x4_mission2_loop() {
+//     // SCM GOTO → t4x4_mission2_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait($.mission_trigger_wait_time);
 
-            if ($.flag_4x4_mission2_passed == 0) {
-                $.record_4x4_two = 120;
-            }
+//             if ($.flag_4x4_mission2_passed == 0) {
+//                 $.record_4x4_two = 120;
+//             }
 
-            if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0 && $.player.isInZone('PARK')) {
-                    if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && !$.player.isInArea2D(58.0, -585.0, 68.0, -595.0, false /* false */)) {
-                        $.flag_4x4two_trigger = 1;
-                    }
-                    if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && $.flag_4x4two_trigger == 0) {
-                        Text.PrintBig('T4X4_2', 15000, 2);
-                        await asyncWait(0);
-                        // LoadLaunchMission 4x4_2.sc
-                    }
-                    if ($.player.isPlaying()) {
-                        if (!$.player.isInAnyCar()) {
-                            $.flag_4x4two_trigger = 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//             if ($.player.isPlaying()) {
+//                 if ($.flag_player_on_mission == 0 && $.player.isInZone('PARK')) {
+//                     if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && !$.player.isInArea2D(58.0, -585.0, 68.0, -595.0, false /* false */)) {
+//                         $.flag_4x4two_trigger = 1;
+//                     }
+//                     if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && $.flag_4x4two_trigger == 0) {
+//                         Text.PrintBig('T4X4_2', 15000, 2);
+//                         await asyncWait(0);
+//                         // LoadLaunchMission 4x4_2.sc
+//                     }
+//                     if ($.player.isPlaying()) {
+//                         if (!$.player.isInAnyCar()) {
+//                             $.flag_4x4two_trigger = 0;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-async function t4x4_mission3_loop() {
-    // SCM GOTO → t4x4_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
+// async function t4x4_mission3_loop() {
+//     // SCM GOTO → t4x4_mission3_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait($.mission_trigger_wait_time);
 
-            if ($.flag_4x4_mission3_passed == 0) {
-                $.record_4x4_three = 300;
-            }
+//             if ($.flag_4x4_mission3_passed == 0) {
+//                 $.record_4x4_three = 300;
+//             }
 
-            if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0 && $.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
-                    if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
-                        $.flag_4x4three_trigger = 1;
-                    }
-                    if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4three_trigger == 0) {
-                        Text.PrintBig('T4X4_3', 15000, 2);
-                        await asyncWait(0);
-                        // LoadLaunchMission 4x4_3.sc
-                    }
-                    if ($.player.isPlaying()) {
-                        if (!$.player.isInAnyCar()) {
-                            $.flag_4x4three_trigger = 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+//             if ($.player.isPlaying()) {
+//                 if ($.flag_player_on_mission == 0 && $.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
+//                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
+//                         $.flag_4x4three_trigger = 1;
+//                     }
+//                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4three_trigger == 0) {
+//                         Text.PrintBig('T4X4_3', 15000, 2);
+//                         await asyncWait(0);
+//                         // LoadLaunchMission 4x4_3.sc
+//                     }
+//                     if ($.player.isPlaying()) {
+//                         if (!$.player.isInAnyCar()) {
+//                             $.flag_4x4three_trigger = 0;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-async function multistorey_mission_loop() {
-    // SCM GOTO → multistorey_mission_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
+// async function multistorey_mission_loop() {
+//     // SCM GOTO → multistorey_mission_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait($.mission_trigger_wait_time);
 
-            if ($.flag_mayhem_mission1_passed == 0) {
-                $.record_mayhem = 120;
-            }
+//             if ($.flag_mayhem_mission1_passed == 0) {
+//                 $.record_mayhem = 120;
+//             }
 
-            if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0 && $.player.isInZone('COM_EAS')) {
-                    if ($.player.isInModel(129 /* CAR_STALLION */) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false /* false */)) {
-                        $.flag_mayhem_trigger = 1;
-                    }
-                    if ($.player.isInModel(129 /* CAR_STALLION */) && $.flag_mayhem_trigger == 0) {
-                        Text.PrintBig('MM_1', 15000, 2);
-                        await asyncWait(0);
-                        // LoadLaunchMission mayhem1.sc
-                    }
-                    if ($.player.isPlaying()) {
-                        if (!$.player.isInAnyCar()) {
-                            $.flag_mayhem_trigger = 0;
-                        }
-                    }
-                }
-            }
-        }
+//             if ($.player.isPlaying()) {
+//                 if ($.flag_player_on_mission == 0 && $.player.isInZone('COM_EAS')) {
+//                     if ($.player.isInModel(129 /* CAR_STALLION */) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false /* false */)) {
+//                         $.flag_mayhem_trigger = 1;
+//                     }
+//                     if ($.player.isInModel(129 /* CAR_STALLION */) && $.flag_mayhem_trigger == 0) {
+//                         Text.PrintBig('MM_1', 15000, 2);
+//                         await asyncWait(0);
+//                         // LoadLaunchMission mayhem1.sc
+//                     }
+//                     if ($.player.isPlaying()) {
+//                         if (!$.player.isInAnyCar()) {
+//                             $.flag_mayhem_trigger = 0;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
 
-        // ********************************** Ambulance Mission **********************************
-        //
-        // Ambulance Mission
-    }
-}
+//     }
+// }
 
-async function ambulance_mission_loop() {
-    // SCM GOTO → ambulance_mission_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
+// ********************************** Ambulance Mission **********************************
+//
+// Ambulance Mission
+// async function ambulance_mission_loop() {
+//     // SCM GOTO → ambulance_mission_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait(0);
 
-            if ($.player.isPlaying()) {
-                if ($.player.isInModel(106 /* CAR_AMBULANCE */)) {
-                    if ($.flag_player_on_mission == 0 && $.flag_player_on_ambulance_mission == 0) {
-                        $.controlmode = Pad.GetControllerMode();
-                        if ($.been_in_ambulance_before == 0) {
-                            if (!($.controlmode == 3)) {
-                                Text.PrintHelp('ATUTOR'); //Press RIGHTSHOCK to start
-                            } else {
-                                Text.PrintHelp('ATUTOR3'); //Press SQUARE to start
-                            }
-                            $.been_in_ambulance_before = 1;
-                        }
-                        if (!($.controlmode == 3)) {
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                                while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                                    await asyncWait(0);
-                                    if (!$.player.isPlaying()) {
-                                        // SCM GOTO → ambulance_mission_loop (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO ambulance_mission_loop'); // fallback: would break linear control flow
-                                    }
-                                }
-                                Text.PrintBig('AMBUL_M', 4000, 5);
-                                await asyncWait(0);
-                                // LoadLaunchMission ambulance.sc
-                                $.been_in_ambulance_before = 1;
-                            }
-                        } else {
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                                while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                                    await asyncWait(0);
-                                    if (!$.player.isPlaying()) {
-                                        // SCM GOTO → ambulance_mission_loop (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO ambulance_mission_loop'); // fallback: would break linear control flow
-                                    }
-                                }
-                                Text.PrintBig('AMBUL_M', 4000, 5);
-                                await asyncWait(0);
-                                // LoadLaunchMission ambulance.sc
-                                $.been_in_ambulance_before = 1;
-                            }
-                        }
-                    }
-                } else {
-                    if ($.been_in_ambulance_before == 1) {
-                        Text.ClearHelp();
-                        $.been_in_ambulance_before = 0;
-                    }
-                }
-            }
-        }
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInModel(106 /* CAR_AMBULANCE */)) {
+//                     if ($.flag_player_on_mission == 0 && $.flag_player_on_ambulance_mission == 0) {
+//                         $.controlmode = Pad.GetControllerMode();
+//                         if ($.been_in_ambulance_before == 0) {
+//                             if (!($.controlmode == 3)) {
+//                                 Text.PrintHelp('ATUTOR'); //Press RIGHTSHOCK to start
+//                             } else {
+//                                 Text.PrintHelp('ATUTOR3'); //Press SQUARE to start
+//                             }
+//                             $.been_in_ambulance_before = 1;
+//                         }
+//                         if (!($.controlmode == 3)) {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → ambulance_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO ambulance_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('AMBUL_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission ambulance.sc
+//                                 $.been_in_ambulance_before = 1;
+//                             }
+//                         } else {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → ambulance_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO ambulance_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('AMBUL_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission ambulance.sc
+//                                 $.been_in_ambulance_before = 1;
+//                             }
+//                         }
+//                     }
+//                 } else {
+//                     if ($.been_in_ambulance_before == 1) {
+//                         Text.ClearHelp();
+//                         $.been_in_ambulance_before = 0;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-        // ***************************************Fire Mission 1**********************************
-        //
-        // Fire Mission 1
-    }
-}
+// ***************************************Fire Mission 1**********************************
+//
+// Fire Mission 1
+// async function fire_truck_mission_loop() {
+//     // SCM GOTO → fire_truck_mission_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait(0);
 
-async function fire_truck_mission_loop() {
-    // SCM GOTO → fire_truck_mission_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
+//                     if ($.flag_player_on_mission == 0 && $.flag_player_on_fire_mission == 0) {
+//                         $.controlmode = Pad.GetControllerMode();
+//                         if ($.been_in_a_firetruk_before == 0) {
+//                             if (!($.controlmode == 3)) {
+//                                 Text.PrintHelp('FTUTOR'); //Press RIGHTSHOCK to start
+//                             } else {
+//                                 Text.PrintHelp('FTUTOR2'); //Press SQUARE to start
+//                             }
+//                             $.been_in_a_firetruk_before = 1;
+//                         }
+//                         if (!($.controlmode == 3)) {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → fire_truck_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO fire_truck_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('FIRE_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission firetruck.sc
+//                                 $.been_in_a_firetruk_before = 1;
+//                             }
+//                         } else {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → fire_truck_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO fire_truck_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('FIRE_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission firetruck.sc
+//                                 $.been_in_a_firetruk_before = 1;
+//                             }
+//                         }
+//                     }
+//                 } else {
+//                     if ($.been_in_a_firetruk_before == 1) {
+//                         Text.ClearHelp();
+//                         $.been_in_a_firetruk_before = 0;
+//                     }
+//                 }
+//             }
+//         }
 
-            if ($.player.isPlaying()) {
-                if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
-                    if ($.flag_player_on_mission == 0 && $.flag_player_on_fire_mission == 0) {
-                        $.controlmode = Pad.GetControllerMode();
-                        if ($.been_in_a_firetruk_before == 0) {
-                            if (!($.controlmode == 3)) {
-                                Text.PrintHelp('FTUTOR'); //Press RIGHTSHOCK to start
-                            } else {
-                                Text.PrintHelp('FTUTOR2'); //Press SQUARE to start
-                            }
-                            $.been_in_a_firetruk_before = 1;
-                        }
-                        if (!($.controlmode == 3)) {
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                                while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                                    await asyncWait(0);
-                                    if (!$.player.isPlaying()) {
-                                        // SCM GOTO → fire_truck_mission_loop (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO fire_truck_mission_loop'); // fallback: would break linear control flow
-                                    }
-                                }
-                                Text.PrintBig('FIRE_M', 4000, 5);
-                                await asyncWait(0);
-                                // LoadLaunchMission firetruck.sc
-                                $.been_in_a_firetruk_before = 1;
-                            }
-                        } else {
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                                while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                                    await asyncWait(0);
-                                    if (!$.player.isPlaying()) {
-                                        // SCM GOTO → fire_truck_mission_loop (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO fire_truck_mission_loop'); // fallback: would break linear control flow
-                                    }
-                                }
-                                Text.PrintBig('FIRE_M', 4000, 5);
-                                await asyncWait(0);
-                                // LoadLaunchMission firetruck.sc
-                                $.been_in_a_firetruk_before = 1;
-                            }
-                        }
-                    }
-                } else {
-                    if ($.been_in_a_firetruk_before == 1) {
-                        Text.ClearHelp();
-                        $.been_in_a_firetruk_before = 0;
-                    }
-                }
-            }
-        }
+//     }
+// }
 
-        // ************************************** Cop Car Mission ***********************************
-        //
-        // Cop Car Mission
-    }
-}
-
+// ************************************** Cop Car Mission ***********************************
+//
+// Cop Car Mission
 async function cop_mission_loop() {
     // SCM GOTO → cop_mission_loop lowered to endless loop
     while (true) {
@@ -6397,37 +6379,42 @@ async function hood_blip_loop() {
 }
 
 async function luigi_message() {
-    // Called after Luigis Girls passed
-
-    {
-        // SCRIPT_NAME Luihelp
-
-        await asyncWait(1000);
-
-        if ($.player.isPlaying()) {
-            if ($.flag_had_luigi_help_message == 0) {
-                if ($.flag_luigi_mission1_passed == 1) {
-                    Text.PrintHelp('LM1_8'); //"Work for Luigi or piss about!"
-                    $.flag_had_luigi_help_message = 1;
-                }
-            }
-            if ($.flag_had_luigi_help_message == 1) {
-                TIMERA = 0;
-                $.flag_had_luigi_help_message = 2;
-            }
-            while (TIMERA < 6000) {
-                await asyncWait(0);
-            }
-            if ($.flag_had_luigi_help_message == 2) {
-                if ($.flag_player_on_mission == 0) {
-                    Text.PrintHelp('LM1_8A'); //"To earn some extra cash, why not 'borrow' a taxi..."
-                    $.flag_had_luigi_help_message = 3;
-                }
-            }
-        }
-
+    if ($.flag_had_luigi_help_message == 3) {
         return; // TERMINATE_THIS_SCRIPT
     }
+
+    // Called after Luigis Girls passed
+    while ($.flag_luigi_mission1_passed == 0) {
+        await asyncWait(0);
+    }
+
+    // SCRIPT_NAME Luihelp
+
+    await asyncWait(1000);
+
+    if ($.player.isPlaying()) {
+        if ($.flag_had_luigi_help_message == 0) {
+            if ($.flag_luigi_mission1_passed == 1) {
+                Text.PrintHelp('LM1_8'); //"Work for Luigi or piss about!"
+                $.flag_had_luigi_help_message = 1;
+            }
+        }
+        if ($.flag_had_luigi_help_message == 1) {
+            TIMERA = 0;
+            $.flag_had_luigi_help_message = 2;
+        }
+        while (TIMERA < 6000) {
+            await asyncWait(0);
+        }
+        if ($.flag_had_luigi_help_message == 2) {
+            if ($.flag_player_on_mission == 0) {
+                Text.PrintHelp('LM1_8A'); //"To earn some extra cash, why not 'borrow' a taxi..."
+                $.flag_had_luigi_help_message = 3;
+            }
+        }
+    }
+
+    return; // TERMINATE_THIS_SCRIPT
 }
 
 async function pistol_message() {

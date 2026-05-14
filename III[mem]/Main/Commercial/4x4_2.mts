@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/4x4_2.sc
-import { $ } from '../../vars.mts';
+import { $ } from '../../utils';
 
 
 // *****************************************************************************************

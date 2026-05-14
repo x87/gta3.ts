@@ -1,20 +1,77 @@
 // Generated from Main/Industrial/hj.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $, run_once, verbose } from '../../utils';
 
-async function mission_start_hj() {
-    // SCM GOTO → mission_start_hj lowered to endless loop
-    while (true) {
+verbose('[+] HJ script loaded');
+
+// *****************************************************************************************
+// ****************************************Stunt Jump***************************************
+// *****************************************************************************************
+
+// Variables for mission
+
+// VAR_INT car_player_is_in_hj
+// VAR_INT flag_takeoff_hj
+// VAR_INT height_int_hj
+// VAR_INT flag_wheels_hj
+// VAR_INT stunt_flags_hj
+// VAR_INT flag_car_upsidedown_hj
+// VAR_INT counter_stunt_rolls_hj
+// VAR_INT height_decimals_int_hj
+// VAR_INT distance_decimals_int_hj
+// VAR_INT jumpdistance_int_hj
+// VAR_INT counter_land_on_wheels_hj
+// VAR_INT counter_wheels_hj
+// VAR_INT total_rotation_int
+// VAR_INT longest_flight_time
+// VAR_INT got_flight_start
+// VAR_INT flight_timer_start
+// VAR_INT flight_timer_end
+// VAR_INT flight_time flag_flight_hj
+// VAR_INT collision_counter
+// VAR_INT cash_reward cash_reward_temp
+// VAR_FLOAT height_float_hj
+// VAR_FLOAT x_float_hj
+// VAR_FLOAT y_float_hj
+// VAR_FLOAT z_float_hj
+// VAR_FLOAT takeoff_x_float_hj
+// VAR_FLOAT takeoff_y_float_hj
+// VAR_FLOAT takeoff_z_float_hj
+// VAR_FLOAT jumpend_x_float_hj
+// VAR_FLOAT jumpend_y_float_hj
+// VAR_FLOAT difference_x_float_hj
+// VAR_FLOAT difference_y_float_hj
+// VAR_FLOAT sum_difference_xy_hj
+// VAR_FLOAT jumpdistance_float_hj
+// VAR_FLOAT heading_hj
+// VAR_FLOAT temp_float
+// VAR_FLOAT old_heading_hj
+// VAR_FLOAT heading_difference
+// VAR_FLOAT heading_difference_temp
+// VAR_FLOAT total_rotation
+
+// ****************************************Mission Start************************************
+
+// SET_DEATHARREST_STATE(false /* OFF */);
+// SCRIPT_NAME hj
+
+run_once(async () => {
+    $.longest_flight_time = 0;
+    verbose('[+] HJ variables initialized');
+});
+
+(async () => {
+
+    mission_start_hj: while (true) {
         await asyncWait(0);
 
         if (!$.player.isPlaying()) {
-            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+            // SCM GOTO → mission_start_hj
+            continue mission_start_hj;
         }
 
         if (Game.AreAnyCarCheatsActivated()) {
-            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+            // SCM GOTO → mission_start_hj
+            continue mission_start_hj;
         }
 
         if ($.player.isInAnyCar()) {
@@ -59,8 +116,48 @@ async function mission_start_hj() {
                     $.flag_flight_hj = 0;
                     $.collision_counter = 0;
                     if ($.car_player_is_in_hj.isModel(126 /* PLANE_DODO */)) {
-                        // SCM GOTO → dodo_flight_time (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO dodo_flight_time'); // fallback: would break linear control flow
+                        dodo_flight_time: {
+                            while ($.car_player_is_in_hj.isInAirProper()) {
+                                if ($.got_flight_start == 0) {
+                                    $.flight_timer_start = Clock.GetGameTimer();
+                                    $.flag_flight_hj = 1;
+                                    $.got_flight_start = 1;
+                                }
+                                if ($.car_player_is_in_hj.isInWater()) {
+                                    cessna_fight_bit: {
+                                        if ($.flag_flight_hj == 1) {
+                                            $.flight_timer_end = Clock.GetGameTimer();
+                                            $.flight_time = $.flight_timer_end - $.flight_timer_start;
+                                            $.flight_time = $.flight_time / 1000;
+                                            if ($.flight_time > 1) {
+                                                if ($.flight_time > $.longest_flight_time) {
+                                                    $.longest_flight_time = $.flight_time;
+                                                }
+                                                Text.PrintWithNumberNow('DODO_FT', $.flight_time, 5000, 1);
+                                                Stat.RegisterLongestDodoFlight($.flight_time);
+                                            }
+                                        }
+
+                                        // SCM GOTO → mission_start_hj
+                                        continue mission_start_hj;
+                                    }
+                                }
+                                await asyncWait(0);
+                                if (Car.IsDead($.car_player_is_in_hj)) {
+                                    // SCM GOTO → mission_start_hj
+                                    continue mission_start_hj;
+                                }
+                                if (!$.player.isPlaying()) {
+                                    // SCM GOTO → mission_start_hj
+                                    continue mission_start_hj;
+                                }
+                                if (!$.player.isInAnyCar()) {
+                                    // SCM GOTO → mission_start_hj
+                                    continue mission_start_hj;
+                                }
+                            }
+
+                        }
                     }
                     while ($.car_player_is_in_hj.isInAirProper() || $.collision_counter < 10) {
                         ++$.collision_counter;
@@ -78,16 +175,16 @@ async function mission_start_hj() {
                         }
                         await asyncWait(0);
                         if (Car.IsDead($.car_player_is_in_hj)) {
-                            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+                            // SCM GOTO → mission_start_hj
+                            continue mission_start_hj;
                         }
                         if (!$.player.isPlaying()) {
-                            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+                            // SCM GOTO → mission_start_hj
+                            continue mission_start_hj;
                         }
                         if (!$.player.isInAnyCar()) {
-                            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+                            // SCM GOTO → mission_start_hj
+                            continue mission_start_hj;
                         }
                         if (!$.car_player_is_in_hj.isUpright() && $.flag_car_upsidedown_hj == 0) {
                             $.flag_car_upsidedown_hj = 1;
@@ -119,16 +216,16 @@ async function mission_start_hj() {
                         $.z_float_hj = 0.0;
                     }
                 } else {
-                    // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+                    // SCM GOTO → mission_start_hj
+                    continue mission_start_hj;
                 }
             } else {
-                // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+                // SCM GOTO → mission_start_hj
+                continue mission_start_hj;
             }
         } else {
-            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+            // SCM GOTO → mission_start_hj
+            continue mission_start_hj;
         }
 
         if ($.flag_takeoff_hj == 1) {
@@ -138,8 +235,8 @@ async function mission_start_hj() {
             $.temp_float = _res264.z;
             while ($.counter_land_on_wheels_hj < 90) {
                 if (Car.IsDead($.car_player_is_in_hj)) {
-                    // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+                    // SCM GOTO → mission_start_hj
+                    continue mission_start_hj;
                 } else {
                     if (!$.car_player_is_in_hj.isInAir()) {
                         ++$.counter_wheels_hj;
@@ -147,8 +244,8 @@ async function mission_start_hj() {
                 }
                 await asyncWait(0);
                 if (!$.player.isPlaying()) {
-                    // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
+                    // SCM GOTO → mission_start_hj
+                    continue mission_start_hj;
                 }
                 ++$.counter_land_on_wheels_hj;
             }
@@ -279,109 +376,8 @@ async function mission_start_hj() {
 
             //ADD_ONE_OFF_SOUND 0.0 0.0 0.0 SOUND_PART_MISSION_COMPLETE
         }
+
     }
-}
+})();
 
-async function dodo_flight_time() {
-    while ($.car_player_is_in_hj.isInAirProper()) {
-        if ($.got_flight_start == 0) {
-            $.flight_timer_start = Clock.GetGameTimer();
-            $.flag_flight_hj = 1;
-            $.got_flight_start = 1;
-        }
-        if ($.car_player_is_in_hj.isInWater()) {
-            // SCM GOTO → cessna_fight_bit (not lowered; manual jump required)
-            throw new Error('unresolved GOTO cessna_fight_bit'); // fallback: would break linear control flow
-        }
-        await asyncWait(0);
-        if (Car.IsDead($.car_player_is_in_hj)) {
-            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
-        }
-        if (!$.player.isPlaying()) {
-            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
-        }
-        if (!$.player.isInAnyCar()) {
-            // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
-        }
-    }
-}
-
-async function cessna_fight_bit() {
-    if ($.flag_flight_hj == 1) {
-        $.flight_timer_end = Clock.GetGameTimer();
-        $.flight_time = $.flight_timer_end - $.flight_timer_start;
-        $.flight_time = $.flight_time / 1000;
-        if ($.flight_time > 1) {
-            if ($.flight_time > $.longest_flight_time) {
-                $.longest_flight_time = $.flight_time;
-            }
-            Text.PrintWithNumberNow('DODO_FT', $.flight_time, 5000, 1);
-            Stat.RegisterLongestDodoFlight($.flight_time);
-        }
-    }
-
-    // SCM GOTO → mission_start_hj (not lowered; manual jump required)
-    throw new Error('unresolved GOTO mission_start_hj'); // fallback: would break linear control flow
-
-    // MissionBoundary
-}
-
-export async function hj() {
-    // MissionBoundary
-
-    // *****************************************************************************************
-    // ****************************************Stunt Jump***************************************
-    // *****************************************************************************************
-
-    // Variables for mission
-
-    // VAR_INT car_player_is_in_hj
-    // VAR_INT flag_takeoff_hj
-    // VAR_INT height_int_hj
-    // VAR_INT flag_wheels_hj
-    // VAR_INT stunt_flags_hj
-    // VAR_INT flag_car_upsidedown_hj
-    // VAR_INT counter_stunt_rolls_hj
-    // VAR_INT height_decimals_int_hj
-    // VAR_INT distance_decimals_int_hj
-    // VAR_INT jumpdistance_int_hj
-    // VAR_INT counter_land_on_wheels_hj
-    // VAR_INT counter_wheels_hj
-    // VAR_INT total_rotation_int
-    // VAR_INT longest_flight_time
-    // VAR_INT got_flight_start
-    // VAR_INT flight_timer_start
-    // VAR_INT flight_timer_end
-    // VAR_INT flight_time flag_flight_hj
-    // VAR_INT collision_counter
-    // VAR_INT cash_reward cash_reward_temp
-    // VAR_FLOAT height_float_hj
-    // VAR_FLOAT x_float_hj
-    // VAR_FLOAT y_float_hj
-    // VAR_FLOAT z_float_hj
-    // VAR_FLOAT takeoff_x_float_hj
-    // VAR_FLOAT takeoff_y_float_hj
-    // VAR_FLOAT takeoff_z_float_hj
-    // VAR_FLOAT jumpend_x_float_hj
-    // VAR_FLOAT jumpend_y_float_hj
-    // VAR_FLOAT difference_x_float_hj
-    // VAR_FLOAT difference_y_float_hj
-    // VAR_FLOAT sum_difference_xy_hj
-    // VAR_FLOAT jumpdistance_float_hj
-    // VAR_FLOAT heading_hj
-    // VAR_FLOAT temp_float
-    // VAR_FLOAT old_heading_hj
-    // VAR_FLOAT heading_difference
-    // VAR_FLOAT heading_difference_temp
-    // VAR_FLOAT total_rotation
-
-    // ****************************************Mission Start************************************
-
-    // SET_DEATHARREST_STATE(false /* OFF */);
-    // SCRIPT_NAME hj
-
-    $.longest_flight_time = 0;
-}
+verbose('[+] HJ script ended');

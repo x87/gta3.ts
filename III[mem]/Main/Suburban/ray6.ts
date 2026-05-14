@@ -1,6 +1,6 @@
 // Generated from Main/Suburban/ray6.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function mission_start_ray6() {
     $.flag_player_on_mission = 1;

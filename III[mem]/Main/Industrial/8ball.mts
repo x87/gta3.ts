@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/8ball.sc
-import { $ } from '../../vars.mts';
+import { $ } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -770,7 +770,7 @@ async function body() {
             // waiting for the player to get to Luigi's
 
             while (
-                !$.player.isStoppedInAreaInCar3D(879.4, -303.4, 7.3, 870.1, -311.7, 10.0, $.blob_flag) ||
+                !$.player.isStoppedInAreaInCar3D(879.4, -303.4, 7.3, 870.1, -311.7, 10.0, !!$.blob_flag) ||
                 !$.eightball.isStoppedInAreaInCar3D(879.4, -303.4, 7.3, 870.1, -311.7, 10.0, false /* FALSE */) ||
                 !$.player.isSittingInCar($.car_eightball) ||
                 !$.eightball.isSittingInCar($.car_eightball) ||
@@ -782,7 +782,7 @@ async function body() {
                 }
                 if ($.flag_timer_stopped_flashing_8ball == 0) {
                     if (TIMERA > 4000) {
-                        Hud.FlashObject(-1);
+                        Hud.FlashObject(-1 as any);
                         $.flag_timer_stopped_flashing_8ball = 1;
                     }
                 }
@@ -1578,7 +1578,7 @@ async function body() {
         Audio.LoadMissionAudio('lib_c' as any);
 
         while (
-            !$.player.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, $.blob_flag) ||
+            !$.player.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, !!$.blob_flag) ||
             !$.eightball.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false /* FALSE */) ||
             !$.player.isInCar($.car_eightball) ||
             !$.eightball.isInCar($.car_eightball) ||
@@ -2271,7 +2271,7 @@ async function body() {
         // waiting for the player to get to luigi's
 
         while (
-            !$.girl1_lm1.isStoppedInArea3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, $.blob_flag) ||
+            !$.girl1_lm1.isStoppedInArea3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, !!$.blob_flag) ||
             !$.player.isStoppedInArea3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false /* FALSE */)
         ) {
             await asyncWait(0);
@@ -2489,7 +2489,7 @@ async function cleanup() {
     $.radar_blip_coord1_lm1.remove();
     $.radar_blip_ped1_lm1.remove();
     $.radar_blip_car1_lm1.remove();
-    Hud.FlashObject(-1);
+    Hud.FlashObject(-1 as any);
 
     if (!Car.IsDead($.cop_car1_8ball)) {
         $.cop_car1_8ball.markAsNoLongerNeeded();

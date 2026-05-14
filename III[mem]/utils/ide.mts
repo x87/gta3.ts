@@ -1,4 +1,4 @@
-import defaultIde from "./../../data/default.ide";
+import defaultIde from "./../../../data/default.ide";
 
 /**
  *

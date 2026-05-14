@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/diablo1.sc
-import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
+import { $ } from '../../utils';
+
 
 async function mission_start_d1() {
     $.flag_player_on_mission = 1;
