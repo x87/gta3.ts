@@ -2,9 +2,26 @@ import { $ } from './vars.mts';
 
 let _verbose = true;
 
-export async function run_once(fn: () => Promise<void>) {
+export async function run_on_newgame(fn: () => Promise<void>) {
+    run_if(() => !$._flag_is_loaded_game, fn);
+}
+
+export async function run_gated(variable: keyof typeof $, fn: () => Promise<void>) {
+    run_if(
+        () => $[variable] == 0,
+        async () => {
+            verbose(`Run gated script on $.${variable} (${$[variable]})`);
+            await fn();
+            verbose(`Setting $.${variable} to 1`);
+            $[variable] = 1 as any;
+        }
+    );
+
+}
+
+export async function run_if(condition: () => boolean, fn: () => Promise<void>) {
     try {
-        if (!$._flag_is_loaded_game) {
+        if (condition()) {
             await fn();
         }
     } catch (e) {

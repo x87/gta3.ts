@@ -46,7 +46,37 @@ const missions: MissionDefinition[] = [
 
         async beforeStart() {
             $.flag_eightball_mission_launched = 1;
-        }
+        },
+    },
+
+    // *******************************************Luigi Missions********************************
+    {
+        scriptPath: `./Industrial/luigi2.ts`,
+        name: `Donna' "Spank" Ma Bitch Up`,
+        async canStart() {
+            if ($.flag_industrial_passed == 1 && $.flag_luigi_mission2_passed == 0) {
+                return false;
+            }
+
+            if ($.flag_luigi_mission2_passed == 1) {
+                return false;
+            }
+
+            if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
+                return true;
+            }
+            return false;
+        },
+        async beforeStart() {
+            $.player.makeSafeForCutscene();
+            Camera.SetFadingColor(0, 0, 0);
+            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Streaming.Switch(false /* OFF */);
+            Text.PrintBig('LM2', 15000, 2); //"Don'a SPANK ma bitch up"
+            while (Camera.GetFadingStatus()) {
+                await asyncWait(0);
+            }
+        },
     },
 
     //  ***********************wanted/health info************************************************
@@ -166,7 +196,6 @@ const missions: MissionDefinition[] = [
                 }
             }
             return false;
-
         },
         async beforeStart() {
             Text.PrintBig('T4X4_1', 15000, 2);
@@ -249,7 +278,7 @@ const missions: MissionDefinition[] = [
         async beforeStart() {
             Text.PrintBig('MM_1', 15000, 2);
             await asyncWait(0);
-        }
+        },
     },
 
     // ********************************** Ambulance Mission **********************************
@@ -305,13 +334,13 @@ const missions: MissionDefinition[] = [
             Text.PrintBig('AMBUL_M', 15000, 2);
             await asyncWait(0);
             $.been_in_ambulance_before = 1;
-        }
+        },
     },
+    // ***************************************Fire Mission 1**********************************
     {
         scriptPath: `./Industrial/firetruck.ts`,
         name: 'Fire missions',
         async canStart() {
-
             if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
                 if ($.flag_player_on_fire_mission == 0) {
                     $.controlmode = Pad.GetControllerMode();
@@ -360,7 +389,116 @@ const missions: MissionDefinition[] = [
             Text.PrintBig('FIRE_M', 15000, 2);
             await asyncWait(0);
             $.been_in_a_firetruk_before = 1;
-        }
+        },
+    },
+    // ************************************** Cop Car Mission ***********************************
+    {
+        scriptPath: `./Industrial/copcar.ts`,
+        name: 'Cop Car Mission',
+        async canStart() {
+            if (
+                $.player.isInModel(116 /* CAR_POLICE */) ||
+                $.player.isInModel(117 /* CAR_ENFORCER */) ||
+                $.player.isInModel(122 /* CAR_RHINO */) ||
+                $.player.isInModel(107 /* CAR_FBI */)
+            ) {
+                if ($.flag_player_on_cop_mission == 0) {
+                    $.controlmode = Pad.GetControllerMode();
+                    if ($.been_in_a_copcar_before == 0) {
+                        if (!($.controlmode == 3)) {
+                            Text.PrintHelp('CTUTOR'); //Press RIGHTSHOCK to start
+                        } else {
+                            Text.PrintHelp('CTUTOR2'); //Press SQUARE to start
+                        }
+                        $.been_in_a_copcar_before = 1;
+                    }
+                    if (!($.controlmode == 3)) {
+                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                            while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                                await asyncWait(0);
+                                if (!$.player.isPlaying()) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                    } else {
+                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                            while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                                await asyncWait(0);
+                                if (!$.player.isPlaying()) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                    }
+                }
+            } else {
+                if ($.been_in_a_copcar_before == 1) {
+                    Text.ClearHelp();
+                    $.been_in_a_copcar_before = 0;
+                }
+            }
+            return false;
+        },
+        async beforeStart() {
+            Text.PrintBig('COP_M', 4000, 5);
+            await asyncWait(0);
+            $.been_in_a_copcar_before = 1;
+        },
+    },
+    // ***************************************Taxi Mission 1**********************************
+    {
+        scriptPath: `./Industrial/taxi1.mts`,
+        name: 'Taxi Mission 1',
+        async canStart() {
+            if ($.player.isInTaxi()) {
+                if ($.flag_taxi1_mission_launched == 0) {
+                    $.controlmode = Pad.GetControllerMode();
+                    if ($.been_in_a_taxi_before == 0) {
+                        if (!($.controlmode == 3)) {
+                            Text.PrintHelp('TTUTOR'); //Press RIGHTSHOCK to start
+                        } else {
+                            Text.PrintHelp('TTUTOR2'); //Press SQUARE to start
+                        }
+                        $.been_in_a_taxi_before = 1;
+                    }
+                    if (!($.controlmode == 3)) {
+                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                            while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                                await asyncWait(0);
+                                if (!$.player.isPlaying()) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                    } else {
+                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                            while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                                await asyncWait(0);
+                                if (!$.player.isPlaying()) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }
+                    }
+                }
+            } else {
+                if ($.been_in_a_taxi_before == 1) {
+                    Text.ClearHelp();
+                    $.been_in_a_taxi_before = 0;
+                }
+            }
+            return false;
+        },
+        async beforeStart() {
+            Text.PrintBig('TAXI_M', 4000, 5);
+            await asyncWait(0);
+            $.been_in_a_taxi_before = 1;
+        },
     },
 ];
 

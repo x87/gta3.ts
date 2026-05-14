@@ -1,5 +1,5 @@
 // Generated from main.sc
-import { $, GOSUB_FILE, run_on_newgame, START_NEW_SCRIPT, verbose, run_gated } from './utils';
+import { $, GOSUB_FILE, run_on_newgame, START_NEW_SCRIPT, verbose, run_gated } from './utils/index.ts';
 import { check_info_pickup, check_info_pickup_2 } from './Main/Industrial/genstuf.ts';
 
 // *****************************************************************************************
@@ -1009,7 +1009,7 @@ async function main() {
 
         // *****************************************CREATE PLAYER***************************************
 
-        // this belongs to stripped MAIN.SCM
+        // this is belongs to stripped MAIN.SCM
         // $.player = Player.Create(0, 811.9, -939.95, 35.8); //8Ball mission
         // $.player.setHeading(180.0);
         // $.script_controlled_player = $.player.getChar();
@@ -1045,6 +1045,12 @@ async function main() {
         // **************************************Game variables*************************************
 
         // Global variables for missions
+
+        // VAR_INT flag_player_on_mission
+        // VAR_INT flag_industrial_passed
+        // VAR_INT flag_commercial_passed
+        // VAR_INT flag_suburban_passed
+
         $.flag_player_on_mission = 0;
         $.flag_industrial_passed = 0;
         $.flag_commercial_passed = 0;
@@ -1074,6 +1080,22 @@ async function main() {
         $.created_sub_blip_before = 0;
 
         // Death Arrest Variables
+
+        // VAR_INT flag_player_on_eightball_mission
+        // VAR_INT flag_player_on_luigi_mission
+        // VAR_INT flag_player_on_joey_mission
+        // VAR_INT flag_player_on_toni_mission
+        // VAR_INT flag_player_on_frankie_mission
+        // VAR_INT flag_player_on_diablo_mission
+        // VAR_INT flag_player_on_asuka_mission
+        // VAR_INT flag_player_on_kenji_mission
+        // VAR_INT flag_player_on_love_mission
+        // VAR_INT flag_player_on_yardie_mission
+        // VAR_INT flag_player_on_ray_mission
+        // VAR_INT flag_player_on_asuka_suburban_mission
+        // VAR_INT flag_player_on_hood_mission
+        // VAR_INT flag_player_on_meat_mission
+
         $.flag_player_on_eightball_mission = 0;
         $.flag_player_on_luigi_mission = 0;
         $.flag_player_on_joey_mission = 0;
@@ -1089,7 +1111,8 @@ async function main() {
         $.flag_player_on_hood_mission = 0;
         $.flag_player_on_meat_mission = 0;
 
-        // this belongs to stripped MAIN.SCM
+        // the following code is part of main.scm:
+
         // Death Arrest Stuff
 
         // DECLARE_MISSION_FLAG($.flag_player_on_mission);
@@ -1127,11 +1150,24 @@ async function main() {
         // ***********************************Industrial Variables**********************************
 
         // 8ball Missions
+
+        // VAR_INT flag_eightball_mission_passed
+        // VAR_INT flag_eightball_mission_launched
+        // VAR_INT flag_eightball_switched_off
+
         $.flag_eightball_mission_passed = 0;
         $.flag_eightball_mission_launched = 0;
         $.flag_eightball_switched_off = 0;
 
         // Luigi variables for missions
+
+        // VAR_INT flag_luigi_mission1_passed
+        // VAR_INT flag_luigi_mission2_passed
+        // VAR_INT flag_luigi_mission3_passed
+        // VAR_INT flag_luigi_mission4_passed
+        // VAR_INT flag_luigi_mission5_passed
+        // VAR_INT flag_all_luigi_missions_passed
+
         $.flag_luigi_mission1_passed = 0;
         $.flag_luigi_mission2_passed = 0;
         $.flag_luigi_mission3_passed = 0;
@@ -1140,6 +1176,15 @@ async function main() {
         $.flag_all_luigi_missions_passed = 0;
 
         // Joey variables for missions
+
+        // VAR_INT flag_joey_mission1_passed
+        // VAR_INT flag_joey_mission2_passed
+        // VAR_INT flag_joey_mission3_passed
+        // VAR_INT flag_joey_mission4_passed
+        // VAR_INT flag_joey_mission5_passed
+        // VAR_INT flag_joey_mission6_passed
+        // VAR_INT flag_all_joey_missions_passed
+
         $.flag_joey_mission1_passed = 0;
         $.flag_joey_mission2_passed = 0;
         $.flag_joey_mission3_passed = 0;
@@ -1149,6 +1194,14 @@ async function main() {
         $.flag_all_joey_missions_passed = 0;
 
         // Toni variables for missions
+
+        // VAR_INT flag_toni_mission1_passed
+        // VAR_INT flag_toni_mission2_passed
+        // VAR_INT flag_toni_mission3_passed
+        // VAR_INT flag_toni_mission4_passed
+        // VAR_INT flag_toni_mission5_passed
+        // VAR_INT flag_all_toni_missions_passed
+
         $.flag_toni_mission1_passed = 0;
         $.flag_toni_mission2_passed = 0;
         $.flag_toni_mission3_passed = 0;
@@ -1157,6 +1210,17 @@ async function main() {
         $.flag_all_toni_missions_passed = 0;
 
         // Frankie variables for missions
+
+        // VAR_INT flag_frankie_mission1_passed
+        // VAR_INT flag_frankie_mission2_passed
+        // VAR_INT flag_frankie_mission2.1_passed
+        // VAR_INT flag_frankie_mission3_passed
+        // VAR_INT flag_frankie_mission4_passed
+        // VAR_INT flag_frankie_switched_off
+        // VAR_INT flag_all_frankie_missions_passed
+        // VAR_INT flag_frankie_mission3_part2_launched
+        // VAR_INT flag_player_had_cut1_fm3
+
         $.flag_frankie_mission3_part2_launched = 0;
         $.flag_frankie_mission1_passed = 0;
         $.flag_frankie_mission2_passed = 0;
@@ -1168,10 +1232,27 @@ async function main() {
         $.flag_player_had_cut1_fm3 = 0;
 
         // Final Industrial Mission
+
+        // VAR_INT flag_final_mission1_passed
+        // VAR_INT flag_final_mission1_launched
+
         $.flag_final_mission1_passed = 0;
         $.flag_final_mission1_launched = 0;
 
         // Diablo Industrial Missions
+
+        // VAR_INT flag_diablo_mission1_passed
+        // VAR_INT flag_diablo_mission2_passed
+        // VAR_INT flag_diablo_mission3_passed
+        // VAR_INT flag_diablo_mission4_passed
+        // VAR_INT flag_diablo_switched_off
+        // VAR_INT flag_all_diablo_missions_passed
+        // VAR_INT switch_gang_diablo_off
+        // VAR_INT flag_diablo1_phone_message
+        // VAR_INT flag_diablo2_phone_message
+        // VAR_INT flag_diablo3_phone_message
+        // VAR_INT flag_diablo4_phone_message
+
         $.flag_diablo_mission1_passed = 0;
         $.flag_diablo_mission2_passed = 0;
         $.flag_diablo_mission3_passed = 0;
@@ -1184,6 +1265,17 @@ async function main() {
         $.flag_diablo4_phone_message = 0;
 
         // Dog Food Factory Mission
+
+        // VAR_INT flag_meat_mission1_passed
+        // VAR_INT flag_meat_mission2_passed
+        // VAR_INT flag_meat_mission3_passed
+        // VAR_INT flag_meat_mission4_passed
+        // VAR_INT flag_meat_phone_ringing
+        // VAR_INT flag_meat1_phone_message
+        // VAR_INT flag_meat2_phone_message
+        // VAR_INT flag_meat3_phone_message
+        // VAR_INT flag_meat4_phone_message
+
         $.flag_meat_mission1_passed = 0;
         $.flag_meat_mission2_passed = 0;
         $.flag_meat_mission3_passed = 0;
@@ -1196,19 +1288,31 @@ async function main() {
 
         // **************************Industrial phone Variables*************************************
 
+        // VAR_INT Diablo_phone
+        // VAR_INT blip_diablo_created_before
+        // VAR_INT flag_diablo1_passed_before
+
         $.flag_diablo1_passed_before = 0;
         $.blip_diablo_created_before = 0;
         $.Diablo_phone = Phone.Grab(937.9, -230.1);
 
         // Dog Food Phone
+
+        // VAR_INT meat_phone
+
         $.meat_phone = Phone.Grab(1224.46, -839.78);
 
         //--------------------YARDIE--------------------------------------------
+
+        // VAR_INT yardie_phone pager_yardie_diplayed
+        // VAR_INT blip_yardie_created_before
 
         $.pager_yardie_diplayed = 0;
         $.yardie_phone = Phone.Grab(120.0, -272.0);
 
         //-------------------PAY DAY FOR RAY PHONES-----------------------------
+
+        // VAR_INT Ray_phone1 Ray_phone2 Ray_phone3 Ray_phone4
 
         $.Ray_phone1 = Phone.Grab(229.1, -1537.6);
         $.Ray_phone2 = Phone.Grab(-53.5, -699.0);
@@ -1216,6 +1320,14 @@ async function main() {
         $.Ray_phone4 = Phone.Grab(60.2, -964.8);
 
         // ********************************Suburban Phone Variables*********************************
+
+        // VAR_INT hood_phone
+        // VAR_INT flag_blip_hood_created
+        // VAR_INT flag_hood1_phone_message
+        // VAR_INT flag_hood2_phone_message
+        // VAR_INT flag_hood3_phone_message
+        // VAR_INT flag_hood4_phone_message
+        // VAR_INT flag_hood5_phone_message
 
         $.flag_blip_hood_created = 0;
         $.flag_hood1_phone_message = 0;
@@ -1229,6 +1341,14 @@ async function main() {
         // ***********************************Commercial Variables**********************************
 
         // Asuka variables for missions
+
+        // VAR_INT flag_asuka_mission1_passed
+        // VAR_INT flag_asuka_mission2_passed
+        // VAR_INT flag_asuka_mission3_passed
+        // VAR_INT flag_asuka_mission4_passed
+        // VAR_INT flag_asuka_mission5_passed
+        // VAR_INT flag_all_asuka_missions_passed
+
         $.flag_asuka_mission1_passed = 0;
         $.flag_asuka_mission2_passed = 0;
         $.flag_asuka_mission3_passed = 0;
@@ -1237,6 +1357,15 @@ async function main() {
         $.flag_all_asuka_missions_passed = 0;
 
         // Ray variables for missions
+
+        // VAR_INT flag_ray_mission1_passed
+        // VAR_INT flag_ray_mission2_passed
+        // VAR_INT flag_ray_mission3_passed
+        // VAR_INT flag_ray_mission4_passed
+        // VAR_INT flag_ray_mission5_passed
+        // VAR_INT flag_ray_mission6_passed
+        // VAR_INT flag_all_ray_missions_passed
+
         $.flag_ray_mission1_passed = 0;
         $.flag_ray_mission2_passed = 0;
         $.flag_ray_mission3_passed = 0;
@@ -1246,6 +1375,14 @@ async function main() {
         $.flag_all_ray_missions_passed = 0;
 
         // Kenji variables for missions
+
+        // VAR_INT flag_kenji_mission1_passed
+        // VAR_INT flag_kenji_mission2_passed
+        // VAR_INT flag_kenji_mission3_passed
+        // VAR_INT flag_kenji_mission4_passed
+        // VAR_INT flag_kenji_mission5_passed
+        // VAR_INT flag_all_kenji_missions_passed
+
         $.flag_kenji_mission1_passed = 0;
         $.flag_kenji_mission2_passed = 0;
         $.flag_kenji_mission3_passed = 0;
@@ -1254,12 +1391,30 @@ async function main() {
         $.flag_all_kenji_missions_passed = 0;
 
         // love variables for missions
+
+        // VAR_INT flag_love_mission1_passed
+        // VAR_INT flag_love_mission2_passed
+        // VAR_INT flag_love_mission3_passed
+        // VAR_INT flag_love1_launched
+
         $.flag_love1_launched = 0;
         $.flag_love_mission1_passed = 0;
         $.flag_love_mission2_passed = 0;
         $.flag_love_mission3_passed = 0;
 
         // Yardie Commercial Missions
+
+        // VAR_INT flag_yardie_mission1_passed
+        // VAR_INT flag_yardie_mission2_passed
+        // VAR_INT flag_yardie_mission3_passed
+        // VAR_INT flag_yardie_mission4_passed
+        // VAR_INT flag_yardie_switched_off
+        // VAR_INT flag_all_yardie_missions_passed
+        // VAR_INT flag_yardie1_phone_message
+        // VAR_INT flag_yardie2_phone_message
+        // VAR_INT flag_yardie3_phone_message
+        // VAR_INT flag_yardie4_phone_message
+
         $.flag_yardie_mission1_passed = 0;
         $.flag_yardie_mission2_passed = 0;
         $.flag_yardie_mission3_passed = 0;
@@ -1274,6 +1429,12 @@ async function main() {
         // ***************************************Suburban Variables********************************
 
         // Love Mission variables
+
+        // VAR_INT flag_love_mission4_passed
+        // VAR_INT flag_love_mission5_passed
+        // VAR_INT flag_love_mission6_passed
+        // VAR_INT flag_love_mission7_passed
+        // VAR_INT flag_all_love_missions_passed
 
         $.flag_love_mission4_passed = 0;
         $.flag_love_mission5_passed = 0;
@@ -1668,6 +1829,482 @@ async function main() {
         }
     }
 }
+
+//  ***********************wanted/health info************************************************
+
+// async function hospital_info_loop() {
+//     while (true) {
+//         {
+//             await asyncWait(0);
+
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInZone('S_VIEW') && $.flag_player_on_mission == 0 && $.heal_info_trip == 1) {
+//                     if ($.heal_info.hasBeenCollected()) {
+//                         $.player.setControl(false /* off */);
+//                         while (Camera.GetFadingStatus()) {
+//                             await asyncWait(0);
+//                         }
+//                         // LoadLaunchMission health.sc
+//                         log('Load health.sc');
+//                         return; // TERMINATE_THIS_SCRIPT
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// async function police_info_loop() {
+//     while (true) {
+//         {
+//             await asyncWait(0);
+
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInZone('S_VIEW') && $.flag_player_on_mission == 0 && $.wanted_info_trip == 1) {
+//                     if ($.wanted_info.hasBeenCollected()) {
+//                         $.player.setControl(false /* off */);
+//                         while (Camera.GetFadingStatus()) {
+//                             await asyncWait(0);
+//                         }
+//                         // LoadLaunchMission wanted.sc
+//                         return; // TERMINATE_THIS_SCRIPT
+//                     }
+//                 }
+//             }
+//         }
+
+//     }
+// }
+
+// async function rc_loop() {
+//     // *************************************RC Demolition****************************************
+//     while (true) {
+//         {
+//             await asyncWait(0);
+//             //SCRIPT_NAME rcloop
+
+//             if ($.player.isPlaying() && $.flag_just_done_rc_mission == 0) {
+//                 if ($.player.isInModel(149 /* CAR_TOYZ */)) {
+//                     if ($.flag_player_on_mission == 0) {
+//                         if ($.player.locateAnyMeans3D(1014.0, -120.0, 5.0, 5.0, 5.0, 5.0, false /* false */)) {
+//                             Text.PrintBig('RC1', 15000, 2);
+//                             await asyncWait(0);
+//                             // LoadLaunchMission rc1.sc
+//                         }
+//                         if ($.player.isPlaying()) {
+//                             if ($.player.locateAnyMeans3D(1158.0, -309.0, 23.0, 5.0, 5.0, 5.0, false /* false */)) {
+//                                 Text.PrintBig('RC2', 15000, 2);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission rc2.sc
+//                             }
+//                         }
+//                         if ($.player.isPlaying()) {
+//                             if ($.player.locateAnyMeans3D(-636.0, 65.0, 19.0, 5.0, 5.0, 5.0, false /* false */)) {
+//                                 Text.PrintBig('RC4', 15000, 2);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission rc3.sc
+//                             }
+//                         }
+//                         if ($.player.isPlaying()) {
+//                             if ($.player.locateAnyMeans3D(366.0, -1312.0, 26.0, 5.0, 5.0, 5.0, false /* false */)) {
+//                                 Text.PrintBig('RC3', 15000, 2);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission rc4.sc
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+
+//             if ($.player.isPlaying()) {
+//                 if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
+//                     $.flag_just_done_rc_mission = 0;
+//                 }
+//             }
+//         }
+
+//     }
+// }
+
+// *******************************************4x4 Missions***********************************
+// async function t4x4_mission1_loop() {
+//     // SCM GOTO → t4x4_mission1_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait($.mission_trigger_wait_time);
+
+//             if ($.flag_4x4_mission1_passed == 0) {
+//                 $.record_4x4_one = 300;
+//             }
+
+//             if ($.player.isPlaying()) {
+//                 if ($.flag_player_on_mission == 0 && $.player.isInZone('S_VIEW')) {
+//                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(1294.0, -656.0, 1316.0, -638.0, false /* false */)) {
+//                         $.flag_4x4one_trigger = 1;
+//                     }
+//                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4one_trigger == 0) {
+//                         Text.PrintBig('T4X4_1', 15000, 2);
+//                         await asyncWait(0);
+//                         // LoadLaunchMission 4x4_1.sc
+//                     }
+//                     if ($.player.isPlaying()) {
+//                         if (!$.player.isInAnyCar()) {
+//                             $.flag_4x4one_trigger = 0;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// async function t4x4_mission2_loop() {
+//     // SCM GOTO → t4x4_mission2_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait($.mission_trigger_wait_time);
+
+//             if ($.flag_4x4_mission2_passed == 0) {
+//                 $.record_4x4_two = 120;
+//             }
+
+//             if ($.player.isPlaying()) {
+//                 if ($.flag_player_on_mission == 0 && $.player.isInZone('PARK')) {
+//                     if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && !$.player.isInArea2D(58.0, -585.0, 68.0, -595.0, false /* false */)) {
+//                         $.flag_4x4two_trigger = 1;
+//                     }
+//                     if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && $.flag_4x4two_trigger == 0) {
+//                         Text.PrintBig('T4X4_2', 15000, 2);
+//                         await asyncWait(0);
+//                         // LoadLaunchMission 4x4_2.sc
+//                     }
+//                     if ($.player.isPlaying()) {
+//                         if (!$.player.isInAnyCar()) {
+//                             $.flag_4x4two_trigger = 0;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// async function t4x4_mission3_loop() {
+//     // SCM GOTO → t4x4_mission3_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait($.mission_trigger_wait_time);
+
+//             if ($.flag_4x4_mission3_passed == 0) {
+//                 $.record_4x4_three = 300;
+//             }
+
+//             if ($.player.isPlaying()) {
+//                 if ($.flag_player_on_mission == 0 && $.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
+//                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
+//                         $.flag_4x4three_trigger = 1;
+//                     }
+//                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4three_trigger == 0) {
+//                         Text.PrintBig('T4X4_3', 15000, 2);
+//                         await asyncWait(0);
+//                         // LoadLaunchMission 4x4_3.sc
+//                     }
+//                     if ($.player.isPlaying()) {
+//                         if (!$.player.isInAnyCar()) {
+//                             $.flag_4x4three_trigger = 0;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// async function multistorey_mission_loop() {
+//     // SCM GOTO → multistorey_mission_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait($.mission_trigger_wait_time);
+
+//             if ($.flag_mayhem_mission1_passed == 0) {
+//                 $.record_mayhem = 120;
+//             }
+
+//             if ($.player.isPlaying()) {
+//                 if ($.flag_player_on_mission == 0 && $.player.isInZone('COM_EAS')) {
+//                     if ($.player.isInModel(129 /* CAR_STALLION */) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false /* false */)) {
+//                         $.flag_mayhem_trigger = 1;
+//                     }
+//                     if ($.player.isInModel(129 /* CAR_STALLION */) && $.flag_mayhem_trigger == 0) {
+//                         Text.PrintBig('MM_1', 15000, 2);
+//                         await asyncWait(0);
+//                         // LoadLaunchMission mayhem1.sc
+//                     }
+//                     if ($.player.isPlaying()) {
+//                         if (!$.player.isInAnyCar()) {
+//                             $.flag_mayhem_trigger = 0;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+
+//     }
+// }
+
+// ********************************** Ambulance Mission **********************************
+//
+// Ambulance Mission
+// async function ambulance_mission_loop() {
+//     // SCM GOTO → ambulance_mission_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait(0);
+
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInModel(106 /* CAR_AMBULANCE */)) {
+//                     if ($.flag_player_on_mission == 0 && $.flag_player_on_ambulance_mission == 0) {
+//                         $.controlmode = Pad.GetControllerMode();
+//                         if ($.been_in_ambulance_before == 0) {
+//                             if (!($.controlmode == 3)) {
+//                                 Text.PrintHelp('ATUTOR'); //Press RIGHTSHOCK to start
+//                             } else {
+//                                 Text.PrintHelp('ATUTOR3'); //Press SQUARE to start
+//                             }
+//                             $.been_in_ambulance_before = 1;
+//                         }
+//                         if (!($.controlmode == 3)) {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → ambulance_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO ambulance_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('AMBUL_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission ambulance.sc
+//                                 $.been_in_ambulance_before = 1;
+//                             }
+//                         } else {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → ambulance_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO ambulance_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('AMBUL_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission ambulance.sc
+//                                 $.been_in_ambulance_before = 1;
+//                             }
+//                         }
+//                     }
+//                 } else {
+//                     if ($.been_in_ambulance_before == 1) {
+//                         Text.ClearHelp();
+//                         $.been_in_ambulance_before = 0;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// ***************************************Fire Mission 1**********************************
+//
+// Fire Mission 1
+// async function fire_truck_mission_loop() {
+//     // SCM GOTO → fire_truck_mission_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait(0);
+
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
+//                     if ($.flag_player_on_mission == 0 && $.flag_player_on_fire_mission == 0) {
+//                         $.controlmode = Pad.GetControllerMode();
+//                         if ($.been_in_a_firetruk_before == 0) {
+//                             if (!($.controlmode == 3)) {
+//                                 Text.PrintHelp('FTUTOR'); //Press RIGHTSHOCK to start
+//                             } else {
+//                                 Text.PrintHelp('FTUTOR2'); //Press SQUARE to start
+//                             }
+//                             $.been_in_a_firetruk_before = 1;
+//                         }
+//                         if (!($.controlmode == 3)) {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → fire_truck_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO fire_truck_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('FIRE_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission firetruck.sc
+//                                 $.been_in_a_firetruk_before = 1;
+//                             }
+//                         } else {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → fire_truck_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO fire_truck_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('FIRE_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission firetruck.sc
+//                                 $.been_in_a_firetruk_before = 1;
+//                             }
+//                         }
+//                     }
+//                 } else {
+//                     if ($.been_in_a_firetruk_before == 1) {
+//                         Text.ClearHelp();
+//                         $.been_in_a_firetruk_before = 0;
+//                     }
+//                 }
+//             }
+//         }
+
+//     }
+// }
+
+// ************************************** Cop Car Mission ***********************************
+//
+// Cop Car Mission
+// async function cop_mission_loop() {
+//     // SCM GOTO → cop_mission_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait(0);
+
+//             if ($.player.isPlaying()) {
+//                 if (
+//                     $.player.isInModel(116 /* CAR_POLICE */) ||
+//                     $.player.isInModel(117 /* CAR_ENFORCER */) ||
+//                     $.player.isInModel(122 /* CAR_RHINO */) ||
+//                     $.player.isInModel(107 /* CAR_FBI */)
+//                 ) {
+//                     if ($.flag_player_on_mission == 0 && $.flag_player_on_cop_mission == 0) {
+//                         $.controlmode = Pad.GetControllerMode();
+//                         if ($.been_in_a_copcar_before == 0) {
+//                             if (!($.controlmode == 3)) {
+//                                 Text.PrintHelp('CTUTOR'); //Press RIGHTSHOCK to start
+//                             } else {
+//                                 Text.PrintHelp('CTUTOR2'); //Press SQUARE to start
+//                             }
+//                             $.been_in_a_copcar_before = 1;
+//                         }
+//                         if (!($.controlmode == 3)) {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → cop_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO cop_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('COP_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission copcar.sc
+//                                 $.been_in_a_copcar_before = 1;
+//                             }
+//                         } else {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → cop_mission_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO cop_mission_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('COP_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission copcar.sc
+//                                 $.been_in_a_copcar_before = 1;
+//                             }
+//                         }
+//                     }
+//                 } else {
+//                     if ($.been_in_a_copcar_before == 1) {
+//                         Text.ClearHelp();
+//                         $.been_in_a_copcar_before = 0;
+//                     }
+//                 }
+//             }
+//         }
+
+//     }
+// }
+
+// ***************************************Taxi Mission 1**********************************
+// Taxi Mission 1
+// async function taxi_mission1_loop() {
+//     // SCM GOTO → taxi_mission1_loop lowered to endless loop
+//     while (true) {
+//         {
+//             await asyncWait(0);
+
+//             if ($.player.isPlaying()) {
+//                 if ($.player.isInTaxi()) {
+//                     if ($.flag_player_on_mission == 0 && $.flag_taxi1_mission_launched == 0) {
+//                         $.controlmode = Pad.GetControllerMode();
+//                         if ($.been_in_a_taxi_before == 0) {
+//                             if (!($.controlmode == 3)) {
+//                                 Text.PrintHelp('TTUTOR'); //Press RIGHTSHOCK to start
+//                             } else {
+//                                 Text.PrintHelp('TTUTOR2'); //Press SQUARE to start
+//                             }
+//                             $.been_in_a_taxi_before = 1;
+//                         }
+//                         if (!($.controlmode == 3)) {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → taxi_mission1_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO taxi_mission1_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('TAXI_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission taxi1.sc
+//                                 $.flag_taxi1_mission_launched = 1;
+//                             }
+//                         } else {
+//                             if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                 while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+//                                     await asyncWait(0);
+//                                     if (!$.player.isPlaying()) {
+//                                         // SCM GOTO → taxi_mission1_loop (not lowered; manual jump required)
+//                                         throw new Error('unresolved GOTO taxi_mission1_loop'); // fallback: would break linear control flow
+//                                     }
+//                                 }
+//                                 Text.PrintBig('TAXI_M', 4000, 5);
+//                                 await asyncWait(0);
+//                                 // LoadLaunchMission taxi1.sc
+//                                 $.flag_taxi1_mission_launched = 1;
+//                             }
+//                         }
+//                     }
+//                 } else {
+//                     if ($.been_in_a_taxi_before == 1) {
+//                         Text.ClearHelp();
+//                         $.been_in_a_taxi_before = 0;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 // *************************************Meat Factory Mission 1******************************
 // Meat Factory Mission 1

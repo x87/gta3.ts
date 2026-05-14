@@ -2465,9 +2465,9 @@ async function onPassed() {
     $.flag_luigi_mission1_passed = 1;
     $.player.clearWantedLevel();
     $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, 13 /* RADAR_SPRITE_LUIGI */); // New blip down alleyway
-    // START_NEW_SCRIPT luigi_mission2_loop
-    // START_NEW_SCRIPT blob_help_loop
-    // START_NEW_SCRIPT luigi_message
+    // START_NEW_SCRIPT luigi_mission2_loop // xxx: moved to main loop
+    // START_NEW_SCRIPT blob_help_loop // xxx: moved to main loop
+    // START_NEW_SCRIPT luigi_message // xxx: moved to main loop
 }
 
 async function cleanup() {

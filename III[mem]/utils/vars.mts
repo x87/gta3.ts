@@ -4318,4 +4318,9 @@ export const $ = SCM.bind({
 
   _flag_is_loaded_game: 4313,
   _flag_intro_passed: 4314,
+  _flag_ind_restart_complete: 4315,
+  _flag_com_restart_complete: 4316,
+  _flag_sub_restart_complete: 4317,
+  _flag_blob_help_loop_complete: 4318,
+  _flag_luigi_message_complete: 4319,
 });

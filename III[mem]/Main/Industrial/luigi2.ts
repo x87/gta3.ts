@@ -1,9 +1,94 @@
 // Generated from Main/Industrial/luigi2.sc
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// ***********************************Luigi Mission 2***************************************
+// *******************************Donna' "Spank" Ma Bitch Up********************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
 
-async function mission_start_luigi2() {
-    $.flag_player_on_mission = 1;
+async function body() {
+    // SCRIPT_NAME luigi2
+
+    // Mission start stuff
+
+    // GOSUB mission_start_luigi2
+    // 	IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 		GOSUB mission_luigi2_failed
+    // 	ENDIF
+    // GOSUB mission_cleanup_luigi2
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT radar_blip_ped1_lm2
+
+    // VAR_INT victim_ped_lm2
+
+    // VAR_INT flag_player_got_help_message_lm2
+
+    // VAR_INT flag_victim_ped_lm2_changed
+
+    // VAR_INT car_lm2
+
+    // VAR_INT radar_blip_car1_lm2
+
+    // VAR_INT radar_blip_coord1_lm2
+
+    // VAR_INT radar_blip_coord2_lm2
+
+    // VAR_INT flag_victim_dead_lm2
+
+    // VAR_INT flag_player_had_car_message_lm2
+
+    // VAR_INT flag_car_in_garage_lm2
+
+    // VAR_INT flag_player_had_garage_message_lm2
+
+    // VAR_INT flag_blip1_on_lm2
+
+    // VAR_INT flag_blip2_on_lm2
+
+    // VAR_INT buyer1_lm2
+
+    // VAR_INT buyer2_lm2
+
+    // VAR_INT flag_buyer1_dead_lm2
+
+    // VAR_INT flag_buyer2_dead_lm2
+
+    // VAR_INT flag_done_looking_bit_lm2
+
+    // VAR_INT bat_lm2
+
+    // VAR_INT sphere1_lm2
+
+    // VAR_INT sphere2_lm2
+
+    // VAR_INT flag_had_spray_help
+
+    // VAR_INT flag_player_had_bat_message_lm2
+
+    // VAR_INT bat_blip_lm2
+
+    // VAR_INT flag_had_path_message_lm2
+
+    // VAR_INT flag_lockup_message_lm2
+
+    // VAR_INT flag_girl1_running_lm2
+
+    // VAR_INT flag_girl2_running_lm2
+
+    // VAR_INT flag_player_in_area_lm2
+
+    // VAR_INT flag_player_in_car_lm2
+
+    // ********************************************Mission Start********************************
+    // $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_luigi_mission = 1;
 
@@ -59,20 +144,20 @@ async function mission_start_luigi2() {
         // ****************************************START OF CUTSCENE********************************
 
         /*
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_luigi2_failed
-  ENDIF
+        IF CAN_PLAYER_START_MISSION player
+        MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+        ELSE
+        GOTO mission_luigi2_failed
+        ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+        SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 1500 FADE_OUT
+        DO_FADE 1500 FADE_OUT
 
-  SWITCH_STREAMING OFF
+        SWITCH_STREAMING OFF
 
-  PRINT_BIG ( LM2 ) 15000 2 //"Don'a SPANK ma bitch up"
-  */
+        PRINT_BIG ( LM2 ) 15000 2 //"Don'a SPANK ma bitch up"
+        */
 
         Streaming.RequestModel(257 /* indhibuild3 */);
 
@@ -88,12 +173,12 @@ async function mission_start_luigi2() {
         Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'NOTE');
 
         /*
-  WHILE GET_FADING_STATUS
+        WHILE GET_FADING_STATUS
 
-  WAIT 0
+        WAIT 0
 
-  ENDWHILE
-  */
+        ENDWHILE
+        */
 
         World.SetPedDensityMultiplier(0.0);
 
@@ -361,64 +446,64 @@ async function mission_start_luigi2() {
             }
 
             /*
-    // Camera point at dealer stuff
+            // Camera point at dealer stuff
 
-    IF flag_done_looking_bit_lm2 = 0
+            IF flag_done_looking_bit_lm2 = 0
 
-    IF IS_PLAYER_IN_AREA_3D player 1535.2 -615.1 10.0 1610.5 -681.0 20.0 FALSE
+            IF IS_PLAYER_IN_AREA_3D player 1535.2 -615.1 10.0 1610.5 -681.0 20.0 FALSE
 
-    IF IS_PLAYER_IN_ANY_CAR player
-    APPLY_BRAKES_TO_PLAYERS_CAR player ON
-    ENDIF
+            IF IS_PLAYER_IN_ANY_CAR player
+            APPLY_BRAKES_TO_PLAYERS_CAR player ON
+            ENDIF
 
-    SWITCH_WIDESCREEN ON
-    CLEAR_WANTED_LEVEL player
-    SET_POLICE_IGNORE_PLAYER player ON
-    SET_PLAYER_CONTROL player OFF
+            SWITCH_WIDESCREEN ON
+            CLEAR_WANTED_LEVEL player
+            SET_POLICE_IGNORE_PLAYER player ON
+            SET_PLAYER_CONTROL player OFF
 
-    IF LOCATE_PLAYER_ANY_MEANS_3D player 1589.1 -641.4 11.1 1.0 1.0 1.0 FALSE
-    SET_FIXED_CAMERA_POSITION 1587.8 -651.7 18.3 0.0 0.0 0.0
-    POINT_CAMERA_AT_POINT 1587.5 -651.0 17.6 JUMP_CUT
-    ELSE
-    SET_FIXED_CAMERA_POSITION 1589.1 -641.4 11.1 0.0 0.0 0.0
-    POINT_CAMERA_AT_POINT 1588.3 -642.0 11.3 JUMP_CUT
-    ENDIF
-
-
-    WAIT 4500
-
-    IF IS_CHAR_DEAD victim_ped_lm2
-    REMOVE_BLIP radar_blip_ped1_lm2
-    flag_victim_dead_lm2 = 1
-    ENDIF
-
-    IF IS_CAR_DEAD car_lm2
-    PRINT_NOW ( WRECKED ) 5000 1 //"The vehicle's wrecked!"
-    GOTO mission_luigi2_failed
-    ELSE
-
-    IF IS_CAR_UPSIDEDOWN car_lm2
-    AND IS_CAR_STOPPED car_lm2
-    PRINT_NOW ( UPSIDE ) 5000 1 //You've flipped your wheels!"
-    GOTO mission_luigi2_failed
-    ENDIF
-
-    ENDIF
-
-    IF IS_PLAYER_IN_ANY_CAR player
-    APPLY_BRAKES_TO_PLAYERS_CAR player FALSE
-    ENDIF
-
-    SWITCH_WIDESCREEN OFF
-    RESTORE_CAMERA_JUMPCUT
-    SET_POLICE_IGNORE_PLAYER player OFF
-    SET_PLAYER_CONTROL player ON
-    flag_done_looking_bit_lm2 = 1
-    ENDIF
+            IF LOCATE_PLAYER_ANY_MEANS_3D player 1589.1 -641.4 11.1 1.0 1.0 1.0 FALSE
+            SET_FIXED_CAMERA_POSITION 1587.8 -651.7 18.3 0.0 0.0 0.0
+            POINT_CAMERA_AT_POINT 1587.5 -651.0 17.6 JUMP_CUT
+            ELSE
+            SET_FIXED_CAMERA_POSITION 1589.1 -641.4 11.1 0.0 0.0 0.0
+            POINT_CAMERA_AT_POINT 1588.3 -642.0 11.3 JUMP_CUT
+            ENDIF
 
 
-    ENDIF
-    */
+            WAIT 4500
+
+            IF IS_CHAR_DEAD victim_ped_lm2
+            REMOVE_BLIP radar_blip_ped1_lm2
+            flag_victim_dead_lm2 = 1
+            ENDIF
+
+            IF IS_CAR_DEAD car_lm2
+            PRINT_NOW ( WRECKED ) 5000 1 //"The vehicle's wrecked!"
+            GOTO mission_luigi2_failed
+            ELSE
+
+            IF IS_CAR_UPSIDEDOWN car_lm2
+            AND IS_CAR_STOPPED car_lm2
+            PRINT_NOW ( UPSIDE ) 5000 1 //You've flipped your wheels!"
+            GOTO mission_luigi2_failed
+            ENDIF
+
+            ENDIF
+
+            IF IS_PLAYER_IN_ANY_CAR player
+            APPLY_BRAKES_TO_PLAYERS_CAR player FALSE
+            ENDIF
+
+            SWITCH_WIDESCREEN OFF
+            RESTORE_CAMERA_JUMPCUT
+            SET_POLICE_IGNORE_PLAYER player OFF
+            SET_PLAYER_CONTROL player ON
+            flag_done_looking_bit_lm2 = 1
+            ENDIF
+
+
+            ENDIF
+            */
 
             if (Char.IsDead($.victim_ped_lm2)) {
                 $.radar_blip_ped1_lm2.remove();
@@ -647,21 +732,15 @@ async function mission_start_luigi2() {
         $.sphere2_lm2.remove();
     }
 
-    // SCM GOTO → mission_luigi2_passed (not lowered; manual jump required)
-    throw new Error('unresolved GOTO mission_luigi2_passed'); // fallback: would break linear control flow
-
-    // Mission luigi1 failed
 }
 
-async function mission_luigi2_failed() {
+// Mission luigi1 failed
+async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-
-    return;
-
-    // mission Luigi1 passed
 }
 
-async function mission_luigi2_passed() {
+// mission Luigi1 passed
+async function onPassed() {
     $.flag_luigi_mission2_passed = 1;
     Stat.RegisterMissionPassed('LM2');
     Stat.PlayerMadeProgress(1);
@@ -670,13 +749,11 @@ async function mission_luigi2_passed() {
     $.player.addScore(4000);
     $.player.clearWantedLevel();
     // START_NEW_SCRIPT luigi_mission3_loop
-    return;
-
-    // mission cleanup
 }
 
-async function mission_cleanup_luigi2() {
-    $.flag_player_on_mission = 0;
+async function cleanup() {
+    // $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_luigi_mission = 0;
 
     if ($.flag_player_had_bat_message_lm2 == 0) {
@@ -703,7 +780,6 @@ async function mission_cleanup_luigi2() {
     Game.SetFreeResprays(false /* OFF */);
     Path.SwitchPedRoadsOn(1609.8, -615.2, 9.0, 1557.8, -673.4, 20.0);
     Mission.Finish();
-    return;
 }
 
 async function girls_running() {
@@ -754,100 +830,4 @@ async function girls_running() {
     return;
 }
 
-export async function luigi2() {
-    // MissionBoundary
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // ***********************************Luigi Mission 2***************************************
-    // *******************************Donna' "Spank" Ma Bitch Up********************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-
-    // SCRIPT_NAME luigi2
-
-    // Mission start stuff
-
-    // SCM GOSUB mission_start_luigi2
-    await mission_start_luigi2();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    if (HAS_DEATHARREST_BEEN_EXECUTED()) {
-        // SCM GOSUB mission_luigi2_failed
-        await mission_luigi2_failed();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-
-    // SCM GOSUB mission_cleanup_luigi2
-    await mission_cleanup_luigi2();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    // MissionBoundary
-
-    // Variables for mission
-
-    // VAR_INT radar_blip_ped1_lm2
-
-    // VAR_INT victim_ped_lm2
-
-    // VAR_INT flag_player_got_help_message_lm2
-
-    // VAR_INT flag_victim_ped_lm2_changed
-
-    // VAR_INT car_lm2
-
-    // VAR_INT radar_blip_car1_lm2
-
-    // VAR_INT radar_blip_coord1_lm2
-
-    // VAR_INT radar_blip_coord2_lm2
-
-    // VAR_INT flag_victim_dead_lm2
-
-    // VAR_INT flag_player_had_car_message_lm2
-
-    // VAR_INT flag_car_in_garage_lm2
-
-    // VAR_INT flag_player_had_garage_message_lm2
-
-    // VAR_INT flag_blip1_on_lm2
-
-    // VAR_INT flag_blip2_on_lm2
-
-    // VAR_INT buyer1_lm2
-
-    // VAR_INT buyer2_lm2
-
-    // VAR_INT flag_buyer1_dead_lm2
-
-    // VAR_INT flag_buyer2_dead_lm2
-
-    // VAR_INT flag_done_looking_bit_lm2
-
-    // VAR_INT bat_lm2
-
-    // VAR_INT sphere1_lm2
-
-    // VAR_INT sphere2_lm2
-
-    // VAR_INT flag_had_spray_help
-
-    // VAR_INT flag_player_had_bat_message_lm2
-
-    // VAR_INT bat_blip_lm2
-
-    // VAR_INT flag_had_path_message_lm2
-
-    // VAR_INT flag_lockup_message_lm2
-
-    // VAR_INT flag_girl1_running_lm2
-
-    // VAR_INT flag_girl2_running_lm2
-
-    // VAR_INT flag_player_in_area_lm2
-
-    // VAR_INT flag_player_in_car_lm2
-
-    // ********************************************Mission Start********************************
-}
+export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

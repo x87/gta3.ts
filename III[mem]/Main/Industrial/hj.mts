@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/hj.sc
-import { $, run_once, verbose } from '../../utils';
+import { $, run_on_newgame, verbose } from '../../utils';
 
 verbose('[+] HJ script loaded');
 
@@ -54,7 +54,7 @@ verbose('[+] HJ script loaded');
 // SET_DEATHARREST_STATE(false /* OFF */);
 // SCRIPT_NAME hj
 
-run_once(async () => {
+run_on_newgame(async () => {
     $.longest_flight_time = 0;
     verbose('[+] HJ variables initialized');
 });
