@@ -1,11 +1,65 @@
 // Generated from Main/Commercial/4x4_2.sc
 import { $ } from '../../vars.mts';
-import { car, ped, hier } from '../../ide.mts';
 
-async function mission_start_4x4two() {
+
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// ***************************************A ride in the Park********************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+
+// Mission start stuff
+
+// GOSUB mission_start_4x4two
+// IF HAS_DEATHARREST_BEEN_EXECUTED 
+// 	GOSUB mission_4x4two_failed
+// ENDIF
+// GOSUB mission_cleanup_4x4two
+// MISSION_END
+
+
+// Variables for mission
+
+//VAR_INT player_4x4_two
+//VAR_INT counter_4x4_pickups timer_4x4
+//VAR_INT wanted_4x4
+//VAR_INT intro_time_lapsed timer_intro_now timer_intro_start flag_intro
+//VAR_INT flag_timer
+/*
+VAR_INT blip_1 blip_2 blip_3
+VAR_INT blip_4 blip_5 blip_6
+VAR_INT blip_7 blip_8 blip_9
+VAR_INT blip_10 blip_11 blip_12
+
+VAR_INT flag_blip_1 flag_blip_2 flag_blip_3 flag_blip_4
+VAR_INT flag_blip_5 flag_blip_6 flag_blip_7 flag_blip_8
+VAR_INT flag_blip_9 flag_blip_10 flag_blip_11 flag_blip_12
+
+//variables called in 4x4_1.sc
+
+VAR_FLOAT x_1 y_1 z_1
+VAR_FLOAT x_2 y_2 z_2
+VAR_FLOAT x_3 y_3 z_3
+VAR_FLOAT x_4 y_4 z_4
+VAR_FLOAT x_5 y_5 z_5
+VAR_FLOAT x_6 y_6 z_6
+VAR_FLOAT x_7 y_7 z_7
+VAR_FLOAT x_8 y_8 z_8
+VAR_FLOAT x_9 y_9 z_9
+VAR_FLOAT x_10 y_10 z_10
+VAR_FLOAT x_11 y_11 z_11
+VAR_FLOAT x_12 y_12 z_12
+*/
+
+// ****************************************Mission Start************************************
+
+async function body() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME t4x4_2
-    $.flag_player_on_mission = 1;
+    // $.flag_player_on_mission = 1;
+    ONMISSION = true;
     //flag_player_on_4x4_mission = 1
 
     Text.PrintBig('T4X4_2', 15000, 2);
@@ -316,35 +370,32 @@ async function mission_start_4x4two() {
         }
         if ($.flag_timer == 1) {
             if ($.timer_4x4 < 1) {
-                Text.PrintNow('taxi2', 3000, 1);
+                Text.PrintNow('TAXI2', 3000, 1);
                 // SCM GOTO → mission_4x4two_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_4x4two_failed'); // fallback: would break linear control flow
             }
         }
         if (!$.player.isInModel(90 /* CAR_LANDSTALKER */)) {
-            Text.PrintNow('T4x4_F', 3000, 1);
+            Text.PrintNow('T4X4_F', 3000, 1);
             // SCM GOTO → mission_4x4two_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_4x4two_failed'); // fallback: would break linear control flow
         }
     }
 
     if ($.counter_4x4_pickups == 12) {
-        // SCM GOTO → mission_4x4two_passed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_4x4two_passed'); // fallback: would break linear control flow
+        // SCM GOTO → mission_4x4two_passed
+        return;
     }
 
-    // --------------------------Mission failed-----------------------------------------------
 }
 
-async function mission_4x4two_failed() {
+// --------------------------Mission failed-----------------------------------------------
+async function onFailed() {
     Text.PrintBig('M_FAIL', 2000, 1);
-
-    return;
-
-    // -------------------------Mission passed-------------------------------------------------
 }
 
-async function mission_4x4two_passed() {
+// -------------------------Mission passed-------------------------------------------------
+async function onPassed() {
     if ($.flag_4x4_mission2_passed == 0) {
         $.record_4x4_two = 120000 - $.timer_4x4;
         $.record_4x4_two = $.record_4x4_two / 1000;
@@ -373,12 +424,9 @@ async function mission_4x4two_passed() {
     }
     //START_NEW_SCRIPT t4x4_mission3_loop
 
-    return;
-
-    // mission cleanup
 }
 
-async function mission_cleanup_4x4two() {
+async function cleanup() {
     Hud.ClearTimer($.timer_4x4);
 
     Camera.RestoreJumpcut();
@@ -398,70 +446,11 @@ async function mission_cleanup_4x4two() {
     $.blip_11.remove();
     $.blip_12.remove();
 
-    $.flag_player_on_mission = 0;
+    // $.flag_player_on_mission = 0;
+    ONMISSION = false;
     //flag_player_on_4x4_mission = 0
 
     Mission.Finish();
-    return;
 }
 
-export async function _4x4_2() {
-    // MissionBoundary
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // ***************************************A ride in the Park********************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-
-    // Mission start stuff
-
-    // SCM GOSUB mission_start_4x4two
-    await mission_start_4x4two();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    if (HAS_DEATHARREST_BEEN_EXECUTED()) {
-        // SCM GOSUB mission_4x4two_failed
-        await mission_4x4two_failed();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-    // SCM GOSUB mission_cleanup_4x4two
-    await mission_cleanup_4x4two();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    // MissionBoundary
-
-    // Variables for mission
-
-    //VAR_INT player_4x4_two
-    //VAR_INT counter_4x4_pickups timer_4x4
-    //VAR_INT wanted_4x4
-    //VAR_INT intro_time_lapsed timer_intro_now timer_intro_start flag_intro
-    //VAR_INT flag_timer
-    /*
-  VAR_INT blip_1 blip_2 blip_3
-  VAR_INT blip_4 blip_5 blip_6
-  VAR_INT blip_7 blip_8 blip_9
-  VAR_INT blip_10 blip_11 blip_12
-
-  VAR_INT flag_blip_1 flag_blip_2 flag_blip_3 flag_blip_4
-  VAR_INT flag_blip_5 flag_blip_6 flag_blip_7 flag_blip_8
-  VAR_INT flag_blip_9 flag_blip_10 flag_blip_11 flag_blip_12
-
-  //variables called in 4x4_1.sc
-
-  VAR_FLOAT x_1 y_1 z_1
-  VAR_FLOAT x_2 y_2 z_2
-  VAR_FLOAT x_3 y_3 z_3
-  VAR_FLOAT x_4 y_4 z_4
-  VAR_FLOAT x_5 y_5 z_5
-  VAR_FLOAT x_6 y_6 z_6
-  VAR_FLOAT x_7 y_7 z_7
-  VAR_FLOAT x_8 y_8 z_8
-  VAR_FLOAT x_9 y_9 z_9
-  VAR_FLOAT x_10 y_10 z_10
-  VAR_FLOAT x_11 y_11 z_11
-  VAR_FLOAT x_12 y_12 z_12
-  */
-
-    // ****************************************Mission Start************************************
-}
+export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
