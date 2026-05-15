@@ -1,5 +1,5 @@
 // Generated from main.sc
-import { $, GOSUB_FILE, run_on_newgame, START_NEW_SCRIPT, verbose, run_gated } from './utils';
+import { $, GOSUB_FILE, run_on_newgame, START_NEW_SCRIPT, verbose, run_gated, wait_for } from './utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -955,24 +955,6 @@ async function main() {
         $.flag_suburban_passed = 0;
 
         // Radar Contact Blips
-
-        // VAR_INT luigi_contact_blip
-        // VAR_INT joey_contact_blip
-        // VAR_INT toni_contact_blip
-        // VAR_INT frankie_contact_blip
-        // VAR_INT diablo_contact_blip
-        // VAR_INT asuka_contact_blip
-        // VAR_INT kenji_contact_blip
-        // VAR_INT ray_contact_blip
-        // VAR_INT love_contact_blip
-        // VAR_INT yardie_contact_blip
-        // VAR_INT maria_contact_blip
-        // VAR_INT eightball_contact_blip
-        // VAR_INT hood_contact_blip
-        // VAR_INT meat_contact_blip
-        // VAR_INT industrail_save_blip commercial_save_blip suburban_save_blip
-        // VAR_INT created_ind_blip_before created_com_blip_before created_sub_blip_before
-
         $.created_ind_blip_before = 0;
         $.created_com_blip_before = 0;
         $.created_sub_blip_before = 0;
@@ -1417,13 +1399,33 @@ async function main() {
     com_save_loop(); // START_NEW_SCRIPT com_save_loop
     sub_save_loop(); // START_NEW_SCRIPT sub_save_loop
 
-    // Meat Phone monitor
+    // Phone monitor
     meat_phone_loop();
+    diablo_phone_loop();
+    yardie_phone_loop();
+    hood_phone_loop();
 
     // Restart monitor
     run_gated('_flag_ind_restart_complete', ind_restart); // START_NEW_SCRIPT ind_restart
     run_gated('_flag_com_restart_complete', com_restart); // START_NEW_SCRIPT com_restart
     run_gated('_flag_sub_restart_complete', sub_restart); // START_NEW_SCRIPT sub_restart
+    run_gated('_flag_luigi_message_complete', luigi_message);
+    run_gated('_flag_blob_help_loop_complete', blob_help_loop);
+    run_gated('_flag_diablo_phone_start_complete', diablo_phone_start);
+    run_gated('_flag_diablo_blip_loop_complete', diablo_blip_loop);
+    run_gated('_flag_joeys_buggy_loop_complete', joeys_buggy_loop);
+    run_gated('_flag_toni5_flames_loop_complete', toni5_flames_loop);
+    run_gated('_flag_toni4_pager_loop_complete', toni4_pager_loop);
+    run_gated('_flag_toni5_pager_loop_complete', toni5_pager_loop);
+    run_gated('_flag_yardie_phone_start_complete', yardie_phone_start);
+    run_gated('_flag_yardie_blip_loop_complete', yardie_blip_loop);
+    run_gated('_flag_hood_phone_start_complete', hood_phone_start);
+    run_gated('_flag_hood_blip_loop_complete', hood_blip_loop);
+    run_gated('_flag_pistol_message_complete', pistol_message);
+    run_gated('_flag_uzi_message_complete', uzi_message);
+    run_gated('_flag_imp_exp_pager_complete', imp_exp_pager);
+    run_gated('_flag_emergency_crane_pager_complete', emergency_crane_pager);
+    run_gated('_flag_van_heist_garage_pager_complete', van_heist_garage_pager);
 
     // START_NEW_SCRIPT hospital_info_loop // xxx: moved to mission monitor
     // START_NEW_SCRIPT police_info_loop // xxx: moved to mission monitor
@@ -1431,9 +1433,6 @@ async function main() {
     if ($.player.isPlaying()) {
         $.player.setControl(true /* on */);
     }
-
-    run_gated('_flag_luigi_message_complete', luigi_message);
-    run_gated('_flag_blob_help_loop_complete', blob_help_loop);
 
     await asyncWait(0);
 
@@ -1532,3010 +1531,130 @@ async function meat_phone_loop() {
     }
 }
 
+async function diablo_phone_loop() {
+    while (true) {
+        if ($.flag_diablo_mission1_passed && $.flag_diablo_mission2_passed && $.flag_diablo_mission3_passed && $.flag_diablo_mission4_passed) {
+            return; // TERMINATE_THIS_SCRIPT
+        }
+
+        await asyncWait($.mission_trigger_wait_time);
+
+        // xxx: activated after joey mission 3
+        if (!$.flag_joey_mission3_passed) {
+            continue;
+        }
+
+        if (!ONMISSION) {
+            $.Diablo_phone.turnOn();
+        } else {
+            $.Diablo_phone.turnOff();
+        }
+
+        if ($.player.isPlaying()) {
+            if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                if (!ONMISSION) {
+                    if ($.player.canStartMission()) {
+                        $.Diablo_phone.turnOff();
+                    }
+                    if (!$.player.isPlaying()) {
+                        continue;
+                    }
+                    while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                        await asyncWait(0);
+                        if (!$.player.isPlaying()) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+async function yardie_phone_loop() {
+    while (true) {
+        if ($.flag_yardie_mission1_passed && $.flag_yardie_mission2_passed && $.flag_yardie_mission3_passed && $.flag_yardie_mission4_passed) {
+            return; // TERMINATE_THIS_SCRIPT
+        }
+
+        await asyncWait($.mission_trigger_wait_time);
+
+        // xxx: activated after asuka mission 1
+        if (!$.flag_asuka_mission1_passed) {
+            continue;
+        }
+
+        if (!ONMISSION) {
+            $.yardie_phone.turnOn();
+        } else {
+            $.yardie_phone.turnOff();
+        }
+
+        if ($.player.isPlaying()) {
+            if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                if (!ONMISSION) {
+                    if ($.player.canStartMission()) {
+                        $.yardie_phone.turnOff();
+                    }
+                    if (!$.player.isPlaying()) {
+                        continue;
+                    }
+                    while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                        await asyncWait(0);
+                        if (!$.player.isPlaying()) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+async function hood_phone_loop() {
+    while (true) {
+        if ($.flag_hood_mission1_passed && $.flag_hood_mission2_passed && $.flag_hood_mission3_passed && $.flag_hood_mission4_passed && $.flag_hood_mission5_passed) {
+            return; // TERMINATE_THIS_SCRIPT
+        }
+
+        await asyncWait($.mission_trigger_wait_time);
+
+        // xxx: activated after love mission 3
+        if (!$.flag_love_mission3_passed) {
+            continue;
+        }
+
+        if (!ONMISSION) {
+            $.hood_phone.turnOn();
+        } else {
+            $.hood_phone.turnOff();
+        }
+
+        if ($.player.isPlaying()) {
+            if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                if (!ONMISSION) {
+                    if ($.player.canStartMission()) {
+                        $.hood_phone.turnOff();
+                    }
+                    if (!$.player.isPlaying()) {
+                        continue;
+                    }
+                    while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                        await asyncWait(0);
+                        if (!$.player.isPlaying()) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 // ***************************************Industrial Level**********************************
-
-// ******************************************8Ball Mission**********************************
-
-// 8Ball Mission
-async function eightball_mission_loop() {
-    // SCM GOTO → eightball_mission_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
-
-            if ($.flag_industrial_passed == 1 && $.flag_eightball_mission_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_eightball_mission_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying() && $.flag_eightball_mission_launched == 0 && !ONMISSION) {
-                if ($.flag_reached_hideout == 0) {
-                    if ($.player.locateOnFoot2D(811.9, -939.95, 3.5, 3.5, false /* FALSE */)) {
-                        if ($.player.canStartMission()) {
-                            // LoadLaunchMission 8ball.sc
-                            $.flag_eightball_mission_launched = 1;
-                        }
-                    }
-                } else {
-                    if ($.player.locateOnFoot2D(883.5, -308.2, 3.5, 3.5, false /* FALSE */)) {
-                        if ($.player.canStartMission()) {
-                            // LoadLaunchMission 8ball.sc
-                            $.flag_eightball_mission_launched = 1;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-// *******************************************Luigi Missions********************************
-
-// Luigi Mission 3
-async function luigi_mission3_loop() {
-    // SCM GOTO → luigi_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_luigi_mission3_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_luigi_mission3_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LM3', 15000, 2); //"Drive Misty For Me."
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission luigi3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → luigi_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO luigi_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → luigi_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO luigi_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Luigi Mission 4
-    }
-}
-
-async function luigi_mission4_loop() {
-    // SCM GOTO → luigi_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_luigi_mission4_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_luigi_mission4_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission3_passed == 1 && $.flag_frankie_mission1_passed == 0) {
-                $.flag_luigi_mission4_terminated = 1;
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LM4', 15000, 2); //"Pump Action Pimp"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission luigi4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → luigi_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO luigi_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → luigi_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO luigi_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Luigi Mission 5
-    }
-}
-
-async function luigi_mission5_loop() {
-    // SCM GOTO → luigi_mission5_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_luigi_mission5_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_luigi_mission5_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission3_passed == 1 && $.flag_frankie_mission1_passed == 0) {
-                $.flag_luigi_mission5_terminated = 1;
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LM5', 15000, 2); //"Fuzz Ball"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission luigi5.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → luigi_mission5_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO luigi_mission5_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → luigi_mission5_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO luigi_mission5_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ***************************************Joey Missions*************************************
-
-        // Joey Mission 1
-    }
-}
-
-async function joey_mission1_loop() {
-    // SCM GOTO → joey_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_joey_mission1_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_joey_mission1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        const _res356 = Clock.GetTimeOfDay();
-                        $.hours = _res356.hours;
-                        $.minutes = _res356.minutes;
-                        if ($.hours >= 5 && $.hours < 21) {
-                            if ($.player.canStartMission()) {
-                                $.player.makeSafeForCutscene();
-                                Camera.SetFadingColor(0, 0, 0);
-                                Camera.DoFade(1500, 0 /* FADE_OUT */);
-                                Streaming.Switch(false /* OFF */);
-                                Text.PrintBig('JM1', 15000, 2); //"Joey Mission 1"
-                                while (Camera.GetFadingStatus()) {
-                                    await asyncWait(0);
-                                }
-                                // LoadLaunchMission joey1.sc
-                            }
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → joey_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO joey_mission1_loop'); // fallback: would break linear control flow
-                            }
-                            while ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                                await asyncWait(0);
-                                if (!$.player.isPlaying()) {
-                                    // SCM GOTO → joey_mission1_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO joey_mission1_loop'); // fallback: would break linear control flow
-                                }
-                            }
-                        } else {
-                            Text.PrintNow('WRONGT1', 5000, 1); //" Wrong Time!"
-                            while ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                                await asyncWait(0);
-                                if (!$.player.isPlaying()) {
-                                    // SCM GOTO → joey_mission1_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO joey_mission1_loop'); // fallback: would break linear control flow
-                                }
-                                const _res357 = Clock.GetTimeOfDay();
-                                $.hours = _res357.hours;
-                                $.minutes = _res357.minutes;
-                                if ($.hours >= 5 && $.hours < 21) {
-                                    // SCM GOTO → joey_mission1_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO joey_mission1_loop'); // fallback: would break linear control flow
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Joey Mission 2
-    }
-}
-
-async function joey_mission2_loop() {
-    // SCM GOTO → joey_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_joey_mission2_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_joey_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('JM2', 15000, 2); //"Joey Mission 2"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission joey2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → joey_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO joey_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → joey_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO joey_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Joey Mission 3
-    }
-}
-
-async function joey_mission3_loop() {
-    // SCM GOTO → joey_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_joey_mission3_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_joey_mission3_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('JM3', 15000, 2); //"Joey Mission 3"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission joey3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → joey_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO joey_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → joey_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO joey_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Joey Mission 4
-    }
-}
-
-async function joey_mission4_loop() {
-    // SCM GOTO → joey_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_joey_mission4_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_joey_mission4_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('JM4', 15000, 2); //"Joey Mission 4!"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission joey4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → joey_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO joey_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → joey_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO joey_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Joey Mission 5
-    }
-}
-
-async function joey_mission5_loop() {
-    // SCM GOTO → joey_mission5_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_joey_mission5_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_joey_mission5_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission3_passed == 1 && $.flag_frankie_mission1_passed == 0) {
-                $.flag_joey_mission5_terminated = 1;
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('JM5', 15000, 2); //"Joey Mission 5"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission joey5.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → joey_mission5_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO joey_mission5_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → joey_mission5_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO joey_mission5_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Joey Mission 6
-    }
-}
-
-async function joey_mission6_loop() {
-    // SCM GOTO → joey_mission6_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_joey_mission6_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_joey_mission6_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission3_passed == 1 && $.flag_frankie_mission1_passed == 0) {
-                $.flag_joey_mission6_terminated = 1;
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        const _res358 = Clock.GetTimeOfDay();
-                        $.hours = _res358.hours;
-                        $.minutes = _res358.minutes;
-                        if ($.hours >= 6 && $.hours < 14) {
-                            if ($.player.canStartMission()) {
-                                $.player.makeSafeForCutscene();
-                                Camera.SetFadingColor(0, 0, 0);
-                                Camera.DoFade(1500, 0 /* FADE_OUT */);
-                                Streaming.Switch(false /* OFF */);
-                                Text.PrintBig('JM6', 15000, 2); //"Joey Mission 6"
-                                while (Camera.GetFadingStatus()) {
-                                    await asyncWait(0);
-                                }
-                                // LoadLaunchMission joey6.sc
-                            }
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → joey_mission6_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO joey_mission6_loop'); // fallback: would break linear control flow
-                            }
-                            while ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                                await asyncWait(0);
-                                if (!$.player.isPlaying()) {
-                                    // SCM GOTO → joey_mission6_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO joey_mission6_loop'); // fallback: would break linear control flow
-                                }
-                            }
-                        } else {
-                            Text.PrintNow('WRONGT2', 5000, 1); //" Wrong Time!"
-                            while ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                                await asyncWait(0);
-                                if (!$.player.isPlaying()) {
-                                    // SCM GOTO → joey_mission6_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO joey_mission6_loop'); // fallback: would break linear control flow
-                                }
-                                const _res359 = Clock.GetTimeOfDay();
-                                $.hours = _res359.hours;
-                                $.minutes = _res359.minutes;
-                                if ($.hours >= 6 && $.hours < 14) {
-                                    // SCM GOTO → joey_mission6_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO joey_mission6_loop'); // fallback: would break linear control flow
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ********************************************Toni Missions********************************
-
-        // Toni Mission 1
-    }
-}
-
-async function toni_mission1_loop() {
-    // SCM GOTO → toni_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_toni_mission1_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('TM1', 15000, 2); //"Toni Mission 1"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission toni1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → toni_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO toni_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → toni_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO toni_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Toni Mission 2
-    }
-}
-
-async function toni_mission2_loop() {
-    // SCM GOTO → toni_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_toni_mission2_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('TM2', 15000, 2); //"Toni Mission 2"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission toni2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → toni_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO toni_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → toni_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO toni_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Toni Mission 3
-    }
-}
-
-async function toni_mission3_loop() {
-    // SCM GOTO → toni_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_toni_mission3_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission3_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('TM3', 15000, 2); //"Toni Mission 3"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission toni3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → toni_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO toni_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → toni_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO toni_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Toni Mission 4
-    }
-}
-
-async function toni_mission4_loop() {
-    // SCM GOTO → toni_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_toni_mission4_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission4_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('TM4', 15000, 2); //"Toni Mission 4"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission toni4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → toni_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO toni_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → toni_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO toni_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Toni Mission 5
-    }
-}
-
-async function toni_mission5_loop() {
-    // SCM GOTO → toni_mission5_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_toni_mission5_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_toni_mission5_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('TM5', 15000, 2); //"Toni Mission 5"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission toni5.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → toni_mission5_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO toni_mission5_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → toni_mission5_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO toni_mission5_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ***************************************Frankie Missions**********************************
-
-        // Frankie Mission 1
-    }
-}
-
-async function frankie_mission1_loop() {
-    // SCM GOTO → frankie_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_frankie_mission1_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_frankie_mission1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if (
-                    $.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */) ||
-                    $.player.isInAngledAreaOnFoot3D(1466.2, -175.0, 50.0, 1452.9, -172.1, 60.0, 11.6, false /* FALSE */)
-                ) {
-                    if ($.flag_frankie_switched_off == 0 && !ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('FM1', 15000, 2); //"Pulp Friction"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission frank1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → frankie_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO frankie_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → frankie_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO frankie_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Frankie Mission 2
-    }
-}
-
-async function frankie_mission2_loop() {
-    // SCM GOTO → frankie_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_frankie_mission2_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_frankie_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if (
-                    $.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */) ||
-                    $.player.isInAngledAreaOnFoot3D(1466.2, -175.0, 50.0, 1452.9, -172.1, 60.0, 11.6, false /* FALSE */)
-                ) {
-                    if ($.flag_frankie_switched_off == 0 && !ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('FM2', 15000, 2); //"Cuttin' The Grass"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission frank2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → frankie_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO frankie_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → frankie_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO frankie_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Frankie Mission 2.1
-    }
-}
-
-async function frankie_mission2_1_loop() {
-    // SCM GOTO → frankie_mission2.1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_frankie_mission2_1_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_frankie_mission2_1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if (
-                    $.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */) ||
-                    $.player.isInAngledAreaOnFoot3D(1466.2, -175.0, 50.0, 1452.9, -172.1, 60.0, 11.6, false /* FALSE */)
-                ) {
-                    if ($.flag_frankie_switched_off == 0) {
-                        if (!ONMISSION) {
-                            if ($.player.canStartMission()) {
-                                $.player.makeSafeForCutscene();
-                                Camera.SetFadingColor(0, 0, 0);
-                                Camera.DoFade(1500, 0 /* FADE_OUT */);
-                                Streaming.Switch(false /* OFF */);
-                                Text.PrintBig('FM21', 15000, 2); //"Bomb Da Base Part 1"
-                                while (Camera.GetFadingStatus()) {
-                                    await asyncWait(0);
-                                }
-                                // LoadLaunchMission frank2.1.sc
-                            }
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → frankie_mission2.1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO frankie_mission2.1_loop'); // fallback: would break linear control flow
-                            }
-                            while ($.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                                await asyncWait(0);
-                                if (!$.player.isPlaying()) {
-                                    // SCM GOTO → frankie_mission2.1_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO frankie_mission2.1_loop'); // fallback: would break linear control flow
-                                }
-                            }
-                        }
-                    } else {
-                        Text.PrintNow('FRANGO', 5000, 1); //"Frankie is not available at this time!"
-                        while ($.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → frankie_mission2.1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO frankie_mission2.1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Frankie Mission 3 Starts at 8balls garage
-    }
-}
-
-async function frankie_mission3_loop() {
-    // SCM GOTO → frankie_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_frankie_mission3_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_frankie_mission3_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_frankie_mission3_part2_launched == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(1272.2, -92.9, 13.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_eightball_switched_off == 0 && !ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('FM3', 15000, 2); //"Bomb Da Base"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission frank3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → frankie_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO frankie_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1272.2, -92.9, 13.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → frankie_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO frankie_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Frankie Mission 4
-    }
-}
-
-async function frankie_mission4_loop() {
-    // SCM GOTO → frankie_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_industrial_passed == 1 && $.flag_frankie_mission4_passed == 0) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_frankie_mission4_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if (
-                    $.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */) ||
-                    $.player.isInAngledAreaOnFoot3D(1466.2, -175.0, 50.0, 1452.9, -172.1, 60.0, 11.6, false /* FALSE */)
-                ) {
-                    if ($.flag_frankie_switched_off == 0 && !ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('FM4', 15000, 2); //"Frankie Mission 4"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission frank4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → frankie_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO frankie_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → frankie_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO frankie_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // *****************************************Diablo Missions*******************************
-
-        // Diablo Mission 1
-    }
-}
-
-async function diablo_mission1_loop() {
-    // SCM GOTO → diablo_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_diablo_mission1_passed == 1) {
-                $.Diablo_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.Diablo_phone.turnOn();
-            } else {
-                $.Diablo_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.Diablo_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('DIAB1', 15000, 2); //"Diablo Mission 1"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission diablo1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → diablo_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO diablo_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → diablo_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO diablo_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Diablo Mission 2
-    }
-}
-
-async function diablo_mission2_loop() {
-    // SCM GOTO → diablo_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_diablo_mission2_passed == 1) {
-                $.Diablo_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.Diablo_phone.turnOn();
-            } else {
-                $.Diablo_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.Diablo_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('DIAB2', 15000, 2); //"Diablo Mission 2"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission diablo2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → diablo_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO diablo_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → diablo_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO diablo_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Diablo Mission 3
-    }
-}
-
-async function diablo_mission3_loop() {
-    // SCM GOTO → diablo_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_diablo_mission3_passed == 1) {
-                $.Diablo_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.Diablo_phone.turnOn();
-            } else {
-                $.Diablo_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.Diablo_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('DIAB3', 15000, 2); //"Diablo Mission 3"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission diablo3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → diablo_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO diablo_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → diablo_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO diablo_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Diablo Mission 4
-    }
-}
-
-async function diablo_mission4_loop() {
-    // SCM GOTO → diablo_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_diablo_mission4_passed == 1) {
-                $.Diablo_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.Diablo_phone.turnOn();
-            } else {
-                $.Diablo_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.Diablo_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('DIAB4', 15000, 2); //"Diablo Mission 4"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission diablo4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → diablo_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO diablo_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → diablo_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO diablo_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ***************************************Commercial Level**********************************
-
-        // *****************************************Asuka Missions************************************
-
-        // Asuka Mission 1
-    }
-}
-
-async function asuka_mission1_loop() {
-    // SCM GOTO → asuka_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_asuka_mission1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('AM1', 15000, 2);
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission asuka1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → asuka_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO asuka_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → asuka_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO asuka_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Asuka Mission 2
-    }
-}
-
-async function asuka_mission2_loop() {
-    // SCM GOTO → asuka_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_asuka_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('AM2', 15000, 2); //"Asuka Mission 2"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission asuka2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → asuka_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO asuka_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → asuka_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO asuka_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Asuka Mission 3
-    }
-}
-
-async function asuka_mission3_loop() {
-    // SCM GOTO → asuka_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_asuka_mission3_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('AM3', 15000, 2); //"Asuka Mission 3"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission asuka3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → asuka_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO asuka_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → asuka_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO asuka_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Asuka Mission 4
-    }
-}
-
-async function asuka_mission4_loop() {
-    // SCM GOTO → asuka_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_asuka_mission4_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('AM4', 15000, 2); //"Asuka Mission 4"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission asuka4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → asuka_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO asuka_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → asuka_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO asuka_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Asuka Mission 5
-    }
-}
-
-async function asuka_mission5_loop() {
-    // SCM GOTO → asuka_mission5_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_love_mission4_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.flag_asuka_mission5_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('AM5', 15000, 2); //"Asuka Mission 5"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission asuka5.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → asuka_mission5_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO asuka_mission5_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → asuka_mission5_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO asuka_mission5_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ******************************************Kenji Missions*********************************
-
-        // Kenji Mission 1
-    }
-}
-
-async function kenji_mission1_loop() {
-    // SCM GOTO → kenji_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_kenji_mission1_passed == 1 || $.flag_love_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('KM1', 15000, 2); //"Kanbu Bust out"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission kenji1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → kenji_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO kenji_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → kenji_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO kenji_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Kenji Mission 2
-    }
-}
-
-async function kenji_mission2_loop() {
-    // SCM GOTO → kenji_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_kenji_mission2_passed == 1 || $.flag_love_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('KM2', 15000, 2); //"Gone in Sixty"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission kenji2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → kenji_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO kenji_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → kenji_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO kenji_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Kenji Mission 3
-    }
-}
-
-async function kenji_mission3_loop() {
-    // SCM GOTO → kenji_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_kenji_mission3_passed == 1 || $.flag_love_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('KM3', 15000, 2); //"Kenji Mission 3"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission kenji3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → kenji_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO kenji_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → kenji_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO kenji_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Kenji Mission 4
-    }
-}
-
-async function kenji_mission4_loop() {
-    // SCM GOTO → kenji_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_kenji_mission4_passed == 1 || $.flag_love_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('KM4', 15000, 2); //"SHIMA"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission kenji4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → kenji_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO kenji_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → kenji_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO kenji_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Kenji Mission 5
-    }
-}
-
-async function kenji_mission5_loop() {
-    // SCM GOTO → kenji_mission5_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_kenji_mission5_passed == 1 || $.flag_love_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('KM5', 15000, 2); // "SMACK DOWN"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission kenji5.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → kenji_mission5_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO kenji_mission5_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → kenji_mission5_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO kenji_mission5_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ******************************************Ray Missions***********************************
-
-        // Ray Mission 1
-    }
-}
-
-async function ray_mission1_loop() {
-    // SCM GOTO → ray_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
-
-            if ($.flag_ray_mission1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.rays_cutscene_flag = 1;
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('RM1', 15000, 2); //"Silence the sneak"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission ray1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → ray_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO ray_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → ray_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO ray_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Ray Mission 2
-    }
-}
-
-async function ray_mission2_loop() {
-    // SCM GOTO → ray_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
-
-            if ($.flag_ray_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.rays_cutscene_flag = 1;
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */); //	used to be 250
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('RM2', 15000, 2); //"Arms Shortage"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission ray2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → ray_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO ray_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → ray_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO ray_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Ray Mission 3
-    }
-}
-
-async function ray_mission3_loop() {
-    // SCM GOTO → ray_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
-
-            if ($.flag_ray_mission3_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.rays_cutscene_flag = 1;
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('RM3', 15000, 2); //"Evidence Dash"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission ray3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → ray_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO ray_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → ray_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO ray_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Ray Mission 4
-    }
-}
-
-async function ray_mission4_loop() {
-    // SCM GOTO → ray_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
-
-            if ($.flag_ray_mission4_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.rays_cutscene_flag = 1;
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('RM4', 15000, 2); //"Gone Fishing"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission ray4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → ray_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO ray_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → ray_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO ray_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Ray Mission 5
-    }
-}
-
-async function ray_mission5_loop() {
-    // SCM GOTO → ray_mission5_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
-
-            if ($.flag_ray_mission5_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.rays_cutscene_flag = 1;
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */); //	used to be 250
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('RM5', 15000, 2); //"Plaster Blaster"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission ray5.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → ray_mission5_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO ray_mission5_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → ray_mission5_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO ray_mission5_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Ray Mission 6
-    }
-}
-
-async function ray_mission6_loop() {
-    // SCM GOTO → ray_mission6_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait(0);
-
-            if ($.flag_ray_mission6_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('RM6', 15000, 2); //"Marked Man"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission ray6.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → ray_mission6_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO ray_mission6_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → ray_mission6_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO ray_mission6_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ***************************************love Missions**********************************
-
-        // love Mission 1
-    }
-}
-
-async function love_mission1_loop() {
-    // SCM GOTO → love_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_love_mission1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LOVE1', 15000, 2); //"Resue the Old Oriental Gentleman"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission love1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → love_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO love_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → love_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO love_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // love Mission 2
-    }
-}
-
-async function love_mission2_loop() {
-    // SCM GOTO → love_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_love_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LOVE2', 15000, 2); //"Love Mission 2"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission love2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → love_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO love_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → love_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO love_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // love Mission 3
-    }
-}
-
-async function love_mission3_loop() {
-    // SCM GOTO → love_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_love_mission3_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LOVE3', 15000, 2); //"love Mission 3"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission love3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → love_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO love_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → love_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO love_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // LOVE MISSION 4 AND 5 ARE IN SUBURBAIN MISSIONS AS THIS IS WHERE THEY ARE BASED
-
-        // *****************************************Yardie Missions*********************************
-
-        // Yardie Mission 1
-    }
-}
-
-async function yardie_mission1_loop() {
-    // SCM GOTO → yardie_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_yardie_mission1_passed == 1) {
-                $.yardie_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.yardie_phone.turnOn();
-            } else {
-                $.yardie_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.yardie_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('YD1', 15000, 2); //"Yardie Mission 1"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission yard1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → yardie_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO yardie_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → yardie_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO yardie_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Yardie Mission 2
-    }
-}
-
-async function yardie_mission2_loop() {
-    // SCM GOTO → yardie_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_yardie_mission2_passed == 1) {
-                $.yardie_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.yardie_phone.turnOn();
-            } else {
-                $.yardie_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.yardie_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('YD2', 15000, 2); //"Yardie Mission 2"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission yard2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → yardie_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO yardie_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → yardie_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO yardie_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Yardie Mission 3
-    }
-}
-
-async function yardie_mission3_loop() {
-    // SCM GOTO → yardie_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_yardie_mission3_passed == 1) {
-                $.yardie_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.yardie_phone.turnOn();
-            } else {
-                $.yardie_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.yardie_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('YD3', 15000, 2); //"Yardie Mission 3"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission yard3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → yardie_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO yardie_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → yardie_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO yardie_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Yardie Mission 4
-    }
-}
-
-async function yardie_mission4_loop() {
-    // SCM GOTO → yardie_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_yardie_mission4_passed == 1) {
-                $.yardie_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.yardie_phone.turnOn();
-            } else {
-                $.yardie_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.yardie_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('YD4', 15000, 2); //"Yardie Mission 4"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission yard4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → yardie_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO yardie_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → yardie_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO yardie_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ***************************************Suburban Level************************************
-
-        // ********************************Donald Love Suburban Missions****************************
-
-        // Love Mission 4
-    }
-}
-
-async function love_mission4_loop() {
-    // SCM GOTO → love_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_love_mission4_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LOVE4', 15000, 2);
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission love4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → love_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO love_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → love_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO love_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Love Mission 5
-    }
-}
-
-async function love_mission5_loop() {
-    // SCM GOTO → love_mission5_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_love_mission5_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LOVE5', 15000, 2);
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission love5.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → love_mission5_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO love_mission5_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → love_mission5_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO love_mission5_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Love Mission 6
-    }
-}
-
-async function love_mission6_loop() {
-    // SCM GOTO → love_mission6_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_love_mission6_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LOVE6', 15000, 2);
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission love6.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → love_mission6_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO love_mission6_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → love_mission6_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO love_mission6_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Love Mission 7
-    }
-}
-
-async function love_mission7_loop() {
-    // SCM GOTO → love_mission7_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_love_mission7_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('LOVE7', 15000, 2);
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission love7.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → love_mission7_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO love_mission7_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → love_mission7_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO love_mission7_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // ****************************************Asuka Suburban Missions**************************
-
-        // Asuka Mission 1
-    }
-}
-
-async function asuka_suburban_mission1_loop() {
-    // SCM GOTO → asuka_suburban_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_asuka_suburban_mission1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('AS1', 15000, 2);
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission asusb1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → asuka_suburban_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO asuka_suburban_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → asuka_suburban_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO asuka_suburban_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Asuka Mission 2
-    }
-}
-
-async function asuka_suburban_mission2_loop() {
-    // SCM GOTO → asuka_suburban_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_asuka_suburban_mission2_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */); //	used to be 250
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('AS2', 15000, 2);
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission asusb2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → asuka_suburban_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO asuka_suburban_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → asuka_suburban_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO asuka_suburban_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Asuka Mission 3
-    }
-}
-
-async function asuka_suburban_mission3_loop() {
-    // SCM GOTO → asuka_suburban_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_asuka_suburban_mission3_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */); //	used to be 250
-                            Streaming.Switch(false /* OFF */);
-                            Text.PrintBig('AS3', 15000, 2);
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission asusb3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → asuka_suburban_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO asuka_suburban_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → asuka_suburban_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO asuka_suburban_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Asuka Mission 4
-        /*
-    asuka_suburban_mission4_loop:
-    {
-
-    WAIT mission_trigger_wait_time
-
-    IF flag_asuka_suburban_mission4_passed = 1
-    TERMINATE_THIS_SCRIPT
-    ENDIF
-
-    IF IS_PLAYER_PLAYING player
-    IF LOCATE_PLAYER_ON_FOOT_3D player 367.3 -328.1 19.5 1.0 1.0 2.0 FALSE
-    IF flag_player_on_mission = 0
-    IF CAN_PLAYER_START_MISSION Player
-
-    MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-
-    SET_FADING_COLOUR 0 0 0
-
-    DO_FADE 1500 FADE_OUT
-
-    SWITCH_STREAMING OFF
-
-    PRINT_BIG ( AS4 ) 15000 2
-
-    WHILE GET_FADING_STATUS
-    WAIT 0
-    ENDWHILE
-
-    LOAD_AND_LAUNCH_MISSION asusb4.sc
-    ENDIF
-
-    IF NOT IS_PLAYER_PLAYING player
-    GOTO asuka_suburban_mission4_loop
-    ENDIF
-
-    WHILE LOCATE_PLAYER_ON_FOOT_3D player 367.3 -328.1 19.5 1.0 1.0 2.0 FALSE
-    WAIT 0
-    IF NOT IS_PLAYER_PLAYING player
-    GOTO asuka_suburban_mission4_loop
-    ENDIF
-    ENDWHILE
-    ENDIF
-    ENDIF
-    ENDIF
-
-    GOTO asuka_suburban_mission4_loop
-
-    }
-    */
-
-        // **********************************************Hood Missions******************************
-
-        // Hood Mission 1
-    }
-}
-
-async function hood_mission1_loop() {
-    // SCM GOTO → hood_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_hood_mission1_passed == 1) {
-                $.hood_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.hood_phone.turnOn();
-            } else {
-                $.hood_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.hood_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('HM_1', 15000, 2); //"Uzi Driver"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission hood1.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → hood_mission1_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO hood_mission1_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → hood_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO hood_mission1_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Hood Mission 2
-    }
-}
-
-async function hood_mission2_loop() {
-    // SCM GOTO → hood_mission2_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_hood_mission2_passed == 1) {
-                $.hood_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.hood_phone.turnOn();
-            } else {
-                $.hood_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.hood_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('HM_2', 15000, 2); //"TOYMINATOR"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission hood2.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → hood_mission2_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO hood_mission2_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → hood_mission2_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO hood_mission2_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Hood Mission 3
-    }
-}
-
-async function hood_mission3_loop() {
-    // SCM GOTO → hood_mission3_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_hood_mission3_passed == 1) {
-                if ($.flag_hood_mission5_passed == 0) {
-                    $.hood_phone.turnOff();
-                    return; // TERMINATE_THIS_SCRIPT
-                }
-            }
-
-            if (!ONMISSION) {
-                $.hood_phone.turnOn();
-            } else {
-                $.hood_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.hood_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('HM_3', 15000, 2); //"RIGGED TO BLOW"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission hood3.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → hood_mission3_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO hood_mission3_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → hood_mission3_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO hood_mission3_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Hood Mission 4
-    }
-}
-
-async function hood_mission4_loop() {
-    // SCM GOTO → hood_mission4_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_hood_mission4_passed == 1) {
-                $.hood_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.hood_phone.turnOn();
-            } else {
-                $.hood_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.hood_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('HM_4', 15000, 2); //"GOLD GRAB"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission hood4.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → hood_mission4_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO hood_mission4_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → hood_mission4_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO hood_mission4_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Hood Mission 5
-    }
-}
-
-async function hood_mission5_loop() {
-    // SCM GOTO → hood_mission5_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_hood_mission5_passed == 1) {
-                $.hood_phone.turnOff();
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if (!ONMISSION) {
-                $.hood_phone.turnOn();
-            } else {
-                $.hood_phone.turnOff();
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.player.canStartMission()) {
-                            $.hood_phone.turnOff();
-                            $.player.makeSafeForCutscene();
-                            Camera.SetFadingColor(0, 0, 0);
-                            Camera.DoFade(1500, 0 /* FADE_OUT */);
-                            Text.PrintBig('HM_5', 15000, 2); //"RUMBLE BLUES"
-                            while (Camera.GetFadingStatus()) {
-                                await asyncWait(0);
-                            }
-                            // LoadLaunchMission hood5.sc
-                        }
-                        if (!$.player.isPlaying()) {
-                            // SCM GOTO → hood_mission5_loop (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO hood_mission5_loop'); // fallback: would break linear control flow
-                        }
-                        while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                            await asyncWait(0);
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → hood_mission5_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO hood_mission5_loop'); // fallback: would break linear control flow
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Catalina Mission 1
-    }
-}
-
-async function cat_mission1_loop() {
-    // SCM GOTO → cat_mission1_loop lowered to endless loop
-    while (true) {
-        {
-            await asyncWait($.mission_trigger_wait_time);
-
-            if ($.flag_cat_mission1_passed == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
-
-            if ($.player.isPlaying()) {
-                if ($.player.locateOnFoot3D(-362.8, 246.5, 60.0, 4.5, 4.5, 2.0, false /* FALSE */)) {
-                    if (!ONMISSION) {
-                        if ($.nicked_half_a_mil_before == 1) {
-                            // SCM GOTO → payed_before (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO payed_before'); // fallback: would break linear control flow
-                        }
-                        if ($.player.isScoreGreater(499999)) {
-                            // SCM label payed_before
-                            if ($.player.canStartMission()) {
-                                $.player.makeSafeForCutscene();
-                                Camera.SetFadingColor(0, 0, 0);
-                                Camera.DoFade(1500, 0 /* FADE_OUT */);
-                                Streaming.Switch(false /* OFF */);
-                                Text.PrintBig('CAT2', 15000, 2); //"Catalina"
-                                while (Camera.GetFadingStatus()) {
-                                    await asyncWait(0);
-                                }
-                                // LoadLaunchMission cat1.sc
-                            }
-                            if (!$.player.isPlaying()) {
-                                // SCM GOTO → cat_mission1_loop (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO cat_mission1_loop'); // fallback: would break linear control flow
-                            }
-                            while ($.player.locateOnFoot3D(-362.8, 246.5, 60.0, 4.5, 4.5, 2.0, false /* FALSE */)) {
-                                await asyncWait(0);
-                                if (!$.player.isPlaying()) {
-                                    // SCM GOTO → cat_mission1_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO cat_mission1_loop'); // fallback: would break linear control flow
-                                }
-                            }
-                        } else {
-                            Text.PrintNow('CAT_MON', 5000, 1); //"You don't have enough money"
-                            while ($.player.locateOnFoot3D(-362.8, 246.5, 60.0, 4.5, 4.5, 2.0, false /* FALSE */)) {
-                                await asyncWait(0);
-                                if (!$.player.isPlaying()) {
-                                    // SCM GOTO → cat_mission1_loop (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO cat_mission1_loop'); // fallback: would break linear control flow
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 async function ind_save_loop() {
     //	Should be called before main loop
-
     // SCRIPT_NAME I_SAVE
 
     if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false /* FALSE */)) {
@@ -4642,11 +1761,9 @@ async function ind_save_loop() {
 }
 
 async function ind_restart() {
-    {
-        //	Should be called before main loop
-        // SCRIPT_NAME I_RSTRT
-    }
-
+    //	Should be called before main loop
+    // SCRIPT_NAME I_RSTRT
+    
     ind_restart_inner: while (true) {
         await asyncWait(1000);
 
@@ -4662,10 +1779,10 @@ async function ind_restart() {
 }
 
 async function diablo_phone_start() {
-    {
-        //	Should be called in joey3 mission passed
-        // SCRIPT_NAME DIAB_PH
-    }
+    //	Should be called in joey3 mission passed
+    await wait_for('flag_joey_mission3_passed');
+    verbose('[+] Activating subscript "diablo_phone_start"');
+    // SCRIPT_NAME DIAB_PH
 
     diablo_phone_start_inner: while (true) {
         await asyncWait(10000);
@@ -4675,8 +1792,8 @@ async function diablo_phone_start() {
                 // Diablo Phone
                 if (!ONMISSION) {
                     Pager.AddMessage('DIAB1_A', 140, 2, 0);
-                    // START_NEW_SCRIPT diablo_mission1_loop
-                    // START_NEW_SCRIPT diablo_blip_loop
+                    // START_NEW_SCRIPT diablo_mission1_loop // xxx: moved to mission monitor
+                    // START_NEW_SCRIPT diablo_blip_loop // xxx: implemented as a gated script
                     return; // TERMINATE_THIS_SCRIPT
                 }
             }
@@ -4685,28 +1802,25 @@ async function diablo_phone_start() {
 }
 
 async function diablo_blip_loop() {
-    {
-        //	Should be called in diablo_phone_start
-        // SCRIPT_NAME DIAB_BP
-    }
+    //	Should be called in diablo_phone_start
+    await wait_for('_flag_diablo_phone_start_complete');
+    verbose('[+] Activating subscript "diablo_blip_loop"');
+    // SCRIPT_NAME DIAB_BP
+    
+    diablo_blip_loop_inner: while (true) {
+        await asyncWait(1000);
 
-    async function diablo_blip_loop_inner() {
-        // SCM GOTO → diablo_blip_loop_inner lowered to endless loop
-        while (true) {
-            await asyncWait(1000);
-
-            if ($.player.isPlaying()) {
-                if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-                    if ($.blip_diablo_created_before == 0) {
-                        $.diablo_contact_blip.remove();
-                        $.diablo_contact_blip = Blip.AddSpriteForContactPoint(938.4, -230.5, -100.0, 8 /* RADAR_SPRITE_EL */);
-                        $.blip_diablo_created_before = 1;
-                    }
-                } else {
-                    if ($.blip_diablo_created_before == 1) {
-                        $.diablo_contact_blip.remove();
-                        $.blip_diablo_created_before = 0;
-                    }
+        if ($.player.isPlaying()) {
+            if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+                if ($.blip_diablo_created_before == 0) {
+                    $.diablo_contact_blip.remove();
+                    $.diablo_contact_blip = Blip.AddSpriteForContactPoint(938.4, -230.5, -100.0, 8 /* RADAR_SPRITE_EL */);
+                    $.blip_diablo_created_before = 1;
+                }
+            } else {
+                if ($.blip_diablo_created_before == 1) {
+                    $.diablo_contact_blip.remove();
+                    $.blip_diablo_created_before = 0;
                 }
             }
         }
@@ -4714,34 +1828,31 @@ async function diablo_blip_loop() {
 }
 
 async function joeys_buggy_loop() {
-    {
-        // Should be called in asuka1 mission passed
-        // SCRIPT_NAME JOE_BUG
-    }
+    // Should be called in asuka1 mission passed
+    await wait_for('flag_asuka_mission1_passed');
+    verbose('[+] Activating subscript "joeys_buggy_loop"');
+    // SCRIPT_NAME JOE_BUG
 
-    async function joeys_buggy_loop_inner() {
-        // SCM GOTO → joeys_buggy_loop_inner lowered to endless loop
-        while (true) {
-            await asyncWait(500);
+    joeys_buggy_loop_inner: while (true) {
+        await asyncWait(500);
 
-            if ($.player.isPlaying()) {
-                if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-                    //START JOEYS BUGGY GENERATOR AT MISTYS
-                    const _res360 = Clock.GetTimeOfDay();
-                    $.hours = _res360.hours;
-                    $.minutes = _res360.minutes;
-                    if ($.hours > 17 && $.hours < 24) {
-                        if ($.started_buggy_generator_before == 0) {
-                            $.joeys_buggy.switch(101);
-                            $.misty_joey_loop = Sound.AddContinuous(937.1, -275.5, 8.9, 91 /* SOUND_MISTYS_HOUSE_LOOP_L */); //misty and joey
-                            $.started_buggy_generator_before = 1;
-                        }
-                    } else {
-                        if ($.started_buggy_generator_before == 1) {
-                            $.joeys_buggy.switch(0);
-                            $.misty_joey_loop.remove();
-                            $.started_buggy_generator_before = 0;
-                        }
+        if ($.player.isPlaying()) {
+            if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+                //START JOEYS BUGGY GENERATOR AT MISTYS
+                const _res360 = Clock.GetTimeOfDay();
+                $.hours = _res360.hours;
+                $.minutes = _res360.minutes;
+                if ($.hours > 17 && $.hours < 24) {
+                    if ($.started_buggy_generator_before == 0) {
+                        $.joeys_buggy.switch(101);
+                        $.misty_joey_loop = Sound.AddContinuous(937.1, -275.5, 8.9, 91 /* SOUND_MISTYS_HOUSE_LOOP_L */); //misty and joey
+                        $.started_buggy_generator_before = 1;
+                    }
+                } else {
+                    if ($.started_buggy_generator_before == 1) {
+                        $.joeys_buggy.switch(0);
+                        $.misty_joey_loop.remove();
+                        $.started_buggy_generator_before = 0;
                     }
                 }
             }
@@ -4750,37 +1861,29 @@ async function joeys_buggy_loop() {
 }
 
 async function toni5_flames_loop() {
-    {
-        //	Should be called in toni5 mission passed
-        // SCRIPT_NAME TONI_FR
-    }
+    //	Should be called in toni5 mission passed
+    await wait_for('flag_toni_mission5_passed');
+    verbose('[+] Activating subscript "toni5_flames_loop"');
+    // SCRIPT_NAME TONI_FR
 
-    async function toni5_flames_loop_inner() {
-        // SCM GOTO → toni5_flames_loop_inner lowered to endless loop
-        while (true) {
-            await asyncWait(500);
+    toni5_flames_loop_inner: while (true) {
+        await asyncWait(500);
 
-            if ($.player.isPlaying()) {
-                //SWITCH OFF FLAMES AFTER TONI 5
-                if (!$.player.isInZone('PORT_W')) {
-                    World.RemoveAllScriptFires();
-                    return; // TERMINATE_THIS_SCRIPT
-                }
+        if ($.player.isPlaying()) {
+            //SWITCH OFF FLAMES AFTER TONI 5
+            if (!$.player.isInZone('PORT_W')) {
+                World.RemoveAllScriptFires();
+                return; // TERMINATE_THIS_SCRIPT
             }
         }
     }
 }
 
 async function blob_help_loop() {
-    {
-        //	Should be called in eightball mission passed
-        // SCRIPT_NAME BLOB_HP
-    }
-
-    // Called after Luigis Girls passed
-    while ($.flag_luigi_mission1_passed == 0) {
-        await asyncWait(0);
-    }
+    //	Should be called in eightball mission passed
+    await wait_for('flag_luigi_mission1_passed');
+    verbose('[+] Activating subscript "blob_help_loop"');
+    // SCRIPT_NAME BLOB_HP
 
     blob_help_loop_inner: while (true) {
         await asyncWait(100);
@@ -4796,24 +1899,46 @@ async function blob_help_loop() {
 }
 
 async function toni4_pager_loop() {
-    {
-        //	Should be called in frankie2 mission passed
-        // SCRIPT_NAME TONI4PG
+    //	Should be called in frankie2 mission passed
+    await wait_for('flag_frankie_mission2_passed');
+    verbose('[+] Activating subscript "toni4_pager_loop"');
+    // SCRIPT_NAME TONI4PG
+
+    toni4_pager_loop_inner: while (true) {
+        await asyncWait(10000);
+
+        if ($.player.isPlaying()) {
+            if (!ONMISSION) {
+                if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+                    //ADD MESSAGE AFTER FRANKIE 2 IS PASSED AND TONI 4 IS NOT COMPLETED
+                    if ($.flag_toni_mission4_passed == 0) {
+                        Pager.AddMessage('TONI_P', 140, 2, 0);
+                    }
+                    // START_NEW_SCRIPT toni5_pager_loop // xxx: implemented as a gated script
+                    return; // TERMINATE_THIS_SCRIPT
+                }
+            }
+        }
     }
+}
 
-    async function toni4_pager_loop_inner() {
-        // SCM GOTO → toni4_pager_loop_inner lowered to endless loop
-        while (true) {
-            await asyncWait(10000);
+async function toni5_pager_loop() {
+    //	Should be called in toni4_pager_loop
+    await wait_for('_flag_toni4_pager_loop_complete');
+    verbose('[+] Activating subscript "toni5_pager_loop"');
+    // SCRIPT_NAME TONI5PG
 
-            if ($.player.isPlaying()) {
-                if (!ONMISSION) {
-                    if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-                        //ADD MESSAGE AFTER FRANKIE 2 IS PASSED AND TONI 4 IS NOT COMPLETED
-                        if ($.flag_toni_mission4_passed == 0) {
+    toni5_pager_loop_inner: while (true) {
+        await asyncWait(10000);
+
+        if ($.player.isPlaying()) {
+            if (!ONMISSION) {
+                if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+                    //ADD MESSAGE AFTER FRANKIE 2 IS PASSED AND TONI 5 IS NOT COMPLETED
+                    if ($.flag_toni_mission4_passed == 1) {
+                        if ($.flag_toni_mission5_passed == 0) {
                             Pager.AddMessage('TONI_P', 140, 2, 0);
                         }
-                        // START_NEW_SCRIPT toni5_pager_loop
                         return; // TERMINATE_THIS_SCRIPT
                     }
                 }
@@ -4822,70 +1947,15 @@ async function toni4_pager_loop() {
     }
 }
 
-async function toni5_pager_loop() {
-    {
-        //	Should be called in toni4_pager_loop
-        // SCRIPT_NAME TONI5PG
-    }
-
-    async function toni5_pager_loop_inner() {
-        // SCM GOTO → toni5_pager_loop_inner lowered to endless loop
-        while (true) {
-            await asyncWait(10000);
-
-            if ($.player.isPlaying()) {
-                if (!ONMISSION) {
-                    if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-                        //ADD MESSAGE AFTER FRANKIE 2 IS PASSED AND TONI 5 IS NOT COMPLETED
-                        if ($.flag_toni_mission4_passed == 1) {
-                            if ($.flag_toni_mission5_passed == 0) {
-                                Pager.AddMessage('TONI_P', 140, 2, 0);
-                            }
-                            return; // TERMINATE_THIS_SCRIPT
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-async function close_fuzz_doors() {
-    {
-        // Should be called in cleanup for luigi5
-
-        // SCRIPT_NAME FUZZ_DR
-
-        while ($.flag_moved_door1_lm5 == 0 || $.flag_moved_door2_lm5 == 0) {
-            await asyncWait(0);
-            if ($.counter_girls_trying_to_get_to_ball == 0) {
-                if (!World.IsAreaOccupied(1008.0, -899.0, 14.0, 996.5, -886.5, 20.0, false /* FALSE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */)) {
-                    if ($.fuzz_door1.rotate(180.0, 10.0, false /* FALSE */)) {
-                        $.flag_moved_door1_lm5 = 1;
-                    }
-                    if ($.fuzz_door2.rotate(0.0, 10.0, false /* FALSE */)) {
-                        $.flag_moved_door2_lm5 = 1;
-                    }
-                }
-            }
-        }
-
-        return; // TERMINATE_THIS_SCRIPT
-    }
-}
-
 async function com_save_loop() {
-    {
-        // Should be called before main loop
-        // SCRIPT_NAME C_SAVE
-    }
+    // Should be called before main loop
 
     if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(105.7, -486.0, 15.0, 100.8, -483.4, 18.0, false /* FALSE */)) {
         log('[*] Loading from commercial area save...');
         await postSave();
     }
+    // SCRIPT_NAME C_SAVE
 
-    // SCM GOTO → com_save_loop_inner lowered to endless loop
     com_save_loop_inner: while (true) {
         await asyncWait(250);
 
@@ -4967,12 +2037,12 @@ async function com_save_loop() {
         }
         await asyncWait(1000);
         /*
-                                            LOAD_MISSION_AUDIO DOOR_4
-                                            WHILE NOT HAS_MISSION_AUDIO_LOADED
-                                            WAIT 0
-                                            ENDWHILE
-                                            PLAY_MISSION_AUDIO
-                                        */
+            LOAD_MISSION_AUDIO DOOR_4
+            WHILE NOT HAS_MISSION_AUDIO_LOADED
+            WAIT 0
+            ENDWHILE
+            PLAY_MISSION_AUDIO
+        */
         while (
             !$.plysav_lftdr_lft.slide(105.35, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */) ||
             !$.plysav_lftdr_rght.slide(100.692, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */)
@@ -4995,10 +2065,8 @@ async function com_save_loop() {
 }
 
 async function com_restart() {
-    {
-        // Should be called before main loop
-        // SCRIPT_NAME C_RSTRT
-    }
+    // Should be called before main loop
+    // SCRIPT_NAME C_RSTRT
 
     com_restart_inner: while (true) {
         await asyncWait(1000);
@@ -5018,25 +2086,22 @@ async function com_restart() {
 }
 
 async function yardie_phone_start() {
-    {
-        //	Should be called in asuka1 mission passed
-        // SCRIPT_NAME YARD_PH
-    }
+    //	Should be called in asuka1 mission passed
+    await wait_for('flag_asuka_mission1_passed');
+    verbose('[+] Activating subscript "yardie_phone_start"');
+    // SCRIPT_NAME YARD_PH
 
-    async function yardie_phone_start_inner() {
-        // SCM GOTO → yardie_phone_start_inner lowered to endless loop
-        while (true) {
-            await asyncWait(10000);
+    yardie_phone_start_inner: while (true) {
+        await asyncWait(10000);
 
-            if ($.player.isPlaying()) {
-                if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-                    // Yardie Phone
-                    if (!ONMISSION) {
-                        Pager.AddMessage('YD_P', 140, 2, 0);
-                        // START_NEW_SCRIPT yardie_mission1_loop
-                        // START_NEW_SCRIPT yardie_blip_loop
-                        return; // TERMINATE_THIS_SCRIPT
-                    }
+        if ($.player.isPlaying()) {
+            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+                // Yardie Phone
+                if (!ONMISSION) {
+                    Pager.AddMessage('YD_P', 140, 2, 0);
+                    // START_NEW_SCRIPT yardie_mission1_loop // xxx: moved to mission monitor
+                    // START_NEW_SCRIPT yardie_blip_loop // xxx: implemented as a gated script
+                    return; // TERMINATE_THIS_SCRIPT
                 }
             }
         }
@@ -5044,70 +2109,34 @@ async function yardie_phone_start() {
 }
 
 async function yardie_blip_loop() {
-    {
-        //	Should be called in yardie_phone_start
-        // SCRIPT_NAME YARD_BP
-    }
+    //	Should be called in yardie_phone_start
+    await wait_for('_flag_yardie_phone_start_complete');
+    verbose('[+] Activating subscript "yardie_blip_loop"');
+    // SCRIPT_NAME YARD_BP
 
-    async function yardie_blip_loop_inner() {
-        // SCM GOTO → yardie_blip_loop_inner lowered to endless loop
-        while (true) {
-            await asyncWait(1000);
+    yardie_blip_loop_inner: while (true) {
+        await asyncWait(1000);
 
-            if ($.player.isPlaying()) {
-                if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-                    if ($.flag_yardie_mission4_passed == 1) {
-                        return; // TERMINATE_THIS_SCRIPT
-                    }
-                    if ($.blip_yardie_created_before == 0) {
-                        $.yardie_contact_blip.remove();
-                        $.yardie_contact_blip = Blip.AddSpriteForContactPoint(120.7, -272.1, 16.1, 12 /* RADAR_SPRITE_LIZ */);
-                        //FLASH_RADAR_BLIP yardie_contact_blip
-                        $.blip_yardie_created_before = 1;
-                    }
-                } else {
-                    //			IF flag_yardie_mission4_passed = 0
-                    if ($.blip_yardie_created_before == 1) {
-                        $.yardie_contact_blip.remove();
-                        $.blip_yardie_created_before = 0;
-                    }
-                    //			ENDIF
+        if ($.player.isPlaying()) {
+            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+                if ($.flag_yardie_mission4_passed == 1) {
+                    return; // TERMINATE_THIS_SCRIPT
                 }
+                if ($.blip_yardie_created_before == 0) {
+                    $.yardie_contact_blip.remove();
+                    $.yardie_contact_blip = Blip.AddSpriteForContactPoint(120.7, -272.1, 16.1, 12 /* RADAR_SPRITE_LIZ */);
+                    //FLASH_RADAR_BLIP yardie_contact_blip
+                    $.blip_yardie_created_before = 1;
+                }
+            } else {
+                //			IF flag_yardie_mission4_passed = 0
+                if ($.blip_yardie_created_before == 1) {
+                    $.yardie_contact_blip.remove();
+                    $.blip_yardie_created_before = 0;
+                }
+                //			ENDIF
             }
         }
-    }
-}
-
-async function close_asuka1_door() {
-    {
-        // Should be called in cleanup for asuka1
-
-        // SCRIPT_NAME ASUK_DR
-
-        if (ScriptObject.DoesExist($.backdoor)) {
-            $.door_position_a1 = $.backdoor.getHeading();
-            if ($.door_crash_flag == 1) {
-                while (!($.door_position_a1 == 0.0)) {
-                    if ($.player.isPlaying()) {
-                        if (!$.player.isInArea3D(889.618, -418.098, 15.0, 895.151, -412.675, 18.0, false)) {
-                            //IF NOT IS_PLAYER_IN_AREA_3D player 893.494 -417.093 14.943 894.934 -413.657 17.916 0
-                            if ($.door_position_a1 > -10.0 && $.door_position_a1 < 10.0) {
-                                $.door_position_a1 = 0.0;
-                            } else {
-                                $.door_position_a1 -= 10.0;
-                            }
-                            $.backdoor.setHeading($.door_position_a1);
-                        }
-                    } else {
-                        $.door_position_a1 = 0.0;
-                        $.backdoor.setHeading($.door_position_a1);
-                    }
-                    await asyncWait(0);
-                }
-            }
-        }
-
-        return; // TERMINATE_THIS_SCRIPT
     }
 }
 
@@ -5224,10 +2253,8 @@ async function sub_save_loop() {
 }
 
 async function sub_restart() {
-    {
-        //	Should be called before main loop
-        // SCRIPT_NAME S_RSTRT
-    }
+    //	Should be called before main loop
+    // SCRIPT_NAME S_RSTRT
 
     sub_restart_inner: while (true) {
         await asyncWait(1000);
@@ -5247,25 +2274,22 @@ async function sub_restart() {
 }
 
 async function hood_phone_start() {
-    {
-        //	Should be called in love3 mission passed
-        // SCRIPT_NAME HOOD_PH
-    }
+    //	Should be called in love3 mission passed
+    await wait_for('flag_love_mission3_passed');
+    verbose('[+] Activating subscript "hood_phone_start"');
+    // SCRIPT_NAME HOOD_PH
 
-    async function hood_phone_start_inner() {
-        // SCM GOTO → hood_phone_start_inner lowered to endless loop
-        while (true) {
-            await asyncWait(10000);
+    hood_phone_start_inner: while (true) {
+        await asyncWait(10000);
 
-            if ($.player.isPlaying()) {
-                if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                    // Hood Phone
-                    if (!ONMISSION) {
-                        Pager.AddMessage('HOOD1_A', 140, 2, 0);
-                        // START_NEW_SCRIPT hood_mission1_loop
-                        // START_NEW_SCRIPT hood_blip_loop
-                        return; // TERMINATE_THIS_SCRIPT
-                    }
+        if ($.player.isPlaying()) {
+            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                // Hood Phone
+                if (!ONMISSION) {
+                    Pager.AddMessage('HOOD1_A', 140, 2, 0);
+                    // START_NEW_SCRIPT hood_mission1_loop // xxx: moved to mission monitor
+                    // START_NEW_SCRIPT hood_blip_loop // xxx: implemented as a gated script
+                    return; // TERMINATE_THIS_SCRIPT
                 }
             }
         }
@@ -5273,31 +2297,28 @@ async function hood_phone_start() {
 }
 
 async function hood_blip_loop() {
-    {
-        //	Should be called in hood_phone_start
-        // SCRIPT_NAME HOOD_BP
-    }
+    //	Should be called in hood_phone_start
+    await wait_for('_flag_hood_phone_start_complete');
+    verbose('[+] Activating subscript "hood_blip_loop"');
+    // SCRIPT_NAME HOOD_BP
 
-    async function hood_blip_loop_inner() {
-        // SCM GOTO → hood_blip_loop_inner lowered to endless loop
-        while (true) {
-            await asyncWait(1000);
+    hood_blip_loop_inner: while (true) {
+        await asyncWait(1000);
 
-            if ($.player.isPlaying()) {
-                if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                    if ($.flag_hood_mission5_passed == 1) {
-                        return; // TERMINATE_THIS_SCRIPT
-                    }
-                    if ($.flag_blip_hood_created == 0) {
-                        $.hood_contact_blip.remove();
-                        $.hood_contact_blip = Blip.AddSpriteForContactPoint(-443.5, -6.1, 3.8, 9 /* RADAR_SPRITE_ICE */);
-                        $.flag_blip_hood_created = 1;
-                    }
-                } else {
-                    if ($.flag_blip_hood_created == 1) {
-                        $.hood_contact_blip.remove();
-                        $.flag_blip_hood_created = 0;
-                    }
+        if ($.player.isPlaying()) {
+            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                if ($.flag_hood_mission5_passed == 1) {
+                    return; // TERMINATE_THIS_SCRIPT
+                }
+                if ($.flag_blip_hood_created == 0) {
+                    $.hood_contact_blip.remove();
+                    $.hood_contact_blip = Blip.AddSpriteForContactPoint(-443.5, -6.1, 3.8, 9 /* RADAR_SPRITE_ICE */);
+                    $.flag_blip_hood_created = 1;
+                }
+            } else {
+                if ($.flag_blip_hood_created == 1) {
+                    $.hood_contact_blip.remove();
+                    $.flag_blip_hood_created = 0;
                 }
             }
         }
@@ -5306,9 +2327,8 @@ async function hood_blip_loop() {
 
 async function luigi_message() {
     // Called after Luigis Girls passed
-    while ($.flag_luigi_mission1_passed == 0) {
-        await asyncWait(0);
-    }
+    await wait_for('flag_luigi_mission1_passed');
+    verbose('[+] Activating subscript "luigi_message"');
 
     // SCRIPT_NAME Luihelp
 
@@ -5341,108 +2361,103 @@ async function luigi_message() {
 
 async function pistol_message() {
     // Called after Luigis 4 or Joey 2 is passed
-
-    {
-        // SCRIPT_NAME pistol1
+    // SCRIPT_NAME pistol1
+    while (!$.flag_joey_mission2_passed && !$.flag_luigi_mission4_passed) {
+        await asyncWait(0);
     }
+    verbose('[+] Activating subscript "pistol_message"');
 
-    async function pistol_create() {
-        // SCM GOTO → pistol_create lowered to endless loop
-        while (true) {
-            await asyncWait(10000);
+    pistol_create: while (true) {
+        await asyncWait(10000);
 
-            if ($.player.isPlaying()) {
-                if (!ONMISSION) {
-                    if ($.out_of_stock_pistol == 0) {
-                        $.SHOP_COLT45.remove();
-                        $.SHOP_COLT45_2 = Pickup.Create(173 /* WEAPON_COLT45 */, 1 /* PICKUP_IN_SHOP */, 1068.5, -400.8, 15.2); //AMMU NATION
-                        Pager.AddMessage('COLT_IN', 140, 2, 0);
-                        $.out_of_stock_pistol = 1;
-                    }
+        if ($.player.isPlaying()) {
+            if (!ONMISSION) {
+                if ($.out_of_stock_pistol == 0) {
+                    $.SHOP_COLT45.remove();
+                    $.SHOP_COLT45_2 = Pickup.Create(173 /* WEAPON_COLT45 */, 1 /* PICKUP_IN_SHOP */, 1068.5, -400.8, 15.2); //AMMU NATION
+                    Pager.AddMessage('COLT_IN', 140, 2, 0);
+                    $.out_of_stock_pistol = 1;
                 }
             }
+        }
 
-            if ($.out_of_stock_pistol == 1) {
-                return; // TERMINATE_THIS_SCRIPT
-            }
+        if ($.out_of_stock_pistol == 1) {
+            return; // TERMINATE_THIS_SCRIPT
         }
     }
 }
 
 async function uzi_message() {
     // Called after Joey 4
+    // SCRIPT_NAME uzi1
 
-    {
-        // SCRIPT_NAME uzi1
-    }
+    await wait_for('flag_joey_mission4_passed');
+    verbose('[+] Activating subscript "uzi_message"');
 
-    async function uzi_create() {
-        // SCM GOTO → uzi_create lowered to endless loop
-        while (true) {
-            await asyncWait(5000);
+    uzi_create: while (true) {
+        await asyncWait(5000);
 
-            if ($.player.isPlaying()) {
-                if (!ONMISSION) {
-                    if ($.out_of_stock_uzi == 0) {
-                        Pager.AddMessage('UZI_IN', 140, 2, 0);
-                        $.out_of_stock_uzi = 1;
-                    }
+        if ($.player.isPlaying()) {
+            if (!ONMISSION) {
+                if ($.out_of_stock_uzi == 0) {
+                    Pager.AddMessage('UZI_IN', 140, 2, 0);
+                    $.out_of_stock_uzi = 1;
                 }
             }
+        }
 
-            if ($.out_of_stock_uzi == 1) {
+        if ($.out_of_stock_uzi == 1) {
+            return; // TERMINATE_THIS_SCRIPT
+        }
+    }
+}
+
+async function imp_exp_pager() {
+    //To be played after Pulp Friction
+    await wait_for('flag_frankie_mission1_passed');
+    verbose('[+] Activating subscript "imp_exp_pager"');
+
+    while (true) {
+        await asyncWait(100000);
+
+        if (!ONMISSION) {
+            if ($.player.isPlaying()) {
+                Pager.AddMessage('IMPEXPP', 140, 2, 0);
                 return; // TERMINATE_THIS_SCRIPT
             }
         }
     }
 }
 
-async function imp_exp_pager() {
-    while (true) {
-        {
-            //To be played after Pulp Friction
-
-            await asyncWait(100000);
-
-            if (!ONMISSION) {
-                if ($.player.isPlaying()) {
-                    Pager.AddMessage('IMPEXPP', 140, 2, 0);
-                    return; // TERMINATE_THIS_SCRIPT
-                }
-            }
-        }
-    }
-}
-
 async function emergency_crane_pager() {
+    //To be played after Bomb Da Base
+    await wait_for('flag_frankie_mission3_passed');
+    verbose('[+] Activating subscript "emergency_crane_pager"');
+
     while (true) {
-        {
-            //To be played after Bomb Da Base
+        await asyncWait(200000);
 
-            await asyncWait(200000);
-
-            if (!ONMISSION) {
-                if ($.player.isPlaying()) {
-                    Pager.AddMessage('EMVHPUP', 140, 2, 0);
-                    return; // TERMINATE_THIS_SCRIPT
-                }
+        if (!ONMISSION) {
+            if ($.player.isPlaying()) {
+                Pager.AddMessage('EMVHPUP', 140, 2, 0);
+                return; // TERMINATE_THIS_SCRIPT
             }
         }
     }
 }
 
 async function van_heist_garage_pager() {
+    //To be played after Van Heist
+    await wait_for('flag_joey_mission3_passed');
+    verbose('[+] Activating subscript "van_heist_garage_pager"');
+
     while (true) {
-        {
-            //To be played after Van Heist
+        await asyncWait(300000);
 
-            await asyncWait(300000);
-
-            if (!ONMISSION) {
-                if ($.player.isPlaying()) {
-                    Pager.AddMessage('VANHSTP', 140, 2, 0);
-                    return; // TERMINATE_THIS_SCRIPT
-                }
+        if (!ONMISSION) {
+            if ($.player.isPlaying()) {
+                Pager.AddMessage('VANHSTP', 140, 2, 0);
+                return; // TERMINATE_THIS_SCRIPT
             }
         }
     }

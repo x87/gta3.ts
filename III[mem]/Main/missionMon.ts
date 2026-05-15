@@ -12,6 +12,7 @@ class DeatharrestBeenExecutedError extends Error {
 
 (async function () {
     const p = new Player(0);
+    const canStartMap = new Map<string, boolean>();
     const _asyncWait = globalThis.asyncWait;
     // @ts-ignore
     asyncWait = async function (delay) {
@@ -24,24 +25,44 @@ class DeatharrestBeenExecutedError extends Error {
         await _asyncWait(0);
         if (!ONMISSION && p.isPlaying() && p.canStartMission()) {
             for (const mission of missions) {
-                if (await mission.canStart()) {
-                    if (mission.beforeMission) {
-                        try {
-                            await mission.beforeMission();
-                        } catch (e) {
-                            log(`[-] Error in beforeMission of mission ${mission.name} from ${mission.scriptPath}: ${unwrapError(e)}`);
-                        }
-                    }
-                    await loadAndLaunchMission(mission);
-                    if (mission.afterMission) {
-                        try {
-                            await mission.afterMission();
-                        } catch (e) {
-                            log(`[-] Error in afterMission of mission ${mission.name} from ${mission.scriptPath}: ${unwrapError(e)}`);
-                        }
-                    }
-                    break;
+                const missionKey = mission.scriptPath;
+                const canStart = await mission.canStart();
+
+                if (!canStart) {
+                    canStartMap.set(missionKey, false);
+                    continue;
                 }
+
+                if (canStartMap.get(missionKey)) {
+                    // if the mission can start, but additional checks in beforeMission have not been met yet
+                    continue;
+                }
+
+                canStartMap.set(missionKey, true);
+
+                if (mission.beforeMission) {
+                    let beforeMissionResult: void | boolean | undefined = undefined;
+                    try {
+                        beforeMissionResult = await mission.beforeMission();
+                    } catch (e) {
+                        log(`[-] Error in beforeMission of mission ${mission.name} from ${mission.scriptPath}: ${unwrapError(e)}`);
+                    }
+
+                    if (beforeMissionResult === false) {
+                        log(`[~] Mission "${mission.name}" from ${mission.scriptPath} canceled by beforeMission`);
+                        break;
+                    }
+                }
+
+                await loadAndLaunchMission(mission);
+                if (mission.afterMission) {
+                    try {
+                        await mission.afterMission();
+                    } catch (e) {
+                        log(`[-] Error in afterMission of mission ${mission.name} from ${mission.scriptPath}: ${unwrapError(e)}`);
+                    }
+                }
+                break;
             }
         }
     }

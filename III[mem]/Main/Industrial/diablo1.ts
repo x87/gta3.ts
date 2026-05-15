@@ -1377,7 +1377,7 @@ async function mission_d1_passed() {
         Stat.RegisterMissionPassed('DIAB1');
         Stat.PlayerMadeProgress(1);
         $.flag_diablo_mission1_passed = 1;
-        // START_NEW_SCRIPT diablo_mission2_loop
+        // START_NEW_SCRIPT diablo_mission2_loop // xxx: moved to mission monitor
         $.flag_diablo1_passed_before = 1;
     }
 

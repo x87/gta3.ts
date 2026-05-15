@@ -96,7 +96,7 @@ async function body() {
             $.info_time_lapsed = $.info_time_now - $.info_time_start;
         }
         if ($.info_time_lapsed > 3000 && $.flag_info < 2) {
-            Hud.FlashObject(-1);
+            Hud.FlashObject(-1 as any);
         }
         if ($.info_time_lapsed > 5000 && $.flag_info == 1) {
             Text.PrintHelp('HEAL_B');

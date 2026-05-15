@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/asuka1.sc
-import { $ } from '../../utils';
+import { $, verbose } from '../../utils';
 
 
 async function mission_start_asuka1() {
@@ -2429,8 +2429,8 @@ async function mission_start_asuka1() {
         // mission cleanup
     }
 
-    async function mission_cleanup_asuka1() {
-        // START_NEW_SCRIPT close_asuka1_door
+    async function mission_cleanup_asuka1() {        
+        close_asuka1_door(); // START_NEW_SCRIPT close_asuka1_door
 
         //IF NOT IS_CHAR_DEAD frankie
         //	REMOVE_CHAR_ELEGANTLY frankie
@@ -3148,4 +3148,31 @@ export async function asuka1() {
     // VAR_FLOAT beamer1_stuck_x beamer1_stuck_y beamer1_stuck_z beamer2_stuck_x beamer2_stuck_y beamer2_stuck_z beamer3_stuck_x beamer3_stuck_y beamer3_stuck_z
 
     // ****************************************Mission Start************************************
+}
+
+async function close_asuka1_door() {
+    verbose('[+] Activating subscript "close_asuka1_door"');
+    
+    if (ScriptObject.DoesExist($.backdoor)) {
+        $.door_position_a1 = $.backdoor.getHeading();
+        if ($.door_crash_flag == 1) {
+            while (!($.door_position_a1 == 0.0)) {
+                if ($.player.isPlaying()) {
+                    if (!$.player.isInArea3D(889.618, -418.098, 15.0, 895.151, -412.675, 18.0, false)) {
+                        //IF NOT IS_PLAYER_IN_AREA_3D player 893.494 -417.093 14.943 894.934 -413.657 17.916 0
+                        if ($.door_position_a1 > -10.0 && $.door_position_a1 < 10.0) {
+                            $.door_position_a1 = 0.0;
+                        } else {
+                            $.door_position_a1 -= 10.0;
+                        }
+                        $.backdoor.setHeading($.door_position_a1);
+                    }
+                } else {
+                    $.door_position_a1 = 0.0;
+                    $.backdoor.setHeading($.door_position_a1);
+                }
+                await asyncWait(0);
+            }
+        }
+    }
 }

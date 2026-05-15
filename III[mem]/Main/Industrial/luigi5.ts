@@ -1,6 +1,5 @@
 // Generated from Main/Industrial/luigi5.sc
-import { $ } from '../../utils';
-
+import { $, verbose } from '../../utils';
 
 async function mission_start_luigi5() {
     ONMISSION = true;
@@ -1854,7 +1853,7 @@ async function mission_start_luigi5() {
         Mission.Finish();
 
         // START_NEW_SCRIPT close_fuzz_doors
-
+        close_fuzz_doors();
         return;
     }
 
@@ -2362,4 +2361,30 @@ export async function luigi5() {
     // VAR_INT flag_timer_prossie8_lm5
 
     // ******************************************Mission Start**********************************
+}
+
+async function close_fuzz_doors() {
+    {
+        // Should be called in cleanup for luigi5
+
+        // SCRIPT_NAME FUZZ_DR
+
+        verbose('[+] Activating subscript "close_fuzz_doors"');
+
+        while ($.flag_moved_door1_lm5 == 0 || $.flag_moved_door2_lm5 == 0) {
+            await asyncWait(0);
+            if ($.counter_girls_trying_to_get_to_ball == 0) {
+                if (!World.IsAreaOccupied(1008.0, -899.0, 14.0, 996.5, -886.5, 20.0, false /* FALSE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */)) {
+                    if ($.fuzz_door1.rotate(180.0, 10.0, false /* FALSE */)) {
+                        $.flag_moved_door1_lm5 = 1;
+                    }
+                    if ($.fuzz_door2.rotate(0.0, 10.0, false /* FALSE */)) {
+                        $.flag_moved_door2_lm5 = 1;
+                    }
+                }
+            }
+        }
+
+        return; // TERMINATE_THIS_SCRIPT
+    }
 }

@@ -269,7 +269,7 @@ async function mission_diablo3_passed() {
     Stat.RegisterMissionPassed('DIAB3');
     Stat.PlayerMadeProgress(1);
     Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
-    // START_NEW_SCRIPT diablo_mission4_loop
+    // START_NEW_SCRIPT diablo_mission4_loop // xxx: moved to mission monitor
     return;
 
     // mission cleanup

@@ -456,7 +456,7 @@ async function mission_diablo2_passed() {
     $.player.addScore(8000);
     Stat.RegisterMissionPassed('DIAB2');
     Stat.PlayerMadeProgress(1);
-    // START_NEW_SCRIPT diablo_mission3_loop
+    // START_NEW_SCRIPT diablo_mission3_loop // xxx: moved to mission monitor
     return;
 
     // mission cleanup

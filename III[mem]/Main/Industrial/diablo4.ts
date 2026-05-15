@@ -444,7 +444,7 @@ async function mission_diablo4_passed() {
     $.donkeymag3.setHeading(190.0);
     $.flag_diablo_mission1_passed = 0;
     $.diablo_contact_blip.remove();
-    // START_NEW_SCRIPT diablo_mission1_loop
+    // START_NEW_SCRIPT diablo_mission1_loop // xxx: moved to mission monitor
     Stat.RegisterMissionPassed('DIAB4');
     Stat.PlayerMadeProgress(1);
     return;

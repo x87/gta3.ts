@@ -29,6 +29,12 @@ export async function run_if(condition: () => boolean, fn: () => Promise<void>) 
     }
 }
 
+export async function wait_for(variable: keyof typeof $, checkInterval = 0) {
+    while ($[variable] == 0) {
+        await asyncWait(checkInterval);
+    }
+}
+
 export function verbose(message: any) {
     if (_verbose) {
         log(message);
