@@ -1486,6 +1486,8 @@ async function main() {
     }
 }
 
+// ***************************************Industrial Level**********************************
+
 async function meat_phone_loop() {
     while (true) {
         if ($.flag_meat_mission1_passed && $.flag_meat_mission2_passed && $.flag_meat_mission3_passed && $.flag_meat_mission4_passed) {
@@ -1530,128 +1532,6 @@ async function meat_phone_loop() {
         }
     }
 }
-
-async function diablo_phone_loop() {
-    while (true) {
-        if ($.flag_diablo_mission1_passed && $.flag_diablo_mission2_passed && $.flag_diablo_mission3_passed && $.flag_diablo_mission4_passed) {
-            return; // TERMINATE_THIS_SCRIPT
-        }
-
-        await asyncWait($.mission_trigger_wait_time);
-
-        // xxx: activated after joey mission 3
-        if (!$.flag_joey_mission3_passed) {
-            continue;
-        }
-
-        if (!ONMISSION) {
-            $.Diablo_phone.turnOn();
-        } else {
-            $.Diablo_phone.turnOff();
-        }
-
-        if ($.player.isPlaying()) {
-            if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                if (!ONMISSION) {
-                    if ($.player.canStartMission()) {
-                        $.Diablo_phone.turnOff();
-                    }
-                    if (!$.player.isPlaying()) {
-                        continue;
-                    }
-                    while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                        await asyncWait(0);
-                        if (!$.player.isPlaying()) {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-async function yardie_phone_loop() {
-    while (true) {
-        if ($.flag_yardie_mission1_passed && $.flag_yardie_mission2_passed && $.flag_yardie_mission3_passed && $.flag_yardie_mission4_passed) {
-            return; // TERMINATE_THIS_SCRIPT
-        }
-
-        await asyncWait($.mission_trigger_wait_time);
-
-        // xxx: activated after asuka mission 1
-        if (!$.flag_asuka_mission1_passed) {
-            continue;
-        }
-
-        if (!ONMISSION) {
-            $.yardie_phone.turnOn();
-        } else {
-            $.yardie_phone.turnOff();
-        }
-
-        if ($.player.isPlaying()) {
-            if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                if (!ONMISSION) {
-                    if ($.player.canStartMission()) {
-                        $.yardie_phone.turnOff();
-                    }
-                    if (!$.player.isPlaying()) {
-                        continue;
-                    }
-                    while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                        await asyncWait(0);
-                        if (!$.player.isPlaying()) {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-async function hood_phone_loop() {
-    while (true) {
-        if ($.flag_hood_mission1_passed && $.flag_hood_mission2_passed && $.flag_hood_mission3_passed && $.flag_hood_mission4_passed && $.flag_hood_mission5_passed) {
-            return; // TERMINATE_THIS_SCRIPT
-        }
-
-        await asyncWait($.mission_trigger_wait_time);
-
-        // xxx: activated after love mission 3
-        if (!$.flag_love_mission3_passed) {
-            continue;
-        }
-
-        if (!ONMISSION) {
-            $.hood_phone.turnOn();
-        } else {
-            $.hood_phone.turnOff();
-        }
-
-        if ($.player.isPlaying()) {
-            if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                if (!ONMISSION) {
-                    if ($.player.canStartMission()) {
-                        $.hood_phone.turnOff();
-                    }
-                    if (!$.player.isPlaying()) {
-                        continue;
-                    }
-                    while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                        await asyncWait(0);
-                        if (!$.player.isPlaying()) {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-// ***************************************Industrial Level**********************************
 
 async function ind_save_loop() {
     //	Should be called before main loop
@@ -1795,6 +1675,46 @@ async function diablo_phone_start() {
                     // START_NEW_SCRIPT diablo_mission1_loop // xxx: moved to mission monitor
                     // START_NEW_SCRIPT diablo_blip_loop // xxx: implemented as a gated script
                     return; // TERMINATE_THIS_SCRIPT
+                }
+            }
+        }
+    }
+}
+
+async function diablo_phone_loop() {
+    while (true) {
+        if ($.flag_diablo_mission1_passed && $.flag_diablo_mission2_passed && $.flag_diablo_mission3_passed && $.flag_diablo_mission4_passed) {
+            return; // TERMINATE_THIS_SCRIPT
+        }
+
+        await asyncWait($.mission_trigger_wait_time);
+
+        // xxx: activated after joey mission 3
+        if (!$.flag_joey_mission3_passed) {
+            continue;
+        }
+
+        if (!ONMISSION) {
+            $.Diablo_phone.turnOn();
+        } else {
+            $.Diablo_phone.turnOff();
+        }
+
+        if ($.player.isPlaying()) {
+            if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                if (!ONMISSION) {
+                    if ($.player.canStartMission()) {
+                        $.Diablo_phone.turnOff();
+                    }
+                    if (!$.player.isPlaying()) {
+                        continue;
+                    }
+                    while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                        await asyncWait(0);
+                        if (!$.player.isPlaying()) {
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -1946,6 +1866,8 @@ async function toni5_pager_loop() {
         }
     }
 }
+
+// ***************************************Commercial Level**********************************
 
 async function com_save_loop() {
     // Should be called before main loop
@@ -2108,6 +2030,46 @@ async function yardie_phone_start() {
     }
 }
 
+async function yardie_phone_loop() {
+    while (true) {
+        if ($.flag_yardie_mission1_passed && $.flag_yardie_mission2_passed && $.flag_yardie_mission3_passed && $.flag_yardie_mission4_passed) {
+            return; // TERMINATE_THIS_SCRIPT
+        }
+
+        await asyncWait($.mission_trigger_wait_time);
+
+        // xxx: activated after asuka mission 1
+        if (!$.flag_asuka_mission1_passed) {
+            continue;
+        }
+
+        if (!ONMISSION) {
+            $.yardie_phone.turnOn();
+        } else {
+            $.yardie_phone.turnOff();
+        }
+
+        if ($.player.isPlaying()) {
+            if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                if (!ONMISSION) {
+                    if ($.player.canStartMission()) {
+                        $.yardie_phone.turnOff();
+                    }
+                    if (!$.player.isPlaying()) {
+                        continue;
+                    }
+                    while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                        await asyncWait(0);
+                        if (!$.player.isPlaying()) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 async function yardie_blip_loop() {
     //	Should be called in yardie_phone_start
     await wait_for('_flag_yardie_phone_start_complete');
@@ -2139,6 +2101,8 @@ async function yardie_blip_loop() {
         }
     }
 }
+
+// ***************************************Suburban Level************************************
 
 async function sub_save_loop() {
     {
@@ -2290,6 +2254,46 @@ async function hood_phone_start() {
                     // START_NEW_SCRIPT hood_mission1_loop // xxx: moved to mission monitor
                     // START_NEW_SCRIPT hood_blip_loop // xxx: implemented as a gated script
                     return; // TERMINATE_THIS_SCRIPT
+                }
+            }
+        }
+    }
+}
+
+async function hood_phone_loop() {
+    while (true) {
+        if ($.flag_hood_mission1_passed && $.flag_hood_mission2_passed && $.flag_hood_mission3_passed && $.flag_hood_mission4_passed && $.flag_hood_mission5_passed) {
+            return; // TERMINATE_THIS_SCRIPT
+        }
+
+        await asyncWait($.mission_trigger_wait_time);
+
+        // xxx: activated after love mission 3
+        if (!$.flag_love_mission3_passed) {
+            continue;
+        }
+
+        if (!ONMISSION) {
+            $.hood_phone.turnOn();
+        } else {
+            $.hood_phone.turnOff();
+        }
+
+        if ($.player.isPlaying()) {
+            if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                if (!ONMISSION) {
+                    if ($.player.canStartMission()) {
+                        $.hood_phone.turnOff();
+                    }
+                    if (!$.player.isPlaying()) {
+                        continue;
+                    }
+                    while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                        await asyncWait(0);
+                        if (!$.player.isPlaying()) {
+                            break;
+                        }
+                    }
                 }
             }
         }
