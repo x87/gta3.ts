@@ -13,14 +13,14 @@ interface MissionDefinition {
 const missions: MissionDefinition[] = [
     {
         scriptPath: `./Industrial/intro.mts`,
-        name: 'The Intro',
+        name: 'Intro Movie',
         async canStart() {
             return !$._flag_intro_passed;
         },
     },
     {
         scriptPath: `./Industrial/8ball.mts`,
-        name: "Luigi's Girls",
+        name: "Give Me Liberty and Luigi's Girls",
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_eightball_mission_passed == 0) {
                 return false;
@@ -47,41 +47,10 @@ const missions: MissionDefinition[] = [
             $.flag_eightball_mission_launched = 1;
         },
     },
-
-    // *******************************************Luigi Missions********************************
-    {
-        scriptPath: `./Industrial/luigi2.mts`,
-        name: `Donna' "Spank" Ma Bitch Up`,
-        async canStart() {
-            if ($.flag_industrial_passed == 1 && $.flag_luigi_mission2_passed == 0) {
-                return false;
-            }
-
-            if ($.flag_luigi_mission2_passed == 1) {
-                return false;
-            }
-
-            if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                return true;
-            }
-            return false;
-        },
-        async beforeMission() {
-            $.player.makeSafeForCutscene();
-            Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
-            Text.PrintBig('LM2', 15000, 2); //"Don'a SPANK ma bitch up"
-            while (Camera.GetFadingStatus()) {
-                await asyncWait(0);
-            }
-        },
-    },
-
     //  ***********************wanted/health info************************************************
     {
         scriptPath: `./Industrial/health.mts`,
-        name: 'health info',
+        name: 'Hospital Info Scene',
         async canStart() {
             if ($.player.isInZone('S_VIEW') && $.heal_info_trip == 1 /*&& $.flag_health_info == 0*/) {
                 if ($.heal_info.hasBeenCollected()) {
@@ -99,7 +68,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/wanted.mts`,
-        name: 'wanted info',
+        name: 'Police Station Info Scene',
         async canStart() {
             if ($.player.isInZone('S_VIEW') && $.wanted_info_trip == 1 /*&& $.flag_wanted_info == 0*/) {
                 if ($.wanted_info.hasBeenCollected()) {
@@ -119,7 +88,7 @@ const missions: MissionDefinition[] = [
     // *************************************RC Demolition****************************************
     {
         scriptPath: `./Industrial/rc1.mts`,
-        name: 'RC Destruction Derby 1',
+        name: 'RC Diablo Destruction',
         async canStart() {
             if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
                 $.flag_just_done_rc_mission = 0;
@@ -133,7 +102,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/rc2.mts`,
-        name: 'RC Destruction Derby 2',
+        name: 'RC Mafia Massacre',
         async canStart() {
             if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
                 $.flag_just_done_rc_mission = 0;
@@ -147,7 +116,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/rc3.mts`,
-        name: 'RC Destruction Derby 3',
+        name: 'RC Rumpo Rampage',
         async canStart() {
             if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
                 $.flag_just_done_rc_mission = 0;
@@ -161,7 +130,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/rc4.mts`,
-        name: 'RC Destruction Derby 4',
+        name: 'RC Casino Calamity',
         async canStart() {
             if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
                 $.flag_just_done_rc_mission = 0;
@@ -177,7 +146,7 @@ const missions: MissionDefinition[] = [
     // *******************************************4x4 Missions***********************************
     {
         scriptPath: `./Industrial/4x4_1.mts`,
-        name: '4x4 by Far',
+        name: 'Patriot Playground',
         async canStart() {
             if ($.flag_4x4_mission1_passed == 0) {
                 $.record_4x4_one = 300;
@@ -203,7 +172,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/4x4_2.mts`,
-        name: 'A ride in the Park',
+        name: 'A Ride In The Park',
         async canStart() {
             if ($.flag_4x4_mission2_passed == 0) {
                 $.record_4x4_two = 120;
@@ -230,7 +199,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/4x4_3.mts`,
-        name: 'GRIPPED, SORTED',
+        name: 'Gripped!',
         async canStart() {
             if ($.flag_4x4_mission3_passed == 0) {
                 $.record_4x4_three = 300;
@@ -258,7 +227,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/mayhem1.ts`,
-        name: 'Multi-storey Mayhem',
+        name: 'Multistorey Mayhem',
         async canStart() {
             if ($.player.isInZone('COM_EAS')) {
                 if ($.player.isInModel(129 /* CAR_STALLION */) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false /* false */)) {
@@ -283,7 +252,7 @@ const missions: MissionDefinition[] = [
     // ********************************** Ambulance Mission **********************************
     {
         scriptPath: `./Industrial/ambulance.ts`,
-        name: 'Ambulance missions',
+        name: 'Paramedic',
         async canStart() {
             if ($.player.isInModel(106 /* CAR_AMBULANCE */)) {
                 if ($.flag_player_on_ambulance_mission == 0) {
@@ -338,7 +307,7 @@ const missions: MissionDefinition[] = [
     // ***************************************Fire Mission 1**********************************
     {
         scriptPath: `./Industrial/firetruck.ts`,
-        name: 'Fire missions',
+        name: 'Firefighter',
         async canStart() {
             if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
                 if ($.flag_player_on_fire_mission == 0) {
@@ -393,7 +362,7 @@ const missions: MissionDefinition[] = [
     // ************************************** Cop Car Mission ***********************************
     {
         scriptPath: `./Industrial/copcar.ts`,
-        name: 'Cop Car Mission',
+        name: 'Vigilante',
         async canStart() {
             if (
                 $.player.isInModel(116 /* CAR_POLICE */) ||
@@ -450,7 +419,7 @@ const missions: MissionDefinition[] = [
     // ***************************************Taxi Mission 1**********************************
     {
         scriptPath: `./Industrial/taxi1.mts`,
-        name: 'Taxi Mission 1',
+        name: 'Taxi Driver',
         async canStart() {
             if ($.player.isInTaxi()) {
                 if ($.flag_taxi1_mission_launched == 0) {
@@ -503,7 +472,7 @@ const missions: MissionDefinition[] = [
     // *************************************Meat Factory Mission 1******************************
     {
         scriptPath: `./Industrial/meat1.mts`,
-        name: 'Meat Factory Mission 1',
+        name: 'The Crook',
         async canStart() {
             if ($.flag_meat_mission1_passed == 1) {
                 return false;
@@ -534,7 +503,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/meat2.mts`,
-        name: 'Meat Factory Mission 2',
+        name: 'The Thieves',
         async canStart() {
             if ($.flag_meat_mission2_passed == 1) {
                 return false;
@@ -565,7 +534,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/meat3.mts`,
-        name: 'Meat Factory Mission 3',
+        name: 'The Wife',
         async canStart() {
             if ($.flag_meat_mission3_passed == 1) {
                 return false;
@@ -596,7 +565,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/meat4.mts`,
-        name: 'Meat Factory Mission 4',
+        name: 'Her Lover',
         async canStart() {
             if ($.flag_meat_mission4_passed == 1) {
                 return false;
@@ -626,7 +595,35 @@ const missions: MissionDefinition[] = [
         },
     },
 
-    // *******************************************Luigi Missions 3-5*****************************
+    // *******************************************Luigi Missions********************************
+    {
+        scriptPath: `./Industrial/luigi2.mts`,
+        name: `Don't Spank My Bitch Up`,
+        async canStart() {
+            if ($.flag_industrial_passed == 1 && $.flag_luigi_mission2_passed == 0) {
+                return false;
+            }
+
+            if ($.flag_luigi_mission2_passed == 1) {
+                return false;
+            }
+
+            if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
+                return true;
+            }
+            return false;
+        },
+        async beforeMission() {
+            $.player.makeSafeForCutscene();
+            Camera.SetFadingColor(0, 0, 0);
+            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Streaming.Switch(false /* OFF */);
+            Text.PrintBig('LM2', 15000, 2); //"Don'a SPANK ma bitch up"
+            while (Camera.GetFadingStatus()) {
+                await asyncWait(0);
+            }
+        },
+    },
     {
         scriptPath: `./Industrial/luigi3.mts`,
         name: 'Drive Misty For Me',
@@ -655,7 +652,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/luigi4.mts`,
-        name: 'Pump Action Pimp',
+        name: 'Pump-Action Pimp',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_luigi_mission4_passed == 0) {
                 return false;
@@ -684,8 +681,8 @@ const missions: MissionDefinition[] = [
         },
     },
     {
-        scriptPath: `./Industrial/luigi5.ts`,
-        name: 'Farewell Love Muscle',
+        scriptPath: `./Industrial/luigi5.mts`,
+        name: 'The Fuzz Ball',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_luigi_mission5_passed == 0) {
                 return false;
@@ -717,7 +714,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Joey Missions 1-6******************************
     {
         scriptPath: `./Industrial/joey1.ts`,
-        name: 'Harmless Drifter',
+        name: 'Mike Lips Last Lunch',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_joey_mission1_passed == 0) {
                 return false;
@@ -748,7 +745,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/joey2.ts`,
-        name: 'Stop the Van',
+        name: `Farewell 'Chunky' Lee Chong`,
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_joey_mission2_passed == 0) {
                 return false;
@@ -774,7 +771,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/joey3.ts`,
-        name: 'Kanbu Bust Out',
+        name: 'Van Heist',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_joey_mission3_passed == 0) {
                 return false;
@@ -800,7 +797,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/joey4.ts`,
-        name: 'Steal The Deal',
+        name: `Cipriani's Chauffeur`,
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_joey_mission4_passed == 0) {
                 return false;
@@ -826,7 +823,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/joey5.ts`,
-        name: 'Taken Out',
+        name: 'Dead Skunk In The Trunk',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_joey_mission5_passed == 0) {
                 return false;
@@ -856,7 +853,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/joey6.ts`,
-        name: 'Farewell Chunky Lee Chong',
+        name: 'The Getaway',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_joey_mission6_passed == 0) {
                 return false;
@@ -893,7 +890,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Toni Missions 1-5***************************
     {
         scriptPath: `./Industrial/toni1.ts`,
-        name: 'Mike Lips Last Gig',
+        name: 'Taking Out The Laundry',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_toni_mission1_passed == 0) {
                 return false;
@@ -919,7 +916,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/toni2.ts`,
-        name: 'Blow Fish',
+        name: 'The Pick-Up',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_toni_mission2_passed == 0) {
                 return false;
@@ -945,7 +942,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/toni3.ts`,
-        name: 'Toni Cipriani',
+        name: `Salvatore's Called A Meeting`,
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_toni_mission3_passed == 0) {
                 return false;
@@ -971,7 +968,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/toni4.ts`,
-        name: 'Turismo',
+        name: 'Triads And Tribulations',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_toni_mission4_passed == 0) {
                 return false;
@@ -997,7 +994,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/toni5.ts`,
-        name: 'No Escape',
+        name: 'Blow Fish',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_toni_mission5_passed == 0) {
                 return false;
@@ -1025,7 +1022,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Frankie Missions 1-4****************************
     {
         scriptPath: `./Industrial/frank1.ts`,
-        name: 'Pulp Friction',
+        name: 'Chaperone',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_frankie_mission1_passed == 0) {
                 return false;
@@ -1053,7 +1050,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/frank2.ts`,
-        name: "Cuttin' The Grass",
+        name: "Cutting The Grass",
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_frankie_mission2_passed == 0) {
                 return false;
@@ -1081,7 +1078,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/frank2.1.ts`,
-        name: 'Bomb Da Base Part 1',
+        name: 'Bomb Da Base: Act I',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_frankie_mission2_1_passed == 0) {
                 return false;
@@ -1111,7 +1108,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/frank3.ts`,
-        name: 'Bomb Da Base Part 2',
+        name: 'Bomb Da Base: Act II',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_frankie_mission3_passed == 0) {
                 return false;
@@ -1142,7 +1139,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/frank4.ts`,
-        name: 'The Guns Part 1',
+        name: 'Last Requests',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_frankie_mission4_passed == 0) {
                 return false;
@@ -1172,7 +1169,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Diablo Missions 1-4**************************
     {
         scriptPath: `./Industrial/diablo1.ts`,
-        name: 'Diablo Destruction',
+        name: 'Turismo',
         async canStart() {
             if ($.flag_diablo_mission1_passed == 1) {
                 return false;
@@ -1197,7 +1194,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/diablo2.ts`,
-        name: 'Diablos Mission 2',
+        name: 'I Scream, You Scream',
         async canStart() {
             if ($.flag_diablo_mission2_passed == 1) {
                 return false;
@@ -1222,7 +1219,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/diablo3.ts`,
-        name: 'Diablos Mission 3',
+        name: 'Trial By Fire',
         async canStart() {
             if ($.flag_diablo_mission3_passed == 1) {
                 return false;
@@ -1247,7 +1244,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/diablo4.ts`,
-        name: 'Diablos Mission 4',
+        name: `Big'N'Veiny`,
         async canStart() {
             if ($.flag_diablo_mission4_passed == 1) {
                 return false;
@@ -1274,7 +1271,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Asuka Missions 1-5*****************************
     {
         scriptPath: `./Commercial/asuka1.ts`,
-        name: 'Asuka Mission 1',
+        name: 'Sayonara Salvatore',
         async canStart() {
             if ($.flag_asuka_mission1_passed == 1) {
                 return false;
@@ -1297,7 +1294,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/asuka2.ts`,
-        name: 'Asuka Mission 2',
+        name: 'Under Surveillance',
         async canStart() {
             if ($.flag_asuka_mission2_passed == 1) {
                 return false;
@@ -1320,7 +1317,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/asuka3.ts`,
-        name: 'Asuka Mission 3',
+        name: 'Paparazzi Purge',
         async canStart() {
             if ($.flag_asuka_mission3_passed == 1) {
                 return false;
@@ -1343,7 +1340,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/asuka4.ts`,
-        name: 'Asuka Mission 4',
+        name: 'Payday For Ray',
         async canStart() {
             if ($.flag_asuka_mission4_passed == 1) {
                 return false;
@@ -1366,7 +1363,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/asuka5.ts`,
-        name: 'Asuka Mission 5',
+        name: 'Two-Faced Tanner',
         async canStart() {
             if ($.flag_love_mission4_passed == 1) {
                 return false;
@@ -1394,7 +1391,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Kenji Missions 1-5****************************
     {
         scriptPath: `./Commercial/kenji1.ts`,
-        name: 'Kanbu Bust Out',
+        name: 'Kanbu Bust-Out',
         async canStart() {
             if ($.flag_kenji_mission1_passed == 1 || $.flag_love_mission2_passed == 1) {
                 return false;
@@ -1417,7 +1414,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/kenji2.ts`,
-        name: 'Gone in Sixty Seconds',
+        name: 'Grand Theft Auto',
         async canStart() {
             if ($.flag_kenji_mission2_passed == 1 || $.flag_love_mission2_passed == 1) {
                 return false;
@@ -1440,7 +1437,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/kenji3.ts`,
-        name: 'Kenji Mission 3',
+        name: 'Deal Steal',
         async canStart() {
             if ($.flag_kenji_mission3_passed == 1 || $.flag_love_mission2_passed == 1) {
                 return false;
@@ -1511,7 +1508,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Ray Missions 1-6*****************************
     {
         scriptPath: `./Commercial/ray1.ts`,
-        name: 'Silence the Sneak',
+        name: 'Silence The Sneak',
         async canStart() {
             if ($.flag_ray_mission1_passed == 1) {
                 return false;
@@ -1607,7 +1604,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/ray5.ts`,
-        name: 'Ray Mission 5',
+        name: 'Plaster Blaster',
         async canStart() {
             if ($.flag_ray_mission5_passed == 1) {
                 return false;
@@ -1631,7 +1628,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/ray6.ts`,
-        name: 'Ray Mission 6',
+        name: 'Marked Man',
         async canStart() {
             if ($.flag_ray_mission6_passed == 1) {
                 return false;
@@ -1657,7 +1654,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Love Missions 1-7****************************
     {
         scriptPath: `./Commercial/love1.ts`,
-        name: 'Rescue the Old Oriental Gentleman',
+        name: 'Liberator',
         async canStart() {
             if ($.flag_love_mission1_passed == 1) {
                 return false;
@@ -1680,7 +1677,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/love2.ts`,
-        name: 'Love Mission 2',
+        name: 'Waka-Gashira Wipeout!',
         async canStart() {
             if ($.flag_love_mission2_passed == 1) {
                 return false;
@@ -1703,7 +1700,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/love3.ts`,
-        name: 'Love Mission 3',
+        name: 'A Drop In The Ocean',
         async canStart() {
             if ($.flag_love_mission3_passed == 1) {
                 return false;
@@ -1726,7 +1723,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/love4.ts`,
-        name: 'Her Lover',
+        name: 'Grand Theft Aero',
         async canStart() {
             if ($.flag_love_mission4_passed == 1) {
                 return false;
@@ -1749,7 +1746,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/love5.ts`,
-        name: 'Love Mission 5',
+        name: 'Escort Service',
         async canStart() {
             if ($.flag_love_mission5_passed == 1) {
                 return false;
@@ -1772,7 +1769,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/love6.ts`,
-        name: 'Love Mission 6',
+        name: 'Decoy',
         async canStart() {
             if ($.flag_love_mission6_passed == 1) {
                 return false;
@@ -1795,7 +1792,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/love7.ts`,
-        name: 'Love Mission 7',
+        name: `Love's Disappearance`,
         async canStart() {
             if ($.flag_love_mission7_passed == 1) {
                 return false;
@@ -1820,7 +1817,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Yardie Missions 1-4****************************
     {
         scriptPath: `./Commercial/yard1.ts`,
-        name: 'Yardie Mission 1',
+        name: 'Bling-Bling Scramble',
         async canStart() {
             if ($.flag_yardie_mission1_passed == 1) {
                 return false;
@@ -1845,7 +1842,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/yard2.ts`,
-        name: 'Yardie Mission 2',
+        name: 'Uzi Rider',
         async canStart() {
             if ($.flag_yardie_mission2_passed == 1) {
                 return false;
@@ -1867,7 +1864,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/yard3.ts`,
-        name: 'Yardie Mission 3',
+        name: 'Gangcar Round-Up',
         async canStart() {
             if ($.flag_yardie_mission3_passed == 1) {
                 return false;
@@ -1889,7 +1886,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Commercial/yard4.ts`,
-        name: 'Yardie Mission 4',
+        name: 'Kingdom Come',
         async canStart() {
             if ($.flag_yardie_mission4_passed == 1) {
                 return false;
@@ -1913,7 +1910,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Asuka Suburban Missions 1-3*********************
     {
         scriptPath: `./Suburban/asusb1.ts`,
-        name: 'Asuka Suburban Mission 1',
+        name: 'Bait',
         async canStart() {
             if ($.flag_asuka_suburban_mission1_passed == 1) {
                 return false;
@@ -1936,7 +1933,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/asusb2.ts`,
-        name: 'Asuka Suburban Mission 2',
+        name: 'Espresso-2-Go!',
         async canStart() {
             if ($.flag_asuka_suburban_mission2_passed == 1) {
                 return false;
@@ -1959,7 +1956,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/asusb3.ts`,
-        name: 'Asuka Suburban Mission 3',
+        name: 'S.A.M.',
         async canStart() {
             if ($.flag_asuka_suburban_mission3_passed == 1) {
                 return false;
@@ -1984,7 +1981,7 @@ const missions: MissionDefinition[] = [
     // *******************************************Hood Missions 1-5**************************
     {
         scriptPath: `./Suburban/hood1.ts`,
-        name: 'Uzi Driver',
+        name: 'Uzi Money',
         async canStart() {
             if ($.flag_hood_mission1_passed == 1) {
                 return false;
@@ -2031,7 +2028,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/hood3.ts`,
-        name: 'Hood Mission 3',
+        name: 'Rigged To Blow',
         async canStart() {
             if ($.flag_hood_mission3_passed == 1) {
                 return false;
@@ -2053,7 +2050,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/hood4.ts`,
-        name: 'Hood Mission 4',
+        name: 'Bullion Run',
         async canStart() {
             if ($.flag_hood_mission4_passed == 1) {
                 return false;
@@ -2075,7 +2072,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/hood5.ts`,
-        name: 'Hood Mission 5',
+        name: 'Rumble',
         async canStart() {
             if ($.flag_hood_mission5_passed == 1) {
                 return false;
@@ -2097,7 +2094,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Suburban/cat1.ts`,
-        name: 'Catalina Mission 1',
+        name: 'The Exchange',
         async canStart() {
             if ($.flag_cat_mission1_passed == 1) {
                 return false;
