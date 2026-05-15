@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_frank4() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_frankie_mission = 1;
     // SCRIPT_NAME frank4
     await asyncWait(0);
@@ -837,7 +837,7 @@ async function mission_frank4_passed() {
 }
 
 async function mission_cleanup_frank4() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_frankie_mission = 0;
     $.blip1_fm4.remove();
     $.blip2_fm4.remove();

@@ -5,7 +5,7 @@ import { $ } from '../../utils';
 async function mission_start_ray5() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME ray5
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_ray_mission = 1;
 
     $.rays_cutscene_flag = 1;
@@ -612,7 +612,7 @@ async function mission_cleanup_ray5() {
     Hud.ClearCounter($.ambulance_health);
     Hud.ClearCounter($.bodycast_health);
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
 
     $.injured_cop_rc5.markAsNoLongerNeeded();

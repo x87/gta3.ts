@@ -36,6 +36,7 @@ export function verbose(message: any) {
 }
 
 export async function GOSUB_FILE(file: string) {
+    verbose(`GOSUB_FILE: ${file}`);
     await import(file);
 }
 

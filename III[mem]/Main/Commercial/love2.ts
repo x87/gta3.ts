@@ -129,7 +129,7 @@ async function player_wanted_love2() {
 async function mission_start_love2() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME love2
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_love_mission = 1;
     await asyncWait(0);
 
@@ -805,7 +805,7 @@ async function mission_cleanup_love2() {
     $.player.setControl(true /* on */);
     Hud.SwitchWidescreen(false /* off */);
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_love_mission = 0;
 
     Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);

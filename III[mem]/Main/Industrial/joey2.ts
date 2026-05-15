@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_joey2() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_joey_mission = 1;
     // SCRIPT_NAME joey2
     await asyncWait(0);
@@ -830,7 +830,7 @@ async function mission_joey2_passed() {
 }
 
 async function mission_cleanup_joey2() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_joey_mission = 0;
     $.special_ammu_audio = 0;
     Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);

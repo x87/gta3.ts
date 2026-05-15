@@ -1,7 +1,7 @@
 // Generated from Main/Industrial/car_gen.sc
 import { $, verbose } from '../../utils';
 
-verbose('[+] Car generators loaded');
+verbose('[+] Car generators script loaded');
 
 // *************************************INDUSTRIAL CAR GENERATORS***************************
 
@@ -543,4 +543,4 @@ $.rc_van3 = CarGenerator.Create(-633.8, 64.6, 19.0, 175.0, 149 /* CAR_TOYZ */, -
 $.rc_van4 = CarGenerator.Create(366.0, -1312.0, 26.0, 180.0, 149 /* CAR_TOYZ */, -1, -1, false, 0, 0, 0, 10000); //Yakuza
 //SWITCH_CAR_GENERATOR rc_van4 101
 
-verbose('[+] Car generators created');
+verbose('[-] Car generators script ended');

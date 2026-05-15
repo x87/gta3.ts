@@ -5,7 +5,7 @@ import { $ } from '../../utils';
 async function mission_start_yd2() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME yard2
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_yardie_mission = 1;
     await asyncWait(0);
 
@@ -937,7 +937,7 @@ async function filby() {
 async function mission_cleanup_yd2() {
     $.blip_driveby_yd2.remove();
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_yardie_mission = 0;
     Hud.ClearCounter($.body_count_yd2);
     $.blip_driveby_yd2.remove();

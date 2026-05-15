@@ -7,7 +7,7 @@ async function mission_start_taxi1() {
 
     // SET_DEATHARREST_STATE(false /* OFF */); // GSW - does deatharrest have to be switched off?  YES! well maybe...
 
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.taxi_countdown_already_started = 0;
     $.taxi_countdown = 0;
     $.taxi_passed_this_shot = 0;
@@ -76,12 +76,12 @@ async function Start_taxi_mission() {
     //	random_ped_grabber:
 
     if (!($.controlmode == 3)) {
-        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && $.flag_player_on_mission == 1) {
+        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
             // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
             throw new Error('unresolved GOTO taxi_fail_button_pressed'); // fallback: would break linear control flow
         }
     } else {
-        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && $.flag_player_on_mission == 1) {
+        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
             // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
             throw new Error('unresolved GOTO taxi_fail_button_pressed'); // fallback: would break linear control flow
         }
@@ -153,12 +153,12 @@ async function ped_get_in_taxi() {
             throw new Error('unresolved GOTO mission_taxi1_passed'); // fallback: would break linear control flow
         }
         if (!($.controlmode == 3)) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && $.flag_player_on_mission == 1) {
+            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
                 // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO taxi_fail_button_pressed'); // fallback: would break linear control flow
             }
         } else {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && $.flag_player_on_mission == 1) {
+            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
                 // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO taxi_fail_button_pressed'); // fallback: would break linear control flow
             }
@@ -224,12 +224,12 @@ async function ped_get_in_taxi() {
             throw new Error('unresolved GOTO mission_taxi1_passed'); // fallback: would break linear control flow
         }
         if (!($.controlmode == 3)) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && $.flag_player_on_mission == 1) {
+            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
                 // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO taxi_fail_button_pressed'); // fallback: would break linear control flow
             }
         } else {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && $.flag_player_on_mission == 1) {
+            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
                 // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO taxi_fail_button_pressed'); // fallback: would break linear control flow
             }
@@ -752,12 +752,12 @@ async function passenger_destination() {
             }
             $.controlmode = Pad.GetControllerMode();
             if (!($.controlmode == 3)) {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && $.flag_player_on_mission == 1) {
+                if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
                     // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO taxi_fail_button_pressed'); // fallback: would break linear control flow
                 }
             } else {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && $.flag_player_on_mission == 1) {
+                if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
                     // SCM GOTO → taxi_fail_button_pressed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO taxi_fail_button_pressed'); // fallback: would break linear control flow
                 }
@@ -992,12 +992,12 @@ async function mission_taxi1_failed() {
                     }
                     $.controlmode = Pad.GetControllerMode();
                     if (!($.controlmode == 3)) {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && $.flag_player_on_mission == 1) {
+                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
                             // SCM GOTO → taxi_ped_leave2 (not lowered; manual jump required)
                             throw new Error('unresolved GOTO taxi_ped_leave2'); // fallback: would break linear control flow
                         }
                     } else {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && $.flag_player_on_mission == 1) {
+                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
                             // SCM GOTO → taxi_ped_leave2 (not lowered; manual jump required)
                             throw new Error('unresolved GOTO taxi_ped_leave2'); // fallback: would break linear control flow
                         }
@@ -1053,7 +1053,7 @@ async function mission_cleanup_taxi1() {
     Text.PrintWithNumberBig('TSCORE', $.taxi_score, 6000, 6); //Your score is...
     Stat.RegisterMoneyMadeTaxi($.taxi_score);
     // SET_DEATHARREST_STATE(true /* on */);
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_taxi1_mission_launched = 0;
     if ($.player.isPlaying()) {
         $.player.setControl(true /* ON */);

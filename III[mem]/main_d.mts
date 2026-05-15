@@ -12,21 +12,21 @@ async function mission_start() {
 
             if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
                 //HOSPITAL INFO PICKUPS
-                if ($.flag_player_on_mission == 0 && $.heal_info_trip == 0 && $.flag_health_info == 0) {
+                if (!ONMISSION && $.heal_info_trip == 0 && $.flag_health_info == 0) {
                     $.heal_info = Pickup.Create(1361 /* info */, 3 /* PICKUP_ONCE */, 1144.2, -596.9, 14.9); //hospital info cut
                     $.heal_info_trip = 1;
                 }
-                if ($.flag_player_on_mission == 1 && $.heal_info_trip == 1) {
+                if (ONMISSION && $.heal_info_trip == 1) {
                     $.heal_info.remove(); //hospital info cut
                     $.heal_info_trip = 0;
                 }
 
                 //POLICE INFO PICKUPS
-                if ($.flag_player_on_mission == 0 && $.wanted_info_trip == 0 && $.flag_wanted_info == 0) {
+                if (!ONMISSION && $.wanted_info_trip == 0 && $.flag_wanted_info == 0) {
                     $.wanted_info = Pickup.Create(1361 /* info */, 3 /* PICKUP_ONCE */, 1143.9, -675.2, 15.0); //police info cut
                     $.wanted_info_trip = 1;
                 }
-                if ($.flag_player_on_mission == 1 && $.wanted_info_trip == 1) {
+                if (ONMISSION && $.wanted_info_trip == 1) {
                     $.wanted_info.remove(); //police info cut
                     $.wanted_info_trip = 0;
                 }
@@ -58,7 +58,7 @@ async function hospital_info_loop() {
             await asyncWait(0);
 
             if ($.player.isPlaying()) {
-                if ($.player.isInZone('S_VIEW') && $.flag_player_on_mission == 0 && $.heal_info_trip == 1) {
+                if ($.player.isInZone('S_VIEW') && !ONMISSION && $.heal_info_trip == 1) {
                     if ($.heal_info.hasBeenCollected()) {
                         $.player.setControl(false /* off */);
                         while (Camera.GetFadingStatus()) {
@@ -80,7 +80,7 @@ async function police_info_loop() {
             await asyncWait(0);
 
             if ($.player.isPlaying()) {
-                if ($.player.isInZone('S_VIEW') && $.flag_player_on_mission == 0 && $.wanted_info_trip == 1) {
+                if ($.player.isInZone('S_VIEW') && !ONMISSION && $.wanted_info_trip == 1) {
                     if ($.wanted_info.hasBeenCollected()) {
                         $.player.setControl(false /* off */);
                         while (Camera.GetFadingStatus()) {
@@ -106,7 +106,7 @@ async function rc_loop() {
 
             if ($.player.isPlaying() && $.flag_just_done_rc_mission == 0) {
                 if ($.player.isInModel(149 /* CAR_TOYZ */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.locateAnyMeans3D(1014.0, -120.0, 5.0, 5.0, 5.0, 5.0, false /* false */)) {
                             Text.PrintBig('RC1', 15000, 2);
                             await asyncWait(0);
@@ -159,7 +159,7 @@ async function t4x4_mission1_loop() {
             }
 
             if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0 && $.player.isInZone('S_VIEW')) {
+                if (!ONMISSION && $.player.isInZone('S_VIEW')) {
                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(1294.0, -656.0, 1316.0, -638.0, false /* false */)) {
                         $.flag_4x4one_trigger = 1;
                     }
@@ -190,7 +190,7 @@ async function t4x4_mission2_loop() {
             }
 
             if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0 && $.player.isInZone('PARK')) {
+                if (!ONMISSION && $.player.isInZone('PARK')) {
                     if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && !$.player.isInArea2D(58.0, -585.0, 68.0, -595.0, false /* false */)) {
                         $.flag_4x4two_trigger = 1;
                     }
@@ -221,7 +221,7 @@ async function t4x4_mission3_loop() {
             }
 
             if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0 && $.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
+                if (!ONMISSION && $.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
                     if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
                         $.flag_4x4three_trigger = 1;
                     }
@@ -252,7 +252,7 @@ async function multistorey_mission_loop() {
             }
 
             if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0 && $.player.isInZone('COM_EAS')) {
+                if (!ONMISSION && $.player.isInZone('COM_EAS')) {
                     if ($.player.isInModel(129 /* CAR_STALLION */) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false /* false */)) {
                         $.flag_mayhem_trigger = 1;
                     }
@@ -284,7 +284,7 @@ async function ambulance_mission_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.isInModel(106 /* CAR_AMBULANCE */)) {
-                    if ($.flag_player_on_mission == 0 && $.flag_player_on_ambulance_mission == 0) {
+                    if (!ONMISSION && $.flag_player_on_ambulance_mission == 0) {
                         $.controlmode = Pad.GetControllerMode();
                         if ($.been_in_ambulance_before == 0) {
                             if (!($.controlmode == 3)) {
@@ -347,7 +347,7 @@ async function fire_truck_mission_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
-                    if ($.flag_player_on_mission == 0 && $.flag_player_on_fire_mission == 0) {
+                    if (!ONMISSION && $.flag_player_on_fire_mission == 0) {
                         $.controlmode = Pad.GetControllerMode();
                         if ($.been_in_a_firetruk_before == 0) {
                             if (!($.controlmode == 3)) {
@@ -415,7 +415,7 @@ async function cop_mission_loop() {
                     $.player.isInModel(122 /* CAR_RHINO */) ||
                     $.player.isInModel(107 /* CAR_FBI */)
                 ) {
-                    if ($.flag_player_on_mission == 0 && $.flag_player_on_cop_mission == 0) {
+                    if (!ONMISSION && $.flag_player_on_cop_mission == 0) {
                         $.controlmode = Pad.GetControllerMode();
                         if ($.been_in_a_copcar_before == 0) {
                             if (!($.controlmode == 3)) {
@@ -478,7 +478,7 @@ async function taxi_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.isInTaxi()) {
-                    if ($.flag_player_on_mission == 0 && $.flag_taxi1_mission_launched == 0) {
+                    if (!ONMISSION && $.flag_taxi1_mission_launched == 0) {
                         $.controlmode = Pad.GetControllerMode();
                         if ($.been_in_a_taxi_before == 0) {
                             if (!($.controlmode == 3)) {
@@ -545,7 +545,7 @@ async function meat_mission1_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 const _res361 = Clock.GetTimeOfDay();
                 $.hours = _res361.hours;
                 $.minutes = _res361.minutes;
@@ -560,7 +560,7 @@ async function meat_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.meat_phone.turnOff();
                             const _res362 = Clock.GetTimeOfDay();
@@ -608,7 +608,7 @@ async function meat_mission2_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 const _res363 = Clock.GetTimeOfDay();
                 $.hours = _res363.hours;
                 $.minutes = _res363.minutes;
@@ -623,7 +623,7 @@ async function meat_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.meat_phone.turnOff();
                             const _res364 = Clock.GetTimeOfDay();
@@ -671,7 +671,7 @@ async function meat_mission3_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 const _res365 = Clock.GetTimeOfDay();
                 $.hours = _res365.hours;
                 $.minutes = _res365.minutes;
@@ -686,7 +686,7 @@ async function meat_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.meat_phone.turnOff();
                             const _res366 = Clock.GetTimeOfDay();
@@ -734,7 +734,7 @@ async function meat_mission4_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 const _res367 = Clock.GetTimeOfDay();
                 $.hours = _res367.hours;
                 $.minutes = _res367.minutes;
@@ -749,7 +749,7 @@ async function meat_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.meat_phone.turnOff();
                             const _res368 = Clock.GetTimeOfDay();
@@ -804,7 +804,7 @@ async function eightball_mission_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.player.isPlaying() && $.flag_eightball_mission_launched == 0 && $.flag_player_on_mission == 0) {
+            if ($.player.isPlaying() && $.flag_eightball_mission_launched == 0 && !ONMISSION) {
                 if ($.flag_reached_hideout == 0) {
                     if ($.player.locateOnFoot2D(811.9, -939.95, 3.5, 3.5, false /* FALSE */)) {
                         if ($.player.canStartMission()) {
@@ -845,7 +845,7 @@ async function luigi_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -893,7 +893,7 @@ async function luigi_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -946,7 +946,7 @@ async function luigi_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -999,7 +999,7 @@ async function luigi_mission5_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1049,7 +1049,7 @@ async function joey_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         const _res369 = Clock.GetTimeOfDay();
                         $.hours = _res369.hours;
                         $.minutes = _res369.minutes;
@@ -1118,7 +1118,7 @@ async function joey_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1166,7 +1166,7 @@ async function joey_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1214,7 +1214,7 @@ async function joey_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1267,7 +1267,7 @@ async function joey_mission5_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1320,7 +1320,7 @@ async function joey_mission6_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         const _res371 = Clock.GetTimeOfDay();
                         $.hours = _res371.hours;
                         $.minutes = _res371.minutes;
@@ -1391,7 +1391,7 @@ async function toni_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1439,7 +1439,7 @@ async function toni_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1487,7 +1487,7 @@ async function toni_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1535,7 +1535,7 @@ async function toni_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1583,7 +1583,7 @@ async function toni_mission5_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1219.8, -319.7, 27.4, 1.0, 2.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1636,7 +1636,7 @@ async function frankie_mission1_loop() {
                     $.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */) ||
                     $.player.isInAngledAreaOnFoot3D(1466.2, -175.0, 50.0, 1452.9, -172.1, 60.0, 11.6, false /* FALSE */)
                 ) {
-                    if ($.flag_frankie_switched_off == 0 && $.flag_player_on_mission == 0) {
+                    if ($.flag_frankie_switched_off == 0 && !ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1687,7 +1687,7 @@ async function frankie_mission2_loop() {
                     $.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */) ||
                     $.player.isInAngledAreaOnFoot3D(1466.2, -175.0, 50.0, 1452.9, -172.1, 60.0, 11.6, false /* FALSE */)
                 ) {
-                    if ($.flag_frankie_switched_off == 0 && $.flag_player_on_mission == 0) {
+                    if ($.flag_frankie_switched_off == 0 && !ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1739,7 +1739,7 @@ async function frankie_mission2_1_loop() {
                     $.player.isInAngledAreaOnFoot3D(1466.2, -175.0, 50.0, 1452.9, -172.1, 60.0, 11.6, false /* FALSE */)
                 ) {
                     if ($.flag_frankie_switched_off == 0) {
-                        if ($.flag_player_on_mission == 0) {
+                        if (!ONMISSION) {
                             if ($.player.canStartMission()) {
                                 $.player.makeSafeForCutscene();
                                 Camera.SetFadingColor(0, 0, 0);
@@ -1801,7 +1801,7 @@ async function frankie_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(1272.2, -92.9, 13.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_eightball_switched_off == 0 && $.flag_player_on_mission == 0) {
+                    if ($.flag_eightball_switched_off == 0 && !ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1852,7 +1852,7 @@ async function frankie_mission4_loop() {
                     $.player.locateOnFoot3D(1455.7, -187.3, 55.6, 1.0, 1.0, 2.0, false /* FALSE */) ||
                     $.player.isInAngledAreaOnFoot3D(1466.2, -175.0, 50.0, 1452.9, -172.1, 60.0, 11.6, false /* FALSE */)
                 ) {
-                    if ($.flag_frankie_switched_off == 0 && $.flag_player_on_mission == 0) {
+                    if ($.flag_frankie_switched_off == 0 && !ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -1897,7 +1897,7 @@ async function diablo_mission1_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.Diablo_phone.turnOn();
             } else {
                 $.Diablo_phone.turnOff();
@@ -1905,7 +1905,7 @@ async function diablo_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.Diablo_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -1948,7 +1948,7 @@ async function diablo_mission2_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.Diablo_phone.turnOn();
             } else {
                 $.Diablo_phone.turnOff();
@@ -1956,7 +1956,7 @@ async function diablo_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.Diablo_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -1999,7 +1999,7 @@ async function diablo_mission3_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.Diablo_phone.turnOn();
             } else {
                 $.Diablo_phone.turnOff();
@@ -2007,7 +2007,7 @@ async function diablo_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.Diablo_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -2050,7 +2050,7 @@ async function diablo_mission4_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.Diablo_phone.turnOn();
             } else {
                 $.Diablo_phone.turnOff();
@@ -2058,7 +2058,7 @@ async function diablo_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.Diablo_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -2106,7 +2106,7 @@ async function asuka_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2150,7 +2150,7 @@ async function asuka_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2194,7 +2194,7 @@ async function asuka_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2238,7 +2238,7 @@ async function asuka_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2286,7 +2286,7 @@ async function asuka_mission5_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2332,7 +2332,7 @@ async function kenji_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2376,7 +2376,7 @@ async function kenji_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2420,7 +2420,7 @@ async function kenji_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2464,7 +2464,7 @@ async function kenji_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2508,7 +2508,7 @@ async function kenji_mission5_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2554,7 +2554,7 @@ async function ray_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.rays_cutscene_flag = 1;
                             $.player.makeSafeForCutscene();
@@ -2599,7 +2599,7 @@ async function ray_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.rays_cutscene_flag = 1;
                             $.player.makeSafeForCutscene();
@@ -2644,7 +2644,7 @@ async function ray_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.rays_cutscene_flag = 1;
                             $.player.makeSafeForCutscene();
@@ -2689,7 +2689,7 @@ async function ray_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.rays_cutscene_flag = 1;
                             $.player.makeSafeForCutscene();
@@ -2734,7 +2734,7 @@ async function ray_mission5_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.rays_cutscene_flag = 1;
                             $.player.makeSafeForCutscene();
@@ -2779,7 +2779,7 @@ async function ray_mission6_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2825,7 +2825,7 @@ async function love_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2869,7 +2869,7 @@ async function love_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2913,7 +2913,7 @@ async function love_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -2960,7 +2960,7 @@ async function yardie_mission1_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.yardie_phone.turnOn();
             } else {
                 $.yardie_phone.turnOff();
@@ -2968,7 +2968,7 @@ async function yardie_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.yardie_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3011,7 +3011,7 @@ async function yardie_mission2_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.yardie_phone.turnOn();
             } else {
                 $.yardie_phone.turnOff();
@@ -3019,7 +3019,7 @@ async function yardie_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.yardie_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3062,7 +3062,7 @@ async function yardie_mission3_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.yardie_phone.turnOn();
             } else {
                 $.yardie_phone.turnOff();
@@ -3070,7 +3070,7 @@ async function yardie_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.yardie_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3113,7 +3113,7 @@ async function yardie_mission4_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.yardie_phone.turnOn();
             } else {
                 $.yardie_phone.turnOff();
@@ -3121,7 +3121,7 @@ async function yardie_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.yardie_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3169,7 +3169,7 @@ async function love_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -3213,7 +3213,7 @@ async function love_mission5_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -3257,7 +3257,7 @@ async function love_mission6_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -3301,7 +3301,7 @@ async function love_mission7_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -3347,7 +3347,7 @@ async function asuka_suburban_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -3391,7 +3391,7 @@ async function asuka_suburban_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -3435,7 +3435,7 @@ async function asuka_suburban_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.player.makeSafeForCutscene();
                             Camera.SetFadingColor(0, 0, 0);
@@ -3532,7 +3532,7 @@ async function hood_mission1_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.hood_phone.turnOn();
             } else {
                 $.hood_phone.turnOff();
@@ -3540,7 +3540,7 @@ async function hood_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.hood_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3583,7 +3583,7 @@ async function hood_mission2_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.hood_phone.turnOn();
             } else {
                 $.hood_phone.turnOff();
@@ -3591,7 +3591,7 @@ async function hood_mission2_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.hood_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3636,7 +3636,7 @@ async function hood_mission3_loop() {
                 }
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.hood_phone.turnOn();
             } else {
                 $.hood_phone.turnOff();
@@ -3644,7 +3644,7 @@ async function hood_mission3_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.hood_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3687,7 +3687,7 @@ async function hood_mission4_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.hood_phone.turnOn();
             } else {
                 $.hood_phone.turnOff();
@@ -3695,7 +3695,7 @@ async function hood_mission4_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.hood_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3738,7 +3738,7 @@ async function hood_mission5_loop() {
                 return; // TERMINATE_THIS_SCRIPT
             }
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 $.hood_phone.turnOn();
             } else {
                 $.hood_phone.turnOff();
@@ -3746,7 +3746,7 @@ async function hood_mission5_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.player.canStartMission()) {
                             $.hood_phone.turnOff();
                             $.player.makeSafeForCutscene();
@@ -3790,7 +3790,7 @@ async function cat_mission1_loop() {
 
             if ($.player.isPlaying()) {
                 if ($.player.locateOnFoot3D(-362.8, 246.5, 60.0, 4.5, 4.5, 2.0, false /* FALSE */)) {
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         if ($.nicked_half_a_mil_before == 1) {
                             // SCM GOTO → payed_before (not lowered; manual jump required)
                             throw new Error('unresolved GOTO payed_before'); // fallback: would break linear control flow
@@ -3860,7 +3860,7 @@ async function ind_save_loop() {
                     //SAVE HOUSE DOOR
                     if ($.player.isInZone('REDLIGH')) {
                         if ($.flag_eightball_mission_passed == 1) {
-                            if ($.flag_player_on_mission == 0) {
+                            if (!ONMISSION) {
                                 while (!$.playersdoor.rotate(210.0, 10.0, false /* FALSE */)) {
                                     await asyncWait(0);
                                 }
@@ -3874,7 +3874,7 @@ async function ind_save_loop() {
                         //INDUSTRIAL SAVE HOUSE
                         if ($.player.isPlaying()) {
                             if ($.player.canStartMission()) {
-                                if ($.flag_player_on_mission == 0) {
+                                if (!ONMISSION) {
                                     if ($.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false /* FALSE */)) {
                                         $.player.setControl(false /* Off */);
                                         Camera.SetFixedPosition(884.56, -305.35, 13.53, 0.0, 0.0, 0.0);
@@ -3975,7 +3975,7 @@ async function diablo_phone_start() {
             if ($.player.isPlaying()) {
                 if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
                     // Diablo Phone
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         Pager.AddMessage('DIAB1_A', 140, 2, 0);
                         // START_NEW_SCRIPT diablo_mission1_loop
                         // START_NEW_SCRIPT diablo_blip_loop
@@ -4108,7 +4108,7 @@ async function toni4_pager_loop() {
             await asyncWait(10000);
 
             if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0) {
+                if (!ONMISSION) {
                     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
                         //ADD MESSAGE AFTER FRANKIE 2 IS PASSED AND TONI 4 IS NOT COMPLETED
                         if ($.flag_toni_mission4_passed == 0) {
@@ -4135,7 +4135,7 @@ async function toni5_pager_loop() {
             await asyncWait(10000);
 
             if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0) {
+                if (!ONMISSION) {
                     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
                         //ADD MESSAGE AFTER FRANKIE 2 IS PASSED AND TONI 5 IS NOT COMPLETED
                         if ($.flag_toni_mission4_passed == 1) {
@@ -4198,7 +4198,7 @@ async function com_save_loop() {
 
                     //SAVE HOUSE DOORS
                     if ($.player.isInZone('PARK')) {
-                        if ($.flag_player_on_mission == 0) {
+                        if (!ONMISSION) {
                             while (
                                 !$.plysav_lftdr_lft.slide(105.35, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */) ||
                                 !$.plysav_lftdr_rght.slide(100.692, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */)
@@ -4217,7 +4217,7 @@ async function com_save_loop() {
                         //COMMERCIAL SAVE HOUSE
                         if ($.player.isPlaying()) {
                             if ($.player.canStartMission()) {
-                                if ($.flag_player_on_mission == 0) {
+                                if (!ONMISSION) {
                                     if ($.player.isInAreaOnFoot3D(105.7, -486.0, 15.0, 100.8, -483.4, 18.0, false /* FALSE */)) {
                                         $.player.setControl(false /* Off */);
                                         Camera.SetFixedPosition(98.53, -472.06, 19.84, 0.0, 0.0, 0.0);
@@ -4327,7 +4327,7 @@ async function yardie_phone_start() {
             if ($.player.isPlaying()) {
                 if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
                     // Yardie Phone
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         Pager.AddMessage('YD_P', 140, 2, 0);
                         // START_NEW_SCRIPT yardie_mission1_loop
                         // START_NEW_SCRIPT yardie_blip_loop
@@ -4430,7 +4430,7 @@ async function sub_save_loop() {
 
                     //SAVE HOUSE DOOR
                     if ($.player.isInZone('PROJECT')) {
-                        if ($.flag_player_on_mission == 0) {
+                        if (!ONMISSION) {
                             while (!$.newtowerdoor1.rotate(250.0, 10.0, false /* FALSE */)) {
                                 await asyncWait(0);
                             }
@@ -4443,7 +4443,7 @@ async function sub_save_loop() {
                         //SUBURBAN SAVE HOUSE
                         if ($.player.isPlaying()) {
                             if ($.player.canStartMission()) {
-                                if ($.flag_player_on_mission == 0) {
+                                if (!ONMISSION) {
                                     if ($.player.isInAreaOnFoot3D(-670.5, 3.9, 18.0, -660.0, 12.7, 22.0, false /* FALSE */)) {
                                         $.player.setControl(false /* Off */);
                                         Camera.SetFixedPosition(-678.15, -6.46, 24.49, 0.0, 0.0, 0.0);
@@ -4552,7 +4552,7 @@ async function hood_phone_start() {
             if ($.player.isPlaying()) {
                 if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
                     // Hood Phone
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         Pager.AddMessage('HOOD1_A', 140, 2, 0);
                         // START_NEW_SCRIPT hood_mission1_loop
                         // START_NEW_SCRIPT hood_blip_loop
@@ -4619,7 +4619,7 @@ async function luigi_message() {
                 await asyncWait(0);
             }
             if ($.flag_had_luigi_help_message == 2) {
-                if ($.flag_player_on_mission == 0) {
+                if (!ONMISSION) {
                     Text.PrintHelp('LM1_8A'); //"To earn some extra cash, why not 'borrow' a taxi..."
                     $.flag_had_luigi_help_message = 3;
                 }
@@ -4643,7 +4643,7 @@ async function pistol_message() {
             await asyncWait(10000);
 
             if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0) {
+                if (!ONMISSION) {
                     if ($.out_of_stock_pistol == 0) {
                         $.SHOP_COLT45.remove();
                         $.SHOP_COLT45_2 = Pickup.Create(173 /* WEAPON_COLT45 */, 1 /* PICKUP_IN_SHOP */, 1068.5, -400.8, 15.2); //AMMU NATION
@@ -4673,7 +4673,7 @@ async function uzi_message() {
             await asyncWait(5000);
 
             if ($.player.isPlaying()) {
-                if ($.flag_player_on_mission == 0) {
+                if (!ONMISSION) {
                     if ($.out_of_stock_uzi == 0) {
                         Pager.AddMessage('UZI_IN', 140, 2, 0);
                         $.out_of_stock_uzi = 1;
@@ -4696,7 +4696,7 @@ async function imp_exp_pager() {
 
             await asyncWait(100000);
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 if ($.player.isPlaying()) {
                     Pager.AddMessage('IMPEXPP', 140, 2, 0);
                     return; // TERMINATE_THIS_SCRIPT
@@ -4714,7 +4714,7 @@ async function emergency_crane_pager() {
 
             await asyncWait(200000);
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 if ($.player.isPlaying()) {
                     Pager.AddMessage('EMVHPUP', 140, 2, 0);
                     return; // TERMINATE_THIS_SCRIPT
@@ -4732,7 +4732,7 @@ async function van_heist_garage_pager() {
 
             await asyncWait(300000);
 
-            if ($.flag_player_on_mission == 0) {
+            if (!ONMISSION) {
                 if ($.player.isPlaying()) {
                     Pager.AddMessage('VANHSTP', 140, 2, 0);
                     return; // TERMINATE_THIS_SCRIPT
@@ -5831,7 +5831,7 @@ export async function main_d() {
     // VAR_INT flag_commercial_passed
     // VAR_INT flag_suburban_passed
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_industrial_passed = 0;
     $.flag_commercial_passed = 0;
     $.flag_suburban_passed = 0;
@@ -5893,7 +5893,7 @@ export async function main_d() {
 
     // Death Arrest Stuff
 
-    // DECLARE_MISSION_FLAG($.flag_player_on_mission);
+    // DECLARE_MISSION_FLAG(ONMISSION);
     // DECLARE_MISSION_FLAG_FOR_CONTACT(12 /* CONTACT_8BALL */, $.flag_player_on_eightball_mission);
     // DECLARE_MISSION_FLAG_FOR_CONTACT(0 /* CONTACT_LUIGI */, $.flag_player_on_luigi_mission);
     // DECLARE_MISSION_FLAG_FOR_CONTACT(1 /* CONTACT_JOEY */, $.flag_player_on_joey_mission);

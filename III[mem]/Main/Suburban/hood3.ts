@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_hood3() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_hood_mission = 1;
 
@@ -415,7 +415,7 @@ async function mission_hood3_passed() {
 }
 
 async function mission_cleanup_hood3() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_hood_mission = 0;
     $.garage_hm3.setTargetCarForMission(-1);
     Hud.ClearTimer($.timer_hm3);

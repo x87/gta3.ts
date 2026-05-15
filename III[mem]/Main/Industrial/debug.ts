@@ -549,7 +549,7 @@ async function mission_start_debug() {
         }
 
         //INDUSTRIAL MISSION SKIP RIGHT
-        if ($.flag_player_on_mission == 0) {
+        if (!ONMISSION) {
             if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
                 if ($.player.isPlaying()) {
                     if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
@@ -852,7 +852,7 @@ async function mission_start_debug() {
 
         //COMMERCIAL MISSION SKIP RIGHT
 
-        if ($.flag_player_on_mission == 0) {
+        if (!ONMISSION) {
             if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
                 if ($.player.isPlaying()) {
                     if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
@@ -1178,7 +1178,7 @@ async function mission_start_debug() {
 
         // SUBURBAN MISSION SKIP RIGHT
 
-        if ($.flag_player_on_mission == 0) {
+        if (!ONMISSION) {
             if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
                 if ($.player.isPlaying()) {
                     if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {

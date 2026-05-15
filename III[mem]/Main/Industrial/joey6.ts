@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_joey6() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_joey_mission = 1;
     // SCRIPT_NAME joey6
     await asyncWait(0);
@@ -1442,7 +1442,7 @@ async function mission_joey6_passed() {
 }
 
 async function mission_cleanup_joey6() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_joey_mission = 0;
     if ($.sound_already_created_before == 1) {
         $.joey_alarm_loop.remove();

@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_cop_car() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_cop_mission = 1;
     $.vigilante_bonus_kills = 5;
 
@@ -809,7 +809,7 @@ async function cop_car_failed() {
         $.criminal_created_flag = 0;
     }
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_cop_mission = 0;
     Mission.Finish();
     return;

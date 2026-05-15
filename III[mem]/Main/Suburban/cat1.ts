@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_cat1() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_cat_mission = 1;
     // SCRIPT_NAME cat1
     await asyncWait(0);
@@ -13,7 +13,7 @@ async function mission_start_cat1() {
     $.been_on_heli_pad = 0;
     $.set_as_leader_before = 0;
     $.maria_created_before = 0;
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.camera_cut = 0;
 
     Zone.SetPedInfo('WEE_DAM', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -1106,7 +1106,7 @@ async function mission_cat1_passed() {
 }
 
 async function mission_cleanup_cat1() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_cat_mission = 0;
     Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
     Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
@@ -1454,7 +1454,7 @@ async function mission_start_credits() {
         Hud.SwitchWidescreen(false /* OFF */);
         TIMERB = 0;
 
-        $.flag_player_on_mission = 0;
+        ONMISSION = false;
         $.flag_player_on_cat_mission = 0;
 
         TIMERB = 0;

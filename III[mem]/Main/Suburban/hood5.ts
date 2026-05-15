@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_hood5() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_hood_mission = 1;
 
@@ -903,7 +903,7 @@ async function mission_hood5_passed() {
 }
 
 async function mission_cleanup_hood5() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_hood_mission = 0;
     Streaming.MarkModelAsNoLongerNeeded(23 /* PED_GANG_HOOD_B */);
     Streaming.MarkModelAsNoLongerNeeded(22 /* PED_GANG_HOOD_A */);

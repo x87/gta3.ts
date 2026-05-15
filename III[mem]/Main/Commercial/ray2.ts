@@ -9,7 +9,7 @@ async function mission_start_ray2() {
 
     // *****************************************Set Flags************************************
 
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_ray_mission = 1;
 
@@ -1028,7 +1028,7 @@ async function mission_ray2_passed() {
 }
 
 async function mission_cleanup_ray2() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
     $.flag_player_on_phil_mission = 0;
 

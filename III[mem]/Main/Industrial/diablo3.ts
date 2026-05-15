@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_diablo3() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_diablo_mission = 1;
     // SCRIPT_NAME diablo3
     await asyncWait(0);
@@ -276,7 +276,7 @@ async function mission_diablo3_passed() {
 }
 
 async function mission_cleanup_diablo3() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_diablo_mission = 0;
     $.blip1_diablo3.remove();
     $.flamethrower_diablo3.remove();

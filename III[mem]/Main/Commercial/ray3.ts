@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_ray3() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_ray_mission = 1;
     $.rays_cutscene_flag = 1;
 
@@ -257,7 +257,7 @@ async function mission_start_ray3() {
         $.prosecution_car_blip = Blip.AddForCar($.ia_car_rm3);
         $.ia_car_rm3.lockDoors(2 /* CARLOCK_LOCKED */);
 
-        if ($.flag_player_on_mission == 0) {
+        if (!ONMISSION) {
             $.rays_evidence_blip = Blip.AddForChar($.ia_car_driver_1);
         }
 
@@ -740,7 +740,7 @@ async function mission_start_ray3() {
         Streaming.MarkModelAsNoLongerNeeded(112 /* CAR_BOBCAT */);
         Streaming.MarkModelAsNoLongerNeeded(61 /* PED_B_MAN3 */);
         Streaming.MarkModelAsNoLongerNeeded(1325 /* DONKEYMAG */);
-        $.flag_player_on_mission = 0;
+        ONMISSION = false;
         $.flag_player_on_ray_mission = 0;
 
         Mission.Finish();

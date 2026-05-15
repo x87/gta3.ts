@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_toni2() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_toni_mission = 1;
     // SCRIPT_NAME toni2
     await asyncWait(0);
@@ -435,7 +435,7 @@ async function mission_toni2_passed() {
 }
 
 async function mission_cleanup_toni2() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_toni_mission = 0;
     $.gen_car31.switch(101);
     $.blip1_t2.remove();

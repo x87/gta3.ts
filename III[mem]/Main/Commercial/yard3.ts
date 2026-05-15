@@ -5,7 +5,7 @@ import { $ } from '../../utils';
 async function mission_start_yd3() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME yard3
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_yardie_mission = 1;
 
     await asyncWait(0);
@@ -370,7 +370,7 @@ async function mission_cleanup_yd3() {
     $.blip_garage_yd3.remove();
     $.garage_yd3.setTargetCarForMission(-1);
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_yardie_mission = 0;
     Mission.Finish();
     return;

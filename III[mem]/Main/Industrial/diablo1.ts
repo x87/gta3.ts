@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_d1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_diablo_mission = 1;
 
     Stat.RegisterMissionGiven();
@@ -1399,7 +1399,7 @@ async function mission_cleanup_d1() {
     Streaming.MarkModelAsNoLongerNeeded(105 /* CAR_CHEETAH */);
     Hud.ClearCounter($.game_timer_end_d1);
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_diablo_mission = 0;
     Mission.Finish();
     return;

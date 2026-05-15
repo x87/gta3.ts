@@ -14,7 +14,7 @@ async function rampage_pickup_loop() {
 
         if ($.rampage_01_flag == 0) {
             if ($.rampage_01.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 6 /* WEAPONTYPE_M16 */, 120000, $.rampage_01_kills, 14 /* PED_GANG_DIABLO_A */, 15 /* PED_GANG_DIABLO_B */, -1, -1, false /* FALSE */); // "Murder 20 Diablos in 120 seconds!"
                 Streaming.RequestModel(14 /* PED_GANG_DIABLO_A */);
                 Streaming.RequestModel(15 /* PED_GANG_DIABLO_B */);
@@ -46,13 +46,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(14 /* PED_GANG_DIABLO_A */);
                 Streaming.MarkModelAsNoLongerNeeded(15 /* PED_GANG_DIABLO_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_02_flag == 0) {
             if ($.rampage_02.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 8 /* WEAPONTYPE_ROCKET */, 120000, $.rampage_02_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_02', $.rampage_02_kills, 6000, 6);
@@ -78,13 +78,13 @@ async function rampage_pickup_loop() {
                         $.rampage_02_failed = 0;
                     }
                 }
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_03_flag == 0) {
             if ($.rampage_03.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
                     5 /* WEAPONTYPE_CHAINGUN */,
@@ -125,13 +125,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
                 Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_04_flag == 0) {
             if ($.rampage_04.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 3 /* WEAPONTYPE_UZI */, 120000, $.rampage_04_kills, 12 /* PED_GANG_TRIAD_A */, 13 /* PED_GANG_TRIAD_B */, -1, -1, false /* FALSE */); // "Kill 20 Triads in 120 seconds!"
                 Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
                 Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
@@ -162,13 +162,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
                 Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_05_flag == 0) {
             if ($.rampage_05.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
                     4 /* WEAPONTYPE_SHOTGUN */,
@@ -209,13 +209,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
                 Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_06_flag == 0) {
             if ($.rampage_06.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 11 /* WEAPONTYPE_GRENADE */, 120000, $.rampage_06_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_06', $.rampage_06_kills, 6000, 6);
@@ -240,13 +240,13 @@ async function rampage_pickup_loop() {
                         $.rampage_06_failed = 0;
                     }
                 }
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_07_flag == 0) {
             if ($.rampage_07.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.StartHeadshot(
                     'PAGE_00',
                     7 /* WEAPONTYPE_SNIPERRIFLE */,
@@ -287,13 +287,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
                 Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_08_flag == 0) {
             if ($.rampage_08.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
                     9 /* WEAPONTYPE_FLAMETHROWER */,
@@ -334,13 +334,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
                 Streaming.MarkModelAsNoLongerNeeded(17 /* PED_GANG_YAKUZA_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_09_flag == 0) {
             if ($.rampage_09.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 4 /* WEAPONTYPE_SHOTGUN */, 120000, $.rampage_09_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_09', $.rampage_09_kills, 6000, 6);
@@ -365,13 +365,13 @@ async function rampage_pickup_loop() {
                         $.rampage_09_failed = 0;
                     }
                 }
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_10_flag == 0) {
             if ($.rampage_10.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 6 /* WEAPONTYPE_M16 */, 120000, $.rampage_10_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_10', $.rampage_10_kills, 6000, 6);
@@ -396,13 +396,13 @@ async function rampage_pickup_loop() {
                         $.rampage_10_failed = 0;
                     }
                 }
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_11_flag == 0) {
             if ($.rampage_11.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
                     8 /* WEAPONTYPE_ROCKET */,
@@ -443,13 +443,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
                 Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_12_flag == 0) {
             if ($.rampage_12.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
                     10 /* WEAPONTYPE_MOLOTOV */,
@@ -490,13 +490,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
                 Streaming.MarkModelAsNoLongerNeeded(17 /* PED_GANG_YAKUZA_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_13_flag == 0) {
             if ($.rampage_13.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
                     11 /* WEAPONTYPE_GRENADE */,
@@ -537,13 +537,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
                 Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_14_flag == 0) {
             if ($.rampage_14.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
                     9 /* WEAPONTYPE_FLAMETHROWER */,
@@ -584,13 +584,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_15_flag == 0) {
             if ($.rampage_15.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 4 /* WEAPONTYPE_SHOTGUN */, 120000, $.rampage_15_kills, 22 /* PED_GANG_HOOD_A */, 23 /* PED_GANG_HOOD_B */, -1, -1, false /* FALSE */); // "Splatter 20 Hoods in 120 seconds!"
                 Streaming.RequestModel(22 /* PED_GANG_HOOD_A */);
                 Streaming.RequestModel(23 /* PED_GANG_HOOD_B */);
@@ -621,13 +621,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(22 /* PED_GANG_HOOD_A */);
                 Streaming.MarkModelAsNoLongerNeeded(23 /* PED_GANG_HOOD_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_16_flag == 0) {
             if ($.rampage_16.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 8 /* WEAPONTYPE_ROCKET */, 120000, $.rampage_16_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_16', $.rampage_16_kills, 6000, 6);
@@ -652,13 +652,13 @@ async function rampage_pickup_loop() {
                         $.rampage_16_failed = 0;
                     }
                 }
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_17_flag == 0) {
             if ($.rampage_17.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
                     17 /* WEAPONTYPE_RUNOVERBYCAR */,
@@ -699,13 +699,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_18_flag == 0) {
             if ($.rampage_18.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.Start('PAGE_00', 19 /* WEAPONTYPE_UZI_DRIVEBY */, 120000, $.rampage_18_kills, -2, -1, -1, -1, false /* FALSE */); // "Driveby and Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_18', $.rampage_18_kills, 6000, 6);
@@ -751,13 +751,13 @@ async function rampage_pickup_loop() {
                         $.rampage_18_failed = 0;
                     }
                 }
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_19_flag == 0) {
             if ($.rampage_19.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.StartHeadshot(
                     'PAGE_00',
                     7 /* WEAPONTYPE_SNIPERRIFLE */,
@@ -798,13 +798,13 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 
         if ($.rampage_20_flag == 0) {
             if ($.rampage_20.hasBeenCollected()) {
-                $.flag_player_on_mission = 1;
+                ONMISSION = true;
                 KillFrenzy.StartHeadshot(
                     'PAGE_00',
                     6 /* WEAPONTYPE_M16 */,
@@ -845,7 +845,7 @@ async function rampage_pickup_loop() {
                 World.ForceRandomPedType(-1);
                 Streaming.MarkModelAsNoLongerNeeded(22 /* PED_GANG_HOOD_A */);
                 Streaming.MarkModelAsNoLongerNeeded(23 /* PED_GANG_HOOD_B */);
-                $.flag_player_on_mission = 0;
+                ONMISSION = false;
             }
         }
 

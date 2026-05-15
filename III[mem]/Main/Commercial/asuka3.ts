@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_asuka3() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_asuka_mission = 1;
     $.help1_displayed = 0;
     $.help2_displayed = 0;
@@ -1113,7 +1113,7 @@ async function mission_asuka3_passed() {
 }
 
 async function mission_cleanup_asuka3() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
     $.blip1_as3.remove();
     $.blip2_as3.remove();

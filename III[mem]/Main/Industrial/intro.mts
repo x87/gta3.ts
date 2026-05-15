@@ -23,8 +23,7 @@ async function body() {
 
     // ****************************************Mission Start************************************
 
-    ONMISSION = true;
-    // $.flag_player_on_mission = 1;
+    ONMISSION = true;    
     $.skip_flag = 0;
 
     await asyncWait(0);
@@ -212,7 +211,6 @@ async function body() {
     // START_NEW_SCRIPT eightball_mission_loop
     $._flag_intro_passed = 1;
 
-    // $.flag_player_on_mission = 0;
     ONMISSION = false;
     Mission.Finish();
 }

@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_joey4() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_joey_mission = 1;
     // SCRIPT_NAME joey4
     await asyncWait(0);
@@ -1151,7 +1151,7 @@ async function mission_joey4_passed() {
 }
 
 async function mission_cleanup_joey4() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_joey_mission = 0;
     $.blip1_jm4.remove();
     $.blip2_jm4.remove();

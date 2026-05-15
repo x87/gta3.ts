@@ -1,12 +1,11 @@
 import { $ } from '../utils';
 
-const p = new Player(0);
-
 interface MissionDefinition {
     name: string;
     scriptPath: string;
     canStart(): Promise<boolean>;
-    beforeStart?(): Promise<void>;
+    beforeMission?(): Promise<void>;
+    afterMission?(): Promise<void>;
     onPassed?(): void;
     onFailed?(): void;
 }
@@ -44,14 +43,14 @@ const missions: MissionDefinition[] = [
             return false;
         },
 
-        async beforeStart() {
+        async beforeMission() {
             $.flag_eightball_mission_launched = 1;
         },
     },
 
     // *******************************************Luigi Missions********************************
     {
-        scriptPath: `./Industrial/luigi2.ts`,
+        scriptPath: `./Industrial/luigi2.mts`,
         name: `Donna' "Spank" Ma Bitch Up`,
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_luigi_mission2_passed == 0) {
@@ -67,7 +66,7 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
             Camera.DoFade(1500, 0 /* FADE_OUT */);
@@ -91,7 +90,7 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             $.player.setControl(false /* off */);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -109,7 +108,7 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             $.player.setControl(false /* off */);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -127,7 +126,7 @@ const missions: MissionDefinition[] = [
             }
             return $.flag_just_done_rc_mission == 0 && $.player.isInModel(149 /* CAR_TOYZ */) && $.player.locateAnyMeans3D(1014.0, -120.0, 5.0, 5.0, 5.0, 5.0, false /* false */);
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('RC1', 15000, 2);
             await asyncWait(0);
         },
@@ -141,7 +140,7 @@ const missions: MissionDefinition[] = [
             }
             return $.flag_just_done_rc_mission == 0 && $.player.isInModel(149 /* CAR_TOYZ */) && $.player.locateAnyMeans3D(1158.0, -309.0, 23.0, 5.0, 5.0, 5.0, false /* false */);
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('RC2', 15000, 2);
             await asyncWait(0);
         },
@@ -155,7 +154,7 @@ const missions: MissionDefinition[] = [
             }
             return $.flag_just_done_rc_mission == 0 && $.player.isInModel(149 /* CAR_TOYZ */) && $.player.locateAnyMeans3D(-636.0, 65.0, 19.0, 5.0, 5.0, 5.0, false /* false */);
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('RC4', 15000, 2);
             await asyncWait(0);
         },
@@ -169,7 +168,7 @@ const missions: MissionDefinition[] = [
             }
             return $.flag_just_done_rc_mission == 0 && $.player.isInModel(149 /* CAR_TOYZ */) && $.player.locateAnyMeans3D(366.0, -1312.0, 26.0, 5.0, 5.0, 5.0, false /* false */);
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('RC3', 15000, 2);
             await asyncWait(0);
         },
@@ -197,7 +196,7 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('T4X4_1', 15000, 2);
             await asyncWait(0);
         },
@@ -224,7 +223,7 @@ const missions: MissionDefinition[] = [
 
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('T4X4_2', 15000, 2);
             await asyncWait(0);
         },
@@ -252,7 +251,7 @@ const missions: MissionDefinition[] = [
 
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('T4X4_3', 15000, 2);
             await asyncWait(0);
         },
@@ -275,7 +274,7 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('MM_1', 15000, 2);
             await asyncWait(0);
         },
@@ -330,7 +329,7 @@ const missions: MissionDefinition[] = [
 
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('AMBUL_M', 15000, 2);
             await asyncWait(0);
             $.been_in_ambulance_before = 1;
@@ -385,7 +384,7 @@ const missions: MissionDefinition[] = [
 
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('FIRE_M', 15000, 2);
             await asyncWait(0);
             $.been_in_a_firetruk_before = 1;
@@ -442,7 +441,7 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('COP_M', 4000, 5);
             await asyncWait(0);
             $.been_in_a_copcar_before = 1;
@@ -494,10 +493,136 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeStart() {
+        async beforeMission() {
             Text.PrintBig('TAXI_M', 4000, 5);
             await asyncWait(0);
             $.been_in_a_taxi_before = 1;
+        },
+    },
+
+    // *************************************Meat Factory Mission 1******************************
+    {
+        scriptPath: `./Industrial/meat1.mts`,
+        name: 'Meat Factory Mission 1',
+        async canStart() {
+            if ($.flag_meat_mission1_passed == 1) {
+                return false;
+            }
+
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                const { hours } = Clock.GetTimeOfDay();
+                if (hours >= 9 && hours < 19) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        async beforeMission() {
+            $.player.makeSafeForCutscene();
+            Camera.SetFadingColor(0, 0, 0);
+            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Text.PrintBig('MEA1', 15000, 2); //"THE CROOK"
+            while (Camera.GetFadingStatus()) {
+                await asyncWait(0);
+            }
+        },
+        async afterMission() {
+            if ($.flag_meat_mission1_passed == 1) {
+                $.meat_phone.turnOff();
+            }
+        },
+    },
+    {
+        scriptPath: `./Industrial/meat2.mts`,
+        name: 'Meat Factory Mission 2',
+        async canStart() {
+            if ($.flag_meat_mission2_passed == 1) {
+                return false;
+            }
+
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                const { hours } = Clock.GetTimeOfDay();
+                if (hours >= 9 && hours < 19) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        async beforeMission() {
+            $.player.makeSafeForCutscene();
+            Camera.SetFadingColor(0, 0, 0);
+            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Text.PrintBig('MEA2', 15000, 2); //"THE THIEVES"
+            while (Camera.GetFadingStatus()) {
+                await asyncWait(0);
+            }
+        },
+        async afterMission() {
+            if ($.flag_meat_mission2_passed == 1) {
+                $.meat_phone.turnOff();
+            }
+        },
+    },
+    {
+        scriptPath: `./Industrial/meat3.mts`,
+        name: 'Meat Factory Mission 3',
+        async canStart() {
+            if ($.flag_meat_mission3_passed == 1) {
+                return false;
+            }
+
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                const { hours } = Clock.GetTimeOfDay();
+                if (hours >= 9 && hours < 19) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        async beforeMission() {
+            $.player.makeSafeForCutscene();
+            Camera.SetFadingColor(0, 0, 0);
+            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Text.PrintBig('MEA3', 15000, 2); //"THE WIFE"
+            while (Camera.GetFadingStatus()) {
+                await asyncWait(0);
+            }
+        },
+        async afterMission() {
+            if ($.flag_meat_mission3_passed == 1) {
+                $.meat_phone.turnOff();
+            }
+        },
+    },
+    {
+        scriptPath: `./Industrial/meat4.mts`,
+        name: 'Meat Factory Mission 4',
+        async canStart() {
+            if ($.flag_meat_mission4_passed == 1) {
+                return false;
+            }
+
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                const { hours } = Clock.GetTimeOfDay();
+                if (hours >= 9 && hours < 19) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        async beforeMission() {
+            $.player.makeSafeForCutscene();
+            Camera.SetFadingColor(0, 0, 0);
+            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Text.PrintBig('MEA4', 15000, 2); //"HER LOVER"
+            while (Camera.GetFadingStatus()) {
+                await asyncWait(0);
+            }
+        },
+        async afterMission() {
+            if ($.flag_meat_mission4_passed == 1) {
+                $.meat_phone.turnOff();
+            }
         },
     },
 ];

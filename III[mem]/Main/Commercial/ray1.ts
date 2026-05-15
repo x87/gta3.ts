@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_ray1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_ray_mission = 1;
     $.rays_cutscene_flag = 1;
 
@@ -494,7 +494,7 @@ async function mission_cleanup_ray1() {
     Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
     Streaming.MarkModelAsNoLongerNeeded(2202 /* safehouse */);
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
     World.RemoveAllScriptFires();
     Mission.Finish();

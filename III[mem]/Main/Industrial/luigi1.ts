@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_luigi1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_luigi_mission = 1;
 
@@ -535,7 +535,7 @@ async function mission_luigi1_passed() {
 }
 
 async function mission_cleanup_luigi1() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_luigi_mission = 0;
     Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);
     Streaming.UnloadSpecialCharacter(1);

@@ -7,59 +7,17 @@ verbose('[+] HJ script loaded');
 // ****************************************Stunt Jump***************************************
 // *****************************************************************************************
 
-// Variables for mission
-
-// VAR_INT car_player_is_in_hj
-// VAR_INT flag_takeoff_hj
-// VAR_INT height_int_hj
-// VAR_INT flag_wheels_hj
-// VAR_INT stunt_flags_hj
-// VAR_INT flag_car_upsidedown_hj
-// VAR_INT counter_stunt_rolls_hj
-// VAR_INT height_decimals_int_hj
-// VAR_INT distance_decimals_int_hj
-// VAR_INT jumpdistance_int_hj
-// VAR_INT counter_land_on_wheels_hj
-// VAR_INT counter_wheels_hj
-// VAR_INT total_rotation_int
-// VAR_INT longest_flight_time
-// VAR_INT got_flight_start
-// VAR_INT flight_timer_start
-// VAR_INT flight_timer_end
-// VAR_INT flight_time flag_flight_hj
-// VAR_INT collision_counter
-// VAR_INT cash_reward cash_reward_temp
-// VAR_FLOAT height_float_hj
-// VAR_FLOAT x_float_hj
-// VAR_FLOAT y_float_hj
-// VAR_FLOAT z_float_hj
-// VAR_FLOAT takeoff_x_float_hj
-// VAR_FLOAT takeoff_y_float_hj
-// VAR_FLOAT takeoff_z_float_hj
-// VAR_FLOAT jumpend_x_float_hj
-// VAR_FLOAT jumpend_y_float_hj
-// VAR_FLOAT difference_x_float_hj
-// VAR_FLOAT difference_y_float_hj
-// VAR_FLOAT sum_difference_xy_hj
-// VAR_FLOAT jumpdistance_float_hj
-// VAR_FLOAT heading_hj
-// VAR_FLOAT temp_float
-// VAR_FLOAT old_heading_hj
-// VAR_FLOAT heading_difference
-// VAR_FLOAT heading_difference_temp
-// VAR_FLOAT total_rotation
+run_on_newgame(async () => {
+    // Variables for mission
+    $.longest_flight_time = 0;
+    verbose('[*] HJ variables initialized');
+});
 
 // ****************************************Mission Start************************************
 
-// SET_DEATHARREST_STATE(false /* OFF */);
-// SCRIPT_NAME hj
-
-run_on_newgame(async () => {
-    $.longest_flight_time = 0;
-    verbose('[+] HJ variables initialized');
-});
-
 (async () => {
+    // SET_DEATHARREST_STATE(false /* OFF */);
+    // SCRIPT_NAME hj
 
     mission_start_hj: while (true) {
         await asyncWait(0);
@@ -156,7 +114,6 @@ run_on_newgame(async () => {
                                     continue mission_start_hj;
                                 }
                             }
-
                         }
                     }
                     while ($.car_player_is_in_hj.isInAirProper() || $.collision_counter < 10) {
@@ -376,8 +333,7 @@ run_on_newgame(async () => {
 
             //ADD_ONE_OFF_SOUND 0.0 0.0 0.0 SOUND_PART_MISSION_COMPLETE
         }
-
     }
 })();
 
-verbose('[+] HJ script ended');
+verbose('[-] HJ script ended');

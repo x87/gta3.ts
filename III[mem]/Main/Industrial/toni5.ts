@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_toni5() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_toni_mission = 1;
     // SCRIPT_NAME toni5
     await asyncWait(0);
@@ -486,7 +486,7 @@ async function mission_toni5_passed() {
 }
 
 async function mission_cleanup_toni5() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_toni_mission = 0;
     $.blip1_tm5.remove();
     $.blip2_tm5.remove();

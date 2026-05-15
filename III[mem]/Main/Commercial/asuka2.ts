@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_asuka2() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_asuka_mission = 1;
     // SCRIPT_NAME asuka2
     await asyncWait(0);
@@ -551,7 +551,7 @@ async function mission_asuka2_passed() {
 }
 
 async function mission_cleanup_asuka2() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
     Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
     Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);

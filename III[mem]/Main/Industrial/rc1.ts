@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_rc1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     if ($.flag_rc1_passed == 0) {
         Stat.RegisterMissionGiven();
@@ -165,7 +165,7 @@ async function mission_rc1_passed() {
 }
 
 async function mission_cleanup_rc1() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_just_done_rc_mission = 1;
     Streaming.LoadScene($.cam_x, $.cam_y, $.cam_z);
     Streaming.MarkModelAsNoLongerNeeded(131 /* car_rcbandit */);

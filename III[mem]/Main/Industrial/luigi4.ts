@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_luigi4() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_luigi_mission = 1;
 
@@ -456,7 +456,7 @@ async function mission_start_luigi4() {
     }
 
     async function mission_cleanup_luigi4() {
-        $.flag_player_on_mission = 0;
+        ONMISSION = false;
         $.flag_player_on_luigi_mission = 0;
         $.special_ammu_audio = 0;
 

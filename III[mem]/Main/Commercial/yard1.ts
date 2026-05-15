@@ -5,7 +5,7 @@ import { $ } from '../../utils';
 async function mission_start_yd1() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME yard1
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_yardie_mission = 1;
 
     await asyncWait(0);
@@ -958,7 +958,7 @@ async function mission_cleanup_yd1() {
     Path.SwitchRoadsOn(500.0, 60.0, -25.0, 600.0, 140.0, 0.0);
     Path.SwitchRoadsOn(-400.0, 60.0, -25.0, -300.0, 140.0, 0.0);
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
 
     //DELETE_CHAR street_racer_1

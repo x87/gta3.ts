@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_frankie2_1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     Stat.RegisterMissionGiven();
 
@@ -245,7 +245,7 @@ async function mission_frankie2_1_passed() {
 }
 
 async function mission_cleanup_frankie2_1() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_frankie_mission = 0;
     Mission.Finish();
     return;

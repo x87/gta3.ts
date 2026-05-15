@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_frankie1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_frankie_mission = 1;
 
     Stat.RegisterMissionGiven();
@@ -807,7 +807,7 @@ async function mission_start_frankie1() {
             }
         }
 
-        if ($.flag_player_on_mission == 0) {
+        if (!ONMISSION) {
             $.fm1_blip = Blip.AddForCar($.frankies_limo);
             $.maria_blip = Blip.AddForChar($.maria);
         }
@@ -2433,7 +2433,7 @@ async function mission_frankie1_passed() {
 }
 
 async function mission_cleanup_frankie1() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_frankie_mission = 0;
 
     Camera.RestoreJumpcut();

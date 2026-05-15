@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_luigi5() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_luigi_mission = 1;
 
@@ -1831,7 +1831,7 @@ async function mission_start_luigi5() {
     }
 
     async function mission_cleanup_luigi5() {
-        $.flag_player_on_mission = 0;
+        ONMISSION = false;
         $.flag_player_on_luigi_mission = 0;
         $.gen_car28.switch(101);
         $.ball_sounds.remove();

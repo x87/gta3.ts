@@ -1,7 +1,7 @@
 // Generated from Main/Industrial/pickups.sc
 import { $, verbose } from '../../utils';
 
-verbose('[+] Pickups loaded');
+verbose('[+] Pickups script loaded');
 
 // VAR_INT ind_pickup1 ind_pickup2 ind_pickup3 ind_pickup4 ind_pickup5 ind_pickup6 ind_pickup7 ind_pickup8 ind_pickup9 ind_pickup10
 // VAR_INT ind_pickup11 ind_pickup12 ind_pickup13 ind_pickup14 ind_pickup15 ind_pickup16 ind_pickup17 ind_pickup18 ind_pickup19 ind_pickup20
@@ -244,4 +244,4 @@ $.info_pickup10b = Pickup.Create(1361 /* info */, 2 /* PICKUP_ON_STREET */, 772.
 $.info_pickup10c = Pickup.Create(1361 /* info */, 2 /* PICKUP_ON_STREET */, 1039.0, -149.8, 23.9); //A-trains
 // START_NEW_SCRIPT check_info_pickup_2 info_pickup10c 10
 
-verbose('[+] Pickups created');
+verbose('[-] Pickups script ended');

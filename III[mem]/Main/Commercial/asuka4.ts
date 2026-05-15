@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_asuka4() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_asuka_mission = 1;
     // SCRIPT_NAME asuka4
     await asyncWait(0);
@@ -518,7 +518,7 @@ async function mission_asuka4_passed() {
 }
 
 async function mission_cleanup_asuka4() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
     Hud.ClearTimer($.countdown_as4);
     $.blip1_as4.remove();

@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_hood1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_hood_mission = 1;
 
@@ -306,7 +306,7 @@ async function mission_hood1_passed() {
 }
 
 async function mission_cleanup_hood1() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_hood_mission = 0;
     $.radar_blip_coord_hm1.remove();
     Zone.SetPedInfo('PROJECT', 1 /* DAY */, 13, 0, 0, 0, 0, 0, 0, 300, 20); //WICHITA GARDENS

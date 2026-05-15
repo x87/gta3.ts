@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_hood4() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_hood_mission = 1;
 
@@ -290,7 +290,7 @@ async function mission_hood4_passed() {
 }
 
 async function mission_cleanup_hood4() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_hood_mission = 0;
     $.garage_hm4.setTargetCarForMission(-1);
     Pacman.ClearNumberOfPowerPillsCarried();

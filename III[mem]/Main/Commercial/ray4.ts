@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_ray4() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_ray_mission = 1;
     $.rays_cutscene_flag = 1;
 
@@ -1445,7 +1445,7 @@ async function mission_start_ray4() {
         Streaming.MarkModelAsNoLongerNeeded(150 /* BOAT_GHOST */);
         Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
         Streaming.MarkModelAsNoLongerNeeded(131 /* CAR_RCBANDIT */);
-        $.flag_player_on_mission = 0;
+        ONMISSION = false;
         $.flag_player_on_ray_mission = 0;
         Mission.Finish();
         return;

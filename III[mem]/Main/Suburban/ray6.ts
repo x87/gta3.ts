@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_ray6() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_ray_mission = 1;
     $.rays_cutscene_flag = 1;
 
@@ -1167,7 +1167,7 @@ async function mission_ray6_passed() {
 }
 
 async function mission_cleanup_ray6() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
 
     if (ScriptObject.DoesExist($.airportdoor1)) {

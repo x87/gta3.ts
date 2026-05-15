@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_kenji5() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_kenji_mission = 1;
 
     Stat.RegisterMissionGiven();
@@ -1743,7 +1743,7 @@ async function mission_kenji5_passed() {
 }
 
 async function mission_cleanup_kenji5() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_kenji_mission = 0;
 
     $.ped_1_blip.remove();

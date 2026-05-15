@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_fire() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_fire_mission = 1;
 
     // SCRIPT_NAME firetru
@@ -577,7 +577,7 @@ async function failed() {
     }
     Streaming.MarkModelAsNoLongerNeeded($.random_car_model);
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_fire_mission = 0;
     Mission.Finish();
     return;

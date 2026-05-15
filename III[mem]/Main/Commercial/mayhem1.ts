@@ -5,7 +5,7 @@ import { $ } from '../../utils';
 async function mission_start_mayhem() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME mayhem
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     //flag_player_on_carpark_mission = 1
 
     Text.PrintBig('MM_1', 15000, 2);
@@ -532,7 +532,7 @@ async function mission_cleanup_mayhem() {
     $.blip_19.remove();
     $.blip_20.remove();
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     //flag_player_on_carpark_mission = 0
 
     Mission.Finish();

@@ -4,7 +4,7 @@ import { $ } from '../../utils';
 
 async function mission_start_diablo4() {
     Stat.RegisterMissionGiven();
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_diablo_mission = 1;
     // SCRIPT_NAME diablo4
 
@@ -453,7 +453,7 @@ async function mission_diablo4_passed() {
 }
 
 async function mission_cleanup_diablo4() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_diablo_mission = 0;
     $.blip1_porn_van.remove();
     $.blip2_porn_shop.remove();

@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_love3() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_love_mission = 1;
 
     Stat.RegisterMissionGiven();
@@ -173,7 +173,7 @@ async function mission_start_love3() {
 
     DrugDropOff.Start();
 
-    if ($.flag_player_on_mission == 0) {
+    if (!ONMISSION) {
         $.plane_blip = Blip.AddForCoord($.PlaneX, $.PlaneY, $.PlaneZ); // JUST SO I CAN REMOVE THE
     }
 
@@ -614,7 +614,7 @@ async function mission_love3_passed() {
 }
 
 async function mission_cleanup_love3() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_love_mission = 0;
 
     Hud.ClearTimer($.plane_timer);

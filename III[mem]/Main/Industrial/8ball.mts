@@ -141,7 +141,6 @@ async function body() {
     // ***************************************Mission Start*************************************
 
     mission_start_eightball: {
-        // $.flag_player_on_mission = 1;
         ONMISSION = true;
 
         $.flag_player_on_eightball_mission = 1;
@@ -2471,7 +2470,6 @@ async function onPassed() {
 }
 
 async function cleanup() {
-    // $.flag_player_on_mission = 0;
     ONMISSION = false;
     $.flag_player_on_eightball_mission = 0;
     World.RemoveParticleEffectsInArea(804.02, -948.03, 30.0, 765.15, -924.32, 50.0);

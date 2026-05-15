@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_love1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_kenji_mission = 1;
 
@@ -997,7 +997,7 @@ async function mission_love1_passed() {
 }
 
 async function mission_cleanup_love1() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_love_mission = 0;
     Path.RemoveRoute(0);
     Path.RemoveRoute(1);

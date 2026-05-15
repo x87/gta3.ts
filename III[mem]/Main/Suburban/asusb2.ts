@@ -5,7 +5,7 @@ import { $ } from '../../utils';
 async function mission_start_as2() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME asusb2
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_asuka_suburban_mission = 1;
 
     await asyncWait(0);
@@ -1449,7 +1449,7 @@ async function mission_as2_passed() {
 }
 
 async function mission_cleanup_as2() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_asuka_suburban_mission = 0;
 
     Hud.ClearTimer($.kappa_time);

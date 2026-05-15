@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_ambulance() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_ambulance_mission = 1;
 
     await asyncWait(0);
@@ -116,7 +116,7 @@ async function mission_root() {
 
     Hud.DisplayTimer($.ped_time_limit);
 
-    if ($.flag_player_on_mission == 0) {
+    if (!ONMISSION) {
         $.hospital_blip = Blip.AddForCoord($.hospital_x, $.hospital_y, $.hospital_z);
     }
 
@@ -1935,7 +1935,7 @@ async function ambulance_failed() {
 
     Game.SetWantedMultiplier(1.0);
 
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_ambulance_mission = 0;
     Mission.Finish();
     return;

@@ -70,8 +70,6 @@ run_on_newgame(async () => {
     check_info_pickup_2($.info_pickup10c, 10);
 })();
 
-verbose('[+] genstuf script ended');
-
 async function cobblers() {
     while (true) {
         {
@@ -410,7 +408,7 @@ async function fish_factory_gen() {
                         $.fish_triad4.markAsNoLongerNeeded();
                         $.fish_triad5.markAsNoLongerNeeded();
                         $.fish_triad6.markAsNoLongerNeeded();
-                        if ($.flag_player_on_mission == 0) {
+                        if (!ONMISSION) {
                             Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
                             Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
                             $.has_player_been_at_fish_before = 0;
@@ -425,7 +423,7 @@ async function fish_factory_gen() {
                     $.fish_triad4.markAsNoLongerNeeded();
                     $.fish_triad5.markAsNoLongerNeeded();
                     $.fish_triad6.markAsNoLongerNeeded();
-                    if ($.flag_player_on_mission == 0) {
+                    if (!ONMISSION) {
                         Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
                         Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
                         $.has_player_been_at_fish_before = 0;
@@ -978,3 +976,5 @@ async function fifth_floor_of_cars() {
     RETURN
     */
 }
+
+verbose('[-] genstuf script ended');

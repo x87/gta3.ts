@@ -87,7 +87,6 @@ async function body() {
     // VAR_INT flag_player_in_car_lm2
 
     // ********************************************Mission Start********************************
-    // $.flag_player_on_mission = 1;
     ONMISSION = true;
 
     $.flag_player_on_luigi_mission = 1;
@@ -752,7 +751,6 @@ async function onPassed() {
 }
 
 async function cleanup() {
-    // $.flag_player_on_mission = 0;
     ONMISSION = false;
     $.flag_player_on_luigi_mission = 0;
 

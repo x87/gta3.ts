@@ -58,7 +58,6 @@ VAR_FLOAT x_12 y_12 z_12
 async function body() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME t4x4_2
-    // $.flag_player_on_mission = 1;
     ONMISSION = true;
     //flag_player_on_4x4_mission = 1
 
@@ -446,7 +445,6 @@ async function cleanup() {
     $.blip_11.remove();
     $.blip_12.remove();
 
-    // $.flag_player_on_mission = 0;
     ONMISSION = false;
     //flag_player_on_4x4_mission = 0
 

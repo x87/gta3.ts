@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_love4() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_love_mission = 1;
 
     Stat.RegisterMissionGiven();
@@ -302,7 +302,7 @@ async function mission_start_love4() {
         $.goon_in_hangar3.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
         $.goon_in_hangar4.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
 
-        if ($.flag_player_on_mission == 0) {
+        if (!ONMISSION) {
             $.goon_in_hangar1_blip = Blip.AddForChar($.goon_in_hangar1);
             $.goon_in_hangar2_blip = Blip.AddForChar($.goon_in_hangar2);
             $.goon_in_hangar3_blip = Blip.AddForChar($.goon_in_hangar3);
@@ -1527,7 +1527,7 @@ async function mission_start_love4() {
 
         //SET_TARGET_CAR_FOR_MISSION_GARAGE loves_garage -1
 
-        $.flag_player_on_mission = 0;
+        ONMISSION = false;
         $.flag_player_on_love_mission = 0;
         Mission.Finish();
         return;

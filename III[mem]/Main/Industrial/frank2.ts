@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_frankie2() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
 
     $.flag_player_on_frankie_mission = 1;
 
@@ -1337,7 +1337,7 @@ async function mission_frankie2_passed() {
 }
 
 async function mission_cleanup_frankie2() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     $.flag_player_on_frankie_mission = 0;
 
     if ($.flag_car_fm2_dead == 0) {

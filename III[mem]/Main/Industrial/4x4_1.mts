@@ -60,7 +60,6 @@ import { $ } from '../../utils';
 async function body() {
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME t4x4_1
-    // $.flag_player_on_mission = 1;
     ONMISSION = true;
     //flag_player_on_4x4_mission = 1
 
@@ -486,7 +485,6 @@ async function cleanup() {
     $.player.setControl(true /* on */);
 
     Hud.ClearTimer($.timer_4x4);
-    // $.flag_player_on_mission = 0;
     ONMISSION = false;
     //flag_player_on_4x4_mission = 0
 

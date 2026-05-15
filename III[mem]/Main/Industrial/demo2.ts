@@ -8,7 +8,7 @@ async function demo_start() {
     // SCM GOTO → demo_start lowered to endless loop
     while (true) {
         Restart.OverrideNext(892.9, -445.0, 14.0);
-        $.flag_player_on_mission = 1;
+        ONMISSION = true;
         await asyncWait(0);
 
         // Player position Luigi's
@@ -262,7 +262,7 @@ async function mission_demo_passed() {
 }
 
 async function mission_cleanup_demo() {
-    $.flag_player_on_mission = 0;
+    ONMISSION = false;
     Camera.Restore();
     $.player.setControl(true /* ON */);
     Game.SetPoliceIgnorePlayer($.player, false /* OFF */);

@@ -31,7 +31,6 @@ async function body() {
     //REGISTER_MISSION_GIVEN
 
     // SCRIPT_NAME health
-    // $.flag_player_on_mission = 1;
     ONMISSION = true;
 
     await asyncWait(0);
@@ -195,7 +194,6 @@ async function cleanup() {
 
     //REMOVE_PICKUP heal_info
 
-    // $.flag_player_on_mission = 0;
     ONMISSION = false;
     $.flag_health_info = 1;
 

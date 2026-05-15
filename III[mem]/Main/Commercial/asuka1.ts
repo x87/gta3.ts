@@ -3,7 +3,7 @@ import { $ } from '../../utils';
 
 
 async function mission_start_asuka1() {
-    $.flag_player_on_mission = 1;
+    ONMISSION = true;
     $.flag_player_on_asuka_mission = 1;
 
     Stat.RegisterMissionGiven();
@@ -2444,7 +2444,7 @@ async function mission_start_asuka1() {
         Streaming.UnloadSpecialCharacter(1);
         $.mission_blip_am1.remove();
         Path.SwitchRoadsOn(905.0, -448.6, 12.0, 916.0, -393.0, 20.0);
-        $.flag_player_on_mission = 0;
+        ONMISSION = false;
         $.flag_player_on_asuka_mission = 0;
         Mission.Finish();
         return;
