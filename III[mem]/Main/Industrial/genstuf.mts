@@ -3,45 +3,45 @@ import { $, run_gated, run_on_newgame, verbose } from '../../utils';
 
 verbose('[+] genstuf script loaded');
 
-run_on_newgame(async () => {
-    $.second_floor_cars_exist = 0;
-    $.third_floor_cars_exist = 0;
-    $.fourth_floor_cars_exist = 0;
-    $.fifth_floor_cars_exist = 0;
-
-    $.need_to_clear_area_flag = 0;
-    $.has_player_been_at_fish_before = 0;
-    $.has_player_been_in_tramp_tunnel_before = 0;
-    $.flag_sounds_added_redlight = 0;
-    $.tramps_been_created = 0;
-    $.tramp_is_dead = 0;
-    $.camera_ammu1 = 0;
-    $.camera_ammu2 = 0;
-    $.flag_sounds_added_dog = 0;
-
-    //loaded_all_industrial_models_before = 0
-    //loaded_all_commercial_models_before = 0
-    //loaded_all_suburban_models_before = 0
-
-    $.flag_failed_love1 = 0;
-    $.flag_need_wall_change_km1 = 0;
-    $.flag_player_on_phil_mission = 0;
-    $.tramp1 = -1;
-    $.tramp2 = -1;
-    $.tramp3 = -1;
-    $.tramp4 = -1;
-    $.tramp1_dead = 0;
-    $.tramp2_dead = 0;
-    $.tramp4_dead = 0;
-    $.tramp3_dead = 0;
-    $.ammu_sample = 0;
-    $.special_ammu_audio = 0;
-    $.ammu_bloke_kill_player = 0;
-
-    verbose('[*] genstuf script initialized variables');
-});
-
 (async () => {
+    await run_on_newgame(async () => {
+        $.second_floor_cars_exist = 0;
+        $.third_floor_cars_exist = 0;
+        $.fourth_floor_cars_exist = 0;
+        $.fifth_floor_cars_exist = 0;
+    
+        $.need_to_clear_area_flag = 0;
+        $.has_player_been_at_fish_before = 0;
+        $.has_player_been_in_tramp_tunnel_before = 0;
+        $.flag_sounds_added_redlight = 0;
+        $.tramps_been_created = 0;
+        $.tramp_is_dead = 0;
+        $.camera_ammu1 = 0;
+        $.camera_ammu2 = 0;
+        $.flag_sounds_added_dog = 0;
+    
+        //loaded_all_industrial_models_before = 0
+        //loaded_all_commercial_models_before = 0
+        //loaded_all_suburban_models_before = 0
+    
+        $.flag_failed_love1 = 0;
+        $.flag_need_wall_change_km1 = 0;
+        $.flag_player_on_phil_mission = 0;
+        $.tramp1 = -1 as any;
+        $.tramp2 = -1 as any;
+        $.tramp3 = -1 as any;
+        $.tramp4 = -1 as any;
+        $.tramp1_dead = 0;
+        $.tramp2_dead = 0;
+        $.tramp4_dead = 0;
+        $.tramp3_dead = 0;
+        $.ammu_sample = 0;
+        $.special_ammu_audio = 0;
+        $.ammu_bloke_kill_player = 0;
+    
+        verbose('[*] genstuf script initialized variables');
+    });
+
     // SCRIPT_NAME genstuf
     // SET_DEATHARREST_STATE(false /* OFF */);
 

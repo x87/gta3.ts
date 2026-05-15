@@ -3,11 +3,11 @@ import { $ } from './vars.mts';
 let _verbose = true;
 
 export async function run_on_newgame(fn: () => Promise<void>) {
-    run_if(() => !$._flag_is_loaded_game, fn);
+    await run_if(() => !$._flag_is_loaded_game, fn);
 }
 
 export async function run_gated(variable: keyof typeof $, fn: () => Promise<void>) {
-    run_if(
+    await run_if(
         () => $[variable] == 0,
         async () => {
             verbose(`Run gated script on $.${variable} (${$[variable]})`);
@@ -16,7 +16,6 @@ export async function run_gated(variable: keyof typeof $, fn: () => Promise<void
             $[variable] = 1 as any;
         }
     );
-
 }
 
 export async function run_if(condition: () => boolean, fn: () => Promise<void>) {
@@ -41,9 +40,11 @@ export function verbose(message: any) {
     }
 }
 
-export async function GOSUB_FILE(file: string) {
+export function GOSUB_FILE(file: string) {
     verbose(`GOSUB_FILE: ${file}`);
-    await import(file);
+    import(file).catch(e => {
+        log('GOSUB_FILE failed: ' + unwrapError(e));
+    });
 }
 
 export function START_NEW_SCRIPT(file: string, args: Record<string, any> = {}) {

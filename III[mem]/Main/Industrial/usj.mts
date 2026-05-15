@@ -11,42 +11,43 @@ verbose('[*] Unique Stunt Jumps script loaded');
 // *****************************************************************************************
 // *****************************************************************************************
 
-run_on_newgame(async () => {
-    // Variables for mission
-
-    $.flag_usj1_passed = 0;
-    $.flag_usj2_passed = 0;
-    $.flag_usj3_passed = 0;
-    $.flag_usj4_passed = 0;
-    $.flag_usj5_passed = 0;
-    $.flag_usj6_passed = 0;
-    $.flag_usj7_passed = 0;
-    $.flag_usj8_passed = 0;
-    $.flag_usj9_passed = 0;
-    $.flag_usj10_passed = 0;
-    $.flag_usj11_passed = 0;
-    $.flag_usj12_passed = 0;
-    $.flag_usj13_passed = 0;
-    $.flag_usj14_passed = 0;
-    $.flag_usj15_passed = 0;
-    $.flag_usj16_passed = 0;
-    $.flag_usj17_passed = 0;
-    $.flag_usj18_passed = 0;
-    $.flag_usj19_passed = 0;
-    $.flag_usj20_passed = 0;
-
-    $.cash_reward_usj = 5000;
-    $.usj_number = 0;
-    $.total_completed_usj = 0;
-
-    // SET_DEATHARREST_STATE(false /* OFF */);
-    Stat.SetUniqueJumpsTotal(20);
-    verbose('[*] USJ variables initialized');
-});
-
-// ****************************************Mission Start************************************
 
 (async () => {
+    await run_on_newgame(async () => {
+        // Variables for mission
+
+        $.flag_usj1_passed = 0;
+        $.flag_usj2_passed = 0;
+        $.flag_usj3_passed = 0;
+        $.flag_usj4_passed = 0;
+        $.flag_usj5_passed = 0;
+        $.flag_usj6_passed = 0;
+        $.flag_usj7_passed = 0;
+        $.flag_usj8_passed = 0;
+        $.flag_usj9_passed = 0;
+        $.flag_usj10_passed = 0;
+        $.flag_usj11_passed = 0;
+        $.flag_usj12_passed = 0;
+        $.flag_usj13_passed = 0;
+        $.flag_usj14_passed = 0;
+        $.flag_usj15_passed = 0;
+        $.flag_usj16_passed = 0;
+        $.flag_usj17_passed = 0;
+        $.flag_usj18_passed = 0;
+        $.flag_usj19_passed = 0;
+        $.flag_usj20_passed = 0;
+
+        $.cash_reward_usj = 5000;
+        $.usj_number = 0;
+        $.total_completed_usj = 0;
+
+        // SET_DEATHARREST_STATE(false /* OFF */);
+        Stat.SetUniqueJumpsTotal(20);
+        verbose('[*] USJ variables initialized');
+    });
+
+    // ****************************************Mission Start************************************
+
     mission_start_usj: while (true) {
         await asyncWait(0);
 

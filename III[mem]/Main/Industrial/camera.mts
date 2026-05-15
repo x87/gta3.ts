@@ -1,40 +1,63 @@
 // Generated from Main/Industrial/camera.sc
-import { $ } from '../../utils';
+import { $, run_on_newgame, verbose } from '../../utils';
 
+verbose('[+] camera script loaded');
 
-async function mission_start_camera() {
-    {
+(async () => {
+    await run_on_newgame(async () => {
+        // VAR_INT rays_cutscene_flag rays_camera_1 rays_camera_2 rays_camera_3
+        //VAR_INT camera_stuff1 camera_stuff2	camera_stuff3 camera_stuff4
+        /*
+        camera_stuff1 = 0
+        camera_stuff2 = 0
+        camera_stuff3 = 0
+        camera_stuff4 = 0
+        */
+
+        $.rays_camera_1 = 0;
+        $.rays_camera_2 = 0;
+        $.rays_camera_3 = 0;
+        $.rays_cutscene_flag = 0;
+
+        verbose('[*] camera script initialized variables');
+    });
+
+    // SCRIPT_NAME camera
+
+    // SET_DEATHARREST_STATE(false /* OFF */);
+
+    mission_start_camera: while (true) {
         await asyncWait(70);
 
         //INDUSTRIAL******************************************************************************************************
         /*
-  IF IS_PLAYER_PLAYING Player
-
-  IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
-
-  IF IS_PLAYER_IN_ZONE player CHINA
-  // Fuzz ball camera zoom
-  IF IS_PLAYER_IN_AREA_3D player 1004.0 -892.0 14.0 996.9 -885.6 17.0 FALSE
-  IF camera_stuff1 = 0
-  SET_FIXED_CAMERA_POSITION 1000.120 -880.396 16.6 0.0 0.0 0.0
-  POINT_CAMERA_AT_PLAYER player FIXED INTERPOLATION
-  //POINT_CAMERA_AT_POINT 1000.1 -881.3 16.5 INTERPOLATION
-  //SET_CAMERA_ZOOM CAM_ZOOM_TWO
-  camera_stuff1 = 1
-  ENDIF
-  ELSE
-  IF camera_stuff1 = 1
-  RESTORE_CAMERA
-  SET_CAMERA_IN_FRONT_OF_PLAYER
-  camera_stuff1 = 0
-  ENDIF
-  ENDIF
-  ENDIF
-
-  ENDIF //IS_PLAYER_IN_ZONE
-
-  ENDIF //IS_PLAYER_PLAYING
-  */
+        IF IS_PLAYER_PLAYING Player
+    
+        IF IS_COLLISION_IN_MEMORY LEVEL_INDUSTRIAL
+    
+        IF IS_PLAYER_IN_ZONE player CHINA
+        // Fuzz ball camera zoom
+        IF IS_PLAYER_IN_AREA_3D player 1004.0 -892.0 14.0 996.9 -885.6 17.0 FALSE
+        IF camera_stuff1 = 0
+        SET_FIXED_CAMERA_POSITION 1000.120 -880.396 16.6 0.0 0.0 0.0
+        POINT_CAMERA_AT_PLAYER player FIXED INTERPOLATION
+        //POINT_CAMERA_AT_POINT 1000.1 -881.3 16.5 INTERPOLATION
+        //SET_CAMERA_ZOOM CAM_ZOOM_TWO
+        camera_stuff1 = 1
+        ENDIF
+        ELSE
+        IF camera_stuff1 = 1
+        RESTORE_CAMERA
+        SET_CAMERA_IN_FRONT_OF_PLAYER
+        camera_stuff1 = 0
+        ENDIF
+        ENDIF
+        ENDIF
+    
+        ENDIF //IS_PLAYER_IN_ZONE
+    
+        ENDIF //IS_PLAYER_PLAYING
+        */
 
         //COMMERCIAL*****************************************************************************************************
 
@@ -161,89 +184,64 @@ async function mission_start_camera() {
                 }
                 //END OF RAYS TOILETS FIXED CAM STUFF
                 /*
-      IF IS_PLAYER_PLAYING Player
-      // Police cell wall camera zoom
-      IF IS_PLAYER_IN_AREA_3D player 332.1 -1093.3 24.0 323.3 -1089.1 30.0 FALSE
-      IF camera_stuff4 = 0
-      SET_FIXED_CAMERA_POSITION 328.2  -1086.4  28.2 0.0 0.0 0.0
-      POINT_CAMERA_AT_PLAYER player FIXED INTERPOLATION
-      camera_stuff4 = 1
-      ENDIF
-      ELSE
-      IF camera_stuff4 = 1
-      RESTORE_CAMERA
-      SET_CAMERA_IN_FRONT_OF_PLAYER
-      camera_stuff4 = 0
-      ENDIF
-      ENDIF
-      ENDIF
-      */
+                IF IS_PLAYER_PLAYING Player
+                // Police cell wall camera zoom
+                IF IS_PLAYER_IN_AREA_3D player 332.1 -1093.3 24.0 323.3 -1089.1 30.0 FALSE
+                IF camera_stuff4 = 0
+                SET_FIXED_CAMERA_POSITION 328.2  -1086.4  28.2 0.0 0.0 0.0
+                POINT_CAMERA_AT_PLAYER player FIXED INTERPOLATION
+                camera_stuff4 = 1
+                ENDIF
+                ELSE
+                IF camera_stuff4 = 1
+                RESTORE_CAMERA
+                SET_CAMERA_IN_FRONT_OF_PLAYER
+                camera_stuff4 = 0
+                ENDIF
+                ENDIF
+                ENDIF
+                */
                 /*
-
-      IF IS_PLAYER_PLAYING player
-      IF IS_PLAYER_IN_ZONE player SHOPING
-
-      // Dojo building camera zoom
-      IF IS_PLAYER_IN_AREA_3D player 106.1 -1277.7 24.0 96.3 -1273.0 29.0 FALSE
-      IF camera_stuff2 = 0
-      SET_FIXED_CAMERA_POSITION 110.634 -1275.475 28.018 0.0 0.0 0.0
-      POINT_CAMERA_AT_POINT 109.649 -1275.441 27.842 INTERPOLATION
-      camera_stuff2 = 1
-      ENDIF
-      ELSE
-      IF camera_stuff2 = 1
-      RESTORE_CAMERA
-      SET_CAMERA_IN_FRONT_OF_PLAYER
-      camera_stuff2 = 0
-      ENDIF
-      ENDIF
-
-      // Love building door camera zoom
-      IF IS_PLAYER_IN_AREA_3D player 87.8 -1545.7 27.0 94.9 -1551.7 30.0 FALSE
-      IF camera_stuff3 = 0
-      SET_FIXED_CAMERA_POSITION 84.303 -1548.550 30.503 0.0 0.0 0.0
-      POINT_CAMERA_AT_POINT 85.271 -1548.602 30.257 INTERPOLATION
-      camera_stuff3 = 1
-      ENDIF
-      ELSE
-      IF camera_stuff3 = 1
-      RESTORE_CAMERA
-      SET_CAMERA_IN_FRONT_OF_PLAYER
-      camera_stuff3 = 0
-      ENDIF
-      ENDIF
-
-      ENDIF //IS_PLAYER_IN_ZONE
-      ENDIF //IS_PLAYER_PLAYING
-      */
+    
+                IF IS_PLAYER_PLAYING player
+                IF IS_PLAYER_IN_ZONE player SHOPING
+    
+                // Dojo building camera zoom
+                IF IS_PLAYER_IN_AREA_3D player 106.1 -1277.7 24.0 96.3 -1273.0 29.0 FALSE
+                IF camera_stuff2 = 0
+                SET_FIXED_CAMERA_POSITION 110.634 -1275.475 28.018 0.0 0.0 0.0
+                POINT_CAMERA_AT_POINT 109.649 -1275.441 27.842 INTERPOLATION
+                camera_stuff2 = 1
+                ENDIF
+                ELSE
+                IF camera_stuff2 = 1
+                RESTORE_CAMERA
+                SET_CAMERA_IN_FRONT_OF_PLAYER
+                camera_stuff2 = 0
+                ENDIF
+                ENDIF
+    
+            // Love building door camera zoom
+            IF IS_PLAYER_IN_AREA_3D player 87.8 -1545.7 27.0 94.9 -1551.7 30.0 FALSE
+            IF camera_stuff3 = 0
+            SET_FIXED_CAMERA_POSITION 84.303 -1548.550 30.503 0.0 0.0 0.0
+            POINT_CAMERA_AT_POINT 85.271 -1548.602 30.257 INTERPOLATION
+            camera_stuff3 = 1
+            ENDIF
+            ELSE
+            IF camera_stuff3 = 1
+            RESTORE_CAMERA
+            SET_CAMERA_IN_FRONT_OF_PLAYER
+            camera_stuff3 = 0
+            ENDIF
+            ENDIF
+    
+            ENDIF //IS_PLAYER_IN_ZONE
+            ENDIF //IS_PLAYER_PLAYING
+            */
             }
         }
-
-        // SCM GOTO → mission_start_camera (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_start_camera'); // fallback: would break linear control flow
-
-        // MissionBoundary
     }
-}
 
-export async function camera() {
-    // MissionBoundary
+})();
 
-    // VAR_INT rays_cutscene_flag rays_camera_1 rays_camera_2 rays_camera_3
-    //VAR_INT camera_stuff1 camera_stuff2	camera_stuff3 camera_stuff4
-    /*
-  camera_stuff1 = 0
-  camera_stuff2 = 0
-  camera_stuff3 = 0
-  camera_stuff4 = 0
-  */
-
-    $.rays_camera_1 = 0;
-    $.rays_camera_2 = 0;
-    $.rays_camera_3 = 0;
-    $.rays_cutscene_flag = 0;
-
-    // SCRIPT_NAME camera
-
-    // SET_DEATHARREST_STATE(false /* OFF */);
-}

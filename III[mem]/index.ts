@@ -235,8 +235,6 @@ async function main() {
 
         // ****************************************Suburban Garages*********************************
 
-        // VAR_INT save_cars3 bombshop3 garage_hm3 garage_hm4 escort_garage collect_all_cars2 sprayshop3
-
         $.save_cars3 = Garage.Create(-662.5, -47.4, 17.0, -670.7, -30.0, 22.0, 18 /* GARAGE_HIDEOUT_SUBURBAN */); //Saves current car to memory
         $.save_cars3.setRotatingDoor();
         $.save_cars3.noSpecialCameraForThisGarage();
@@ -1384,28 +1382,28 @@ async function main() {
 
     //FULL GAME LOAD***********************************************************************************************
 
-    // Start Monitors
+    // xxx: Start Monitors
     START_NEW_SCRIPT(__dirname + '/Main/missionMon.ts'); // must run as a separate script as it mutates ONMISSION flag and enables mission-only behavior
     GOSUB_FILE(__dirname + '/Main/Industrial/hj.mts');
     GOSUB_FILE(__dirname + '/Main/Industrial/usj.mts');
     GOSUB_FILE(__dirname + '/Main/Industrial/genstuf.mts');
-    // await import(__dirname + '/Main/Industrial/rampage.ts');
-    // await import(__dirname + '/Main/Industrial/import.ts');
-    // await import(__dirname + '/Main/Industrial/camera.ts');
-    // await import(__dirname + '/Main/Industrial/gates.ts');
+    GOSUB_FILE(__dirname + '/Main/Industrial/rampage.mts');
+    GOSUB_FILE(__dirname + '/Main/Industrial/import.mts');
+    GOSUB_FILE(__dirname + '/Main/Industrial/camera.mts');
+    GOSUB_FILE(__dirname + '/Main/Industrial/gates.mts');
 
-    // Save monitor
+    // xxx: Save monitor
     ind_save_loop(); // START_NEW_SCRIPT ind_save_loop
     com_save_loop(); // START_NEW_SCRIPT com_save_loop
     sub_save_loop(); // START_NEW_SCRIPT sub_save_loop
 
-    // Phone monitor
+    // xxx: Phone monitor
     meat_phone_loop();
     diablo_phone_loop();
     yardie_phone_loop();
     hood_phone_loop();
 
-    // Restart monitor
+    // xxx: Restart monitor
     run_gated('_flag_ind_restart_complete', ind_restart); // START_NEW_SCRIPT ind_restart
     run_gated('_flag_com_restart_complete', com_restart); // START_NEW_SCRIPT com_restart
     run_gated('_flag_sub_restart_complete', sub_restart); // START_NEW_SCRIPT sub_restart

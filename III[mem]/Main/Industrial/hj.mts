@@ -7,15 +7,14 @@ verbose('[+] HJ script loaded');
 // ****************************************Stunt Jump***************************************
 // *****************************************************************************************
 
-run_on_newgame(async () => {
-    // Variables for mission
-    $.longest_flight_time = 0;
-    verbose('[*] HJ variables initialized');
-});
-
-// ****************************************Mission Start************************************
-
 (async () => {
+    await run_on_newgame(async () => {
+        // Variables for mission
+        $.longest_flight_time = 0;
+        verbose('[*] HJ variables initialized');
+    });
+
+    // ****************************************Mission Start************************************
     // SET_DEATHARREST_STATE(false /* OFF */);
     // SCRIPT_NAME hj
 
@@ -212,7 +211,7 @@ run_on_newgame(async () => {
             $.difference_x_float_hj = $.difference_x_float_hj * $.difference_x_float_hj;
             $.difference_y_float_hj = $.difference_y_float_hj * $.difference_y_float_hj;
             $.sum_difference_xy_hj = $.difference_x_float_hj + $.difference_y_float_hj;
-            $.jumpdistance_float_hj = Math.Sqrt($.sum_difference_xy_hj);
+            $.jumpdistance_float_hj = Math.sqrt($.sum_difference_xy_hj);
             Stat.RegisterJumpDistance($.jumpdistance_float_hj);
             $.jumpdistance_int_hj = $.jumpdistance_float_hj;
             $.height_float_hj = $.height_float_hj - $.takeoff_z_float_hj;

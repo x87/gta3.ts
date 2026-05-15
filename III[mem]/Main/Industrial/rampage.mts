@@ -1,9 +1,134 @@
 // Generated from Main/Industrial/rampage.sc
-import { $ } from '../../utils';
+import { $, run_on_newgame, verbose } from '../../utils';
+
+verbose('[+] Rampage script loaded');
 
 
-async function rampage_pickup_loop() {
-    // SCM GOTO → rampage_pickup_loop lowered to endless loop
+(async () => {
+    await run_on_newgame(async () => {
+        // VAR_INT rampage_reward frenzy_status total_rampages_passed
+
+        // VAR_INT rampage_01 rampage_02 rampage_03 rampage_04 rampage_05
+        // VAR_INT rampage_06 rampage_07 rampage_08 rampage_09 rampage_10
+        // VAR_INT rampage_11 rampage_12 rampage_13 rampage_14 rampage_15
+        // VAR_INT rampage_16 rampage_17 rampage_18 rampage_19 rampage_20
+
+        // VAR_INT rampage_01_flag rampage_02_flag rampage_03_flag rampage_04_flag rampage_05_flag
+        // VAR_INT rampage_06_flag rampage_07_flag rampage_08_flag rampage_09_flag rampage_10_flag
+        // VAR_INT rampage_11_flag rampage_12_flag rampage_13_flag rampage_14_flag rampage_15_flag
+        // VAR_INT rampage_16_flag rampage_17_flag rampage_18_flag rampage_19_flag rampage_20_flag
+
+        // VAR_INT rampage_01_failed rampage_02_failed rampage_03_failed rampage_04_failed rampage_05_failed
+        // VAR_INT rampage_06_failed rampage_07_failed rampage_08_failed rampage_09_failed rampage_10_failed
+        // VAR_INT rampage_11_failed rampage_12_failed rampage_13_failed rampage_14_failed rampage_15_failed
+        // VAR_INT rampage_16_failed rampage_17_failed rampage_18_failed rampage_19_failed rampage_20_failed
+
+        // VAR_INT rampage_01_kills rampage_02_kills rampage_03_kills rampage_04_kills rampage_05_kills
+        // VAR_INT rampage_06_kills rampage_07_kills rampage_08_kills rampage_09_kills rampage_10_kills
+        // VAR_INT rampage_11_kills rampage_12_kills rampage_13_kills rampage_14_kills rampage_15_kills
+        // VAR_INT rampage_16_kills rampage_17_kills rampage_18_kills rampage_19_kills rampage_20_kills
+
+        $.rampage_reward = 5000;
+        $.frenzy_status = 0;
+        $.total_rampages_passed = 0;
+
+        $.rampage_01_flag = 0;
+        $.rampage_02_flag = 0;
+        $.rampage_03_flag = 0;
+        $.rampage_04_flag = 0;
+        $.rampage_05_flag = 0;
+        $.rampage_06_flag = 0;
+        $.rampage_07_flag = 0;
+        $.rampage_08_flag = 0;
+        $.rampage_09_flag = 0;
+        $.rampage_10_flag = 0;
+        $.rampage_11_flag = 0;
+        $.rampage_12_flag = 0;
+        $.rampage_13_flag = 0;
+        $.rampage_14_flag = 0;
+        $.rampage_15_flag = 0;
+        $.rampage_16_flag = 0;
+        $.rampage_17_flag = 0;
+        $.rampage_18_flag = 0;
+        $.rampage_19_flag = 0;
+        $.rampage_20_flag = 0;
+
+        $.rampage_01_failed = 0;
+        $.rampage_02_failed = 0;
+        $.rampage_03_failed = 0;
+        $.rampage_04_failed = 0;
+        $.rampage_05_failed = 0;
+        $.rampage_06_failed = 0;
+        $.rampage_07_failed = 0;
+        $.rampage_08_failed = 0;
+        $.rampage_09_failed = 0;
+        $.rampage_10_failed = 0;
+        $.rampage_11_failed = 0;
+        $.rampage_12_failed = 0;
+        $.rampage_13_failed = 0;
+        $.rampage_14_failed = 0;
+        $.rampage_15_failed = 0;
+        $.rampage_16_failed = 0;
+        $.rampage_17_failed = 0;
+        $.rampage_18_failed = 0;
+        $.rampage_19_failed = 0;
+        $.rampage_20_failed = 0;
+
+        $.rampage_01 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 958.0, -431.0, 14.5); //OPPOSITE LUIGI'S IN AN ALLEYWAY
+        $.rampage_02 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1076.9, -859.9, 15.2); //BOTTOM OF CALAHAN BRIDGE
+        $.rampage_03 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1312.3, -315.7, 42.6); //ST MARKS BEHIND TONI'S
+        $.rampage_04 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 883.3, -806.2, 15.0); //BEHIND BUILDING CHINATOWN NEAR BRIDGE
+        $.rampage_05 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1274.7, -742.7, 15.0); //IN ALLEY NEAR DOG FOOD FACTORY
+        $.rampage_06 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1195.3, -497.9, 39.3); //ON TOP TRAIN TRACKS BY HOSPITAL
+
+        $.rampage_07 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 204.1, -1237.4, 45.1); //ON ROOF ON AMCO BUILDING COMMERCIAL
+        $.rampage_08 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -22.1, -1526.9, 26.1); //CARPARK AREA OPPOSITE LOVES BUILDING
+        $.rampage_09 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 8.0, -910.0, 26.5); //SOUTH WEST CORNER OF PARK
+        $.rampage_10 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 181.1, -338.2, 16.5); //BEHIND UNIVERSITY	SOUTH
+        $.rampage_11 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -57.5, -1070.8, 26.3); //IN GRAVEYARD BY CATHEDRAL
+        $.rampage_12 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 392.9, -795.4, 31.3); //BETWEEN OVERPASS LANES NEAR ASUKA'S KENDO
+        $.rampage_13 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -41.6, -451.8, 16.6); //BEHIND FIRESTATION
+
+        $.rampage_14 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -585.4, 284.7, 64.0); //BEHIND A GARAGE IN THE MANSION AREA SUBURBIA
+        $.rampage_15 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -560.3, -23.6, 9.3); //ONTOP OF A GARAGE IN THE PROJECTS AREA UNDER OVERPASS
+        $.rampage_16 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -867.0, -145.4, 49.8); //ONTOP OF WAREHOUSE PIKE CREEK AIRPORT END
+        $.rampage_17 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -705.9, -617.5, 16.4); //BEHIND BILLBOARD AT AIRPORT
+        $.rampage_18 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -987.7, -206.1, 33.6); //BEHIND A GUARD BOX SOUTH PIKE CREEK
+        $.rampage_19 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -1186.3, 41.0, 68.8); //BEHIND BOX IN THE BAIT WAREHOUSE
+        $.rampage_20 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -431.6, 110.9, 15.6); //BEHIND BILLBOARD NORTH PROJECTS
+
+        Stat.SetTotalNumberOfKillFrenzies(20);
+
+        $.rampage_01_kills = 30;
+        $.rampage_02_kills = 13;
+        $.rampage_03_kills = 20;
+        $.rampage_04_kills = 25;
+        $.rampage_05_kills = 20;
+        $.rampage_06_kills = 10;
+        $.rampage_07_kills = 17;
+        $.rampage_08_kills = 25;
+        $.rampage_09_kills = 8;
+        $.rampage_10_kills = 15;
+        $.rampage_11_kills = 30;
+        $.rampage_12_kills = 16;
+        $.rampage_13_kills = 25;
+        $.rampage_14_kills = 20;
+        $.rampage_15_kills = 20;
+        $.rampage_16_kills = 15;
+        $.rampage_17_kills = 20;
+        $.rampage_18_kills = 7;
+        $.rampage_19_kills = 15;
+        $.rampage_20_kills = 20;
+    });
+
+    //START_KILL_FRENZY StartMessage WeaponType TimeLimit TargetNumber PedOrCarModel ExtraModel1 ExtraModel2 ExtraModel3 FrenzyText
+    //				   | TEXT LABEL	|		   | MILLISEC |		  	  |	-1 ALL PEDS	 |									 | True	- Has Kill Frenzy text
+    //				   | 			|		   |		  |			  |	-2 ALL CARS	 |		-1 TO IGNORE THESE			 | False - No text
+
+    // SET_DEATHARREST_STATE(false /* OFF */);
+
+    // SCRIPT_NAME rampage
+
     while (true) {
         await asyncWait(500);
 
@@ -28,9 +153,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_01_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -63,9 +186,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_02_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -108,9 +229,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_03_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -145,9 +264,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_04_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -192,9 +309,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_05_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -226,9 +341,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_06_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -270,9 +383,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_07_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -317,9 +428,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_08_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -351,9 +460,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_09_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -382,9 +489,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_10_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -426,9 +531,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_11_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -473,9 +576,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_12_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -520,9 +621,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_13_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -567,9 +666,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_14_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -604,9 +701,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_15_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -638,9 +733,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_16_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -682,9 +775,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_17_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -737,9 +828,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_18_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -781,9 +870,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_19_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -828,9 +915,7 @@ async function rampage_pickup_loop() {
                 }
                 if ($.frenzy_status == 2) {
                     $.rampage_20_flag = 1;
-                    // SCM GOSUB rampage_rewards
-                    await rampage_rewards();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await rampage_rewards(); // SCM GOSUB rampage_rewards
                 }
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
@@ -850,11 +935,11 @@ async function rampage_pickup_loop() {
         }
 
         if ($.total_rampages_passed == 20) {
-            // SCM GOTO → rampage_passed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO rampage_passed'); // fallback: would break linear control flow
+            await rampage_passed(); // SCM GOTO → rampage_passed
+            break;
         }
     }
-}
+})();
 
 async function rampage_passed() {
     Mission.Finish();
@@ -862,7 +947,6 @@ async function rampage_passed() {
     //german_rampage_over:
 
     Stat.PlayerMadeProgress(1);
-    // MissionBoundary
 }
 
 async function rampage_rewards() {
@@ -879,132 +963,6 @@ async function rampage_rewards() {
         Text.PrintBig('RAMP_A', 5000, 5); //"ALL RAMPAGES COMPLETED!"
         Text.PrintWithNumberBig('REWARD', 1000000, 6000, 6);
     }
-
-    return;
 }
 
-export async function rampage() {
-    // MissionBoundary
-
-    // SET_DEATHARREST_STATE(false /* OFF */);
-
-    // SCRIPT_NAME rampage
-
-    // VAR_INT rampage_reward frenzy_status total_rampages_passed
-
-    // VAR_INT rampage_01 rampage_02 rampage_03 rampage_04 rampage_05
-    // VAR_INT rampage_06 rampage_07 rampage_08 rampage_09 rampage_10
-    // VAR_INT rampage_11 rampage_12 rampage_13 rampage_14 rampage_15
-    // VAR_INT rampage_16 rampage_17 rampage_18 rampage_19 rampage_20
-
-    // VAR_INT rampage_01_flag rampage_02_flag rampage_03_flag rampage_04_flag rampage_05_flag
-    // VAR_INT rampage_06_flag rampage_07_flag rampage_08_flag rampage_09_flag rampage_10_flag
-    // VAR_INT rampage_11_flag rampage_12_flag rampage_13_flag rampage_14_flag rampage_15_flag
-    // VAR_INT rampage_16_flag rampage_17_flag rampage_18_flag rampage_19_flag rampage_20_flag
-
-    // VAR_INT rampage_01_failed rampage_02_failed rampage_03_failed rampage_04_failed rampage_05_failed
-    // VAR_INT rampage_06_failed rampage_07_failed rampage_08_failed rampage_09_failed rampage_10_failed
-    // VAR_INT rampage_11_failed rampage_12_failed rampage_13_failed rampage_14_failed rampage_15_failed
-    // VAR_INT rampage_16_failed rampage_17_failed rampage_18_failed rampage_19_failed rampage_20_failed
-
-    // VAR_INT rampage_01_kills rampage_02_kills rampage_03_kills rampage_04_kills rampage_05_kills
-    // VAR_INT rampage_06_kills rampage_07_kills rampage_08_kills rampage_09_kills rampage_10_kills
-    // VAR_INT rampage_11_kills rampage_12_kills rampage_13_kills rampage_14_kills rampage_15_kills
-    // VAR_INT rampage_16_kills rampage_17_kills rampage_18_kills rampage_19_kills rampage_20_kills
-
-    $.rampage_reward = 5000;
-    $.frenzy_status = 0;
-    $.total_rampages_passed = 0;
-
-    $.rampage_01_flag = 0;
-    $.rampage_02_flag = 0;
-    $.rampage_03_flag = 0;
-    $.rampage_04_flag = 0;
-    $.rampage_05_flag = 0;
-    $.rampage_06_flag = 0;
-    $.rampage_07_flag = 0;
-    $.rampage_08_flag = 0;
-    $.rampage_09_flag = 0;
-    $.rampage_10_flag = 0;
-    $.rampage_11_flag = 0;
-    $.rampage_12_flag = 0;
-    $.rampage_13_flag = 0;
-    $.rampage_14_flag = 0;
-    $.rampage_15_flag = 0;
-    $.rampage_16_flag = 0;
-    $.rampage_17_flag = 0;
-    $.rampage_18_flag = 0;
-    $.rampage_19_flag = 0;
-    $.rampage_20_flag = 0;
-
-    $.rampage_01_failed = 0;
-    $.rampage_02_failed = 0;
-    $.rampage_03_failed = 0;
-    $.rampage_04_failed = 0;
-    $.rampage_05_failed = 0;
-    $.rampage_06_failed = 0;
-    $.rampage_07_failed = 0;
-    $.rampage_08_failed = 0;
-    $.rampage_09_failed = 0;
-    $.rampage_10_failed = 0;
-    $.rampage_11_failed = 0;
-    $.rampage_12_failed = 0;
-    $.rampage_13_failed = 0;
-    $.rampage_14_failed = 0;
-    $.rampage_15_failed = 0;
-    $.rampage_16_failed = 0;
-    $.rampage_17_failed = 0;
-    $.rampage_18_failed = 0;
-    $.rampage_19_failed = 0;
-    $.rampage_20_failed = 0;
-
-    $.rampage_01 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 958.0, -431.0, 14.5); //OPPOSITE LUIGI'S IN AN ALLEYWAY
-    $.rampage_02 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1076.9, -859.9, 15.2); //BOTTOM OF CALAHAN BRIDGE
-    $.rampage_03 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1312.3, -315.7, 42.6); //ST MARKS BEHIND TONI'S
-    $.rampage_04 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 883.3, -806.2, 15.0); //BEHIND BUILDING CHINATOWN NEAR BRIDGE
-    $.rampage_05 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1274.7, -742.7, 15.0); //IN ALLEY NEAR DOG FOOD FACTORY
-    $.rampage_06 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1195.3, -497.9, 39.3); //ON TOP TRAIN TRACKS BY HOSPITAL
-
-    $.rampage_07 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 204.1, -1237.4, 45.1); //ON ROOF ON AMCO BUILDING COMMERCIAL
-    $.rampage_08 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -22.1, -1526.9, 26.1); //CARPARK AREA OPPOSITE LOVES BUILDING
-    $.rampage_09 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 8.0, -910.0, 26.5); //SOUTH WEST CORNER OF PARK
-    $.rampage_10 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 181.1, -338.2, 16.5); //BEHIND UNIVERSITY	SOUTH
-    $.rampage_11 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -57.5, -1070.8, 26.3); //IN GRAVEYARD BY CATHEDRAL
-    $.rampage_12 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 392.9, -795.4, 31.3); //BETWEEN OVERPASS LANES NEAR ASUKA'S KENDO
-    $.rampage_13 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -41.6, -451.8, 16.6); //BEHIND FIRESTATION
-
-    $.rampage_14 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -585.4, 284.7, 64.0); //BEHIND A GARAGE IN THE MANSION AREA SUBURBIA
-    $.rampage_15 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -560.3, -23.6, 9.3); //ONTOP OF A GARAGE IN THE PROJECTS AREA UNDER OVERPASS
-    $.rampage_16 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -867.0, -145.4, 49.8); //ONTOP OF WAREHOUSE PIKE CREEK AIRPORT END
-    $.rampage_17 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -705.9, -617.5, 16.4); //BEHIND BILLBOARD AT AIRPORT
-    $.rampage_18 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -987.7, -206.1, 33.6); //BEHIND A GUARD BOX SOUTH PIKE CREEK
-    $.rampage_19 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -1186.3, 41.0, 68.8); //BEHIND BOX IN THE BAIT WAREHOUSE
-    $.rampage_20 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -431.6, 110.9, 15.6); //BEHIND BILLBOARD NORTH PROJECTS
-
-    Stat.SetTotalNumberOfKillFrenzies(20);
-
-    $.rampage_01_kills = 30;
-    $.rampage_02_kills = 13;
-    $.rampage_03_kills = 20;
-    $.rampage_04_kills = 25;
-    $.rampage_05_kills = 20;
-    $.rampage_06_kills = 10;
-    $.rampage_07_kills = 17;
-    $.rampage_08_kills = 25;
-    $.rampage_09_kills = 8;
-    $.rampage_10_kills = 15;
-    $.rampage_11_kills = 30;
-    $.rampage_12_kills = 16;
-    $.rampage_13_kills = 25;
-    $.rampage_14_kills = 20;
-    $.rampage_15_kills = 20;
-    $.rampage_16_kills = 15;
-    $.rampage_17_kills = 20;
-    $.rampage_18_kills = 7;
-    $.rampage_19_kills = 15;
-    $.rampage_20_kills = 20;
-
-    //START_KILL_FRENZY StartMessage WeaponType TimeLimit TargetNumber PedOrCarModel ExtraModel1 ExtraModel2 ExtraModel3 FrenzyText
-    //				   | TEXT LABEL	|		   | MILLISEC |		  	  |	-1 ALL PEDS	 |									 | True	- Has Kill Frenzy text
-    //				   | 			|		   |		  |			  |	-2 ALL CARS	 |		-1 TO IGNORE THESE			 | False - No text
-}
+verbose('[-] Rampage script ended');
