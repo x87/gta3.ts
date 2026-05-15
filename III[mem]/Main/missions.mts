@@ -628,7 +628,7 @@ const missions: MissionDefinition[] = [
 
     // *******************************************Luigi Missions 3-5*****************************
     {
-        scriptPath: `./Industrial/luigi3.ts`,
+        scriptPath: `./Industrial/luigi3.mts`,
         name: 'Drive Misty For Me',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_luigi_mission3_passed == 0) {
@@ -654,7 +654,7 @@ const missions: MissionDefinition[] = [
         },
     },
     {
-        scriptPath: `./Industrial/luigi4.ts`,
+        scriptPath: `./Industrial/luigi4.mts`,
         name: 'Pump Action Pimp',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_luigi_mission4_passed == 0) {

@@ -824,8 +824,6 @@ async function girls_running() {
             }
         }
     }
-
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
