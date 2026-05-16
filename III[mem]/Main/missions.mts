@@ -20,7 +20,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/8ball.mts`,
-        name: "Give Me Liberty and Luigi's Girls",
+        name: "Give Me Liberty / Luigi's Girls",
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_eightball_mission_passed == 0) {
                 return false;

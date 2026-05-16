@@ -1,5 +1,6 @@
 // Generated from Main/Industrial/luigi5.sc
 import { $, verbose } from '../../utils';
+import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,222 +10,19 @@ import { $, verbose } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 
-// SCRIPT_NAME luigi5
-
-// Mission Start Stuff
-
-// GOSUB mission_start_luigi5
-
-// 	IF HAS_DEATHARREST_BEEN_EXECUTED
-// 		GOSUB mission_luigi5_failed
-// 	ENDIF
-
-// GOSUB mission_cleanup_luigi5
-
-// MISSION_END
+let timer: DisplayedTimer;
 
 async function body() {
-    // Vehicles for mission
-
-    // VAR_INT vehicle_lm5
-
-    // radar_blips
-
-    // VAR_INT flag_blip_on_prossie1_lm5
-
-    // VAR_INT flag_blip_on_prossie2_lm5
-
-    // VAR_INT flag_blip_on_prossie3_lm5
-
-    // VAR_INT flag_blip_on_prossie4_lm5
-
-    // VAR_INT flag_blip_on_prossie5_lm5
-
-    // VAR_INT flag_blip_on_prossie6_lm5
-
-    // VAR_INT flag_blip_on_prossie7_lm5
-
-    // VAR_INT flag_blip_on_prossie8_lm5
-
-    // VAR_INT radar_blip_coord1_lm5
-
-    // VAR_INT radarped_prossie1_lm5
-
-    // VAR_INT radarped_prossie2_lm5
-
-    // VAR_INT radarped_prossie3_lm5
-
-    // VAR_INT radarped_prossie4_lm5
-
-    // VAR_INT radarped_prossie5_lm5
-
-    // VAR_INT radarped_prossie6_lm5
-
-    // VAR_INT radarped_prossie7_lm5
-
-    // VAR_INT radarped_prossie8_lm5
-
-    // timers
-
-    // VAR_INT timer_lm5
-
-    // Characters for mission
-
-    // VAR_INT prossie1_lm5
-
-    // VAR_INT prossie2_lm5
-
-    // VAR_INT prossie3_lm5
-
-    // VAR_INT prossie4_lm5
-
-    // VAR_INT prossie5_lm5
-
-    // VAR_INT prossie6_lm5
-
-    // VAR_INT prossie7_lm5
-
-    // VAR_INT prossie8_lm5
-
-    //Character created and at ball flags
-
-    // VAR_INT flag_prossie1_at_ball
-
-    // VAR_INT flag_prossie2_at_ball
-
-    // VAR_INT flag_prossie3_at_ball
-
-    // VAR_INT flag_prossie4_at_ball
-
-    // VAR_INT flag_prossie5_at_ball
-
-    // VAR_INT flag_prossie6_at_ball
-
-    // VAR_INT flag_prossie7_at_ball
-
-    // VAR_INT flag_prossie8_at_ball
-
-    // girls in car flag
-
-    // VAR_INT flag_prossie1_lm5_in_car
-
-    // VAR_INT flag_prossie2_lm5_in_car
-
-    // VAR_INT flag_prossie3_lm5_in_car
-
-    // VAR_INT flag_prossie4_lm5_in_car
-
-    // VAR_INT flag_prossie5_lm5_in_car
-
-    // VAR_INT flag_prossie6_lm5_in_car
-
-    // VAR_INT flag_prossie7_lm5_in_car
-
-    // VAR_INT flag_prossie8_lm5_in_car
-
-    // no of passenger stuff
-
-    // VAR_INT max_no_of_passengers_lm5
-
-    // VAR_INT room_left_in_car_lm5
-
-    // VAR_INT no_of_passengers_lm5
-
-    // VAR_INT flag_had_room_message_lm5
-
-    // Scoreing stuff
-
-    // VAR_INT counter_no_of_girls_at_the_ball
-
-    // VAR_INT score_lm5
-
-    // PEds in to the building stuff
-
-    // VAR_INT flag_prossie2_in_car_park
-
-    // VAR_INT flag_prossie2_told_to_go_into_ball
-
-    // VAR_INT flag_prossie1_in_car_park
-
-    // VAR_INT flag_prossie1_told_to_go_into_ball
-
-    // VAR_INT flag_prossie3_in_car_park
-
-    // VAR_INT flag_prossie3_told_to_go_into_ball
-
-    // VAR_INT flag_prossie4_in_car_park
-
-    // VAR_INT flag_prossie4_told_to_go_into_ball
-
-    // VAR_INT flag_prossie5_in_car_park
-
-    // VAR_INT flag_prossie5_told_to_go_into_ball
-
-    // VAR_INT flag_prossie6_in_car_park
-
-    // VAR_INT flag_prossie6_told_to_go_into_ball
-
-    // VAR_INT flag_prossie7_in_car_park
-
-    // VAR_INT flag_prossie7_told_to_go_into_ball
-
-    // VAR_INT flag_prossie8_in_car_park
-
-    // VAR_INT flag_prossie8_told_to_go_into_ball
-
-    // VAR_INT fuzzball_sign
-
-    // VAR_INT number_of_dead_prossies
-
-    // VAR_INT ball_sounds
-
-    // Door Stuff
-
-    // VAR_INT flag_moved_door1_lm5
-
-    // VAR_INT flag_moved_door2_lm5
-
-    // Message from girl to tell player to get a car
-
-    // VAR_INT flag_had_car_message1_lm5
-
-    // VAR_INT flag_had_car_message2_lm5
-
-    // VAR_INT flag_had_car_message3_lm5
-
-    // VAR_INT flag_had_car_message4_lm5
-
-    // VAR_INT flag_had_car_message5_lm5
-
-    // VAR_INT flag_had_car_message6_lm5
-
-    // VAR_INT flag_had_car_message7_lm5
-
-    // VAR_INT flag_had_car_message8_lm5
-
-    // VAR_INT sphere_lm5
-
-    // VAR_INT cop_car1_lm5
-
-    // VAR_INT cop_car2_lm5
-
-    // VAR_INT counter_girls_trying_to_get_to_ball
-
-    // VAR_INT flag_timer_prossie1_lm5
-
-    // VAR_INT flag_timer_prossie2_lm5
-
-    // VAR_INT flag_timer_prossie3_lm5
-
-    // VAR_INT flag_timer_prossie4_lm5
-
-    // VAR_INT flag_timer_prossie5_lm5
-
-    // VAR_INT flag_timer_prossie6_lm5
-
-    // VAR_INT flag_timer_prossie7_lm5
-
-    // VAR_INT flag_timer_prossie8_lm5
+    // SCRIPT_NAME luigi5
+
+    // Mission Start Stuff
+
+    // GOSUB mission_start_luigi5
+    // 	IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 		GOSUB mission_luigi5_failed
+    // 	ENDIF
+    // GOSUB mission_cleanup_luigi5
+    // MISSION_END
 
     // ******************************************Mission Start**********************************
     ONMISSION = true;
@@ -235,157 +33,109 @@ async function body() {
 
     await asyncWait(0);
 
-    $.max_no_of_passengers_lm5 = 0;
-
-    $.flag_prossie1_at_ball = 0;
-
-    $.flag_prossie2_at_ball = 0;
-
-    $.flag_prossie3_at_ball = 0;
-
-    $.flag_prossie4_at_ball = 0;
-
-    $.flag_prossie5_at_ball = 0;
-
-    $.flag_prossie6_at_ball = 0;
-
-    $.flag_prossie7_at_ball = 0;
-
-    $.flag_prossie8_at_ball = 0;
-
-    $.room_left_in_car_lm5 = 0;
-
-    $.no_of_passengers_lm5 = 0;
-
-    $.flag_had_room_message_lm5 = 0;
-
-    $.counter_no_of_girls_at_the_ball = 0;
-
-    $.score_lm5 = 0;
-
-    $.flag_prossie2_in_car_park = 0;
-
-    $.flag_prossie2_told_to_go_into_ball = 0;
-
-    $.flag_prossie1_in_car_park = 0;
-
-    $.flag_prossie1_told_to_go_into_ball = 0;
-
+    // timers
     $.timer_lm5 = 301000;
 
-    $.flag_blip_on_prossie1_lm5 = 0;
+    //Character created and at ball flags
+    $.flag_prossie1_at_ball = 0;
+    $.flag_prossie2_at_ball = 0;
+    $.flag_prossie3_at_ball = 0;
+    $.flag_prossie4_at_ball = 0;
+    $.flag_prossie5_at_ball = 0;
+    $.flag_prossie6_at_ball = 0;
+    $.flag_prossie7_at_ball = 0;
+    $.flag_prossie8_at_ball = 0;
 
-    $.flag_blip_on_prossie2_lm5 = 0;
+    // no of passenger stuff
+    $.room_left_in_car_lm5 = 0;
+    $.no_of_passengers_lm5 = 0;
+    $.flag_had_room_message_lm5 = 0;
+    $.max_no_of_passengers_lm5 = 0;
 
-    $.flag_blip_on_prossie3_lm5 = 0;
+    // Scoreing stuff
+    $.counter_no_of_girls_at_the_ball = 0;
+    $.score_lm5 = 0;
 
-    $.flag_blip_on_prossie4_lm5 = 0;
-
-    $.flag_blip_on_prossie5_lm5 = 0;
-
-    $.flag_blip_on_prossie6_lm5 = 0;
-
-    $.flag_blip_on_prossie7_lm5 = 0;
-
-    $.flag_blip_on_prossie8_lm5 = 0;
-
-    $.flag_prossie1_lm5_in_car = 0;
-
-    $.flag_prossie2_lm5_in_car = 0;
-
-    $.flag_prossie3_lm5_in_car = 0;
-
-    $.flag_prossie4_lm5_in_car = 0;
-
-    $.flag_prossie5_lm5_in_car = 0;
-
-    $.flag_prossie6_lm5_in_car = 0;
-
-    $.flag_prossie7_lm5_in_car = 0;
-
-    $.flag_prossie8_lm5_in_car = 0;
-
+    // PEds in to the building stuff
+    $.flag_prossie1_in_car_park = 0;
+    $.flag_prossie1_told_to_go_into_ball = 0;
+    $.flag_prossie2_in_car_park = 0;
+    $.flag_prossie2_told_to_go_into_ball = 0;
     $.flag_prossie3_in_car_park = 0;
-
     $.flag_prossie3_told_to_go_into_ball = 0;
-
     $.flag_prossie4_in_car_park = 0;
-
     $.flag_prossie4_told_to_go_into_ball = 0;
-
     $.flag_prossie5_in_car_park = 0;
-
     $.flag_prossie5_told_to_go_into_ball = 0;
-
     $.flag_prossie6_in_car_park = 0;
-
     $.flag_prossie6_told_to_go_into_ball = 0;
-
     $.flag_prossie7_in_car_park = 0;
-
     $.flag_prossie7_told_to_go_into_ball = 0;
-
     $.flag_prossie8_in_car_park = 0;
-
     $.flag_prossie8_told_to_go_into_ball = 0;
 
     $.number_of_dead_prossies = 0;
 
-    $.flag_moved_door1_lm5 = 0;
+    // radar_blips
+    $.flag_blip_on_prossie1_lm5 = 0;
+    $.flag_blip_on_prossie2_lm5 = 0;
+    $.flag_blip_on_prossie3_lm5 = 0;
+    $.flag_blip_on_prossie4_lm5 = 0;
+    $.flag_blip_on_prossie5_lm5 = 0;
+    $.flag_blip_on_prossie6_lm5 = 0;
+    $.flag_blip_on_prossie7_lm5 = 0;
+    $.flag_blip_on_prossie8_lm5 = 0;
 
+    // girls in car flag
+    $.flag_prossie1_lm5_in_car = 0;
+    $.flag_prossie2_lm5_in_car = 0;
+    $.flag_prossie3_lm5_in_car = 0;
+    $.flag_prossie4_lm5_in_car = 0;
+    $.flag_prossie5_lm5_in_car = 0;
+    $.flag_prossie6_lm5_in_car = 0;
+    $.flag_prossie7_lm5_in_car = 0;
+    $.flag_prossie8_lm5_in_car = 0;
+
+    // Door Stuff
+    $.flag_moved_door1_lm5 = 0;
     $.flag_moved_door2_lm5 = 0;
 
+    // Message from girl to tell player to get a car
     $.flag_had_car_message1_lm5 = 0;
-
     $.flag_had_car_message2_lm5 = 0;
-
     $.flag_had_car_message3_lm5 = 0;
-
     $.flag_had_car_message4_lm5 = 0;
-
     $.flag_had_car_message5_lm5 = 0;
-
     $.flag_had_car_message6_lm5 = 0;
-
     $.flag_had_car_message7_lm5 = 0;
-
     $.flag_had_car_message8_lm5 = 0;
-
     $.counter_girls_trying_to_get_to_ball = 0;
-
     $.flag_timer_prossie1_lm5 = 0;
-
     $.flag_timer_prossie2_lm5 = 0;
-
     $.flag_timer_prossie3_lm5 = 0;
-
     $.flag_timer_prossie4_lm5 = 0;
-
     $.flag_timer_prossie5_lm5 = 0;
-
     $.flag_timer_prossie6_lm5 = 0;
-
     $.flag_timer_prossie7_lm5 = 0;
-
     $.flag_timer_prossie8_lm5 = 0;
 
     // *****************************************START OF CUTSCENE*******************************
 
     /*
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_luigi5_failed
-  ENDIF
+    IF CAN_PLAYER_START_MISSION player
+    MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+    ELSE
+    GOTO mission_luigi5_failed
+    ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+    SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 1500 FADE_OUT
+    DO_FADE 1500 FADE_OUT
 
-  PRINT_BIG ( LM5 ) 15000 2 //"Fuzz Ball"
+    PRINT_BIG ( LM5 ) 15000 2 //"Fuzz Ball"
 
-  SWITCH_STREAMING OFF
-  */
+    SWITCH_STREAMING OFF
+    */
 
     Streaming.LoadSpecialCharacter(1, 'LUIGI');
     Streaming.LoadSpecialCharacter(2, 'MICKY');
@@ -399,12 +149,12 @@ async function body() {
     Streaming.RequestModel(243 /* luigiineerclub */);
 
     /*
-  WHILE GET_FADING_STATUS
+    WHILE GET_FADING_STATUS
 
-  WAIT 0
+    WAIT 0
 
-  ENDWHILE
-  */
+    ENDWHILE
+    */
 
     World.SetPedDensityMultiplier(0.0);
 
@@ -611,7 +361,8 @@ async function body() {
 
     $.fuzz_door2.setHeading(270.0);
 
-    Hud.DisplayTimer($.timer_lm5);
+    
+    timer = new Timer($.timer_lm5).display(); // Hud.DisplayTimer($.timer_lm5);
 
     $.radar_blip_coord1_lm5 = Blip.AddForCoord(999.9, -879.3, -100.0);
 
@@ -730,16 +481,16 @@ async function body() {
 
     // checking to see how many girls the player get to the ball
 
-    prossie_checks: while ($.timer_lm5 > 0) {
+    prossie_checks: while(timer.value > 0) { //while ($.timer_lm5 > 0) {
         await asyncWait(0);
-        World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */); // This should clear the area        
+        World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */); // This should clear the area
         await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
         if ($.number_of_dead_prossies > 0) {
             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
             // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
         }
-        if ($.counter_no_of_girls_at_the_ball == 8) {            
+        if ($.counter_no_of_girls_at_the_ball == 8) {
             return; // SCM GOTO → mission_luigi5_passed
         }
         if ($.player.isInAnyCar()) {
@@ -776,7 +527,7 @@ async function body() {
                             $.radarped_prossie1_lm5.remove();
                             $.flag_blip_on_prossie1_lm5 = 0;
                             while (!$.prossie1_lm5.isInCar($.vehicle_lm5)) {
-                                await asyncWait(0);                                
+                                await asyncWait(0);
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
@@ -798,7 +549,7 @@ async function body() {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie1_lm5 = Blip.AddForChar($.prossie1_lm5);
                                             $.flag_blip_on_prossie1_lm5 = 1;
-                                            
+
                                             continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie1_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie1_lm5 == 1) {
@@ -928,8 +679,8 @@ async function body() {
                             $.radarped_prossie2_lm5.remove();
                             $.flag_blip_on_prossie2_lm5 = 0;
                             while (!$.prossie2_lm5.isInCar($.vehicle_lm5)) {
-                                await asyncWait(0);                                
-                                await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies                                
+                                await asyncWait(0);
+                                await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
                                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
@@ -1086,7 +837,7 @@ async function body() {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle has been wrecked!"
                                     // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
-                                }                                
+                                }
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
@@ -1234,7 +985,7 @@ async function body() {
                             $.radarped_prossie4_lm5.remove();
                             $.flag_blip_on_prossie4_lm5 = 0;
                             while (!$.prossie4_lm5.isInCar($.vehicle_lm5)) {
-                                await asyncWait(0);                                
+                                await asyncWait(0);
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
@@ -1388,7 +1139,7 @@ async function body() {
                             $.radarped_prossie5_lm5.remove();
                             $.flag_blip_on_prossie5_lm5 = 0;
                             while (!$.prossie5_lm5.isInCar($.vehicle_lm5)) {
-                                await asyncWait(0);                                
+                                await asyncWait(0);
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
@@ -1539,7 +1290,7 @@ async function body() {
                             $.radarped_prossie6_lm5.remove();
                             $.flag_blip_on_prossie6_lm5 = 0;
                             while (!$.prossie6_lm5.isInCar($.vehicle_lm5)) {
-                                await asyncWait(0);                                
+                                await asyncWait(0);
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
@@ -1692,7 +1443,7 @@ async function body() {
                             $.radarped_prossie7_lm5.remove();
                             $.flag_blip_on_prossie7_lm5 = 0;
                             while (!$.prossie7_lm5.isInCar($.vehicle_lm5)) {
-                                await asyncWait(0);                                
+                                await asyncWait(0);
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
@@ -1844,7 +1595,7 @@ async function body() {
                             $.radarped_prossie8_lm5.remove();
                             $.flag_blip_on_prossie8_lm5 = 0;
                             while (!$.prossie8_lm5.isInCar($.vehicle_lm5)) {
-                                await asyncWait(0);                                
+                                await asyncWait(0);
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
@@ -1974,7 +1725,6 @@ async function body() {
     } else {
         return; // SCM GOTO → mission_luigi5_passed
     }
-
 }
 
 // Mission Luigi1 failed
@@ -2031,7 +1781,7 @@ async function cleanup() {
     $.fuzzball_sign.markAsNoLongerNeeded();
     Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);
     Streaming.MarkModelAsNoLongerNeeded(40 /* PED_PROSTITUTE2 */);
-    Hud.ClearTimer($.timer_lm5);
+    timer.clear(); // Hud.ClearTimer($.timer_lm5);
     Hud.FreezeTimer(false /* FALSE */);
     Hud.ClearCounter($.counter_no_of_girls_at_the_ball);
     $.radar_blip_coord1_lm5.remove();
