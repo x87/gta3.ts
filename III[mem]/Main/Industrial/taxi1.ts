@@ -1064,7 +1064,7 @@ async function mission_cleanup_taxi1() {
 }
 
 export async function taxi1() {
-    // MissionBoundary
+    
     // *******************************************************************************************
     // *******************************************************************************************
     // *************************************CRRRRRAZY TAXI****************************************
@@ -1083,7 +1083,7 @@ export async function taxi1() {
     await mission_cleanup_taxi1();
     // fallback if label was not emitted as async function: no-op continues linearly
 
-    // MissionBoundary
+    
 
     // Variables for mission
 

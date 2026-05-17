@@ -763,7 +763,7 @@ async function cleanup() {
         $.car_lm2.changeLock(1 /* CARLOCK_UNLOCKED */);
     }
 
-    $.garage_lm2.setTargetCarForMission(-1);
+    $.garage_lm2.setTargetCarForMission(-1 as any);
     Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
     Streaming.MarkModelAsNoLongerNeeded(54 /* PED_DOCKER2 */);
     Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);

@@ -1045,6 +1045,6 @@ async function player_out_of_car() {
     return;
 }
 
-// MissionBoundary
+
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

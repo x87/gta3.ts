@@ -702,8 +702,8 @@ async function body() {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie2_lm5 = Blip.AddForChar($.prossie2_lm5);
                                             $.flag_blip_on_prossie2_lm5 = 1;
-                                            // SCM GOTO → prossie_checks (not lowered; manual jump required)
-                                            throw new Error('unresolved GOTO prossie_checks'); // fallback: would break linear control flow
+                                            // SCM GOTO → prossie_checks
+                                            continue prossie_checks;
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie2_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie2_lm5 == 1) {
                                             $.prossie2_lm5.followPlayer($.player);
@@ -855,8 +855,8 @@ async function body() {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie3_lm5 = Blip.AddForChar($.prossie3_lm5);
                                             $.flag_blip_on_prossie3_lm5 = 1;
-                                            // SCM GOTO → prossie_checks (not lowered; manual jump required)
-                                            throw new Error('unresolved GOTO prossie_checks'); // fallback: would break linear control flow
+                                            // SCM GOTO → prossie_checks
+                                            continue prossie_checks;
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie3_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie3_lm5 == 1) {
                                             $.prossie3_lm5.followPlayer($.player);
@@ -1009,8 +1009,8 @@ async function body() {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie4_lm5 = Blip.AddForChar($.prossie4_lm5);
                                             $.flag_blip_on_prossie4_lm5 = 1;
-                                            // SCM GOTO → prossie_checks (not lowered; manual jump required)
-                                            throw new Error('unresolved GOTO prossie_checks'); // fallback: would break linear control flow
+                                            // SCM GOTO → prossie_checks
+                                            continue prossie_checks;
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie4_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie4_lm5 == 1) {
                                             $.prossie4_lm5.followPlayer($.player);
@@ -1161,8 +1161,8 @@ async function body() {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie5_lm5 = Blip.AddForChar($.prossie5_lm5);
                                             $.flag_blip_on_prossie5_lm5 = 1;
-                                            // SCM GOTO → prossie_checks (not lowered; manual jump required)
-                                            throw new Error('unresolved GOTO prossie_checks'); // fallback: would break linear control flow
+                                            // SCM GOTO → prossie_checks
+                                            continue prossie_checks;
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie5_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie5_lm5 == 1) {
                                             $.prossie5_lm5.followPlayer($.player);
@@ -1313,8 +1313,8 @@ async function body() {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie6_lm5 = Blip.AddForChar($.prossie6_lm5);
                                             $.flag_blip_on_prossie6_lm5 = 1;
-                                            // SCM GOTO → prossie_checks (not lowered; manual jump required)
-                                            throw new Error('unresolved GOTO prossie_checks'); // fallback: would break linear control flow
+                                            // SCM GOTO → prossie_checks
+                                            continue prossie_checks;
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie6_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie6_lm5 == 1) {
                                             $.prossie6_lm5.followPlayer($.player);
@@ -1465,8 +1465,8 @@ async function body() {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie7_lm5 = Blip.AddForChar($.prossie7_lm5);
                                             $.flag_blip_on_prossie7_lm5 = 1;
-                                            // SCM GOTO → prossie_checks (not lowered; manual jump required)
-                                            throw new Error('unresolved GOTO prossie_checks'); // fallback: would break linear control flow
+                                            // SCM GOTO → prossie_checks
+                                            continue prossie_checks;
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie7_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie7_lm5 == 1) {
                                             $.prossie7_lm5.followPlayer($.player);
@@ -1617,8 +1617,8 @@ async function body() {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie8_lm5 = Blip.AddForChar($.prossie8_lm5);
                                             $.flag_blip_on_prossie8_lm5 = 1;
-                                            // SCM GOTO → prossie_checks (not lowered; manual jump required)
-                                            throw new Error('unresolved GOTO prossie_checks'); // fallback: would break linear control flow
+                                            // SCM GOTO → prossie_checks
+                                            continue prossie_checks;
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie8_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie8_lm5 == 1) {
                                             $.prossie8_lm5.followPlayer($.player);

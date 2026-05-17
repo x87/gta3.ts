@@ -1,8 +1,39 @@
 // Generated from Main/Industrial/toni2.sc
 import { $ } from '../../utils';
 
+// *******************************************************************************************
+// *******************************************************************************************
+// *************************************Toni mission 2****************************************
+// **************************************Triad Ambush*****************************************
+// *******************************************************************************************
+// *******************************************************************************************
+// *******************************************************************************************
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_toni2
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_toni2_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_toni2
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT thong1 thong1B thong2 thong2B thong3 thong3B thong_car
+
+    // VAR_INT blip1_t2 blip2_t2 thong_blip1 thong_blip1B thong_blip2 thong_blip2B thong_blip3 thong_blip3B
+
+    // VAR_INT thong1_dead thong1B_dead thong2_dead thong2B_dead thong3_dead thong3B_dead thongs_killed thongs_killed_message
+
+    // VAR_INT briefcase_tm2 traid_threat_cleared_T2
+
+    // ***************************************Mission Start*************************************
+
     Stat.RegisterMissionGiven();
     ONMISSION = true;
     $.flag_player_on_toni_mission = 1;
@@ -19,146 +50,144 @@ async function body() {
     $.thongs_killed_message = 0;
     $.traid_threat_cleared_T2 = 0;
 
-    {
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
-        Streaming.RequestModel(537 /* ind_newrizzos */);
+    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
+    Streaming.RequestModel(537 /* ind_newrizzos */);
 
-        Streaming.LoadAllModelsNow();
+    Streaming.LoadAllModelsNow();
 
-        while (!Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */) || !Streaming.HasModelLoaded(537 /* ind_newrizzos */)) {
-            await asyncWait(0);
-        }
-
-        Cutscene.Load('T2_TPU');
-        Cutscene.SetOffset(1218.42, -314.5, 28.9);
-
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-        $.cs_player.setAnim('player');
-
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
-        $.cs_playerhead.setAnim('player');
-
-        $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
-        $.cs_note.setAnim('NOTE');
-
-        World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
-        $.player.setCoordinates(1219.5, -321.1, 26.4);
-
-        $.player.setHeading(180.0);
-
-        World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
-        Cutscene.Start();
-
-        // Displays cutscene text
-
-        $.cs_time = Cutscene.GetTime();
-
-        while ($.cs_time < 151) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM2_A', 10000, 1);
-
-        while ($.cs_time < 3879) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM2_AA', 10000, 1);
-
-        while ($.cs_time < 7522) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-        Text.PrintNow('TM2_B', 10000, 1);
-
-        while ($.cs_time < 10947) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM2_C', 10000, 1);
-
-        while ($.cs_time < 14507) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM2_D', 10000, 1);
-
-        while ($.cs_time < 18705) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM2_E', 10000, 1);
-
-        while ($.cs_time < 22114) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.ClearPrints();
-
-        while ($.cs_time < 23333) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
-
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
-
-        Text.ClearPrints();
-
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
-
-        World.SwitchRubbish(true /* ON */);
-        Cutscene.Clear();
-        Camera.SetInFrontOfPlayer();
-
-        await asyncWait(500);
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */);
-
-        // START OF MISSION
-
-        if (Game.IsThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */)) {
-            Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
-            $.traid_threat_cleared_T2 = 1;
-        }
-
-        $.gen_car31.switch(0);
-
-        $.briefcase_tm2 = Pickup.Create(1319 /* briefcase */, 3 /* PICKUP_ONCE */, 865.7, -663.6, 14.8);
-
-        $.blip1_t2 = Blip.AddForPickup($.briefcase_tm2);
-
-        Streaming.RequestModel(132 /* CAR_BELLYUP */);
-        Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-        Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
-
-        while (!Streaming.HasModelLoaded(132 /* CAR_BELLYUP */) || !Streaming.HasModelLoaded(12 /* PED_GANG_TRIAD_A */) || !Streaming.HasModelLoaded(13 /* PED_GANG_TRIAD_B */)) {
-            await asyncWait(0);
-        }
+    while (!Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */) || !Streaming.HasModelLoaded(537 /* ind_newrizzos */)) {
+        await asyncWait(0);
     }
 
-    async function main_toni2() {
+    Cutscene.Load('T2_TPU');
+    Cutscene.SetOffset(1218.42, -314.5, 28.9);
+
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player.setAnim('player');
+
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead.setAnim('player');
+
+    $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
+    $.cs_note.setAnim('NOTE');
+
+    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
+    $.player.setCoordinates(1219.5, -321.1, 26.4);
+
+    $.player.setHeading(180.0);
+
+    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    World.SwitchRubbish(false /* OFF */);
+    Streaming.Switch(true /* ON */);
+    Cutscene.Start();
+
+    // Displays cutscene text
+
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 151) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM2_A', 10000, 1);
+
+    while ($.cs_time < 3879) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM2_AA', 10000, 1);
+
+    while ($.cs_time < 7522) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+    Text.PrintNow('TM2_B', 10000, 1);
+
+    while ($.cs_time < 10947) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM2_C', 10000, 1);
+
+    while ($.cs_time < 14507) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM2_D', 10000, 1);
+
+    while ($.cs_time < 18705) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM2_E', 10000, 1);
+
+    while ($.cs_time < 22114) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.ClearPrints();
+
+    while ($.cs_time < 23333) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
+
+    Text.ClearPrints();
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    World.SwitchRubbish(true /* ON */);
+    Cutscene.Clear();
+    Camera.SetInFrontOfPlayer();
+
+    await asyncWait(500);
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
+    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */);
+
+    // START OF MISSION
+
+    if (Game.IsThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */)) {
+        Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+        $.traid_threat_cleared_T2 = 1;
+    }
+
+    $.gen_car31.switch(0);
+
+    $.briefcase_tm2 = Pickup.Create(1319 /* briefcase */, 3 /* PICKUP_ONCE */, 865.7, -663.6, 14.8);
+
+    $.blip1_t2 = Blip.AddForPickup($.briefcase_tm2);
+
+    Streaming.RequestModel(132 /* CAR_BELLYUP */);
+    Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
+    Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
+
+    while (!Streaming.HasModelLoaded(132 /* CAR_BELLYUP */) || !Streaming.HasModelLoaded(12 /* PED_GANG_TRIAD_A */) || !Streaming.HasModelLoaded(13 /* PED_GANG_TRIAD_B */)) {
+        await asyncWait(0);
+    }
+
+    main_toni2: {
         await asyncWait(0);
 
         while (!$.briefcase_tm2.hasBeenCollected()) {
@@ -218,8 +247,7 @@ async function body() {
         while ($.thong3B.isInCar($.thong_car)) {
             await asyncWait(0);
             if (Char.IsDead($.thong3B) || Car.IsDead($.thong_car)) {
-                // SCM GOTO → next_bit_tm2 (not lowered; manual jump required)
-                throw new Error('unresolved GOTO next_bit_tm2'); // fallback: would break linear control flow
+                break main_toni2; // SCM GOTO → next_bit_tm2
             }
         }
 
@@ -230,7 +258,7 @@ async function body() {
         await asyncWait(2500);
     }
 
-    async function next_bit_tm2() {
+    next_bit_tm2: {
         $.player.setControl(true /* On */);
         Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
         Hud.SwitchWidescreen(false /* OFF */);
@@ -347,13 +375,13 @@ async function body() {
             await asyncWait(0);
 
             /*
-    IF thongs_killed = 6
-    AND thongs_killed_message = 0
-    PRINT_NOW ( TM2_2 ) 6000 1
-    ADD_SCORE player 500
-    thongs_killed_message = 1
-    ENDIF
-    */
+            IF thongs_killed = 6
+            AND thongs_killed_message = 0
+            PRINT_NOW ( TM2_2 ) 6000 1
+            ADD_SCORE player 500
+            thongs_killed_message = 1
+            ENDIF
+            */
         }
 
         $.player.setControl(false /* OFF */);
@@ -406,18 +434,15 @@ async function body() {
         $.script_controlled_player.setRunning(false /* FALSE */);
     }
 
-    // SCM GOTO → mission_toni2_passed (not lowered; manual jump required)
-    return;
-
-    // Mission toni2 failed
+    return; // SCM GOTO → mission_toni2_passed
 }
 
+// Mission toni2 failed
 async function onFailed() {
     return;
-
-    // mission toni2 passed
 }
 
+// mission toni2 passed
 async function onPassed() {
     $.flag_toni_mission2_passed = 1;
     //PLAY_MISSION_PASSED_TUNE 1
@@ -429,11 +454,9 @@ async function onPassed() {
     Stat.RegisterMissionPassed('TM2');
     Stat.PlayerMadeProgress(1);
     // START_NEW_SCRIPT toni_mission3_loop
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_toni_mission = 0;
@@ -457,39 +480,4 @@ async function cleanup() {
     return;
 }
 
-// MissionBoundary
-// *******************************************************************************************
-// *******************************************************************************************
-// *************************************Toni mission 2****************************************
-// **************************************Triad Ambush*****************************************
-// *******************************************************************************************
-// *******************************************************************************************
-// *******************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_toni2
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_toni2_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_toni2
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT thong1 thong1B thong2 thong2B thong3 thong3B thong_car
-
-// VAR_INT blip1_t2 blip2_t2 thong_blip1 thong_blip1B thong_blip2 thong_blip2B thong_blip3 thong_blip3B
-
-// VAR_INT thong1_dead thong1B_dead thong2_dead thong2B_dead thong3_dead thong3B_dead thongs_killed thongs_killed_message
-
-// VAR_INT briefcase_tm2 traid_threat_cleared_T2
-
-// ***************************************Mission Start*************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

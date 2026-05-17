@@ -739,7 +739,7 @@ async function body() {
 
     $.blob_flag = 1;
 
-    while (!$.player.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, $.blob_flag) || !$.misty_lm3.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, false /* FALSE */)) {
+    while (!$.player.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, !!$.blob_flag) || !$.misty_lm3.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, false /* FALSE */)) {
         await asyncWait(0);
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"

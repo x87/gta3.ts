@@ -1,214 +1,249 @@
 // Generated from Main/Industrial/toni5.sc
 import { $ } from '../../utils';
 
+// *******************************************************************************************
+// *******************************************************************************************
+// *************************************Toni mission 5****************************************
+// **********************************Destroy Fish Factory*************************************
+// *******************************************************************************************
+// *******************************************************************************************
+// *******************************************************************************************
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_toni5
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_toni5_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_toni5
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT blip1_tm5 blip2_tm5
+
+    // VAR_INT explosive_truck countdown_tm5
+
+    // VAR_INT fish_factory_destroyed triads_spot_you
+
+    // VAR_INT flag_car_blip_displayed_tm5 explosive_truck_health explosive_truck_health2
+
+    // VAR_INT fish_fire2 fish_fire3 fish_fire4 fish_fire5 fish_fire6 fish_fire7
+
+    // VAR_INT debris1_tm5 debris2_tm5 debris3_tm5 debris4_tm5 debris5_tm5 debris6_tm5 debris7_tm5 debris8_tm5 debris9_tm5 debris10_tm5
+
+    // VAR_FLOAT truck_x truck_y truck_z
+
+    // ***************************************Mission Start*************************************
+
     Stat.RegisterMissionGiven();
     ONMISSION = true;
     $.flag_player_on_toni_mission = 1;
     // SCRIPT_NAME toni5
     await asyncWait(0);
 
-    {
-        Streaming.LoadSpecialCharacter(1, 'tony');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'TONYH');
-        Streaming.RequestModel(537 /* ind_newrizzos */);
+    Streaming.LoadSpecialCharacter(1, 'tony');
+    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'TONYH');
+    Streaming.RequestModel(537 /* ind_newrizzos */);
 
-        Streaming.LoadAllModelsNow();
+    Streaming.LoadAllModelsNow();
 
-        while (
-            !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(537 /* ind_newrizzos */)
-        ) {
-            await asyncWait(0);
-        }
-
-        Cutscene.Load('t5_bf');
-        Cutscene.SetOffset(1218.42, -314.5, 28.9);
-
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-        $.cs_player.setAnim('player');
-
-        $.cs_tony = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
-        $.cs_tony.setAnim('tony');
-
-        $.cs_tonyhead = CutsceneHead.Create($.cs_tony, 186 /* CUT_OBJ2 */);
-        $.cs_tonyhead.setAnim('tony');
-
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
-        $.cs_playerhead.setAnim('player');
-
-        World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
-        $.player.setCoordinates(1219.5, -321.1, 26.4);
-
-        $.player.setHeading(180.0);
-
-        World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
-        Cutscene.Start();
-
-        // Displays cutscene text
-
-        $.cs_time = Cutscene.GetTime();
-
-        while ($.cs_time < 1350) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_B', 10000, 1); // Mission brief
-
-        while ($.cs_time < 3169) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_C', 10000, 1); // Mission brief
-
-        while ($.cs_time < 5730) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_D', 10000, 1); // Mission brief
-
-        while ($.cs_time < 7755) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_E', 10000, 1); // Mission brief
-
-        while ($.cs_time < 12490) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_F', 10000, 1); // Mission brief
-
-        while ($.cs_time < 17220) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_G', 10000, 1); // Mission brief
-
-        while ($.cs_time < 21330) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_H', 10000, 1); // Mission brief
-
-        while ($.cs_time < 24141) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_I', 10000, 1); // Mission brief
-
-        while ($.cs_time < 25817) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('TM5_J', 10000, 1); // Mission brief
-
-        while ($.cs_time < 28632) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.ClearPrints();
-
-        while ($.cs_time < 30000) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
-
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
-
-        Text.ClearPrints();
-
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
-
-        World.SwitchRubbish(true /* ON */);
-        Cutscene.Clear();
-        Camera.SetInFrontOfPlayer();
-
-        await asyncWait(500);
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */);
-
-        Streaming.RequestModel(98 /* CAR_TRASHMASTER */);
-
-        while (!Streaming.HasModelLoaded(98 /* CAR_TRASHMASTER */)) {
-            await asyncWait(0);
-        }
-
-        $.triads_spot_you = 0;
-        $.clear_triads_threats = 0;
-
-        // START MISSION
-
-        $.explosive_truck = Car.Create(98 /* CAR_TRASHMASTER */, 1314.0, -106.0, -100.0);
-        $.explosive_truck.setProofs(true /* TRUE */, true /* TRUE */, false /* FALSE */, false /* FALSE */, true /* TRUE */);
-        $.explosive_truck.armWithBomb(1 /* CARBOMB_TIMED */);
-
-        $.fish_factory_destroyed = 0;
-
-        $.blip1_tm5 = Blip.AddForCar($.explosive_truck);
-
-        while (!$.player.isInCar($.explosive_truck)) {
-            await asyncWait(0);
-            if (Car.IsDead($.explosive_truck)) {
-                // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
-            }
-            // SCM GOSUB triad_AI
-            await triad_AI();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            if (!$.explosive_truck.isHealthGreater(860) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
-                $.explosive_truck.explode();
-                // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
-            }
-        }
-
-        $.countdown_tm5 = 151000;
-        Hud.DisplayTimer($.countdown_tm5);
-
-        $.explosive_truck_health = $.explosive_truck.getHealth();
-        Hud.DisplayCounterWithString($.explosive_truck_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
-        $.explosive_truck_health2 = 1000 - $.explosive_truck_health;
-        if ($.explosive_truck_health2 > 100) {
-            $.explosive_truck_health2 = 100;
-        }
-        $.explosive_truck_health = $.explosive_truck_health2;
-
-        $.flag_car_blip_displayed_tm5 = 1 /* TRUE */;
-        $.blob_flag = 1;
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
+        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(537 /* ind_newrizzos */)
+    ) {
+        await asyncWait(0);
     }
 
-    async function toni5_wait_for_van() {
+    Cutscene.Load('t5_bf');
+    Cutscene.SetOffset(1218.42, -314.5, 28.9);
+
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player.setAnim('player');
+
+    $.cs_tony = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_tony.setAnim('tony');
+
+    $.cs_tonyhead = CutsceneHead.Create($.cs_tony, 186 /* CUT_OBJ2 */);
+    $.cs_tonyhead.setAnim('tony');
+
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead.setAnim('player');
+
+    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
+    $.player.setCoordinates(1219.5, -321.1, 26.4);
+
+    $.player.setHeading(180.0);
+
+    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    World.SwitchRubbish(false /* OFF */);
+    Streaming.Switch(true /* ON */);
+    Cutscene.Start();
+
+    // Displays cutscene text
+
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 1350) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_B', 10000, 1); // Mission brief
+
+    while ($.cs_time < 3169) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_C', 10000, 1); // Mission brief
+
+    while ($.cs_time < 5730) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_D', 10000, 1); // Mission brief
+
+    while ($.cs_time < 7755) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_E', 10000, 1); // Mission brief
+
+    while ($.cs_time < 12490) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_F', 10000, 1); // Mission brief
+
+    while ($.cs_time < 17220) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_G', 10000, 1); // Mission brief
+
+    while ($.cs_time < 21330) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_H', 10000, 1); // Mission brief
+
+    while ($.cs_time < 24141) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_I', 10000, 1); // Mission brief
+
+    while ($.cs_time < 25817) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('TM5_J', 10000, 1); // Mission brief
+
+    while ($.cs_time < 28632) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.ClearPrints();
+
+    while ($.cs_time < 30000) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
+
+    Text.ClearPrints();
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    World.SwitchRubbish(true /* ON */);
+    Cutscene.Clear();
+    Camera.SetInFrontOfPlayer();
+
+    await asyncWait(500);
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    Streaming.UnloadSpecialCharacter(1);
+    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
+    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */);
+
+    Streaming.RequestModel(98 /* CAR_TRASHMASTER */);
+
+    while (!Streaming.HasModelLoaded(98 /* CAR_TRASHMASTER */)) {
+        await asyncWait(0);
+    }
+
+    $.triads_spot_you = 0;
+    $.clear_triads_threats = 0;
+
+    // START MISSION
+
+    $.explosive_truck = Car.Create(98 /* CAR_TRASHMASTER */, 1314.0, -106.0, -100.0);
+    $.explosive_truck.setProofs(true /* TRUE */, true /* TRUE */, false /* FALSE */, false /* FALSE */, true /* TRUE */);
+    $.explosive_truck.armWithBomb(1 /* CARBOMB_TIMED */);
+
+    $.fish_factory_destroyed = 0;
+
+    $.blip1_tm5 = Blip.AddForCar($.explosive_truck);
+
+    while (!$.player.isInCar($.explosive_truck)) {
+        await asyncWait(0);
+        if (Car.IsDead($.explosive_truck)) {
+            // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+        }
+
+        await triad_AI(); // SCM GOSUB triad_AI
+
+        if (!$.explosive_truck.isHealthGreater(860) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
+            $.explosive_truck.explode();
+            // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+        }
+    }
+
+    $.countdown_tm5 = 151000;
+    Hud.DisplayTimer($.countdown_tm5);
+
+    $.explosive_truck_health = $.explosive_truck.getHealth();
+    Hud.DisplayCounterWithString($.explosive_truck_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+    $.explosive_truck_health2 = 1000 - $.explosive_truck_health;
+    if ($.explosive_truck_health2 > 100) {
+        $.explosive_truck_health2 = 100;
+    }
+    $.explosive_truck_health = $.explosive_truck_health2;
+
+    $.flag_car_blip_displayed_tm5 = 1 /* TRUE */;
+    $.blob_flag = 1;
+
+    toni5_wait_for_van: while (true) {
         await asyncWait(0);
 
         if (Car.IsDead($.explosive_truck)) {
@@ -216,19 +251,17 @@ async function body() {
             throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
         }
 
-        while (!$.explosive_truck.isStoppedInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, $.blob_flag)) {
+        while (!$.explosive_truck.isStoppedInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, !!$.blob_flag)) {
             await asyncWait(0);
             if (Car.IsDead($.explosive_truck)) {
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
             }
-            // SCM GOSUB triad_AI
-            await triad_AI();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB Truck_health
-            await Truck_health();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await triad_AI(); // SCM GOSUB triad_AI
+            await Truck_health(); // SCM GOSUB Truck_health
+
             const _res291 = $.explosive_truck.getCoordinates();
             $.truck_x = _res291.x;
             $.truck_y = _res291.y;
@@ -278,8 +311,7 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.explosive_truck)) {
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
-                // SCM GOTO → explosion (not lowered; manual jump required)
-                throw new Error('unresolved GOTO explosion'); // fallback: would break linear control flow
+                break toni5_wait_for_van; // SCM GOTO → explosion
             }
             // SCM GOSUB triad_AI
             await triad_AI();
@@ -292,8 +324,7 @@ async function body() {
             $.truck_y = _res292.y;
             $.truck_z = _res292.z;
             if (!$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
-                // SCM GOTO → toni5_wait_for_van (not lowered; manual jump required)
-                throw new Error('unresolved GOTO toni5_wait_for_van'); // fallback: would break linear control flow
+                continue toni5_wait_for_van; // SCM GOTO → toni5_wait_for_van
             }
             if (!$.player.isInCar($.explosive_truck) && !$.explosive_truck.isArmedWithBomb(4 /* CARBOMB_TIMEDACTIVE */)) {
                 Text.PrintNow('JM1_5', 5000, 1); // The vehicle bomb's not set!
@@ -301,19 +332,19 @@ async function body() {
             if (!$.explosive_truck.isHealthGreater(900)) {
                 $.explosive_truck.explode();
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
-                // SCM GOTO → explosion (not lowered; manual jump required)
-                throw new Error('unresolved GOTO explosion'); // fallback: would break linear control flow
+                break toni5_wait_for_van; // SCM GOTO → explosion
             }
             if ($.countdown_tm5 == 0) {
                 $.explosive_truck.explode();
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
-                // SCM GOTO → explosion (not lowered; manual jump required)
-                throw new Error('unresolved GOTO explosion'); // fallback: would break linear control flow
+                break toni5_wait_for_van; // SCM GOTO → explosion
             }
         }
+
+        break toni5_wait_for_van; // xxx: fallthrough
     }
 
-    async function explosion() {
+    explosion: {
         Hud.ClearTimer($.countdown_tm5);
 
         $.player.setControl(false /* Off */);
@@ -449,19 +480,15 @@ async function body() {
         Camera.RestoreJumpcut();
     }
 
-    // SCM GOTO → mission_toni5_passed (not lowered; manual jump required)
-    return;
-
-    // Mission toni5 failed
+    return; // SCM GOTO → mission_toni5_passed
 }
 
+// Mission toni5 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
-    return;
-
-    // mission toni5 passed
 }
 
+// mission toni5 passed
 async function onPassed() {
     $.flag_toni_mission5_passed = 1;
     Audio.PlayMissionPassedTune(1);
@@ -480,11 +507,9 @@ async function onPassed() {
     Stat.PlayerMadeProgress(1);
     $.toni_contact_blip.remove();
     // START_NEW_SCRIPT toni5_flames_loop
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_toni_mission = 0;
@@ -497,149 +522,98 @@ async function cleanup() {
     Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
     Camera.SetFadingColor(1, 1, 1);
     Mission.Finish();
-    return;
+}
 
-    {
+async function triad_AI() {
+    if ($.player.isInZone('PORT_W') && $.has_player_been_at_fish_before == 1 && $.clear_triads_threats == 0) {
+        if (!Char.IsDead($.fish_triad1)) {
+            $.fish_triad1.clearThreatSearch();
+        }
+        if (!Char.IsDead($.fish_triad2)) {
+            $.fish_triad2.clearThreatSearch();
+        }
+        if (!Char.IsDead($.fish_triad3)) {
+            $.fish_triad3.clearThreatSearch();
+        }
+        if (!Char.IsDead($.fish_triad4)) {
+            $.fish_triad4.clearThreatSearch();
+        }
+        if (!Char.IsDead($.fish_triad5)) {
+            $.fish_triad5.clearThreatSearch();
+        }
+        if (!Char.IsDead($.fish_triad6)) {
+            $.fish_triad6.clearThreatSearch();
+        }
+        Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+        $.clear_triads_threats = 1;
     }
 
-    async function triad_AI() {
-        if ($.player.isInZone('PORT_W') && $.has_player_been_at_fish_before == 1 && $.clear_triads_threats == 0) {
-            if (!Char.IsDead($.fish_triad1)) {
-                $.fish_triad1.clearThreatSearch();
-            }
-            if (!Char.IsDead($.fish_triad2)) {
-                $.fish_triad2.clearThreatSearch();
-            }
-            if (!Char.IsDead($.fish_triad3)) {
-                $.fish_triad3.clearThreatSearch();
-            }
-            if (!Char.IsDead($.fish_triad4)) {
-                $.fish_triad4.clearThreatSearch();
-            }
-            if (!Char.IsDead($.fish_triad5)) {
-                $.fish_triad5.clearThreatSearch();
-            }
-            if (!Char.IsDead($.fish_triad6)) {
-                $.fish_triad6.clearThreatSearch();
-            }
-            Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
-            $.clear_triads_threats = 1;
-        }
-
-        if ($.player.isInZone('FISHFAC')) {
-            if ($.triads_spot_you == 0) {
-                if (!$.player.isInAnyCar()) {
-                    if (!Char.IsDead($.fish_triad1)) {
-                        $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad2)) {
-                        $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad3)) {
-                        $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad4)) {
-                        $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad5)) {
-                        $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad6)) {
-                        $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
-                    $.triads_spot_you = 1;
+    if ($.player.isInZone('FISHFAC')) {
+        if ($.triads_spot_you == 0) {
+            if (!$.player.isInAnyCar()) {
+                if (!Char.IsDead($.fish_triad1)) {
+                    $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
                 }
-                if (
-                    Char.IsDead($.fish_triad1) ||
-                    Char.IsDead($.fish_triad2) ||
-                    Char.IsDead($.fish_triad3) ||
-                    Char.IsDead($.fish_triad4) ||
-                    Char.IsDead($.fish_triad5) ||
-                    Char.IsDead($.fish_triad6)
-                ) {
-                    if (!Char.IsDead($.fish_triad1)) {
-                        $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad2)) {
-                        $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad3)) {
-                        $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad4)) {
-                        $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad5)) {
-                        $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    if (!Char.IsDead($.fish_triad6)) {
-                        $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    }
-                    Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
-                    $.triads_spot_you = 1;
+                if (!Char.IsDead($.fish_triad2)) {
+                    $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
                 }
+                if (!Char.IsDead($.fish_triad3)) {
+                    $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                if (!Char.IsDead($.fish_triad4)) {
+                    $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                if (!Char.IsDead($.fish_triad5)) {
+                    $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                if (!Char.IsDead($.fish_triad6)) {
+                    $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
+                $.triads_spot_you = 1;
+            }
+            if (
+                Char.IsDead($.fish_triad1) ||
+                Char.IsDead($.fish_triad2) ||
+                Char.IsDead($.fish_triad3) ||
+                Char.IsDead($.fish_triad4) ||
+                Char.IsDead($.fish_triad5) ||
+                Char.IsDead($.fish_triad6)
+            ) {
+                if (!Char.IsDead($.fish_triad1)) {
+                    $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                if (!Char.IsDead($.fish_triad2)) {
+                    $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                if (!Char.IsDead($.fish_triad3)) {
+                    $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                if (!Char.IsDead($.fish_triad4)) {
+                    $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                if (!Char.IsDead($.fish_triad5)) {
+                    $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                if (!Char.IsDead($.fish_triad6)) {
+                    $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                }
+                Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
+                $.triads_spot_you = 1;
             }
         }
-
-        return;
     }
 }
 
 async function Truck_health() {
-    {
-        if (!Car.IsDead($.explosive_truck)) {
-            $.explosive_truck_health = $.explosive_truck.getHealth();
-            $.explosive_truck_health2 = 1000 - $.explosive_truck_health;
-            if ($.explosive_truck_health2 > 100) {
-                $.explosive_truck_health2 = 100;
-            }
-            $.explosive_truck_health = $.explosive_truck_health2;
+    if (!Car.IsDead($.explosive_truck)) {
+        $.explosive_truck_health = $.explosive_truck.getHealth();
+        $.explosive_truck_health2 = 1000 - $.explosive_truck_health;
+        if ($.explosive_truck_health2 > 100) {
+            $.explosive_truck_health2 = 100;
         }
-
-        return;
+        $.explosive_truck_health = $.explosive_truck_health2;
     }
 }
 
-// MissionBoundary
-// *******************************************************************************************
-// *******************************************************************************************
-// *************************************Toni mission 5****************************************
-// **********************************Destroy Fish Factory*************************************
-// *******************************************************************************************
-// *******************************************************************************************
-// *******************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_toni5
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_toni5_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_toni5
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT blip1_tm5 blip2_tm5
-
-// VAR_INT explosive_truck countdown_tm5
-
-// VAR_INT fish_factory_destroyed triads_spot_you
-
-// VAR_INT flag_car_blip_displayed_tm5 explosive_truck_health explosive_truck_health2
-
-// VAR_INT fish_fire2 fish_fire3 fish_fire4 fish_fire5 fish_fire6 fish_fire7
-
-// VAR_INT debris1_tm5 debris2_tm5 debris3_tm5 debris4_tm5 debris5_tm5 debris6_tm5 debris7_tm5 debris8_tm5 debris9_tm5 debris10_tm5
-
-// VAR_FLOAT truck_x truck_y truck_z
-
-// ***************************************Mission Start*************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

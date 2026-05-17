@@ -194,7 +194,7 @@ async function mission_cleanup_rc1() {
 }
 
 export async function rc1() {
-    // MissionBoundary
+    
     // *******************************************************************************************
     // *******************************************************************************************
     // **************************************RC Destruction Derby*********************************
@@ -220,7 +220,7 @@ export async function rc1() {
     await mission_cleanup_rc1();
     // fallback if label was not emitted as async function: no-op continues linearly
 
-    // MissionBoundary
+    
 
     // Variables for mission
 

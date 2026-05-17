@@ -166,7 +166,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_01_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(14 /* PED_GANG_DIABLO_A */);
                 Streaming.MarkModelAsNoLongerNeeded(15 /* PED_GANG_DIABLO_B */);
                 ONMISSION = false;
@@ -241,7 +241,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_03_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
                 Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
                 ONMISSION = false;
@@ -276,7 +276,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_04_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
                 Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
                 ONMISSION = false;
@@ -321,7 +321,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_05_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
                 Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
                 ONMISSION = false;
@@ -395,7 +395,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_07_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
                 Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
                 ONMISSION = false;
@@ -440,7 +440,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_08_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
                 Streaming.MarkModelAsNoLongerNeeded(17 /* PED_GANG_YAKUZA_B */);
                 ONMISSION = false;
@@ -543,7 +543,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_11_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
                 Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
                 ONMISSION = false;
@@ -588,7 +588,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_12_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
                 Streaming.MarkModelAsNoLongerNeeded(17 /* PED_GANG_YAKUZA_B */);
                 ONMISSION = false;
@@ -633,7 +633,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_13_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
                 Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
                 ONMISSION = false;
@@ -678,7 +678,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_14_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
                 ONMISSION = false;
@@ -713,7 +713,7 @@ verbose('[+] Rampage script loaded');
                         $.rampage_15_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(22 /* PED_GANG_HOOD_A */);
                 Streaming.MarkModelAsNoLongerNeeded(23 /* PED_GANG_HOOD_B */);
                 ONMISSION = false;

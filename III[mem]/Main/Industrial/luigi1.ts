@@ -568,7 +568,7 @@ async function mission_cleanup_luigi1() {
 }
 
 export async function luigi1() {
-    // MissionBoundary
+    
     // *****************************************************************************************
     // *****************************************************************************************
     // *****************************************************************************************
@@ -593,7 +593,7 @@ export async function luigi1() {
     await mission_cleanup_luigi1();
     // fallback if label was not emitted as async function: no-op continues linearly
 
-    // MissionBoundary
+    
 
     // Variable for mission
 
