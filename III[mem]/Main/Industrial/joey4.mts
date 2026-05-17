@@ -1,8 +1,45 @@
 // Generated from Main/Industrial/joey4.sc
 import { $ } from '../../utils';
 
+// *******************************************************************************************
+// *******************************************************************************************
+// **************************************Joey Mission 4***************************************
+// ***************************************pick up Toni****************************************
+// *******************************************************************************************
+// *******************************************************************************************
+// *******************************************************************************************
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_joey4
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_joey4_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_joey4
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT blip1_jm4 blip2_jm4 blip3_jm4 flag_car_blip_displayed_jm4 triads_ojective_passed
+
+    // VAR_INT ojective_triad1_done_before ojective_triad2_done_before
+
+    // VAR_INT Toni_abuse1_done_before tonis_car_created_before played_tune_before
+
+    // VAR_INT flag_displayed_wanted_message_jm4 flag_displayed_horn_message_jm4
+
+    // VAR_INT tonis_ride is_char1_dead_jm4 is_char2_dead_jm4 is_char3_dead_jm4 is_char4_dead_jm4
+
+    // VAR_INT triad1_jm4 triad2_jm4 triad3_jm4 triad4_jm4 tonis_audio_all_finished
+
+    // VAR_FLOAT door1_position_jm4 door2_position_jm4
+
+    // ***************************************Mission Start*************************************
+
     Stat.RegisterMissionGiven();
     ONMISSION = true;
     $.flag_player_on_joey_mission = 1;
@@ -10,9 +47,7 @@ async function body() {
     await asyncWait(0);
 
     if ($.tonis_car_created_before == 1) {
-        // SCM GOSUB delete_tonis_car
-        await delete_tonis_car();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await delete_tonis_car(); // SCM GOSUB delete_tonis_car
     }
 
     $.flag_displayed_wanted_message_jm4 = 0;
@@ -452,7 +487,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_joey4_failed'); // fallback: would break linear control flow
         }
 
-        while (!$.player.isStoppedInAreaInCar3D(839.2, -667.4, 14.0, 842.1, -673.9, 17.0, $.blob_flag) || $.player.isWantedLevelGreater(0) || !$.player.isInCar($.tonis_ride)) {
+        while (!$.player.isStoppedInAreaInCar3D(839.2, -667.4, 14.0, 842.1, -673.9, 17.0, !!$.blob_flag) || $.player.isWantedLevelGreater(0) || !$.player.isInCar($.tonis_ride)) {
             await asyncWait(0);
             if (Car.IsDead($.tonis_ride)) {
                 Text.PrintNow('JM4_8', 5000, 1);
@@ -880,7 +915,7 @@ async function body() {
 
         $.blob_flag = 1;
 
-        while (!$.player.isStoppedInAreaInCar3D(1215.0, -326.9, 25.0, 1220.2, -330.5, 27.0, $.blob_flag) || $.player.isWantedLevelGreater(0) || !$.player.isInCar($.tonis_ride)) {
+        while (!$.player.isStoppedInAreaInCar3D(1215.0, -326.9, 25.0, 1220.2, -330.5, 27.0, !!$.blob_flag) || $.player.isWantedLevelGreater(0) || !$.player.isInCar($.tonis_ride)) {
             await asyncWait(0);
             if (Char.IsDead($.toni)) {
                 Text.PrintNow('JM4_8', 5000, 1);
@@ -1113,12 +1148,10 @@ async function body() {
         $.toni.delete();
     }
 
-    // SCM GOTO → mission_joey4_passed (not lowered; manual jump required)
-    return;
-
-    // Mission Joey4 failed
+    return; // SCM GOTO → mission_joey4_passed
 }
 
+// Mission Joey4 failed
 async function onFailed() {
     //SWITCH_WIDESCREEN OFF
     //SET_PLAYER_CONTROL Player On
@@ -1126,10 +1159,9 @@ async function onFailed() {
 
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
     return;
-
-    // mission Joey4 passed
 }
 
+// mission Joey4 passed
 async function onPassed() {
     $.flag_joey_mission4_passed = 1;
     //PLAY_MISSION_PASSED_TUNE 1
@@ -1146,10 +1178,9 @@ async function onPassed() {
     // START_NEW_SCRIPT joey_mission5_loop
     // START_NEW_SCRIPT uzi_message
     return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_joey_mission = 0;
@@ -1165,57 +1196,10 @@ async function cleanup() {
     $.gen_car12.switch(101);
     $.toni.removeElegantly();
     Mission.Finish();
-    return;
-
-    {
-    }
-
-    async function delete_tonis_car() {
-        $.tonis_ride.delete();
-
-        return;
-    }
 }
 
-// MissionBoundary
-// *******************************************************************************************
-// *******************************************************************************************
-// **************************************Joey Mission 4***************************************
-// ***************************************pick up Toni****************************************
-// *******************************************************************************************
-// *******************************************************************************************
-// *******************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_joey4
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_joey4_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_joey4
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT blip1_jm4 blip2_jm4 blip3_jm4 flag_car_blip_displayed_jm4 triads_ojective_passed
-
-// VAR_INT ojective_triad1_done_before ojective_triad2_done_before
-
-// VAR_INT Toni_abuse1_done_before tonis_car_created_before played_tune_before
-
-// VAR_INT flag_displayed_wanted_message_jm4 flag_displayed_horn_message_jm4
-
-// VAR_INT tonis_ride is_char1_dead_jm4 is_char2_dead_jm4 is_char3_dead_jm4 is_char4_dead_jm4
-
-// VAR_INT triad1_jm4 triad2_jm4 triad3_jm4 triad4_jm4 tonis_audio_all_finished
-
-// VAR_FLOAT door1_position_jm4 door2_position_jm4
-
-// ***************************************Mission Start*************************************
+async function delete_tonis_car() {
+    $.tonis_ride.delete();
+}
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

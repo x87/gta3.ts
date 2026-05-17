@@ -1,177 +1,213 @@
 // Generated from Main/Industrial/joey6.sc
 import { $ } from '../../utils';
 
+// MissionBoundary
+// *******************************************************************************************
+// *******************************************************************************************
+// **************************************Joey Mission 6***************************************
+// ****************************************Bank Job*******************************************
+// *******************************************************************************************
+// *******************************************************************************************
+// *******************************************************************************************
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_joey6
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_joey6_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_joey6
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT thug1 thug2 thug3 thugs_score joey_alarm_loop flag_not_enough_seats
+
+    // VAR_INT blip1_jm6 blip2_jm6 blip3_jm6 thug1_blip thug2_blip thug3_blip
+
+    // VAR_INT any_car_jm6 maxpassengers sound_already_created_before
+
+    // VAR_INT flag_displayed_horn_message_jm6 flag_displayed_wanted_message_jm6
+
+    // VAR_INT thug1_is_dead thug2_is_dead thug3_is_dead blip_for_thug_added1 blip_for_thug_added2 blip_for_thug_added3
+
+    // VAR_INT objective_count objective_count_done_before1 objective_count_done_before2 objective_count_done_before3
+
+    // VAR_FLOAT bankdoor_X bankdoor_Y bankdoor_Z bankdoor2_X bankdoor2_Y bankdoor2_Z
+
+    // ***************************************Mission Start*************************************
+
     Stat.RegisterMissionGiven();
     ONMISSION = true;
     $.flag_player_on_joey_mission = 1;
     // SCRIPT_NAME joey6
     await asyncWait(0);
 
-    {
-        Streaming.LoadSpecialCharacter(1, 'joey');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'JOEYH');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'TROLL');
-        Streaming.RequestModel(129 /* CAR_STALLION */);
-        Streaming.RequestModel(939 /* jogarageext */);
-        Streaming.RequestModel(1074 /* jogarageint */);
+    Streaming.LoadSpecialCharacter(1, 'joey');
+    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'JOEYH');
+    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'TROLL');
+    Streaming.RequestModel(129 /* CAR_STALLION */);
+    Streaming.RequestModel(939 /* jogarageext */);
+    Streaming.RequestModel(1074 /* jogarageint */);
 
-        Streaming.LoadAllModelsNow();
+    Streaming.LoadAllModelsNow();
 
-        //LOAD_SCENE 1190.07 -869.86 13.97
+    //LOAD_SCENE 1190.07 -869.86 13.97
 
-        Streaming.LoadAllModelsNow();
+    Streaming.LoadAllModelsNow();
 
-        while (
-            !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */)
-        ) {
-            await asyncWait(0);
-        }
-
-        while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */) || !Streaming.HasModelLoaded(129 /* CAR_STALLION */)) {
-            await asyncWait(0);
-        }
-
-        Cutscene.Load('J6_TBJ');
-        Cutscene.SetOffset(1190.079, -869.861, 13.977);
-
-        $.cut_car3_lm3 = Car.Create(129 /* CAR_STALLION */, 1192.9, -860.8, 14.0);
-        $.cut_car3_lm3.setHeading(150.0);
-
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-        $.cs_player.setAnim('player');
-
-        $.cs_joey = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
-        $.cs_joey.setAnim('joey');
-
-        $.cs_joeyhead = CutsceneHead.Create($.cs_joey, 185 /* CUT_OBJ1 */);
-        $.cs_joeyhead.setAnim('joey');
-
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
-        $.cs_playerhead.setAnim('player');
-
-        $.cs_troll = CutsceneObject.Create(187 /* CUT_OBJ3 */);
-        $.cs_troll.setAnim('TROLL');
-
-        World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */);
-        $.player.setCoordinates(1191.9, -870.4, -100.0);
-
-        $.player.setHeading(230.0);
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
-        Cutscene.Start();
-
-        // Displays cutscene text
-
-        $.cs_time = Cutscene.GetTime();
-
-        while ($.cs_time < 4434) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('JM6_A', 10000, 2); // Mission brief
-
-        while ($.cs_time < 6704) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('JM6_B', 10000, 2); // Mission brief
-
-        while ($.cs_time < 12000) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('JM6_C', 10000, 2); // Mission brief
-
-        while ($.cs_time < 14274) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('JM6_D', 10000, 2); // Mission brief
-
-        while ($.cs_time < 17302) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('JM6_E', 10000, 2); // Mission brief
-
-        while ($.cs_time < 21000) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
-
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
-
-        Text.ClearPrints();
-
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
-
-        World.SwitchRubbish(true /* ON */);
-        Cutscene.Clear();
-        Camera.SetInFrontOfPlayer();
-
-        await asyncWait(500);
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
-        Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
-        Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */);
-        Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */);
-
-        $.cut_car3_lm3.delete();
-
-        $.thugs_score = 0;
-        $.sound_already_created_before = 0;
-        $.flag_not_enough_seats = 0;
-
-        Streaming.LoadSpecialCharacter(2, 'robber');
-
-        while (!Streaming.HasSpecialCharacterLoaded(2)) {
-            await asyncWait(0);
-        }
-
-        // START OF MISSION
-
-        $.blip1_jm6 = Blip.AddForCoord(1086.0, -227.0, -100.0);
-        $.blip1_jm6.changeDisplay(2 /* BLIP_ONLY */);
-
-        $.flag_displayed_horn_message_jm6 = 0;
-        $.flag_displayed_wanted_message_jm6 = 0;
-
-        $.thug1_is_dead = 0;
-        $.thug2_is_dead = 0;
-        $.thug3_is_dead = 0;
-        $.blip_for_thug_added1 = 0;
-        $.blip_for_thug_added2 = 0;
-        $.blip_for_thug_added3 = 0;
-
-        //PICK UP THE THUGS
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
+        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+    ) {
+        await asyncWait(0);
     }
 
-    async function pick_up_thugs() {
+    while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */) || !Streaming.HasModelLoaded(129 /* CAR_STALLION */)) {
+        await asyncWait(0);
+    }
+
+    Cutscene.Load('J6_TBJ');
+    Cutscene.SetOffset(1190.079, -869.861, 13.977);
+
+    $.cut_car3_lm3 = Car.Create(129 /* CAR_STALLION */, 1192.9, -860.8, 14.0);
+    $.cut_car3_lm3.setHeading(150.0);
+
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player.setAnim('player');
+
+    $.cs_joey = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_joey.setAnim('joey');
+
+    $.cs_joeyhead = CutsceneHead.Create($.cs_joey, 185 /* CUT_OBJ1 */);
+    $.cs_joeyhead.setAnim('joey');
+
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+    $.cs_playerhead.setAnim('player');
+
+    $.cs_troll = CutsceneObject.Create(187 /* CUT_OBJ3 */);
+    $.cs_troll.setAnim('TROLL');
+
+    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */);
+    $.player.setCoordinates(1191.9, -870.4, -100.0);
+
+    $.player.setHeading(230.0);
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    World.SwitchRubbish(false /* OFF */);
+    Streaming.Switch(true /* ON */);
+    Cutscene.Start();
+
+    // Displays cutscene text
+
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 4434) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('JM6_A', 10000, 2); // Mission brief
+
+    while ($.cs_time < 6704) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('JM6_B', 10000, 2); // Mission brief
+
+    while ($.cs_time < 12000) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('JM6_C', 10000, 2); // Mission brief
+
+    while ($.cs_time < 14274) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('JM6_D', 10000, 2); // Mission brief
+
+    while ($.cs_time < 17302) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('JM6_E', 10000, 2); // Mission brief
+
+    while ($.cs_time < 21000) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
+
+    Text.ClearPrints();
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    World.SwitchRubbish(true /* ON */);
+    Cutscene.Clear();
+    Camera.SetInFrontOfPlayer();
+
+    await asyncWait(500);
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    Streaming.UnloadSpecialCharacter(1);
+    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
+    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
+    Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */);
+    Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */);
+
+    $.cut_car3_lm3.delete();
+
+    $.thugs_score = 0;
+    $.sound_already_created_before = 0;
+    $.flag_not_enough_seats = 0;
+
+    Streaming.LoadSpecialCharacter(2, 'robber');
+
+    while (!Streaming.HasSpecialCharacterLoaded(2)) {
+        await asyncWait(0);
+    }
+
+    // START OF MISSION
+
+    $.blip1_jm6 = Blip.AddForCoord(1086.0, -227.0, -100.0);
+    $.blip1_jm6.changeDisplay(2 /* BLIP_ONLY */);
+
+    $.flag_displayed_horn_message_jm6 = 0;
+    $.flag_displayed_wanted_message_jm6 = 0;
+
+    $.thug1_is_dead = 0;
+    $.thug2_is_dead = 0;
+    $.thug3_is_dead = 0;
+    $.blip_for_thug_added1 = 0;
+    $.blip_for_thug_added2 = 0;
+    $.blip_for_thug_added3 = 0;
+
+    //PICK UP THE THUGS
+
+    pick_up_thugs: while (true) {
         await asyncWait(0);
 
         while (!$.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, true /* TRUE */) || !$.player.isPressingHorn() || $.player.isWantedLevelGreater(0)) {
@@ -218,15 +254,13 @@ async function body() {
         if (!($.maxpassengers > 2)) {
             Text.PrintNow('NODOORS', 5000, 1); //Car not big enough
             $.flag_not_enough_seats = 1;
-            // SCM GOTO → pick_up_thugs (not lowered; manual jump required)
-            throw new Error('unresolved GOTO pick_up_thugs'); // fallback: would break linear control flow
+            continue pick_up_thugs; // SCM GOTO → pick_up_thugs
         }
 
         if ($.player.isInModel(127 /* CAR_COACH */) || $.player.isInModel(121 /* CAR_BUS */)) {
             Text.PrintNow('JM6_6', 5000, 1); //Go and get a vehicle less conspicuous
             $.flag_not_enough_seats = 1;
-            // SCM GOTO → pick_up_thugs (not lowered; manual jump required)
-            throw new Error('unresolved GOTO pick_up_thugs'); // fallback: would break linear control flow
+            continue pick_up_thugs; // SCM GOTO → pick_up_thugs
         }
 
         //PICK UP THUGS CUT_SCENE**************************************************************************************
@@ -338,14 +372,14 @@ async function body() {
                     throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
                 }
                 if (TIMERB > 15000) {
-                    // SCM GOTO → next_robber_bit (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO next_robber_bit'); // fallback: would break linear control flow
+                    break pick_up_thugs; // SCM GOTO → next_robber_bit
                 }
             }
         }
+        break pick_up_thugs; // xxx: fallthrough
     }
 
-    async function next_robber_bit() {
+    next_robber_bit: {
         //SAMPLE1*********************************************************
 
         Audio.LoadMissionAudio('j6_a' as any);
@@ -388,11 +422,10 @@ async function body() {
         //CHANGE_BLIP_DISPLAY blip3_jm6 BLIP_ONLY
 
         $.flag_displayed_wanted_message_jm6 = 0;
-
-        //GET TO THE BANK
     }
 
-    async function get_to_the_bank() {
+    //GET TO THE BANK
+    get_to_the_bank: while (true) {
         await asyncWait(0);
 
         if (Car.IsDead($.any_car_jm6)) {
@@ -485,8 +518,7 @@ async function body() {
         if ($.player.isInModel(127 /* CAR_COACH */) || $.player.isInModel(121 /* CAR_BUS */)) {
             Text.PrintNow('JM6_6', 5000, 1); //Go and get a vehicle less conspicuous
             //WAIT 3000
-            // SCM GOTO → get_to_the_bank (not lowered; manual jump required)
-            throw new Error('unresolved GOTO get_to_the_bank'); // fallback: would break linear control flow
+            continue get_to_the_bank; // SCM GOTO → get_to_the_bank
         }
 
         if (Char.IsDead($.thug1) || Char.IsDead($.thug2) || Char.IsDead($.thug3)) {
@@ -498,8 +530,7 @@ async function body() {
         if (!$.thug1.isInCar($.any_car_jm6) || !$.thug2.isInCar($.any_car_jm6) || !$.thug3.isInCar($.any_car_jm6)) {
             Text.PrintNow('JM6_7', 5000, 1); //Go and get a vehicle less conspicuous
             //WAIT 3000
-            // SCM GOTO → get_to_the_bank (not lowered; manual jump required)
-            throw new Error('unresolved GOTO get_to_the_bank'); // fallback: would break linear control flow
+            continue get_to_the_bank; // SCM GOTO → get_to_the_bank
         }
 
         // BANK ROBBERY CUT SCENE**************************************************************************************
@@ -622,20 +653,20 @@ async function body() {
 
         //THUGS GO IN THE BANK
         /*
-  IF NOT IS_CHAR_DEAD thug1
-  SET_CHAR_OBJ_RUN_TO_COORD thug1 1037.4 -699.9
-  WAIT 400
-  ENDIF
+        IF NOT IS_CHAR_DEAD thug1
+        SET_CHAR_OBJ_RUN_TO_COORD thug1 1037.4 -699.9
+        WAIT 400
+        ENDIF
 
-  IF NOT IS_CHAR_DEAD thug2
-  SET_CHAR_OBJ_RUN_TO_COORD thug2 1037.4 -699.9
-  WAIT 400
-  ENDIF
+        IF NOT IS_CHAR_DEAD thug2
+        SET_CHAR_OBJ_RUN_TO_COORD thug2 1037.4 -699.9
+        WAIT 400
+        ENDIF
 
-  IF NOT IS_CHAR_DEAD thug3
-  SET_CHAR_OBJ_RUN_TO_COORD thug3 1037.4 -699.9
-  ENDIF
-  */
+        IF NOT IS_CHAR_DEAD thug3
+        SET_CHAR_OBJ_RUN_TO_COORD thug3 1037.4 -699.9
+        ENDIF
+        */
 
         $.objective_count = 0;
         $.objective_count_done_before1 = 0;
@@ -1025,23 +1056,23 @@ async function body() {
                 }
             }
             /*
-    IF TIMERB > 15000
-    IF NOT IS_CAR_DEAD any_car_jm6
-    IF NOT IS_CHAR_DEAD	thug1
-    //WARP_CHAR_INTO_CAR thug1 any_car_jm6
-    //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-    ENDIF
-    IF NOT IS_CHAR_DEAD	thug2
-    //WARP_CHAR_INTO_CAR thug2 any_car_jm6
-    //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-    ENDIF
-    IF NOT IS_CHAR_DEAD	thug3
-    //WARP_CHAR_INTO_CAR thug3 any_car_jm6
-    //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
-    ENDIF
-    ENDIF
-    ENDIF
-    */
+            IF TIMERB > 15000
+            IF NOT IS_CAR_DEAD any_car_jm6
+            IF NOT IS_CHAR_DEAD	thug1
+            //WARP_CHAR_INTO_CAR thug1 any_car_jm6
+            //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
+            ENDIF
+            IF NOT IS_CHAR_DEAD	thug2
+            //WARP_CHAR_INTO_CAR thug2 any_car_jm6
+            //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
+            ENDIF
+            IF NOT IS_CHAR_DEAD	thug3
+            //WARP_CHAR_INTO_CAR thug3 any_car_jm6
+            //WARP_CHAR_INTO_CAR_AS_PASSERNGER thug1 any_car_jm6
+            ENDIF
+            ENDIF
+            ENDIF
+            */
         }
 
         //END OF BANK ROBBERY CUT SCENE********************************************************************************
@@ -1063,10 +1094,12 @@ async function body() {
 
         //PRINT_SOON ( JM6_4 ) 5000 1 //"get us out of here"
 
-        //Get back to warehouse
+        break get_to_the_bank; // xxx: fallthrough
     }
 
-    async function back_to_safe_house() {
+    //Get back to warehouse
+
+    back_to_safe_house: while (true) {
         await asyncWait(0);
 
         if (Car.IsDead($.any_car_jm6)) {
@@ -1153,24 +1186,21 @@ async function body() {
         if (!Char.IsDead($.thug1)) {
             if (!$.thug1.isInPlayersGroup($.player)) {
                 Text.PrintNow('HEY2', 4000, 1);
-                // SCM GOTO → back_to_safe_house (not lowered; manual jump required)
-                throw new Error('unresolved GOTO back_to_safe_house'); // fallback: would break linear control flow
+                continue back_to_safe_house; // SCM GOTO → back_to_safe_house
             }
         }
 
         if (!Char.IsDead($.thug2)) {
             if (!$.thug2.isInPlayersGroup($.player)) {
                 Text.PrintNow('HEY2', 4000, 1);
-                // SCM GOTO → back_to_safe_house (not lowered; manual jump required)
-                throw new Error('unresolved GOTO back_to_safe_house'); // fallback: would break linear control flow
+                continue back_to_safe_house; // SCM GOTO → back_to_safe_house
             }
         }
 
         if (!Char.IsDead($.thug3)) {
             if (!$.thug3.isInPlayersGroup($.player)) {
                 Text.PrintNow('HEY2', 4000, 1);
-                // SCM GOTO → back_to_safe_house (not lowered; manual jump required)
-                throw new Error('unresolved GOTO back_to_safe_house'); // fallback: would break linear control flow
+                continue back_to_safe_house; // SCM GOTO → back_to_safe_house
             }
         }
 
@@ -1398,21 +1428,19 @@ async function body() {
         $.player.applyBrakesToCar(false /* Off */);
 
         //THUGS GO BACK INTO SAFEHOUSE CUT_SCENE***********************************************************************
+
+        break back_to_safe_house; // xxx: fallthrough
     }
 
-    // SCM GOTO → mission_joey6_passed (not lowered; manual jump required)
-    return;
-
-    // Mission Joey6 failed
+    return; // SCM GOTO → mission_joey6_passed
 }
 
+// Mission Joey6 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
-    return;
-
-    // mission joey6 passed
 }
 
+// mission joey6 passed
 async function onPassed() {
     $.flag_joey_mission6_passed = 1;
     if (!Char.IsDead($.thug1)) {
@@ -1436,11 +1464,9 @@ async function onPassed() {
     Stat.RegisterMissionPassed('JM6');
     Stat.PlayerMadeProgress(1);
     $.joey_contact_blip.remove();
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_joey_mission = 0;
@@ -1456,48 +1482,6 @@ async function cleanup() {
     World.SetPedDensityMultiplier(1.0);
     Streaming.UnloadSpecialCharacter(2);
     Mission.Finish();
-    return;
 }
 
-// MissionBoundary
-// *******************************************************************************************
-// *******************************************************************************************
-// **************************************Joey Mission 6***************************************
-// ****************************************Bank Job*******************************************
-// *******************************************************************************************
-// *******************************************************************************************
-// *******************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_joey6
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_joey6_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_joey6
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT thug1 thug2 thug3 thugs_score joey_alarm_loop flag_not_enough_seats
-
-// VAR_INT blip1_jm6 blip2_jm6 blip3_jm6 thug1_blip thug2_blip thug3_blip
-
-// VAR_INT any_car_jm6 maxpassengers sound_already_created_before
-
-// VAR_INT flag_displayed_horn_message_jm6 flag_displayed_wanted_message_jm6
-
-// VAR_INT thug1_is_dead thug2_is_dead thug3_is_dead blip_for_thug_added1 blip_for_thug_added2 blip_for_thug_added3
-
-// VAR_INT objective_count objective_count_done_before1 objective_count_done_before2 objective_count_done_before3
-
-// VAR_FLOAT bankdoor_X bankdoor_Y bankdoor_Z bankdoor2_X bankdoor2_Y bankdoor2_Z
-
-// ***************************************Mission Start*************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-
