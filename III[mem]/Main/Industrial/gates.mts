@@ -362,9 +362,8 @@ async function phils_gate() {
                         $.open_phils_gate = 1 /* TRUE */;
                     }
                 } else {
-                    if ($.flag_player_on_phil_mission == 1) {
-                        // SCM GOTO → phils_gate_inner (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO phils_gate_inner'); // fallback: would break linear control flow
+                    if ($.flag_player_on_phil_mission == 1) {                        
+                        continue phils_gate_inner; // SCM GOTO → phils_gate_inner
                     }
                     if ($.player.isInArea2D(138.0, 198.0, 146.0, 207.0, false /* FALSE */)) {
                         $.open_phils_gate = 1 /* TRUE */;

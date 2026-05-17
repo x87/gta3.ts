@@ -11,7 +11,6 @@ verbose('[*] Unique Stunt Jumps script loaded');
 // *****************************************************************************************
 // *****************************************************************************************
 
-
 (async () => {
     await run_on_newgame(async () => {
         // Variables for mission
@@ -52,32 +51,27 @@ verbose('[*] Unique Stunt Jumps script loaded');
         await asyncWait(0);
 
         if (!$.player.isPlaying()) {
-            // SCM GOTO → mission_start_usj
-            continue mission_start_usj;
+            continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
         if (!$.player.isInAnyCar()) {
-            // SCM GOTO → mission_start_usj
-            continue mission_start_usj;
+            continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
         $.players_car_usj = $.player.storeCarIsInNoSave();
 
         if ($.players_car_usj.isBoat()) {
-            // SCM GOTO → mission_start_usj
-            continue mission_start_usj;
+            continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
         $.car_speed_usj = $.players_car_usj.getSpeed();
 
         if (!($.car_speed_usj > 25.0)) {
-            // SCM GOTO → mission_start_usj
-            continue mission_start_usj;
+            continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
         if (!$.players_car_usj.isInAirProper()) {
-            // SCM GOTO → mission_start_usj
-            continue mission_start_usj;
+            continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
         if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
@@ -87,8 +81,8 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 998.0;
                     $.camera_y = -938.5;
                     $.camera_z = 19.3;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
                 if ($.player.locateInCar3D(793.17, -929.963, 42.166, 4.0, 2.0, 3.0, false)) {
@@ -96,8 +90,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 841.8475;
                     $.camera_y = -930.1524;
                     $.camera_z = 34.3645;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
@@ -107,18 +100,15 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 1217.2;
                     $.camera_y = -1162.4;
                     $.camera_z = 15.0;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
-
                 }
                 if ($.player.locateInCar2D(1231.858, -1129.855, 4.0, 2.5, false)) {
                     $.usj_number = 5;
                     $.camera_x = 1201.384;
                     $.camera_y = -1135.662;
                     $.camera_z = 19.64;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
@@ -128,8 +118,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 779.957;
                     $.camera_y = -561.1698;
                     $.camera_z = 25.1615;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
                 if ($.player.locateInCar3D(991.727, -470.397, 19.785, 2.0, 4.0, 3.0, false)) {
@@ -137,8 +126,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 987.5289;
                     $.camera_y = -462.6134;
                     $.camera_z = 21.8678;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
@@ -148,8 +136,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 1107.076;
                     $.camera_y = -964.015;
                     $.camera_z = 22.981;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
@@ -159,13 +146,11 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 1369.274;
                     $.camera_y = -981.598;
                     $.camera_z = 18.734;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
-            // SCM GOTO → mission_start_usj
-            continue mission_start_usj;
+            continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
         if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
@@ -175,8 +160,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 460.954;
                     $.camera_y = -947.844;
                     $.camera_z = 17.934;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
                 if ($.player.locateInCar2D(271.152, -607.027, 4.0, 5.0, false)) {
@@ -184,8 +168,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 281.8645;
                     $.camera_y = -626.5409;
                     $.camera_z = 26.9559;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
                 if ($.player.locateInCar2D(320.223, -896.357, 6.0, 5.0, false)) {
@@ -193,8 +176,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 332.8589;
                     $.camera_y = -906.3721;
                     $.camera_z = 39.7656;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
@@ -204,13 +186,11 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = 141.5205;
                     $.camera_y = -1006.8531;
                     $.camera_z = 26.177;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
-            // SCM GOTO → mission_start_usj (not lowered; manual jump required)
-            continue mission_start_usj;
+            continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
         if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
@@ -220,8 +200,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = -1204.47;
                     $.camera_y = -14.721;
                     $.camera_z = 62.1738;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
@@ -231,8 +210,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = -1137.7355;
                     $.camera_y = 115.1705;
                     $.camera_z = 64.4229;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
                 if ($.player.locateInCar2D(-994.754, 253.616, 10.0, 15.0, false)) {
@@ -240,8 +218,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = -1014.4852;
                     $.camera_y = 268.1786;
                     $.camera_z = 38.8862;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
@@ -251,8 +228,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = -738.03;
                     $.camera_y = -132.5792;
                     $.camera_z = 12.501;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
@@ -262,8 +238,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = -1068.0343;
                     $.camera_y = -863.0062;
                     $.camera_z = 18.4249;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
                 if ($.player.locateInCar2D(-1375.772, -848.662, 4.0, 12.0, false)) {
@@ -271,8 +246,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = -1337.7358;
                     $.camera_y = -862.9677;
                     $.camera_z = 18.0594;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
                 if ($.player.locateInCar2D(-1379.849, -625.095, 12.0, 4.0, false)) {
@@ -280,8 +254,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = -1397.5281;
                     $.camera_y = -572.0431;
                     $.camera_z = 18.8811;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
                 if ($.player.locateInCar2D(-1177.38, -569.913, 3.3, 2.0, false)) {
@@ -289,13 +262,11 @@ verbose('[*] Unique Stunt Jumps script loaded');
                     $.camera_x = -1195.1605;
                     $.camera_y = -560.7097;
                     $.camera_z = 18.9029;
-                    // SCM GOTO → the_jump
-                    await the_jump();
+                    await the_jump(); // SCM GOTO → the_jump
                     continue mission_start_usj;
                 }
             }
-            // SCM GOTO → mission_start_usj
-            continue mission_start_usj;
+            continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
     }
 })();
@@ -315,20 +286,16 @@ async function the_jump() {
         ++$.collision_counter_usj;
         await asyncWait(0);
         if (Car.IsDead($.players_car_usj)) {
-            // SCM GOTO → camera_restore_if_fail
-            return camera_restore_if_fail();
+            return camera_restore_if_fail(); // SCM GOTO → camera_restore_if_fail
         }
         if ($.players_car_usj.isInWater()) {
-            // SCM GOTO → camera_restore_if_fail
-            return camera_restore_if_fail();
+            return camera_restore_if_fail(); // SCM GOTO → camera_restore_if_fail
         }
         if (!$.player.isPlaying()) {
-            // SCM GOTO → camera_restore_if_fail
-            return camera_restore_if_fail();
+            return camera_restore_if_fail(); // SCM GOTO → camera_restore_if_fail
         }
         if (!$.player.isInAnyCar()) {
-            // SCM GOTO → camera_restore_if_fail
-            return camera_restore_if_fail();
+            return camera_restore_if_fail(); // SCM GOTO → camera_restore_if_fail
         }
         if ($.usj_number == 1) {
             if ($.player.locateInCar3D(946.5, -934.1, 26.8, 1.0, 4.0, 6.0, false)) {
