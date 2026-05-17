@@ -218,7 +218,7 @@ async function next_cop_car() {
         $.diff_x_float = $.diff_x_float * $.diff_x_float;
         $.diff_y_float = $.diff_y_float * $.diff_y_float;
         $.sum_of_diff_xy = $.diff_x_float + $.diff_y_float;
-        $.players_distance_from_criminal = Math.Sqrt($.sum_of_diff_xy);
+        $.players_distance_from_criminal = Math.sqrt($.sum_of_diff_xy);
 
         if ($.players_distance_from_criminal < 150.0) {
             // SCM GOTO → criminal_in_car (not lowered; manual jump required)

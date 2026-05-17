@@ -548,7 +548,7 @@ async function generate_random_coord() {
     $.difference_x_float_a = $.difference_x_float_a * $.difference_x_float_a;
     $.difference_y_float_a = $.difference_y_float_a * $.difference_y_float_a;
     $.sum_difference_a_xy = $.difference_x_float_a + $.difference_y_float_a;
-    $.players_distance_from_ped = Math.Sqrt($.sum_difference_a_xy);
+    $.players_distance_from_ped = Math.sqrt($.sum_difference_a_xy);
 
     if ($.players_distance_from_ped < 120.0) {
         // SCM GOTO → generate_random_coord (not lowered; manual jump required)
@@ -560,7 +560,7 @@ async function generate_random_coord() {
     $.difference_x_float_a = $.difference_x_float_a * $.difference_x_float_a;
     $.difference_y_float_a = $.difference_y_float_a * $.difference_y_float_a;
     $.sum_difference_a_xy = $.difference_x_float_a + $.difference_y_float_a;
-    $.peds_distance_from_hospital = Math.Sqrt($.sum_difference_a_xy);
+    $.peds_distance_from_hospital = Math.sqrt($.sum_difference_a_xy);
 
     if ($.peds_distance_from_hospital < 100.0) {
         // SCM GOTO → generate_random_coord (not lowered; manual jump required)

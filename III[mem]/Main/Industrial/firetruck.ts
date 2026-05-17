@@ -176,7 +176,7 @@ async function next_fire() {
     $.difference_x_float = $.difference_x_float * $.difference_x_float;
     $.difference_y_float = $.difference_y_float * $.difference_y_float;
     $.sum_difference_xy = $.difference_x_float + $.difference_y_float;
-    $.players_distance_from_fire = Math.Sqrt($.sum_difference_xy);
+    $.players_distance_from_fire = Math.sqrt($.sum_difference_xy);
 
     if ($.players_distance_from_fire < 200.0) {
         // SCM GOTO → next_fire (not lowered; manual jump required)

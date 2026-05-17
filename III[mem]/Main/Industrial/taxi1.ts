@@ -655,7 +655,7 @@ async function passenger_destination() {
     $.y_diff_sq = $.y_diff * $.y_diff;
 
     $.taxi_distance_sq = $.x_diff_sq + $.y_diff_sq;
-    $.taxi_distance = Math.Sqrt($.taxi_distance_sq);
+    $.taxi_distance = Math.sqrt($.taxi_distance_sq);
     $.taxi_distance_int = $.taxi_distance;
     $.taxi_distance_int_old = $.taxi_distance_int;
 
