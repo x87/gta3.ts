@@ -287,7 +287,6 @@ async function body() {
 // Mission toni1 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
-    return;
 }
 
 // mission toni1 passed
@@ -301,7 +300,6 @@ async function onPassed() {
     Stat.PlayerMadeProgress(1);
     Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
     // START_NEW_SCRIPT diablo_mission4_loop // xxx: moved to mission monitor
-    return;
 }
 
 // mission cleanup
@@ -318,7 +316,6 @@ async function cleanup() {
         Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
     }
     Mission.Finish();
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

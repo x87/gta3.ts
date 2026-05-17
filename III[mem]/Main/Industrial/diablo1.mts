@@ -1410,7 +1410,6 @@ async function body() {
 // Mission d1 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 2000, 1);
-    return;
 }
 
 // mission d1 passed
@@ -1433,8 +1432,6 @@ async function onPassed() {
         // START_NEW_SCRIPT diablo_mission2_loop // xxx: moved to mission monitor
         $.flag_diablo1_passed_before = 1;
     }
-
-    return;
 }
 
 // mission cleanup
