@@ -4,7 +4,7 @@ interface MissionDefinition {
     name: string;
     scriptPath: string;
     canStart(): Promise<boolean>;
-    beforeMission?(): Promise<void | boolean>;
+    beforeMission?(firstTime: boolean): Promise<void | boolean>;
     afterMission?(): Promise<void>;
     onPassed?(): void;
     onFailed?(): void;
@@ -727,10 +727,12 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeMission() {
+        async beforeMission(firstTime: boolean) {
             const { hours } = Clock.GetTimeOfDay();
             if (!(hours >= 5 && hours < 21)) {
-                Text.PrintNow('WRONGT1', 5000, 1);
+                if (firstTime) {
+                    Text.PrintNow('WRONGT1', 5000, 1);
+                }
                 return false;
             }
             $.player.makeSafeForCutscene();
@@ -870,10 +872,12 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeMission() {
+        async beforeMission(firstTime: boolean) {
             const { hours } = Clock.GetTimeOfDay();
             if (!(hours >= 6 && hours < 14)) {
-                Text.PrintNow('WRONGT2', 5000, 1);
+                if (firstTime) {
+                    Text.PrintNow('WRONGT2', 5000, 1);
+                }
                 return false;
             }
             $.player.makeSafeForCutscene();
@@ -1050,7 +1054,7 @@ const missions: MissionDefinition[] = [
     },
     {
         scriptPath: `./Industrial/frank2.mts`,
-        name: "Cutting The Grass",
+        name: 'Cutting The Grass',
         async canStart() {
             if ($.flag_industrial_passed == 1 && $.flag_frankie_mission2_passed == 0) {
                 return false;
@@ -1091,9 +1095,11 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeMission() {
+        async beforeMission(firstTime: boolean) {
             if ($.flag_frankie_switched_off != 0) {
-                Text.PrintNow('FRANGO', 5000, 1);
+                if (firstTime) {
+                    Text.PrintNow('FRANGO', 5000, 1);
+                }
                 return false;
             }
             $.player.makeSafeForCutscene();
@@ -2104,9 +2110,11 @@ const missions: MissionDefinition[] = [
             }
             return false;
         },
-        async beforeMission() {
+        async beforeMission(firstTime: boolean) {
             if (!$.nicked_half_a_mil_before && !$.player.isScoreGreater(499999)) {
-                Text.PrintNow('CAT_MON', 5000, 1);
+                if (firstTime) {
+                    Text.PrintNow('CAT_MON', 5000, 1);
+                }
                 return false;
             }
             $.player.makeSafeForCutscene();

@@ -29,21 +29,18 @@ class DeatharrestBeenExecutedError extends Error {
                 const canStart = await mission.canStart();
 
                 if (!canStart) {
-                    canStartMap.set(missionKey, false);
+                    canStartMap.delete(missionKey);
                     continue;
                 }
-
-                if (canStartMap.get(missionKey)) {
-                    // if the mission can start, but additional checks in beforeMission have not been met yet
-                    continue;
-                }
-
-                canStartMap.set(missionKey, true);
 
                 if (mission.beforeMission) {
-                    let beforeMissionResult: void | boolean | undefined = undefined;
+                    // execute side effects of failing checks in beforeMission only once
+                    let isFirstTimeCanStart = !canStartMap.has(missionKey);
+                    canStartMap.set(missionKey, true);
+
+                    let beforeMissionResult = undefined;
                     try {
-                        beforeMissionResult = await mission.beforeMission();
+                        beforeMissionResult = await mission.beforeMission(isFirstTimeCanStart);
                     } catch (e) {
                         log(`[-] Error in beforeMission of mission ${mission.name} from ${mission.scriptPath}: ${unwrapError(e)}`);
                     }
