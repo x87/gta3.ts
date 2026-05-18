@@ -1,8 +1,31 @@
 // Generated from Main/Industrial/frank2.1.sc
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *************************************Frankie Mission 2.1*********************************
+// ************************************Bomb Da Base Cash Wall*******************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
 
 async function body() {
+    // SCRIPT_NAME frank21
+
+    // Mission start stuff
+
+    // GOSUB mission_start_frankie2.1
+
+    // 	IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 		GOSUB mission_frankie2.1_failed
+    // 	ENDIF
+
+    // GOSUB mission_cleanup_frankie2.1
+
+    // MISSION_END
+
+    // ***************************************Start Mission*************************************
+
     ONMISSION = true;
 
     Stat.RegisterMissionGiven();
@@ -15,20 +38,20 @@ async function body() {
         // ****************************************START OF CUTSCENE********************************
 
         /*
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_frankie2.1_failed
-  ENDIF
+        IF CAN_PLAYER_START_MISSION player
+        MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+        ELSE
+        GOTO mission_frankie2.1_failed
+        ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+        SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 1500 FADE_OUT
+        DO_FADE 1500 FADE_OUT
 
-  PRINT_BIG ( FM21 ) 15000 2 //"Bomb Da Base Part 1"
+        PRINT_BIG ( FM21 ) 15000 2 //"Bomb Da Base Part 1"
 
-  SWITCH_STREAMING OFF
-  */
+        SWITCH_STREAMING OFF
+        */
 
         Streaming.LoadSpecialCharacter(1, 'FRANKIE');
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'FRANKH');
@@ -41,12 +64,12 @@ async function body() {
         Streaming.RequestModel(540 /* swank_inside */);
 
         /*
-  WHILE GET_FADING_STATUS
+        WHILE GET_FADING_STATUS
 
-  WAIT 0
+        WAIT 0
 
-  ENDWHILE
-  */
+        ENDWHILE
+        */
 
         Streaming.LoadAllModelsNow();
 
@@ -105,20 +128,20 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
 
         /*
-  WHILE cs_time < 27
-  WAIT 0
-  GET_CUTSCENE_TIME cs_time
-  ENDWHILE
+        WHILE cs_time < 27
+        WAIT 0
+        GET_CUTSCENE_TIME cs_time
+        ENDWHILE
 
-  PRINT_NOW ( FM3_A ) 10000 1 //"We should take these Colombian bastards out"
+        PRINT_NOW ( FM3_A ) 10000 1 //"We should take these Colombian bastards out"
 
-  WHILE cs_time < 1972
-  WAIT 0
-  GET_CUTSCENE_TIME cs_time
-  ENDWHILE
+        WHILE cs_time < 1972
+        WAIT 0
+        GET_CUTSCENE_TIME cs_time
+        ENDWHILE
 
-  PRINT_NOW ( FM3_B ) 10000 1 //"but while we're at war with the Triads we just ain't strong enough"
-  */
+        PRINT_NOW ( FM3_B ) 10000 1 //"but while we're at war with the Triads we just ain't strong enough"
+        */
 
         while ($.cs_time < 5136) {
             await asyncWait(0);
@@ -217,20 +240,15 @@ async function body() {
         // **************************************END OF CUTSCENE************************************
     }
 
-    // SCM GOTO → mission_frankie2.1_passed (not lowered; manual jump required)
-    throw new Error('unresolved GOTO mission_frankie2.1_passed'); // fallback: would break linear control flow
-
-    // Mission Frankie2.1 failed
+    return; // SCM GOTO → mission_frankie2.1_passed
 }
 
+// Mission Frankie2.1 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-
-    return;
-
-    // mission Frankie2.1 passed
 }
 
+// mission Frankie2.1 passed
 async function onPassed() {
     $.flag_frankie_mission2_1_passed = 1;
     $.flag_frankie_switched_off = 1;
@@ -239,43 +257,13 @@ async function onPassed() {
     $.frankie_contact_blip.remove();
     $.eightball_contact_blip = Blip.AddSpriteForContactPoint(1272.2, -92.9, -100.0, 7 /* RADAR_SPRITE_EIGHT */);
     // START_NEW_SCRIPT frankie_mission3_loop
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_frankie_mission = 0;
     Mission.Finish();
-    return;
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// *****************************************************************************************
-// *************************************Frankie Mission 2.1*********************************
-// ************************************Bomb Da Base Cash Wall*******************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-
-// SCRIPT_NAME frank21
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_frankie2.1
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_frankie2.1_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_frankie2.1
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// ***************************************Start Mission*************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

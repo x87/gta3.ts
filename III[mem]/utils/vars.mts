@@ -2237,7 +2237,7 @@ export const $ = SCM.bind({
   flag_player_got_frank4_message: 2232,
   frank4_car1: new Car(2233),
   frank4_car2: new Car(2234),
-  boat_mar: new Car(2235),
+  boat_mar: new Boat(2235),
   bomb_car: new Car(2236),
   flag_car_blip_displayed_fm4: 2237,
   car_dead_once: 2238,

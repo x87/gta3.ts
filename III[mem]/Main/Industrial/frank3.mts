@@ -1,8 +1,30 @@
 // Generated from Main/Industrial/frank3.sc
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *************************************Frankie Mission 3***********************************
+// ***************************************"BOMB DA BASE"************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
 
 async function body() {
+    // SCRIPT_NAME frank3
+
+    // Mission start stuff
+
+    // GOSUB mission_start_frankie3
+
+    // 	IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 		GOSUB mission_frankie3_failed
+    // 	ENDIF
+
+    // GOSUB mission_cleanup_frankie3
+
+    // MISSION_END
+    // ***************************************Start Mission*************************************
+
     ONMISSION = true;
 
     $.flag_player_on_frankie_mission = 1;
@@ -10,170 +32,100 @@ async function body() {
     await asyncWait(0);
 
     $.flag_on_frankie3 = 0;
-
     $.flag_bloke_leave_group_fm3 = 0;
-
     $.flag_bloke_in_area_fm3 = 0;
-
     $.timer_fm3 = 25000;
-
     $.flag_guard1_fm3_dead = 0;
-
     $.flag_guard2_fm3_dead = 0;
-
     $.flag_guard3_fm3_dead = 0;
-
     $.flag_guard4_fm3_dead = 0;
-
     $.flag_guard5_fm3_dead = 0;
-
     $.flag_guard6_fm3_dead = 0;
-
     $.flag_guard7_fm3_dead = 0;
-
     $.flag_guard8_fm3_dead = 0;
-
     $.flag_guard9_fm3_dead = 0;
-
     $.flag_guard10_fm3_dead = 0;
-
     $.flag_guard11_fm3_dead = 0;
-
     $.flag_guard12_fm3_dead = 0;
-
     $.flag_got_message_fm3 = 0;
-
     $.flag_guard3_fm3_created = 0;
-
     $.flag_guard4_fm3_created = 0;
-
     $.flag_guard5_fm3_created = 0;
-
     $.flag_guard6_fm3_created = 0;
-
     $.flag_blip_on_eightball_fm3 = 0;
-
     $.flag_guard1_looking_for_8ball = 0;
-
     $.flag_guard2_looking_for_8ball = 0;
-
     $.flag_guard3_looking_for_8ball = 0;
-
     $.flag_guard4_looking_for_8ball = 0;
-
     $.flag_guard5_looking_for_8ball = 0;
-
     $.flag_guard6_looking_for_8ball = 0;
-
     $.flag_guard7_looking_for_8ball = 0;
-
     $.flag_guard8_looking_for_8ball = 0;
-
     $.flag_guard9_looking_for_8ball = 0;
-
     $.flag_guard10_looking_for_8ball = 0;
-
     $.flag_guard11_looking_for_8ball = 0;
-
     $.flag_guard12_looking_for_8ball = 0;
-
     $.flag_8ball_ordered_area1 = 0;
-
     $.flag_drop_crate_fm3 = 0;
-
     $.counter_no_guards_dead_fm3 = 0;
-
     $.blob_flag = 1;
-
     $.flag_played_cops_audio_fm3 = 0;
-
     $.flag_played_8ball_audio_fm3 = 0;
-
     $.flag_gun_help1_fm3 = 0;
-
     $.flag_gun_help2_fm3 = 0;
-
     $.flag_gun_help3_fm3 = 0;
-
     $.flag_timer_fm3 = 0;
-
     $.flag_timer2_fm3 = 0;
-
     $.flag_timer3_fm3 = 0;
-
     $.flag_timer4_fm3 = 0;
-
     $.eightball_x_fm3 = 0.0;
-
     $.eightball_y_fm3 = 0.0;
-
     $.eightball_z_fm3 = 0.0;
-
     $.flag_columb_car1_dead = 0;
-
     $.flag_columb_car2_dead = 0;
-
     $.flag_audio_cops_loaded_fm3 = 0;
-
     $.flag_timer_set_fm3 = 0;
-
     $.flag_8ball_moved1 = 0;
-
     $.flag_8ball_moved2 = 0;
-
     $.flag_8ball_moved3 = 0;
-
     $.flag_8ball_moved4 = 0;
-
     $.flag_8ball_moved5 = 0;
-
     $.flag_8ball_moved6 = 0;
-
     $.flag_8ball_moved7 = 0;
-
     $.flag_8ball_moved8 = 0;
-
     $.flag_8ball_moved9 = 0;
-
     $.flag_8ball_moved10 = 0;
-
     $.flag_8ball_moved11 = 0;
-
     $.flag_8ball_moved12 = 0;
-
     $.flag_car_marked_fm3 = 0;
-
     $.flag_8ball_ducking_fm3 = 0;
 
-    {
+    player_not_got_money: {
         if ($.flag_player_had_cut1_fm3 == 1) {
             if ($.flag_taken_money_off_fm3 == 1 || $.player.isScoreGreater(99999)) {
-                // SCM GOTO → player_has_money (not lowered; manual jump required)
-                throw new Error('unresolved GOTO player_has_money'); // fallback: would break linear control flow
+                break player_not_got_money; // SCM GOTO → player_has_money
             }
         }
-    }
 
-    async function player_not_got_money() {
         World.ClearArea(1272.6, -95.6, -100.0, 2.0, true /* TRUE */);
 
         // ************************START OF CUTSCENE TWO "PLAYER NOT GOT THE MONEY"*****************
 
         /*
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_frankie3_failed
-  ENDIF
+        IF CAN_PLAYER_START_MISSION player
+        MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+        ELSE
+        GOTO mission_frankie3_failed
+        ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+        SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 1500 FADE_OUT
+        DO_FADE 1500 FADE_OUT
 
-  PRINT_BIG ( FM3 ) 15000 2 //"Bomb Da Base"
+        PRINT_BIG ( FM3 ) 15000 2 //"Bomb Da Base"
 
-  SWITCH_STREAMING OFF
-  */
+        SWITCH_STREAMING OFF
+        */
 
         Streaming.LoadSpecialCharacter(1, 'EIGHT2');
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'EITDOOR');
@@ -327,30 +279,30 @@ async function body() {
 
         $.flag_player_had_cut1_fm3 = 1;
 
-        // SCM GOTO → mission_cleanup_frankie3 (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_cleanup_frankie3'); // fallback: would break linear control flow
+        // xxx: skip onPassed and go to cleanup
+        return true; // SCM GOTO → mission_cleanup_frankie3
     }
 
-    async function player_has_money() {
+    player_has_money: {
         World.ClearArea(1272.6, -95.6, -100.0, 2.0, true /* TRUE */);
 
         // ********************************START OF CUTSCENE ONE "GOT THE MONEY"********************
 
         /*
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_frankie3_failed
-  ENDIF
+        IF CAN_PLAYER_START_MISSION player
+        MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+        ELSE
+        GOTO mission_frankie3_failed
+        ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+        SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 1500 FADE_OUT
+        DO_FADE 1500 FADE_OUT
 
-  PRINT_BIG ( FM3 ) 15000 2 //"Bomb Da Base"
+        PRINT_BIG ( FM3 ) 15000 2 //"Bomb Da Base"
 
-  SWITCH_STREAMING OFF
-  */
+        SWITCH_STREAMING OFF
+        */
 
         Streaming.LoadSpecialCharacter(1, 'EIGHT2');
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'EITDOOR');
@@ -967,12 +919,10 @@ async function body() {
 
         while (!($.flag_bloke_in_area_fm3 == 13)) {
             await asyncWait(0);
-            // SCM GOSUB car_dead_check
-            await car_dead_check();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB guard_death_check
-            await guard_death_check();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await car_dead_check(); // SCM GOSUB car_dead_check
+
+            await guard_death_check(); // SCM GOSUB guard_death_check
 
             //GOSUB clear_area_check_fm3
 
@@ -1020,7 +970,7 @@ async function body() {
             }
             if ($.flag_bloke_leave_group_fm3 == 0) {
                 if (
-                    $.player.locateStoppedAnyMeans2D(1529.0, -824.0, 3.0, 4.0, $.blob_flag) &&
+                    $.player.locateStoppedAnyMeans2D(1529.0, -824.0, 3.0, 4.0, !!$.blob_flag) &&
                     $.ped_8ball_fm3.locateStoppedAnyMeans2D(1529.0, -824.0, 3.0, 4.0, true /* TRUE */) &&
                     $.flag_bloke_leave_group_fm3 == 0
                 ) {
@@ -1043,15 +993,13 @@ async function body() {
                     }
                     while (!Audio.HasMissionAudioFinished()) {
                         await asyncWait(0);
-                        // SCM GOSUB car_dead_check
-                        await car_dead_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB guard_death_check
-                        await guard_death_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB clear_area_check_fm3
-                        await clear_area_check_fm3();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+
+                        await car_dead_check(); // SCM GOSUB car_dead_check
+
+                        await guard_death_check(); // SCM GOSUB guard_death_check
+
+                        await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                         if (Char.IsDead($.ped_8ball_fm3)) {
                             Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                             // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1060,129 +1008,118 @@ async function body() {
                     }
 
                     // Camera looks at the boat and guards
+                    before_camera_jump_fm3: {
+                        Camera.SetFixedPosition(1543.01, -877.81, 16.84, 0.0, 0.0, 0.0);
+                        Camera.PointAtPoint(1542.43, -878.62, 16.75, 2 /* JUMP_CUT */);
+                        if ($.flag_timer_fm3 == 0) {
+                            TIMERA = 0;
+                            $.flag_timer_fm3 = 1;
+                        }
+                        while (TIMERA <= 5000) {
+                            await asyncWait(0);
+                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                                break before_camera_jump_fm3; // SCM GOTO → camera_jump_fm3
+                            }
+                            // SCM GOSUB car_dead_check
+                            await car_dead_check();
+                            // fallback if label was not emitted as async function: no-op continues linearly
+                            // SCM GOSUB guard_death_check
+                            await guard_death_check();
+                            // fallback if label was not emitted as async function: no-op continues linearly
+                            // SCM GOSUB clear_area_check_fm3
+                            await clear_area_check_fm3();
+                            // fallback if label was not emitted as async function: no-op continues linearly
+                            if (Char.IsDead($.ped_8ball_fm3)) {
+                                Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
+                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
+                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                            }
+                        }
+                        World.ClearArea(1536.8, -895.0, 10.8, 1.0, false /* FALSE */);
+                        Camera.SetFixedPosition(1537.1, -899.8, 12.5, 0.0, 0.0, 0.0);
+                        Camera.PointAtPoint(1536.4, -900.4, 12.7, 2 /* JUMP_CUT */);
+                        if ($.flag_timer_fm3 == 1 && $.flag_timer2_fm3 == 0) {
+                            TIMERA = 0;
+                            $.flag_timer2_fm3 = 1;
+                        }
+                        while (TIMERA <= 5000) {
+                            await asyncWait(0);
+                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                                break before_camera_jump_fm3; // SCM GOTO → camera_jump_fm3
+                            }
 
-                    Camera.SetFixedPosition(1543.01, -877.81, 16.84, 0.0, 0.0, 0.0);
-                    Camera.PointAtPoint(1542.43, -878.62, 16.75, 2 /* JUMP_CUT */);
-                    if ($.flag_timer_fm3 == 0) {
-                        TIMERA = 0;
-                        $.flag_timer_fm3 = 1;
-                    }
-                    while (TIMERA <= 5000) {
-                        await asyncWait(0);
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                            // SCM GOTO → camera_jump_fm3 (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO camera_jump_fm3'); // fallback: would break linear control flow
+                            await car_dead_check(); // SCM GOSUB car_dead_check
+
+                            await guard_death_check(); // SCM GOSUB guard_death_check
+
+                            await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
+                            if (Char.IsDead($.ped_8ball_fm3)) {
+                                Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
+                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
+                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                            }
                         }
-                        // SCM GOSUB car_dead_check
-                        await car_dead_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB guard_death_check
-                        await guard_death_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB clear_area_check_fm3
-                        await clear_area_check_fm3();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        if (Char.IsDead($.ped_8ball_fm3)) {
-                            Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                            // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                        World.ClearArea(1522.839, -916.137, 19.602, 1.0, false /* FALSE */);
+                        Camera.SetFixedPosition(1522.839, -916.137, 19.602, 0.0, 0.0, 0.0);
+                        Camera.PointAtPoint(1521.984, -916.648, 19.699, 2 /* JUMP_CUT */);
+                        if ($.flag_timer3_fm3 == 0 && $.flag_timer2_fm3 == 1) {
+                            TIMERA = 0;
+                            $.flag_timer3_fm3 = 1;
                         }
-                    }
-                    World.ClearArea(1536.8, -895.0, 10.8, 1.0, false /* FALSE */);
-                    Camera.SetFixedPosition(1537.1, -899.8, 12.5, 0.0, 0.0, 0.0);
-                    Camera.PointAtPoint(1536.4, -900.4, 12.7, 2 /* JUMP_CUT */);
-                    if ($.flag_timer_fm3 == 1 && $.flag_timer2_fm3 == 0) {
-                        TIMERA = 0;
-                        $.flag_timer2_fm3 = 1;
-                    }
-                    while (TIMERA <= 5000) {
-                        await asyncWait(0);
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                            // SCM GOTO → camera_jump_fm3 (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO camera_jump_fm3'); // fallback: would break linear control flow
+                        while (TIMERA <= 5000) {
+                            await asyncWait(0);
+                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                                break before_camera_jump_fm3; // SCM GOTO → camera_jump_fm3
+                            }
+
+                            await car_dead_check(); // SCM GOSUB car_dead_check
+
+                            await guard_death_check(); // SCM GOSUB guard_death_check
+
+                            await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
+                            if (Char.IsDead($.ped_8ball_fm3)) {
+                                Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
+                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
+                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                            }
                         }
-                        // SCM GOSUB car_dead_check
-                        await car_dead_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB guard_death_check
-                        await guard_death_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB clear_area_check_fm3
-                        await clear_area_check_fm3();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        if (Char.IsDead($.ped_8ball_fm3)) {
-                            Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                            // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                        World.ClearArea(1476.3, -922.7, 19.0, 1.0, false /* FALSE */);
+                        Camera.SetFixedPosition(1476.3, -922.7, 19.0, 0.0, 0.0, 0.0);
+                        Camera.PointAtPoint(1477.1, -923.3, 19.1, 2 /* JUMP_CUT */);
+                        if ($.flag_timer4_fm3 == 0 && $.flag_timer3_fm3 == 1) {
+                            TIMERA = 0;
+                            $.flag_timer4_fm3 = 1;
                         }
-                    }
-                    World.ClearArea(1522.839, -916.137, 19.602, 1.0, false /* FALSE */);
-                    Camera.SetFixedPosition(1522.839, -916.137, 19.602, 0.0, 0.0, 0.0);
-                    Camera.PointAtPoint(1521.984, -916.648, 19.699, 2 /* JUMP_CUT */);
-                    if ($.flag_timer3_fm3 == 0 && $.flag_timer2_fm3 == 1) {
-                        TIMERA = 0;
-                        $.flag_timer3_fm3 = 1;
-                    }
-                    while (TIMERA <= 5000) {
-                        await asyncWait(0);
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                            // SCM GOTO → camera_jump_fm3 (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO camera_jump_fm3'); // fallback: would break linear control flow
-                        }
-                        // SCM GOSUB car_dead_check
-                        await car_dead_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB guard_death_check
-                        await guard_death_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB clear_area_check_fm3
-                        await clear_area_check_fm3();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        if (Char.IsDead($.ped_8ball_fm3)) {
-                            Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                            // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                        while (TIMERA <= 5000) {
+                            await asyncWait(0);
+                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                                break before_camera_jump_fm3; // SCM GOTO → camera_jump_fm3
+                            }
+
+                            await car_dead_check(); // SCM GOSUB car_dead_check
+
+                            await guard_death_check(); // SCM GOSUB guard_death_check
+
+                            await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
+                            if (Char.IsDead($.ped_8ball_fm3)) {
+                                Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
+                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
+                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                            }
                         }
                     }
-                    World.ClearArea(1476.3, -922.7, 19.0, 1.0, false /* FALSE */);
-                    Camera.SetFixedPosition(1476.3, -922.7, 19.0, 0.0, 0.0, 0.0);
-                    Camera.PointAtPoint(1477.1, -923.3, 19.1, 2 /* JUMP_CUT */);
-                    if ($.flag_timer4_fm3 == 0 && $.flag_timer3_fm3 == 1) {
-                        TIMERA = 0;
-                        $.flag_timer4_fm3 = 1;
-                    }
-                    while (TIMERA <= 5000) {
-                        await asyncWait(0);
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                            // SCM GOTO → camera_jump_fm3 (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO camera_jump_fm3'); // fallback: would break linear control flow
-                        }
-                        // SCM GOSUB car_dead_check
-                        await car_dead_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB guard_death_check
-                        await guard_death_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB clear_area_check_fm3
-                        await clear_area_check_fm3();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        if (Char.IsDead($.ped_8ball_fm3)) {
-                            Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                            // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
-                        }
-                    }
-                    // SCM label camera_jump_fm3
-                    Camera.RestoreJumpcut();
-                    // SCM GOSUB car_dead_check
-                    await car_dead_check();
-                    // fallback if label was not emitted as async function: no-op continues linearly
-                    // SCM GOSUB guard_death_check
-                    await guard_death_check();
-                    // fallback if label was not emitted as async function: no-op continues linearly
-                    // SCM GOSUB clear_area_check_fm3
-                    await clear_area_check_fm3();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+
+                    camera_jump_fm3: Camera.RestoreJumpcut();
+
+                    await car_dead_check(); // SCM GOSUB car_dead_check
+
+                    await guard_death_check(); // SCM GOSUB guard_death_check
+
+                    await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                     if (Char.IsDead($.ped_8ball_fm3)) {
                         Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                         // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1197,15 +1134,13 @@ async function body() {
                         $.car_fm3 = $.ped_8ball_fm3.storeCarIsIn();
                         while (!$.car_fm3.isStopped()) {
                             await asyncWait(0);
-                            // SCM GOSUB car_dead_check
-                            await car_dead_check();
-                            // fallback if label was not emitted as async function: no-op continues linearly
-                            // SCM GOSUB guard_death_check
-                            await guard_death_check();
-                            // fallback if label was not emitted as async function: no-op continues linearly
-                            // SCM GOSUB clear_area_check_fm3
-                            await clear_area_check_fm3();
-                            // fallback if label was not emitted as async function: no-op continues linearly
+
+                            await car_dead_check(); // SCM GOSUB car_dead_check
+
+                            await guard_death_check(); // SCM GOSUB guard_death_check
+
+                            await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                             if (Car.IsDead($.car_fm3)) {
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
@@ -1223,16 +1158,15 @@ async function body() {
                                 throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
                             }
                         }
+
                         await asyncWait(0);
-                        // SCM GOSUB car_dead_check
-                        await car_dead_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB guard_death_check
-                        await guard_death_check();
-                        // fallback if label was not emitted as async function: no-op continues linearly
-                        // SCM GOSUB clear_area_check_fm3
-                        await clear_area_check_fm3();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+
+                        await car_dead_check(); // SCM GOSUB car_dead_check
+
+                        await guard_death_check(); // SCM GOSUB guard_death_check
+
+                        await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                         if (Car.IsDead($.car_fm3)) {
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
@@ -1250,17 +1184,16 @@ async function body() {
                             throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
                         }
                         $.ped_8ball_fm3.setObjLeaveCar($.car_fm3);
+
                         while ($.ped_8ball_fm3.isInCar($.car_fm3)) {
                             await asyncWait(0);
-                            // SCM GOSUB car_dead_check
-                            await car_dead_check();
-                            // fallback if label was not emitted as async function: no-op continues linearly
-                            // SCM GOSUB guard_death_check
-                            await guard_death_check();
-                            // fallback if label was not emitted as async function: no-op continues linearly
-                            // SCM GOSUB clear_area_check_fm3
-                            await clear_area_check_fm3();
-                            // fallback if label was not emitted as async function: no-op continues linearly
+
+                            await car_dead_check(); // SCM GOSUB car_dead_check
+
+                            await guard_death_check(); // SCM GOSUB guard_death_check
+
+                            await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                             if (Car.IsDead($.car_fm3)) {
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
@@ -1289,15 +1222,12 @@ async function body() {
             // tells players mate to go to his stageing area
 
             if ($.flag_bloke_in_area_fm3 < 13) {
-                // SCM GOSUB car_dead_check
-                await car_dead_check();
-                // fallback if label was not emitted as async function: no-op continues linearly
-                // SCM GOSUB guard_death_check
-                await guard_death_check();
-                // fallback if label was not emitted as async function: no-op continues linearly
-                // SCM GOSUB clear_area_check_fm3
-                await clear_area_check_fm3();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await car_dead_check(); // SCM GOSUB car_dead_check
+
+                await guard_death_check(); // SCM GOSUB guard_death_check
+
+                await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                 if ($.player.locateOnFoot3D(1498.7, -870.5, 26.8, 3.0, 3.0, 2.0, false /* FALSE */)) {
                     $.radar_blip_coord3_fm3.remove();
                 }
@@ -1333,15 +1263,13 @@ async function body() {
                         TIMERB = 0;
                         while (TIMERB < 5000) {
                             await asyncWait(0);
-                            // SCM GOSUB car_dead_check
-                            await car_dead_check();
-                            // fallback if label was not emitted as async function: no-op continues linearly
-                            // SCM GOSUB guard_death_check
-                            await guard_death_check();
-                            // fallback if label was not emitted as async function: no-op continues linearly
-                            // SCM GOSUB clear_area_check_fm3
-                            await clear_area_check_fm3();
-                            // fallback if label was not emitted as async function: no-op continues linearly
+
+                            await car_dead_check(); // SCM GOSUB car_dead_check
+
+                            await guard_death_check(); // SCM GOSUB guard_death_check
+
+                            await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                                 // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1427,15 +1355,13 @@ async function body() {
                             TIMERB = 0;
                             while (TIMERB < 5000) {
                                 await asyncWait(0);
-                                // SCM GOSUB car_dead_check
-                                await car_dead_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB guard_death_check
-                                await guard_death_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB clear_area_check_fm3
-                                await clear_area_check_fm3();
-                                // fallback if label was not emitted as async function: no-op continues linearly
+
+                                await car_dead_check(); // SCM GOSUB car_dead_check
+
+                                await guard_death_check(); // SCM GOSUB guard_death_check
+
+                                await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                                     // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1474,15 +1400,13 @@ async function body() {
                             TIMERB = 0;
                             while (TIMERB < 5000) {
                                 await asyncWait(0);
-                                // SCM GOSUB car_dead_check
-                                await car_dead_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB guard_death_check
-                                await guard_death_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB clear_area_check_fm3
-                                await clear_area_check_fm3();
-                                // fallback if label was not emitted as async function: no-op continues linearly
+
+                                await car_dead_check(); // SCM GOSUB car_dead_check
+
+                                await guard_death_check(); // SCM GOSUB guard_death_check
+
+                                await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                                     // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1530,15 +1454,13 @@ async function body() {
                             TIMERB = 0;
                             while (TIMERB < 5000) {
                                 await asyncWait(0);
-                                // SCM GOSUB car_dead_check
-                                await car_dead_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB guard_death_check
-                                await guard_death_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB clear_area_check_fm3
-                                await clear_area_check_fm3();
-                                // fallback if label was not emitted as async function: no-op continues linearly
+
+                                await car_dead_check(); // SCM GOSUB car_dead_check
+
+                                await guard_death_check(); // SCM GOSUB guard_death_check
+
+                                await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                                     // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1576,15 +1498,13 @@ async function body() {
                             TIMERB = 0;
                             while (TIMERB < 5000) {
                                 await asyncWait(0);
-                                // SCM GOSUB car_dead_check
-                                await car_dead_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB guard_death_check
-                                await guard_death_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB clear_area_check_fm3
-                                await clear_area_check_fm3();
-                                // fallback if label was not emitted as async function: no-op continues linearly
+
+                                await car_dead_check(); // SCM GOSUB car_dead_check
+
+                                await guard_death_check(); // SCM GOSUB guard_death_check
+
+                                await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                                     // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1622,15 +1542,13 @@ async function body() {
                             TIMERB = 0;
                             while (TIMERB < 5000) {
                                 await asyncWait(0);
-                                // SCM GOSUB car_dead_check
-                                await car_dead_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB guard_death_check
-                                await guard_death_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB clear_area_check_fm3
-                                await clear_area_check_fm3();
-                                // fallback if label was not emitted as async function: no-op continues linearly
+
+                                await car_dead_check(); // SCM GOSUB car_dead_check
+
+                                await guard_death_check(); // SCM GOSUB guard_death_check
+
+                                await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                                     // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1668,15 +1586,13 @@ async function body() {
                             TIMERB = 0;
                             while (TIMERB < 5000) {
                                 await asyncWait(0);
-                                // SCM GOSUB car_dead_check
-                                await car_dead_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB guard_death_check
-                                await guard_death_check();
-                                // fallback if label was not emitted as async function: no-op continues linearly
-                                // SCM GOSUB clear_area_check_fm3
-                                await clear_area_check_fm3();
-                                // fallback if label was not emitted as async function: no-op continues linearly
+
+                                await car_dead_check(); // SCM GOSUB car_dead_check
+
+                                await guard_death_check(); // SCM GOSUB guard_death_check
+
+                                await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                                     // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1755,15 +1671,13 @@ async function body() {
                         TIMERB = 0;
                         while (TIMERB < 3000) {
                             await asyncWait(0);
-                            // SCM GOSUB car_dead_check
-                            await car_dead_check();
-                            // fallback if label was not emitted as async function: no-op continues linearly
-                            // SCM GOSUB guard_death_check
-                            await guard_death_check();
-                            // fallback if label was not emitted as async function: no-op continues linearly
-                            // SCM GOSUB clear_area_check_fm3
-                            await clear_area_check_fm3();
-                            // fallback if label was not emitted as async function: no-op continues linearly
+
+                            await car_dead_check(); // SCM GOSUB car_dead_check
+
+                            await guard_death_check(); // SCM GOSUB guard_death_check
+
+                            await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
+
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
                                 // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
@@ -1781,11 +1695,11 @@ async function body() {
 
         while (TIMERA < 3000) {
             await asyncWait(0);
-            // SCM GOSUB car_dead_check
-            await car_dead_check();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB guard_death_check
-            await guard_death_check();
+
+            await car_dead_check(); // SCM GOSUB car_dead_check
+
+            await guard_death_check(); // SCM GOSUB guard_death_check
+
             // fallback if label was not emitted as async function: no-op continues linearly
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
@@ -1904,8 +1818,6 @@ async function body() {
         Streaming.Switch(true /* ON */);
 
         Cutscene.Start();
-
-        // unsupported START_BOAT_FOAM_ANIMATION
 
         Fx.UpdateBoatFoamAnimation($.cs_ship);
 
@@ -2035,23 +1947,18 @@ async function body() {
 
         // *****************************END OF BOAT BLOWING UP CUTSCENE*****************************
 
-        // SCM GOTO → mission_frankie3_passed (not lowered; manual jump required)
-        return;
+        return; // SCM GOTO → mission_frankie3_passed
     }
-
-    // Mission Failed stuff
 }
 
+// Mission Failed stuff
 async function onFailed() {
     $.player.setAmmo(7 /* WEAPONTYPE_SNIPERRIFLE */, 0);
 
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-
-    return;
-
-    // mission Frankie3 passed
 }
 
+// mission Frankie3 passed
 async function onPassed() {
     $.flag_frankie_mission3_passed = 1;
     Stat.RegisterMissionPassed('FM3');
@@ -2066,11 +1973,9 @@ async function onPassed() {
     $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, 16 /* RADAR_SPRITE_SAL */);
     // START_NEW_SCRIPT frankie_mission4_loop
     // START_NEW_SCRIPT emergency_crane_pager
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_frankie_mission = 0;
@@ -2150,7 +2055,6 @@ async function cleanup() {
     $.boat_barrel16.delete();
     $.boat_barrel17.delete();
     Mission.Finish();
-    return;
 }
 
 async function guard_death_check() {
@@ -2517,8 +2421,6 @@ async function guard_death_check() {
             }
         }
     }
-
-    return;
 }
 
 async function car_dead_check() {
@@ -2533,8 +2435,6 @@ async function car_dead_check() {
             $.flag_columb_car2_dead = 1;
         }
     }
-
-    return;
 }
 
 async function clear_area_check_fm3() {
@@ -2647,235 +2547,10 @@ async function clear_area_check_fm3() {
         World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
         World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
     }
-
-    return;
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// *****************************************************************************************
-// *************************************Frankie Mission 3***********************************
-// ***************************************"BOMB DA BASE"************************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-
-// SCRIPT_NAME frank3
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_frankie3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_frankie3_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_frankie3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT ped_8ball_fm3
-
-// VAR_INT radar_blip_ped2_fm3
-
-// VAR_INT radar_blip_coord3_fm3
-
-// VAR_INT guard1_fm3
-
-// VAR_INT guard2_fm3
-
-// VAR_INT guard3_fm3
-
-// VAR_INT guard4_fm3
-
-// VAR_INT guard5_fm3
-
-// VAR_INT guard6_fm3
-
-// VAR_INT guard7_fm3
-
-// VAR_INT guard8_fm3
-
-// VAR_INT guard9_fm3
-
-// VAR_INT guard10_fm3
-
-// VAR_INT guard11_fm3
-
-// VAR_INT guard12_fm3
-
-// VAR_INT car_fm3
-
-// VAR_INT timer_fm3
-
-// VAR_INT radar_blip_coord2_fm3
-
-// VAR_INT flag_bloke_leave_group_fm3
-
-// VAR_INT flag_bloke_in_area_fm3
-
-// VAR_INT flag_guard1_fm3_dead
-
-// VAR_INT flag_guard2_fm3_dead
-
-// VAR_INT flag_guard3_fm3_dead
-
-// VAR_INT flag_guard4_fm3_dead
-
-// VAR_INT flag_guard5_fm3_dead
-
-// VAR_INT flag_guard6_fm3_dead
-
-// VAR_INT flag_guard7_fm3_dead
-
-// VAR_INT flag_guard8_fm3_dead
-
-// VAR_INT flag_guard9_fm3_dead
-
-// VAR_INT flag_guard10_fm3_dead
-
-// VAR_INT flag_guard11_fm3_dead
-
-// VAR_INT flag_guard12_fm3_dead
-
-// VAR_INT flag_got_message_fm3
-
-// VAR_INT flag_on_frankie3
-
-// VAR_INT flag_guard3_fm3_created
-
-// VAR_INT flag_guard4_fm3_created
-
-// VAR_INT flag_guard5_fm3_created
-
-// VAR_INT flag_guard6_fm3_created
-
-// VAR_INT flag_blip_on_eightball_fm3
-
-// guards told to look for 8ball
-
-// VAR_INT flag_guard1_looking_for_8ball
-
-// VAR_INT flag_guard2_looking_for_8ball
-
-// VAR_INT flag_guard3_looking_for_8ball
-
-// VAR_INT flag_guard4_looking_for_8ball
-
-// VAR_INT flag_guard5_looking_for_8ball
-
-// VAR_INT flag_guard6_looking_for_8ball
-
-// VAR_INT flag_guard7_looking_for_8ball
-
-// VAR_INT flag_guard8_looking_for_8ball
-
-// VAR_INT flag_guard9_looking_for_8ball
-
-// VAR_INT flag_guard10_looking_for_8ball
-
-// VAR_INT flag_guard11_looking_for_8ball
-
-// VAR_INT flag_guard12_looking_for_8ball
-
-// VAR_INT flag_8ball_ordered_area1
-
-// VAR_INT crate_fm3
-
-// VAR_INT flag_drop_crate_fm3
-
-// VAR_INT counter_no_guards_dead_fm3
-
-// VAR_INT flag_played_cops_audio_fm3
-
-// VAR_INT flag_played_8ball_audio_fm3
-
-// VAR_INT flag_gun_help1_fm3
-
-// VAR_INT flag_gun_help2_fm3
-
-// VAR_INT flag_gun_help3_fm3
-
-// VAR_INT flag_timer_fm3
-
-// VAR_INT flag_timer2_fm3
-
-// VAR_INT flag_timer3_fm3
-
-// VAR_INT flag_timer4_fm3
-
-// VAR_INT boat_barrel7
-
-// VAR_INT boat_barrel8
-
-// VAR_INT boat_barrel9
-
-// VAR_INT boat_barrel10
-
-// VAR_INT boat_barrel11
-
-// VAR_INT boat_barrel12
-
-// VAR_INT boat_barrel13
-
-// VAR_INT boat_barrel14
-
-// VAR_INT boat_barrel15
-
-// VAR_INT boat_barrel16
-
-// VAR_INT boat_barrel17
-
-// VAR_FLOAT eightball_x_fm3
-
-// VAR_FLOAT eightball_y_fm3
-
-// VAR_FLOAT eightball_z_fm3
-
-// VAR_INT car_columb1_fm3
-
-// VAR_INT car_columb2_fm3
-
-// VAR_INT flag_columb_car1_dead
-
-// VAR_INT flag_columb_car2_dead
-
-// VAR_INT flag_audio_cops_loaded_fm3
-
-// VAR_INT flag_timer_set_fm3
-
-// VAR_INT flag_8ball_moved1
-
-// VAR_INT flag_8ball_moved2
-
-// VAR_INT flag_8ball_moved3
-
-// VAR_INT flag_8ball_moved4
-
-// VAR_INT flag_8ball_moved5
-
-// VAR_INT flag_8ball_moved6
-
-// VAR_INT flag_8ball_moved7
-
-// VAR_INT flag_8ball_moved8
-
-// VAR_INT flag_8ball_moved9
-
-// VAR_INT flag_8ball_moved10
-
-// VAR_INT flag_8ball_moved11
-
-// VAR_INT flag_8ball_moved12
-
-// VAR_INT flag_car_marked_fm3
-
-// VAR_INT flag_8ball_ducking_fm3
-
-// ***************************************Start Mission*************************************
-
-export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-
+export default () =>
+    body()
+        .then((skipOnPassed) => skipOnPassed ? Promise.resolve() : onPassed())
+        .catch(onFailed)
+        .finally(cleanup);

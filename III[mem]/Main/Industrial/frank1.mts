@@ -1,8 +1,46 @@
 // Generated from Main/Industrial/frank1.sc
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// ********************************* Frankie Mission 1 *************************************
+// *********************************   Pulp Friction   *************************************
+// *****************************************************************************************
+// *** Frankie wants to discuss war with his lieutenants. He needs Maria out of the house***
+// *** for the evening so Claude has to chaperone her. Drive Maria to a dealer to get her***
+// *** party gear. Then on to an illegal warehouse party and wait for her outside. While ***
+// *** waiting for Maria the police will decide to 'raid the joint'. The player must get ***
+// *** Maria out and back to Frankie's safely.											 ***
+// *****************************************************************************************
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_frankie1
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_frankie1_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_frankie1
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT frankies_limo chico chico_message_flag fm1_blip flag_blip_on_limo doorman1 doorman2 parked_car1 parked_car2 parked_car3 timera_reset timerb_reset
+    // VAR_INT swatvan_fm1 swatvan2_fm1 cop1_fm1 cop2_fm1 cop3_fm1 cop4_fm1 cop5_fm1 cop6_fm1 cop7_fm1 cop8_fm1 clubbers_flee_flag
+    // VAR_INT R G R1 G1 R2 G2 R3 G3 R4 G4 R5 G5 shadow_counter add_sound_flag camera_mode chico_audio_flag
+    // VAR_INT clubber1_fm1 clubber2_fm1 clubber3_fm1 clubber4_fm1 clubber5_fm1 clubber6_fm1 clubber7_fm1 clubber8_fm1 maria_blip warehouse_rave_loop
+    // VAR_INT clubber3_car1 clubber5_car2 clubber8_car3 flag_blip_on_maria create_more_swat1 create_more_swat2 swat1_exit_car swat2_exit_car
+    // VAR_INT timerc_reset_flag_f1a timerc_current_f1a timerc_started_f1a timerc_f1a fuckup_flag fuckup_timer_start fuckup_timer_current fuckup_timer
+    // VAR_INT timerc_reset_flag_f1b timerc_current_f1b timerc_started_f1b timerc_f1b locate_dome_flag swat_cam_needs_restoring skip_cutscene_flag
+
+    // VAR_FLOAT swat1_stuck_x swat1_stuck_y swat1_stuck_z
+    // VAR_FLOAT swat2_stuck_x swat2_stuck_y swat2_stuck_z
+    // VAR_FLOAT chico_x chico_y chico_z inside_warehouse_x inside_warehouse_y inside_warehouse_z outside_warehouse_x outside_warehouse_y
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
     $.flag_player_on_frankie_mission = 1;
 
@@ -25,7 +63,7 @@ async function body() {
     $.create_more_swat2 = 0;
     $.swat1_exit_car = 0;
     $.swat2_exit_car = 0;
-    $.maria_blip = 0;
+    $.maria_blip = 0 as any;
     $.add_sound_flag = 0;
     $.locate_dome_flag = 0;
     $.chico_audio_flag = 0;
@@ -75,704 +113,700 @@ async function body() {
     $.R5 = 0;
     $.G5 = 0;
 
-    {
-        Streaming.LoadSpecialCharacter(1, 'frankie');
-        Streaming.LoadSpecialCharacter(2, 'maria');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'FRANKH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MARIAH');
-        Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
-        Streaming.RequestModel(542 /* salvsdetail */);
-        Streaming.RequestModel(540 /* swank_inside */);
-        Streaming.RequestModel(541 /* franksclb02 */);
+    Streaming.LoadSpecialCharacter(1, 'frankie');
+    Streaming.LoadSpecialCharacter(2, 'maria');
+    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'FRANKH');
+    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MARIAH');
+    Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
+    Streaming.RequestModel(542 /* salvsdetail */);
+    Streaming.RequestModel(540 /* swank_inside */);
+    Streaming.RequestModel(541 /* franksclb02 */);
 
-        Streaming.LoadAllModelsNow();
+    Streaming.LoadAllModelsNow();
 
-        while (
-            !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasSpecialCharacterLoaded(2) ||
-            !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */)
-        ) {
-            await asyncWait(0);
-        }
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasSpecialCharacterLoaded(2) ||
+        !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */) ||
+        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
+        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+    ) {
+        await asyncWait(0);
+    }
 
-        while (!Streaming.HasModelLoaded(542 /* salvsdetail */) || !Streaming.HasModelLoaded(540 /* swank_inside */) || !Streaming.HasModelLoaded(541 /* franksclb02 */)) {
-            await asyncWait(0);
-        }
+    while (!Streaming.HasModelLoaded(542 /* salvsdetail */) || !Streaming.HasModelLoaded(540 /* swank_inside */) || !Streaming.HasModelLoaded(541 /* franksclb02 */)) {
+        await asyncWait(0);
+    }
 
-        if ($.maria_exists == 1) {
-            // SCM GOSUB delete_char_maria
-            await delete_char_maria();
-            // fallback if label was not emitted as async function: no-op continues linearly
-        }
-        $.maria_exists = 0;
+    if ($.maria_exists == 1) {
+        await delete_char_maria(); // SCM GOSUB delete_char_maria
+    }
+    $.maria_exists = 0;
 
-        $.frankie_garage.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
-        $.frankie_garage.close();
+    $.frankie_garage.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
+    $.frankie_garage.close();
 
-        World.SwitchRubbish(false /* OFF */);
-        World.ClearArea(1444.99, -186.9, 56.0, 35.0, true /* TRUE */);
+    World.SwitchRubbish(false /* OFF */);
+    World.ClearArea(1444.99, -186.9, 56.0, 35.0, true /* TRUE */);
 
-        Cutscene.Load('S1_PF');
+    Cutscene.Load('S1_PF');
 
-        Cutscene.SetOffset(1457.776, -185.348, 54.925);
+    Cutscene.SetOffset(1457.776, -185.348, 54.925);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
 
-        $.cs_player.setAnim('player');
+    $.cs_player.setAnim('player');
 
-        $.cs_frankie = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_frankie = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
 
-        $.cs_frankie.setAnim('frankie');
+    $.cs_frankie.setAnim('frankie');
 
-        $.cs_maria = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_maria = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
 
-        $.cs_maria.setAnim('maria');
+    $.cs_maria.setAnim('maria');
 
-        $.cs_mafia = CutsceneObject.Create(11 /* PED_GANG_MAFIA_B */);
+    $.cs_mafia = CutsceneObject.Create(11 /* PED_GANG_MAFIA_B */);
 
-        $.cs_mafia.setAnim('gang02');
+    $.cs_mafia.setAnim('gang02');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* cut_obj1 */);
-        $.cs_playerhead.setAnim('player');
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* cut_obj1 */);
+    $.cs_playerhead.setAnim('player');
 
-        $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, 186 /* cut_obj2 */);
-        $.cs_frankiehead.setAnim('frank');
+    $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, 186 /* cut_obj2 */);
+    $.cs_frankiehead.setAnim('frank');
 
-        $.cs_mariahead = CutsceneHead.Create($.cs_maria, 187 /* cut_obj3 */);
-        $.cs_mariahead.setAnim('maria');
+    $.cs_mariahead = CutsceneHead.Create($.cs_maria, 187 /* cut_obj3 */);
+    $.cs_mariahead.setAnim('maria');
 
-        $.player.setCoordinates(1418.0, -186.0, -100.0);
+    $.player.setCoordinates(1418.0, -186.0, -100.0);
 
-        $.player.setHeading(270.0);
+    $.player.setHeading(270.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        //SWITCH_STREAMING ON
+    //SWITCH_STREAMING ON
 
-        Cutscene.Start();
+    Cutscene.Start();
 
+    $.cs_time = Cutscene.GetTime();
+    while ($.cs_time < 219) {
+        await asyncWait(0);
         $.cs_time = Cutscene.GetTime();
-        while ($.cs_time < 219) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    }
 
-        Text.PrintNow('FM1_A', 15000, 1);
-        while ($.cs_time < 1849) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_A', 15000, 1);
+    while ($.cs_time < 1849) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_B', 15000, 1);
-        while ($.cs_time < 4493) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_B', 15000, 1);
+    while ($.cs_time < 4493) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_C', 15000, 1);
-        while ($.cs_time < 7519) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_C', 15000, 1);
+    while ($.cs_time < 7519) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_D', 15000, 1);
-        while ($.cs_time < 10505) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_D', 15000, 1);
+    while ($.cs_time < 10505) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_E', 15000, 1);
-        while ($.cs_time < 14239) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_E', 15000, 1);
+    while ($.cs_time < 14239) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_F', 15000, 1);
-        while ($.cs_time < 15964) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_F', 15000, 1);
+    while ($.cs_time < 15964) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_G', 15000, 1);
-        while ($.cs_time < 18485) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_G', 15000, 1);
+    while ($.cs_time < 18485) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_H', 15000, 1);
-        while ($.cs_time < 21608) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_H', 15000, 1);
+    while ($.cs_time < 21608) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_I', 15000, 1);
-        while ($.cs_time < 24863) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_I', 15000, 1);
+    while ($.cs_time < 24863) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_J', 15000, 1);
-        while ($.cs_time < 28287) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_J', 15000, 1);
+    while ($.cs_time < 28287) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_K', 15000, 1);
-        while ($.cs_time < 31451) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_K', 15000, 1);
+    while ($.cs_time < 31451) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_L', 15000, 1);
-        while ($.cs_time < 34679) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_L', 15000, 1);
+    while ($.cs_time < 34679) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_M', 15000, 1);
-        while ($.cs_time < 36802) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_M', 15000, 1);
+    while ($.cs_time < 36802) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_N', 15000, 1);
-        while ($.cs_time < 39747) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_N', 15000, 1);
+    while ($.cs_time < 39747) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Text.PrintNow('FM1_O', 15000, 1);
-        while ($.cs_time < 43500) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('FM1_O', 15000, 1);
+    while ($.cs_time < 43500) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
 
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
 
-        Text.ClearPrints();
+    Text.ClearPrints();
 
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
 
-        $.player.setCoordinates(1418.0, -186.0, -100.0);
+    $.player.setCoordinates(1418.0, -186.0, -100.0);
 
-        Cutscene.Clear();
+    Cutscene.Clear();
 
-        Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, 0 /* FADE_OUT */);
 
-        Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
-        Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */);
-        Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */);
-        Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */);
+    Streaming.UnloadSpecialCharacter(1);
+    Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
+    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
+    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
+    Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
+    Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */);
+    Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */);
+    Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */);
 
-        Streaming.RequestModel(99 /* CAR_STRETCH */);
-        Streaming.RequestModel(24 /* PED_CRIMINAL1 */);
+    Streaming.RequestModel(99 /* CAR_STRETCH */);
+    Streaming.RequestModel(24 /* PED_CRIMINAL1 */);
 
-        World.ClearArea(1444.99, -186.9, 56.0, 35.0, true /* TRUE */);
+    World.ClearArea(1444.99, -186.9, 56.0, 35.0, true /* TRUE */);
 
-        World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(true /* ON */);
 
-        Streaming.LoadAllModelsNow();
+    Streaming.LoadAllModelsNow();
 
-        while (!Streaming.HasModelLoaded(99 /* CAR_STRETCH */) || !Streaming.HasModelLoaded(24 /* PED_CRIMINAL1 */)) {
-            await asyncWait(0);
-        }
+    while (!Streaming.HasModelLoaded(99 /* CAR_STRETCH */) || !Streaming.HasModelLoaded(24 /* PED_CRIMINAL1 */)) {
+        await asyncWait(0);
+    }
 
-        $.frankies_limo = Car.Create(99 /* CAR_STRETCH */, 1436.0, -183.0, 50.0);
-        Audio.SetRadioChannel(3, -1);
-        $.frankies_limo.setHeading(90.0);
-        $.frankies_limo.changeColor(0, 0); // FRANKIES LIMO NEEDS A UNIQUE COLOUR
-        $.frankies_limo.setStrong(true /* TRUE */);
-        $.frankies_limo.setCanRespray(false /* FALSE */);
+    $.frankies_limo = Car.Create(99 /* CAR_STRETCH */, 1436.0, -183.0, 50.0);
+    Audio.SetRadioChannel(3, -1);
+    $.frankies_limo.setHeading(90.0);
+    $.frankies_limo.changeColor(0, 0); // FRANKIES LIMO NEEDS A UNIQUE COLOUR
+    $.frankies_limo.setStrong(true /* TRUE */);
+    $.frankies_limo.setCanRespray(false /* FALSE */);
 
-        $.player.setControl(false /* OFF */);
-        Hud.SwitchWidescreen(true /* ON */);
+    $.player.setControl(false /* OFF */);
+    Hud.SwitchWidescreen(true /* ON */);
 
-        $.maria_exists = 1;
-        $.maria = Char.CreateAsPassenger($.frankies_limo, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1);
-        $.maria.clearThreatSearch();
-        $.maria.addArmor(100);
-        $.maria.setCantBeDraggedOut(true /* TRUE */);
-        $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
+    $.maria_exists = 1;
+    $.maria = Char.CreateAsPassenger($.frankies_limo, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1);
+    $.maria.clearThreatSearch();
+    $.maria.addArmor(100);
+    $.maria.setCantBeDraggedOut(true /* TRUE */);
+    $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
 
-        if (!$.maria.isInCar($.frankies_limo)) {
-            $.maria.setObjEnterCarAsPassenger($.frankies_limo);
-        }
+    if (!$.maria.isInCar($.frankies_limo)) {
+        $.maria.setObjEnterCarAsPassenger($.frankies_limo);
+    }
 
-        $.chico = Char.Create(4 /* PEDTYPE_CIVMALE */, 24 /* PED_CRIMINAL1 */, 770.2257, -565.9869, 13.8);
-        $.chico.setHeading(265.2053);
-        $.chico.clearThreatSearch();
-        $.chico.setIdle();
-        $.chico.setStayInSamePlace(true /* TRUE */);
+    $.chico = Char.Create(4 /* PEDTYPE_CIVMALE */, 24 /* PED_CRIMINAL1 */, 770.2257, -565.9869, 13.8);
+    $.chico.setHeading(265.2053);
+    $.chico.clearThreatSearch();
+    $.chico.setIdle();
+    $.chico.setStayInSamePlace(true /* TRUE */);
 
-        Path.SwitchPedRoadsOff(759.0, -616.0, 11.0, 782.0, -536.0, 26.0);
+    Path.SwitchPedRoadsOff(759.0, -616.0, 11.0, 782.0, -536.0, 26.0);
 
-        $.camera_mode = Math.RandomIntInRange(0, 4);
+    $.camera_mode = Math.RandomIntInRange(0, 4);
 
-        if ($.camera_mode < 1) {
-            Camera.SetFixedPosition(1405.736, -190.179, 62.455, 0.0, 0.0, 0.0);
-            Camera.PointAtPoint(1427.2837, -183.5375, 49.4573, 2 /* JUMP_CUT */);
-        }
+    if ($.camera_mode < 1) {
+        Camera.SetFixedPosition(1405.736, -190.179, 62.455, 0.0, 0.0, 0.0);
+        Camera.PointAtPoint(1427.2837, -183.5375, 49.4573, 2 /* JUMP_CUT */);
+    }
 
-        if ($.camera_mode == 1) {
-            Camera.SetFixedPosition(1425.685, -178.463, 50.184, 0.0, 0.0, 0.0);
-            Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
-        }
+    if ($.camera_mode == 1) {
+        Camera.SetFixedPosition(1425.685, -178.463, 50.184, 0.0, 0.0, 0.0);
+        Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    }
 
-        if ($.camera_mode == 2) {
-            Camera.SetFixedPosition(1432.161, -179.705, 50.643, 0.0, 0.0, 0.0);
-            Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
-        }
+    if ($.camera_mode == 2) {
+        Camera.SetFixedPosition(1432.161, -179.705, 50.643, 0.0, 0.0, 0.0);
+        Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    }
 
-        if ($.camera_mode > 2) {
-            Camera.SetFixedPosition(1421.134, -193.771, 63.916, 0.0, 0.0, 0.0);
-            Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
-        }
+    if ($.camera_mode > 2) {
+        Camera.SetFixedPosition(1421.134, -193.771, 63.916, 0.0, 0.0, 0.0);
+        Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    }
 
-        $.player.warpIntoCar($.frankies_limo);
+    $.player.warpIntoCar($.frankies_limo);
 
-        Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, 0 /* FADE_OUT */);
 
-        const _res227 = $.chico.getCoordinates();
-        $.chico_x = _res227.x;
-        $.chico_y = _res227.y;
-        $.chico_z = _res227.z;
+    const _res227 = $.chico.getCoordinates();
+    $.chico_x = _res227.x;
+    $.chico_y = _res227.y;
+    $.chico_z = _res227.z;
 
-        $.fm1_blip = Blip.AddForCoord(775.5, -557.3, 14.0);
+    $.fm1_blip = Blip.AddForCoord(775.5, -557.3, 14.0);
 
-        Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
-        Streaming.RequestModel(95 /* CAR_SENTINEL */);
-        Streaming.RequestModel(105 /* CAR_CHEETAH */);
-        Streaming.RequestModel(100 /* CAR_MANANA */);
+    Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
+    Streaming.RequestModel(95 /* CAR_SENTINEL */);
+    Streaming.RequestModel(105 /* CAR_CHEETAH */);
+    Streaming.RequestModel(100 /* CAR_MANANA */);
 
-        Streaming.LoadAllModelsNow();
+    Streaming.LoadAllModelsNow();
 
-        while (
-            !Streaming.HasModelLoaded(10 /* PED_GANG_MAFIA_A */) ||
-            !Streaming.HasModelLoaded(95 /* CAR_SENTINEL */) ||
-            !Streaming.HasModelLoaded(105 /* CAR_CHEETAH */) ||
-            !Streaming.HasModelLoaded(100 /* CAR_MANANA */)
-        ) {
-            await asyncWait(0);
-        }
+    while (
+        !Streaming.HasModelLoaded(10 /* PED_GANG_MAFIA_A */) ||
+        !Streaming.HasModelLoaded(95 /* CAR_SENTINEL */) ||
+        !Streaming.HasModelLoaded(105 /* CAR_CHEETAH */) ||
+        !Streaming.HasModelLoaded(100 /* CAR_MANANA */)
+    ) {
+        await asyncWait(0);
+    }
 
-        Streaming.Switch(true /* ON */);
+    Streaming.Switch(true /* ON */);
 
-        if (Char.IsDead($.maria)) {
-            Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-        }
+    if (Char.IsDead($.maria)) {
+        Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
+        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+    }
 
+    if (Car.IsDead($.frankies_limo)) {
+        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+    }
+
+    if (!$.maria.isInCar($.frankies_limo)) {
+        $.maria.setObjEnterCarAsPassenger($.frankies_limo);
+    }
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    if (Char.IsDead($.maria)) {
+        Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
+        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+    }
+
+    if (Car.IsDead($.frankies_limo)) {
+        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+    }
+
+    if (!$.maria.isInCar($.frankies_limo)) {
+        $.maria.setObjEnterCarAsPassenger($.frankies_limo);
+    }
+
+    $.frankie_garage.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
+    $.frankie_garage.open();
+    $.frankies_limo.gotoCoordinatesAccurate(1416.1118, -189.4448, 49.5264);
+
+    while (!$.frankies_limo.locate2D(1420.5, -189.1, 3.0, 3.0, false)) {
+        await asyncWait(0);
         if (Car.IsDead($.frankies_limo)) {
             // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
         }
+    }
 
-        if (!$.maria.isInCar($.frankies_limo)) {
-            $.maria.setObjEnterCarAsPassenger($.frankies_limo);
-        }
+    $.frankie_garage.close();
+    $.player.applyBrakesToCar(true /* ON */);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+    if (Char.IsDead($.maria)) {
+        Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
+        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+    }
 
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
+    Camera.SetInFrontOfPlayer();
+    Camera.RestoreJumpcut();
+    $.player.setControl(true /* ON */);
+    $.frankies_limo.setStatus(0 /* STATUS_PLAYER */);
+    Hud.SwitchWidescreen(false /* OFF */);
 
+    $.locate_dome_flag = 1;
+
+    Streaming.RequestModel(117 /* CAR_ENFORCER */);
+    Streaming.RequestModel(2 /* PED_SWAT */);
+    Streaming.RequestModel(41 /* PED_P_MAN1 */);
+    Streaming.RequestModel(34 /* PED_FEMALE1 */);
+    Streaming.RequestModel(35 /* PED_FEMALE2 */);
+
+    //WHILE NOT LOCATE_STOPPED_CHAR_IN_CAR_2D maria chico_x chico_y 10.0 10.0 0
+
+    while (!$.maria.locateStoppedInCar3D(775.5, -557.3, 14.0, 3.0, 3.0, 2.0, !!$.locate_dome_flag)) {
+        await asyncWait(0);
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
             // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
         }
-
+        if (Char.IsDead($.chico)) {
+            Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
         if (Car.IsDead($.frankies_limo)) {
+            Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
             // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
         }
-
-        if (!$.maria.isInCar($.frankies_limo)) {
-            $.maria.setObjEnterCarAsPassenger($.frankies_limo);
+        if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
+            $.locate_dome_flag = 0;
+            $.fm1_blip.remove();
+            $.fm1_blip = Blip.AddForCar($.frankies_limo);
+            Text.PrintNow('FM1_1', 5000, 1); //"Get back into the limo!"
+            $.flag_blip_on_limo = 1;
         }
-
-        $.frankie_garage.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
-        $.frankie_garage.open();
-        $.frankies_limo.gotoCoordinatesAccurate(1416.1118, -189.4448, 49.5264);
-
-        while (!$.frankies_limo.locate2D(1420.5, -189.1, 3.0, 3.0, false)) {
-            await asyncWait(0);
-            if (Car.IsDead($.frankies_limo)) {
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
+        if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
+            $.locate_dome_flag = 1;
+            $.fm1_blip.remove();
+            $.fm1_blip = Blip.AddForChar($.chico);
+            $.flag_blip_on_limo = 0;
         }
+        const _res228 = $.chico.getCoordinates();
+        $.chico_x = _res228.x;
+        $.chico_y = _res228.y;
+        $.chico_z = _res228.z;
+        if ($.player.locateInCar2D($.chico_x, $.chico_y, 30.0, 30.0, false) && $.chico_message_flag == 0) {
+            Text.PrintNow('FM1_P', 5000, 1); //THATS CHICO OVER THERE, STOP NEXT TO HIM AND I'LL GET OUT
+            $.chico_message_flag = 1;
+        }
+        if ($.chico_message_flag == 1 && !$.player.locateInCar2D($.chico_x, $.chico_y, 30.0, 30.0, false)) {
+            Text.PrintNow('FM1_6', 5000, 1); //WHERE ARE YOU GOING, I WANT TO SEE CHICO
+            $.chico_message_flag = 0;
+        }
+    }
 
-        $.frankie_garage.close();
-        $.player.applyBrakesToCar(true /* ON */);
+    $.player.setControl(false /* OFF */);
+    Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
+    Hud.SwitchWidescreen(true /* ON */);
+    //MAKE_PLAYER_SAFE player
 
+    Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+
+    //SET_FIXED_CAMERA_POSITION 769.86 -569.95 14.462 0.0 0.0 0.0
+    //POINT_CAMERA_AT_CHAR maria FIXED JUMP_CUT
+
+    Camera.SetFixedPosition(770.7659, -569.9462, 14.3248, 0.0, 0.0, 0.0);
+    Camera.PointAtPoint(770.7453, -568.9474, 14.4, 2 /* JUMP_CUT */);
+
+    $.fm1_blip.remove();
+
+    $.frankie_garage.close();
+
+    $.maria.setObjLeaveCar($.frankies_limo);
+
+    while ($.maria.isInAnyCar()) {
+        await asyncWait(0);
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
             // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
         }
+        if (Char.IsDead($.chico)) {
+            Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if (Car.IsDead($.frankies_limo)) {
+            Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
+            $.fm1_blip = Blip.AddForCar($.frankies_limo);
+            Text.PrintNow('FM1_1', 5000, 1); //"Get back into the limo!"
+            $.flag_blip_on_limo = 1;
+        }
+        if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
+            $.fm1_blip.remove();
+            $.flag_blip_on_limo = 0;
+        }
+        if (!$.player.locateAnyMeansChar2D($.maria, 20.0, 20.0, false)) {
+            Text.PrintNow('FM1_3', 5000, 1); //COMEBACK
+        }
+    }
 
-        Camera.SetInFrontOfPlayer();
-        Camera.RestoreJumpcut();
-        $.player.setControl(true /* ON */);
-        $.frankies_limo.setStatus(0 /* STATUS_PLAYER */);
-        Hud.SwitchWidescreen(false /* OFF */);
+    $.maria.setObjGotoCharOnFoot($.chico);
 
-        $.locate_dome_flag = 1;
+    const _res229 = $.chico.getCoordinates();
+    $.chico_x = _res229.x;
+    $.chico_y = _res229.y;
+    $.chico_z = _res229.z;
 
-        Streaming.RequestModel(117 /* CAR_ENFORCER */);
-        Streaming.RequestModel(2 /* PED_SWAT */);
-        Streaming.RequestModel(41 /* PED_P_MAN1 */);
-        Streaming.RequestModel(34 /* PED_FEMALE1 */);
-        Streaming.RequestModel(35 /* PED_FEMALE2 */);
+    while (!$.maria.locateStoppedOnFoot2D($.chico_x, $.chico_y, 3.0, 3.0, false)) {
+        await asyncWait(0);
+        if (Char.IsDead($.maria)) {
+            Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if (Char.IsDead($.chico)) {
+            Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if (Car.IsDead($.frankies_limo)) {
+            Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        const _res230 = $.chico.getCoordinates();
+        $.chico_x = _res230.x;
+        $.chico_y = _res230.y;
+        $.chico_z = _res230.z;
+        if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
+            $.fm1_blip = Blip.AddForCar($.frankies_limo);
+            Text.PrintNow('FM1_1', 5000, 1); //"Get back into the limo!"
+            $.flag_blip_on_limo = 1;
+        }
+        if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
+            $.fm1_blip.remove();
+            $.flag_blip_on_limo = 0;
+        }
+        if (!$.player.locateAnyMeansChar2D($.maria, 20.0, 20.0, false)) {
+            Text.PrintNow('FM1_3', 5000, 1); //COMEBACK
+        }
+    }
 
-        //WHILE NOT LOCATE_STOPPED_CHAR_IN_CAR_2D maria chico_x chico_y 10.0 10.0 0
+    Text.ClearSmallPrints();
 
-        while (!$.maria.locateStoppedInCar3D(775.5, -557.3, 14.0, 3.0, 3.0, 2.0, $.locate_dome_flag)) {
-            await asyncWait(0);
-            if (Char.IsDead($.maria)) {
-                Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (Char.IsDead($.chico)) {
-                Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (Car.IsDead($.frankies_limo)) {
-                Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
-                $.locate_dome_flag = 0;
-                $.fm1_blip.remove();
-                $.fm1_blip = Blip.AddForCar($.frankies_limo);
-                Text.PrintNow('FM1_1', 5000, 1); //"Get back into the limo!"
-                $.flag_blip_on_limo = 1;
-            }
-            if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
-                $.locate_dome_flag = 1;
-                $.fm1_blip.remove();
-                $.fm1_blip = Blip.AddForChar($.chico);
-                $.flag_blip_on_limo = 0;
-            }
-            const _res228 = $.chico.getCoordinates();
-            $.chico_x = _res228.x;
-            $.chico_y = _res228.y;
-            $.chico_z = _res228.z;
-            if ($.player.locateInCar2D($.chico_x, $.chico_y, 30.0, 30.0, false) && $.chico_message_flag == 0) {
-                Text.PrintNow('FM1_P', 5000, 1); //THATS CHICO OVER THERE, STOP NEXT TO HIM AND I'LL GET OUT
-                $.chico_message_flag = 1;
-            }
-            if ($.chico_message_flag == 1 && !$.player.locateInCar2D($.chico_x, $.chico_y, 30.0, 30.0, false)) {
-                Text.PrintNow('FM1_6', 5000, 1); //WHERE ARE YOU GOING, I WANT TO SEE CHICO
-                $.chico_message_flag = 0;
+    while (!($.chico_audio_flag == 15)) {
+        await asyncWait(0);
+        if (Char.IsDead($.maria)) {
+            Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
+            Audio.ClearMissionAudio();
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if (Car.IsDead($.frankies_limo)) {
+            Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
+            Audio.ClearMissionAudio();
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if (Char.IsDead($.chico)) {
+            Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
+            Audio.ClearMissionAudio();
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if ($.skip_cutscene_flag == 0) {
+            if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                $.skip_cutscene_flag = 1;
             }
         }
-
-        $.player.setControl(false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
-        Hud.SwitchWidescreen(true /* ON */);
-        //MAKE_PLAYER_SAFE player
-
-        Game.SetAllCarsCanBeDamaged(false /* FALSE */);
-
-        //SET_FIXED_CAMERA_POSITION 769.86 -569.95 14.462 0.0 0.0 0.0
-        //POINT_CAMERA_AT_CHAR maria FIXED JUMP_CUT
-
-        Camera.SetFixedPosition(770.7659, -569.9462, 14.3248, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(770.7453, -568.9474, 14.4, 2 /* JUMP_CUT */);
-
-        $.fm1_blip.remove();
-
-        $.frankie_garage.close();
-
-        $.maria.setObjLeaveCar($.frankies_limo);
-
-        while ($.maria.isInAnyCar()) {
-            await asyncWait(0);
-            if (Char.IsDead($.maria)) {
-                Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (Char.IsDead($.chico)) {
-                Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (Car.IsDead($.frankies_limo)) {
-                Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
-                $.fm1_blip = Blip.AddForCar($.frankies_limo);
-                Text.PrintNow('FM1_1', 5000, 1); //"Get back into the limo!"
-                $.flag_blip_on_limo = 1;
-            }
-            if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
-                $.fm1_blip.remove();
-                $.flag_blip_on_limo = 0;
-            }
-            if (!$.player.locateAnyMeansChar2D($.maria, 20.0, 20.0, false)) {
-                Text.PrintNow('FM1_3', 5000, 1); //COMEBACK
+        if ($.skip_cutscene_flag == 1) {
+            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                $.skip_cutscene_flag = 2;
             }
         }
-
-        $.maria.setObjGotoCharOnFoot($.chico);
-
-        const _res229 = $.chico.getCoordinates();
-        $.chico_x = _res229.x;
-        $.chico_y = _res229.y;
-        $.chico_z = _res229.z;
-
-        while (!$.maria.locateStoppedOnFoot2D($.chico_x, $.chico_y, 3.0, 3.0, false)) {
-            await asyncWait(0);
-            if (Char.IsDead($.maria)) {
-                Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (Char.IsDead($.chico)) {
-                Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (Car.IsDead($.frankies_limo)) {
-                Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            const _res230 = $.chico.getCoordinates();
-            $.chico_x = _res230.x;
-            $.chico_y = _res230.y;
-            $.chico_z = _res230.z;
-            if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
-                $.fm1_blip = Blip.AddForCar($.frankies_limo);
-                Text.PrintNow('FM1_1', 5000, 1); //"Get back into the limo!"
-                $.flag_blip_on_limo = 1;
-            }
-            if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
-                $.fm1_blip.remove();
-                $.flag_blip_on_limo = 0;
-            }
-            if (!$.player.locateAnyMeansChar2D($.maria, 20.0, 20.0, false)) {
-                Text.PrintNow('FM1_3', 5000, 1); //COMEBACK
+        if ($.skip_cutscene_flag == 2) {
+            if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                Audio.ClearMissionAudio();
+                Audio.LoadMissionAudio('s1_f' as any);
+                $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.chico_audio_flag = 15;
+                $.skip_cutscene_flag = 3;
             }
         }
-
-        Text.ClearSmallPrints();
-
-        while (!($.chico_audio_flag == 15)) {
-            await asyncWait(0);
-            if (Char.IsDead($.maria)) {
-                Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                Audio.ClearMissionAudio();
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        if ($.chico_audio_flag == 0) {
+            $.chico.turnToFaceChar($.maria);
+            $.maria.turnToFaceChar($.chico);
+            Audio.LoadMissionAudio('s1_a' as any);
+            $.chico_audio_flag = 1;
+        }
+        if ($.chico_audio_flag == 14) {
+            if (Audio.HasMissionAudioFinished()) {
+                Audio.LoadMissionAudio('s1_f' as any);
+                $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.chico_audio_flag = 15;
             }
-            if (Car.IsDead($.frankies_limo)) {
-                Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                Audio.ClearMissionAudio();
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if ($.chico_audio_flag == 13) {
+            if (Audio.HasMissionAudioLoaded()) {
+                const _res231 = $.chico.getCoordinates();
+                $.chico_x = _res231.x;
+                $.chico_y = _res231.y;
+                $.chico_z = _res231.z;
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_U', 2000, 1); //"Ciao baby."
+                $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.chico_audio_flag = 14;
             }
-            if (Char.IsDead($.chico)) {
-                Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
-                Audio.ClearMissionAudio();
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if ($.skip_cutscene_flag == 0) {
-                if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                    $.skip_cutscene_flag = 1;
-                }
-            }
-            if ($.skip_cutscene_flag == 1) {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                    $.skip_cutscene_flag = 2;
-                }
-            }
-            if ($.skip_cutscene_flag == 2) {
-                if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                    Audio.ClearMissionAudio();
-                    Audio.LoadMissionAudio('s1_f' as any);
-                    $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                    $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                    $.chico_audio_flag = 15;
-                    $.skip_cutscene_flag = 3;
-                }
-            }
-            if ($.chico_audio_flag == 0) {
+        }
+        if ($.chico_audio_flag == 12) {
+            if (Audio.HasMissionAudioFinished()) {
                 $.chico.turnToFaceChar($.maria);
                 $.maria.turnToFaceChar($.chico);
-                Audio.LoadMissionAudio('s1_a' as any);
-                $.chico_audio_flag = 1;
+                Audio.LoadMissionAudio('s1_e' as any);
+                $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.chico_audio_flag = 13;
             }
-            if ($.chico_audio_flag == 14) {
-                if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_f' as any);
-                    $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                    $.chico_audio_flag = 15;
-                }
+        }
+        if ($.chico_audio_flag == 11) {
+            if (Audio.HasMissionAudioLoaded()) {
+                const _res232 = $.maria.getCoordinates();
+                $.chico_x = _res232.x;
+                $.chico_y = _res232.y;
+                $.chico_z = _res232.z;
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_T', 4000, 2); //"Thanks for the tip. C'mon, let's go party. See you around Chico."
+                $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.chico_audio_flag = 12;
             }
-            if ($.chico_audio_flag == 13) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    const _res231 = $.chico.getCoordinates();
-                    $.chico_x = _res231.x;
-                    $.chico_y = _res231.y;
-                    $.chico_z = _res231.z;
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_U', 2000, 1); //"Ciao baby."
-                    $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
-                    $.chico_audio_flag = 14;
-                }
+        }
+        if ($.chico_audio_flag == 10) {
+            if (Audio.HasMissionAudioFinished()) {
+                $.chico.turnToFaceChar($.maria);
+                $.maria.turnToFaceChar($.chico);
+                Audio.LoadMissionAudio('s1_d' as any);
+                $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.chico_audio_flag = 11;
             }
-            if ($.chico_audio_flag == 12) {
-                if (Audio.HasMissionAudioFinished()) {
-                    $.chico.turnToFaceChar($.maria);
-                    $.maria.turnToFaceChar($.chico);
-                    Audio.LoadMissionAudio('s1_e' as any);
-                    $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                    $.chico_audio_flag = 13;
-                }
+        }
+        if ($.chico_audio_flag == 9) {
+            if (Audio.HasMissionAudioLoaded()) {
+                const _res233 = $.chico.getCoordinates();
+                $.chico_x = _res233.x;
+                $.chico_y = _res233.y;
+                $.chico_z = _res233.z;
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_S1', 15000, 2); //"You should check out the warehouse party going down at the North end of Portland Harbour."
+                $.chico_audio_flag = 10;
             }
-            if ($.chico_audio_flag == 11) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    const _res232 = $.maria.getCoordinates();
-                    $.chico_x = _res232.x;
-                    $.chico_y = _res232.y;
-                    $.chico_z = _res232.z;
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_T', 4000, 2); //"Thanks for the tip. C'mon, let's go party. See you around Chico."
-                    $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
-                    $.chico_audio_flag = 12;
-                }
+        }
+        if ($.chico_audio_flag == 8) {
+            if (Audio.HasMissionAudioFinished()) {
+                $.chico.turnToFaceChar($.maria);
+                $.maria.turnToFaceChar($.chico);
+                Audio.LoadMissionAudio('s1_c1' as any);
+                $.chico_audio_flag = 9;
             }
-            if ($.chico_audio_flag == 10) {
-                if (Audio.HasMissionAudioFinished()) {
-                    $.chico.turnToFaceChar($.maria);
-                    $.maria.turnToFaceChar($.chico);
-                    Audio.LoadMissionAudio('s1_d' as any);
-                    $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                    $.chico_audio_flag = 11;
-                }
+        }
+        if ($.chico_audio_flag == 7) {
+            if (Audio.HasMissionAudioLoaded()) {
+                const _res234 = $.chico.getCoordinates();
+                $.chico_x = _res234.x;
+                $.chico_y = _res234.y;
+                $.chico_z = _res234.z;
+                $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_S', 5000, 2); //"Here you go lady"
+                $.chico_audio_flag = 8;
             }
-            if ($.chico_audio_flag == 9) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    const _res233 = $.chico.getCoordinates();
-                    $.chico_x = _res233.x;
-                    $.chico_y = _res233.y;
-                    $.chico_z = _res233.z;
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_S1', 15000, 2); //"You should check out the warehouse party going down at the North end of Portland Harbour."
-                    $.chico_audio_flag = 10;
-                }
+        }
+        if ($.chico_audio_flag == 6) {
+            if (Audio.HasMissionAudioFinished()) {
+                $.chico.turnToFaceChar($.maria);
+                $.maria.turnToFaceChar($.chico);
+                Audio.LoadMissionAudio('s1_c' as any);
+                $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.chico_audio_flag = 7;
             }
-            if ($.chico_audio_flag == 8) {
-                if (Audio.HasMissionAudioFinished()) {
-                    $.chico.turnToFaceChar($.maria);
-                    $.maria.turnToFaceChar($.chico);
-                    Audio.LoadMissionAudio('s1_c1' as any);
-                    $.chico_audio_flag = 9;
-                }
+        }
+        if ($.chico_audio_flag == 5) {
+            if (Audio.HasMissionAudioLoaded()) {
+                const _res235 = $.maria.getCoordinates();
+                $.chico_x = _res235.x;
+                $.chico_y = _res235.y;
+                $.chico_z = _res235.z;
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_R', 6000, 2); //"Hi Chico. Yeah just the usual."
+                $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.chico_audio_flag = 6;
             }
-            if ($.chico_audio_flag == 7) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    const _res234 = $.chico.getCoordinates();
-                    $.chico_x = _res234.x;
-                    $.chico_y = _res234.y;
-                    $.chico_z = _res234.z;
-                    $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_S', 5000, 2); //"Here you go lady"
-                    $.chico_audio_flag = 8;
-                }
+        }
+        if ($.chico_audio_flag == 4) {
+            if (Audio.HasMissionAudioFinished()) {
+                $.chico.turnToFaceChar($.maria);
+                $.maria.turnToFaceChar($.chico);
+                Audio.LoadMissionAudio('s1_b' as any);
+                $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.chico_audio_flag = 5;
             }
-            if ($.chico_audio_flag == 6) {
-                if (Audio.HasMissionAudioFinished()) {
-                    $.chico.turnToFaceChar($.maria);
-                    $.maria.turnToFaceChar($.chico);
-                    Audio.LoadMissionAudio('s1_c' as any);
-                    $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                    $.chico_audio_flag = 7;
-                }
+        }
+        if ($.chico_audio_flag == 3) {
+            if (Audio.HasMissionAudioLoaded()) {
+                const _res236 = $.chico.getCoordinates();
+                $.chico_x = _res236.x;
+                $.chico_y = _res236.y;
+                $.chico_z = _res236.z;
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_Q1', 6000, 2); //"You looking for some spank?"
+                $.chico_audio_flag = 4;
             }
-            if ($.chico_audio_flag == 5) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    const _res235 = $.maria.getCoordinates();
-                    $.chico_x = _res235.x;
-                    $.chico_y = _res235.y;
-                    $.chico_z = _res235.z;
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_R', 6000, 2); //"Hi Chico. Yeah just the usual."
-                    $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
-                    $.chico_audio_flag = 6;
-                }
+        }
+        if ($.chico_audio_flag == 2) {
+            if (Audio.HasMissionAudioFinished()) {
+                $.chico.turnToFaceChar($.maria);
+                $.maria.turnToFaceChar($.chico);
+                Audio.LoadMissionAudio('s1_a1' as any);
+                $.chico_audio_flag = 3;
             }
-            if ($.chico_audio_flag == 4) {
-                if (Audio.HasMissionAudioFinished()) {
-                    $.chico.turnToFaceChar($.maria);
-                    $.maria.turnToFaceChar($.chico);
-                    Audio.LoadMissionAudio('s1_b' as any);
-                    $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                    $.chico_audio_flag = 5;
-                }
-            }
-            if ($.chico_audio_flag == 3) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    const _res236 = $.chico.getCoordinates();
-                    $.chico_x = _res236.x;
-                    $.chico_y = _res236.y;
-                    $.chico_z = _res236.z;
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_Q1', 6000, 2); //"You looking for some spank?"
-                    $.chico_audio_flag = 4;
-                }
-            }
-            if ($.chico_audio_flag == 2) {
-                if (Audio.HasMissionAudioFinished()) {
-                    $.chico.turnToFaceChar($.maria);
-                    $.maria.turnToFaceChar($.chico);
-                    Audio.LoadMissionAudio('s1_a1' as any);
-                    $.chico_audio_flag = 3;
-                }
-            }
-            if ($.chico_audio_flag == 1) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    const _res237 = $.chico.getCoordinates();
-                    $.chico_x = _res237.x;
-                    $.chico_y = _res237.y;
-                    $.chico_z = _res237.z;
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_Q', 6000, 2); //"Hey it's my favourite lady!"
-                    $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
-                    $.chico_audio_flag = 2;
-                }
+        }
+        if ($.chico_audio_flag == 1) {
+            if (Audio.HasMissionAudioLoaded()) {
+                const _res237 = $.chico.getCoordinates();
+                $.chico_x = _res237.x;
+                $.chico_y = _res237.y;
+                $.chico_z = _res237.z;
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_Q', 6000, 2); //"Hey it's my favourite lady!"
+                $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.chico_audio_flag = 2;
             }
         }
     }
 
-    async function maria_getting_into_car() {
+    maria_getting_into_car: {
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
             // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
@@ -881,7 +915,7 @@ async function body() {
 
         ///////////////////////////
 
-        while (!$.maria.locateStoppedInCar2D(1259.041, -1107.7825, 3.0, 3.0, $.locate_dome_flag)) {
+        while (!$.maria.locateStoppedInCar2D(1259.041, -1107.7825, 3.0, 3.0, !!$.locate_dome_flag)) {
             await asyncWait(0);
             // SCM GOSUB draw_disco_lights
             await draw_disco_lights();
@@ -1064,50 +1098,47 @@ async function body() {
         $.maria.delete();
     }
 
-    async function wait_for_maria() {
-        // SCM GOTO → wait_for_maria lowered to endless loop
-        while (true) {
+    ////////////////////////////////////////////////////////////////////////
+    wait_for_maria: while (true) {
+        await asyncWait(0);
+
+        await draw_disco_lights(); // SCM GOSUB draw_disco_lights
+
+        if (Car.IsDead($.frankies_limo)) {
+            Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+
+        TIMERA = 0;
+
+        while ($.player.locateAnyMeans2D(1262.1, -1099.4, 22.0, 22.0, false)) {
             await asyncWait(0);
 
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await draw_disco_lights(); // SCM GOSUB draw_disco_lights
 
+            if (TIMERA > 10000) {
+                break wait_for_maria; // SCM GOTO → club_busted
+            }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
                 // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
             }
-
-            TIMERA = 0;
-
-            while ($.player.locateAnyMeans2D(1262.1, -1099.4, 22.0, 22.0, false)) {
-                await asyncWait(0);
-                // SCM GOSUB draw_disco_lights
-                await draw_disco_lights();
-                // fallback if label was not emitted as async function: no-op continues linearly
-                if (TIMERA > 10000) {
-                    // SCM GOTO → club_busted (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO club_busted'); // fallback: would break linear control flow
-                }
-                if (Car.IsDead($.frankies_limo)) {
-                    Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                    // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-                }
-                if ($.chico_audio_flag == 17) {
-                    if (Audio.HasMissionAudioFinished()) {
-                        Audio.LoadMissionAudio('s1_h' as any);
-                        $.chico_audio_flag = 18;
-                    }
+            if ($.chico_audio_flag == 17) {
+                if (Audio.HasMissionAudioFinished()) {
+                    Audio.LoadMissionAudio('s1_h' as any);
+                    $.chico_audio_flag = 18;
                 }
             }
-
-            Text.PrintNow('FM1_4', 500, 2); //You're supposed to be waiting for Maria! Get back to the warehouse!
         }
-    }
 
-    async function club_busted() {
+        Text.PrintNow('FM1_4', 500, 2); //You're supposed to be waiting for Maria! Get back to the warehouse!
+    }
+    ///////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////
+    club_busted: {
         while (
             !Streaming.HasModelLoaded(117 /* CAR_ENFORCER */) ||
             !Streaming.HasModelLoaded(2 /* PED_SWAT */) ||
@@ -1117,87 +1148,9 @@ async function body() {
         ) {
             await asyncWait(0);
         }
-    }
 
-    async function swat_car_one() {
-        $.swatvan_fm1 = Car.Create(117 /* CAR_ENFORCER */, 1293.0, -925.0, -100.0);
-        $.swatvan_fm1.setHeading(225.0);
-        $.swatvan_fm1.setCruiseSpeed(40.0);
-        $.swatvan_fm1.setDrivingStyle(2);
-        $.swatvan_fm1.switchSiren(true /* ON */);
-        $.swatvan_fm1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-
-        $.cop1_fm1 = Char.CreateInsideCar($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */);
-        $.cop1_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.cop1_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.cop1_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
-
-        $.cop2_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 0);
-        $.cop2_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.cop2_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.cop2_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
-
-        $.cop3_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 1);
-        $.cop3_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.cop3_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.cop3_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
-
-        $.cop4_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 2);
-        $.cop4_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.cop4_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.cop4_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
-
-        $.swatvan_fm1.gotoCoordinates(1252.0, -1086.0, -100.0);
-
-        if ($.create_more_swat1 == 1) {
-            $.create_more_swat1 = 0;
-            return;
-        }
-    }
-
-    async function swat_car_two() {
-        $.swatvan2_fm1 = Car.Create(117 /* CAR_ENFORCER */, 1084.0, -1012.0, -100.0);
-        $.swatvan2_fm1.setHeading(180.0);
-        $.swatvan2_fm1.setCruiseSpeed(40.0);
-        $.swatvan2_fm1.setDrivingStyle(2);
-        $.swatvan2_fm1.switchSiren(true /* ON */);
-        $.swatvan2_fm1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-
-        $.cop5_fm1 = Char.CreateInsideCar($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */);
-        $.cop5_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.cop5_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.cop5_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
-
-        $.cop6_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 0);
-        $.cop6_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.cop6_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.cop6_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
-
-        $.cop7_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 1);
-        $.cop7_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.cop7_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.cop7_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
-
-        $.cop8_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 2);
-        $.cop8_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.cop8_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.cop8_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
-
-        $.swatvan2_fm1.gotoCoordinates(1235.0, -1099.0, -100.0);
-
-        $.player.setControl(false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
-        Hud.SwitchWidescreen(true /* ON */);
-        Game.SetAllCarsCanBeDamaged(false /* FALSE */);
-        Camera.SetFixedPosition(1309.913, -1061.354, 15.691, 0.0, 0.0, 0.0);
-        Camera.PointAtCar($.swatvan_fm1, 15 /* FIXED */, 2 /* JUMP_CUT */);
-        Camera.SetGenerateCarsAround(true /* TRUE */);
-        $.swat_cam_needs_restoring = 1;
-
-        if ($.create_more_swat2 == 1) {
-            $.create_more_swat2 = 0;
-            return;
-        }
+        await swat_car_one();
+        await swat_car_two();
 
         if (!($.chico_audio_flag == 18)) {
             while (!Audio.HasMissionAudioFinished()) {
@@ -1254,9 +1207,9 @@ async function body() {
                     $.fuckup_flag = 2;
                 }
             }
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await draw_disco_lights(); // SCM GOSUB draw_disco_lights
+
             if ($.chico_audio_flag == 20) {
                 if (Audio.HasMissionAudioLoaded()) {
                     $.chico_audio_flag = 21;
@@ -1280,9 +1233,7 @@ async function body() {
                 $.cop3_fm1.markAsNoLongerNeeded();
                 $.cop4_fm1.markAsNoLongerNeeded();
                 $.create_more_swat1 = 1;
-                // SCM GOSUB swat_car_one
-                await swat_car_one();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await swat_car_one(); // SCM GOSUB swat_car_one
             }
             if ($.swatvan_fm1.isUpsidedown() && $.swatvan_fm1.isStopped()) {
                 $.swatvan_fm1.markAsNoLongerNeeded();
@@ -1291,9 +1242,7 @@ async function body() {
                 $.cop3_fm1.markAsNoLongerNeeded();
                 $.cop4_fm1.markAsNoLongerNeeded();
                 $.create_more_swat1 = 1;
-                // SCM GOSUB swat_car_one
-                await swat_car_one();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await swat_car_one(); // SCM GOSUB swat_car_one
             }
             if ($.swatvan_fm1.isInWater()) {
                 $.swatvan_fm1.markAsNoLongerNeeded();
@@ -1302,9 +1251,7 @@ async function body() {
                 $.cop3_fm1.markAsNoLongerNeeded();
                 $.cop4_fm1.markAsNoLongerNeeded();
                 $.create_more_swat1 = 1;
-                // SCM GOSUB swat_car_one
-                await swat_car_one();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await swat_car_one(); // SCM GOSUB swat_car_one
             }
             if ($.timera_reset == 1) {
                 if (!$.swatvan_fm1.isStopped()) {
@@ -1323,9 +1270,7 @@ async function body() {
                     $.cop3_fm1.markAsNoLongerNeeded();
                     $.cop4_fm1.markAsNoLongerNeeded();
                     $.create_more_swat1 = 1;
-                    // SCM GOSUB swat_car_one
-                    await swat_car_one();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await swat_car_one(); // SCM GOSUB swat_car_one
                 }
             }
             if ($.swatvan_fm1.locate3D($.swat1_stuck_x, $.swat1_stuck_y, $.swat1_stuck_z, 2.0, 2.0, 2.0, false)) {
@@ -1343,9 +1288,7 @@ async function body() {
                         $.cop3_fm1.markAsNoLongerNeeded();
                         $.cop4_fm1.markAsNoLongerNeeded();
                         $.create_more_swat1 = 1;
-                        // SCM GOSUB swat_car_one
-                        await swat_car_one();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await swat_car_one(); // SCM GOSUB swat_car_one
                     }
                 }
             }
@@ -1363,9 +1306,7 @@ async function body() {
                 $.cop7_fm1.markAsNoLongerNeeded();
                 $.cop8_fm1.markAsNoLongerNeeded();
                 $.create_more_swat2 = 1;
-                // SCM GOSUB swat_car_two
-                await swat_car_two();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await swat_car_two(); // SCM GOSUB swat_car_two
             }
             if ($.swatvan2_fm1.isUpsidedown() && $.swatvan2_fm1.isStopped()) {
                 $.swatvan2_fm1.markAsNoLongerNeeded();
@@ -1374,9 +1315,7 @@ async function body() {
                 $.cop7_fm1.markAsNoLongerNeeded();
                 $.cop8_fm1.markAsNoLongerNeeded();
                 $.create_more_swat2 = 1;
-                // SCM GOSUB swat_car_two
-                await swat_car_two();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await swat_car_two(); // SCM GOSUB swat_car_two
             }
             if ($.swatvan2_fm1.isInWater()) {
                 $.swatvan2_fm1.markAsNoLongerNeeded();
@@ -1385,9 +1324,7 @@ async function body() {
                 $.cop7_fm1.markAsNoLongerNeeded();
                 $.cop8_fm1.markAsNoLongerNeeded();
                 $.create_more_swat2 = 1;
-                // SCM GOSUB swat_car_two
-                await swat_car_two();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await swat_car_two(); // SCM GOSUB swat_car_two
             }
             if ($.timerb_reset == 1) {
                 if (!$.swatvan2_fm1.isStopped()) {
@@ -1406,9 +1343,7 @@ async function body() {
                     $.cop7_fm1.markAsNoLongerNeeded();
                     $.cop8_fm1.markAsNoLongerNeeded();
                     $.create_more_swat2 = 1;
-                    // SCM GOSUB swat_car_two
-                    await swat_car_two();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await swat_car_two(); // SCM GOSUB swat_car_two
                 }
             }
             if ($.swatvan2_fm1.locate3D($.swat2_stuck_x, $.swat2_stuck_y, $.swat2_stuck_z, 2.0, 2.0, 2.0, false)) {
@@ -1426,9 +1361,7 @@ async function body() {
                         $.cop7_fm1.markAsNoLongerNeeded();
                         $.cop8_fm1.markAsNoLongerNeeded();
                         $.create_more_swat2 = 1;
-                        // SCM GOSUB swat_car_two
-                        await swat_car_two();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await swat_car_two(); // SCM GOSUB swat_car_two
                     }
                 }
             }
@@ -1579,9 +1512,9 @@ async function body() {
 
         while ($.clubbers_flee_flag < 10) {
             await asyncWait(0);
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await draw_disco_lights(); // SCM GOSUB draw_disco_lights
+
             if ($.chico_audio_flag == 23) {
                 if (Audio.HasMissionAudioLoaded()) {
                     $.chico_audio_flag = 24;
@@ -1841,16 +1774,13 @@ async function body() {
                 }
             }
             if (!($.clubber3_car1 == 3) || !($.clubber5_car2 == 3) || !($.clubber8_car3 == 3)) {
-                // SCM GOSUB clubbers_into_cars
-                await clubbers_into_cars();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await clubbers_into_cars(); // SCM GOSUB clubbers_into_cars
             }
-            // SCM GOSUB police_idle_checks
-            await police_idle_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB clubber_idle_checks
-            await clubber_idle_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await police_idle_checks(); // SCM GOSUB police_idle_checks
+
+            await clubber_idle_checks(); // SCM GOSUB clubber_idle_checks
+
             if ($.fuckup_flag == 2) {
                 $.swat1_exit_car = 0;
                 $.swat2_exit_car = 0;
@@ -1973,9 +1903,9 @@ async function body() {
 
         while (!$.maria.isInAnyCar()) {
             await asyncWait(0);
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await draw_disco_lights(); // SCM GOSUB draw_disco_lights
+
             if ($.chico_audio_flag == 23) {
                 if (Audio.HasMissionAudioLoaded()) {
                     $.chico_audio_flag = 24;
@@ -2039,16 +1969,12 @@ async function body() {
             //	ENDIF
 
             if (!($.clubber3_car1 == 3) || !($.clubber5_car2 == 3) || !($.clubber8_car3 == 3)) {
-                // SCM GOSUB clubbers_into_cars
-                await clubbers_into_cars();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await clubbers_into_cars(); // SCM GOSUB clubbers_into_cars
             }
-            // SCM GOSUB police_idle_checks
-            await police_idle_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB clubber_idle_checks
-            await clubber_idle_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await police_idle_checks(); // SCM GOSUB police_idle_checks
+
+            await clubber_idle_checks(); // SCM GOSUB clubber_idle_checks
         }
 
         $.fm1_blip.remove();
@@ -2061,20 +1987,17 @@ async function body() {
         if (!($.chico_audio_flag == 24)) {
             while (!Audio.HasMissionAudioLoaded()) {
                 await asyncWait(0);
-                // SCM GOSUB draw_disco_lights
-                await draw_disco_lights();
-                // fallback if label was not emitted as async function: no-op continues linearly
+
+                await draw_disco_lights(); // SCM GOSUB draw_disco_lights
+
                 if (!($.clubber3_car1 == 3) || !($.clubber5_car2 == 3) || !($.clubber8_car3 == 3)) {
-                    // SCM GOSUB clubbers_into_cars
-                    await clubbers_into_cars();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await clubbers_into_cars(); // SCM GOSUB clubbers_into_cars
                 }
-                // SCM GOSUB police_idle_checks
-                await police_idle_checks();
-                // fallback if label was not emitted as async function: no-op continues linearly
-                // SCM GOSUB clubber_idle_checks
-                await clubber_idle_checks();
-                // fallback if label was not emitted as async function: no-op continues linearly
+
+                await police_idle_checks(); // SCM GOSUB police_idle_checks
+
+                await clubber_idle_checks(); // SCM GOSUB clubber_idle_checks
+
                 if (Char.IsDead($.maria)) {
                     Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
                     // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
@@ -2110,12 +2033,10 @@ async function body() {
                         $.flag_blip_on_limo = 0;
                     }
                 }
-                // SCM GOSUB police_idle_checks
-                await police_idle_checks();
-                // fallback if label was not emitted as async function: no-op continues linearly
-                // SCM GOSUB clubber_idle_checks
-                await clubber_idle_checks();
-                // fallback if label was not emitted as async function: no-op continues linearly
+
+                await police_idle_checks(); // SCM GOSUB police_idle_checks
+
+                await clubber_idle_checks(); // SCM GOSUB clubber_idle_checks
             }
             $.chico_audio_flag = 24;
         }
@@ -2128,272 +2049,263 @@ async function body() {
         if (!Car.IsDead($.frankies_limo)) {
             $.frankie_garage.setTargetCarForMission($.frankies_limo);
         }
+    }
 
-        //WHILE NOT LOCATE_PLAYER_IN_CAR_2D player 1424.0 -183.5 10.0 10.0 0
-        //WHILE NOT IS_PLAYER_STOPPED_IN_AREA_3D player 1428.8 -187.0 50.0 1442.5 -179.9 53.0 0
+    //WHILE NOT LOCATE_PLAYER_IN_CAR_2D player 1424.0 -183.5 10.0 10.0 0
+    //WHILE NOT IS_PLAYER_STOPPED_IN_AREA_3D player 1428.8 -187.0 50.0 1442.5 -179.9 53.0 0
 
-        while (!$.frankie_garage.isCarInMission()) {
-            await asyncWait(0);
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            if (Char.IsDead($.maria)) {
-                Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if (Car.IsDead($.frankies_limo)) {
-                Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
-            }
-            if ($.frankies_limo.locate2D(1424.8, -183.0, 20.0, 20.0, false)) {
-                $.player.clearWantedLevel();
-            }
-            if (!$.maria.isInPlayersGroup($.player) && $.flag_blip_on_maria == 0) {
-                Text.PrintNow('FM1_10', 5000, 1); //"Hey wait for me!"
-                $.fm1_blip.remove();
-                $.fm1_blip = Blip.AddForChar($.maria);
-                $.flag_blip_on_maria = 1;
-            }
-            if ($.player.locateAnyMeansChar2D($.maria, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_maria == 1) {
-                $.maria.followPlayer($.player);
-                $.fm1_blip.remove();
-                $.fm1_blip = Blip.AddForCoord(1424.0, -183.5, 50.0);
-                $.flag_blip_on_limo = 0;
-                $.flag_blip_on_maria = 0;
-            }
-            if ($.flag_blip_on_maria == 0) {
-                if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
-                    $.fm1_blip.remove();
-                    $.fm1_blip = Blip.AddForCar($.frankies_limo);
-                    Text.PrintNow('FM1_1', 5000, 1); //"Get back into the limo!"
-                    $.flag_blip_on_limo = 1;
-                }
-                if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
-                    $.fm1_blip.remove();
-                    $.fm1_blip = Blip.AddForCoord(1424.0, -183.5, 50.0);
-                    $.flag_blip_on_limo = 0;
-                }
-            }
-            if (!($.clubber3_car1 == 3) || !($.clubber5_car2 == 3) || !($.clubber8_car3 == 3)) {
-                // SCM GOSUB clubbers_into_cars
-                await clubbers_into_cars();
-                // fallback if label was not emitted as async function: no-op continues linearly
-            }
-            // SCM GOSUB police_idle_checks
-            await police_idle_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB clubber_idle_checks
-            await clubber_idle_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
-        }
+    while (!$.frankie_garage.isCarInMission()) {
+        await asyncWait(0);
 
-        $.player.clearWantedLevel();
-
-        Camera.DoFade(500, 0 /* FADE_OUT */);
-
-        await asyncWait(500);
-
-        $.player.setControl(false /* OFF */);
-        Hud.SwitchWidescreen(true /* ON */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
-        Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+        await draw_disco_lights(); // SCM GOSUB draw_disco_lights
 
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
             // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
         }
-
-        $.maria.leaveGroup();
-
-        $.player.clearWantedLevel();
-
-        $.player.warpFromCarToCoord(1435.7676, -176.4341, 52.2953);
-        $.player.setHeading(184.9588);
-        $.maria_exists = 0;
-        $.maria.delete();
-        $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1435.9358, -178.4347, 54.0279);
-        $.maria_exists = 1;
-        $.maria.setHeading(184.9134);
-
-        $.script_controlled_player = $.player.getChar();
-
-        $.maria.clearThreatSearch();
-        $.script_controlled_player.clearThreatSearch();
-
-        Camera.SetFixedPosition(1433.4507, -173.6104, 55.66595, 0.0, 0.0, 0.0);
-        Camera.PointAtChar($.maria, 15 /* FIXED */, 2 /* JUMP_CUT */);
-
-        $.maria.setObjGotoCoordOnFoot(1436.2628, -180.6451);
-        $.script_controlled_player.setObjGotoCoordOnFoot(1436.2628, -180.6451);
-
-        $.frankies_limo.delete();
-
-        World.ClearArea(1423.9675, -189.2235, 49.2032, 5.0, false /* FALSE */);
-
-        Camera.DoFade(500, 1 /* FADE_IN */);
-
-        Audio.LoadMissionAudio('s1_k' as any);
-
-        //camera 1433.4507 -173.6104 56.66595
-        //point at maria maybe 1433.9979 -174.4381 56.542
-
-        //chat
-        //maria goto 1453.5276 -179.3224
-        //player goto 1443.6184 -188.2894
-
-        $.flag_blip_on_maria = 0;
-        $.skip_cutscene_flag = 0;
-        while (!($.flag_blip_on_maria == 8)) {
-            await asyncWait(0);
-            if (Char.IsDead($.maria)) {
-                Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        if (Car.IsDead($.frankies_limo)) {
+            Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if ($.frankies_limo.locate2D(1424.8, -183.0, 20.0, 20.0, false)) {
+            $.player.clearWantedLevel();
+        }
+        if (!$.maria.isInPlayersGroup($.player) && $.flag_blip_on_maria == 0) {
+            Text.PrintNow('FM1_10', 5000, 1); //"Hey wait for me!"
+            $.fm1_blip.remove();
+            $.fm1_blip = Blip.AddForChar($.maria);
+            $.flag_blip_on_maria = 1;
+        }
+        if ($.player.locateAnyMeansChar2D($.maria, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_maria == 1) {
+            $.maria.followPlayer($.player);
+            $.fm1_blip.remove();
+            $.fm1_blip = Blip.AddForCoord(1424.0, -183.5, 50.0);
+            $.flag_blip_on_limo = 0;
+            $.flag_blip_on_maria = 0;
+        }
+        if ($.flag_blip_on_maria == 0) {
+            if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
+                $.fm1_blip.remove();
+                $.fm1_blip = Blip.AddForCar($.frankies_limo);
+                Text.PrintNow('FM1_1', 5000, 1); //"Get back into the limo!"
+                $.flag_blip_on_limo = 1;
             }
-            if ($.skip_cutscene_flag == 0) {
-                if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                    $.skip_cutscene_flag = 1;
-                }
+            if ($.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 1) {
+                $.fm1_blip.remove();
+                $.fm1_blip = Blip.AddForCoord(1424.0, -183.5, 50.0);
+                $.flag_blip_on_limo = 0;
             }
-            if ($.skip_cutscene_flag == 1) {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                    $.skip_cutscene_flag = 2;
-                }
+        }
+        if (!($.clubber3_car1 == 3) || !($.clubber5_car2 == 3) || !($.clubber8_car3 == 3)) {
+            await clubbers_into_cars(); // SCM GOSUB clubbers_into_cars
+        }
+
+        await police_idle_checks(); // SCM GOSUB police_idle_checks
+
+        await clubber_idle_checks(); // SCM GOSUB clubber_idle_checks
+    }
+
+    $.player.clearWantedLevel();
+
+    Camera.DoFade(500, 0 /* FADE_OUT */);
+
+    await asyncWait(500);
+
+    $.player.setControl(false /* OFF */);
+    Hud.SwitchWidescreen(true /* ON */);
+    Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
+    Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+
+    if (Char.IsDead($.maria)) {
+        Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
+        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+    }
+
+    $.maria.leaveGroup();
+
+    $.player.clearWantedLevel();
+
+    $.player.warpFromCarToCoord(1435.7676, -176.4341, 52.2953);
+    $.player.setHeading(184.9588);
+    $.maria_exists = 0;
+    $.maria.delete();
+    $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1435.9358, -178.4347, 54.0279);
+    $.maria_exists = 1;
+    $.maria.setHeading(184.9134);
+
+    $.script_controlled_player = $.player.getChar();
+
+    $.maria.clearThreatSearch();
+    $.script_controlled_player.clearThreatSearch();
+
+    Camera.SetFixedPosition(1433.4507, -173.6104, 55.66595, 0.0, 0.0, 0.0);
+    Camera.PointAtChar($.maria, 15 /* FIXED */, 2 /* JUMP_CUT */);
+
+    $.maria.setObjGotoCoordOnFoot(1436.2628, -180.6451);
+    $.script_controlled_player.setObjGotoCoordOnFoot(1436.2628, -180.6451);
+
+    $.frankies_limo.delete();
+
+    World.ClearArea(1423.9675, -189.2235, 49.2032, 5.0, false /* FALSE */);
+
+    Camera.DoFade(500, 1 /* FADE_IN */);
+
+    Audio.LoadMissionAudio('s1_k' as any);
+
+    //camera 1433.4507 -173.6104 56.66595
+    //point at maria maybe 1433.9979 -174.4381 56.542
+
+    //chat
+    //maria goto 1453.5276 -179.3224
+    //player goto 1443.6184 -188.2894
+
+    $.flag_blip_on_maria = 0;
+    $.skip_cutscene_flag = 0;
+    while (!($.flag_blip_on_maria == 8)) {
+        await asyncWait(0);
+        if (Char.IsDead($.maria)) {
+            Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
+            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        }
+        if ($.skip_cutscene_flag == 0) {
+            if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                $.skip_cutscene_flag = 1;
             }
-            if ($.skip_cutscene_flag == 2) {
-                if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                    Camera.DoFade(0, 0 /* FADE_OUT */);
-                    await asyncWait(0);
-                    Audio.ClearMissionAudio();
-                    Text.ClearSmallPrints();
-                    Hud.SwitchWidescreen(false /* OFF */);
-                    $.player.setControl(true /* ON */);
-                    Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
-                    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+        }
+        if ($.skip_cutscene_flag == 1) {
+            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                $.skip_cutscene_flag = 2;
+            }
+        }
+        if ($.skip_cutscene_flag == 2) {
+            if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                Camera.DoFade(0, 0 /* FADE_OUT */);
+                await asyncWait(0);
+                Audio.ClearMissionAudio();
+                Text.ClearSmallPrints();
+                Hud.SwitchWidescreen(false /* OFF */);
+                $.player.setControl(true /* ON */);
+                Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
+                Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+                $.maria.delete();
+                $.player.setCoordinates(1443.6184, -188.2894, 55.0);
+                $.player.setHeading(180.0);
+                Camera.SetBehindPlayer();
+                Camera.RestoreJumpcut();
+                Camera.DoFade(500, 1 /* FADE_IN */);
+                $.skip_cutscene_flag = 3;
+                return; // SCM GOTO → mission_frankie1_passed
+            }
+        }
+        if ($.flag_blip_on_maria == 7) {
+            if ($.player.locateAnyMeans2D(1443.6184, -188.2894, 1.0, 1.0, false)) {
+                if (!$.maria.isOnScreen()) {
+                    $.maria_exists = 0;
                     $.maria.delete();
-                    $.player.setCoordinates(1443.6184, -188.2894, 55.0);
-                    $.player.setHeading(180.0);
-                    Camera.SetBehindPlayer();
-                    Camera.RestoreJumpcut();
-                    Camera.DoFade(500, 1 /* FADE_IN */);
-                    $.skip_cutscene_flag = 3;
-                    // SCM GOTO → mission_frankie1_passed (not lowered; manual jump required)
-                    return;
-                }
-            }
-            if ($.flag_blip_on_maria == 7) {
-                if ($.player.locateAnyMeans2D(1443.6184, -188.2894, 1.0, 1.0, false)) {
-                    if (!$.maria.isOnScreen()) {
-                        $.maria_exists = 0;
-                        $.maria.delete();
-                        $.flag_blip_on_maria = 8;
-                    }
-                }
-            }
-            if ($.flag_blip_on_maria == 6) {
-                if (Audio.HasMissionAudioFinished()) {
-                    Text.ClearSmallPrints();
-                    $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                    $.script_controlled_player.setObjGotoCoordOnFoot(1443.6184, -188.2894);
-                    $.maria.setObjGotoCoordOnFoot(1453.5276, -179.3224);
-                    $.flag_blip_on_maria = 7;
-                }
-            }
-            if ($.flag_blip_on_maria == 5) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    const _res251 = $.maria.getCoordinates();
-                    $.chico_x = _res251.x;
-                    $.chico_y = _res251.y;
-                    $.chico_z = _res251.z;
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_AA', 8000, 1); //"I'd better go I'll see you around I hope."
-                    $.flag_blip_on_maria = 6;
-                }
-            }
-            if ($.flag_blip_on_maria == 4) {
-                if (Audio.HasMissionAudioFinished()) {
-                    $.script_controlled_player.turnToFaceChar($.maria);
-                    $.maria.turnToFaceChar($.script_controlled_player);
-                    Audio.LoadMissionAudio('s1_l' as any);
-                    $.flag_blip_on_maria = 5;
-                }
-            }
-            if ($.flag_blip_on_maria == 3) {
-                if (Audio.HasMissionAudioLoaded()) {
-                    $.script_controlled_player.turnToFaceChar($.maria);
-                    $.maria.turnToFaceChar($.script_controlled_player);
-                    const _res252 = $.maria.getCoordinates();
-                    $.chico_x = _res252.x;
-                    $.chico_y = _res252.y;
-                    $.chico_z = _res252.z;
-                    Audio.PlayMissionAudio();
-                    Text.PrintNow('FM1_Y', 8000, 1); //"I enjoyed myself for the first time in a long while,"
-                    $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 20000);
-                    $.flag_blip_on_maria = 4;
-                }
-            }
-            if ($.flag_blip_on_maria == 2) {
-                if ($.maria.locateStoppedOnFoot2D(1440.5144, -179.1538, 1.0, 1.0, false)) {
-                    $.swat1_stuck_x = $.maria.getHeading();
-                    $.swat1_stuck_x -= 3.0;
-                    if ($.swat1_stuck_x < 0.0) {
-                        $.swat1_stuck_x = 359.0;
-                    }
-                    if ($.swat1_stuck_x < 180.0) {
-                        $.swat1_stuck_x = 180.0;
-                    }
-                    $.maria.setHeading($.swat1_stuck_x);
-                    $.maria.lookAtPlayerAlways($.player);
-                    if ($.player.locateStoppedOnFoot2D(1440.6287, -181.4022, 1.0, 1.0, false)) {
-                        $.maria.stopLooking();
-                        Camera.SetFixedPosition(1442.1001, -173.1516, 55.8166, 0.0, 0.0, 0.0);
-                        Camera.PointAtPoint(1441.78, -174.0602, 55.6919, 2 /* JUMP_CUT */);
-                        $.player.setHeading(0.0);
-                        $.script_controlled_player.turnToFaceChar($.maria);
-                        $.player.turnToFaceChar($.maria);
-                        $.maria.turnToFaceChar($.script_controlled_player);
-                        $.flag_blip_on_maria = 3;
-                    }
-                }
-            }
-            if ($.flag_blip_on_maria == 1) {
-                if ($.player.locateOnFoot2D(1436.2628, -180.6451, 1.0, 1.0, false)) {
-                    $.script_controlled_player.setObjGotoCoordOnFoot(1440.6287, -181.4022);
-                    $.flag_blip_on_maria = 2;
-                }
-            }
-            if ($.flag_blip_on_maria == 0) {
-                if ($.maria.locateOnFoot2D(1436.2628, -180.6451, 1.0, 1.0, false)) {
-                    $.maria.setObjGotoCoordOnFoot(1440.5144, -179.1538);
-                    $.flag_blip_on_maria = 1;
+                    $.flag_blip_on_maria = 8;
                 }
             }
         }
-
-        Camera.SetBehindPlayer();
-        Camera.RestoreJumpcut();
-        Hud.SwitchWidescreen(false /* OFF */);
-        $.player.setControl(true /* ON */);
-        Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
-        Game.SetAllCarsCanBeDamaged(true /* TRUE */);
-
-        // SCM GOTO → mission_frankie1_passed (not lowered; manual jump required)
-        return;
+        if ($.flag_blip_on_maria == 6) {
+            if (Audio.HasMissionAudioFinished()) {
+                Text.ClearSmallPrints();
+                $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.script_controlled_player.setObjGotoCoordOnFoot(1443.6184, -188.2894);
+                $.maria.setObjGotoCoordOnFoot(1453.5276, -179.3224);
+                $.flag_blip_on_maria = 7;
+            }
+        }
+        if ($.flag_blip_on_maria == 5) {
+            if (Audio.HasMissionAudioLoaded()) {
+                const _res251 = $.maria.getCoordinates();
+                $.chico_x = _res251.x;
+                $.chico_y = _res251.y;
+                $.chico_z = _res251.z;
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_AA', 8000, 1); //"I'd better go I'll see you around I hope."
+                $.flag_blip_on_maria = 6;
+            }
+        }
+        if ($.flag_blip_on_maria == 4) {
+            if (Audio.HasMissionAudioFinished()) {
+                $.script_controlled_player.turnToFaceChar($.maria);
+                $.maria.turnToFaceChar($.script_controlled_player);
+                Audio.LoadMissionAudio('s1_l' as any);
+                $.flag_blip_on_maria = 5;
+            }
+        }
+        if ($.flag_blip_on_maria == 3) {
+            if (Audio.HasMissionAudioLoaded()) {
+                $.script_controlled_player.turnToFaceChar($.maria);
+                $.maria.turnToFaceChar($.script_controlled_player);
+                const _res252 = $.maria.getCoordinates();
+                $.chico_x = _res252.x;
+                $.chico_y = _res252.y;
+                $.chico_z = _res252.z;
+                Audio.PlayMissionAudio();
+                Text.PrintNow('FM1_Y', 8000, 1); //"I enjoyed myself for the first time in a long while,"
+                $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 20000);
+                $.flag_blip_on_maria = 4;
+            }
+        }
+        if ($.flag_blip_on_maria == 2) {
+            if ($.maria.locateStoppedOnFoot2D(1440.5144, -179.1538, 1.0, 1.0, false)) {
+                $.swat1_stuck_x = $.maria.getHeading();
+                $.swat1_stuck_x -= 3.0;
+                if ($.swat1_stuck_x < 0.0) {
+                    $.swat1_stuck_x = 359.0;
+                }
+                if ($.swat1_stuck_x < 180.0) {
+                    $.swat1_stuck_x = 180.0;
+                }
+                $.maria.setHeading($.swat1_stuck_x);
+                $.maria.lookAtPlayerAlways($.player);
+                if ($.player.locateStoppedOnFoot2D(1440.6287, -181.4022, 1.0, 1.0, false)) {
+                    $.maria.stopLooking();
+                    Camera.SetFixedPosition(1442.1001, -173.1516, 55.8166, 0.0, 0.0, 0.0);
+                    Camera.PointAtPoint(1441.78, -174.0602, 55.6919, 2 /* JUMP_CUT */);
+                    $.player.setHeading(0.0);
+                    $.script_controlled_player.turnToFaceChar($.maria);
+                    $.player.turnToFaceChar($.maria);
+                    $.maria.turnToFaceChar($.script_controlled_player);
+                    $.flag_blip_on_maria = 3;
+                }
+            }
+        }
+        if ($.flag_blip_on_maria == 1) {
+            if ($.player.locateOnFoot2D(1436.2628, -180.6451, 1.0, 1.0, false)) {
+                $.script_controlled_player.setObjGotoCoordOnFoot(1440.6287, -181.4022);
+                $.flag_blip_on_maria = 2;
+            }
+        }
+        if ($.flag_blip_on_maria == 0) {
+            if ($.maria.locateOnFoot2D(1436.2628, -180.6451, 1.0, 1.0, false)) {
+                $.maria.setObjGotoCoordOnFoot(1440.5144, -179.1538);
+                $.flag_blip_on_maria = 1;
+            }
+        }
     }
 
-    // Mission Frankie1 failed
+    Camera.SetBehindPlayer();
+    Camera.RestoreJumpcut();
+    Hud.SwitchWidescreen(false /* OFF */);
+    $.player.setControl(true /* ON */);
+    Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
+    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+
+    return; // SCM GOTO → mission_frankie1_passed
 }
 
+// Mission Frankie1 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1);
-    return;
-
-    // mission Frankie1 passed
 }
 
+// mission Frankie1 passed
 async function onPassed() {
     $.flag_frankie_mission1_passed = 1;
     if ($.flag_luigi_mission4_terminated == 1) {
@@ -2428,10 +2340,9 @@ async function onPassed() {
     // START_NEW_SCRIPT frankie_mission2_loop
     // START_NEW_SCRIPT imp_exp_pager
     return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_frankie_mission = 0;
@@ -2461,18 +2372,18 @@ async function cleanup() {
     $.fm1_blip.remove();
 
     $.frankie_garage.changeType(14 /* GARAGE_MISSION_KEEPCAR */);
-    $.frankie_garage.setTargetCarForMission(-1);
+    $.frankie_garage.setTargetCarForMission(-1 as any);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
 
     Mission.Finish();
     return;
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////// Functions ///////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////// Functions ///////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function clubbers_into_cars() {
     if ($.clubbers_flee_flag > 2) {
@@ -2647,7 +2558,7 @@ async function clubber_idle_checks() {
                 $.clubber1_fm1.markAsNoLongerNeeded();
             }
             if (!Char.IsDead($.clubber2_fm1)) {
-                $.clubber2_fm1.wanderDir(-1);
+                $.clubber2_fm1.wanderDir(-1 as any);
                 $.clubber2_fm1.markAsNoLongerNeeded();
             } else {
                 $.clubber2_fm1.markAsNoLongerNeeded();
@@ -2659,7 +2570,7 @@ async function clubber_idle_checks() {
                 $.clubber4_fm1.markAsNoLongerNeeded();
             }
             if (!Char.IsDead($.clubber6_fm1)) {
-                $.clubber6_fm1.wanderDir(-1);
+                $.clubber6_fm1.wanderDir(-1 as any);
                 $.clubber6_fm1.markAsNoLongerNeeded();
             } else {
                 $.clubber6_fm1.markAsNoLongerNeeded();
@@ -2674,7 +2585,7 @@ async function clubber_idle_checks() {
             if (!Char.IsDead($.clubber1_fm1)) {
                 if ($.clubber1_fm1.isStopped()) {
                     if (!$.clubber1_fm1.isShooting()) {
-                        $.clubber1_fm1.wanderDir(-1);
+                        $.clubber1_fm1.wanderDir(-1 as any);
                     }
                 }
             } else {
@@ -2692,7 +2603,7 @@ async function clubber_idle_checks() {
             if (!Char.IsDead($.clubber4_fm1)) {
                 if ($.clubber4_fm1.isStopped()) {
                     if (!$.clubber4_fm1.isShooting()) {
-                        $.clubber4_fm1.wanderDir(-1);
+                        $.clubber4_fm1.wanderDir(-1 as any);
                     }
                 }
             } else {
@@ -2710,7 +2621,7 @@ async function clubber_idle_checks() {
             if (!Char.IsDead($.clubber7_fm1)) {
                 if ($.clubber7_fm1.isStopped()) {
                     if (!$.clubber7_fm1.isShooting()) {
-                        $.clubber7_fm1.wanderDir(-1);
+                        $.clubber7_fm1.wanderDir(-1 as any);
                     }
                 }
             } else {
@@ -2721,7 +2632,7 @@ async function clubber_idle_checks() {
         if (!Char.IsDead($.clubber1_fm1)) {
             if ($.clubber1_fm1.isStopped()) {
                 if (!$.clubber1_fm1.isShooting()) {
-                    $.clubber1_fm1.wanderDir(-1);
+                    $.clubber1_fm1.wanderDir(-1 as any);
                 }
             }
         } else {
@@ -2739,7 +2650,7 @@ async function clubber_idle_checks() {
         if (!Char.IsDead($.clubber4_fm1)) {
             if ($.clubber4_fm1.isStopped()) {
                 if (!$.clubber4_fm1.isShooting()) {
-                    $.clubber4_fm1.wanderDir(-1);
+                    $.clubber4_fm1.wanderDir(-1 as any);
                 }
             }
         } else {
@@ -2757,7 +2668,7 @@ async function clubber_idle_checks() {
         if (!Char.IsDead($.clubber7_fm1)) {
             if ($.clubber7_fm1.isStopped()) {
                 if (!$.clubber7_fm1.isShooting()) {
-                    $.clubber7_fm1.wanderDir(-1);
+                    $.clubber7_fm1.wanderDir(-1 as any);
                 }
             }
         } else {
@@ -3088,50 +2999,85 @@ async function draw_disco_lights() {
 
 async function delete_char_maria() {
     $.maria.delete();
-
-    return;
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// ********************************* Frankie Mission 1 *************************************
-// *********************************   Pulp Friction   *************************************
-// *****************************************************************************************
-// *** Frankie wants to discuss war with his lieutenants. He needs Maria out of the house***
-// *** for the evening so Claude has to chaperone her. Drive Maria to a dealer to get her***
-// *** party gear. Then on to an illegal warehouse party and wait for her outside. While ***
-// *** waiting for Maria the police will decide to 'raid the joint'. The player must get ***
-// *** Maria out and back to Frankie's safely.											 ***
-// *****************************************************************************************
+async function swat_car_one() {
+    $.swatvan_fm1 = Car.Create(117 /* CAR_ENFORCER */, 1293.0, -925.0, -100.0);
+    $.swatvan_fm1.setHeading(225.0);
+    $.swatvan_fm1.setCruiseSpeed(40.0);
+    $.swatvan_fm1.setDrivingStyle(2);
+    $.swatvan_fm1.switchSiren(true /* ON */);
+    $.swatvan_fm1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
 
-// Mission start stuff
+    $.cop1_fm1 = Char.CreateInsideCar($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */);
+    $.cop1_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
+    $.cop1_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.cop1_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
 
-// SCM GOSUB mission_start_frankie1
-// fallback if label was not emitted as async function: no-op continues linearly
+    $.cop2_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 0);
+    $.cop2_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
+    $.cop2_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.cop2_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
 
-// SCM GOSUB mission_frankie1_failed
-// fallback if label was not emitted as async function: no-op continues linearly
+    $.cop3_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 1);
+    $.cop3_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
+    $.cop3_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.cop3_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
 
-// SCM GOSUB mission_cleanup_frankie1
-// fallback if label was not emitted as async function: no-op continues linearly
+    $.cop4_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 2);
+    $.cop4_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
+    $.cop4_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.cop4_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
 
-// MissionBoundary
+    $.swatvan_fm1.gotoCoordinates(1252.0, -1086.0, -100.0);
 
-// Variables for mission
+    if ($.create_more_swat1 == 1) {
+        $.create_more_swat1 = 0;
+    }
+}
 
-// VAR_INT frankies_limo chico chico_message_flag fm1_blip flag_blip_on_limo doorman1 doorman2 parked_car1 parked_car2 parked_car3 timera_reset timerb_reset
-// VAR_INT swatvan_fm1 swatvan2_fm1 cop1_fm1 cop2_fm1 cop3_fm1 cop4_fm1 cop5_fm1 cop6_fm1 cop7_fm1 cop8_fm1 clubbers_flee_flag
-// VAR_INT R G R1 G1 R2 G2 R3 G3 R4 G4 R5 G5 shadow_counter add_sound_flag camera_mode chico_audio_flag
-// VAR_INT clubber1_fm1 clubber2_fm1 clubber3_fm1 clubber4_fm1 clubber5_fm1 clubber6_fm1 clubber7_fm1 clubber8_fm1 maria_blip warehouse_rave_loop
-// VAR_INT clubber3_car1 clubber5_car2 clubber8_car3 flag_blip_on_maria create_more_swat1 create_more_swat2 swat1_exit_car swat2_exit_car
-// VAR_INT timerc_reset_flag_f1a timerc_current_f1a timerc_started_f1a timerc_f1a fuckup_flag fuckup_timer_start fuckup_timer_current fuckup_timer
-// VAR_INT timerc_reset_flag_f1b timerc_current_f1b timerc_started_f1b timerc_f1b locate_dome_flag swat_cam_needs_restoring skip_cutscene_flag
+async function swat_car_two() {
+    $.swatvan2_fm1 = Car.Create(117 /* CAR_ENFORCER */, 1084.0, -1012.0, -100.0);
+    $.swatvan2_fm1.setHeading(180.0);
+    $.swatvan2_fm1.setCruiseSpeed(40.0);
+    $.swatvan2_fm1.setDrivingStyle(2);
+    $.swatvan2_fm1.switchSiren(true /* ON */);
+    $.swatvan2_fm1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
 
-// VAR_FLOAT swat1_stuck_x swat1_stuck_y swat1_stuck_z
-// VAR_FLOAT swat2_stuck_x swat2_stuck_y swat2_stuck_z
-// VAR_FLOAT chico_x chico_y chico_z inside_warehouse_x inside_warehouse_y inside_warehouse_z outside_warehouse_x outside_warehouse_y
+    $.cop5_fm1 = Char.CreateInsideCar($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */);
+    $.cop5_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
+    $.cop5_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.cop5_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
 
-// ****************************************Mission Start************************************
+    $.cop6_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 0);
+    $.cop6_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
+    $.cop6_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.cop6_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+
+    $.cop7_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 1);
+    $.cop7_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
+    $.cop7_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.cop7_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+
+    $.cop8_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 2);
+    $.cop8_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
+    $.cop8_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.cop8_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+
+    $.swatvan2_fm1.gotoCoordinates(1235.0, -1099.0, -100.0);
+
+    $.player.setControl(false /* OFF */);
+    Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
+    Hud.SwitchWidescreen(true /* ON */);
+    Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+    Camera.SetFixedPosition(1309.913, -1061.354, 15.691, 0.0, 0.0, 0.0);
+    Camera.PointAtCar($.swatvan_fm1, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    Camera.SetGenerateCarsAround(true /* TRUE */);
+    $.swat_cam_needs_restoring = 1;
+
+    if ($.create_more_swat2 == 1) {
+        $.create_more_swat2 = 0;
+    }
+}
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-
