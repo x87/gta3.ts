@@ -87,7 +87,7 @@ const missions: MissionDefinition[] = [
 
     // *************************************RC Demolition****************************************
     {
-        scriptPath: `./Industrial/rc1.ts`,
+        scriptPath: `./Industrial/rc1.mts`,
         name: 'RC Diablo Destruction',
         async canStart() {
             if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
@@ -101,7 +101,7 @@ const missions: MissionDefinition[] = [
         },
     },
     {
-        scriptPath: `./Industrial/rc2.ts`,
+        scriptPath: `./Industrial/rc2.mts`,
         name: 'RC Mafia Massacre',
         async canStart() {
             if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
@@ -115,7 +115,7 @@ const missions: MissionDefinition[] = [
         },
     },
     {
-        scriptPath: `./Industrial/rc3.ts`,
+        scriptPath: `./Industrial/rc3.mts`,
         name: 'RC Rumpo Rampage',
         async canStart() {
             if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
@@ -129,7 +129,7 @@ const missions: MissionDefinition[] = [
         },
     },
     {
-        scriptPath: `./Industrial/rc4.ts`,
+        scriptPath: `./Industrial/rc4.mts`,
         name: 'RC Casino Calamity',
         async canStart() {
             if (!$.player.isInModel(149 /* CAR_TOYZ */)) {

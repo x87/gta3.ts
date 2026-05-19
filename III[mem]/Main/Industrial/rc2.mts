@@ -1,15 +1,47 @@
-// Generated from Main/Industrial/rc1.sc
+// Generated from Main/Industrial/rc2.sc
 import { $ } from '../../utils';
 
+// *******************************************************************************************
+// *******************************************************************************************
+// **************************************RC Destruction Derby*********************************
+// ***************************************Diablo Demolition***********************************
+// *******************************************************************************************
+// *******************************************************************************************
+// *******************************************************************************************
 
-async function mission_start_rc1() {
+async function body() {
+    // SCRIPT_NAME RC2
+
+    // Mission start stuff
+
+    // GOSUB mission_start_rc2
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_rc2_failed
+    // ENDIF
+    // GOSUB mission_cleanup_rc2
+
+    // MISSION_END
+
+    // Variables for mission
+
+    /*
+  VAR_INT counter_RCDD rc_van
+  VAR_INT timer_RCDD
+  VAR_INT reward_RCDD
+
+  VAR_FLOAT cam_x cam_y cam_z
+  VAR_FLOAT rc_x rc_y rc_z
+  */
+    // ***************************************Mission Start*************************************
+
     ONMISSION = true;
 
-    if ($.flag_rc1_passed == 0) {
+    if ($.flag_rc2_passed == 0) {
         Stat.RegisterMissionGiven();
     }
 
-    Text.PrintBig('RC1', 15000, 2);
+    Text.PrintBig('RC2', 15000, 2);
 
     await asyncWait(0);
 
@@ -18,13 +50,13 @@ async function mission_start_rc1() {
     $.controlmode = 0;
     $.reward_RCDD = 0;
 
-    $.cam_x = 1019.0;
-    $.cam_y = -113.5;
-    $.cam_z = 9.0;
+    $.cam_x = 1159.0;
+    $.cam_y = -317.5;
+    $.cam_z = 24.0;
 
-    $.rc_x = 1026.0;
-    $.rc_y = -117.0;
-    $.rc_z = 5.5;
+    $.rc_x = 1166.0;
+    $.rc_y = -310.0;
+    $.rc_z = 23.5;
 
     $.timer_RCDD = 120000;
 
@@ -39,8 +71,8 @@ async function mission_start_rc1() {
 
     //UP GANGCAR NUMBERS AND DENSITY
 
-    Zone.SetCarInfo('TOWERS', 1 /* DAY */, 8, 0, 0, 200, 0, 0, 0, 0, 20, 400, 0, 0, 350, 0, 0);
-    Zone.SetCarInfo('TOWERS', 0 /* NIGHT */, 6, 0, 0, 250, 0, 0, 0, 0, 10, 540, 0, 0, 200, 0, 0);
+    Zone.SetCarInfo('LITTLEI', 1 /* DAY */, 10, 250, 0, 0, 0, 0, 0, 0, 20, 400, 0, 0, 250, 50, 0);
+    Zone.SetCarInfo('LITTLEI', 0 /* NIGHT */, 8, 250, 0, 0, 0, 0, 0, 0, 10, 550, 0, 0, 150, 0, 0);
 
     Camera.SetFixedPosition($.cam_x, $.cam_y, $.cam_z, 0.0, 0.0, 0.0);
     if (!Car.IsDead($.rc_van)) {
@@ -49,12 +81,12 @@ async function mission_start_rc1() {
         World.ClearArea($.rc_x, $.rc_y, $.rc_z, 5.0, true /* true */);
     }
 
-    Text.PrintNow('RC_1', 4000, 1); //You have 4 minutes to blow up as many Diablo Gang Cars as possible!
+    Text.PrintNow('RC_2', 4000, 1); //You have 4 minutes to blow up as many Diablo Gang Cars as possible!
 
     Streaming.RequestModel(131 /* car_rcbandit */);
-    Streaming.RequestModel(137 /* car_diablos */);
+    Streaming.RequestModel(134 /* car_mafia */);
 
-    while (!Streaming.HasModelLoaded(131 /* car_rcbandit */) || !Streaming.HasModelLoaded(137 /* car_diablos */)) {
+    while (!Streaming.HasModelLoaded(131 /* car_rcbandit */) || !Streaming.HasModelLoaded(134 /* car_mafia */)) {
         await asyncWait(0);
     }
 
@@ -70,8 +102,8 @@ async function mission_start_rc1() {
         $.intro_time_lapsed = $.timer_intro_now - $.timer_intro_start;
         if (Car.IsDead($.rc_van)) {
             Text.PrintNow('WRECKED', 3000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_rc1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_rc1_failed'); // fallback: would break linear control flow
+            // SCM GOTO → mission_rc2_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_rc2_failed'); // fallback: would break linear control flow
         }
         if ($.player.isPlaying()) {
             $.player.clearWantedLevel();
@@ -98,14 +130,14 @@ async function mission_start_rc1() {
                 Camera.Restore();
             }
             if (!$.player.isSittingInCar($.rc_van)) {
-                // SCM GOTO → mission_rc1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_rc1_failed'); // fallback: would break linear control flow
+                // SCM GOTO → mission_rc2_failed (not lowered; manual jump required)
+                throw new Error('unresolved GOTO mission_rc2_failed'); // fallback: would break linear control flow
             }
         } else {
-            // SCM GOTO → mission_rc1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_rc1_failed'); // fallback: would break linear control flow
+            // SCM GOTO → mission_rc2_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_rc2_failed'); // fallback: would break linear control flow
         }
-        $.counter_RCDD = Player.GetNumOfModelsKilled(137 /* car_diablos */);
+        $.counter_RCDD = Player.GetNumOfModelsKilled(134 /* CAR_MAFIA */);
         if ($.intro_time_lapsed > 4000) {
             if (!$.player.isInRemoteMode()) {
                 Rc.GiveCarToPlayer($.player, $.rc_x, $.rc_y, $.rc_z, 180.0);
@@ -118,53 +150,47 @@ async function mission_start_rc1() {
 
     Rc.BlowUpBuggy();
 
-    {
-        TIMERA = 0;
+    TIMERA = 0;
 
-        while (TIMERA < 1500) {
-            await asyncWait(0);
-        }
+    while (TIMERA < 1500) {
+        await asyncWait(0);
     }
 
-    if ($.counter_RCDD > $.rec_rc1) {
-        $.reward_RCDD = $.counter_RCDD - $.rec_rc1;
+    if ($.counter_RCDD > $.rec_rc2) {
+        $.reward_RCDD = $.counter_RCDD - $.rec_rc2;
         $.reward_RCDD = $.reward_RCDD * 1000;
-        $.rec_rc1 = $.counter_RCDD;
-        // SCM GOTO → mission_rc1_passed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_rc1_passed'); // fallback: would break linear control flow
+        $.rec_rc2 = $.counter_RCDD;
+        return; // SCM GOTO → mission_rc2_passed
+    } else {
+        // SCM GOTO → mission_rc2_failed (not lowered; manual jump required)
+        throw new Error('unresolved GOTO mission_rc2_failed'); // fallback: would break linear control flow
     }
-
-    // Mission rc1 failed
 }
 
-async function mission_rc1_failed() {
+// Mission rc2 failed
+async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
     Text.PrintNow('NRECORD', 5000, 1);
-    return;
-
-    // mission rc1 passed
 }
 
-async function mission_rc1_passed() {
+// mission rc2 passed
+async function onPassed() {
     //reward_RCDD = counter_RCDD * 1000
 
     Text.PrintWithNumberBig('M_PASS', $.reward_RCDD, 5000, 1); //"Mission Passed!"
     Text.PrintNow('RECORD', 3000, 1);
     Audio.PlayMissionPassedTune(1);
     $.player.addScore($.reward_RCDD);
-    if ($.flag_rc1_passed == 0) {
+    if ($.flag_rc2_passed == 0) {
         Stat.PlayerMadeProgress(1);
-        $.flag_rc1_passed = 1;
-        Stat.RegisterMissionPassed('RC1');
+        $.flag_rc2_passed = 1;
+        Stat.RegisterMissionPassed('RC2');
     }
-    Stat.RegisterHighestScore(1, $.rec_rc1);
-
-    return;
-
-    // mission cleanup
+    Stat.RegisterHighestScore(2, $.rec_rc2);
 }
 
-async function mission_cleanup_rc1() {
+// mission cleanup
+async function cleanup() {
     ONMISSION = false;
     $.flag_just_done_rc_mission = 1;
     Streaming.LoadScene($.cam_x, $.cam_y, $.cam_z);
@@ -184,51 +210,13 @@ async function mission_cleanup_rc1() {
         $.rc_van.lockDoors(1 /* CARLOCK_UNLOCKED */);
     }
 
-    Zone.SetCarInfo('TOWERS', 1 /* DAY */, 8, 0, 0, 100, 0, 0, 0, 0, 20, 400, 0, 0, 350, 0, 0);
-    Zone.SetCarInfo('TOWERS', 0 /* NIGHT */, 6, 0, 0, 150, 0, 0, 0, 0, 10, 550, 0, 0, 200, 0, 0);
+    Zone.SetCarInfo('LITTLEI', 1 /* DAY */, 10, 100, 0, 0, 0, 0, 0, 0, 20, 400, 0, 0, 350, 50, 0);
+    Zone.SetCarInfo('LITTLEI', 0 /* NIGHT */, 8, 150, 0, 0, 0, 0, 0, 0, 10, 550, 0, 0, 150, 0, 0);
 
-    Streaming.MarkModelAsNoLongerNeeded(137 /* car_diablos */);
+    Streaming.MarkModelAsNoLongerNeeded(134 /* CAR_MAFIA */);
 
     Mission.Finish();
     return;
 }
 
-export async function rc1() {
-    
-    // *******************************************************************************************
-    // *******************************************************************************************
-    // **************************************RC Destruction Derby*********************************
-    // ***************************************Diablo Demolition***********************************
-    // *******************************************************************************************
-    // *******************************************************************************************
-    // *******************************************************************************************
-
-    // SCRIPT_NAME RC1
-
-    // Mission start stuff
-
-    // SCM GOSUB mission_start_rc1
-    await mission_start_rc1();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    if (HAS_DEATHARREST_BEEN_EXECUTED()) {
-        // SCM GOSUB mission_rc1_failed
-        await mission_rc1_failed();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-    // SCM GOSUB mission_cleanup_rc1
-    await mission_cleanup_rc1();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    
-
-    // Variables for mission
-
-    // VAR_INT counter_RCDD rc_van
-    // VAR_INT timer_RCDD
-    // VAR_INT reward_RCDD
-    // VAR_FLOAT cam_x cam_y cam_z
-    // VAR_FLOAT rc_x rc_y rc_z
-
-    // ***************************************Mission Start*************************************
-}
+export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
