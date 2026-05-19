@@ -72,9 +72,10 @@ function missionFinishFix() {
     // need to force ONMISSION=true in order to make Mission.Finish functional
     const _missionFinish = Mission.Finish;
     Mission.Finish = function () {
+        let _onMission = ONMISSION;
         ONMISSION = true;
         _missionFinish();
-        ONMISSION = false;
+        ONMISSION = _onMission;
     };
 }
 
