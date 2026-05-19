@@ -361,7 +361,6 @@ async function body() {
 
     $.fuzz_door2.setHeading(270.0);
 
-    
     timer = new Timer($.timer_lm5).display(); // Hud.DisplayTimer($.timer_lm5);
 
     $.radar_blip_coord1_lm5 = Blip.AddForCoord(999.9, -879.3, -100.0);

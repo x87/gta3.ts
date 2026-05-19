@@ -584,7 +584,7 @@ async function failed() {
 }
 
 export async function firetruck() {
-    // MissionBoundary
+    
     // *****************************************************************************************
     // *****************************************************************************************
     // *****************************************************************************************
@@ -603,7 +603,7 @@ export async function firetruck() {
     await failed();
     // fallback if label was not emitted as async function: no-op continues linearly
 
-    // MissionBoundary
+    
 
     // Variables for mission
 

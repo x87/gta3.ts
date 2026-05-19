@@ -1259,11 +1259,11 @@ async function mission_start_debug() {
     // SCM GOTO → mission_start_debug (not lowered; manual jump required)
     throw new Error('unresolved GOTO mission_start_debug'); // fallback: would break linear control flow
 
-    // MissionBoundary
+    
 }
 
 export async function debug() {
-    // MissionBoundary
+    
 
     // VAR_FLOAT x_float_m y_float_m z_float_m text_x text_y text_z text_h player_heading_debug debug_car_heading
     // VAR_INT magic_car button_press_flag car_colour car_colour2 intro_explosion_flag

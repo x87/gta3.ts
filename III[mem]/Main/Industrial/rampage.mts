@@ -1,8 +1,7 @@
 // Generated from Main/Industrial/rampage.sc
-import { $, run_on_newgame, verbose } from '../../utils';
+import { $, run_gated, run_on_newgame, verbose } from '../../utils';
 
 verbose('[+] Rampage script loaded');
-
 
 (async () => {
     await run_on_newgame(async () => {
@@ -128,7 +127,10 @@ verbose('[+] Rampage script loaded');
     // SET_DEATHARREST_STATE(false /* OFF */);
 
     // SCRIPT_NAME rampage
+    run_gated('_flag_rampage_complete', rampage_loop);
+})();
 
+async function rampage_loop() {
     while (true) {
         await asyncWait(500);
 
@@ -935,11 +937,10 @@ verbose('[+] Rampage script loaded');
         }
 
         if ($.total_rampages_passed == 20) {
-            await rampage_passed(); // SCM GOTO → rampage_passed
-            break;
+            return rampage_passed(); // SCM GOTO → rampage_passed
         }
     }
-})();
+}
 
 async function rampage_passed() {
     Mission.Finish();

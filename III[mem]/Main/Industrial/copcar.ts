@@ -884,7 +884,7 @@ async function copcar_cancelled_checks() {
 }
 
 export async function copcar() {
-    // MissionBoundary
+    
     // *****************************************************************************************
     // *****************************************************************************************
     // *****************************************************************************************
@@ -903,7 +903,7 @@ export async function copcar() {
     await cop_car_failed();
     // fallback if label was not emitted as async function: no-op continues linearly
 
-    // MissionBoundary
+    
 
     // Variables for mission
 

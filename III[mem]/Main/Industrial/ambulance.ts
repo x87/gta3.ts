@@ -2046,7 +2046,7 @@ async function progress_counter2() {
 }
 
 export async function ambulance() {
-    // MissionBoundary
+    
     // *****************************************************************************************
     // *****************************************************************************************
     // *****************************************************************************************
@@ -2065,7 +2065,7 @@ export async function ambulance() {
     await ambulance_failed();
     // fallback if label was not emitted as async function: no-op continues linearly
 
-    // MissionBoundary
+    
 
     // Variables for mission
 

@@ -274,7 +274,7 @@ async function mission_cleanup_demo() {
 }
 
 export async function demo2() {
-    // MissionBoundary
+    
     // *******************************************************************************************
     // *******************************************************************************************
     // *************************************Player Demo2****************************************
@@ -292,7 +292,7 @@ export async function demo2() {
     await mission_cleanup_demo();
     // fallback if label was not emitted as async function: no-op continues linearly
 
-    // MissionBoundary
+    
 
     // Variables for mission
 
