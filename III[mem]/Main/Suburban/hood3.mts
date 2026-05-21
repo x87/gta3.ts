@@ -440,7 +440,7 @@ async function cleanup() {
     return;
 }
 
-// MissionBoundary
+
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
@@ -463,7 +463,7 @@ async function cleanup() {
 // SCM GOSUB mission_cleanup_hood3
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // Variables for mission
 

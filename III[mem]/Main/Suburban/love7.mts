@@ -129,7 +129,7 @@ async function cleanup() {
     return;
 }
 
-// MissionBoundary
+
 // *****************************************************************************************
 // *******************************    Donald Love 7    *************************************
 // *******************************    Left the Scene   *************************************
@@ -145,7 +145,7 @@ async function cleanup() {
 // SCM GOSUB mission_cleanup_love7
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // ****************************************Mission Start************************************
 

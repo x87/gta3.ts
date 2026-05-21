@@ -1495,7 +1495,7 @@ async function drop_mines() {
                     $.temp_vector_x = $.vector_x * $.vector_x;
                     $.temp_vector_y = $.vector_y * $.vector_y;
                     $.temp_distance = $.temp_vector_x + $.temp_vector_y;
-                    $.distance_between_boats = Math.Sqrt($.temp_distance);
+                    $.distance_between_boats = Math.sqrt($.temp_distance);
                     if ($.distance_between_boats < 60.0) {
                         $.partners_boat_forward_x = $.partners_boat.getForwardX();
                         $.partners_boat_forward_y = $.partners_boat.getForwardY();
@@ -1552,13 +1552,13 @@ async function exit_boat() {
         $.partner_x = $.partner_x * $.partner_x;
         $.partner_y = $.partner_y * $.partner_y;
         $.dot_product = $.partner_x + $.partner_y;
-        $.distance_resultA = Math.Sqrt($.dot_product);
+        $.distance_resultA = Math.sqrt($.dot_product);
         $.partner_x = $.sniper_object_a_x - $.temp_vector_x;
         $.partner_y = $.sniper_object_a_y - $.temp_vector_y;
         $.partner_x = $.partner_x * $.partner_x;
         $.partner_y = $.partner_y * $.partner_y;
         $.dot_product = $.partner_x + $.partner_y;
-        $.distance_resultB = Math.Sqrt($.dot_product);
+        $.distance_resultB = Math.sqrt($.dot_product);
         if ($.distance_resultA < $.distance_resultB) {
             $.dot_product = World.GetGroundZFor3DCoord($.vector_x, $.vector_y, $.partner_z); //temp_x
             $.temp_x = $.partner_z + 15.0;
@@ -1767,7 +1767,7 @@ async function partner_escape_checks() {
 }
 
 
-// MissionBoundary
+
 // *****************************************************************************************
 // *********************************** Ray Mission 4 ***************************************
 // *********************************** Gone Fishing	 ***************************************
@@ -1790,7 +1790,7 @@ async function partner_escape_checks() {
 // SCM GOSUB mission_cleanup_ray4
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // Variables for mission
 

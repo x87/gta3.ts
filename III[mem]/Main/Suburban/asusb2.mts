@@ -1530,7 +1530,7 @@ async function cleanup() {
     ///________________________________GOSUBS_______GOSUBS________________________________BYTHEWAY
 }
 
-// MissionBoundary
+
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -1548,7 +1548,7 @@ async function cleanup() {
 // SCM GOSUB mission_cleanup_as2
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // Variables for mission
 

@@ -824,7 +824,7 @@ async function evidence_collected() {
 }
 
 
-// MissionBoundary
+
 // *****************************************************************************************
 // ************************************ Ray mission 3 **************************************
 // ************************************ Evidence Dash **************************************
@@ -848,7 +848,7 @@ async function evidence_collected() {
 // SCM GOSUB mission_cleanup_ray3
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // Variables for mission
 

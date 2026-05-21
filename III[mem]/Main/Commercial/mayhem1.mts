@@ -539,7 +539,7 @@ async function cleanup() {
     return;
 }
 
-// MissionBoundary
+
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -556,7 +556,7 @@ async function cleanup() {
 // fallback if label was not emitted as async function: no-op continues linearly
 // SCM GOSUB mission_cleanup_mayhem
 // fallback if label was not emitted as async function: no-op continues linearly
-// MissionBoundary
+
 
 // Variables for mission
 /* variables called in T4x4_1.sc

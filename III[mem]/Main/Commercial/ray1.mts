@@ -501,7 +501,7 @@ async function cleanup() {
     return;
 }
 
-// MissionBoundary
+
 // *****************************************************************************************
 // ************************************ Ray mission 1  *************************************
 // ************************************ Silent Witness *************************************
@@ -522,7 +522,7 @@ async function cleanup() {
 // SCM GOSUB mission_cleanup_ray1
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // Variables for mission
 
