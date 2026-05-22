@@ -774,7 +774,7 @@ async function cleanup() {
     $.blip4_jm1.remove();
     Streaming.MarkModelAsNoLongerNeeded(91 /* CAR_IDAHO */);
     Streaming.UnloadSpecialCharacter(3);
-    timer.clear(); // Hud.ClearTimer($.countdown_jm1);
+    timer.clear(); // Hud.ClearTimer(timer.value);
     if (!Car.IsDead($.mike_car)) {
         $.mike_car.setCanRespray(true /* ON */);
         $.mike_car.lockDoors(1 /* CARLOCK_UNLOCKED */);

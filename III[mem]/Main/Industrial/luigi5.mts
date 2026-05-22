@@ -1,6 +1,6 @@
 // Generated from Main/Industrial/luigi5.sc
 import { $, verbose } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
+import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -10,7 +10,8 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // *****************************************************************************************
 // *****************************************************************************************
 
-let timer: DisplayedTimer;
+let timer_lm5: DisplayedTimer;
+let counter_no_of_girls_at_the_ball: DisplayedCounter;
 
 async function body() {
     // SCRIPT_NAME luigi5
@@ -53,7 +54,7 @@ async function body() {
     $.max_no_of_passengers_lm5 = 0;
 
     // Scoreing stuff
-    $.counter_no_of_girls_at_the_ball = 0;
+    // xxx: $.counter_no_of_girls_at_the_ball = 0;
     $.score_lm5 = 0;
 
     // PEds in to the building stuff
@@ -361,7 +362,7 @@ async function body() {
 
     $.fuzz_door2.setHeading(270.0);
 
-    timer = new Timer($.timer_lm5).display(); // Hud.DisplayTimer($.timer_lm5);
+    timer_lm5 = new Timer($.timer_lm5).display(); // Hud.DisplayTimer($.timer_lm5);
 
     $.radar_blip_coord1_lm5 = Blip.AddForCoord(999.9, -879.3, -100.0);
 
@@ -476,11 +477,12 @@ async function body() {
 
     Text.PrintNow('LM5_7', 7000, 1); //"You need to get a minimum of four girls to the ball!"
 
-    Hud.DisplayCounterWithString($.counter_no_of_girls_at_the_ball, 0 /* COUNTER_DISPLAY_NUMBER */, 'LM5_9');
+    counter_no_of_girls_at_the_ball = new Counter({ key: 'LM5_9' }).display(); // Hud.DisplayCounterWithString($.counter_no_of_girls_at_the_ball, 0 /* COUNTER_DISPLAY_NUMBER */, 'LM5_9');
 
     // checking to see how many girls the player get to the ball
 
-    prossie_checks: while(timer.value > 0) { //while ($.timer_lm5 > 0) {
+    prossie_checks: while (timer_lm5.value > 0) {
+        //while ($.timer_lm5 > 0) {
         await asyncWait(0);
         World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */); // This should clear the area
         await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
@@ -489,7 +491,8 @@ async function body() {
             // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
         }
-        if ($.counter_no_of_girls_at_the_ball == 8) {
+        // xxx: if ($.counter_no_of_girls_at_the_ball == 8) {
+        if (counter_no_of_girls_at_the_ball.value == 8) {
             return; // SCM GOTO → mission_luigi5_passed
         }
         if ($.player.isInAnyCar()) {
@@ -619,7 +622,7 @@ async function body() {
                         }
                     }
                     $.prossie1_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-                    ++$.counter_no_of_girls_at_the_ball;
+                    ++counter_no_of_girls_at_the_ball.value; // xxx: ++$.counter_no_of_girls_at_the_ball;
                     Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
                     //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
@@ -772,7 +775,7 @@ async function body() {
                         }
                     }
                     $.prossie2_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-                    ++$.counter_no_of_girls_at_the_ball;
+                    ++counter_no_of_girls_at_the_ball.value; // xxx: ++$.counter_no_of_girls_at_the_ball;
                     Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
                     //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
@@ -925,7 +928,7 @@ async function body() {
                         }
                     }
                     $.prossie3_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-                    ++$.counter_no_of_girls_at_the_ball;
+                    ++counter_no_of_girls_at_the_ball.value; // xxx: ++$.counter_no_of_girls_at_the_ball;
                     Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
                     //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
@@ -1079,7 +1082,7 @@ async function body() {
                         }
                     }
                     $.prossie4_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-                    ++$.counter_no_of_girls_at_the_ball;
+                    ++counter_no_of_girls_at_the_ball.value; // xxx: ++$.counter_no_of_girls_at_the_ball;
                     Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
@@ -1231,7 +1234,7 @@ async function body() {
                         }
                     }
                     $.prossie5_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-                    ++$.counter_no_of_girls_at_the_ball;
+                    ++counter_no_of_girls_at_the_ball.value; // xxx: ++$.counter_no_of_girls_at_the_ball;
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
                     $.flag_prossie5_told_to_go_into_ball = 1;
@@ -1383,7 +1386,7 @@ async function body() {
                         }
                     }
                     $.prossie6_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-                    ++$.counter_no_of_girls_at_the_ball;
+                    ++counter_no_of_girls_at_the_ball.value; // xxx: ++$.counter_no_of_girls_at_the_ball;
                     Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
@@ -1535,7 +1538,7 @@ async function body() {
                         }
                     }
                     $.prossie7_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-                    ++$.counter_no_of_girls_at_the_ball;
+                    ++counter_no_of_girls_at_the_ball.value; // xxx: ++$.counter_no_of_girls_at_the_ball;
                     Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
@@ -1687,7 +1690,7 @@ async function body() {
                         }
                     }
                     $.prossie8_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
-                    ++$.counter_no_of_girls_at_the_ball;
+                    ++counter_no_of_girls_at_the_ball.value; // xxx: ++$.counter_no_of_girls_at_the_ball;
                     Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
@@ -1717,7 +1720,8 @@ async function body() {
 
     // pass or fail checks
 
-    if ($.counter_no_of_girls_at_the_ball < 4) {
+    // xxx: if ($.counter_no_of_girls_at_the_ball < 4) {
+    if (counter_no_of_girls_at_the_ball.value < 4) {
         Text.PrintNow('OUTTIME', 5000, 1); //"You ran out of time!"
         // SCM GOTO → mission_luigi5_failed
         throw new Error('unresolved GOTO mission_luigi5_failed');
@@ -1759,11 +1763,13 @@ async function onPassed() {
     Stat.RegisterMissionPassed('LM5');
     Stat.PlayerMadeProgress(1);
     Audio.PlayMissionPassedTune(1);
-    $.score_lm5 = $.counter_no_of_girls_at_the_ball * 500;
+    // xxx: $.score_lm5 = $.counter_no_of_girls_at_the_ball * 500;
+    $.score_lm5 = counter_no_of_girls_at_the_ball.value * 500;
     Text.PrintWithNumberBig('M_PASS', $.score_lm5, 10000, 1); //"Mission Passed!"
     $.player.addScore($.score_lm5);
     $.player.clearWantedLevel();
-    if ($.counter_no_of_girls_at_the_ball == 8) {
+    // xxx: if ($.counter_no_of_girls_at_the_ball == 8) {
+    if (counter_no_of_girls_at_the_ball.value == 8) {
         Text.PrintWithNumberNow('BONUS', 2000, 5000, 1); //"Bonus of $2000!"
         $.player.addScore(2000);
     }
@@ -1780,9 +1786,9 @@ async function cleanup() {
     $.fuzzball_sign.markAsNoLongerNeeded();
     Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);
     Streaming.MarkModelAsNoLongerNeeded(40 /* PED_PROSTITUTE2 */);
-    timer.clear(); // Hud.ClearTimer($.timer_lm5);
+    timer_lm5.clear(); // Hud.ClearTimer($.timer_lm5);
     Hud.FreezeTimer(false /* FALSE */);
-    Hud.ClearCounter($.counter_no_of_girls_at_the_ball);
+    counter_no_of_girls_at_the_ball.clear(); // xxx: Hud.ClearCounter($.counter_no_of_girls_at_the_ball);
     $.radar_blip_coord1_lm5.remove();
     $.radarped_prossie1_lm5.remove();
     $.radarped_prossie2_lm5.remove();
