@@ -19,6 +19,31 @@ if (['re3', 'reVC'].includes(HOST)) {
 
 const counters = (Memory.ReadI32(mainScm + 3, false) + 12) / 4;
 
+abstract class PrimitiveWrapper<T> {
+  constructor(_id: T) {
+    this.valueOf = function () {
+      return _id;
+    };
+  }
+  abstract get value(): T;
+  abstract set value(value: T);
+}
+
+class Float extends PrimitiveWrapper<float> {
+  constructor(id: number) {
+    super(id);
+  }
+  get value() {
+    return SCM.readFloat(+this);
+  }
+  set value(value: number) {
+    SCM.writeFloat(+this, value);
+  }
+  static cast<T>(id: number): T {
+    return new Float(id) as unknown as T;
+  }
+}
+
 const SCM = {
   readVar(id: number) {
     assertVar(id);
@@ -30,6 +55,16 @@ const SCM = {
     return Memory.WriteI32(mainScm + id * 4, value, false);
   },
 
+  readFloat(id: number) {
+    assertVar(id);
+    return Memory.ReadFloat(mainScm + id * 4, false);
+  },
+
+  writeFloat(id: number, value: number) {
+    assertVar(id);
+    return Memory.WriteFloat(mainScm + id * 4, value, false);
+  },
+
   bind<T>(scmVariables: T): T {
     return Object.defineProperties(
       { ...scmVariables },
@@ -38,6 +73,9 @@ const SCM = {
           key,
           {
             get() {
+              if (scmVariables[key] instanceof PrimitiveWrapper) {
+                return scmVariables[key].value;
+              }
               const value = SCM.readVar(+varId);
               if (typeof scmVariables[key] === 'object') {
                 // wrap the handle in a class instance
@@ -46,19 +84,29 @@ const SCM = {
               return value;
             },
             set(value: number) {
-              SCM.writeVar(+varId, +value);
+              if (scmVariables[key] instanceof PrimitiveWrapper) {
+                scmVariables[key].value = value;
+              } else {
+                SCM.writeVar(+varId, +value);
+              }
             },
           },
-        ]),
-      ),
+        ])
+      )
     );
   },
+
+  Float: Float.cast<float>,
 };
 
 // -- Counters & Timers --
 
 class DisplayedValue {
-  constructor(protected _id: number, initialValue: number, protected _customKey: string) {
+  constructor(
+    protected _id: number,
+    initialValue: number,
+    protected _customKey: string
+  ) {
     this.value = initialValue;
   }
   get value() {
@@ -277,7 +325,7 @@ class Pool {
         [0x00b74490, 0x7c4],
         [0x00b7449c, 0x19c],
       ],
-      
+
       // Offsets for Steam 1.0.113.21181
       gta3_unreal: [
         [0x53d74a8, 0x7a0], // relative to base
@@ -295,11 +343,12 @@ class Pool {
         [0x572b588, 0x248], // relative to base
       ],
     };
-    
+
     const isX64 = ['gta3_unreal', 'vc_unreal', 'sa_unreal'].includes(HOST);
     const usize = isX64 ? 8 : 4;
-    const readUsize = (from: number, ib = false) => (isX64 ? Memory.ReadU64(from, false, ib) : Memory.ReadU32(from, false));
-    
+    const readUsize = (from: number, ib = false) =>
+      isX64 ? Memory.ReadU64(from, false, ib) : Memory.ReadU32(from, false);
+
     const typeId = this.getTypeIndex(type);
     const [base, entitySize] = map[HOST][typeId];
     const addr = readUsize(base, true);
@@ -493,7 +542,7 @@ class TextDraw {
     r: number | ColorName | ((r: number, g: number, b: number, a: number) => RGBATuple),
     g: number = 255,
     b: number = 255,
-    a: number = 255,
+    a: number = 255
   ) {
     if (typeof r === 'function') {
       let prev: RGBATuple = [255, 255, 255, 255];
@@ -602,7 +651,7 @@ class TextDraw {
     r: number | ColorName | ((r: number, g: number, b: number, a: number) => RGBATuple),
     g: number = 255,
     b: number = 255,
-    a: number = 255,
+    a: number = 255
   ) {
     if (typeof r === 'function') {
       let prev: RGBATuple = [128, 128, 128, 128];
@@ -775,4 +824,15 @@ class TextDraw {
   }
 }
 
-export { SCM, Counter, Timer, type DisplayedCounter, type DisplayedTimer, VehiclePool, PedPool, ObjectPool, TextDraw };
+export {
+  SCM,
+  Counter,
+  Timer,
+  type DisplayedCounter,
+  type DisplayedTimer,
+  VehiclePool,
+  PedPool,
+  ObjectPool,
+  TextDraw,
+  PrimitiveWrapper,
+};

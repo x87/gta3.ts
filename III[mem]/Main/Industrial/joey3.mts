@@ -1,5 +1,6 @@
 // Generated from Main/Industrial/joey3.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -8,6 +9,8 @@ import { $ } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
+
+let test_van_health_counter: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -202,17 +205,16 @@ async function body() {
     $.van_man2_jm3 = Char.CreateAsPassenger($.van_jm3, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 0);
     $.van_man2_jm3.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
 
-    $.test_van_health_counter = $.van_jm3.getHealth();
-    Hud.DisplayCounterWithString($.test_van_health_counter, 1 /* COUNTER_DISPLAY_BAR */, 'DAM'); //TEST STUFF!!!!!!!!!!!!!
+    test_van_health_counter = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */}).display(); // xxx: Hud.DisplayCounterWithString($.test_van_health_counter, 1 /* COUNTER_DISPLAY_BAR */, 'DAM'); //TEST STUFF!!!!!!!!!!!!!
 
-    $.test_van_health_counter = $.van_jm3.getHealth();
-    $.test_van_health_counter2 = 1000 - $.test_van_health_counter;
+    test_van_health_counter.value = $.van_jm3.getHealth();
+    $.test_van_health_counter2 = 1000 - test_van_health_counter.value;
 
     if ($.test_van_health_counter2 > 400) {
         $.test_van_health_counter2 = 400;
     }
 
-    $.test_van_health_counter = $.test_van_health_counter2 / 4;
+    test_van_health_counter.value = $.test_van_health_counter2 / 4;
 
     while ($.van_jm3.isHealthGreater(999)) {
         await asyncWait(0);
@@ -225,12 +227,12 @@ async function body() {
             // SCM GOTO → mission_joey3_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_joey3_failed'); // fallback: would break linear control flow
         }
-        $.test_van_health_counter = $.van_jm3.getHealth();
-        $.test_van_health_counter2 = 1000 - $.test_van_health_counter;
+        test_van_health_counter.value = $.van_jm3.getHealth();
+        $.test_van_health_counter2 = 1000 - test_van_health_counter.value;
         if ($.test_van_health_counter2 > 400) {
             $.test_van_health_counter2 = 400;
         }
-        $.test_van_health_counter = $.test_van_health_counter2 / 4;
+        test_van_health_counter.value = $.test_van_health_counter2 / 4;
     }
 
     if (!Car.IsDead($.van_jm3)) {
@@ -253,16 +255,16 @@ async function body() {
             throw new Error('unresolved GOTO mission_joey3_failed'); // fallback: would break linear control flow
         }
         if (!Car.IsDead($.van_jm3)) {
-            $.test_van_health_counter = $.van_jm3.getHealth();
-            if ($.test_van_health_counter < $.old_van_health) {
+            test_van_health_counter.value = $.van_jm3.getHealth();
+            if (test_van_health_counter.value < $.old_van_health) {
                 $.player.alterWantedLevelNoDrop(1);
             }
-            $.old_van_health = $.test_van_health_counter;
-            $.test_van_health_counter2 = 1000 - $.test_van_health_counter;
+            $.old_van_health = test_van_health_counter.value;
+            $.test_van_health_counter2 = 1000 - test_van_health_counter.value;
             if ($.test_van_health_counter2 > 400) {
                 $.test_van_health_counter2 = 400;
             }
-            $.test_van_health_counter = $.test_van_health_counter2 / 4;
+            test_van_health_counter.value = $.test_van_health_counter2 / 4;
         }
     }
 
@@ -278,22 +280,23 @@ async function body() {
             throw new Error('unresolved GOTO mission_joey3_failed'); // fallback: would break linear control flow
         }
         if (!Car.IsDead($.van_jm3)) {
-            $.test_van_health_counter = $.van_jm3.getHealth();
-            if ($.test_van_health_counter < $.old_van_health) {
+            test_van_health_counter.value = $.van_jm3.getHealth();
+            if (test_van_health_counter.value < $.old_van_health) {
                 $.player.alterWantedLevelNoDrop(2);
             }
-            $.old_van_health = $.test_van_health_counter;
-            $.test_van_health_counter2 = 1000 - $.test_van_health_counter;
+            $.old_van_health = test_van_health_counter.value;
+            $.test_van_health_counter2 = 1000 - test_van_health_counter.value;
             if ($.test_van_health_counter2 > 400) {
                 $.test_van_health_counter2 = 400;
             }
-            $.test_van_health_counter = $.test_van_health_counter2 / 4;
+            test_van_health_counter.value = $.test_van_health_counter2 / 4;
         }
     }
 
     if (!Car.IsDead($.van_jm3)) {
         $.van_jm3.lockDoors(1 /* CARLOCK_UNLOCKED */);
-        Hud.ClearCounter($.test_van_health_counter);
+
+        test_van_health_counter.clear(); // xxx: Hud.ClearCounter($.test_van_health_counter);
         if (!Char.IsDead($.van_man1_jm3)) {
             $.van_man1_jm3.setObjLeaveCar($.van_jm3);
         }
@@ -418,7 +421,7 @@ async function body() {
         $.blip2_jm3.remove();
         break garage_stop; // xxx: fallthrough
     }
-    
+
     return; // SCM GOTO → mission_joey3_passed
 }
 
@@ -451,7 +454,7 @@ async function cleanup() {
     Streaming.UnloadSpecialCharacter(2);
     $.Garage_bank.setTargetCarForMission(-1 as any);
     Streaming.MarkModelAsNoLongerNeeded(118 /* CAR_SECURICAR */);
-    Hud.ClearCounter($.test_van_health_counter);
+    test_van_health_counter.clear(); // xxx: Hud.ClearCounter($.test_van_health_counter);
     Mission.Finish();
 }
 
