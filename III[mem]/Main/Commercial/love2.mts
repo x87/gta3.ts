@@ -682,8 +682,6 @@ async function onFailed() {
     Text.PrintBig('M_FAIL', 2000, 1);
     $.blip_kenji_love2.remove();
     $.kenji.removeElegantly();
-
-    return;
 }
 
 // mission Love 2 passed
@@ -697,8 +695,6 @@ async function onPassed() {
     Stat.PlayerMadeProgress(1);
     $.kenji_contact_blip.remove();
     // START_NEW_SCRIPT love_mission3_loop
-
-    return;
 }
 
 // mission cleanup
@@ -725,7 +721,6 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(136 /* CAR_YAKUZA */);
 
     Mission.Finish();
-    return;
 }
 
 //-----------------------------GOSUBS--------------------------------------
@@ -765,8 +760,6 @@ async function player_wanted_love2() {
             $.flag_wanted_love2 = 1;
         }
     }
-
-    return;
 }
 
 //+++++++++++++++++++++++++++CREATE PEDS GOSUB++++++++++++++++++++++++++++++++++++++++++++
@@ -849,8 +842,6 @@ async function create_yakuza() {
         $.kenji.setStayInSamePlace(true /* true */);
         $.flag_yak_created_love2 = 1;
     }
-
-    return;
 }
 
 async function yak_death_count() {
@@ -886,8 +877,6 @@ async function yak_death_count() {
         ++$.counter_kenji_guards_dead;
         $.flag_8_dead_love2 = 1;
     }
-
-    return;
 }
 
 async function kenji_cut() {
@@ -914,8 +903,8 @@ async function kenji_cut() {
             }
             if ($.timer_kenji_cut_dif > 2500 && $.flag_kenji_cut == 1) {
                 /*IF NOT IS_CHAR_DEAD kenji
-        STOP_CHAR_LOOKING kenji
-        ENDIF*/
+                STOP_CHAR_LOOKING kenji
+                ENDIF*/
                 if (!Char.IsDead($.yak_3_love2)) {
                     Camera.PointAtChar($.yak_3_love2, 15 /* FIXED */, 1 /* INTERPOLATION */);
                 }
@@ -956,8 +945,8 @@ async function kenji_cut() {
             }
             if ($.timer_kenji_cut_dif > 2500 && $.flag_kenji_cut == 2) {
                 /*IF NOT IS_CHAR_DEAD kenji
-        STOP_CHAR_LOOKING kenji
-        ENDIF*/
+                STOP_CHAR_LOOKING kenji
+                ENDIF*/
                 if (!Char.IsDead($.yak_1_love2)) {
                     Camera.PointAtChar($.yak_1_love2, 15 /* FIXED */, 1 /* INTERPOLATION */);
                 }
@@ -974,8 +963,6 @@ async function kenji_cut() {
         $.player.setControl(true /* on */);
         Hud.SwitchWidescreen(false /* off */);
     }
-
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

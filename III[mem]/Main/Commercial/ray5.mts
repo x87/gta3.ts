@@ -1,8 +1,43 @@
 // Generated from Main/Commercial/ray5.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************Ray mission 5********************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+
+let ambulance_health: DisplayedCounter;
+let bodycast_health: DisplayedCounter;
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_ray5
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_ray5_failed
+    // ENDIF
+    // GOSUB mission_cleanup_ray5
+
+    // Variables for mission
+
+    // VAR_INT ambulance_rc5 ambulance_health flag_redalert
+
+    // VAR_INT injured_cop_rc5 cop_driver bodycast_health
+    // VAR_INT swat1_rc5 swat2_rc5 swat3_rc5 swat4_rc5
+    // VAR_INT swatvan1 swatvan2
+    // VAR_INT blip_ambulance_rc5 flag_bodycast_clear flag_police_trigger
+
+    // VAR_INT blip_injured_cop_rc5 zed_value random_ray5 flag_random_ray5
+
+    // VAR_FLOAT amb_rc5_x amb_rc5_y amb_rc5_z
+    // VAR_FLOAT ic_x ic_y ic_z
+
+    // ****************************************Mission Start************************************
+
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME ray5
     ONMISSION = true;
@@ -28,20 +63,20 @@ async function body() {
     //SWITCH_WIDESCREEN ON
 
     /*
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_ray5_failed
-  ENDIF
+    IF CAN_PLAYER_START_MISSION Player
+    MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
+    ELSE
+    GOTO mission_ray5_failed
+    ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+    SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 250 FADE_OUT
+    DO_FADE 250 FADE_OUT
 
-  PRINT_BIG RM5 15000 2 //"Plaster Blaster"
+    PRINT_BIG RM5 15000 2 //"Plaster Blaster"
 
-  SWITCH_STREAMING OFF
-  */
+    SWITCH_STREAMING OFF
+    */
 
     Streaming.LoadSpecialCharacter(1, 'ray');
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
@@ -49,10 +84,10 @@ async function body() {
     Streaming.RequestModel(2104 /* toilet */);
 
     /*
-  WHILE GET_FADING_STATUS
-  WAIT 0
-  ENDWHILE
-  */
+    WHILE GET_FADING_STATUS
+    WAIT 0
+    ENDWHILE
+    */
 
     Streaming.LoadAllModelsNow();
 
@@ -260,334 +295,321 @@ async function body() {
     $.swat4_rc5.addArmor(100);
 
     Audio.LoadMissionAudio('r5_a' as any);
-}
 
-async function amb_generator() {
-    $.ambulance_health = 0;
-    Hud.DisplayCounterWithString($.ambulance_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+    before_injured_cop_bailout: {
+        amb_generator: while (true) {
+            $.ambulance_health = 0;
+            ambulance_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.ambulance_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+            $.ambulance_rc5 = Car.Create(106 /* CAR_AMBULANCE */, 387.3, 4.5, 11.4);
+            $.blip_ambulance_rc5 = Blip.AddForCar($.ambulance_rc5);
+            $.cop_driver = Char.CreateInsideCar($.ambulance_rc5, 6 /* PEDTYPE_COP */, 1 /* PED_COP */);
+            $.ambulance_rc5.lockDoors(2 /* CARLOCK_LOCKED */);
+            $.ambulance_rc5.setHeading(166.0);
+            $.ambulance_rc5.setCruiseSpeed(20.0);
+            $.ambulance_rc5.setDrivingStyle(0);
+            $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+            //SWITCH_CAR_SIREN ambulance_rc5 ON
 
-    $.ambulance_rc5 = Car.Create(106 /* CAR_AMBULANCE */, 387.3, 4.5, 11.4);
-    $.blip_ambulance_rc5 = Blip.AddForCar($.ambulance_rc5);
-    $.cop_driver = Char.CreateInsideCar($.ambulance_rc5, 6 /* PEDTYPE_COP */, 1 /* PED_COP */);
-    $.ambulance_rc5.lockDoors(2 /* CARLOCK_LOCKED */);
-    $.ambulance_rc5.setHeading(166.0);
-    $.ambulance_rc5.setCruiseSpeed(20.0);
-    $.ambulance_rc5.setDrivingStyle(0);
-    $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
-    //SWITCH_CAR_SIREN ambulance_rc5 ON
+            ambulance_health.value = $.ambulance_rc5.getHealth();
+            $.random_ray5 = Math.RandomIntInRange(0, 65535);
 
-    $.ambulance_health = $.ambulance_rc5.getHealth();
-    $.random_ray5 = Math.Random();
+            if ($.random_ray5 < 21846) {
+                $.ambulance_rc5.gotoCoordinates(-148.93, 18.04, 26.5);
+            }
 
-    if ($.random_ray5 < 21846) {
-        $.ambulance_rc5.gotoCoordinates(-148.93, 18.04, 26.5);
-    }
+            if ($.random_ray5 > 21845 && $.random_ray5 < 43691) {
+                $.ambulance_rc5.gotoCoordinates(402.88, -404.88, 26.5);
+                $.flag_random_ray5 = 1;
+            }
 
-    if ($.random_ray5 > 21845 && $.random_ray5 < 43691) {
-        $.ambulance_rc5.gotoCoordinates(402.88, -404.88, 26.5);
-        $.flag_random_ray5 = 1;
-    }
+            if ($.random_ray5 > 43690) {
+                $.ambulance_rc5.gotoCoordinates(-13.2, -804.7, 26.5);
+                $.flag_random_ray5 = 2;
+            }
 
-    if ($.random_ray5 > 43690) {
-        $.ambulance_rc5.gotoCoordinates(-13.2, -804.7, 26.5);
-        $.flag_random_ray5 = 2;
-    }
+            //-----ambulance travels to one of three way points
 
-    //-----ambulance travels to one of three way points
+            while ($.flag_redalert == 0) {
+                await asyncWait(0);
+                if (!Car.IsDead($.ambulance_rc5)) {
+                    const _res116 = $.ambulance_rc5.getCoordinates();
+                    $.amb_rc5_x = _res116.x;
+                    $.amb_rc5_y = _res116.y;
+                    $.amb_rc5_z = _res116.z;
+                    ambulance_health.value = $.ambulance_rc5.getHealth();
+                    ambulance_health.value = ambulance_health.value * -1;
+                    ambulance_health.value = ambulance_health.value + 1000;
+                    //ambulance_health = ambulance_health / 10
+                    //ambulance_health = ambulance_health * 5
 
-    while ($.flag_redalert == 0) {
-        await asyncWait(0);
-        if (!Car.IsDead($.ambulance_rc5)) {
-            const _res116 = $.ambulance_rc5.getCoordinates();
-            $.amb_rc5_x = _res116.x;
-            $.amb_rc5_y = _res116.y;
-            $.amb_rc5_z = _res116.z;
-            $.ambulance_health = $.ambulance_rc5.getHealth();
-            $.ambulance_health = $.ambulance_health * -1;
-            $.ambulance_health = $.ambulance_health + 1000;
-            //ambulance_health = ambulance_health / 10
-            //ambulance_health = ambulance_health * 5
-
-            if ($.flag_random_ray5 == 0) {
-                if ($.ambulance_rc5.locate2D(-148.93, 18.04, 15.0, 15.0, false /* false */)) {
-                    $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
-                    $.flag_random_ray5 = 3;
+                    if ($.flag_random_ray5 == 0) {
+                        if ($.ambulance_rc5.locate2D(-148.93, 18.04, 15.0, 15.0, false /* false */)) {
+                            $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
+                            $.flag_random_ray5 = 3;
+                        }
+                    }
+                    if ($.flag_random_ray5 == 1) {
+                        if ($.ambulance_rc5.locate2D(402.88, -404.88, 15.0, 15.0, false /* false */)) {
+                            $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
+                            $.flag_random_ray5 = 3;
+                        }
+                    }
+                    if ($.flag_random_ray5 == 2) {
+                        if ($.ambulance_rc5.locate2D(-13.2, -804.7, 15.0, 15.0, false /* false */)) {
+                            $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
+                            $.flag_random_ray5 = 3;
+                        }
+                    }
+                    if ($.flag_random_ray5 == 3) {
+                        if ($.ambulance_rc5.locate2D(405.2, -1137.7, 15.0, 15.0, false /* false */)) {
+                            $.flag_redalert = 1;
+                            $.ambulance_rc5.gotoCoordinates(362.0, -1138.0, 23.0); //----amb goto final destination
+                            $.ambulance_rc5.setCruiseSpeed(15.0);
+                            $.ambulance_rc5.setDrivingStyle(0);
+                        }
+                    }
+                    if ($.ambulance_rc5.isOnScreen()) {
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
+                    } else {
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+                    }
+                } else {
+                    Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
+                    $.ambulance_rc5.markAsNoLongerNeeded();
+                    $.cop_driver.markAsNoLongerNeeded();
+                    $.blip_ambulance_rc5.remove();
+                    ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+                    $.flag_random_ray5 = 0;
+                    $.flag_police_trigger = 0;
+                    continue amb_generator; // SCM GOTO → amb_generator
                 }
-            }
-            if ($.flag_random_ray5 == 1) {
-                if ($.ambulance_rc5.locate2D(402.88, -404.88, 15.0, 15.0, false /* false */)) {
-                    $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
-                    $.flag_random_ray5 = 3;
+                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */)) {
+                    if (!Car.IsDead($.ambulance_rc5)) {
+                        Text.PrintNow('RM5_2', 3000, 1);
+                        $.ambulance_rc5.setCruiseSpeed(28.0);
+                        $.ambulance_rc5.setDrivingStyle(3);
+                        $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0);
+                        Audio.PlayMissionAudio();
+                        $.ambulance_rc5.switchSiren(true /* ON */);
+                        $.player.alterWantedLevelNoDrop(2);
+                        $.flag_redalert = 1;
+                        $.flag_police_trigger = 1;
+                    }
                 }
+
+                await swat_team(); // SCM GOSUB swat_team
             }
-            if ($.flag_random_ray5 == 2) {
-                if ($.ambulance_rc5.locate2D(-13.2, -804.7, 15.0, 15.0, false /* false */)) {
-                    $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
-                    $.flag_random_ray5 = 3;
+
+            //------either; player has 'been spotted'-police despatched
+            //------OR; ambulance has reached penultimate way point
+
+            while ($.flag_redalert == 1) {
+                await asyncWait(0);
+                if (!Car.IsDead($.ambulance_rc5)) {
+                    ambulance_health.value = $.ambulance_rc5.getHealth();
+                    ambulance_health.value = ambulance_health.value * -1;
+                    ambulance_health.value = ambulance_health.value + 1000;
+                    //ambulance_health = ambulance_health / 10
+                    //ambulance_health = ambulance_health * 5
+
+                    if (!$.ambulance_rc5.isHealthGreater(900)) {
+                        //OR IS_CAR_STUCK_ON_ROOF ambulance_rc5
+
+                        break before_injured_cop_bailout; // SCM GOTO → injured_cop_bailout
+                    }
+                    if ($.ambulance_rc5.locate2D(405.2, -1137.7, 15.0, 15.0, false /* false */)) {
+                        $.ambulance_rc5.setCruiseSpeed(10.0);
+                        $.flag_redalert = 2;
+                        $.ambulance_rc5.gotoCoordinates(362.0, -1138.0, 23.0); //----amb goto final destination
+                        $.ambulance_rc5.setCruiseSpeed(15.0);
+                        $.ambulance_rc5.setDrivingStyle(0);
+                    }
+                    if ($.ambulance_rc5.isOnScreen()) {
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
+                    } else {
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+                    }
+                } else {
+                    Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
+                    $.ambulance_rc5.markAsNoLongerNeeded();
+                    $.cop_driver.markAsNoLongerNeeded();
+                    $.blip_ambulance_rc5.remove();
+                    ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+                    $.flag_random_ray5 = 0;
+                    $.flag_police_trigger = 0;
+
+                    continue amb_generator; // SCM GOTO → amb_generator
                 }
-            }
-            if ($.flag_random_ray5 == 3) {
-                if ($.ambulance_rc5.locate2D(405.2, -1137.7, 15.0, 15.0, false /* false */)) {
-                    $.flag_redalert = 1;
-                    $.ambulance_rc5.gotoCoordinates(362.0, -1138.0, 23.0); //----amb goto final destination
-                    $.ambulance_rc5.setCruiseSpeed(15.0);
-                    $.ambulance_rc5.setDrivingStyle(0);
+                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */) && $.flag_police_trigger == 0) {
+                    if (!Car.IsDead($.ambulance_rc5)) {
+                        Text.PrintNow('RM5_2', 3000, 1);
+                        $.ambulance_rc5.setCruiseSpeed(28.0);
+                        $.ambulance_rc5.setDrivingStyle(3);
+                        $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0);
+                        Audio.PlayMissionAudio();
+                        $.ambulance_rc5.switchSiren(true /* ON */);
+                        $.player.alterWantedLevelNoDrop(2);
+                        $.flag_redalert = 1;
+                        $.flag_police_trigger = 1;
+                    }
                 }
+
+                await swat_team(); // SCM GOSUB swat_team
             }
-            if ($.ambulance_rc5.isOnScreen()) {
-                $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
-            } else {
-                $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+
+            //----ambulance has reached penultimate waypoint
+
+            while ($.flag_redalert == 2) {
+                await asyncWait(0);
+                if (!Car.IsDead($.ambulance_rc5)) {
+                    ambulance_health.value = $.ambulance_rc5.getHealth();
+                    ambulance_health.value = ambulance_health.value * -1;
+                    ambulance_health.value = ambulance_health.value + 1000;
+                    //ambulance_health = ambulance_health / 10
+                    //ambulance_health = ambulance_health * 5
+
+                    if ($.ambulance_rc5.locate2D(362.0, -1138.0, 5.0, 5.0, true /* true */)) {
+                        $.flag_redalert = 3;
+                        $.ambulance_rc5.setCruiseSpeed(0.0);
+                        $.ambulance_rc5.setDrivingStyle(0);
+                        $.ambulance_rc5.switchSiren(false /* OFF */);
+                        $.ambulance_rc5.setIdle(); //---ambulance has reached destination without bailout -mission failed
+                    }
+                    if (!$.ambulance_rc5.isHealthGreater(900)) {
+                        //OR IS_CAR_STUCK_ON_ROOF ambulance_rc5
+
+                        break before_injured_cop_bailout; // SCM GOTO → injured_cop_bailout
+                    }
+                    if ($.ambulance_rc5.isOnScreen()) {
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
+                    } else {
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+                    }
+                } else {
+                    Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
+                    $.ambulance_rc5.markAsNoLongerNeeded();
+                    $.cop_driver.markAsNoLongerNeeded();
+                    $.blip_ambulance_rc5.remove();
+                    ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+                    $.flag_random_ray5 = 0;
+                    $.flag_redalert = 0;
+
+                    continue amb_generator; // SCM GOTO → amb_generator
+                }
+                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */) && $.flag_police_trigger == 0) {
+                    Text.PrintNow('RM5_2', 3000, 1);
+                    $.player.alterWantedLevelNoDrop(2);
+                    $.flag_police_trigger = 1;
+                }
+
+                await swat_team(); // SCM GOSUB swat_team
             }
-        } else {
-            Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
-            $.ambulance_rc5.markAsNoLongerNeeded();
-            $.cop_driver.markAsNoLongerNeeded();
-            $.blip_ambulance_rc5.remove();
-            Hud.ClearCounter($.ambulance_health);
-            $.flag_random_ray5 = 0;
-            $.flag_police_trigger = 0;
-            // SCM GOTO → amb_generator (not lowered; manual jump required)
-            throw new Error('unresolved GOTO amb_generator'); // fallback: would break linear control flow
+
+            // SCM GOTO → mission_ray5_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_ray5_failed'); // fallback: would break linear control flow
         }
-        if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */)) {
-            if (!Car.IsDead($.ambulance_rc5)) {
-                Text.PrintNow('RM5_2', 3000, 1);
-                $.ambulance_rc5.setCruiseSpeed(28.0);
-                $.ambulance_rc5.setDrivingStyle(3);
-                $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0);
+    }
+
+    injured_cop_bailout: {
+        $.blip_ambulance_rc5.remove();
+        const _res117 = $.ambulance_rc5.getCoordinates();
+        $.amb_rc5_x = _res117.x;
+        $.amb_rc5_y = _res117.y;
+        $.amb_rc5_z = _res117.z;
+        $.amb_rc5_z = $.amb_rc5_z + 2.5;
+        $.injured_cop_rc5 = ScriptObject.Create(1395 /* bodycast */, $.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z);
+        $.injured_cop_rc5.setCollision(true /* TRUE */);
+        $.injured_cop_rc5.setDynamic(true /* true */);
+        $.injured_cop_rc5.makeTargetable();
+        $.injured_cop_rc5.addToVelocity(0.0, 0.0, 5.0);
+        $.blip_injured_cop_rc5 = Blip.AddForObject($.injured_cop_rc5);
+        $.player.alterWantedLevelNoDrop(3);
+        ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+        /*
+        WHILE flag_bodycast_clear = 0
+        WAIT 0
+        GET_OBJECT_COORDINATES injured_cop_rc5 ic_x ic_y ic_z
+        IF NOT IS_CAR_DEAD ambulance_rc5
+        IF NOT LOCATE_CAR_3D  ambulance_rc5 ic_x ic_y ic_z 5.0 5.0 5.0 false
+        SET_OBJECT_COLLISION injured_cop_rc5 TRUE
+        flag_bodycast_clear = 1
+        ENDIF
+        ELSE
+        SET_OBJECT_COLLISION injured_cop_rc5 TRUE
+        flag_bodycast_clear = 1
+        ENDIF
+        ENDWHILE
+        */
+
+        bodycast_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.bodycast_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+        Text.PrintNow('RM5_6', 3000, 1);
+
+        while (!$.injured_cop_rc5.hasBeenDamaged()) {
+            await asyncWait(0);
+            const _res118 = $.injured_cop_rc5.getCoordinates();
+            $.ic_x = _res118.x;
+            $.ic_y = _res118.y;
+            $.ic_z = _res118.z;
+            Audio.SetMissionAudioPosition($.ic_x, $.ic_y, $.ic_z);
+            bodycast_health.value = ScriptObject.GetBodyCastHealth();
+            bodycast_health.value = bodycast_health.value * -1;
+            bodycast_health.value = bodycast_health.value + 1000;
+            bodycast_health.value = bodycast_health.value / 10;
+
+            if ($.flag_audio == 0) {
                 Audio.PlayMissionAudio();
-                $.ambulance_rc5.switchSiren(true /* ON */);
-                $.player.alterWantedLevelNoDrop(2);
-                $.flag_redalert = 1;
-                $.flag_police_trigger = 1;
             }
+            if (Audio.HasMissionAudioFinished()) {
+                $.flag_audio = 1;
+            }
+
+            //zed_value =# ic_z
+            //PRINT_WITH_NUMBER_NOW ( Z ) zed_value 1000 1
+
+            if ($.player.isCurrentWeapon(2 /* WEAPONTYPE_PISTOL */) && !$.player.isInAnyCar()) {
+                Text.Print('RM5_4', 500, 1); //bullets won't get through that armoured plaster!!
+            }
+            if ($.player.isCurrentWeapon(3 /* WEAPONTYPE_UZI */) && !$.player.isInAnyCar()) {
+                Text.Print('RM5_4', 500, 1);
+            }
+            if ($.player.isCurrentWeapon(4 /* WEAPONTYPE_SHOTGUN */) && !$.player.isInAnyCar()) {
+                Text.Print('RM5_4', 500, 1);
+            }
+            if ($.player.isCurrentWeapon(6 /* WEAPONTYPE_M16 */) && !$.player.isInAnyCar()) {
+                Text.Print('RM5_4', 500, 1);
+            }
+            if ($.player.isCurrentWeapon(5 /* WEAPONTYPE_CHAINGUN */) && !$.player.isInAnyCar()) {
+                Text.Print('RM5_4', 500, 1);
+            }
+            if ($.player.isCurrentWeapon(9 /* WEAPONTYPE_FLAMETHROWER */) && !$.player.isInAnyCar()) {
+                Text.Print('RM5_5', 500, 1); //That Plaster's flame retardent!!
+            }
+            if ($.player.isCurrentWeapon(10 /* WEAPONTYPE_MOLOTOV */) && !$.player.isInAnyCar()) {
+                Text.Print('RM5_5', 500, 1);
+            }
+            if ($.ic_z < 1.0) {
+                Text.PrintNow('RM5_8', 3000, 1); //witness has drowned!!
+
+                break injured_cop_bailout; // SCM GOTO → quentin
+            }
+
+            await swat_team(); // SCM GOSUB swat_team
         }
-        // SCM GOSUB swat_team
-        await swat_team();
-        // fallback if label was not emitted as async function: no-op continues linearly
     }
 
-    //------either; player has 'been spotted'-police despatched
-    //------OR; ambulance has reached penultimate way point
-
-    while ($.flag_redalert == 1) {
-        await asyncWait(0);
-        if (!Car.IsDead($.ambulance_rc5)) {
-            $.ambulance_health = $.ambulance_rc5.getHealth();
-            $.ambulance_health = $.ambulance_health * -1;
-            $.ambulance_health = $.ambulance_health + 1000;
-            //ambulance_health = ambulance_health / 10
-            //ambulance_health = ambulance_health * 5
-
-            if (!$.ambulance_rc5.isHealthGreater(900)) {
-                //OR IS_CAR_STUCK_ON_ROOF ambulance_rc5
-                // SCM GOTO → injured_cop_bailout (not lowered; manual jump required)
-                throw new Error('unresolved GOTO injured_cop_bailout'); // fallback: would break linear control flow
-            }
-            if ($.ambulance_rc5.locate2D(405.2, -1137.7, 15.0, 15.0, false /* false */)) {
-                $.ambulance_rc5.setCruiseSpeed(10.0);
-                $.flag_redalert = 2;
-                $.ambulance_rc5.gotoCoordinates(362.0, -1138.0, 23.0); //----amb goto final destination
-                $.ambulance_rc5.setCruiseSpeed(15.0);
-                $.ambulance_rc5.setDrivingStyle(0);
-            }
-            if ($.ambulance_rc5.isOnScreen()) {
-                $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
-            } else {
-                $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
-            }
-        } else {
-            Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
-            $.ambulance_rc5.markAsNoLongerNeeded();
-            $.cop_driver.markAsNoLongerNeeded();
-            $.blip_ambulance_rc5.remove();
-            Hud.ClearCounter($.ambulance_health);
-            $.flag_random_ray5 = 0;
-            $.flag_police_trigger = 0;
-            // SCM GOTO → amb_generator (not lowered; manual jump required)
-            throw new Error('unresolved GOTO amb_generator'); // fallback: would break linear control flow
-        }
-        if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */) && $.flag_police_trigger == 0) {
-            if (!Car.IsDead($.ambulance_rc5)) {
-                Text.PrintNow('RM5_2', 3000, 1);
-                $.ambulance_rc5.setCruiseSpeed(28.0);
-                $.ambulance_rc5.setDrivingStyle(3);
-                $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0);
-                Audio.PlayMissionAudio();
-                $.ambulance_rc5.switchSiren(true /* ON */);
-                $.player.alterWantedLevelNoDrop(2);
-                $.flag_redalert = 1;
-                $.flag_police_trigger = 1;
-            }
-        }
-        // SCM GOSUB swat_team
-        await swat_team();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-
-    //----ambulance has reached penultimate waypoint
-
-    while ($.flag_redalert == 2) {
-        await asyncWait(0);
-        if (!Car.IsDead($.ambulance_rc5)) {
-            $.ambulance_health = $.ambulance_rc5.getHealth();
-            $.ambulance_health = $.ambulance_health * -1;
-            $.ambulance_health = $.ambulance_health + 1000;
-            //ambulance_health = ambulance_health / 10
-            //ambulance_health = ambulance_health * 5
-
-            if ($.ambulance_rc5.locate2D(362.0, -1138.0, 5.0, 5.0, true /* true */)) {
-                $.flag_redalert = 3;
-                $.ambulance_rc5.setCruiseSpeed(0.0);
-                $.ambulance_rc5.setDrivingStyle(0);
-                $.ambulance_rc5.switchSiren(false /* OFF */);
-                $.ambulance_rc5.setIdle(); //---ambulance has reached destination without bailout -mission failed
-            }
-            if (!$.ambulance_rc5.isHealthGreater(900)) {
-                //OR IS_CAR_STUCK_ON_ROOF ambulance_rc5
-                // SCM GOTO → injured_cop_bailout (not lowered; manual jump required)
-                throw new Error('unresolved GOTO injured_cop_bailout'); // fallback: would break linear control flow
-            }
-            if ($.ambulance_rc5.isOnScreen()) {
-                $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
-            } else {
-                $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
-            }
-        } else {
-            Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
-            $.ambulance_rc5.markAsNoLongerNeeded();
-            $.cop_driver.markAsNoLongerNeeded();
-            $.blip_ambulance_rc5.remove();
-            Hud.ClearCounter($.ambulance_health);
-            $.flag_random_ray5 = 0;
-            $.flag_redalert = 0;
-            // SCM GOTO → amb_generator (not lowered; manual jump required)
-            throw new Error('unresolved GOTO amb_generator'); // fallback: would break linear control flow
-        }
-        if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */) && $.flag_police_trigger == 0) {
-            Text.PrintNow('RM5_2', 3000, 1);
-            $.player.alterWantedLevelNoDrop(2);
-            $.flag_police_trigger = 1;
-        }
-        // SCM GOSUB swat_team
-        await swat_team();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-
-    // SCM GOTO → mission_ray5_failed (not lowered; manual jump required)
-    throw new Error('unresolved GOTO mission_ray5_failed'); // fallback: would break linear control flow
-}
-
-async function injured_cop_bailout() {
-    $.blip_ambulance_rc5.remove();
-    const _res117 = $.ambulance_rc5.getCoordinates();
-    $.amb_rc5_x = _res117.x;
-    $.amb_rc5_y = _res117.y;
-    $.amb_rc5_z = _res117.z;
-    $.amb_rc5_z = $.amb_rc5_z + 2.5;
-    $.injured_cop_rc5 = ScriptObject.Create(1395 /* bodycast */, $.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z);
-    $.injured_cop_rc5.setCollision(true /* TRUE */);
-    $.injured_cop_rc5.setDynamic(true /* true */);
-    $.injured_cop_rc5.makeTargetable();
-    $.injured_cop_rc5.addToVelocity(0.0, 0.0, 5.0);
-    $.blip_injured_cop_rc5 = Blip.AddForObject($.injured_cop_rc5);
-    $.player.alterWantedLevelNoDrop(3);
-    Hud.ClearCounter($.ambulance_health);
-
-    /*
-  WHILE flag_bodycast_clear = 0
-  WAIT 0
-  GET_OBJECT_COORDINATES injured_cop_rc5 ic_x ic_y ic_z
-  IF NOT IS_CAR_DEAD ambulance_rc5
-  IF NOT LOCATE_CAR_3D  ambulance_rc5 ic_x ic_y ic_z 5.0 5.0 5.0 false
-  SET_OBJECT_COLLISION injured_cop_rc5 TRUE
-  flag_bodycast_clear = 1
-  ENDIF
-  ELSE
-  SET_OBJECT_COLLISION injured_cop_rc5 TRUE
-  flag_bodycast_clear = 1
-  ENDIF
-  ENDWHILE
-  */
-
-    Hud.DisplayCounterWithString($.bodycast_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
-
-    Text.PrintNow('RM5_6', 3000, 1);
-
-    while (!$.injured_cop_rc5.hasBeenDamaged()) {
-        await asyncWait(0);
-        const _res118 = $.injured_cop_rc5.getCoordinates();
-        $.ic_x = _res118.x;
-        $.ic_y = _res118.y;
-        $.ic_z = _res118.z;
-        Audio.SetMissionAudioPosition($.ic_x, $.ic_y, $.ic_z);
-        $.bodycast_health = ScriptObject.GetBodyCastHealth();
-        $.bodycast_health = $.bodycast_health * -1;
-        $.bodycast_health = $.bodycast_health + 1000;
-        $.bodycast_health = $.bodycast_health / 10;
-
-        if ($.flag_audio == 0) {
-            Audio.PlayMissionAudio();
-        }
-        if (Audio.HasMissionAudioFinished()) {
-            $.flag_audio = 1;
-        }
-
-        //zed_value =# ic_z
-        //PRINT_WITH_NUMBER_NOW ( Z ) zed_value 1000 1
-
-        if ($.player.isCurrentWeapon(2 /* WEAPONTYPE_PISTOL */) && !$.player.isInAnyCar()) {
-            Text.Print('RM5_4', 500, 1); //bullets won't get through that armoured plaster!!
-        }
-        if ($.player.isCurrentWeapon(3 /* WEAPONTYPE_UZI */) && !$.player.isInAnyCar()) {
-            Text.Print('RM5_4', 500, 1);
-        }
-        if ($.player.isCurrentWeapon(4 /* WEAPONTYPE_SHOTGUN */) && !$.player.isInAnyCar()) {
-            Text.Print('RM5_4', 500, 1);
-        }
-        if ($.player.isCurrentWeapon(6 /* WEAPONTYPE_M16 */) && !$.player.isInAnyCar()) {
-            Text.Print('RM5_4', 500, 1);
-        }
-        if ($.player.isCurrentWeapon(5 /* WEAPONTYPE_CHAINGUN */) && !$.player.isInAnyCar()) {
-            Text.Print('RM5_4', 500, 1);
-        }
-        if ($.player.isCurrentWeapon(9 /* WEAPONTYPE_FLAMETHROWER */) && !$.player.isInAnyCar()) {
-            Text.Print('RM5_5', 500, 1); //That Plaster's flame retardent!!
-        }
-        if ($.player.isCurrentWeapon(10 /* WEAPONTYPE_MOLOTOV */) && !$.player.isInAnyCar()) {
-            Text.Print('RM5_5', 500, 1);
-        }
-        if ($.ic_z < 1.0) {
-            Text.PrintNow('RM5_8', 3000, 1); //witness has drowned!!
-            // SCM GOTO → quentin (not lowered; manual jump required)
-            throw new Error('unresolved GOTO quentin'); // fallback: would break linear control flow
-        }
-        // SCM GOSUB swat_team
-        await swat_team();
-        // fallback if label was not emitted as async function: no-op continues linearly
+    quentin: {
+        $.blip_injured_cop_rc5.remove();
+        return; // SCM GOTO → mission_ray5_passed
     }
 }
 
-async function quentin() {
-    $.blip_injured_cop_rc5.remove();
-
-    // SCM GOTO → mission_ray5_passed (not lowered; manual jump required)
-    return;
-
-    // Mission Ray5 failed
-}
-
+// Mission Ray5 failed
 async function onFailed() {
     Text.PrintNow('RM5_7', 3000, 1); //Witness has been delivered!!
-
     Text.PrintBig('M_FAIL', 2000, 1);
-
-    return;
-
-    // mission Ray5 passed
 }
 
+// mission Ray5 passed
 async function onPassed() {
     $.flag_ray_mission5_passed = 1;
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1); //"Mission Passed!"
@@ -602,16 +624,12 @@ async function onPassed() {
     } else {
         // START_NEW_SCRIPT ray_mission6_loop
     }
-
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
-    Hud.ClearCounter($.ambulance_health);
-    Hud.ClearCounter($.bodycast_health);
-
+    ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+    bodycast_health.clear(); // xxx: Hud.ClearCounter($.bodycast_health);
     ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
 
@@ -629,11 +647,9 @@ async function cleanup() {
     $.blip_ambulance_rc5.remove();
 
     Mission.Finish();
-    return;
-
-    //------GOSUBS------------------------------
 }
 
+//------GOSUBS------------------------------
 async function swat_team() {
     if ($.player.isInArea3D(366.0, -1146.0, 21.0, 396.0, -1134.0, 28.0, false /* false */)) {
         if (!Char.IsDead($.swat1_rc5)) {
@@ -657,44 +673,6 @@ async function swat_team() {
             $.swat4_rc5.setObjKillPlayerAnyMeans($.player);
         }
     }
-
-    return;
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************Ray mission 5********************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_ray5
-// fallback if label was not emitted as async function: no-op continues linearly
-// SCM GOSUB mission_ray5_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-// SCM GOSUB mission_cleanup_ray5
-// fallback if label was not emitted as async function: no-op continues linearly
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT ambulance_rc5 ambulance_health flag_redalert
-
-// VAR_INT injured_cop_rc5 cop_driver bodycast_health
-// VAR_INT swat1_rc5 swat2_rc5 swat3_rc5 swat4_rc5
-// VAR_INT swatvan1 swatvan2
-// VAR_INT blip_ambulance_rc5 flag_bodycast_clear flag_police_trigger
-
-// VAR_INT blip_injured_cop_rc5 zed_value random_ray5 flag_random_ray5
-
-// VAR_FLOAT amb_rc5_x amb_rc5_y amb_rc5_z
-// VAR_FLOAT ic_x ic_y ic_z
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

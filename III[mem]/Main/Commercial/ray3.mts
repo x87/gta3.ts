@@ -2,10 +2,47 @@
 import { $ } from '../../utils';
 import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 
+// *****************************************************************************************
+// ************************************ Ray mission 3 **************************************
+// ************************************ Evidence Dash **************************************
+// *****************************************************************************************
+// *** The Internal Affairs are aware of Ray's activities, but are unable to get any 	 ***
+// *** evidence until now. They have just raided one of Ray's old haunts and are leaving ***
+// *** with the evidence. The player must chase them down and ram them with his car, when***
+// *** their vehicle is rammed one of the packages will roll off the back. The player 	 ***
+// *** must grab that first and then go get the next package off them. There will be 8 to***
+// *** retrieve. Once the player has the stash he must get it back to his hideout.		 ***
+// *****************************************************************************************
+
 let amount_of_evidence_player_has: DisplayedCounter;
 
-
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_ray3
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_ray3_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_ray3
+
+    // Variables for mission
+
+    // VAR_INT rays_evidence_blip timera_reset_flag evidence_1 evidence_2 evidence_3 evidence_4 evidence_5 evidence_6
+    // VAR_INT ia_car_rm3 ia_car_driver_1 wanted_level_change stored_wanted_level
+    // VAR_INT ia_have_evidence_flag players_car prosecution_car_blip timer_for_speed reset_for_timer
+    // VAR_INT temporary_health_var ia_car_previous_health ia_car_current_health
+    // VAR_INT red green red_increase_flag red_decrease_flag green_increase_flag green_decrease_flag
+    // VAR_INT amount_of_evidence_player_has amount_damage_ia_drop_evidence drop_one_flag drop_evidence get_coords_flag
+    // VAR_INT timerc_reset_flag_r3 timerc_current_r3 timerc_started_r3 timerc_r3
+    // VAR_INT timerd_reset_flag_r3 timerd_current_r3 timerd_started_r3 timerd_r3
+
+    // VAR_FLOAT ia_start_x ia_start_y ia_start_z ia_car_x ia_car_y ia_car_z warp_heading
+    // VAR_FLOAT object_current_coords_x object_current_coords_y object_current_coords_z car_stuck_x car_stuck_y car_stuck_z
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
     $.flag_player_on_ray_mission = 1;
     $.rays_cutscene_flag = 1;
@@ -55,267 +92,257 @@ async function body() {
     $.object_current_coords_z = 0.0;
 
     Streaming.LoadSpecialCharacter(1, 'ray');
-    {
-        // ****************************************START OF CUTSCENE********************************
 
-        /*
-  SET_FADING_COLOUR 0 0 0
+    // ****************************************START OF CUTSCENE********************************
 
-  DO_FADE 1500 FADE_OUT
+    /*
+    SET_FADING_COLOUR 0 0 0
 
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_ray3_failed
-  ENDIF
+    DO_FADE 1500 FADE_OUT
 
-  SWITCH_STREAMING OFF
+    IF CAN_PLAYER_START_MISSION player
+    MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+    ELSE
+    GOTO mission_ray3_failed
+    ENDIF
 
-  PRINT_BIG RM3 15000 2 //"Evidence Dash"
-  */
+    SWITCH_STREAMING OFF
 
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'RAYH');
-        Streaming.RequestModel(2104 /* toilet */);
+    PRINT_BIG RM3 15000 2 //"Evidence Dash"
+    */
 
-        /*
-  WHILE GET_FADING_STATUS
-  WAIT 0
-  ENDWHILE
-  */
+    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'RAYH');
+    Streaming.RequestModel(2104 /* toilet */);
 
-        Streaming.LoadAllModelsNow();
+    /*
+    WHILE GET_FADING_STATUS
+    WAIT 0
+    ENDWHILE
+    */
 
-        while (
-            !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(2104 /* toilet */)
-        ) {
-            await asyncWait(0);
-        }
+    Streaming.LoadAllModelsNow();
 
-        World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
-
-        $.player.setCoordinates(39.0, -723.5, 22.0);
-
-        $.player.setHeading(90.0);
-
-        Cutscene.Load('r3_ed');
-
-        Cutscene.SetOffset(39.424, -726.677, 21.692);
-
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-
-        $.cs_player.setAnim('player');
-
-        $.cs_ray = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
-
-        $.cs_ray.setAnim('ray');
-
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
-        $.cs_playerhead.setAnim('player');
-
-        $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
-        $.cs_rayhead.setAnim('ray');
-
-        //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
-        //
-        //SET_PLAYER_HEADING player 270.0
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        Camera.SetNearClip(0.2);
-
-        Cutscene.Start();
-
-        Streaming.Switch(false /* OFF */);
-        // Displays cutscene text
-
-        $.cs_time = Cutscene.GetTime();
-
-        while ($.cs_time < 10381) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('RM3_A', 10000, 1); //"I know a real important man in town, a soft touch
-
-        while ($.cs_time < 13529) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('RM3_H', 10000, 1); //"with shall we say, exotic tastes and the money to indulge them.
-
-        while ($.cs_time < 17950) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('RM3_B', 10000, 1); //"He's involved in a legal matter and the prosecution has some rather embarrassing photos of him..."
-
-        while ($.cs_time < 23502) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('RM3_C', 10000, 1); //"...at a morgue party or something."
-
-        while ($.cs_time < 26180) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('RM3_D', 10000, 1); //"The evidence is being driven across town."
-
-        while ($.cs_time < 29179) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('RM3_E', 10000, 1); //"You are going to have to ram the car and collect each bit of evidence as it falls out."
-
-        while ($.cs_time < 34865) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('RM3_F', 10000, 1); //"When you've got it all, leave it in the car and torch it."
-
-        while ($.cs_time < 39290) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('RM3_G', 10000, 1); //"We're both gonna do well out of this."
-
-        while ($.cs_time < 41666) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
-
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
-
-        //DO_FADE 1000 FADE_IN
-
-        Text.ClearPrints();
-
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
-
-        Cutscene.Clear();
-
-        Camera.DoFade(0, 0 /* FADE_OUT */);
-        Camera.SetNearClip(0.9);
-
-        $.player.setHeading(90.0);
-        Camera.SetBehindPlayer();
-
-        Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-
-        Streaming.RequestModel(1367 /* files */);
-        Streaming.RequestModel(112 /* CAR_BOBCAT */);
-        Streaming.RequestModel(61 /* PED_B_MAN3 */);
-
-        Streaming.LoadAllModelsNow();
-
-        while (!Streaming.HasModelLoaded(112 /* CAR_BOBCAT */) || !Streaming.HasModelLoaded(61 /* PED_B_MAN3 */) || !Streaming.HasModelLoaded(1367 /* files */)) {
-            await asyncWait(0);
-        }
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        Streaming.Switch(true /* ON */);
-
-        $.rays_cutscene_flag = 0;
-
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
-
-        // ******************************************END OF CUTSCENE********************************
-
-        $.ia_car_rm3 = Car.Create(112 /* CAR_BOBCAT */, $.ia_start_x, $.ia_start_y, $.ia_start_z);
-        $.ia_car_rm3.setAvoidLevelTransitions(true /* TRUE */);
-        $.ia_car_rm3.setWatertight(true /* TRUE */);
-        $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, 4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */);
-        //SET_CHAR_AVOID_LEVEL_TRANSITIONS ia_car_driver_1 TRUE
-
-        $.ia_car_driver_1.setCantBeDraggedOut(true /* TRUE */);
-        $.ia_car_rm3.setOnlyDamagedByPlayer(true /* TRUE */);
-        $.ia_car_rm3.setUpsidedownNotDamaged(true /* TRUE */);
-        $.ia_car_rm3.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */);
-        $.ia_car_rm3.setCruiseSpeed(20.0);
-        $.ia_car_rm3.setDrivingStyle(2);
-        $.ia_car_rm3.wanderRandomly();
-        $.prosecution_car_blip = Blip.AddForCar($.ia_car_rm3);
-        $.ia_car_rm3.lockDoors(2 /* CARLOCK_LOCKED */);
-
-        if (!ONMISSION) {
-            $.rays_evidence_blip = Blip.AddForChar($.ia_car_driver_1);
-        }
-
-        const _res71 = $.ia_car_rm3.getCoordinates();
-        $.car_stuck_x = _res71.x;
-        $.car_stuck_y = _res71.y;
-        $.car_stuck_z = _res71.z;
-        const _res72 = $.ia_car_rm3.getCoordinates();
-        $.ia_car_x = _res72.x;
-        $.ia_car_y = _res72.y;
-        $.ia_car_z = _res72.z;
-        $.ia_car_z += 3.0;
-        $.evidence_1 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
-        $.ia_car_z += 1.0;
-        $.evidence_2 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
-        $.ia_car_z += 1.0;
-        $.evidence_3 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
-        $.ia_car_z += 1.0;
-        $.evidence_4 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
-        $.ia_car_z += 1.0;
-        $.evidence_5 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
-        $.ia_car_z += 1.0;
-        $.evidence_6 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
-
-        $.evidence_1.setCollision(false /* FALSE */);
-        $.evidence_2.setCollision(false /* FALSE */);
-        $.evidence_3.setCollision(false /* FALSE */);
-        $.evidence_4.setCollision(false /* FALSE */);
-        $.evidence_5.setCollision(false /* FALSE */);
-        $.evidence_6.setCollision(false /* FALSE */);
-
-        $.evidence_1.placeRelativeToCar($.ia_car_rm3, 0.3, -1.7, -0.1);
-        $.evidence_2.placeRelativeToCar($.ia_car_rm3, 0.3, -1.2, -0.1);
-        $.evidence_3.placeRelativeToCar($.ia_car_rm3, -0.3, -1.2, -0.1);
-        $.evidence_4.placeRelativeToCar($.ia_car_rm3, 0.3, -0.7, -0.1);
-        $.evidence_5.placeRelativeToCar($.ia_car_rm3, -0.3, -0.7, -0.1);
-        $.evidence_6.placeRelativeToCar($.ia_car_rm3, -0.3, -1.7, -0.1);
-
-        //SWITCH_ROADS_OFF -90.0 -791.0 24.0 -56.0 -587.0 36.0
-        //SWITCH_ROADS_OFF 320.0 -948.0 30.0 350.0 -913.0 40.0
-        //SWITCH_ROADS_OFF 251.0 -46.0 -21.0 320.0 68.0 27.0
-
-        $.ia_have_evidence_flag = 1;
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
+        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(2104 /* toilet */)
+    ) {
+        await asyncWait(0);
     }
 
+    World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
 
+    $.player.setCoordinates(39.0, -723.5, 22.0);
 
+    $.player.setHeading(90.0);
 
+    Cutscene.Load('r3_ed');
 
+    Cutscene.SetOffset(39.424, -726.677, 21.692);
 
-}
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
 
-async function evidence_loop() {
-    // SCM GOTO → evidence_loop lowered to endless loop
-    while (true) {
+    $.cs_player.setAnim('player');
+
+    $.cs_ray = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+
+    $.cs_ray.setAnim('ray');
+
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead.setAnim('player');
+
+    $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
+    $.cs_rayhead.setAnim('ray');
+
+    //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
+    //
+    //SET_PLAYER_HEADING player 270.0
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    Camera.SetNearClip(0.2);
+
+    Cutscene.Start();
+
+    Streaming.Switch(false /* OFF */);
+    // Displays cutscene text
+
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 10381) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('RM3_A', 10000, 1); //"I know a real important man in town, a soft touch
+
+    while ($.cs_time < 13529) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('RM3_H', 10000, 1); //"with shall we say, exotic tastes and the money to indulge them.
+
+    while ($.cs_time < 17950) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('RM3_B', 10000, 1); //"He's involved in a legal matter and the prosecution has some rather embarrassing photos of him..."
+
+    while ($.cs_time < 23502) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('RM3_C', 10000, 1); //"...at a morgue party or something."
+
+    while ($.cs_time < 26180) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('RM3_D', 10000, 1); //"The evidence is being driven across town."
+
+    while ($.cs_time < 29179) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('RM3_E', 10000, 1); //"You are going to have to ram the car and collect each bit of evidence as it falls out."
+
+    while ($.cs_time < 34865) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('RM3_F', 10000, 1); //"When you've got it all, leave it in the car and torch it."
+
+    while ($.cs_time < 39290) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('RM3_G', 10000, 1); //"We're both gonna do well out of this."
+
+    while ($.cs_time < 41666) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
+
+    //DO_FADE 1000 FADE_IN
+
+    Text.ClearPrints();
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    Cutscene.Clear();
+
+    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.SetNearClip(0.9);
+
+    $.player.setHeading(90.0);
+    Camera.SetBehindPlayer();
+
+    Streaming.UnloadSpecialCharacter(1);
+    Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */);
+    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
+    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
+
+    Streaming.RequestModel(1367 /* files */);
+    Streaming.RequestModel(112 /* CAR_BOBCAT */);
+    Streaming.RequestModel(61 /* PED_B_MAN3 */);
+
+    Streaming.LoadAllModelsNow();
+
+    while (!Streaming.HasModelLoaded(112 /* CAR_BOBCAT */) || !Streaming.HasModelLoaded(61 /* PED_B_MAN3 */) || !Streaming.HasModelLoaded(1367 /* files */)) {
+        await asyncWait(0);
+    }
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    Streaming.Switch(true /* ON */);
+
+    $.rays_cutscene_flag = 0;
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    // ******************************************END OF CUTSCENE********************************
+
+    $.ia_car_rm3 = Car.Create(112 /* CAR_BOBCAT */, $.ia_start_x, $.ia_start_y, $.ia_start_z);
+    $.ia_car_rm3.setAvoidLevelTransitions(true /* TRUE */);
+    $.ia_car_rm3.setWatertight(true /* TRUE */);
+    $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, 4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */);
+    //SET_CHAR_AVOID_LEVEL_TRANSITIONS ia_car_driver_1 TRUE
+
+    $.ia_car_driver_1.setCantBeDraggedOut(true /* TRUE */);
+    $.ia_car_rm3.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.ia_car_rm3.setUpsidedownNotDamaged(true /* TRUE */);
+    $.ia_car_rm3.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */);
+    $.ia_car_rm3.setCruiseSpeed(20.0);
+    $.ia_car_rm3.setDrivingStyle(2);
+    $.ia_car_rm3.wanderRandomly();
+    $.prosecution_car_blip = Blip.AddForCar($.ia_car_rm3);
+    $.ia_car_rm3.lockDoors(2 /* CARLOCK_LOCKED */);
+
+    if (!ONMISSION) {
+        $.rays_evidence_blip = Blip.AddForChar($.ia_car_driver_1);
+    }
+
+    const _res71 = $.ia_car_rm3.getCoordinates();
+    $.car_stuck_x = _res71.x;
+    $.car_stuck_y = _res71.y;
+    $.car_stuck_z = _res71.z;
+    const _res72 = $.ia_car_rm3.getCoordinates();
+    $.ia_car_x = _res72.x;
+    $.ia_car_y = _res72.y;
+    $.ia_car_z = _res72.z;
+    $.ia_car_z += 3.0;
+    $.evidence_1 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
+    $.ia_car_z += 1.0;
+    $.evidence_2 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
+    $.ia_car_z += 1.0;
+    $.evidence_3 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
+    $.ia_car_z += 1.0;
+    $.evidence_4 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
+    $.ia_car_z += 1.0;
+    $.evidence_5 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
+    $.ia_car_z += 1.0;
+    $.evidence_6 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
+
+    $.evidence_1.setCollision(false /* FALSE */);
+    $.evidence_2.setCollision(false /* FALSE */);
+    $.evidence_3.setCollision(false /* FALSE */);
+    $.evidence_4.setCollision(false /* FALSE */);
+    $.evidence_5.setCollision(false /* FALSE */);
+    $.evidence_6.setCollision(false /* FALSE */);
+
+    $.evidence_1.placeRelativeToCar($.ia_car_rm3, 0.3, -1.7, -0.1);
+    $.evidence_2.placeRelativeToCar($.ia_car_rm3, 0.3, -1.2, -0.1);
+    $.evidence_3.placeRelativeToCar($.ia_car_rm3, -0.3, -1.2, -0.1);
+    $.evidence_4.placeRelativeToCar($.ia_car_rm3, 0.3, -0.7, -0.1);
+    $.evidence_5.placeRelativeToCar($.ia_car_rm3, -0.3, -0.7, -0.1);
+    $.evidence_6.placeRelativeToCar($.ia_car_rm3, -0.3, -1.7, -0.1);
+
+    //SWITCH_ROADS_OFF -90.0 -791.0 24.0 -56.0 -587.0 36.0
+    //SWITCH_ROADS_OFF 320.0 -948.0 30.0 350.0 -913.0 40.0
+    //SWITCH_ROADS_OFF 251.0 -46.0 -21.0 320.0 68.0 27.0
+
+    $.ia_have_evidence_flag = 1;
+
+    evidence_loop: while (true) {
         await asyncWait(0);
 
         if (Car.IsDead($.ia_car_rm3)) {
@@ -342,8 +369,7 @@ async function evidence_loop() {
                     throw new Error('unresolved GOTO mission_ray3_failed'); // fallback: would break linear control flow
                 }
             } else {
-                // SCM GOTO → mission_ray3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_ray3_passed
             }
         }
 
@@ -364,9 +390,7 @@ async function evidence_loop() {
                 }
             } else {
                 if (!($.drop_evidence == 6)) {
-                    // SCM GOSUB create_another_car
-                    await create_another_car();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await create_another_car(); // SCM GOSUB create_another_car
                 }
             }
         }
@@ -400,9 +424,7 @@ async function evidence_loop() {
                     }
                 } else {
                     if (!($.drop_evidence == 6)) {
-                        // SCM GOSUB create_another_car
-                        await create_another_car();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await create_another_car(); // SCM GOSUB create_another_car
                     }
                 }
             }
@@ -436,9 +458,7 @@ async function evidence_loop() {
                         }
                     } else {
                         if (!($.drop_evidence == 6)) {
-                            // SCM GOSUB create_another_car
-                            await create_another_car();
-                            // fallback if label was not emitted as async function: no-op continues linearly
+                            await create_another_car(); // SCM GOSUB create_another_car
                         }
                     }
                 }
@@ -479,23 +499,17 @@ async function evidence_loop() {
         if ($.ia_have_evidence_flag == 0) {
             if (TIMERB > 500) {
                 if ($.player.locateAnyMeans3D($.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z, 1.5, 1.5, 1.5, false)) {
-                    // SCM GOSUB evidence_collected
-                    await evidence_collected();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await evidence_collected(); // SCM GOSUB evidence_collected
                 }
             }
             if (TIMERB > 10000) {
                 if ($.player.locateAnyMeans2D($.object_current_coords_x, $.object_current_coords_y, 1.5, 1.5, false)) {
-                    // SCM GOSUB evidence_collected
-                    await evidence_collected();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await evidence_collected(); // SCM GOSUB evidence_collected
                 }
             }
             if (TIMERB > 120000) {
                 if ($.player.locateAnyMeans2D($.object_current_coords_x, $.object_current_coords_y, 30.0, 30.0, false)) {
-                    // SCM GOSUB evidence_collected
-                    await evidence_collected();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await evidence_collected(); // SCM GOSUB evidence_collected
                 }
             }
         }
@@ -622,33 +636,33 @@ async function evidence_loop() {
         }
 
         if ($.ia_have_evidence_flag == 0) {
-            if (0 /* red */ == 0) {
+            if ($.red == 0) {
                 $.red_decrease_flag = 0;
                 $.red_increase_flag = 1;
             }
-            if (0 /* red */ == 250) {
+            if ($.red == 250) {
                 $.red_decrease_flag = 1;
                 $.red_increase_flag = 0;
             }
             if ($.red_increase_flag == 1) {
-                $.red = 0 /* red */ + 10;
+                $.red = $.red + 10;
             }
             if ($.red_decrease_flag == 1) {
-                $.red = 0 /* red */ - 10;
+                $.red = $.red - 10;
             }
-            if (1 /* green */ == 0) {
+            if ($.green == 0) {
                 $.green_decrease_flag = 0;
                 $.green_increase_flag = 1;
             }
-            if (1 /* green */ == 250) {
+            if ($.green == 250) {
                 $.green_decrease_flag = 1;
                 $.green_increase_flag = 0;
             }
             if ($.green_increase_flag == 1) {
-                $.green = 1 /* green */ + 10;
+                $.green = $.green + 10;
             }
             if ($.green_decrease_flag == 1) {
-                $.green = 1 /* green */ - 10;
+                $.green = $.green - 10;
             }
             Fx.DrawCorona(
                 $.object_current_coords_x,
@@ -657,8 +671,8 @@ async function evidence_loop() {
                 0.5,
                 6 /* CORONATYPE_CIRCLE */,
                 0 /* FLARETYPE_NONE */,
-                0 /* red */,
-                1 /* green */,
+                $.red,
+                $.green,
                 0
             );
         }
@@ -704,25 +718,18 @@ async function evidence_loop() {
                 while (!Car.IsDead($.players_car)) {
                     await asyncWait(0);
                 }
-                // SCM GOTO → mission_ray3_passed (not lowered; manual jump required)
-                return;
-            } else {
-                // SCM GOTO → mission_ray3_passed (not lowered; manual jump required)
-                return;
             }
+            return; // SCM GOTO → mission_ray3_passed
         }
-
-        // Mission Ray3 failed
     }
 }
 
+// Mission Ray3 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1);
-    return;
-
-    // mission Ray3 passed
 }
 
+// mission Ray3 passed
 async function onPassed() {
     $.flag_ray_mission3_passed = 1;
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1);
@@ -734,11 +741,9 @@ async function onPassed() {
     $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, 6 /* RADAR_SPRITE_DON */);
     // START_NEW_SCRIPT ray_mission4_loop
     // START_NEW_SCRIPT love_mission1_loop
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     //SWITCH_ROADS_ON -90.0 -791.0 24.0 -56.0 -587.0 36.0
     //SWITCH_ROADS_ON 195.0 -948.0 24.0 280.0 -913.0 40.0
@@ -754,7 +759,6 @@ async function cleanup() {
     $.flag_player_on_ray_mission = 0;
 
     Mission.Finish();
-    return;
 }
 
 async function create_another_car() {
@@ -791,8 +795,6 @@ async function create_another_car() {
             $.timerd_reset_flag_r3 = 0;
         }
     }
-
-    return;
 }
 
 async function evidence_collected() {
@@ -822,52 +824,6 @@ async function evidence_collected() {
     Text.PrintWithNumberNow('RM3_5', amount_of_evidence_player_has.value, 5000, 1); //"You have ~1~ evidence packages."
     $.ia_have_evidence_flag = 1;
     TIMERB = 0;
-
-    return;
 }
 
-
-
-// *****************************************************************************************
-// ************************************ Ray mission 3 **************************************
-// ************************************ Evidence Dash **************************************
-// *****************************************************************************************
-// *** The Internal Affairs are aware of Ray's activities, but are unable to get any 	 ***
-// *** evidence until now. They have just raided one of Ray's old haunts and are leaving ***
-// *** with the evidence. The player must chase them down and ram them with his car, when***
-// *** their vehicle is rammed one of the packages will roll off the back. The player 	 ***
-// *** must grab that first and then go get the next package off them. There will be 8 to***
-// *** retrieve. Once the player has the stash he must get it back to his hideout.		 ***
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_ray3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_ray3_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_ray3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-
-
-// Variables for mission
-
-// VAR_INT rays_evidence_blip timera_reset_flag evidence_1 evidence_2 evidence_3 evidence_4 evidence_5 evidence_6
-// VAR_INT ia_car_rm3 ia_car_driver_1 wanted_level_change stored_wanted_level
-// VAR_INT ia_have_evidence_flag players_car prosecution_car_blip timer_for_speed reset_for_timer
-// VAR_INT temporary_health_var ia_car_previous_health ia_car_current_health
-// VAR_INT red green red_increase_flag red_decrease_flag green_increase_flag green_decrease_flag
-// VAR_INT amount_of_evidence_player_has amount_damage_ia_drop_evidence drop_one_flag drop_evidence get_coords_flag
-// VAR_INT timerc_reset_flag_r3 timerc_current_r3 timerc_started_r3 timerc_r3
-// VAR_INT timerd_reset_flag_r3 timerd_current_r3 timerd_started_r3 timerd_r3
-
-// VAR_FLOAT ia_start_x ia_start_y ia_start_z ia_car_x ia_car_y ia_car_z warp_heading
-// VAR_FLOAT object_current_coords_x object_current_coords_y object_current_coords_z car_stuck_x car_stuck_y car_stuck_z
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

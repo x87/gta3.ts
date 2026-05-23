@@ -1,8 +1,51 @@
 // Generated from Main/Commercial/love3.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 
+// *****************************************************************************************
+// *********************************    Love mission 3   ***********************************
+// ********************************* A Drop in the Ocean ***********************************
+// *****************************************************************************************
+// *** The Player must pick up several packages that will be dropped from a Cessna into  ***
+// *** the bay that night. The player will use a boat to collect them. It is a decoy	 ***
+// *** (player does not know this at this time) so the police are aware of them. As soon ***
+// *** has the player has picked up the first package the police chopper will be on him. ***
+// *** Once the player has collected them all he must get them back to land and to his 	 ***
+// *** hideout in a car with the ensuing police chase. 									 ***
+// *****************************************************************************************
+
+let plane_timer: DisplayedTimer;
+let packages_collected: DisplayedCounter;
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_love3
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_love3_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_love3
+
+    // Variables for mission
+
+    // VAR_INT players_boat players_boat_blip police_boat_flag police_boat
+    // VAR_INT plane_blip random_int_l3 counter_display_flag plane_timer police_boat_driver police_rating
+    // VAR_INT float_packge_01 float_packge_02 float_packge_03 float_packge_04 float_packge_05 float_packge_06
+    // VAR_INT drug_current_timer temporary_time_drug last_drug_dropped_timer package_numbers cs_ojg
+    // VAR_INT packge_01 packge_02 packge_03 packge_04 packge_05 packge_06 packages_collected
+
+    // VAR_FLOAT PlaneX PlaneY PlaneZ
+    // VAR_FLOAT package_1_x package_1_y
+    // VAR_FLOAT package_2_x package_2_y
+    // VAR_FLOAT package_3_x package_3_y
+    // VAR_FLOAT package_4_x package_4_y
+    // VAR_FLOAT package_5_x package_5_y
+    // VAR_FLOAT package_6_x package_6_y
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
     $.flag_player_on_love_mission = 1;
 
@@ -181,12 +224,9 @@ async function body() {
 
     $.plane_timer = 120000;
 
-    Hud.DisplayTimer($.plane_timer);
-}
+    plane_timer = new Timer($.plane_timer).display(); // xxx: Hud.DisplayTimer($.plane_timer);
 
-async function plane_drop_loop() {
-    // SCM GOTO → plane_drop_loop lowered to endless loop
-    while (true) {
+    plane_drop_loop: while (true) {
         await asyncWait(0);
 
         if (DrugDropOff.HasPlaneBeenShotDown()) {
@@ -195,10 +235,10 @@ async function plane_drop_loop() {
             throw new Error('unresolved GOTO mission_love3_failed'); // fallback: would break linear control flow
         }
 
-        if ($.plane_timer == 0) {
-            Hud.ClearTimer($.plane_timer);
+        if (plane_timer.value == 0) {
+            plane_timer.clear(); // xxx: Hud.ClearTimer($.plane_timer);
             Text.PrintNow('LOVE3_5', 5000, 1); // "The plane is now in range."
-            $.plane_timer = -1000;
+            plane_timer.value = -1000;
         }
 
         if ($.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */) || $.player.isInModel(143 /* BOAT_REEFER */)) {
@@ -270,7 +310,7 @@ async function plane_drop_loop() {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
                 ++$.packages_collected;
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
+                    packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
                 $.police_rating += 1;
@@ -282,9 +322,9 @@ async function plane_drop_loop() {
         if ($.packge_02 == 1) {
             if ($.float_packge_02.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++$.packages_collected;
+                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
+                    packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
                 $.police_rating += 1;
@@ -296,9 +336,9 @@ async function plane_drop_loop() {
         if ($.packge_03 == 1) {
             if ($.float_packge_03.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++$.packages_collected;
+                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
+                    packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
                 $.police_rating += 1;
@@ -310,9 +350,9 @@ async function plane_drop_loop() {
         if ($.packge_04 == 1) {
             if ($.float_packge_04.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++$.packages_collected;
+                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
+                    packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
                 $.police_rating += 1;
@@ -324,9 +364,9 @@ async function plane_drop_loop() {
         if ($.packge_05 == 1) {
             if ($.float_packge_05.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++$.packages_collected;
+                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
+                    packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
                 $.police_rating += 1;
@@ -338,9 +378,9 @@ async function plane_drop_loop() {
         if ($.packge_06 == 1) {
             if ($.float_packge_06.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++$.packages_collected;
+                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
-                    Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
+                    packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
                 $.police_rating += 1;
@@ -352,7 +392,7 @@ async function plane_drop_loop() {
         if ($.packge_06 > 0) {
             if ($.police_boat_flag == 0) {
                 if (!Camera.IsPointOnScreen(560.5223, -474.0232, -0.2, 5.0)) {
-                    $.police_boat = Car.Create(120 /* BOAT_PREDATOR */, 560.5223, -474.0232, -0.2);
+                    $.police_boat = Boat.Create(120 /* BOAT_PREDATOR */, 560.5223, -474.0232, -0.2);
                     $.police_boat_driver = Char.CreateInsideCar($.police_boat, 4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */);
                     $.police_boat.setHeading(179.7861);
                     $.police_boat.goto($.package_6_x, $.package_6_y, 0.0);
@@ -483,96 +523,89 @@ async function plane_drop_loop() {
             }
         }
 
-        if ($.packages_collected == 6) {
+        if (packages_collected.value == 6) {
             Text.PrintNow('LOVE3_2', 5000, 1); // "You have them all.  Take the package to Donald Love"
             $.plane_blip.remove();
             $.plane_blip = Blip.AddForCoord(87.3, -1548.6, 27.255); //130.0 -1585.0 26.0
             $.temporary_time_drug = 0;
-            // SCM GOTO → garage_loop_l3 (not lowered; manual jump required)
-            throw new Error('unresolved GOTO garage_loop_l3'); // fallback: would break linear control flow
+            break plane_drop_loop; // SCM GOTO → garage_loop_l3
         }
     }
-}
 
-async function garage_loop_l3() {
-    while (!Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-        await asyncWait(0);
-    }
+    garage_loop_l3: {
+        while (!Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+            await asyncWait(0);
+        }
 
-    while (!$.player.locateStoppedOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, true)) {
-        await asyncWait(0);
-    }
+        while (!$.player.locateStoppedOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, true)) {
+            await asyncWait(0);
+        }
 
-    $.player.setControl(false /* OFF */);
+        $.player.setControl(false /* OFF */);
 
-    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-    Game.SetAllCarsCanBeDamaged(false /* FALSE */);
-    $.player.clearWantedLevel();
+        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+        $.player.clearWantedLevel();
 
-    Camera.SetFixedPosition(81.3343, -1540.0887, 27.7976, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(81.8719, -1540.9318, 27.8039, 2 /* JUMP_CUT */);
+        Camera.SetFixedPosition(81.3343, -1540.0887, 27.7976, 0.0, 0.0, 0.0);
+        Camera.PointAtPoint(81.8719, -1540.9318, 27.8039, 2 /* JUMP_CUT */);
 
-    Hud.SwitchWidescreen(true /* ON */);
+        Hud.SwitchWidescreen(true /* ON */);
 
-    $.script_controlled_player = $.player.getChar();
+        $.script_controlled_player = $.player.getChar();
 
-    $.script_controlled_player.setObjRunToCoord(87.4588, -1548.7035);
-    {
+        $.script_controlled_player.setObjRunToCoord(87.4588, -1548.7035);
+
         TIMERA = 0;
 
         while (!$.player.locateOnFoot2D(87.4588, -1548.7035, 1.0, 1.0, false)) {
             await asyncWait(0);
             if (TIMERA > 3000) {
-                // SCM GOTO → get_out_of_loop_l3 (not lowered; manual jump required)
-                throw new Error('unresolved GOTO get_out_of_loop_l3'); // fallback: would break linear control flow
+                break; // SCM GOTO → get_out_of_loop_l3
             }
         }
     }
-}
 
-async function get_out_of_loop_l3() {
-    $.script_controlled_player.setObjRunToCoord(98.7615, -1548.6489);
+    get_out_of_loop_l3: {
+        $.script_controlled_player.setObjRunToCoord(98.7615, -1548.6489);
 
-    Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, 0 /* FADE_OUT */);
 
-    World.ClearArea(87.3, -1548.6, 28.3, 2.0, false);
+        World.ClearArea(87.3, -1548.6, 28.3, 2.0, false);
 
-    while (Camera.GetFadingStatus()) {
-        await asyncWait(0);
+        while (Camera.GetFadingStatus()) {
+            await asyncWait(0);
+        }
+
+        $.script_controlled_player.setObjNoObj();
+        $.script_controlled_player.setIdle();
+        $.script_controlled_player.setObjRunToCoord(81.2603, -1548.9347);
+        $.script_controlled_player.setObjNoObj();
+        $.script_controlled_player.setIdle();
+
+        await asyncWait(250);
+
+        $.player.setCoordinates(81.2603, -1548.9347, 27.4);
+        $.player.setHeading(90.0);
+        Camera.RestoreJumpcut();
+        Hud.SwitchWidescreen(false /* OFF */);
+        $.player.setControl(true /* ON */);
+        Camera.SetInFrontOfPlayer();
+        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+        Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+
+        Camera.DoFade(1000, 1 /* FADE_IN */);
+
+        return; // SCM GOTO → mission_love3_passed
     }
-
-    $.script_controlled_player.setObjNoObj();
-    $.script_controlled_player.setIdle();
-    $.script_controlled_player.setObjRunToCoord(81.2603, -1548.9347);
-    $.script_controlled_player.setObjNoObj();
-    $.script_controlled_player.setIdle();
-
-    await asyncWait(250);
-
-    $.player.setCoordinates(81.2603, -1548.9347, 27.4);
-    $.player.setHeading(90.0);
-    Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* OFF */);
-    $.player.setControl(true /* ON */);
-    Camera.SetInFrontOfPlayer();
-    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
-
-    Camera.DoFade(1000, 1 /* FADE_IN */);
-
-    // SCM GOTO → mission_love3_passed (not lowered; manual jump required)
-    return;
-
-    // Mission love 3 failed
 }
 
+// Mission love 3 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1);
-    return;
-
-    // mission love 3 passed
 }
 
+// mission love 3 passed
 async function onPassed() {
     $.flag_love_mission3_passed = 1;
     $.flag_commercial_passed = 1;
@@ -608,17 +641,15 @@ async function onPassed() {
     Stat.PlayerMadeProgress(1);
     // START_NEW_SCRIPT love_mission4_loop
     // START_NEW_SCRIPT hood_phone_start
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_love_mission = 0;
 
-    Hud.ClearTimer($.plane_timer);
-    Hud.ClearCounter($.packages_collected);
+    plane_timer.clear(); // xxx: Hud.ClearTimer($.plane_timer);
+    packages_collected.clear(); // xxx: Hud.ClearCounter($.packages_collected);
     Streaming.MarkModelAsNoLongerNeeded(142 /* BOAT_SPEEDER */);
     Streaming.MarkModelAsNoLongerNeeded(141 /* PLANE_DEADDODO */);
     //SET_TARGET_CAR_FOR_MISSION_GARAGE loves_garage -1
@@ -626,52 +657,6 @@ async function cleanup() {
     $.players_boat_blip.remove();
     $.plane_blip.remove();
     Mission.Finish();
-    return;
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// *********************************    Love mission 3   ***********************************
-// ********************************* A Drop in the Ocean ***********************************
-// *****************************************************************************************
-// *** The Player must pick up several packages that will be dropped from a Cessna into  ***
-// *** the bay that night. The player will use a boat to collect them. It is a decoy	 ***
-// *** (player does not know this at this time) so the police are aware of them. As soon ***
-// *** has the player has picked up the first package the police chopper will be on him. ***
-// *** Once the player has collected them all he must get them back to land and to his 	 ***
-// *** hideout in a car with the ensuing police chase. 									 ***
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_love3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_love3_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_love3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT players_boat players_boat_blip police_boat_flag police_boat
-// VAR_INT plane_blip random_int_l3 counter_display_flag plane_timer police_boat_driver police_rating
-// VAR_INT float_packge_01 float_packge_02 float_packge_03 float_packge_04 float_packge_05 float_packge_06
-// VAR_INT drug_current_timer temporary_time_drug last_drug_dropped_timer package_numbers cs_ojg
-// VAR_INT packge_01 packge_02 packge_03 packge_04 packge_05 packge_06 packages_collected
-
-// VAR_FLOAT PlaneX PlaneY PlaneZ
-// VAR_FLOAT package_1_x package_1_y
-// VAR_FLOAT package_2_x package_2_y
-// VAR_FLOAT package_3_x package_3_y
-// VAR_FLOAT package_4_x package_4_y
-// VAR_FLOAT package_5_x package_5_y
-// VAR_FLOAT package_6_x package_6_y
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-
