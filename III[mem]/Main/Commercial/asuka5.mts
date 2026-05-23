@@ -1,8 +1,44 @@
 // Generated from Main/Commercial/asuka5.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************asuka mission 5********************************
+// ********************************************Kill Tanner**********************************
+// *****************************************************************************************
+// *****************************************************************************************
+
+let test_tanner_health_counter: DisplayedCounter;
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_asuka5
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_asuka5_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_asuka5
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT blip1_as5 blip2_as5 blip3_as5
+
+    // VAR_INT tanner_car got_to_coord_once old_tanner_health
+
+    // VAR_INT tanner cleared_timer_once_asuka5
+
+    // VAR_INT test_tanner_health_counter test_tanner_health_counter2
+
+    // VAR_FLOAT test_tanner_health_float
+
+    // ****************************************Mission Start************************************
+
     Stat.RegisterMissionGiven();
     ONMISSION = true;
     $.flag_player_on_asuka_mission = 1;
@@ -14,7 +50,7 @@ async function body() {
     $.cleared_timer_once_asuka5 = 0;
     $.got_to_coord_once = 0;
 
-    {
+    before_tanner_shits_it: {
         Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
         Streaming.RequestModel(2216 /* condo_ivy */);
@@ -261,11 +297,9 @@ async function body() {
         World.ClearArea(427.9, -1392.7, 21.1, 20.0, true /* TRUE */);
         Camera.PointAtCar($.tanner_car, 15 /* FIXED */, 1 /* INTERPOLATION */);
 
-        Hud.DisplayCounterWithString($.test_tanner_health_counter, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+        test_tanner_health_counter = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.test_tanner_health_counter, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
 
-        // SCM GOSUB tanner_health
-        await tanner_health();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await tanner_health(); // SCM GOSUB tanner_health
 
         $.tanner_car.gotoCoordinatesAccurate(319.9, -1388.6, -100.0);
         $.tanner_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
@@ -283,11 +317,10 @@ async function body() {
             while ($.tanner_car.isHealthGreater(999)) {
                 await asyncWait(0);
                 if (Char.IsDead($.tanner)) {
-                    // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-                    return;
+                    return; // SCM GOTO → mission_asuka5_passed
                 }
                 if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-                    Hud.ClearCounter($.test_tanner_health_counter);
+                    test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
                     $.cleared_timer_once_asuka5 = 1;
                 }
                 if (!$.tanner_car.locate2D(319.9, -1388.6, 8.0, 8.0, false /* FALSE */)) {
@@ -300,22 +333,19 @@ async function body() {
                     $.got_to_coord_once = 1;
                 }
                 if ($.tanner_car.isUpsidedown() && $.tanner_car.isStopped()) {
-                    // SCM GOTO → tanner_shits_it (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO tanner_shits_it'); // fallback: would break linear control flow
+                    break before_tanner_shits_it; // SCM GOTO → before_tanner_shits_it
                 }
-                // SCM GOSUB tanner_health
-                await tanner_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+
+                await tanner_health(); // SCM GOSUB tanner_health
             }
         }
 
         if (Char.IsDead($.tanner)) {
-            // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-            return;
+            return; // SCM GOTO → mission_asuka5_passed
         }
 
         if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-            Hud.ClearCounter($.test_tanner_health_counter);
+            test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
             $.cleared_timer_once_asuka5 = 1;
         }
 
@@ -330,11 +360,10 @@ async function body() {
         while ($.tanner_car.isHealthGreater(300)) {
             await asyncWait(0);
             if (Char.IsDead($.tanner)) {
-                // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka5_passed
             }
             if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-                Hud.ClearCounter($.test_tanner_health_counter);
+                test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
                 $.cleared_timer_once_asuka5 = 1;
             }
             if (!$.tanner_car.locate2D(319.9, -1388.6, 6.0, 6.0, false /* FALSE */)) {
@@ -347,79 +376,68 @@ async function body() {
                 $.got_to_coord_once = 1;
             }
             if ($.tanner_car.isUpsidedown() && $.tanner_car.isStopped()) {
-                // SCM GOTO → tanner_shits_it (not lowered; manual jump required)
-                throw new Error('unresolved GOTO tanner_shits_it'); // fallback: would break linear control flow
+                break before_tanner_shits_it; // SCM GOTO → tanner_shits_it
             }
-            // SCM GOSUB tanner_health
-            await tanner_health();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await tanner_health(); // SCM GOSUB tanner_health
         }
     }
 
-    async function tanner_shits_it() {
+    tanner_shits_it: {
+    }
+
+    if (Char.IsDead($.tanner)) {
+        return; // SCM GOTO → mission_asuka5_passed
+    }
+
+    test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+    $.blip2_as5.remove();
+    $.tanner_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+    $.tanner.setObjLeaveCar($.tanner_car);
+    $.blip3_as5 = Blip.AddForChar($.tanner);
+    $.tanner_car.setCruiseSpeed(0.0);
+    $.tanner_car.setMission(11 /* MISSION_STOP_FOREVER */);
+
+    while ($.tanner.isInCar($.tanner_car)) {
+        await asyncWait(0);
         if (Char.IsDead($.tanner)) {
-            // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-            return;
+            return; // SCM GOTO → mission_asuka5_passed
         }
-
-        Hud.ClearCounter($.test_tanner_health_counter);
-
-        $.blip2_as5.remove();
-        $.tanner_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
-        $.tanner.setObjLeaveCar($.tanner_car);
-        $.blip3_as5 = Blip.AddForChar($.tanner);
-        $.tanner_car.setCruiseSpeed(0.0);
-        $.tanner_car.setMission(11 /* MISSION_STOP_FOREVER */);
-
-        while ($.tanner.isInCar($.tanner_car)) {
-            await asyncWait(0);
-            if (Char.IsDead($.tanner)) {
-                // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-                return;
-            }
-            if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-                Hud.ClearCounter($.test_tanner_health_counter);
-                $.cleared_timer_once_asuka5 = 1;
-            }
-        }
-
-        if (Char.IsDead($.tanner)) {
-            // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-            return;
-        }
-
-        $.tanner.setOnlyDamagedByPlayer(true /* True */);
-
         if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-            Hud.ClearCounter($.test_tanner_health_counter);
+            test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
             $.cleared_timer_once_asuka5 = 1;
         }
-
-        $.tanner.setObjFleePlayerOnFootAlways($.player);
-        $.tanner.setAnimGroup(18 /* ANIM_PANIC_CHUNKYPED */);
-
-        while (!Char.IsDead($.tanner)) {
-            await asyncWait(0);
-            if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-                Hud.ClearCounter($.test_tanner_health_counter);
-                $.cleared_timer_once_asuka5 = 1;
-            }
-        }
-
-        // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-        return;
     }
 
-    // Mission asuka5 failed
+    if (Char.IsDead($.tanner)) {
+        return; // SCM GOTO → mission_asuka5_passed
+    }
+
+    $.tanner.setOnlyDamagedByPlayer(true /* True */);
+
+    if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
+        test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+        $.cleared_timer_once_asuka5 = 1;
+    }
+
+    $.tanner.setObjFleePlayerOnFootAlways($.player);
+    $.tanner.setAnimGroup(18 /* ANIM_PANIC_CHUNKYPED */);
+
+    while (!Char.IsDead($.tanner)) {
+        await asyncWait(0);
+        if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
+            test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+            $.cleared_timer_once_asuka5 = 1;
+        }
+    }
 }
 
+// Mission asuka5 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
-    return;
-
-    // mission asuka5 passed
 }
 
+// mission asuka5 passed
 async function onPassed() {
     $.flag_asuka_mission5_passed = 1;
     Audio.PlayMissionPassedTune(1);
@@ -430,10 +448,9 @@ async function onPassed() {
     Stat.RegisterMissionPassed('AM5');
     Stat.PlayerMadeProgress(1);
     return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
@@ -445,65 +462,23 @@ async function cleanup() {
     $.blip1_as5.remove();
     $.blip2_as5.remove();
     $.blip3_as5.remove();
-    Hud.ClearCounter($.test_tanner_health_counter);
+    test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
     Mission.Finish();
-    return;
 }
 
 async function tanner_health() {
-    {
-        if (!Car.IsDead($.tanner_car)) {
-            $.test_tanner_health_counter = $.tanner_car.getHealth();
-            if ($.test_tanner_health_counter < $.old_tanner_health) {
-                $.player.alterWantedLevelNoDrop(4);
-            }
-            $.old_tanner_health = $.test_tanner_health_counter;
-            $.test_tanner_health_counter2 = 1000 - $.test_tanner_health_counter;
-            if ($.test_tanner_health_counter2 > 700) {
-                $.test_tanner_health_counter2 = 700;
-            }
-            $.test_tanner_health_counter = $.test_tanner_health_counter2 / 7;
+    if (!Car.IsDead($.tanner_car)) {
+        test_tanner_health_counter.value = $.tanner_car.getHealth();
+        if (test_tanner_health_counter.value < $.old_tanner_health) {
+            $.player.alterWantedLevelNoDrop(4);
         }
-
-        return;
+        $.old_tanner_health = test_tanner_health_counter.value;
+        $.test_tanner_health_counter2 = 1000 - test_tanner_health_counter.value;
+        if ($.test_tanner_health_counter2 > 700) {
+            $.test_tanner_health_counter2 = 700;
+        }
+        test_tanner_health_counter.value = $.test_tanner_health_counter2 / 7;
     }
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************asuka mission 5********************************
-// ********************************************Kill Tanner**********************************
-// *****************************************************************************************
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_asuka5
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_asuka5_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_asuka5
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT blip1_as5 blip2_as5 blip3_as5
-
-// VAR_INT tanner_car got_to_coord_once old_tanner_health
-
-// VAR_INT tanner cleared_timer_once_asuka5
-
-// VAR_INT test_tanner_health_counter test_tanner_health_counter2
-
-// VAR_FLOAT test_tanner_health_float
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

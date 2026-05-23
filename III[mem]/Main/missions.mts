@@ -251,7 +251,7 @@ const missions: MissionDefinition[] = [
 
     // ********************************** Ambulance Mission **********************************
     {
-        scriptPath: `./Industrial/ambulance.ts`,
+        scriptPath: `./Industrial/ambulance.mts`,
         name: 'Paramedic',
         async canStart() {
             if ($.player.isInModel(106 /* CAR_AMBULANCE */)) {
@@ -306,7 +306,7 @@ const missions: MissionDefinition[] = [
     },
     // ***************************************Fire Mission 1**********************************
     {
-        scriptPath: `./Industrial/firetruck.ts`,
+        scriptPath: `./Industrial/firetruck.mts`,
         name: 'Firefighter',
         async canStart() {
             if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
@@ -361,7 +361,7 @@ const missions: MissionDefinition[] = [
     },
     // ************************************** Cop Car Mission ***********************************
     {
-        scriptPath: `./Industrial/copcar.ts`,
+        scriptPath: `./Industrial/copcar.mts`,
         name: 'Vigilante',
         async canStart() {
             if (

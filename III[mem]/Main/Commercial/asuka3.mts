@@ -1,8 +1,38 @@
 // Generated from Main/Commercial/asuka3.sc
+import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *************************************Asuka mission 3*************************************
+// *************************************Boat Spy thing**************************************
+// *****************************************************************************************
+// *****************************************************************************************
+
+let boat_health_counter: DisplayedCounter;
 
 async function body() {
+    // Mission start stuff
+    // GOSUB mission_start_asuka3
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_asuka3_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_asuka3
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT blip1_as3 blip2_as3 cop_boat been_in_cop_boat_before
+    // VAR_INT spy_boat spy_bloke spy_car
+    // VAR_INT spy_blokes_car asuka_boat
+    // VAR_INT boat_coord_number boat_health boat_health2
+    // VAR_INT help1_displayed help2_displayed
+    // ****************************************Mission Start************************************
+
     Stat.RegisterMissionGiven();
     ONMISSION = true;
     $.flag_player_on_asuka_mission = 1;
@@ -13,7 +43,7 @@ async function body() {
 
     $.been_in_cop_boat_before = 0;
 
-    {
+    is_he_dead_yet: {
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
         Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
         Streaming.RequestModel(7 /* PED_MALE1 */);
@@ -124,7 +154,7 @@ async function body() {
         }
 
         World.ClearArea(640.0, -608.0, 0.0, 6.0, true /* TRUE */);
-        $.spy_boat = Car.Create(142 /* BOAT_SPEEDER */, 612.0, -597.0, 0.0);
+        $.spy_boat = Boat.Create(142 /* BOAT_SPEEDER */, 612.0, -597.0, 0.0);
         $.spy_boat.setHeading(0.0);
         $.spy_boat.setOnlyDamagedByPlayer(true /* TRUE */);
         $.spy_boat.setHealth(1500);
@@ -166,10 +196,8 @@ async function body() {
 
         if (!Car.IsDead($.spy_boat)) {
             $.boat_health = $.spy_boat.getHealth();
-            Hud.DisplayCounterWithString($.boat_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
-            // SCM GOSUB boat_health
-            await boat_health();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            boat_health_counter = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.boat_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+            await boat_health(); // SCM GOSUB boat_health
         }
 
         TIMERB = 0;
@@ -199,16 +227,12 @@ async function body() {
                 }
             }
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -227,8 +251,7 @@ async function body() {
         while (!$.spy_boat.locate3D(744.8, -350.1, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -241,13 +264,9 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -261,8 +280,7 @@ async function body() {
         while (!$.spy_boat.locate3D(728.9, -133.7, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -275,13 +293,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -294,8 +309,7 @@ async function body() {
         while (!$.spy_boat.locate3D(635.5, 24.7, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -308,13 +322,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -327,8 +338,7 @@ async function body() {
         while (!$.spy_boat.locate3D(746.6, 252.9, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -341,13 +351,9 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -360,8 +366,7 @@ async function body() {
         while (!$.spy_boat.locate3D(872.1, 335.9, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -374,13 +379,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -393,8 +395,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1064.5, 180.8, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -407,13 +408,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -426,8 +424,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1262.0, 166.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -440,13 +437,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -459,8 +453,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1566.0, 52.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -473,13 +466,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -492,8 +482,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1595.0, -154.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -506,13 +495,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -525,8 +511,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1555.0, -299.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
 
             if (!Car.IsDead($.spy_boat)) {
@@ -540,13 +525,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -559,8 +541,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1617.0, -600.0, 0.0, 5.0, 5.0, 5.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
 
             if (!Car.IsDead($.spy_boat)) {
@@ -574,13 +555,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -593,8 +571,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1617.0, -762.0, 0.0, 5.0, 5.0, 5.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -607,13 +584,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -626,8 +600,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1637.0, -950.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -640,13 +613,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -659,8 +629,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1535.0, -1173.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -673,13 +642,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -692,8 +658,7 @@ async function body() {
         while (!$.spy_boat.locate3D(1268.0, -1273.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
 
             if (!Car.IsDead($.spy_boat)) {
@@ -707,13 +672,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -726,8 +688,7 @@ async function body() {
         while (!$.spy_boat.locate3D(938.1, -1226.4, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
 
             if (!Car.IsDead($.spy_boat)) {
@@ -741,13 +702,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -775,13 +733,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -795,8 +750,7 @@ async function body() {
         while (!$.spy_boat.locate3D(560.0, -899.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -809,13 +763,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -829,8 +780,7 @@ async function body() {
         while (!$.spy_boat.locate3D(548.0, -795.0, 0.0, 6.0, 6.0, 6.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false /* FALSE */)) {
@@ -843,13 +793,10 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
             if (!Car.IsDead($.spy_boat)) {
-                // SCM GOSUB boat_health
-                await boat_health();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health(); // SCM GOSUB boat_health
             }
         }
 
@@ -859,7 +806,7 @@ async function body() {
             $.spy_boat.stop();
             $.spy_boat.anchor(true /* TRUE */);
             $.spy_bloke.warpFromCarToCoord(547.3, -778.4, -100.0);
-            Hud.ClearCounter($.boat_health);
+            boat_health_counter.clear(); // xxx: Hud.ClearCounter($.boat_health);
         }
 
         $.spy_car = Car.Create(129 /* CAR_STALLION */, 499.7, -734.4, -100.0);
@@ -871,12 +818,9 @@ async function body() {
         while (!$.spy_bloke.isObjectivePassed()) {
             await asyncWait(0);
             if (Char.IsDead($.spy_bloke)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
         }
 
         $.spy_bloke.setObjRunToCoord(505.2, -751.1);
@@ -884,12 +828,10 @@ async function body() {
         while (!$.spy_bloke.isObjectivePassed()) {
             await asyncWait(0);
             if (Char.IsDead($.spy_bloke)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
         }
 
         $.spy_bloke.setObjRunToCoord(501.1, -749.5);
@@ -897,12 +839,9 @@ async function body() {
         while (!$.spy_bloke.isObjectivePassed()) {
             await asyncWait(0);
             if (Char.IsDead($.spy_bloke)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
         }
 
         if (!Car.IsDead($.spy_car)) {
@@ -912,16 +851,12 @@ async function body() {
         while (!$.spy_bloke.isInCar($.spy_car)) {
             await asyncWait(0);
             if (Char.IsDead($.spy_bloke)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (Car.IsDead($.spy_car) && !Char.IsDead($.spy_bloke)) {
-                // SCM GOTO → is_he_dead_yet (not lowered; manual jump required)
-                throw new Error('unresolved GOTO is_he_dead_yet'); // fallback: would break linear control flow
+                break is_he_dead_yet; // SCM GOTO → is_he_dead_yet
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
         }
 
         if (!Car.IsDead($.spy_car)) {
@@ -934,16 +869,13 @@ async function body() {
         while (!$.spy_car.locate3D(463.0, -727.4, 16.1, 3.0, 3.0, 3.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_car)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (Char.IsDead($.spy_bloke)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!$.spy_bloke.isInCar($.spy_car)) {
-                // SCM GOTO → is_he_dead_yet (not lowered; manual jump required)
-                throw new Error('unresolved GOTO is_he_dead_yet'); // fallback: would break linear control flow
+                break is_he_dead_yet; // SCM GOTO → is_he_dead_yet
             }
             if (!Car.IsDead($.spy_car)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_car, 160.0, 160.0, false /* FALSE */)) {
@@ -956,9 +888,7 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
         }
 
         if (!Car.IsDead($.spy_car)) {
@@ -969,16 +899,13 @@ async function body() {
         while (!$.spy_car.locate3D(456.0, -707.1, 16.0, 3.0, 3.0, 3.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_car)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (Char.IsDead($.spy_bloke)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!$.spy_bloke.isInCar($.spy_car)) {
-                // SCM GOTO → is_he_dead_yet (not lowered; manual jump required)
-                throw new Error('unresolved GOTO is_he_dead_yet'); // fallback: would break linear control flow
+                break is_he_dead_yet; // SCM GOTO → is_he_dead_yet
             }
             if (!Car.IsDead($.spy_car)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_car, 160.0, 160.0, false /* FALSE */)) {
@@ -991,9 +918,8 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
         }
 
         if (!Car.IsDead($.spy_car)) {
@@ -1004,16 +930,13 @@ async function body() {
         while (!$.spy_car.locate3D(459.0, -678.1, 16.0, 3.0, 3.0, 3.0, false /* FALSE */)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_car)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (Char.IsDead($.spy_bloke)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!$.spy_bloke.isInCar($.spy_car)) {
-                // SCM GOTO → is_he_dead_yet (not lowered; manual jump required)
-                throw new Error('unresolved GOTO is_he_dead_yet'); // fallback: would break linear control flow
+                break is_he_dead_yet; // SCM GOTO → is_he_dead_yet
             }
             if (!Car.IsDead($.spy_car)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_car, 160.0, 160.0, false /* FALSE */)) {
@@ -1026,9 +949,8 @@ async function body() {
                     throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
                 }
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
         }
 
         if (!Car.IsDead($.spy_car)) {
@@ -1054,51 +976,42 @@ async function body() {
                 return;
             }
             if (!$.spy_bloke.isInCar($.spy_car)) {
-                // SCM GOTO → is_he_dead_yet (not lowered; manual jump required)
-                throw new Error('unresolved GOTO is_he_dead_yet'); // fallback: would break linear control flow
+                break is_he_dead_yet; // SCM GOTO → is_he_dead_yet
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await check_boats_dead(); // SCM GOSUB check_boats_dead
         }
     }
 
-    async function is_he_dead_yet() {
-        $.spy_bloke.setObjFleePlayerOnFootAlways($.player);
+    // SCM label is_he_dead_yet
 
-        while (!Char.IsDead($.spy_bloke)) {
-            await asyncWait(0);
-            if (!Char.IsDead($.spy_bloke)) {
-                if (!$.player.locateAnyMeansChar2D($.spy_bloke, 160.0, 160.0, false /* FALSE */)) {
-                    Text.PrintNow('AWAY', 5000, 2); // Mission brief
-                    if (!Char.IsDead($.spy_bloke)) {
-                        $.spy_bloke.delete();
-                    }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+    $.spy_bloke.setObjFleePlayerOnFootAlways($.player);
+
+    while (!Char.IsDead($.spy_bloke)) {
+        await asyncWait(0);
+        if (!Char.IsDead($.spy_bloke)) {
+            if (!$.player.locateAnyMeansChar2D($.spy_bloke, 160.0, 160.0, false /* FALSE */)) {
+                Text.PrintNow('AWAY', 5000, 2); // Mission brief
+                if (!Char.IsDead($.spy_bloke)) {
+                    $.spy_bloke.delete();
                 }
+                // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
+                throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
             }
-            // SCM GOSUB check_boats_dead
-            await check_boats_dead();
-            // fallback if label was not emitted as async function: no-op continues linearly
         }
 
-        // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-        return;
+        await check_boats_dead(); // SCM GOSUB check_boats_dead
     }
-
-    // Mission asuka3 failed
 }
 
+// Mission asuka3 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
-    return;
-
-    // mission asuka3 passed
 }
 
+// mission asuka3 passed
 async function onPassed() {
-    Hud.ClearCounter($.boat_health);
+    boat_health_counter.clear(); // xxx: Hud.ClearCounter($.boat_health);
     $.flag_asuka_mission3_passed = 1;
     Audio.PlayMissionPassedTune(1);
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1); //"Mission Passed!"
@@ -1107,11 +1020,9 @@ async function onPassed() {
     Stat.RegisterMissionPassed('AM3');
     Stat.PlayerMadeProgress(1);
     // START_NEW_SCRIPT asuka_mission4_loop
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
@@ -1122,81 +1033,40 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(143 /* BOAT_REEFER */);
     Streaming.MarkModelAsNoLongerNeeded(120 /* BOAT_PREDATOR */);
     Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
-    Hud.ClearCounter($.boat_health);
+    boat_health_counter.clear(); // xxx: Hud.ClearCounter($.boat_health);
     Mission.Finish();
-    return;
 }
 
 async function boat_health() {
-    {
-        $.boat_health = $.spy_boat.getHealth();
+    boat_health_counter.value = $.spy_boat.getHealth();
 
-        $.boat_health2 = 1500 - $.boat_health;
+    $.boat_health2 = 1500 - boat_health_counter.value;
 
-        if ($.boat_health2 > 1500) {
-            $.boat_health2 = 1500;
-        }
-
-        $.boat_health = $.boat_health2 / 15;
-
-        return;
+    if ($.boat_health2 > 1500) {
+        $.boat_health2 = 1500;
     }
+
+    boat_health_counter.value = $.boat_health2 / 15;
 }
 
 async function check_boats_dead() {
-    {
-        if (!Car.IsDead($.cop_boat)) {
-            if ($.player.isInCar($.cop_boat) && $.been_in_cop_boat_before == 0) {
-                $.controlmode = Pad.GetControllerMode();
-                if (!($.controlmode == 3)) {
-                    Text.PrintHelp('PBOAT_1');
-                } else {
-                    Text.PrintHelp('PBOAT_2');
-                }
-                $.blip1_as3.remove();
-                $.been_in_cop_boat_before = 1;
+    if (!Car.IsDead($.cop_boat)) {
+        if ($.player.isInCar($.cop_boat) && $.been_in_cop_boat_before == 0) {
+            $.controlmode = Pad.GetControllerMode();
+            if (!($.controlmode == 3)) {
+                Text.PrintHelp('PBOAT_1');
+            } else {
+                Text.PrintHelp('PBOAT_2');
             }
-        } else {
-            if ($.been_in_cop_boat_before == 0) {
-                $.blip1_as3.remove();
-                $.been_in_cop_boat_before = 1;
-            }
+            $.blip1_as3.remove();
+            $.been_in_cop_boat_before = 1;
         }
-
-        return;
+    } else {
+        if ($.been_in_cop_boat_before == 0) {
+            $.blip1_as3.remove();
+            $.been_in_cop_boat_before = 1;
+        }
     }
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *************************************Asuka mission 3*************************************
-// *************************************Boat Spy thing**************************************
-// *****************************************************************************************
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_asuka3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_asuka3_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_asuka3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT blip1_as3 blip2_as3 cop_boat been_in_cop_boat_before
-// VAR_INT spy_boat spy_bloke spy_car
-// VAR_INT spy_blokes_car asuka_boat
-// VAR_INT boat_coord_number boat_health boat_health2
-// VAR_INT help1_displayed help2_displayed
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

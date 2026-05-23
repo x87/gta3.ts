@@ -1,8 +1,38 @@
 // Generated from Main/Industrial/copcar.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *********************************** Cop Car Mission *************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
 
-async function mission_start_cop_car() {
+let cop_time_limit: DisplayedTimer;
+let total_criminals_killed: DisplayedCounter;
+
+async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_cop_car
+
+    // GOSUB cop_car_failed
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT got_range_message player_in_range car_model criminal_car range_int mission_end_button total_criminals_killed players_cop_car_health
+    // VAR_INT criminal_created_flag criminal criminal_blip random_gun cop_time_limit got_car_crim_is_in timer_reset_flag vigilante_bonus_kills location got_cop_breif
+    // VAR_INT game_time_flag game_timer_start copcar_timer game_time_present game_time_difference timer_in_secs players_cop_car vigilante vigilante_score copcar_cancelled_flag
+
+    // VAR_FLOAT player_c_x player_c_y player_c_z random_crim_x random_crim_y criminal_coord_x criminal_coord_y criminal_coord_z
+    // VAR_FLOAT diff_x_float diff_y_float sum_of_diff_xy players_distance_from_criminal cop_time_limit_float criminal_heading warp_heading_cop
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
     $.flag_player_on_cop_mission = 1;
     $.vigilante_bonus_kills = 5;
@@ -13,243 +43,221 @@ async function mission_start_cop_car() {
     $.got_cop_breif = 0;
 
     await asyncWait(0);
-}
 
-async function next_cop_car() {
-    $.got_range_message = 0;
-    $.player_in_range = 0;
-    $.car_model = 0;
-    $.criminal_car = 0;
-    $.criminal_created_flag = 0;
-    $.criminal = 0;
-    $.criminal_blip = 0;
-    $.random_gun = 0;
-    $.cop_time_limit = 0;
-    $.got_car_crim_is_in = 0;
-    $.timer_reset_flag = 0;
-    $.game_time_flag = 0;
-    $.mission_end_button = 0;
-    $.location = 0;
-    $.copcar_cancelled_flag = 0;
+    next_cop_car: while (true) {
+        $.got_range_message = 0;
+        $.player_in_range = 0;
+        $.car_model = 0;
+        $.criminal_car = 0 as any;
+        $.criminal_created_flag = 0;
+        $.criminal = 0 as any;
+        $.criminal_blip = 0 as any;
+        $.random_gun = 0;
+        $.cop_time_limit = 0;
+        $.got_car_crim_is_in = 0;
+        $.timer_reset_flag = 0;
+        $.game_time_flag = 0;
+        $.mission_end_button = 0;
+        $.location = 0;
+        $.copcar_cancelled_flag = 0;
 
-    $.player_c_x = 0.0;
-    $.player_c_y = 0.0;
-    $.player_c_z = 0.0;
-    $.random_crim_x = 0.0;
-    $.random_crim_y = 0.0;
-    $.criminal_coord_x = 0.0;
-    $.criminal_coord_y = 0.0;
-    $.criminal_coord_z = 0.0;
-    $.diff_x_float = 0.0;
-    $.diff_y_float = 0.0;
-    $.sum_of_diff_xy = 0.0;
-    $.players_distance_from_criminal = 0.0;
-    $.cop_time_limit_float = 0.0;
-    $.criminal_heading = 0.0;
+        $.player_c_x = 0.0;
+        $.player_c_y = 0.0;
+        $.player_c_z = 0.0;
+        $.random_crim_x = 0.0;
+        $.random_crim_y = 0.0;
+        $.criminal_coord_x = 0.0;
+        $.criminal_coord_y = 0.0;
+        $.criminal_coord_z = 0.0;
+        $.diff_x_float = 0.0;
+        $.diff_y_float = 0.0;
+        $.sum_of_diff_xy = 0.0;
+        $.players_distance_from_criminal = 0.0;
+        $.cop_time_limit_float = 0.0;
+        $.criminal_heading = 0.0;
 
-    const _res179 = $.player.getCoordinates();
-    $.player_c_x = _res179.x;
-    $.player_c_y = _res179.y;
-    $.player_c_z = _res179.z;
-    Streaming.RequestModel(95 /* CAR_SENTINEL */);
-    {
-    }
+        const _res179 = $.player.getCoordinates();
+        $.player_c_x = _res179.x;
+        $.player_c_y = _res179.y;
+        $.player_c_z = _res179.z;
+        Streaming.RequestModel(95 /* CAR_SENTINEL */);
 
-    async function criminal_in_car() {
-        await asyncWait(0);
+        criminal_in_car: while (true) {
+            await asyncWait(0);
 
-        if ($.got_cop_breif == 0) {
-            Text.PrintNow('LEGAL', 3000, 1);
-            TIMERB = 0;
-            $.got_cop_breif = 1;
-        } else {
-            TIMERB = 3000;
-        }
-
-        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-            $.random_crim_x = Math.RandomFloatInRange(778.0, 1540.0);
-            $.random_crim_y = Math.RandomFloatInRange(-1110.0, 190.0);
-            $.got_range_message = 0;
-            $.player_in_range = 1;
-            $.location = 1;
-        }
-
-        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-            $.random_crim_x = Math.RandomFloatInRange(-192.0, 545.0);
-            $.random_crim_y = Math.RandomFloatInRange(-1626.0, 98.0);
-            $.got_range_message = 0;
-            $.player_in_range = 1;
-            $.location = 2;
-        }
-
-        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-            $.random_crim_x = Math.RandomFloatInRange(-1300.0, -414.0);
-            $.random_crim_y = Math.RandomFloatInRange(-608.8, 380.0);
-            $.got_range_message = 0;
-            $.player_in_range = 1;
-            $.location = 3;
-        }
-
-        if ($.player_in_range == 0) {
-            if ($.got_range_message == 0) {
-                Text.PrintNow('C_RANGE', 5000, 1); //"The radio is out of range, get closer to a police station!"
-                $.got_range_message = 1;
+            if ($.got_cop_breif == 0) {
+                Text.PrintNow('LEGAL', 3000, 1);
+                TIMERB = 0;
+                $.got_cop_breif = 1;
+            } else {
+                TIMERB = 3000;
             }
-            // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
-        }
 
-        // SCM GOSUB copcar_cancelled_checks
-        await copcar_cancelled_checks();
-        // fallback if label was not emitted as async function: no-op continues linearly
-        if ($.copcar_cancelled_flag == 1) {
-            // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
-        }
-
-        const _res180 = Path.GetClosestCarNode($.random_crim_x, $.random_crim_y, $.player_c_z);
-        $.criminal_coord_x = _res180.nodeX;
-        $.criminal_coord_y = _res180.nodeY;
-        $.criminal_coord_z = _res180.nodeZ;
-
-        if ($.criminal_coord_x > 1398.0 && $.criminal_coord_x < 1615.0 && $.criminal_coord_y > -965.0 && $.criminal_coord_y < -902.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 879.0 && $.criminal_coord_x < 892.0 && $.criminal_coord_y > -427.0 && $.criminal_coord_y < -407.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 944.8 && $.criminal_coord_x < 1017.1 && $.criminal_coord_y > -1148.8 && $.criminal_coord_y < -1076.6) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 920.8 && $.criminal_coord_x < 1004.0 && $.criminal_coord_y > -754.2 && $.criminal_coord_y < -670.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 670.0 && $.criminal_coord_x < 1035.0 && $.criminal_coord_y > -953.0 && $.criminal_coord_y < -912.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 1364.0 && $.criminal_coord_x < 1641.0 && $.criminal_coord_y > -1165.0 && $.criminal_coord_y < -617.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 649.0 && $.criminal_coord_x < 1066.0 && $.criminal_coord_y > 25.0 && $.criminal_coord_y < 217.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > -1611.5 && $.criminal_coord_x < -745.3 && $.criminal_coord_y > -1001.9 && $.criminal_coord_y < -371.2) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 939.8 && $.criminal_coord_x < 1035.6 && $.criminal_coord_y > -901.3 && $.criminal_coord_y < -828.2) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 1215.3 && $.criminal_coord_x < 1223.7 && $.criminal_coord_y > -839.4 && $.criminal_coord_y < -763.6) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 845.3 && $.criminal_coord_x < 899.6 && $.criminal_coord_y > -312.6 && $.criminal_coord_y < -295.7) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 113.3 && $.criminal_coord_x < 99.7 && $.criminal_coord_y > -1284.8 && $.criminal_coord_y < -1273.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 18.33 && $.criminal_coord_x < 92.06 && $.criminal_coord_y > -388.7 && $.criminal_coord_y < -312.38) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > -1255.4 && $.criminal_coord_x < -1187.9 && $.criminal_coord_y > 80.6 && $.criminal_coord_y < 123.4) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.criminal_coord_x > 1386.4 && $.criminal_coord_x < 1475.8 && $.criminal_coord_y > -292.1 && $.criminal_coord_y < -168.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
-
-        if ($.location == 1) {
-            if (!($.criminal_coord_x > 778.0) || !($.criminal_coord_x < 1540.0) || !($.criminal_coord_y > -1110.0) || !($.criminal_coord_y < 190.0)) {
-                // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-                throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
+            if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+                $.random_crim_x = Math.RandomFloatInRange(778.0, 1540.0);
+                $.random_crim_y = Math.RandomFloatInRange(-1110.0, 190.0);
+                $.got_range_message = 0;
+                $.player_in_range = 1;
+                $.location = 1;
             }
-        }
 
-        if ($.location == 2) {
-            if (!($.criminal_coord_x > -192.0) || !($.criminal_coord_x < 545.0) || !($.criminal_coord_y > -1626.0) || !($.criminal_coord_y < 98.0)) {
-                // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-                throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
+            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+                $.random_crim_x = Math.RandomFloatInRange(-192.0, 545.0);
+                $.random_crim_y = Math.RandomFloatInRange(-1626.0, 98.0);
+                $.got_range_message = 0;
+                $.player_in_range = 1;
+                $.location = 2;
             }
-        }
 
-        if ($.location == 3) {
-            if (!($.criminal_coord_x > -1300.0) || !($.criminal_coord_x < -414.0) || !($.criminal_coord_y > -608.8) || !($.criminal_coord_y < 380.0)) {
-                // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-                throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
+            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                $.random_crim_x = Math.RandomFloatInRange(-1300.0, -414.0);
+                $.random_crim_y = Math.RandomFloatInRange(-608.8, 380.0);
+                $.got_range_message = 0;
+                $.player_in_range = 1;
+                $.location = 3;
             }
+
+            if ($.player_in_range == 0) {
+                if ($.got_range_message == 0) {
+                    Text.PrintNow('C_RANGE', 5000, 1); //"The radio is out of range, get closer to a police station!"
+                    $.got_range_message = 1;
+                }
+                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
+                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+            }
+
+            // SCM GOSUB copcar_cancelled_checks
+            await copcar_cancelled_checks();
+            // fallback if label was not emitted as async function: no-op continues linearly
+            if ($.copcar_cancelled_flag == 1) {
+                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
+                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+            }
+
+            const _res180 = Path.GetClosestCarNode($.random_crim_x, $.random_crim_y, $.player_c_z);
+            $.criminal_coord_x = _res180.nodeX;
+            $.criminal_coord_y = _res180.nodeY;
+            $.criminal_coord_z = _res180.nodeZ;
+
+            if ($.criminal_coord_x > 1398.0 && $.criminal_coord_x < 1615.0 && $.criminal_coord_y > -965.0 && $.criminal_coord_y < -902.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 879.0 && $.criminal_coord_x < 892.0 && $.criminal_coord_y > -427.0 && $.criminal_coord_y < -407.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 944.8 && $.criminal_coord_x < 1017.1 && $.criminal_coord_y > -1148.8 && $.criminal_coord_y < -1076.6) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 920.8 && $.criminal_coord_x < 1004.0 && $.criminal_coord_y > -754.2 && $.criminal_coord_y < -670.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 670.0 && $.criminal_coord_x < 1035.0 && $.criminal_coord_y > -953.0 && $.criminal_coord_y < -912.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 1364.0 && $.criminal_coord_x < 1641.0 && $.criminal_coord_y > -1165.0 && $.criminal_coord_y < -617.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 649.0 && $.criminal_coord_x < 1066.0 && $.criminal_coord_y > 25.0 && $.criminal_coord_y < 217.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > -1611.5 && $.criminal_coord_x < -745.3 && $.criminal_coord_y > -1001.9 && $.criminal_coord_y < -371.2) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 939.8 && $.criminal_coord_x < 1035.6 && $.criminal_coord_y > -901.3 && $.criminal_coord_y < -828.2) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 1215.3 && $.criminal_coord_x < 1223.7 && $.criminal_coord_y > -839.4 && $.criminal_coord_y < -763.6) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 845.3 && $.criminal_coord_x < 899.6 && $.criminal_coord_y > -312.6 && $.criminal_coord_y < -295.7) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 113.3 && $.criminal_coord_x < 99.7 && $.criminal_coord_y > -1284.8 && $.criminal_coord_y < -1273.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 18.33 && $.criminal_coord_x < 92.06 && $.criminal_coord_y > -388.7 && $.criminal_coord_y < -312.38) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > -1255.4 && $.criminal_coord_x < -1187.9 && $.criminal_coord_y > 80.6 && $.criminal_coord_y < 123.4) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.criminal_coord_x > 1386.4 && $.criminal_coord_x < 1475.8 && $.criminal_coord_y > -292.1 && $.criminal_coord_y < -168.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            if ($.location == 1) {
+                if (!($.criminal_coord_x > 778.0) || !($.criminal_coord_x < 1540.0) || !($.criminal_coord_y > -1110.0) || !($.criminal_coord_y < 190.0)) {
+                    continue criminal_in_car; // SCM GOTO → criminal_in_car
+                }
+            }
+
+            if ($.location == 2) {
+                if (!($.criminal_coord_x > -192.0) || !($.criminal_coord_x < 545.0) || !($.criminal_coord_y > -1626.0) || !($.criminal_coord_y < 98.0)) {
+                    continue criminal_in_car; // SCM GOTO → criminal_in_car
+                }
+            }
+
+            if ($.location == 3) {
+                if (!($.criminal_coord_x > -1300.0) || !($.criminal_coord_x < -414.0) || !($.criminal_coord_y > -608.8) || !($.criminal_coord_y < 380.0)) {
+                    continue criminal_in_car; // SCM GOTO → criminal_in_car
+                }
+            }
+
+            if ($.criminal_coord_z < -1.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            $.diff_x_float = $.player_c_x - $.criminal_coord_x;
+            $.diff_y_float = $.player_c_y - $.criminal_coord_y;
+            $.diff_x_float = $.diff_x_float * $.diff_x_float;
+            $.diff_y_float = $.diff_y_float * $.diff_y_float;
+            $.sum_of_diff_xy = $.diff_x_float + $.diff_y_float;
+            $.players_distance_from_criminal = Math.sqrt($.sum_of_diff_xy);
+
+            if ($.players_distance_from_criminal < 150.0) {
+                continue criminal_in_car; // SCM GOTO → criminal_in_car
+            }
+
+            $.cop_time_limit_float = $.players_distance_from_criminal / 4.0;
+            $.cop_time_limit_float = $.cop_time_limit_float * 1000.0;
+            $.cop_time_limit = $.cop_time_limit_float;
+
+            if ($.cop_time_limit < 120000) {
+                $.cop_time_limit = 120000;
+            }
+
+            break; // fallthrough
         }
 
-        if ($.criminal_coord_z < -1.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
+        generate_car_model: while (true) {
+            $.car_model = Math.RandomIntInRange(90, 140);
 
-        $.diff_x_float = $.player_c_x - $.criminal_coord_x;
-        $.diff_y_float = $.player_c_y - $.criminal_coord_y;
-        $.diff_x_float = $.diff_x_float * $.diff_x_float;
-        $.diff_y_float = $.diff_y_float * $.diff_y_float;
-        $.sum_of_diff_xy = $.diff_x_float + $.diff_y_float;
-        $.players_distance_from_criminal = Math.sqrt($.sum_of_diff_xy);
+            if ($.car_model > 113 && $.car_model < 128) {
+                continue; // SCM GOTO → generate_car_model
+            }
 
-        if ($.players_distance_from_criminal < 150.0) {
-            // SCM GOTO → criminal_in_car (not lowered; manual jump required)
-            throw new Error('unresolved GOTO criminal_in_car'); // fallback: would break linear control flow
-        }
+            if ($.car_model == 97) {
+                continue; // SCM GOTO → generate_car_model
+            }
 
-        $.cop_time_limit_float = $.players_distance_from_criminal / 4.0;
-        $.cop_time_limit_float = $.cop_time_limit_float * 1000.0;
-        $.cop_time_limit = $.cop_time_limit_float;
-
-        if ($.cop_time_limit < 120000) {
-            $.cop_time_limit = 120000;
-        }
-    }
-
-    async function generate_car_model() {
-        $.car_model = Math.RandomIntInRange(90, 140);
-
-        if ($.car_model > 113 && $.car_model < 128) {
-            // SCM GOTO → generate_car_model (not lowered; manual jump required)
-            throw new Error('unresolved GOTO generate_car_model'); // fallback: would break linear control flow
-        }
-
-        if ($.car_model == 97) {
-            // SCM GOTO → generate_car_model (not lowered; manual jump required)
-            throw new Error('unresolved GOTO generate_car_model'); // fallback: would break linear control flow
-        }
-
-        if ($.car_model == 106 || $.car_model == 107 || $.car_model == 131 || $.car_model == 140) {
-            // SCM GOTO → generate_car_model (not lowered; manual jump required)
-            throw new Error('unresolved GOTO generate_car_model'); // fallback: would break linear control flow
+            if ($.car_model == 106 || $.car_model == 107 || $.car_model == 131 || $.car_model == 140) {
+                continue; // SCM GOTO → generate_car_model
+            }
+            break;
         }
 
         Streaming.RequestModel($.car_model);
@@ -477,10 +485,9 @@ async function next_cop_car() {
 
         TIMERB = 0;
 
-        Hud.DisplayTimer($.cop_time_limit);
-
+        cop_time_limit = new Timer($.cop_time_limit).display(); // xxx: Hud.DisplayTimer($.cop_time_limit);
         while (!Char.IsDead($.criminal)) {
-            if ($.cop_time_limit < 1) {
+            if (cop_time_limit.value < 1) {
                 if (!$.player.locateAnyMeansChar2D($.criminal, 100.0, 100.0, false)) {
                     $.criminal_blip.remove();
                     $.criminal.delete();
@@ -556,7 +563,7 @@ async function next_cop_car() {
                     }
                     if ($.range_int == 4) {
                         $.range_int = Math.RandomIntInRange(0, 8);
-                        $.criminal.wanderDir(-1); //range_int//
+                        $.criminal.wanderDir(-1 as any); //range_int//
                     }
                     $.got_car_crim_is_in = 0;
                 }
@@ -641,164 +648,167 @@ async function next_cop_car() {
             }
             await asyncWait(0);
         }
-    }
 
-    $.criminal.markAsNoLongerNeeded();
-    $.criminal_car.markAsNoLongerNeeded();
+        $.criminal.markAsNoLongerNeeded();
+        $.criminal_car.markAsNoLongerNeeded();
 
-    ++$.total_criminals_killed;
-    Stat.RegisterCriminalCaught();
-    Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
-    if ($.total_criminals_killed == 1) {
-        Hud.DisplayCounterWithString($.total_criminals_killed, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
-    }
-
-    $.criminal_blip.remove();
-    $.vigilante_score = $.total_criminals_killed * 500;
-    Text.PrintBig('C_PASS', 5000, 5);
-    Text.PrintWithNumberBig('REWARD', $.vigilante_score, 5000, 6);
-    $.player.addScore($.vigilante_score);
-
-    if ($.total_criminals_killed == $.vigilante_bonus_kills) {
-        $.vigilante = $.total_criminals_killed * 2;
-        $.vigilante *= 500;
-        Text.PrintBigQ('C_VIGIL', 5000, 5);
-        Text.PrintWithNumberBigQ('REWARD', $.vigilante, 6000, 6);
-        $.player.addScore($.vigilante);
-        //FLASH_HUD_OBJECT OnscreenCounter
-        if ($.vigilante_bonus_kills == 10) {
-            //ADD_PAGER_MESSAGE PAGEB12 140 100 1	//"Get out of jail free!"
-            $.player.setGetOutOfJailFree(true /* TRUE */);
+        ++$.total_criminals_killed;
+        if (typeof total_criminals_killed !== 'undefined') {
+            total_criminals_killed.value = $.total_criminals_killed;
         }
-        $.vigilante_bonus_kills += 5;
-    }
-
-    if ($.location == 1) {
-        ++$.ind_copcar_kills;
-    }
-
-    if ($.location == 2) {
-        ++$.com_copcar_kills;
-    }
-
-    if ($.location == 3) {
-        ++$.sub_copcar_kills;
-    }
-
-    if ($.play_pager_message1 == 0) {
-        if ($.ind_copcar_kills == 10) {
-            Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
-            Stat.PlayerMadeProgress(1);
-            $.play_pager_message1 = 1;
+        Stat.RegisterCriminalCaught();
+        Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+        if ($.total_criminals_killed == 1) {
+            total_criminals_killed = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.total_criminals_killed, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
         }
-    }
 
-    if ($.play_pager_message1 == 1) {
-        if ($.ind_copcar_kills == 20) {
-            Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
-            Stat.PlayerMadeProgress(1);
-            $.play_pager_message1 = 2;
-        }
-    }
+        $.criminal_blip.remove();
+        $.vigilante_score = total_criminals_killed.value * 500;
+        Text.PrintBig('C_PASS', 5000, 5);
+        Text.PrintWithNumberBig('REWARD', $.vigilante_score, 5000, 6);
+        $.player.addScore($.vigilante_score);
 
-    if ($.play_pager_message2 == 0) {
-        if ($.com_copcar_kills == 10) {
-            Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
-            Stat.PlayerMadeProgress(1);
-            $.play_pager_message2 = 1;
-        }
-    }
-
-    if ($.play_pager_message2 == 1) {
-        if ($.com_copcar_kills == 20) {
-            Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
-            Stat.PlayerMadeProgress(1);
-            $.play_pager_message2 = 2;
-        }
-    }
-
-    if ($.play_pager_message3 == 0) {
-        if ($.sub_copcar_kills == 10) {
-            Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
-            Stat.PlayerMadeProgress(1);
-            $.play_pager_message3 = 1;
-        }
-    }
-
-    if ($.play_pager_message3 == 1) {
-        if ($.sub_copcar_kills == 20) {
-            Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
-            Stat.PlayerMadeProgress(1);
-            $.play_pager_message3 = 2;
-        }
-    }
-
-    while (
-        !$.player.isInModel(116 /* CAR_POLICE */) &&
-        !$.player.isInModel(117 /* CAR_ENFORCER */) &&
-        !$.player.isInModel(122 /* CAR_RHINO */) &&
-        !$.player.isInModel(107 /* CAR_FBI */)
-    ) {
-        if ($.game_time_flag == 0) {
-            $.game_timer_start = Clock.GetGameTimer();
-            if ($.cop_time_limit > 60000) {
-                $.copcar_timer = 60000;
-            } else {
-                $.copcar_timer = $.cop_time_limit;
+        if (total_criminals_killed.value == $.vigilante_bonus_kills) {
+            $.vigilante = total_criminals_killed.value * 2;
+            $.vigilante *= 500;
+            Text.PrintBigQ('C_VIGIL', 5000, 5);
+            Text.PrintWithNumberBigQ('REWARD', $.vigilante, 6000, 6);
+            $.player.addScore($.vigilante);
+            //FLASH_HUD_OBJECT OnscreenCounter
+            if ($.vigilante_bonus_kills == 10) {
+                //ADD_PAGER_MESSAGE PAGEB12 140 100 1	//"Get out of jail free!"
+                $.player.setGetOutOfJailFree(true /* TRUE */);
             }
-            $.game_time_flag = 1;
+            $.vigilante_bonus_kills += 5;
         }
-        $.game_time_present = Clock.GetGameTimer();
-        $.game_time_difference = $.game_time_present - $.game_timer_start;
-        $.copcar_timer -= $.game_time_difference;
-        $.game_timer_start = $.game_time_present;
-        $.timer_in_secs = $.copcar_timer / 1000;
-        Text.PrintWithNumberNow('COPCART', $.timer_in_secs, 200, 1); //You have ~1~ seconds to return to the car before the mission ends.
-        if ($.timer_in_secs < 1) {
-            Text.PrintNow('C_TIME', 3000, 1); //"Your time as a law enforcer is over!"
-            // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+
+        if ($.location == 1) {
+            ++$.ind_copcar_kills;
         }
-        await asyncWait(0);
+
+        if ($.location == 2) {
+            ++$.com_copcar_kills;
+        }
+
+        if ($.location == 3) {
+            ++$.sub_copcar_kills;
+        }
+
+        if ($.play_pager_message1 == 0) {
+            if ($.ind_copcar_kills == 10) {
+                Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
+                Stat.PlayerMadeProgress(1);
+                $.play_pager_message1 = 1;
+            }
+        }
+
+        if ($.play_pager_message1 == 1) {
+            if ($.ind_copcar_kills == 20) {
+                Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
+                Stat.PlayerMadeProgress(1);
+                $.play_pager_message1 = 2;
+            }
+        }
+
+        if ($.play_pager_message2 == 0) {
+            if ($.com_copcar_kills == 10) {
+                Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
+                Stat.PlayerMadeProgress(1);
+                $.play_pager_message2 = 1;
+            }
+        }
+
+        if ($.play_pager_message2 == 1) {
+            if ($.com_copcar_kills == 20) {
+                Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
+                Stat.PlayerMadeProgress(1);
+                $.play_pager_message2 = 2;
+            }
+        }
+
+        if ($.play_pager_message3 == 0) {
+            if ($.sub_copcar_kills == 10) {
+                Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
+                Stat.PlayerMadeProgress(1);
+                $.play_pager_message3 = 1;
+            }
+        }
+
+        if ($.play_pager_message3 == 1) {
+            if ($.sub_copcar_kills == 20) {
+                Pager.AddMessage('PAGEB12', 140, 100, 1); //"Police Bribe delivered to hideout"
+                Stat.PlayerMadeProgress(1);
+                $.play_pager_message3 = 2;
+            }
+        }
+
+        while (
+            !$.player.isInModel(116 /* CAR_POLICE */) &&
+            !$.player.isInModel(117 /* CAR_ENFORCER */) &&
+            !$.player.isInModel(122 /* CAR_RHINO */) &&
+            !$.player.isInModel(107 /* CAR_FBI */)
+        ) {
+            if ($.game_time_flag == 0) {
+                $.game_timer_start = Clock.GetGameTimer();
+                const cop_time_limit_now = typeof cop_time_limit !== 'undefined' ? cop_time_limit.value : $.cop_time_limit;
+                if (cop_time_limit_now > 60000) {
+                    $.copcar_timer = 60000;
+                } else {
+                    $.copcar_timer = cop_time_limit_now;
+                }
+                $.game_time_flag = 1;
+            }
+            $.game_time_present = Clock.GetGameTimer();
+            $.game_time_difference = $.game_time_present - $.game_timer_start;
+            $.copcar_timer -= $.game_time_difference;
+            $.game_timer_start = $.game_time_present;
+            $.timer_in_secs = $.copcar_timer / 1000;
+            Text.PrintWithNumberNow('COPCART', $.timer_in_secs, 200, 1); //You have ~1~ seconds to return to the car before the mission ends.
+            if ($.timer_in_secs < 1) {
+                Text.PrintNow('C_TIME', 3000, 1); //"Your time as a law enforcer is over!"
+                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
+                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+            }
+            await asyncWait(0);
+        }
+
+        if ($.player.isInAnyCar()) {
+            $.players_cop_car = $.player.storeCarIsIn();
+            $.players_cop_car_health = $.players_cop_car.getHealth();
+            $.players_cop_car_health += 100;
+            $.players_cop_car.setHealth($.players_cop_car_health);
+        }
+
+        await cop_car_passed(); // SCM GOTO → cop_car_passed
     }
-
-    if ($.player.isInAnyCar()) {
-        $.players_cop_car = $.player.storeCarIsIn();
-        $.players_cop_car_health = $.players_cop_car.getHealth();
-        $.players_cop_car_health += 100;
-        $.players_cop_car.setHealth($.players_cop_car_health);
-    }
-
-    // SCM GOTO → cop_car_passed (not lowered; manual jump required)
-    throw new Error('unresolved GOTO cop_car_passed'); // fallback: would break linear control flow
-
-    /////////////////////////////////////////////////////////////
 }
+/////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////
 async function cop_car_passed() {
-    /////////////////////////////////////////////////////////////
-
-    Hud.ClearTimer($.cop_time_limit);
+    if (typeof cop_time_limit !== 'undefined') {
+        cop_time_limit.clear(); // xxx: Hud.ClearTimer($.cop_time_limit);
+    }
     $.criminal_blip.remove();
 
     if ($.criminal_created_flag == 1) {
         $.criminal.markAsNoLongerNeeded();
         $.criminal_created_flag = 0;
     }
-
-    // SCM GOTO → next_cop_car (not lowered; manual jump required)
-    throw new Error('unresolved GOTO next_cop_car'); // fallback: would break linear control flow
-
-    /////////////////////////////////////////////////////////////
 }
+/////////////////////////////////////////////////////////////
 
-async function cop_car_failed() {
-    /////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////
+async function onFailed() {
     Text.PrintBig('C_FAIL', 5000, 5);
-    Text.PrintWithNumberBig('C_KILLS', $.total_criminals_killed, 6000, 6);
-    Hud.ClearTimer($.cop_time_limit);
-    Hud.ClearCounter($.total_criminals_killed);
+    const total_criminals_killed_now = typeof total_criminals_killed !== 'undefined' ? total_criminals_killed.value : $.total_criminals_killed;
+    Text.PrintWithNumberBig('C_KILLS', total_criminals_killed_now, 6000, 6);
+    if (typeof cop_time_limit !== 'undefined') {
+        cop_time_limit.clear(); // xxx: Hud.ClearTimer($.cop_time_limit);
+    }
+    if (typeof total_criminals_killed !== 'undefined') {
+        total_criminals_killed.clear(); // xxx: Hud.ClearCounter($.total_criminals_killed);
+    }
     $.criminal_blip.remove();
     Text.ClearHelp();
     Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
@@ -812,7 +822,6 @@ async function cop_car_failed() {
     ONMISSION = false;
     $.flag_player_on_cop_mission = 0;
     Mission.Finish();
-    return;
 }
 
 async function copcar_cancelled_checks() {
@@ -824,10 +833,11 @@ async function copcar_cancelled_checks() {
     ) {
         if ($.game_time_flag == 0) {
             $.game_timer_start = Clock.GetGameTimer();
-            if ($.cop_time_limit > 60000) {
+            const cop_time_limit_now = typeof cop_time_limit !== 'undefined' ? cop_time_limit.value : $.cop_time_limit;
+            if (cop_time_limit_now > 60000) {
                 $.copcar_timer = 60000;
             } else {
-                $.copcar_timer = $.cop_time_limit;
+                $.copcar_timer = cop_time_limit_now;
             }
             $.game_time_flag = 1;
         }
@@ -879,40 +889,6 @@ async function copcar_cancelled_checks() {
             }
         }
     }
-
-    return;
 }
 
-export async function copcar() {
-    
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *********************************** Cop Car Mission *************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-
-    // Mission start stuff
-
-    // SCM GOSUB mission_start_cop_car
-    await mission_start_cop_car();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    // SCM GOSUB cop_car_failed
-    await cop_car_failed();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    
-
-    // Variables for mission
-
-    // VAR_INT got_range_message player_in_range car_model criminal_car range_int mission_end_button total_criminals_killed players_cop_car_health
-    // VAR_INT criminal_created_flag criminal criminal_blip random_gun cop_time_limit got_car_crim_is_in timer_reset_flag vigilante_bonus_kills location got_cop_breif
-    // VAR_INT game_time_flag game_timer_start copcar_timer game_time_present game_time_difference timer_in_secs players_cop_car vigilante vigilante_score copcar_cancelled_flag
-
-    // VAR_FLOAT player_c_x player_c_y player_c_z random_crim_x random_crim_y criminal_coord_x criminal_coord_y criminal_coord_z
-    // VAR_FLOAT diff_x_float diff_y_float sum_of_diff_xy players_distance_from_criminal cop_time_limit_float criminal_heading warp_heading_cop
-
-    // ****************************************Mission Start************************************
-}
+export default () => body().catch(onFailed);

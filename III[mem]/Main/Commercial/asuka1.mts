@@ -1,8 +1,52 @@
 // Generated from Main/Commercial/asuka1.sc
 import { $, verbose } from '../../utils';
 
+// *****************************************************************************************
+// *******************************   Asuka mission 1   *************************************
+// ******************************* Salvatore's Sendoff *************************************
+// *****************************************************************************************
+// *** Salvatore will be leaving Luigi's Club in 3 hours. The player will have to kill 	 ***
+// *** him before he arrives at his mansion. He will come out of the club with a very 	 ***
+// *** large Mafia escort. (3 cars full and 5 extra goons) If the player is spotted 	 ***
+// *** before Salvatore leaves the club, they will attack. 								 ***
+// *****************************************************************************************
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_asuka1
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_asuka1_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_asuka1
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT hours_a1 mins_a1 time_left_a1 beamer1_a1 beamer2_a1 beamer3_a1 mission_blip_am1
+    // VAR_INT mafia_1X mafia_2X mafia_3X mafia_4X mafia_5X mafia_6X mafia_7X mafia_8X mafia_9X mafia_10X mafia_11X mafia_12X mafia_13X mafia_14X mafia_15X
+    // VAR_INT mafia_8_flag mafia_9_flag mafia_10_flag mafia_11_flag mafia_12_flag mafia_13_flag frankie_flag
+    // VAR_INT set_beamer_1_kill_player set_beamer_2_kill_player set_beamer_3_kill_player
+    // VAR_INT beamer1_health beamer2_health beamer3_health garage_door_close timera_reset_flag_a1 timerb_reset_flag_a1 timerc_reset_flag_a1
+    // VAR_INT timerc_started_a1 timerc_current_a1 timerc_a1 frankies_ride fuckers_car beamer_1_dead_flag beamer_2_dead_flag beamer_3_dead_flag
+    // VAR_INT players_car_a1 kill_player_now_flag spotted_print enter_car_flag frankie_exists_flag
+    // VAR_INT mafia_8_kill_player_flag mafia_9_kill_player_flag mafia_10_kill_player_flag mafia_11_kill_player_flag mafia_12_kill_player_flag mafia_13_kill_player_flag
+    // VAR_INT mafia_5_kill_player_flag mafia_7_kill_player_flag mafia_15_kill_player_flag
+    // VAR_INT timerx timerx_started timerx_current timerx_reset_flag
+    // VAR_INT timery timery_started timery_current timery_reset_flag
+    // VAR_INT timerz timerz_started timerz_current timerz_reset_flag
+
+    // VAR_FLOAT players_car_a1_speed beamer1_a1_speed beamer2_a1_speed beamer3_a1_speed
+    // VAR_FLOAT create_char_in_club_x create_char_in_club_y create_char_in_club_z bottom_of_steps_x bottom_of_steps_y mafia_10_x mafia_10_y
+    // VAR_FLOAT mafia_11_x mafia_11_y mafia_12_x mafia_12_y mafia_13_x mafia_13_y working_x_a1 working_y_a1 working_z_a1 beamer_heading
+    // VAR_FLOAT street_x street_y back_of_alley_x back_of_alley_y a1_x a1_y a1_z diff_heading_door
+    // VAR_FLOAT beamer1_stuck_x beamer1_stuck_y beamer1_stuck_z beamer2_stuck_x beamer2_stuck_y beamer2_stuck_z beamer3_stuck_x beamer3_stuck_y beamer3_stuck_z
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
     $.flag_player_on_asuka_mission = 1;
 
@@ -37,12 +81,12 @@ async function body() {
     $.timerc_a1 = 0;
     $.door_crash_flag = 0;
     $.spotted_print = 0;
-    $.frankies_ride = 0;
+    $.frankies_ride = 0 as any;
     $.beamer_1_dead_flag = 0;
     $.beamer_2_dead_flag = 0;
     $.beamer_3_dead_flag = 0;
     $.enter_car_flag = 0;
-    $.fuckers_car = -1;
+    $.fuckers_car = -1 as any;
     $.frankie_exists_flag = 0;
     $.mafia_5_kill_player_flag = 0;
     $.mafia_7_kill_player_flag = 0;
@@ -66,297 +110,288 @@ async function body() {
     $.beamer3_stuck_x = 0.0;
     $.beamer3_stuck_y = 0.0;
     $.beamer3_stuck_z = 0.0;
-    {
-        // ****************************************START OF CUTSCENE********************************
 
-        /*
-  SET_FADING_COLOUR 0 0 0
+    // ****************************************START OF CUTSCENE********************************
 
-  DO_FADE 1500 FADE_OUT
+    /*
+        SET_FADING_COLOUR 0 0 0
 
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_asuka1_failed
-  ENDIF
+        DO_FADE 1500 FADE_OUT
 
-  SWITCH_STREAMING OFF
+        IF CAN_PLAYER_START_MISSION player
+        MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+        ELSE
+        GOTO mission_asuka1_failed
+        ENDIF
 
-  PRINT_BIG AM1 15000 2
-  */
+        SWITCH_STREAMING OFF
 
-        Streaming.LoadSpecialCharacter(1, 'asuka');
-        Streaming.LoadSpecialCharacter(2, 'maria');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'ASUKAH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MARIAH');
-        Streaming.RequestModel(2216 /* condo_ivy */);
-        Streaming.RequestModel(2215 /* kmricndo01 */);
+        PRINT_BIG AM1 15000 2
+        */
 
-        /*
-  WHILE GET_FADING_STATUS
-  WAIT 0
-  ENDWHILE
-  */
+    Streaming.LoadSpecialCharacter(1, 'asuka');
+    Streaming.LoadSpecialCharacter(2, 'maria');
+    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'ASUKAH');
+    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MARIAH');
+    Streaming.RequestModel(2216 /* condo_ivy */);
+    Streaming.RequestModel(2215 /* kmricndo01 */);
 
-        Streaming.LoadAllModelsNow();
+    /*
+        WHILE GET_FADING_STATUS
+        WAIT 0
+        ENDWHILE
+        */
 
-        while (
-            !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasSpecialCharacterLoaded(2) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */)
-        ) {
-            await asyncWait(0);
-        }
+    Streaming.LoadAllModelsNow();
 
-        while (!Streaming.HasModelLoaded(2216 /* condo_ivy */) || !Streaming.HasModelLoaded(2215 /* kmricndo01 */)) {
-            await asyncWait(0);
-        }
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasSpecialCharacterLoaded(2) ||
+        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
+        !Streaming.HasModelLoaded(185 /* cut_obj1 */)
+    ) {
+        await asyncWait(0);
+    }
 
-        Cutscene.Load('A1_SS0');
+    while (!Streaming.HasModelLoaded(2216 /* condo_ivy */) || !Streaming.HasModelLoaded(2215 /* kmricndo01 */)) {
+        await asyncWait(0);
+    }
 
-        Cutscene.SetOffset(523.102, -636.96, 15.616);
+    Cutscene.Load('A1_SS0');
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-        $.cs_player.setAnim('player');
+    Cutscene.SetOffset(523.102, -636.96, 15.616);
 
-        $.cs_asuka = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
-        $.cs_asuka.setAnim('asuka');
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player.setAnim('player');
 
-        $.cs_maria = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
-        $.cs_maria.setAnim('maria');
+    $.cs_asuka = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_asuka.setAnim('asuka');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* cut_obj1 */);
-        $.cs_playerhead.setAnim('player');
+    $.cs_maria = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_maria.setAnim('maria');
 
-        $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 186 /* cut_obj2 */);
-        $.cs_asukahead.setAnim('asuka');
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* cut_obj1 */);
+    $.cs_playerhead.setAnim('player');
 
-        $.cs_mariahead = CutsceneHead.Create($.cs_maria, 187 /* cut_obj3 */);
-        $.cs_mariahead.setAnim('maria');
+    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 186 /* cut_obj2 */);
+    $.cs_asukahead.setAnim('asuka');
 
-        World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */);
-        $.player.setCoordinates(523.6, -639.4, 16.0);
+    $.cs_mariahead = CutsceneHead.Create($.cs_maria, 187 /* cut_obj3 */);
+    $.cs_mariahead.setAnim('maria');
 
-        $.player.setHeading(180.0);
+    World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */);
+    $.player.setCoordinates(523.6, -639.4, 16.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+    $.player.setHeading(180.0);
 
-        Cutscene.Start();
+    Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        World.SwitchRubbish(false /* OFF */);
-        //SWITCH_STREAMING OFF
-        // Displays cutscene text
+    Cutscene.Start();
 
+    World.SwitchRubbish(false /* OFF */);
+    //SWITCH_STREAMING OFF
+    // Displays cutscene text
+
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 5353) {
+        await asyncWait(0);
         $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 5353) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_A', 15000, 1);
 
-        Text.PrintNow('AM1_A', 15000, 1);
+    while ($.cs_time < 9624) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 9624) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_B', 15000, 1);
 
-        Text.PrintNow('AM1_B', 15000, 1);
+    while ($.cs_time < 13409) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 13409) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_C', 15000, 1);
 
-        Text.PrintNow('AM1_C', 15000, 1);
+    while ($.cs_time < 17788) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 17788) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_D', 15000, 1);
 
-        Text.PrintNow('AM1_D', 15000, 1);
+    while ($.cs_time < 20113) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 20113) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_E', 15000, 1);
 
-        Text.PrintNow('AM1_E', 15000, 1);
+    while ($.cs_time < 25303) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 25303) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    const _res1 = Clock.GetTimeOfDay();
+    $.hours_a1 = _res1.hours;
+    $.mins_a1 = _res1.minutes;
 
-        const _res1 = Clock.GetTimeOfDay();
-        $.hours_a1 = _res1.hours;
-        $.mins_a1 = _res1.minutes;
+    $.hours_a1 = $.hours_a1 + 3;
+    if ($.hours_a1 > 23) {
+        $.hours_a1 = $.hours_a1 - 24;
+    }
 
-        $.hours_a1 = $.hours_a1 + 3;
-        if ($.hours_a1 > 23) {
-            $.hours_a1 = $.hours_a1 - 24;
-        }
+    $.mins_a1 = 30;
 
-        $.mins_a1 = 30;
+    if ($.hours_a1 > 9) {
+        Text.PrintWith2NumbersNow('AM1_F', $.hours_a1, $.mins_a1, 15000, 1); // "Salvatore Leon will be leaving Luigi's at about ~1~:~1~."
+    } else {
+        Text.PrintWith2NumbersNow('AM1_K', $.hours_a1, $.mins_a1, 15000, 1); // "Salvatore Leon will be leaving Luigi's at about 0~1~:~1~."
+    }
 
-        if ($.hours_a1 > 9) {
-            Text.PrintWith2NumbersNow('AM1_F', $.hours_a1, $.mins_a1, 15000, 1); // "Salvatore Leon will be leaving Luigi's at about ~1~:~1~."
-        } else {
-            Text.PrintWith2NumbersNow('AM1_K', $.hours_a1, $.mins_a1, 15000, 1); // "Salvatore Leon will be leaving Luigi's at about 0~1~:~1~."
-        }
+    while ($.cs_time < 29629) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 29629) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_G', 15000, 1);
 
-        Text.PrintNow('AM1_G', 15000, 1);
+    while ($.cs_time < 32657) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 32657) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_H', 15000, 1);
 
-        Text.PrintNow('AM1_H', 15000, 1);
+    while ($.cs_time < 37360) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 37360) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_I', 15000, 1);
 
-        Text.PrintNow('AM1_I', 15000, 1);
+    while ($.cs_time < 40118) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 40118) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Text.PrintNow('AM1_J', 15000, 1);
 
-        Text.PrintNow('AM1_J', 15000, 1);
+    while ($.cs_time < 41666) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 41666) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
 
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
+    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(true /* ON */);
 
-        Streaming.Switch(true /* ON */);
-        World.SwitchRubbish(true /* ON */);
+    Text.ClearPrints();
 
-        Text.ClearPrints();
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
 
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
+    Cutscene.Clear();
 
-        Cutscene.Clear();
+    Camera.DoFade(0, 0 /* FADE_OUT */);
 
-        Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.SetInFrontOfPlayer();
 
-        Camera.SetInFrontOfPlayer();
+    await asyncWait(500);
 
-        await asyncWait(500);
+    Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
 
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
+    Streaming.UnloadSpecialCharacter(1);
+    Streaming.UnloadSpecialCharacter(2);
+    Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */);
+    Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */);
+    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
+    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
+    Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
 
-        Streaming.UnloadSpecialCharacter(1);
-        Streaming.UnloadSpecialCharacter(2);
-        Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */);
-        Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
+    // ******************************************END OF CUTSCENE********************************
 
-        // ******************************************END OF CUTSCENE********************************
+    Streaming.LoadSpecialCharacter(1, 'frankie');
+    Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
+    Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
+    Streaming.RequestModel(134 /* CAR_MAFIA */);
 
-        Streaming.LoadSpecialCharacter(1, 'frankie');
-        Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
-        Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
-        Streaming.RequestModel(134 /* CAR_MAFIA */);
+    while (
+        !Streaming.HasModelLoaded(134 /* CAR_MAFIA */) ||
+        !Streaming.HasModelLoaded(10 /* PED_GANG_MAFIA_A */) ||
+        !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */) ||
+        !Streaming.HasSpecialCharacterLoaded(1)
+    ) {
+        await asyncWait(0);
+    }
 
-        while (
-            !Streaming.HasModelLoaded(134 /* CAR_MAFIA */) ||
-            !Streaming.HasModelLoaded(10 /* PED_GANG_MAFIA_A */) ||
-            !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */) ||
-            !Streaming.HasSpecialCharacterLoaded(1)
-        ) {
-            await asyncWait(0);
-        }
+    $.create_char_in_club_x = 894.0;
+    $.create_char_in_club_y = -417.0;
+    $.create_char_in_club_z = 15.3;
 
-        $.create_char_in_club_x = 894.0;
-        $.create_char_in_club_y = -417.0;
-        $.create_char_in_club_z = 15.3;
+    $.mission_blip_am1 = Blip.AddForCoord($.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
 
-        $.mission_blip_am1 = Blip.AddForCoord($.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+    $.bottom_of_steps_x = 885.53;
+    $.bottom_of_steps_y = -417.0;
 
-        $.bottom_of_steps_x = 885.53;
-        $.bottom_of_steps_y = -417.0;
+    $.back_of_alley_x = 886.03;
+    $.back_of_alley_y = -425.77;
 
-        $.back_of_alley_x = 886.03;
-        $.back_of_alley_y = -425.77;
+    $.street_x = 902.72;
+    $.street_y = -425.65;
 
-        $.street_x = 902.72;
-        $.street_y = -425.65;
+    $.mafia_10_x = 902.72 - 1.0;
+    $.mafia_10_y = -425.65 + 3.0;
 
-        $.mafia_10_x = 902.72 - 1.0;
-        $.mafia_10_y = -425.65 + 3.0;
+    $.mafia_11_x = 902.72 + 1.0;
+    $.mafia_11_y = -425.65 + 3.0;
 
-        $.mafia_11_x = 902.72 + 1.0;
-        $.mafia_11_y = -425.65 + 3.0;
+    $.mafia_12_x = 902.72 + 1.0;
+    $.mafia_12_y = -425.65 - 2.0;
 
-        $.mafia_12_x = 902.72 + 1.0;
-        $.mafia_12_y = -425.65 - 2.0;
+    $.mafia_13_x = 902.72 - 1.0;
+    $.mafia_13_y = -425.65 - 2.0;
 
-        $.mafia_13_x = 902.72 - 1.0;
-        $.mafia_13_y = -425.65 - 2.0;
+    $.mafia_8_flag = 0;
+    $.mafia_9_flag = 0;
+    $.mafia_10_flag = 0;
+    $.mafia_11_flag = 0;
+    $.mafia_12_flag = 0;
+    $.mafia_13_flag = 0;
+    $.kill_player_now_flag = 0;
 
-        $.mafia_8_flag = 0;
-        $.mafia_9_flag = 0;
-        $.mafia_10_flag = 0;
-        $.mafia_11_flag = 0;
-        $.mafia_12_flag = 0;
-        $.mafia_13_flag = 0;
-        $.kill_player_now_flag = 0;
+    Text.PrintNow('AM1_5', 5000, 1); //"Get to the Red Light District and wait for Salvatore to leave the club."
+    if ($.hours_a1 > 9) {
+        Text.PrintWith2NumbersSoon('AM1_8', $.hours_a1, $.mins_a1, 5000, 1); //"Salvatore will be leaving at about ~1~:~1~"
+    } else {
+        Text.PrintWith2NumbersSoon('AM1_10', $.hours_a1, $.mins_a1, 5000, 1); //"Salvatore will be leaving at about 0~1~:~1~"
+    }
 
-        Text.PrintNow('AM1_5', 5000, 1); //"Get to the Red Light District and wait for Salvatore to leave the club."
-        if ($.hours_a1 > 9) {
-            Text.PrintWith2NumbersSoon('AM1_8', $.hours_a1, $.mins_a1, 5000, 1); //"Salvatore will be leaving at about ~1~:~1~"
-        } else {
-            Text.PrintWith2NumbersSoon('AM1_10', $.hours_a1, $.mins_a1, 5000, 1); //"Salvatore will be leaving at about 0~1~:~1~"
-        }
+    //IF ammu2_blip_added = 0
+    //	ADD_SPRITE_BLIP_FOR_COORD 345.5 -713.5 26.1 RADAR_SPRITE_WEAPON ammu_nation2
+    //	ADD_SPRITE_BLIP_FOR_COORD 379.0 -493.8 25.2 RADAR_SPRITE_SPRAY sprayshop2_blip
+    //	ammu2_blip_added = 1
+    //ENDIF
 
-        //IF ammu2_blip_added = 0
-        //	ADD_SPRITE_BLIP_FOR_COORD 345.5 -713.5 26.1 RADAR_SPRITE_WEAPON ammu_nation2
-        //	ADD_SPRITE_BLIP_FOR_COORD 379.0 -493.8 25.2 RADAR_SPRITE_SPRAY sprayshop2_blip
-        //	ammu2_blip_added = 1
-        //ENDIF
+    $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
 
+    while (!($.time_left_a1 < 1)) {
+        await asyncWait(0);
         $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
-
-        while (!($.time_left_a1 < 1)) {
-            await asyncWait(0);
-            $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
-            if ($.garage_door_close == 0) {
-                if ($.player.isInZone('REDLIGH')) {
-                    Text.PrintNow('AM1_6', 5000, 1); //"Don't hang around Luigi's club, or the Mafia will spot you"
-                    $.mission_blip_am1.remove();
-                    $.garage_door_close = 1;
-                }
-            }
-        }
-
         if ($.garage_door_close == 0) {
             if ($.player.isInZone('REDLIGH')) {
                 Text.PrintNow('AM1_6', 5000, 1); //"Don't hang around Luigi's club, or the Mafia will spot you"
@@ -364,161 +399,194 @@ async function body() {
                 $.garage_door_close = 1;
             }
         }
+    }
+
+    if ($.garage_door_close == 0) {
+        if ($.player.isInZone('REDLIGH')) {
+            Text.PrintNow('AM1_6', 5000, 1); //"Don't hang around Luigi's club, or the Mafia will spot you"
+            $.mission_blip_am1.remove();
+            $.garage_door_close = 1;
+        }
+    }
+    $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
+
+    while (!Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+        await asyncWait(0);
         $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
+        if ($.time_left_a1 < 1) {
+            Text.PrintNow('AM1_3', 5000, 1); //"You've missed Salvatore!"
+            // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_asuka1_failed'); // fallback: would break linear control flow
+        }
+    }
 
-        while (!Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-            await asyncWait(0);
-            $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
-            if ($.time_left_a1 < 1) {
-                Text.PrintNow('AM1_3', 5000, 1); //"You've missed Salvatore!"
-                // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka1_failed'); // fallback: would break linear control flow
+    Path.SwitchRoadsOff(905.0, -448.6, 12.0, 916.0, -393.0, 20.0);
+    $.frankie_garage.changeType(1 /* GARAGE_MISSION */);
+
+    if (!$.player.locateAnyMeans2D(908.3, -86.0, 100.0, 100.0, false)) {
+        $.working_x_a1 = 908.3;
+        $.working_y_a1 = -86.0;
+        $.working_z_a1 = 7.0;
+        $.beamer1_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
+        $.beamer_heading = $.beamer1_a1.getHeading();
+        $.beamer_heading = $.beamer_heading - 180.0;
+        $.beamer1_a1.setHeading($.beamer_heading);
+        $.beamer1_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.beamer1_a1.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.beamer1_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.working_y_a1 = $.working_y_a1 + 11.0;
+        $.beamer2_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
+        $.beamer2_a1.setHeading($.beamer_heading);
+        $.beamer2_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.beamer2_a1.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.beamer2_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.working_y_a1 = $.working_y_a1 + 11.0;
+        $.beamer3_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
+        $.beamer3_a1.setHeading($.beamer_heading);
+        $.beamer3_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.beamer3_a1.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.beamer3_a1.setUpsidedownNotDamaged(true /* TRUE */);
+    } else {
+        $.working_x_a1 = 1123.67;
+        $.working_y_a1 = -59.3;
+        $.working_z_a1 = 7.0;
+        $.beamer3_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
+        $.beamer_heading = $.beamer3_a1.getHeading();
+        $.beamer_heading = $.beamer_heading - 180.0;
+        $.beamer3_a1.setHeading($.beamer_heading);
+        $.beamer3_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.beamer3_a1.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.beamer3_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.working_y_a1 = $.working_y_a1 - 11.0;
+        $.beamer2_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
+        $.beamer2_a1.setHeading($.beamer_heading);
+        $.beamer2_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.beamer2_a1.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.beamer2_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.working_y_a1 = $.working_y_a1 - 11.0;
+        $.beamer1_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
+        $.beamer1_a1.setHeading($.beamer_heading);
+        $.beamer1_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.beamer1_a1.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.beamer1_a1.setUpsidedownNotDamaged(true /* TRUE */);
+    }
+
+    $.mafia_1X = Char.CreateInsideCar($.beamer1_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */);
+    $.mafia_2X = Char.CreateInsideCar($.beamer2_a1, 7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */);
+    $.mafia_3X = Char.CreateInsideCar($.beamer3_a1, 7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */);
+    $.mafia_4X = Char.CreateAsPassenger($.beamer3_a1, 7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 0);
+    $.mafia_5X = Char.CreateAsPassenger($.beamer3_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, 1);
+    $.mafia_6X = Char.CreateAsPassenger($.beamer1_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, 0);
+    $.mafia_7X = Char.CreateAsPassenger($.beamer1_a1, 7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1);
+    $.mafia_14X = Char.CreateAsPassenger($.beamer2_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, 0);
+    $.mafia_1X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.mafia_2X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.mafia_3X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.mafia_4X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.mafia_5X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.mafia_6X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.mafia_7X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.mafia_14X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.mafia_1X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.mafia_2X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.mafia_3X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.mafia_4X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.mafia_5X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.mafia_6X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.mafia_7X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.mafia_14X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.mafia_1X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+    $.mafia_2X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+    $.mafia_3X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+    $.mafia_4X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+    $.mafia_5X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+    $.mafia_6X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+    $.mafia_7X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+    $.mafia_14X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+
+    $.working_x_a1 = 908.0;
+    $.working_y_a1 = -435.5;
+    $.working_z_a1 = 14.56;
+    $.beamer1_a1.gotoCoordinates($.working_x_a1, $.working_y_a1, $.working_z_a1);
+
+    $.working_y_a1 = $.working_y_a1 + 7.0;
+    $.beamer2_a1.gotoCoordinates($.working_x_a1, $.working_y_a1, $.working_z_a1);
+
+    $.working_y_a1 = $.working_y_a1 + 7.0;
+    $.beamer3_a1.gotoCoordinates($.working_x_a1, $.working_y_a1, $.working_z_a1);
+
+    $.beamer1_a1.setDrivingStyle(2);
+    $.beamer2_a1.setDrivingStyle(2);
+    $.beamer3_a1.setDrivingStyle(2);
+    $.beamer1_a1.setCruiseSpeed(15.0);
+    $.beamer2_a1.setCruiseSpeed(14.0);
+    $.beamer3_a1.setCruiseSpeed(13.0);
+
+    if (ScriptObject.DoesExist($.backdoor)) {
+        $.door_position_a1 = $.backdoor.getHeading();
+    }
+
+    Audio.LoadMissionAudio('a1_a' as any);
+
+    if (!$.player.isInArea2D(873.0, -443.0, 927.0, -378.0, false)) {
+        $.player.setControl(false /* OFF */);
+        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+        if ($.player.isInAnyCar()) {
+            $.player.applyBrakesToCar(true /* ON */);
+        }
+        Camera.SetFadingColor(0, 0, 0);
+        Camera.DoFade(0, 0 /* FADE_OUT */);
+        await asyncWait(0);
+        //	DO_FADE 250 FADE_OUT
+        //	WHILE GET_FADING_STATUS
+        //		WAIT 0
+        //	ENDWHILE
+        Hud.SwitchWidescreen(true /* ON */);
+        World.ClearArea(905.759, -419.944, 8.0, 8.0, false /* FALSE */);
+        Streaming.RequestModel(257 /* indhibuild3 */);
+        Streaming.RequestModel(256 /* luigiclubout */);
+        Streaming.RequestModel(243 /* luigiineerclub */);
+        Streaming.RequestModel(620 /* ind_customroad016 */);
+        Streaming.LoadAllModelsNow();
+        Streaming.Switch(false /* OFF */);
+        Camera.SetFixedPosition(881.36, -425.198, 19.727, 0.0, 0.0, 0.0);
+        Camera.PointAtPoint(882.109, -424.825, 19.181, 2 /* JUMP_CUT */);
+        TIMERB = 0;
+        $.beamer1_health = 1;
+    }
+
+    TIMERA = 0;
+    $.skip_flag = 0;
+
+    mafia_main_loop: while ($.mafia_8_flag < 3 || $.mafia_9_flag < 3 || $.mafia_10_flag < 3 || $.mafia_11_flag < 3 || $.mafia_12_flag < 3 || $.mafia_13_flag < 3) {
+        await asyncWait(0);
+        if ($.beamer1_health == 1) {
+            if (TIMERB > 30000) {
+                Hud.SwitchWidescreen(false /* OFF */);
+                $.player.setControl(true /* ON */);
+                Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+                Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+                Streaming.Switch(true /* ON */);
+                if ($.player.isInAnyCar()) {
+                    $.player.applyBrakesToCar(false /* OFF */);
+                }
+                Camera.RestoreJumpcut();
+                Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
+                Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */);
+                Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */);
+                Streaming.MarkModelAsNoLongerNeeded(620 /* ind_customroad016 */);
+                Camera.DoFade(250, 1 /* FADE_IN */);
+                $.skip_flag = 2;
+                $.beamer1_health = 0;
             }
-        }
-
-        Path.SwitchRoadsOff(905.0, -448.6, 12.0, 916.0, -393.0, 20.0);
-        $.frankie_garage.changeType(1 /* GARAGE_MISSION */);
-
-        if (!$.player.locateAnyMeans2D(908.3, -86.0, 100.0, 100.0, false)) {
-            $.working_x_a1 = 908.3;
-            $.working_y_a1 = -86.0;
-            $.working_z_a1 = 7.0;
-            $.beamer1_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
-            $.beamer_heading = $.beamer1_a1.getHeading();
-            $.beamer_heading = $.beamer_heading - 180.0;
-            $.beamer1_a1.setHeading($.beamer_heading);
-            $.beamer1_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-            $.beamer1_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-            $.beamer1_a1.setUpsidedownNotDamaged(true /* TRUE */);
-            $.working_y_a1 = $.working_y_a1 + 11.0;
-            $.beamer2_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
-            $.beamer2_a1.setHeading($.beamer_heading);
-            $.beamer2_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-            $.beamer2_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-            $.beamer2_a1.setUpsidedownNotDamaged(true /* TRUE */);
-            $.working_y_a1 = $.working_y_a1 + 11.0;
-            $.beamer3_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
-            $.beamer3_a1.setHeading($.beamer_heading);
-            $.beamer3_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-            $.beamer3_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-            $.beamer3_a1.setUpsidedownNotDamaged(true /* TRUE */);
-        } else {
-            $.working_x_a1 = 1123.67;
-            $.working_y_a1 = -59.3;
-            $.working_z_a1 = 7.0;
-            $.beamer3_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
-            $.beamer_heading = $.beamer3_a1.getHeading();
-            $.beamer_heading = $.beamer_heading - 180.0;
-            $.beamer3_a1.setHeading($.beamer_heading);
-            $.beamer3_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-            $.beamer3_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-            $.beamer3_a1.setUpsidedownNotDamaged(true /* TRUE */);
-            $.working_y_a1 = $.working_y_a1 - 11.0;
-            $.beamer2_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
-            $.beamer2_a1.setHeading($.beamer_heading);
-            $.beamer2_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-            $.beamer2_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-            $.beamer2_a1.setUpsidedownNotDamaged(true /* TRUE */);
-            $.working_y_a1 = $.working_y_a1 - 11.0;
-            $.beamer1_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
-            $.beamer1_a1.setHeading($.beamer_heading);
-            $.beamer1_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-            $.beamer1_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-            $.beamer1_a1.setUpsidedownNotDamaged(true /* TRUE */);
-        }
-
-        $.mafia_1X = Char.CreateInsideCar($.beamer1_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */);
-        $.mafia_2X = Char.CreateInsideCar($.beamer2_a1, 7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */);
-        $.mafia_3X = Char.CreateInsideCar($.beamer3_a1, 7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */);
-        $.mafia_4X = Char.CreateAsPassenger($.beamer3_a1, 7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 0);
-        $.mafia_5X = Char.CreateAsPassenger($.beamer3_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, 1);
-        $.mafia_6X = Char.CreateAsPassenger($.beamer1_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, 0);
-        $.mafia_7X = Char.CreateAsPassenger($.beamer1_a1, 7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1);
-        $.mafia_14X = Char.CreateAsPassenger($.beamer2_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, 0);
-        $.mafia_1X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.mafia_2X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.mafia_3X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.mafia_4X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.mafia_5X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.mafia_6X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.mafia_7X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.mafia_14X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.mafia_1X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.mafia_2X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.mafia_3X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.mafia_4X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.mafia_5X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.mafia_6X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.mafia_7X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.mafia_14X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.mafia_1X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-        $.mafia_2X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-        $.mafia_3X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-        $.mafia_4X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-        $.mafia_5X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-        $.mafia_6X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-        $.mafia_7X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-        $.mafia_14X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-
-        $.working_x_a1 = 908.0;
-        $.working_y_a1 = -435.5;
-        $.working_z_a1 = 14.56;
-        $.beamer1_a1.gotoCoordinates($.working_x_a1, $.working_y_a1, $.working_z_a1);
-
-        $.working_y_a1 = $.working_y_a1 + 7.0;
-        $.beamer2_a1.gotoCoordinates($.working_x_a1, $.working_y_a1, $.working_z_a1);
-
-        $.working_y_a1 = $.working_y_a1 + 7.0;
-        $.beamer3_a1.gotoCoordinates($.working_x_a1, $.working_y_a1, $.working_z_a1);
-
-        $.beamer1_a1.setDrivingStyle(2);
-        $.beamer2_a1.setDrivingStyle(2);
-        $.beamer3_a1.setDrivingStyle(2);
-        $.beamer1_a1.setCruiseSpeed(15.0);
-        $.beamer2_a1.setCruiseSpeed(14.0);
-        $.beamer3_a1.setCruiseSpeed(13.0);
-
-        if (ScriptObject.DoesExist($.backdoor)) {
-            $.door_position_a1 = $.backdoor.getHeading();
-        }
-
-        Audio.LoadMissionAudio('a1_a' as any);
-
-        if (!$.player.isInArea2D(873.0, -443.0, 927.0, -378.0, false)) {
-            $.player.setControl(false /* OFF */);
-            Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-            Game.SetAllCarsCanBeDamaged(false /* FALSE */);
-            if ($.player.isInAnyCar()) {
-                $.player.applyBrakesToCar(true /* ON */);
+            if ($.skip_flag == 0) {
+                if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */) && !Pad.IsButtonPressed(0 /* PAD1 */, 12 /* START */)) {
+                    $.skip_flag = 1;
+                }
             }
-            Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(0, 0 /* FADE_OUT */);
-            await asyncWait(0);
-            //	DO_FADE 250 FADE_OUT
-            //	WHILE GET_FADING_STATUS
-            //		WAIT 0
-            //	ENDWHILE
-            Hud.SwitchWidescreen(true /* ON */);
-            World.ClearArea(905.759, -419.944, 8.0, 8.0, false /* FALSE */);
-            Streaming.RequestModel(257 /* indhibuild3 */);
-            Streaming.RequestModel(256 /* luigiclubout */);
-            Streaming.RequestModel(243 /* luigiineerclub */);
-            Streaming.RequestModel(620 /* ind_customroad016 */);
-            Streaming.LoadAllModelsNow();
-            Streaming.Switch(false /* OFF */);
-            Camera.SetFixedPosition(881.36, -425.198, 19.727, 0.0, 0.0, 0.0);
-            Camera.PointAtPoint(882.109, -424.825, 19.181, 2 /* JUMP_CUT */);
-            TIMERB = 0;
-            $.beamer1_health = 1;
-        }
-
-        TIMERA = 0;
-        $.skip_flag = 0;
-
-        while ($.mafia_8_flag < 3 || $.mafia_9_flag < 3 || $.mafia_10_flag < 3 || $.mafia_11_flag < 3 || $.mafia_12_flag < 3 || $.mafia_13_flag < 3) {
-            await asyncWait(0);
-            if ($.beamer1_health == 1) {
-                if (TIMERB > 30000) {
+            if ($.skip_flag == 1) {
+                if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */) || Pad.IsButtonPressed(0 /* PAD1 */, 12 /* START */)) {
                     Hud.SwitchWidescreen(false /* OFF */);
                     $.player.setControl(true /* ON */);
                     Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
@@ -533,98 +601,86 @@ async function body() {
                     Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */);
                     Streaming.MarkModelAsNoLongerNeeded(620 /* ind_customroad016 */);
                     Camera.DoFade(250, 1 /* FADE_IN */);
-                    $.skip_flag = 2;
                     $.beamer1_health = 0;
                 }
-                if ($.skip_flag == 0) {
-                    if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */) && !Pad.IsButtonPressed(0 /* PAD1 */, 12 /* START */)) {
-                        $.skip_flag = 1;
-                    }
-                }
-                if ($.skip_flag == 1) {
-                    if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */) || Pad.IsButtonPressed(0 /* PAD1 */, 12 /* START */)) {
-                        Hud.SwitchWidescreen(false /* OFF */);
-                        $.player.setControl(true /* ON */);
-                        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-                        Game.SetAllCarsCanBeDamaged(true /* TRUE */);
-                        Streaming.Switch(true /* ON */);
-                        if ($.player.isInAnyCar()) {
-                            $.player.applyBrakesToCar(false /* OFF */);
-                        }
-                        Camera.RestoreJumpcut();
-                        Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
-                        Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */);
-                        Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */);
-                        Streaming.MarkModelAsNoLongerNeeded(620 /* ind_customroad016 */);
-                        Camera.DoFade(250, 1 /* FADE_IN */);
-                        $.beamer1_health = 0;
-                    }
-                }
             }
-            if (!($.time_left_a1 == 0)) {
-                $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
+        }
+        if (!($.time_left_a1 == 0)) {
+            $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
+        }
+        if ($.garage_door_close == 0) {
+            if ($.player.isInZone('REDLIGH')) {
+                Text.PrintNow('AM1_6', 5000, 1); //"Don't hang around Luigi's club, or the Mafia will spot you"
+                $.mission_blip_am1.remove();
+                $.garage_door_close = 1;
             }
-            if ($.garage_door_close == 0) {
-                if ($.player.isInZone('REDLIGH')) {
-                    Text.PrintNow('AM1_6', 5000, 1); //"Don't hang around Luigi's club, or the Mafia will spot you"
-                    $.mission_blip_am1.remove();
-                    $.garage_door_close = 1;
-                }
-            }
+        }
 
-            //____CREATE MAFIA 8 TO GUARD THE STEPS____//
+        //____CREATE MAFIA 8 TO GUARD THE STEPS____//
 
-            if (!($.door_position_a1 == 90.0)) {
-                $.diff_heading_door = 90.0 - $.door_position_a1;
-                if ($.diff_heading_door < 10.0) {
-                    $.door_position_a1 = 90.0;
-                } else {
-                    $.door_position_a1 += 10.0;
-                }
-                $.backdoor.setHeading($.door_position_a1);
-                $.door_crash_flag = 1;
-            }
-            if ($.mafia_8_flag == 0) {
-                $.mafia_8X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                //SET_CHAR_THREAT_SEARCH mafia_8X THREAT_PLAYER1
-                $.mafia_8X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                //SET_CHAR_HEED_THREATS mafia_8X TRUE
-                $.mafia_8X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                $.mafia_8X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                $.mafia_8_flag = 1;
+        if (!($.door_position_a1 == 90.0)) {
+            $.diff_heading_door = 90.0 - $.door_position_a1;
+            if ($.diff_heading_door < 10.0) {
+                $.door_position_a1 = 90.0;
             } else {
-                if (Char.IsDead($.mafia_8X)) {
-                    $.kill_player_now_flag = 1;
-                    $.mafia_8_flag = 4;
-                }
+                $.door_position_a1 += 10.0;
             }
-            if ($.mafia_8_flag == 1) {
-                if ($.mafia_8X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
-                    $.mafia_8X.setObjGotoCoordOnFoot(887.6, -418.5);
-                    $.mafia_8_flag = 2;
-                }
+            $.backdoor.setHeading($.door_position_a1);
+            $.door_crash_flag = 1;
+        }
+        if ($.mafia_8_flag == 0) {
+            $.mafia_8X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+            //SET_CHAR_THREAT_SEARCH mafia_8X THREAT_PLAYER1
+            $.mafia_8X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+            //SET_CHAR_HEED_THREATS mafia_8X TRUE
+            $.mafia_8X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+            $.mafia_8X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+            $.mafia_8_flag = 1;
+        } else {
+            if (Char.IsDead($.mafia_8X)) {
+                $.kill_player_now_flag = 1;
+                $.mafia_8_flag = 4;
             }
-            if ($.mafia_8_flag == 2) {
-                if ($.mafia_8X.locateStoppedOnFoot2D(887.6, -418.5, 0.5, 0.5, false)) {
-                    $.mafia_8X.setHeading(90.0);
-                    $.mafia_8X.setIdle();
-                    $.mafia_8_flag = 3;
-                }
+        }
+        if ($.mafia_8_flag == 1) {
+            if ($.mafia_8X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
+                $.mafia_8X.setObjGotoCoordOnFoot(887.6, -418.5);
+                $.mafia_8_flag = 2;
             }
-            if ($.mafia_8_flag > 0 && $.mafia_8_flag < 4) {
-                if ($.mafia_8X.hasSpottedPlayer($.player)) {
-                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
-                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
-                            $.kill_player_now_flag = 1;
-                        }
+        }
+        if ($.mafia_8_flag == 2) {
+            if ($.mafia_8X.locateStoppedOnFoot2D(887.6, -418.5, 0.5, 0.5, false)) {
+                $.mafia_8X.setHeading(90.0);
+                $.mafia_8X.setIdle();
+                $.mafia_8_flag = 3;
+            }
+        }
+        if ($.mafia_8_flag > 0 && $.mafia_8_flag < 4) {
+            if ($.mafia_8X.hasSpottedPlayer($.player)) {
+                if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
+                    if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
+                        $.kill_player_now_flag = 1;
                     }
                 }
             }
+        }
 
-            //____CREATE MAFIA 9 TO GUARD THE STEPS____//
+        //____CREATE MAFIA 9 TO GUARD THE STEPS____//
 
-            if ($.mafia_8_flag > 0 && $.mafia_9_flag == 0) {
-                if (Char.IsDead($.mafia_8X)) {
+        if ($.mafia_8_flag > 0 && $.mafia_9_flag == 0) {
+            if (Char.IsDead($.mafia_8X)) {
+                $.mafia_9X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                if ($.beamer1_health == 1) {
+                    Camera.DoFade(400, 1 /* FADE_IN */);
+                }
+                //SET_CHAR_THREAT_SEARCH mafia_9X THREAT_PLAYER1
+                $.mafia_9X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                //SET_CHAR_HEED_THREATS mafia_9X TRUE
+                $.mafia_9X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+                $.mafia_9X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                $.mafia_9_flag = 1;
+            } else {
+                if (!$.mafia_8X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
                     $.mafia_9X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
                     if ($.beamer1_health == 1) {
                         Camera.DoFade(400, 1 /* FADE_IN */);
@@ -635,510 +691,31 @@ async function body() {
                     $.mafia_9X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
                     $.mafia_9X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
                     $.mafia_9_flag = 1;
-                } else {
-                    if (!$.mafia_8X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
-                        $.mafia_9X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                        if ($.beamer1_health == 1) {
-                            Camera.DoFade(400, 1 /* FADE_IN */);
-                        }
-                        //SET_CHAR_THREAT_SEARCH mafia_9X THREAT_PLAYER1
-                        $.mafia_9X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        //SET_CHAR_HEED_THREATS mafia_9X TRUE
-                        $.mafia_9X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.mafia_9X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                        $.mafia_9_flag = 1;
-                    }
-                }
-            } else {
-                if ($.mafia_9_flag > 0) {
-                    if (Char.IsDead($.mafia_9X)) {
-                        $.kill_player_now_flag = 1;
-                        $.mafia_9_flag = 4;
-                    }
                 }
             }
-
-            if ($.mafia_9_flag == 1) {
-                if ($.mafia_9X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
-                    $.mafia_9X.setObjGotoCoordOnFoot(887.6, -415.3);
-                    $.mafia_9_flag = 2;
-                }
-            }
-            if ($.mafia_9_flag == 2) {
-                if ($.mafia_9X.locateStoppedOnFoot2D(887.6, -415.3, 0.5, 0.5, false)) {
-                    $.mafia_9X.setHeading(90.0);
-                    $.mafia_9X.setIdle();
-                    $.mafia_9_flag = 3;
-                }
-            }
-            if ($.mafia_9_flag > 0 && $.mafia_9_flag < 4) {
-                if ($.mafia_9X.hasSpottedPlayer($.player)) {
-                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
-                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
-                            $.kill_player_now_flag = 1;
-                        }
-                    }
-                }
-            }
-
-            //___CREATE MAFIA 10 TO GUARD THE ALLEY____//
-
-            if ($.mafia_9_flag > 0 && $.mafia_10_flag == 0) {
+        } else {
+            if ($.mafia_9_flag > 0) {
                 if (Char.IsDead($.mafia_9X)) {
-                    $.mafia_10X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                    $.mafia_10X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.mafia_10X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    //SET_CHAR_HEED_THREATS mafia_10X TRUE
-                    $.mafia_10X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                    $.mafia_10X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                    $.mafia_10_flag = 1;
-                } else {
-                    if (!$.mafia_9X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
-                        $.mafia_10X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                        $.mafia_10X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.mafia_10X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        //SET_CHAR_HEED_THREATS mafia_10X TRUE
-                        $.mafia_10X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                        $.mafia_10X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                        $.mafia_10_flag = 1;
-                    }
+                    $.kill_player_now_flag = 1;
+                    $.mafia_9_flag = 4;
                 }
-            } else {
-                if ($.mafia_10_flag > 0) {
-                    if (Char.IsDead($.mafia_10X)) {
-                        $.kill_player_now_flag = 1;
-                        $.mafia_10_flag = 4;
-                    }
-                }
-            }
-            if ($.mafia_10_flag == 1) {
-                if ($.mafia_10X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
-                    $.mafia_10X.setObjGotoCoordOnFoot($.mafia_10_x, $.mafia_10_y);
-                    $.mafia_10_flag = 2;
-                }
-            }
-            if ($.mafia_10_flag == 2) {
-                if ($.mafia_10X.locateStoppedOnFoot2D($.mafia_10_x, $.mafia_10_y, 0.5, 0.5, false)) {
-                    $.mafia_10X.setHeading(0.0);
-                    $.mafia_10X.setIdle();
-                    $.mafia_10_flag = 3;
-                }
-            }
-            if ($.mafia_10_flag > 0 && $.mafia_10_flag < 4) {
-                if ($.mafia_10X.hasSpottedPlayer($.player)) {
-                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
-                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
-                            $.kill_player_now_flag = 1;
-                        }
-                    }
-                }
-            }
-
-            //___CREATE MAFIA 11 TO GUARD THE ALLEY____//
-
-            if ($.mafia_10_flag > 0 && $.mafia_11_flag == 0) {
-                if (Char.IsDead($.mafia_10X)) {
-                    $.mafia_11X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                    $.mafia_11X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.mafia_11X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    //SET_CHAR_HEED_THREATS mafia_11X TRUE
-                    $.mafia_11X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                    $.mafia_11X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                    $.mafia_11_flag = 1;
-                } else {
-                    if (!$.mafia_10X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
-                        $.mafia_11X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                        $.mafia_11X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.mafia_11X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        //SET_CHAR_HEED_THREATS mafia_11X TRUE
-                        $.mafia_11X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                        $.mafia_11X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                        $.mafia_11_flag = 1;
-                    }
-                }
-            } else {
-                if ($.mafia_11_flag > 0) {
-                    if (Char.IsDead($.mafia_11X)) {
-                        $.kill_player_now_flag = 1;
-                        $.mafia_11_flag = 4;
-                    }
-                }
-            }
-
-            if ($.mafia_11_flag == 1) {
-                if ($.mafia_11X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
-                    $.mafia_11X.setObjGotoCoordOnFoot($.mafia_11_x, $.mafia_11_y);
-                    $.mafia_11_flag = 2;
-                }
-            }
-            if ($.mafia_11_flag == 2) {
-                if ($.mafia_11X.locateStoppedOnFoot2D($.mafia_11_x, $.mafia_11_y, 0.5, 0.5, false)) {
-                    $.mafia_11X.setHeading(0.0);
-                    $.mafia_11X.setIdle();
-                    $.mafia_11_flag = 3;
-                }
-            }
-            if ($.mafia_11_flag > 0 && $.mafia_11_flag < 4) {
-                if ($.mafia_11X.hasSpottedPlayer($.player)) {
-                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
-                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
-                            $.kill_player_now_flag = 1;
-                        }
-                    }
-                }
-            }
-
-            //___CREATE MAFIA 12 TO GUARD THE ALLEY____//
-
-            if ($.mafia_11_flag > 0 && $.mafia_12_flag == 0) {
-                if (Char.IsDead($.mafia_11X)) {
-                    $.mafia_12X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                    $.mafia_12X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.mafia_12X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    //SET_CHAR_HEED_THREATS mafia_12X TRUE
-                    $.mafia_12X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                    $.mafia_12X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                    $.mafia_12_flag = 1;
-                } else {
-                    if (!$.mafia_11X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
-                        $.mafia_12X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                        $.mafia_12X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.mafia_12X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        //SET_CHAR_HEED_THREATS mafia_12X TRUE
-                        $.mafia_12X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                        $.mafia_12X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                        $.mafia_12_flag = 1;
-                    }
-                }
-            } else {
-                if ($.mafia_12_flag > 0) {
-                    if (Char.IsDead($.mafia_12X)) {
-                        $.kill_player_now_flag = 1;
-                        $.mafia_12_flag = 4;
-                    }
-                }
-            }
-            if ($.mafia_12_flag == 1) {
-                if ($.mafia_12X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
-                    $.mafia_12X.setObjGotoCoordOnFoot($.mafia_12_x, $.mafia_12_y);
-                    $.mafia_12_flag = 2;
-                }
-            }
-            if ($.mafia_12_flag == 2) {
-                if ($.mafia_12X.locateStoppedOnFoot2D($.mafia_12_x, $.mafia_12_y, 0.5, 0.5, false)) {
-                    $.mafia_12X.setHeading(180.0);
-                    $.mafia_12X.setIdle();
-                    $.mafia_12_flag = 3;
-                }
-            }
-            if ($.mafia_12_flag > 0 && $.mafia_12_flag < 4) {
-                if ($.mafia_12X.hasSpottedPlayer($.player)) {
-                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
-                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
-                            $.kill_player_now_flag = 1;
-                        }
-                    }
-                }
-            }
-
-            //___CREATE MAFIA 13 TO GUARD THE ALLEY____//
-
-            if ($.mafia_12_flag > 0 && $.mafia_13_flag == 0) {
-                if (Char.IsDead($.mafia_12X)) {
-                    $.mafia_13X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                    $.mafia_13X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.mafia_13X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    //SET_CHAR_HEED_THREATS mafia_13X TRUE
-                    $.mafia_13X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                    $.mafia_13X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                    $.mafia_13_flag = 1;
-                } else {
-                    if (!$.mafia_12X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
-                        $.mafia_13X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-                        $.mafia_13X.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.mafia_13X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        //SET_CHAR_HEED_THREATS mafia_13X TRUE
-                        $.mafia_13X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                        $.mafia_13X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-                        $.mafia_13_flag = 1;
-                    }
-                }
-            } else {
-                if ($.mafia_13_flag > 0) {
-                    if (Char.IsDead($.mafia_13X)) {
-                        $.kill_player_now_flag = 1;
-                        $.mafia_13_flag = 4;
-                    }
-                }
-            }
-            if ($.mafia_13_flag == 1) {
-                if ($.mafia_13X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
-                    $.mafia_13X.setObjGotoCoordOnFoot($.mafia_13_x, $.mafia_13_y);
-                    if ($.beamer1_health == 1) {
-                        Hud.SwitchWidescreen(false /* OFF */);
-                        $.player.setControl(true /* ON */);
-                        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-                        Game.SetAllCarsCanBeDamaged(true /* TRUE */);
-                        Streaming.Switch(true /* ON */);
-                        if ($.player.isInAnyCar()) {
-                            $.player.applyBrakesToCar(false /* OFF */);
-                        }
-                        Camera.RestoreJumpcut();
-                        Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
-                        Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */);
-                        Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */);
-                        Streaming.MarkModelAsNoLongerNeeded(620 /* ind_customroad016 */);
-                        $.beamer1_health = 0;
-                    }
-                    $.mafia_13_flag = 2;
-                }
-            }
-            if ($.mafia_13_flag == 2) {
-                if ($.mafia_13X.locateStoppedOnFoot2D($.mafia_13_x, $.mafia_13_y, 0.5, 0.5, false)) {
-                    $.mafia_13X.setHeading(180.0);
-                    $.mafia_13X.setIdle();
-                    $.mafia_13_flag = 3;
-                }
-            }
-            if ($.mafia_13_flag > 0 && $.mafia_13_flag < 4) {
-                if ($.mafia_13X.hasSpottedPlayer($.player)) {
-                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
-                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
-                            $.kill_player_now_flag = 1;
-                        }
-                    }
-                }
-            }
-
-            //________CHECK IF THERE IS A CAR AT THE END OF THE ALLEY IF THERE IS ONE OF THE MAFIA WILL MOVE IT_______//
-
-            if ($.fuckers_car < 1) {
-                $.fuckers_car = World.GetRandomCarOfTypeInArea(900.467, -431.884, 905.759, -419.944, -1);
-            }
-
-            if (Car.IsDead($.fuckers_car)) {
-                //		IF NOT fuckers_car = -1
-                //			IF NOT enter_car_flag = 0
-                $.fuckers_car.markAsNoLongerNeeded();
-                $.fuckers_car = -1;
-                $.enter_car_flag = 0;
-                //			ENDIF
-                //		ENDIF
-            }
-            if ($.enter_car_flag < 5) {
-                if (!($.fuckers_car == -1)) {
-                    if ($.fuckers_car == $.beamer1_a1) {
-                        if (!Car.IsDead($.beamer1_a1)) {
-                            $.beamer1_a1.gotoCoordinatesAccurate(904.9, -434.1, 15.0);
-                        } else {
-                            $.beamer1_a1.delete();
-                        }
-                    } else {
-                        if ($.fuckers_car == $.beamer2_a1) {
-                            if (!Car.IsDead($.beamer2_a1)) {
-                                $.beamer2_a1.gotoCoordinatesAccurate(904.9, -434.1, 15.0);
-                            } else {
-                                $.beamer2_a1.delete();
-                            }
-                        } else {
-                            if ($.fuckers_car == $.beamer3_a1) {
-                                if (!Car.IsDead($.beamer3_a1)) {
-                                    $.beamer3_a1.gotoCoordinatesAccurate(904.9, -434.1, 15.0);
-                                } else {
-                                    $.beamer3_a1.delete();
-                                }
-                            } else {
-                                if ($.mafia_10_flag < 4) {
-                                    if ($.mafia_10_flag > 1) {
-                                        if ($.mafia_10X.locateOnFootCar2D($.fuckers_car, 4.0, 4.0, false)) {
-                                            $.mafia_10X.setObjEnterCarAsDriver($.fuckers_car);
-                                            TIMERA = 0;
-                                            $.enter_car_flag = 10;
-                                        }
-                                    }
-                                } else {
-                                    if ($.mafia_11_flag < 4) {
-                                        if ($.mafia_11_flag > 1) {
-                                            if ($.mafia_11X.locateOnFootCar2D($.fuckers_car, 4.0, 4.0, false)) {
-                                                $.mafia_11X.setObjEnterCarAsDriver($.fuckers_car);
-                                                TIMERA = 0;
-                                                $.enter_car_flag = 11;
-                                            }
-                                        }
-                                    } else {
-                                        if ($.mafia_12_flag < 4) {
-                                            if ($.mafia_12_flag > 1) {
-                                                if ($.mafia_12X.locateOnFootCar2D($.fuckers_car, 4.0, 4.0, false)) {
-                                                    $.mafia_12X.setObjEnterCarAsDriver($.fuckers_car);
-                                                    TIMERA = 0;
-                                                    $.enter_car_flag = 12;
-                                                }
-                                            }
-                                        } else {
-                                            if ($.mafia_13_flag < 4) {
-                                                if ($.mafia_13_flag > 1) {
-                                                    if ($.mafia_13X.locateOnFootCar2D($.fuckers_car, 4.0, 4.0, false)) {
-                                                        $.mafia_13X.setObjEnterCarAsDriver($.fuckers_car);
-                                                        TIMERA = 0;
-                                                        $.enter_car_flag = 13;
-                                                    }
-                                                }
-                                            } else {
-                                                if (Car.IsDead($.fuckers_car)) {
-                                                    $.fuckers_car.markAsNoLongerNeeded();
-                                                    $.kill_player_now_flag = 1;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if ($.enter_car_flag == 10) {
-                if ($.mafia_10X.isInCar($.fuckers_car)) {
-                    // SCM GOSUB move_fuckers_car
-                    await move_fuckers_car();
-                    // fallback if label was not emitted as async function: no-op continues linearly
-                    $.mafia_10_flag = 4;
-                    $.enter_car_flag = 5;
-                }
-            }
-            if ($.enter_car_flag == 11) {
-                if ($.mafia_11X.isInCar($.fuckers_car)) {
-                    // SCM GOSUB move_fuckers_car
-                    await move_fuckers_car();
-                    // fallback if label was not emitted as async function: no-op continues linearly
-                    $.mafia_11_flag = 4;
-                    $.enter_car_flag = 5;
-                }
-            }
-            if ($.enter_car_flag == 12) {
-                if ($.mafia_12X.isInCar($.fuckers_car)) {
-                    // SCM GOSUB move_fuckers_car
-                    await move_fuckers_car();
-                    // fallback if label was not emitted as async function: no-op continues linearly
-                    $.mafia_12_flag = 4;
-                    $.enter_car_flag = 5;
-                }
-            }
-            if ($.enter_car_flag == 13) {
-                if ($.mafia_13X.isInCar($.fuckers_car)) {
-                    // SCM GOSUB move_fuckers_car
-                    await move_fuckers_car();
-                    // fallback if label was not emitted as async function: no-op continues linearly
-                    $.mafia_13_flag = 4;
-                    $.enter_car_flag = 5;
-                }
-            }
-            if ($.enter_car_flag > 9) {
-                if (TIMERA > 20000) {
-                    if (!Car.IsDead($.fuckers_car)) {
-                        if (!$.player.isInCar($.fuckers_car)) {
-                            $.fuckers_car.markAsNoLongerNeeded();
-                            $.enter_car_flag = 0;
-                            $.fuckers_car = -1;
-                        } else {
-                            $.kill_player_now_flag = 1;
-                        }
-                    }
-                }
-            }
-            if (TIMERA > 180000) {
-                $.frankie_exists_flag = 1;
-            }
-            //________________________________________________________________________________________________________//
-
-            if ($.kill_player_now_flag == 1) {
-                // SCM GOSUB kill_player_now_script
-                await kill_player_now_script();
-                // fallback if label was not emitted as async function: no-op continues linearly
-            }
-            if (!($.frankie_exists_flag == 0)) {
-                // SCM GOTO → create_salvatore (not lowered; manual jump required)
-                throw new Error('unresolved GOTO create_salvatore'); // fallback: would break linear control flow
             }
         }
 
-        if ($.frankie_exists_flag == 0) {
-            if ($.player.isInArea2D(878.79, -427.4, 890.77, -403.89, false) || $.player.isInArea2D(878.79, -433.86, 890.77, -427.4, false)) {
-                $.frankie_exists_flag = 2;
-            } else {
-                $.frankie_exists_flag = 1;
+        if ($.mafia_9_flag == 1) {
+            if ($.mafia_9X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
+                $.mafia_9X.setObjGotoCoordOnFoot(887.6, -415.3);
+                $.mafia_9_flag = 2;
             }
         }
-    }
-
-
-
-
-
-
-
-}
-
-async function create_salvatore() {
-    if ($.frankie_exists_flag == 1) {
-        $.frankie = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
-        if ($.kill_player_now_flag == 0) {
-            $.frankie.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
-        } else {
-            $.frankie.setObjRunToCoord($.bottom_of_steps_x, $.bottom_of_steps_y);
-        }
-    }
-
-    if ($.frankie_exists_flag == 2) {
-        $.frankie = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 900.2028, -416.9139, 14.0); // OUT FRONT OF CLUB
-        $.frankie.setObjRunToCoord($.street_x, $.street_y);
-        $.frankie_flag = 5;
-    }
-
-    if ($.frankie_exists_flag == 3) {
-        $.frankie = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 884.6421, -422.9535, 14.0); //CLOSER TO END OF ALLEY
-        $.frankie.setObjRunToCoord($.street_x, $.street_y);
-        $.frankie_flag = 5;
-    }
-
-    $.frankie.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.frankie.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
-    $.frankie.setOnlyDamagedByPlayer(true /* TRUE */);
-
-    $.mission_blip_am1.remove();
-    $.mission_blip_am1 = Blip.AddForChar($.frankie);
-    Text.PrintNow('AM1_1', 5000, 1); //"Salvatore is now leaving Luigi's"
-
-    $.garage_door_close = 0;
-
-    while (!$.frankie.isInAnyCar()) {
-        await asyncWait(0);
-        if (Char.IsDead($.frankie)) {
-            // SCM GOTO → mission_asuka1_passed (not lowered; manual jump required)
-            return;
-        }
-        if (!($.time_left_a1 == 0)) {
-            $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
-        }
-        if ($.frankie.hasSpottedPlayer($.player)) {
-            $.kill_player_now_flag = 1;
-        }
-
-        //___IF MAFIA HAVE SPOTTED THE PLAYER, MAKE FRANKIE RUN____//
-
-        if (!Char.IsDead($.mafia_8X)) {
-            if ($.mafia_8X.hasSpottedPlayer($.player)) {
-                if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
-                    if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
-                        $.kill_player_now_flag = 1;
-                    }
-                }
+        if ($.mafia_9_flag == 2) {
+            if ($.mafia_9X.locateStoppedOnFoot2D(887.6, -415.3, 0.5, 0.5, false)) {
+                $.mafia_9X.setHeading(90.0);
+                $.mafia_9X.setIdle();
+                $.mafia_9_flag = 3;
             }
-        } else {
-            $.kill_player_now_flag = 1;
-            $.mafia_8_flag = 4;
         }
-        if (!Char.IsDead($.mafia_9X)) {
+        if ($.mafia_9_flag > 0 && $.mafia_9_flag < 4) {
             if ($.mafia_9X.hasSpottedPlayer($.player)) {
                 if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
                     if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
@@ -1146,11 +723,52 @@ async function create_salvatore() {
                     }
                 }
             }
-        } else {
-            $.kill_player_now_flag = 1;
-            $.mafia_9_flag = 4;
         }
-        if (!Char.IsDead($.mafia_10X)) {
+
+        //___CREATE MAFIA 10 TO GUARD THE ALLEY____//
+
+        if ($.mafia_9_flag > 0 && $.mafia_10_flag == 0) {
+            if (Char.IsDead($.mafia_9X)) {
+                $.mafia_10X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                $.mafia_10X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.mafia_10X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                //SET_CHAR_HEED_THREATS mafia_10X TRUE
+                $.mafia_10X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+                $.mafia_10X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                $.mafia_10_flag = 1;
+            } else {
+                if (!$.mafia_9X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
+                    $.mafia_10X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                    $.mafia_10X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.mafia_10X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    //SET_CHAR_HEED_THREATS mafia_10X TRUE
+                    $.mafia_10X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
+                    $.mafia_10X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                    $.mafia_10_flag = 1;
+                }
+            }
+        } else {
+            if ($.mafia_10_flag > 0) {
+                if (Char.IsDead($.mafia_10X)) {
+                    $.kill_player_now_flag = 1;
+                    $.mafia_10_flag = 4;
+                }
+            }
+        }
+        if ($.mafia_10_flag == 1) {
+            if ($.mafia_10X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
+                $.mafia_10X.setObjGotoCoordOnFoot($.mafia_10_x, $.mafia_10_y);
+                $.mafia_10_flag = 2;
+            }
+        }
+        if ($.mafia_10_flag == 2) {
+            if ($.mafia_10X.locateStoppedOnFoot2D($.mafia_10_x, $.mafia_10_y, 0.5, 0.5, false)) {
+                $.mafia_10X.setHeading(0.0);
+                $.mafia_10X.setIdle();
+                $.mafia_10_flag = 3;
+            }
+        }
+        if ($.mafia_10_flag > 0 && $.mafia_10_flag < 4) {
             if ($.mafia_10X.hasSpottedPlayer($.player)) {
                 if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
                     if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
@@ -1158,11 +776,53 @@ async function create_salvatore() {
                     }
                 }
             }
-        } else {
-            $.kill_player_now_flag = 1;
-            $.mafia_10_flag = 4;
         }
-        if (!Char.IsDead($.mafia_11X)) {
+
+        //___CREATE MAFIA 11 TO GUARD THE ALLEY____//
+
+        if ($.mafia_10_flag > 0 && $.mafia_11_flag == 0) {
+            if (Char.IsDead($.mafia_10X)) {
+                $.mafia_11X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                $.mafia_11X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.mafia_11X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                //SET_CHAR_HEED_THREATS mafia_11X TRUE
+                $.mafia_11X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
+                $.mafia_11X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                $.mafia_11_flag = 1;
+            } else {
+                if (!$.mafia_10X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
+                    $.mafia_11X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                    $.mafia_11X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.mafia_11X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    //SET_CHAR_HEED_THREATS mafia_11X TRUE
+                    $.mafia_11X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
+                    $.mafia_11X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                    $.mafia_11_flag = 1;
+                }
+            }
+        } else {
+            if ($.mafia_11_flag > 0) {
+                if (Char.IsDead($.mafia_11X)) {
+                    $.kill_player_now_flag = 1;
+                    $.mafia_11_flag = 4;
+                }
+            }
+        }
+
+        if ($.mafia_11_flag == 1) {
+            if ($.mafia_11X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
+                $.mafia_11X.setObjGotoCoordOnFoot($.mafia_11_x, $.mafia_11_y);
+                $.mafia_11_flag = 2;
+            }
+        }
+        if ($.mafia_11_flag == 2) {
+            if ($.mafia_11X.locateStoppedOnFoot2D($.mafia_11_x, $.mafia_11_y, 0.5, 0.5, false)) {
+                $.mafia_11X.setHeading(0.0);
+                $.mafia_11X.setIdle();
+                $.mafia_11_flag = 3;
+            }
+        }
+        if ($.mafia_11_flag > 0 && $.mafia_11_flag < 4) {
             if ($.mafia_11X.hasSpottedPlayer($.player)) {
                 if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
                     if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
@@ -1170,11 +830,52 @@ async function create_salvatore() {
                     }
                 }
             }
-        } else {
-            $.kill_player_now_flag = 1;
-            $.mafia_11_flag = 4;
         }
-        if (!Char.IsDead($.mafia_12X)) {
+
+        //___CREATE MAFIA 12 TO GUARD THE ALLEY____//
+
+        if ($.mafia_11_flag > 0 && $.mafia_12_flag == 0) {
+            if (Char.IsDead($.mafia_11X)) {
+                $.mafia_12X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                $.mafia_12X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.mafia_12X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                //SET_CHAR_HEED_THREATS mafia_12X TRUE
+                $.mafia_12X.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
+                $.mafia_12X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                $.mafia_12_flag = 1;
+            } else {
+                if (!$.mafia_11X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
+                    $.mafia_12X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                    $.mafia_12X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.mafia_12X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    //SET_CHAR_HEED_THREATS mafia_12X TRUE
+                    $.mafia_12X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
+                    $.mafia_12X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                    $.mafia_12_flag = 1;
+                }
+            }
+        } else {
+            if ($.mafia_12_flag > 0) {
+                if (Char.IsDead($.mafia_12X)) {
+                    $.kill_player_now_flag = 1;
+                    $.mafia_12_flag = 4;
+                }
+            }
+        }
+        if ($.mafia_12_flag == 1) {
+            if ($.mafia_12X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
+                $.mafia_12X.setObjGotoCoordOnFoot($.mafia_12_x, $.mafia_12_y);
+                $.mafia_12_flag = 2;
+            }
+        }
+        if ($.mafia_12_flag == 2) {
+            if ($.mafia_12X.locateStoppedOnFoot2D($.mafia_12_x, $.mafia_12_y, 0.5, 0.5, false)) {
+                $.mafia_12X.setHeading(180.0);
+                $.mafia_12X.setIdle();
+                $.mafia_12_flag = 3;
+            }
+        }
+        if ($.mafia_12_flag > 0 && $.mafia_12_flag < 4) {
             if ($.mafia_12X.hasSpottedPlayer($.player)) {
                 if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
                     if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
@@ -1182,11 +883,68 @@ async function create_salvatore() {
                     }
                 }
             }
-        } else {
-            $.kill_player_now_flag = 1;
-            $.mafia_12_flag = 4;
         }
-        if (!Char.IsDead($.mafia_13X)) {
+
+        //___CREATE MAFIA 13 TO GUARD THE ALLEY____//
+
+        if ($.mafia_12_flag > 0 && $.mafia_13_flag == 0) {
+            if (Char.IsDead($.mafia_12X)) {
+                $.mafia_13X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                $.mafia_13X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.mafia_13X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                //SET_CHAR_HEED_THREATS mafia_13X TRUE
+                $.mafia_13X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
+                $.mafia_13X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                $.mafia_13_flag = 1;
+            } else {
+                if (!$.mafia_12X.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 2.0, 2.0, false)) {
+                    $.mafia_13X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+                    $.mafia_13X.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.mafia_13X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    //SET_CHAR_HEED_THREATS mafia_13X TRUE
+                    $.mafia_13X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
+                    $.mafia_13X.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+                    $.mafia_13_flag = 1;
+                }
+            }
+        } else {
+            if ($.mafia_13_flag > 0) {
+                if (Char.IsDead($.mafia_13X)) {
+                    $.kill_player_now_flag = 1;
+                    $.mafia_13_flag = 4;
+                }
+            }
+        }
+        if ($.mafia_13_flag == 1) {
+            if ($.mafia_13X.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
+                $.mafia_13X.setObjGotoCoordOnFoot($.mafia_13_x, $.mafia_13_y);
+                if ($.beamer1_health == 1) {
+                    Hud.SwitchWidescreen(false /* OFF */);
+                    $.player.setControl(true /* ON */);
+                    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+                    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+                    Streaming.Switch(true /* ON */);
+                    if ($.player.isInAnyCar()) {
+                        $.player.applyBrakesToCar(false /* OFF */);
+                    }
+                    Camera.RestoreJumpcut();
+                    Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
+                    Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */);
+                    Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */);
+                    Streaming.MarkModelAsNoLongerNeeded(620 /* ind_customroad016 */);
+                    $.beamer1_health = 0;
+                }
+                $.mafia_13_flag = 2;
+            }
+        }
+        if ($.mafia_13_flag == 2) {
+            if ($.mafia_13X.locateStoppedOnFoot2D($.mafia_13_x, $.mafia_13_y, 0.5, 0.5, false)) {
+                $.mafia_13X.setHeading(180.0);
+                $.mafia_13X.setIdle();
+                $.mafia_13_flag = 3;
+            }
+        }
+        if ($.mafia_13_flag > 0 && $.mafia_13_flag < 4) {
             if ($.mafia_13X.hasSpottedPlayer($.player)) {
                 if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
                     if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
@@ -1194,50 +952,331 @@ async function create_salvatore() {
                     }
                 }
             }
-        } else {
-            $.kill_player_now_flag = 1;
-            $.mafia_13_flag = 4;
-        }
-        if ($.kill_player_now_flag == 1) {
-            // SCM GOSUB kill_player_now_script
-            await kill_player_now_script();
-            // fallback if label was not emitted as async function: no-op continues linearly
         }
 
-        //___GET FRANKIE INTO A CAR, IF ALL CARS ARE DEAD FRANKIE RUNS BACK____//
+        //________CHECK IF THERE IS A CAR AT THE END OF THE ALLEY IF THERE IS ONE OF THE MAFIA WILL MOVE IT_______//
 
-        if (Car.IsDead($.beamer1_a1)) {
-            $.beamer_1_dead_flag = 1;
+        if ($.fuckers_car as any < 1) {
+            $.fuckers_car = World.GetRandomCarOfTypeInArea(900.467, -431.884, 905.759, -419.944, -1);
         }
-        if (Car.IsDead($.beamer2_a1)) {
-            $.beamer_2_dead_flag = 1;
+
+        if (Car.IsDead($.fuckers_car)) {
+            //		IF NOT fuckers_car = -1
+            //			IF NOT enter_car_flag = 0
+            $.fuckers_car.markAsNoLongerNeeded();
+            $.fuckers_car = -1 as any;
+            $.enter_car_flag = 0;
+            //			ENDIF
+            //		ENDIF
         }
-        if (Car.IsDead($.beamer3_a1)) {
-            $.beamer_3_dead_flag = 1;
-        }
-        if ($.frankie_flag == 0) {
-            if ($.frankie.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
-                if ($.kill_player_now_flag == 0) {
-                    $.frankie.setObjGotoCoordOnFoot($.street_x, $.street_y);
+        if ($.enter_car_flag < 5) {
+            if (!($.fuckers_car == -1 as any)) {
+                if ($.fuckers_car == $.beamer1_a1) {
+                    if (!Car.IsDead($.beamer1_a1)) {
+                        $.beamer1_a1.gotoCoordinatesAccurate(904.9, -434.1, 15.0);
+                    } else {
+                        $.beamer1_a1.delete();
+                    }
                 } else {
-                    $.frankie.setObjRunToCoord($.street_x, $.street_y);
+                    if ($.fuckers_car == $.beamer2_a1) {
+                        if (!Car.IsDead($.beamer2_a1)) {
+                            $.beamer2_a1.gotoCoordinatesAccurate(904.9, -434.1, 15.0);
+                        } else {
+                            $.beamer2_a1.delete();
+                        }
+                    } else {
+                        if ($.fuckers_car == $.beamer3_a1) {
+                            if (!Car.IsDead($.beamer3_a1)) {
+                                $.beamer3_a1.gotoCoordinatesAccurate(904.9, -434.1, 15.0);
+                            } else {
+                                $.beamer3_a1.delete();
+                            }
+                        } else {
+                            if ($.mafia_10_flag < 4) {
+                                if ($.mafia_10_flag > 1) {
+                                    if ($.mafia_10X.locateOnFootCar2D($.fuckers_car, 4.0, 4.0, false)) {
+                                        $.mafia_10X.setObjEnterCarAsDriver($.fuckers_car);
+                                        TIMERA = 0;
+                                        $.enter_car_flag = 10;
+                                    }
+                                }
+                            } else {
+                                if ($.mafia_11_flag < 4) {
+                                    if ($.mafia_11_flag > 1) {
+                                        if ($.mafia_11X.locateOnFootCar2D($.fuckers_car, 4.0, 4.0, false)) {
+                                            $.mafia_11X.setObjEnterCarAsDriver($.fuckers_car);
+                                            TIMERA = 0;
+                                            $.enter_car_flag = 11;
+                                        }
+                                    }
+                                } else {
+                                    if ($.mafia_12_flag < 4) {
+                                        if ($.mafia_12_flag > 1) {
+                                            if ($.mafia_12X.locateOnFootCar2D($.fuckers_car, 4.0, 4.0, false)) {
+                                                $.mafia_12X.setObjEnterCarAsDriver($.fuckers_car);
+                                                TIMERA = 0;
+                                                $.enter_car_flag = 12;
+                                            }
+                                        }
+                                    } else {
+                                        if ($.mafia_13_flag < 4) {
+                                            if ($.mafia_13_flag > 1) {
+                                                if ($.mafia_13X.locateOnFootCar2D($.fuckers_car, 4.0, 4.0, false)) {
+                                                    $.mafia_13X.setObjEnterCarAsDriver($.fuckers_car);
+                                                    TIMERA = 0;
+                                                    $.enter_car_flag = 13;
+                                                }
+                                            }
+                                        } else {
+                                            if (Car.IsDead($.fuckers_car)) {
+                                                $.fuckers_car.markAsNoLongerNeeded();
+                                                $.kill_player_now_flag = 1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-                $.frankie_flag = 5;
             }
         }
-        if ($.frankie_flag == 5) {
-            if ($.frankie.locateOnFoot2D($.street_x, $.street_y, 1.0, 1.0, false)) {
-                if ($.beamer_2_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer2_a1, 30.0, 30.0, false)) {
-                    $.frankie.setObjEnterCarAsPassenger($.beamer2_a1);
-                    $.frankie_flag = 2;
-                } else {
-                    if ($.beamer_3_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer3_a1, 30.0, 30.0, false)) {
-                        $.frankie.setObjEnterCarAsPassenger($.beamer3_a1);
-                        $.frankie_flag = 3;
+        if ($.enter_car_flag == 10) {
+            if ($.mafia_10X.isInCar($.fuckers_car)) {
+                await move_fuckers_car(); // SCM GOSUB move_fuckers_car
+                $.mafia_10_flag = 4;
+                $.enter_car_flag = 5;
+            }
+        }
+        if ($.enter_car_flag == 11) {
+            if ($.mafia_11X.isInCar($.fuckers_car)) {
+                await move_fuckers_car(); // SCM GOSUB move_fuckers_car
+                $.mafia_11_flag = 4;
+                $.enter_car_flag = 5;
+            }
+        }
+        if ($.enter_car_flag == 12) {
+            if ($.mafia_12X.isInCar($.fuckers_car)) {
+                await move_fuckers_car(); // SCM GOSUB move_fuckers_car
+                $.mafia_12_flag = 4;
+                $.enter_car_flag = 5;
+            }
+        }
+        if ($.enter_car_flag == 13) {
+            if ($.mafia_13X.isInCar($.fuckers_car)) {                
+                await move_fuckers_car(); // SCM GOSUB move_fuckers_car
+                $.mafia_13_flag = 4;
+                $.enter_car_flag = 5;
+            }
+        }
+        if ($.enter_car_flag > 9) {
+            if (TIMERA > 20000) {
+                if (!Car.IsDead($.fuckers_car)) {
+                    if (!$.player.isInCar($.fuckers_car)) {
+                        $.fuckers_car.markAsNoLongerNeeded();
+                        $.enter_car_flag = 0;
+                        $.fuckers_car = -1 as any;
                     } else {
-                        if ($.beamer_1_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer1_a1, 30.0, 30.0, false)) {
-                            $.frankie.setObjEnterCarAsPassenger($.beamer1_a1);
-                            $.frankie_flag = 1;
+                        $.kill_player_now_flag = 1;
+                    }
+                }
+            }
+        }
+        if (TIMERA > 180000) {
+            $.frankie_exists_flag = 1;
+        }
+        //________________________________________________________________________________________________________//
+
+        if ($.kill_player_now_flag == 1) {
+            await kill_player_now_script(); // SCM GOSUB kill_player_now_script
+        }
+        if (!($.frankie_exists_flag == 0)) {
+            // SCM GOTO → create_salvatore
+            break mafia_main_loop;
+        }
+    }
+
+    if ($.frankie_exists_flag == 0) {
+        if ($.player.isInArea2D(878.79, -427.4, 890.77, -403.89, false) || $.player.isInArea2D(878.79, -433.86, 890.77, -427.4, false)) {
+            $.frankie_exists_flag = 2;
+        } else {
+            $.frankie_exists_flag = 1;
+        }
+    }
+
+    create_salvatore: {
+        if ($.frankie_exists_flag == 1) {
+            $.frankie = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, $.create_char_in_club_x, $.create_char_in_club_y, $.create_char_in_club_z);
+            if ($.kill_player_now_flag == 0) {
+                $.frankie.setObjGotoCoordOnFoot($.bottom_of_steps_x, $.bottom_of_steps_y);
+            } else {
+                $.frankie.setObjRunToCoord($.bottom_of_steps_x, $.bottom_of_steps_y);
+            }
+        }
+
+        if ($.frankie_exists_flag == 2) {
+            $.frankie = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 900.2028, -416.9139, 14.0); // OUT FRONT OF CLUB
+            $.frankie.setObjRunToCoord($.street_x, $.street_y);
+            $.frankie_flag = 5;
+        }
+
+        if ($.frankie_exists_flag == 3) {
+            $.frankie = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 884.6421, -422.9535, 14.0); //CLOSER TO END OF ALLEY
+            $.frankie.setObjRunToCoord($.street_x, $.street_y);
+            $.frankie_flag = 5;
+        }
+
+        $.frankie.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.frankie.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
+        $.frankie.setOnlyDamagedByPlayer(true /* TRUE */);
+
+        $.mission_blip_am1.remove();
+        $.mission_blip_am1 = Blip.AddForChar($.frankie);
+        Text.PrintNow('AM1_1', 5000, 1); //"Salvatore is now leaving Luigi's"
+
+        $.garage_door_close = 0;
+
+        while (!$.frankie.isInAnyCar()) {
+            await asyncWait(0);
+            if (Char.IsDead($.frankie)) {
+                return; // SCM GOTO → mission_asuka1_passed
+            }
+            if (!($.time_left_a1 == 0)) {
+                $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
+            }
+            if ($.frankie.hasSpottedPlayer($.player)) {
+                $.kill_player_now_flag = 1;
+            }
+
+            //___IF MAFIA HAVE SPOTTED THE PLAYER, MAKE FRANKIE RUN____//
+
+            if (!Char.IsDead($.mafia_8X)) {
+                if ($.mafia_8X.hasSpottedPlayer($.player)) {
+                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
+                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
+                            $.kill_player_now_flag = 1;
+                        }
+                    }
+                }
+            } else {
+                $.kill_player_now_flag = 1;
+                $.mafia_8_flag = 4;
+            }
+            if (!Char.IsDead($.mafia_9X)) {
+                if ($.mafia_9X.hasSpottedPlayer($.player)) {
+                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
+                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
+                            $.kill_player_now_flag = 1;
+                        }
+                    }
+                }
+            } else {
+                $.kill_player_now_flag = 1;
+                $.mafia_9_flag = 4;
+            }
+            if (!Char.IsDead($.mafia_10X)) {
+                if ($.mafia_10X.hasSpottedPlayer($.player)) {
+                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
+                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
+                            $.kill_player_now_flag = 1;
+                        }
+                    }
+                }
+            } else {
+                $.kill_player_now_flag = 1;
+                $.mafia_10_flag = 4;
+            }
+            if (!Char.IsDead($.mafia_11X)) {
+                if ($.mafia_11X.hasSpottedPlayer($.player)) {
+                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
+                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
+                            $.kill_player_now_flag = 1;
+                        }
+                    }
+                }
+            } else {
+                $.kill_player_now_flag = 1;
+                $.mafia_11_flag = 4;
+            }
+            if (!Char.IsDead($.mafia_12X)) {
+                if ($.mafia_12X.hasSpottedPlayer($.player)) {
+                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
+                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
+                            $.kill_player_now_flag = 1;
+                        }
+                    }
+                }
+            } else {
+                $.kill_player_now_flag = 1;
+                $.mafia_12_flag = 4;
+            }
+            if (!Char.IsDead($.mafia_13X)) {
+                if ($.mafia_13X.hasSpottedPlayer($.player)) {
+                    if (!$.player.isInArea2D(845.75, -443.85, 890.77, -433.86, false)) {
+                        if (!$.player.isInArea2D(920.0792, -408.8181, 931.3213, -398.101, false)) {
+                            $.kill_player_now_flag = 1;
+                        }
+                    }
+                }
+            } else {
+                $.kill_player_now_flag = 1;
+                $.mafia_13_flag = 4;
+            }
+            if ($.kill_player_now_flag == 1) {
+                await kill_player_now_script(); // SCM GOSUB kill_player_now_script
+            }
+
+            //___GET FRANKIE INTO A CAR, IF ALL CARS ARE DEAD FRANKIE RUNS BACK____//
+
+            if (Car.IsDead($.beamer1_a1)) {
+                $.beamer_1_dead_flag = 1;
+            }
+            if (Car.IsDead($.beamer2_a1)) {
+                $.beamer_2_dead_flag = 1;
+            }
+            if (Car.IsDead($.beamer3_a1)) {
+                $.beamer_3_dead_flag = 1;
+            }
+            if ($.frankie_flag == 0) {
+                if ($.frankie.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
+                    if ($.kill_player_now_flag == 0) {
+                        $.frankie.setObjGotoCoordOnFoot($.street_x, $.street_y);
+                    } else {
+                        $.frankie.setObjRunToCoord($.street_x, $.street_y);
+                    }
+                    $.frankie_flag = 5;
+                }
+            }
+            if ($.frankie_flag == 5) {
+                if ($.frankie.locateOnFoot2D($.street_x, $.street_y, 1.0, 1.0, false)) {
+                    if ($.beamer_2_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer2_a1, 30.0, 30.0, false)) {
+                        $.frankie.setObjEnterCarAsPassenger($.beamer2_a1);
+                        $.frankie_flag = 2;
+                    } else {
+                        if ($.beamer_3_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer3_a1, 30.0, 30.0, false)) {
+                            $.frankie.setObjEnterCarAsPassenger($.beamer3_a1);
+                            $.frankie_flag = 3;
+                        } else {
+                            if ($.beamer_1_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer1_a1, 30.0, 30.0, false)) {
+                                $.frankie.setObjEnterCarAsPassenger($.beamer1_a1);
+                                $.frankie_flag = 1;
+                            } else {
+                                $.frankie.setObjRunToCoord($.bottom_of_steps_x, $.bottom_of_steps_y);
+                                $.frankie_flag = 4;
+                            }
+                        }
+                    }
+                }
+            }
+            if ($.frankie_flag == 2) {
+                if ($.beamer_2_dead_flag == 1) {
+                    if ($.beamer_1_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer1_a1, 30.0, 30.0, false)) {
+                        $.frankie.setObjEnterCarAsPassenger($.beamer1_a1);
+                        $.frankie_flag = 1;
+                    } else {
+                        if ($.beamer_3_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer3_a1, 30.0, 30.0, false)) {
+                            $.frankie.setObjEnterCarAsPassenger($.beamer3_a1);
+                            $.frankie_flag = 3;
                         } else {
                             $.frankie.setObjRunToCoord($.bottom_of_steps_x, $.bottom_of_steps_y);
                             $.frankie_flag = 4;
@@ -1245,13 +1284,19 @@ async function create_salvatore() {
                     }
                 }
             }
-        }
-        if ($.frankie_flag == 2) {
-            if ($.beamer_2_dead_flag == 1) {
-                if ($.beamer_1_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer1_a1, 30.0, 30.0, false)) {
-                    $.frankie.setObjEnterCarAsPassenger($.beamer1_a1);
-                    $.frankie_flag = 1;
-                } else {
+            if ($.frankie_flag == 3) {
+                if ($.beamer_3_dead_flag == 1) {
+                    if ($.beamer_1_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer1_a1, 30.0, 30.0, false)) {
+                        $.frankie.setObjEnterCarAsPassenger($.beamer1_a1);
+                        $.frankie_flag = 1;
+                    } else {
+                        $.frankie.setObjRunToCoord($.bottom_of_steps_x, $.bottom_of_steps_y);
+                        $.frankie_flag = 4;
+                    }
+                }
+            }
+            if ($.frankie_flag == 1) {
+                if ($.beamer_1_dead_flag == 1) {
                     if ($.beamer_3_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer3_a1, 30.0, 30.0, false)) {
                         $.frankie.setObjEnterCarAsPassenger($.beamer3_a1);
                         $.frankie_flag = 3;
@@ -1261,109 +1306,84 @@ async function create_salvatore() {
                     }
                 }
             }
-        }
-        if ($.frankie_flag == 3) {
-            if ($.beamer_3_dead_flag == 1) {
-                if ($.beamer_1_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer1_a1, 30.0, 30.0, false)) {
-                    $.frankie.setObjEnterCarAsPassenger($.beamer1_a1);
-                    $.frankie_flag = 1;
-                } else {
-                    $.frankie.setObjRunToCoord($.bottom_of_steps_x, $.bottom_of_steps_y);
-                    $.frankie_flag = 4;
+            if ($.frankie_flag == 4) {
+                if ($.frankie.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
+                    $.frankie.setObjRunToCoord($.create_char_in_club_x, $.create_char_in_club_y);
+                    $.frankie_flag = 6;
+                }
+            }
+            if ($.frankie_flag == 6) {
+                if ($.frankie.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 1.0, 1.0, false)) {
+                    $.frankie.delete();
+                    Text.PrintNow('AM1_9', 5000, 1); //"Salvatore has escaped back into Luigi's Club!"
+                    // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
+                    throw new Error('unresolved GOTO mission_asuka1_failed'); // fallback: would break linear control flow
                 }
             }
         }
-        if ($.frankie_flag == 1) {
-            if ($.beamer_1_dead_flag == 1) {
-                if ($.beamer_3_dead_flag == 0 && $.frankie.locateOnFootCar2D($.beamer3_a1, 30.0, 30.0, false)) {
-                    $.frankie.setObjEnterCarAsPassenger($.beamer3_a1);
-                    $.frankie_flag = 3;
-                } else {
-                    $.frankie.setObjRunToCoord($.bottom_of_steps_x, $.bottom_of_steps_y);
-                    $.frankie_flag = 4;
-                }
+
+        if (!Car.IsDead($.beamer1_a1)) {
+            if ($.frankie_flag == 1) {
+                $.beamer1_a1.gotoCoordinates(1438.0, -183.4, 50.5);
+                $.frankie_garage.setTargetCarForMission($.beamer1_a1);
+            } else {
+                $.beamer1_a1.gotoCoordinates(1423.7, -168.1, 50.2);
+            }
+            if ($.kill_player_now_flag == 0) {
+                $.beamer1_a1.setCruiseSpeed(18.0);
+            } else {
+                $.beamer1_a1.setCruiseSpeed(43.0);
             }
         }
-        if ($.frankie_flag == 4) {
-            if ($.frankie.locateOnFoot2D($.bottom_of_steps_x, $.bottom_of_steps_y, 1.0, 1.0, false)) {
-                $.frankie.setObjRunToCoord($.create_char_in_club_x, $.create_char_in_club_y);
-                $.frankie_flag = 6;
+
+        if (!Car.IsDead($.beamer2_a1)) {
+            if ($.frankie_flag == 2) {
+                $.beamer2_a1.gotoCoordinates(1438.0, -183.4, 50.5);
+                $.frankie_garage.setTargetCarForMission($.beamer2_a1);
+            } else {
+                $.beamer2_a1.gotoCoordinates(1418.7, -168.1, 50.2);
+            }
+            if ($.kill_player_now_flag == 0) {
+                $.beamer2_a1.setCruiseSpeed(17.0);
+            } else {
+                $.beamer2_a1.setCruiseSpeed(42.0);
             }
         }
-        if ($.frankie_flag == 6) {
-            if ($.frankie.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 1.0, 1.0, false)) {
-                $.frankie.delete();
-                Text.PrintNow('AM1_9', 5000, 1); //"Salvatore has escaped back into Luigi's Club!"
-                // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka1_failed'); // fallback: would break linear control flow
+
+        if (!Car.IsDead($.beamer3_a1)) {
+            if ($.frankie_flag == 3) {
+                $.beamer3_a1.gotoCoordinates(1438.0, -183.4, 50.5);
+                $.frankie_garage.setTargetCarForMission($.beamer3_a1);
+            } else {
+                $.beamer3_a1.gotoCoordinates(1418.7, -168.1, 50.2);
+            }
+            if ($.kill_player_now_flag == 0) {
+                $.beamer3_a1.setCruiseSpeed(16.0);
+            } else {
+                $.beamer3_a1.setCruiseSpeed(41.0);
             }
         }
+
+        Path.SwitchRoadsOn(905.0, -448.6, 12.0, 916.0, -393.0, 20.0);
+        $.frankie_garage.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
+        if (!Char.IsDead($.frankie)) {
+            $.frankie.addArmor(100);
+        }
+        $.beamer1_health = 0;
+        $.timerb_reset_flag_a1 = 0;
+        TIMERA = 0;
+        TIMERB = 0;
     }
 
-    if (!Car.IsDead($.beamer1_a1)) {
-        if ($.frankie_flag == 1) {
-            $.beamer1_a1.gotoCoordinates(1438.0, -183.4, 50.5);
-            $.frankie_garage.setTargetCarForMission($.beamer1_a1);
-        } else {
-            $.beamer1_a1.gotoCoordinates(1423.7, -168.1, 50.2);
-        }
-        if ($.kill_player_now_flag == 0) {
-            $.beamer1_a1.setCruiseSpeed(18.0);
-        } else {
-            $.beamer1_a1.setCruiseSpeed(43.0);
-        }
-    }
-
-    if (!Car.IsDead($.beamer2_a1)) {
-        if ($.frankie_flag == 2) {
-            $.beamer2_a1.gotoCoordinates(1438.0, -183.4, 50.5);
-            $.frankie_garage.setTargetCarForMission($.beamer2_a1);
-        } else {
-            $.beamer2_a1.gotoCoordinates(1418.7, -168.1, 50.2);
-        }
-        if ($.kill_player_now_flag == 0) {
-            $.beamer2_a1.setCruiseSpeed(17.0);
-        } else {
-            $.beamer2_a1.setCruiseSpeed(42.0);
-        }
-    }
-
-    if (!Car.IsDead($.beamer3_a1)) {
-        if ($.frankie_flag == 3) {
-            $.beamer3_a1.gotoCoordinates(1438.0, -183.4, 50.5);
-            $.frankie_garage.setTargetCarForMission($.beamer3_a1);
-        } else {
-            $.beamer3_a1.gotoCoordinates(1418.7, -168.1, 50.2);
-        }
-        if ($.kill_player_now_flag == 0) {
-            $.beamer3_a1.setCruiseSpeed(16.0);
-        } else {
-            $.beamer3_a1.setCruiseSpeed(41.0);
-        }
-    }
-
-    Path.SwitchRoadsOn(905.0, -448.6, 12.0, 916.0, -393.0, 20.0);
-    $.frankie_garage.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
-    if (!Char.IsDead($.frankie)) {
-        $.frankie.addArmor(100);
-    }
-    $.beamer1_health = 0;
-    $.timerb_reset_flag_a1 = 0;
-    TIMERA = 0;
-    TIMERB = 0;
-}
-
-async function cars_going_to_frankies() {
-    // SCM GOTO → cars_going_to_frankies lowered to endless loop
-    while (true) {
+    cars_going_to_frankies: while (true) {
+        // SCM label cars_going_to_frankies
         //WHILE NOT IS_CHAR_STOPPED_IN_AREA_IN_CAR_3D frankie 1428.2 -179.2 50.0 1417.4 -186.3 53.0 0
         //WHILE NOT garage_door_close = 1
 
         await asyncWait(0);
 
         if (Char.IsDead($.frankie)) {
-            // SCM GOTO → mission_asuka1_passed (not lowered; manual jump required)
-            return;
+            return; // SCM GOTO → mission_asuka1_passed
         }
 
         //_____SEND MAFIA_8X BACK INTO THE CLUB THEN DELETE HIM____//
@@ -1581,11 +1601,10 @@ async function cars_going_to_frankies() {
         //_____IF ONE OF THE OTHER CARS IS DESTROYED THE OTHER WILL ATTACK THE PLAYER_____//
 
         if (Char.IsDead($.frankie)) {
-            // SCM GOTO → mission_asuka1_passed (not lowered; manual jump required)
-            return;
+            return; // SCM GOTO → mission_asuka1_passed
         }
 
-        if ($.frankies_ride == 0) {
+        if ($.frankies_ride == 0 as any) {
             if ($.frankie.locateInCar2D(1371.0, -283.9, 50.0, 50.0, false)) {
                 $.frankies_ride = $.frankie.storeCarIsIn();
                 $.frankies_ride.setCruiseSpeed(20.0);
@@ -1617,7 +1636,7 @@ async function cars_going_to_frankies() {
                     $.set_beamer_3_kill_player = 1;
                 } else {
                     if (!Car.IsDead($.beamer2_a1)) {
-                        if (!($.frankie_flag == 2)) {
+                        if (!($.frankie_flag == 2 as any)) {
                             $.set_beamer_2_kill_player = 1;
                         }
                     }
@@ -1649,7 +1668,7 @@ async function cars_going_to_frankies() {
                     $.set_beamer_1_kill_player = 1;
                 } else {
                     if (!Car.IsDead($.beamer2_a1)) {
-                        if (!($.frankie_flag == 2)) {
+                        if (!($.frankie_flag == 2 as any)) {
                             $.set_beamer_2_kill_player = 1;
                         }
                     }
@@ -1682,7 +1701,7 @@ async function cars_going_to_frankies() {
                     $.set_beamer_1_kill_player = 1;
                 } else {
                     if (!Car.IsDead($.beamer3_a1)) {
-                        if (!($.frankie_flag == 3)) {
+                        if (!($.frankie_flag == 3 as any)) {
                             $.set_beamer_3_kill_player = 1;
                         }
                     }
@@ -2320,11 +2339,10 @@ async function cars_going_to_frankies() {
                 throw new Error('unresolved GOTO mission_asuka1_failed'); // fallback: would break linear control flow
             }
         }
-
-        // Mission Asuka1 failed
     }
 }
 
+// Mission Asuka1 failed
 async function onFailed() {
     if (!Char.IsDead($.mafia_1X)) {
         $.mafia_1X.setObjKillPlayerAnyMeans($.player);
@@ -2370,11 +2388,9 @@ async function onFailed() {
     }
 
     Text.PrintBig('M_FAIL', 5000, 1);
-    return;
-
-    // mission Asuka1 passed
 }
 
+// mission Asuka1 passed
 async function onPassed() {
     $.flag_asuka_mission1_passed = 1;
 
@@ -2432,19 +2448,17 @@ async function onPassed() {
     // START_NEW_SCRIPT asuka_mission2_loop
     // START_NEW_SCRIPT joeys_buggy_loop
     // START_NEW_SCRIPT yardie_phone_start
-    return;
-
-    // mission cleanup
 }
 
-async function cleanup() {        
+// mission cleanup
+async function cleanup() {
     close_asuka1_door(); // START_NEW_SCRIPT close_asuka1_door
 
     //IF NOT IS_CHAR_DEAD frankie
     //	REMOVE_CHAR_ELEGANTLY frankie
     //ENDIF
 
-    $.frankie_garage.setTargetCarForMission(-1);
+    $.frankie_garage.setTargetCarForMission(-1 as any);
 
     Streaming.MarkModelAsNoLongerNeeded(134 /* CAR_MAFIA */);
     Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
@@ -2455,7 +2469,6 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
     Mission.Finish();
-    return;
 }
 
 async function kill_player_now_script() {
@@ -3080,8 +3093,6 @@ async function kill_player_now_script() {
     }
 
     $.kill_player_now_flag = 0;
-
-    return;
 }
 
 async function move_fuckers_car() {
@@ -3099,64 +3110,13 @@ async function move_fuckers_car() {
     } else {
         $.fuckers_car.setMission(2 /* MISSION_RAMPLAYER_FARAWAY */);
     }
-
-    return;
 }
-
-
-// MissionBoundary
-// *****************************************************************************************
-// *******************************   Asuka mission 1   *************************************
-// ******************************* Salvatore's Sendoff *************************************
-// *****************************************************************************************
-// *** Salvatore will be leaving Luigi's Club in 3 hours. The player will have to kill 	 ***
-// *** him before he arrives at his mansion. He will come out of the club with a very 	 ***
-// *** large Mafia escort. (3 cars full and 5 extra goons) If the player is spotted 	 ***
-// *** before Salvatore leaves the club, they will attack. 								 ***
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_asuka1
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_asuka1_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_asuka1
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT hours_a1 mins_a1 time_left_a1 beamer1_a1 beamer2_a1 beamer3_a1 mission_blip_am1
-// VAR_INT mafia_1X mafia_2X mafia_3X mafia_4X mafia_5X mafia_6X mafia_7X mafia_8X mafia_9X mafia_10X mafia_11X mafia_12X mafia_13X mafia_14X mafia_15X
-// VAR_INT mafia_8_flag mafia_9_flag mafia_10_flag mafia_11_flag mafia_12_flag mafia_13_flag frankie_flag
-// VAR_INT set_beamer_1_kill_player set_beamer_2_kill_player set_beamer_3_kill_player
-// VAR_INT beamer1_health beamer2_health beamer3_health garage_door_close timera_reset_flag_a1 timerb_reset_flag_a1 timerc_reset_flag_a1
-// VAR_INT timerc_started_a1 timerc_current_a1 timerc_a1 frankies_ride fuckers_car beamer_1_dead_flag beamer_2_dead_flag beamer_3_dead_flag
-// VAR_INT players_car_a1 kill_player_now_flag spotted_print enter_car_flag frankie_exists_flag
-// VAR_INT mafia_8_kill_player_flag mafia_9_kill_player_flag mafia_10_kill_player_flag mafia_11_kill_player_flag mafia_12_kill_player_flag mafia_13_kill_player_flag
-// VAR_INT mafia_5_kill_player_flag mafia_7_kill_player_flag mafia_15_kill_player_flag
-// VAR_INT timerx timerx_started timerx_current timerx_reset_flag
-// VAR_INT timery timery_started timery_current timery_reset_flag
-// VAR_INT timerz timerz_started timerz_current timerz_reset_flag
-
-// VAR_FLOAT players_car_a1_speed beamer1_a1_speed beamer2_a1_speed beamer3_a1_speed
-// VAR_FLOAT create_char_in_club_x create_char_in_club_y create_char_in_club_z bottom_of_steps_x bottom_of_steps_y mafia_10_x mafia_10_y
-// VAR_FLOAT mafia_11_x mafia_11_y mafia_12_x mafia_12_y mafia_13_x mafia_13_y working_x_a1 working_y_a1 working_z_a1 beamer_heading
-// VAR_FLOAT street_x street_y back_of_alley_x back_of_alley_y a1_x a1_y a1_z diff_heading_door
-// VAR_FLOAT beamer1_stuck_x beamer1_stuck_y beamer1_stuck_z beamer2_stuck_x beamer2_stuck_y beamer2_stuck_z beamer3_stuck_x beamer3_stuck_y beamer3_stuck_z
-
-// ****************************************Mission Start************************************
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
 
-
 async function close_asuka1_door() {
     verbose('[+] Activating subscript "close_asuka1_door"');
-    
+
     if (ScriptObject.DoesExist($.backdoor)) {
         $.door_position_a1 = $.backdoor.getHeading();
         if ($.door_crash_flag == 1) {
