@@ -275,7 +275,7 @@ async function body() {
     $.mike_car.setCanRespray(false /* OFF */);
     $.blip1_jm1 = Blip.AddForCar($.mike_car);
     $.countdown_jm1 = 361000;
-    timer = new Timer($.countdown_jm1).display(); // Hud.DisplayTimer($.countdown_jm1);
+    timer = new Timer($.countdown_jm1).display(); // xxx: Hud.DisplayTimer($.countdown_jm1);
 
     if (Car.IsDead($.mike_car)) {
         Text.PrintNow('WRECKED', 5000, 1);
@@ -598,9 +598,8 @@ async function body() {
     World.ClearArea(1328.4, -453.0, 54.0, 4.0, true /* TRUE */);
     World.ClearArea(1330.0, -466.1, 49.0, 4.0, true /* TRUE */);
     World.ClearArea(1333.6, -465.3, 49.0, 4.0, true /* TRUE */);
-
-    // Hud.ClearTimer($.countdown_jm1);
-    timer.clear();
+    
+    timer.clear(); // Hud.ClearTimer($.countdown_jm1);
     Game.SetPoliceIgnorePlayer($.player, true /* On */);
     $.player.setControl(false /* Off */);
     Hud.SwitchWidescreen(true /* ON */);

@@ -1,8 +1,128 @@
 // Generated from Main/Commercial/kenji1.sc
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************Kenji mission 1*********************************
+// ******************************************KANBU BUST OUT*********************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
 
 async function body() {
+    // SCRIPT_NAME kenji1
+
+    // Mission start stuff
+
+    // GOSUB mission_start_kenji1
+
+    // 	IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 		GOSUB mission_kenji1_failed
+    // 	ENDIF
+
+    // GOSUB mission_cleanup_kenji1
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT mission_cop_car_km1
+
+    // VAR_INT radar_blip_coord1_km1
+
+    // VAR_INT radar_blip_coord2_km1
+
+    // VAR_INT radar_blip_coord3_km1
+
+    // VAR_INT flag_player_had_car_message_km1
+
+    // VAR_INT flag_player_had_bomb_message_km1
+
+    // VAR_INT flag_player_got_cops_message_km1
+
+    // VAR_INT yakuza_ped1_km1
+
+    // VAR_INT mission_car_km1
+
+    // VAR_INT flag_player_wanted_level_changed
+
+    // VAR_INT flag_blip_on_yakuza_ped1_km1
+
+    // VAR_INT radar_blip_ped1_km1
+
+    // VAR_INT flag_car_got_bomb_km1
+
+    // VAR_INT total_counter_km1
+
+    // VAR_INT counter_bomb_km1
+
+    // VAR_INT counter_police_km1
+
+    // VAR_INT car_km1
+
+    // VAR_INT flag_had_bomb_message_km1
+
+    // VAR_INT flag_blip_on_km1
+
+    // VAR_INT flag_area_bomb_message_km1
+
+    // VAR_INT police_alarm
+
+    // VAR_INT spray_blip_km1
+
+    // VAR_INT flag_spray_blip_on_km1
+
+    // VAR_INT flag_bomb_km1
+
+    // VAR_INT cell_beating
+
+    // VAR_INT debris1
+
+    // VAR_INT debris2
+
+    // VAR_INT debris3
+
+    // VAR_INT debris4
+
+    // VAR_FLOAT debris1_x
+
+    // VAR_FLOAT debris1_y
+
+    // VAR_FLOAT debris1_z
+
+    // VAR_FLOAT debris2_x
+
+    // VAR_FLOAT debris2_y
+
+    // VAR_FLOAT debris2_z
+
+    // VAR_FLOAT debris3_x
+
+    // VAR_FLOAT debris3_y
+
+    // VAR_FLOAT debris3_z
+
+    // VAR_FLOAT debris4_x
+
+    // VAR_FLOAT debris4_y
+
+    // VAR_FLOAT debris4_z
+
+    // VAR_INT flag_dojo_blip_on
+
+    // VAR_INT flag_player_wanted
+
+    // VAR_INT flag_kanbu_in_group
+
+    // VAR_INT sphere_km1
+
+    // VAR_INT flag_player_had_dome_message_km1
+
+    // VAR_INT flag_played_cop_radio_km1
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
 
     $.flag_player_on_kenji_mission = 1;
@@ -75,7 +195,7 @@ async function body() {
 
     $.flag_played_cop_radio_km1 = 0;
 
-    {
+    before_mission_bloke_got_stuck_km1: {
         if ($.flag_need_wall_change_km1 == 1) {
             World.SwapNearestBuildingModel(328.026, -1090.262, 26.941, 2.0, 1332 /* police_celhole */, 1331 /* police_cell_wall */);
             $.flag_need_wall_change_km1 = 0;
@@ -84,20 +204,20 @@ async function body() {
         // ****************************************START OF CUTSCENE********************************
 
         /*
-  IF CAN_PLAYER_START_MISSION player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE player
-  ELSE
-  GOTO mission_kenji1_failed
-  ENDIF
+        IF CAN_PLAYER_START_MISSION player
+        MAKE_PLAYER_SAFE_FOR_CUTSCENE player
+        ELSE
+        GOTO mission_kenji1_failed
+        ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+        SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 1500 FADE_OUT
+        DO_FADE 1500 FADE_OUT
 
-  PRINT_BIG ( KM1 ) 15000 2 //"Kanbu Bust out"
+        PRINT_BIG ( KM1 ) 15000 2 //"Kanbu Bust out"
 
-  SWITCH_STREAMING OFF
-  */
+        SWITCH_STREAMING OFF
+        */
 
         // Cutscene stuff
 
@@ -109,12 +229,12 @@ async function body() {
         Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
 
         /*
-  WHILE GET_FADING_STATUS
+        WHILE GET_FADING_STATUS
 
-  WAIT 0
+        WAIT 0
 
-  ENDWHILE
-  */
+        ENDWHILE
+        */
 
         Streaming.LoadAllModelsNow();
 
@@ -363,7 +483,7 @@ async function body() {
                             $.flag_blip_on_km1 = 1;
                             $.blob_flag = 1;
                         }
-                        if ($.mission_cop_car_km1.isInArea3D(331.7, -1091.0, 24.0, 323.7, -1078.3, 33.0, $.blob_flag)) {
+                        if ($.mission_cop_car_km1.isInArea3D(331.7, -1091.0, 24.0, 323.7, -1078.3, 33.0, !!$.blob_flag)) {
                             $.controlmode = Pad.GetControllerMode();
                             if ($.flag_bomb_km1 == 0) {
                                 if ($.controlmode == 0) {
@@ -440,9 +560,7 @@ async function body() {
             // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
         } else {
-            // SCM GOSUB wall_explosion
-            await wall_explosion();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await wall_explosion(); // SCM GOSUB wall_explosion
         }
 
         $.cell_beating.remove();
@@ -521,7 +639,7 @@ async function body() {
         $.blob_flag = 1;
 
         while (
-            !$.player.locateStoppedAnyMeans2D(105.6, -1292.68, 3.0, 4.0, $.blob_flag) ||
+            !$.player.locateStoppedAnyMeans2D(105.6, -1292.68, 3.0, 4.0, !!$.blob_flag) ||
             !$.yakuza_ped1_km1.locateStoppedAnyMeans2D(105.6, -1292.68, 3.0, 4.0, false /* FALSE */) ||
             !Audio.HasMissionAudioLoaded() ||
             $.player.isWantedLevelGreater(0)
@@ -651,20 +769,15 @@ async function body() {
             if (TIMERB >= 8000) {
                 if (!$.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false /* FALSE */)) {
                     $.yakuza_ped1_km1.removeElegantly();
-                    // SCM GOTO → mission_bloke_got_stuck_km1 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_bloke_got_stuck_km1'); // fallback: would break linear control flow
+                    break before_mission_bloke_got_stuck_km1; // SCM GOTO → mission_bloke_got_stuck_km1
                 }
             }
         }
     }
 
+    mission_bloke_got_stuck_km1: {
+    }
 
-
-
-
-}
-
-async function mission_bloke_got_stuck_km1() {
     $.yakuza_ped1_km1.delete();
 
     Hud.SwitchWidescreen(false /* OFF */);
@@ -676,21 +789,14 @@ async function mission_bloke_got_stuck_km1() {
     Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
 
     Camera.RestoreJumpcut();
-
-    // SCM GOTO → mission_kenji1_passed (not lowered; manual jump required)
-    return;
-
-    // Mission Kemuri1 failed
 }
 
+// Mission Kemuri1 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-
-    return;
-
-    // mission Kemuri1 passed
 }
 
+// mission Kemuri1 passed
 async function onPassed() {
     $.flag_kenji_mission1_passed = 1;
     Stat.RegisterMissionPassed('KM1');
@@ -700,11 +806,9 @@ async function onPassed() {
     $.player.addScore(30000);
     $.player.clearWantedLevel();
     // START_NEW_SCRIPT kenji_mission2_loop
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_kenji_mission = 0;
@@ -720,7 +824,6 @@ async function cleanup() {
     $.spray_blip_km1.remove();
     $.sphere_km1.remove();
     Mission.Finish();
-    return;
 }
 
 async function wall_explosion() {
@@ -738,133 +841,6 @@ async function wall_explosion() {
     $.debris2.setVelocity(-5.0, 10.0, 5.0);
     $.debris3.setVelocity(7.0, 7.0, 7.0);
     $.debris4.setVelocity(-4.0, 13.0, 10.0);
-
-    return;
 }
 
-
-// MissionBoundary
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************Kenji mission 1*********************************
-// ******************************************KANBU BUST OUT*********************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-
-// SCRIPT_NAME kenji1
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_kenji1
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_kenji1_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_kenji1
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT mission_cop_car_km1
-
-// VAR_INT radar_blip_coord1_km1
-
-// VAR_INT radar_blip_coord2_km1
-
-// VAR_INT radar_blip_coord3_km1
-
-// VAR_INT flag_player_had_car_message_km1
-
-// VAR_INT flag_player_had_bomb_message_km1
-
-// VAR_INT flag_player_got_cops_message_km1
-
-// VAR_INT yakuza_ped1_km1
-
-// VAR_INT mission_car_km1
-
-// VAR_INT flag_player_wanted_level_changed
-
-// VAR_INT flag_blip_on_yakuza_ped1_km1
-
-// VAR_INT radar_blip_ped1_km1
-
-// VAR_INT flag_car_got_bomb_km1
-
-// VAR_INT total_counter_km1
-
-// VAR_INT counter_bomb_km1
-
-// VAR_INT counter_police_km1
-
-// VAR_INT car_km1
-
-// VAR_INT flag_had_bomb_message_km1
-
-// VAR_INT flag_blip_on_km1
-
-// VAR_INT flag_area_bomb_message_km1
-
-// VAR_INT police_alarm
-
-// VAR_INT spray_blip_km1
-
-// VAR_INT flag_spray_blip_on_km1
-
-// VAR_INT flag_bomb_km1
-
-// VAR_INT cell_beating
-
-// VAR_INT debris1
-
-// VAR_INT debris2
-
-// VAR_INT debris3
-
-// VAR_INT debris4
-
-// VAR_FLOAT debris1_x
-
-// VAR_FLOAT debris1_y
-
-// VAR_FLOAT debris1_z
-
-// VAR_FLOAT debris2_x
-
-// VAR_FLOAT debris2_y
-
-// VAR_FLOAT debris2_z
-
-// VAR_FLOAT debris3_x
-
-// VAR_FLOAT debris3_y
-
-// VAR_FLOAT debris3_z
-
-// VAR_FLOAT debris4_x
-
-// VAR_FLOAT debris4_y
-
-// VAR_FLOAT debris4_z
-
-// VAR_INT flag_dojo_blip_on
-
-// VAR_INT flag_player_wanted
-
-// VAR_INT flag_kanbu_in_group
-
-// VAR_INT sphere_km1
-
-// VAR_INT flag_player_had_dome_message_km1
-
-// VAR_INT flag_played_cop_radio_km1
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

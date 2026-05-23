@@ -93,11 +93,9 @@ async function body() {
     }
 
     //GIVE_REMOTE_CONTROLLED_CAR_TO_PLAYER player rc_x rc_y rc_z 180.0
-
-    // Hud.DisplayCounterWithString($.counter_RCDD, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
-    // Hud.DisplayTimer($.timer_RCDD);
-    counter_RCDD = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display();
-    timer_RCDD = new Timer({ initialValue: 120000 }).display();
+    
+    counter_RCDD = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display();  // xxx: Hud.DisplayCounterWithString($.counter_RCDD, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
+    timer_RCDD = new Timer({ initialValue: 120000 }).display(); // xxx: Hud.DisplayTimer($.timer_RCDD);
     $.timer_intro_start = Clock.GetGameTimer();
 
     // xxx: while (!($.timer_RCDD < 1)) {

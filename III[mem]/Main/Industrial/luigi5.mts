@@ -362,7 +362,7 @@ async function body() {
 
     $.fuzz_door2.setHeading(270.0);
 
-    timer_lm5 = new Timer($.timer_lm5).display(); // Hud.DisplayTimer($.timer_lm5);
+    timer_lm5 = new Timer($.timer_lm5).display(); // xxx: Hud.DisplayTimer($.timer_lm5);
 
     $.radar_blip_coord1_lm5 = Blip.AddForCoord(999.9, -879.3, -100.0);
 
@@ -477,7 +477,7 @@ async function body() {
 
     Text.PrintNow('LM5_7', 7000, 1); //"You need to get a minimum of four girls to the ball!"
 
-    counter_no_of_girls_at_the_ball = new Counter({ key: 'LM5_9' }).display(); // Hud.DisplayCounterWithString($.counter_no_of_girls_at_the_ball, 0 /* COUNTER_DISPLAY_NUMBER */, 'LM5_9');
+    counter_no_of_girls_at_the_ball = new Counter({ key: 'LM5_9' }).display(); // xxx: Hud.DisplayCounterWithString($.counter_no_of_girls_at_the_ball, 0 /* COUNTER_DISPLAY_NUMBER */, 'LM5_9');
 
     // checking to see how many girls the player get to the ball
 
