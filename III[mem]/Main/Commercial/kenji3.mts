@@ -814,7 +814,8 @@ async function body() {
         }
     }
 
-    async function kill_player_km3() {
+    // SCM label kill_player_km3
+    {
         Audio.PlayMissionAudio();
 
         Text.PrintNow('KM3_7', 7000, 1); //"Hey... your not who we were expecting!"
@@ -1173,7 +1174,7 @@ async function attack_player() {
     return;
 }
 
-// MissionBoundary
+
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -1196,7 +1197,7 @@ async function attack_player() {
 // SCM GOSUB mission_cleanup_kenji3
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // Variables for mission
 

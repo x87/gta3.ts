@@ -79,7 +79,7 @@ async function body() {
 
     $.flag_baddie6_in_area_love1 = 0;
 
-    {
+    mission_bloke_stuck_love1: {
         if ($.flag_failed_love1 == 1) {
             $.garage1_love1.close();
             $.garage2_love1.close();
@@ -944,14 +944,15 @@ async function body() {
             if (TIMERB >= 8000) {
                 if (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false /* FALSE */)) {
                     $.ojg_love1.removeElegantly();
-                    // SCM GOTO → mission_bloke_stuck_love1 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_bloke_stuck_love1'); // fallback: would break linear control flow
+                    // SCM GOTO → mission_bloke_stuck_love1
+                    break mission_bloke_stuck_love1;
                 }
             }
         }
     }
 
-    async function mission_bloke_stuck_love1() {
+    // SCM label mission_bloke_stuck_love1
+    {
         $.ojg_love1.setIdle();
 
         Camera.RestoreJumpcut();
@@ -1036,7 +1037,7 @@ async function cleanup() {
     return;
 }
 
-// MissionBoundary
+
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -1059,7 +1060,7 @@ async function cleanup() {
 // SCM GOSUB mission_cleanup_love1
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // Variables For Mission
 

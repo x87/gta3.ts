@@ -1,6 +1,9 @@
 // Generated from Main/Suburban/asusb2.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 
+let kappa_time: DisplayedTimer;
+let counter_kappa_dead: DisplayedCounter;
 
 async function body() {
     Stat.RegisterMissionGiven();
@@ -299,8 +302,7 @@ async function body() {
 
     // Mission stuff goes here
 
-    Hud.DisplayCounterWithString($.counter_kappa_dead, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
-
+    counter_kappa_dead = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.counter_kappa_dead, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
     $.timer_as2_start = Clock.GetGameTimer();
 
     Text.PrintNow('AS2_12', 5000, 1); //Cruise Liberty's districts to find etc. etc.
@@ -353,7 +355,7 @@ async function body() {
   //SET_OBJECT_HEADING kappa_test 0.0
   */
 
-    while ($.counter_kappa_dead < 9) {
+    while (counter_kappa_dead.value < 9) {
         await asyncWait(0);
         //-------------------------------------------CREATE KAPPAS------------------------------------------------------------------------------------
         if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
@@ -760,10 +762,10 @@ async function body() {
         if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
             if ($.kappa_1.hasBeenDamaged()) {
                 $.flag_kappa1_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_ind;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa1.remove();
                 if (!Char.IsDead($.kappa_cartel1)) {
                     $.kappa_cartel1.clearThreatSearch();
@@ -806,10 +808,10 @@ async function body() {
         if ($.flag_kappa3_dead == 0 && $.flag_kappa3_created == 1) {
             if ($.kappa_3.hasBeenDamaged()) {
                 $.flag_kappa3_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_ind;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa3.remove();
                 if (!Char.IsDead($.kappa_cartel3)) {
                     $.kappa_cartel3.clearThreatSearch();
@@ -834,10 +836,10 @@ async function body() {
         if ($.flag_kappa4_dead == 0 && $.flag_kappa4_created == 1) {
             if ($.kappa_4.hasBeenDamaged()) {
                 $.flag_kappa4_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_com;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa4.remove();
                 if (!Char.IsDead($.kappa_cartel4)) {
                     $.kappa_cartel4.clearThreatSearch();
@@ -862,10 +864,10 @@ async function body() {
         if ($.flag_kappa5_dead == 0 && $.flag_kappa5_created == 1) {
             if ($.kappa_5.hasBeenDamaged()) {
                 $.flag_kappa5_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_com;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa5.remove();
                 if (!Char.IsDead($.kappa_cartel5)) {
                     $.kappa_cartel5.clearThreatSearch();
@@ -890,10 +892,10 @@ async function body() {
         if ($.flag_kappa6_dead == 0 && $.flag_kappa6_created == 1) {
             if ($.kappa_6.hasBeenDamaged()) {
                 $.flag_kappa6_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_com;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa6.remove();
                 if (!Char.IsDead($.kappa_cartel6)) {
                     $.kappa_cartel6.clearThreatSearch();
@@ -918,10 +920,10 @@ async function body() {
         if ($.flag_kappa7_dead == 0 && $.flag_kappa7_created == 1) {
             if ($.kappa_7.hasBeenDamaged()) {
                 $.flag_kappa7_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_com;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa7.remove();
                 if (!Char.IsDead($.kappa_cartel7)) {
                     $.kappa_cartel7.clearThreatSearch();
@@ -963,10 +965,10 @@ async function body() {
         if ($.flag_kappa9_dead == 0 && $.flag_kappa9_created == 1) {
             if ($.kappa_9.hasBeenDamaged()) {
                 $.flag_kappa9_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_com;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa9.remove();
                 if (!Char.IsDead($.kappa_cartel9)) {
                     $.kappa_cartel9.clearThreatSearch();
@@ -991,10 +993,10 @@ async function body() {
         if ($.flag_kappa10_dead == 0 && $.flag_kappa10_created == 1) {
             if ($.kappa_10.hasBeenDamaged()) {
                 $.flag_kappa10_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_sub;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa10.remove();
                 if (!Char.IsDead($.kappa_cartel10)) {
                     $.kappa_cartel10.clearThreatSearch();
@@ -1037,10 +1039,10 @@ async function body() {
         if ($.flag_kappa12_dead == 0 && $.flag_kappa12_created == 1) {
             if ($.kappa_12.hasBeenDamaged()) {
                 $.flag_kappa12_dead = 1;
-                ++$.counter_kappa_dead;
+                ++counter_kappa_dead.value;
                 ++$.counter_kappa_dead_sub;
                 //kappa_time = kappa_time + 10000
-                Text.PrintWithNumberBig('AS2_11', $.counter_kappa_dead, 2000, 1);
+                Text.PrintWithNumberBig('AS2_11', counter_kappa_dead.value, 2000, 1);
                 $.blip_kappa12.remove();
                 if (!Char.IsDead($.kappa_cartel12)) {
                     $.kappa_cartel12.clearThreatSearch();
@@ -1352,8 +1354,8 @@ async function body() {
             // SCM GOTO → mission_as2_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_as2_failed'); // fallback: would break linear control flow
         }
-        if ($.counter_kappa_dead == 1 && $.flag_timer_started == 0) {
-            Hud.DisplayTimer($.kappa_time);
+        if (counter_kappa_dead.value == 1 && $.flag_timer_started == 0) {
+            kappa_time = new Timer($.kappa_time).display(); // xxx: Hud.DisplayTimer($.kappa_time);
             $.flag_timer_started = 1;
         }
 
@@ -1452,9 +1454,8 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_suburban_mission = 0;
 
-    Hud.ClearTimer($.kappa_time);
-    Hud.ClearCounter($.counter_kappa_dead);
-
+    kappa_time.clear(); // xxx: Hud.ClearTimer($.kappa_time);
+    counter_kappa_dead.clear(); // xxx: Hud.ClearCounter($.counter_kappa_dead);
     Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */); //The Mafia
 
     if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {

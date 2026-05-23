@@ -1,5 +1,8 @@
 // Generated from Main/Suburban/asusb1.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter } from '../../utils/scm.mts';
+
+let counter_cartels_killed_as1: DisplayedCounter;
 
 
 async function body() {
@@ -316,8 +319,7 @@ async function body() {
     $.blip_killzone = Blip.AddForCoord($.killzone_cent_x, $.killzone_cent_y, -100.0);
     $.blip_killzone.changeColor(4);
 
-    Hud.DisplayCounterWithString($.counter_cartels_killed_as1, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
-
+    counter_cartels_killed_as1 = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.counter_cartels_killed_as1, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
     Path.SwitchRoadsOff($.killzone_min_x, $.killzone_min_y, 65.0, -1170.0, $.killzone_max_y, 85.0);
 
     // Mission stuff goes here
@@ -379,7 +381,7 @@ async function body() {
 
     Player.ResetNumOfModelsKilled();
 
-    while ($.counter_cartels_killed_as1 < 12) {
+    while (counter_cartels_killed_as1.value < 12) {
         await asyncWait(0);
         const _res293 = $.player.getCoordinates();
         $.player_X = _res293.x;
@@ -1157,8 +1159,7 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_suburban_mission = 0;
 
-    Hud.ClearCounter($.counter_cartels_killed_as1);
-
+    counter_cartels_killed_as1.clear(); // xxx: Hud.ClearCounter($.counter_cartels_killed_as1);
     // SCM GOSUB blip_removal
     await blip_removal();
     // fallback if label was not emitted as async function: no-op continues linearly
@@ -1274,17 +1275,19 @@ async function bailout_a() {
         ++$.counter_bailouts;
         $.blip_cartelcar_a.remove();
         $.cartel_car_a_as1.lockDoors(1 /* CARLOCK_UNLOCKED */);
+        c_a_2: {
+
         if (!Char.IsDead($.cartel1_as1) && !Car.IsDead($.cartel_car_a_as1)) {
             $.cartel1_as1.setObjLeaveCar($.cartel_car_a_as1);
             while ($.cartel1_as1.isInCar($.cartel_car_a_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel1_as1)) {
-                    // SCM GOTO → c_a_2 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_a_2'); // fallback: would break linear control flow
+                    // SCM GOTO → c_a_2
+                    break c_a_2;
                 }
                 if (Car.IsDead($.cartel_car_a_as1)) {
-                    // SCM GOTO → c_a_2 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_a_2'); // fallback: would break linear control flow
+                    // SCM GOTO → c_a_2
+                    break c_a_2;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel1_as1
@@ -1292,18 +1295,20 @@ async function bailout_a() {
             $.cartel1_as1.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
             $.blip_cartel1 = Blip.AddForChar($.cartel1_as1);
         }
+        }
         // SCM label c_a_2
+        c_a_3: {
         if (!Char.IsDead($.cartel2_as1) && !Car.IsDead($.cartel_car_a_as1)) {
             $.cartel2_as1.setObjLeaveCar($.cartel_car_a_as1);
             while ($.cartel2_as1.isInCar($.cartel_car_a_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel2_as1)) {
-                    // SCM GOTO → c_a_3 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_a_3'); // fallback: would break linear control flow
+                    // SCM GOTO → c_a_3
+                    break c_a_3;
                 }
                 if (Car.IsDead($.cartel_car_a_as1)) {
-                    // SCM GOTO → c_a_3 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_a_3'); // fallback: would break linear control flow
+                    // SCM GOTO → c_a_3
+                    break c_a_3;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel2_as1
@@ -1311,18 +1316,20 @@ async function bailout_a() {
             $.cartel2_as1.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
             $.blip_cartel2 = Blip.AddForChar($.cartel2_as1);
         }
+        }
         // SCM label c_a_3
+        c_a_4: {
         if (!Char.IsDead($.cartel3_as1) && !Car.IsDead($.cartel_car_a_as1)) {
             $.cartel3_as1.setObjLeaveCar($.cartel_car_a_as1);
             while ($.cartel3_as1.isInCar($.cartel_car_a_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel3_as1)) {
-                    // SCM GOTO → c_a_4 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_a_4'); // fallback: would break linear control flow
+                    // SCM GOTO → c_a_4
+                    break c_a_4;
                 }
                 if (Car.IsDead($.cartel_car_a_as1)) {
-                    // SCM GOTO → c_a_4 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_a_4'); // fallback: would break linear control flow
+                    // SCM GOTO → c_a_4
+                    break c_a_4;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel3_as1
@@ -1330,24 +1337,27 @@ async function bailout_a() {
             $.cartel3_as1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 15);
             $.blip_cartel3 = Blip.AddForChar($.cartel3_as1);
         }
+        }
         // SCM label c_a_4
+        c_a_5: {
         if (!Char.IsDead($.cartel4_as1) && !Car.IsDead($.cartel_car_a_as1)) {
             $.cartel4_as1.setObjLeaveCar($.cartel_car_a_as1);
             while ($.cartel4_as1.isInCar($.cartel_car_a_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel4_as1)) {
-                    // SCM GOTO → c_a_5 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_a_5'); // fallback: would break linear control flow
+                    // SCM GOTO → c_a_5
+                    break c_a_5;
                 }
                 if (Car.IsDead($.cartel_car_a_as1)) {
-                    // SCM GOTO → c_a_5 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_a_5'); // fallback: would break linear control flow
+                    // SCM GOTO → c_a_5
+                    break c_a_5;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel4_as1
             $.cartel4_as1.setThreatSearch(1 /* THREAT_PLAYER1 */);
             $.cartel4_as1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 15);
             $.blip_cartel4 = Blip.AddForChar($.cartel4_as1);
+        }
         }
         // SCM label c_a_5
         //MARK_CAR_AS_NO_LONGER_NEEDED cartel_car_a_as1
@@ -1362,17 +1372,19 @@ async function bailout_b() {
         ++$.counter_bailouts;
         $.blip_cartelcar_b.remove();
         $.cartel_car_b_as1.lockDoors(1 /* CARLOCK_UNLOCKED */);
+        c_b_2: {
+
         if (!Char.IsDead($.cartel5_as1) && !Car.IsDead($.cartel_car_b_as1)) {
             $.cartel5_as1.setObjLeaveCar($.cartel_car_b_as1);
             while ($.cartel5_as1.isInCar($.cartel_car_b_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel5_as1)) {
-                    // SCM GOTO → c_b_2 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_b_2'); // fallback: would break linear control flow
+                    // SCM GOTO → c_b_2
+                    break c_b_2;
                 }
                 if (Car.IsDead($.cartel_car_b_as1)) {
-                    // SCM GOTO → c_b_2 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_b_2'); // fallback: would break linear control flow
+                    // SCM GOTO → c_b_2
+                    break c_b_2;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel5_as1
@@ -1380,18 +1392,20 @@ async function bailout_b() {
             $.cartel5_as1.giveWeapon(3 /* WEAPONTYPE_UZI */, 90);
             $.blip_cartel5 = Blip.AddForChar($.cartel5_as1);
         }
+        }
         // SCM label c_b_2
+        c_b_3: {
         if (!Char.IsDead($.cartel6_as1) && !Car.IsDead($.cartel_car_b_as1)) {
             $.cartel6_as1.setObjLeaveCar($.cartel_car_b_as1);
             while ($.cartel6_as1.isInCar($.cartel_car_b_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel6_as1)) {
-                    // SCM GOTO → c_b_3 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_b_3'); // fallback: would break linear control flow
+                    // SCM GOTO → c_b_3
+                    break c_b_3;
                 }
                 if (Car.IsDead($.cartel_car_b_as1)) {
-                    // SCM GOTO → c_b_3 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_b_3'); // fallback: would break linear control flow
+                    // SCM GOTO → c_b_3
+                    break c_b_3;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel6_as1
@@ -1399,18 +1413,20 @@ async function bailout_b() {
             $.cartel6_as1.giveWeapon(3 /* WEAPONTYPE_UZI */, 90);
             $.blip_cartel6 = Blip.AddForChar($.cartel6_as1);
         }
+        }
         // SCM label c_b_3
+        c_b_4: {
         if (!Char.IsDead($.cartel7_as1) && !Car.IsDead($.cartel_car_b_as1)) {
             $.cartel7_as1.setObjLeaveCar($.cartel_car_b_as1);
             while ($.cartel7_as1.isInCar($.cartel_car_b_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel7_as1)) {
-                    // SCM GOTO → c_b_4 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_b_4'); // fallback: would break linear control flow
+                    // SCM GOTO → c_b_4
+                    break c_b_4;
                 }
                 if (Car.IsDead($.cartel_car_b_as1)) {
-                    // SCM GOTO → c_b_4 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_b_4'); // fallback: would break linear control flow
+                    // SCM GOTO → c_b_4
+                    break c_b_4;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel7_as1
@@ -1418,24 +1434,27 @@ async function bailout_b() {
             $.cartel7_as1.giveWeapon(3 /* WEAPONTYPE_UZI */, 90);
             $.blip_cartel7 = Blip.AddForChar($.cartel7_as1);
         }
+        }
         // SCM label c_b_4
+        c_b_5: {
         if (!Char.IsDead($.cartel8_as1) && !Car.IsDead($.cartel_car_b_as1)) {
             $.cartel8_as1.setObjLeaveCar($.cartel_car_b_as1);
             while ($.cartel8_as1.isInCar($.cartel_car_b_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel8_as1)) {
-                    // SCM GOTO → c_b_5 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_b_5'); // fallback: would break linear control flow
+                    // SCM GOTO → c_b_5
+                    break c_b_5;
                 }
                 if (Car.IsDead($.cartel_car_b_as1)) {
-                    // SCM GOTO → c_b_5 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_b_5'); // fallback: would break linear control flow
+                    // SCM GOTO → c_b_5
+                    break c_b_5;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel8_as1
             $.cartel8_as1.setThreatSearch(1 /* THREAT_PLAYER1 */);
             $.cartel8_as1.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
             $.blip_cartel8 = Blip.AddForChar($.cartel8_as1);
+        }
         }
         // SCM label c_b_5
         //MARK_CAR_AS_NO_LONGER_NEEDED cartel_car_b_as1
@@ -1534,17 +1553,19 @@ async function bailout_d() {
         ++$.counter_bailouts;
         $.blip_cartelcar_d.remove();
         $.cartel_car_d_as1.lockDoors(1 /* CARLOCK_UNLOCKED */);
+        c_d_2: {
+
         if (!Char.IsDead($.cartel13_as1) && !Car.IsDead($.cartel_car_d_as1)) {
             $.cartel13_as1.setObjLeaveCar($.cartel_car_d_as1);
             while ($.cartel13_as1.isInCar($.cartel_car_d_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel13_as1)) {
-                    // SCM GOTO → c_d_2 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_d_2'); // fallback: would break linear control flow
+                    // SCM GOTO → c_d_2
+                    break c_d_2;
                 }
                 if (Car.IsDead($.cartel_car_d_as1)) {
-                    // SCM GOTO → c_d_2 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_d_2'); // fallback: would break linear control flow
+                    // SCM GOTO → c_d_2
+                    break c_d_2;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel13_as1
@@ -1552,18 +1573,20 @@ async function bailout_d() {
             $.cartel13_as1.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
             $.blip_cartel13 = Blip.AddForChar($.cartel13_as1);
         }
+        }
         // SCM label c_d_2
+        c_d_3: {
         if (!Char.IsDead($.cartel14_as1) && !Car.IsDead($.cartel_car_d_as1)) {
             $.cartel14_as1.setObjLeaveCar($.cartel_car_d_as1);
             while ($.cartel14_as1.isInCar($.cartel_car_d_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel14_as1)) {
-                    // SCM GOTO → c_d_3 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_d_3'); // fallback: would break linear control flow
+                    // SCM GOTO → c_d_3
+                    break c_d_3;
                 }
                 if (Car.IsDead($.cartel_car_d_as1)) {
-                    // SCM GOTO → c_d_3 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_d_3'); // fallback: would break linear control flow
+                    // SCM GOTO → c_d_3
+                    break c_d_3;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel14_as1
@@ -1571,18 +1594,20 @@ async function bailout_d() {
             $.cartel14_as1.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
             $.blip_cartel14 = Blip.AddForChar($.cartel14_as1);
         }
+        }
         // SCM label c_d_3
+        c_d_4: {
         if (!Char.IsDead($.cartel15_as1) && !Car.IsDead($.cartel_car_d_as1)) {
             $.cartel15_as1.setObjLeaveCar($.cartel_car_d_as1);
             while ($.cartel15_as1.isInCar($.cartel_car_d_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel15_as1)) {
-                    // SCM GOTO → c_d_4 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_d_4'); // fallback: would break linear control flow
+                    // SCM GOTO → c_d_4
+                    break c_d_4;
                 }
                 if (Car.IsDead($.cartel_car_d_as1)) {
-                    // SCM GOTO → c_d_4 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_d_4'); // fallback: would break linear control flow
+                    // SCM GOTO → c_d_4
+                    break c_d_4;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel15_as1
@@ -1590,24 +1615,27 @@ async function bailout_d() {
             $.cartel15_as1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 15);
             $.blip_cartel15 = Blip.AddForChar($.cartel15_as1);
         }
+        }
         // SCM label c_d_4
+        c_d_5: {
         if (!Char.IsDead($.cartel16_as1) && !Car.IsDead($.cartel_car_d_as1)) {
             $.cartel16_as1.setObjLeaveCar($.cartel_car_d_as1);
             while ($.cartel16_as1.isInCar($.cartel_car_d_as1)) {
                 await asyncWait(0);
                 if (Char.IsDead($.cartel16_as1)) {
-                    // SCM GOTO → c_d_5 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_d_5'); // fallback: would break linear control flow
+                    // SCM GOTO → c_d_5
+                    break c_d_5;
                 }
                 if (Car.IsDead($.cartel_car_d_as1)) {
-                    // SCM GOTO → c_d_5 (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO c_d_5'); // fallback: would break linear control flow
+                    // SCM GOTO → c_d_5
+                    break c_d_5;
                 }
             }
             //CLEAR_CHAR_THREAT_SEARCH cartel16_as1
             $.cartel16_as1.setThreatSearch(1 /* THREAT_PLAYER1 */);
             $.cartel16_as1.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
             $.blip_cartel16 = Blip.AddForChar($.cartel16_as1);
+        }
         }
         // SCM label c_d_5
         //MARK_CAR_AS_NO_LONGER_NEEDED cartel_car_d_as1
@@ -1623,7 +1651,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel1_as1)) {
                 if ($.cartel1_as1_dead == 0) {
                     $.cartel1_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel1.remove();
                 }
             }
@@ -1633,7 +1661,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel2_as1)) {
                 if ($.cartel2_as1_dead == 0) {
                     $.cartel2_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel2.remove();
                 }
             }
@@ -1643,7 +1671,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel3_as1)) {
                 if ($.cartel3_as1_dead == 0) {
                     $.cartel3_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel3.remove();
                     if ($.yak1_mission == 1) {
                         $.yak1_mission = 0;
@@ -1656,7 +1684,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel4_as1)) {
                 if ($.cartel4_as1_dead == 0) {
                     $.cartel4_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel4.remove();
                 }
             }
@@ -1680,7 +1708,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel5_as1)) {
                 if ($.cartel5_as1_dead == 0) {
                     $.cartel5_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel5.remove();
                 }
             }
@@ -1690,7 +1718,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel6_as1)) {
                 if ($.cartel6_as1_dead == 0) {
                     $.cartel6_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel6.remove();
                 }
             }
@@ -1700,7 +1728,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel7_as1)) {
                 if ($.cartel7_as1_dead == 0) {
                     $.cartel7_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel7.remove();
                 }
             }
@@ -1710,7 +1738,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel8_as1)) {
                 if ($.cartel8_as1_dead == 0) {
                     $.cartel8_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel8.remove();
                     if ($.yak1_mission == 2) {
                         $.yak1_mission = 0;
@@ -1808,7 +1836,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel13_as1)) {
                 if ($.cartel13_as1_dead == 0) {
                     $.cartel13_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel13.remove();
                 }
             }
@@ -1818,7 +1846,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel14_as1)) {
                 if ($.cartel14_as1_dead == 0) {
                     $.cartel14_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel14.remove();
                 }
             }
@@ -1828,7 +1856,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel15_as1)) {
                 if ($.cartel15_as1_dead == 0) {
                     $.cartel15_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel15.remove();
                 }
             }
@@ -1838,7 +1866,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel16_as1)) {
                 if ($.cartel16_as1_dead == 0) {
                     $.cartel16_as1_dead = 1;
-                    ++$.counter_cartels_killed_as1;
+                    ++counter_cartels_killed_as1.value;
                     $.blip_cartel16.remove();
                     if ($.yak1_mission == 7) {
                         $.yak1_mission = 0;
@@ -2393,7 +2421,7 @@ async function unhappy_car_check() {
     return;
 }
 
-// MissionBoundary
+
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -2411,7 +2439,7 @@ async function unhappy_car_check() {
 // SCM GOSUB mission_cleanup_as1
 // fallback if label was not emitted as async function: no-op continues linearly
 
-// MissionBoundary
+
 
 // Variables for mission
 

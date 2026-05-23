@@ -1,5 +1,8 @@
 // Generated from Main/Commercial/ray3.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter } from '../../utils/scm.mts';
+
+let amount_of_evidence_player_has: DisplayedCounter;
 
 
 async function body() {
@@ -696,7 +699,7 @@ async function evidence_loop() {
             }
             if (!Car.IsDead($.players_car)) {
                 $.rays_evidence_blip = Blip.AddForCar($.players_car);
-                Hud.ClearCounter($.amount_of_evidence_player_has);
+                amount_of_evidence_player_has.clear(); // xxx: Hud.ClearCounter($.amount_of_evidence_player_has);
                 Text.PrintNow('RM3_7', 5000, 1); // "Now torch the car!"
                 while (!Car.IsDead($.players_car)) {
                     await asyncWait(0);
@@ -743,7 +746,7 @@ async function cleanup() {
 
     $.rays_evidence_blip.remove();
     $.prosecution_car_blip.remove();
-    Hud.ClearCounter($.amount_of_evidence_player_has);
+    amount_of_evidence_player_has.clear(); // xxx: Hud.ClearCounter($.amount_of_evidence_player_has);
     Streaming.MarkModelAsNoLongerNeeded(112 /* CAR_BOBCAT */);
     Streaming.MarkModelAsNoLongerNeeded(61 /* PED_B_MAN3 */);
     Streaming.MarkModelAsNoLongerNeeded(1325 /* DONKEYMAG */);
@@ -798,7 +801,7 @@ async function evidence_collected() {
     Sound.AddOneOffSound($.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z, 82 /* SOUND_EVIDENCE_PICKUP */);
     if ($.drop_evidence == 1) {
         $.evidence_1.delete();
-        Hud.DisplayCounterWithString($.amount_of_evidence_player_has, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
+        amount_of_evidence_player_has = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.amount_of_evidence_player_has, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
     }
     if ($.drop_evidence == 2) {
         $.evidence_2.delete();
@@ -815,8 +818,8 @@ async function evidence_collected() {
     if ($.drop_evidence == 6) {
         $.evidence_6.delete();
     }
-    ++$.amount_of_evidence_player_has;
-    Text.PrintWithNumberNow('RM3_5', $.amount_of_evidence_player_has, 5000, 1); //"You have ~1~ evidence packages."
+    ++amount_of_evidence_player_has.value;
+    Text.PrintWithNumberNow('RM3_5', amount_of_evidence_player_has.value, 5000, 1); //"You have ~1~ evidence packages."
     $.ia_have_evidence_flag = 1;
     TIMERB = 0;
 

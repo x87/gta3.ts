@@ -1,6 +1,8 @@
 // Generated from Main/Commercial/yard4.sc
 import { $ } from '../../utils';
+import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 
+let timer_y4: DisplayedTimer;
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -270,8 +272,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    Hud.DisplayTimer($.timer_y4);
-
+    timer_y4 = new Timer($.timer_y4).display(); // xxx: Hud.DisplayTimer($.timer_y4);
     create_car_yd5: {
         $.abandoned_car_y4 = Car.Create(109 /* CAR_ESPERANTO */, $.abandoned_car_x, $.abandoned_car_y, -100.0);
         $.abandoned_car_y4.setHeading(270.0);
@@ -288,7 +289,7 @@ async function body() {
         if (!Car.IsDead($.abandoned_car_y4)) {
             while (!$.player.isInCar($.abandoned_car_y4)) {
                 await asyncWait(0);
-                if ($.timer_y4 < 1) {
+                if (timer_y4.value < 1) {
                     Text.PrintNow('TAXI2', 3000, 1);
                     // SCM GOTO → mission_yd4_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_yd4_failed'); // fallback: would break linear control flow
@@ -307,8 +308,7 @@ async function body() {
 
         $.blip_abandoned_car_y4.remove();
         $.player.setControl(false /* Off */);
-        Hud.ClearTimer($.timer_y4);
-
+        timer_y4.clear(); // xxx: Hud.ClearTimer($.timer_y4);
         World.ClearArea(-113.4, -1431.5, 26.0, 20.0, true /* true */);
 
         $.gen1_van = Car.Create(103 /* CAR_PONY */, $.gen1_x, $.gen1_y, 26.2);
@@ -763,7 +763,7 @@ async function cleanup() {
 
     $.flag_player_on_yardie_mission = 0;
     $.blip_abandoned_car_y4.remove();
-    Hud.ClearTimer($.timer_y4);
+    timer_y4.clear(); // xxx: Hud.ClearTimer($.timer_y4);
     Streaming.UnloadSpecialCharacter(1);
     Streaming.MarkModelAsNoLongerNeeded(26 /* PED_SPECIAL1 */);
     Streaming.MarkModelAsNoLongerNeeded(109 /* CAR_ESPERANTO */);

@@ -1,6 +1,9 @@
 // Generated from Main/Suburban/love6.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 
+let survival_time: DisplayedTimer;
+let decoy_van_health: DisplayedCounter;
 
 async function body() {
     ONMISSION = true;
@@ -405,8 +408,7 @@ async function body() {
 
     $.player.alterWantedLevel(6);
 
-    Hud.DisplayTimer($.survival_time);
-
+    survival_time = new Timer($.survival_time).display(); // xxx: Hud.DisplayTimer($.survival_time);
     Text.PrintNow('LOVE6_1', 5000, 1); //"Now lead the cops away!"
 
     if (Audio.HasMissionAudioLoaded()) {
@@ -426,33 +428,32 @@ async function body() {
         $.decoy_van_health = 100;
     }
 
-    Hud.DisplayCounterWithString($.decoy_van_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
-
-    while ($.survival_time > 0) {
+    decoy_van_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.decoy_van_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+    while (survival_time.value > 0) {
         await asyncWait(0);
         if (Car.IsDead($.decoy_van)) {
             // SCM GOTO → mission_love6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_love6_failed'); // fallback: would break linear control flow
         }
         $.player.alterWantedLevel(6);
-        $.decoy_van_health = $.decoy_van.getHealth();
+        decoy_van_health.value = $.decoy_van.getHealth();
         //	escort_truck_health += dummy_health
         //	escort_truck_health = escort_truck_health / 2
-        $.decoy_van_health = $.decoy_van_health - 250;
-        $.decoy_van_health = $.decoy_van_health * 100;
-        $.decoy_van_health = $.decoy_van_health / 750;
-        $.decoy_van_health2 = $.decoy_van_health;
-        $.decoy_van_health = 100 - $.decoy_van_health2;
-        if ($.decoy_van_health > 100) {
-            $.decoy_van_health = 100;
+        decoy_van_health.value = decoy_van_health.value - 250;
+        decoy_van_health.value = decoy_van_health.value * 100;
+        decoy_van_health.value = decoy_van_health.value / 750;
+        $.decoy_van_health2 = decoy_van_health.value;
+        decoy_van_health.value = 100 - $.decoy_van_health2;
+        if (decoy_van_health.value > 100) {
+            decoy_van_health.value = 100;
         }
         if (!$.player.isInCar($.decoy_van)) {
             if ($.get_in_van == 0) {
                 $.out_of_car_timer_start = Clock.GetGameTimer();
-                if ($.survival_time > 15000) {
+                if (survival_time.value > 15000) {
                     $.out_of_car_timer = 15000;
                 } else {
-                    $.out_of_car_timer = $.survival_time;
+                    $.out_of_car_timer = survival_time.value;
                 }
                 $.decoy_van_blip = Blip.AddForCar($.decoy_van);
                 $.get_in_van = 1;
@@ -513,9 +514,8 @@ async function cleanup() {
     $.flag_player_on_love_mission = 0;
 
     $.decoy_van_blip.remove();
-    Hud.ClearTimer($.survival_time);
-    Hud.ClearCounter($.decoy_van_health);
-
+    survival_time.clear(); // xxx: Hud.ClearTimer($.survival_time);
+    decoy_van_health.clear(); // xxx: Hud.ClearCounter($.decoy_van_health);
     Game.SetSwatRequired(false /* FALSE */);
     Streaming.MarkModelAsNoLongerNeeded(118 /* CAR_SECURICAR */);
     Streaming.MarkModelAsNoLongerNeeded(116 /* CAR_POLICE */);
