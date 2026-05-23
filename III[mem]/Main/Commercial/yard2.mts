@@ -2,6 +2,14 @@
 import { $ } from '../../utils';
 import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************YARDIE MISSION 2********************************
+// *****************************************************************************************
+// ********************************************'UZI RIDER'**********************************
+// *****************************************************************************************
+
 let body_count_yd2: DisplayedCounter;
 
 const MISSION_YD2_FAILED_ASSERT = 'mission_yd2_failed_assert';
@@ -12,14 +20,6 @@ class mission_yd2_failed_assert extends Error {
         this.name = 'MissionYd2FailedAssertError';
     }
 }
-
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************YARDIE MISSION 2********************************
-// *****************************************************************************************
-// ********************************************'UZI RIDER'**********************************
-// *****************************************************************************************
 
 async function body() {
     // Mission start stuff
@@ -91,117 +91,115 @@ async function body() {
 
     // ******************************************CUTSCENE***************************************
 
-    {
-        World.SetPedDensityMultiplier(0.0);
-        Game.SetPoliceIgnorePlayer($.player, true /* on */);
+    World.SetPedDensityMultiplier(0.0);
+    Game.SetPoliceIgnorePlayer($.player, true /* on */);
 
-        //WHILE NOT HAS_MODEL_LOADED cut_obj1
-        //	WAIT 0
+    //WHILE NOT HAS_MODEL_LOADED cut_obj1
+    //	WAIT 0
 
-        //ENDWHILE
+    //ENDWHILE
 
-        Cutscene.Load('YD_PH2');
-        Cutscene.SetOffset(121.0, -272.3, 15.25);
-        World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
+    Cutscene.Load('YD_PH2');
+    Cutscene.SetOffset(121.0, -272.3, 15.25);
+    World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-        $.cs_player.setAnim('player');
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player.setAnim('player');
 
-        //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
-        //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
+    //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
+    //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-        //CLEAR_AREA 1219.5 -321.1 27.5 1.0 TRUE
-        //SET_PLAYER_COORDINATES player 1219.5 -321.1 26.4
+    //CLEAR_AREA 1219.5 -321.1 27.5 1.0 TRUE
+    //SET_PLAYER_COORDINATES player 1219.5 -321.1 26.4
 
-        //SET_PLAYER_HEADING player 180.0
+    //SET_PLAYER_HEADING player 180.0
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        //SWITCH_STREAMING OFF
+    //SWITCH_STREAMING OFF
 
-        Cutscene.Start();
+    Cutscene.Start();
 
-        // Displays cutscene text
+    // Displays cutscene text
 
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 2000) {
+        await asyncWait(0);
         $.cs_time = Cutscene.GetTime();
-
-        while ($.cs_time < 2000) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-        Text.PrintNow('YD2_A', 10000, 1);
-
-        while ($.cs_time < 4581) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('YD2_A1', 10000, 1);
-
-        while ($.cs_time < 7135) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('YD2_B', 10000, 1);
-
-        while ($.cs_time < 10431) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('YD2_B1', 10000, 1);
-        /*
-        WHILE cs_time < 13770
-        WAIT 0
-        GET_CUTSCENE_TIME cs_time
-        ENDWHILE
-
-        PRINT_NOW ( YD2_D ) 10000 1
-
-        WHILE cs_time < 18676
-        WAIT 0
-        GET_CUTSCENE_TIME cs_time
-        ENDWHILE
-
-        PRINT_NOW ( YD2_D1 ) 10000 1
-
-
-        WHILE cs_time < 24139
-        WAIT 0
-        GET_CUTSCENE_TIME cs_time
-        ENDWHILE
-
-        PRINT_NOW ( DIAB2_G ) 10000 1
-
-        WHILE cs_time < 28919
-        WAIT 0
-        GET_CUTSCENE_TIME cs_time
-        ENDWHILE
-
-        PRINT_NOW ( DIAB2_H ) 10000 1
-        */
-
-        while ($.cs_time < 13900) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
-
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
-
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
-
-        Streaming.Switch(true /* ON */);
-        Text.ClearPrints();
-        Cutscene.Clear();
-        //SET_CAMERA_IN_FRONT_OF_PLAYER
     }
+    Text.PrintNow('YD2_A', 10000, 1);
+
+    while ($.cs_time < 4581) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('YD2_A1', 10000, 1);
+
+    while ($.cs_time < 7135) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('YD2_B', 10000, 1);
+
+    while ($.cs_time < 10431) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('YD2_B1', 10000, 1);
+    /*
+    WHILE cs_time < 13770
+    WAIT 0
+    GET_CUTSCENE_TIME cs_time
+    ENDWHILE
+
+    PRINT_NOW ( YD2_D ) 10000 1
+
+    WHILE cs_time < 18676
+    WAIT 0
+    GET_CUTSCENE_TIME cs_time
+    ENDWHILE
+
+    PRINT_NOW ( YD2_D1 ) 10000 1
+
+
+    WHILE cs_time < 24139
+    WAIT 0
+    GET_CUTSCENE_TIME cs_time
+    ENDWHILE
+
+    PRINT_NOW ( DIAB2_G ) 10000 1
+
+    WHILE cs_time < 28919
+    WAIT 0
+    GET_CUTSCENE_TIME cs_time
+    ENDWHILE
+
+    PRINT_NOW ( DIAB2_H ) 10000 1
+    */
+
+    while ($.cs_time < 13900) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
+
+    Streaming.Switch(true /* ON */);
+    Text.ClearPrints();
+    Cutscene.Clear();
+    //SET_CAMERA_IN_FRONT_OF_PLAYER
 
     await asyncWait(0);
 
@@ -218,8 +216,8 @@ async function body() {
     $.timer_dif_yd2 = 0;
     $.flag_out_of_car_message = 0;
     $.flag_upsidedown = 0;
-    flag_chap_1_n_v = 0;
-    flag_chap_2_n_v = 0;
+    $.flag_chap_1_n = 0;
+    $.flag_chap_2_n = 0;
     $.flag_clear = 0;
     $.body_count_yd2 = 0;
     $.driveby_total_1 = 0;
@@ -347,8 +345,7 @@ async function body() {
             $.chaperone_2.lookAtCharAlways($.player_yd2);
             $.player_yd2.lookAtCharAlways($.chaperone_2);
             if (!$.chaperone_2.locateOnFoot2D($.y2_x, $.y2_y, 2.0, 2.0, false /* false */)) {
-                // SCM GOTO → plinky_yd2
-                continue plinky_yd2;
+                continue plinky_yd2; // SCM GOTO → plinky_yd2
             }
         } else {
             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
@@ -366,8 +363,7 @@ async function body() {
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
             if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                // SCM GOTO → poodle
-                break plinky_yd2;
+                break plinky_yd2; // SCM GOTO → poodle
             }
         }
         Audio.PlayMissionAudio();
@@ -375,8 +371,7 @@ async function body() {
         while (!Audio.HasMissionAudioFinished()) {
             await asyncWait(0);
             if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                // SCM GOTO → poodle
-                break plinky_yd2;
+                break plinky_yd2; // SCM GOTO → poodle
             }
         }
         Text.ClearPrints();
@@ -392,8 +387,7 @@ async function body() {
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
             if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                // SCM GOTO → poodle
-                break plinky_yd2;
+                break plinky_yd2; // SCM GOTO → poodle
             }
         }
         Audio.PlayMissionAudio();
@@ -401,8 +395,7 @@ async function body() {
         while (!Audio.HasMissionAudioFinished()) {
             await asyncWait(0);
             if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                // SCM GOTO → poodle
-                break plinky_yd2;
+                break plinky_yd2; // SCM GOTO → poodle
             }
         }
         Text.ClearPrints();
@@ -418,8 +411,7 @@ async function body() {
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
             if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                // SCM GOTO → poodle
-                break plinky_yd2;
+                break plinky_yd2; // SCM GOTO → poodle
             }
         }
         Audio.PlayMissionAudio();
@@ -427,12 +419,11 @@ async function body() {
         while (!Audio.HasMissionAudioFinished()) {
             await asyncWait(0);
             if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                // SCM GOTO → poodle
-                break plinky_yd2;
+                break plinky_yd2; // SCM GOTO → poodle
             }
         }
         Text.ClearPrints();
-        break plinky_yd2;
+        break plinky_yd2; // fallthrough
     }
 
     poodle: while (true) {
@@ -555,8 +546,7 @@ async function body() {
         break poodle;
     }
 
-    getting_there: while (true) {
-        // SCM label getting_there
+    getting_there: {
         if (!Car.IsDead($.gang_car_yd2)) {
             while (!$.player.isInZone('TOWERS')) {
                 await asyncWait(0);
@@ -663,13 +653,13 @@ async function body() {
             $.driveby_total_2 = Player.GetNumOfModelsKilled(15 /* PED_GANG_DIABLO_B */);
             body_count_yd2.value = $.driveby_total_1 + $.driveby_total_2;
             /*
-        IF body_count_yd2 > 1
-        SET_GANG_PLAYER_ATTITUDE GANG_DIABLO HATES player
-        SET_GANG_WEAPONS GANG_DIABLO WEAPONTYPE_BASEBALLBAT WEAPONTYPE_UZI
-        ELSE
-        SET_GANG_PLAYER_ATTITUDE GANG_DIABLO NEUTRAL player
-        ENDIF
-        */
+            IF body_count_yd2 > 1
+            SET_GANG_PLAYER_ATTITUDE GANG_DIABLO HATES player
+            SET_GANG_WEAPONS GANG_DIABLO WEAPONTYPE_BASEBALLBAT WEAPONTYPE_UZI
+            ELSE
+            SET_GANG_PLAYER_ATTITUDE GANG_DIABLO NEUTRAL player
+            ENDIF
+            */
         }
 
         //------------------------------------BACK TO YARDIE TURF-------------------------------------------------------
@@ -685,11 +675,9 @@ async function body() {
         }
 
         body_count_yd2.clear(); // xxx: Hud.ClearCounter($.body_count_yd2);
-        break getting_there;
     }
 
-    back_to_yardie_turf: while (true) {
-        // SCM label back_to_yardie_turf
+    back_to_yardie_turf: {
         $.blip_driveby_yd2 = Blip.AddForCoord($.yd2turf_x, $.yd2turf_y, 26.0);
 
         if (!Car.IsDead($.gang_car_yd2)) {
@@ -733,48 +721,48 @@ async function body() {
             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
         }
         /*
-      PRINT_NOW (YD2_I) 4000 1//"OK, stop and drop us off."
+        PRINT_NOW (YD2_I) 4000 1//"OK, stop and drop us off."
 
-      //REMOVE_BLIP blip_driveby_yd2
+        //REMOVE_BLIP blip_driveby_yd2
 
-      IF NOT IS_CAR_DEAD gang_car_yd2
-      WHILE NOT IS_CAR_STOPPED_IN_AREA_2D gang_car_yd2 yd2turf_x yd2turf_y 5.0 5.0 true
+        IF NOT IS_CAR_DEAD gang_car_yd2
+        WHILE NOT IS_CAR_STOPPED_IN_AREA_2D gang_car_yd2 yd2turf_x yd2turf_y 5.0 5.0 true
 
-      WAIT 0
-      IF NOT IS_CAR_DEAD gang_car_yd2
-      IF NOT LOCATE_CAR_2D gang_car_yd2 yd2turf_x yd2turf_y 30.0 30.0 false
-      PRINT_SOON (YD2_J) 4000 1//HEY! Where you going? Get us back to our turf!
-      GOTO back_to_yardie_turf
-      ENDIF
-      IF IS_CAR_UPSIDEDOWN gang_car_yd2
-      AND IS_CAR_STOPPED gang_car_yd2
-      flag_upsidedown = 1
-      GOTO mission_yd2_failed
-      ENDIF
-      IF NOT IS_CAR_HEALTH_GREATER gang_car_yd2 50
-      flag_upsidedown = 1
-      GOTO mission_yd2_failed
-      ENDIF
-      IF NOT IS_PLAYER_IN_CAR player gang_car_yd2
-      GOSUB player_out_of_car
-      IF NOT IS_CAR_DEAD gang_car_yd2
-      IF NOT IS_PLAYER_IN_CAR player gang_car_yd2
-      flag_upsidedown = 2
-      GOTO mission_yd2_failed
-      ENDIF
-      ELSE
-      GOTO mission_yd2_failed_assert
-      ENDIF
-      ENDIF
-      ELSE
-      GOTO mission_yd2_failed_assert
-      ENDIF
+        WAIT 0
+        IF NOT IS_CAR_DEAD gang_car_yd2
+        IF NOT LOCATE_CAR_2D gang_car_yd2 yd2turf_x yd2turf_y 30.0 30.0 false
+        PRINT_SOON (YD2_J) 4000 1//HEY! Where you going? Get us back to our turf!
+        GOTO back_to_yardie_turf
+        ENDIF
+        IF IS_CAR_UPSIDEDOWN gang_car_yd2
+        AND IS_CAR_STOPPED gang_car_yd2
+        flag_upsidedown = 1
+        GOTO mission_yd2_failed
+        ENDIF
+        IF NOT IS_CAR_HEALTH_GREATER gang_car_yd2 50
+        flag_upsidedown = 1
+        GOTO mission_yd2_failed
+        ENDIF
+        IF NOT IS_PLAYER_IN_CAR player gang_car_yd2
+        GOSUB player_out_of_car
+        IF NOT IS_CAR_DEAD gang_car_yd2
+        IF NOT IS_PLAYER_IN_CAR player gang_car_yd2
+        flag_upsidedown = 2
+        GOTO mission_yd2_failed
+        ENDIF
+        ELSE
+        GOTO mission_yd2_failed_assert
+        ENDIF
+        ENDIF
+        ELSE
+        GOTO mission_yd2_failed_assert
+        ENDIF
 
-      ENDWHILE
-      ELSE
-      GOTO mission_yd2_failed_assert
-      ENDIF
-      */
+        ENDWHILE
+        ELSE
+        GOTO mission_yd2_failed_assert
+        ENDIF
+        */
 
         $.player.setControl(false /* off */);
 
@@ -797,12 +785,9 @@ async function body() {
         }
 
         $.player.setControl(true /* on */);
-
-        break back_to_yardie_turf;
     }
 
-    // SCM GOTO → mission_yd2_passed
-    return;
+    return; // SCM GOTO → mission_yd2_passed
 }
 
 // Mission Yardie2 failed
@@ -840,24 +825,20 @@ async function onFailed(error?: unknown) {
                 while ($.chaperone_1.isInCar($.gang_car_yd2)) {
                     await asyncWait(0);
                     if (Char.IsDead($.chaperone_1)) {
-                        // SCM GOTO → boddle
-                        break;
+                        break; // SCM GOTO → boddle
                     }
                     if (Car.IsDead($.gang_car_yd2)) {
-                        // SCM GOTO → boddle
-                        break;
+                        break; // SCM GOTO → boddle
                     }
                 }
             }
 
-            boddle: while (true) {
-                // SCM label boddle
+            boddle: {
                 if (!Char.IsDead($.chaperone_2) && !Car.IsDead($.gang_car_yd2)) {
                     while ($.chaperone_2.isInCar($.gang_car_yd2)) {
                         await asyncWait(0);
                         if (Char.IsDead($.chaperone_2) || Car.IsDead($.gang_car_yd2)) {
-                            // SCM GOTO → mission_yd2_failed_assert
-                            break validate_chaps;
+                            break validate_chaps; // SCM GOTO → mission_yd2_failed_assert
                         }
                     }
                 }
@@ -867,8 +848,7 @@ async function onFailed(error?: unknown) {
                     while (!$.chaperone_1.isCurrentWeapon(4 /* WEAPONTYPE_SHOTGUN */)) {
                         await asyncWait(0);
                         if (Char.IsDead($.chaperone_1)) {
-                            // SCM GOTO → oink
-                            break boddle;
+                            break boddle; // SCM GOTO → oink
                         }
                     }
                     if (!Char.IsDead($.chaperone_1)) {
@@ -879,18 +859,15 @@ async function onFailed(error?: unknown) {
                         $.chaperone_1.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     }
                 }
-                break boddle;
             }
 
-            oink: while (true) {
-                // SCM label oink
+            oink: {
                 if (!Char.IsDead($.chaperone_2)) {
                     $.chaperone_2.giveWeapon(3 /* WEAPONTYPE_UZI */, 30);
                     while (!$.chaperone_2.isCurrentWeapon(3 /* WEAPONTYPE_UZI */)) {
                         await asyncWait(0);
                         if (Char.IsDead($.chaperone_2)) {
-                            // SCM GOTO → poink
-                            break oink;
+                            break oink; // SCM GOTO → poink
                         }
                     }
                     if (!Char.IsDead($.chaperone_2)) {
@@ -901,42 +878,40 @@ async function onFailed(error?: unknown) {
                         $.chaperone_2.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     }
                 }
-                break oink;
             }
 
-            poink: while (true) {
+            poink: {
                 // SCM label poink
                 /*
-      //Yardies chase player off!!
+                //Yardies chase player off!!
 
-      WHILE NOT IS_PLAYER_DEAD player
-      WAIT 0
-      IF NOT IS_CHAR_DEAD	chaperone_1
-      GET_CHAR_COORDINATES chaperone_1 chap_1_x chap_1_y chap_1_z
-      IF NOT LOCATE_PLAYER_ANY_MEANS_2D player chap_1_x chap_1_y 30.0 30.0 false
-      MARK_CHAR_AS_NO_LONGER_NEEDED chaperone_1
-      flag_chap_1_n&v = 1
-      ENDIF
-      ELSE
-      flag_chap_1_n&v = 1
-      ENDIF
-      IF NOT IS_CHAR_DEAD	chaperone_2
-      GET_CHAR_COORDINATES chaperone_2 chap_2_x chap_2_y chap_2_z
-      IF NOT LOCATE_PLAYER_ANY_MEANS_2D player chap_2_x chap_2_y 30.0 30.0 false
-      MARK_CHAR_AS_NO_LONGER_NEEDED chaperone_2
-      flag_chap_2_n&v = 1
-      ENDIF
-      ELSE
-      flag_chap_2_n&v = 1
-      ENDIF
-      IF flag_chap_1_n&v = 1
-      AND flag_chap_2_n&v = 1
-      GOTO mission_yd2_failed_assert
-      ENDIF
+                WHILE NOT IS_PLAYER_DEAD player
+                WAIT 0
+                IF NOT IS_CHAR_DEAD	chaperone_1
+                GET_CHAR_COORDINATES chaperone_1 chap_1_x chap_1_y chap_1_z
+                IF NOT LOCATE_PLAYER_ANY_MEANS_2D player chap_1_x chap_1_y 30.0 30.0 false
+                MARK_CHAR_AS_NO_LONGER_NEEDED chaperone_1
+                flag_chap_1_n&v = 1
+                ENDIF
+                ELSE
+                flag_chap_1_n&v = 1
+                ENDIF
+                IF NOT IS_CHAR_DEAD	chaperone_2
+                GET_CHAR_COORDINATES chaperone_2 chap_2_x chap_2_y chap_2_z
+                IF NOT LOCATE_PLAYER_ANY_MEANS_2D player chap_2_x chap_2_y 30.0 30.0 false
+                MARK_CHAR_AS_NO_LONGER_NEEDED chaperone_2
+                flag_chap_2_n&v = 1
+                ENDIF
+                ELSE
+                flag_chap_2_n&v = 1
+                ENDIF
+                IF flag_chap_1_n&v = 1
+                AND flag_chap_2_n&v = 1
+                GOTO mission_yd2_failed_assert
+                ENDIF
 
-      ENDWHILE
-      */
-                break poink;
+                ENDWHILE
+                */
             }
         }
     }
@@ -957,11 +932,13 @@ async function onPassed() {
         }
     }
 
-    if (!Char.IsDead($.chaperone_1)) {
-        $.chaperone_1.setObjFleeOnFootTillSafe();
-    }
-    if (!Char.IsDead($.chaperone_2)) {
-        $.chaperone_2.setObjFleeOnFootTillSafe();
+    filby: {
+        if (!Char.IsDead($.chaperone_1)) {
+            $.chaperone_1.setObjFleeOnFootTillSafe();
+        }
+        if (!Char.IsDead($.chaperone_2)) {
+            $.chaperone_2.setObjFleeOnFootTillSafe();
+        }
     }
 
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1); //"Mission Passed!"
@@ -1000,10 +977,10 @@ async function cleanup() {
     Zone.SetPedInfo('TOWERS', 0 /* NIGHT */, 10, 0, 0, 500, 0, 0, 0, 0, 10);
 
     Mission.Finish();
-    return;
 }
 
 //-----------------------------GOSUBS----------------------------------------------
+
 async function player_out_of_car() {
     if (!Car.IsDead($.gang_car_yd2)) {
         $.gang_car_yd2.lockDoors(1 /* CARLOCK_UNLOCKED */);
@@ -1043,10 +1020,6 @@ async function player_out_of_car() {
     }
 
     $.gang_car_yd2.lockDoors(2 /* CARLOCK_LOCKED */);
-
-    return;
 }
-
-
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

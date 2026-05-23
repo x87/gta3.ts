@@ -375,12 +375,10 @@ async function body() {
                     $.bomb_z = _res147.z;
                 }
                 if (Char.IsDead($.human_bomb_demo)) {
-                    // SCM GOTO → selkirk
-                    return selkirk();
+                    return selkirk(); // SCM GOTO → selkirk
                 }
                 if (Car.IsDead($.gen1_van)) {
-                    // SCM GOTO → selkirk
-                    return selkirk();
+                    return selkirk(); // SCM GOTO → selkirk
                 }
             }
         }
@@ -403,8 +401,8 @@ async function body() {
                     $.bomb_y = _res148.y;
                     $.bomb_z = _res148.z;
                 } else {
-                    // SCM GOTO → selkirk
-                    return selkirk();
+                    
+                    return selkirk(); // SCM GOTO → selkirk
                 }
             }
         }
@@ -427,8 +425,8 @@ async function body() {
                     $.bomb_z = _res150.z;
                 }
                 if (Char.IsDead($.human_bomb_demo)) {
-                    // SCM GOTO → selkirk
-                    return selkirk();
+                    
+                    return selkirk(); // SCM GOTO → selkirk
                 }
             }
         }
@@ -456,12 +454,10 @@ async function selkirk() {
     //111111111111111111111111111111111111111111111111111111111111111111111
 
     le_loop_de_mort: while (true) {
-        // SCM label le_loop_de_mort
         await asyncWait(0);
 
         if ($.flag_bomb1_active == 0) {
-            // SCM GOSUB generator_1_easy
-            await generator_1_easy();
+            await generator_1_easy(); // SCM GOSUB generator_1_easy
         } else {
             if (!Char.IsDead($.human_bomb_1)) {
                 const _res155 = $.player.getCoordinates();
@@ -475,28 +471,21 @@ async function selkirk() {
                 $.bomb_z = _res156.z;
                 $.human_bomb_1.clearThreatSearch();
                 if ($.human_bomb_1.locateAnyMeans3D($.y4_x, $.y4_y, $.y4_z, 3.0, 3.0, 4.0, false) || !$.human_bomb_1.isHealthGreater(95)) {
-                    // SCM GOSUB detonate_1
-                    await detonate_1();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await detonate_1(); // SCM GOSUB detonate_1
                     $.human_bomb_1.markAsNoLongerNeeded();
                     $.flag_bomb1_active = 0;
-                    // SCM GOSUB generator_1_easy
-                    await generator_1_easy();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await generator_1_easy(); // SCM GOSUB generator_1_easy
                 }
             } else {
-                // SCM GOSUB detonate_1
-                await detonate_1();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await detonate_1(); // SCM GOSUB detonate_1
                 $.human_bomb_1.markAsNoLongerNeeded();
                 $.flag_bomb1_active = 0;
             }
         }
 
         if ($.flag_bomb4_active == 0) {
-            // SCM GOSUB generator_2_easy
-            await generator_2_easy();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            
+            await generator_2_easy(); // SCM GOSUB generator_2_easy
         } else {
             if (!Char.IsDead($.human_bomb_4)) {
                 const _res157 = $.player.getCoordinates();
@@ -510,25 +499,19 @@ async function selkirk() {
                 $.bomb4_z = _res158.z;
                 $.human_bomb_4.clearThreatSearch();
                 if ($.human_bomb_4.locateAnyMeans3D($.y4_x, $.y4_y, $.y4_z, 3.0, 3.0, 4.0, false) || !$.human_bomb_4.isHealthGreater(95)) {
-                    // SCM GOSUB detonate_4
-                    await detonate_4();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await detonate_4(); // SCM GOSUB detonate_4
                     $.human_bomb_4.markAsNoLongerNeeded();
                     $.flag_bomb4_active = 0;
                 }
             } else {
-                // SCM GOSUB detonate_4
-                await detonate_4();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await detonate_4(); // SCM GOSUB detonate_4
                 $.human_bomb_4.markAsNoLongerNeeded();
                 $.flag_bomb4_active = 0;
             }
         }
 
         if ($.flag_bomb7_active == 0) {
-            // SCM GOSUB generator_3_easy
-            await generator_3_easy();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await generator_3_easy(); // SCM GOSUB generator_3_easy
         } else {
             if (!Char.IsDead($.human_bomb_7)) {
                 const _res159 = $.player.getCoordinates();
@@ -542,25 +525,19 @@ async function selkirk() {
                 $.bomb7_z = _res160.z;
                 $.human_bomb_7.clearThreatSearch();
                 if ($.human_bomb_7.locateAnyMeans3D($.y4_x, $.y4_y, $.y4_z, 3.0, 3.0, 4.0, false) || !$.human_bomb_7.isHealthGreater(95)) {
-                    // SCM GOSUB detonate_7
-                    await detonate_7();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await detonate_7(); // SCM GOSUB detonate_7
                     $.human_bomb_7.markAsNoLongerNeeded();
                     $.flag_bomb7_active = 0;
                 }
             } else {
-                // SCM GOSUB detonate_7
-                await detonate_7();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await detonate_7(); // SCM GOSUB detonate_7
                 $.human_bomb_7.markAsNoLongerNeeded();
                 $.flag_bomb7_active = 0;
             }
         }
 
         if ($.flag_bomb9_active == 0) {
-            // SCM GOSUB generator_4_easy
-            await generator_4_easy();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await generator_4_easy(); // SCM GOSUB generator_4_easy
         } else {
             if (!Char.IsDead($.human_bomb_9)) {
                 const _res161 = $.player.getCoordinates();
@@ -574,16 +551,14 @@ async function selkirk() {
                 $.human_bomb_9.clearThreatSearch();
                 $.human_bomb_9.setObjRunToCoord($.y4_x, $.y4_y);
                 if ($.human_bomb_9.locateAnyMeans3D($.y4_x, $.y4_y, $.y4_z, 3.0, 3.0, 4.0, false) || !$.human_bomb_9.isHealthGreater(95)) {
-                    // SCM GOSUB detonate_9
-                    await detonate_9();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    
+                    await detonate_9(); // SCM GOSUB detonate_9
                     $.human_bomb_9.markAsNoLongerNeeded();
                     $.flag_bomb9_active = 0;
                 }
             } else {
-                // SCM GOSUB detonate_9
-                await detonate_9();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                
+                await detonate_9(); // SCM GOSUB detonate_9
                 $.human_bomb_9.markAsNoLongerNeeded();
                 $.flag_bomb9_active = 0;
             }
@@ -591,15 +566,14 @@ async function selkirk() {
 
         if (Car.IsDead($.gen1_van) && Car.IsDead($.gen2_van) && Car.IsDead($.gen3_van) && Car.IsDead($.gen4_van)) {
             if (Char.IsDead($.human_bomb_1) && Char.IsDead($.human_bomb_4) && Char.IsDead($.human_bomb_7) && Char.IsDead($.human_bomb_9)) {
-                // SCM GOTO → mission_yardie4_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_yardie4_passed
             }
         }
 
-        // DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****
     }
 }
 
+// DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****
 async function generator_1_easy() {
     if (!Car.IsDead($.gen1_van)) {
         $.human_bomb_1 = Char.CreateAsPassenger($.gen1_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
@@ -617,12 +591,9 @@ async function generator_1_easy() {
             }
         }
     }
-
-    return;
-
-    //222222222222222222222222222222222222222222222222222222222222222222222222
 }
 
+//222222222222222222222222222222222222222222222222222222222222222222222222
 async function generator_2_easy() {
     if (!Car.IsDead($.gen2_van)) {
         $.human_bomb_4 = Char.CreateAsPassenger($.gen2_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
@@ -641,12 +612,9 @@ async function generator_2_easy() {
             }
         }
     }
-
-    return;
-
-    //333333333333333333333333333333333333333333333333333333333333333333333333
 }
 
+//333333333333333333333333333333333333333333333333333333333333333333333333
 async function generator_3_easy() {
     if (!Car.IsDead($.gen3_van)) {
         $.human_bomb_7 = Char.CreateAsPassenger($.gen3_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
@@ -664,12 +632,9 @@ async function generator_3_easy() {
             }
         }
     }
-
-    return;
-
-    //444444444444444444444444444444444444444444444444444444444444444444444444
 }
 
+//444444444444444444444444444444444444444444444444444444444444444444444444
 async function generator_4_easy() {
     if (!Car.IsDead($.gen4_van)) {
         $.human_bomb_9 = Char.CreateAsPassenger($.gen4_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
@@ -687,12 +652,9 @@ async function generator_4_easy() {
             }
         }
     }
-
-    return;
-
-    // MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****
 }
 
+// MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****
 async function detonate_1() {
     if ($.flag_bomb1_active == 1) {
         Fx.AddExplosion($.bomb_x, $.bomb_y, $.bomb_z, 0 /* EXPLOSION_GRENADE */);
@@ -701,7 +663,6 @@ async function detonate_1() {
         $.flag_bomb1_active = 0;
         $.blip_bomber_1.remove();
     }
-    return;
 }
 
 async function detonate_4() {
@@ -711,7 +672,6 @@ async function detonate_4() {
         Camera.Shake(500);
         $.blip_bomber_4.remove();
     }
-    return;
 }
 
 async function detonate_7() {
@@ -722,7 +682,6 @@ async function detonate_7() {
         $.flag_bomb7_active = 0;
         $.blip_bomber_7.remove();
     }
-    return;
 }
 
 async function detonate_9() {
@@ -733,7 +692,6 @@ async function detonate_9() {
         $.flag_bomb9_active = 0;
         $.blip_bomber_9.remove();
     }
-    return;
 }
 
 // Mission yardie4 failed
