@@ -1,8 +1,73 @@
 // Generated from Main/Commercial/yard1.sc
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************YARDIE MISSION ONE DRUG RUSH********************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_yd1
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_yd1_failed
+    // ENDIF
+    // GOSUB mission_cleanup_yd1
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT hot_rod_1 hot_rod_2 hot_rod_3
+    // VAR_INT player_car wanted_yd1
+
+    // VAR_INT street_racer_1 street_racer_2 street_racer_3
+
+    // VAR_INT blip_hot_rod_3 blip_hot_rod_2 blip_hot_rod_1
+
+    // VAR_INT blip_rush_destination flag_random_yd1 random_yd1
+
+    // VAR_INT blip_start_yd1
+
+    // VAR_FLOAT start_x start_y
+
+    // VAR_FLOAT finish_x finish_y
+
+    // VAR_FLOAT x_sum y_sum x_sum_player y_sum_player
+
+    // VAR_FLOAT hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_dist
+    // VAR_FLOAT hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_dist
+    // VAR_FLOAT hot_rod_3_x hot_rod_3_y hot_rod_3_z
+    // VAR_FLOAT hot_rod_heading
+
+    // VAR_FLOAT player_car_x player_car_y player_car_z player_dist
+
+    // VAR_INT counter_rush_start counter_hotrods
+    // VAR_INT flag_hotrod1_start flag_hotrod2_start flag_hotrod3_start
+
+    // VAR_INT flag_drive_mode_1 flag_drive_mode_2 flag_drive_mode_3
+
+    // VAR_INT flag_leader
+
+    // VAR_INT counter_player_points reward_yd1
+
+    // VAR_INT counter_nonplayer1_points counter_nonplayer2_points counter_nonplayer3_points
+
+    // VAR_INT counter_finish
+    // VAR_INT flag_corona_yd1
+
+    // VAR_INT counter_placing counter_joint_placing
+
+    // VAR_INT timer_reset_hr1 timer_reset_hr2 timer_reset_hr3
+    // VAR_INT timer_start_hr1 timer_start_hr2 timer_start_hr3
+    // VAR_INT timer_current_hr1 timer_current_hr2 timer_current_hr3
+    // VAR_INT hr1_time_dif hr2_time_dif hr3_time_dif
+
+    // ****************************************Mission Start************************************
+
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME yard1
     ONMISSION = true;
@@ -11,147 +76,145 @@ async function body() {
     await asyncWait(0);
 
     /*
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_yd1_failed
-  ENDIF
+    IF CAN_PLAYER_START_MISSION Player
+    MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
+    ELSE
+    GOTO mission_yd1_failed
+    ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+    SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 1500 FADE_OUT
+    DO_FADE 1500 FADE_OUT
 
-  //SWITCH_STREAMING OFF
+    //SWITCH_STREAMING OFF
 
-  PRINT_BIG ( YD1 ) 15000 2 //"Yardie Mission 1"
+    PRINT_BIG ( YD1 ) 15000 2 //"Yardie Mission 1"
 
-  TIMERA = 0
+    TIMERA = 0
 
-  WHILE TIMERA < 1500
-  WAIT 0
+    WHILE TIMERA < 1500
+    WAIT 0
 
-  ENDWHILE
-  */
+    ENDWHILE
+    */
 
     // ******************************************CUTSCENE***************************************
 
-    {
-        World.SetPedDensityMultiplier(0.0);
-        Game.SetPoliceIgnorePlayer($.player, true /* on */);
+    World.SetPedDensityMultiplier(0.0);
+    Game.SetPoliceIgnorePlayer($.player, true /* on */);
 
-        //WHILE NOT HAS_MODEL_LOADED cut_obj1
-        //	WAIT 0
+    //WHILE NOT HAS_MODEL_LOADED cut_obj1
+    //	WAIT 0
 
-        //ENDWHILE
+    //ENDWHILE
 
-        Cutscene.Load('YD_PH1');
-        Cutscene.SetOffset(121.0, -272.3, 15.25);
-        World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
+    Cutscene.Load('YD_PH1');
+    Cutscene.SetOffset(121.0, -272.3, 15.25);
+    World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-        $.cs_player.setAnim('player');
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player.setAnim('player');
 
-        //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
-        //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
+    //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
+    //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-        //CLEAR_AREA 1219.5 -321.1 27.5 1.0 TRUE
-        //SET_PLAYER_COORDINATES player 1219.5 -321.1 26.4
+    //CLEAR_AREA 1219.5 -321.1 27.5 1.0 TRUE
+    //SET_PLAYER_COORDINATES player 1219.5 -321.1 26.4
 
-        //SET_PLAYER_HEADING player 180.0
+    //SET_PLAYER_HEADING player 180.0
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        //SWITCH_STREAMING OFF
+    //SWITCH_STREAMING OFF
 
-        Cutscene.Start();
+    Cutscene.Start();
 
-        // Displays cutscene text
+    // Displays cutscene text
 
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 2237) {
+        await asyncWait(0);
         $.cs_time = Cutscene.GetTime();
-
-        while ($.cs_time < 2237) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-        Text.PrintNow('YD1_A', 10000, 1);
-
-        while ($.cs_time < 3791) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('YD1_A1', 10000, 1);
-
-        while ($.cs_time < 8312) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('YD1_B', 10000, 1);
-
-        while ($.cs_time < 12880) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('YD1_C', 10000, 1);
-
-        while ($.cs_time < 15965) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('YD1_D', 10000, 1);
-
-        while ($.cs_time < 20462) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('YD1_D1', 10000, 1);
-        /*
-
-  WHILE cs_time < 24139
-  WAIT 0
-  GET_CUTSCENE_TIME cs_time
-  ENDWHILE
-
-  PRINT_NOW ( DIAB2_G ) 10000 1
-
-  WHILE cs_time < 28919
-  WAIT 0
-  GET_CUTSCENE_TIME cs_time
-  ENDWHILE
-
-  PRINT_NOW ( DIAB2_H ) 10000 1
-  */
-
-        while ($.cs_time < 25166) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
-
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
-
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
-
-        Streaming.Switch(true /* ON */);
-        Text.ClearPrints();
-        Cutscene.Clear();
-        //SET_CAMERA_IN_FRONT_OF_PLAYER
-
-        World.SetPedDensityMultiplier(1.0);
-        Game.SetPoliceIgnorePlayer($.player, false /* off */);
-        await asyncWait(500);
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
     }
+    Text.PrintNow('YD1_A', 10000, 1);
+
+    while ($.cs_time < 3791) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('YD1_A1', 10000, 1);
+
+    while ($.cs_time < 8312) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('YD1_B', 10000, 1);
+
+    while ($.cs_time < 12880) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('YD1_C', 10000, 1);
+
+    while ($.cs_time < 15965) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('YD1_D', 10000, 1);
+
+    while ($.cs_time < 20462) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('YD1_D1', 10000, 1);
+    /*
+
+    WHILE cs_time < 24139
+    WAIT 0
+    GET_CUTSCENE_TIME cs_time
+    ENDWHILE
+
+    PRINT_NOW ( DIAB2_G ) 10000 1
+
+    WHILE cs_time < 28919
+    WAIT 0
+    GET_CUTSCENE_TIME cs_time
+    ENDWHILE
+
+    PRINT_NOW ( DIAB2_H ) 10000 1
+    */
+
+    while ($.cs_time < 25166) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
+
+    Streaming.Switch(true /* ON */);
+    Text.ClearPrints();
+    Cutscene.Clear();
+    //SET_CAMERA_IN_FRONT_OF_PLAYER
+
+    World.SetPedDensityMultiplier(1.0);
+    Game.SetPoliceIgnorePlayer($.player, false /* off */);
+    await asyncWait(500);
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
 
     //------------LOCATION VARIABLES---(NB: ALL LOCATIONS SHOULD HAVE X Y & Z IN FINISHED SCRIPT!!)-----------------------------------------------------
 
@@ -198,15 +261,11 @@ async function body() {
     }
 
     // --------Mission stuff goes here-----------------------------------------------------
-}
 
-async function is_player_there() {
-    // SCM GOTO → is_player_there lowered to endless loop
-    while (true) {
+    is_player_there: while (true) {
         if ($.player.isStoppedInAreaInCar2D(45.0, 65.0, 55.0, 75.0, true /* true */)) {
             $.player_car = $.player.storeCarIsIn();
-            // SCM GOTO → player_is_there (not lowered; manual jump required)
-            throw new Error('unresolved GOTO player_is_there'); // fallback: would break linear control flow
+            break; // SCM GOTO → player_is_there
         }
 
         if ($.player.locateOnFoot2D($.start_x, $.start_y, 5.0, 5.0, false /* false */)) {
@@ -214,206 +273,198 @@ async function is_player_there() {
         }
         await asyncWait(0);
     }
-}
 
-async function player_is_there() {
-    $.wanted_yd1 = $.player.storeWantedLevel();
-    $.player.clearWantedLevel();
+    player_is_there: while (true) {
+        $.wanted_yd1 = $.player.storeWantedLevel();
+        $.player.clearWantedLevel();
 
-    $.blip_start_yd1.remove();
+        $.blip_start_yd1.remove();
 
-    $.player.setControl(false /* off */);
-    $.player_car.lockDoors(2 /* CARLOCK_LOCKED */);
-    Camera.SetFixedPosition(66.7, 51.0, 18.0, 0.0, 0.0, 0.0);
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
-    await asyncWait(1500);
-    Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
-    Hud.SwitchWidescreen(true /* on */);
+        $.player.setControl(false /* off */);
+        $.player_car.lockDoors(2 /* CARLOCK_LOCKED */);
+        Camera.SetFixedPosition(66.7, 51.0, 18.0, 0.0, 0.0, 0.0);
+        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        await asyncWait(1500);
+        Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
+        Hud.SwitchWidescreen(true /* on */);
 
-    Camera.SetFadingColor(0, 0, 0);
-    Camera.DoFade(1500, 1 /* FADE_IN */);
-    await asyncWait(1500);
+        Camera.SetFadingColor(0, 0, 0);
+        Camera.DoFade(1500, 1 /* FADE_IN */);
+        await asyncWait(1500);
 
-    World.ClearArea(90.0, 50.0, 16.0, 20.0, true /* true */);
-    World.ClearArea(93.0, 57.0, 16.0, 20.0, true /* true */);
-    World.ClearArea(78.0, 50.0, 16.0, 20.0, true /* true */);
-    World.ClearArea(93.0, 43.0, 16.0, 20.0, true /* true */);
+        World.ClearArea(90.0, 50.0, 16.0, 20.0, true /* true */);
+        World.ClearArea(93.0, 57.0, 16.0, 20.0, true /* true */);
+        World.ClearArea(78.0, 50.0, 16.0, 20.0, true /* true */);
+        World.ClearArea(93.0, 43.0, 16.0, 20.0, true /* true */);
 
-    World.SetCarDensityMultiplier(0.0);
-    World.SetPedDensityMultiplier(0.0);
+        World.SetCarDensityMultiplier(0.0);
+        World.SetPedDensityMultiplier(0.0);
 
-    await asyncWait(2000);
+        await asyncWait(2000);
 
-    Camera.PointAtPoint(90.0, 50.0, 16.0, 1 /* INTERPOLATION */);
+        Camera.PointAtPoint(90.0, 50.0, 16.0, 1 /* INTERPOLATION */);
 
-    World.ClearArea(102.0, 90.0, 16.0, 20.0, true /* true */);
-    $.hot_rod_1 = Car.Create(96 /* CAR_PATRIOT */, 102.0, 90.0, 16.0);
-    $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
-    $.hot_rod_1.setWatertight(true /* true */);
-    $.hot_rod_1.setUpsidedownNotDamaged(true /* true */);
-    $.hot_rod_1.lockDoors(2 /* CARLOCK_LOCKED */);
-    $.hot_rod_1.setHeading(190.0);
-    $.hot_rod_1.setCruiseSpeed(20.0);
-    $.hot_rod_1.setDrivingStyle(0);
-    $.hot_rod_1.gotoCoordinatesAccurate(93.0, 57.0, 16.0);
+        World.ClearArea(102.0, 90.0, 16.0, 20.0, true /* true */);
+        $.hot_rod_1 = Car.Create(96 /* CAR_PATRIOT */, 102.0, 90.0, 16.0);
+        $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+        $.hot_rod_1.setWatertight(true /* true */);
+        $.hot_rod_1.setUpsidedownNotDamaged(true /* true */);
+        $.hot_rod_1.lockDoors(2 /* CARLOCK_LOCKED */);
+        $.hot_rod_1.setHeading(190.0);
+        $.hot_rod_1.setCruiseSpeed(20.0);
+        $.hot_rod_1.setDrivingStyle(0);
+        $.hot_rod_1.gotoCoordinatesAccurate(93.0, 57.0, 16.0);
 
-    World.ClearArea(75.0, 76.0, 16.0, 20.0, true /* true */);
-    $.hot_rod_2 = Car.Create(105 /* CAR_CHEETAH */, 75.0, 76.0, 16.0);
-    $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
-    $.hot_rod_2.setWatertight(true /* true */);
-    $.hot_rod_2.setUpsidedownNotDamaged(true /* true */);
-    $.hot_rod_2.lockDoors(2 /* CARLOCK_LOCKED */);
-    $.hot_rod_2.setHeading(220.0);
-    $.hot_rod_2.setCruiseSpeed(20.0);
-    $.hot_rod_2.setDrivingStyle(0);
-    $.hot_rod_2.gotoCoordinatesAccurate(78.0, 50.0, 16.0);
+        World.ClearArea(75.0, 76.0, 16.0, 20.0, true /* true */);
+        $.hot_rod_2 = Car.Create(105 /* CAR_CHEETAH */, 75.0, 76.0, 16.0);
+        $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+        $.hot_rod_2.setWatertight(true /* true */);
+        $.hot_rod_2.setUpsidedownNotDamaged(true /* true */);
+        $.hot_rod_2.lockDoors(2 /* CARLOCK_LOCKED */);
+        $.hot_rod_2.setHeading(220.0);
+        $.hot_rod_2.setCruiseSpeed(20.0);
+        $.hot_rod_2.setDrivingStyle(0);
+        $.hot_rod_2.gotoCoordinatesAccurate(78.0, 50.0, 16.0);
 
-    World.ClearArea(108.0, 3.0, 16.0, 20.0, true /* true */);
-    $.hot_rod_3 = Car.Create(112 /* CAR_BOBCAT */, 108.0, 3.0, 16.0);
-    $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
-    $.hot_rod_3.setWatertight(true /* true */);
-    $.hot_rod_3.setUpsidedownNotDamaged(true /* true */);
-    $.hot_rod_3.lockDoors(2 /* CARLOCK_LOCKED */);
-    //SET_CAR_HEADING hot_rod_3 360.0
+        World.ClearArea(108.0, 3.0, 16.0, 20.0, true /* true */);
+        $.hot_rod_3 = Car.Create(112 /* CAR_BOBCAT */, 108.0, 3.0, 16.0);
+        $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+        $.hot_rod_3.setWatertight(true /* true */);
+        $.hot_rod_3.setUpsidedownNotDamaged(true /* true */);
+        $.hot_rod_3.lockDoors(2 /* CARLOCK_LOCKED */);
+        //SET_CAR_HEADING hot_rod_3 360.0
 
-    $.hot_rod_3.setCruiseSpeed(10.0);
-    $.hot_rod_3.setDrivingStyle(0);
-    $.hot_rod_3.gotoCoordinatesAccurate(93.0, 43.0, 16.0);
+        $.hot_rod_3.setCruiseSpeed(10.0);
+        $.hot_rod_3.setDrivingStyle(0);
+        $.hot_rod_3.gotoCoordinatesAccurate(93.0, 43.0, 16.0);
 
-    $.blip_hot_rod_3 = Blip.AddForCar($.hot_rod_3);
-    $.blip_hot_rod_2 = Blip.AddForCar($.hot_rod_2);
-    $.blip_hot_rod_1 = Blip.AddForCar($.hot_rod_1);
+        $.blip_hot_rod_3 = Blip.AddForCar($.hot_rod_3);
+        $.blip_hot_rod_2 = Blip.AddForCar($.hot_rod_2);
+        $.blip_hot_rod_1 = Blip.AddForCar($.hot_rod_1);
 
-    Text.PrintNow('YD1_E', 3000, 2);
+        Text.PrintNow('YD1_E', 3000, 2);
 
-    $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
+        $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
 
-    while ($.counter_hotrods < 3) {
-        await asyncWait(0);
-        if (!Car.IsDead($.hot_rod_1)) {
-            if ($.hot_rod_1.locate2D(93.0, 57.0, 3.0, 3.0, false /* false */) && $.flag_hotrod1_start == 0) {
-                $.hot_rod_1.setIdle();
-                $.flag_hotrod1_start = 1;
-                ++$.counter_hotrods;
+        while ($.counter_hotrods < 3) {
+            await asyncWait(0);
+            if (!Car.IsDead($.hot_rod_1)) {
+                if ($.hot_rod_1.locate2D(93.0, 57.0, 3.0, 3.0, false /* false */) && $.flag_hotrod1_start == 0) {
+                    $.hot_rod_1.setIdle();
+                    $.flag_hotrod1_start = 1;
+                    ++$.counter_hotrods;
+                }
+            }
+            $.hot_rod_1.setHealth(1000);
+            if (!Car.IsDead($.hot_rod_2)) {
+                if ($.hot_rod_2.locate2D(78.0, 50.0, 3.0, 3.0, false /* false */) && $.flag_hotrod2_start == 0) {
+                    $.hot_rod_2.setIdle();
+                    $.flag_hotrod2_start = 1;
+                    ++$.counter_hotrods;
+                }
+            }
+            $.hot_rod_2.setHealth(1000);
+            if (!Car.IsDead($.hot_rod_3)) {
+                if ($.hot_rod_3.locate2D(93.0, 43.0, 3.0, 3.0, false /* false */) && $.flag_hotrod3_start == 0) {
+                    $.hot_rod_3.setIdle();
+                    $.flag_hotrod3_start = 1;
+                    ++$.counter_hotrods;
+                }
+            }
+            $.hot_rod_3.setHealth(1000);
+        }
+
+        await asyncWait(1500);
+
+        Camera.SetFadingColor(0, 0, 0);
+        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        await asyncWait(1500);
+
+        Camera.RestoreJumpcut();
+        Hud.SwitchWidescreen(false /* off */);
+        $.player.alterWantedLevel($.wanted_yd1);
+
+        Camera.DoFade(1500, 1 /* FADE_IN */);
+        await asyncWait(1500);
+
+        if (!Car.IsDead($.player_car)) {
+            $.player_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+        }
+
+        World.SetCarDensityMultiplier(1.0);
+        World.SetPedDensityMultiplier(1.0);
+
+        //----------------GENERATE ROUTE FLAG--------------------------------------------
+
+        $.random_yd1 = Math.RandomIntInRange(0, 65535);
+
+        if ($.random_yd1 > 21845 && $.random_yd1 < 43691) {
+            $.flag_random_yd1 = 1;
+        }
+
+        if ($.random_yd1 > 43690) {
+            $.flag_random_yd1 = 2;
+        }
+
+        //-----------TURN OFF TUNNEL NODES-------------------------
+
+        Path.SwitchRoadsOff(500.0, 60.0, -25.0, 600.0, 140.0, 0.0);
+        Path.SwitchRoadsOff(-400.0, 60.0, -25.0, -300.0, 140.0, 0.0);
+
+        //-----------------RACE COUNTDOWN-----------------------------------------------
+
+        if ($.player.isInAnyCar()) {
+            $.player_car = $.player.storeCarIsIn();
+        }
+
+        while (!Car.IsDead($.player_car) && $.player_car.locate2D($.start_x, $.start_y, 10.0, 10.0, false /* false */)) {
+            await asyncWait(1000);
+            if ($.counter_rush_start == 4) {
+                // SCM GOTO → and_its_go_go_go
+                break player_is_there;
+            }
+            if ($.counter_rush_start == 3) {
+                Text.PrintBig('YD1GO', 1000, 4);
+                ++$.counter_rush_start;
+                $.player.setControl(true /* on */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, 100 /* SOUND_RACE_START_GO */);
+            }
+            if ($.counter_rush_start == 2) {
+                Text.PrintBig('YD1_1', 1000, 4);
+                ++$.counter_rush_start;
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, 99 /* SOUND_RACE_START_1 */);
+            }
+            if ($.counter_rush_start == 1) {
+                Text.PrintBig('YD1_2', 1000, 4);
+                ++$.counter_rush_start;
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, 98 /* SOUND_RACE_START_2 */);
+            }
+            if ($.counter_rush_start == 0) {
+                Text.PrintBig('YD1_3', 1000, 4);
+                ++$.counter_rush_start;
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, 97 /* SOUND_RACE_START_3 */);
             }
         }
-        $.hot_rod_1.setHealth(1000);
-        if (!Car.IsDead($.hot_rod_2)) {
-            if ($.hot_rod_2.locate2D(78.0, 50.0, 3.0, 3.0, false /* false */) && $.flag_hotrod2_start == 0) {
-                $.hot_rod_2.setIdle();
-                $.flag_hotrod2_start = 1;
-                ++$.counter_hotrods;
-            }
-        }
-        $.hot_rod_2.setHealth(1000);
-        if (!Car.IsDead($.hot_rod_3)) {
-            if ($.hot_rod_3.locate2D(93.0, 43.0, 3.0, 3.0, false /* false */) && $.flag_hotrod3_start == 0) {
-                $.hot_rod_3.setIdle();
-                $.flag_hotrod3_start = 1;
-                ++$.counter_hotrods;
-            }
-        }
-        $.hot_rod_3.setHealth(1000);
+
+        Text.PrintNow('YD1_F', 4000, 2);
+
+        break player_is_there; // fallthrough
     }
-
-    await asyncWait(1500);
-
-    Camera.SetFadingColor(0, 0, 0);
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
-    await asyncWait(1500);
-
-    Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* off */);
-    $.player.alterWantedLevel($.wanted_yd1);
-
-    Camera.DoFade(1500, 1 /* FADE_IN */);
-    await asyncWait(1500);
-
-    if (!Car.IsDead($.player_car)) {
-        $.player_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
-    }
-
-    World.SetCarDensityMultiplier(1.0);
-    World.SetPedDensityMultiplier(1.0);
-
-    //----------------GENERATE ROUTE FLAG--------------------------------------------
-
-    $.random_yd1 = Math.Random();
-
-    if ($.random_yd1 > 21845 && $.random_yd1 < 43691) {
-        $.flag_random_yd1 = 1;
-    }
-
-    if ($.random_yd1 > 43690) {
-        $.flag_random_yd1 = 2;
-    }
-
-    //-----------TURN OFF TUNNEL NODES-------------------------
-
-    Path.SwitchRoadsOff(500.0, 60.0, -25.0, 600.0, 140.0, 0.0);
-    Path.SwitchRoadsOff(-400.0, 60.0, -25.0, -300.0, 140.0, 0.0);
-
-    //-----------------RACE COUNTDOWN-----------------------------------------------
-
-    if ($.player.isInAnyCar()) {
-        $.player_car = $.player.storeCarIsIn();
-    }
-
-    while (!Car.IsDead($.player_car) && $.player_car.locate2D($.start_x, $.start_y, 10.0, 10.0, false /* false */)) {
-        await asyncWait(1000);
-        if ($.counter_rush_start == 4) {
-            // SCM GOTO → and_its_go_go_go (not lowered; manual jump required)
-            throw new Error('unresolved GOTO and_its_go_go_go'); // fallback: would break linear control flow
-        }
-        if ($.counter_rush_start == 3) {
-            Text.PrintBig('YD1GO', 1000, 4);
-            ++$.counter_rush_start;
-            $.player.setControl(true /* on */);
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 100 /* SOUND_RACE_START_GO */);
-        }
-        if ($.counter_rush_start == 2) {
-            Text.PrintBig('YD1_1', 1000, 4);
-            ++$.counter_rush_start;
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 99 /* SOUND_RACE_START_1 */);
-        }
-        if ($.counter_rush_start == 1) {
-            Text.PrintBig('YD1_2', 1000, 4);
-            ++$.counter_rush_start;
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 98 /* SOUND_RACE_START_2 */);
-        }
-        if ($.counter_rush_start == 0) {
-            Text.PrintBig('YD1_3', 1000, 4);
-            ++$.counter_rush_start;
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 97 /* SOUND_RACE_START_3 */);
-        }
-    }
-
-    Text.PrintNow('YD1_F', 4000, 2);
 
     //-------------------RACE START-------------------------------------------------------------
-}
-
-async function and_its_go_go_go() {
-    // SCM GOSUB driving_style_car_1
-    await driving_style_car_1();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    // SCM GOSUB driving_style_car_2
-    await driving_style_car_2();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    // SCM GOSUB driving_style_car_3
-    await driving_style_car_3();
-    // fallback if label was not emitted as async function: no-op continues linearly
+    and_its_go_go_go: {
+        await driving_style_car_1(); // SCM GOSUB driving_style_car_1
+        await driving_style_car_2(); // SCM GOSUB driving_style_car_2
+        await driving_style_car_3(); // SCM GOSUB driving_style_car_3
+    }
 
     //------------------MAIN LOOP--------------------------------------------------------------
-}
 
-async function main_loop() {
-    // SCM GOTO → main_loop lowered to endless loop
-    while (true) {
+    main_loop: while (true) {
         if ($.flag_corona_yd1 == 0) {
             Fx.DrawCorona($.finish_x, $.finish_y, -100.0, 2.0, 6 /* CORONATYPE_CIRCLE */, 0 /* FLARETYPE_NONE */, 200, 120, 120);
             /*ELSE
-      DRAW_CORONA finish_x finish_y 16.1 2.0 CORONATYPE_HEX FLARETYPE_NONE 0 200 200*/
+          DRAW_CORONA finish_x finish_y 16.1 2.0 CORONATYPE_HEX FLARETYPE_NONE 0 200 200*/
         }
 
         if ($.player.isInAnyCar()) {
@@ -774,100 +825,83 @@ async function main_loop() {
         }
 
         if (!$.player.isInAnyCar()) {
-            // SCM GOSUB driving_style_car_1
-            await driving_style_car_1();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB driving_style_car_2
-            await driving_style_car_2();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB driving_style_car_3
-            await driving_style_car_3();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await driving_style_car_1(); // SCM GOSUB driving_style_car_1
+            await driving_style_car_2(); // SCM GOSUB driving_style_car_2
+            await driving_style_car_3(); // SCM GOSUB driving_style_car_3
         }
 
         if ($.player.locateInCar2D($.finish_x, $.finish_y, 6.0, 6.0, false /* false */)) {
-            // SCM GOSUB player_points
-            await player_points();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await player_points(); // SCM GOSUB player_points
         }
 
         if (!Car.IsDead($.hot_rod_1)) {
             if ($.hot_rod_1.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false /* false */)) {
-                // SCM GOSUB nonplayer_points_1
-                await nonplayer_points_1();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await nonplayer_points_1(); // SCM GOSUB nonplayer_points_1
             }
         }
 
         if (!Car.IsDead($.hot_rod_2)) {
             if ($.hot_rod_2.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false /* false */)) {
-                // SCM GOSUB nonplayer_points_2
-                await nonplayer_points_2();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await nonplayer_points_2(); // SCM GOSUB nonplayer_points_2
             }
         }
 
         if (!Car.IsDead($.hot_rod_3)) {
             if ($.hot_rod_3.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false /* false */)) {
-                // SCM GOSUB nonplayer_points_3
-                await nonplayer_points_3();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await nonplayer_points_3(); // SCM GOSUB nonplayer_points_3
             }
         }
 
         await asyncWait(0);
 
-        // SCM GOSUB driving_style_car_3
-        await driving_style_car_3();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await driving_style_car_3(); // SCM GOSUB driving_style_car_3
 
         if ($.counter_finish == 15) {
-            // SCM GOTO → race_finished (not lowered; manual jump required)
-            throw new Error('unresolved GOTO race_finished'); // fallback: would break linear control flow
+            // SCM GOTO → race_finished
+            break main_loop;
+        }
+    }
+    //------------------------------RACE FINISHED---------------------------------------------
+
+    race_finished: {
+        if ($.counter_player_points == $.counter_nonplayer1_points) {
+            ++$.counter_joint_placing;
         }
 
-        //------------------------------RACE FINISHED---------------------------------------------
+        if ($.counter_player_points == $.counter_nonplayer2_points) {
+            ++$.counter_joint_placing;
+        }
+
+        if ($.counter_player_points == $.counter_nonplayer3_points) {
+            ++$.counter_joint_placing;
+        }
+
+        if ($.counter_player_points > $.counter_nonplayer1_points) {
+            ++$.counter_placing;
+        }
+
+        if ($.counter_player_points > $.counter_nonplayer2_points) {
+            ++$.counter_placing;
+        }
+
+        if ($.counter_player_points > $.counter_nonplayer3_points) {
+            ++$.counter_placing;
+        }
+
+        if ($.counter_placing == 3) {
+            return; // SCM GOTO → mission_yd1_passed
+        }
+
+        if ($.counter_placing < 3) {
+            // SCM GOTO → mission_yd1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_yd1_failed'); // fallback: would break linear control flow
+        }
+
+        throw new Error('unresolved GOTO mission_yd1_failed'); // xxx: fallthrough failed
     }
 }
 
-async function race_finished() {
-    if ($.counter_player_points == $.counter_nonplayer1_points) {
-        ++$.counter_joint_placing;
-    }
-
-    if ($.counter_player_points == $.counter_nonplayer2_points) {
-        ++$.counter_joint_placing;
-    }
-
-    if ($.counter_player_points == $.counter_nonplayer3_points) {
-        ++$.counter_joint_placing;
-    }
-
-    if ($.counter_player_points > $.counter_nonplayer1_points) {
-        ++$.counter_placing;
-    }
-
-    if ($.counter_player_points > $.counter_nonplayer2_points) {
-        ++$.counter_placing;
-    }
-
-    if ($.counter_player_points > $.counter_nonplayer3_points) {
-        ++$.counter_placing;
-    }
-
-    if ($.counter_placing == 3) {
-        // SCM GOTO → mission_yd1_passed (not lowered; manual jump required)
-        return;
-    }
-
-    if ($.counter_placing < 3) {
-        // SCM GOTO → mission_yd1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_yd1_failed'); // fallback: would break linear control flow
-    }
-
-    // --------------------------Race failed-----------------------------------------------
-}
-
+// --------------------------Race failed-----------------------------------------------
 async function onFailed() {
     Text.PrintBig('M_FAIL', 2000, 1);
 
@@ -913,12 +947,9 @@ async function onFailed() {
             await asyncWait(2000);
         }
     }
-
-    return;
-
-    // Race passed
 }
 
+// Race passed
 async function onPassed() {
     if ($.flag_yardie_mission4_passed == 0) {
         Stat.RegisterMissionPassed('YD1');
@@ -934,12 +965,9 @@ async function onPassed() {
     $.player.clearWantedLevel();
     $.player.addScore($.reward_yd1);
     Stat.RegisterHighestScore(0, $.counter_player_points);
-
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     Camera.RestoreJumpcut();
     Hud.SwitchWidescreen(false /* off */);
@@ -966,10 +994,9 @@ async function cleanup() {
     $.blip_rush_destination.remove();
 
     Mission.Finish();
-    return;
-
-    //---------------------------GOSUBS-----------------------------------------------
 }
+
+//---------------------------GOSUBS-----------------------------------------------
 
 async function driving_style_car_1() {
     if (!Car.IsDead($.hot_rod_1)) {
@@ -978,7 +1005,6 @@ async function driving_style_car_1() {
         $.hot_rod_1.gotoCoordinatesAccurate($.finish_x, $.finish_y, -1.0);
         $.flag_drive_mode_1 = 0;
     }
-    return;
 }
 
 async function driving_style_car_2() {
@@ -988,7 +1014,6 @@ async function driving_style_car_2() {
         $.hot_rod_2.gotoCoordinatesAccurate($.finish_x, $.finish_y, -1.0);
         $.flag_drive_mode_2 = 0;
     }
-    return;
 }
 
 async function driving_style_car_3() {
@@ -998,7 +1023,6 @@ async function driving_style_car_3() {
         $.hot_rod_3.gotoCoordinatesAccurate($.finish_x, $.finish_y, -1.0);
         $.flag_drive_mode_3 = 0;
     }
-    return;
 }
 
 async function player_points() {
@@ -1009,44 +1033,35 @@ async function player_points() {
 
     Text.PrintWithNumberBig('YD1_CNT', $.counter_player_points, 2000, 4);
     Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
-    // SCM GOSUB finish_coord_generator
-    await finish_coord_generator();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    return;
+
+    await finish_coord_generator(); // SCM GOSUB finish_coord_generator
 }
 
 async function nonplayer_points_1() {
     ++$.counter_nonplayer1_points;
     ++$.counter_finish;
     Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
-    // SCM GOSUB finish_coord_generator
-    await finish_coord_generator();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    return;
+
+    await finish_coord_generator(); // SCM GOSUB finish_coord_generator
 }
 
 async function nonplayer_points_2() {
     ++$.counter_nonplayer2_points;
     ++$.counter_finish;
     Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
-    // SCM GOSUB finish_coord_generator
-    await finish_coord_generator();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    return;
+
+    await finish_coord_generator(); // SCM GOSUB finish_coord_generator
 }
 
 async function nonplayer_points_3() {
     ++$.counter_nonplayer3_points;
     ++$.counter_finish;
     Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
-    // SCM GOSUB finish_coord_generator
-    await finish_coord_generator();
-    // fallback if label was not emitted as async function: no-op continues linearly
-    return;
 
-    //----------------FINISH COORD GENERATOR--------------------------------------
+    await finish_coord_generator(); // SCM GOSUB finish_coord_generator
 }
 
+//----------------FINISH COORD GENERATOR--------------------------------------
 async function finish_coord_generator() {
     if ($.flag_random_yd1 == 0) {
         if ($.counter_finish == 1) {
@@ -1132,41 +1147,41 @@ async function finish_coord_generator() {
             $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
         }
         /*
-    IF counter_finish = 14
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 524.3
-    finish_y = -519.6
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 14
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 524.3
+        finish_y = -519.6
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 15
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 530.4
-    finish_y = -55.2
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 15
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 530.4
+        finish_y = -55.2
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 16
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 548.5
-    finish_y = -370.5
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 16
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 548.5
+        finish_y = -370.5
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 17
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 69.8
-    finish_y = 107.0
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 17
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 69.8
+        finish_y = 107.0
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 18
-    REMOVE_BLIP blip_rush_destination
-    finish_x = -41.6
-    finish_y = -1353.5
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    */
+        IF counter_finish = 18
+        REMOVE_BLIP blip_rush_destination
+        finish_x = -41.6
+        finish_y = -1353.5
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
+        */
         if ($.counter_finish == 14) {
             $.blip_rush_destination.remove();
             $.finish_x = $.start_x;
@@ -1261,42 +1276,42 @@ async function finish_coord_generator() {
             $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
         }
         /*
-    IF counter_finish = 14
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 548.5
-    finish_y = -370.5
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 14
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 548.5
+        finish_y = -370.5
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 15
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 165.0
-    finish_y = -886.0
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 15
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 165.0
+        finish_y = -886.0
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 16
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 69.8
-    finish_y = 107.0
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 16
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 69.8
+        finish_y = 107.0
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 17
-    REMOVE_BLIP blip_rush_destination
-    finish_x = -41.6
-    finish_y = -1353.5
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 17
+        REMOVE_BLIP blip_rush_destination
+        finish_x = -41.6
+        finish_y = -1353.5
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 18
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 106.0
-    finish_y = -403.36
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    //flag_corona_yd1 = 1
-    ENDIF
-    */
+        IF counter_finish = 18
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 106.0
+        finish_y = -403.36
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        //flag_corona_yd1 = 1
+        ENDIF
+        */
         if ($.counter_finish == 14) {
             $.blip_rush_destination.remove();
             $.finish_x = $.start_x;
@@ -1316,41 +1331,41 @@ async function finish_coord_generator() {
             $.blip_rush_destination = Blip.AddForCoord($.finish_x, $.finish_y, -100.0);
         }
         /*
-    IF counter_finish = 18
-    REMOVE_BLIP blip_rush_destination
-    finish_x = -10.79
-    finish_y = -463.1
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 18
+        REMOVE_BLIP blip_rush_destination
+        finish_x = -10.79
+        finish_y = -463.1
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 17
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 78.5
-    finish_y = -945.0
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 17
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 78.5
+        finish_y = -945.0
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 16
-    REMOVE_BLIP blip_rush_destination
-    finish_x = -69.4
-    finish_y = -926.2
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 16
+        REMOVE_BLIP blip_rush_destination
+        finish_x = -69.4
+        finish_y = -926.2
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 15
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 524.3
-    finish_y = -519.6
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
+        IF counter_finish = 15
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 524.3
+        finish_y = -519.6
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
 
-    IF counter_finish = 14
-    REMOVE_BLIP blip_rush_destination
-    finish_x = 172.8
-    finish_y = -1066.9
-    ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
-    ENDIF
-    */
+        IF counter_finish = 14
+        REMOVE_BLIP blip_rush_destination
+        finish_x = 172.8
+        finish_y = -1066.9
+        ADD_BLIP_FOR_COORD finish_x finish_y -100.0 blip_rush_destination
+        ENDIF
+        */
         if ($.counter_finish == 13) {
             $.blip_rush_destination.remove();
             $.finish_x = 86.8;
@@ -1437,77 +1452,6 @@ async function finish_coord_generator() {
             $.blip_rush_destination.remove();
         }
     }
-
-    return;
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************YARDIE MISSION ONE DRUG RUSH********************************
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_yd1
-// fallback if label was not emitted as async function: no-op continues linearly
-// SCM GOSUB mission_yd1_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-// SCM GOSUB mission_cleanup_yd1
-// fallback if label was not emitted as async function: no-op continues linearly
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT hot_rod_1 hot_rod_2 hot_rod_3
-// VAR_INT player_car wanted_yd1
-
-// VAR_INT street_racer_1 street_racer_2 street_racer_3
-
-// VAR_INT blip_hot_rod_3 blip_hot_rod_2 blip_hot_rod_1
-
-// VAR_INT blip_rush_destination flag_random_yd1 random_yd1
-
-// VAR_INT blip_start_yd1
-
-// VAR_FLOAT start_x start_y
-
-// VAR_FLOAT finish_x finish_y
-
-// VAR_FLOAT x_sum y_sum x_sum_player y_sum_player
-
-// VAR_FLOAT hot_rod_1_x hot_rod_1_y hot_rod_1_z hot_rod_1_dist
-// VAR_FLOAT hot_rod_2_x hot_rod_2_y hot_rod_2_z hot_rod_2_dist
-// VAR_FLOAT hot_rod_3_x hot_rod_3_y hot_rod_3_z
-// VAR_FLOAT hot_rod_heading
-
-// VAR_FLOAT player_car_x player_car_y player_car_z player_dist
-
-// VAR_INT counter_rush_start counter_hotrods
-// VAR_INT flag_hotrod1_start flag_hotrod2_start flag_hotrod3_start
-
-// VAR_INT flag_drive_mode_1 flag_drive_mode_2 flag_drive_mode_3
-
-// VAR_INT flag_leader
-
-// VAR_INT counter_player_points reward_yd1
-
-// VAR_INT counter_nonplayer1_points counter_nonplayer2_points counter_nonplayer3_points
-
-// VAR_INT counter_finish
-// VAR_INT flag_corona_yd1
-
-// VAR_INT counter_placing counter_joint_placing
-
-// VAR_INT timer_reset_hr1 timer_reset_hr2 timer_reset_hr3
-// VAR_INT timer_start_hr1 timer_start_hr2 timer_start_hr3
-// VAR_INT timer_current_hr1 timer_current_hr2 timer_current_hr3
-// VAR_INT hr1_time_dif hr2_time_dif hr3_time_dif
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

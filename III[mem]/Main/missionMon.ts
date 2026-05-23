@@ -45,11 +45,11 @@ class DeatharrestBeenExecutedError extends Error {
                     try {
                         beforeMissionResult = await mission.beforeMission(isFirstTimeCanStart);
                     } catch (e) {
-                        log(`[-] Error in beforeMission of mission ${mission.name} from ${mission.scriptPath}: ${unwrapError(e)}`);
+                        log(`[-] Error in beforeMission of mission ${getMissionName(mission)}: ${unwrapError(e)}`);
                     }
 
                     if (beforeMissionResult === false) {
-                        log(`[~] Mission "${mission.name}" from ${mission.scriptPath} canceled by beforeMission`);
+                        log(`[~] Mission ${getMissionName(mission)} canceled by beforeMission`);
                         break;
                     }
                 }
@@ -59,7 +59,7 @@ class DeatharrestBeenExecutedError extends Error {
                     try {
                         await mission.afterMission();
                     } catch (e) {
-                        log(`[-] Error in afterMission of mission ${mission.name} from ${mission.scriptPath}: ${unwrapError(e)}`);
+                        log(`[-] Error in afterMission of mission ${getMissionName(mission)}: ${unwrapError(e)}`);
                     }
                 }
                 break;
@@ -85,13 +85,17 @@ async function loadAndLaunchMission(mission: MissionDefinition) {
         .default()
         .catch((e: Error) => {
             if (e instanceof DeatharrestBeenExecutedError) {
-                log(`[-] Mission "${mission.name}" from ${mission.scriptPath} failed due to death or arrest`);
+                log(`[-] Mission ${getMissionName(mission)} failed due to death or arrest`);
             } else {
-                log(`[-] Unhandled error in mission "${mission.name}" from ${mission.scriptPath}: ${unwrapError(e)}`);
+                log(`[-] Unhandled error in mission ${getMissionName(mission)}: ${unwrapError(e)}`);
             }
         })
         .finally(() => {
-            log(`[-] Finished mission "${mission.name}" from ${mission.scriptPath}`);
+            log(`[-] Finished mission ${getMissionName(mission)}`);
             // gc.collect();
         });
+}
+
+function getMissionName(mission: MissionDefinition) {
+    return `'${mission.name}' from ${mission.scriptPath}`;
 }
