@@ -22,8 +22,6 @@ class DeatharrestBeenExecutedError extends Error {
         }
     };
 
-    missionFinishFix();
-
     while (true) {
         await _asyncWait(0);
         if (!ONMISSION && p.isPlaying() && p.canStartMission()) {
@@ -67,17 +65,6 @@ class DeatharrestBeenExecutedError extends Error {
         }
     }
 })();
-
-function missionFinishFix() {
-    // need to force ONMISSION=true in order to make Mission.Finish functional
-    const _missionFinish = Mission.Finish;
-    Mission.Finish = function () {
-        let _onMission = ONMISSION;
-        ONMISSION = true;
-        _missionFinish();
-        ONMISSION = _onMission;
-    };
-}
 
 async function loadAndLaunchMission(mission: MissionDefinition) {
     log(`[+] Starting mission "${mission.name}" from ${mission.scriptPath}`);
