@@ -361,9 +361,8 @@ async function body() {
             return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
         }
         $.partners_boat_health = $.partners_boat.getHealth();
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.distance_resultB = $.partners_boat.getHeading();
@@ -403,7 +402,7 @@ async function body() {
 
     TIMERA = 0;
     while (TIMERA < 1200) {
-        await asyncWait(0);        
+        await asyncWait(0);
         await object_placement(); // SCM GOSUB object_placement
     }
 
@@ -938,11 +937,8 @@ async function body() {
     $.partners_boat_health2 = $.partners_boat_health;
     $.partners_boat_health = 100 - $.partners_boat_health2;
     partners_boat_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.partners_boat_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
-}
 
-async function boat_looop() {
-    // SCM GOTO → boat_looop lowered to endless loop
-    while (true) {
+    boat_looop: while (true) {
         await asyncWait(0);
 
         if (Char.IsDead($.rays_partner)) {
@@ -1434,7 +1430,6 @@ async function boat_looop() {
                 }
             }
         }
-
     }
 }
 

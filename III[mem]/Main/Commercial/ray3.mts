@@ -701,7 +701,7 @@ async function body() {
             $.evidence_6.placeRelativeToCar($.ia_car_rm3, -0.3, -1.7, -0.1);
         }
 
-        if ($.amount_of_evidence_player_has == 6) {
+        if (amount_of_evidence_player_has && amount_of_evidence_player_has.value == 6) {
             $.rays_evidence_blip.remove();
             Text.PrintNow('RM3_1', 5000, 1);
             while (!$.player.isInAnyCar()) {
