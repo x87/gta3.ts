@@ -1,8 +1,23 @@
 // Generated from Main/Suburban/love7.sc
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// *******************************    Donald Love 7    *************************************
+// *******************************    Left the Scene   *************************************
+// *****************************************************************************************
+// ***************************    	Love has disapeared!   *********************************
+// *****************************************************************************************
 
 async function body() {
+    // Mission start stuff
+    // GOSUB mission_start_love7
+
+    // GOSUB mission_cleanup_love7
+
+    // MISSION_END
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
     $.flag_player_on_love_mission = 1;
 
@@ -96,19 +111,13 @@ async function body() {
     }
 
     // ******************************************END OF CUTSCENE********************************
-
-    // SCM GOTO → mission_love7_passed (not lowered; manual jump required)
-    return;
-
-    // Mission Love 7 failed
+    return; // SCM GOTO → mission_love7_passed
 }
 
-async function onFailed() {
-    return;
+// Mission Love 7 failed
+async function onFailed() {}
 
-    // mission Love 7 passed
-}
-
+// mission Love 7 passed
 async function onPassed() {
     $.flag_love_mission7_passed = 1;
     Stat.PlayerMadeProgress(1);
@@ -116,38 +125,14 @@ async function onPassed() {
     $.player.clearWantedLevel();
     Audio.PlayMissionPassedTune(1);
     Stat.RegisterMissionPassed('LOVE7');
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_love_mission = 0;
 
     Mission.Finish();
-    return;
 }
 
-
-// *****************************************************************************************
-// *******************************    Donald Love 7    *************************************
-// *******************************    Left the Scene   *************************************
-// *****************************************************************************************
-// ***************************    	Love has disapeared!   *********************************
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_love7
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_love7
-// fallback if label was not emitted as async function: no-op continues linearly
-
-
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-
