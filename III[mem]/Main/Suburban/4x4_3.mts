@@ -2,8 +2,6 @@
 import { $ } from '../../utils';
 import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 
-let timer_4x4: DisplayedTimer;
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -12,55 +10,57 @@ let timer_4x4: DisplayedTimer;
 // *****************************************************************************************
 // *****************************************************************************************
 
-// Mission start stuff
-
-// GOSUB mission_start_4x4three
-// GOSUB mission_cleanup_4x4three
-// MISSION_END
-
-// Variables for mission
-
-//VAR_INT player_4x4_three
-//VAR_INT counter_4x4_pickups timer_4x4
-//VAR_INT flag_timer_patriot
-//VAR_INT intro_time_lapsed timer_intro_now timer_intro_start flag_intro
-/*
-VAR_INT blip_1 blip_2 blip_3
-VAR_INT blip_4 blip_5 blip_6
-VAR_INT blip_7 blip_8 blip_9
-VAR_INT blip_10 blip_11 blip_12
-VAR_INT blip_13 blip_14 blip_15
-
-VAR_INT flag_blip_17 flag_blip_2 flag_blip_3 flag_blip_4
-VAR_INT flag_blip_5 flag_blip_6 flag_blip_7 flag_blip_8
-VAR_INT flag_blip_9 flag_blip_10 flag_blip_11 flag_blip_12
-VAR_INT flag_blip_13 flag_blip_14 flag_blip_15 flag_blip_16
-
-VAR_FLOAT x_1 y_1 z_1
-VAR_FLOAT x_2 y_2 z_2
-VAR_FLOAT x_3 y_3 z_3
-VAR_FLOAT x_4 y_4 z_4
-VAR_FLOAT x_5 y_5 z_5
-VAR_FLOAT x_6 y_6 z_6
-VAR_FLOAT x_7 y_7 z_7
-VAR_FLOAT x_8 y_8 z_8
-VAR_FLOAT x_9 y_9 z_9
-VAR_FLOAT x_10 y_10 z_10
-VAR_FLOAT x_11 y_11 z_11
-VAR_FLOAT x_12 y_12 z_12
-VAR_FLOAT x_13 y_13 z_13
-VAR_FLOAT x_14 y_14 z_14
-VAR_FLOAT x_15 y_15 z_15
-VAR_FLOAT x_16 y_16 z_16
-VAR_FLOAT x_17 y_17 z_17
-VAR_FLOAT x_18 y_18 z_18
-VAR_FLOAT x_19 y_19 z_19
-VAR_FLOAT x_20 y_20 z_20
-*/
-
-// ****************************************Mission Start************************************
+let timer_4x4: DisplayedTimer;
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_4x4three
+    // GOSUB mission_cleanup_4x4three
+    // MISSION_END
+
+    // Variables for mission
+
+    //VAR_INT player_4x4_three
+    //VAR_INT counter_4x4_pickups timer_4x4
+    //VAR_INT flag_timer_patriot
+    //VAR_INT intro_time_lapsed timer_intro_now timer_intro_start flag_intro
+    /*
+    VAR_INT blip_1 blip_2 blip_3
+    VAR_INT blip_4 blip_5 blip_6
+    VAR_INT blip_7 blip_8 blip_9
+    VAR_INT blip_10 blip_11 blip_12
+    VAR_INT blip_13 blip_14 blip_15
+
+    VAR_INT flag_blip_17 flag_blip_2 flag_blip_3 flag_blip_4
+    VAR_INT flag_blip_5 flag_blip_6 flag_blip_7 flag_blip_8
+    VAR_INT flag_blip_9 flag_blip_10 flag_blip_11 flag_blip_12
+    VAR_INT flag_blip_13 flag_blip_14 flag_blip_15 flag_blip_16
+
+    VAR_FLOAT x_1 y_1 z_1
+    VAR_FLOAT x_2 y_2 z_2
+    VAR_FLOAT x_3 y_3 z_3
+    VAR_FLOAT x_4 y_4 z_4
+    VAR_FLOAT x_5 y_5 z_5
+    VAR_FLOAT x_6 y_6 z_6
+    VAR_FLOAT x_7 y_7 z_7
+    VAR_FLOAT x_8 y_8 z_8
+    VAR_FLOAT x_9 y_9 z_9
+    VAR_FLOAT x_10 y_10 z_10
+    VAR_FLOAT x_11 y_11 z_11
+    VAR_FLOAT x_12 y_12 z_12
+    VAR_FLOAT x_13 y_13 z_13
+    VAR_FLOAT x_14 y_14 z_14
+    VAR_FLOAT x_15 y_15 z_15
+    VAR_FLOAT x_16 y_16 z_16
+    VAR_FLOAT x_17 y_17 z_17
+    VAR_FLOAT x_18 y_18 z_18
+    VAR_FLOAT x_19 y_19 z_19
+    VAR_FLOAT x_20 y_20 z_20
+    */
+
+    // ****************************************Mission Start************************************
+
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME t4x4_3
     ONMISSION = true;
@@ -520,10 +520,8 @@ async function body() {
     }
 
     if ($.counter_4x4_pickups == 20) {
-        // SCM GOTO → mission_4x4three_passed
-        return;
+        return; // SCM GOTO → mission_4x4three_passed
     }
-
 }
 
 // --------------------------Mission failed-----------------------------------------------
@@ -559,7 +557,6 @@ async function onPassed() {
 
     //START_NEW_SCRIPT t4x4_mission2_loop
     //START_NEW_SCRIPT multistorey_mission_loop
-
 }
 
 async function cleanup() {

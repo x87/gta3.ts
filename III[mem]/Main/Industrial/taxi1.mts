@@ -1,8 +1,5 @@
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
-
-let taxi_countdown: DisplayedTimer;
-let taxi_passed_this_shot: DisplayedCounter;
 // Generated from Main/Industrial/taxi1.sc
+import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 import { $ } from '../../utils';
 
 // *******************************************************************************************
@@ -12,6 +9,9 @@ import { $ } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
+
+let taxi_countdown: DisplayedTimer;
+let taxi_passed_this_shot: DisplayedCounter;
 
 async function body() {
     // Mission start stuff

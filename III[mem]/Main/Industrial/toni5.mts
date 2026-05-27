@@ -1,9 +1,6 @@
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
-
-let countdown_tm5: DisplayedTimer;
-let explosive_truck_health: DisplayedCounter;
 // Generated from Main/Industrial/toni5.sc
 import { $ } from '../../utils';
+import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -12,6 +9,9 @@ import { $ } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
+
+let countdown_tm5: DisplayedTimer;
+let explosive_truck_health: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
