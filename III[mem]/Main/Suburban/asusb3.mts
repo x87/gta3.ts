@@ -1,8 +1,66 @@
 // Generated from Main/Suburban/asusb3.sc
 import { $ } from '../../utils';
+import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// ***********************************ASUKA SUBURBAN MISSION 3******************************
+// *****************************************************************************************
+// ***************************************'Plane to Sea'************************************
+// *****************************************************************************************
+
+let timer_as3: DisplayedTimer;
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_as3
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_as3_failed
+    // ENDIF
+    // GOSUB mission_cleanup_as3
+
+    // Variables for mission
+
+    // VAR_INT timer_as3 player_as3_boat dodo_as3
+
+    // VAR_INT bouy_1_as3 bouy_2_as3 bouy_3_as3 bouy_4_as3 bouy_5_as3
+    // VAR_INT bouy_6_as3 bouy_7_as3 bouy_8_as3 bouy_9_as3 bouy_10_as3
+    // VAR_INT bouy_point
+
+    // VAR_INT blip_as3_boat blip_as3_bouy blip_as3_dodo blip_stash
+    // VAR_INT blip_charlie_1 blip_charlie_2 blip_charlie_3 blip_charlie_4
+    // VAR_INT blip_charlie_5 blip_charlie_6 blip_charlie_7 blip_charlie_8
+
+    // VAR_FLOAT platform_x platform_y
+    // VAR_FLOAT dodo_as3_x dodo_as3_y dodo_as3_z
+
+    // VAR_INT charlie_1 charlie_2 charlie_3 charlie_4
+    // VAR_INT charlie_5 charlie_6 charlie_7 charlie_8
+    // VAR_INT rocket_as3
+
+    // VAR_FLOAT charlie_1_x charlie_1_y charlie_1_z
+    // VAR_FLOAT charlie_2_x charlie_2_y charlie_2_z
+    // VAR_FLOAT charlie_3_x charlie_3_y charlie_3_z
+    // VAR_FLOAT charlie_4_x charlie_4_y charlie_4_z
+    // VAR_FLOAT charlie_5_x charlie_5_y charlie_5_z
+    // VAR_FLOAT charlie_6_x charlie_6_y charlie_6_z
+    // VAR_FLOAT charlie_7_x charlie_7_y charlie_7_z
+    // VAR_FLOAT charlie_8_x charlie_8_y charlie_8_z
+
+    // VAR_FLOAT min_x max_x min_y max_y min_z max_z
+
+    // VAR_INT counter_charlie flag_counter_message particle_time flag_particle flag_boat_message
+    // VAR_INT flag_charlie_1 flag_charlie_2 flag_charlie_3 flag_charlie_4
+    // VAR_INT flag_charlie_5 flag_charlie_6 flag_charlie_7 flag_charlie_8
+
+    // VAR_INT flag_commence_approach flag_runway_blip flag_boat_blip flag_bouy_blip
+    // VAR_INT timer_as3_start timer_as3_now timer_as3_dif
+    // VAR_INT flag_created_baddies flag_mission_as3_failed
+
+    // ****************************************Mission Start************************************
+
     Stat.RegisterMissionGiven();
     // SCRIPT_NAME asusb3
     //PRINT_BIG ( AS3 ) 5000 1
@@ -50,20 +108,20 @@ async function body() {
     //  ******************************************* START OF CUTSCENE ***************************
 
     /*
-  IF CAN_PLAYER_START_MISSION Player
-  MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
-  ELSE
-  GOTO mission_as3_failed
-  ENDIF
+    IF CAN_PLAYER_START_MISSION Player
+    MAKE_PLAYER_SAFE_FOR_CUTSCENE Player
+    ELSE
+    GOTO mission_as3_failed
+    ENDIF
 
-  SET_FADING_COLOUR 0 0 0
+    SET_FADING_COLOUR 0 0 0
 
-  DO_FADE 250 FADE_OUT
+    DO_FADE 250 FADE_OUT
 
-  PRINT_BIG ( AS3 ) 15000 2
+    PRINT_BIG ( AS3 ) 15000 2
 
-  SWITCH_STREAMING OFF
-  */
+    SWITCH_STREAMING OFF
+    */
 
     Streaming.RequestModel(2011 /* csitecutscene */);
 
@@ -76,10 +134,10 @@ async function body() {
     Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'WHIP');
 
     /*
-  WHILE GET_FADING_STATUS
-  WAIT 0
-  ENDWHILE
-  */
+    WHILE GET_FADING_STATUS
+    WAIT 0
+    ENDWHILE
+    */
 
     Streaming.LoadAllModelsNow();
 
@@ -130,9 +188,9 @@ async function body() {
     $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 186 /* CUT_OBJ2 */);
     $.cs_asukahead.setAnim('asuka');
     /*
-  CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
-  SET_CUTSCENE_HEAD_ANIM cs_miguelhead miguel
-  */
+    CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
+    SET_CUTSCENE_HEAD_ANIM cs_miguelhead miguel
+    */
 
     $.player.setCoordinates(373.7523, -327.2676, 17.195);
 
@@ -303,8 +361,7 @@ async function body() {
 
     // Mission stuff goes here
 
-    Hud.DisplayTimer($.timer_as3);
-
+    timer_as3 = new Timer($.timer_as3).display(); // xxx: Hud.DisplayTimer($.timer_as3);
     //----------------------------LOAD MODELS------------------------------------------------------
 
     Streaming.RequestModel(143 /* BOAT_REEFER */);
@@ -341,16 +398,16 @@ async function body() {
     }
 
     /*
-  PRINT AS3_A 5000 1//"There is a plane coming into Francis International in (2/3/4/5/6) hours time. It is full of Catalina's poison."
-  MESSAGE_WAIT 5000 1
+    PRINT AS3_A 5000 1//"There is a plane coming into Francis International in (2/3/4/5/6) hours time. It is full of Catalina's poison."
+    MESSAGE_WAIT 5000 1
 
-  PRINT AS3_B 5000 1//"You can avoid airport security by getting a boat out to the runway-light pontoons and shooting the plane down on it's approach."
-  MESSAGE_WAIT 5000 1
+    PRINT AS3_B 5000 1//"You can avoid airport security by getting a boat out to the runway-light pontoons and shooting the plane down on it's approach."
+    MESSAGE_WAIT 5000 1
 
-  PRINT AS3_C 5000 1//"Collect the charlie from the debris and stash it!"
-  MESSAGE_WAIT 5000 1
+    PRINT AS3_C 5000 1//"Collect the charlie from the debris and stash it!"
+    MESSAGE_WAIT 5000 1
 
-  */
+    */
 
     $.bouy_1_as3 = ScriptObject.Create(1373 /* bouy */, -825.0, -1360.0, 2.0);
     $.bouy_3_as3 = ScriptObject.Create(1373 /* bouy */, -705.0, -1410.0, 2.0);
@@ -407,319 +464,302 @@ async function body() {
         await asyncWait(0);
     }
 
-    // SCM GOSUB baddies
-    await baddies();
-    // fallback if label was not emitted as async function: no-op continues linearly
-}
+    await baddies(); // SCM GOSUB baddies
 
-async function loop_as3_1() {
-    // SCM GOTO → loop_as3_1 lowered to endless loop
-    while (true) {
-        await asyncWait(0);
+    before_loop_as3_6: {
+        before_loop_as3_4: {
+            before_loop_as3_3: {
+                // loop_as3_1: ---player not at location and plane not triggered----------------
+                while (true) {
+                    await asyncWait(0);
 
-        if ($.flag_messages == 0) {
-            if ($.flag_boat_message == 0) {
-                Text.PrintNow('AS3_1', 4000, 1); //Find the boat and get to the runway marker bouys!
-                $.flag_boat_message = 1;
+                    if ($.flag_messages == 0) {
+                        if ($.flag_boat_message == 0) {
+                            Text.PrintNow('AS3_1', 4000, 1); //Find the boat and get to the runway marker bouys!
+                            $.flag_boat_message = 1;
+                            $.flag_messages = 1;
+                        }
+                    }
+                    if ($.flag_messages == 0) {
+                        if ($.flag_boat_message == 1) {
+                            Text.PrintNow('AS3_1A', 4000, 1); //~g~Now get to the ~b~marker buoy!
+                            $.flag_boat_message = 2;
+                            $.flag_messages = 1;
+                        }
+                    }
+
+                    if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                        if ($.flag_boat_blip == 1) {
+                            $.blip_as3_boat.remove();
+                            $.flag_boat_blip = 0;
+                        }
+                        if ($.flag_bouy_blip == 0) {
+                            $.blip_as3_bouy = Blip.AddForObject($.bouy_point);
+                            $.flag_bouy_blip = 1;
+                            $.flag_messages = 0;
+                        }
+                    }
+                    if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                        if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
+                            $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
+                            $.flag_boat_blip = 1;
+                        }
+                        if ($.flag_bouy_blip == 1) {
+                            $.blip_as3_bouy.remove();
+                            $.flag_bouy_blip = 0;
+                            $.flag_messages = 0;
+                        }
+                    }
+
+                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false /* false */)) {
+                        if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                            Streaming.LoadCollisionWithScreen(3 /* LEVEL_SUBURBAN */);
+                        }
+                    }
+
+                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 15.0, 15.0, false /* false */)) {
+                        $.blip_as3_bouy.remove();
+                        Text.ClearPrints();
+                        $.flag_messages = 0;
+                        break before_loop_as3_3; // SCM GOTO → loop_as3_3
+                    }
+
+                    if (timer_as3.value < 91000) {
+                        if ($.flag_commence_approach == 0) {
+                            DrugRun.Start();
+                            $.flag_commence_approach = 1;
+                            const _res333 = DrugRun.FindPlaneCoordinates();
+                            $.dodo_as3_x = _res333.x;
+                            $.dodo_as3_y = _res333.y;
+                            $.dodo_as3_z = _res333.z;
+                            $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
+                            $.blip_as3_dodo.changeScale(2);
+                        }
+                        Text.ClearPrints();
+                        $.flag_messages = 0;
+                        break; // SCM GOTO → loop_as3_2
+                    }
+
+                    if (timer_as3.value < 1) {
+                        timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                    }
+
+                    await baddies(); // SCM GOSUB baddies
+                }
+
+                //loop_as3_2: ---player not at location and plane is triggered-----------------
+                while (true) {
+                    await asyncWait(0);
+                    $.blip_as3_dodo.remove();
+
+                    if ($.flag_messages == 0) {
+                        if ($.flag_boat_message == 0) {
+                            Text.PrintNow('AS3_1', 4000, 1); //Find the boat and get to the runway marker bouys!
+                            $.flag_boat_message = 1;
+                            $.flag_messages = 1;
+                        }
+                    }
+                    if ($.flag_messages == 0) {
+                        if ($.flag_boat_message == 1) {
+                            Text.PrintNow('AS3_2', 4000, 1); //Get to the runway marker buoys! The plane is on its final approach!!
+                            $.flag_boat_message = 2;
+                            $.flag_messages = 1;
+                        }
+                    }
+
+                    if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                        if ($.flag_boat_blip == 1) {
+                            $.blip_as3_boat.remove();
+                            $.flag_boat_blip = 0;
+                        }
+                        if ($.flag_bouy_blip == 0) {
+                            $.blip_as3_bouy = Blip.AddForObject($.bouy_point);
+                            $.flag_bouy_blip = 1;
+                            $.flag_messages = 0;
+                            $.flag_boat_message = 1;
+                        }
+                    }
+                    if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                        if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
+                            $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
+                            $.flag_boat_blip = 1;
+                        }
+                        if ($.flag_bouy_blip == 1) {
+                            $.blip_as3_bouy.remove();
+                            $.flag_bouy_blip = 0;
+                            $.flag_messages = 0;
+                            $.flag_boat_message = 1;
+                        }
+                    }
+
+                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false /* false */)) {
+                        if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                            Streaming.LoadCollisionWithScreen(3 /* LEVEL_SUBURBAN */);
+                        }
+                    }
+
+                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 15.0, 15.0, false /* false */)) {
+                        $.blip_as3_bouy.remove();
+                        Text.ClearPrints();
+                        $.flag_messages = 0;
+                        break before_loop_as3_4; // SCM GOTO → loop_as3_4
+                    }
+
+                    if (DrugRun.HasBeenCompleted()) {
+                        // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
+                        throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
+                    }
+
+                    if (DrugRun.HasPlaneBeenShotDown()) {
+                        Text.ClearPrints();
+                        timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                        $.flag_messages = 0;
+                        break before_loop_as3_6; // SCM GOTO → loop_as3_6
+                    }
+
+                    if (timer_as3.value < 1) {
+                        timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                    }
+
+                    //TEST BLIP FOR PLANE
+
+                    const _res334 = DrugRun.FindPlaneCoordinates();
+                    $.dodo_as3_x = _res334.x;
+                    $.dodo_as3_y = _res334.y;
+                    $.dodo_as3_z = _res334.z;
+                    $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
+                    $.blip_as3_dodo.changeScale(3);
+
+                    await area_check(); // SCM GOSUB area_check
+
+                    if ($.flag_mission_as3_failed == 1) {
+                        // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
+                        throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
+                    }
+
+                    await baddies(); // SCM GOSUB baddies
+                }
+            }
+
+            // loop_as3_3: ---player at location, plane not triggered-----------------------
+
+            while (true) {
+                await asyncWait(0);
+
+                if ($.flag_messages == 0) {
+                    Text.PrintNow('AS3_3', 4000, 1); //Wait for the plane to start its approach!
+                    $.flag_messages = 0;
+                }
+
+                if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                    if ($.flag_boat_blip == 1) {
+                        $.blip_as3_boat.remove();
+                        $.flag_boat_blip = 0;
+                    }
+                    if ($.flag_bouy_blip == 0) {
+                        $.blip_as3_bouy = Blip.AddForObject($.bouy_point);
+                        $.flag_bouy_blip = 1;
+                        $.flag_messages = 0;
+                    }
+                }
+                if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                    if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
+                        $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
+                        $.flag_boat_blip = 1;
+                    }
+                    if ($.flag_bouy_blip == 1) {
+                        $.blip_as3_bouy.remove();
+                        $.flag_bouy_blip = 0;
+                        $.flag_messages = 0;
+                    }
+                }
+
+                if (timer_as3.value < 91000) {
+                    if ($.flag_commence_approach == 0) {
+                        DrugRun.Start();
+                        $.flag_commence_approach = 1;
+                        const _res335 = DrugRun.FindPlaneCoordinates();
+                        $.dodo_as3_x = _res335.x;
+                        $.dodo_as3_y = _res335.y;
+                        $.dodo_as3_z = _res335.z;
+                        $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
+                        $.blip_as3_dodo.changeScale(3);
+                    }
+                    Text.ClearPrints();
+                    $.flag_messages = 0;
+                    break before_loop_as3_4; // SCM GOTO → loop_as3_4
+                }
+
+                if (timer_as3.value < 1) {
+                    timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                }
+
+                await baddies(); // SCM GOSUB baddies
+            }
+        }
+
+        //loop_as3_4: //---player at location, plane triggered---------------------------
+        while (true) {
+            await asyncWait(0);
+
+            $.blip_as3_dodo.remove();
+
+            //IF NOT IS_CURRENT_PLAYER_WEAPON player WEAPONTYPE_ROCKET
+            if ($.flag_messages == 0) {
+                Text.PrintNow('AS3_4', 4000, 1); //Use a rocket launcher to shoot the plane down!
                 $.flag_messages = 1;
             }
-        }
-        if ($.flag_messages == 0) {
-            if ($.flag_boat_message == 1) {
-                Text.PrintNow('AS3_1A', 4000, 1); //~g~Now get to the ~b~marker buoy!
-                $.flag_boat_message = 2;
-                $.flag_messages = 1;
-            }
-        }
 
-        if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
-            if ($.flag_boat_blip == 1) {
-                $.blip_as3_boat.remove();
-                $.flag_boat_blip = 0;
+            if (!Car.IsDead($.player_as3_boat)) {
+                if ($.player.isInCar($.player_as3_boat) && $.flag_boat_blip == 1) {
+                    $.blip_as3_boat.remove();
+                    $.flag_boat_blip = 0;
+                }
+                if (!$.player.isInCar($.player_as3_boat) && $.flag_boat_blip == 0) {
+                    $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
+                    $.flag_boat_blip = 1;
+                    $.flag_messages = 0;
+                }
             }
-            if ($.flag_bouy_blip == 0) {
-                $.blip_as3_bouy = Blip.AddForObject($.bouy_point);
-                $.flag_bouy_blip = 1;
+
+            if (DrugRun.HasBeenCompleted()) {
+                // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
+                throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
+            }
+
+            if (DrugRun.HasPlaneBeenShotDown()) {
+                Text.ClearPrints();
+                timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
                 $.flag_messages = 0;
+                break before_loop_as3_6; // SCM GOTO → loop_as3_6
             }
-        }
-        if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
-            if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
-                $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
-                $.flag_boat_blip = 1;
-            }
-            if ($.flag_bouy_blip == 1) {
-                $.blip_as3_bouy.remove();
-                $.flag_bouy_blip = 0;
-                $.flag_messages = 0;
-            }
-        }
 
-        if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false /* false */)) {
-            if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                Streaming.LoadCollisionWithScreen(3 /* LEVEL_SUBURBAN */);
+            if (timer_as3.value < 1) {
+                timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
             }
-        }
 
-        if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 15.0, 15.0, false /* false */)) {
-            $.blip_as3_bouy.remove();
-            Text.ClearPrints();
-            $.flag_messages = 0;
-            // SCM GOTO → loop_as3_3 (not lowered; manual jump required)
-            throw new Error('unresolved GOTO loop_as3_3'); // fallback: would break linear control flow
-        }
+            //TEST BLIP FOR PLANE
 
-        if ($.timer_as3 < 91000) {
-            if ($.flag_commence_approach == 0) {
-                DrugRun.Start();
-                $.flag_commence_approach = 1;
-                const _res333 = DrugRun.FindPlaneCoordinates();
-                $.dodo_as3_x = _res333.x;
-                $.dodo_as3_y = _res333.y;
-                $.dodo_as3_z = _res333.z;
-                $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
-                $.blip_as3_dodo.changeScale(2);
+            const _res336 = DrugRun.FindPlaneCoordinates();
+            $.dodo_as3_x = _res336.x;
+            $.dodo_as3_y = _res336.y;
+            $.dodo_as3_z = _res336.z;
+            $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
+            $.blip_as3_dodo.changeScale(2);
+
+            await area_check(); // SCM GOSUB area_check
+
+            if ($.flag_mission_as3_failed == 1) {
+                // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
+                throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
             }
-            Text.ClearPrints();
-            $.flag_messages = 0;
-            // SCM GOTO → loop_as3_2 (not lowered; manual jump required)
-            throw new Error('unresolved GOTO loop_as3_2'); // fallback: would break linear control flow
-        }
 
-        if ($.timer_as3 < 1) {
-            Hud.ClearTimer($.timer_as3);
+            await baddies(); // SCM GOSUB baddies
         }
-        // SCM GOSUB baddies
-        await baddies();
-        // fallback if label was not emitted as async function: no-op continues linearly
     }
-}
 
-async function loop_as3_2() {
-    // SCM GOTO → loop_as3_2 lowered to endless loop
-    while (true) {
-        await asyncWait(0);
-        $.blip_as3_dodo.remove();
+    // loop_as3_6: //---drug shipment shot down---(NB not really a loop!)-------------
 
-        if ($.flag_messages == 0) {
-            if ($.flag_boat_message == 0) {
-                Text.PrintNow('AS3_1', 4000, 1); //Find the boat and get to the runway marker bouys!
-                $.flag_boat_message = 1;
-                $.flag_messages = 1;
-            }
-        }
-        if ($.flag_messages == 0) {
-            if ($.flag_boat_message == 1) {
-                Text.PrintNow('AS3_2', 4000, 1); //Get to the runway marker buoys! The plane is on its final approach!!
-                $.flag_boat_message = 2;
-                $.flag_messages = 1;
-            }
-        }
-
-        if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
-            if ($.flag_boat_blip == 1) {
-                $.blip_as3_boat.remove();
-                $.flag_boat_blip = 0;
-            }
-            if ($.flag_bouy_blip == 0) {
-                $.blip_as3_bouy = Blip.AddForObject($.bouy_point);
-                $.flag_bouy_blip = 1;
-                $.flag_messages = 0;
-                $.flag_boat_message = 1;
-            }
-        }
-        if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
-            if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
-                $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
-                $.flag_boat_blip = 1;
-            }
-            if ($.flag_bouy_blip == 1) {
-                $.blip_as3_bouy.remove();
-                $.flag_bouy_blip = 0;
-                $.flag_messages = 0;
-                $.flag_boat_message = 1;
-            }
-        }
-
-        if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false /* false */)) {
-            if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                Streaming.LoadCollisionWithScreen(3 /* LEVEL_SUBURBAN */);
-            }
-        }
-
-        if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 15.0, 15.0, false /* false */)) {
-            $.blip_as3_bouy.remove();
-            Text.ClearPrints();
-            $.flag_messages = 0;
-            // SCM GOTO → loop_as3_4 (not lowered; manual jump required)
-            throw new Error('unresolved GOTO loop_as3_4'); // fallback: would break linear control flow
-        }
-
-        if (DrugRun.HasBeenCompleted()) {
-            // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
-        }
-
-        if (DrugRun.HasPlaneBeenShotDown()) {
-            Text.ClearPrints();
-            Hud.ClearTimer($.timer_as3);
-            $.flag_messages = 0;
-            // SCM GOTO → loop_as3_6 (not lowered; manual jump required)
-            throw new Error('unresolved GOTO loop_as3_6'); // fallback: would break linear control flow
-        }
-
-        if ($.timer_as3 < 1) {
-            Hud.ClearTimer($.timer_as3);
-        }
-
-        //TEST BLIP FOR PLANE
-
-        const _res334 = DrugRun.FindPlaneCoordinates();
-        $.dodo_as3_x = _res334.x;
-        $.dodo_as3_y = _res334.y;
-        $.dodo_as3_z = _res334.z;
-        $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
-        $.blip_as3_dodo.changeScale(3);
-
-        // SCM GOSUB area_check
-        await area_check();
-        // fallback if label was not emitted as async function: no-op continues linearly
-        if ($.flag_mission_as3_failed == 1) {
-            // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
-        }
-        // SCM GOSUB baddies
-        await baddies();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-}
-
-async function loop_as3_3() {
-    // SCM GOTO → loop_as3_3 lowered to endless loop
-    while (true) {
-        await asyncWait(0);
-
-        if ($.flag_messages == 0) {
-            Text.PrintNow('AS3_3', 4000, 1); //Wait for the plane to start its approach!
-            $.flag_messages = 0;
-        }
-
-        if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
-            if ($.flag_boat_blip == 1) {
-                $.blip_as3_boat.remove();
-                $.flag_boat_blip = 0;
-            }
-            if ($.flag_bouy_blip == 0) {
-                $.blip_as3_bouy = Blip.AddForObject($.bouy_point);
-                $.flag_bouy_blip = 1;
-                $.flag_messages = 0;
-            }
-        }
-        if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
-            if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
-                $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
-                $.flag_boat_blip = 1;
-            }
-            if ($.flag_bouy_blip == 1) {
-                $.blip_as3_bouy.remove();
-                $.flag_bouy_blip = 0;
-                $.flag_messages = 0;
-            }
-        }
-
-        if ($.timer_as3 < 91000) {
-            if ($.flag_commence_approach == 0) {
-                DrugRun.Start();
-                $.flag_commence_approach = 1;
-                const _res335 = DrugRun.FindPlaneCoordinates();
-                $.dodo_as3_x = _res335.x;
-                $.dodo_as3_y = _res335.y;
-                $.dodo_as3_z = _res335.z;
-                $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
-                $.blip_as3_dodo.changeScale(3);
-            }
-            Text.ClearPrints();
-            $.flag_messages = 0;
-            // SCM GOTO → loop_as3_4 (not lowered; manual jump required)
-            throw new Error('unresolved GOTO loop_as3_4'); // fallback: would break linear control flow
-        }
-
-        if ($.timer_as3 < 1) {
-            Hud.ClearTimer($.timer_as3);
-        }
-
-        // SCM GOSUB baddies
-        await baddies();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-}
-
-async function loop_as3_4() {
-    // SCM GOTO → loop_as3_4 lowered to endless loop
-    while (true) {
-        await asyncWait(0);
-
-        $.blip_as3_dodo.remove();
-
-        //IF NOT IS_CURRENT_PLAYER_WEAPON player WEAPONTYPE_ROCKET
-
-        if ($.flag_messages == 0) {
-            Text.PrintNow('AS3_4', 4000, 1); //Use a rocket launcher to shoot the plane down!
-            $.flag_messages = 1;
-        }
-
-        if (!Car.IsDead($.player_as3_boat)) {
-            if ($.player.isInCar($.player_as3_boat) && $.flag_boat_blip == 1) {
-                $.blip_as3_boat.remove();
-                $.flag_boat_blip = 0;
-            }
-            if (!$.player.isInCar($.player_as3_boat) && $.flag_boat_blip == 0) {
-                $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
-                $.flag_boat_blip = 1;
-                $.flag_messages = 0;
-            }
-        }
-
-        if (DrugRun.HasBeenCompleted()) {
-            // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
-        }
-
-        if (DrugRun.HasPlaneBeenShotDown()) {
-            Text.ClearPrints();
-            Hud.ClearTimer($.timer_as3);
-            $.flag_messages = 0;
-            // SCM GOTO → loop_as3_6 (not lowered; manual jump required)
-            throw new Error('unresolved GOTO loop_as3_6'); // fallback: would break linear control flow
-        }
-
-        if ($.timer_as3 < 1) {
-            Hud.ClearTimer($.timer_as3);
-        }
-
-        //TEST BLIP FOR PLANE
-
-        const _res336 = DrugRun.FindPlaneCoordinates();
-        $.dodo_as3_x = _res336.x;
-        $.dodo_as3_y = _res336.y;
-        $.dodo_as3_z = _res336.z;
-        $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
-        $.blip_as3_dodo.changeScale(2);
-
-        // SCM GOSUB area_check
-        await area_check();
-        // fallback if label was not emitted as async function: no-op continues linearly
-        if ($.flag_mission_as3_failed == 1) {
-            // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
-        }
-        // SCM GOSUB baddies
-        await baddies();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-}
-
-async function loop_as3_6() {
     //FIND_DRUG_PLANE_COORDINATES dodo_as3_x dodo_as3_y dodo_as3_z
 
     $.blip_as3_boat.remove();
@@ -800,14 +840,14 @@ async function loop_as3_6() {
     $.charlie_8.addToVelocity(10.0, 10.0, 0.0);
 
     $.timer_as3_start = Clock.GetGameTimer();
-}
 
-async function loop_as3_7() {
+    // loop_as3_7: //----collect the packages!!--------------
+
     while ($.counter_charlie < 8) {
         await asyncWait(0);
-        // SCM GOSUB baddies
-        await baddies();
-        // fallback if label was not emitted as async function: no-op continues linearly
+
+        await baddies(); // SCM GOSUB baddies
+
         if ($.flag_counter_message == 0) {
             Text.PrintNow('AS3_5', 5000, 1); //Collect the cargo!
             $.flag_counter_message = 1;
@@ -825,14 +865,14 @@ async function loop_as3_7() {
                 $.charlie_1_y = _res337.y;
                 $.charlie_1_z = _res337.z;
                 /*
-        min_x = charlie_1_x - 0.2
-        max_x = charlie_1_x	+ 0.2
-        min_y = charlie_1_y	- 0.2
-        max_y = charlie_1_y	+ 0.2
-        min_z = charlie_1_z	- 0.2
-        max_z = charlie_1_z	+ 0.2
-        REMOVE_PARTICLE_EFFECTS_IN_AREA Min_x Min_y Min_z Max_x Max_y Max_z
-        */
+                min_x = charlie_1_x - 0.2
+                max_x = charlie_1_x	+ 0.2
+                min_y = charlie_1_y	- 0.2
+                max_y = charlie_1_y	+ 0.2
+                min_z = charlie_1_z	- 0.2
+                max_z = charlie_1_z	+ 0.2
+                REMOVE_PARTICLE_EFFECTS_IN_AREA Min_x Min_y Min_z Max_x Max_y Max_z
+                */
                 if ($.timer_as3_dif < 6000) {
                     Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
@@ -1087,6 +1127,7 @@ async function loop_as3_7() {
     }
 
     $.blip_stash.remove();
+
     //  ******************************************* START OF CUTSCENE ***************************
 
     $.player.makeSafeForCutscene();
@@ -1112,11 +1153,11 @@ async function loop_as3_7() {
     Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'note');
 
     /*
-  WHILE GET_FADING_STATUS
-  WAIT 0
+    WHILE GET_FADING_STATUS
+    WAIT 0
 
-  ENDWHILE
-  */
+    ENDWHILE
+    */
 
     Streaming.LoadAllModelsNow();
 
@@ -1215,14 +1256,13 @@ async function loop_as3_7() {
     Streaming.MarkModelAsNoLongerNeeded(2011 /* csitecutscene */);
 
     World.SwitchRubbish(true /* ON */);
+
     // ******************************************END OF CUTSCENE********************************
 
-    // SCM GOTO → mission_as3_passed (not lowered; manual jump required)
-    return;
-
-    // Mission Asuka Sub3 failed
+    return; // SCM GOTO → mission_as3_passed (not lowered; manual jump required)
 }
 
+// Mission Asuka Sub3 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 2000, 1);
 
@@ -1233,12 +1273,9 @@ async function onFailed() {
     if ($.player.isDead()) {
         Restart.OverrideHospital(2 /* LEVEL_COMMERCIAL */);
     }
-
-    return;
-
-    // mission Asuka Sub3 passed
 }
 
+// mission Asuka Sub3 passed
 async function onPassed() {
     $.flag_asuka_suburban_mission3_passed = 1;
     Text.PrintWithNumberBig('M_PASS', 45000, 5000, 1);
@@ -1252,17 +1289,14 @@ async function onPassed() {
     Stat.RegisterMissionPassed('AS3');
     Stat.PlayerMadeProgress(1);
     //START_NEW_SCRIPT asuka_suburban_mission4_loop
-
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_suburban_mission = 0;
 
-    Hud.ClearTimer($.timer_as3);
+    timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
     $.blip_as3_boat.remove();
     $.blip_as3_dodo.remove();
     $.blip_as3_bouy.remove();
@@ -1282,11 +1316,9 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
 
     Mission.Finish();
-    return;
-
-    ///________________________________GOSUBS_______GOSUBS________________________________BYTHEWAY
 }
 
+///________________________________GOSUBS_______GOSUBS________________________________BYTHEWAY
 async function baddies() {
     if ($.flag_created_baddies == 0) {
         if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
@@ -1395,8 +1427,6 @@ async function baddies() {
             }
         }
     }
-
-    return;
 }
 
 async function area_check() {
@@ -1407,69 +1437,6 @@ async function area_check() {
             }
         }
     }
-
-    return;
 }
 
-// MissionBoundary
-// *****************************************************************************************
-// *****************************************************************************************
-// *****************************************************************************************
-// ***********************************ASUKA SUBURBAN MISSION 3******************************
-// *****************************************************************************************
-// ***************************************'Plane to Sea'************************************
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_as3
-// fallback if label was not emitted as async function: no-op continues linearly
-// SCM GOSUB mission_as3_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-// SCM GOSUB mission_cleanup_as3
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT timer_as3 player_as3_boat dodo_as3
-
-// VAR_INT bouy_1_as3 bouy_2_as3 bouy_3_as3 bouy_4_as3 bouy_5_as3
-// VAR_INT bouy_6_as3 bouy_7_as3 bouy_8_as3 bouy_9_as3 bouy_10_as3
-// VAR_INT bouy_point
-
-// VAR_INT blip_as3_boat blip_as3_bouy blip_as3_dodo blip_stash
-// VAR_INT blip_charlie_1 blip_charlie_2 blip_charlie_3 blip_charlie_4
-// VAR_INT blip_charlie_5 blip_charlie_6 blip_charlie_7 blip_charlie_8
-
-// VAR_FLOAT platform_x platform_y
-// VAR_FLOAT dodo_as3_x dodo_as3_y dodo_as3_z
-
-// VAR_INT charlie_1 charlie_2 charlie_3 charlie_4
-// VAR_INT charlie_5 charlie_6 charlie_7 charlie_8
-// VAR_INT rocket_as3
-
-// VAR_FLOAT charlie_1_x charlie_1_y charlie_1_z
-// VAR_FLOAT charlie_2_x charlie_2_y charlie_2_z
-// VAR_FLOAT charlie_3_x charlie_3_y charlie_3_z
-// VAR_FLOAT charlie_4_x charlie_4_y charlie_4_z
-// VAR_FLOAT charlie_5_x charlie_5_y charlie_5_z
-// VAR_FLOAT charlie_6_x charlie_6_y charlie_6_z
-// VAR_FLOAT charlie_7_x charlie_7_y charlie_7_z
-// VAR_FLOAT charlie_8_x charlie_8_y charlie_8_z
-
-// VAR_FLOAT min_x max_x min_y max_y min_z max_z
-
-// VAR_INT counter_charlie flag_counter_message particle_time flag_particle flag_boat_message
-// VAR_INT flag_charlie_1 flag_charlie_2 flag_charlie_3 flag_charlie_4
-// VAR_INT flag_charlie_5 flag_charlie_6 flag_charlie_7 flag_charlie_8
-
-// VAR_INT flag_commence_approach flag_runway_blip flag_boat_blip flag_bouy_blip
-// VAR_INT timer_as3_start timer_as3_now timer_as3_dif
-// VAR_INT flag_created_baddies flag_mission_as3_failed
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-
