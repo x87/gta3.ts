@@ -301,18 +301,18 @@ async function body() {
             }
         }
 
-        if ($.packge_01 > 0 && $.packages_collected < 6) {
+        if ($.packge_01 > 0 && (packages_collected?.value ?? 0) < 6) {
             Text.PrintWithNumberNow('LOVE3_3', $.package_numbers, 5000, 1); //"The plane has dropped ~1~ of 8 packages."
         }
 
         if ($.packge_01 == 1) {
             if ($.float_packge_01.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++$.packages_collected;
                 if ($.counter_display_flag == 0) {
                     packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
+                ++packages_collected.value;
                 $.police_rating += 1;
                 $.player.alterWantedLevelNoDrop($.police_rating);
                 $.packge_01 = 2;
@@ -322,11 +322,11 @@ async function body() {
         if ($.packge_02 == 1) {
             if ($.float_packge_02.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
                     packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
+                ++packages_collected.value;
                 $.police_rating += 1;
                 $.player.alterWantedLevelNoDrop($.police_rating);
                 $.packge_02 = 2;
@@ -336,11 +336,11 @@ async function body() {
         if ($.packge_03 == 1) {
             if ($.float_packge_03.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
                     packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
+                ++packages_collected.value;
                 $.police_rating += 1;
                 $.player.alterWantedLevelNoDrop($.police_rating);
                 $.packge_03 = 2;
@@ -350,11 +350,11 @@ async function body() {
         if ($.packge_04 == 1) {
             if ($.float_packge_04.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
                     packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
+                ++packages_collected.value;
                 $.police_rating += 1;
                 $.player.alterWantedLevelNoDrop($.police_rating);
                 $.packge_04 = 2;
@@ -364,11 +364,11 @@ async function body() {
         if ($.packge_05 == 1) {
             if ($.float_packge_05.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
                     packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
+                ++packages_collected.value;
                 $.police_rating += 1;
                 $.player.alterWantedLevelNoDrop($.police_rating);
                 $.packge_05 = 2;
@@ -378,11 +378,11 @@ async function body() {
         if ($.packge_06 == 1) {
             if ($.float_packge_06.hasBeenCollected()) {
                 Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
-                ++packages_collected.value;
                 if ($.counter_display_flag == 0) {
                     packages_collected = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.packages_collected, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
                     $.counter_display_flag = 1;
                 }
+                ++packages_collected.value;
                 $.police_rating += 1;
                 $.player.alterWantedLevelNoDrop($.police_rating);
                 $.packge_06 = 2;
@@ -523,7 +523,7 @@ async function body() {
             }
         }
 
-        if (packages_collected.value == 6) {
+        if (packages_collected?.value == 6) {
             Text.PrintNow('LOVE3_2', 5000, 1); // "You have them all.  Take the package to Donald Love"
             $.plane_blip.remove();
             $.plane_blip = Blip.AddForCoord(87.3, -1548.6, 27.255); //130.0 -1585.0 26.0
@@ -648,8 +648,8 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_love_mission = 0;
 
-    plane_timer.clear(); // xxx: Hud.ClearTimer($.plane_timer);
-    packages_collected.clear(); // xxx: Hud.ClearCounter($.packages_collected);
+    plane_timer?.clear(); // xxx: Hud.ClearTimer($.plane_timer);
+    packages_collected?.clear(); // xxx: Hud.ClearCounter($.packages_collected);
     Streaming.MarkModelAsNoLongerNeeded(142 /* BOAT_SPEEDER */);
     Streaming.MarkModelAsNoLongerNeeded(141 /* PLANE_DEADDODO */);
     //SET_TARGET_CAR_FOR_MISSION_GARAGE loves_garage -1

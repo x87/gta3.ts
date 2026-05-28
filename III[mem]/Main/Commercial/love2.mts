@@ -413,7 +413,7 @@ async function body() {
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
                     if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
-                        $.flag_message = 3;                        
+                        $.flag_message = 3;
                         next_case = 'while_loop_4'; // SCM GOTO → while_loop_4
                         break;
                     }
@@ -545,12 +545,12 @@ async function body() {
                         $.player_car.setStrong(true /* true */);
                     }
                     /*
-            IF NOT IS_PLAYER_IN_MODEL player CAR_COLUMB
-            AND IS_PLAYER_IN_AREA_3D	player carpark_minx carpark_miny carpark_minz carpark_maxx carpark_maxy carpark_maxz false
-            PRINT_NOW (LOVE2_4) 3000 1 //The Yakuza have identified you!
-            GOTO mission_love2_failed
-            ENDIF
-            */
+                    IF NOT IS_PLAYER_IN_MODEL player CAR_COLUMB
+                    AND IS_PLAYER_IN_AREA_3D	player carpark_minx carpark_miny carpark_minz carpark_maxx carpark_maxy carpark_maxz false
+                    PRINT_NOW (LOVE2_4) 3000 1 //The Yakuza have identified you!
+                    GOTO mission_love2_failed
+                    ENDIF
+                    */
                     if (
                         $.flag_yak_attack_love2 == 0 &&
                         $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)
