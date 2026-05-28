@@ -236,9 +236,9 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    const _res1 = Clock.GetTimeOfDay();
-    $.hours_a1 = _res1.hours;
-    $.mins_a1 = _res1.minutes;
+    const { hours, minutes } = Clock.GetTimeOfDay();
+    $.hours_a1 = hours;
+    $.mins_a1 = minutes;
 
     $.hours_a1 = $.hours_a1 + 3;
     if ($.hours_a1 > 23) {

@@ -234,9 +234,9 @@ async function body() {
             } else {
                 Text.ClearThisPrint('JM6_5');
             }
-            const _res270 = Clock.GetTimeOfDay();
-            $.hours = _res270.hours;
-            $.minutes = _res270.minutes;
+            const { hours, minutes } = Clock.GetTimeOfDay();
+            $.hours = hours;
+            $.minutes = minutes;
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -317,9 +317,9 @@ async function body() {
 
         while (!$.Bank_job_door.slide(1087.523, -233.801, 13.5, 0.0, 0.0, 0.07, false /* FALSE */)) {
             await asyncWait(0);
-            const _res271 = Clock.GetTimeOfDay();
-            $.hours = _res271.hours;
-            $.minutes = _res271.minutes;
+            const { hours, minutes } = Clock.GetTimeOfDay();
+            $.hours = hours;
+            $.minutes = minutes;
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -363,9 +363,9 @@ async function body() {
                     // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
                 }
-                const _res272 = Clock.GetTimeOfDay();
-                $.hours = _res272.hours;
-                $.minutes = _res272.minutes;
+                const { hours, minutes } = Clock.GetTimeOfDay();
+                $.hours = hours;
+                $.minutes = minutes;
                 if ($.hours >= 17) {
                     Text.PrintNow('OUTTIME', 5000, 1);
                     // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -403,9 +403,9 @@ async function body() {
 
         while (!$.Bank_job_door.slide(1087.523, -233.801, 11.012, 0.0, 0.0, 0.2, false /* FALSE */)) {
             await asyncWait(0);
-            const _res273 = Clock.GetTimeOfDay();
-            $.hours = _res273.hours;
-            $.minutes = _res273.minutes;
+            const { hours, minutes } = Clock.GetTimeOfDay();
+            $.hours = hours;
+            $.minutes = minutes;
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
@@ -505,9 +505,9 @@ async function body() {
             } else {
                 Text.ClearThisPrint('JM6_5');
             }
-            const _res274 = Clock.GetTimeOfDay();
-            $.hours = _res274.hours;
-            $.minutes = _res274.minutes;
+            const { hours, minutes } = Clock.GetTimeOfDay();
+            $.hours = hours;
+            $.minutes = minutes;
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)

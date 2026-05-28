@@ -1269,7 +1269,7 @@ async function main() {
         // LaunchMission import.sc // xxx: moved before the main loop
         // LaunchMission camera.sc // xxx: moved before the main loop
         // LaunchMission gates.sc // xxx: moved before the main loop
-        // await asyncWait(0); // xxx: moved before the main loop
+        // WAIT 0 // xxx: moved before the main loop
 
         // ********************************create and delete all the contact bips**************************
 
@@ -1757,9 +1757,9 @@ async function joeys_buggy_loop() {
         if ($.player.isPlaying()) {
             if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
                 //START JOEYS BUGGY GENERATOR AT MISTYS
-                const _res360 = Clock.GetTimeOfDay();
-                $.hours = _res360.hours;
-                $.minutes = _res360.minutes;
+                const { hours, minutes } = Clock.GetTimeOfDay();
+                $.hours = hours;
+                $.minutes = minutes;
                 if ($.hours > 17 && $.hours < 24) {
                     if ($.started_buggy_generator_before == 0) {
                         $.joeys_buggy.switch(101);
@@ -2103,10 +2103,8 @@ async function yardie_blip_loop() {
 // ***************************************Suburban Level************************************
 
 async function sub_save_loop() {
-    {
-        //	Should be called before main loop
-        // SCRIPT_NAME S_SAVE
-    }
+    //	Should be called before main loop
+    // SCRIPT_NAME S_SAVE
 
     if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(-670.5, 3.9, 18.0, -660.0, 12.7, 22.0, false /* FALSE */)) {
         log('[*] Loading from suburban area save...');
