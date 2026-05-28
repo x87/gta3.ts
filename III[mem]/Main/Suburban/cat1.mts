@@ -1,8 +1,44 @@
 // Generated from Main/Suburban/cat1.sc
 import { $ } from '../../utils';
+import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 
+// *******************************************************************************************
+// *******************************************************************************************
+// *************************************Cat mission 1*****************************************
+// *************************************FINAL MISSION*****************************************
+// *******************************************************************************************
+// *******************************************************************************************
+// *******************************************************************************************
+
+let countdown_cat1: DisplayedTimer;
 
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_cat1
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_cat1_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_cat1
+
+    // Variables for mission
+
+    // VAR_INT blip1_cat1 marias_blip
+    // VAR_INT colubian_guard1 colubian_guard2 colubian_guard3 colubian_guard4 colubian_guard5 colubian_guard6 colubian_guard7 colubian_guard8
+    // VAR_INT colubian_guard9 colubian_guard10 colubian_guard11 colubian_guard12 colubian_guard13 colubian_guard14 colubian_guard15 colubian_guard16
+    // VAR_INT colubian_guard17 colubian_guard18 colubian_guard19 colubian_guard20 colubian_guard21 colubian_guard22 colubian_guard23 colubian_guard24
+    // VAR_INT colubian_guard25 colubian_guard26
+    // VAR_INT colubian_car1 colubian_car2 colubian_car3 colubian_car4 colubian_car5 colubian_car6 colubian_car7 colubian_car8
+    // VAR_INT escape_chopper set_as_leader_before been_on_heli_pad Dead_guards_gun
+    // VAR_INT countdown_cat1 rocket_launch added_the_blip_for_maria maria_created_before
+    // VAR_INT camera_cut first_credits_loop
+    // VAR_INT shaggin_waggin maria_prossie
+    // VAR_FLOAT playerx_cat playery_cat playerz_cat
+
+    // ***************************************Mission Start*************************************
+
     Stat.RegisterMissionGiven();
     ONMISSION = true;
     $.flag_player_on_cat_mission = 1;
@@ -21,345 +57,343 @@ async function body() {
     Zone.SetCarInfo('WEE_DAM', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     Zone.SetCarInfo('WEE_DAM', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-    {
-        $.player.clearWantedLevel();
+    $.player.clearWantedLevel();
 
-        Streaming.LoadSpecialCharacter(1, 'Maria');
-        Streaming.LoadSpecialCharacter(2, 'cat');
-        Streaming.LoadSpecialCharacter(3, 'col2');
-        Streaming.LoadSpecialCharacter(4, 'colrob');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'fulcase');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'cath');
-        Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
-        Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
-        Streaming.RequestModel(138 /* CAR_COLUMB */);
-        Streaming.RequestModel(145 /* CAR_FLATBED */);
-        Streaming.RequestModel(2570 /* New_Colmansn */);
-        Streaming.RequestModel(2343 /* landpart15 */);
-        Streaming.RequestModel(2559 /* Security_Hut */);
-        Streaming.RequestModel(2384 /* columansion_wall */);
+    Streaming.LoadSpecialCharacter(1, 'Maria');
+    Streaming.LoadSpecialCharacter(2, 'cat');
+    Streaming.LoadSpecialCharacter(3, 'col2');
+    Streaming.LoadSpecialCharacter(4, 'colrob');
+    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'fulcase');
+    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'cath');
+    Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
+    Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
+    Streaming.RequestModel(138 /* CAR_COLUMB */);
+    Streaming.RequestModel(145 /* CAR_FLATBED */);
+    Streaming.RequestModel(2570 /* New_Colmansn */);
+    Streaming.RequestModel(2343 /* landpart15 */);
+    Streaming.RequestModel(2559 /* Security_Hut */);
+    Streaming.RequestModel(2384 /* columansion_wall */);
 
-        Streaming.LoadAllModelsNow();
+    Streaming.LoadAllModelsNow();
 
-        while (
-            !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasSpecialCharacterLoaded(2) ||
-            !Streaming.HasSpecialCharacterLoaded(4) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */)
-        ) {
-            await asyncWait(0);
-        }
+    while (
+        !Streaming.HasSpecialCharacterLoaded(1) ||
+        !Streaming.HasSpecialCharacterLoaded(2) ||
+        !Streaming.HasSpecialCharacterLoaded(4) ||
+        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
+        !Streaming.HasModelLoaded(186 /* cut_obj2 */)
+    ) {
+        await asyncWait(0);
+    }
 
-        while (!Streaming.HasModelLoaded(20 /* PED_GANG_COLOMBIAN_A */) || !Streaming.HasModelLoaded(21 /* PED_GANG_COLOMBIAN_B */)) {
-            await asyncWait(0);
-        }
+    while (!Streaming.HasModelLoaded(20 /* PED_GANG_COLOMBIAN_A */) || !Streaming.HasModelLoaded(21 /* PED_GANG_COLOMBIAN_B */)) {
+        await asyncWait(0);
+    }
 
-        while (
-            !Streaming.HasModelLoaded(138 /* CAR_COLUMB */) ||
-            !Streaming.HasModelLoaded(2570 /* New_Colmansn */) ||
-            !Streaming.HasModelLoaded(2343 /* landpart15 */) ||
-            !Streaming.HasModelLoaded(2559 /* Security_Hut */) ||
-            !Streaming.HasModelLoaded(2384 /* columansion_wall */)
-        ) {
-            await asyncWait(0);
-        }
+    while (
+        !Streaming.HasModelLoaded(138 /* CAR_COLUMB */) ||
+        !Streaming.HasModelLoaded(2570 /* New_Colmansn */) ||
+        !Streaming.HasModelLoaded(2343 /* landpart15 */) ||
+        !Streaming.HasModelLoaded(2559 /* Security_Hut */) ||
+        !Streaming.HasModelLoaded(2384 /* columansion_wall */)
+    ) {
+        await asyncWait(0);
+    }
 
-        Streaming.LoadScene(-363.5, 243.5, 59.3);
+    Streaming.LoadScene(-363.5, 243.5, 59.3);
 
-        Cutscene.Load('C1_TEX');
-        Cutscene.SetOffset(-358.553, 249.189, 59.329);
+    Cutscene.Load('C1_TEX');
+    Cutscene.SetOffset(-358.553, 249.189, 59.329);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-        $.cs_player.setAnim('player');
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player.setAnim('player');
 
-        $.cs_maria = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
-        $.cs_maria.setAnim('maria');
+    $.cs_maria = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_maria.setAnim('maria');
 
-        $.cs_cat = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
-        $.cs_cat.setAnim('cat');
+    $.cs_cat = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_cat.setAnim('cat');
 
-        //CREATE_CUTSCENE_OBJECT PED_SPECIAL3 cs_colub1
-        //SET_CUTSCENE_ANIM cs_colub1 col2 //(unarmed)
+    //CREATE_CUTSCENE_OBJECT PED_SPECIAL3 cs_colub1
+    //SET_CUTSCENE_ANIM cs_colub1 col2 //(unarmed)
 
-        $.cs_colub2 = CutsceneObject.Create(29 /* PED_SPECIAL4 */);
-        $.cs_colub2.setAnim('colrob'); //(Pistol)
+    $.cs_colub2 = CutsceneObject.Create(29 /* PED_SPECIAL4 */);
+    $.cs_colub2.setAnim('colrob'); //(Pistol)
 
-        $.cs_colub3 = CutsceneObject.Create(20 /* PED_GANG_COLOMBIAN_A */);
-        $.cs_colub3.setAnim('gang11'); //(unarmed)
+    $.cs_colub3 = CutsceneObject.Create(20 /* PED_GANG_COLOMBIAN_A */);
+    $.cs_colub3.setAnim('gang11'); //(unarmed)
 
-        $.cs_colub4 = CutsceneObject.Create(21 /* PED_GANG_COLOMBIAN_B */);
-        $.cs_colub4.setAnim('gang12'); //(unarmed)
+    $.cs_colub4 = CutsceneObject.Create(21 /* PED_GANG_COLOMBIAN_B */);
+    $.cs_colub4.setAnim('gang12'); //(unarmed)
 
-        $.cs_case = CutsceneObject.Create(185 /* cut_obj1 */);
-        $.cs_case.setAnim('fulcase');
+    $.cs_case = CutsceneObject.Create(185 /* cut_obj1 */);
+    $.cs_case.setAnim('fulcase');
 
-        $.cs_cathead = CutsceneHead.Create($.cs_cat, 186 /* cut_obj2 */);
-        $.cs_cathead.setAnim('cat');
+    $.cs_cathead = CutsceneHead.Create($.cs_cat, 186 /* cut_obj2 */);
+    $.cs_cathead.setAnim('cat');
 
-        $.colubian_car1 = Car.Create(138 /* CAR_COLUMB */, -422.9, 291.8, 61.8);
-        $.colubian_car1.setHeading(226.0);
+    $.colubian_car1 = Car.Create(138 /* CAR_COLUMB */, -422.9, 291.8, 61.8);
+    $.colubian_car1.setHeading(226.0);
 
-        $.colubian_guard1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -395.4, 293.4, -100.0); //Near Cat
-        $.colubian_guard1.giveWeapon(3 /* WEAPONTYPE_UZI */, 200);
-        //ADD_ARMOUR_TO_CHAR colubian_guard1 100
+    $.colubian_guard1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -395.4, 293.4, -100.0); //Near Cat
+    $.colubian_guard1.giveWeapon(3 /* WEAPONTYPE_UZI */, 200);
+    //ADD_ARMOUR_TO_CHAR colubian_guard1 100
 
-        $.colubian_guard3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -368.1, 252.4, -100.0); //Guarding gate (west)
-        $.colubian_guard3.giveWeapon(3 /* WEAPONTYPE_UZI */, 200);
-        $.colubian_guard3.setHeading(0.0);
+    $.colubian_guard3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -368.1, 252.4, -100.0); //Guarding gate (west)
+    $.colubian_guard3.giveWeapon(3 /* WEAPONTYPE_UZI */, 200);
+    $.colubian_guard3.setHeading(0.0);
 
-        $.colubian_guard4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -358.0, 251.8, -100.0); //Guarding gate	(east)
-        $.colubian_guard4.giveWeapon(3 /* WEAPONTYPE_UZI */, 200);
-        $.colubian_guard4.setHeading(0.0);
+    $.colubian_guard4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -358.0, 251.8, -100.0); //Guarding gate	(east)
+    $.colubian_guard4.giveWeapon(3 /* WEAPONTYPE_UZI */, 200);
+    $.colubian_guard4.setHeading(0.0);
 
-        $.colubian_guard12 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -392.4, 301.0, 70.7); //On masion balcony (west)
-        $.colubian_guard12.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 200);
-        $.colubian_guard12.setHeading(0.0);
-        $.colubian_guard12.setStayInSamePlace(true /* TRUE */);
+    $.colubian_guard12 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -392.4, 301.0, 70.7); //On masion balcony (west)
+    $.colubian_guard12.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 200);
+    $.colubian_guard12.setHeading(0.0);
+    $.colubian_guard12.setStayInSamePlace(true /* TRUE */);
 
-        $.colubian_guard13 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -374.0, 301.0, 70.7); //On masion balcony (east)
-        $.colubian_guard13.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 200);
-        $.colubian_guard13.setHeading(0.0);
-        $.colubian_guard13.setStayInSamePlace(true /* TRUE */);
+    $.colubian_guard13 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -374.0, 301.0, 70.7); //On masion balcony (east)
+    $.colubian_guard13.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 200);
+    $.colubian_guard13.setHeading(0.0);
+    $.colubian_guard13.setStayInSamePlace(true /* TRUE */);
 
-        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
 
-        $.colubian_guard1.turnToFacePlayer($.player);
-        $.colubian_guard12.turnToFacePlayer($.player);
-        $.colubian_guard13.turnToFacePlayer($.player);
-        World.ClearArea(-362.8, 246.5, 60.0, 4.5, true /* TRUE */);
+    $.colubian_guard1.turnToFacePlayer($.player);
+    $.colubian_guard12.turnToFacePlayer($.player);
+    $.colubian_guard13.turnToFacePlayer($.player);
+    World.ClearArea(-362.8, 246.5, 60.0, 4.5, true /* TRUE */);
 
-        $.colubian_guard2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -380.1, 282.6, -100.0); //Dead guard
-        $.colubian_guard2.setHeading(229.0);
-        $.colubian_guard2.setHealth(0);
+    $.colubian_guard2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -380.1, 282.6, -100.0); //Dead guard
+    $.colubian_guard2.setHeading(229.0);
+    $.colubian_guard2.setHealth(0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
-        Cutscene.Start();
+    World.SwitchRubbish(false /* OFF */);
+    Streaming.Switch(true /* ON */);
+    Cutscene.Start();
 
-        // Displays cutscene text
+    // Displays cutscene text
 
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 22000) {
+        await asyncWait(0);
         $.cs_time = Cutscene.GetTime();
+    }
 
-        while ($.cs_time < 22000) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
+    $.player.setCoordinates(-363.3, 253.0, -100.0);
+    //PRINT_NOW ( CAT2_A1 ) 3000 2 // Mission brief
+
+    while ($.cs_time < 32166) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('CAT2_A', 10000, 2); // Mission brief
+
+    while ($.cs_time < 38548) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('CAT2_B', 10000, 2); // Mission brief
+
+    while ($.cs_time < 40043) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('CAT2_B2', 10000, 2); // Mission brief
+
+    while ($.cs_time < 43684) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('CAT2_C', 10000, 2); // Mission brief
+
+    while ($.cs_time < 45711) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('CAT2_D', 10000, 2); // Mission brief
+
+    while ($.cs_time < 52048) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('CAT2_E', 10000, 2); // Mission brief
+
+    while ($.cs_time < 54527) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('CAT2_E2', 10000, 2); // Mission brief
+
+    while ($.cs_time < 57558) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('CAT2_E3', 10000, 2); // Mission brief
+
+    while ($.cs_time < 58661) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.ClearPrints();
+
+    while ($.cs_time < 65000) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    //DO_FADE 1500 FADE_OUT
+
+    //WHILE GET_FADING_STATUS
+    //	WAIT 0
+    //ENDWHILE
+
+    Text.ClearPrints();
+
+    $.Dead_guards_gun = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 3 /* PICKUP_ONCE */, 48, -380.1, 282.6, 62.6);
+    World.ClearArea(-381.8, 284.0, 62.9, 1.0, true /* TRUE */);
+    $.player.setCoordinates(-381.8, 284.0, -100.0);
+    $.player.setHeading(232.0);
+
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
+
+    //SWITCH_WORLD_PROCESSING ON
+
+    World.SwitchRubbish(true /* ON */);
+    Cutscene.Clear();
+    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+    Camera.SetBehindPlayer();
+
+    $.player.removeAllWeapons();
+
+    //WAIT 500
+
+    //DO_FADE 1500 FADE_IN
+
+    if ($.nicked_half_a_mil_before == 0) {
+        $.player.addScore(-500000);
+        $.nicked_half_a_mil_before = 1;
+    }
+
+    Streaming.UnloadSpecialCharacter(3);
+    Streaming.UnloadSpecialCharacter(4);
+    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
+    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(2570 /* New_Colmansn */);
+    Streaming.MarkModelAsNoLongerNeeded(2343 /* landpart15 */);
+    Streaming.MarkModelAsNoLongerNeeded(2559 /* Security_Hut */);
+    Streaming.MarkModelAsNoLongerNeeded(2384 /* columansion_wall */);
+
+    while (!Streaming.HasModelLoaded(145 /* CAR_FLATBED */)) {
+        await asyncWait(0);
+    }
+
+    Text.PrintNow('CATINF1', 5000, 2); // Mission brief
+
+    await asyncWait(1000);
+
+    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+    //GOTO last_cutscene //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    //flag_cat_mission1_passed = 1
+    //START_NEW_SCRIPT credits_loop
+    //GOSUB credits
+
+    $.countdown_cat1 = 421000;
+    countdown_cat1 = new Timer($.countdown_cat1).display(); // xxx: Hud.DisplayTimer($.countdown_cat1);
+    if (!Char.IsDead($.colubian_guard1) && !Char.IsDead($.colubian_guard2) && !Char.IsDead($.colubian_guard12) && !Char.IsDead($.colubian_guard13)) {
+        $.colubian_guard1.setObjKillPlayerAnyMeans($.player);
+        $.colubian_guard1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.colubian_guard2.setObjKillPlayerAnyMeans($.player);
+        $.colubian_guard2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.colubian_guard12.setObjKillPlayerAnyMeans($.player);
+        $.colubian_guard12.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.colubian_guard13.setObjKillPlayerAnyMeans($.player);
+        $.colubian_guard13.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    }
+
+    if (!Char.IsDead($.colubian_guard3) && !Char.IsDead($.colubian_guard4)) {
+        $.colubian_guard3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.colubian_guard4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    }
+
+    Path.SwitchPedRoadsOff(-942.6, 337.0, 10.0, -953.6, 361.4, 30.0); // DAM
+
+    while ($.player.isInArea3D(-448.0, 241.7, 50.0, -292.4, 365.2, 90.0, false /* FALSE */)) {
+        await asyncWait(0);
+        if (countdown_cat1.value == 0) {
+            // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
         }
+        $.player.clearWantedLevel();
+    }
 
-        $.player.setCoordinates(-363.3, 253.0, -100.0);
-        //PRINT_NOW ( CAT2_A1 ) 3000 2 // Mission brief
+    CatalinaHeli.Start();
 
-        while ($.cs_time < 32166) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    $.escape_chopper = -1 as any;
 
-        Text.PrintNow('CAT2_A', 10000, 2); // Mission brief
+    while ($.escape_chopper == (-1 as any)) {
+        await asyncWait(0);
+        $.escape_chopper = CatalinaHeli.Grab();
+    }
 
-        while ($.cs_time < 38548) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
+    await asyncWait(1000);
 
-        Text.PrintNow('CAT2_B', 10000, 2); // Mission brief
-
-        while ($.cs_time < 40043) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('CAT2_B2', 10000, 2); // Mission brief
-
-        while ($.cs_time < 43684) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('CAT2_C', 10000, 2); // Mission brief
-
-        while ($.cs_time < 45711) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('CAT2_D', 10000, 2); // Mission brief
-
-        while ($.cs_time < 52048) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('CAT2_E', 10000, 2); // Mission brief
-
-        while ($.cs_time < 54527) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('CAT2_E2', 10000, 2); // Mission brief
-
-        while ($.cs_time < 57558) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('CAT2_E3', 10000, 2); // Mission brief
-
-        while ($.cs_time < 58661) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.ClearPrints();
-
-        while ($.cs_time < 65000) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        //DO_FADE 1500 FADE_OUT
-
-        //WHILE GET_FADING_STATUS
-        //	WAIT 0
-        //ENDWHILE
-
-        Text.ClearPrints();
-
-        $.Dead_guards_gun = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 3 /* PICKUP_ONCE */, 48, -380.1, 282.6, 62.6);
-        World.ClearArea(-381.8, 284.0, 62.9, 1.0, true /* TRUE */);
-        $.player.setCoordinates(-381.8, 284.0, -100.0);
-        $.player.setHeading(232.0);
-
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
-
-        //SWITCH_WORLD_PROCESSING ON
-
-        World.SwitchRubbish(true /* ON */);
-        Cutscene.Clear();
+    if (!Car.IsDead($.escape_chopper)) {
+        $.blip1_cat1 = Blip.AddForCar($.escape_chopper);
+        $.blip1_cat1.changeDisplay(2 /* BLIP_ONLY */);
+        Camera.SetFixedPosition(-364.5, 243.7, 62.7, 0.0, 0.0, 0.0);
+        Camera.PointAtCar($.escape_chopper, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Hud.SwitchWidescreen(true /* ON */);
+        $.player.setControl(false /* Off */);
+        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
         Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-        Camera.SetBehindPlayer();
+        $.escape_chopper.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+    }
 
-        $.player.removeAllWeapons();
+    if ($.player.isInAnyCar()) {
+        $.player.applyBrakesToCar(true /* ON */);
+    }
 
-        //WAIT 500
+    await asyncWait(5000);
 
-        //DO_FADE 1500 FADE_IN
+    Camera.Restore();
+    Hud.SwitchWidescreen(false /* OFF */);
+    $.player.setControl(true /* ON */);
+    $.player.applyBrakesToCar(false /* OFF */);
+    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
 
-        if ($.nicked_half_a_mil_before == 0) {
-            $.player.addScore(-500000);
-            $.nicked_half_a_mil_before = 1;
-        }
-
-        Streaming.UnloadSpecialCharacter(3);
-        Streaming.UnloadSpecialCharacter(4);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(2570 /* New_Colmansn */);
-        Streaming.MarkModelAsNoLongerNeeded(2343 /* landpart15 */);
-        Streaming.MarkModelAsNoLongerNeeded(2559 /* Security_Hut */);
-        Streaming.MarkModelAsNoLongerNeeded(2384 /* columansion_wall */);
-
-        while (!Streaming.HasModelLoaded(145 /* CAR_FLATBED */)) {
-            await asyncWait(0);
-        }
-
-        Text.PrintNow('CATINF1', 5000, 2); // Mission brief
-
-        await asyncWait(1000);
-
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-        //GOTO last_cutscene //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        //flag_cat_mission1_passed = 1
-        //START_NEW_SCRIPT credits_loop
-        //GOSUB credits
-
-        $.countdown_cat1 = 421000;
-        Hud.DisplayTimer($.countdown_cat1);
-
-        if (!Char.IsDead($.colubian_guard1) && !Char.IsDead($.colubian_guard2) && !Char.IsDead($.colubian_guard12) && !Char.IsDead($.colubian_guard13)) {
-            $.colubian_guard1.setObjKillPlayerAnyMeans($.player);
-            $.colubian_guard1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.colubian_guard2.setObjKillPlayerAnyMeans($.player);
-            $.colubian_guard2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.colubian_guard12.setObjKillPlayerAnyMeans($.player);
-            $.colubian_guard12.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.colubian_guard13.setObjKillPlayerAnyMeans($.player);
-            $.colubian_guard13.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        }
-
-        if (!Char.IsDead($.colubian_guard3) && !Char.IsDead($.colubian_guard4)) {
-            $.colubian_guard3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.colubian_guard4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        }
-
-        Path.SwitchPedRoadsOff(-942.6, 337.0, 10.0, -953.6, 361.4, 30.0); // DAM
-
-        while ($.player.isInArea3D(-448.0, 241.7, 50.0, -292.4, 365.2, 90.0, false /* FALSE */)) {
-            await asyncWait(0);
-            if ($.countdown_cat1 == 0) {
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
-            }
-            $.player.clearWantedLevel();
-        }
-
-        CatalinaHeli.Start();
-
-        $.escape_chopper = -1;
-
-        while ($.escape_chopper == -1) {
-            await asyncWait(0);
-            $.escape_chopper = CatalinaHeli.Grab();
-        }
-
-        await asyncWait(1000);
-
-        if (!Car.IsDead($.escape_chopper)) {
-            $.blip1_cat1 = Blip.AddForCar($.escape_chopper);
-            $.blip1_cat1.changeDisplay(2 /* BLIP_ONLY */);
-            Camera.SetFixedPosition(-364.5, 243.7, 62.7, 0.0, 0.0, 0.0);
-            Camera.PointAtCar($.escape_chopper, 15 /* FIXED */, 1 /* INTERPOLATION */);
-            Hud.SwitchWidescreen(true /* ON */);
-            $.player.setControl(false /* Off */);
-            Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-            Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-            $.escape_chopper.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
-        }
-
-        if ($.player.isInAnyCar()) {
-            $.player.applyBrakesToCar(true /* ON */);
-        }
-
-        await asyncWait(5000);
-
-        Camera.Restore();
-        Hud.SwitchWidescreen(false /* OFF */);
-        $.player.setControl(true /* ON */);
+    if ($.player.isInAnyCar()) {
         $.player.applyBrakesToCar(false /* OFF */);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+    }
 
-        if ($.player.isInAnyCar()) {
-            $.player.applyBrakesToCar(false /* OFF */);
-        }
+    Text.PrintNow('CATINF2', 5000, 2); // Mission brief
 
-        Text.PrintNow('CATINF2', 5000, 2); // Mission brief
-
+    before_end_of_game: {
         while (!$.player.isInZone('BIG_DAM')) {
             await asyncWait(0);
-            if ($.countdown_cat1 == 0) {
+            if (countdown_cat1.value == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
             }
             if (CatalinaHeli.HasBeenShotDown()) {
-                // SCM GOTO → end_of_game (not lowered; manual jump required)
-                throw new Error('unresolved GOTO end_of_game'); // fallback: would break linear control flow
+                break before_end_of_game; // SCM GOTO → end_of_game
             }
             $.player.clearWantedLevel();
         }
@@ -402,14 +436,13 @@ async function body() {
 
         while (!$.player.isInZone('WEE_DAM')) {
             await asyncWait(0);
-            if ($.countdown_cat1 == 0) {
+            if (countdown_cat1.value == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
             }
             if (CatalinaHeli.HasBeenShotDown()) {
-                // SCM GOTO → end_of_game (not lowered; manual jump required)
-                throw new Error('unresolved GOTO end_of_game'); // fallback: would break linear control flow
+                break before_end_of_game; // SCM GOTO → end_of_game
             }
             $.player.clearWantedLevel();
         }
@@ -420,21 +453,20 @@ async function body() {
 
         //SWITCH_PED_ROADS_ON -952.5 361.4 10.0 -939.3 374.0 30.0 // DAM
         /*
-  SETUP_ZONE_PED_INFO WEE_DAM DAY   (15) 0 0 0 0 0 1000 0 0
-  SETUP_ZONE_PED_INFO WEE_DAM NIGHT (15) 0 0 0 0 0 1000 0 0
-  SETUP_ZONE_CAR_INFO WEE_DAM DAY   (0) 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-  SETUP_ZONE_CAR_INFO WEE_DAM NIGHT (0) 0 0 0 0 0 0 0 0 0 0 0 0 0	0
-  */
+        SETUP_ZONE_PED_INFO WEE_DAM DAY   (15) 0 0 0 0 0 1000 0 0
+        SETUP_ZONE_PED_INFO WEE_DAM NIGHT (15) 0 0 0 0 0 1000 0 0
+        SETUP_ZONE_CAR_INFO WEE_DAM DAY   (0) 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+        SETUP_ZONE_CAR_INFO WEE_DAM NIGHT (0) 0 0 0 0 0 0 0 0 0 0 0 0 0	0
+        */
 
         while (!$.player.isInArea3D(-927.4, 391.5, 50.0, -1124.3, 485.1, 0.0, false /* FALSE */)) {
             await asyncWait(0);
-            if ($.countdown_cat1 == 0) {
+            if (countdown_cat1.value == 0) {
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
             }
             if (CatalinaHeli.HasBeenShotDown()) {
-                // SCM GOTO → end_of_game (not lowered; manual jump required)
-                throw new Error('unresolved GOTO end_of_game'); // fallback: would break linear control flow
+                break before_end_of_game; // SCM GOTO → end_of_game
             }
             $.player.clearWantedLevel();
         }
@@ -545,14 +577,13 @@ async function body() {
 
         while (!$.player.isInArea3D(-1111.2, 446.0, 20.0, -1221.7, 366.6, 30.0, false /* FALSE */)) {
             await asyncWait(0);
-            if ($.countdown_cat1 == 0) {
+            if (countdown_cat1.value == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
             }
             if (CatalinaHeli.HasBeenShotDown()) {
-                // SCM GOTO → end_of_game (not lowered; manual jump required)
-                throw new Error('unresolved GOTO end_of_game'); // fallback: would break linear control flow
+                break before_end_of_game; // SCM GOTO → end_of_game
             }
             $.player.clearWantedLevel();
         }
@@ -687,7 +718,7 @@ async function body() {
             $.playerx_cat = _res345.x;
             $.playery_cat = _res345.y;
             $.playerz_cat = _res345.z;
-            if ($.countdown_cat1 == 0) {
+            if (countdown_cat1.value == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
@@ -709,18 +740,18 @@ async function body() {
                 }
             }
             /*
-    IF NOT IS_CAR_DEAD escape_chopper
-    IF LOCATE_PLAYER_ANY_MEANS_CAR_3D Player escape_chopper 20.0 20.0 30.0 FALSE
-    GET_PLAYER_COORDINATES Player playerx_cat playery_cat playerz_cat
-    //playerz_cat = playerz_cat + 1
+            IF NOT IS_CAR_DEAD escape_chopper
+            IF LOCATE_PLAYER_ANY_MEANS_CAR_3D Player escape_chopper 20.0 20.0 30.0 FALSE
+            GET_PLAYER_COORDINATES Player playerx_cat playery_cat playerz_cat
+            //playerz_cat = playerz_cat + 1
 
-    SET_FIXED_CAMERA_POSITION playerx_cat playery_cat playerz_cat 0.0 0.0 0.0
-    POINT_CAMERA_AT_CAR escape_chopper FIXED INTERPOLATION
-    ELSE
-    RESTORE_CAMERA
-    ENDIF
-    ENDIF
-    */
+            SET_FIXED_CAMERA_POSITION playerx_cat playery_cat playerz_cat 0.0 0.0 0.0
+            POINT_CAMERA_AT_CAR escape_chopper FIXED INTERPOLATION
+            ELSE
+            RESTORE_CAMERA
+            ENDIF
+            ENDIF
+            */
             if ($.player.isInArea3D(-1142.0, 327.8, 29.0, -1215.6, 368.4, 40.0, false /* FALSE */)) {
                 if ($.been_on_heli_pad == 0) {
                     if (!Char.IsDead($.colubian_guard10)) {
@@ -744,348 +775,339 @@ async function body() {
             }
             $.player.clearWantedLevel();
         }
-
-        //RESTORE_CAMERA
     }
 
-    async function end_of_game() {
-        Camera.SetFadingColor(255, 255, 255);
-        Camera.DoFade(500, 0 /* FADE_OUT */);
+    //RESTORE_CAMERA
+    Camera.SetFadingColor(255, 255, 255);
+    Camera.DoFade(500, 0 /* FADE_OUT */);
 
-        Hud.ClearTimer($.countdown_cat1);
-        CatalinaHeli.Remove();
+    countdown_cat1.clear(); // xxx: Hud.ClearTimer($.countdown_cat1);
+    CatalinaHeli.Remove();
 
-        if ($.maria_created_before == 0) {
-            $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, -1201.6, 338.6, -100.0);
-            $.maria.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
-            $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
-            $.maria.lookAtPlayerAlways($.player);
-            $.maria.setHeading(339.0);
+    if ($.maria_created_before == 0) {
+        $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, -1201.6, 338.6, -100.0);
+        $.maria.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+        $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
+        $.maria.lookAtPlayerAlways($.player);
+        $.maria.setHeading(339.0);
+    }
+
+    Camera.DoFade(500, 1 /* FADE_IN */);
+
+    while (!$.maria.isInPlayersGroup($.player)) {
+        await asyncWait(0);
+        if (Char.IsDead($.maria)) {
+            Text.PrintNow('BITCH_D', 5000, 1);
+            // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
         }
-
-        Camera.DoFade(500, 1 /* FADE_IN */);
-
-        while (!$.maria.isInPlayersGroup($.player)) {
-            await asyncWait(0);
-            if (Char.IsDead($.maria)) {
-                Text.PrintNow('BITCH_D', 5000, 1);
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+        if (!$.maria.isInPlayersGroup($.player)) {
+            if ($.added_the_blip_for_maria == 0) {
+                $.marias_blip = Blip.AddForChar($.maria);
+                $.added_the_blip_for_maria = 1;
             }
-            if (!$.maria.isInPlayersGroup($.player)) {
-                if ($.added_the_blip_for_maria == 0) {
-                    $.marias_blip = Blip.AddForChar($.maria);
-                    $.added_the_blip_for_maria = 1;
-                }
-            } else {
-                if ($.added_the_blip_for_maria == 1) {
-                    $.marias_blip.remove();
-                    $.added_the_blip_for_maria = 0;
-                }
+        } else {
+            if ($.added_the_blip_for_maria == 1) {
+                $.marias_blip.remove();
+                $.added_the_blip_for_maria = 0;
             }
-            if ($.player.locateOnFootChar3D($.maria, 10.0, 10.0, 3.0, false /* FALSE */)) {
-                if ($.set_as_leader_before == 0) {
-                    $.maria.stopLooking();
-                    $.maria.followPlayer($.player);
-                    $.set_as_leader_before = 1;
-                }
-            } else {
-                if ($.set_as_leader_before == 1) {
-                    $.set_as_leader_before = 0;
-                }
-            }
-            if ($.player.isInArea3D(-1142.0, 327.8, 29.0, -1215.6, 368.4, 40.0, false /* FALSE */)) {
-                if ($.been_on_heli_pad == 0) {
-                    if (!Char.IsDead($.colubian_guard10)) {
-                        $.colubian_guard10.setStayInSamePlace(false /* FALSE */);
-                        $.colubian_guard10.setObjKillPlayerAnyMeans($.player);
-                    }
-                    if (!Char.IsDead($.colubian_guard20)) {
-                        $.colubian_guard20.setStayInSamePlace(false /* FALSE */);
-                        $.colubian_guard20.setObjKillPlayerAnyMeans($.player);
-                    }
-                    if (!Char.IsDead($.colubian_guard21)) {
-                        $.colubian_guard21.setStayInSamePlace(false /* FALSE */);
-                        $.colubian_guard21.setObjKillPlayerAnyMeans($.player);
-                    }
-                    if (!Char.IsDead($.colubian_guard25)) {
-                        $.colubian_guard25.setStayInSamePlace(false /* FALSE */);
-                        $.colubian_guard25.setObjKillPlayerAnyMeans($.player);
-                    }
-                    $.been_on_heli_pad = 1;
-                }
-            }
-            $.player.clearWantedLevel();
         }
-
-        //last_cutscene:	//TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        $.breakout_timer_start = Clock.GetGameTimer();
-        $.breakout_diff = 0;
-
-        while (!$.player.canStartMission() && $.breakout_diff < 5000) {
-            await asyncWait(0);
-            if (Char.IsDead($.maria)) {
-                Text.PrintNow('BITCH_D', 5000, 1);
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+        if ($.player.locateOnFootChar3D($.maria, 10.0, 10.0, 3.0, false /* FALSE */)) {
+            if ($.set_as_leader_before == 0) {
+                $.maria.stopLooking();
+                $.maria.followPlayer($.player);
+                $.set_as_leader_before = 1;
             }
-            $.breakout_timer = Clock.GetGameTimer();
-            $.breakout_diff = $.breakout_timer - $.breakout_timer_start;
+        } else {
+            if ($.set_as_leader_before == 1) {
+                $.set_as_leader_before = 0;
+            }
         }
-
-        $.player.makeSafeForCutscene();
-
-        //END OF GAME CUT_SCENE***************************************************************************************************
-
+        if ($.player.isInArea3D(-1142.0, 327.8, 29.0, -1215.6, 368.4, 40.0, false /* FALSE */)) {
+            if ($.been_on_heli_pad == 0) {
+                if (!Char.IsDead($.colubian_guard10)) {
+                    $.colubian_guard10.setStayInSamePlace(false /* FALSE */);
+                    $.colubian_guard10.setObjKillPlayerAnyMeans($.player);
+                }
+                if (!Char.IsDead($.colubian_guard20)) {
+                    $.colubian_guard20.setStayInSamePlace(false /* FALSE */);
+                    $.colubian_guard20.setObjKillPlayerAnyMeans($.player);
+                }
+                if (!Char.IsDead($.colubian_guard21)) {
+                    $.colubian_guard21.setStayInSamePlace(false /* FALSE */);
+                    $.colubian_guard21.setObjKillPlayerAnyMeans($.player);
+                }
+                if (!Char.IsDead($.colubian_guard25)) {
+                    $.colubian_guard25.setStayInSamePlace(false /* FALSE */);
+                    $.colubian_guard25.setObjKillPlayerAnyMeans($.player);
+                }
+                $.been_on_heli_pad = 1;
+            }
+        }
         $.player.clearWantedLevel();
-        Camera.SetFadingColor(0, 0, 0);
-
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
-
-        //PRINT_BIG ( CAT2 ) 5000 2 //"Catalina"
-
-        TIMERA = 0;
-
-        Weather.ForceNow(0 /* WEATHER_SUNNY */);
-
-        while (TIMERA < 1500) {
-            await asyncWait(0);
-        }
-
-        Streaming.LoadSpecialCharacter(1, 'Maria');
-
-        while (!Streaming.HasSpecialCharacterLoaded(1)) {
-            await asyncWait(0);
-        }
-
-        Cutscene.Load('END');
-        Audio.LoadEndOfGameTune();
-        Cutscene.SetOffset(-1031.7601, 451.7612, 22.5624);
-
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
-        $.cs_player.setAnim('player');
-
-        $.cs_maria = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
-        $.cs_maria.setAnim('maria');
-
-        //CREATE_CUTSCENE_HEAD cs_maria CUT_OBJ1 cs_mariahead
-        //SET_CUTSCENE_HEAD_ANIM cs_mariahead maria
-
-        //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ3 cs_playerhead
-        //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
-
-        //CLEAR_AREA -381.8 284.0 62.9 1.0 TRUE
-        //SET_PLAYER_COORDINATES player -381.8 284.0 -100.0
-        //SET_PLAYER_HEADING player 232.0
-
-        if (!Char.IsDead($.colubian_guard8)) {
-            $.colubian_guard8.setHealth(0);
-        }
-
-        Camera.DoFade(1500, 1 /* FADE_IN */);
-
-        World.SwitchRubbish(false /* OFF */);
-
-        Cutscene.Start();
-        Audio.PlayEndOfGameTune();
-
-        // Displays cutscene text
-
-        $.cs_time = Cutscene.GetTime();
-
-        while ($.cs_time < 5507) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_A', 10000, 2); // Mission brief
-
-        while ($.cs_time < 7855) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_B', 10000, 2); // Mission brief
-
-        while ($.cs_time < 10313) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_C', 10000, 2); // Mission brief
-
-        while ($.cs_time < 13610) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_D', 10000, 2); // Mission brief
-
-        while ($.cs_time < 16428) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_E', 10000, 2); // Mission brief
-
-        while ($.cs_time < 20514) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_F', 10000, 2); // Mission brief
-
-        while ($.cs_time < 22827) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_G', 10000, 2); // Mission brief
-
-        while ($.cs_time < 26173) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_H', 10000, 2); // Mission brief
-
-        while ($.cs_time < 28028) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_I', 10000, 2); // Mission brief
-
-        while ($.cs_time < 29276) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_J', 10000, 2); // Mission brief
-
-        while ($.cs_time < 31901) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_K', 10000, 2); // Mission brief
-
-        while ($.cs_time < 35772) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_L', 10000, 2); // Mission brief
-
-        while ($.cs_time < 38820) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_M', 10000, 2); // Mission brief
-
-        while ($.cs_time < 42136) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_N', 10000, 2); // Mission brief
-
-        while ($.cs_time < 44646) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_O', 10000, 2); // Mission brief
-
-        while ($.cs_time < 46971) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_P', 10000, 2); // Mission brief
-
-        while ($.cs_time < 49254) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_Q', 10000, 2); // Mission brief
-
-        while ($.cs_time < 51621) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_R', 10000, 2); // Mission brief
-
-        while ($.cs_time < 54000) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_S', 10000, 2); // Mission brief
-
-        while ($.cs_time < 56584) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_T', 10000, 2); // Mission brief
-
-        while ($.cs_time < 59278) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Text.PrintNow('END_U', 4000, 2); // Mission brief
-
-        while ($.cs_time < 66666) {
-            await asyncWait(0);
-            $.cs_time = Cutscene.GetTime();
-        }
-
-        Audio.SetMusicDoesFade(false /* FALSE */);
-
-        Camera.SetFadingColor(1, 1, 1);
-        Camera.DoFade(2000, 0 /* FADE_OUT */);
-
-        while (Camera.GetFadingStatus()) {
-            await asyncWait(0);
-        }
-
-        while (!Cutscene.HasFinished()) {
-            await asyncWait(0);
-        }
-
-        //SWITCH_WORLD_PROCESSING ON
-
-        Text.ClearPrints();
-        Cutscene.Clear();
-
-        // SCM GOSUB mission_start_credits
-        await mission_start_credits();
-        // fallback if label was not emitted as async function: no-op continues linearly
-        //SET_CAMERA_BEHIND_PLAYER
     }
 
-    // SCM GOTO → mission_cat1_passed (not lowered; manual jump required)
-    return;
+    //last_cutscene:	//TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    // Mission cat1 failed
+    $.breakout_timer_start = Clock.GetGameTimer();
+    $.breakout_diff = 0;
+
+    while (!$.player.canStartMission() && $.breakout_diff < 5000) {
+        await asyncWait(0);
+        if (Char.IsDead($.maria)) {
+            Text.PrintNow('BITCH_D', 5000, 1);
+            // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
+            throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+        }
+        $.breakout_timer = Clock.GetGameTimer();
+        $.breakout_diff = $.breakout_timer - $.breakout_timer_start;
+    }
+
+    $.player.makeSafeForCutscene();
+
+    //END OF GAME CUT_SCENE***************************************************************************************************
+
+    $.player.clearWantedLevel();
+    Camera.SetFadingColor(0, 0, 0);
+
+    Camera.DoFade(1500, 0 /* FADE_OUT */);
+
+    //PRINT_BIG ( CAT2 ) 5000 2 //"Catalina"
+
+    TIMERA = 0;
+
+    Weather.ForceNow(0 /* WEATHER_SUNNY */);
+
+    while (TIMERA < 1500) {
+        await asyncWait(0);
+    }
+
+    Streaming.LoadSpecialCharacter(1, 'Maria');
+
+    while (!Streaming.HasSpecialCharacterLoaded(1)) {
+        await asyncWait(0);
+    }
+
+    Cutscene.Load('END');
+    Audio.LoadEndOfGameTune();
+    Cutscene.SetOffset(-1031.7601, 451.7612, 22.5624);
+
+    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player.setAnim('player');
+
+    $.cs_maria = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_maria.setAnim('maria');
+
+    //CREATE_CUTSCENE_HEAD cs_maria CUT_OBJ1 cs_mariahead
+    //SET_CUTSCENE_HEAD_ANIM cs_mariahead maria
+
+    //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ3 cs_playerhead
+    //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
+
+    //CLEAR_AREA -381.8 284.0 62.9 1.0 TRUE
+    //SET_PLAYER_COORDINATES player -381.8 284.0 -100.0
+    //SET_PLAYER_HEADING player 232.0
+
+    if (!Char.IsDead($.colubian_guard8)) {
+        $.colubian_guard8.setHealth(0);
+    }
+
+    Camera.DoFade(1500, 1 /* FADE_IN */);
+
+    World.SwitchRubbish(false /* OFF */);
+
+    Cutscene.Start();
+    Audio.PlayEndOfGameTune();
+
+    // Displays cutscene text
+
+    $.cs_time = Cutscene.GetTime();
+
+    while ($.cs_time < 5507) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_A', 10000, 2); // Mission brief
+
+    while ($.cs_time < 7855) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_B', 10000, 2); // Mission brief
+
+    while ($.cs_time < 10313) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_C', 10000, 2); // Mission brief
+
+    while ($.cs_time < 13610) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_D', 10000, 2); // Mission brief
+
+    while ($.cs_time < 16428) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_E', 10000, 2); // Mission brief
+
+    while ($.cs_time < 20514) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_F', 10000, 2); // Mission brief
+
+    while ($.cs_time < 22827) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_G', 10000, 2); // Mission brief
+
+    while ($.cs_time < 26173) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_H', 10000, 2); // Mission brief
+
+    while ($.cs_time < 28028) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_I', 10000, 2); // Mission brief
+
+    while ($.cs_time < 29276) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_J', 10000, 2); // Mission brief
+
+    while ($.cs_time < 31901) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_K', 10000, 2); // Mission brief
+
+    while ($.cs_time < 35772) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_L', 10000, 2); // Mission brief
+
+    while ($.cs_time < 38820) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_M', 10000, 2); // Mission brief
+
+    while ($.cs_time < 42136) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_N', 10000, 2); // Mission brief
+
+    while ($.cs_time < 44646) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_O', 10000, 2); // Mission brief
+
+    while ($.cs_time < 46971) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_P', 10000, 2); // Mission brief
+
+    while ($.cs_time < 49254) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_Q', 10000, 2); // Mission brief
+
+    while ($.cs_time < 51621) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_R', 10000, 2); // Mission brief
+
+    while ($.cs_time < 54000) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_S', 10000, 2); // Mission brief
+
+    while ($.cs_time < 56584) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_T', 10000, 2); // Mission brief
+
+    while ($.cs_time < 59278) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Text.PrintNow('END_U', 4000, 2); // Mission brief
+
+    while ($.cs_time < 66666) {
+        await asyncWait(0);
+        $.cs_time = Cutscene.GetTime();
+    }
+
+    Audio.SetMusicDoesFade(false /* FALSE */);
+
+    Camera.SetFadingColor(1, 1, 1);
+    Camera.DoFade(2000, 0 /* FADE_OUT */);
+
+    while (Camera.GetFadingStatus()) {
+        await asyncWait(0);
+    }
+
+    while (!Cutscene.HasFinished()) {
+        await asyncWait(0);
+    }
+
+    //SWITCH_WORLD_PROCESSING ON
+
+    Text.ClearPrints();
+    Cutscene.Clear();
+
+    await mission_start_credits(); // SCM GOSUB mission_start_credits
+    //SET_CAMERA_BEHIND_PLAYER
+
+    return; // SCM GOTO → mission_cat1_passed
 }
 
+// Mission cat1 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
     if (!Char.IsDead($.maria)) {
         $.maria.removeElegantly();
     }
-    return;
-
-    // mission cat1 passed
 }
 
+// mission cat1 passed
 async function onPassed() {
     $.flag_cat_mission1_passed = 1;
     $.flag_suburban_passed = 1;
@@ -1099,14 +1121,10 @@ async function onPassed() {
     $.special_tank.switch(101);
     Stat.SetSuburbanPassed();
     //START_NEW_SCRIPT credits_loop
-
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
-    ONMISSION = false;
     $.flag_player_on_cat_mission = 0;
     Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
     Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
@@ -1118,7 +1136,7 @@ async function cleanup() {
     Streaming.UnloadSpecialCharacter(4);
     //SET_FADING_COLOUR 0 0 0
 
-    Hud.ClearTimer($.countdown_cat1);
+    countdown_cat1.clear(); // xxx: Hud.ClearTimer($.countdown_cat1);
     Path.SwitchPedRoadsOn(-942.6, 337.0, 10.0, -953.6, 361.4, 30.0); // DAM
     $.blip1_cat1.remove();
     $.marias_blip.remove();
@@ -1134,13 +1152,11 @@ async function cleanup() {
     //CLEAR_THREAT_FOR_PED_TYPE PEDTYPE_GANG_COLOMBIAN THREAT_PLAYER1
 
     Mission.Finish();
-    return;
-
-    // **************************************CREDITS************************************************
 }
 
+// **************************************CREDITS************************************************
 async function mission_start_credits() {
-    {
+    before_final_final_scene: {
         await asyncWait(0);
         $.player.setControl(false /* OFF */);
         Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
@@ -1152,22 +1168,24 @@ async function mission_start_credits() {
         Credits.Start();
         TIMERA = 0;
         Clock.SetTimeOfDay(2, 40);
-        // SCM GOTO → first_credits_loop (not lowered; manual jump required)
-        throw new Error('unresolved GOTO first_credits_loop'); // fallback: would break linear control flow
+        // SCM GOTO → first_credits_loop: skip initial fade-out on first iteration
+        let _skip_first_fadeout = true;
 
         while (!Credits.AreFinished()) {
             await asyncWait(0);
             if ($.camera_cut == 0) {
-                Camera.DoFade(1500, 0 /* FADE_OUT */);
-                while (Camera.GetFadingStatus()) {
-                    await asyncWait(0);
-                    if (TIMERA > 40000) {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                            // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                if (!_skip_first_fadeout) {
+                    Camera.DoFade(1500, 0 /* FADE_OUT */);
+                    while (Camera.GetFadingStatus()) {
+                        await asyncWait(0);
+                        if (TIMERA > 40000) {
+                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                                break before_final_final_scene; // SCM GOTO → final_final_scene
+                            }
                         }
                     }
                 }
+                _skip_first_fadeout = false;
                 // SCM label first_credits_loop
                 $.player.setCoordinates(-361.9, 248.0, -100.0); // Colubian mansion
                 Camera.SetFixedPosition(-364.393, 265.064, 82.87, 0.0, 0.0, 0.0);
@@ -1177,13 +1195,11 @@ async function mission_start_credits() {
                     await asyncWait(0);
                     if (TIMERA > 40000) {
                         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                            // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                            break before_final_final_scene; // SCM GOTO → final_final_scene
                         }
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -1192,13 +1208,11 @@ async function mission_start_credits() {
                     await asyncWait(0);
                     if (TIMERA > 40000) {
                         if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                            // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                            break before_final_final_scene; // SCM GOTO → final_final_scene
                         }
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.camera_cut = 1;
@@ -1208,12 +1222,10 @@ async function mission_start_credits() {
                 while (Camera.GetFadingStatus()) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.player.setCoordinates(-1174.25, -7.017, -100.0); // Industrial bit
@@ -1224,12 +1236,10 @@ async function mission_start_credits() {
                 while (TIMERB < 20000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -1237,12 +1247,10 @@ async function mission_start_credits() {
                 while (TIMERB < 30000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.camera_cut = 2;
@@ -1252,12 +1260,10 @@ async function mission_start_credits() {
                 while (Camera.GetFadingStatus()) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.player.setCoordinates(-468.7, -3.3, -100.0); // Projects
@@ -1267,12 +1273,10 @@ async function mission_start_credits() {
                 while (TIMERB < 20000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -1280,12 +1284,10 @@ async function mission_start_credits() {
                 while (TIMERB < 30000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.camera_cut = 3;
@@ -1295,12 +1297,10 @@ async function mission_start_credits() {
                 while (Camera.GetFadingStatus()) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.player.setCoordinates(-855.7, -717.3, -100.0); // Airport
@@ -1311,12 +1311,10 @@ async function mission_start_credits() {
                 while (TIMERB < 20000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -1324,12 +1322,10 @@ async function mission_start_credits() {
                 while (TIMERB < 30000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.camera_cut = 4;
@@ -1339,12 +1335,10 @@ async function mission_start_credits() {
                 while (Camera.GetFadingStatus()) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.player.setCoordinates(-532.7, -611.7, 43.3); // Bridge
@@ -1354,12 +1348,10 @@ async function mission_start_credits() {
                 while (TIMERB < 20000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -1367,12 +1359,10 @@ async function mission_start_credits() {
                 while (TIMERB < 30000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.camera_cut = 5;
@@ -1382,12 +1372,10 @@ async function mission_start_credits() {
                 while (Camera.GetFadingStatus()) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.player.setCoordinates(-671.6, -155.9, -100.0); // Twisted Bridge
@@ -1399,12 +1387,10 @@ async function mission_start_credits() {
                 while (TIMERB < 20000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 Camera.DoFade(1500, 1 /* FADE_IN */);
@@ -1412,22 +1398,19 @@ async function mission_start_credits() {
                 while (TIMERB < 40000) {
                     await asyncWait(0);
                     if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                     if (Credits.AreFinished()) {
-                        // SCM GOTO → final_final_scene (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO final_final_scene'); // fallback: would break linear control flow
+                        break before_final_final_scene; // SCM GOTO → final_final_scene
                     }
                 }
                 $.camera_cut = 0;
             }
         }
-
-        // **********************************END OF CAMERA CUTSCENE****************************
     }
 
-    async function final_final_scene() {
+    // **********************************END OF CAMERA CUTSCENE****************************
+    final_final_scene: {
         Credits.Stop();
         //FORCE_WEATHER_NOW WEATHER_CLOUDY
 
@@ -1469,48 +1452,7 @@ async function mission_start_credits() {
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
         }
-
-        return;
     }
 }
 
-// MissionBoundary
-// *******************************************************************************************
-// *******************************************************************************************
-// *************************************Cat mission 1*****************************************
-// *************************************FINAL MISSION*****************************************
-// *******************************************************************************************
-// *******************************************************************************************
-// *******************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_cat1
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cat1_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_cat1
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// MissionBoundary
-
-// Variables for mission
-
-// VAR_INT blip1_cat1 marias_blip
-// VAR_INT colubian_guard1 colubian_guard2 colubian_guard3 colubian_guard4 colubian_guard5 colubian_guard6 colubian_guard7 colubian_guard8
-// VAR_INT colubian_guard9 colubian_guard10 colubian_guard11 colubian_guard12 colubian_guard13 colubian_guard14 colubian_guard15 colubian_guard16
-// VAR_INT colubian_guard17 colubian_guard18 colubian_guard19 colubian_guard20 colubian_guard21 colubian_guard22 colubian_guard23 colubian_guard24
-// VAR_INT colubian_guard25 colubian_guard26
-// VAR_INT colubian_car1 colubian_car2 colubian_car3 colubian_car4 colubian_car5 colubian_car6 colubian_car7 colubian_car8
-// VAR_INT escape_chopper set_as_leader_before been_on_heli_pad Dead_guards_gun
-// VAR_INT countdown_cat1 rocket_launch added_the_blip_for_maria maria_created_before
-// VAR_INT camera_cut first_credits_loop
-// VAR_INT shaggin_waggin maria_prossie
-// VAR_FLOAT playerx_cat playery_cat playerz_cat
-
-// ***************************************Mission Start*************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-
