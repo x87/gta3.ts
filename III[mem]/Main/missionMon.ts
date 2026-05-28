@@ -14,7 +14,7 @@ class DeatharrestBeenExecutedError extends Error {
     const p = new Player(0);
     const canStartMap = new Map<string, boolean>();
     const _asyncWait = globalThis.asyncWait;
-    // @ts-ignore
+    // @ts-expect-error override global asyncWait to detect death/arrest during waits
     asyncWait = async function (delay) {
         await _asyncWait(delay);
         if (ONMISSION && !p.isPlaying()) {
@@ -36,7 +36,7 @@ class DeatharrestBeenExecutedError extends Error {
 
                 if (mission.beforeMission) {
                     // execute side effects of failing checks in beforeMission only once
-                    let isFirstTimeCanStart = !canStartMap.has(missionKey);
+                    const isFirstTimeCanStart = !canStartMap.has(missionKey);
                     canStartMap.set(missionKey, true);
 
                     let beforeMissionResult = undefined;

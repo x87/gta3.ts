@@ -1,6 +1,6 @@
 import { $ } from './vars.mts';
 
-let _verbose = true;
+const _verbose = true;
 
 export async function run_on_newgame(fn: () => Promise<void>) {
     await run_if(() => !$._flag_is_loaded_game, fn);
@@ -54,7 +54,7 @@ export function START_NEW_SCRIPT(file: string, args: Record<string, any> = {}) {
 
 export function unwrapError(error: any): string {
     if (error instanceof Error) {
-        let stack = error.stack || '';
+        const stack = error.stack || '';
         return `Error: ${error.message} ${stack}`;
     }
     return String(error);

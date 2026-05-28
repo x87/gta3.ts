@@ -1500,7 +1500,7 @@ async function meat_phone_loop() {
         }
 
         if (!ONMISSION) {
-            const { hours, minutes } = Clock.GetTimeOfDay();
+            const { hours } = Clock.GetTimeOfDay();
             if (hours >= 9 && hours < 19) {
                 $.meat_phone.turnOn();
             } else {

@@ -405,27 +405,27 @@ async function body() {
 
     //While loop 1: player not at carpark AND player not in CAR_COLUMB
 
-    let next_case = 'while_loop_1';
+    let next_state = 'while_loop_1';
 
-    while (true) {
-        switch (next_case) {
+    state_machine: while (true) {
+        switch (next_state) {
             case 'while_loop_1': {
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
                     if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 3;
-                        next_case = 'while_loop_4'; // SCM GOTO → while_loop_4
-                        break;
+                        next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
+                        continue state_machine;
                     }
                     if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 1;
-                        next_case = 'while_loop_2'; // SCM GOTO → while_loop_2
-                        break;
+                        next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
+                        continue state_machine;
                     }
                     if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 2;
-                        next_case = 'while_loop_3'; // SCM GOTO → while_loop_3
-                        break;
+                        next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
+                        continue state_machine;
                     }
                     if ($.flag_message == 0) {
                         Text.PrintNow('LOVE2_1', 6000, 1); //"Go and steal a Colombian Gangcar!"
@@ -442,18 +442,18 @@ async function body() {
                     await asyncWait(0);
                     if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 3;
-                        next_case = 'while_loop_4'; // SCM GOTO → while_loop_4
-                        break;
+                        next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
+                        continue state_machine;
                     }
                     if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 0;
-                        next_case = 'while_loop_1'; // SCM GOTO → while_loop_1
-                        break;
+                        next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
+                        continue state_machine;
                     }
                     if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 2;
-                        next_case = 'while_loop_3'; // SCM GOTO → while_loop_3
-                        break;
+                        next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
+                        continue state_machine;
                     }
                     if ($.flag_message == 1) {
                         Text.PrintNow('LOVE2_2', 4000, 1); //"Now get to the multi-storey in Newport and kill Kenji!"
@@ -479,18 +479,18 @@ async function body() {
                     await asyncWait(0);
                     if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 3;
-                        next_case = 'while_loop_4'; // SCM GOTO → while_loop_4
-                        break;
+                        next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
+                        continue state_machine;
                     }
                     if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 0;
-                        next_case = 'while_loop_1'; // SCM GOTO → while_loop_1
-                        break;
+                        next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
+                        continue state_machine;
                     }
                     if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 1;
-                        next_case = 'while_loop_2'; // SCM GOTO → while_loop_2
-                        break;
+                        next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
+                        continue state_machine;
                     }
                     if ($.flag_message == 2) {
                         Text.PrintNow('LOVE2_3', 3000, 1); //If you proceed without a Cartel car you will be identified!
@@ -599,18 +599,18 @@ async function body() {
                         }
                         $.flag_yak_attack_love2 = 0;
                         $.flag_message = 1;
-                        next_case = 'while_loop_2'; // SCM GOTO → while_loop_2
-                        break;
+                        next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
+                        continue state_machine;
                     }
                     if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 0;
-                        next_case = 'while_loop_1'; // SCM GOTO → while_loop_1
-                        break;
+                        next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
+                        continue state_machine;
                     }
                     if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
                         $.flag_message = 2;
-                        next_case = 'while_loop_3'; // SCM GOTO → while_loop_3
-                        break;
+                        next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
+                        continue state_machine;
                     }
 
                     if ($.flag_yak_created_love2 == 1 && $.flag_kenji_cut == 0 && $.player.isInModel(138 /* CAR_COLUMB */)) {

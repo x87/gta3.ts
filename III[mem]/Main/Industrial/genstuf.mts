@@ -88,7 +88,7 @@ async function cobblers() {
     }
 }
 
-export async function check_info_pickup(pickup: Pickup, message_num: int) {
+async function check_info_pickup(pickup: Pickup, message_num: int) {
     start_pickup_script: while (true) {
         while (!pickup.hasBeenCollected()) {
             await asyncWait(500);
@@ -142,7 +142,7 @@ export async function check_info_pickup(pickup: Pickup, message_num: int) {
     // SCM GOTO → start_pickup_script
 }
 
-export async function check_info_pickup_2(pickup: Pickup, message_num: int) {
+async function check_info_pickup_2(pickup: Pickup, message_num: int) {
     start_pickup_script_2: while (true) {
         while (!pickup.hasBeenCollected()) {
             await asyncWait(500);

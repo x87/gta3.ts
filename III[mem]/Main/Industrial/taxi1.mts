@@ -705,81 +705,81 @@ async function body() {
             $.speedbonus = $.taxi_distance_int;
             $.speedbonus = $.speedbonus / 100;
             $.speedbonus = $.speedbonus * 65;
-            {
-                TIMERB = 0;
 
-                if ($.taxi_countdown_already_started == 0) {
-                    taxi_countdown = new Timer($.taxi_countdown).display(); // xxx: Hud.DisplayTimer($.taxi_countdown);
-                    $.taxi_countdown_already_started = 1;
+            TIMERB = 0;
+
+            if ($.taxi_countdown_already_started == 0) {
+                taxi_countdown = new Timer($.taxi_countdown).display(); // xxx: Hud.DisplayTimer($.taxi_countdown);
+                $.taxi_countdown_already_started = 1;
+            }
+
+            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                if (taxi_passed_this_shot.value == 0) {
+                    taxi_countdown.value = taxi_countdown.value + 15000;
                 }
-
-                if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                    if (taxi_passed_this_shot.value == 0) {
-                        taxi_countdown.value = taxi_countdown.value + 15000;
-                    }
-                } else {
-                    if (taxi_passed_this_shot.value == 0) {
-                        taxi_countdown.value = taxi_countdown.value + 10000;
-                    }
-                }
-
-                while (!$.taxi_car1.isStoppedInArea3D($.taxi_destx1, $.taxi_desty1, $.taxi_destz1, $.taxi_destx2, $.taxi_desty2, $.taxi_destz2, true /* TRUE */)) {
-                    await asyncWait(0);
-                    if (!$.player.isPlaying()) {
-                        return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
-                    }
-                    if (Car.IsDead($.taxi_car1)) {
-                        return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
-                    }
-                    if (!$.player.isInCar($.taxi_car1)) {
-                        return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
-                    }
-                    $.controlmode = Pad.GetControllerMode();
-                    if (!($.controlmode == 3)) {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
-                            return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
-                        }
-                    } else {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
-                            return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
-                        }
-                    }
-                    if (taxi_countdown.value == 0) {
-                        return taxi_out_of_time(); // SCM GOTO → taxi_out_of_time
-                    }
-                    if (!$.taxi_car1.isHealthGreater(500)) {
-                        if ($.spray_blip_onscreen == 0) {
-                            $.spray_taxi.remove();
-                            if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-                                $.spray_taxi = Blip.AddSpriteForCoord(925.0, -359.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
-                            }
-                            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-                                $.spray_taxi = Blip.AddSpriteForCoord(379.0, -493.8, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
-                            }
-                            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                                $.spray_taxi = Blip.AddSpriteForCoord(-1128.0, 32.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
-                            }
-                            $.spray_blip_onscreen = 1;
-
-                            await taxi_fucked(false); // SCM GOSUB taxi_fucked
-                            await mission_taxi1_passed(); // SCM GOTO → mission_taxi1_passed
-                            continue Start_taxi_mission; // SCM GOTO → Start_taxi_mission
-                        }
-                    }
-                    if (!Car.IsDead($.taxi_car1)) {
-                        if ($.taxi_car1.isHealthGreater(500) && $.spray_blip_onscreen == 1) {
-                            $.spray_taxi.remove();
-                            $.spray_blip_onscreen = 0;
-                            $.taxi_fucked_flag = 0;
-                        }
-                    }
-                    if ($.taxi_car1.isUpsidedown() && $.taxi_car1.isStopped()) {
-                        return taxi_fucked(); // SCM GOTO → taxi_fucked
-                    }
+            } else {
+                if (taxi_passed_this_shot.value == 0) {
+                    taxi_countdown.value = taxi_countdown.value + 10000;
                 }
             }
 
-            async function score() {
+            while (!$.taxi_car1.isStoppedInArea3D($.taxi_destx1, $.taxi_desty1, $.taxi_destz1, $.taxi_destx2, $.taxi_desty2, $.taxi_destz2, true /* TRUE */)) {
+                await asyncWait(0);
+                if (!$.player.isPlaying()) {
+                    return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
+                }
+                if (Car.IsDead($.taxi_car1)) {
+                    return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
+                }
+                if (!$.player.isInCar($.taxi_car1)) {
+                    return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
+                }
+                $.controlmode = Pad.GetControllerMode();
+                if (!($.controlmode == 3)) {
+                    if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
+                        return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
+                    }
+                } else {
+                    if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
+                        return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
+                    }
+                }
+                if (taxi_countdown.value == 0) {
+                    return taxi_out_of_time(); // SCM GOTO → taxi_out_of_time
+                }
+                if (!$.taxi_car1.isHealthGreater(500)) {
+                    if ($.spray_blip_onscreen == 0) {
+                        $.spray_taxi.remove();
+                        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+                            $.spray_taxi = Blip.AddSpriteForCoord(925.0, -359.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                        }
+                        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+                            $.spray_taxi = Blip.AddSpriteForCoord(379.0, -493.8, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                        }
+                        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                            $.spray_taxi = Blip.AddSpriteForCoord(-1128.0, 32.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                        }
+                        $.spray_blip_onscreen = 1;
+
+                        await taxi_fucked(false); // SCM GOSUB taxi_fucked
+                        await mission_taxi1_passed(); // SCM GOTO → mission_taxi1_passed
+                        continue Start_taxi_mission; // SCM GOTO → Start_taxi_mission
+                    }
+                }
+                if (!Car.IsDead($.taxi_car1)) {
+                    if ($.taxi_car1.isHealthGreater(500) && $.spray_blip_onscreen == 1) {
+                        $.spray_taxi.remove();
+                        $.spray_blip_onscreen = 0;
+                        $.taxi_fucked_flag = 0;
+                    }
+                }
+                if ($.taxi_car1.isUpsidedown() && $.taxi_car1.isStopped()) {
+                    return taxi_fucked(); // SCM GOTO → taxi_fucked
+                }
+            }
+
+
+            score: {
                 if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
                     if (TIMERB > $.speedbonus) {
                         $.score_for_this_fare = $.taxi_distance_int_old;
