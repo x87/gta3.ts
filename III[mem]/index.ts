@@ -9,6 +9,8 @@ import { $, GOSUB_FILE, run_on_newgame, START_NEW_SCRIPT, verbose, run_gated, wa
 // *****************************************************************************************
 // *****************************************************************************************
 
+let DEBUG = Pad.IsButtonPressed(0, 17); // Circle / Attack
+
 async function main() {
     await run_on_newgame(async () => {
         // SCRIPT_NAME Main
@@ -1330,57 +1332,47 @@ async function main() {
         Camera.DoFade(0, 0 /* FADE_OUT */);
 
         //DEBUG SETUP*************************************************************************************
-        /*
-            SWITCH_WORLD_PROCESSING OFF //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            WAIT 1500 //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            SWITCH_WORLD_PROCESSING ON //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (DEBUG) {
+            World.SwitchProcessing(false /* OFF */); //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            await asyncWait(1500); //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            World.SwitchProcessing(true /* ON */); //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            LOAD_SCENE 916.3 -413.6 15.0  //START LUIGIS***************************************************************
-            flag_eightball_mission_passed = 1 //TEST SO SAVE HOUSE WORKS
-            IF IS_PLAYER_PLAYING player
-            SET_INTRO_IS_PLAYING FALSE
-            SET_TIME_OF_DAY 9 00
-            SET_PLAYER_COORDINATES Player 916.3 -413.6 -100.0
-            SET_PLAYER_HEADING player 140.0
-            SET_CAMERA_BEHIND_PLAYER
-            LAUNCH_MISSION debug.sc
-            DO_FADE 1000 FADE_IN
-            ADD_SCORE player 1000000
+            Streaming.LoadScene(916.3, -413.6, 15.0); //START LUIGIS***************************************************************
+            $.flag_eightball_mission_passed = 1; //TEST SO SAVE HOUSE WORKS
+            if ($.player.isPlaying()) {
+                Game.SetIntroIsPlaying(false /* FALSE */);
+                Clock.SetTimeOfDay(9, 0);
+                $.player.setCoordinates(916.3, -413.6, -100.0);
+                $.player.setHeading(140.0);
+                Camera.SetBehindPlayer();
+                // LAUNCH_MISSION debug.sc // xxx: moved below
+                Camera.DoFade(1000, 1 /* FADE_IN */);
+                $.player.addScore(1000000);
 
-            //SWAP BRIDGE FROM FIXED TO DAMAGED
-            SWAP_NEAREST_BUILDING_MODEL	525.362 -927.066 71.841	20.0 nbbridgcabls01 nbbridgfk2
-            SWAP_NEAREST_BUILDING_MODEL	706.432 -935.82  67.071	20.0 nbbridgcabls01 nbbridgfk2
-            SWAP_NEAREST_BUILDING_MODEL	529.023 -920.098 43.504 20.0 nbbridgerdb damgbridgerdb
-            SWAP_NEAREST_BUILDING_MODEL	702.763 -939.963 38.736	20.0 nbbridgerdb damgbridgerdb
-            SWAP_NEAREST_BUILDING_MODEL	529.023 -942.94  43.504	20.0 nbbridgerda damgbbridgerda
-            SWAP_NEAREST_BUILDING_MODEL	702.764 -919.963 38.736	20.0 nbbridgerda damgbbridgerda
+                //SWAP BRIDGE FROM FIXED TO DAMAGED
+                // SWAP_NEAREST_BUILDING_MODEL	525.362 -927.066 71.841	20.0 nbbridgcabls01 nbbridgfk2
+                World.SwapNearestBuildingModel(525.362, -927.066, 71.841, 20.0, 1141 /* nbbridgcabls01 */, 1140 /* nbbridgfk2 */);
+                World.SwapNearestBuildingModel(706.432, -935.82, 67.071, 20.0, 1141 /* nbbridgcabls01 */, 1140 /* nbbridgfk2 */);
+                World.SwapNearestBuildingModel(529.023, -920.098, 43.504, 20.0, 1143 /* nbbridgerdb */, 1147 /* damgbridgerdb */);
+                World.SwapNearestBuildingModel(702.763, -939.963, 38.736, 20.0, 1143 /* nbbridgerdb */, 1147 /* damgbridgerdb */);
+                World.SwapNearestBuildingModel(529.023, -942.94, 43.504, 20.0, 1145 /* nbbridgerda */, 1146 /* damgbbridgerda */);
+                World.SwapNearestBuildingModel(702.764, -919.963, 38.736, 20.0, 1145 /* nbbridgerda */, 1146 /* damgbbridgerda */);
 
-            SWAP_NEAREST_BUILDING_MODEL	525.362 -927.066 71.841	20.0 lodridgcabls01 lodridgfk2
-            SWAP_NEAREST_BUILDING_MODEL	706.432 -935.82  67.071	20.0 lodridgcabls01 lodridgfk2
-            SWAP_NEAREST_BUILDING_MODEL	521.146 -922.94  43.504 20.0 lodridgerdb lodgbridgerdb
-            SWAP_NEAREST_BUILDING_MODEL	702.763 -939.963 38.736	20.0 lodridgerdb lodgbridgerdb
-            SWAP_NEAREST_BUILDING_MODEL	529.023 -940.098 43.504	20.0 lodridgerda lodgbbridgerda
-            SWAP_NEAREST_BUILDING_MODEL	702.764 -919.963 38.736	20.0 lodridgerda lodgbbridgerda
-
-            GOSUB_FILE switch_car_generator switch.sc
-
-            START_NEW_SCRIPT ind_save_loop
-            START_NEW_SCRIPT sub_save_loop
-            START_NEW_SCRIPT com_save_loop
-            START_NEW_SCRIPT ind_restart
-            START_NEW_SCRIPT com_restart
-            START_NEW_SCRIPT sub_restart
-
-            IF IS_PLAYER_PLAYING Player
-            SET_PLAYER_CONTROL Player on
-            ENDIF
-
-            GOTO mission_start
-            ENDIF
-        */
+                World.SwapNearestBuildingModel(525.362, -927.066, 71.841, 20.0, 1181 /* lodridgcabls01 */, 1187 /* lodridgfk2 */);
+                World.SwapNearestBuildingModel(706.432, -935.82, 67.071, 20.0, 1181 /* lodridgcabls01 */, 1187 /* lodridgfk2 */);
+                World.SwapNearestBuildingModel(521.146, -922.94, 43.504, 20.0, 1183 /* lodridgerdb */, 1185 /* lodgbridgerdb */);
+                World.SwapNearestBuildingModel(702.763, -939.963, 38.736, 20.0, 1183 /* lodridgerdb */, 1185 /* lodgbridgerdb */);
+                World.SwapNearestBuildingModel(529.023, -940.098, 43.504, 20.0, 1184 /* lodridgerda */, 1186 /* lodgbbridgerda */);
+                World.SwapNearestBuildingModel(702.764, -919.963, 38.736, 20.0, 1184 /* lodridgerda */, 1186 /* lodgbbridgerda */);
+            }
+        }
     });
 
     //FULL GAME LOAD***********************************************************************************************
+    if (DEBUG) {
+        GOSUB_FILE(__dirname + '/Main/Industrial/switch.mts'); // GOSUB_FILE switch_car_generator switch.sc
+        GOSUB_FILE(__dirname + '/Main/Industrial/debug.mts'); //  LAUNCH_MISSION debug.sc
+    }
 
     // xxx: Start Monitors
     START_NEW_SCRIPT(__dirname + '/Main/missionMon.ts'); // must run as a separate script as it mutates ONMISSION flag and enables mission-only behavior
@@ -1403,7 +1395,7 @@ async function main() {
     yardie_phone_loop();
     hood_phone_loop();
 
-    // xxx: Restart monitor
+    // xxx: Scripts that can terminate
     run_gated('_flag_ind_restart_complete', ind_restart); // START_NEW_SCRIPT ind_restart
     run_gated('_flag_com_restart_complete', com_restart); // START_NEW_SCRIPT com_restart
     run_gated('_flag_sub_restart_complete', sub_restart); // START_NEW_SCRIPT sub_restart
@@ -1641,7 +1633,7 @@ async function ind_save_loop() {
 async function ind_restart() {
     //	Should be called before main loop
     // SCRIPT_NAME I_RSTRT
-    
+
     ind_restart_inner: while (true) {
         await asyncWait(1000);
 
@@ -1724,7 +1716,7 @@ async function diablo_blip_loop() {
     await wait_for('_flag_diablo_phone_start_complete');
     verbose('[+] Activating subscript "diablo_blip_loop"');
     // SCRIPT_NAME DIAB_BP
-    
+
     diablo_blip_loop_inner: while (true) {
         await asyncWait(1000);
 
