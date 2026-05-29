@@ -4,11 +4,12 @@ Work in progress. Help welcome.
 
 # TODO
 
-- [x] batch conversion 
-- [x] first mission playable 
-- [x] save system works 
+- [x] batch conversion
+- [x] first mission playable
+- [x] save system works
 - [ ] 100% game completion possible
-  - [ ] Portland
-  - [ ] Staunton
-  - [ ] Shoreside Valley
-  - [ ] Odd Jobs
+    - [x] Main Script
+    - [x] Portland
+    - [x] Staunton
+    - [x] Shoreside Valley
+    - [ ] 100% checklist
