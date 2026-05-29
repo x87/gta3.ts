@@ -1,7 +1,5 @@
 // Generated from Main/Suburban/asusb1.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // *****************************************************************************************
 // ******************************************'BAIT'*****************************************
 // *****************************************************************************************
-
-let counter_cartels_killed_as1: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -422,7 +418,7 @@ async function body() {
     $.blip_killzone = Blip.AddForCoord($.killzone_cent_x, $.killzone_cent_y, -100.0);
     $.blip_killzone.changeColor(4);
 
-    counter_cartels_killed_as1 = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.counter_cartels_killed_as1, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
+    Hud.DisplayCounterWithString($.$id.counter_cartels_killed_as1, 0, 'KILLS');
     Path.SwitchRoadsOff($.killzone_min_x, $.killzone_min_y, 65.0, -1170.0, $.killzone_max_y, 85.0);
 
     // Mission stuff goes here
@@ -484,7 +480,7 @@ async function body() {
 
     Player.ResetNumOfModelsKilled();
 
-    while (counter_cartels_killed_as1.value < 12) {
+    while ($.counter_cartels_killed_as1 < 12) {
         await asyncWait(0);
         const _res293 = $.player.getCoordinates();
         $.player_X = _res293.x;
@@ -1232,7 +1228,7 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_suburban_mission = 0;
 
-    counter_cartels_killed_as1.clear(); // xxx: Hud.ClearCounter($.counter_cartels_killed_as1);
+    Hud.ClearCounter($.$id.counter_cartels_killed_as1);
     // SCM GOSUB blip_removal
     await blip_removal();
     // fallback if label was not emitted as async function: no-op continues linearly
@@ -1681,7 +1677,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel1_as1)) {
                 if ($.cartel1_as1_dead == 0) {
                     $.cartel1_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel1.remove();
                 }
             }
@@ -1691,7 +1687,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel2_as1)) {
                 if ($.cartel2_as1_dead == 0) {
                     $.cartel2_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel2.remove();
                 }
             }
@@ -1701,7 +1697,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel3_as1)) {
                 if ($.cartel3_as1_dead == 0) {
                     $.cartel3_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel3.remove();
                     if ($.yak1_mission == 1) {
                         $.yak1_mission = 0;
@@ -1714,7 +1710,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel4_as1)) {
                 if ($.cartel4_as1_dead == 0) {
                     $.cartel4_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel4.remove();
                 }
             }
@@ -1738,7 +1734,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel5_as1)) {
                 if ($.cartel5_as1_dead == 0) {
                     $.cartel5_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel5.remove();
                 }
             }
@@ -1748,7 +1744,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel6_as1)) {
                 if ($.cartel6_as1_dead == 0) {
                     $.cartel6_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel6.remove();
                 }
             }
@@ -1758,7 +1754,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel7_as1)) {
                 if ($.cartel7_as1_dead == 0) {
                     $.cartel7_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel7.remove();
                 }
             }
@@ -1768,7 +1764,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel8_as1)) {
                 if ($.cartel8_as1_dead == 0) {
                     $.cartel8_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel8.remove();
                     if ($.yak1_mission == 2) {
                         $.yak1_mission = 0;
@@ -1866,7 +1862,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel13_as1)) {
                 if ($.cartel13_as1_dead == 0) {
                     $.cartel13_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel13.remove();
                 }
             }
@@ -1876,7 +1872,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel14_as1)) {
                 if ($.cartel14_as1_dead == 0) {
                     $.cartel14_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel14.remove();
                 }
             }
@@ -1886,7 +1882,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel15_as1)) {
                 if ($.cartel15_as1_dead == 0) {
                     $.cartel15_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel15.remove();
                 }
             }
@@ -1896,7 +1892,7 @@ async function cartel_deaths() {
             if (Char.IsDead($.cartel16_as1)) {
                 if ($.cartel16_as1_dead == 0) {
                     $.cartel16_as1_dead = 1;
-                    ++counter_cartels_killed_as1.value;
+                    ++$.counter_cartels_killed_as1;
                     $.blip_cartel16.remove();
                     if ($.yak1_mission == 7) {
                         $.yak1_mission = 0;

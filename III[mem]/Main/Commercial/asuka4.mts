@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/asuka4.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // ******************************************Pay day for Ray********************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let countdown_as4: DisplayedTimer;
 
 async function body() {
     // Mission start stuff
@@ -199,14 +195,14 @@ async function body() {
     $.phone_4_obj.dontRemove();
 
     $.countdown_as4 = 211000;
-    countdown_as4 = new Timer($.countdown_as4).display(); // xxx: Hud.DisplayTimer($.countdown_as4);
+    Hud.DisplayTimer($.$id.countdown_as4);
     $.blip1_as4 = Blip.AddForObject($.phone_1_obj);
     $.Ray_phone1.setMessage('AM4_1A');
     Audio.LoadMissionAudio('a4_a' as any);
 
     while (!$.player.locateOnFoot3D(229.2, -1537.6, 26.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
-        if (countdown_as4.value == 0) {
+        if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
             // SCM GOTO → mission_asuka4_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_asuka4_failed'); // fallback: would break linear control flow
@@ -241,7 +237,7 @@ async function body() {
 
     while (!$.player.locateOnFoot3D(-53.5, -699.1, 26.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
-        if (countdown_as4.value == 0) {
+        if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
             // SCM GOTO → mission_asuka4_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_asuka4_failed'); // fallback: would break linear control flow
@@ -276,7 +272,7 @@ async function body() {
 
     while (!$.player.locateOnFoot3D(204.8, -135.0, 16.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
-        if (countdown_as4.value == 0) {
+        if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
             // SCM GOTO → mission_asuka4_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_asuka4_failed'); // fallback: would break linear control flow
@@ -311,7 +307,7 @@ async function body() {
 
     while (!$.player.locateOnFoot3D(60.3, -964.8, 26.1, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
-        if (countdown_as4.value == 0) {
+        if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
             // SCM GOTO → mission_asuka4_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_asuka4_failed'); // fallback: would break linear control flow
@@ -335,7 +331,7 @@ async function body() {
     }
 
     Camera.RestoreJumpcut();
-    countdown_as4.clear(); // xxx: Hud.ClearTimer($.countdown_as4);
+    Hud.ClearTimer($.$id.countdown_as4);
     $.blip1_as4.remove();
     $.blip1_as4 = Blip.AddForCoord(38.8, -725.4, 22.8);
     Game.SetPoliceIgnorePlayer($.player, false /* off */);
@@ -540,7 +536,7 @@ async function onPassed() {
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
-    countdown_as4.clear(); // xxx: Hud.ClearTimer($.countdown_as4);
+    Hud.ClearTimer($.$id.countdown_as4);
     $.blip1_as4.remove();
     $.Ray_phone1.turnOff();
     $.Ray_phone2.turnOff();

@@ -1,5 +1,4 @@
 // Generated from Main/Commercial/asuka3.sc
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 import { $ } from '../../utils';
 
 // *****************************************************************************************
@@ -9,8 +8,6 @@ import { $ } from '../../utils';
 // *************************************Boat Spy thing**************************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let boat_health_counter: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -196,7 +193,7 @@ async function body() {
 
         if (!Car.IsDead($.spy_boat)) {
             $.boat_health = $.spy_boat.getHealth();
-            boat_health_counter = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.boat_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+            Hud.DisplayCounterWithString($.$id.boat_health, 1, 'DAM');
             await boat_health(); // SCM GOSUB boat_health
         }
 
@@ -806,7 +803,7 @@ async function body() {
             $.spy_boat.stop();
             $.spy_boat.anchor(true /* TRUE */);
             $.spy_bloke.warpFromCarToCoord(547.3, -778.4, -100.0);
-            boat_health_counter.clear(); // xxx: Hud.ClearCounter($.boat_health);
+            Hud.ClearCounter($.$id.boat_health);
         }
 
         $.spy_car = Car.Create(129 /* CAR_STALLION */, 499.7, -734.4, -100.0);
@@ -1011,7 +1008,7 @@ async function onFailed() {
 
 // mission asuka3 passed
 async function onPassed() {
-    boat_health_counter.clear(); // xxx: Hud.ClearCounter($.boat_health);
+    Hud.ClearCounter($.$id.boat_health);
     $.flag_asuka_mission3_passed = 1;
     Audio.PlayMissionPassedTune(1);
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1); //"Mission Passed!"
@@ -1033,20 +1030,20 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(143 /* BOAT_REEFER */);
     Streaming.MarkModelAsNoLongerNeeded(120 /* BOAT_PREDATOR */);
     Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
-    boat_health_counter.clear(); // xxx: Hud.ClearCounter($.boat_health);
+    Hud.ClearCounter($.$id.boat_health);
     Mission.Finish();
 }
 
 async function boat_health() {
-    boat_health_counter.value = $.spy_boat.getHealth();
+    $.boat_health = $.spy_boat.getHealth();
 
-    $.boat_health2 = 1500 - boat_health_counter.value;
+    $.boat_health2 = 1500 - $.boat_health;
 
     if ($.boat_health2 > 1500) {
         $.boat_health2 = 1500;
     }
 
-    boat_health_counter.value = $.boat_health2 / 15;
+    $.boat_health = $.boat_health2 / 15;
 }
 
 async function check_boats_dead() {

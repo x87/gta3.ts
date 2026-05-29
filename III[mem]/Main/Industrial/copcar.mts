@@ -1,7 +1,5 @@
 // Generated from Main/Industrial/copcar.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,9 +7,6 @@ import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/sc
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let cop_time_limit: DisplayedTimer;
-let total_criminals_killed: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -485,9 +480,9 @@ async function body() {
 
         TIMERB = 0;
 
-        cop_time_limit = new Timer($.cop_time_limit).display(); // xxx: Hud.DisplayTimer($.cop_time_limit);
+        Hud.DisplayTimer($.$id.cop_time_limit);
         while (!Char.IsDead($.criminal)) {
-            if (cop_time_limit.value < 1) {
+            if ($.cop_time_limit < 1) {
                 if (!$.player.locateAnyMeansChar2D($.criminal, 100.0, 100.0, false)) {
                     $.criminal_blip.remove();
                     $.criminal.delete();
@@ -653,23 +648,21 @@ async function body() {
         $.criminal_car.markAsNoLongerNeeded();
 
         ++$.total_criminals_killed;
-        if (typeof total_criminals_killed !== 'undefined') {
-            total_criminals_killed.value = $.total_criminals_killed;
-        }
+        $.total_criminals_killed = $.total_criminals_killed;
         Stat.RegisterCriminalCaught();
         Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
         if ($.total_criminals_killed == 1) {
-            total_criminals_killed = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.total_criminals_killed, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
+            Hud.DisplayCounterWithString($.$id.total_criminals_killed, 0, 'KILLS');
         }
 
         $.criminal_blip.remove();
-        $.vigilante_score = total_criminals_killed.value * 500;
+        $.vigilante_score = $.total_criminals_killed * 500;
         Text.PrintBig('C_PASS', 5000, 5);
         Text.PrintWithNumberBig('REWARD', $.vigilante_score, 5000, 6);
         $.player.addScore($.vigilante_score);
 
-        if (total_criminals_killed.value == $.vigilante_bonus_kills) {
-            $.vigilante = total_criminals_killed.value * 2;
+        if ($.total_criminals_killed == $.vigilante_bonus_kills) {
+            $.vigilante = $.total_criminals_killed * 2;
             $.vigilante *= 500;
             Text.PrintBigQ('C_VIGIL', 5000, 5);
             Text.PrintWithNumberBigQ('REWARD', $.vigilante, 6000, 6);
@@ -750,11 +743,10 @@ async function body() {
         ) {
             if ($.game_time_flag == 0) {
                 $.game_timer_start = Clock.GetGameTimer();
-                const cop_time_limit_now = typeof cop_time_limit !== 'undefined' ? cop_time_limit.value : $.cop_time_limit;
-                if (cop_time_limit_now > 60000) {
+                if ($.cop_time_limit > 60000) {
                     $.copcar_timer = 60000;
                 } else {
-                    $.copcar_timer = cop_time_limit_now;
+                    $.copcar_timer = $.cop_time_limit;
                 }
                 $.game_time_flag = 1;
             }
@@ -786,9 +778,7 @@ async function body() {
 
 /////////////////////////////////////////////////////////////
 async function cop_car_passed() {
-    if (typeof cop_time_limit !== 'undefined') {
-        cop_time_limit.clear(); // xxx: Hud.ClearTimer($.cop_time_limit);
-    }
+    Hud.ClearTimer($.$id.cop_time_limit);
     $.criminal_blip.remove();
 
     if ($.criminal_created_flag == 1) {
@@ -801,14 +791,9 @@ async function cop_car_passed() {
 /////////////////////////////////////////////////////////////
 async function onFailed() {
     Text.PrintBig('C_FAIL', 5000, 5);
-    const total_criminals_killed_now = typeof total_criminals_killed !== 'undefined' ? total_criminals_killed.value : $.total_criminals_killed;
-    Text.PrintWithNumberBig('C_KILLS', total_criminals_killed_now, 6000, 6);
-    if (typeof cop_time_limit !== 'undefined') {
-        cop_time_limit.clear(); // xxx: Hud.ClearTimer($.cop_time_limit);
-    }
-    if (typeof total_criminals_killed !== 'undefined') {
-        total_criminals_killed.clear(); // xxx: Hud.ClearCounter($.total_criminals_killed);
-    }
+    Text.PrintWithNumberBig('C_KILLS', $.total_criminals_killed, 6000, 6);
+    Hud.ClearTimer($.$id.cop_time_limit);
+    Hud.ClearCounter($.$id.total_criminals_killed);
     $.criminal_blip.remove();
     Text.ClearHelp();
     Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
@@ -833,11 +818,10 @@ async function copcar_cancelled_checks() {
     ) {
         if ($.game_time_flag == 0) {
             $.game_timer_start = Clock.GetGameTimer();
-            const cop_time_limit_now = typeof cop_time_limit !== 'undefined' ? cop_time_limit.value : $.cop_time_limit;
-            if (cop_time_limit_now > 60000) {
+            if ($.cop_time_limit > 60000) {
                 $.copcar_timer = 60000;
             } else {
-                $.copcar_timer = cop_time_limit_now;
+                $.copcar_timer = $.cop_time_limit;
             }
             $.game_time_flag = 1;
         }

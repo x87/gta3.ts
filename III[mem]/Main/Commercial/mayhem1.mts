@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/mayhem1.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let timer_4x4: DisplayedTimer;
 
 async function body() {
     // Mission start stuff
@@ -494,12 +490,12 @@ async function body() {
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
-            timer_4x4 = new Timer($.timer_4x4).display(); // xxx: Hud.DisplayTimer($.timer_4x4);
+            Hud.DisplayTimer($.$id.timer_4x4);
             Audio.SetMusicDoesFade(true /* TRUE */);
             $.flag_intro = 5;
             $.flag_intro_mayhem_before = 1;
         }
-        if (timer_4x4.value < 1) {
+        if ($.timer_4x4 < 1) {
             Text.PrintNow('TAXI2', 3000, 1);
             // SCM GOTO → mission_mayhem_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_mayhem_failed'); // fallback: would break linear control flow
@@ -525,12 +521,12 @@ async function onFailed() {
 // -------------------------Mission passed-------------------------------------------------
 async function onPassed() {
     if ($.flag_mayhem_mission1_passed == 0) {
-        $.record_mayhem = 120000 - timer_4x4.value;
+        $.record_mayhem = 120000 - $.timer_4x4;
         $.record_mayhem = $.record_mayhem / 1000;
     }
 
     if ($.flag_mayhem_mission1_passed == 1) {
-        $.record_temp = 120000 - timer_4x4.value;
+        $.record_temp = 120000 - $.timer_4x4;
         $.record_temp = $.record_temp / 1000;
         if ($.record_temp < $.record_mayhem) {
             $.record_mayhem = $.record_temp;
@@ -555,7 +551,7 @@ async function onPassed() {
 // mission cleanup
 async function cleanup() {
     $.player.setControl(true /* on */);
-    timer_4x4.clear(); // xxx: Hud.ClearTimer($.timer_4x4);
+    Hud.ClearTimer($.$id.timer_4x4);
     Camera.RestoreJumpcut();
     Hud.SwitchWidescreen(false /* off */);
 

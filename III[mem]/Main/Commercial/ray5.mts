@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/ray5.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,9 +7,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let ambulance_health: DisplayedCounter;
-let bodycast_health: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -299,7 +294,7 @@ async function body() {
     before_injured_cop_bailout: {
         amb_generator: while (true) {
             $.ambulance_health = 0;
-            ambulance_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.ambulance_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+            Hud.DisplayCounterWithString($.$id.ambulance_health, 1, 'DAM');
             $.ambulance_rc5 = Car.Create(106 /* CAR_AMBULANCE */, 387.3, 4.5, 11.4);
             $.blip_ambulance_rc5 = Blip.AddForCar($.ambulance_rc5);
             $.cop_driver = Char.CreateInsideCar($.ambulance_rc5, 6 /* PEDTYPE_COP */, 1 /* PED_COP */);
@@ -310,7 +305,7 @@ async function body() {
             $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
             //SWITCH_CAR_SIREN ambulance_rc5 ON
 
-            ambulance_health.value = $.ambulance_rc5.getHealth();
+            $.ambulance_health = $.ambulance_rc5.getHealth();
             $.random_ray5 = Math.RandomIntInRange(0, 65535);
 
             if ($.random_ray5 < 21846) {
@@ -336,9 +331,9 @@ async function body() {
                     $.amb_rc5_x = _res116.x;
                     $.amb_rc5_y = _res116.y;
                     $.amb_rc5_z = _res116.z;
-                    ambulance_health.value = $.ambulance_rc5.getHealth();
-                    ambulance_health.value = ambulance_health.value * -1;
-                    ambulance_health.value = ambulance_health.value + 1000;
+                    $.ambulance_health = $.ambulance_rc5.getHealth();
+                    $.ambulance_health = $.ambulance_health * -1;
+                    $.ambulance_health = $.ambulance_health + 1000;
                     //ambulance_health = ambulance_health / 10
                     //ambulance_health = ambulance_health * 5
 
@@ -378,7 +373,7 @@ async function body() {
                     $.ambulance_rc5.markAsNoLongerNeeded();
                     $.cop_driver.markAsNoLongerNeeded();
                     $.blip_ambulance_rc5.remove();
-                    ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+                    Hud.ClearCounter($.$id.ambulance_health);
                     $.flag_random_ray5 = 0;
                     $.flag_police_trigger = 0;
                     continue amb_generator; // SCM GOTO → amb_generator
@@ -406,9 +401,9 @@ async function body() {
             while ($.flag_redalert == 1) {
                 await asyncWait(0);
                 if (!Car.IsDead($.ambulance_rc5)) {
-                    ambulance_health.value = $.ambulance_rc5.getHealth();
-                    ambulance_health.value = ambulance_health.value * -1;
-                    ambulance_health.value = ambulance_health.value + 1000;
+                    $.ambulance_health = $.ambulance_rc5.getHealth();
+                    $.ambulance_health = $.ambulance_health * -1;
+                    $.ambulance_health = $.ambulance_health + 1000;
                     //ambulance_health = ambulance_health / 10
                     //ambulance_health = ambulance_health * 5
 
@@ -434,7 +429,7 @@ async function body() {
                     $.ambulance_rc5.markAsNoLongerNeeded();
                     $.cop_driver.markAsNoLongerNeeded();
                     $.blip_ambulance_rc5.remove();
-                    ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+                    Hud.ClearCounter($.$id.ambulance_health);
                     $.flag_random_ray5 = 0;
                     $.flag_police_trigger = 0;
 
@@ -462,9 +457,9 @@ async function body() {
             while ($.flag_redalert == 2) {
                 await asyncWait(0);
                 if (!Car.IsDead($.ambulance_rc5)) {
-                    ambulance_health.value = $.ambulance_rc5.getHealth();
-                    ambulance_health.value = ambulance_health.value * -1;
-                    ambulance_health.value = ambulance_health.value + 1000;
+                    $.ambulance_health = $.ambulance_rc5.getHealth();
+                    $.ambulance_health = $.ambulance_health * -1;
+                    $.ambulance_health = $.ambulance_health + 1000;
                     //ambulance_health = ambulance_health / 10
                     //ambulance_health = ambulance_health * 5
 
@@ -490,7 +485,7 @@ async function body() {
                     $.ambulance_rc5.markAsNoLongerNeeded();
                     $.cop_driver.markAsNoLongerNeeded();
                     $.blip_ambulance_rc5.remove();
-                    ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+                    Hud.ClearCounter($.$id.ambulance_health);
                     $.flag_random_ray5 = 0;
                     $.flag_redalert = 0;
 
@@ -524,7 +519,7 @@ async function body() {
         $.injured_cop_rc5.addToVelocity(0.0, 0.0, 5.0);
         $.blip_injured_cop_rc5 = Blip.AddForObject($.injured_cop_rc5);
         $.player.alterWantedLevelNoDrop(3);
-        ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
+        Hud.ClearCounter($.$id.ambulance_health);
         /*
         WHILE flag_bodycast_clear = 0
         WAIT 0
@@ -541,7 +536,7 @@ async function body() {
         ENDWHILE
         */
 
-        bodycast_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.bodycast_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+        Hud.DisplayCounterWithString($.$id.bodycast_health, 1, 'DAM');
         Text.PrintNow('RM5_6', 3000, 1);
 
         while (!$.injured_cop_rc5.hasBeenDamaged()) {
@@ -551,10 +546,10 @@ async function body() {
             $.ic_y = _res118.y;
             $.ic_z = _res118.z;
             Audio.SetMissionAudioPosition($.ic_x, $.ic_y, $.ic_z);
-            bodycast_health.value = ScriptObject.GetBodyCastHealth();
-            bodycast_health.value = bodycast_health.value * -1;
-            bodycast_health.value = bodycast_health.value + 1000;
-            bodycast_health.value = bodycast_health.value / 10;
+            $.bodycast_health = ScriptObject.GetBodyCastHealth();
+            $.bodycast_health = $.bodycast_health * -1;
+            $.bodycast_health = $.bodycast_health + 1000;
+            $.bodycast_health = $.bodycast_health / 10;
 
             if ($.flag_audio == 0) {
                 Audio.PlayMissionAudio();
@@ -628,8 +623,8 @@ async function onPassed() {
 
 // mission cleanup
 async function cleanup() {
-    ambulance_health.clear(); // xxx: Hud.ClearCounter($.ambulance_health);
-    bodycast_health.clear(); // xxx: Hud.ClearCounter($.bodycast_health);
+    Hud.ClearCounter($.$id.ambulance_health);
+    Hud.ClearCounter($.$id.bodycast_health);
     ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
 

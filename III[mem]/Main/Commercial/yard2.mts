@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/yard2.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // *****************************************************************************************
 // ********************************************'UZI RIDER'**********************************
 // *****************************************************************************************
-
-let body_count_yd2: DisplayedCounter;
 
 const MISSION_YD2_FAILED_ASSERT = 'mission_yd2_failed_assert';
 
@@ -613,8 +609,8 @@ async function body() {
         //------------------------------THE HIT-----------------------------------------------------------------
 
         $.blip_driveby_yd2.remove();
-        body_count_yd2 = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.body_count_yd2, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
-        while (body_count_yd2.value < 10) {
+        Hud.DisplayCounterWithString($.$id.body_count_yd2, 0, 'KILLS');
+        while ($.body_count_yd2 < 10) {
             await asyncWait(0);
             if (!Car.IsDead($.gang_car_yd2)) {
                 if ($.gang_car_yd2.isUpsidedown() && $.gang_car_yd2.isStopped()) {
@@ -651,7 +647,7 @@ async function body() {
             }
             $.driveby_total_1 = Player.GetNumOfModelsKilled(14 /* PED_GANG_DIABLO_A */);
             $.driveby_total_2 = Player.GetNumOfModelsKilled(15 /* PED_GANG_DIABLO_B */);
-            body_count_yd2.value = $.driveby_total_1 + $.driveby_total_2;
+            $.body_count_yd2 = $.driveby_total_1 + $.driveby_total_2;
             /*
             IF body_count_yd2 > 1
             SET_GANG_PLAYER_ATTITUDE GANG_DIABLO HATES player
@@ -674,7 +670,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        body_count_yd2.clear(); // xxx: Hud.ClearCounter($.body_count_yd2);
+        Hud.ClearCounter($.$id.body_count_yd2);
     }
 
     back_to_yardie_turf: {
@@ -957,7 +953,7 @@ async function cleanup() {
 
     ONMISSION = false;
     $.flag_player_on_yardie_mission = 0;
-    body_count_yd2.clear(); // xxx: Hud.ClearCounter($.body_count_yd2);
+    Hud.ClearCounter($.$id.body_count_yd2);
     $.blip_driveby_yd2.remove();
     //SET_PLAYER_CONTROL player on
 

@@ -1,9 +1,5 @@
 // Generated from Main/Industrial/diablo1.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
-let game_timer_end_d1: DisplayedCounter;
-
 // *****************************************************************************************
 // ***********************************    Diablo 1 	  **************************************
 // *********************************** Low Rider Race **************************************
@@ -476,15 +472,15 @@ async function body() {
         $.game_timer_end_d1 = Clock.GetGameTimer();
         $.game_timer_end_d1 = $.game_timer_end_d1 - $.game_timer_start_d1;
         $.game_timer_end_d1 = $.game_timer_end_d1 / 1000;
-        game_timer_end_d1 = new Counter({ key: 'DIAB1_5', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.game_timer_end_d1, 0 /* COUNTER_DISPLAY_NUMBER */, 'DIAB1_5');
+        Hud.DisplayCounterWithString($.$id.game_timer_end_d1, 0 /* COUNTER_DISPLAY_NUMBER */, 'DIAB1_5');
     }
 
     loop1: while (true) {
         await asyncWait(0);
 
-        game_timer_end_d1.value = Clock.GetGameTimer();
-        game_timer_end_d1.value = game_timer_end_d1.value - $.game_timer_start_d1;
-        game_timer_end_d1.value = game_timer_end_d1.value / 1000;
+        $.game_timer_end_d1 = Clock.GetGameTimer();
+        $.game_timer_end_d1 = $.game_timer_end_d1 - $.game_timer_start_d1;
+        $.game_timer_end_d1 = $.game_timer_end_d1 / 1000;
 
         $.position = 0 + $.behind_car1;
         $.position += $.behind_car2;
@@ -1417,13 +1413,13 @@ async function onFailed() {
 
 // mission d1 passed
 async function onPassed() {
-    game_timer_end_d1.value = Clock.GetGameTimer();
-    game_timer_end_d1.value = game_timer_end_d1.value - $.game_timer_start_d1;
-    game_timer_end_d1.value = game_timer_end_d1.value / 1000;
+    $.game_timer_end_d1 = Clock.GetGameTimer();
+    $.game_timer_end_d1 = $.game_timer_end_d1 - $.game_timer_start_d1;
+    $.game_timer_end_d1 = $.game_timer_end_d1 / 1000;
     $.player.addScore(10000);
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1);
-    Text.PrintWithNumberNow('DIAB1_2', game_timer_end_d1.value, 5000, 1); //"Race time: ~1~ seconds"
-    Stat.RegisterElBurroTime(game_timer_end_d1.value);
+    Text.PrintWithNumberNow('DIAB1_2', $.game_timer_end_d1, 5000, 1); //"Race time: ~1~ seconds"
+    Stat.RegisterElBurroTime($.game_timer_end_d1);
     $.player.clearWantedLevel();
     Audio.PlayMissionPassedTune(1);
     //CLEAR_THREAT_FOR_PED_TYPE PEDTYPE_GANG_DIABLO THREAT_PLAYER1
@@ -1449,7 +1445,7 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(14 /* PED_GANG_DIABLO_A */);
     Streaming.MarkModelAsNoLongerNeeded(15 /* PED_GANG_DIABLO_B */);
     Streaming.MarkModelAsNoLongerNeeded(105 /* CAR_CHEETAH */);
-    game_timer_end_d1.clear(); // xxx: Hud.ClearCounter($.game_timer_end_d1);
+    Hud.ClearCounter($.$id.game_timer_end_d1);
     ONMISSION = false;
     $.flag_player_on_diablo_mission = 0;
     Mission.Finish();

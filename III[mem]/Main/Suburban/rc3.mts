@@ -1,9 +1,5 @@
 // Generated from Main/Suburban/rc3.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
-
-let timer_RCDD: DisplayedTimer;
-let counter_RCDD: DisplayedCounter;
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -97,11 +93,11 @@ async function body() {
 
     //GIVE_REMOTE_CONTROLLED_CAR_TO_PLAYER player rc_x rc_y rc_z 180.0
 
-    counter_RCDD = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.counter_RCDD, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
-    timer_RCDD = new Timer($.timer_RCDD).display(); // xxx: Hud.DisplayTimer($.timer_RCDD);
+    Hud.DisplayCounterWithString($.$id.counter_RCDD, 0, 'KILLS');
+    Hud.DisplayTimer($.$id.timer_RCDD);
     $.timer_intro_start = Clock.GetGameTimer();
 
-    while (!(timer_RCDD.value < 1)) {
+    while (!($.timer_RCDD < 1)) {
         await asyncWait(0);
         $.timer_intro_now = Clock.GetGameTimer();
         $.intro_time_lapsed = $.timer_intro_now - $.timer_intro_start;
@@ -142,7 +138,7 @@ async function body() {
             // SCM GOTO → mission_rc3_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_rc3_failed'); // fallback: would break linear control flow
         }
-        counter_RCDD.value = Player.GetNumOfModelsKilled(139 /* car_hoods */);
+        $.counter_RCDD = Player.GetNumOfModelsKilled(139 /* car_hoods */);
         if ($.intro_time_lapsed > 4000) {
             if (!$.player.isInRemoteMode()) {
                 Rc.GiveCarToPlayer($.player, $.rc_x, $.rc_y, $.rc_z, 60.0);
@@ -150,8 +146,8 @@ async function body() {
         }
     }
 
-    timer_RCDD.clear(); // xxx: Hud.ClearTimer($.timer_RCDD);
-    counter_RCDD.clear(); // xxx: Hud.ClearCounter($.counter_RCDD);
+    Hud.ClearTimer($.$id.timer_RCDD);
+    Hud.ClearCounter($.$id.counter_RCDD);
     Rc.BlowUpBuggy();
 
     TIMERA = 0;
@@ -160,10 +156,10 @@ async function body() {
         await asyncWait(0);
     }
 
-    if (counter_RCDD.value > $.rec_rc3) {
-        $.reward_RCDD = counter_RCDD.value - $.rec_rc3;
+    if ($.counter_RCDD > $.rec_rc3) {
+        $.reward_RCDD = $.counter_RCDD - $.rec_rc3;
         $.reward_RCDD = $.reward_RCDD * 1000;
-        $.rec_rc3 = counter_RCDD.value;
+        $.rec_rc3 = $.counter_RCDD;
         return; // SCM GOTO → mission_rc3_passed
     } else {
         // SCM GOTO → mission_rc3_failed (not lowered; manual jump required)
@@ -205,8 +201,8 @@ async function cleanup() {
     Hud.SwitchWidescreen(false /* OFF */);
     $.player.alterWantedLevel($.wanted_4x4);
 
-    timer_RCDD.clear(); // xxx: Hud.ClearTimer($.timer_RCDD);
-    counter_RCDD.clear(); // xxx: Hud.ClearCounter($.counter_RCDD);
+    Hud.ClearTimer($.$id.timer_RCDD);
+    Hud.ClearCounter($.$id.counter_RCDD);
     Rc.BlowUpBuggy();
 
     if (!Car.IsDead($.rc_van)) {

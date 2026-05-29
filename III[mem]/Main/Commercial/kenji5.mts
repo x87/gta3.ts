@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/kenji5.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *******************************   Kenji Mission 5   *************************************
 // *******************************     Smack Down      *************************************
@@ -11,8 +9,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // *** city splattering and killing all the dealers within a time limit. Occasionally 	 ***
 // *** they may have a 'backup vehicle' that will give chase to make the mission harder. ***
 // *****************************************************************************************
-
-let dead_peds: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -715,7 +711,7 @@ async function body() {
         Text.PrintNow('KM5_6', 5000, 1); //"You must murder at least 8 Yardie dealers."
         Text.PrintSoon('KM5_7', 6000, 1); //"Kill them quickly!  Once they've pushed their SPANK they're off the streets."
 
-        dead_peds = new Counter({ key: 'KILLS', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.dead_peds, 0 /* COUNTER_DISPLAY_NUMBER */, 'KILLS');
+        Hud.DisplayCounterWithString($.$id.dead_peds, 0, 'KILLS');
         $.ped_1_exists = 1;
         $.ped_2_exists = 1;
         $.number_of_peds = 2;
@@ -723,7 +719,7 @@ async function body() {
 
         while ($.number_of_peds > 0) {
             await asyncWait(0);
-            if (dead_peds.value > 0) {
+            if ($.dead_peds > 0) {
                 if (TIMERA > $.delete_oldest_ped_time) {
                     TIMERA = 0;                    
                     await delete_oldest_ped(); // SCM GOSUB delete_oldest_ped
@@ -755,7 +751,7 @@ async function body() {
                         $.ped_1_blip.remove();
                         $.ped_1.markAsNoLongerNeeded();
                         $.ped_1_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         if ($.on_screen_counter_flag == 0) {
@@ -805,7 +801,7 @@ async function body() {
                         $.ped_2_blip.remove();
                         $.ped_2.markAsNoLongerNeeded();
                         $.ped_2_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         if ($.on_screen_counter_flag == 0) {
@@ -857,7 +853,7 @@ async function body() {
                         $.ped_3_blip.remove();
                         $.ped_3.markAsNoLongerNeeded();
                         $.ped_3_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -904,7 +900,7 @@ async function body() {
                         $.ped_4_blip.remove();
                         $.ped_4.markAsNoLongerNeeded();
                         $.ped_4_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -951,7 +947,7 @@ async function body() {
                         $.ped_5_blip.remove();
                         $.ped_5.markAsNoLongerNeeded();
                         $.ped_5_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -998,7 +994,7 @@ async function body() {
                         $.ped_6_blip.remove();
                         $.ped_6.markAsNoLongerNeeded();
                         $.ped_6_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1045,7 +1041,7 @@ async function body() {
                         $.ped_7_blip.remove();
                         $.ped_7.markAsNoLongerNeeded();
                         $.ped_7_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1092,7 +1088,7 @@ async function body() {
                         $.ped_8_blip.remove();
                         $.ped_8.markAsNoLongerNeeded();
                         $.ped_8_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1139,7 +1135,7 @@ async function body() {
                         $.ped_9_blip.remove();
                         $.ped_9.markAsNoLongerNeeded();
                         $.ped_9_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1186,7 +1182,7 @@ async function body() {
                         $.ped_10_blip.remove();
                         $.ped_10.markAsNoLongerNeeded();
                         $.ped_10_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1233,7 +1229,7 @@ async function body() {
                         $.ped_11_blip.remove();
                         $.ped_11.markAsNoLongerNeeded();
                         $.ped_11_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1280,7 +1276,7 @@ async function body() {
                         $.ped_12_blip.remove();
                         $.ped_12.markAsNoLongerNeeded();
                         $.ped_12_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1327,7 +1323,7 @@ async function body() {
                         $.ped_13_blip.remove();
                         $.ped_13.markAsNoLongerNeeded();
                         $.ped_13_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1374,7 +1370,7 @@ async function body() {
                         $.ped_14_blip.remove();
                         $.ped_14.markAsNoLongerNeeded();
                         $.ped_14_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1421,7 +1417,7 @@ async function body() {
                         $.ped_15_blip.remove();
                         $.ped_15.markAsNoLongerNeeded();
                         $.ped_15_exists = 0;
-                        ++dead_peds.value;
+                        ++$.dead_peds;
                         --$.number_of_peds;
                         Text.PrintNow('KM5_1', 2000, 1); // "One down, two more to kill."
                         await create_random_ped(); // SCM GOSUB create_random_ped                        
@@ -1444,7 +1440,7 @@ async function body() {
             }
         }
 
-        if (dead_peds.value > $.minimum_kills || dead_peds.value == $.minimum_kills) {
+        if ($.dead_peds > $.minimum_kills || $.dead_peds == $.minimum_kills) {
             return; // SCM GOTO → mission_kenji5_passed
         } else {
             // SCM GOTO → mission_kenji5_failed (not lowered; manual jump required)
@@ -1668,12 +1664,12 @@ async function onPassed() {
     $.flag_kenji_mission5_passed = 1;
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1);
     $.player.addScore(10000);
-    if (dead_peds.value == 8) {
-        Text.PrintWithNumberNow('KM5_4', dead_peds.value, 3000, 1); // "Congratulations you killed ~1~ Yardies."
+    if ($.dead_peds == 8) {
+        Text.PrintWithNumberNow('KM5_4', $.dead_peds, 3000, 1); // "Congratulations you killed ~1~ Yardies."
     } else {
-        $.reward_kills = dead_peds.value - $.minimum_kills;
+        $.reward_kills = $.dead_peds - $.minimum_kills;
         $.reward_kills = $.reward_kills * 1000;
-        Text.PrintWith2NumbersNow('KM5_5', dead_peds.value, $.reward_kills, 3000, 1); // "Congratulations you killed ~1~ Yardies."
+        Text.PrintWith2NumbersNow('KM5_5', $.dead_peds, $.reward_kills, 3000, 1); // "Congratulations you killed ~1~ Yardies."
     }
     $.player.clearWantedLevel();
     Stat.RegisterMissionPassed('KM5');
@@ -1704,7 +1700,7 @@ async function cleanup() {
     $.ped_14_blip.remove();
     $.ped_15_blip.remove();
 
-    dead_peds.clear(); // xxx: Hud.ClearCounter($.dead_peds);
+    Hud.ClearCounter($.$id.dead_peds);
     Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
 
     Mission.Finish();

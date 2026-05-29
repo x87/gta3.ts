@@ -1,7 +1,5 @@
 // Generated from Main/Suburban/hood2.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Hood Mission 2****************************************
@@ -9,8 +7,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
-
-let buggies_left_hm2: DisplayedCounter;
 
 async function body() {
     // SCRIPT_NAME hood2
@@ -270,7 +266,7 @@ async function body() {
 
     $.buggies_left_hm2 = $.total_buggy_hm2 - $.counter_no_of_cars_player_had_hm2;
 
-    buggies_left_hm2 = new Counter({ key: 'BUGGY', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.buggies_left_hm2, 0 /* COUNTER_DISPLAY_NUMBER */, 'BUGGY');
+    Hud.DisplayCounterWithString($.$id.buggies_left_hm2, 0, 'BUGGY');
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
 
     $.radar_blip_car1_hm2.remove();
@@ -359,13 +355,13 @@ async function body() {
 
     // waiting for the player to destroy all of the vans
 
-    buggies_left_hm2.value = $.total_buggy_hm2 - $.counter_no_of_cars_player_had_hm2;
+    $.buggies_left_hm2 = $.total_buggy_hm2 - $.counter_no_of_cars_player_had_hm2;
 
     TIMERB = 0;
 
     while (!($.counter_all_vans_dead_hm2 == 3)) {
         await asyncWait(0);
-        buggies_left_hm2.value = $.total_buggy_hm2 - $.counter_no_of_cars_player_had_hm2;
+        $.buggies_left_hm2 = $.total_buggy_hm2 - $.counter_no_of_cars_player_had_hm2;
         if ($.flag_buggy_help2_hm2 == 0 && $.flag_buggy_help1_hm2 == 1) {
             if (TIMERB > 7000) {
                 Text.PrintHelp('HM2_3'); //"The buggies can go underneath vehicles but if you touch the wheels the buggy will detonate instantly."
@@ -468,7 +464,7 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(149 /* CAR_TOYZ */);
     Streaming.MarkModelAsNoLongerNeeded(118 /* CAR_SECURICAR */);
     Streaming.MarkModelAsNoLongerNeeded(131 /* car_rcbandit */);
-    buggies_left_hm2.clear(); // xxx: Hud.ClearCounter($.buggies_left_hm2);
+    Hud.ClearCounter($.$id.buggies_left_hm2);
     $.radar_blip_car1_hm2.remove();
     $.radar_blip_van1_hm2.remove();
     $.radar_blip_van2_hm2.remove();

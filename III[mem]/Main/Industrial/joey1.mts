@@ -1,7 +1,5 @@
 // Generated from Main/Industrial/joey1.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Joey mission 1****************************************
@@ -9,8 +7,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
-
-let timer: DisplayedTimer;
 
 async function body() {
     // Mission start stuff
@@ -275,7 +271,7 @@ async function body() {
     $.mike_car.setCanRespray(false /* OFF */);
     $.blip1_jm1 = Blip.AddForCar($.mike_car);
     $.countdown_jm1 = 361000;
-    timer = new Timer($.countdown_jm1).display(); // xxx: Hud.DisplayTimer($.countdown_jm1);
+    Hud.DisplayTimer($.$id.countdown_jm1);
 
     if (Car.IsDead($.mike_car)) {
         Text.PrintNow('WRECKED', 5000, 1);
@@ -297,7 +293,7 @@ async function body() {
         }
 
         // if ($.countdown_jm1 == 0) {
-        if (timer.value == 0) {
+        if ($.countdown_jm1 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
             // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
@@ -323,7 +319,7 @@ async function body() {
                 // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
             }
-            if (timer.value == 0) {
+            if ($.countdown_jm1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
@@ -367,7 +363,7 @@ async function body() {
                         // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
                     }
-                    if (timer.value == 0) {
+                    if ($.countdown_jm1 == 0) {
                         Text.PrintNow('OUTTIME', 5000, 1);
                         // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
@@ -429,7 +425,7 @@ async function body() {
                 // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
             }
-            if (timer.value == 0) {
+            if ($.countdown_jm1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
@@ -471,7 +467,7 @@ async function body() {
                         // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
                     }
-                    if (timer.value == 0) {
+                    if ($.countdown_jm1 == 0) {
                         Text.PrintNow('OUTTIME', 5000, 1);
                         // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
@@ -517,7 +513,7 @@ async function body() {
         $.blip3_jm1.remove();
         $.blip4_jm1.remove();
 
-        if (timer.value == 0) {
+        if ($.countdown_jm1 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
             // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
@@ -559,7 +555,7 @@ async function body() {
                     // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
                 }
-                if (timer.value == 0) {
+                if ($.countdown_jm1 == 0) {
                     Text.PrintNow('OUTTIME', 5000, 1);
                     // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
@@ -578,7 +574,7 @@ async function body() {
                 }
             }
 
-            if (timer.value == 0) {
+            if ($.countdown_jm1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
@@ -599,7 +595,7 @@ async function body() {
     World.ClearArea(1330.0, -466.1, 49.0, 4.0, true /* TRUE */);
     World.ClearArea(1333.6, -465.3, 49.0, 4.0, true /* TRUE */);
     
-    timer.clear(); // Hud.ClearTimer($.countdown_jm1);
+    Hud.ClearTimer($.$id.countdown_jm1);
     Game.SetPoliceIgnorePlayer($.player, true /* On */);
     $.player.setControl(false /* Off */);
     Hud.SwitchWidescreen(true /* ON */);
@@ -773,7 +769,7 @@ async function cleanup() {
     $.blip4_jm1.remove();
     Streaming.MarkModelAsNoLongerNeeded(91 /* CAR_IDAHO */);
     Streaming.UnloadSpecialCharacter(3);
-    timer.clear(); // Hud.ClearTimer(timer.value);
+    Hud.ClearTimer($.$id.countdown_jm1);
     if (!Car.IsDead($.mike_car)) {
         $.mike_car.setCanRespray(true /* ON */);
         $.mike_car.lockDoors(1 /* CARLOCK_UNLOCKED */);

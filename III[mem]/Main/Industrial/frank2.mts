@@ -1,9 +1,5 @@
 // Generated from Main/Industrial/frank2.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
-let spooked_counter: DisplayedCounter;
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -811,7 +807,7 @@ async function body() {
 
             StuckCarCheck.Add($.car_fm2, 5.0, 30000);
 
-            spooked_counter = new Counter({ key: 'FM2_16', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.spooked_counter, 1 /* COUNTER_DISPLAY_BAR */, 'FM2_16');
+            Hud.DisplayCounterWithString($.$id.spooked_counter, 1, 'FM2_16');
             TIMERB = 0;
 
             TIMERA = 0;
@@ -838,13 +834,13 @@ async function body() {
                     }
                 } else {
                     if (StuckCarCheck.IsCarStuck($.car_fm2)) {
-                        spooked_counter.value = 100;
+                        $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
                     }
                     if ($.car_fm2.isUpsidedown() && $.car_fm2.isStopped()) {
-                        spooked_counter.value = 100;
+                        $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -862,24 +858,24 @@ async function body() {
                                 if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 20.0, 20.0, 20.0, false /* FALSE */)) {
                                     if ($.player.isInModel(134 /* CAR_MAFIA */)) {
                                         if (TIMERA > 8) {
-                                            ++spooked_counter.value;
+                                            ++$.spooked_counter;
                                             TIMERA = 0;
                                         }
                                     } else {
                                         if (TIMERA > 16) {
-                                            ++spooked_counter.value;
+                                            ++$.spooked_counter;
                                             TIMERA = 0;
                                         }
                                     }
                                 } else {
                                     if ($.player.isInModel(134 /* CAR_MAFIA */)) {
                                         if (TIMERA > 16) {
-                                            ++spooked_counter.value;
+                                            ++$.spooked_counter;
                                             TIMERA = 0;
                                         }
                                     } else {
                                         if (TIMERA > 32) {
-                                            ++spooked_counter.value;
+                                            ++$.spooked_counter;
                                             TIMERA = 0;
                                         }
                                     }
@@ -887,12 +883,12 @@ async function body() {
                             } else {
                                 if ($.player.isInModel(134 /* CAR_MAFIA */)) {
                                     if (TIMERA > 32) {
-                                        ++spooked_counter.value;
+                                        ++$.spooked_counter;
                                         TIMERA = 0;
                                     }
                                 } else {
                                     if (TIMERA > 64) {
-                                        ++spooked_counter.value;
+                                        ++$.spooked_counter;
                                         TIMERA = 0;
                                     }
                                 }
@@ -900,15 +896,15 @@ async function body() {
                         } else {
                             if ($.player.isInModel(134 /* CAR_MAFIA */)) {
                                 if (TIMERA > 500) {
-                                    if (spooked_counter.value > 0) {
-                                        --spooked_counter.value;
+                                    if ($.spooked_counter > 0) {
+                                        --$.spooked_counter;
                                     }
                                     TIMERA = 0;
                                 }
                             } else {
                                 if (TIMERA > 250) {
-                                    if (spooked_counter.value > 0) {
-                                        --spooked_counter.value;
+                                    if ($.spooked_counter > 0) {
+                                        --$.spooked_counter;
                                     }
                                     TIMERA = 0;
                                 }
@@ -916,21 +912,21 @@ async function body() {
                         }
                     }
 
-                    if (spooked_counter.value > 10) {
+                    if ($.spooked_counter > 10) {
                         if ($.flag_player_had_warning1_fm2 == 0) {
                             Text.PrintNow('FM2_15', 5000, 1); //"Don't get too close or curly will suspect something!"
                             $.flag_player_had_warning1_fm2 = 1;
                         }
                     }
 
-                    if (spooked_counter.value == 100) {
+                    if ($.spooked_counter == 100) {
                         Text.PrintNow('FM2_14', 5000, 1); //"You got too close and spooked Curly!"
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
                     }
 
                     if (!$.curley_bob_fm2.isInCar($.car_fm2)) {
-                        spooked_counter.value = 100;
+                        $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -956,7 +952,7 @@ async function body() {
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
                     } else {
-                        spooked_counter.value = 100;
+                        $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -971,7 +967,7 @@ async function body() {
                     $.timer_difference = $.current_time_fm2 - $.time_car_stopped_fm2;
                     if ($.timer_difference > 15000) {
                         $.flag_taxi2_exit_car_fm2 = 1;
-                        spooked_counter.value = 100;
+                        $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -1026,7 +1022,7 @@ async function body() {
                         }
                     }
                 }
-                spooked_counter.clear(); // xxx: Hud.ClearCounter($.spooked_counter);
+                Hud.ClearCounter($.$id.spooked_counter);
                 if (!$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 160.0, false /* FALSE */)) {
                     Text.PrintNow('FM2_12', 5000, 1); //"You lost him!"
                     // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
@@ -1036,7 +1032,7 @@ async function body() {
                 // Checks to see if the player is around the ramp and will fail the mission
 
                 if ($.player.isInArea3D(1573.72, -876.49, 5.0, 1404.09, -1034.3, 30.0, false /* FALSE */)) {
-                    spooked_counter.value = 100;
+                    $.spooked_counter = 100;
                     Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                     // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -1471,7 +1467,7 @@ async function cleanup() {
     Zone.SetPedInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     Zone.SetCarInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     Zone.SetCarInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    spooked_counter.clear(); // xxx: Hud.ClearCounter($.spooked_counter);
+    Hud.ClearCounter($.$id.spooked_counter);
     Mission.Finish();
 }
 

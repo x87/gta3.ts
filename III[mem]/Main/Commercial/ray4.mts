@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/ray4.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *********************************** Ray Mission 4 ***************************************
 // *********************************** Gone Fishing	 ***************************************
@@ -12,8 +10,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // *** also have a weapon of his own, as he flees he will be dropping barrels of 		 ***
 // *** explosives into the water and the path of the player.							 ***
 // *****************************************************************************************
-
-let partners_boat_health: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -936,7 +932,7 @@ async function body() {
     $.partners_boat_health = $.partners_boat_health / 750;
     $.partners_boat_health2 = $.partners_boat_health;
     $.partners_boat_health = 100 - $.partners_boat_health2;
-    partners_boat_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.partners_boat_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+    Hud.DisplayCounterWithString($.$id.partners_boat_health, 1, 'DAM');
 
     boat_looop: while (true) {
         await asyncWait(0);
@@ -1161,11 +1157,11 @@ async function body() {
                     }
                 }
             }
-            if (!(partners_boat_health.value == -1)) {
-                partners_boat_health.value = $.rays_partner.getHealth();
-                if (partners_boat_health.value < 250) {
+            if (!($.partners_boat_health == -1)) {
+                $.partners_boat_health = $.rays_partner.getHealth();
+                if ($.partners_boat_health < 250) {
                     $.rays_partner.setHeedThreats(true /* TRUE */);
-                    partners_boat_health.value = -1;
+                    $.partners_boat_health = -1;
                 }
             }
             if ($.partner_on_foot_counter == 1) {
@@ -1454,7 +1450,7 @@ async function onPassed() {
 async function cleanup() {
     $.partners_blip.remove();
     $.players_boat_with_guns_blip.remove();
-    partners_boat_health.clear(); // xxx: Hud.ClearCounter($.partners_boat_health);
+    Hud.ClearCounter($.$id.partners_boat_health);
     Streaming.MarkModelAsNoLongerNeeded(120 /* BOAT_PREDATOR */);
     Streaming.MarkModelAsNoLongerNeeded(150 /* BOAT_GHOST */);
     Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
@@ -1582,18 +1578,18 @@ async function exit_boat() {
         }
         $.rays_partner.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
         $.rays_partner.setRunning(true /* TRUE */);
-        partners_boat_health.clear(); // xxx: Hud.ClearCounter($.partners_boat_health);
+        Hud.ClearCounter($.$id.partners_boat_health);
         $.exit_boat_flag = 1;
     }
 }
 
 async function boat_health_counter() {
-    partners_boat_health.value = $.partners_boat.getHealth();
-    partners_boat_health.value = partners_boat_health.value - 250;
-    partners_boat_health.value = partners_boat_health.value * 100;
-    partners_boat_health.value = partners_boat_health.value / 750;
-    $.partners_boat_health2 = partners_boat_health.value;
-    partners_boat_health.value = 100 - $.partners_boat_health2;
+    $.partners_boat_health = $.partners_boat.getHealth();
+    $.partners_boat_health = $.partners_boat_health - 250;
+    $.partners_boat_health = $.partners_boat_health * 100;
+    $.partners_boat_health = $.partners_boat_health / 750;
+    $.partners_boat_health2 = $.partners_boat_health;
+    $.partners_boat_health = 100 - $.partners_boat_health2;
 }
 
 async function steal_a_car() {
@@ -1616,7 +1612,7 @@ async function steal_a_car() {
 
 async function select_boat_node() {
     if ($.boat_node_counter == 1) {
-        if (partners_boat_health.value < 50) {
+        if ($.partners_boat_health < 50) {
             $.boat_node_x = $.node_11_x;
             $.boat_node_y = $.node_11_y;
             $.boat_node_counter = 11;
@@ -1636,7 +1632,7 @@ async function select_boat_node() {
     }
 
     if ($.boat_node_counter == 3) {
-        if (partners_boat_health.value < 50) {
+        if ($.partners_boat_health < 50) {
             $.boat_node_x = $.node_4_x;
             $.boat_node_y = $.node_4_y;
             $.boat_node_counter = 4;
@@ -1672,7 +1668,7 @@ async function select_boat_node() {
     }
 
     if ($.boat_node_counter == 7) {
-        if (partners_boat_health.value < 50) {
+        if ($.partners_boat_health < 50) {
             $.boat_node_x = $.node_8_x;
             $.boat_node_y = $.node_8_y;
             $.boat_node_counter = 8;
@@ -1685,7 +1681,7 @@ async function select_boat_node() {
     }
 
     if ($.boat_node_counter == 8) {
-        if (partners_boat_health.value < 50) {
+        if ($.partners_boat_health < 50) {
             $.boat_node_x = $.node_1_x;
             $.boat_node_y = $.node_1_y;
             $.boat_node_counter = 1;
@@ -1698,7 +1694,7 @@ async function select_boat_node() {
     }
 
     if ($.boat_node_counter == 9) {
-        if (partners_boat_health.value < 50) {
+        if ($.partners_boat_health < 50) {
             $.boat_node_x = $.node_2_x;
             $.boat_node_y = $.node_2_y;
             $.boat_node_counter = 2;

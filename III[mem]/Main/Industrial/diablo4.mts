@@ -1,9 +1,5 @@
 // Generated from Main/Industrial/diablo4.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
-let counter_diablo4: DisplayedTimer;
-
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Deablo mission 4**************************************
@@ -231,7 +227,7 @@ async function body() {
     $.blip3_pornman.changeDisplay(1 /* MARKER_ONLY */);
 
     $.counter_diablo4 = 26000;
-    counter_diablo4 = new Timer($.counter_diablo4).display(); // xxx: Hud.DisplayTimer($.counter_diablo4);
+    Hud.DisplayTimer($.$id.counter_diablo4);
     if (Car.IsDead($.diablo_collect_porn_van)) {
         // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
         throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
@@ -248,17 +244,17 @@ async function body() {
         }
         if (!Char.IsDead($.porn_man)) {
             if ($.player.locateAnyMeansChar2D($.porn_man, 30.0, 30.0, false /* FALSE */) && $.found_perv_before == 0) {
-                counter_diablo4.clear(); // xxx: Hud.ClearTimer($.counter_diablo4);
+                Hud.ClearTimer($.$id.counter_diablo4);
                 $.found_perv_before = 1;
             }
         }
-        if (counter_diablo4.value == 0) {
+        if ($.counter_diablo4 == 0) {
             // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
         }
         $.NumEaten_diablo4 = Pacman.GetNumberOfPowerPillsEaten();
         if ($.NumEaten_diablo4 > 0 && $.player.isInCar($.diablo_collect_porn_van)) {
-            counter_diablo4.value = counter_diablo4.value + 1300;
+            $.counter_diablo4 = $.counter_diablo4 + 1300;
             Pacman.ClearNumberOfPowerPillsEaten();
             $.NumEaten_diablo4_total++;
         }
@@ -295,8 +291,7 @@ async function body() {
     $.blip1_porn_van.remove();
     $.blip2_porn_shop = Blip.AddForCoord(973.9, -428.3, -100.0);
     $.blip2_porn_shop.remove();
-
-    counter_diablo4.clear(); // xxx: Hud.ClearTimer($.counter_diablo4);
+    Hud.ClearTimer($.$id.counter_diablo4);
     Pacman.Clear();
 
     Text.PrintNow('DIAB4_1', 5000, 1); // Mission brief
@@ -492,7 +487,7 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
     Streaming.MarkModelAsNoLongerNeeded(30 /* PED_MALE2 */);
     Streaming.MarkModelAsNoLongerNeeded(130 /* CAR_RUMPO */);
-    counter_diablo4.clear(); // xxx: Hud.ClearTimer($.counter_diablo4);
+    Hud.ClearTimer($.$id.counter_diablo4);
     Pacman.Clear();
     Audio.SetMusicDoesFade(true /* TRUE */);
     Streaming.UnloadSpecialCharacter(1);

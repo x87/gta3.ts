@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/asuka2.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // **************************************Sniper Surveillance********************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let countdown_as2: DisplayedTimer;
 
 async function body() {
     // Mission start stuff
@@ -244,7 +240,7 @@ async function body() {
     //ADD_BLIP_FOR_COORD 430.0 -1448.7 -100.0 blip1_FBI1
 
     $.countdown_as2 = 391000;
-    countdown_as2 = new Timer($.countdown_as2).display(); // xxx: Hud.DisplayTimer($.countdown_as2);
+    Hud.DisplayTimer($.$id.countdown_as2);
     //FEDS ON TOWER BLOCK*****************************************************************************
 
     $.FBI1 = Char.Create(4 /* PEDTYPE_CIVMALE */, 10 /* PED_GANG_MAFIA_A */, 383.0, -1447.9, 51.4); //Floor4
@@ -552,7 +548,7 @@ async function body() {
                 }
             }
         }
-        if (countdown_as2.value == 0) {
+        if ($.countdown_as2 == 0) {
             // SCM GOTO → mission_asuka2_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_asuka2_failed'); // fallback: would break linear control flow
         }
@@ -597,7 +593,7 @@ async function cleanup() {
     $.blip8_FBI8.remove();
     $.blip9_FBI9.remove();
     $.blip10_FBI10.remove();
-    countdown_as2.clear(); // xxx: Hud.ClearTimer($.countdown_as2);
+    Hud.ClearTimer($.$id.countdown_as2);
     Mission.Finish();
 }
 

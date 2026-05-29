@@ -1,7 +1,5 @@
 // Generated from Main/Suburban/asusb3.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // *****************************************************************************************
 // ***************************************'Plane to Sea'************************************
 // *****************************************************************************************
-
-let timer_as3: DisplayedTimer;
 
 async function body() {
     // Mission start stuff
@@ -361,7 +357,7 @@ async function body() {
 
     // Mission stuff goes here
 
-    timer_as3 = new Timer($.timer_as3).display(); // xxx: Hud.DisplayTimer($.timer_as3);
+    Hud.DisplayTimer($.$id.timer_as3);
     //----------------------------LOAD MODELS------------------------------------------------------
 
     Streaming.RequestModel(143 /* BOAT_REEFER */);
@@ -524,7 +520,7 @@ async function body() {
                         break before_loop_as3_3; // SCM GOTO → loop_as3_3
                     }
 
-                    if (timer_as3.value < 91000) {
+                    if ($.timer_as3 < 91000) {
                         if ($.flag_commence_approach == 0) {
                             DrugRun.Start();
                             $.flag_commence_approach = 1;
@@ -540,8 +536,8 @@ async function body() {
                         break; // SCM GOTO → loop_as3_2
                     }
 
-                    if (timer_as3.value < 1) {
-                        timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                    if ($.timer_as3 < 1) {
+                        Hud.ClearTimer($.$id.timer_as3);
                     }
 
                     await baddies(); // SCM GOSUB baddies
@@ -612,13 +608,13 @@ async function body() {
 
                     if (DrugRun.HasPlaneBeenShotDown()) {
                         Text.ClearPrints();
-                        timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                        Hud.ClearTimer($.$id.timer_as3);
                         $.flag_messages = 0;
                         break before_loop_as3_6; // SCM GOTO → loop_as3_6
                     }
 
-                    if (timer_as3.value < 1) {
-                        timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                    if ($.timer_as3 < 1) {
+                        Hud.ClearTimer($.$id.timer_as3);
                     }
 
                     //TEST BLIP FOR PLANE
@@ -674,7 +670,7 @@ async function body() {
                     }
                 }
 
-                if (timer_as3.value < 91000) {
+                if ($.timer_as3 < 91000) {
                     if ($.flag_commence_approach == 0) {
                         DrugRun.Start();
                         $.flag_commence_approach = 1;
@@ -690,8 +686,8 @@ async function body() {
                     break before_loop_as3_4; // SCM GOTO → loop_as3_4
                 }
 
-                if (timer_as3.value < 1) {
-                    timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                if ($.timer_as3 < 1) {
+                    Hud.ClearTimer($.$id.timer_as3);
                 }
 
                 await baddies(); // SCM GOSUB baddies
@@ -729,13 +725,13 @@ async function body() {
 
             if (DrugRun.HasPlaneBeenShotDown()) {
                 Text.ClearPrints();
-                timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+                Hud.ClearTimer($.$id.timer_as3);
                 $.flag_messages = 0;
                 break before_loop_as3_6; // SCM GOTO → loop_as3_6
             }
 
-            if (timer_as3.value < 1) {
-                timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+            if ($.timer_as3 < 1) {
+                Hud.ClearTimer($.$id.timer_as3);
             }
 
             //TEST BLIP FOR PLANE
@@ -1296,7 +1292,7 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_suburban_mission = 0;
 
-    timer_as3.clear(); // xxx: Hud.ClearTimer($.timer_as3);
+    Hud.ClearTimer($.$id.timer_as3);
     $.blip_as3_boat.remove();
     $.blip_as3_dodo.remove();
     $.blip_as3_bouy.remove();

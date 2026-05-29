@@ -1,5 +1,4 @@
 // Generated from Main/Industrial/firetruck.sc
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 import { $ } from '../../utils';
 
 // *****************************************************************************************
@@ -9,9 +8,6 @@ import { $ } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let fire_time_limit: DisplayedTimer;
-let fires_extinguished: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -417,7 +413,7 @@ async function body() {
         $.dummy_ped_for_zone.delete();
 
         if ($.displayed_timer == 0) {
-            fire_time_limit = new Timer($.fire_time_limit).display(); // xxx: Hud.DisplayTimer($.fire_time_limit);
+            Hud.DisplayTimer($.$id.fire_time_limit);
             $.displayed_timer = 1;
         }
 
@@ -464,7 +460,7 @@ async function body() {
                 // SCM GOTO → failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
             }
-            if (fire_time_limit.value < 1) {
+            if ($.fire_time_limit < 1) {
                 Text.PrintNow('F_FAIL2', 5000, 1);
                 // SCM GOTO → failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
@@ -513,9 +509,6 @@ async function body() {
 /////////////////////////////////////////////////
 async function passed() {
     ++$.fires_extinguished;
-    if (typeof fires_extinguished !== 'undefined') {
-        fires_extinguished.value = $.fires_extinguished;
-    }
     Text.PrintBig('F_PASS1', 5000, 5);
     Text.PrintWithNumberBig('REWARD', $.score_ft, 6000, 6);
     Stat.RegisterFireExtinguished();
@@ -557,7 +550,7 @@ async function passed() {
     //earned_free_flamethrower PAGEB11
 
     if ($.displayed_counter == 0) {
-        fires_extinguished = new Counter({ key: 'F_EXTIN', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.fires_extinguished, 0 /* COUNTER_DISPLAY_NUMBER */, 'F_EXTIN');
+        Hud.DisplayCounterWithString($.$id.fires_extinguished, 0, 'F_EXTIN');
         $.displayed_counter = 1;
     }
 
@@ -574,14 +567,10 @@ async function passed() {
 
 /////////////////////////////////////////////////
 async function onFailed() {
-    /////////////////////////////////////////////////
+    ///////////////$.$id.//////////////////////////////
 
-    if (typeof fire_time_limit !== 'undefined') {
-        fire_time_limit.clear(); // xxx: Hud.ClearTimer($.fire_time_limit);
-    }
-    if (typeof fires_extinguished !== 'undefined') {
-        fires_extinguished.clear(); // xxx: Hud.ClearCounter($.fires_extinguished);
-    }
+    Hud.ClearTimer($.$id.fire_time_limit);
+    Hud.ClearCounter($.$id.fires_extinguished);
     Text.PrintBig('F_FAIL1', 5000, 5);
     Text.PrintWithNumberBig('TSCORE', $.total_score, 6000, 6);
     World.RemoveAllScriptFires();

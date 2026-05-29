@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/kenji2.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -10,8 +8,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let timer_km2: DisplayedTimer;
 
 async function body() {
     // SCRIPT_NAME kenji2
@@ -480,10 +476,10 @@ async function body() {
 
     */
 
-    timer_km2 = new Timer($.timer_km2).display(); // xxx: Hud.DisplayTimer($.timer_km2);
+    Hud.DisplayTimer($.$id.timer_km2);
     // waiting for all 5 vehicles to be in the range
 
-    while (timer_km2.value > 0) {
+    while ($.timer_km2 > 0) {
         await asyncWait(0);
         if ($.counter_number_of_cars_in_garage_km2 == 3) {
             return; // SCM GOTO → mission_kenji2_passed
@@ -984,7 +980,7 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_kenji_mission = 0;
     $.garage_km2.setTargetCarForMission(-1 as any);
-    timer_km2.clear(); // xxx: Hud.ClearTimer($.timer_km2);
+    Hud.ClearTimer($.$id.timer_km2);
     $.radar_blip_coord1_km2.remove();
     $.radar_blip_car1_km2.remove();
     //REMOVE_BLIP radar_blip_car2_km2

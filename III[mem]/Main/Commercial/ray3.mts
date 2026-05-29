@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/ray3.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // ************************************ Ray mission 3 **************************************
 // ************************************ Evidence Dash **************************************
@@ -13,8 +11,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // *** must grab that first and then go get the next package off them. There will be 8 to***
 // *** retrieve. Once the player has the stash he must get it back to his hideout.		 ***
 // *****************************************************************************************
-
-let amount_of_evidence_player_has: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -701,7 +697,7 @@ async function body() {
             $.evidence_6.placeRelativeToCar($.ia_car_rm3, -0.3, -1.7, -0.1);
         }
 
-        if (amount_of_evidence_player_has && amount_of_evidence_player_has.value == 6) {
+        if ($.amount_of_evidence_player_has == 6) {
             $.rays_evidence_blip.remove();
             Text.PrintNow('RM3_1', 5000, 1);
             while (!$.player.isInAnyCar()) {
@@ -713,7 +709,7 @@ async function body() {
             }
             if (!Car.IsDead($.players_car)) {
                 $.rays_evidence_blip = Blip.AddForCar($.players_car);
-                amount_of_evidence_player_has.clear(); // xxx: Hud.ClearCounter($.amount_of_evidence_player_has);
+                Hud.ClearCounter($.$id.amount_of_evidence_player_has);
                 Text.PrintNow('RM3_7', 5000, 1); // "Now torch the car!"
                 while (!Car.IsDead($.players_car)) {
                     await asyncWait(0);
@@ -751,7 +747,7 @@ async function cleanup() {
 
     $.rays_evidence_blip.remove();
     $.prosecution_car_blip.remove();
-    amount_of_evidence_player_has.clear(); // xxx: Hud.ClearCounter($.amount_of_evidence_player_has);
+    Hud.ClearCounter($.$id.amount_of_evidence_player_has);
     Streaming.MarkModelAsNoLongerNeeded(112 /* CAR_BOBCAT */);
     Streaming.MarkModelAsNoLongerNeeded(61 /* PED_B_MAN3 */);
     Streaming.MarkModelAsNoLongerNeeded(1325 /* DONKEYMAG */);
@@ -803,7 +799,7 @@ async function evidence_collected() {
     Sound.AddOneOffSound($.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z, 82 /* SOUND_EVIDENCE_PICKUP */);
     if ($.drop_evidence == 1) {
         $.evidence_1.delete();
-        amount_of_evidence_player_has = new Counter({ key: 'COLLECT', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.amount_of_evidence_player_has, 0 /* COUNTER_DISPLAY_NUMBER */, 'COLLECT');
+        Hud.DisplayCounterWithString($.$id.amount_of_evidence_player_has, 0, 'COLLECT');
     }
     if ($.drop_evidence == 2) {
         $.evidence_2.delete();
@@ -820,8 +816,8 @@ async function evidence_collected() {
     if ($.drop_evidence == 6) {
         $.evidence_6.delete();
     }
-    ++amount_of_evidence_player_has.value;
-    Text.PrintWithNumberNow('RM3_5', amount_of_evidence_player_has.value, 5000, 1); //"You have ~1~ evidence packages."
+    ++$.amount_of_evidence_player_has;
+    Text.PrintWithNumberNow('RM3_5', $.amount_of_evidence_player_has, 5000, 1); //"You have ~1~ evidence packages."
     $.ia_have_evidence_flag = 1;
     TIMERB = 0;
 }

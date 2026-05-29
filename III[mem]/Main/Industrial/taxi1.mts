@@ -1,5 +1,4 @@
 // Generated from Main/Industrial/taxi1.sc
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
 import { $ } from '../../utils';
 
 // *******************************************************************************************
@@ -9,9 +8,6 @@ import { $ } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
-
-let taxi_countdown: DisplayedTimer;
-let taxi_passed_this_shot: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -62,7 +58,7 @@ async function body() {
 
     await asyncWait(0);
 
-    taxi_passed_this_shot = new Counter({ key: 'FARES', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.taxi_passed_this_shot, 0 /* COUNTER_DISPLAY_NUMBER */, 'FARES'); //TEST STUFF!!!!!!!!!!!!!
+    Hud.DisplayCounterWithString($.$id.taxi_passed_this_shot, 0, 'FARES');
 
     if (!$.player.isPlaying()) {
         return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
@@ -119,7 +115,7 @@ async function body() {
             }
         }
 
-        if ($.taxi_countdown_already_started == 1 && taxi_countdown.value == 0) {
+        if ($.taxi_countdown_already_started == 1 && $.taxi_countdown == 0) {
             //PRINT_NOW ( TAXI2 ) 5000 2 //You SUCK!
             return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
         }
@@ -187,7 +183,7 @@ async function body() {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 }
-                if ($.taxi_countdown_already_started == 1 && taxi_countdown.value == 0) {
+                if ($.taxi_countdown_already_started == 1 && $.taxi_countdown == 0) {
                     //PRINT_NOW ( TAXI2 ) 5000 2 //You SUCK!
                     return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
                 }
@@ -252,7 +248,7 @@ async function body() {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 }
-                if ($.taxi_countdown_already_started == 1 && taxi_countdown.value == 0) {
+                if ($.taxi_countdown_already_started == 1 && $.taxi_countdown == 0) {
                     //PRINT_NOW ( TAXI2 ) 5000 2 //You SUCK!
                     return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
                 }
@@ -647,56 +643,56 @@ async function body() {
             $.taxi_distance_int_old = $.taxi_distance_int;
 
             if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-                if (taxi_passed_this_shot.value == 0) {
+                if ($.taxi_passed_this_shot == 0) {
                     $.taxi_distance_int = $.taxi_distance_int * 100;
                 }
             }
 
             if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-                if (taxi_passed_this_shot.value == 0) {
+                if ($.taxi_passed_this_shot == 0) {
                     $.taxi_distance_int = $.taxi_distance_int * 95;
                 }
             }
 
             if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                if (taxi_passed_this_shot.value == 0) {
+                if ($.taxi_passed_this_shot == 0) {
                     $.taxi_distance_int = $.taxi_distance_int * 115;
                 }
             }
 
-            if (taxi_passed_this_shot.value == 1) {
+            if ($.taxi_passed_this_shot == 1) {
                 $.taxi_distance_int = $.taxi_distance_int * 90;
             }
 
-            if (taxi_passed_this_shot.value == 2) {
+            if ($.taxi_passed_this_shot == 2) {
                 $.taxi_distance_int = $.taxi_distance_int * 85;
             }
 
-            if (taxi_passed_this_shot.value == 3) {
+            if ($.taxi_passed_this_shot == 3) {
                 $.taxi_distance_int = $.taxi_distance_int * 84;
             }
 
-            if (taxi_passed_this_shot.value == 4) {
+            if ($.taxi_passed_this_shot == 4) {
                 $.taxi_distance_int = $.taxi_distance_int * 83;
             }
 
-            if (taxi_passed_this_shot.value == 5) {
+            if ($.taxi_passed_this_shot == 5) {
                 $.taxi_distance_int = $.taxi_distance_int * 82;
             }
 
-            if (taxi_passed_this_shot.value > 5 && taxi_passed_this_shot.value <= 10) {
+            if ($.taxi_passed_this_shot > 5 && $.taxi_passed_this_shot <= 10) {
                 $.taxi_distance_int = $.taxi_distance_int * 80;
             }
 
-            if (taxi_passed_this_shot.value > 11 && taxi_passed_this_shot.value <= 20) {
+            if ($.taxi_passed_this_shot > 11 && $.taxi_passed_this_shot <= 20) {
                 $.taxi_distance_int = $.taxi_distance_int * 75;
             }
 
-            if (taxi_passed_this_shot.value > 20 && taxi_passed_this_shot.value <= 50) {
+            if ($.taxi_passed_this_shot > 20 && $.taxi_passed_this_shot <= 50) {
                 $.taxi_distance_int = $.taxi_distance_int * 70;
             }
 
-            if (taxi_passed_this_shot.value > 50) {
+            if ($.taxi_passed_this_shot > 50) {
                 $.taxi_distance_int = $.taxi_distance_int * 60;
             }
 
@@ -708,19 +704,19 @@ async function body() {
             TIMERB = 0;
             
             if ($.taxi_countdown_already_started == 0) {
-                taxi_countdown = new Timer($.taxi_countdown).display(); // xxx: Hud.DisplayTimer($.taxi_countdown);
+                Hud.DisplayTimer($.$id.taxi_countdown);
                 $.taxi_countdown_already_started = 1;
             }
             
-            taxi_countdown.value += $.taxi_distance_int;
+            $.taxi_countdown += $.taxi_distance_int;
 
             if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                if (taxi_passed_this_shot.value == 0) {
-                    taxi_countdown.value = taxi_countdown.value + 15000;
+                if ($.taxi_passed_this_shot == 0) {
+                    $.taxi_countdown = $.taxi_countdown + 15000;
                 }
             } else {
-                if (taxi_passed_this_shot.value == 0) {
-                    taxi_countdown.value = taxi_countdown.value + 10000;
+                if ($.taxi_passed_this_shot == 0) {
+                    $.taxi_countdown = $.taxi_countdown + 10000;
                 }
             }
 
@@ -745,7 +741,7 @@ async function body() {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 }
-                if (taxi_countdown.value == 0) {
+                if ($.taxi_countdown == 0) {
                     return taxi_out_of_time(); // SCM GOTO → taxi_out_of_time
                 }
                 if (!$.taxi_car1.isHealthGreater(500)) {
@@ -809,7 +805,7 @@ async function body() {
 
             $.taxi_passed++;
             Stat.RegisterPassengerDroppedOffTaxi();
-            taxi_passed_this_shot.value++;
+            $.taxi_passed_this_shot++;
 
             //CREATE NEW TAXI AFTER COMPLETING 100 TAXI MISSIONS
 
@@ -820,12 +816,12 @@ async function body() {
                 $.new_taxi_created_before = 1;
             }
 
-            taxi_countdown.value = taxi_countdown.value + 10000;
+            $.taxi_countdown = $.taxi_countdown + 10000;
 
             await mission_taxi1_failed(false); // SCM GOSUB mission_taxi1_failed
 
-            if (taxi_passed_this_shot.value == $.in_a_row_number) {
-                Text.PrintWith2NumbersBig('IN_ROW', taxi_passed_this_shot.value, $.in_a_row_cash, 5000, 6); //Bonus!
+            if ($.taxi_passed_this_shot == $.in_a_row_number) {
+                Text.PrintWith2NumbersBig('IN_ROW', $.taxi_passed_this_shot, $.in_a_row_cash, 5000, 6); //Bonus!
                 $.player.addScore($.in_a_row_cash);
                 $.taxi_score = $.taxi_score + $.in_a_row_cash;
                 $.in_a_row_number = $.in_a_row_number + 5;
@@ -1009,8 +1005,8 @@ async function mission_taxi1_failed(cancel_mission: boolean = true) {
 
 // mission cleanup
 async function cleanup() {
-    taxi_countdown?.clear(); // xxx: Hud.ClearTimer($.taxi_countdown);
-    taxi_passed_this_shot.clear(); // xxx: Hud.ClearCounter($.taxi_passed_this_shot); //TEST STUFF!!!!!!!!
+    Hud.ClearTimer($.$id.taxi_countdown);
+    Hud.ClearCounter($.$id.taxi_passed_this_shot);
     if (!Car.IsDead($.taxi_car1)) {
         $.taxi_car1.setTaxiLights(false /* Off */);
     }

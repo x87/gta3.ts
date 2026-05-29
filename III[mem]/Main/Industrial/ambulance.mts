@@ -1,7 +1,5 @@
 // Generated from Main/Industrial/ambulance.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let ped_time_limit: DisplayedTimer;
 
 async function body() {
     // Mission start stuff
@@ -108,10 +104,7 @@ async function body() {
 
     mission_root: while (true) {
         Text.PrintWithNumberNow('ALEVEL', $.ambulance_level, 5000, 4); // Ambulance Mission Level ~1~
-
-        if (typeof ped_time_limit !== 'undefined') {
-            ped_time_limit.clear(); // xxx: Hud.ClearTimer($.ped_time_limit);
-        }
+        Hud.ClearTimer($.$id.ped_time_limit);
         $.ped_time_limit = 0;
 
         Text.ClearHelp();
@@ -156,7 +149,7 @@ async function body() {
         $.time_chunk = $.ped_time_limit;
         $.time_chunk /= 2;
 
-        ped_time_limit = new Timer($.ped_time_limit).display(); // xxx: Hud.DisplayTimer($.ped_time_limit);
+        Hud.DisplayTimer($.$id.ped_time_limit);
         if (!ONMISSION) {
             $.hospital_blip = Blip.AddForCoord($.hospital_x, $.hospital_y, $.hospital_z);
         }
@@ -240,7 +233,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_1.explodeHead();
                     $.injured_ped_1.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1); //"Your too late"
@@ -312,7 +305,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_2.explodeHead();
                     $.injured_ped_2.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -384,7 +377,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_3.explodeHead();
                     $.injured_ped_3.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -456,7 +449,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_4.explodeHead();
                     $.injured_ped_4.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -528,7 +521,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_5.explodeHead();
                     $.injured_ped_5.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -600,7 +593,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_6.explodeHead();
                     $.injured_ped_6.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -672,7 +665,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_7.explodeHead();
                     $.injured_ped_7.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -744,7 +737,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_8.explodeHead();
                     $.injured_ped_8.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -816,7 +809,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_9.explodeHead();
                     $.injured_ped_9.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -888,7 +881,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_10.explodeHead();
                     $.injured_ped_10.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -960,7 +953,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_11.explodeHead();
                     $.injured_ped_11.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -1032,7 +1025,7 @@ async function body() {
                     // SCM GOTO → ambulance_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
                 }
-                if (ped_time_limit.value == 0) {
+                if ($.ped_time_limit == 0) {
                     $.injured_ped_12.explodeHead();
                     $.injured_ped_12.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
@@ -1911,9 +1904,7 @@ async function generate_timelimit() {
 }
 
 async function onFailed() {
-    if (typeof ped_time_limit !== 'undefined') {
-        ped_time_limit.clear(); // xxx: Hud.ClearTimer($.ped_time_limit);
-    }
+    Hud.ClearTimer($.$id.ped_time_limit);
     Text.ClearHelp();
     Text.PrintBig('A_FAIL1', 5000, 5);
     Text.PrintWithNumberBig('A_SAVES', $.saved_peds_this_go, 6000, 6); //PEOPLE SAVED: ~1~
@@ -1949,7 +1940,7 @@ async function chunk1_ambulance() {
     if ($.ambulance_health_now < $.ambulance_health_last) {
         $.time_drop = $.ambulance_health_last - $.ambulance_health_now;
         $.time_drop = $.time_drop * 50;
-        ped_time_limit.value = ped_time_limit.value - $.time_drop;
+        $.ped_time_limit = $.ped_time_limit - $.time_drop;
         $.random_scream = Math.RandomIntInRange(0, 2);
         if ($.ped_sex_flag == 0) {
             if ($.random_scream == 0) {
@@ -1964,8 +1955,8 @@ async function chunk1_ambulance() {
                 Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, 81 /* SOUND_INJURED_PED_FEMALE_OUCH_L */);
             }
         }
-        if (ped_time_limit.value < 0) {
-            ped_time_limit.value = 0;
+        if ($.ped_time_limit < 0) {
+            $.ped_time_limit = 0;
         }
         $.ambulance_health_last = $.ambulance_health_now;
     }
@@ -1998,7 +1989,7 @@ async function chunk3_ambulance() {
     }
     $.time_chunk_in_secs = $.time_chunk / 1000;
     Text.PrintWithNumberBig('A_TIME', $.time_chunk_in_secs, 6000, 6); //+~1~ Seconds
-    ped_time_limit.value += $.time_chunk;
+    $.ped_time_limit += $.time_chunk;
 }
 //////////////////////////////////////////////////////////////////////
 
@@ -2012,7 +2003,7 @@ async function chunk4_ambulance() {
         $.players_ambulance_health = $.players_ambulance.getHealth();
         $.players_ambulance_health += 110;
         $.players_ambulance.setHealth($.players_ambulance_health);
-        ped_time_limit.value += $.time_chunk;
+        $.ped_time_limit += $.time_chunk;
         ++$.bonus_time_flag;
     }
     Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);

@@ -975,40 +975,40 @@ async function main() {
         $.flag_player_on_hood_mission = 0;
         $.flag_player_on_meat_mission = 0;
 
-        // xxx: this belongs to stripped MAIN.SCM
         // Death Arrest Stuff
 
-        // DECLARE_MISSION_FLAG(ONMISSION);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(12 /* CONTACT_8BALL */, $.flag_player_on_eightball_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(0 /* CONTACT_LUIGI */, $.flag_player_on_luigi_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(1 /* CONTACT_JOEY */, $.flag_player_on_joey_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(2 /* CONTACT_TONI */, $.flag_player_on_toni_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(3 /* CONTACT_FRANKIE */, $.flag_player_on_frankie_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(13 /* CONTACT_HISPANIC */, $.flag_player_on_diablo_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(4 /* CONTACT_ASUKA */, $.flag_player_on_asuka_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(5 /* CONTACT_KENJI */, $.flag_player_on_kenji_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(7 /* CONTACT_LOVE */, $.flag_player_on_love_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(14 /* CONTACT_YARDIE */, $.flag_player_on_yardie_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(6 /* CONTACT_RAY */, $.flag_player_on_ray_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(10 /* CONTACT_ASUKA_SUBURBAN */, $.flag_player_on_asuka_suburban_mission);
-        // DECLARE_MISSION_FLAG_FOR_CONTACT(15 /* CONTACT_HOODS */, $.flag_player_on_hood_mission);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(12 /* CONTACT_8BALL */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(0 /* CONTACT_LUIGI */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(1 /* CONTACT_JOEY */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(2 /* CONTACT_TONI */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(3 /* CONTACT_FRANKIE */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(13 /* CONTACT_HISPANIC */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(4 /* CONTACT_ASUKA */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(5 /* CONTACT_KENJI */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(7 /* CONTACT_LOVE */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(14 /* CONTACT_YARDIE */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(6 /* CONTACT_RAY */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(10 /* CONTACT_ASUKA_SUBURBAN */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(9 /* CONTACT_RAY_SUBURBAN */, 1000);
-        // DECLARE_BASE_BRIEF_ID_FOR_CONTACT(15 /* CONTACT_HOODS */, 1000);
+        native("DECLARE_MISSION_FLAG", $.$id.flag_player_on_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 12 /* CONTACT_8BALL */, $.$id.flag_player_on_eightball_mission)
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 0 /* CONTACT_LUIGI */, $.$id.flag_player_on_luigi_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 1 /* CONTACT_JOEY */, $.$id.flag_player_on_joey_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 2 /* CONTACT_TONI */, $.$id.flag_player_on_toni_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 3 /* CONTACT_FRANKIE */, $.$id.flag_player_on_frankie_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 13 /* CONTACT_HISPANIC */, $.$id.flag_player_on_diablo_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 4 /* CONTACT_ASUKA */, $.$id.flag_player_on_asuka_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 5 /* CONTACT_KENJI */, $.$id.flag_player_on_kenji_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 7 /* CONTACT_LOVE */, $.$id.flag_player_on_love_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 14 /* CONTACT_YARDIE */, $.$id.flag_player_on_yardie_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 6 /* CONTACT_RAY */, $.$id.flag_player_on_ray_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 10 /* CONTACT_ASUKA_SUBURBAN */, $.$id.flag_player_on_asuka_suburban_mission);
+        native("DECLARE_MISSION_FLAG_FOR_CONTACT", 15 /* CONTACT_HOODS */, $.$id.flag_player_on_hood_mission);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 12 /* CONTACT_8BALL */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 0 /* CONTACT_LUIGI */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 1 /* CONTACT_JOEY */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 2 /* CONTACT_TONI */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 3 /* CONTACT_FRANKIE */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 13 /* CONTACT_HISPANIC */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 4 /* CONTACT_ASUKA */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 5 /* CONTACT_KENJI */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 7 /* CONTACT_LOVE */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 14 /* CONTACT_YARDIE */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 6 /* CONTACT_RAY */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 10 /* CONTACT_ASUKA_SUBURBAN */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 9 /* CONTACT_RAY_SUBURBAN */, 1000);
+        native("DECLARE_BASE_BRIEF_ID_FOR_CONTACT", 15 /* CONTACT_HOODS */, 1000);
 
         // Death Arrest Setting
-        // SET_DEATHARREST_STATE(true /* ON */);
+
+        native("SET_DEATHARREST_STATE", true /* ON */);
 
         // ***********************************Industrial Variables**********************************
 

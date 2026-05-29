@@ -1,7 +1,5 @@
 // Generated from Main/Suburban/cat1.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Cat mission 1*****************************************
@@ -9,8 +7,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
-
-let countdown_cat1: DisplayedTimer;
 
 async function body() {
     // Mission start stuff
@@ -314,7 +310,7 @@ async function body() {
     //GOSUB credits
 
     $.countdown_cat1 = 421000;
-    countdown_cat1 = new Timer($.countdown_cat1).display(); // xxx: Hud.DisplayTimer($.countdown_cat1);
+    Hud.DisplayTimer($.$id.countdown_cat1);
     if (!Char.IsDead($.colubian_guard1) && !Char.IsDead($.colubian_guard2) && !Char.IsDead($.colubian_guard12) && !Char.IsDead($.colubian_guard13)) {
         $.colubian_guard1.setObjKillPlayerAnyMeans($.player);
         $.colubian_guard1.setThreatSearch(1 /* THREAT_PLAYER1 */);
@@ -335,7 +331,7 @@ async function body() {
 
     while ($.player.isInArea3D(-448.0, 241.7, 50.0, -292.4, 365.2, 90.0, false /* FALSE */)) {
         await asyncWait(0);
-        if (countdown_cat1.value == 0) {
+        if ($.countdown_cat1 == 0) {
             // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
         }
@@ -387,7 +383,7 @@ async function body() {
     before_end_of_game: {
         while (!$.player.isInZone('BIG_DAM')) {
             await asyncWait(0);
-            if (countdown_cat1.value == 0) {
+            if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
@@ -436,7 +432,7 @@ async function body() {
 
         while (!$.player.isInZone('WEE_DAM')) {
             await asyncWait(0);
-            if (countdown_cat1.value == 0) {
+            if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
@@ -461,7 +457,7 @@ async function body() {
 
         while (!$.player.isInArea3D(-927.4, 391.5, 50.0, -1124.3, 485.1, 0.0, false /* FALSE */)) {
             await asyncWait(0);
-            if (countdown_cat1.value == 0) {
+            if ($.countdown_cat1 == 0) {
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
             }
@@ -577,7 +573,7 @@ async function body() {
 
         while (!$.player.isInArea3D(-1111.2, 446.0, 20.0, -1221.7, 366.6, 30.0, false /* FALSE */)) {
             await asyncWait(0);
-            if (countdown_cat1.value == 0) {
+            if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
@@ -718,7 +714,7 @@ async function body() {
             $.playerx_cat = _res345.x;
             $.playery_cat = _res345.y;
             $.playerz_cat = _res345.z;
-            if (countdown_cat1.value == 0) {
+            if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
@@ -781,7 +777,7 @@ async function body() {
     Camera.SetFadingColor(255, 255, 255);
     Camera.DoFade(500, 0 /* FADE_OUT */);
 
-    countdown_cat1.clear(); // xxx: Hud.ClearTimer($.countdown_cat1);
+    Hud.ClearTimer($.$id.countdown_cat1);
     CatalinaHeli.Remove();
 
     if ($.maria_created_before == 0) {
@@ -1136,7 +1132,7 @@ async function cleanup() {
     Streaming.UnloadSpecialCharacter(4);
     //SET_FADING_COLOUR 0 0 0
 
-    countdown_cat1.clear(); // xxx: Hud.ClearTimer($.countdown_cat1);
+    Hud.ClearTimer($.$id.countdown_cat1);
     Path.SwitchPedRoadsOn(-942.6, 337.0, 10.0, -953.6, 361.4, 30.0); // DAM
     $.blip1_cat1.remove();
     $.marias_blip.remove();

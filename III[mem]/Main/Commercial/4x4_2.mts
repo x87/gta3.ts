@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/4x4_2.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { DisplayedTimer, Timer } from '../../utils/scm.mts';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let timer_4x4: DisplayedTimer;
 
 async function body() {
     // Mission start stuff
@@ -167,7 +163,7 @@ async function body() {
     while ($.counter_4x4_pickups < 12) {
         await asyncWait(0);
         if ($.counter_4x4_pickups == 1 && $.flag_timer == 0) {
-            timer_4x4 = new Timer($.timer_4x4).display(); // xxx: Hud.DisplayTimer($.timer_4x4);
+            Hud.DisplayTimer($.$id.timer_4x4);
             $.flag_timer = 1;
         }
         if ($.flag_blip_1 == 0) {
@@ -176,7 +172,7 @@ async function body() {
                 $.blip_1.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_1, $.y_1, $.z_1, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_1 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -187,7 +183,7 @@ async function body() {
                 $.blip_2.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_2, $.y_2, $.z_2, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_2 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -198,7 +194,7 @@ async function body() {
                 $.blip_3.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_3, $.y_3, $.z_3, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_3 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -209,7 +205,7 @@ async function body() {
                 $.blip_4.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_4, $.y_4, $.z_4, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_4 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -220,7 +216,7 @@ async function body() {
                 $.blip_5.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_5, $.y_5, $.z_5, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_5 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -231,7 +227,7 @@ async function body() {
                 $.blip_6.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_6, $.y_6, $.z_6, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_6 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -242,7 +238,7 @@ async function body() {
                 $.blip_7.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_7, $.y_7, $.z_7, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_7 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -253,7 +249,7 @@ async function body() {
                 $.blip_8.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_8, $.y_8, $.z_8, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_8 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -264,7 +260,7 @@ async function body() {
                 $.blip_9.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_9, $.y_9, $.z_9, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_9 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -275,7 +271,7 @@ async function body() {
                 $.blip_10.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_10, $.y_10, $.z_10, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_10 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -286,7 +282,7 @@ async function body() {
                 $.blip_11.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_11, $.y_11, $.z_11, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_11 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -297,7 +293,7 @@ async function body() {
                 $.blip_12.remove();
                 ++$.counter_4x4_pickups;
                 Sound.AddOneOffSound($.x_12, $.y_12, $.z_12, 94 /* SOUND_PART_MISSION_COMPLETE */);
-                timer_4x4.value = timer_4x4.value + 10000;
+                $.timer_4x4 = $.timer_4x4 + 10000;
                 $.flag_blip_12 = 1;
                 Text.PrintWithNumberNow('T4X4_2B', $.counter_4x4_pickups, 3000, 1);
             }
@@ -369,7 +365,7 @@ async function body() {
             $.flag_intro2_before = 1;
         }
         if ($.flag_timer == 1) {
-            if (timer_4x4.value < 1) {
+            if ($.timer_4x4 < 1) {
                 Text.PrintNow('TAXI2', 3000, 1);
                 // SCM GOTO → mission_4x4two_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_4x4two_failed'); // fallback: would break linear control flow
@@ -396,12 +392,12 @@ async function onFailed() {
 // -------------------------Mission passed-------------------------------------------------
 async function onPassed() {
     if ($.flag_4x4_mission2_passed == 0) {
-        $.record_4x4_two = 120000 - timer_4x4.value;
+        $.record_4x4_two = 120000 - $.timer_4x4;
         $.record_4x4_two = $.record_4x4_two / 1000;
     }
 
     if ($.flag_4x4_mission2_passed == 1) {
-        $.record_temp = 120000 - timer_4x4.value;
+        $.record_temp = 120000 - $.timer_4x4;
         $.record_temp = $.record_temp / 1000;
         if ($.record_temp < $.record_4x4_two) {
             $.record_4x4_two = $.record_temp;
@@ -425,7 +421,7 @@ async function onPassed() {
 }
 
 async function cleanup() {
-    timer_4x4.clear(); // xxx: Hud.ClearTimer($.timer_4x4);
+    Hud.ClearTimer($.$id.timer_4x4);
     Camera.RestoreJumpcut();
     Hud.SwitchWidescreen(false /* off */);
     $.player.setControl(true /* on */);

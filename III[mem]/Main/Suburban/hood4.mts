@@ -1,7 +1,5 @@
 // Generated from Main/Suburban/hood4.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
@@ -10,9 +8,6 @@ import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/sc
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
-
-let timer_hm4: DisplayedTimer;
-let total_no_pills_carried_hm4: DisplayedCounter;
 
 async function body() {
     // SCRIPT_NAME hood4
@@ -223,11 +218,11 @@ async function body() {
 
     Pacman.StartScramble(-1080.0, -163.2, -100.0, 100.0, 90); // 90 tokens are created
 
-    timer_hm4 = new Timer($.timer_hm4).display(); // xxx: Hud.DisplayTimer($.timer_hm4);
-    total_no_pills_carried_hm4 = new Counter({ key: 'collect', type: 0 /* COUNTER_DISPLAY_NUMBER */ }).display(); // xxx: Hud.DisplayCounterWithString($.total_no_pills_carried_hm4, 0 /* COUNTER_DISPLAY_NUMBER */, 'collect');
+    Hud.DisplayTimer($.$id.timer_hm4);
+    Hud.DisplayCounterWithString($.$id.total_no_pills_carried_hm4, 0, 'collect');
     // waiting for the player to get the correct number of pills
 
-    while (!(total_no_pills_carried_hm4.value >= 30)) {
+    while (!($.total_no_pills_carried_hm4 >= 30)) {
         await asyncWait(0);
         $.no_of_pills_carried_hm4 = Pacman.GetNumberOfPowerPillsCarried();
         if ($.player.isInArea3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false /* FALSE */)) {
@@ -251,7 +246,7 @@ async function body() {
             $.car_hm4 = $.player.storeCarIsIn();
             $.garage_hm4.setTargetCarForMission($.car_hm4);
             if ($.player.isStoppedInAreaInCar3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false /* FALSE */) && $.flag_player_in_area_hm4 == 0) {
-                total_no_pills_carried_hm4.value += $.no_of_pills_carried_hm4;
+                $.total_no_pills_carried_hm4 += $.no_of_pills_carried_hm4;
                 Sound.AddOneOffSound(-834.9, -168.8, 33.9, 83 /* SOUND_UNLOAD_GOLD */);
                 Pacman.ClearNumberOfPowerPillsCarried();
                 $.flag_player_in_area_hm4 = 1;
@@ -282,7 +277,7 @@ async function body() {
                 $.flag_player_had_car_message_hm4 = 0;
             }
         }
-        if (timer_hm4.value == 0) {
+        if ($.timer_hm4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1); //"Your out of time!"
             // SCM GOTO → mission_hood4_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_hood4_failed'); // fallback: would break linear control flow
@@ -330,8 +325,8 @@ async function cleanup() {
     Pacman.Clear();
     $.radar_blip_coord1_hm4.remove();
     $.radar_blip_coord2_hm4.remove();
-    timer_hm4.clear(); // xxx: Hud.ClearTimer($.timer_hm4);
-    Hud.ClearCounter(total_no_pills_carried_hm4.value); // TEST STUFF
+    Hud.ClearTimer($.$id.timer_hm4);
+    Hud.ClearCounter($.total_no_pills_carried_hm4); // TEST STUFF
     Mission.Finish();
 }
 

@@ -1,7 +1,5 @@
 // Generated from Main/Suburban/hood3.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
@@ -10,9 +8,6 @@ import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/sc
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
-
-let timer_hm3: DisplayedTimer;
-let car_damage_hm3: DisplayedCounter;
 
 async function body() {
     // SCRIPT_NAME hood3
@@ -264,7 +259,7 @@ async function body() {
 
     $.garage_hm3.setTargetCarForMission($.car_hm3);
 
-    timer_hm3 = new Timer($.timer_hm3).display(); // xxx: Hud.DisplayTimer($.timer_hm3);
+    Hud.DisplayTimer($.$id.timer_hm3);
     if (Car.IsDead($.car_hm3)) {
         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
         // SCM GOTO → mission_hood3_failed (not lowered; manual jump required)
@@ -286,7 +281,7 @@ async function body() {
                 throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
             }
         }
-        if (timer_hm3.value == 0) {
+        if ($.timer_hm3 == 0) {
             $.car_damage_hm3 = 100;
             $.car_hm3.explode();
         }
@@ -298,7 +293,7 @@ async function body() {
 
     $.radar_blip_coord1_hm3 = Blip.AddForCoord(1354.7, -312.9, 48.9);
 
-    car_damage_hm3 = new Counter({ key: 'DETON', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.car_damage_hm3, 1 /* COUNTER_DISPLAY_BAR */, 'DETON');
+    Hud.DisplayCounterWithString($.$id.car_damage_hm3, 1, 'DETON');
     // waiting for the player to reach the garage
 
     while (!$.garage_hm3.isCarInMission()) {
@@ -309,9 +304,9 @@ async function body() {
             throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
         } else {
             $.car_health_hm3 = $.car_hm3.getHealth();
-            car_damage_hm3.value = 1000 - $.car_health_hm3;
-            if (car_damage_hm3.value > 100) {
-                car_damage_hm3.value = 100;
+            $.car_damage_hm3 = 1000 - $.car_health_hm3;
+            if ($.car_damage_hm3 > 100) {
+                $.car_damage_hm3 = 100;
             }
 
             if ($.car_hm3.isUpsidedown() && $.car_hm3.isStopped()) {
@@ -320,11 +315,11 @@ async function body() {
                 throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
             }
         }
-        if (timer_hm3.value == 0) {
-            car_damage_hm3.value = 100;
+        if ($.timer_hm3 == 0) {
+            $.car_damage_hm3 = 100;
             $.car_hm3.explode();
         }
-        if (car_damage_hm3.value == 100) {
+        if ($.car_damage_hm3 == 100) {
             $.car_hm3.explode();
         }
         if (!$.player.isInCar($.car_hm3) && $.flag_player_had_car_message_hm3 == 0) {
@@ -340,7 +335,7 @@ async function body() {
         }
     }
 
-    $.current_time_hm3 = 361000 - timer_hm3.value;
+    $.current_time_hm3 = 361000 - $.timer_hm3;
 
     $.current_time_hm3 = $.current_time_hm3 / 1000;
 
@@ -348,8 +343,8 @@ async function body() {
 
     $.radar_blip_coord1_hm3.remove();
 
-    car_damage_hm3.clear(); // xxx: Hud.ClearCounter($.car_damage_hm3);
-    timer_hm3.clear(); // xxx: Hud.ClearTimer($.timer_hm3);
+    Hud.ClearCounter($.$id.car_damage_hm3);
+    Hud.ClearTimer($.$id.timer_hm3);
     Text.PrintNow('HM3_2', 7000, 1); //"Bring the car back and I want it mint - no damage!"
 
     $.radar_blip_coord2_hm3 = Blip.AddForCoord(-682.0, 76.0, -100.0);
@@ -466,8 +461,8 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_hood_mission = 0;
     $.garage_hm3.setTargetCarForMission(-1 as any);
-    timer_hm3.clear(); // xxx: Hud.ClearTimer($.timer_hm3);
-    car_damage_hm3.clear(); // xxx: Hud.ClearCounter($.car_damage_hm3);
+    Hud.ClearTimer($.$id.timer_hm3);
+    Hud.ClearCounter($.$id.car_damage_hm3);
     Streaming.MarkModelAsNoLongerNeeded(101 /* CAR_INFERNUS */);
     $.radar_blip_car1_hm3.remove();
     $.radar_blip_coord1_hm3.remove();

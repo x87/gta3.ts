@@ -1,9 +1,5 @@
 // Generated from Main/Suburban/ray6.sc
 import { $ } from '../../utils';
-import { DisplayedTimer, Timer } from '../../utils/scm.mts';
-
-let time_till_flight: DisplayedTimer;
-
 async function body() {
     ONMISSION = true;
     $.flag_player_on_ray_mission = 1;
@@ -204,7 +200,7 @@ async function body() {
 
     // ******************************************END OF CUTSCENE********************************
 
-    time_till_flight = new Timer($.time_till_flight).display(); // xxx: Hud.DisplayTimer($.time_till_flight);
+    Hud.DisplayTimer($.$id.time_till_flight);
     $.rays_blip = Blip.AddForCoord(-739.0, -583.0, -100.0);
 
     if (Char.IsDead($.ray)) {
@@ -224,7 +220,7 @@ async function body() {
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
         }
-        if (time_till_flight.value < 1) {
+        if ($.time_till_flight < 1) {
             Text.PrintNow('RM6_7', 5000, 1); //"~r~Ray has missed his flight."
             // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
@@ -930,7 +926,7 @@ async function body() {
 
     $.rays_blip.remove();
 
-    time_till_flight.clear(); // xxx: Hud.ClearTimer($.time_till_flight);
+    Hud.ClearTimer($.$id.time_till_flight);
     $.player.setControl(false /* OFF */);
     Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
     //SET_ALL_CARS_CAN_BE_DAMAGED FALSE
@@ -1183,7 +1179,7 @@ async function cleanup() {
         $.player.setHeading(270.0);
     }
 
-    time_till_flight.clear(); // xxx: Hud.ClearTimer($.time_till_flight);
+    Hud.ClearTimer($.$id.time_till_flight);
     $.rays_blip.remove();
 
     Streaming.UnloadSpecialCharacter(1);

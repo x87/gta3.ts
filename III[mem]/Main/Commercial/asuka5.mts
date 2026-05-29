@@ -1,7 +1,5 @@
 // Generated from Main/Commercial/asuka5.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -9,8 +7,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // ********************************************Kill Tanner**********************************
 // *****************************************************************************************
 // *****************************************************************************************
-
-let test_tanner_health_counter: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -297,7 +293,7 @@ async function body() {
         World.ClearArea(427.9, -1392.7, 21.1, 20.0, true /* TRUE */);
         Camera.PointAtCar($.tanner_car, 15 /* FIXED */, 1 /* INTERPOLATION */);
 
-        test_tanner_health_counter = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.test_tanner_health_counter, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+        Hud.DisplayCounterWithString($.$id.test_tanner_health_counter, 1, 'DAM');
 
         await tanner_health(); // SCM GOSUB tanner_health
 
@@ -320,7 +316,7 @@ async function body() {
                     return; // SCM GOTO → mission_asuka5_passed
                 }
                 if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-                    test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+                    Hud.ClearCounter($.$id.test_tanner_health_counter);
                     $.cleared_timer_once_asuka5 = 1;
                 }
                 if (!$.tanner_car.locate2D(319.9, -1388.6, 8.0, 8.0, false /* FALSE */)) {
@@ -345,7 +341,7 @@ async function body() {
         }
 
         if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-            test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+            Hud.ClearCounter($.$id.test_tanner_health_counter);
             $.cleared_timer_once_asuka5 = 1;
         }
 
@@ -363,7 +359,7 @@ async function body() {
                 return; // SCM GOTO → mission_asuka5_passed
             }
             if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-                test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+                Hud.ClearCounter($.$id.test_tanner_health_counter);
                 $.cleared_timer_once_asuka5 = 1;
             }
             if (!$.tanner_car.locate2D(319.9, -1388.6, 6.0, 6.0, false /* FALSE */)) {
@@ -390,7 +386,7 @@ async function body() {
         return; // SCM GOTO → mission_asuka5_passed
     }
 
-    test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+    Hud.ClearCounter($.$id.test_tanner_health_counter);
     $.blip2_as5.remove();
     $.tanner_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
     $.tanner.setObjLeaveCar($.tanner_car);
@@ -404,7 +400,7 @@ async function body() {
             return; // SCM GOTO → mission_asuka5_passed
         }
         if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-            test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+            Hud.ClearCounter($.$id.test_tanner_health_counter);
             $.cleared_timer_once_asuka5 = 1;
         }
     }
@@ -416,7 +412,7 @@ async function body() {
     $.tanner.setOnlyDamagedByPlayer(true /* True */);
 
     if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-        test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+        Hud.ClearCounter($.$id.test_tanner_health_counter);
         $.cleared_timer_once_asuka5 = 1;
     }
 
@@ -426,7 +422,7 @@ async function body() {
     while (!Char.IsDead($.tanner)) {
         await asyncWait(0);
         if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
-            test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+            Hud.ClearCounter($.$id.test_tanner_health_counter);
             $.cleared_timer_once_asuka5 = 1;
         }
     }
@@ -462,22 +458,22 @@ async function cleanup() {
     $.blip1_as5.remove();
     $.blip2_as5.remove();
     $.blip3_as5.remove();
-    test_tanner_health_counter.clear(); // xxx: Hud.ClearCounter($.test_tanner_health_counter);
+    Hud.ClearCounter($.$id.test_tanner_health_counter);
     Mission.Finish();
 }
 
 async function tanner_health() {
     if (!Car.IsDead($.tanner_car)) {
-        test_tanner_health_counter.value = $.tanner_car.getHealth();
-        if (test_tanner_health_counter.value < $.old_tanner_health) {
+        $.test_tanner_health_counter = $.tanner_car.getHealth();
+        if ($.test_tanner_health_counter < $.old_tanner_health) {
             $.player.alterWantedLevelNoDrop(4);
         }
-        $.old_tanner_health = test_tanner_health_counter.value;
-        $.test_tanner_health_counter2 = 1000 - test_tanner_health_counter.value;
+        $.old_tanner_health = $.test_tanner_health_counter;
+        $.test_tanner_health_counter2 = 1000 - $.test_tanner_health_counter;
         if ($.test_tanner_health_counter2 > 700) {
             $.test_tanner_health_counter2 = 700;
         }
-        test_tanner_health_counter.value = $.test_tanner_health_counter2 / 7;
+        $.test_tanner_health_counter = $.test_tanner_health_counter2 / 7;
     }
 }
 

@@ -1,7 +1,5 @@
 // Generated from Main/Suburban/love5.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter } from '../../utils/scm.mts';
-
 // *****************************************************************************************
 // ********************************		Love 5 	   *****************************************
 // ********************************	Escort Service *****************************************
@@ -10,8 +8,6 @@ import { Counter, DisplayedCounter } from '../../utils/scm.mts';
 // *** escort the van. The van will be attacked en-route by the Cartel, the player must  ***
 // *** fight off any attackers and protect the van at all costs.						 ***
 // *****************************************************************************************
-
-let escort_truck_health: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -257,7 +253,7 @@ async function body() {
         $.escort_truck_health = $.escort_truck_health / 750;
         $.escort_truck_health2 = $.escort_truck_health;
         $.escort_truck_health = 100 - $.escort_truck_health2;
-        escort_truck_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.escort_truck_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
+        Hud.DisplayCounterWithString($.$id.escort_truck_health, 1, 'DAM');
         while (!($.escort_truck_flag == 11)) {
             await asyncWait(0);
             if (Car.IsDead($.escort_truck)) {
@@ -281,24 +277,24 @@ async function body() {
                 //			ENDIF
                 //		ENDIF
             }
-            escort_truck_health.value = $.escort_truck.getHealth();
+            $.escort_truck_health = $.escort_truck.getHealth();
             if ($.dummy_health > 499) {
-                if (escort_truck_health.value < 500) {
-                    escort_truck_health.value += 500;
-                    $.escort_truck.setHealth(escort_truck_health.value);
+                if ($.escort_truck_health < 500) {
+                    $.escort_truck_health += 500;
+                    $.escort_truck.setHealth($.escort_truck_health);
                     $.dummy_health -= 500;
                 }
             }
-            escort_truck_health.value = $.escort_truck.getHealth();
-            escort_truck_health.value += $.dummy_health;
-            escort_truck_health.value = escort_truck_health.value / 3;
-            escort_truck_health.value = escort_truck_health.value - 250;
-            escort_truck_health.value = escort_truck_health.value * 100;
-            escort_truck_health.value = escort_truck_health.value / 750;
-            $.escort_truck_health2 = escort_truck_health.value;
-            escort_truck_health.value = 100 - $.escort_truck_health2;
-            if (escort_truck_health.value > 100) {
-                escort_truck_health.value = 100;
+            $.escort_truck_health = $.escort_truck.getHealth();
+            $.escort_truck_health += $.dummy_health;
+            $.escort_truck_health = $.escort_truck_health / 3;
+            $.escort_truck_health = $.escort_truck_health - 250;
+            $.escort_truck_health = $.escort_truck_health * 100;
+            $.escort_truck_health = $.escort_truck_health / 750;
+            $.escort_truck_health2 = $.escort_truck_health;
+            $.escort_truck_health = 100 - $.escort_truck_health2;
+            if ($.escort_truck_health > 100) {
+                $.escort_truck_health = 100;
             }
             if ($.escort_truck_flag == 0) {
                 if ($.escort_truck.locate2D(173.4898, 76.3099, 10.0, 10.0, false)) {
@@ -1415,7 +1411,7 @@ async function cleanup() {
     if (!$.tank_weapon.hasBeenCollected()) {
         $.tank_weapon.remove();
     }
-    escort_truck_health.clear(); // xxx: Hud.ClearCounter($.escort_truck_health);
+    Hud.ClearCounter($.$id.escort_truck_health);
     Streaming.MarkModelAsNoLongerNeeded(118 /* CAR_SECURICAR */);
     Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
     Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);

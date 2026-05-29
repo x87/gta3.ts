@@ -1,7 +1,5 @@
 // Generated from Main/Industrial/toni5.sc
 import { $ } from '../../utils';
-import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/scm.mts';
-
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Toni mission 5****************************************
@@ -9,9 +7,6 @@ import { Counter, DisplayedCounter, DisplayedTimer, Timer } from '../../utils/sc
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
-
-let countdown_tm5: DisplayedTimer;
-let explosive_truck_health: DisplayedCounter;
 
 async function body() {
     // Mission start stuff
@@ -234,14 +229,14 @@ async function body() {
     }
 
     $.countdown_tm5 = 151000;
-    countdown_tm5 = new Timer($.countdown_tm5).display(); // xxx: Hud.DisplayTimer($.countdown_tm5);
+    Hud.DisplayTimer($.$id.countdown_tm5);
     $.explosive_truck_health = $.explosive_truck.getHealth();
-    explosive_truck_health = new Counter({ key: 'DAM', type: 1 /* COUNTER_DISPLAY_BAR */ }).display(); // xxx: Hud.DisplayCounterWithString($.explosive_truck_health, 1 /* COUNTER_DISPLAY_BAR */, 'DAM');
-    $.explosive_truck_health2 = 1000 - explosive_truck_health.value;
+    Hud.DisplayCounterWithString($.$id.explosive_truck_health, 1, 'DAM');
+    $.explosive_truck_health2 = 1000 - $.explosive_truck_health;
     if ($.explosive_truck_health2 > 100) {
         $.explosive_truck_health2 = 100;
     }
-    explosive_truck_health.value = $.explosive_truck_health2;
+    $.explosive_truck_health = $.explosive_truck_health2;
 
     $.flag_car_blip_displayed_tm5 = 1 /* TRUE */;
     $.blob_flag = 1;
@@ -292,7 +287,7 @@ async function body() {
                 // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
             }
-            if (countdown_tm5.value == 0 && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
+            if ($.countdown_tm5 == 0 && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
                 $.explosive_truck.explode();
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
@@ -337,7 +332,7 @@ async function body() {
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 break toni5_wait_for_van; // SCM GOTO → explosion
             }
-            if (countdown_tm5.value == 0) {
+            if ($.countdown_tm5 == 0) {
                 $.explosive_truck.explode();
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 break toni5_wait_for_van; // SCM GOTO → explosion
@@ -348,7 +343,7 @@ async function body() {
     }
 
     explosion: {
-        countdown_tm5.clear(); // xxx: Hud.ClearTimer($.countdown_tm5);
+        Hud.ClearTimer($.$id.countdown_tm5);
         $.player.setControl(false /* Off */);
         Hud.SwitchWidescreen(true /* ON */);
         Game.SetPoliceIgnorePlayer($.player, true /* On */);
@@ -517,8 +512,8 @@ async function cleanup() {
     $.flag_player_on_toni_mission = 0;
     $.blip1_tm5.remove();
     $.blip2_tm5.remove();
-    countdown_tm5.clear(); // xxx: Hud.ClearTimer($.countdown_tm5);
-    explosive_truck_health.clear(); // xxx: Hud.ClearCounter($.explosive_truck_health);
+    Hud.ClearTimer($.$id.countdown_tm5);
+    Hud.ClearCounter($.$id.explosive_truck_health);
     Streaming.MarkModelAsNoLongerNeeded(98 /* CAR_TRASHMASTER */);
     Streaming.MarkModelAsNoLongerNeeded(418 /* fshfctry_dstryd */);
     Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
@@ -609,12 +604,12 @@ async function triad_AI() {
 
 async function Truck_health() {
     if (!Car.IsDead($.explosive_truck)) {
-        explosive_truck_health.value = $.explosive_truck.getHealth();
-        $.explosive_truck_health2 = 1000 - explosive_truck_health.value;
+        $.explosive_truck_health = $.explosive_truck.getHealth();
+        $.explosive_truck_health2 = 1000 - $.explosive_truck_health;
         if ($.explosive_truck_health2 > 100) {
             $.explosive_truck_health2 = 100;
         }
-        explosive_truck_health.value = $.explosive_truck_health2;
+        $.explosive_truck_health = $.explosive_truck_health2;
     }
 }
 
