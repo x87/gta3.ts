@@ -15,7 +15,7 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Industrial/intro.mts`,
         name: 'Intro Movie',
         async canStart() {
-            return !$._flag_intro_passed;
+            return !$._flag_intro_passed && !$.flag_eightball_mission_passed;
         },
     },
     {
