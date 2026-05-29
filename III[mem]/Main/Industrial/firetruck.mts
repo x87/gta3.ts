@@ -567,8 +567,6 @@ async function passed() {
 
 /////////////////////////////////////////////////
 async function onFailed() {
-    ///////////////$.$id.//////////////////////////////
-
     Hud.ClearTimer($.$id.fire_time_limit);
     Hud.ClearCounter($.$id.fires_extinguished);
     Text.PrintBig('F_FAIL1', 5000, 5);
@@ -592,5 +590,6 @@ async function onFailed() {
     $.flag_player_on_fire_mission = 0;
     Mission.Finish();
 }
+/////////////////////////////////////////////////
 
 export default () => body().catch(onFailed);
