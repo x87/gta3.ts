@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/ray3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // ************************************ Ray mission 3 **************************************
 // ************************************ Evidence Dash **************************************
@@ -361,8 +361,7 @@ async function body() {
                     }
                 } else {
                     Text.PrintNow('RM3_6', 5000, 1); //"The evidence will be washed up all over Liberty!"
-                    // SCM GOTO → mission_ray3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_ray3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_ray3_failed");
                 }
             } else {
                 return; // SCM GOTO → mission_ray3_passed

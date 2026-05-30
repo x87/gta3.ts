@@ -42,7 +42,7 @@ export function verbose(message: any) {
 
 export function GOSUB_FILE(file: string) {
     verbose(`GOSUB_FILE: ${file}`);
-    import(file).catch(e => {
+    import(file).catch((e) => {
         log('GOSUB_FILE failed: ' + unwrapError(e));
     });
 }
@@ -59,7 +59,6 @@ export function unwrapError(error: any): string {
     }
     return String(error);
 }
-
 
 export function FAIL(reason: string): never {
     verbose(reason);

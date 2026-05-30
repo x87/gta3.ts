@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/ray1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // ************************************ Ray mission 1  *************************************
@@ -390,8 +390,7 @@ async function body() {
                             $.mfail_timer_reset_flag = 0;
                             $.the_witness.delete();
                             Text.PrintNow('RM1_3', 5000, 1); //"McAffrey got away!"
-                            // SCM GOTO → mission_ray1_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_ray1_failed'); // fallback: would break linear control flow
+                            FAIL("mission_ray1_failed");
                         }
                     }
                 }
@@ -475,10 +474,10 @@ async function body() {
                         }
                     }
                 } else {
-                    const _res69 = $.get_away_car.getCoordinates();
-                    $.get_away_car_x = _res69.x;
-                    $.get_away_car_y = _res69.y;
-                    $.get_away_car_z = _res69.z;
+                    const { x, y, z } = $.get_away_car.getCoordinates();
+                    $.get_away_car_x = x;
+                    $.get_away_car_y = y;
+                    $.get_away_car_z = z;
                     $.car_moving_stuck_flag = 0;
                 }
             }

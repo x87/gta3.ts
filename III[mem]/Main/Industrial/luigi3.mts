@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/luigi3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -532,8 +532,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-            // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi3_failed");
         }
         $.difference_in_heading_door1_lm3 = 90.0 - $.door1_position_lm3;
         if ($.difference_in_heading_door1_lm3 < 10.0) {
@@ -548,8 +547,7 @@ async function body() {
 
     if (Char.IsDead($.misty_lm3)) {
         Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-        // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+        FAIL("mission_luigi3_failed");
     }
 
     World.ClearArea(944.1, -270.7, 4.0, 2.0, true);
@@ -566,14 +564,12 @@ async function body() {
             $.car_lm3 = $.player.storeCarIsIn();
             if (Car.IsDead($.car_lm3)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi3_failed");
             }
         }
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-            // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi3_failed");
         }
         if (TIMERB >= 10000) {
             if (!$.misty_lm3.isObjectivePassed()) {
@@ -644,8 +640,7 @@ async function body() {
 
         if (Car.IsDead($.car_lm3)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi3_failed");
         }
 
         // waiting for Misty to get into the car
@@ -655,18 +650,15 @@ async function body() {
             if (Car.IsDead($.car_lm3)) {
                 if (Char.IsDead($.misty_lm3)) {
                     Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-                    // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi3_failed");
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi3_failed");
                 }
             }
             if (Char.IsDead($.misty_lm3)) {
                 Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-                // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi3_failed");
             }
         }
     } else {
@@ -677,14 +669,12 @@ async function body() {
                 $.car_lm3 = $.player.storeCarIsIn();
                 if (Car.IsDead($.car_lm3)) {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi3_failed");
                 }
             }
             if (Char.IsDead($.misty_lm3)) {
                 Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-                // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi3_failed");
             }
         }
     }
@@ -711,8 +701,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-            // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi3_failed");
         }
         if (!$.misty_lm3.isInPlayersGroup($.player) && $.flag_blip_on_misty_lm3 == 0) {
             Text.PrintNow('HEY4', 5000, 1); //"You have left Misty behind go and get her!"
@@ -743,8 +732,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-            // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi3_failed");
         }
         if (!$.misty_lm3.isInPlayersGroup($.player) && $.flag_blip_on_misty_lm3 == 0) {
             Text.PrintNow('HEY4', 5000, 1); //"You have left Misty behind go and get her!"
@@ -771,8 +759,7 @@ async function body() {
 
     if (Char.IsDead($.misty_lm3)) {
         Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-        // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+        FAIL("mission_luigi3_failed");
     }
 
     $.misty_lm3.leaveGroup();
@@ -798,8 +785,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-            // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi3_failed");
         }
     }
 
@@ -814,8 +800,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-            // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi3_failed");
         }
     }
 
@@ -825,8 +810,7 @@ async function body() {
 
     if (Char.IsDead($.misty_lm3)) {
         Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-        // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+        FAIL("mission_luigi3_failed");
     }
 
     $.car_lm3.markAsNoLongerNeeded();
@@ -841,8 +825,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
-            // SCM GOTO → mission_luigi3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi3_failed");
         }
         $.breakout_timer = Clock.GetGameTimer();
         $.breakout_diff = $.breakout_timer - $.breakout_timer_start;
@@ -1093,7 +1076,6 @@ async function onPassed() {
     // START_NEW_SCRIPT luigi_mission4_loop // xxx: moved to mission monitor
     // START_NEW_SCRIPT joey_mission1_loop // xxx: moved to mission monitor
     // START_NEW_SCRIPT meat_mission1_loop // xxx: moved to mission monitor
-    return;
 }
 
 // mission cleanup

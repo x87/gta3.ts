@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/hood2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Hood Mission 2****************************************
@@ -259,8 +259,7 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.mission_car_hm2)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_hood2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood2_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood2_failed");
         }
     }
 
@@ -415,14 +414,12 @@ async function body() {
         }
         if ($.counter_no_of_cars_player_had_hm2 == 5 && $.flag_player_got_car_hm2 == 0 && !($.counter_all_vans_dead_hm2 == 3)) {
             Text.PrintNow('HM2_2', 5000, 1); //"You failed to destroy all the armoured cars!"
-            // SCM GOTO → mission_hood2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood2_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood2_failed");
         }
         if (!$.player.isInAnyCar()) {
             Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
             Text.PrintNow('HM2_2', 5000, 1); //"You failed to destroy all the armoured cars!"
-            // SCM GOTO → mission_hood2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood2_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood2_failed");
         }
     }
 

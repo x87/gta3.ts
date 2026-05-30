@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/kenji1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -548,8 +548,7 @@ async function body() {
             if (Car.IsDead($.mission_cop_car_km1)) {
                 Text.PrintNow('KM1_11', 5000, 1); //"You have alerted the cops"
                 $.player.alterWantedLevelNoDrop(3);
-                // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji1_failed");
             }
             await asyncWait(0);
         }
@@ -557,8 +556,7 @@ async function body() {
         if (!Car.IsDead($.mission_cop_car_km1)) {
             Text.PrintNow('KM1_11', 5000, 1); //"You have alerted the cops"
             $.player.alterWantedLevelNoDrop(3);
-            // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji1_failed");
         } else {
             await wall_explosion(); // SCM GOSUB wall_explosion
         }
@@ -605,8 +603,7 @@ async function body() {
             }
             if (Char.IsDead($.yakuza_ped1_km1)) {
                 Text.PrintNow('KM1_10', 5000, 1); //"The Yakuza Kanbu is dead!"
-                // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji1_failed");
             }
             if (!$.yakuza_ped1_km1.isInPlayersGroup($.player)) {
                 if ($.flag_blip_on_yakuza_ped1_km1 == 0) {
@@ -647,8 +644,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.yakuza_ped1_km1)) {
                 Text.PrintNow('KM1_10', 5000, 1); //"The Yakuza Kanbu is dead!"
-                // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji1_failed");
             }
             if (!$.yakuza_ped1_km1.isInPlayersGroup($.player)) {
                 if ($.flag_blip_on_yakuza_ped1_km1 == 0) {
@@ -722,8 +718,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.yakuza_ped1_km1)) {
                 Text.PrintNow('KM1_10', 5000, 1); //"The Yakuza Kanbu is dead!"
-                // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji1_failed");
             }
         }
 
@@ -742,13 +737,11 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.yakuza_ped1_km1)) {
                     Text.PrintNow('KM1_10', 5000, 1); //"The Yakuza Kanbu is dead!"
-                    // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_kenji1_failed");
                 }
                 if (Car.IsDead($.car_km1)) {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_kenji1_failed");
                 }
             }
         }
@@ -763,8 +756,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.yakuza_ped1_km1)) {
                 Text.PrintNow('KM1_10', 5000, 1); //"The Yakuza Kanbu is dead!"
-                // SCM GOTO → mission_kenji1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji1_failed");
             }
             if (TIMERB >= 8000) {
                 if (!$.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false)) {

@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/love4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *********************************  Love Mission 4  **************************************
@@ -368,13 +368,11 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.wingless_cessna)) {
             Text.PrintNow('LOVE4_9', 5000, 1);
-            // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+            FAIL("mission_love4_failed");
         }
         if (Car.IsDead($.car_van3_lm4)) {
             Text.PrintNow('LOV4_10', 5000, 1);
-            // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+            FAIL("mission_love4_failed");
         }
     }
 
@@ -394,13 +392,11 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.wingless_cessna)) {
             Text.PrintNow('LOVE4_9', 5000, 1);
-            // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+            FAIL("mission_love4_failed");
         }
         if (Car.IsDead($.car_van3_lm4)) {
             Text.PrintNow('LOV4_10', 5000, 1);
-            // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+            FAIL("mission_love4_failed");
         }
         if (Char.IsDead($.goon_in_hangar1)) {
             $.goon_in_hangar1_flag = -100;
@@ -535,21 +531,18 @@ async function body() {
 
     if (Car.IsDead($.wingless_cessna)) {
         Text.PrintNow('LOVE4_9', 5000, 1);
-        // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+        FAIL("mission_love4_failed");
     }
 
     while (!$.player.isInCar($.wingless_cessna)) {
         await asyncWait(0);
         if (Car.IsDead($.wingless_cessna)) {
             Text.PrintNow('LOVE4_9', 5000, 1);
-            // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+            FAIL("mission_love4_failed");
         }
         if (Car.IsDead($.car_van3_lm4)) {
             Text.PrintNow('LOV4_10', 5000, 1);
-            // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+            FAIL("mission_love4_failed");
         }
     }
 
@@ -561,8 +554,7 @@ async function body() {
 
     if (Car.IsDead($.car_van3_lm4)) {
         Text.PrintNow('LOV4_10', 5000, 1);
-        // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+        FAIL("mission_love4_failed");
     }
 
     $.love_4_blip = Blip.AddForCar($.car_van3_lm4);
@@ -571,15 +563,16 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.car_van3_lm4)) {
             Text.PrintNow('LOV4_10', 5000, 1);
-            // SCM GOTO → mission_love4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love4_failed'); // fallback: would break linear control flow
+            FAIL("mission_love4_failed");
         }
     }
 
-    const _res346 = $.car_van3_lm4.getCoordinates();
-    $.van3_x = _res346.x;
-    $.van3_y = _res346.y;
-    $.van3_z = _res346.z;
+    {
+        const { x, y, z } = $.car_van3_lm4.getCoordinates();
+        $.van3_x = x;
+        $.van3_y = y;
+        $.van3_z = z;
+    }
 
     $.x_component = $.car_van3_lm4.getForwardX();
     $.y_component = $.car_van3_lm4.getForwardY();
@@ -622,10 +615,12 @@ async function body() {
 
     $.love_4_blip.remove();
 
-    const _res347 = $.player.getCoordinates();
-    $.player_lo4_x = _res347.x;
-    $.player_lo4_y = _res347.y;
-    $.player_lo4_z = _res347.z;
+    {
+        const { x, y, z } = $.player.getCoordinates();
+        $.player_lo4_x = x;
+        $.player_lo4_y = y;
+        $.player_lo4_z = z;
+    }
 
     $.differ_x = $.player_lo4_x - $.result1_x;
     $.differ_y = $.player_lo4_y - $.result1_y;

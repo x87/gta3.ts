@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/love2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *********************************    Love mission 2   ***********************************
@@ -506,7 +506,7 @@ async function body() {
                                 $.kenji.setObjEnterCarAsDriver($.kenji_car_love2);
                             }
                         }
-                        throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
+                        FAIL("mission_love2_failed");
                     }
                     if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)) {
                         if (!$.player.isInModel(138 /* CAR_COLUMB */)) {
@@ -516,7 +516,7 @@ async function body() {
                                     $.kenji.setObjEnterCarAsDriver($.kenji_car_love2);
                                 }
                             }
-                            throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
+                            FAIL("mission_love2_failed");
                         }
                     }
 
@@ -573,7 +573,7 @@ async function body() {
                                 $.kenji.setObjEnterCarAsDriver($.kenji_car_love2);
                             }
                         }
-                        throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
+                        FAIL("mission_love2_failed");
                     }
                     if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)) {
                         if (!$.player.isInModel(138 /* CAR_COLUMB */)) {
@@ -583,7 +583,7 @@ async function body() {
                                     $.kenji.setObjEnterCarAsDriver($.kenji_car_love2);
                                 }
                             }
-                            throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
+                            FAIL("mission_love2_failed");
                         } else {
                             if (!Char.IsDead($.kenji)) {
                                 $.kenji.turnToFacePlayer($.player);
@@ -648,14 +648,14 @@ async function body() {
                     await yak_death_count(); // SCM GOSUB yak_death_count
                     if ($.counter_kenji_guards_dead == 8) {
                         Text.PrintNow('LOVE2_6', 3000, 1); //You've killed all the witnesses!!
-                        throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
+                        FAIL("mission_love2_failed");
                     }
                     if (
                         !$.player.isInModel(138 /* CAR_COLUMB */) &&
                         $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)
                     ) {
                         Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
-                        throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
+                        FAIL("mission_love2_failed");
                     }
                     if (!$.player.isInZone('COM_EAS') && $.player.isInModel(138 /* CAR_COLUMB */) && $.flag_kenji_dead == 2) {
                         Text.PrintNow('LOVE2_7', 3000, 1); //Now dump the car!

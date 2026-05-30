@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/yard1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -419,9 +419,8 @@ async function body() {
 
         while (!Car.IsDead($.player_car) && $.player_car.locate2D($.start_x, $.start_y, 10.0, 10.0, false)) {
             await asyncWait(1000);
-            if ($.counter_rush_start == 4) {
-                // SCM GOTO → and_its_go_go_go
-                break player_is_there;
+            if ($.counter_rush_start == 4) {                
+                break player_is_there; // SCM GOTO → and_its_go_go_go
             }
             if ($.counter_rush_start == 3) {
                 Text.PrintBig('YD1GO', 1000, 4);
@@ -852,9 +851,8 @@ async function body() {
 
         await driving_style_car_3(); // SCM GOSUB driving_style_car_3
 
-        if ($.counter_finish == 15) {
-            // SCM GOTO → race_finished
-            break main_loop;
+        if ($.counter_finish == 15) {            
+            break main_loop; // SCM GOTO → race_finished
         }
     }
     //------------------------------RACE FINISHED---------------------------------------------
@@ -889,11 +887,9 @@ async function body() {
         }
 
         if ($.counter_placing < 3) {
-            // SCM GOTO → mission_yd1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_yd1_failed'); // fallback: would break linear control flow
+            FAIL("mission_yd1_failed");
         }
-
-        throw new Error('unresolved GOTO mission_yd1_failed'); // xxx: fallthrough failed
+        FAIL("mission_yd1_failed");
     }
 }
 

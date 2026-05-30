@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/rc3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -103,8 +103,7 @@ async function body() {
         $.intro_time_lapsed = $.timer_intro_now - $.timer_intro_start;
         if (Car.IsDead($.rc_van)) {
             Text.PrintNow('WRECKED', 3000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_rc3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_rc3_failed'); // fallback: would break linear control flow
+            FAIL("mission_rc3_failed");
         }
         if ($.player.isPlaying()) {
             $.player.clearWantedLevel();
@@ -131,12 +130,10 @@ async function body() {
                 Camera.Restore();
             }
             if (!$.player.isSittingInCar($.rc_van)) {
-                // SCM GOTO → mission_rc3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_rc3_failed'); // fallback: would break linear control flow
+                FAIL("mission_rc3_failed");
             }
         } else {
-            // SCM GOTO → mission_rc3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_rc3_failed'); // fallback: would break linear control flow
+            FAIL("mission_rc3_failed");
         }
         $.counter_RCDD = Player.GetNumOfModelsKilled(139 /* car_hoods */);
         if ($.intro_time_lapsed > 4000) {
@@ -162,8 +159,7 @@ async function body() {
         $.rec_rc3 = $.counter_RCDD;
         return; // SCM GOTO → mission_rc3_passed
     } else {
-        // SCM GOTO → mission_rc3_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_rc3_failed'); // fallback: would break linear control flow
+        FAIL("mission_rc3_failed");
     }
 }
 

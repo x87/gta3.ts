@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/firetruck.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -63,15 +63,14 @@ async function body() {
 
         Game.SetWantedMultiplier(0.5);
 
-        const _res225 = $.player.getCoordinates();
-        $.player1_x = _res225.x;
-        $.player1_y = _res225.y;
-        $.player1_z = _res225.z;
+        const { x, y, z } = $.player.getCoordinates();
+        $.player1_x = x;
+        $.player1_y = y;
+        $.player1_z = z;
 
         if (!$.player.isInModel(97 /* CAR_FIRETRUCK */)) {
             Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-            // SCM GOTO → failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+            FAIL("failed"); // SCM GOTO → failed
         }
 
         $.controlmode = Pad.GetControllerMode();
@@ -90,14 +89,12 @@ async function body() {
             if (!($.controlmode == 3)) {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
                     Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-                    // SCM GOTO → failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                    FAIL("failed"); // SCM GOTO → failed
                 }
             } else {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
                     Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-                    // SCM GOTO → failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                    FAIL("failed"); // SCM GOTO → failed
                 }
             }
         }
@@ -140,14 +137,13 @@ async function body() {
                 Text.PrintNow('F_RANGE', 5000, 1); //"The radio is out of range, get closer."
                 $.flag_got_range_mssg = 1;
             }
-            // SCM GOTO → failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+            FAIL("failed"); // SCM GOTO → failed
         }
 
-        const _res226 = Path.GetClosestCarNode($.random_fire_x, $.random_fire_y, $.player1_z);
-        $.fire_coord_x = _res226.nodeX;
-        $.fire_coord_y = _res226.nodeY;
-        $.fire_coord_z = _res226.nodeZ;
+        const { nodeX, nodeY, nodeZ } = Path.GetClosestCarNode($.random_fire_x, $.random_fire_y, $.player1_z);
+        $.fire_coord_x = nodeX;
+        $.fire_coord_y = nodeY;
+        $.fire_coord_z = nodeZ;
 
         if ($.fire_coord_x > 670.0 && $.fire_coord_x < 1035.0 && $.fire_coord_y > -953.0 && $.fire_coord_y < -912.0) {
             continue next_fire; // SCM GOTO → next_fire
@@ -248,13 +244,11 @@ async function body() {
             await asyncWait(0);
             if ($.fire_time_limit < 1) {
                 Text.PrintNow('F_FAIL2', 5000, 1);
-                // SCM GOTO → failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                FAIL("failed"); // SCM GOTO → failed
             }
             if (!$.player.isInModel(97 /* CAR_FIRETRUCK */)) {
                 Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-                // SCM GOTO → failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                FAIL("failed"); // SCM GOTO → failed
             }
             $.controlmode = Pad.GetControllerMode();
             if (!($.controlmode == 3)) {
@@ -270,14 +264,12 @@ async function body() {
                 if (!($.controlmode == 3)) {
                     if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
                         Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-                        // SCM GOTO → failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                        FAIL("failed"); // SCM GOTO → failed
                     }
                 } else {
                     if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
                         Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-                        // SCM GOTO → failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                        FAIL("failed"); // SCM GOTO → failed
                     }
                 }
             }
@@ -457,18 +449,15 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.car_on_fire)) {
                 Text.PrintNow('F_FAIL2', 5000, 1);
-                // SCM GOTO → failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                FAIL("failed"); // SCM GOTO → failed
             }
             if ($.fire_time_limit < 1) {
                 Text.PrintNow('F_FAIL2', 5000, 1);
-                // SCM GOTO → failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                FAIL("failed"); // SCM GOTO → failed
             }
             if (!$.player.isInModel(97 /* CAR_FIRETRUCK */)) {
                 Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-                // SCM GOTO → failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
+                FAIL("failed"); // SCM GOTO → failed
             }
             $.car_on_fire_health = $.car_on_fire.getHealth();
             if ($.car_on_fire_health < 900) {
@@ -488,15 +477,13 @@ async function body() {
                 if (!($.controlmode == 3)) {
                     if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
                         Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-                        // SCM GOTO → failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
-                    }
+                        FAIL("failed"); 
+                    } // SCM GOTO → failed
                 } else {
                     if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
                         Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
-                        // SCM GOTO → failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO failed'); // fallback: would break linear control flow
-                    }
+                        FAIL("failed"); 
+                    } // SCM GOTO → failed
                 }
             }
         }

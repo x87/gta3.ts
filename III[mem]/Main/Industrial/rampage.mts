@@ -756,7 +756,7 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    17 /* WEAPONTYPE_RUNOVERBYCAR */,
+                    17 /* WEAPONTYPE_RUNOVERBYCAR */ as any,
                     120000,
                     $.rampage_17_kills,
                     20 /* PED_GANG_COLOMBIAN_A */,
@@ -789,7 +789,7 @@ async function rampage_loop() {
                         $.rampage_17_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
                 ONMISSION = false;
@@ -799,7 +799,7 @@ async function rampage_loop() {
         if ($.rampage_18_flag == 0) {
             if ($.rampage_18.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 19 /* WEAPONTYPE_UZI_DRIVEBY */, 120000, $.rampage_18_kills, -2, -1, -1, -1, false); // "Driveby and Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 19 /* WEAPONTYPE_UZI_DRIVEBY */ as any, 120000, $.rampage_18_kills, -2, -1, -1, -1, false); // "Driveby and Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_18', $.rampage_18_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -884,7 +884,7 @@ async function rampage_loop() {
                         $.rampage_19_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
                 ONMISSION = false;
@@ -929,7 +929,7 @@ async function rampage_loop() {
                         $.rampage_20_failed = 0;
                     }
                 }
-                World.ForceRandomPedType(-1);
+                World.ForceRandomPedType(-1 as any);
                 Streaming.MarkModelAsNoLongerNeeded(22 /* PED_GANG_HOOD_A */);
                 Streaming.MarkModelAsNoLongerNeeded(23 /* PED_GANG_HOOD_B */);
                 ONMISSION = false;

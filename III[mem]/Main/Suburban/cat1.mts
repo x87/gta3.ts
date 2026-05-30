@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/cat1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Cat mission 1*****************************************
@@ -332,8 +332,7 @@ async function body() {
     while ($.player.isInArea3D(-448.0, 241.7, 50.0, -292.4, 365.2, 90.0, false)) {
         await asyncWait(0);
         if ($.countdown_cat1 == 0) {
-            // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+            FAIL("mission_cat1_failed");
         }
         $.player.clearWantedLevel();
     }
@@ -385,8 +384,7 @@ async function body() {
             await asyncWait(0);
             if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+                FAIL("mission_cat1_failed");
             }
             if (CatalinaHeli.HasBeenShotDown()) {
                 break before_end_of_game; // SCM GOTO → end_of_game
@@ -434,8 +432,7 @@ async function body() {
             await asyncWait(0);
             if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+                FAIL("mission_cat1_failed");
             }
             if (CatalinaHeli.HasBeenShotDown()) {
                 break before_end_of_game; // SCM GOTO → end_of_game
@@ -458,8 +455,7 @@ async function body() {
         while (!$.player.isInArea3D(-927.4, 391.5, 50.0, -1124.3, 485.1, 0.0, false)) {
             await asyncWait(0);
             if ($.countdown_cat1 == 0) {
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+                FAIL("mission_cat1_failed");
             }
             if (CatalinaHeli.HasBeenShotDown()) {
                 break before_end_of_game; // SCM GOTO → end_of_game
@@ -575,8 +571,7 @@ async function body() {
             await asyncWait(0);
             if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+                FAIL("mission_cat1_failed");
             }
             if (CatalinaHeli.HasBeenShotDown()) {
                 break before_end_of_game; // SCM GOTO → end_of_game
@@ -710,19 +705,17 @@ async function body() {
 
         while (!CatalinaHeli.HasBeenShotDown()) {
             await asyncWait(0);
-            const _res345 = $.player.getCoordinates();
-            $.playerx_cat = _res345.x;
-            $.playery_cat = _res345.y;
-            $.playerz_cat = _res345.z;
+            const { x, y, z } = $.player.getCoordinates();
+            $.playerx_cat = x;
+            $.playery_cat = y;
+            $.playerz_cat = z;
             if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+                FAIL("mission_cat1_failed");
             }
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('BITCH_D', 5000, 1);
-                // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+                FAIL("mission_cat1_failed");
             }
             if ($.player.locateOnFootChar3D($.maria, 10.0, 10.0, 3.0, false)) {
                 if ($.set_as_leader_before == 0) {
@@ -794,8 +787,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.maria)) {
             Text.PrintNow('BITCH_D', 5000, 1);
-            // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+            FAIL("mission_cat1_failed");
         }
         if (!$.maria.isInPlayersGroup($.player)) {
             if ($.added_the_blip_for_maria == 0) {
@@ -852,8 +844,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.maria)) {
             Text.PrintNow('BITCH_D', 5000, 1);
-            // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
+            FAIL("mission_cat1_failed");
         }
         $.breakout_timer = Clock.GetGameTimer();
         $.breakout_diff = $.breakout_timer - $.breakout_timer_start;

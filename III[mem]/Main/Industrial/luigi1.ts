@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/luigi1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -300,13 +300,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi1_failed");
             }
             if (Char.IsDead($.girl2_lm1)) {
                 Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi1_failed");
             }
             if ($.player.isInAnyCar()) {
                 $.car_lm1 = $.player.storeCarIsIn();
@@ -326,18 +324,15 @@ async function body() {
                                 await asyncWait(0);
                                 if (Car.IsDead($.car_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                                    // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_luigi1_failed");
                                 }
                                 if (Char.IsDead($.girl1_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                                    // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_luigi1_failed");
                                 }
                                 if (Char.IsDead($.girl2_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                                    // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_luigi1_failed");
                                 }
 
                                 //IF LOCATE_PLAYER_IN_CAR_CHAR_2D player girl1_lm1 8.0 8.0 FALSE
@@ -370,18 +365,15 @@ async function body() {
                                 await asyncWait(0);
                                 if (Car.IsDead($.car_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                                    // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_luigi1_failed");
                                 }
                                 if (Char.IsDead($.girl1_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                                    // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_luigi1_failed");
                                 }
                                 if (Char.IsDead($.girl2_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                                    // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_luigi1_failed");
                                 }
 
                                 //IF LOCATE_PLAYER_IN_CAR_CHAR_2D player girl2_lm1 8.0 8.0 FALSE
@@ -474,13 +466,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi1_failed");
             }
             if (Char.IsDead($.girl2_lm1)) {
                 Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi1_failed");
             }
             if ($.player.isInAnyCar()) {
                 //AND flag_player_not_in_car_message_lm1 = 1
@@ -554,13 +544,11 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.girl1_lm1)) {
                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                    // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi1_failed");
                 }
                 if (Char.IsDead($.girl2_lm1)) {
                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-                    // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi1_failed");
                 }
             }
         }

@@ -2291,7 +2291,7 @@ async function body() {
 
         Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
 
-        // SCM GOTO → mission_eightball_passed
+        return; // SCM GOTO → mission_eightball_passed
     }
 }
 

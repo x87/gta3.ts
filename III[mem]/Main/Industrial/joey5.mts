@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/joey5.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -230,13 +230,11 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.deadman_car)) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey5_failed");
             }
             if ($.deadman_car.isUpsidedown() && $.deadman_car.isStopped()) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey5_failed");
             }
             if (Char.IsDead($.lipsbrother1) && $.is_lipsbrother1_car_dead == 0) {
                 $.player.addScore(5000);
@@ -336,8 +334,7 @@ async function body() {
 
     if (Car.IsDead($.deadman_car)) {
         Text.PrintNow('WRECKED', 5000, 1);
-        // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+        FAIL("mission_joey5_failed");
     }
 
     while (!$.deadman_car.isStoppedInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 30.0, !!$.blob_flag)) {
@@ -345,8 +342,7 @@ async function body() {
         await skunk_car_check(); // SCM GOSUB skunk_car_check
         if (Car.IsDead($.deadman_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey5_failed");
         } else {
             if ($.deadman_car.isInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 30.0, false)) {
                 $.flag_dont_do_car_check_joey5 = 1;
@@ -361,8 +357,7 @@ async function body() {
         }
         if ($.deadman_car.isUpsidedown() && $.deadman_car.isStopped()) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey5_failed");
         }
         if ($.flag_dont_do_car_check_joey5 == 0) {
             if (!Car.IsDead($.deadman_car)) {
@@ -402,8 +397,7 @@ async function body() {
 
     if (Car.IsDead($.deadman_car)) {
         Text.PrintNow('WRECKED', 5000, 1);
-        // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+        FAIL("mission_joey5_failed");
     }
 
     $.blob_flag = 1;
@@ -413,13 +407,11 @@ async function body() {
         await skunk_car_check(); // SCM GOSUB skunk_car_check
         if (Car.IsDead($.deadman_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey5_failed");
         }
         if ($.deadman_car.isUpsidedown() && $.deadman_car.isStopped()) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey5_failed");
         }
         if ($.deadman_car.isStoppedInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 20.0, !!$.blob_flag)) {
             $.flag_car_in_area_joey5 = 1;
@@ -458,17 +450,14 @@ async function body() {
         await skunk_car_check(); // SCM GOSUB skunk_car_check
         if (Car.IsDead($.deadman_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey5_failed");
         }
         if ($.deadman_car.isCrushed()) {
-            // SCM GOTO → mission_joey5_passed (not lowered; manual jump required)
-            return;
+            return; // SCM GOTO → mission_joey5_passed
         }
         if ($.deadman_car.isUpsidedown() && $.deadman_car.isStopped()) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey5_failed");
         }
         await asyncWait(0);
     }

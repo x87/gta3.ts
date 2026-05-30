@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/diablo4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Deablo mission 4**************************************
@@ -182,8 +182,7 @@ async function body() {
     $.blip1_porn_van = Blip.AddForCar($.diablo_collect_porn_van);
 
     if (Car.IsDead($.diablo_collect_porn_van)) {
-        // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
+        FAIL("mission_diablo4_failed");
     }
 
     //GOTO pervert_test //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -191,8 +190,7 @@ async function body() {
     while (!$.player.isInCar($.diablo_collect_porn_van)) {
         await asyncWait(0);
         if (Car.IsDead($.diablo_collect_porn_van)) {
-            // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
+            FAIL("mission_diablo4_failed");
         }
     }
 
@@ -229,8 +227,7 @@ async function body() {
     $.counter_diablo4 = 26000;
     Hud.DisplayTimer($.$id.counter_diablo4);
     if (Car.IsDead($.diablo_collect_porn_van)) {
-        // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
+        FAIL("mission_diablo4_failed");
     }
 
     $.flag_car_blip_displayed_dm4 = 1 /* TRUE */;
@@ -239,8 +236,7 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.diablo_collect_porn_van)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
+            FAIL("mission_diablo4_failed");
         }
         if (!Char.IsDead($.porn_man)) {
             if ($.player.locateAnyMeansChar2D($.porn_man, 30.0, 30.0, false) && $.found_perv_before == 0) {
@@ -249,8 +245,7 @@ async function body() {
             }
         }
         if ($.counter_diablo4 == 0) {
-            // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
+            FAIL("mission_diablo4_failed");
         }
         $.NumEaten_diablo4 = Pacman.GetNumberOfPowerPillsEaten();
         if ($.NumEaten_diablo4 > 0 && $.player.isInCar($.diablo_collect_porn_van)) {
@@ -278,10 +273,10 @@ async function body() {
         }
         if ($.NumEaten_diablo4_total == 106 && $.eaten_all_the_porn == 0) {
             $.player.addScore(10000);
-            const _res224 = $.player.getCoordinates();
-            $.player_X = _res224.x;
-            $.player_Y = _res224.y;
-            $.player_Z = _res224.z;
+            const { x, y, z } = $.player.getCoordinates();
+            $.player_X = x;
+            $.player_Y = y;
+            $.player_Z = z;
             Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */);
             $.eaten_all_the_porn = 1;
         }
@@ -297,8 +292,7 @@ async function body() {
     Text.PrintNow('DIAB4_1', 5000, 1); // Mission brief
 
     if (Car.IsDead($.diablo_collect_porn_van)) {
-        // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
+        FAIL("mission_diablo4_failed");
     }
 
     if ($.player.isInCar($.diablo_collect_porn_van)) {
@@ -311,8 +305,7 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.diablo_collect_porn_van)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_diablo4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
+            FAIL("mission_diablo4_failed");
         }
         if ($.player.isInCar($.diablo_collect_porn_van)) {
             if ($.flag_car_blip_displayed_dm4 == 1 /* TRUE */) {

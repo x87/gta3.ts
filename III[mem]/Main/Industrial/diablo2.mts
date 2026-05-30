@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/diablo2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -192,8 +192,7 @@ async function body() {
     while (!$.player.isInModel(113 /* CAR_MRWHOOPEE */)) {
         await asyncWait(0);
         if (Car.IsDead($.icecream_van1)) {
-            // SCM GOTO → mission_diablo2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_diablo2_failed'); // fallback: would break linear control flow
+            FAIL("mission_diablo2_failed");
         }
     }
 
@@ -218,8 +217,7 @@ async function body() {
     ) {
         await asyncWait(0);
         if (Car.IsDead($.icecreamvan_any)) {
-            // SCM GOTO → mission_diablo2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_diablo2_failed'); // fallback: would break linear control flow
+            FAIL("mission_diablo2_failed");
         }
         if ($.icecreamvan_any.isStoppedInArea3D(1215.9, -1128.7, 11.2, 1210.4, -1123.3, 14.2, false) && $.player.isInCar($.icecreamvan_any)) {
             $.controlmode = Pad.GetControllerMode();
@@ -305,8 +303,7 @@ async function body() {
             $.removed_ice_cream_blip = 1;
         }
         if (Char.IsDead($.creamed_guy1) && Char.IsDead($.creamed_guy2) && Char.IsDead($.creamed_guy3) && Char.IsDead($.creamed_guy4)) {
-            // SCM GOTO → mission_diablo2_passed (not lowered; manual jump required)
-            return;
+            return; // SCM GOTO → mission_diablo2_passed
         }
         if (Char.IsDead($.creamed_guy1) && $.ojective_creamed_guy1_done_before == 0) {
             $.ojective_creamed_guys_passed++;
@@ -324,10 +321,10 @@ async function body() {
             $.ojective_creamed_guys_passed++;
             $.ojective_creamed_guy4_done_before = 1;
         }
-        const _res222 = $.icecreamvan_any.getCoordinates();
-        $.icecreamx = _res222.x;
-        $.icecreamy = _res222.y;
-        $.icecreamz = _res222.z;
+        const { x, y, z } = $.icecreamvan_any.getCoordinates();
+        $.icecreamx = x;
+        $.icecreamy = y;
+        $.icecreamz = z;
         if ($.creamed_guy1.isObjectivePassed() && $.ojective_creamed_guy1_done_before == 0) {
             $.creamed_guy1.setObjGotoCoordOnFoot($.icecreamx, $.icecreamy);
             $.ojective_creamed_guys_passed++;
@@ -505,7 +502,6 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(49 /* PED_LI_MAN1 */);
     $.player.setAmmo(12 /* WEAPONTYPE_DETONATOR */, 0);
     Mission.Finish();
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

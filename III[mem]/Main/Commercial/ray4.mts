@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/ray4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *********************************** Ray Mission 4 ***************************************
 // *********************************** Gone Fishing	 ***************************************
@@ -354,7 +354,7 @@ async function body() {
     while (!$.player.locateAnyMeans2D(1700.0, -383.0, 180.0, 180.0, false) && !($.partners_boat_health < 980)) {
         await asyncWait(0);
         if (Car.IsDead($.partners_boat)) {
-            return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+            return; // SCM GOTO → mission_ray4_passed
         }
         $.partners_boat_health = $.partners_boat.getHealth();
 
@@ -416,10 +416,10 @@ async function body() {
     }
 
     if (Char.IsDead($.rays_partner)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
     if (Car.IsDead($.partners_boat)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     const _res89 = $.partners_boat.getCoordinates();
@@ -452,10 +452,10 @@ async function body() {
     }
 
     if (Char.IsDead($.rays_partner)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
     if (Car.IsDead($.partners_boat)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     $.rays_partner.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 1600);
@@ -487,11 +487,11 @@ async function body() {
     }
 
     if (Char.IsDead($.rays_partner)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     if (Car.IsDead($.partners_boat)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     $.fish_target = Car.Create(131 /* CAR_RCBANDIT */, $.vector_x, $.vector_y, $.partner_z);
@@ -515,10 +515,10 @@ async function body() {
         await asyncWait(0);
         await object_placement(); // SCM GOSUB object_placement
         if (Char.IsDead($.rays_partner)) {
-            return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+            return; // SCM GOTO → mission_ray4_passed
         }
         if (Car.IsDead($.partners_boat)) {
-            return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+            return; // SCM GOTO → mission_ray4_passed
         }
         if (Car.IsDead($.fish_target)) {
         }
@@ -551,7 +551,7 @@ async function body() {
     //ADD_PARTICLE_EFFECT POBJECT_CAR_WATER_SPLASH partner_x partner_y partner_z TRUE
 
     if (Car.IsDead($.partners_boat)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     const _res93 = $.partners_boat.getCoordinates();
@@ -768,7 +768,7 @@ async function body() {
     }
 
     if (Char.IsDead($.rays_partner)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     Camera.PointAtChar($.rays_partner, 15 /* FIXED */, 1 /* INTERPOLATION */);
@@ -780,7 +780,7 @@ async function body() {
     }
 
     if (Car.IsDead($.partners_boat)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     const _res94 = $.partners_boat.getCoordinates();
@@ -813,7 +813,7 @@ async function body() {
     }
 
     if (Char.IsDead($.rays_partner)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     $.rays_partner.lookAtPlayerAlways($.player);
@@ -825,17 +825,17 @@ async function body() {
     }
 
     if (Char.IsDead($.rays_partner)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     $.rays_partner.stopLooking();
 
     if (Char.IsDead($.rays_partner)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     if (Car.IsDead($.partners_boat)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     const _res95 = $.partners_boat.getCoordinates();
@@ -852,11 +852,11 @@ async function body() {
     }
 
     if (Char.IsDead($.rays_partner)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     if (Car.IsDead($.partners_boat)) {
-        return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+        return; // SCM GOTO → mission_ray4_passed
     }
 
     $.rays_partner.delete();
@@ -914,7 +914,7 @@ async function body() {
                 Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */);
                 $.barrel2_b.delete();
             }
-            return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
+            return; // SCM GOTO → mission_ray4_passed
         }
 
         if ($.partner_on_foot_flag == -1) {
@@ -1061,8 +1061,7 @@ async function body() {
         if ($.partner_on_foot_flag == 1) {
             await partner_escape_checks(); // SCM GOSUB partner_escape_checks
             if ($.goto_mission_ray4_failed == 1) {
-                // SCM GOTO → mission_ray4_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_ray4_failed'); // fallback: would break linear control flow
+                FAIL('mission_ray4_failed');
             }
             if ($.partner_on_foot_counter == 0) {
                 if (!$.player.isInArea2D(1364.1, -614.512, 1473.801, -560.223, false)) {
@@ -1544,8 +1543,6 @@ async function steal_a_car() {
         $.partners_car.setHeading($.dot_product);
         $.rays_partner.setObjEnterCarAsDriver($.partners_car);
     }
-
-    return;
 }
 
 async function select_boat_node() {
@@ -1657,8 +1654,6 @@ async function select_boat_node() {
         $.boat_node_counter = 10;
         return;
     }
-
-    return;
 }
 
 async function partner_escape_checks() {
@@ -1689,8 +1684,6 @@ async function partner_escape_checks() {
             $.gotaway_timer_reset_flag = 0;
         }
     }
-
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

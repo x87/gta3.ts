@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/asuka4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -204,8 +204,7 @@ async function body() {
         await asyncWait(0);
         if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
-            // SCM GOTO → mission_asuka4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_asuka4_failed'); // fallback: would break linear control flow
+            FAIL("mission_asuka4_failed");
         }
     }
 
@@ -239,8 +238,7 @@ async function body() {
         await asyncWait(0);
         if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
-            // SCM GOTO → mission_asuka4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_asuka4_failed'); // fallback: would break linear control flow
+            FAIL("mission_asuka4_failed");
         }
     }
 
@@ -274,8 +272,7 @@ async function body() {
         await asyncWait(0);
         if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
-            // SCM GOTO → mission_asuka4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_asuka4_failed'); // fallback: would break linear control flow
+            FAIL("mission_asuka4_failed");
         }
     }
 
@@ -309,8 +306,7 @@ async function body() {
         await asyncWait(0);
         if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
-            // SCM GOTO → mission_asuka4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_asuka4_failed'); // fallback: would break linear control flow
+            FAIL("mission_asuka4_failed");
         }
     }
 

@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/kenji4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -414,8 +414,7 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.car_km4)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicles dead!"
-                // SCM GOTO → mission_kenji4_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji4_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji4_failed");
             }
         }
     }
@@ -826,8 +825,7 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.car_cut_km4)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicles wrecked!"
-                // SCM GOTO → mission_kenji4_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji4_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji4_failed");
             }
         }
     }
@@ -894,7 +892,6 @@ async function onPassed() {
     $.player.addScore(10000);
     $.player.clearWantedLevel();
     // START_NEW_SCRIPT kenji_mission5_loop
-    return;
 }
 
 // mission cleanup
@@ -942,7 +939,6 @@ async function cleanup() {
     Zone.SetPedDensity('park', 1 /* DAY */, 1);
     Zone.SetPedDensity('park', 0 /* NIGHT */, 1);
     Mission.Finish();
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

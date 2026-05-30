@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/kenji5.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *******************************   Kenji Mission 5   *************************************
 // *******************************     Smack Down      *************************************
@@ -1443,8 +1443,7 @@ async function body() {
         if ($.dead_peds > $.minimum_kills || $.dead_peds == $.minimum_kills) {
             return; // SCM GOTO → mission_kenji5_passed
         } else {
-            // SCM GOTO → mission_kenji5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji5_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji5_failed");
         }
     }
 

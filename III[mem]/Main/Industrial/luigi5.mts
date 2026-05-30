@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/luigi5.sc
-import { $, verbose } from '../../utils';
+import { $, FAIL, verbose } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -483,9 +483,8 @@ async function body() {
         await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
         if ($.number_of_dead_prossies > 0) {
             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
-        }        
+            FAIL('mission_luigi5_failed');
+        }
         if ($.counter_no_of_girls_at_the_ball == 8) {
             return; // SCM GOTO → mission_luigi5_passed
         }
@@ -527,19 +526,16 @@ async function body() {
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if (Car.IsDead($.vehicle_lm5)) {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if ($.flag_prossie1_at_ball == 0) {
                                     if (Char.IsDead($.prossie1_lm5)) {
                                         Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                        // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                        FAIL('mission_luigi5_failed');
                                     } else {
                                         if (!$.prossie1_lm5.isInPlayersGroup($.player) && $.flag_blip_on_prossie1_lm5 == 0) {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
@@ -584,17 +580,12 @@ async function body() {
                         $.flag_blip_on_prossie1_lm5 = 0;
                     }
                 }
-                if (
-                    $.prossie1_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
-                    $.flag_prossie1_at_ball == 0 &&
-                    $.flag_prossie1_in_car_park == 0
-                ) {
+                if ($.prossie1_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) && $.flag_prossie1_at_ball == 0 && $.flag_prossie1_in_car_park == 0) {
                     await asyncWait(0);
                     if ($.flag_prossie1_at_ball == 0) {
                         if (Char.IsDead($.prossie1_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie1_lm5.leaveGroup();
@@ -611,8 +602,7 @@ async function body() {
                     if ($.flag_prossie1_at_ball == 0) {
                         if (Char.IsDead($.prossie1_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie1_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
@@ -648,8 +638,7 @@ async function body() {
         if ($.flag_prossie2_at_ball == 0) {
             if (Char.IsDead($.prossie2_lm5)) {
                 Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                FAIL('mission_luigi5_failed');
             }
             if ($.flag_prossie2_lm5_in_car == 0) {
                 if ($.player.locateOnFootChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message2_lm5 == 0) {
@@ -679,27 +668,23 @@ async function body() {
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if (Car.IsDead($.vehicle_lm5)) {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
 
                                 if ($.flag_prossie2_at_ball == 0) {
                                     if (Char.IsDead($.prossie2_lm5)) {
                                         Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                        // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                        FAIL('mission_luigi5_failed');
                                     } else {
                                         if (!$.prossie2_lm5.isInPlayersGroup($.player) && $.flag_blip_on_prossie2_lm5 == 0) {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie2_lm5 = Blip.AddForChar($.prossie2_lm5);
-                                            $.flag_blip_on_prossie2_lm5 = 1;
-                                            // SCM GOTO → prossie_checks
-                                            continue prossie_checks;
+                                            $.flag_blip_on_prossie2_lm5 = 1;                                            
+                                            continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie2_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie2_lm5 == 1) {
                                             $.prossie2_lm5.followPlayer($.player);
@@ -737,17 +722,12 @@ async function body() {
                         $.flag_blip_on_prossie2_lm5 = 0;
                     }
                 }
-                if (
-                    $.prossie2_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
-                    $.flag_prossie2_at_ball == 0 &&
-                    $.flag_prossie2_in_car_park == 0
-                ) {
+                if ($.prossie2_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) && $.flag_prossie2_at_ball == 0 && $.flag_prossie2_in_car_park == 0) {
                     await asyncWait(0);
                     if ($.flag_prossie2_at_ball == 0) {
                         if (Char.IsDead($.prossie2_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie2_lm5.leaveGroup();
@@ -764,8 +744,7 @@ async function body() {
                     if ($.flag_prossie2_at_ball == 0) {
                         if (Char.IsDead($.prossie2_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie2_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
@@ -801,8 +780,7 @@ async function body() {
         if ($.flag_prossie3_at_ball == 0) {
             if (Char.IsDead($.prossie3_lm5)) {
                 Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                FAIL('mission_luigi5_failed');
             }
             if ($.flag_prossie3_lm5_in_car == 0) {
                 if ($.player.locateOnFootChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message3_lm5 == 0) {
@@ -831,28 +809,24 @@ async function body() {
                                 await asyncWait(0);
                                 if (Car.IsDead($.vehicle_lm5)) {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle has been wrecked!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
 
                                 if ($.flag_prossie3_at_ball == 0) {
                                     if (Char.IsDead($.prossie3_lm5)) {
                                         Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                        // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                        FAIL('mission_luigi5_failed');
                                     } else {
                                         if (!$.prossie3_lm5.isInPlayersGroup($.player) && $.flag_blip_on_prossie3_lm5 == 0) {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie3_lm5 = Blip.AddForChar($.prossie3_lm5);
-                                            $.flag_blip_on_prossie3_lm5 = 1;
-                                            // SCM GOTO → prossie_checks
-                                            continue prossie_checks;
+                                            $.flag_blip_on_prossie3_lm5 = 1;                                            
+                                            continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie3_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie3_lm5 == 1) {
                                             $.prossie3_lm5.followPlayer($.player);
@@ -890,17 +864,12 @@ async function body() {
                         $.flag_blip_on_prossie3_lm5 = 0;
                     }
                 }
-                if (
-                    $.prossie3_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
-                    $.flag_prossie3_at_ball == 0 &&
-                    $.flag_prossie3_in_car_park == 0
-                ) {
+                if ($.prossie3_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) && $.flag_prossie3_at_ball == 0 && $.flag_prossie3_in_car_park == 0) {
                     await asyncWait(0);
                     if ($.flag_prossie3_at_ball == 0) {
                         if (Char.IsDead($.prossie3_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie3_lm5.leaveGroup();
@@ -917,8 +886,7 @@ async function body() {
                     if ($.flag_prossie3_at_ball == 0) {
                         if (Char.IsDead($.prossie3_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie3_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
@@ -954,8 +922,7 @@ async function body() {
         if ($.flag_prossie4_at_ball == 0) {
             if (Char.IsDead($.prossie4_lm5)) {
                 Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                FAIL('mission_luigi5_failed');
             }
             if ($.flag_prossie4_lm5_in_car == 0) {
                 if ($.player.locateOnFootChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message4_lm5 == 0) {
@@ -985,28 +952,24 @@ async function body() {
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
 
                                 if (Car.IsDead($.vehicle_lm5)) {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
 
                                 if ($.flag_prossie4_at_ball == 0) {
                                     if (Char.IsDead($.prossie4_lm5)) {
                                         Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                        // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                        FAIL('mission_luigi5_failed');
                                     } else {
                                         if (!$.prossie4_lm5.isInPlayersGroup($.player) && $.flag_blip_on_prossie4_lm5 == 0) {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie4_lm5 = Blip.AddForChar($.prossie4_lm5);
-                                            $.flag_blip_on_prossie4_lm5 = 1;
-                                            // SCM GOTO → prossie_checks
-                                            continue prossie_checks;
+                                            $.flag_blip_on_prossie4_lm5 = 1;                                            
+                                            continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie4_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie4_lm5 == 1) {
                                             $.prossie4_lm5.followPlayer($.player);
@@ -1044,17 +1007,12 @@ async function body() {
                         $.flag_blip_on_prossie4_lm5 = 0;
                     }
                 }
-                if (
-                    $.prossie4_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
-                    $.flag_prossie4_at_ball == 0 &&
-                    $.flag_prossie4_in_car_park == 0
-                ) {
+                if ($.prossie4_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) && $.flag_prossie4_at_ball == 0 && $.flag_prossie4_in_car_park == 0) {
                     await asyncWait(0);
                     if ($.flag_prossie4_at_ball == 0) {
                         if (Char.IsDead($.prossie4_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie4_lm5.leaveGroup();
@@ -1071,8 +1029,7 @@ async function body() {
                     if ($.flag_prossie4_at_ball == 0) {
                         if (Char.IsDead($.prossie4_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie4_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
@@ -1108,8 +1065,7 @@ async function body() {
         if ($.flag_prossie5_at_ball == 0) {
             if (Char.IsDead($.prossie5_lm5)) {
                 Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                FAIL('mission_luigi5_failed');
             }
             if ($.flag_prossie5_lm5_in_car == 0) {
                 if ($.player.locateOnFootChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message5_lm5 == 0) {
@@ -1139,26 +1095,22 @@ async function body() {
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if (Car.IsDead($.vehicle_lm5)) {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if ($.flag_prossie5_at_ball == 0) {
                                     if (Char.IsDead($.prossie5_lm5)) {
                                         Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                        // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                        FAIL('mission_luigi5_failed');
                                     } else {
                                         if (!$.prossie5_lm5.isInPlayersGroup($.player) && $.flag_blip_on_prossie5_lm5 == 0) {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie5_lm5 = Blip.AddForChar($.prossie5_lm5);
-                                            $.flag_blip_on_prossie5_lm5 = 1;
-                                            // SCM GOTO → prossie_checks
-                                            continue prossie_checks;
+                                            $.flag_blip_on_prossie5_lm5 = 1;                                            
+                                            continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie5_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie5_lm5 == 1) {
                                             $.prossie5_lm5.followPlayer($.player);
@@ -1196,17 +1148,12 @@ async function body() {
                         $.flag_blip_on_prossie5_lm5 = 0;
                     }
                 }
-                if (
-                    $.prossie5_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
-                    $.flag_prossie5_at_ball == 0 &&
-                    $.flag_prossie5_in_car_park == 0
-                ) {
+                if ($.prossie5_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) && $.flag_prossie5_at_ball == 0 && $.flag_prossie5_in_car_park == 0) {
                     await asyncWait(0);
                     if ($.flag_prossie5_at_ball == 0) {
                         if (Char.IsDead($.prossie5_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie5_lm5.leaveGroup();
@@ -1223,8 +1170,7 @@ async function body() {
                     if ($.flag_prossie5_at_ball == 0) {
                         if (Char.IsDead($.prossie5_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie5_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
@@ -1259,8 +1205,7 @@ async function body() {
         if ($.flag_prossie6_at_ball == 0) {
             if (Char.IsDead($.prossie6_lm5)) {
                 Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                FAIL('mission_luigi5_failed');
             }
             if ($.flag_prossie6_lm5_in_car == 0) {
                 if ($.player.locateOnFootChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message6_lm5 == 0) {
@@ -1290,27 +1235,23 @@ async function body() {
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if (Car.IsDead($.vehicle_lm5)) {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
 
                                 if ($.flag_prossie6_at_ball == 0) {
                                     if (Char.IsDead($.prossie6_lm5)) {
                                         Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                        // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                        FAIL('mission_luigi5_failed');
                                     } else {
                                         if (!$.prossie6_lm5.isInPlayersGroup($.player) && $.flag_blip_on_prossie6_lm5 == 0) {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie6_lm5 = Blip.AddForChar($.prossie6_lm5);
-                                            $.flag_blip_on_prossie6_lm5 = 1;
-                                            // SCM GOTO → prossie_checks
-                                            continue prossie_checks;
+                                            $.flag_blip_on_prossie6_lm5 = 1;                                            
+                                            continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie6_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie6_lm5 == 1) {
                                             $.prossie6_lm5.followPlayer($.player);
@@ -1348,17 +1289,12 @@ async function body() {
                         $.flag_blip_on_prossie6_lm5 = 0;
                     }
                 }
-                if (
-                    $.prossie6_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
-                    $.flag_prossie6_at_ball == 0 &&
-                    $.flag_prossie6_in_car_park == 0
-                ) {
+                if ($.prossie6_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) && $.flag_prossie6_at_ball == 0 && $.flag_prossie6_in_car_park == 0) {
                     await asyncWait(0);
                     if ($.flag_prossie6_at_ball == 0) {
                         if (Char.IsDead($.prossie6_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie6_lm5.leaveGroup();
@@ -1375,8 +1311,7 @@ async function body() {
                     if ($.flag_prossie6_at_ball == 0) {
                         if (Char.IsDead($.prossie6_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie6_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
@@ -1412,8 +1347,7 @@ async function body() {
         if ($.flag_prossie7_at_ball == 0) {
             if (Char.IsDead($.prossie7_lm5)) {
                 Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                FAIL('mission_luigi5_failed');
             }
             if ($.flag_prossie7_lm5_in_car == 0) {
                 if ($.player.locateOnFootChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message7_lm5 == 0) {
@@ -1443,26 +1377,22 @@ async function body() {
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if (Car.IsDead($.vehicle_lm5)) {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if ($.flag_prossie7_at_ball == 0) {
                                     if (Char.IsDead($.prossie7_lm5)) {
                                         Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                        // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                        FAIL('mission_luigi5_failed');
                                     } else {
                                         if (!$.prossie7_lm5.isInPlayersGroup($.player) && $.flag_blip_on_prossie7_lm5 == 0) {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie7_lm5 = Blip.AddForChar($.prossie7_lm5);
-                                            $.flag_blip_on_prossie7_lm5 = 1;
-                                            // SCM GOTO → prossie_checks
-                                            continue prossie_checks;
+                                            $.flag_blip_on_prossie7_lm5 = 1;                                            
+                                            continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie7_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie7_lm5 == 1) {
                                             $.prossie7_lm5.followPlayer($.player);
@@ -1500,17 +1430,12 @@ async function body() {
                         $.flag_blip_on_prossie7_lm5 = 0;
                     }
                 }
-                if (
-                    $.prossie7_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
-                    $.flag_prossie7_at_ball == 0 &&
-                    $.flag_prossie7_in_car_park == 0
-                ) {
+                if ($.prossie7_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) && $.flag_prossie7_at_ball == 0 && $.flag_prossie7_in_car_park == 0) {
                     await asyncWait(0);
                     if ($.flag_prossie7_at_ball == 0) {
                         if (Char.IsDead($.prossie7_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie7_lm5.leaveGroup();
@@ -1527,8 +1452,7 @@ async function body() {
                     if ($.flag_prossie7_at_ball == 0) {
                         if (Char.IsDead($.prossie7_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie7_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
@@ -1564,8 +1488,7 @@ async function body() {
         if ($.flag_prossie8_at_ball == 0) {
             if (Char.IsDead($.prossie8_lm5)) {
                 Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                FAIL('mission_luigi5_failed');
             }
             if ($.flag_prossie8_lm5_in_car == 0) {
                 if ($.player.locateOnFootChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message8_lm5 == 0) {
@@ -1595,26 +1518,22 @@ async function body() {
                                 await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
                                 if ($.number_of_dead_prossies > 0) {
                                     Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if (Car.IsDead($.vehicle_lm5)) {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                                    // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                    FAIL('mission_luigi5_failed');
                                 }
                                 if ($.flag_prossie8_at_ball == 0) {
                                     if (Char.IsDead($.prossie8_lm5)) {
                                         Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                                        // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                                        throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                                        FAIL('mission_luigi5_failed');
                                     } else {
                                         if (!$.prossie8_lm5.isInPlayersGroup($.player) && $.flag_blip_on_prossie8_lm5 == 0) {
                                             Text.PrintNow('HEY5', 5000, 1); //"You have left one of the girls behind go and get her!"
                                             $.radarped_prossie8_lm5 = Blip.AddForChar($.prossie8_lm5);
-                                            $.flag_blip_on_prossie8_lm5 = 1;
-                                            // SCM GOTO → prossie_checks
-                                            continue prossie_checks;
+                                            $.flag_blip_on_prossie8_lm5 = 1;                                            
+                                            continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
                                         if ($.player.locateAnyMeansChar2D($.prossie8_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie8_lm5 == 1) {
                                             $.prossie8_lm5.followPlayer($.player);
@@ -1652,17 +1571,12 @@ async function body() {
                         $.flag_blip_on_prossie8_lm5 = 0;
                     }
                 }
-                if (
-                    $.prossie8_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
-                    $.flag_prossie8_at_ball == 0 &&
-                    $.flag_prossie8_in_car_park == 0
-                ) {
+                if ($.prossie8_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) && $.flag_prossie8_at_ball == 0 && $.flag_prossie8_in_car_park == 0) {
                     await asyncWait(0);
                     if ($.flag_prossie8_at_ball == 0) {
                         if (Char.IsDead($.prossie8_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie8_lm5.leaveGroup();
@@ -1679,8 +1593,7 @@ async function body() {
                     if ($.flag_prossie8_at_ball == 0) {
                         if (Char.IsDead($.prossie8_lm5)) {
                             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
-                            // SCM GOTO → mission_luigi5_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
+                            FAIL('mission_luigi5_failed');
                         }
                     }
                     $.prossie8_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
@@ -1716,8 +1629,7 @@ async function body() {
 
     if ($.counter_no_of_girls_at_the_ball < 4) {
         Text.PrintNow('OUTTIME', 5000, 1); //"You ran out of time!"
-        // SCM GOTO → mission_luigi5_failed
-        throw new Error('unresolved GOTO mission_luigi5_failed');
+        FAIL('mission_luigi5_failed');
     } else {
         return; // SCM GOTO → mission_luigi5_passed
     }
@@ -1759,7 +1671,7 @@ async function onPassed() {
     $.score_lm5 = $.counter_no_of_girls_at_the_ball * 500;
     Text.PrintWithNumberBig('M_PASS', $.score_lm5, 10000, 1); //"Mission Passed!"
     $.player.addScore($.score_lm5);
-    $.player.clearWantedLevel();    
+    $.player.clearWantedLevel();
     if ($.counter_no_of_girls_at_the_ball == 8) {
         Text.PrintWithNumberNow('BONUS', 2000, 5000, 1); //"Bonus of $2000!"
         $.player.addScore(2000);
@@ -1845,8 +1757,6 @@ async function check_for_dead_prossies() {
             $.number_of_dead_prossies++;
         }
     }
-
-    return;
 }
 
 async function mission_end_cutscene() {

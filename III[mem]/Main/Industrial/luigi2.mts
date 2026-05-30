@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/luigi2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -508,13 +508,11 @@ async function body() {
             }
             if (Car.IsDead($.car_lm2)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi2_failed");
             } else {
                 if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi2_failed");
                 }
             }
             if ($.flag_done_looking_bit_lm2 == 1 || $.player.isInArea3D(1430.75, -807.0, 9.0, 1355.2, -883.2, 20.0, false)) {
@@ -563,13 +561,11 @@ async function body() {
 
         if (Car.IsDead($.car_lm2)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+            FAIL("mission_luigi2_failed");
         } else {
             if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
                 Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi2_failed");
             }
         }
 
@@ -586,13 +582,11 @@ async function body() {
             await girls_running(); // SCM GOSUB girls_running
             if (Car.IsDead($.car_lm2)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi2_failed");
             } else {
                 if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi2_failed");
                 }
             }
         }
@@ -615,13 +609,11 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.car_lm2)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                FAIL("mission_luigi2_failed");
             } else {
                 if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi2_failed");
                 }
             }
             if (!$.player.isInCar($.car_lm2) && $.flag_player_had_car_message_lm2 == 0) {
@@ -677,13 +669,11 @@ async function body() {
             if ($.flag_car_in_garage_lm2 == 0) {
                 if (Car.IsDead($.car_lm2)) {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_luigi2_failed");
                 } else {
                     if ($.car_lm2.isUpsidedown() && $.car_lm2.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_luigi2_failed");
                     }
                 }
                 if (!$.player.isInCar($.car_lm2) && $.flag_player_had_car_message_lm2 == 0) {

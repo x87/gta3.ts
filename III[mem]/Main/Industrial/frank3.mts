@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/frank3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -525,8 +525,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie3_failed");
             }
             if (!$.ped_8ball_fm3.isInPlayersGroup($.player) && $.flag_blip_on_eightball_fm3 == 0) {
                 Text.PrintNow('HEY3', 5000, 1); //"You have left 8-ball behind go and get him!"
@@ -554,8 +553,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie3_failed");
             }
             if (!$.ped_8ball_fm3.isInPlayersGroup($.player) && $.flag_blip_on_eightball_fm3 == 0) {
                 Text.PrintNow('HEY3', 5000, 1); //"You have left 8-ball behind go and get him!"
@@ -599,8 +597,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie3_failed");
             }
             if (!$.ped_8ball_fm3.isInPlayersGroup($.player) && $.flag_blip_on_eightball_fm3 == 0) {
                 Text.PrintNow('HEY3', 5000, 1); //"You have left 8-ball behind go and get him!"
@@ -644,8 +641,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie3_failed");
             }
             if (!$.ped_8ball_fm3.isInPlayersGroup($.player) && $.flag_blip_on_eightball_fm3 == 0) {
                 Text.PrintNow('HEY3', 5000, 1); //"You have left 8-ball behind go and get him!"
@@ -929,19 +925,17 @@ async function body() {
             if ($.flag_bloke_leave_group_fm3 == 0) {
                 if ($.counter_no_guards_dead_fm3 > 0) {
                     Text.PrintNow('FM3_8', 5000, 1); //"The guards have been alerted!"
-                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie3_failed");
                 }
             }
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie3_failed");
             } else {
-                const _res253 = $.ped_8ball_fm3.getCoordinates();
-                $.eightball_x_fm3 = _res253.x;
-                $.eightball_y_fm3 = _res253.y;
-                $.eightball_z_fm3 = _res253.z;
+                const { x, y, z } = $.ped_8ball_fm3.getCoordinates();
+                $.eightball_x_fm3 = x;
+                $.eightball_y_fm3 = y;
+                $.eightball_z_fm3 = z;
             }
             if ($.flag_bloke_leave_group_fm3 == 0) {
                 if (!$.ped_8ball_fm3.isInPlayersGroup($.player) && $.flag_blip_on_eightball_fm3 == 0) {
@@ -965,8 +959,7 @@ async function body() {
             }
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie3_failed");
             }
             if ($.flag_bloke_leave_group_fm3 == 0) {
                 if (
@@ -1002,8 +995,7 @@ async function body() {
 
                         if (Char.IsDead($.ped_8ball_fm3)) {
                             Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                            // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie3_failed");
                         }
                     }
 
@@ -1026,8 +1018,7 @@ async function body() {
                             await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
                         World.ClearArea(1536.8, -895.0, 10.8, 1.0, false);
@@ -1051,8 +1042,7 @@ async function body() {
 
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
                         World.ClearArea(1522.839, -916.137, 19.602, 1.0, false);
@@ -1076,8 +1066,7 @@ async function body() {
 
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
                         World.ClearArea(1476.3, -922.7, 19.0, 1.0, false);
@@ -1101,8 +1090,7 @@ async function body() {
 
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
                     }
@@ -1117,8 +1105,7 @@ async function body() {
 
                     if (Char.IsDead($.ped_8ball_fm3)) {
                         Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                        // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie3_failed");
                     }
 
                     // checks to see if the player is in a vehicle
@@ -1139,18 +1126,15 @@ async function body() {
                             if (Car.IsDead($.car_fm3)) {
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 } else {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle wrecked!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 }
                             }
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
 
@@ -1165,18 +1149,15 @@ async function body() {
                         if (Car.IsDead($.car_fm3)) {
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             } else {
                                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle wrecked!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
                         if (Char.IsDead($.ped_8ball_fm3)) {
                             Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                            // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie3_failed");
                         }
                         $.ped_8ball_fm3.setObjLeaveCar($.car_fm3);
 
@@ -1192,18 +1173,15 @@ async function body() {
                             if (Car.IsDead($.car_fm3)) {
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 } else {
                                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle wrecked!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 }
                             }
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
                     }
@@ -1267,8 +1245,7 @@ async function body() {
 
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
                         $.flag_bloke_in_area_fm3 = 2;
@@ -1359,8 +1336,7 @@ async function body() {
 
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 }
                             }
                         }
@@ -1404,8 +1380,7 @@ async function body() {
 
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 }
                             }
                         }
@@ -1458,8 +1433,7 @@ async function body() {
 
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 }
                             }
                         }
@@ -1502,8 +1476,7 @@ async function body() {
 
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 }
                             }
                         }
@@ -1546,8 +1519,7 @@ async function body() {
 
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 }
                             }
                         }
@@ -1590,8 +1562,7 @@ async function body() {
 
                                 if (Char.IsDead($.ped_8ball_fm3)) {
                                     Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                    // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                    throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                    FAIL("mission_frankie3_failed");
                                 }
                             }
                         }
@@ -1675,8 +1646,7 @@ async function body() {
 
                             if (Char.IsDead($.ped_8ball_fm3)) {
                                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie3_failed");
                             }
                         }
                     }
@@ -1696,8 +1666,7 @@ async function body() {
 
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie3_failed");
             }
         }
 
@@ -1713,8 +1682,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.ped_8ball_fm3)) {
                 Text.PrintNow('FM3_7', 5000, 1); //"8-Ball's dead!"
-                // SCM GOTO → mission_frankie3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie3_failed");
             }
             $.breakout_timer = Clock.GetGameTimer();
             $.breakout_diff = $.breakout_timer - $.breakout_timer_start;

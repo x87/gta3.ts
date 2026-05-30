@@ -249,22 +249,22 @@ verbose('[+] debug script loaded');
                     z_float_m = z + 0.6;
                     z_float_m = World.GetGroundZFor3DCoord(x_float_m, y_float_m, z_float_m);
                     Streaming.RequestModel(counter_create_car);
-                    while (!Streaming.HasModelLoaded(counter_create_car)) {
-                        await asyncWait(0);
-                        Text.PrintNow('LOADCAR', 100, 1); //"Loading vehicle, press pad2 leftshoulder1 to cancel"
-                        if (Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */)) {
-                            //++ counter_create_car
-                            // SCM GOTO → next_carzzz (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO next_carzzz'); // fallback: would break linear control flow
+                    before_next_carzzz: {
+                        while (!Streaming.HasModelLoaded(counter_create_car)) {
+                            await asyncWait(0);
+                            Text.PrintNow('LOADCAR', 100, 1); //"Loading vehicle, press pad2 leftshoulder1 to cancel"
+                            if (Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */)) {
+                                //++ counter_create_car
+                                break before_next_carzzz; // SCM GOTO → next_carzzz
+                            }
                         }
+                        magic_car = Car.Create(counter_create_car, x_float_m, y_float_m, z_float_m);
+                        magic_car.setHeading(debug_car_heading);
+                        magic_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+                        Streaming.MarkModelAsNoLongerNeeded(counter_create_car);
+                        magic_car.markAsNoLongerNeeded();
                     }
-                    magic_car = Car.Create(counter_create_car, x_float_m, y_float_m, z_float_m);
-                    magic_car.setHeading(debug_car_heading);
-                    magic_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
-                    Streaming.MarkModelAsNoLongerNeeded(counter_create_car);
-                    magic_car.markAsNoLongerNeeded();
-                    // SCM label next_carzzz
-                    if (initial_create_car == 0) {
+                    next_carzzz: if (initial_create_car == 0) {
                         //IF counter_create_car = 90
                         //AND initial_car_selected = 0
                         //counter_create_car = 91
@@ -475,14 +475,14 @@ verbose('[+] debug script loaded');
             //IF flag_player_on_mission = 0
             if (Pad.IsButtonPressed(1 /* PAD2 */, 9 /* DPADDOWN */)) {
                 if ($.player.isPlaying()) {
-                    if (button_pressed_warp == 0) {
-                        button_pressed_warp = 14;
-                        // SCM GOTO → start_mission_warp (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO start_mission_warp'); // fallback: would break linear control flow
+                    before_start_mission_warp: {
+                        if (button_pressed_warp == 0) {
+                            button_pressed_warp = 14;
+                            break before_start_mission_warp; // SCM GOTO → start_mission_warp
+                        }
+                        button_pressed_warp--;
                     }
-                    button_pressed_warp--;
-                    // SCM label start_mission_warp
-                    if (button_pressed_warp == 1) {
+                    start_mission_warp: if (button_pressed_warp == 1) {
                         $.player.setCoordinates(811.9, -939.95, -100.0);
                         await asyncWait(300);
                     }

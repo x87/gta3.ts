@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/meat4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -233,13 +233,11 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.car_meat4)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
         if ($.car_meat4.isUpsidedown() && $.car_meat4.isStopped()) {
             Text.PrintNow('UPSIDE', 5000, 1); //"The vehicle's upsidedown!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
     }
 
@@ -265,13 +263,11 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.car_meat4)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
         if (Char.IsDead($.loanshark_meat4)) {
             Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
         if (!$.player.isInCar($.car_meat4) && $.flag_player_had_car_message_meat4 == 0) {
             Text.PrintNow('IN_VEH', 5000, 1); //"Get back into the vehicle and get on with the mission!"
@@ -288,8 +284,7 @@ async function body() {
         }
         if ($.car_meat4.isUpsidedown() && $.car_meat4.isStopped()) {
             Text.PrintNow('UPSIDE', 5000, 1); //"The vehicle's upsidedown!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
     }
 
@@ -302,23 +297,19 @@ async function body() {
         if (Car.IsDead($.car_meat4)) {
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             } else {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
         if (Char.IsDead($.loanshark_meat4)) {
             Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         } else {
             if (!$.player.locateAnyMeansChar3D($.loanshark_meat4, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA4_3', 5000, 1); //"You left the Loan Shark behind"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
 
@@ -337,8 +328,7 @@ async function body() {
         }
         if ($.car_meat4.isUpsidedown() && $.car_meat4.isStopped()) {
             Text.PrintNow('UPSIDE', 5000, 1); //"The vehicle's upsidedown!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
     }
 
@@ -370,29 +360,24 @@ async function body() {
         if (Car.IsDead($.car_meat4)) {
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             } else {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
         if (Char.IsDead($.loanshark_meat4)) {
             Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         } else {
             if (!$.player.locateAnyMeansChar3D($.loanshark_meat4, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA4_3', 5000, 1); //"You left the Loan Shark behind"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
         if (Char.IsDead($.owner_meat4)) {
             Text.PrintNow('MEA4_2', 5000, 1); //"The factory owners dead!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
         if (!$.player.isInCar($.car_meat4) && $.flag_player_had_car_message_meat4 == 0) {
             Text.PrintNow('IN_VEH', 5000, 1); //"Get back into the vehicle and get on with the mission!"
@@ -409,8 +394,7 @@ async function body() {
         }
         if ($.car_meat4.isUpsidedown() && $.car_meat4.isStopped()) {
             Text.PrintNow('UPSIDE', 5000, 1); //"The vehicle's upsidedown!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
     }
 
@@ -433,28 +417,23 @@ async function body() {
         if (Car.IsDead($.car_meat4)) {
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             } else {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
         if (Char.IsDead($.loanshark_meat4)) {
             Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
         if (Char.IsDead($.owner_meat4)) {
             Text.PrintNow('MEA4_2', 5000, 1); //"The factory owners dead!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
         if ($.car_meat4.isUpsidedown() && $.car_meat4.isStopped()) {
             Text.PrintNow('UPSIDE', 5000, 1); //"The vehicle's upsidedown!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
     }
 
@@ -476,13 +455,11 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.loanshark_meat4)) {
             Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
         if (Char.IsDead($.owner_meat4)) {
             Text.PrintNow('MEA4_2', 5000, 1); //"The factory owners dead!"
-            // SCM GOTO → mission_failed_meat4
-            throw new Error('unresolved GOTO mission_failed_meat4');
+            FAIL('mission_failed_meat4');
         }
         if ($.flag_loanshark_in_area == 0) {
             if ($.loanshark_meat4.locateOnFoot2D(1209.6, -791.0, 0.5, 0.5, false)) {
@@ -491,9 +468,8 @@ async function body() {
         }
         if (TIMERB >= 25000) {
             if (!($.flag_loanshark_in_area == 1)) {
-                $.loanshark_meat4.setCoordinates(1209.6, -791.0, 13.7);
-                // SCM GOTO → loanshark_got_stuck
-                break;
+                $.loanshark_meat4.setCoordinates(1209.6, -791.0, 13.7);                
+                break; // SCM GOTO → loanshark_got_stuck
             }
         }
     }
@@ -511,13 +487,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
             if (Char.IsDead($.owner_meat4)) {
                 Text.PrintNow('MEA4_2', 5000, 1); //"The factory owners dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
 
@@ -531,13 +505,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
             if (Char.IsDead($.owner_meat4)) {
                 Text.PrintNow('MEA4_2', 5000, 1); //"The factory owners dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
 
@@ -551,13 +523,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
             if (Char.IsDead($.owner_meat4)) {
                 Text.PrintNow('MEA4_2', 5000, 1); //"The factory owners dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
 
@@ -571,13 +541,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
             if (Char.IsDead($.owner_meat4)) {
                 Text.PrintNow('MEA4_2', 5000, 1); //"The factory owners dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
 
@@ -591,13 +559,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
             if (Char.IsDead($.owner_meat4)) {
                 Text.PrintNow('MEA4_2', 5000, 1); //"The factory owners dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
         }
 
@@ -621,8 +587,7 @@ async function body() {
             }
             if (Char.IsDead($.loanshark_meat4)) {
                 Text.PrintNow('MEA4_1', 5000, 1); //"The Loan Sharks dead!"
-                // SCM GOTO → mission_failed_meat4
-                throw new Error('unresolved GOTO mission_failed_meat4');
+                FAIL('mission_failed_meat4');
             }
             if (TIMERA > 10000) {
                 if (!Char.IsDead($.owner_meat4)) {
@@ -644,8 +609,7 @@ async function body() {
         Camera.RestoreJumpcut();
     }
 
-    // SCM GOTO → mission_passed_meat4
-    return;
+    return; // SCM GOTO → mission_passed_meat4
 }
 
 // Mission Failed

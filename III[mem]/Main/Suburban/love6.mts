@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/love6.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *******************************    Donald Love 6    *************************************
@@ -336,8 +336,7 @@ async function body() {
     while (!$.player.isInCar($.decoy_van)) {
         await asyncWait(0);
         if (Car.IsDead($.decoy_van)) {
-            // SCM GOTO → mission_love6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love6_failed'); // fallback: would break linear control flow
+            FAIL("mission_love6_failed");
         }
     }
 
@@ -457,8 +456,7 @@ async function body() {
     while ($.survival_time > 0) {
         await asyncWait(0);
         if (Car.IsDead($.decoy_van)) {
-            // SCM GOTO → mission_love6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love6_failed'); // fallback: would break linear control flow
+            FAIL("mission_love6_failed");
         }
         $.player.alterWantedLevel(6);
         $.decoy_van_health = $.decoy_van.getHealth();
@@ -491,8 +489,7 @@ async function body() {
             Text.PrintWithNumberNow('LOVE6_3', $.out_of_car_timer_secs, 200, 1); //~g~You have ~1~ seconds to return to the Securicar before you fail the mission.
             if ($.out_of_car_timer_secs < 1) {
                 Text.PrintNow('LOVE6_4', 3000, 1); //~r~You ditched the Decoy Securicar!
-                // SCM GOTO → mission_love6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_love6_failed'); // fallback: would break linear control flow
+                FAIL("mission_love6_failed");
             }
         }
         if ($.player.isInCar($.decoy_van) && $.get_in_van == 1) {
@@ -503,8 +500,7 @@ async function body() {
 
     if ($.player.locateAnyMeans2D(-1026.5, -73.5, 160.0, 160.0, false)) {
         Text.PrintNow('LOVE6_2', 5000, 1); //"You failed to lead the police far enough away."
-        // SCM GOTO → mission_love6_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_love6_failed'); // fallback: would break linear control flow
+        FAIL("mission_love6_failed");
     }
 
     return; // SCM GOTO → mission_love6_passed

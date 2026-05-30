@@ -117,10 +117,10 @@ verbose('[+] HJ script loaded');
                     }
                     while ($.car_player_is_in_hj.isInAirProper() || $.collision_counter < 10) {
                         ++$.collision_counter;
-                        const _res263 = $.car_player_is_in_hj.getCoordinates();
-                        $.x_float_hj = _res263.x;
-                        $.y_float_hj = _res263.y;
-                        $.z_float_hj = _res263.z;
+                        const { x, y, z } = $.car_player_is_in_hj.getCoordinates();
+                        $.x_float_hj = x;
+                        $.y_float_hj = y;
+                        $.z_float_hj = z;
                         $.old_heading_hj = $.heading_hj;
                         if ($.flag_takeoff_hj == 0) {
                             $.old_heading_hj = $.car_player_is_in_hj.getHeading();
@@ -185,10 +185,10 @@ verbose('[+] HJ script loaded');
         }
 
         if ($.flag_takeoff_hj == 1) {
-            const _res264 = $.car_player_is_in_hj.getCoordinates();
-            $.jumpend_x_float_hj = _res264.x;
-            $.jumpend_y_float_hj = _res264.y;
-            $.temp_float = _res264.z;
+            const { x, y, z } = $.car_player_is_in_hj.getCoordinates();
+            $.jumpend_x_float_hj = x;
+            $.jumpend_y_float_hj = y;
+            $.temp_float = z;
             while ($.counter_land_on_wheels_hj < 90) {
                 if (Car.IsDead($.car_player_is_in_hj)) {
                     // SCM GOTO → mission_start_hj

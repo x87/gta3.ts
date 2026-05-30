@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/toni5.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Toni mission 5****************************************
@@ -215,16 +215,14 @@ async function body() {
     while (!$.player.isInCar($.explosive_truck)) {
         await asyncWait(0);
         if (Car.IsDead($.explosive_truck)) {
-            // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+            FAIL("mission_toni5_failed");
         }
 
         await triad_AI(); // SCM GOSUB triad_AI
 
         if (!$.explosive_truck.isHealthGreater(860) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
             $.explosive_truck.explode();
-            // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+            FAIL("mission_toni5_failed");
         }
     }
 
@@ -245,25 +243,23 @@ async function body() {
         await asyncWait(0);
 
         if (Car.IsDead($.explosive_truck)) {
-            // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+            FAIL("mission_toni5_failed");
         }
 
         while (!$.explosive_truck.isStoppedInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, !!$.blob_flag)) {
             await asyncWait(0);
             if (Car.IsDead($.explosive_truck)) {
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
-                // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni5_failed");
             }
 
             await triad_AI(); // SCM GOSUB triad_AI
             await Truck_health(); // SCM GOSUB Truck_health
 
-            const _res291 = $.explosive_truck.getCoordinates();
-            $.truck_x = _res291.x;
-            $.truck_y = _res291.y;
-            $.truck_z = _res291.z;
+            const { x, y, z } = $.explosive_truck.getCoordinates();
+            $.truck_x = x;
+            $.truck_y = y;
+            $.truck_z = z;
             if ($.player.isInCar($.explosive_truck)) {
                 if ($.flag_car_blip_displayed_tm5 == 1 /* TRUE */) {
                     $.blip2_tm5 = Blip.AddForCoord(965.0, -1117.0, -100.0);
@@ -284,14 +280,12 @@ async function body() {
             if (!$.explosive_truck.isHealthGreater(900) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
                 $.explosive_truck.explode();
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
-                // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni5_failed");
             }
             if ($.countdown_tm5 == 0 && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
                 $.explosive_truck.explode();
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
-                // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni5_failed");
             }
         }
 
@@ -301,8 +295,7 @@ async function body() {
 
         if (Car.IsDead($.explosive_truck)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
+            FAIL("mission_toni5_failed");
         }
 
         while (!World.IsExplosionInArea(3 /* EXPLOSION_CAR */, 961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0)) {

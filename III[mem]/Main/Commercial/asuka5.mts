@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/asuka5.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -183,13 +183,11 @@ async function body() {
         while (!$.player.isStoppedInArea3D(411.8, -1375.3, 25.6, 417.0, -1381.9, 28.6, true)) {
             await asyncWait(0);
             if (Car.IsDead($.tanner_car)) {
-                // SCM GOTO → mission_asuka5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka5_failed'); // fallback: would break linear control flow
+                FAIL('mission_asuka5_failed');
             }
             if (!$.tanner_car.isHealthGreater(999) || !$.tanner_car.isInArea2D(417.1, -1398.0, 425.4, -1394.9, false)) {
                 Text.PrintNow('AM5_1', 5000, 1);
-                // SCM GOTO → mission_asuka5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka5_failed'); // fallback: would break linear control flow
+                FAIL('mission_asuka5_failed');
             }
         }
 
@@ -214,12 +212,10 @@ async function body() {
         while (!$.tanner.isObjectivePassed()) {
             await asyncWait(0);
             if (Char.IsDead($.tanner)) {
-                // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka5_passed
             }
             if (Car.IsDead($.tanner_car)) {
-                // SCM GOTO → mission_asuka5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka5_failed'); // fallback: would break linear control flow
+                FAIL('mission_asuka5_failed');
             }
             if (TIMERB > 10000) {
                 if (!Char.IsDead($.lips)) {
@@ -234,12 +230,10 @@ async function body() {
         while (!$.tanner.isObjectivePassed()) {
             await asyncWait(0);
             if (Char.IsDead($.tanner)) {
-                // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka5_passed
             }
             if (Car.IsDead($.tanner_car)) {
-                // SCM GOTO → mission_asuka5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka5_failed'); // fallback: would break linear control flow
+                FAIL('mission_asuka5_failed');
             }
             if (TIMERB > 10000) {
                 if (!Char.IsDead($.lips)) {
@@ -254,12 +248,10 @@ async function body() {
         while (!$.tanner.isObjectivePassed()) {
             await asyncWait(0);
             if (Char.IsDead($.tanner)) {
-                // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka5_passed
             }
             if (Car.IsDead($.tanner_car)) {
-                // SCM GOTO → mission_asuka5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka5_failed'); // fallback: would break linear control flow
+                FAIL('mission_asuka5_failed');
             }
             if (TIMERB > 10000) {
                 if (!Char.IsDead($.lips)) {
@@ -276,18 +268,15 @@ async function body() {
         while (!$.tanner.isInCar($.tanner_car)) {
             await asyncWait(0);
             if (Char.IsDead($.tanner)) {
-                // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka5_passed
             }
             if (Car.IsDead($.tanner_car)) {
-                // SCM GOTO → mission_asuka5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka5_failed'); // fallback: would break linear control flow
+                FAIL('mission_asuka5_failed');
             }
         }
 
         if (Char.IsDead($.tanner)) {
-            // SCM GOTO → mission_asuka5_passed (not lowered; manual jump required)
-            return;
+            return; // SCM GOTO → mission_asuka5_passed
         }
 
         World.ClearArea(427.9, -1392.7, 21.1, 20.0, true);
@@ -443,7 +432,6 @@ async function onPassed() {
     $.asuka_contact_blip.remove();
     Stat.RegisterMissionPassed('AM5');
     Stat.PlayerMadeProgress(1);
-    return;
 }
 
 // mission cleanup

@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/taxi1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -261,10 +261,10 @@ async function body() {
                 }
             }
 
-            const _res286 = $.taxi_ped1.getCoordinates();
-            $.taxi_ped_x = _res286.x;
-            $.taxi_ped_y = _res286.y;
-            $.taxi_ped_z = _res286.z;
+            const { x, y, z } = $.taxi_ped1.getCoordinates();
+            $.taxi_ped_x = x;
+            $.taxi_ped_y = y;
+            $.taxi_ped_z = z;
 
             $.blip1_ct1.remove();
             $.taxi_car1.setTaxiLights(false /* Off */);
@@ -696,18 +696,17 @@ async function body() {
                 $.taxi_distance_int = $.taxi_distance_int * 60;
             }
 
-            
             $.speedbonus = $.taxi_distance_int;
             $.speedbonus = $.speedbonus / 100;
             $.speedbonus = $.speedbonus * 65;
-            
+
             TIMERB = 0;
-            
+
             if ($.taxi_countdown_already_started == 0) {
                 Hud.DisplayTimer($.$id.taxi_countdown);
                 $.taxi_countdown_already_started = 1;
             }
-            
+
             $.taxi_countdown += $.taxi_distance_int;
 
             if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
@@ -774,7 +773,6 @@ async function body() {
                     return taxi_fucked(); // SCM GOTO → taxi_fucked
                 }
             }
-
 
             score: {
                 if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
@@ -974,7 +972,7 @@ async function mission_taxi1_failed(cancel_mission: boolean = true) {
 
         if ($.taxi_fucked_flag == 1) {
             if (cancel_mission) {
-                throw new Error('unresolved GOTO mission_taxi1_failed');
+                FAIL("mission_taxi1_failed");
             }
             return;
         }
@@ -998,9 +996,8 @@ async function mission_taxi1_failed(cancel_mission: boolean = true) {
     }
 
     if (cancel_mission) {
-        throw new Error('unresolved GOTO mission_taxi1_failed');
+        FAIL("mission_taxi1_failed");
     }
-    return;
 }
 
 // mission cleanup

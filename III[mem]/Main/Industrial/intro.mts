@@ -49,7 +49,7 @@ async function body() {
 
     Game.SetIntroIsPlaying(true);
 
-    Streaming.LoadCollision(0 /* LEVEL_GENERIC */);
+    Streaming.LoadCollision(0 as any /* LEVEL_GENERIC */);
     Streaming.LoadSpecialCharacter(1, 'cat');
     Streaming.LoadSpecialCharacter(2, 'colrob');
     Streaming.LoadSpecialCharacter(3, 'miguel');

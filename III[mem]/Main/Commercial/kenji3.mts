@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/kenji3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -399,8 +399,7 @@ async function body() {
         if (Char.IsDead($.yakuza1_km3)) {
             Text.PrintNow('KM3_10', 5000, 1); //"The contact is dead!"
             $.flag_yakuza1_km3_dead = 1;
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (!$.player.isInModel(135 /* CAR_YARDIE */) && $.flag_player_had_car_message_km3 == 0) {
             Text.PrintNow('KM3_8', 7000, 1); //"Get a Yardie car and get on with the mission!"
@@ -427,8 +426,7 @@ async function body() {
         if (Char.IsDead($.yakuza1_km3)) {
             Text.PrintNow('KM3_10', 5000, 1); //"The contact is dead!"
             $.flag_yakuza1_km3_dead = 1;
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (!$.player.isInModel(135 /* CAR_YARDIE */) && $.flag_player_had_car_message_km3 == 0) {
             Text.PrintNow('KM3_8', 7000, 1); //"Get a Yardie car and get on with the mission!"
@@ -548,34 +546,28 @@ async function body() {
         if (Car.IsDead($.colombian_car1_km3)) {
             $.flag_colombian_car1_dead_km3 = 1;
             Text.PrintNow('KM3_11', 5000, 1); //"The Cartel have been attacked and the briefcase has not been recovered.!"
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Car.IsDead($.colombian_car2_km3)) {
             $.flag_colombian_car2_dead_km3 = 1;
             Text.PrintNow('KM3_11', 5000, 1); //"The Cartel have been attacked and the briefcase has not been recovered.!
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian1_km3)) {
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian2_km3)) {
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian5_km3)) {
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian6_km3)) {
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (!$.player.isInModel(135 /* CAR_YARDIE */) && $.flag_player_had_car_message_km3 == 0) {
             Text.PrintNow('KM3_8', 7000, 1); //"Get a Yardie car and get on with the mission!
@@ -593,8 +585,7 @@ async function body() {
                 Text.PrintNow('KM3_14', 7000, 1); //"You have been seen the deals off"
                 
                 await attack_player(); // SCM GOSUB attack_player
-                // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji3_failed");
             }
         }
     }
@@ -641,45 +632,38 @@ async function body() {
         if (Car.IsDead($.colombian_car1_km3)) {
             $.flag_colombian_car1_dead_km3 = 1;
             Text.PrintNow('KM3_11', 5000, 1); //"The vehicle's KM3_11!
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Car.IsDead($.colombian_car2_km3)) {
             $.flag_colombian_car2_dead_km3 = 1;
             Text.PrintNow('KM3_11', 5000, 1); //"The vehicle's KM3_11!
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian1_km3)) {
             $.flag_colombian1_dead_km3 = 1;
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian2_km3)) {
             $.flag_colombian2_dead_km3 = 1;
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian5_km3)) {
             $.flag_colombian5_dead_km3 = 1;
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian6_km3)) {
             $.flag_colombian6_dead_km3 = 1;
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if ($.player.locateAnyMeans2D(231.1, -26.3, 10.0, 10.0, false)) {
             if (!$.player.isInModel(135 /* CAR_YARDIE */) || $.player.isShooting()) {
                 Text.PrintNow('KM3_14', 7000, 1); //"You have been seen the deals off"
                 await attack_player(); // SCM GOSUB attack_player
-                // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji3_failed");
             }
         }
     }
@@ -733,38 +717,32 @@ async function body() {
         if (Car.IsDead($.colombian_car1_km3)) {
             $.flag_colombian_car1_dead_km3 = 1;
             Text.PrintNow('KM3_11', 5000, 1); //"The Cartel have been attacked and the briefcase has not been recovered."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Car.IsDead($.colombian_car2_km3)) {
             $.flag_colombian_car2_dead_km3 = 1;
             Text.PrintNow('KM3_11', 5000, 1); //"The Cartel have been attacked and the briefcase has not been recovered."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian1_km3)) {
             $.flag_colombian1_dead_km3 = 1;
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian2_km3)) {
             $.flag_colombian2_dead_km3 = 1;
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian5_km3)) {
             $.flag_colombian5_dead_km3 = 1;
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
         if (Char.IsDead($.colombian6_km3)) {
             $.flag_colombian6_dead_km3 = 1;
             Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-            // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+            FAIL("mission_kenji3_failed");
         }
     }
 
@@ -784,38 +762,32 @@ async function body() {
             if (Car.IsDead($.colombian_car1_km3)) {
                 $.flag_colombian_car1_dead_km3 = 1;
                 Text.PrintNow('KM3_11', 5000, 1); //"The Cartel have been attacked and the briefcase has not been recovered."
-                // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji3_failed");
             }
             if (Car.IsDead($.colombian_car2_km3)) {
                 $.flag_colombian_car2_dead_km3 = 1;
                 Text.PrintNow('KM3_11', 5000, 1); //"The Cartel have been attacked and the briefcase has not been recovered."
-                // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji3_failed");
             }
             if (Char.IsDead($.colombian1_km3)) {
                 $.flag_colombian1_dead_km3 = 1;
                 Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-                // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji3_failed");
             }
             if (Char.IsDead($.colombian2_km3)) {
                 $.flag_colombian2_dead_km3 = 1;
                 Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-                // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji3_failed");
             }
             if (Char.IsDead($.colombian5_km3)) {
                 $.flag_colombian5_dead_km3 = 1;
                 Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-                // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji3_failed");
             }
             if (Char.IsDead($.colombian6_km3)) {
                 $.flag_colombian6_dead_km3 = 1;
                 Text.PrintNow('KM3_9', 5000, 1); //"One of the Colombians is dead, the deals off."
-                // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                FAIL("mission_kenji3_failed");
             }
         }
         $.money_km3 = Pickup.Create(1319 /* briefcase */, 3 /* PICKUP_ONCE */, 233.7, -36.0, 15.8);
@@ -1122,8 +1094,7 @@ async function body() {
                 await asyncWait(0);
                 if (Car.IsDead($.car_cut_km3)) {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicles wrecked!"
-                    // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_kenji3_failed");
                 }
             }
         }

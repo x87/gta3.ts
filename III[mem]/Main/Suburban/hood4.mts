@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/hood4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
@@ -279,8 +279,7 @@ async function body() {
         }
         if ($.timer_hm4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1); //"Your out of time!"
-            // SCM GOTO → mission_hood4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood4_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood4_failed");
         }
     }
 

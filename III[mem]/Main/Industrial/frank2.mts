@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/frank2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -500,13 +500,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.curley_bob_fm2)) {
                 Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie2_failed");
             } else {
                 if (!$.curley_bob_fm2.isHealthGreater(99)) {
                     Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 }
             }
             if ($.flag_curly_moved_fm2 == 0) {
@@ -543,13 +541,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.curley_bob_fm2)) {
                 Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie2_failed");
             } else {
                 if (!$.curley_bob_fm2.isHealthGreater(99)) {
                     Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 }
             }
             if ($.curley_bob_fm2.locateOnFoot2D(888.0, -425.0, 1.0, 1.0, false)) {
@@ -596,8 +592,7 @@ async function body() {
                 if ($.player.locateStoppedInCar2D(906.0, -425.0, 4.0, 4.0, false) && $.player.isInCar($.mission_taxi_fm2)) {
                     if (Char.IsDead($.curley_bob_fm2)) {
                         Text.PrintNow('FM2_9', 5000, 1); //Curly Bob's dead!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                     if ($.player.isInModel(110 /* car_taxi */) || $.player.isInModel(128 /* car_cabbie */)) {
                         $.mission_taxi_fm2 = $.player.storeCarIsIn();
@@ -607,49 +602,41 @@ async function body() {
 
                     if (Car.IsDead($.mission_taxi_fm2)) {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     } else {
                         if ($.mission_taxi_fm2.isUpsidedown() && $.mission_taxi_fm2.isStopped()) {
                             Text.PrintNow('UPSIDE', 5000, 1); //"You've flipped your wheels!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         }
                     }
                     if (!$.mission_taxi_fm2.isHealthGreater(700)) {
                         Text.PrintNow('FM2_6', 5000, 1); //"Get out of here! I'm not taking a ride in this shit-heap!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                     $.curley_bob_fm2.setObjEnterCarAsPassenger($.mission_taxi_fm2);
                     while (!$.curley_bob_fm2.isInCar($.mission_taxi_fm2)) {
                         await asyncWait(0);
                         if (Car.IsDead($.mission_taxi_fm2)) {
                             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         } else {
                             if ($.mission_taxi_fm2.isUpsidedown() && $.mission_taxi_fm2.isStopped()) {
                                 Text.PrintNow('UPSIDE', 5000, 1); //"You've flipped your wheels!"
-                                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie2_failed");
                             }
                         }
                         if (Char.IsDead($.curley_bob_fm2)) {
                             Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         } else {
                             if (!$.curley_bob_fm2.isHealthGreater(99)) {
                                 Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie2_failed");
                             }
                         }
                         if (!$.player.locateInCarChar2D($.curley_bob_fm2, 5.0, 5.0, false)) {
                             Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         }
                     }
                     $.radar_blip_ped1_fm2.remove();
@@ -664,24 +651,20 @@ async function body() {
                         await asyncWait(0);
                         if (Car.IsDead($.mission_taxi_fm2)) {
                             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle is wrecked!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         } else {
                             if ($.mission_taxi_fm2.isUpsidedown() && $.mission_taxi_fm2.isStopped()) {
                                 Text.PrintNow('UPSIDE', 5000, 1); //"You've flipped your wheels!"
-                                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie2_failed");
                             }
                         }
                         if (Char.IsDead($.curley_bob_fm2)) {
                             Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         }
                         if (!$.curley_bob_fm2.isInCar($.mission_taxi_fm2)) {
                             Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         }
                         if (!$.player.isInCar($.mission_taxi_fm2) && $.flag_player_got_car_message_fm2 == 0) {
                             Text.ClearPrints();
@@ -710,8 +693,7 @@ async function body() {
                             if (TIMERB > 10000) {
                                 $.flag_taxi1_exit_car_fm2 = 1;
                                 Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                                FAIL("mission_frankie2_failed");
                             }
                         } else {
                             $.flag_car_has_just_stopped = 0;
@@ -728,13 +710,11 @@ async function body() {
             if (Car.IsDead($.car_fm2)) {
                 Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                 $.flag_car_fm2_dead = 1;
-                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie2_failed");
             } else {
                 if ($.car_fm2.isUpsidedown() && $.car_fm2.isStopped()) {
                     Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 }
             }
 
@@ -742,8 +722,7 @@ async function body() {
                 $.curley_bob_fm2.setObjEnterCarAsPassenger($.car_fm2);
             } else {
                 Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie2_failed");
             }
 
             //waiting for the character to get into the car
@@ -752,31 +731,26 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.curley_bob_fm2)) {
                     Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 } else {
                     if (!$.curley_bob_fm2.isHealthGreater(99)) {
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 }
                 if (Car.IsDead($.car_fm2)) {
                     if (Char.IsDead($.curley_bob_fm2)) {
                         Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //The vehicle's wrecked!"
                         $.flag_car_fm2_dead = 1;
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 } else {
                     if ($.car_fm2.isUpsidedown() && $.car_fm2.isStopped()) {
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 }
             }
@@ -824,33 +798,28 @@ async function body() {
                 if (Car.IsDead($.car_fm2)) {
                     if (Char.IsDead($.curley_bob_fm2)) {
                         Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //The vehicle's wrecked!"
                         $.flag_car_fm2_dead = 1;
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 } else {
                     if (StuckCarCheck.IsCarStuck($.car_fm2)) {
                         $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                     if ($.car_fm2.isUpsidedown() && $.car_fm2.isStopped()) {
                         $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 }
                 World.ClearArea(1529.0, -827.0, -100.0, 4.0, false); // This should clear the area at the bottom of the docks
                 if (Char.IsDead($.curley_bob_fm2)) {
                     Text.PrintNow('FM2_9', 5000, 1); //"Curly's dead!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 } else {
                     if ($.spooked_check == 1) {
                         if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 40.0, 40.0, 40.0, false)) {
@@ -921,15 +890,13 @@ async function body() {
 
                     if ($.spooked_counter == 100) {
                         Text.PrintNow('FM2_14', 5000, 1); //"You got too close and spooked Curly!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
 
                     if (!$.curley_bob_fm2.isInCar($.car_fm2)) {
                         $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                     if ($.curley_bob_fm2.isInArea2D(1538.0, -741.0, 1304.0, -901.0, false)) {
                         $.car_fm2.setDrivingStyle(1);
@@ -949,13 +916,11 @@ async function body() {
                 if ($.car_fm2.isVisiblyDamaged()) {
                     if (Char.IsDead($.curley_bob_fm2)) {
                         Text.PrintNow('FM2_9', 5000, 1); //"Curly's dead!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     } else {
                         $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 }
                 if ($.car_fm2.isStopped()) {
@@ -969,8 +934,7 @@ async function body() {
                         $.flag_taxi2_exit_car_fm2 = 1;
                         $.spooked_counter = 100;
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 } else {
                     $.flag_car_has_just_stopped = 0;
@@ -994,39 +958,33 @@ async function body() {
                     await asyncWait(0);
                     if (Char.IsDead($.curley_bob_fm2)) {
                         Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     } else {
                         if (!$.curley_bob_fm2.isHealthGreater(99)) {
                             Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         }
                     }
                     if (Car.IsDead($.car_fm2)) {
                         if (Char.IsDead($.curley_bob_fm2)) {
                             Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         } else {
                             Text.PrintNow('WRECKED', 5000, 1); //The vehicle's wrecked!"
                             $.flag_car_fm2_dead = 1;
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         }
                     } else {
                         if ($.car_fm2.isUpsidedown() && $.car_fm2.isStopped()) {
                             Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_frankie2_failed");
                         }
                     }
                 }
                 Hud.ClearCounter($.$id.spooked_counter);
                 if (!$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 160.0, false)) {
                     Text.PrintNow('FM2_12', 5000, 1); //"You lost him!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 }
 
                 // Checks to see if the player is around the ramp and will fail the mission
@@ -1034,8 +992,7 @@ async function body() {
                 if ($.player.isInArea3D(1573.72, -876.49, 5.0, 1404.09, -1034.3, 30.0, false)) {
                     $.spooked_counter = 100;
                     Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 }
 
                 break before_mission_jump4; // SCM GOTO → mission_jump4
@@ -1053,37 +1010,31 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.curley_bob_fm2)) {
                     Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 } else {
                     if (!$.curley_bob_fm2.isHealthGreater(99)) {
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 }
                 if (Car.IsDead($.mission_taxi_fm2)) {
                     if (Char.IsDead($.curley_bob_fm2)) {
                         Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //The vehicle's wrecked!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 } else {
                     if ($.mission_taxi_fm2.isUpsidedown() && $.mission_taxi_fm2.isStopped()) {
                         Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
-                        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_frankie2_failed");
                     }
                 }
             }
             if (!$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 160.0, false)) {
                 Text.PrintNow('FM2_12', 5000, 1); //"You lost him!"
-                // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie2_failed");
             }
         }
     }
@@ -1124,16 +1075,14 @@ async function body() {
         if (Char.IsDead($.curley_bob_fm2)) {
             Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
             $.flag_curley_bob_fm2_dead = 1;
-            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie2_failed");
         }
     }
 
     if (Char.IsDead($.curley_bob_fm2)) {
         Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
         $.flag_curley_bob_fm2_dead = 1;
-        // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+        FAIL("mission_frankie2_failed");
     }
 
     // ****************************************START OF CUTSCENE TWO****************************
@@ -1147,8 +1096,7 @@ async function body() {
         if (Char.IsDead($.curley_bob_fm2)) {
             Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
             $.flag_curley_bob_fm2_dead = 1;
-            // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie2_failed");
         }
         $.breakout_timer = Clock.GetGameTimer();
         $.breakout_diff = $.breakout_timer - $.breakout_timer_start;
@@ -1407,8 +1355,7 @@ async function body() {
 
                 if (!$.curley_bob_fm2.isOnScreen() && !$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 80.0, false)) {
                     Text.PrintNow('FM2_10', 5000, 1); //"Curly got away!"
-                    // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie2_failed");
                 }
             }
         }

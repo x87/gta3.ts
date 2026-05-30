@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/frank1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // ********************************* Frankie Mission 1 *************************************
@@ -408,13 +408,11 @@ async function body() {
 
     if (Char.IsDead($.maria)) {
         Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        FAIL("mission_frankie1_failed");
     }
 
     if (Car.IsDead($.frankies_limo)) {
-        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        FAIL("mission_frankie1_failed");
     }
 
     if (!$.maria.isInCar($.frankies_limo)) {
@@ -429,13 +427,11 @@ async function body() {
 
     if (Char.IsDead($.maria)) {
         Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        FAIL("mission_frankie1_failed");
     }
 
     if (Car.IsDead($.frankies_limo)) {
-        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        FAIL("mission_frankie1_failed");
     }
 
     if (!$.maria.isInCar($.frankies_limo)) {
@@ -449,8 +445,7 @@ async function body() {
     while (!$.frankies_limo.locate2D(1420.5, -189.1, 3.0, 3.0, false)) {
         await asyncWait(0);
         if (Car.IsDead($.frankies_limo)) {
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
     }
 
@@ -459,8 +454,7 @@ async function body() {
 
     if (Char.IsDead($.maria)) {
         Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        FAIL("mission_frankie1_failed");
     }
 
     Camera.SetInFrontOfPlayer();
@@ -483,18 +477,15 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Char.IsDead($.chico)) {
             Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Car.IsDead($.frankies_limo)) {
             Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
             $.locate_dome_flag = 0;
@@ -546,18 +537,15 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Char.IsDead($.chico)) {
             Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Car.IsDead($.frankies_limo)) {
             Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (!$.player.isInCar($.frankies_limo) && $.flag_blip_on_limo == 0) {
             $.fm1_blip = Blip.AddForCar($.frankies_limo);
@@ -584,18 +572,15 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Char.IsDead($.chico)) {
             Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Car.IsDead($.frankies_limo)) {
             Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         const _res230 = $.chico.getCoordinates();
         $.chico_x = _res230.x;
@@ -622,20 +607,17 @@ async function body() {
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
             Audio.ClearMissionAudio();
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Car.IsDead($.frankies_limo)) {
             Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
             Audio.ClearMissionAudio();
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Char.IsDead($.chico)) {
             Text.PrintNow('FM1_8', 5000, 1); // "You killed Chico!"
             Audio.ClearMissionAudio();
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if ($.skip_cutscene_flag == 0) {
             if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -809,14 +791,12 @@ async function body() {
     maria_getting_into_car: {
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
 
         if (Car.IsDead($.frankies_limo)) {
             Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
 
         Text.ClearSmallPrints();
@@ -831,13 +811,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
         }
 
@@ -859,13 +837,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
         }
 
@@ -920,13 +896,11 @@ async function body() {
             await draw_disco_lights(); // SCM GOSUB draw_disco_lights
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if ($.chico_message_flag == 0) {
                 if ($.maria.locateAnyMeans2D(1258.0, -1100.0, 50.0, 50.0, false)) {
@@ -966,13 +940,11 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.maria)) {
                     Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                    // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie1_failed");
                 }
                 if (Car.IsDead($.frankies_limo)) {
                     Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                    // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie1_failed");
                 }
             }
             $.chico_audio_flag = 17;
@@ -996,13 +968,11 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
         }
 
@@ -1017,13 +987,11 @@ async function body() {
             await draw_disco_lights(); // SCM GOSUB draw_disco_lights
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
@@ -1044,13 +1012,11 @@ async function body() {
             }
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
@@ -1070,13 +1036,11 @@ async function body() {
             }
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
@@ -1098,8 +1062,7 @@ async function body() {
 
         if (Car.IsDead($.frankies_limo)) {
             Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
 
         TIMERA = 0;
@@ -1114,8 +1077,7 @@ async function body() {
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
@@ -1149,8 +1111,7 @@ async function body() {
                 await asyncWait(0);
                 if (Car.IsDead($.frankies_limo)) {
                     Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                    // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie1_failed");
                 }
             }
             Audio.LoadMissionAudio('s1_h' as any);
@@ -1164,8 +1125,7 @@ async function body() {
                 await asyncWait(0);
                 if (Car.IsDead($.frankies_limo)) {
                     Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                    // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie1_failed");
                 }
             }
             $.chico_audio_flag = 19;
@@ -1215,8 +1175,7 @@ async function body() {
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.swatvan_fm1)) {
                 $.swatvan_fm1.markAsNoLongerNeeded();
@@ -1520,8 +1479,7 @@ async function body() {
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if ($.clubbers_flee_flag == 0) {
                 $.clubber1_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 41 /* PED_P_MAN1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
@@ -1754,8 +1712,7 @@ async function body() {
             }
             if ($.clubbers_flee_flag == 9) {
                 if (Char.IsDead($.maria)) {
-                    // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie1_failed");
                 } else {
                     $.maria.setObjGotoPlayerOnFoot($.player);
                     if ($.player.locateAnyMeansChar2D($.maria, 4.0, 4.0, false)) {
@@ -1911,13 +1868,11 @@ async function body() {
             }
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (Car.IsDead($.frankies_limo)) {
                 Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                FAIL("mission_frankie1_failed");
             }
             if (!$.maria.isInPlayersGroup($.player) && $.flag_blip_on_maria == 0) {
                 Text.PrintNow('FM1_10', 5000, 1); //"Hey wait for me!"
@@ -1992,13 +1947,11 @@ async function body() {
 
                 if (Char.IsDead($.maria)) {
                     Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-                    // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie1_failed");
                 }
                 if (Car.IsDead($.frankies_limo)) {
                     Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-                    // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_frankie1_failed");
                 }
                 if (!$.maria.isInPlayersGroup($.player) && $.flag_blip_on_maria == 0) {
                     Text.PrintNow('FM1_10', 5000, 1); //"Hey wait for me!"
@@ -2053,13 +2006,11 @@ async function body() {
 
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if (Car.IsDead($.frankies_limo)) {
             Text.PrintNow('WRECKED', 5000, 1); // "The vehicle is wrecked!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if ($.frankies_limo.locate2D(1424.8, -183.0, 20.0, 20.0, false)) {
             $.player.clearWantedLevel();
@@ -2112,8 +2063,7 @@ async function body() {
 
     if (Char.IsDead($.maria)) {
         Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-        // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+        FAIL("mission_frankie1_failed");
     }
 
     $.maria.leaveGroup();
@@ -2160,8 +2110,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.maria)) {
             Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
-            // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frankie1_failed'); // fallback: would break linear control flow
+            FAIL("mission_frankie1_failed");
         }
         if ($.skip_cutscene_flag == 0) {
             if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
@@ -2331,7 +2280,6 @@ async function onPassed() {
     // START_NEW_SCRIPT toni_mission4_loop
     // START_NEW_SCRIPT frankie_mission2_loop
     // START_NEW_SCRIPT imp_exp_pager
-    return;
 }
 
 // mission cleanup
@@ -2370,7 +2318,6 @@ async function cleanup() {
     Streaming.UnloadSpecialCharacter(2);
 
     Mission.Finish();
-    return;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2536,8 +2483,6 @@ async function clubbers_into_cars() {
             }
         }
     }
-
-    return;
 }
 
 async function clubber_idle_checks() {
@@ -2667,8 +2612,6 @@ async function clubber_idle_checks() {
             $.clubber7_fm1.markAsNoLongerNeeded();
         }
     }
-
-    return;
 }
 
 async function police_idle_checks() {
@@ -2927,8 +2870,6 @@ async function police_idle_checks() {
     } else {
         $.cop8_fm1.markAsNoLongerNeeded();
     }
-
-    return;
 }
 
 async function draw_disco_lights() {
@@ -2985,8 +2926,6 @@ async function draw_disco_lights() {
     if ($.shadow_counter == 40 || $.shadow_counter > 40) {
         $.shadow_counter = 0;
     }
-
-    return;
 }
 
 async function delete_char_maria() {

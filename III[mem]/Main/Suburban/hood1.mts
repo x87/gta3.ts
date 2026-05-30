@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/hood1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -198,16 +198,14 @@ async function body() {
 
     if (!$.player.isPlaying()) {
         Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-        // SCM GOTO → mission_hood1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_hood1_failed'); // fallback: would break linear control flow
+        FAIL("mission_hood1_failed");
     }
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
         if (!$.player.isPlaying()) {
             Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-            // SCM GOTO → mission_hood1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood1_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood1_failed");
         }
     }
 
@@ -239,8 +237,7 @@ async function body() {
         await asyncWait(0);
         if (!$.player.isPlaying()) {
             Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-            // SCM GOTO → mission_hood1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood1_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood1_failed");
         }
     }
 
@@ -252,8 +249,7 @@ async function body() {
         await asyncWait(0);
         if (!$.player.isPlaying()) {
             Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-            // SCM GOTO → mission_hood1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood1_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood1_failed");
         }
     }
 
@@ -269,8 +265,7 @@ async function body() {
         $.frenzy_state = KillFrenzy.ReadStatus();
         if (!$.player.isPlaying()) {
             Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-            // SCM GOTO → mission_hood1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood1_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood1_failed");
         } else {
             if (!$.player.isInZone('PROJECT')) {
                 if ($.flag_blip_on_hm1 == 0) {
@@ -295,8 +290,7 @@ async function body() {
 
     if ($.frenzy_state == 3) {
         Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
-        // SCM GOTO → mission_hood1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_hood1_failed'); // fallback: would break linear control flow
+        FAIL("mission_hood1_failed");
     }
 }
 
@@ -331,7 +325,6 @@ async function cleanup() {
     Zone.SetPedInfo('PROJECT', 1 /* DAY */, 13, 0, 0, 0, 0, 0, 0, 300, 20); //WICHITA GARDENS
     Zone.SetPedInfo('PROJECT', 0 /* NIGHT */, 9, 0, 0, 0, 0, 0, 0, 400, 10);
     Mission.Finish();
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

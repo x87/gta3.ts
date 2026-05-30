@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/toni3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -267,15 +267,13 @@ async function body() {
         $.flag_car_blip_displayed = 1 /* TRUE */;
 
         if (Car.IsDead($.carry_car)) {
-            // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+            FAIL("mission_toni3_failed");
         }
 
         while (!$.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.5, 1.5, 2.0, true)) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
         }
 
@@ -305,15 +303,13 @@ async function body() {
         }
 
         if (Car.IsDead($.carry_car)) {
-            // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+            FAIL("mission_toni3_failed");
         }
 
         while (!$.player.isInCar($.carry_car)) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
         }
         /*
@@ -330,8 +326,7 @@ async function body() {
         $.joey.clearThreatSearch();
 
         if (Car.IsDead($.carry_car)) {
-            // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+            FAIL("mission_toni3_failed");
         }
 
         $.joey.setObjEnterCarAsPassenger($.carry_car);
@@ -345,12 +340,10 @@ async function body() {
         while (!$.joey.isInCar($.carry_car)) {
             await asyncWait(0);
             if (Char.IsDead($.joey)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if (TIMERB > 10000) {
                 if (!Char.IsDead($.joey) && !Car.IsDead($.carry_car)) {
@@ -392,8 +385,7 @@ async function body() {
         ) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
         }
 
@@ -404,8 +396,7 @@ async function body() {
         while (!$.carry_car.locate2D(1198.4, -871.1, 2.0, 2.0, false)) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
         }
 
@@ -427,8 +418,7 @@ async function body() {
         ) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
         }
 
@@ -453,8 +443,7 @@ async function body() {
 
     pick_up_Luigi: while (true) {
         if (Car.IsDead($.carry_car)) {
-            // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+            FAIL("mission_toni3_failed");
         }
 
         $.flag_car_blip_displayed = 1 /* TRUE */;
@@ -469,8 +458,7 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
                 Text.PrintNow('TM3_A1', 5000, 1); //Joeys dead
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if ($.player.isInCar($.carry_car)) {
                 if ($.flag_car_blip_displayed == 1 /* TRUE */) {
@@ -516,8 +504,7 @@ async function body() {
                 await asyncWait(500);
                 if (Car.IsDead($.carry_car)) {
                     Text.PrintNow('TM3_A1', 5000, 1); //Joeys dead
-                    // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_toni3_failed");
                 }
                 Text.PrintNow('TRASH', 5000, 2); //Repair the car!
                 $.blip1_t3.remove();
@@ -529,8 +516,7 @@ async function body() {
                     await asyncWait(0);
                     if (Car.IsDead($.carry_car)) {
                         Text.PrintNow('TM3_A1', 5000, 1); //Joeys dead
-                        // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                        FAIL("mission_toni3_failed");
                     }
                     if ($.player.isInCar($.carry_car)) {
                         if ($.flag_car_blip_displayed == 1 /* TRUE */) {
@@ -594,12 +580,10 @@ async function body() {
         while (!$.luigi.isObjectivePassed()) {
             await asyncWait(0);
             if (Char.IsDead($.luigi)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if (TIMERB > 12000) {
                 if (!Char.IsDead($.luigi)) {
@@ -613,12 +597,10 @@ async function body() {
         while (!$.luigi.isInCar($.carry_car)) {
             await asyncWait(0);
             if (Char.IsDead($.luigi)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
         }
 
@@ -669,8 +651,7 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
                 Text.PrintNow('TM3_A2', 5000, 1); //Joey and Luigi are dead
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if ($.player.isInCar($.carry_car)) {
                 if ($.flag_car_blip_displayed == 1 /* TRUE */) {
@@ -717,8 +698,7 @@ async function body() {
                 await asyncWait(500);
                 if (Car.IsDead($.carry_car)) {
                     Text.PrintNow('TM3_A2', 5000, 1); //Joey and Luigi are dead
-                    // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_toni3_failed");
                 }
                 Text.PrintNow('TRASH', 5000, 2); //Repair the car!
                 $.blip1_t3.remove();
@@ -730,8 +710,7 @@ async function body() {
                     await asyncWait(0);
                     if (Car.IsDead($.carry_car)) {
                         Text.PrintNow('TM3_A2', 5000, 1); //Joey and Luigi are dead
-                        // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                        FAIL("mission_toni3_failed");
                     }
                     if ($.player.isInCar($.carry_car)) {
                         if ($.flag_car_blip_displayed == 1 /* TRUE */) {
@@ -820,12 +799,10 @@ async function body() {
         while (!$.toni.isObjectivePassed()) {
             await asyncWait(0);
             if (Char.IsDead($.toni)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if (TIMERB > 12000) {
                 if (!Char.IsDead($.toni)) {
@@ -841,12 +818,10 @@ async function body() {
         while (!$.toni.isInCar($.carry_car)) {
             await asyncWait(0);
             if (Char.IsDead($.toni)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if (Car.IsDead($.carry_car)) {
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
         }
 
@@ -988,8 +963,7 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
                 Text.PrintNow('TM3_A3', 5000, 1); //Joey, luigi and Toni are dead
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             if ($.player.isInCar($.carry_car)) {
                 if ($.flag_car_blip_displayed == 1 /* TRUE */) {
@@ -1117,8 +1091,7 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
                 Text.PrintNow('TM3_A3', 5000, 1); //Joey, luigi and Toni are dead
-                // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
+                FAIL("mission_toni3_failed");
             }
             $.breakout_timer = Clock.GetGameTimer();
             $.breakout_diff = $.breakout_timer - $.breakout_timer_start;
@@ -1396,7 +1369,6 @@ async function body() {
 // Mission toni3 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
-    return;
 }
 
 // mission toni3 passed
@@ -1420,7 +1392,6 @@ async function onPassed() {
     $.carry_car.delete();
     Camera.RestoreJumpcut();
     Camera.SetBehindPlayer();
-    return;
 }
 
 // mission cleanup
@@ -1447,7 +1418,6 @@ async function cleanup() {
     $.frankie_garage.setTargetCarForMission(-1 as any);
     Text.ClearThisPrint('IN_VEH');
     Mission.Finish();
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

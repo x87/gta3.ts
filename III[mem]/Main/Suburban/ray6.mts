@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/ray6.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // ************************************   Ray 6    *****************************************
@@ -254,8 +254,7 @@ async function body() {
 
     if (Char.IsDead($.ray)) {
         Text.PrintNow('RM6_6', 5000, 1); //"~r~Ray is dead!"
-        // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+        FAIL("mission_ray6_failed");
     }
 
     $.ray.setRunning(true);
@@ -266,13 +265,11 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ray)) {
             Text.PrintNow('RM6_6', 5000, 1); //"~r~Ray is dead!"
-            // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray6_failed");
         }
         if ($.time_till_flight < 1) {
             Text.PrintNow('RM6_7', 5000, 1); //"~r~Ray has missed his flight."
-            // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray6_failed");
         }
 
         ////////
@@ -996,8 +993,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ray)) {
             Text.PrintNow('RM6_6', 5000, 1); //"~r~Ray is dead!"
-            // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray6_failed");
         }
     }
 
@@ -1008,8 +1004,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ray)) {
             Text.PrintNow('RM6_6', 5000, 1); //"~r~Ray is dead!"
-            // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray6_failed");
         }
     }
 
@@ -1019,8 +1014,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ray)) {
             Text.PrintNow('RM6_6', 5000, 1); //"~r~Ray is dead!"
-            // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray6_failed");
         }
     }
 
@@ -1031,8 +1025,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ray)) {
             Text.PrintNow('RM6_6', 5000, 1); //"~r~Ray is dead!"
-            // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray6_failed");
         }
     }
 
@@ -1042,8 +1035,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ray)) {
             Text.PrintNow('RM6_6', 5000, 1); //"~r~Ray is dead!"
-            // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray6_failed");
         }
     }
 
@@ -1061,8 +1053,7 @@ async function body() {
         if (!($.airport_door_flag == 6)) {
             if (Char.IsDead($.ray)) {
                 Text.PrintNow('RM6_6', 5000, 1); //"~r~Ray is dead!"
-                // SCM GOTO → mission_ray6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
+                FAIL("mission_ray6_failed");
             }
         }
         if ($.airport_door_flag == 0) {

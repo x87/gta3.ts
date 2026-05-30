@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/ray2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -645,8 +645,7 @@ async function body() {
             $.timer_dif_rm2 = $.timer_now_rm2 - $.timer_start_rm2;
             if (Char.IsDead($.phil)) {
                 $.flag_phil_dead = 1;
-                // SCM GOTO → mission_ray2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_ray2_failed'); // fallback: would break linear control flow
+                FAIL("mission_ray2_failed");
             }
         }
     }
@@ -851,8 +850,7 @@ async function body() {
             }
             if (Char.IsDead($.phil)) {
                 $.flag_phil_dead = 1;
-                // SCM GOTO → mission_ray2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_ray2_failed'); // fallback: would break linear control flow
+                FAIL("mission_ray2_failed");
             }
             if ($.flag_cartel_arrived == 1) {
                 Audio.SetMissionAudioPosition($.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
@@ -876,10 +874,10 @@ async function body() {
 
         if (!Char.IsDead($.phil)) {
             $.phil.setStayInSamePlace(true);
-            const _res70 = $.phil.getCoordinates();
-            $.phils_defcon_x = _res70.x;
-            $.phils_defcon_y = _res70.y;
-            $.phils_defcon_z = _res70.z;
+            const { x, y, z } = $.phil.getCoordinates();
+            $.phils_defcon_x = x;
+            $.phils_defcon_y = y;
+            $.phils_defcon_z = z;
             if (!$.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false)) {
                 Text.PrintNow('RM2_G', 2500, 1); //"Go check on Phil!"
                 $.blip_phil = Blip.AddForChar($.phil);
@@ -888,8 +886,7 @@ async function body() {
                     if (Char.IsDead($.phil)) {
                         $.flag_phil_dead = 1;
                         $.blip_phil.remove();
-                        // SCM GOTO → mission_ray2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_ray2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_ray2_failed");
                     }
                 }
             }
@@ -898,8 +895,7 @@ async function body() {
         if (Char.IsDead($.phil)) {
             $.flag_phil_dead = 1;
             $.blip_phil.remove();
-            // SCM GOTO → mission_ray2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray2_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray2_failed");
         } else {
             $.phil.setHealth(100);
         }
@@ -924,8 +920,7 @@ async function body() {
                 if (Char.IsDead($.phil)) {
                     $.flag_phil_dead = 1;
                     $.blip_phil.remove();
-                    // SCM GOTO → mission_ray2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_ray2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_ray2_failed");
                 }
             }
         }
@@ -1030,8 +1025,7 @@ async function body() {
                     $.flag_phil_arrived = 1;
                 }
             } else {
-                // SCM GOTO → mission_ray2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_ray2_failed'); // fallback: would break linear control flow
+                FAIL("mission_ray2_failed");
             }
         }
 

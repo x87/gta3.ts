@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/diablo3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -199,8 +199,7 @@ async function body() {
         }
 
         if ($.CurrentStatus == 3) {
-            // SCM GOTO → mission_diablo3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_diablo3_failed'); // fallback: would break linear control flow
+            FAIL("mission_diablo3_failed");
         }
 
         if ($.player.isInArea2D(1038.0, -781.0, 838.0, -915.0, false)) {
@@ -251,10 +250,10 @@ async function body() {
             }
             if ($.counter_diablo3 == 6 && $.given_money_before == 0) {
                 $.player.addScore(6000);
-                const _res223 = $.player.getCoordinates();
-                $.player_X = _res223.x;
-                $.player_Y = _res223.y;
-                $.player_Z = _res223.z;
+                const { x, y, z } = $.player.getCoordinates();
+                $.player_X = x;
+                $.player_Y = y;
+                $.player_Z = z;
                 Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */);
                 $.given_money_before = 1;
             }

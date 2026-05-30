@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/joey6.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 
 // *******************************************************************************************
@@ -239,8 +239,7 @@ async function body() {
             $.minutes = minutes;
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
         }
 
@@ -322,13 +321,11 @@ async function body() {
             $.minutes = minutes;
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if (Char.IsDead($.thug1) || Char.IsDead($.thug2) || Char.IsDead($.thug3)) {
                 Text.PrintNow('JM6_7', 5000, 1);
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
         }
 
@@ -356,20 +353,17 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.thug1) || Char.IsDead($.thug2) || Char.IsDead($.thug3)) {
                     Text.PrintNow('JM6_7', 5000, 1);
-                    // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                    FAIL("mission_joey6_failed");
                 }
                 if (Car.IsDead($.any_car_jm6)) {
-                    // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                    FAIL("mission_joey6_failed");
                 }
                 const { hours, minutes } = Clock.GetTimeOfDay();
                 $.hours = hours;
                 $.minutes = minutes;
                 if ($.hours >= 17) {
                     Text.PrintNow('OUTTIME', 5000, 1);
-                    // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                    FAIL("mission_joey6_failed");
                 }
                 if (TIMERB > 15000) {
                     break pick_up_thugs; // SCM GOTO → next_robber_bit
@@ -408,13 +402,11 @@ async function body() {
             $.minutes = minutes;
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if (Char.IsDead($.thug1) || Char.IsDead($.thug2) || Char.IsDead($.thug3)) {
                 Text.PrintNow('JM6_7', 5000, 1);
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
         }
 
@@ -485,8 +477,7 @@ async function body() {
             }
             if (Char.IsDead($.thug1) || Char.IsDead($.thug2) || Char.IsDead($.thug3)) {
                 Text.PrintNow('JM6_7', 5000, 1);
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if ($.player.isStoppedInAreaInCar3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, false)) {
                 if ($.player.isWantedLevelGreater(0)) {
@@ -510,8 +501,7 @@ async function body() {
             $.minutes = minutes;
             if ($.hours >= 17) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
         }
 
@@ -523,8 +513,7 @@ async function body() {
 
         if (Char.IsDead($.thug1) || Char.IsDead($.thug2) || Char.IsDead($.thug3)) {
             Text.PrintNow('JM6_7', 5000, 1);
-            // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey6_failed");
         }
 
         if (!$.thug1.isInCar($.any_car_jm6) || !$.thug2.isInCar($.any_car_jm6) || !$.thug3.isInCar($.any_car_jm6)) {
@@ -613,12 +602,10 @@ async function body() {
                 $.thug3_is_dead = 1;
             }
             if ($.thug1_is_dead == 1 && $.thug2_is_dead == 1 && $.thug3_is_dead == 1) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if (Car.IsDead($.any_car_jm6)) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if (!Car.IsDead($.any_car_jm6) && !Char.IsDead($.thug1)) {
                 if ($.thug1_is_dead == 0) {
@@ -712,8 +699,7 @@ async function body() {
                 $.thug3_is_dead = 1;
             }
             if ($.thug1_is_dead == 1 && $.thug2_is_dead == 1 && $.thug3_is_dead == 1) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if ($.thug1_is_dead == 0) {
                 if ($.thug1.isObjectivePassed() && $.objective_count_done_before1 == 0) {
@@ -774,8 +760,7 @@ async function body() {
                 $.thug3_is_dead = 1;
             }
             if ($.thug1_is_dead == 1 && $.thug2_is_dead == 1 && $.thug3_is_dead == 1) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if ($.thug1_is_dead == 0) {
                 if ($.thug1.isObjectivePassed() && $.objective_count_done_before1 == 0) {
@@ -917,8 +902,7 @@ async function body() {
                 $.thug3_is_dead = 1;
             }
             if ($.thug1_is_dead == 1 && $.thug2_is_dead == 1 && $.thug3_is_dead == 1) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if ($.thug1_is_dead == 0) {
                 if ($.thug1.isObjectivePassed() && $.objective_count_done_before1 == 0) {
@@ -1026,16 +1010,14 @@ async function body() {
             }
 
             if ($.thug1_is_dead == 1 && $.thug2_is_dead == 1 && $.thug3_is_dead == 1) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
 
             //	STORE_CAR_PLAYER_IS_IN player any_car_jm6
             //	maybe should stop player leaving this car while the thugs get in
 
             if (Car.IsDead($.any_car_jm6)) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if ($.thug1_is_dead == 0) {
                 if ($.thug1.isInCar($.any_car_jm6) && $.objective_count_done_before1 == 0) {
@@ -1114,8 +1096,7 @@ async function body() {
             }
             if (Char.IsDead($.thug1) && Char.IsDead($.thug2) && Char.IsDead($.thug3)) {
                 Text.PrintNow('JM6_8', 5000, 1);
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if (!Char.IsDead($.thug1)) {
                 if (!$.thug1.isInPlayersGroup($.player)) {
@@ -1298,8 +1279,7 @@ async function body() {
                 $.thug3_is_dead = 1;
             }
             if ($.thug1_is_dead == 1 && $.thug2_is_dead == 1 && $.thug3_is_dead == 1) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if (!Car.IsDead($.any_car_jm6)) {
                 if ($.thug1_is_dead == 0) {
@@ -1370,8 +1350,7 @@ async function body() {
             }
 
             if ($.thug1_is_dead == 1 && $.thug2_is_dead == 1 && $.thug3_is_dead == 1) {
-                // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey6_failed");
             }
             if ($.thug1_is_dead == 0) {
                 if ($.thug1.isObjectivePassed() && $.objective_count_done_before1 == 0) {

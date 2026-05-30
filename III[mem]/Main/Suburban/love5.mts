@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/love5.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // ********************************		Love 5 	   *****************************************
 // ********************************	Escort Service *****************************************
@@ -198,8 +198,7 @@ async function body() {
 
     if (Car.IsDead($.escort_truck)) {
         Text.PrintNow('LOVE5_5', 5000, 1); //"You failed to protect the truck!"
-        // SCM GOTO → mission_love5_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_love5_failed'); // fallback: would break linear control flow
+        FAIL("mission_love5_failed");
     }
     $.truck_driver = Char.CreateInsideCar($.escort_truck, 21 /* PEDTYPE_SPECIAL */, 28 /* PED_SPECIAL3 */);
     $.ojg = Char.CreateAsPassenger($.escort_truck, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 0);
@@ -221,8 +220,7 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.escort_truck)) {
             Text.PrintNow('LOVE5_5', 5000, 1); //"You failed to protect the truck!"
-            // SCM GOTO → mission_love5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love5_failed'); // fallback: would break linear control flow
+            FAIL("mission_love5_failed");
         }
         if ($.player.locateOnFootCar2D($.escort_truck, 15.0, 15.0, false)) {
             Text.PrintNow('LOVE5_2', 5000, 1); //"You'll need a car!"
@@ -258,12 +256,10 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.escort_truck)) {
                 Text.PrintNow('LOVE5_5', 5000, 1); //"You failed to protect the truck!"
-                // SCM GOTO → mission_love5_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_love5_failed'); // fallback: would break linear control flow
+                FAIL("mission_love5_failed");
             } else {
                 if ($.escort_truck.isUpsidedown() && $.escort_truck.isStopped()) {
-                    // SCM GOTO → mission_love5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_love5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_love5_failed");
                 }
                 //    	IF NOT LOCATE_PLAYER_ANY_MEANS_CAR_2D player escort_truck 220.0 220.0 0
                 //    		PRINT_NOW LOVE5_4 500 1 //"Get back to the truck and defend it!"
@@ -394,8 +390,7 @@ async function body() {
                 }
                 if ($.escort_garage.isClosed()) {
                     $.escort_truck.delete();
-                    // SCM GOTO → mission_love5_passed (not lowered; manual jump required)
-                    return;
+                    return; // SCM GOTO → mission_love5_passed
                     $.escort_truck_flag = 11;
                 }
             }

@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/ray5.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -327,10 +327,10 @@ async function body() {
             while ($.flag_redalert == 0) {
                 await asyncWait(0);
                 if (!Car.IsDead($.ambulance_rc5)) {
-                    const _res116 = $.ambulance_rc5.getCoordinates();
-                    $.amb_rc5_x = _res116.x;
-                    $.amb_rc5_y = _res116.y;
-                    $.amb_rc5_z = _res116.z;
+                    const { x, y, z } = $.ambulance_rc5.getCoordinates();
+                    $.amb_rc5_x = x;
+                    $.amb_rc5_y = y;
+                    $.amb_rc5_z = z;
                     $.ambulance_health = $.ambulance_rc5.getHealth();
                     $.ambulance_health = $.ambulance_health * -1;
                     $.ambulance_health = $.ambulance_health + 1000;
@@ -500,17 +500,16 @@ async function body() {
                 await swat_team(); // SCM GOSUB swat_team
             }
 
-            // SCM GOTO → mission_ray5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_ray5_failed'); // fallback: would break linear control flow
+            FAIL("mission_ray5_failed");
         }
     }
 
     injured_cop_bailout: {
         $.blip_ambulance_rc5.remove();
-        const _res117 = $.ambulance_rc5.getCoordinates();
-        $.amb_rc5_x = _res117.x;
-        $.amb_rc5_y = _res117.y;
-        $.amb_rc5_z = _res117.z;
+        const { x, y, z } = $.ambulance_rc5.getCoordinates();
+        $.amb_rc5_x = x;
+        $.amb_rc5_y = y;
+        $.amb_rc5_z = z;
         $.amb_rc5_z = $.amb_rc5_z + 2.5;
         $.injured_cop_rc5 = ScriptObject.Create(1395 /* bodycast */, $.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z);
         $.injured_cop_rc5.setCollision(true);
@@ -541,10 +540,10 @@ async function body() {
 
         while (!$.injured_cop_rc5.hasBeenDamaged()) {
             await asyncWait(0);
-            const _res118 = $.injured_cop_rc5.getCoordinates();
-            $.ic_x = _res118.x;
-            $.ic_y = _res118.y;
-            $.ic_z = _res118.z;
+            const { x, y, z } = $.injured_cop_rc5.getCoordinates();
+            $.ic_x = x;
+            $.ic_y = y;
+            $.ic_z = z;
             Audio.SetMissionAudioPosition($.ic_x, $.ic_y, $.ic_z);
             $.bodycast_health = ScriptObject.GetBodyCastHealth();
             $.bodycast_health = $.bodycast_health * -1;

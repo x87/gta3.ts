@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/joey1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *************************************Joey mission 1****************************************
@@ -275,28 +275,24 @@ async function body() {
 
     if (Car.IsDead($.mike_car)) {
         Text.PrintNow('WRECKED', 5000, 1);
-        // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+        FAIL("mission_joey1_failed");
     }
 
     while (!$.player.isInCar($.mike_car)) {
         await asyncWait(0);
         if (Car.IsDead($.mike_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
         if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
 
         // if ($.countdown_jm1 == 0) {
         if ($.countdown_jm1 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
     }
 
@@ -311,18 +307,15 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.mike_car)) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if ($.countdown_jm1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if ($.player.isInCar($.mike_car)) {
                 if ($.flag_car_blip_displayed_jm1 == 1 /* TRUE */) {
@@ -352,21 +345,18 @@ async function body() {
                     await asyncWait(0);
                     if (Car.IsDead($.mike_car)) {
                         Text.PrintNow('WRECKED', 5000, 1);
-                        // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                        FAIL("mission_joey1_failed");
                     }
                     if ($.mike_car.isArmedWithBomb(5 /* CARBOMB_ONIGNITIONACTIVE */) || $.mike_car.isArmedWithBomb(2 /* CARBOMB_ONIGNITION */)) {
                         $.blip2_jm1.remove();
                     }
                     if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
                         Text.PrintNow('WRECKED', 5000, 1);
-                        // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                        FAIL("mission_joey1_failed");
                     }
                     if ($.countdown_jm1 == 0) {
                         Text.PrintNow('OUTTIME', 5000, 1);
-                        // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                        FAIL("mission_joey1_failed");
                     }
                     if ($.player.isInCar($.mike_car)) {
                         if ($.flag_car_blip_displayed_jm1 == 1 /* TRUE */) {
@@ -407,8 +397,7 @@ async function body() {
 
         if (Car.IsDead($.mike_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
 
         $.blob_flag = 1;
@@ -417,18 +406,15 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.mike_car)) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if ($.countdown_jm1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if ($.player.isInCar($.mike_car)) {
                 if ($.flag_car_blip_displayed_jm1 == 1 /* TRUE */) {
@@ -459,18 +445,15 @@ async function body() {
                     await asyncWait(0);
                     if (Car.IsDead($.mike_car)) {
                         Text.PrintNow('WRECKED', 5000, 1);
-                        // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                        FAIL("mission_joey1_failed");
                     }
                     if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
                         Text.PrintNow('WRECKED', 5000, 1);
-                        // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                        FAIL("mission_joey1_failed");
                     }
                     if ($.countdown_jm1 == 0) {
                         Text.PrintNow('OUTTIME', 5000, 1);
-                        // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                        FAIL("mission_joey1_failed");
                     }
                     if ($.player.isInCar($.mike_car)) {
                         if ($.flag_car_blip_displayed_jm1 == 1 /* TRUE */) {
@@ -515,8 +498,7 @@ async function body() {
 
         if ($.countdown_jm1 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
 
         if (!Car.IsDead($.mike_car)) {
@@ -535,8 +517,7 @@ async function body() {
 
             if (Car.IsDead($.mike_car)) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
 
             while (
@@ -547,18 +528,15 @@ async function body() {
                 await asyncWait(0);
                 if (Car.IsDead($.mike_car)) {
                     Text.PrintNow('WRECKED', 5000, 1);
-                    // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_joey1_failed");
                 }
                 if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
                     Text.PrintNow('WRECKED', 5000, 1);
-                    // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_joey1_failed");
                 }
                 if ($.countdown_jm1 == 0) {
                     Text.PrintNow('OUTTIME', 5000, 1);
-                    // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_joey1_failed");
                 }
                 if (!$.mike_car.isInArea3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, false)) {
                     Text.PrintNow('JM1_6', 5000, 1);
@@ -576,8 +554,7 @@ async function body() {
 
             if ($.countdown_jm1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
 
             if (!$.mike_car.isArmedWithBomb(5 /* CARBOMB_ONIGNITIONACTIVE */)) {
@@ -619,13 +596,11 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.mike_car)) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if (Char.IsDead($.lips)) {
                 return; // SCM GOTO → mission_joey1_passed
@@ -648,13 +623,11 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.mike_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
         if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
         if (Char.IsDead($.lips)) {
             return; // SCM GOTO → mission_joey1_passed
@@ -683,13 +656,11 @@ async function body() {
             await asyncWait(0);
             if (Car.IsDead($.mike_car)) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
                 Text.PrintNow('WRECKED', 5000, 1);
-                // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey1_failed");
             }
             if (Char.IsDead($.lips)) {
                 return; // SCM GOTO → mission_joey1_passed
@@ -710,13 +681,11 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.mike_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
         if ($.mike_car.isUpsidedown() && $.mike_car.isStopped()) {
             Text.PrintNow('WRECKED', 5000, 1);
-            // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
+            FAIL("mission_joey1_failed");
         }
         if (Char.IsDead($.lips)) {
             return; // SCM GOTO → mission_joey1_passed

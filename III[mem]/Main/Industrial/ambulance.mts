@@ -611,10 +611,10 @@ async function body() {
                     } else {
                         $.ped_sex_flag = 1;
                     }
-                    const _res173 = $.injured_ped_7.getCoordinates();
-                    $.sound_x = _res173.x;
-                    $.sound_y = _res173.y;
-                    $.sound_z = _res173.z;
+                    const { x, y, z } = $.injured_ped_7.getCoordinates();
+                    $.sound_x = x;
+                    $.sound_y = y;
+                    $.sound_z = z;
                     await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_7_flag == 1) {
@@ -673,10 +673,10 @@ async function body() {
                     } else {
                         $.ped_sex_flag = 1;
                     }
-                    const _res174 = $.injured_ped_8.getCoordinates();
-                    $.sound_x = _res174.x;
-                    $.sound_y = _res174.y;
-                    $.sound_z = _res174.z;
+                    const { x, y, z } = $.injured_ped_8.getCoordinates();
+                    $.sound_x = x;
+                    $.sound_y = y;
+                    $.sound_z = z;
                     await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_8_flag == 1) {
@@ -1433,8 +1433,6 @@ async function create_random_injured_ped() {
     //	SET_CHAR_OBJ_WAIT_ON_FOOT injured_ped_15
     //	RETURN
     //ENDIF
-
-    return;
 }
 ////////////////
 
@@ -1764,8 +1762,6 @@ async function generate_timelimit() {
     $.ped_time_limit_float = $.ped_time_limit_float * 1000.0;
     $.ped_time_limit_temp = $.ped_time_limit_float;
     $.ped_time_limit += $.ped_time_limit_temp;
-
-    return;
 }
 
 async function onFailed() {
@@ -1825,8 +1821,6 @@ async function chunk1_ambulance() {
         }
         $.ambulance_health_last = $.ambulance_health_now;
     }
-
-    return;
 }
 //////////////////////////////////////////////////////////////////////
 

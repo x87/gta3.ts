@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/4x4_2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -367,20 +367,17 @@ async function body() {
         if ($.flag_timer == 1) {
             if ($.timer_4x4 < 1) {
                 Text.PrintNow('TAXI2', 3000, 1);
-                // SCM GOTO → mission_4x4two_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_4x4two_failed'); // fallback: would break linear control flow
+                FAIL("mission_4x4two_failed");
             }
         }
         if (!$.player.isInModel(90 /* CAR_LANDSTALKER */)) {
             Text.PrintNow('T4X4_F', 3000, 1);
-            // SCM GOTO → mission_4x4two_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_4x4two_failed'); // fallback: would break linear control flow
+            FAIL("mission_4x4two_failed");
         }
     }
 
-    if ($.counter_4x4_pickups == 12) {
-        // SCM GOTO → mission_4x4two_passed
-        return;
+    if ($.counter_4x4_pickups == 12) {        
+        return; // SCM GOTO → mission_4x4two_passed
     }
 }
 

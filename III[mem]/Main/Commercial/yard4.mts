@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/yard4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -287,19 +287,16 @@ async function body() {
                 await asyncWait(0);
                 if ($.timer_y4 < 1) {
                     Text.PrintNow('TAXI2', 3000, 1);
-                    // SCM GOTO → mission_yd4_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_yd4_failed'); // fallback: would break linear control flow
+                    FAIL("mission_yd4_failed");
                 }
                 if (Car.IsDead($.abandoned_car_y4)) {
                     Text.PrintNow('WRECKED', 3000, 1);
-                    // SCM GOTO → mission_yd4_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_yd4_failed'); // fallback: would break linear control flow
+                    FAIL("mission_yd4_failed");
                 }
             }
         } else {
             Text.PrintNow('WRECKED', 3000, 1);
-            // SCM GOTO → mission_yd4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_yd4_failed'); // fallback: would break linear control flow
+            FAIL("mission_yd4_failed");
         }
 
         $.blip_abandoned_car_y4.remove();
@@ -355,8 +352,7 @@ async function body() {
                     $.flag_van1_arrived = 1;
                 }
             } else {
-                // SCM GOTO → mission_yd4_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_yd4_failed'); // fallback: would break linear control flow
+                FAIL("mission_yd4_failed");
             }
         }
 

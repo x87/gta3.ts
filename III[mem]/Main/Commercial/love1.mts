@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/love1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -672,8 +672,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ojg_love1)) {
             Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
-            // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
+            FAIL("mission_love1_failed");
         }
 
         // Checks to see while the player is not in the compound if he is in a colombian car or not
@@ -993,8 +992,7 @@ async function body() {
         if ($.flag_ojg_in_group == 1) {
             if (Char.IsDead($.ojg_love1)) {
                 Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
-                // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
+                FAIL("mission_love1_failed");
             }
             if (!$.ojg_love1.isInPlayersGroup($.player) && $.flag_blip_on_ojg_love1 == 0) {
                 Text.PrintNow('HEY8', 5000, 1); //"You have left the Old Oriental Gentleman behind go and get him!"
@@ -1035,8 +1033,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.ojg_love1)) {
                 Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
-                // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
+                FAIL("mission_love1_failed");
             }
         }
     }
@@ -1051,8 +1048,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ojg_love1)) {
             Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
-            // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
+            FAIL("mission_love1_failed");
         }
     }
 
@@ -1071,8 +1067,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.ojg_love1)) {
             Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
-            // SCM GOTO → mission_love1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
+            FAIL("mission_love1_failed");
         }
         if (TIMERB >= 8000) {
             if (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false)) {

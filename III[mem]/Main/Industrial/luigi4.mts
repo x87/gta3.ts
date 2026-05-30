@@ -588,8 +588,6 @@ async function audio_load_lm4() {
         Audio.ClearMissionAudio();
         $.special_ammu_audio = 0;
     }
-
-    return;
 }
 
 async function car_check_lm4() {
@@ -605,14 +603,14 @@ async function car_check_lm4() {
                 if ($.car_lm4.isOnScreen()) {
                     $.car_lm4.setWatertight(false);
                 } else {
-                    const _res283 = $.car_lm4.getCoordinates();
-                    $.car_lm4_x = _res283.x;
-                    $.car_lm4_y = _res283.y;
-                    $.car_lm4_z = _res283.z;
-                    const _res284 = Path.GetClosestCarNode($.car_lm4_x, $.car_lm4_y, $.car_lm4_z);
-                    $.car_lm4_x = _res284.nodeX;
-                    $.car_lm4_y = _res284.nodeY;
-                    $.car_lm4_z = _res284.nodeZ;
+                    const { x, y, z } = $.car_lm4.getCoordinates();
+                    $.car_lm4_x = x;
+                    $.car_lm4_y = y;
+                    $.car_lm4_z = z;
+                    const { nodeX, nodeY, nodeZ } = Path.GetClosestCarNode($.car_lm4_x, $.car_lm4_y, $.car_lm4_z);
+                    $.car_lm4_x = nodeX;
+                    $.car_lm4_y = nodeY;
+                    $.car_lm4_z = nodeZ;
                 }
                 if (!Camera.IsPointOnScreen($.car_lm4_x, $.car_lm4_y, $.car_lm4_z, 5.0)) {
                     $.car_lm4.setCoordinates($.car_lm4_x, $.car_lm4_y, $.car_lm4_z);
@@ -850,7 +848,7 @@ async function cleanup() {
     if ($.flag_collected_gun_lm4 == 0) {
         $.gun_lm4.remove();
     }
-    
+
     await shite_complier_bit(); // SCM GOSUB shite_complier_bit
     Mission.Finish();
 }

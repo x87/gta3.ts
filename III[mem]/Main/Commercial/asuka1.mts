@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/asuka1.sc
-import { $, verbose } from '../../utils';
+import { $, FAIL, verbose } from '../../utils';
 
 // *****************************************************************************************
 // *******************************   Asuka mission 1   *************************************
@@ -415,8 +415,7 @@ async function body() {
         $.time_left_a1 = Clock.GetMinutesToTimeOfDay($.hours_a1, $.mins_a1);
         if ($.time_left_a1 < 1) {
             Text.PrintNow('AM1_3', 5000, 1); //"You've missed Salvatore!"
-            // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_asuka1_failed'); // fallback: would break linear control flow
+            FAIL("mission_asuka1_failed");
         }
     }
 
@@ -1090,9 +1089,8 @@ async function body() {
         if ($.kill_player_now_flag == 1) {
             await kill_player_now_script(); // SCM GOSUB kill_player_now_script
         }
-        if (!($.frankie_exists_flag == 0)) {
-            // SCM GOTO → create_salvatore
-            break mafia_main_loop;
+        if (!($.frankie_exists_flag == 0)) {            
+            break mafia_main_loop; // SCM GOTO → create_salvatore
         }
     }
 
@@ -1316,8 +1314,7 @@ async function body() {
                 if ($.frankie.locateOnFoot2D($.create_char_in_club_x, $.create_char_in_club_y, 1.0, 1.0, false)) {
                     $.frankie.delete();
                     Text.PrintNow('AM1_9', 5000, 1); //"Salvatore has escaped back into Luigi's Club!"
-                    // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka1_failed");
                 }
             }
         }
@@ -2335,8 +2332,7 @@ async function body() {
             }
             if ($.frankie_garage.isClosed()) {
                 Text.PrintNow('AM1_7', 5000, 1); //"Salvatore got back to his club alive!"
-                // SCM GOTO → mission_asuka1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka1_failed'); // fallback: would break linear control flow
+                FAIL("mission_asuka1_failed");
             }
         }
     }

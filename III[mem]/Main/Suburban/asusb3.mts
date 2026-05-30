@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/asusb3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -602,8 +602,7 @@ async function body() {
                     }
 
                     if (DrugRun.HasBeenCompleted()) {
-                        // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
+                        FAIL("mission_as3_failed");
                     }
 
                     if (DrugRun.HasPlaneBeenShotDown()) {
@@ -629,8 +628,7 @@ async function body() {
                     await area_check(); // SCM GOSUB area_check
 
                     if ($.flag_mission_as3_failed == 1) {
-                        // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
+                        FAIL("mission_as3_failed");
                     }
 
                     await baddies(); // SCM GOSUB baddies
@@ -719,8 +717,7 @@ async function body() {
             }
 
             if (DrugRun.HasBeenCompleted()) {
-                // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
+                FAIL("mission_as3_failed");
             }
 
             if (DrugRun.HasPlaneBeenShotDown()) {
@@ -746,8 +743,7 @@ async function body() {
             await area_check(); // SCM GOSUB area_check
 
             if ($.flag_mission_as3_failed == 1) {
-                // SCM GOTO → mission_as3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_as3_failed'); // fallback: would break linear control flow
+                FAIL("mission_as3_failed");
             }
 
             await baddies(); // SCM GOSUB baddies
@@ -1255,7 +1251,7 @@ async function body() {
 
     // ******************************************END OF CUTSCENE********************************
 
-    return; // SCM GOTO → mission_as3_passed (not lowered; manual jump required)
+    return; // SCM GOTO → mission_as3_passed
 }
 
 // Mission Asuka Sub3 failed

@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/asuka3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -257,8 +257,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
             await check_boats_dead(); // SCM GOSUB check_boats_dead
@@ -286,8 +285,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -315,8 +313,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -344,8 +341,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
             await check_boats_dead(); // SCM GOSUB check_boats_dead
@@ -372,8 +368,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -401,8 +396,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -430,8 +424,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -459,8 +452,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -488,8 +480,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -518,8 +509,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -548,8 +538,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -577,8 +566,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -606,8 +594,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -635,8 +622,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -665,8 +651,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -695,8 +680,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -716,8 +700,7 @@ async function body() {
         while (!$.spy_boat.locate3D(618.0, -1083.0, 0.0, 6.0, 6.0, 6.0, false)) {
             await asyncWait(0);
             if (Car.IsDead($.spy_boat)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!Car.IsDead($.spy_boat)) {
                 if (!$.player.locateAnyMeansCar2D($.spy_boat, 160.0, 160.0, false)) {
@@ -726,8 +709,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -756,8 +738,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -786,8 +767,7 @@ async function body() {
                         $.spy_boat.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -881,8 +861,7 @@ async function body() {
                         $.spy_car.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
             await check_boats_dead(); // SCM GOSUB check_boats_dead
@@ -911,8 +890,7 @@ async function body() {
                         $.spy_car.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -942,8 +920,7 @@ async function body() {
                         $.spy_car.delete();
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
 
@@ -964,13 +941,11 @@ async function body() {
                     if (!Char.IsDead($.spy_bloke)) {
                         $.spy_bloke.delete();
                     }
-                    // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                    FAIL("mission_asuka3_failed");
                 }
             }
             if (Car.IsDead($.spy_car)) {
-                // SCM GOTO → mission_asuka3_passed (not lowered; manual jump required)
-                return;
+                return; // SCM GOTO → mission_asuka3_passed
             }
             if (!$.spy_bloke.isInCar($.spy_car)) {
                 break is_he_dead_yet; // SCM GOTO → is_he_dead_yet
@@ -992,8 +967,7 @@ async function body() {
                 if (!Char.IsDead($.spy_bloke)) {
                     $.spy_bloke.delete();
                 }
-                // SCM GOTO → mission_asuka3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_asuka3_failed'); // fallback: would break linear control flow
+                FAIL("mission_asuka3_failed");
             }
         }
 

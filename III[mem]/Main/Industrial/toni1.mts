@@ -394,14 +394,11 @@ async function body() {
     }
 
     return; // SCM GOTO → mission_toni1_passed
-
 }
 
 // Mission toni1 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
-    return;
-
 }
 
 // mission toni1 passed
@@ -431,7 +428,6 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(133 /* CAR_MRWONGS */);
     Streaming.MarkModelAsNoLongerNeeded(45 /* PED_CT_MAN1 */);
     Mission.Finish();
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

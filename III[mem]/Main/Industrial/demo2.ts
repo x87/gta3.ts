@@ -23,7 +23,6 @@ async function body() {
 
     // ***************************************Mission Start*************************************
 
-    // SCM GOTO → demo_start lowered to endless loop
     while (true) {
         Restart.OverrideNext(892.9, -445.0, 14.0);
         ONMISSION = true;

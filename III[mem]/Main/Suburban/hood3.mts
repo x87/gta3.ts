@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/hood3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
 // *******************************************************************************************
@@ -262,8 +262,7 @@ async function body() {
     Hud.DisplayTimer($.$id.timer_hm3);
     if (Car.IsDead($.car_hm3)) {
         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-        // SCM GOTO → mission_hood3_failed (not lowered; manual jump required)
-        throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
+        FAIL("mission_hood3_failed");
     }
 
     // waiting for the player to get into the car
@@ -272,13 +271,11 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.car_hm3)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_hood3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood3_failed");
         } else {
             if ($.car_hm3.isUpsidedown() && $.car_hm3.isStopped()) {
                 Text.PrintNow('UPSIDE', 5000, 1); //"You've flipped your wheels!"
-                // SCM GOTO → mission_hood3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
+                FAIL("mission_hood3_failed");
             }
         }
         if ($.timer_hm3 == 0) {
@@ -300,8 +297,7 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.car_hm3)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_hood3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood3_failed");
         } else {
             $.car_health_hm3 = $.car_hm3.getHealth();
             $.car_damage_hm3 = 1000 - $.car_health_hm3;
@@ -311,8 +307,7 @@ async function body() {
 
             if ($.car_hm3.isUpsidedown() && $.car_hm3.isStopped()) {
                 Text.PrintNow('UPSIDE', 5000, 1); //"You've flipped your wheels!"
-                // SCM GOTO → mission_hood3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
+                FAIL("mission_hood3_failed");
             }
         }
         if ($.timer_hm3 == 0) {
@@ -357,13 +352,11 @@ async function body() {
         await asyncWait(0);
         if (Car.IsDead($.car_hm3)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-            // SCM GOTO → mission_hood3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood3_failed");
         } else {
             if ($.car_hm3.isUpsidedown() && $.car_hm3.isStopped()) {
                 Text.PrintNow('UPSIDE', 5000, 1); //"You've flipped your wheels!"
-                // SCM GOTO → mission_hood3_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
+                FAIL("mission_hood3_failed");
             }
         }
         if ($.car_hm3.locateStopped3D(-682.0, 76.0, 17.4, 3.0, 4.0, 4.0, false)) {

@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/asusb1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -496,14 +496,12 @@ async function body() {
 
         if ($.counter_bailouts > $.counter_asukas_revenge) {
             Text.PrintNow('AS1_H', 3000, 1); //you failed to lead the Deathsquad into the Yakuza trap!!
-            // SCM GOTO → mission_as1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_as1_failed'); // fallback: would break linear control flow
+            FAIL("mission_as1_failed");
         }
 
         if ($.counter_yakuza_killed_as1 > 5) {
             Text.PrintNow('AS1_G', 3000, 1); //Too many Yakuza are dead!!
-            // SCM GOTO → mission_as1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_as1_failed'); // fallback: would break linear control flow
+            FAIL("mission_as1_failed");
         }
 
         await cartel_deaths(); // SCM GOSUB cartel_deaths
@@ -682,8 +680,7 @@ async function body() {
             }
             if (Car.IsDead($.cartel_car_a_as1) && $.flag_a_attack == 0) {
                 Text.PrintNow('AS1_H', 3000, 1); //you failed to lead the Deathsquad into the Yakuza trap!!
-                // SCM GOTO → mission_as1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_as1_failed'); // fallback: would break linear control flow
+                FAIL("mission_as1_failed");
             }
 
             if (!Car.IsDead($.cartel_car_a_as1)) {
@@ -785,8 +782,7 @@ async function body() {
             }
             if (Car.IsDead($.cartel_car_b_as1) && $.flag_b_attack == 0) {
                 Text.PrintNow('AS1_H', 3000, 1); //you failed to lead the Deathsquad into the Yakuza trap!!
-                // SCM GOTO → mission_as1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_as1_failed'); // fallback: would break linear control flow
+                FAIL("mission_as1_failed");
             }
             if (!Car.IsDead($.cartel_car_b_as1)) {
                 if ($.flag_bailout_b == 0 && $.flag_b_attack == 1) {
@@ -1007,8 +1003,7 @@ async function body() {
             }
             if (Car.IsDead($.cartel_car_d_as1) && $.flag_d_attack == 0) {
                 Text.PrintNow('AS1_H', 3000, 1); //you failed to lead the Deathsquad into the Yakuza trap!!
-                // SCM GOTO → mission_as1_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_as1_failed'); // fallback: would break linear control flow
+                FAIL("mission_as1_failed");
             }
             if (!Car.IsDead($.cartel_car_d_as1)) {
                 if ($.flag_bailout_d == 0 && $.flag_d_attack == 1) {
@@ -1995,8 +1990,6 @@ async function cartel_car_a_stuck() {
     } else {
         $.blip_cartelcar_a.remove();
     }
-
-    return;
 }
 
 async function cartel_car_b_stuck() {

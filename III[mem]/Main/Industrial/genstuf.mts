@@ -9,7 +9,7 @@ verbose('[+] genstuf script loaded');
         $.third_floor_cars_exist = 0;
         $.fourth_floor_cars_exist = 0;
         $.fifth_floor_cars_exist = 0;
-    
+
         $.need_to_clear_area_flag = 0;
         $.has_player_been_at_fish_before = 0;
         $.has_player_been_in_tramp_tunnel_before = 0;
@@ -19,11 +19,11 @@ verbose('[+] genstuf script loaded');
         $.camera_ammu1 = 0;
         $.camera_ammu2 = 0;
         $.flag_sounds_added_dog = 0;
-    
+
         //loaded_all_industrial_models_before = 0
         //loaded_all_commercial_models_before = 0
         //loaded_all_suburban_models_before = 0
-    
+
         $.flag_failed_love1 = 0;
         $.flag_need_wall_change_km1 = 0;
         $.flag_player_on_phil_mission = 0;
@@ -38,7 +38,7 @@ verbose('[+] genstuf script loaded');
         $.ammu_sample = 0;
         $.special_ammu_audio = 0;
         $.ammu_bloke_kill_player = 0;
-    
+
         verbose('[*] genstuf script initialized variables');
     });
 
@@ -216,10 +216,8 @@ async function check_info_pickup_2(pickup: Pickup, message_num: int) {
 }
 
 async function ind_ammu() {
-    {
-        //	Should be called in mission_start_genstuf
-        // SCRIPT_NAME I_AMMU
-    }
+    //	Should be called in mission_start_genstuf
+    // SCRIPT_NAME I_AMMU
 
     ind_ammu_inner: while (true) {
         await asyncWait(70);
@@ -346,10 +344,8 @@ async function ind_ammu() {
 }
 
 async function fish_factory_gen() {
-    {
-        //	Should be called in mission_start_genstuf
-        // SCRIPT_NAME FISHGEN
-    }
+    //	Should be called in mission_start_genstuf
+    // SCRIPT_NAME FISHGEN
 
     fish_factory_gen_inner: while (true) {
         await asyncWait(1000);
@@ -437,10 +433,8 @@ async function fish_factory_gen() {
 }
 
 async function tramp_tunnel() {
-    {
-        //	Should be called in mission_start_genstuf
-        // SCRIPT_NAME TRAMPS
-    }
+    //	Should be called in mission_start_genstuf
+    // SCRIPT_NAME TRAMPS
 
     tramp_tunnel_inner: while (true) {
         await asyncWait(1000);
@@ -539,10 +533,8 @@ async function tramp_tunnel() {
 }
 
 async function ind_sound() {
-    {
-        //	Should be called in mission_start_genstuf
-        // SCRIPT_NAME I_SOUND
-    }
+    //	Should be called in mission_start_genstuf
+    // SCRIPT_NAME I_SOUND
 
     ind_sound_inner: while (true) {
         await asyncWait(1000);
@@ -582,10 +574,8 @@ async function ind_sound() {
 }
 
 async function dog_sound() {
-    {
-        //	Should be called in mission_start_genstuf
-        // SCRIPT_NAME D_SOUND
-    }
+    //	Should be called in mission_start_genstuf
+    // SCRIPT_NAME D_SOUND
 
     dog_sound_inner: while (true) {
         await asyncWait(1000);
@@ -617,10 +607,8 @@ async function dog_sound() {
 }
 
 async function com_ammu() {
-    {
-        //	Should be called in mission_start_genstuf
-        // SCRIPT_NAME C_AMMU
-    }
+    //	Should be called in mission_start_genstuf
+    // SCRIPT_NAME C_AMMU
 
     com_ammu_inner: while (true) {
         await asyncWait(70);
@@ -749,10 +737,8 @@ async function com_ammu() {
 }
 
 async function com_car_park() {
-    {
-        //	Should be called in mission_start_genstuf
-        // SCRIPT_NAME C_CARP
-    }
+    //	Should be called in mission_start_genstuf
+    // SCRIPT_NAME C_CARP
 
     com_car_park_inner: while (true) {
         await asyncWait(250);
@@ -917,7 +903,6 @@ async function second_floor_of_cars() {
     World.CreateRandomCarForCarPark(311.4912, -554.4299, 28.11, 91.0689);
     World.CreateRandomCarForCarPark(310.4685, -574.6492, 28.11, 269.4606);
     World.CreateRandomCarForCarPark(342.7477, -590.4939, 28.11, 268.4776);
-    return;
 }
 
 async function third_floor_of_cars() {
@@ -926,7 +911,6 @@ async function third_floor_of_cars() {
     World.CreateRandomCarForCarPark(283.8795, -548.4308, 30.5114, 92.5479);
     World.CreateRandomCarForCarPark(270.6312, -528.4613, 30.5114, 88.6249);
     World.CreateRandomCarForCarPark(301.5385, -484.7673, 30.3863, 271.6668);
-    return;
 }
 
 async function fourth_floor_of_cars() {
@@ -935,7 +919,6 @@ async function fourth_floor_of_cars() {
     World.CreateRandomCarForCarPark(311.4744, -564.1841, 32.8375, 267.5539);
     World.CreateRandomCarForCarPark(330.5274, -584.3387, 32.8375, 267.7581);
     World.CreateRandomCarForCarPark(342.9128, -600.663, 32.8375, 87.29);
-    return;
 }
 
 async function fifth_floor_of_cars() {

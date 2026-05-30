@@ -656,7 +656,6 @@ async function mission_usj_passed() {
         }
     }
     // SCM GOTO → mission_start_usj
-    return;
 }
 
 async function reward_usj() {
@@ -676,5 +675,4 @@ async function reward_usj() {
     $.cash_reward_usj += 5000;
 
     // SCM GOTO → mission_start_usj
-    return;
 }

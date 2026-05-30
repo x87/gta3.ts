@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/mayhem1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -497,13 +497,11 @@ async function body() {
         }
         if ($.timer_4x4 < 1) {
             Text.PrintNow('TAXI2', 3000, 1);
-            // SCM GOTO → mission_mayhem_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_mayhem_failed'); // fallback: would break linear control flow
+            FAIL("mission_mayhem_failed");
         }
         if (!$.player.isInModel(129 /* CAR_STALLION */)) {
             Text.PrintNow('T4X4_F', 3000, 1);
-            // SCM GOTO → mission_mayhem_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_mayhem_failed'); // fallback: would break linear control flow
+            FAIL("mission_mayhem_failed");
         }
     }
 

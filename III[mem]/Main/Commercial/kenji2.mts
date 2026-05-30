@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/kenji2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -505,13 +505,11 @@ async function body() {
                 if (Car.IsDead($.car_to_steal1_km2)) {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
                     $.flag_car1_destroyed = 1;
-                    // SCM GOTO → mission_kenji2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_kenji2_failed");
                 } else {
                     if ($.car_to_steal1_km2.isUpsidedown() && $.car_to_steal1_km2.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_kenji2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_kenji2_failed");
                     }
                 }
                 if ($.car_to_steal1_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false)) {
@@ -696,13 +694,11 @@ async function body() {
                 if (Car.IsDead($.car_to_steal3_km2)) {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
                     $.flag_car3_destroyed = 1;
-                    // SCM GOTO → mission_kenji2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_kenji2_failed");
                 } else {
                     if ($.car_to_steal3_km2.isUpsidedown() && $.car_to_steal3_km2.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_kenji2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_kenji2_failed");
                     }
                 }
                 if ($.car_to_steal3_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false)) {
@@ -778,13 +774,11 @@ async function body() {
                 if (Car.IsDead($.car_to_steal4_km2)) {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
                     $.flag_car4_destroyed = 1;
-                    // SCM GOTO → mission_kenji2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_kenji2_failed");
                 } else {
                     if ($.car_to_steal4_km2.isUpsidedown() && $.car_to_steal4_km2.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_kenji2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_kenji2_failed");
                     }
                 }
                 if ($.car_to_steal4_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false)) {
@@ -954,8 +948,7 @@ async function body() {
     }
 
     Text.PrintNow('OUTTIME', 5000, 1); //"Out of time!"
-    // SCM GOTO → mission_kenji2_failed (not lowered; manual jump required)
-    throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
+    FAIL("mission_kenji2_failed");
 }
 
 // Mission Kenji5 failed

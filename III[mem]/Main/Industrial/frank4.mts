@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/frank4.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -544,8 +544,7 @@ async function body() {
         $.flag_car_blip_displayed_fm4 = 1 /* TRUE */;
 
         if (Char.IsDead($.asuka) || Char.IsDead($.maria)) {
-            // SCM GOTO → mission_frank4_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_frank4_failed'); // fallback: would break linear control flow
+            FAIL("mission_frank4_failed");
         }
 
         while (
@@ -556,12 +555,10 @@ async function body() {
             //OR NOT IS_PLAYER_IN_CAR player boat_mar
             await asyncWait(0);
             if (Car.IsDead($.boat_mar)) {
-                // SCM GOTO → mission_frank4_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frank4_failed'); // fallback: would break linear control flow
+                FAIL("mission_frank4_failed");
             }
             if (Char.IsDead($.asuka) || Char.IsDead($.maria)) {
-                // SCM GOTO → mission_frank4_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frank4_failed'); // fallback: would break linear control flow
+                FAIL("mission_frank4_failed");
             }
             if ($.player.isInCar($.boat_mar)) {
                 if ($.flag_car_blip_displayed_fm4 == 1 /* TRUE */) {
@@ -614,12 +611,10 @@ async function body() {
         while (!$.player.canStartMission() && $.breakout_diff < 5000) {
             await asyncWait(0);
             if (Car.IsDead($.boat_mar)) {
-                // SCM GOTO → mission_frank4_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frank4_failed'); // fallback: would break linear control flow
+                FAIL("mission_frank4_failed");
             }
             if (Char.IsDead($.asuka) || Char.IsDead($.maria)) {
-                // SCM GOTO → mission_frank4_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_frank4_failed'); // fallback: would break linear control flow
+                FAIL("mission_frank4_failed");
             }
             $.breakout_timer = Clock.GetGameTimer();
             $.breakout_diff = $.breakout_timer - $.breakout_timer_start;

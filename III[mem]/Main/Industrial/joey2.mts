@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/joey2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -447,7 +447,6 @@ async function body() {
         }
 
         if ($.player.isInArea2D(974.2, -727.5, 1003.4, -748.8, false)) {
-            // SCM GOTO → run_the_other_way
             run_the_other_way: {
                 $.chunky.setObjRunToCoord(979.1, -720.8);
 
@@ -549,8 +548,7 @@ async function body() {
                     }
                     if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                         Text.PrintNow('AWAY', 5000, 2); // Mission brief
-                        // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_joey2_failed");
                     }
                     if (!$.chunky.isInCar($.chunkys_car2)) {
                         break kill_and_run; // SCM GOTO → fuckin_run_for_it
@@ -583,8 +581,7 @@ async function body() {
                     }
                     if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                         Text.PrintNow('AWAY', 5000, 2); // Mission brief
-                        // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_joey2_failed");
                     }
                     if (Car.IsDead($.chunkys_car2)) {
                         return; // SCM GOTO → mission_joey2_passed
@@ -687,8 +684,7 @@ async function body() {
             }
             if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                 Text.PrintNow('AWAY', 5000, 2); // Mission brief
-                // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey2_failed");
             }
             if (!$.chunky.isInCar($.chunkys_car)) {
                 break kill_and_run; // SCM GOTO → fuckin_run_for_it
@@ -721,8 +717,7 @@ async function body() {
             }
             if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                 Text.PrintNow('AWAY', 5000, 2); // Mission brief
-                // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey2_failed");
             }
             if (Car.IsDead($.chunkys_car)) {
                 return; // SCM GOTO → mission_joey2_passed
@@ -757,8 +752,7 @@ async function body() {
             }
             if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                 Text.PrintNow('AWAY', 5000, 2); // Mission brief
-                // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
+                FAIL("mission_joey2_failed");
             }
         }
     }
@@ -767,7 +761,6 @@ async function body() {
 // Mission joey2 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed"
-    return;
 }
 
 // mission joey2 passed
@@ -968,8 +961,6 @@ async function controller_modes() {
             }
         }
     }
-
-    return;
 }
 
 async function Ammu_bloke_audio() {
@@ -1018,8 +1009,6 @@ async function Ammu_bloke_audio() {
             Audio.ClearMissionAudio();
         }
     }
-
-    return;
 }
 
 async function pickup_and_audio() {
@@ -1034,8 +1023,6 @@ async function pickup_and_audio() {
             $.chunky.setSay(95 /* SOUND_CHUNKY_RUN_SHOUT */);
         }
     }
-
-    return;
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

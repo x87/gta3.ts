@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/asusb2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -1433,8 +1433,7 @@ async function body() {
         if ($.kappa_time < 1) {
             Text.PrintNow('AS2_4', 3000, 1); //The Cartel have warned their pushers!!
             //WAIT 3000
-            // SCM GOTO → mission_as2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_as2_failed'); // fallback: would break linear control flow
+            FAIL("mission_as2_failed");
         }
         if ($.counter_kappa_dead == 1 && $.flag_timer_started == 0) {
             Hud.DisplayTimer($.$id.kappa_time);

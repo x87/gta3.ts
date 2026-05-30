@@ -1,5 +1,5 @@
 // Generated from Main/Suburban/hood5.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
 // *******************************************************************************************
@@ -375,8 +375,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.goodie_hm5)) {
             Text.PrintNow('HM5_4', 5000, 1); //"Your contact is dead!"
-            // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood5_failed");
             $.flag_goodie_hm5_dead_hm5 = 1;
         }
         if ($.flag_bat_created_hm5 == 1) {
@@ -398,8 +397,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.goodie_hm5)) {
             Text.PrintNow('HM5_4', 5000, 1); //"Your contact is dead!"
-            // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood5_failed");
             $.flag_goodie_hm5_dead_hm5 = 1;
         }
         if (!$.goodie_hm5.isInPlayersGroup($.player) && $.flag_goodie_message_hm5 == 0) {
@@ -431,8 +429,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.goodie_hm5)) {
             Text.PrintNow('HM5_4', 5000, 1); //"Your contact is dead!"
-            // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood5_failed");
             $.flag_goodie_hm5_dead_hm5 = 1;
         }
         if ($.flag_bat_created_hm5 == 1) {
@@ -452,8 +449,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.goodie_hm5)) {
             Text.PrintNow('HM5_4', 5000, 1); //"Your contact is dead!"
-            // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood5_failed");
             $.flag_goodie_hm5_dead_hm5 = 1;
         }
         if ($.flag_bat_created_hm5 == 1) {
@@ -473,8 +469,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.goodie_hm5)) {
             Text.PrintNow('HM5_4', 5000, 1); //"Your contact is dead!"
-            // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood5_failed");
             $.flag_goodie_hm5_dead_hm5 = 1;
         }
         if ($.flag_bat_created_hm5 == 1) {
@@ -494,8 +489,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.goodie_hm5)) {
             Text.PrintNow('HM5_4', 5000, 1); //"Your contact is dead!"
-            // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood5_failed");
             $.flag_goodie_hm5_dead_hm5 = 1;
         }
         if ($.flag_bat_created_hm5 == 1) {
@@ -515,8 +509,7 @@ async function body() {
         await asyncWait(0);
         if (Char.IsDead($.goodie_hm5)) {
             Text.PrintNow('HM5_4', 5000, 1); //"Your contact is dead!"
-            // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood5_failed");
             $.flag_goodie_hm5_dead_hm5 = 1;
         }
         if ($.flag_bat_created_hm5 == 1) {
@@ -806,8 +799,7 @@ async function body() {
                     $.flag_baddie1_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -822,8 +814,7 @@ async function body() {
                     $.flag_baddie2_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -838,8 +829,7 @@ async function body() {
                     $.flag_baddie3_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -854,8 +844,7 @@ async function body() {
                     $.flag_baddie4_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -870,8 +859,7 @@ async function body() {
                     $.flag_baddie5_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -886,8 +874,7 @@ async function body() {
                     $.flag_baddie6_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -902,8 +889,7 @@ async function body() {
                     $.flag_baddie7_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -918,8 +904,7 @@ async function body() {
                     $.flag_baddie8_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -934,8 +919,7 @@ async function body() {
                     $.flag_baddie9_dead_hm5 = 1;
                 } else {
                     Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-                    // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+                    FAIL("mission_hood5_failed");
                 }
             }
         }
@@ -968,8 +952,7 @@ async function body() {
                 $.baddie9_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
             }
             Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
-            // SCM GOTO → mission_hood5_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_hood5_failed'); // fallback: would break linear control flow
+            FAIL("mission_hood5_failed");
         }
         if ($.flag_bat_created_hm5 == 1) {
             if ($.flag_bat_collected_hm5 == 0) {

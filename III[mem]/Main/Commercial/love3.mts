@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/love3.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *********************************    Love mission 3   ***********************************
 // ********************************* A Drop in the Ocean ***********************************
@@ -226,8 +226,7 @@ async function body() {
 
         if (DrugDropOff.HasPlaneBeenShotDown()) {
             Text.PrintNow('LOVE3_4', 5000, 1);
-            // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_love3_failed'); // fallback: would break linear control flow
+            FAIL("mission_love3_failed");
         }
 
         if ($.plane_timer == 0) {
@@ -243,10 +242,10 @@ async function body() {
         $.plane_blip.remove();
 
         if ($.package_numbers < 6) {
-            const _res68 = DrugDropOff.FindPlaneCoordinates();
-            $.PlaneX = _res68.x;
-            $.PlaneY = _res68.y;
-            $.PlaneZ = _res68.z;
+            const { x, y, z } = DrugDropOff.FindPlaneCoordinates();
+            $.PlaneX = x;
+            $.PlaneY = y;
+            $.PlaneZ = z;
             $.plane_blip = Blip.AddForCoordOld($.PlaneX, $.PlaneY, $.PlaneZ, 4, 2 /* BLIP_ONLY */);
             $.plane_blip.changeScale(3);
             $.drug_current_timer = Clock.GetGameTimer();
@@ -407,8 +406,7 @@ async function body() {
                             Text.PrintNow('LOVE3_6', 5000, 1); // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0);
                             $.police_boat.setCruiseSpeed(100.0);
-                            // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_love3_failed'); // fallback: would break linear control flow
+                            FAIL("mission_love3_failed");
                         } else {
                             $.police_boat.goto($.package_5_x, $.package_5_y, 0.0);
                             $.police_boat_flag = 2;
@@ -427,8 +425,7 @@ async function body() {
                             Text.PrintNow('LOVE3_6', 5000, 1); // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0);
                             $.police_boat.setCruiseSpeed(100.0);
-                            // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_love3_failed'); // fallback: would break linear control flow
+                            FAIL("mission_love3_failed");
                         } else {
                             $.police_boat.goto($.package_4_x, $.package_4_y, 0.0);
                             $.police_boat_flag = 3;
@@ -447,8 +444,7 @@ async function body() {
                             Text.PrintNow('LOVE3_6', 5000, 1); // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0);
                             $.police_boat.setCruiseSpeed(100.0);
-                            // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_love3_failed'); // fallback: would break linear control flow
+                            FAIL("mission_love3_failed");
                         } else {
                             $.police_boat.goto($.package_3_x, $.package_3_y, 0.0);
                             $.police_boat_flag = 4;
@@ -467,8 +463,7 @@ async function body() {
                             Text.PrintNow('LOVE3_6', 5000, 1); // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0);
                             $.police_boat.setCruiseSpeed(100.0);
-                            // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_love3_failed'); // fallback: would break linear control flow
+                            FAIL("mission_love3_failed");
                         } else {
                             $.police_boat.goto($.package_2_x, $.package_2_y, 0.0);
                             $.police_boat_flag = 5;
@@ -487,8 +482,7 @@ async function body() {
                             Text.PrintNow('LOVE3_6', 5000, 1); // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0);
                             $.police_boat.setCruiseSpeed(100.0);
-                            // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_love3_failed'); // fallback: would break linear control flow
+                            FAIL("mission_love3_failed");
                         } else {
                             $.police_boat.goto($.package_1_x, $.package_1_y, 0.0);
                             $.police_boat_flag = 6;
@@ -507,8 +501,7 @@ async function body() {
                             Text.PrintNow('LOVE3_6', 5000, 1); // "~r~The Police got the the package first!"
                             $.police_boat.goto(641.555, 594.6697, 0.0);
                             $.police_boat.setCruiseSpeed(100.0);
-                            // SCM GOTO → mission_love3_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_love3_failed'); // fallback: would break linear control flow
+                            FAIL("mission_love3_failed");
                         } else {
                             $.police_boat.goto(641.555, 594.6697, 0.0);
                             $.police_boat_flag = 99;

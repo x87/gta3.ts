@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/asuka2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -549,8 +549,7 @@ async function body() {
             }
         }
         if ($.countdown_as2 == 0) {
-            // SCM GOTO → mission_asuka2_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_asuka2_failed'); // fallback: would break linear control flow
+            FAIL("mission_asuka2_failed");
         }
     }
 }

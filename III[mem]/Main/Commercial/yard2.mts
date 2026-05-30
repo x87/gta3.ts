@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/yard2.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -322,13 +322,12 @@ async function body() {
     }
 
     plinky_yd2: while (true) {
-        // SCM label plinky_yd2
         await asyncWait(0);
 
-        const _res146 = $.player.getCoordinates();
-        $.y2_x = _res146.x;
-        $.y2_y = _res146.y;
-        $.y2_z = _res146.z;
+        const { x, y, z } = $.player.getCoordinates();
+        $.y2_x = x;
+        $.y2_y = y;
+        $.y2_z = z;
 
         if (!Char.IsDead($.chaperone_2) && !Char.IsDead($.chaperone_1)) {
             $.chaperone_1.setHealth(100);
@@ -549,17 +548,12 @@ async function body() {
                 if (!Car.IsDead($.gang_car_yd2)) {
                     if ($.gang_car_yd2.isUpsidedown() && $.gang_car_yd2.isStopped()) {
                         $.flag_upsidedown = 1;
-                        // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_yd2_failed");
                     }
                     if (!$.gang_car_yd2.isHealthGreater(250)) {
-                        if (
-                            !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) &&
-                            !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)
-                        ) {
+                        if (!$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) && !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)) {
                             $.flag_upsidedown = 1;
-                            // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_yd2_failed");
                         }
                     }
                     if (!$.player.isInCar($.gang_car_yd2)) {
@@ -568,8 +562,7 @@ async function body() {
                         if (!Car.IsDead($.gang_car_yd2)) {
                             if (!$.player.isInCar($.gang_car_yd2)) {
                                 $.flag_upsidedown = 2;
-                                // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                                FAIL("mission_yd2_failed");
                             }
                         } else {
                             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
@@ -613,17 +606,12 @@ async function body() {
             if (!Car.IsDead($.gang_car_yd2)) {
                 if ($.gang_car_yd2.isUpsidedown() && $.gang_car_yd2.isStopped()) {
                     $.flag_upsidedown = 1;
-                    // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_yd2_failed");
                 }
                 if (!$.gang_car_yd2.isHealthGreater(250)) {
-                    if (
-                        !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) &&
-                        !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)
-                    ) {
+                    if (!$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) && !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)) {
                         $.flag_upsidedown = 1;
-                        // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_yd2_failed");
                     }
                 }
                 if (!$.player.isInCar($.gang_car_yd2)) {
@@ -631,8 +619,7 @@ async function body() {
                     if (!Car.IsDead($.gang_car_yd2)) {
                         if (!$.player.isInCar($.gang_car_yd2)) {
                             $.flag_upsidedown = 2;
-                            // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_yd2_failed");
                         }
                     } else {
                         throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
@@ -678,17 +665,12 @@ async function body() {
                 if (!Car.IsDead($.gang_car_yd2)) {
                     if ($.gang_car_yd2.isUpsidedown() && $.gang_car_yd2.isStopped()) {
                         $.flag_upsidedown = 1;
-                        // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                        FAIL("mission_yd2_failed");
                     }
                     if (!$.gang_car_yd2.isHealthGreater(250)) {
-                        if (
-                            !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) &&
-                            !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)
-                        ) {
+                        if (!$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) && !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)) {
                             $.flag_upsidedown = 1;
-                            // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                            throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                            FAIL("mission_yd2_failed");
                         }
                     }
                     if (!$.player.isInCar($.gang_car_yd2)) {
@@ -696,8 +678,7 @@ async function body() {
                         if (!Car.IsDead($.gang_car_yd2)) {
                             if (!$.player.isInCar($.gang_car_yd2)) {
                                 $.flag_upsidedown = 2;
-                                // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                                throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                                FAIL("mission_yd2_failed");
                             }
                         } else {
                             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
@@ -979,13 +960,9 @@ async function player_out_of_car() {
         await asyncWait(0);
         if (!Car.IsDead($.gang_car_yd2)) {
             if (!$.gang_car_yd2.isHealthGreater(250)) {
-                if (
-                    !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) &&
-                    !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)
-                ) {
+                if (!$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) && !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)) {
                     $.flag_upsidedown = 1;
-                    // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_yd2_failed'); // fallback: would break linear control flow
+                    FAIL("mission_yd2_failed");
                 }
             }
             if ($.flag_out_of_car_message == 0) {
