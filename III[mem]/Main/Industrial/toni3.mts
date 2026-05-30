@@ -89,12 +89,12 @@ async function body() {
     $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
     $.cs_note.setAnim('NOTE');
 
-    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
+    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true);
     $.player.setCoordinates(1219.5, -321.1, 26.4);
 
     $.player.setHeading(180.0);
 
-    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
+    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
@@ -251,8 +251,8 @@ async function body() {
     $.carry_car = Car.Create(99 /* CAR_STRETCH */, 1187.0, -860.4, 14.5);
     $.carry_car.setHeading(225.0);
     $.carry_car.changeColor(0 /* CARCOLOUR_BLACK */, 0 /* CARCOLOUR_BLACK */);
-    $.carry_car.setStrong(true /* TRUE */);
-    $.carry_car.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+    $.carry_car.setStrong(true);
+    $.carry_car.setProofs(true, true, true, true, true);
     //ADD_BLIP_FOR_CAR carry_car blip1_t3
 
     $.blip1_t3 = Blip.AddForCoord(1191.7, -870.0, -100.0);
@@ -271,7 +271,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_toni3_failed'); // fallback: would break linear control flow
         }
 
-        while (!$.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.5, 1.5, 2.0, true /* TRUE */)) {
+        while (!$.player.locateOnFoot3D(1191.7, -870.0, 15.0, 1.5, 1.5, 2.0, true)) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
                 // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
@@ -290,13 +290,13 @@ async function body() {
         Streaming.LoadScene(1190.07, -869.86, 13.97);
 
         if ($.player.isPlaying()) {
-            World.ClearArea(1190.2, -866.4, 14.1, 1.0, true /* TRUE */);
+            World.ClearArea(1190.2, -866.4, 14.1, 1.0, true);
             $.player.setCoordinates(1189.5, -867.6, 14.1);
             $.player.setHeading(36.0);
             Camera.SetFixedPosition(1186.177, -852.455, 17.219, 0.0, 0.0, 0.0);
             Camera.PointAtPoint(1186.077, -853.425, 16.995, 2 /* JUMP_CUT */);
             $.script_controlled_player = $.player.getChar();
-            $.script_controlled_player.setRunning(true /* TRUE */);
+            $.script_controlled_player.setRunning(true);
             if (!Car.IsDead($.carry_car)) {
                 $.script_controlled_player.setObjEnterCarAsDriver($.carry_car);
             }
@@ -364,12 +364,12 @@ async function body() {
 
         Audio.PlayMissionAudio();
 
-        $.joey.setCantBeDraggedOut(true /* TRUE */);
+        $.joey.setCantBeDraggedOut(true);
         $.blip3_t3 = Blip.AddForCoord(906.2, -426.0, -100.0);
 
         //CAR DRIVING OUT OF GARAGE CUT SCENE
 
-        World.ClearArea(1195.0, -870.3, 15.0, 10.0, true /* TRUE */);
+        World.ClearArea(1195.0, -870.3, 15.0, 10.0, true);
 
         Camera.SetFixedPosition(1200.9, -866.5, 19.0, 0.0, 0.0, 0.0);
         Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
@@ -387,8 +387,8 @@ async function body() {
         $.joeydoor3_Z = $.joeydoor3_Z + 3.0;
 
         while (
-            !$.joeys_garage_door2.slide($.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z, 0.1, 0.1, 0.1, false /* FALSE */) ||
-            !$.joeys_garage_door3.slide($.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z, 0.1, 0.1, 0.1, false /* FALSE */)
+            !$.joeys_garage_door2.slide($.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z, 0.1, 0.1, 0.1, false) ||
+            !$.joeys_garage_door3.slide($.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z, 0.1, 0.1, 0.1, false)
         ) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
@@ -401,7 +401,7 @@ async function body() {
         $.carry_car.setCruiseSpeed(4.0);
         $.carry_car.setDrivingStyle(3);
 
-        while (!$.carry_car.locate2D(1198.4, -871.1, 2.0, 2.0, false /* FALSE */)) {
+        while (!$.carry_car.locate2D(1198.4, -871.1, 2.0, 2.0, false)) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
                 // SCM GOTO → mission_toni3_failed (not lowered; manual jump required)
@@ -422,8 +422,8 @@ async function body() {
         $.joeydoor3_Z = $.joeydoor3_Z - 3.0;
 
         while (
-            !$.joeys_garage_door2.slide($.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z, 0.1, 0.1, 0.1, false /* FALSE */) ||
-            !$.joeys_garage_door3.slide($.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z, 0.1, 0.1, 0.1, false /* FALSE */)
+            !$.joeys_garage_door2.slide($.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z, 0.1, 0.1, 0.1, false) ||
+            !$.joeys_garage_door3.slide($.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z, 0.1, 0.1, 0.1, false)
         ) {
             await asyncWait(0);
             if (Car.IsDead($.carry_car)) {
@@ -442,7 +442,7 @@ async function body() {
         Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
         Camera.RestoreJumpcut();
         Camera.SetInFrontOfPlayer();
-        $.carry_car.setProofs(false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+        $.carry_car.setProofs(false, false, false, false, false);
         $.flag_displayed_horn_message_tm3 = 0;
         $.flag_displayed_wanted_message_tm3 = 0;
 
@@ -489,7 +489,7 @@ async function body() {
                     $.flag_car_blip_displayed = 1 /* TRUE */;
                 }
             }
-            if ($.player.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false /* FALSE */)) {
+            if ($.player.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false)) {
                 if ($.player.isInCar($.carry_car)) {
                     if ($.player.isWantedLevelGreater(0)) {
                         if ($.flag_displayed_wanted_message_tm3 == 0) {
@@ -504,7 +504,7 @@ async function body() {
                     }
                 }
             }
-            if (!$.player.isInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false /* FALSE */)) {
+            if (!$.player.isInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false)) {
                 if ($.flag_displayed_horn_message_tm3 == 1 || $.flag_displayed_wanted_message_tm3 == 1) {
                     Text.ClearThisPrint('WANTED1');
                     Text.ClearThisPrint('HORN');
@@ -573,7 +573,7 @@ async function body() {
             $.carry_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
         }
 
-        World.ClearArea(897.0, -425.5, 14.7, 6.0, true /* TRUE */);
+        World.ClearArea(897.0, -425.5, 14.7, 6.0, true);
 
         //SET_FIXED_CAMERA_POSITION 903.2 -427.7 16.6 0.0 0.0 0.0
         //POINT_CAMERA_AT_CHAR luigi FIXED JUMP_CUT
@@ -622,7 +622,7 @@ async function body() {
             }
         }
 
-        $.luigi.setCantBeDraggedOut(true /* TRUE */);
+        $.luigi.setCantBeDraggedOut(true);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -690,7 +690,7 @@ async function body() {
                     $.flag_car_blip_displayed = 1 /* TRUE */;
                 }
             }
-            if ($.player.isStoppedInAreaInCar3D(1197.8, -321.0, 24.3, 1202.0, -327.5, 28.0, false /* FALSE */)) {
+            if ($.player.isStoppedInAreaInCar3D(1197.8, -321.0, 24.3, 1202.0, -327.5, 28.0, false)) {
                 if ($.player.isInCar($.carry_car)) {
                     if ($.player.isWantedLevelGreater(0)) {
                         if ($.flag_displayed_wanted_message_tm3 == 0) {
@@ -705,7 +705,7 @@ async function body() {
                     }
                 }
             }
-            if (!$.player.isInAreaInCar3D(1197.8, -321.0, 24.3, 1202.0, -327.5, 28.0, false /* FALSE */)) {
+            if (!$.player.isInAreaInCar3D(1197.8, -321.0, 24.3, 1202.0, -327.5, 28.0, false)) {
                 if ($.flag_displayed_horn_message_tm3 == 1 || $.flag_displayed_wanted_message_tm3 == 1) {
                     Text.ClearThisPrint('WANTED1');
                     Text.ClearThisPrint('HORN');
@@ -773,7 +773,7 @@ async function body() {
             $.carry_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
         }
 
-        World.ClearArea(1213.6, -321.1, 26.5, 10.0, true /* TRUE */);
+        World.ClearArea(1213.6, -321.1, 26.5, 10.0, true);
 
         $.toni = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 1217.0, -321.1, -100.0);
         $.toni.setHeading(90.0);
@@ -856,7 +856,7 @@ async function body() {
 
         Audio.PlayMissionAudio();
 
-        $.toni.setCantBeDraggedOut(true /* TRUE */);
+        $.toni.setCantBeDraggedOut(true);
         Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
         Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
         World.SetPedDensityMultiplier(1.0);
@@ -867,7 +867,7 @@ async function body() {
         $.triad_van1.setHeading(180.0);
         $.triad_van1.setDrivingStyle(3);
         $.triad_van1.setCruiseSpeed(30.0);
-        $.triad_van1.setStrong(true /* TRUE */);
+        $.triad_van1.setStrong(true);
 
         $.triads1 = Char.CreateInsideCar($.triad_van1, 8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */);
         $.triads1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
@@ -885,7 +885,7 @@ async function body() {
         $.triad_van2.setHeading(1.0);
         $.triad_van2.setDrivingStyle(3);
         $.triad_van2.setCruiseSpeed(30.0);
-        $.triad_van2.setStrong(true /* TRUE */);
+        $.triad_van2.setStrong(true);
 
         $.triads3 = Char.CreateInsideCar($.triad_van2, 8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */);
         $.triads3.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
@@ -903,7 +903,7 @@ async function body() {
         $.triad_van3.setHeading(90.0);
         $.triad_van3.setDrivingStyle(3);
         $.triad_van3.setCruiseSpeed(30.0);
-        $.triad_van3.setStrong(true /* TRUE */);
+        $.triad_van3.setStrong(true);
 
         $.triads5 = Char.CreateInsideCar($.triad_van3, 8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */);
         $.triads5.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
@@ -921,7 +921,7 @@ async function body() {
         $.triad_van4.setHeading(270.0);
         $.triad_van4.setDrivingStyle(3);
         $.triad_van4.setCruiseSpeed(30.0);
-        $.triad_van4.setStrong(true /* TRUE */);
+        $.triad_van4.setStrong(true);
 
         $.triads7 = Char.CreateInsideCar($.triad_van4, 8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */);
         $.triads7.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
@@ -945,13 +945,13 @@ async function body() {
 
         $.triads9 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 1382.1, -281.7, -100.0);
         $.triads9.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
-        $.triads9.setStayInSamePlace(true /* TRUE */);
+        $.triads9.setStayInSamePlace(true);
         $.triads9.setObjDestroyCar($.carry_car);
         $.triads9.setThreatSearch(1 /* THREAT_PLAYER1 */);
 
         $.triads10 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 1384.3, -291.5, -100.0);
         $.triads10.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
-        $.triads10.setStayInSamePlace(true /* TRUE */);
+        $.triads10.setStayInSamePlace(true);
         $.triads10.setObjDestroyCar($.carry_car);
         $.triads10.setThreatSearch(1 /* THREAT_PLAYER1 */);
 
@@ -1008,7 +1008,7 @@ async function body() {
                 }
             }
             if (!Car.IsDead($.triad_van1)) {
-                if ($.triad_van1.isInArea2D(1393.6, -268.2, 1427.1, -154.1, false /* FALSE */)) {
+                if ($.triad_van1.isInArea2D(1393.6, -268.2, 1427.1, -154.1, false)) {
                     if (!Char.IsDead($.triads1) && !Char.IsDead($.triads2)) {
                         $.triads1.setObjKillPlayerOnFoot($.player);
                         $.triads2.setObjKillPlayerOnFoot($.player);
@@ -1016,7 +1016,7 @@ async function body() {
                 }
             }
             if (!Car.IsDead($.triad_van2)) {
-                if ($.triad_van2.isInArea2D(1393.6, -268.2, 1427.1, -154.1, false /* FALSE */)) {
+                if ($.triad_van2.isInArea2D(1393.6, -268.2, 1427.1, -154.1, false)) {
                     if (!Char.IsDead($.triads3) && !Char.IsDead($.triads4)) {
                         $.triads3.setObjKillPlayerOnFoot($.player);
                         $.triads4.setObjKillPlayerOnFoot($.player);
@@ -1024,7 +1024,7 @@ async function body() {
                 }
             }
             if (!Car.IsDead($.triad_van3)) {
-                if ($.triad_van3.isInArea2D(1393.6, -268.2, 1427.1, -154.1, false /* FALSE */)) {
+                if ($.triad_van3.isInArea2D(1393.6, -268.2, 1427.1, -154.1, false)) {
                     if (!Char.IsDead($.triads5) && !Char.IsDead($.triads6)) {
                         $.triads5.setObjKillPlayerOnFoot($.player);
                         $.triads6.setObjKillPlayerOnFoot($.player);
@@ -1032,7 +1032,7 @@ async function body() {
                 }
             }
             if (!Car.IsDead($.triad_van4)) {
-                if ($.triad_van4.isInArea2D(1393.6, -268.2, 1427.1, -154.1, false /* FALSE */)) {
+                if ($.triad_van4.isInArea2D(1393.6, -268.2, 1427.1, -154.1, false)) {
                     if (!Char.IsDead($.triads7) && !Char.IsDead($.triads8)) {
                         $.triads7.setObjKillPlayerOnFoot($.player);
                         $.triads8.setObjKillPlayerOnFoot($.player);
@@ -1132,8 +1132,8 @@ async function body() {
 
         Camera.DoFade(1500, 0 /* FADE_OUT */);
 
-        World.ClearArea(1427.0, -187.8, 50.0, 12.0, true /* TRUE */);
-        World.ClearArea(1444.99, -186.9, 56.0, 30.0, true /* TRUE */);
+        World.ClearArea(1427.0, -187.8, 50.0, 12.0, true);
+        World.ClearArea(1444.99, -186.9, 56.0, 30.0, true);
 
         World.SwitchRubbish(false /* OFF */);
         Streaming.Switch(false /* OFF */);

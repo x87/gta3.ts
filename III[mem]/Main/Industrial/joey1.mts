@@ -102,10 +102,10 @@ async function body() {
     $.cs_joedoor = CutsceneObject.Create(185 /* cut_obj1 */);
     $.cs_joedoor.setAnim('JOEDOOR');
 
-    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false /* FALSE */);
-    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false);
+    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false);
 
-    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */);
+    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true);
     $.player.setCoordinates(1191.9, -870.4, -100.0);
 
     $.player.setHeading(230.0);
@@ -223,8 +223,8 @@ async function body() {
 
     World.SwitchRubbish(true /* ON */);
     Cutscene.Clear();
-    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, true /* TRUE */);
-    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, true /* TRUE */);
+    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, true);
+    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, true);
     Camera.SetInFrontOfPlayer();
 
     $.blip2_jm1 = Blip.AddSpriteForCoord(1282.0, -104.0, -100.0, 2 /* RADAR_SPRITE_BOMB */);
@@ -265,7 +265,7 @@ async function body() {
     }
 
     $.mike_car = Car.Create(91 /* CAR_IDAHO */, 1336.2, -460.8, -100.0);
-    $.mike_car.makeABitStronger(true /* TRUE */);
+    $.mike_car.makeABitStronger(true);
     $.mike_car.lockDoors(6 /* CARLOCK_FORCE_SHUT_DOORS */);
     $.mike_car.setHeading(90.0);
     $.mike_car.setCanRespray(false /* OFF */);
@@ -494,7 +494,7 @@ async function body() {
                 $.blip4_jm1.remove();
                 continue joey_label1; // SCM GOTO → joey_label1
             }
-            if ($.player.isInAreaInCar3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, false /* FALSE */)) {
+            if ($.player.isInAreaInCar3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, false)) {
                 if ($.player.isWantedLevelGreater(0)) {
                     if ($.flag_displayed_wanted_message_jm1 == 0) {
                         Text.PrintNow('WANTED1', 4000, 1);
@@ -502,7 +502,7 @@ async function body() {
                     }
                 }
             } else {
-                if (!$.player.isInArea3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, false /* FALSE */)) {
+                if (!$.player.isInArea3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, false)) {
                     $.flag_displayed_wanted_message_jm1 = 0;
                 }
             }
@@ -540,9 +540,9 @@ async function body() {
             }
 
             while (
-                !$.mike_car.isStoppedInArea3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, true /* TRUE */) ||
-                $.player.isInArea3D(1306.0, -482.0, 49.0, 1350.0, -444.0, 59.0, false /* FALSE */) ||
-                !$.player.isInArea3D(1306.0, -484.0, 49.0, 1370.0, -434.0, 69.0, false /* FALSE */)
+                !$.mike_car.isStoppedInArea3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, true) ||
+                $.player.isInArea3D(1306.0, -482.0, 49.0, 1350.0, -444.0, 59.0, false) ||
+                !$.player.isInArea3D(1306.0, -484.0, 49.0, 1370.0, -434.0, 69.0, false)
             ) {
                 await asyncWait(0);
                 if (Car.IsDead($.mike_car)) {
@@ -560,7 +560,7 @@ async function body() {
                     // SCM GOTO → mission_joey1_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_joey1_failed'); // fallback: would break linear control flow
                 }
-                if (!$.mike_car.isInArea3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, false /* FALSE */)) {
+                if (!$.mike_car.isInArea3D(1339.6, -459.5, 49.0, 1332.8, -462.8, 53.0, false)) {
                     Text.PrintNow('JM1_6', 5000, 1);
                     continue joey_label1; // SCM GOTO → joey_label1
                 }
@@ -590,10 +590,10 @@ async function body() {
 
     //LIPS CUT_SCENE
 
-    World.ClearArea(1325.5, -452.5, 54.0, 4.0, true /* TRUE */);
-    World.ClearArea(1328.4, -453.0, 54.0, 4.0, true /* TRUE */);
-    World.ClearArea(1330.0, -466.1, 49.0, 4.0, true /* TRUE */);
-    World.ClearArea(1333.6, -465.3, 49.0, 4.0, true /* TRUE */);
+    World.ClearArea(1325.5, -452.5, 54.0, 4.0, true);
+    World.ClearArea(1328.4, -453.0, 54.0, 4.0, true);
+    World.ClearArea(1330.0, -466.1, 49.0, 4.0, true);
+    World.ClearArea(1333.6, -465.3, 49.0, 4.0, true);
     
     Hud.ClearTimer($.$id.countdown_jm1);
     Game.SetPoliceIgnorePlayer($.player, true /* On */);
@@ -723,7 +723,7 @@ async function body() {
         }
     }
 
-    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+    Game.SetAllCarsCanBeDamaged(true);
 
     await asyncWait(2500);
     Audio.PlayMissionPassedTune(1);
@@ -773,7 +773,7 @@ async function cleanup() {
     if (!Car.IsDead($.mike_car)) {
         $.mike_car.setCanRespray(true /* ON */);
         $.mike_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
-        $.mike_car.makeABitStronger(false /* FALSE */);
+        $.mike_car.makeABitStronger(false);
     }
     Game.SetFreeBombs(false /* Off */);
     Mission.Finish();

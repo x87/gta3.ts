@@ -146,19 +146,19 @@ async function body() {
     $.colubian_guard12 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -392.4, 301.0, 70.7); //On masion balcony (west)
     $.colubian_guard12.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 200);
     $.colubian_guard12.setHeading(0.0);
-    $.colubian_guard12.setStayInSamePlace(true /* TRUE */);
+    $.colubian_guard12.setStayInSamePlace(true);
 
     $.colubian_guard13 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -374.0, 301.0, 70.7); //On masion balcony (east)
     $.colubian_guard13.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 200);
     $.colubian_guard13.setHeading(0.0);
-    $.colubian_guard13.setStayInSamePlace(true /* TRUE */);
+    $.colubian_guard13.setStayInSamePlace(true);
 
     Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
 
     $.colubian_guard1.turnToFacePlayer($.player);
     $.colubian_guard12.turnToFacePlayer($.player);
     $.colubian_guard13.turnToFacePlayer($.player);
-    World.ClearArea(-362.8, 246.5, 60.0, 4.5, true /* TRUE */);
+    World.ClearArea(-362.8, 246.5, 60.0, 4.5, true);
 
     $.colubian_guard2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -380.1, 282.6, -100.0); //Dead guard
     $.colubian_guard2.setHeading(229.0);
@@ -259,7 +259,7 @@ async function body() {
     Text.ClearPrints();
 
     $.Dead_guards_gun = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 3 /* PICKUP_ONCE */, 48, -380.1, 282.6, 62.6);
-    World.ClearArea(-381.8, 284.0, 62.9, 1.0, true /* TRUE */);
+    World.ClearArea(-381.8, 284.0, 62.9, 1.0, true);
     $.player.setCoordinates(-381.8, 284.0, -100.0);
     $.player.setHeading(232.0);
 
@@ -329,7 +329,7 @@ async function body() {
 
     Path.SwitchPedRoadsOff(-942.6, 337.0, 10.0, -953.6, 361.4, 30.0); // DAM
 
-    while ($.player.isInArea3D(-448.0, 241.7, 50.0, -292.4, 365.2, 90.0, false /* FALSE */)) {
+    while ($.player.isInArea3D(-448.0, 241.7, 50.0, -292.4, 365.2, 90.0, false)) {
         await asyncWait(0);
         if ($.countdown_cat1 == 0) {
             // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
@@ -358,7 +358,7 @@ async function body() {
         $.player.setControl(false /* Off */);
         Game.SetPoliceIgnorePlayer($.player, true /* ON */);
         Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-        $.escape_chopper.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+        $.escape_chopper.setProofs(true, true, true, true, true);
     }
 
     if ($.player.isInAnyCar()) {
@@ -455,7 +455,7 @@ async function body() {
         SETUP_ZONE_CAR_INFO WEE_DAM NIGHT (0) 0 0 0 0 0 0 0 0 0 0 0 0 0	0
         */
 
-        while (!$.player.isInArea3D(-927.4, 391.5, 50.0, -1124.3, 485.1, 0.0, false /* FALSE */)) {
+        while (!$.player.isInArea3D(-927.4, 391.5, 50.0, -1124.3, 485.1, 0.0, false)) {
             await asyncWait(0);
             if ($.countdown_cat1 == 0) {
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
@@ -490,7 +490,7 @@ async function body() {
         $.colubian_guard7.setHeading(237.0);
         //ADD_ARMOUR_TO_CHAR colubian_guard7 100
 
-        $.colubian_guard7.setStayInSamePlace(true /* TRUE */);
+        $.colubian_guard7.setStayInSamePlace(true);
         $.colubian_guard7.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.colubian_guard7.giveWeapon(6 /* WEAPONTYPE_M16 */, 500);
         $.colubian_guard7.setAccuracy(40);
@@ -499,7 +499,7 @@ async function body() {
         $.colubian_guard8.setHeading(287.0);
         //ADD_ARMOUR_TO_CHAR colubian_guard8 100
 
-        $.colubian_guard8.setStayInSamePlace(true /* TRUE */);
+        $.colubian_guard8.setStayInSamePlace(true);
         $.colubian_guard8.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.colubian_guard8.giveWeapon(6 /* WEAPONTYPE_M16 */, 500);
         $.colubian_guard8.setAccuracy(40);
@@ -519,7 +519,7 @@ async function body() {
         //ADD_ARMOUR_TO_CHAR colubian_guard16 100
 
         $.colubian_guard16.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 500);
-        $.colubian_guard16.setStayInSamePlace(true /* TRUE */);
+        $.colubian_guard16.setStayInSamePlace(true);
 
         $.colubian_guard17 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -1066.3, 475.8, -100.0); //guards by 2nd columbian block
         $.colubian_guard17.setHeading(224.0);
@@ -541,7 +541,7 @@ async function body() {
 
         $.colubian_guard19.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.colubian_guard19.giveWeapon(6 /* WEAPONTYPE_M16 */, 500);
-        $.colubian_guard19.setStayInSamePlace(true /* TRUE */);
+        $.colubian_guard19.setStayInSamePlace(true);
 
         $.colubian_guard22 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -1159.5, 424.2, -100.0); //By boxes
         $.colubian_guard22.setHeading(278.0);
@@ -571,7 +571,7 @@ async function body() {
         $.colubian_guard26.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.colubian_guard26.giveWeapon(6 /* WEAPONTYPE_M16 */, 500);
 
-        while (!$.player.isInArea3D(-1111.2, 446.0, 20.0, -1221.7, 366.6, 30.0, false /* FALSE */)) {
+        while (!$.player.isInArea3D(-1111.2, 446.0, 20.0, -1221.7, 366.6, 30.0, false)) {
             await asyncWait(0);
             if ($.countdown_cat1 == 0) {
                 Text.PrintNow('OUTTIME', 5000, 1);
@@ -608,7 +608,7 @@ async function body() {
 
         $.colubian_guard10.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.colubian_guard10.giveWeapon(9 /* WEAPONTYPE_FLAMETHROWER */, 1000);
-        $.colubian_guard10.setStayInSamePlace(true /* TRUE */);
+        $.colubian_guard10.setStayInSamePlace(true);
 
         $.colubian_guard20 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1188.5, 368.0, -100.0); //On heli pad with M16
         $.colubian_guard20.setHeading(7.0);
@@ -617,7 +617,7 @@ async function body() {
 
         $.colubian_guard20.giveWeapon(6 /* WEAPONTYPE_M16 */, 1000);
         $.colubian_guard20.setAccuracy(30);
-        $.colubian_guard20.setStayInSamePlace(true /* TRUE */);
+        $.colubian_guard20.setStayInSamePlace(true);
 
         $.colubian_guard21 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1176.3, 357.1, -100.0); //On heli pad with AK47
         $.colubian_guard21.setHeading(58.0);
@@ -626,7 +626,7 @@ async function body() {
 
         $.colubian_guard21.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 1000);
         $.colubian_guard21.setAccuracy(30);
-        $.colubian_guard21.setStayInSamePlace(true /* TRUE */);
+        $.colubian_guard21.setStayInSamePlace(true);
 
         $.colubian_guard25 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1199.4, 334.1, -100.0); //On heli pad with AK47
         $.colubian_guard25.setHeading(3.0);
@@ -635,17 +635,17 @@ async function body() {
 
         $.colubian_guard25.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 1000);
         $.colubian_guard25.setAccuracy(30);
-        $.colubian_guard25.setStayInSamePlace(true /* TRUE */);
+        $.colubian_guard25.setStayInSamePlace(true);
 
         $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, -1201.6, 338.6, -100.0);
-        $.maria.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+        $.maria.setProofs(true, true, true, true, true);
         $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
         $.maria.lookAtPlayerAlways($.player);
         $.maria.setHeading(339.0);
         $.maria_created_before = 1;
 
         $.catalina = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, -1182.0, 346.1, -100.0);
-        $.catalina.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+        $.catalina.setProofs(true, true, true, true, true);
         $.catalina.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
 
         //SHORT CATALINA ESCAPE CUT SCENE
@@ -692,11 +692,11 @@ async function body() {
         await asyncWait(1000);
 
         if (!Char.IsDead($.maria)) {
-            $.maria.setProofs(false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+            $.maria.setProofs(false, false, false, false, false);
         }
 
         if (!Car.IsDead($.escape_chopper)) {
-            $.escape_chopper.setProofs(false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+            $.escape_chopper.setProofs(false, false, false, false, false);
             CatalinaHeli.TakeOff();
         }
 
@@ -724,7 +724,7 @@ async function body() {
                 // SCM GOTO → mission_cat1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_cat1_failed'); // fallback: would break linear control flow
             }
-            if ($.player.locateOnFootChar3D($.maria, 10.0, 10.0, 3.0, false /* FALSE */)) {
+            if ($.player.locateOnFootChar3D($.maria, 10.0, 10.0, 3.0, false)) {
                 if ($.set_as_leader_before == 0) {
                     $.maria.stopLooking();
                     $.maria.followPlayer($.player);
@@ -748,22 +748,22 @@ async function body() {
             ENDIF
             ENDIF
             */
-            if ($.player.isInArea3D(-1142.0, 327.8, 29.0, -1215.6, 368.4, 40.0, false /* FALSE */)) {
+            if ($.player.isInArea3D(-1142.0, 327.8, 29.0, -1215.6, 368.4, 40.0, false)) {
                 if ($.been_on_heli_pad == 0) {
                     if (!Char.IsDead($.colubian_guard10)) {
-                        $.colubian_guard10.setStayInSamePlace(false /* FALSE */);
+                        $.colubian_guard10.setStayInSamePlace(false);
                         $.colubian_guard10.setObjKillPlayerAnyMeans($.player);
                     }
                     if (!Char.IsDead($.colubian_guard20)) {
-                        $.colubian_guard20.setStayInSamePlace(false /* FALSE */);
+                        $.colubian_guard20.setStayInSamePlace(false);
                         $.colubian_guard20.setObjKillPlayerAnyMeans($.player);
                     }
                     if (!Char.IsDead($.colubian_guard21)) {
-                        $.colubian_guard21.setStayInSamePlace(false /* FALSE */);
+                        $.colubian_guard21.setStayInSamePlace(false);
                         $.colubian_guard21.setObjKillPlayerAnyMeans($.player);
                     }
                     if (!Char.IsDead($.colubian_guard25)) {
-                        $.colubian_guard25.setStayInSamePlace(false /* FALSE */);
+                        $.colubian_guard25.setStayInSamePlace(false);
                         $.colubian_guard25.setObjKillPlayerAnyMeans($.player);
                     }
                     $.been_on_heli_pad = 1;
@@ -782,7 +782,7 @@ async function body() {
 
     if ($.maria_created_before == 0) {
         $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, -1201.6, 338.6, -100.0);
-        $.maria.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+        $.maria.setProofs(true, true, true, true, true);
         $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
         $.maria.lookAtPlayerAlways($.player);
         $.maria.setHeading(339.0);
@@ -808,7 +808,7 @@ async function body() {
                 $.added_the_blip_for_maria = 0;
             }
         }
-        if ($.player.locateOnFootChar3D($.maria, 10.0, 10.0, 3.0, false /* FALSE */)) {
+        if ($.player.locateOnFootChar3D($.maria, 10.0, 10.0, 3.0, false)) {
             if ($.set_as_leader_before == 0) {
                 $.maria.stopLooking();
                 $.maria.followPlayer($.player);
@@ -819,22 +819,22 @@ async function body() {
                 $.set_as_leader_before = 0;
             }
         }
-        if ($.player.isInArea3D(-1142.0, 327.8, 29.0, -1215.6, 368.4, 40.0, false /* FALSE */)) {
+        if ($.player.isInArea3D(-1142.0, 327.8, 29.0, -1215.6, 368.4, 40.0, false)) {
             if ($.been_on_heli_pad == 0) {
                 if (!Char.IsDead($.colubian_guard10)) {
-                    $.colubian_guard10.setStayInSamePlace(false /* FALSE */);
+                    $.colubian_guard10.setStayInSamePlace(false);
                     $.colubian_guard10.setObjKillPlayerAnyMeans($.player);
                 }
                 if (!Char.IsDead($.colubian_guard20)) {
-                    $.colubian_guard20.setStayInSamePlace(false /* FALSE */);
+                    $.colubian_guard20.setStayInSamePlace(false);
                     $.colubian_guard20.setObjKillPlayerAnyMeans($.player);
                 }
                 if (!Char.IsDead($.colubian_guard21)) {
-                    $.colubian_guard21.setStayInSamePlace(false /* FALSE */);
+                    $.colubian_guard21.setStayInSamePlace(false);
                     $.colubian_guard21.setObjKillPlayerAnyMeans($.player);
                 }
                 if (!Char.IsDead($.colubian_guard25)) {
-                    $.colubian_guard25.setStayInSamePlace(false /* FALSE */);
+                    $.colubian_guard25.setStayInSamePlace(false);
                     $.colubian_guard25.setObjKillPlayerAnyMeans($.player);
                 }
                 $.been_on_heli_pad = 1;
@@ -1071,7 +1071,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Audio.SetMusicDoesFade(false /* FALSE */);
+    Audio.SetMusicDoesFade(false);
 
     Camera.SetFadingColor(1, 1, 1);
     Camera.DoFade(2000, 0 /* FADE_OUT */);
@@ -1155,8 +1155,8 @@ async function mission_start_credits() {
     before_final_final_scene: {
         await asyncWait(0);
         $.player.setControl(false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
-        $.player.setVisible(false /* FALSE */);
+        Game.SetEveryoneIgnorePlayer($.player, true);
+        $.player.setVisible(false);
         World.SwitchRubbish(false /* OFF */);
         Hud.SwitchWidescreen(true /* ON */);
         $.player.addScore(1000000);
@@ -1414,7 +1414,7 @@ async function mission_start_credits() {
 
         Clock.SetTimeOfDay(7, 0);
 
-        Audio.SetMusicDoesFade(true /* TRUE */);
+        Audio.SetMusicDoesFade(true);
 
         Camera.DoFade(2000, 0 /* FADE_OUT */);
 
@@ -1422,9 +1422,9 @@ async function mission_start_credits() {
             await asyncWait(0);
         }
 
-        $.player.setVisible(true /* TRUE */);
+        $.player.setVisible(true);
         $.player.setHealth(100);
-        World.ClearArea(-666.8, -1.8, 18.8, 2.0, true /* TRUE */);
+        World.ClearArea(-666.8, -1.8, 18.8, 2.0, true);
         $.player.setCoordinates(-666.8, -1.8, -100.0);
         Streaming.LoadScene(-666.8, -1.8, 19.0);
         $.player.setHeading(180.0);

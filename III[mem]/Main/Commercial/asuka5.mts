@@ -75,7 +75,7 @@ async function body() {
         $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
         $.cs_playerhead.setAnim('player');
 
-        World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */);
+        World.ClearArea(523.6, -639.4, 16.6, 1.0, true);
         $.player.setCoordinates(523.6, -639.4, 16.0);
 
         $.player.setHeading(180.0);
@@ -172,21 +172,21 @@ async function body() {
 
         $.tanner_car = Car.Create(109 /* CAR_ESPERANTO */, 420.9, -1396.5, 26.0); //TEST INDUSTRIAL!!!!!!!!!
         $.tanner_car.setHeading(90.0);
-        $.tanner_car.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.tanner_car.setOnlyDamagedByPlayer(true);
         $.tanner_car.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-        $.tanner_car.setStaysInCurrentLevel(true /* TRUE */);
-        $.tanner_car.setAvoidLevelTransitions(true /* TRUE */);
+        $.tanner_car.setStaysInCurrentLevel(true);
+        $.tanner_car.setAvoidLevelTransitions(true);
 
         $.blip1_as5 = Blip.AddForCoord(414.0, -1378.0, -100.0);
         $.blip1_as5.changeDisplay(2 /* BLIP_ONLY */);
 
-        while (!$.player.isStoppedInArea3D(411.8, -1375.3, 25.6, 417.0, -1381.9, 28.6, true /* TRUE */)) {
+        while (!$.player.isStoppedInArea3D(411.8, -1375.3, 25.6, 417.0, -1381.9, 28.6, true)) {
             await asyncWait(0);
             if (Car.IsDead($.tanner_car)) {
                 // SCM GOTO → mission_asuka5_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_asuka5_failed'); // fallback: would break linear control flow
             }
-            if (!$.tanner_car.isHealthGreater(999) || !$.tanner_car.isInArea2D(417.1, -1398.0, 425.4, -1394.9, false /* FALSE */)) {
+            if (!$.tanner_car.isHealthGreater(999) || !$.tanner_car.isInArea2D(417.1, -1398.0, 425.4, -1394.9, false)) {
                 Text.PrintNow('AM5_1', 5000, 1);
                 // SCM GOTO → mission_asuka5_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_asuka5_failed'); // fallback: would break linear control flow
@@ -198,12 +198,12 @@ async function body() {
         $.blip2_as5 = Blip.AddForCar($.tanner_car);
 
         $.player.setControl(false /* Off */);
-        World.ClearArea(427.9, -1392.7, 21.1, 20.0, true /* TRUE */);
+        World.ClearArea(427.9, -1392.7, 21.1, 20.0, true);
         Game.SetPoliceIgnorePlayer($.player, true /* On */);
         Hud.SwitchWidescreen(true /* ON */);
 
         $.tanner = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 436.5, -1399.8, 33.7); //TEST INDUSTRIAL!!!!!!!!
-        $.tanner.setRunning(true /* TRUE */);
+        $.tanner.setRunning(true);
 
         Camera.SetFixedPosition(437.4, -1387.4, 30.9, 0.0, 0.0, 0.0); //TEST INDUSTRIAL!!!!!!!!
         Camera.PointAtChar($.tanner, 15 /* FIXED */, 2 /* JUMP_CUT */);
@@ -290,7 +290,7 @@ async function body() {
             return;
         }
 
-        World.ClearArea(427.9, -1392.7, 21.1, 20.0, true /* TRUE */);
+        World.ClearArea(427.9, -1392.7, 21.1, 20.0, true);
         Camera.PointAtCar($.tanner_car, 15 /* FIXED */, 1 /* INTERPOLATION */);
 
         Hud.DisplayCounterWithString($.$id.test_tanner_health_counter, 1, 'DAM');
@@ -319,7 +319,7 @@ async function body() {
                     Hud.ClearCounter($.$id.test_tanner_health_counter);
                     $.cleared_timer_once_asuka5 = 1;
                 }
-                if (!$.tanner_car.locate2D(319.9, -1388.6, 8.0, 8.0, false /* FALSE */)) {
+                if (!$.tanner_car.locate2D(319.9, -1388.6, 8.0, 8.0, false)) {
                     if ($.got_to_coord_once == 0) {
                         $.tanner_car.gotoCoordinatesAccurate(319.9, -1388.6, -100.0);
                         $.tanner_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
@@ -362,7 +362,7 @@ async function body() {
                 Hud.ClearCounter($.$id.test_tanner_health_counter);
                 $.cleared_timer_once_asuka5 = 1;
             }
-            if (!$.tanner_car.locate2D(319.9, -1388.6, 6.0, 6.0, false /* FALSE */)) {
+            if (!$.tanner_car.locate2D(319.9, -1388.6, 6.0, 6.0, false)) {
                 if ($.got_to_coord_once == 0) {
                     $.tanner_car.gotoCoordinatesAccurate(319.9, -1388.6, -100.0);
                     $.tanner_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
@@ -409,7 +409,7 @@ async function body() {
         return; // SCM GOTO → mission_asuka5_passed
     }
 
-    $.tanner.setOnlyDamagedByPlayer(true /* True */);
+    $.tanner.setOnlyDamagedByPlayer(true);
 
     if (Car.IsDead($.tanner_car) && $.cleared_timer_once_asuka5 == 0) {
         Hud.ClearCounter($.$id.test_tanner_health_counter);

@@ -134,10 +134,10 @@ async function body() {
         $.cs_joedoor = CutsceneObject.Create(185 /* cut_obj1 */);
         $.cs_joedoor.setAnim('JOEDOOR');
 
-        World.ClearArea(1195.0, -870.3, 15.0, 10.0, true /* TRUE */);
+        World.ClearArea(1195.0, -870.3, 15.0, 10.0, true);
 
-        World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false /* FALSE */);
-        World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false);
+        World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false);
 
         //MOVE GARAGE UP
 
@@ -154,8 +154,8 @@ async function body() {
         $.joeydoor3_Z = $.joeydoor3_Z + 3.0;
 
         while (
-            !$.joeys_garage_door2.slide($.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z, 0.1, 0.1, 100.0, false /* FALSE */) ||
-            !$.joeys_garage_door3.slide($.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z, 0.1, 0.1, 100.0, false /* FALSE */)
+            !$.joeys_garage_door2.slide($.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z, 0.1, 0.1, 100.0, false) ||
+            !$.joeys_garage_door3.slide($.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z, 0.1, 0.1, 100.0, false)
         ) {
             await asyncWait(0);
             if (Car.IsDead($.tonis_ride)) {
@@ -262,15 +262,15 @@ async function body() {
         if (!Car.IsDead($.tonis_ride)) {
             $.toni = Char.CreateAsPassenger($.tonis_ride, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 0);
             $.toni.clearThreatSearch();
-            $.toni.setCantBeDraggedOut(true /* TRUE */);
+            $.toni.setCantBeDraggedOut(true);
             $.toni.addArmor(100);
             $.player.warpIntoCar($.tonis_ride);
         }
 
-        World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, true /* TRUE */);
-        World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, true /* TRUE */);
+        World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, true);
+        World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, true);
 
-        World.ClearArea(1198.5, -871.4, 15.0, 10.0, true /* TRUE */);
+        World.ClearArea(1198.5, -871.4, 15.0, 10.0, true);
         //SET_FIXED_CAMERA_POSITION 1206.0 -864.6 15.4 0.0 0.0 0.0
         //POINT_CAMERA_AT_PLAYER player FIXED JUMP_CUT
 
@@ -322,7 +322,7 @@ async function body() {
             //SET_ANIM_GROUP_FOR_CHAR toni ANIM_OLDFAT_PED
         }
 
-        while (!$.tonis_ride.locate2D(1198.5, -871.4, 2.0, 2.0, false /* FALSE */)) {
+        while (!$.tonis_ride.locate2D(1198.5, -871.4, 2.0, 2.0, false)) {
             await asyncWait(0);
             if (Car.IsDead($.tonis_ride)) {
                 // SCM GOTO → mission_joey4_failed (not lowered; manual jump required)
@@ -388,8 +388,8 @@ async function body() {
         $.joeydoor3_Z = $.joeydoor3_Z - 3.0;
 
         while (
-            !$.joeys_garage_door2.slide($.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z, 0.1, 0.1, 0.1, false /* FALSE */) ||
-            !$.joeys_garage_door3.slide($.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z, 0.1, 0.1, 0.1, false /* FALSE */)
+            !$.joeys_garage_door2.slide($.joeydoor2_X, $.joeydoor2_Y, $.joeydoor2_Z, 0.1, 0.1, 0.1, false) ||
+            !$.joeys_garage_door3.slide($.joeydoor3_X, $.joeydoor3_Y, $.joeydoor3_Z, 0.1, 0.1, 0.1, false)
         ) {
             await asyncWait(0);
             if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
@@ -461,18 +461,18 @@ async function body() {
 
         Path.SwitchPedRoadsOff(824.9, -633.8, 13.0, 845.3, -693.8, 18.0);
         Path.SwitchRoadsOff(824.9, -633.8, 13.0, 845.3, -693.8, 18.0);
-        World.ClearArea(843.4, -663.8, 15.0, 10.0, true /* TRUE */);
+        World.ClearArea(843.4, -663.8, 15.0, 10.0, true);
 
         $.blip1_jm4 = Blip.AddForCoord(843.0, -660.0, -100.0);
         $.blip1_jm4.changeDisplay(2 /* BLIP_ONLY */);
 
         $.triad1_jm4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 850.0, -663.0, 14.7);
         $.triad1_jm4.clearThreatSearch();
-        $.triad1_jm4.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+        $.triad1_jm4.setProofs(true, true, true, true, true);
 
         $.triad2_jm4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 850.0, -664.7, 14.7);
         $.triad2_jm4.clearThreatSearch();
-        $.triad2_jm4.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+        $.triad2_jm4.setProofs(true, true, true, true, true);
 
         $.triad1_jm4.turnToFaceChar($.triad2_jm4);
         $.triad2_jm4.turnToFaceChar($.triad1_jm4);
@@ -521,7 +521,7 @@ async function body() {
                 Audio.PlayMissionAudio();
                 $.Toni_abuse1_done_before = 1;
             }
-            if ($.player.isStoppedInAreaInCar3D(839.2, -667.4, 14.0, 842.1, -673.9, 17.0, false /* FALSE */)) {
+            if ($.player.isStoppedInAreaInCar3D(839.2, -667.4, 14.0, 842.1, -673.9, 17.0, false)) {
                 if ($.player.isWantedLevelGreater(0)) {
                     if ($.flag_displayed_wanted_message_jm4 == 0) {
                         Text.PrintNow('WANTED1', 3000, 1);
@@ -529,7 +529,7 @@ async function body() {
                     }
                 }
             } else {
-                if (!$.player.isInArea3D(839.2, -667.4, 14.0, 842.1, -673.9, 17.0, false /* FALSE */)) {
+                if (!$.player.isInArea3D(839.2, -667.4, 14.0, 842.1, -673.9, 17.0, false)) {
                     $.flag_displayed_wanted_message_jm4 = 0;
                 }
             }
@@ -555,13 +555,13 @@ async function body() {
         }
 
         if (!Char.IsDead($.toni)) {
-            $.toni.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+            $.toni.setProofs(true, true, true, true, true);
         }
 
         Audio.PlayMissionAudio();
         Text.PrintNow('JM4_2', 5000, 1); //wait here
 
-        World.ClearArea(843.4, -663.8, 15.0, 10.0, true /* TRUE */);
+        World.ClearArea(843.4, -663.8, 15.0, 10.0, true);
 
         await asyncWait(4000);
 
@@ -638,7 +638,7 @@ async function body() {
 
         //OPEN DOORS
 
-        while (!$.laundrete_door1.rotate(90.0, 10.0, false /* FALSE */) || !$.laundrete_door2.rotate(90.0, 10.0, false /* FALSE */)) {
+        while (!$.laundrete_door1.rotate(90.0, 10.0, false) || !$.laundrete_door2.rotate(90.0, 10.0, false)) {
             await asyncWait(0);
             if (Char.IsDead($.toni)) {
                 Text.PrintNow('JM4_8', 5000, 1);
@@ -726,18 +726,18 @@ async function body() {
             $.triad2_jm4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
         }
 
-        $.toni.setRunning(true /* TRUE */);
+        $.toni.setRunning(true);
 
         if (!Char.IsDead($.triad1_jm4) || !Char.IsDead($.triad2_jm4)) {
-            $.triad1_jm4.setStayInSamePlace(true /* TRUE */);
-            $.triad2_jm4.setStayInSamePlace(true /* TRUE */);
+            $.triad1_jm4.setStayInSamePlace(true);
+            $.triad2_jm4.setStayInSamePlace(true);
             $.triad1_jm4.setObjKillCharOnFoot($.toni);
             $.triad2_jm4.setObjKillCharOnFoot($.toni);
         }
 
         //TONI RUNS OUT
 
-        World.ClearArea(843.4, -663.8, 15.0, 10.0, true /* TRUE */);
+        World.ClearArea(843.4, -663.8, 15.0, 10.0, true);
 
         TIMERB = 0;
 
@@ -778,8 +778,8 @@ async function body() {
         await asyncWait(1500);
 
         if (!Char.IsDead($.triad1_jm4) && !Char.IsDead($.triad2_jm4)) {
-            $.triad1_jm4.setStayInSamePlace(false /* FALSE */);
-            $.triad2_jm4.setStayInSamePlace(false /* FALSE */);
+            $.triad1_jm4.setStayInSamePlace(false);
+            $.triad2_jm4.setStayInSamePlace(false);
             $.triad1_jm4.setObjRunToCoord(842.0, -663.8);
             $.triad2_jm4.setObjRunToCoord(843.5, -663.8);
         }
@@ -846,12 +846,12 @@ async function body() {
         $.triad4_jm4.setThreatSearch(1 /* THREAT_PLAYER1 */);
 
         if (!Char.IsDead($.toni)) {
-            $.toni.setProofs(false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+            $.toni.setProofs(false, false, false, false, false);
         }
 
         if (!Char.IsDead($.triad1_jm4) && !Char.IsDead($.triad2_jm4)) {
-            $.triad1_jm4.setProofs(false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
-            $.triad2_jm4.setProofs(false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+            $.triad1_jm4.setProofs(false, false, false, false, false);
+            $.triad2_jm4.setProofs(false, false, false, false, false);
         }
 
         $.player.setControl(true /* On */);
@@ -873,7 +873,7 @@ async function body() {
 
         // CLOSE DOORS
 
-        while (!$.laundrete_door1.rotate(0.0, 10.0, false /* FALSE */) || !$.laundrete_door2.rotate(180.0, 10.0, false /* FALSE */)) {
+        while (!$.laundrete_door1.rotate(0.0, 10.0, false) || !$.laundrete_door2.rotate(180.0, 10.0, false)) {
             await asyncWait(0);
             if (Char.IsDead($.toni)) {
                 Text.PrintNow('JM4_8', 5000, 1);
@@ -909,7 +909,7 @@ async function body() {
             $.triad2_jm4.setThreatSearch(1 /* THREAT_PLAYER1 */);
         }
 
-        World.ClearArea(1216.7, -328.1, 26.0, 6.0, true /* TRUE */);
+        World.ClearArea(1216.7, -328.1, 26.0, 6.0, true);
 
         $.flag_displayed_wanted_message_jm4 = 0;
 
@@ -969,7 +969,7 @@ async function body() {
                 Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */);
                 $.played_tune_before = 1;
             }
-            if ($.player.isStoppedInAreaInCar3D(1215.0, -326.9, 25.0, 1220.2, -330.5, 27.0, false /* FALSE */)) {
+            if ($.player.isStoppedInAreaInCar3D(1215.0, -326.9, 25.0, 1220.2, -330.5, 27.0, false)) {
                 if ($.player.isWantedLevelGreater(0)) {
                     if ($.flag_displayed_wanted_message_jm4 == 0) {
                         Text.PrintNow('WANTED1', 3000, 1);
@@ -977,7 +977,7 @@ async function body() {
                     }
                 }
             } else {
-                if (!$.player.isInArea3D(1215.0, -326.9, 25.0, 1220.2, -330.5, 27.0, false /* FALSE */)) {
+                if (!$.player.isInArea3D(1215.0, -326.9, 25.0, 1220.2, -330.5, 27.0, false)) {
                     $.flag_displayed_wanted_message_jm4 = 0;
                 }
             }
@@ -985,8 +985,8 @@ async function body() {
 
         $.blip3_jm4.remove();
 
-        World.ClearArea(1216.5, -326.8, 26.0, 6.0, true /* TRUE */);
-        World.ClearArea(1219.6, -319.2, 27.7, 2.0, true /* TRUE */);
+        World.ClearArea(1216.5, -326.8, 26.0, 6.0, true);
+        World.ClearArea(1219.6, -319.2, 27.7, 2.0, true);
         $.player.setControl(false /* Off */);
         Game.SetPoliceIgnorePlayer($.player, true /* ON */);
         Hud.SwitchWidescreen(true /* ON */);
@@ -1068,7 +1068,7 @@ async function body() {
         }
 
         if (!Char.IsDead($.toni)) {
-            $.toni.setRunning(false /* FALSE */);
+            $.toni.setRunning(false);
             $.toni.setObjLeaveCar($.tonis_ride);
             $.toni.stopLooking();
             $.player.stopLooking();
@@ -1095,7 +1095,7 @@ async function body() {
         }
 
         TIMERB = 0;
-        World.ClearArea(1219.4, -324.4, 26.1, 2.0, true /* TRUE */);
+        World.ClearArea(1219.4, -324.4, 26.1, 2.0, true);
         $.toni.setObjGotoCoordOnFoot(1219.4, -324.4);
 
         while (!$.toni.isObjectivePassed()) {
@@ -1119,7 +1119,7 @@ async function body() {
         }
 
         TIMERB = 0;
-        World.ClearArea(1219.5, -315.4, 29.9, 2.0, true /* TRUE */);
+        World.ClearArea(1219.5, -315.4, 29.9, 2.0, true);
         $.toni.setObjGotoCoordOnFoot(1219.5, -318.6);
 
         Audio.PlayMissionPassedTune(1);

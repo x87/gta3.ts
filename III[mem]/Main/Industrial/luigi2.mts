@@ -201,7 +201,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false);
 
         Cutscene.Load('l2_dsb');
 
@@ -231,7 +231,7 @@ async function body() {
 
         $.cs_note.setAnim('NOTE');
 
-        World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */);
+        World.ClearArea(896.6, -426.2, 13.9, 1.0, true);
         $.player.setCoordinates(896.6, -426.2, 13.9);
 
         $.player.setHeading(270.0);
@@ -335,7 +335,7 @@ async function body() {
 
         Camera.SetBehindPlayer();
 
-        World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true /* TRUE */);
+        World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true);
 
         Streaming.UnloadSpecialCharacter(1);
         Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
@@ -519,19 +519,19 @@ async function body() {
                     throw new Error('unresolved GOTO mission_luigi2_failed'); // fallback: would break linear control flow
                 }
             }
-            if ($.flag_done_looking_bit_lm2 == 1 || $.player.isInArea3D(1430.75, -807.0, 9.0, 1355.2, -883.2, 20.0, false /* FALSE */)) {
+            if ($.flag_done_looking_bit_lm2 == 1 || $.player.isInArea3D(1430.75, -807.0, 9.0, 1355.2, -883.2, 20.0, false)) {
                 $.flag_done_looking_bit_lm2 = 1;
                 $.flag_player_in_area_lm2 = 1;
                 if ($.flag_victim_dead_lm2 == 0) {
-                    if ($.player.locateAnyMeansChar3D($.victim_ped_lm2, 10.0, 10.0, 10.0, false /* FALSE */) && $.flag_victim_ped_lm2_changed == 0) {
+                    if ($.player.locateAnyMeansChar3D($.victim_ped_lm2, 10.0, 10.0, 10.0, false) && $.flag_victim_ped_lm2_changed == 0) {
                         $.victim_ped_lm2.turnToFacePlayer($.player);
                         $.victim_ped_lm2.setThreatSearch(1 /* THREAT_PLAYER1 */);
                         $.victim_ped_lm2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.victim_ped_lm2.setHeedThreats(true /* TRUE */);
+                        $.victim_ped_lm2.setHeedThreats(true);
                         $.victim_ped_lm2.setObjKillPlayerOnFoot($.player);
                         $.flag_victim_ped_lm2_changed = 1;
                     }
-                    if ($.player.locateAnyMeansChar3D($.victim_ped_lm2, 6.0, 6.0, 15.0, false /* FALSE */) && $.flag_player_got_help_message_lm2 == 0) {
+                    if ($.player.locateAnyMeansChar3D($.victim_ped_lm2, 6.0, 6.0, 15.0, false) && $.flag_player_got_help_message_lm2 == 0) {
                         $.controlmode = Pad.GetControllerMode();
                         if ($.controlmode == 0) {
                             Text.PrintHelp('LM2_2A'); //"Use the circle button to punch and kick!"
@@ -615,7 +615,7 @@ async function body() {
 
         // waiting for the player to respray the car
 
-        while (!$.sprayshop1.hasResprayHappened() || !$.player.isInCar($.car_lm2) || !$.player.isStoppedInArea2D(922.6, -366.1, 928.6, -354.3, false /* FALSE */)) {
+        while (!$.sprayshop1.hasResprayHappened() || !$.player.isInCar($.car_lm2) || !$.player.isStoppedInArea2D(922.6, -366.1, 928.6, -354.3, false)) {
             await asyncWait(0);
             if (Car.IsDead($.car_lm2)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -643,7 +643,7 @@ async function body() {
                 }
                 $.flag_player_had_car_message_lm2 = 0;
             }
-            if ($.player.locateInCar3D(925.1, -350.5, 9.3, 2.5, 2.5, 2.5, false /* FALSE */) && $.player.isInCar($.car_lm2)) {
+            if ($.player.locateInCar3D(925.1, -350.5, 9.3, 2.5, 2.5, 2.5, false) && $.player.isInCar($.car_lm2)) {
                 if ($.flag_had_spray_help == 0) {
                     Text.PrintHelp('SPRAY1');
                     $.sphere1_lm2.remove();
@@ -706,13 +706,13 @@ async function body() {
                     $.flag_player_had_car_message_lm2 = 0;
                 }
                 if ($.flag_player_had_garage_message_lm2 == 0) {
-                    if ($.player.locateInCar3D(1088.4, -574.4, 13.7, 2.5, 2.5, 2.5, false /* FALSE */) && $.player.isInCar($.car_lm2)) {
+                    if ($.player.locateInCar3D(1088.4, -574.4, 13.7, 2.5, 2.5, 2.5, false) && $.player.isInCar($.car_lm2)) {
                         Text.PrintHelp('GARAGE'); //"Drive the car into the garage, get out of the car and walk outside of the garage"
                         $.sphere2_lm2.remove();
                         $.flag_player_had_garage_message_lm2 = 1;
                     }
                 }
-                if (!$.player.locateInCar3D(1088.4, -574.4, 13.7, 2.5, 2.5, 2.5, false /* FALSE */) && $.flag_player_had_garage_message_lm2 == 1) {
+                if (!$.player.locateInCar3D(1088.4, -574.4, 13.7, 2.5, 2.5, 2.5, false) && $.flag_player_had_garage_message_lm2 == 1) {
                     $.flag_player_had_garage_message_lm2 = 0;
                 }
             }
@@ -795,7 +795,7 @@ async function girls_running() {
                             $.flag_girl1_running_lm2 = 1;
                         }
                         if ($.flag_girl1_running_lm2 == 1) {
-                            if ($.buyer1_lm2.locateOnFoot3D(1387.21, -837.38, 10.8, 4.0, 4.0, 4.0, false /* FALSE */)) {
+                            if ($.buyer1_lm2.locateOnFoot3D(1387.21, -837.38, 10.8, 4.0, 4.0, 4.0, false)) {
                                 $.buyer1_lm2.setObjFleePlayerOnFootAlways($.player);
                                 $.flag_girl1_running_lm2 = 2;
                             }
@@ -814,7 +814,7 @@ async function girls_running() {
                             $.flag_girl2_running_lm2 = 1;
                         }
                         if ($.flag_girl2_running_lm2 == 1) {
-                            if ($.buyer2_lm2.locateOnFoot3D(1385.98, -839.3, 10.8, 4.0, 4.0, 4.0, false /* FALSE */)) {
+                            if ($.buyer2_lm2.locateOnFoot3D(1385.98, -839.3, 10.8, 4.0, 4.0, 4.0, false)) {
                                 $.buyer2_lm2.setObjFleePlayerOnFootAlways($.player);
                                 $.flag_girl2_running_lm2 = 2;
                             }

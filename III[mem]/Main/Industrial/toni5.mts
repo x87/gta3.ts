@@ -76,12 +76,12 @@ async function body() {
     $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
     $.cs_playerhead.setAnim('player');
 
-    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
+    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true);
     $.player.setCoordinates(1219.5, -321.1, 26.4);
 
     $.player.setHeading(180.0);
 
-    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
+    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
@@ -205,7 +205,7 @@ async function body() {
     // START MISSION
 
     $.explosive_truck = Car.Create(98 /* CAR_TRASHMASTER */, 1314.0, -106.0, -100.0);
-    $.explosive_truck.setProofs(true /* TRUE */, true /* TRUE */, false /* FALSE */, false /* FALSE */, true /* TRUE */);
+    $.explosive_truck.setProofs(true, true, false, false, true);
     $.explosive_truck.armWithBomb(1 /* CARBOMB_TIMED */);
 
     $.fish_factory_destroyed = 0;
@@ -221,7 +221,7 @@ async function body() {
 
         await triad_AI(); // SCM GOSUB triad_AI
 
-        if (!$.explosive_truck.isHealthGreater(860) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
+        if (!$.explosive_truck.isHealthGreater(860) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
             $.explosive_truck.explode();
             // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
@@ -281,13 +281,13 @@ async function body() {
                     $.flag_car_blip_displayed_tm5 = 1 /* TRUE */;
                 }
             }
-            if (!$.explosive_truck.isHealthGreater(900) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
+            if (!$.explosive_truck.isHealthGreater(900) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
                 $.explosive_truck.explode();
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_toni5_failed'); // fallback: would break linear control flow
             }
-            if ($.countdown_tm5 == 0 && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
+            if ($.countdown_tm5 == 0 && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
                 $.explosive_truck.explode();
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 // SCM GOTO → mission_toni5_failed (not lowered; manual jump required)
@@ -321,7 +321,7 @@ async function body() {
             $.truck_x = _res292.x;
             $.truck_y = _res292.y;
             $.truck_z = _res292.z;
-            if (!$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false /* FALSE */)) {
+            if (!$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
                 continue toni5_wait_for_van; // SCM GOTO → toni5_wait_for_van
             }
             if (!$.player.isInCar($.explosive_truck) && !$.explosive_truck.isArmedWithBomb(4 /* CARBOMB_TIMEDACTIVE */)) {
@@ -412,10 +412,10 @@ async function body() {
         $.debris2_tm5 = ScriptObject.Create(1413 /* fish01 */, 972.7, -1103.2, 20.6);
         $.debris3_tm5 = ScriptObject.Create(1413 /* fish01 */, 978.8, -1107.2, 21.6);
         $.debris4_tm5 = ScriptObject.Create(1413 /* fish01 */, 979.8, -1105.2, 21.6);
-        $.debris1_tm5.setDynamic(true /* TRUE */);
-        $.debris2_tm5.setDynamic(true /* TRUE */);
-        $.debris3_tm5.setDynamic(true /* TRUE */);
-        $.debris4_tm5.setDynamic(true /* TRUE */);
+        $.debris1_tm5.setDynamic(true);
+        $.debris2_tm5.setDynamic(true);
+        $.debris3_tm5.setDynamic(true);
+        $.debris4_tm5.setDynamic(true);
         $.debris1_tm5.setVelocity(-10.0, 6.0, 18.0);
         $.debris2_tm5.setVelocity(8.0, 7.0, 16.0);
         $.debris3_tm5.setVelocity(-7.0, 10.0, 14.0);
@@ -437,12 +437,12 @@ async function body() {
         $.debris8_tm5 = ScriptObject.Create(1413 /* fish01 */, 985.0, -1108.0, 19.4);
         $.debris9_tm5 = ScriptObject.Create(1413 /* fish01 */, 977.0, -1113.0, 21.4);
         $.debris10_tm5 = ScriptObject.Create(1413 /* fish01 */, 976.0, -1115.0, 21.4);
-        $.debris5_tm5.setDynamic(true /* TRUE */);
-        $.debris6_tm5.setDynamic(true /* TRUE */);
-        $.debris7_tm5.setDynamic(true /* TRUE */);
-        $.debris8_tm5.setDynamic(true /* TRUE */);
-        $.debris9_tm5.setDynamic(true /* TRUE */);
-        $.debris10_tm5.setDynamic(true /* TRUE */);
+        $.debris5_tm5.setDynamic(true);
+        $.debris6_tm5.setDynamic(true);
+        $.debris7_tm5.setDynamic(true);
+        $.debris8_tm5.setDynamic(true);
+        $.debris9_tm5.setDynamic(true);
+        $.debris10_tm5.setDynamic(true);
         $.debris5_tm5.setVelocity(-3.0, 6.0, 18.0);
         $.debris6_tm5.setVelocity(5.0, 7.0, 16.0);
         $.debris7_tm5.setVelocity(-6.0, 7.0, 17.0);

@@ -275,7 +275,7 @@ async function body() {
 
     $.cs_playerhead.setAnim('player');
 
-    World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */);
+    World.ClearArea(459.1, -1413.0, 25.11, 1.0, true);
 
     $.player.setCoordinates(459.1, -1413.0, 25.11);
 
@@ -408,7 +408,7 @@ async function body() {
 
     $.car_to_steal1_km2.changeColor(13 /* CARCOLOUR_RED4 */, 13 /* CARCOLOUR_RED4 */);
 
-    $.car_to_steal1_km2.setCanRespray(false /* FALSE */);
+    $.car_to_steal1_km2.setCanRespray(false);
 
     $.radar_blip_car1_km2 = Blip.AddForCar($.car_to_steal1_km2);
 
@@ -437,7 +437,7 @@ async function body() {
 
     $.car_to_steal3_km2.changeColor(13 /* CARCOLOUR_RED4 */, 13 /* CARCOLOUR_RED4 */);
 
-    $.car_to_steal3_km2.setCanRespray(false /* FALSE */);
+    $.car_to_steal3_km2.setCanRespray(false);
 
     $.radar_blip_car3_km2 = Blip.AddForCar($.car_to_steal3_km2);
 
@@ -451,7 +451,7 @@ async function body() {
 
     $.car_to_steal4_km2.changeColor(13 /* CARCOLOUR_RED4 */, 13 /* CARCOLOUR_RED4 */);
 
-    $.car_to_steal4_km2.setCanRespray(false /* FALSE */);
+    $.car_to_steal4_km2.setCanRespray(false);
 
     $.radar_blip_car4_km2 = Blip.AddForCar($.car_to_steal4_km2);
 
@@ -514,7 +514,7 @@ async function body() {
                         throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
                     }
                 }
-                if ($.car_to_steal1_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false /* FALSE */)) {
+                if ($.car_to_steal1_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false)) {
                     if (!$.car_to_steal1_km2.isVisiblyDamaged()) {
                         $.flag_garage_no_blip_car1_km2 = 1;
                     }
@@ -705,7 +705,7 @@ async function body() {
                         throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
                     }
                 }
-                if ($.car_to_steal3_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false /* FALSE */)) {
+                if ($.car_to_steal3_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false)) {
                     if (!$.car_to_steal3_km2.isVisiblyDamaged()) {
                         $.flag_garage_no_blip_car3_km2 = 1;
                     }
@@ -787,7 +787,7 @@ async function body() {
                         throw new Error('unresolved GOTO mission_kenji2_failed'); // fallback: would break linear control flow
                     }
                 }
-                if ($.car_to_steal4_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false /* FALSE */)) {
+                if ($.car_to_steal4_km2.isStoppedInArea3D(377.3, -511.4, 25.1132, 383.7, -502.0, 30.0, false)) {
                     if (!$.car_to_steal4_km2.isVisiblyDamaged()) {
                         $.flag_garage_no_blip_car4_km2 = 1;
                     }

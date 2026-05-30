@@ -86,13 +86,13 @@ async function body() {
         $.mafia_goon1.giveWeapon(3 /* WEAPONTYPE_UZI */, 300);
         $.mafia_goon1.setThreatSearch(64 /* THREAT_COP */);
         $.mafia_goon1.setThreatSearch(256 /* THREAT_GANG_TRIAD */);
-        $.mafia_goon1.setRunning(true /* TRUE */);
+        $.mafia_goon1.setRunning(true);
         $.mafia_goon1.turnToFaceChar($.mafia_goon2);
         Game.SetCharsChatting($.mafia_goon1, $.mafia_goon2, 24000);
         $.mafia_goon2.giveWeapon(3 /* WEAPONTYPE_UZI */, 300);
         $.mafia_goon2.setThreatSearch(64 /* THREAT_COP */);
         $.mafia_goon2.setThreatSearch(256 /* THREAT_GANG_TRIAD */);
-        $.mafia_goon2.setRunning(true /* TRUE */);
+        $.mafia_goon2.setRunning(true);
         $.mafia_goon2.turnToFaceChar($.mafia_goon1);
     }
 
@@ -108,12 +108,12 @@ async function body() {
     $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
     $.cs_note.setAnim('NOTE');
 
-    World.ClearArea(1219.6, -323.0, 25.6, 1.0, true /* TRUE */);
+    World.ClearArea(1219.6, -323.0, 25.6, 1.0, true);
     $.player.setCoordinates(1219.6, -323.0, 25.6);
 
     $.player.setHeading(180.0);
 
-    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
+    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
@@ -265,8 +265,8 @@ async function body() {
     //SET_CHAR_THREAT_SEARCH triad_head1 THREAT_GANG_MAFIA
 
     $.triad_head1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.triad_head1.setOnlyDamagedByPlayer(true /* TRUE */);
-    $.triad_head1.setStayInSamePlace(true /* TRUE */);
+    $.triad_head1.setOnlyDamagedByPlayer(true);
+    $.triad_head1.setStayInSamePlace(true);
 
     $.triad_head2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 968.6, -682.2, 14.3); //Market place
     $.triad_head2.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
@@ -275,8 +275,8 @@ async function body() {
     //SET_CHAR_THREAT_SEARCH triad_head2 THREAT_GANG_MAFIA
 
     $.triad_head2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.triad_head2.setOnlyDamagedByPlayer(true /* TRUE */);
-    $.triad_head2.setStayInSamePlace(true /* TRUE */);
+    $.triad_head2.setOnlyDamagedByPlayer(true);
+    $.triad_head2.setStayInSamePlace(true);
 
     $.triad_head3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 968.3, -1136.8, 15.0); //Fish factory
     $.triad_head3.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
@@ -286,8 +286,8 @@ async function body() {
     //SET_CHAR_THREAT_SEARCH triad_head3 THREAT_GANG_MAFIA
 
     $.triad_head3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.triad_head3.setOnlyDamagedByPlayer(true /* TRUE */);
-    $.triad_head3.setStayInSamePlace(true /* TRUE */);
+    $.triad_head3.setOnlyDamagedByPlayer(true);
+    $.triad_head3.setStayInSamePlace(true);
 
     $.char_already_dead1 = 0;
     $.char_already_dead2 = 0;
@@ -397,7 +397,7 @@ async function body() {
         }
         if ($.grunts1_been_created_before == 0) {
             if (!Char.IsDead($.triad_head1)) {
-                if ($.player.locateAnyMeansChar2D($.triad_head1, 80.0, 80.0, false /* FALSE */)) {
+                if ($.player.locateAnyMeansChar2D($.triad_head1, 80.0, 80.0, false)) {
                     $.triad_grunt1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 907.4, -542.4, 14.4);
                     $.triad_grunt1.setHeading(180.0);
                     $.triad_grunt1.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
@@ -408,20 +408,20 @@ async function body() {
                     $.triad_grunt1B.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
                     $.triad_grunt1B.followChar($.triad_head1);
                     $.triad_grunt1B.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.triad_head1.setOnlyDamagedByPlayer(false /* FALSE */);
+                    $.triad_head1.setOnlyDamagedByPlayer(false);
                     $.grunts1_been_created_before = 1;
                 }
             }
         }
         if (!Char.IsDead($.triad_head1)) {
-            if ($.player.locateAnyMeansChar2D($.triad_head1, 30.0, 30.0, false /* FALSE */) && $.triad1_can_leg_it == 0) {
-                $.triad_head1.setStayInSamePlace(false /* FALSE */);
+            if ($.player.locateAnyMeansChar2D($.triad_head1, 30.0, 30.0, false) && $.triad1_can_leg_it == 0) {
+                $.triad_head1.setStayInSamePlace(false);
                 $.triad1_can_leg_it = 1;
             }
         }
         if ($.grunts2_been_created_before == 0) {
             if (!Char.IsDead($.triad_head2)) {
-                if ($.player.locateAnyMeansChar2D($.triad_head2, 80.0, 80.0, false /* FALSE */)) {
+                if ($.player.locateAnyMeansChar2D($.triad_head2, 80.0, 80.0, false)) {
                     $.triad_grunt2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 965.6, -680.2, 14.3);
                     $.triad_grunt2.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
                     $.triad_grunt2.followChar($.triad_head2);
@@ -430,30 +430,30 @@ async function body() {
                     $.triad_grunt2B.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
                     $.triad_grunt2B.followChar($.triad_head2);
                     $.triad_grunt2B.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.triad_head2.setOnlyDamagedByPlayer(false /* FALSE */);
+                    $.triad_head2.setOnlyDamagedByPlayer(false);
                     $.grunts2_been_created_before = 1;
                 }
             }
         }
         if (!Char.IsDead($.triad_head2)) {
-            if ($.player.locateAnyMeansChar2D($.triad_head2, 30.0, 30.0, false /* FALSE */) && $.triad2_can_leg_it == 0) {
-                $.triad_head2.setStayInSamePlace(false /* FALSE */);
+            if ($.player.locateAnyMeansChar2D($.triad_head2, 30.0, 30.0, false) && $.triad2_can_leg_it == 0) {
+                $.triad_head2.setStayInSamePlace(false);
                 $.triad2_can_leg_it = 1;
             }
         }
         if ($.grunts3_been_created_before == 0) {
             if (!Char.IsDead($.triad_head3)) {
-                if ($.player.locateAnyMeansChar2D($.triad_head3, 80.0, 80.0, false /* FALSE */)) {
+                if ($.player.locateAnyMeansChar2D($.triad_head3, 80.0, 80.0, false)) {
                     $.triad_grunt3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 967.1, -1134.0, 15.0);
                     $.triad_grunt3.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
                     $.triad_grunt3.followChar($.triad_head3);
                     $.triad_grunt3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.triad_head3.setOnlyDamagedByPlayer(false /* FALSE */);
+                    $.triad_head3.setOnlyDamagedByPlayer(false);
                     $.triad_grunt3B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 966.1, -1129.0, 15.0);
                     $.triad_grunt3B.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
                     $.triad_grunt3B.followChar($.triad_head3);
                     $.triad_grunt3B.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.triad_head3.setOnlyDamagedByPlayer(false /* FALSE */);
+                    $.triad_head3.setOnlyDamagedByPlayer(false);
                     $.grunts3_been_created_before = 1;
                 }
             }
@@ -501,13 +501,13 @@ async function body() {
             }
         }
         if (!Char.IsDead($.triad_head3)) {
-            if ($.player.locateAnyMeansChar2D($.triad_head3, 30.0, 30.0, false /* FALSE */) && $.triad3_can_leg_it == 0) {
-                $.triad_head3.setStayInSamePlace(false /* FALSE */);
+            if ($.player.locateAnyMeansChar2D($.triad_head3, 30.0, 30.0, false) && $.triad3_can_leg_it == 0) {
+                $.triad_head3.setStayInSamePlace(false);
                 $.triad3_can_leg_it = 1;
             }
         }
         if (!Char.IsDead($.mafia_goon1)) {
-            if (!$.player.locateAnyMeansChar2D($.mafia_goon1, 120.0, 120.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar2D($.mafia_goon1, 120.0, 120.0, false)) {
                 $.mafia_goon1.delete();
             } else {
                 if (!$.mafia_goon1.isInPlayersGroup($.player)) {
@@ -516,7 +516,7 @@ async function body() {
             }
         }
         if (!Char.IsDead($.mafia_goon2)) {
-            if (!$.player.locateAnyMeansChar2D($.mafia_goon2, 120.0, 120.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar2D($.mafia_goon2, 120.0, 120.0, false)) {
                 $.mafia_goon2.delete();
             } else {
                 if (!$.mafia_goon2.isInPlayersGroup($.player)) {
@@ -524,9 +524,9 @@ async function body() {
                 }
             }
         }
-        if ($.player.isInArea3D(1025.2, -1108.4, 12.0, 1009.2, -1098.4, 16.0, false /* FALSE */)) {
+        if ($.player.isInArea3D(1025.2, -1108.4, 12.0, 1009.2, -1098.4, 16.0, false)) {
             if (!$.player.isInModel(132 /* CAR_BELLYUP */) && !$.player.isInModel(98 /* CAR_TRASHMASTER */)) {
-                if ($.player.isInArea3D(1015.6, -1100.5, 12.0, 1009.2, -1108.1, 16.0, false /* FALSE */) && $.been_in_fish_factory == 0) {
+                if ($.player.isInArea3D(1015.6, -1100.5, 12.0, 1009.2, -1108.1, 16.0, false) && $.been_in_fish_factory == 0) {
                     $.been_in_fish_factory = 1;
                 }
                 if ($.been_in_fish_factory == 0) {

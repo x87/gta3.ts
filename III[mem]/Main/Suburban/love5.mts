@@ -104,7 +104,7 @@ async function body() {
     $.cs_lovehead = CutsceneHead.Create($.cs_love, 185 /* cut_obj1 */);
     $.cs_lovehead.setAnim('love');
 
-    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */);
+    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true);
 
     $.player.setCoordinates(82.44, -1548.49, 28.0);
 
@@ -203,14 +203,14 @@ async function body() {
     }
     $.truck_driver = Char.CreateInsideCar($.escort_truck, 21 /* PEDTYPE_SPECIAL */, 28 /* PED_SPECIAL3 */);
     $.ojg = Char.CreateAsPassenger($.escort_truck, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 0);
-    $.truck_driver.setCantBeDraggedOut(true /* TRUE */);
+    $.truck_driver.setCantBeDraggedOut(true);
     $.escort_truck.lockDoors(2 /* CARLOCK_LOCKED */);
     $.escort_truck.setHeading(180.0);
     $.escort_truck.setDrivingStyle(2);
     $.escort_truck.setCruiseSpeed(18.0);
     $.escort_truck.setIdle();
-    $.escort_truck.setStrong(true /* TRUE */);
-    $.escort_truck.setProofs(false /* FALSE */, false /* FALSE */, true /* TRUE */, false /* FALSE */, false /* FALSE */);
+    $.escort_truck.setStrong(true);
+    $.escort_truck.setProofs(false, false, true, false, false);
     //SET_CAR_HEALTH escort_truck 2000
 
     $.escort_truck_blip = Blip.AddForCar($.escort_truck);
@@ -304,12 +304,12 @@ async function body() {
             }
             if ($.escort_truck_flag == 1) {
                 if ($.escort_truck.locate2D(302.0435, -12.4083, 10.0, 10.0, false)) {
-                    $.escort_truck.setIgnoreLevelTransitions(true /* TRUE */);
+                    $.escort_truck.setIgnoreLevelTransitions(true);
                     if (!Char.IsDead($.ojg)) {
-                        $.ojg.setStaysInCurrentLevel(false /* FALSE */);
+                        $.ojg.setStaysInCurrentLevel(false);
                     }
                     if (!Char.IsDead($.truck_driver)) {
-                        $.truck_driver.setStaysInCurrentLevel(false /* FALSE */);
+                        $.truck_driver.setStaysInCurrentLevel(false);
                     }
                     $.escort_truck.setDrivingStyle(1);
                     World.SetCarDensityMultiplier(0.5);
@@ -345,13 +345,13 @@ async function body() {
             if ($.escort_truck_flag == 5) {
                 if ($.escort_truck.locate2D(-634.9936, -491.1914, 10.0, 10.0, false)) {
                     $.escort_truck.gotoCoordinates(-864.45, -282.45, 32.5);
-                    $.escort_truck.setIgnoreLevelTransitions(false /* FALSE */);
-                    $.escort_truck.setStaysInCurrentLevel(true /* TRUE */);
+                    $.escort_truck.setIgnoreLevelTransitions(false);
+                    $.escort_truck.setStaysInCurrentLevel(true);
                     if (!Char.IsDead($.ojg)) {
-                        $.ojg.setStaysInCurrentLevel(true /* TRUE */);
+                        $.ojg.setStaysInCurrentLevel(true);
                     }
                     if (!Char.IsDead($.truck_driver)) {
-                        $.truck_driver.setStaysInCurrentLevel(true /* TRUE */);
+                        $.truck_driver.setStaysInCurrentLevel(true);
                     }
                     $.escort_truck.setDrivingStyle(2);
                     World.SetCarDensityMultiplier(1.0);
@@ -409,11 +409,11 @@ async function body() {
                         $.colombian_1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -13.0, -464.0, 17.0);
                         $.colombian_1.setHeading(270.0);
                         $.colombian_1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                        $.colombian_1.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.colombian_1.setOnlyDamagedByPlayer(true);
                         $.colombian_1.setIdle();
                         $.colombian_1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                         $.colombian_1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.colombian_1.setStayInSamePlace(true /* TRUE */);
+                        $.colombian_1.setStayInSamePlace(true);
                         $.colombian_1_flag = 1;
                     }
                 }
@@ -440,11 +440,11 @@ async function body() {
                         $.colombian_2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 3.7, -467.7, 17.0);
                         $.colombian_2.setHeading(85.0);
                         $.colombian_2.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                        $.colombian_2.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.colombian_2.setOnlyDamagedByPlayer(true);
                         $.colombian_2.setIdle();
                         $.colombian_2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                         $.colombian_2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.colombian_2.setStayInSamePlace(true /* TRUE */);
+                        $.colombian_2.setStayInSamePlace(true);
                         $.colombian_2_flag = 1;
                     }
                 }
@@ -471,11 +471,11 @@ async function body() {
                         $.colombian_3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 124.4, -111.2, 16.0);
                         $.colombian_3.setHeading(85.0);
                         $.colombian_3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                        $.colombian_3.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.colombian_3.setOnlyDamagedByPlayer(true);
                         $.colombian_3.setIdle();
                         $.colombian_3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                         $.colombian_3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.colombian_3.setStayInSamePlace(true /* TRUE */);
+                        $.colombian_3.setStayInSamePlace(true);
                         $.colombian_3_flag = 1;
                     }
                 }
@@ -502,11 +502,11 @@ async function body() {
                         $.colombian_4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 8.65, -262.74, 16.0);
                         $.colombian_4.setHeading(163.0);
                         $.colombian_4.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                        $.colombian_4.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.colombian_4.setOnlyDamagedByPlayer(true);
                         $.colombian_4.setIdle();
                         $.colombian_4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                         $.colombian_4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.colombian_4.setStayInSamePlace(true /* TRUE */);
+                        $.colombian_4.setStayInSamePlace(true);
                         $.colombian_4_flag = 1;
                     }
                 }
@@ -533,11 +533,11 @@ async function body() {
                         $.colombian_5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 287.5946, 17.6184, 19.0714);
                         $.colombian_5.setHeading(0.0);
                         $.colombian_5.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                        $.colombian_5.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.colombian_5.setOnlyDamagedByPlayer(true);
                         $.colombian_5.setIdle();
                         $.colombian_5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                         $.colombian_5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.colombian_5.setStayInSamePlace(true /* TRUE */);
+                        $.colombian_5.setStayInSamePlace(true);
                         $.colombian_5_flag = 1;
                     }
                 }
@@ -564,11 +564,11 @@ async function body() {
                         $.colombian_6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 537.7727, 119.5505, -20.3699);
                         $.colombian_6.setHeading(238.1071);
                         $.colombian_6.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                        $.colombian_6.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.colombian_6.setOnlyDamagedByPlayer(true);
                         $.colombian_6.setIdle();
                         $.colombian_6.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                         $.colombian_6.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.colombian_6.setStayInSamePlace(true /* TRUE */);
+                        $.colombian_6.setStayInSamePlace(true);
                         $.colombian_6_flag = 1;
                     }
                 }
@@ -596,11 +596,11 @@ async function body() {
                             $.colombian_7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -632.9545, -499.5869, 22.3742);
                             $.colombian_7.setHeading(15.2319);
                             $.colombian_7.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                            $.colombian_7.setOnlyDamagedByPlayer(true /* TRUE */);
+                            $.colombian_7.setOnlyDamagedByPlayer(true);
                             $.colombian_7.setIdle();
                             $.colombian_7.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                             $.colombian_7.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                            $.colombian_7.setStayInSamePlace(true /* TRUE */);
+                            $.colombian_7.setStayInSamePlace(true);
                             $.colombian_7_flag = 1;
                         }
                     }
@@ -628,11 +628,11 @@ async function body() {
                         $.colombian_8 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -982.5755, -115.7109, 33.0045);
                         $.colombian_8.setHeading(234.9669);
                         $.colombian_8.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                        $.colombian_8.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.colombian_8.setOnlyDamagedByPlayer(true);
                         $.colombian_8.setIdle();
                         $.colombian_8.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                         $.colombian_8.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.colombian_8.setStayInSamePlace(true /* TRUE */);
+                        $.colombian_8.setStayInSamePlace(true);
                         $.colombian_8_flag = 1;
                     }
                 }
@@ -659,11 +659,11 @@ async function body() {
                         $.colombian_9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -967.8587, -103.2732, 34.2468);
                         $.colombian_9.setHeading(110.3819);
                         $.colombian_9.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                        $.colombian_9.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.colombian_9.setOnlyDamagedByPlayer(true);
                         $.colombian_9.setIdle();
                         $.colombian_9.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                         $.colombian_9.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.colombian_9.setStayInSamePlace(true /* TRUE */);
+                        $.colombian_9.setStayInSamePlace(true);
                         $.colombian_9_flag = 1;
                     }
                 }
@@ -691,11 +691,11 @@ async function body() {
                             $.colombian_10 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -655.9044, -405.6324, 17.8121);
                             $.colombian_10.setHeading(234.7831);
                             $.colombian_10.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                            $.colombian_10.setOnlyDamagedByPlayer(true /* TRUE */);
+                            $.colombian_10.setOnlyDamagedByPlayer(true);
                             $.colombian_10.setIdle();
                             $.colombian_10.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                             $.colombian_10.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                            $.colombian_10.setStayInSamePlace(true /* TRUE */);
+                            $.colombian_10.setStayInSamePlace(true);
                             $.colombian_10_flag = 1;
                         }
                     }
@@ -727,7 +727,7 @@ async function body() {
                             $.columbian_humvee1 = Car.Create(138 /* CAR_COLUMB */, -50.0, -1021.0, 26.0);
                             $.columbian_humvee1.setHeading(240.0);
                         }
-                        $.columbian_humvee1.setStaysInCurrentLevel(false /* FALSE */);
+                        $.columbian_humvee1.setStaysInCurrentLevel(false);
                         $.columbian_driver_1 = Char.CreateInsideCar($.columbian_humvee1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */);
                         $.columbian_hitman_1 = Char.CreateAsPassenger($.columbian_humvee1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 0);
                         $.columbian_hitman_3 = Char.CreateAsPassenger($.columbian_humvee1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1);
@@ -793,7 +793,7 @@ async function body() {
                         if ($.columbian_humvee1_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_1.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_1.setObjLeaveCar($.columbian_humvee1);
-                                $.columbian_hitman_1.setRunning(true /* TRUE */);
+                                $.columbian_hitman_1.setRunning(true);
                                 $.car1_attacking_flag = 2;
                             }
                         }
@@ -821,7 +821,7 @@ async function body() {
                         if ($.columbian_humvee1_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_3.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_3.setObjLeaveCar($.columbian_humvee1);
-                                $.columbian_hitman_3.setRunning(true /* TRUE */);
+                                $.columbian_hitman_3.setRunning(true);
                                 $.car1_attacking_flag = 4;
                             }
                         }
@@ -849,7 +849,7 @@ async function body() {
                         if ($.columbian_humvee1_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_5.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_5.setObjLeaveCar($.columbian_humvee1);
-                                $.columbian_hitman_5.setRunning(true /* TRUE */);
+                                $.columbian_hitman_5.setRunning(true);
                                 $.car1_attacking_flag = 6;
                             }
                         }
@@ -887,7 +887,7 @@ async function body() {
                             $.columbian_humvee2 = Car.Create(138 /* CAR_COLUMB */, -100.0, -409.0, 16.0);
                             $.columbian_humvee2.setHeading(90.0);
                         }
-                        $.columbian_humvee2.setStaysInCurrentLevel(false /* FALSE */);
+                        $.columbian_humvee2.setStaysInCurrentLevel(false);
                         $.columbian_driver_2 = Char.CreateInsideCar($.columbian_humvee2, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */);
                         $.columbian_hitman_2 = Char.CreateAsPassenger($.columbian_humvee2, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 0);
                         $.columbian_hitman_4 = Char.CreateAsPassenger($.columbian_humvee2, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1);
@@ -951,7 +951,7 @@ async function body() {
                         if ($.columbian_humvee2_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_2.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_2.setObjLeaveCar($.columbian_humvee2);
-                                $.columbian_hitman_2.setRunning(true /* TRUE */);
+                                $.columbian_hitman_2.setRunning(true);
                                 $.car2_attacking_flag = 2;
                             }
                         }
@@ -979,7 +979,7 @@ async function body() {
                         if ($.columbian_humvee2_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_4.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_4.setObjLeaveCar($.columbian_humvee2);
-                                $.columbian_hitman_4.setRunning(true /* TRUE */);
+                                $.columbian_hitman_4.setRunning(true);
                                 $.car2_attacking_flag = 4;
                             }
                         }
@@ -1007,7 +1007,7 @@ async function body() {
                         if ($.columbian_humvee2_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_6.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_6.setObjLeaveCar($.columbian_humvee2);
-                                $.columbian_hitman_6.setRunning(true /* TRUE */);
+                                $.columbian_hitman_6.setRunning(true);
                                 $.car2_attacking_flag = 6;
                             }
                         }
@@ -1046,7 +1046,7 @@ async function body() {
                                 $.columbian_humvee3 = Car.Create(138 /* CAR_COLUMB */, -735.5045, -577.3362, 7.6714);
                                 $.columbian_humvee3.setHeading(7.8079);
                             }
-                            $.columbian_humvee3.setStaysInCurrentLevel(false /* FALSE */);
+                            $.columbian_humvee3.setStaysInCurrentLevel(false);
                             $.columbian_driver_3 = Char.CreateInsideCar($.columbian_humvee3, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */);
                             $.columbian_hitman_7 = Char.CreateAsPassenger($.columbian_humvee3, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 0);
                             $.columbian_hitman_8 = Char.CreateAsPassenger($.columbian_humvee3, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1);
@@ -1111,7 +1111,7 @@ async function body() {
                         if ($.columbian_humvee3_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_7.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_7.setObjLeaveCar($.columbian_humvee3);
-                                $.columbian_hitman_7.setRunning(true /* TRUE */);
+                                $.columbian_hitman_7.setRunning(true);
                                 $.car3_attacking_flag = 2;
                             }
                         }
@@ -1139,7 +1139,7 @@ async function body() {
                         if ($.columbian_humvee3_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_8.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_8.setObjLeaveCar($.columbian_humvee3);
-                                $.columbian_hitman_8.setRunning(true /* TRUE */);
+                                $.columbian_hitman_8.setRunning(true);
                                 $.car3_attacking_flag = 4;
                             }
                         }
@@ -1167,7 +1167,7 @@ async function body() {
                         if ($.columbian_humvee3_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_9.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_9.setObjLeaveCar($.columbian_humvee3);
-                                $.columbian_hitman_9.setRunning(true /* TRUE */);
+                                $.columbian_hitman_9.setRunning(true);
                                 $.car3_attacking_flag = 6;
                             }
                         }
@@ -1205,7 +1205,7 @@ async function body() {
                             $.columbian_humvee4 = Car.Create(138 /* CAR_COLUMB */, -878.8591, -229.1282, 28.1703);
                             $.columbian_humvee4.setHeading(84.5748);
                         }
-                        $.columbian_humvee4.setStaysInCurrentLevel(false /* FALSE */);
+                        $.columbian_humvee4.setStaysInCurrentLevel(false);
                         $.columbian_driver_4 = Char.CreateInsideCar($.columbian_humvee4, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */);
                         $.columbian_hitman_10 = Char.CreateAsPassenger($.columbian_humvee4, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 0);
                         $.columbian_hitman_11 = Char.CreateAsPassenger($.columbian_humvee4, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1);
@@ -1269,7 +1269,7 @@ async function body() {
                         if ($.columbian_humvee4_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_10.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_10.setObjLeaveCar($.columbian_humvee4);
-                                $.columbian_hitman_10.setRunning(true /* TRUE */);
+                                $.columbian_hitman_10.setRunning(true);
                                 $.car4_attacking_flag = 2;
                             }
                         }
@@ -1297,7 +1297,7 @@ async function body() {
                         if ($.columbian_humvee4_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_11.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_11.setObjLeaveCar($.columbian_humvee4);
-                                $.columbian_hitman_11.setRunning(true /* TRUE */);
+                                $.columbian_hitman_11.setRunning(true);
                                 $.car4_attacking_flag = 4;
                             }
                         }
@@ -1325,7 +1325,7 @@ async function body() {
                         if ($.columbian_humvee4_speed < 10.0 && $.escort_truck_speed < 4.0) {
                             if ($.columbian_hitman_12.locateInCarCar2D($.escort_truck, 10.0, 10.0, false)) {
                                 $.columbian_hitman_12.setObjLeaveCar($.columbian_humvee4);
-                                $.columbian_hitman_12.setRunning(true /* TRUE */);
+                                $.columbian_hitman_12.setRunning(true);
                                 $.car4_attacking_flag = 6;
                             }
                         }

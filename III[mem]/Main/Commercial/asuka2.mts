@@ -97,7 +97,7 @@ async function body() {
     $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, 187 /* CUT_OBJ3 */);
     $.cs_kenjihead.setAnim('kenji');
 
-    World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */);
+    World.ClearArea(523.6, -639.4, 16.6, 1.0, true);
     $.player.setCoordinates(523.6, -639.4, 16.0);
 
     $.player.setHeading(180.0);
@@ -247,7 +247,7 @@ async function body() {
     $.FBI1.setHeading(304.0);
     $.FBI1.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.FBI1.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
-    $.FBI1.setStayInSamePlace(true /* TRUE */);
+    $.FBI1.setStayInSamePlace(true);
     $.FBI1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.blip1_FBI1 = Blip.AddForChar($.FBI1);
     //ADD_ARMOUR_TO_CHAR FBI1 99
@@ -256,7 +256,7 @@ async function body() {
     $.FBI2.setHeading(304.0);
     $.FBI2.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.FBI2.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
-    $.FBI2.setStayInSamePlace(true /* TRUE */);
+    $.FBI2.setStayInSamePlace(true);
     $.FBI2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.blip2_FBI2 = Blip.AddForChar($.FBI2);
     //ADD_ARMOUR_TO_CHAR FBI2 99
@@ -265,7 +265,7 @@ async function body() {
     $.FBI3.setHeading(304.0);
     $.FBI3.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.FBI3.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
-    $.FBI3.setStayInSamePlace(true /* TRUE */);
+    $.FBI3.setStayInSamePlace(true);
     $.FBI3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.blip3_FBI3 = Blip.AddForChar($.FBI3);
     //ADD_ARMOUR_TO_CHAR FBI3 99
@@ -274,7 +274,7 @@ async function body() {
     $.FBI8.setHeading(304.0);
     $.FBI8.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.FBI8.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
-    $.FBI8.setStayInSamePlace(true /* TRUE */);
+    $.FBI8.setStayInSamePlace(true);
     $.FBI8.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.blip8_FBI8 = Blip.AddForChar($.FBI8);
     //ADD_ARMOUR_TO_CHAR FBI8 99
@@ -283,7 +283,7 @@ async function body() {
     $.FBI9.setHeading(304.0);
     $.FBI9.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.FBI9.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
-    $.FBI9.setStayInSamePlace(true /* TRUE */);
+    $.FBI9.setStayInSamePlace(true);
     $.FBI9.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.blip9_FBI9 = Blip.AddForChar($.FBI9);
     //ADD_ARMOUR_TO_CHAR FBI9 99
@@ -292,7 +292,7 @@ async function body() {
     $.FBI10.setHeading(304.0);
     $.FBI10.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.FBI10.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
-    $.FBI10.setStayInSamePlace(true /* TRUE */);
+    $.FBI10.setStayInSamePlace(true);
     $.FBI10.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.blip10_FBI10 = Blip.AddForChar($.FBI10);
     //ADD_ARMOUR_TO_CHAR FBI10 99
@@ -303,7 +303,7 @@ async function body() {
     $.FBI4.setHeading(169.0);
     $.FBI4.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.FBI4.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
-    $.FBI4.setStayInSamePlace(true /* TRUE */);
+    $.FBI4.setStayInSamePlace(true);
     $.FBI4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.blip4_FBI4 = Blip.AddForChar($.FBI4);
     //ADD_ARMOUR_TO_CHAR FBI4 99
@@ -312,7 +312,7 @@ async function body() {
     $.FBI7.setHeading(208.0);
     $.FBI7.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.FBI7.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
-    $.FBI7.setStayInSamePlace(true /* TRUE */);
+    $.FBI7.setStayInSamePlace(true);
     $.FBI7.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.blip7_FBI7 = Blip.AddForChar($.FBI7);
     //ADD_ARMOUR_TO_CHAR FBI7 99
@@ -321,7 +321,7 @@ async function body() {
 
     $.FBI_VAN1 = Car.Create(130 /* CAR_RUMPO */, 61.3, -1389.4, 26.3);
     $.FBI_VAN1.changeColor(0 /* CARCOLOUR_BLACK */, 0 /* CARCOLOUR_BLACK */);
-    $.FBI_VAN1.setOnlyDamagedByPlayer(true /* True */);
+    $.FBI_VAN1.setOnlyDamagedByPlayer(true);
     $.FBI_VAN1.lockDoors(2 /* CARLOCK_LOCKED */);
     $.FBI_VAN1.setHeading(151.0);
     $.FBI5 = Char.CreateInsideCar($.FBI_VAN1, 4 /* PEDTYPE_CIVMALE */, 10 /* PED_GANG_MAFIA_A */);
@@ -540,7 +540,7 @@ async function body() {
         if (!Car.IsDead($.FBI_VAN1)) {
             if (!$.FBI_VAN1.isHealthGreater(999) && $.been_damaged_before == 0) {
                 if (!Char.IsDead($.FBI5) && !Char.IsDead($.FBI6)) {
-                    $.FBI_VAN1.setOnlyDamagedByPlayer(false /* false */);
+                    $.FBI_VAN1.setOnlyDamagedByPlayer(false);
                     $.FBI5.setObjKillPlayerAnyMeans($.player);
                     $.FBI6.setObjKillPlayerAnyMeans($.player);
                     $.FBI_VAN1.lockDoors(1 /* CARLOCK_UNLOCKED */);

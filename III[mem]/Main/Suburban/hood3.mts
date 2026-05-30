@@ -253,7 +253,7 @@ async function body() {
 
     $.car_hm3.setHeading(0.0);
 
-    $.car_hm3.setCanRespray(false /* FALSE */);
+    $.car_hm3.setCanRespray(false);
 
     $.radar_blip_car1_hm3 = Blip.AddForCar($.car_hm3);
 
@@ -366,7 +366,7 @@ async function body() {
                 throw new Error('unresolved GOTO mission_hood3_failed'); // fallback: would break linear control flow
             }
         }
-        if ($.car_hm3.locateStopped3D(-682.0, 76.0, 17.4, 3.0, 4.0, 4.0, false /* FALSE */)) {
+        if ($.car_hm3.locateStopped3D(-682.0, 76.0, 17.4, 3.0, 4.0, 4.0, false)) {
             if (!$.car_hm3.isVisiblyDamaged()) {
                 $.flag_dont_check_stuff_hm3 = 1;
             }

@@ -107,7 +107,7 @@ async function body() {
             }
         }
 
-        World.ClearArea(1272.6, -95.6, -100.0, 2.0, true /* TRUE */);
+        World.ClearArea(1272.6, -95.6, -100.0, 2.0, true);
 
         // ************************START OF CUTSCENE TWO "PLAYER NOT GOT THE MONEY"*****************
 
@@ -152,7 +152,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, false);
 
         Cutscene.Load('s4_bdba');
 
@@ -178,7 +178,7 @@ async function body() {
 
         $.cs_eitdoor.setAnim('EITDOOR');
 
-        World.ClearArea(1272.6, -95.6, -100.0, 1.0, true /* TRUE */);
+        World.ClearArea(1272.6, -95.6, -100.0, 1.0, true);
 
         $.player.setCoordinates(1272.6, -95.6, -100.0);
 
@@ -265,7 +265,7 @@ async function body() {
 
         Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, true /* TRUE */);
+        World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, true);
 
         Streaming.UnloadSpecialCharacter(1);
         Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
@@ -284,7 +284,7 @@ async function body() {
     }
 
     player_has_money: {
-        World.ClearArea(1272.6, -95.6, -100.0, 2.0, true /* TRUE */);
+        World.ClearArea(1272.6, -95.6, -100.0, 2.0, true);
 
         // ********************************START OF CUTSCENE ONE "GOT THE MONEY"********************
 
@@ -333,7 +333,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, false);
 
         Cutscene.Load('s4_bdbb');
 
@@ -367,7 +367,7 @@ async function body() {
 
         $.cs_bomb.setAnim('cs_bomb');
 
-        World.ClearArea(1272.6, -95.6, -100.0, 1.0, true /* TRUE */);
+        World.ClearArea(1272.6, -95.6, -100.0, 1.0, true);
 
         $.player.setCoordinates(1272.6, -95.6, -100.0);
 
@@ -440,7 +440,7 @@ async function body() {
 
         Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, true /* TRUE */);
+        World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, true);
 
         //UNLOAD_SPECIAL_CHARACTER 1
 
@@ -503,7 +503,7 @@ async function body() {
 
         $.boat_barrel17 = ScriptObject.Create(1344 /* barrel4 */, 1482.53, -942.701, 18.7328);
 
-        World.ClearArea(1272.8, -96.5, -100.0, 1.0, true /* TRUE */);
+        World.ClearArea(1272.8, -96.5, -100.0, 1.0, true);
 
         $.ped_8ball_fm3 = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 1272.8, -96.5, -100.0);
 
@@ -535,7 +535,7 @@ async function body() {
                 $.blob_flag = 0;
                 $.flag_blip_on_eightball_fm3 = 1;
             }
-            if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_eightball_fm3 == 1) {
+            if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false) && $.flag_blip_on_eightball_fm3 == 1) {
                 $.ped_8ball_fm3.followPlayer($.player);
                 $.radar_blip_ped2_fm3.remove();
                 $.radar_blip_coord2_fm3 = Blip.AddForCoord(1529.0, -824.0, -100.0);
@@ -564,7 +564,7 @@ async function body() {
                 $.blob_flag = 0;
                 $.flag_blip_on_eightball_fm3 = 1;
             }
-            if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_eightball_fm3 == 1) {
+            if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false) && $.flag_blip_on_eightball_fm3 == 1) {
                 $.ped_8ball_fm3.followPlayer($.player);
                 $.radar_blip_ped2_fm3.remove();
                 $.radar_blip_coord2_fm3 = Blip.AddForCoord(1529.0, -824.0, -100.0);
@@ -609,7 +609,7 @@ async function body() {
                 $.blob_flag = 0;
                 $.flag_blip_on_eightball_fm3 = 1;
             }
-            if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_eightball_fm3 == 1) {
+            if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false) && $.flag_blip_on_eightball_fm3 == 1) {
                 $.ped_8ball_fm3.followPlayer($.player);
                 $.radar_blip_ped2_fm3.remove();
                 $.radar_blip_coord2_fm3 = Blip.AddForCoord(1529.0, -824.0, -100.0);
@@ -654,7 +654,7 @@ async function body() {
                 $.blob_flag = 0;
                 $.flag_blip_on_eightball_fm3 = 1;
             }
-            if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_eightball_fm3 == 1) {
+            if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false) && $.flag_blip_on_eightball_fm3 == 1) {
                 $.ped_8ball_fm3.followPlayer($.player);
                 $.radar_blip_ped2_fm3.remove();
                 $.radar_blip_coord2_fm3 = Blip.AddForCoord(1529.0, -824.0, -100.0);
@@ -697,7 +697,7 @@ async function body() {
 
         $.guard1_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard1_fm3.setHeedThreats(true /* true */);
+        $.guard1_fm3.setHeedThreats(true);
 
         //guard2 on quayside left side of the ramp
 
@@ -713,7 +713,7 @@ async function body() {
 
         $.guard2_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard2_fm3.setHeedThreats(true /* true */);
+        $.guard2_fm3.setHeedThreats(true);
 
         //guard3 on boat left hand side by exploding creates
 
@@ -733,7 +733,7 @@ async function body() {
 
         $.guard3_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard3_fm3.setHeedThreats(true /* true */);
+        $.guard3_fm3.setHeedThreats(true);
 
         //guard4 on boat walks behind the large containers towards the rear of the shop
 
@@ -753,7 +753,7 @@ async function body() {
 
         $.guard4_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard4_fm3.setHeedThreats(true /* true */);
+        $.guard4_fm3.setHeedThreats(true);
 
         //guard5 on boat just behid the first row of boxes
 
@@ -775,7 +775,7 @@ async function body() {
 
         $.guard5_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard5_fm3.setHeedThreats(true /* true */);
+        $.guard5_fm3.setHeedThreats(true);
 
         //guard6 on boat by the rail of the boat
 
@@ -795,7 +795,7 @@ async function body() {
 
         $.guard6_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard6_fm3.setHeedThreats(true /* true */);
+        $.guard6_fm3.setHeedThreats(true);
 
         //guard7 on boat end of large boxes by crate 4
 
@@ -815,7 +815,7 @@ async function body() {
 
         $.guard7_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard7_fm3.setHeedThreats(true /* true */);
+        $.guard7_fm3.setHeedThreats(true);
 
         //Guard8 between second last container and crates 5,6 and 7
 
@@ -835,7 +835,7 @@ async function body() {
 
         $.guard8_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard8_fm3.setHeedThreats(true /* true */);
+        $.guard8_fm3.setHeedThreats(true);
 
         //guard9 stands on top of crate6 does not patrol
 
@@ -851,7 +851,7 @@ async function body() {
 
         $.guard9_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard9_fm3.setHeedThreats(true /* true */);
+        $.guard9_fm3.setHeedThreats(true);
 
         //guard10 walks from right hand side boat door to behind containers and back again
 
@@ -871,7 +871,7 @@ async function body() {
 
         $.guard10_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard10_fm3.setHeedThreats(true /* true */);
+        $.guard10_fm3.setHeedThreats(true);
 
         //guard11 on boat top right of the gang plank
 
@@ -887,7 +887,7 @@ async function body() {
 
         $.guard11_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard11_fm3.setHeedThreats(true /* true */);
+        $.guard11_fm3.setHeedThreats(true);
 
         //guard12 on boat top left hand side of the gang plank
 
@@ -903,7 +903,7 @@ async function body() {
 
         $.guard12_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
 
-        $.guard12_fm3.setHeedThreats(true /* true */);
+        $.guard12_fm3.setHeedThreats(true);
 
         $.car_columb1_fm3 = Car.Create(138 /* CAR_COLUMB */, 1534.4, -891.5, 10.8);
 
@@ -951,7 +951,7 @@ async function body() {
                     $.blob_flag = 0;
                     $.flag_blip_on_eightball_fm3 = 1;
                 }
-                if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_eightball_fm3 == 1) {
+                if ($.player.locateAnyMeansChar2D($.ped_8ball_fm3, 8.0, 8.0, false) && $.flag_blip_on_eightball_fm3 == 1) {
                     $.ped_8ball_fm3.followPlayer($.player);
                     $.radar_blip_ped2_fm3.remove();
                     $.radar_blip_coord2_fm3 = Blip.AddForCoord(1529.0, -824.0, -100.0);
@@ -971,7 +971,7 @@ async function body() {
             if ($.flag_bloke_leave_group_fm3 == 0) {
                 if (
                     $.player.locateStoppedAnyMeans2D(1529.0, -824.0, 3.0, 4.0, !!$.blob_flag) &&
-                    $.ped_8ball_fm3.locateStoppedAnyMeans2D(1529.0, -824.0, 3.0, 4.0, true /* TRUE */) &&
+                    $.ped_8ball_fm3.locateStoppedAnyMeans2D(1529.0, -824.0, 3.0, 4.0, true) &&
                     $.flag_bloke_leave_group_fm3 == 0
                 ) {
                     $.radar_blip_coord2_fm3.remove();
@@ -1035,7 +1035,7 @@ async function body() {
                                 throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
                             }
                         }
-                        World.ClearArea(1536.8, -895.0, 10.8, 1.0, false /* FALSE */);
+                        World.ClearArea(1536.8, -895.0, 10.8, 1.0, false);
                         Camera.SetFixedPosition(1537.1, -899.8, 12.5, 0.0, 0.0, 0.0);
                         Camera.PointAtPoint(1536.4, -900.4, 12.7, 2 /* JUMP_CUT */);
                         if ($.flag_timer_fm3 == 1 && $.flag_timer2_fm3 == 0) {
@@ -1060,7 +1060,7 @@ async function body() {
                                 throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
                             }
                         }
-                        World.ClearArea(1522.839, -916.137, 19.602, 1.0, false /* FALSE */);
+                        World.ClearArea(1522.839, -916.137, 19.602, 1.0, false);
                         Camera.SetFixedPosition(1522.839, -916.137, 19.602, 0.0, 0.0, 0.0);
                         Camera.PointAtPoint(1521.984, -916.648, 19.699, 2 /* JUMP_CUT */);
                         if ($.flag_timer3_fm3 == 0 && $.flag_timer2_fm3 == 1) {
@@ -1085,7 +1085,7 @@ async function body() {
                                 throw new Error('unresolved GOTO mission_frankie3_failed'); // fallback: would break linear control flow
                             }
                         }
-                        World.ClearArea(1476.3, -922.7, 19.0, 1.0, false /* FALSE */);
+                        World.ClearArea(1476.3, -922.7, 19.0, 1.0, false);
                         Camera.SetFixedPosition(1476.3, -922.7, 19.0, 0.0, 0.0, 0.0);
                         Camera.PointAtPoint(1477.1, -923.3, 19.1, 2 /* JUMP_CUT */);
                         if ($.flag_timer4_fm3 == 0 && $.flag_timer3_fm3 == 1) {
@@ -1228,7 +1228,7 @@ async function body() {
 
                 await clear_area_check_fm3(); // SCM GOSUB clear_area_check_fm3
 
-                if ($.player.locateOnFoot3D(1498.7, -870.5, 26.8, 3.0, 3.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateOnFoot3D(1498.7, -870.5, 26.8, 3.0, 3.0, 2.0, false)) {
                     $.radar_blip_coord3_fm3.remove();
                 }
                 if ($.flag_played_8ball_audio_fm3 == 1) {
@@ -1246,20 +1246,20 @@ async function body() {
                     }
                     if ($.flag_8ball_moved1 == 0) {
                         if (TIMERA >= 25000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1545.9, -867.7, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1545.9, -867.7, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1545.9, -867.7, 10.8);
                                 $.flag_8ball_moved1 = 1;
                             }
                         }
                     }
                     if ($.flag_8ball_ducking_fm3 == 0) {
-                        if ($.ped_8ball_fm3.locateOnFoot2D(1545.9, -867.7, 1.0, 1.0, false /* FALSE */)) {
+                        if ($.ped_8ball_fm3.locateOnFoot2D(1545.9, -867.7, 1.0, 1.0, false)) {
                             $.flag_8ball_moved1 = 1;
                             $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 10000);
                             $.flag_8ball_ducking_fm3 = 1;
                         }
                     }
-                    if ($.counter_no_guards_dead_fm3 > 0 || $.player.isShootingInArea(1610.6, -614.6, 1340.9, -1074.5, false /* FALSE */)) {
+                    if ($.counter_no_guards_dead_fm3 > 0 || $.player.isShootingInArea(1610.6, -614.6, 1340.9, -1074.5, false)) {
                         TIMERB = 0;
                         while (TIMERB < 5000) {
                             await asyncWait(0);
@@ -1293,13 +1293,13 @@ async function body() {
                         TIMERA = 0;
                         $.flag_timer_set_fm3 = 1;
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1527.0, -899.0, 2.0, 2.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1527.0, -899.0, 2.0, 2.0, false)) {
                         $.flag_8ball_moved2 = 1;
                         $.flag_bloke_in_area_fm3 = 3;
                     }
                     if ($.flag_8ball_moved2 == 0) {
                         if (TIMERA >= 20000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1527.0, -899.0, 2.0, 2.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1527.0, -899.0, 2.0, 2.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1527.0, -899.0, 10.8);
                                 $.flag_8ball_moved2 = 1;
                             }
@@ -1315,13 +1315,13 @@ async function body() {
                         TIMERA = 0;
                         $.flag_timer_set_fm3 = 2;
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1526.0, -919.0, 2.0, 2.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1526.0, -919.0, 2.0, 2.0, false)) {
                         $.flag_8ball_moved3 = 1;
                         $.flag_bloke_in_area_fm3 = 4;
                     }
                     if ($.flag_8ball_moved3 == 0) {
                         if (TIMERA >= 20000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1526.0, -919.0, 2.0, 2.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1526.0, -919.0, 2.0, 2.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1526.0, -919.0, 18.4);
                                 $.flag_8ball_moved3 = 1;
                             }
@@ -1339,13 +1339,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved4 == 0) {
                         if (TIMERA >= 25000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1522.9, -924.3, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1522.9, -924.3, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1522.9, -924.3, 18.4);
                                 $.flag_8ball_moved4 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1522.9, -924.3, 1.0, 1.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1522.9, -924.3, 1.0, 1.0, false)) {
                         $.flag_8ball_moved4 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 1) {
@@ -1383,13 +1383,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved5 == 0) {
                         if (TIMERA >= 25000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1517.0, -929.0, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1517.0, -929.0, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1517.0, -929.0, 18.4);
                                 $.flag_8ball_moved5 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1517.0, -929.0, 1.0, 1.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1517.0, -929.0, 1.0, 1.0, false)) {
                         $.flag_8ball_moved5 = 1;
                         Audio.LoadMissionAudio('s3_b' as any);
                         if ($.counter_no_guards_dead_fm3 < 12) {
@@ -1438,13 +1438,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved6 == 0) {
                         if (TIMERA >= 25000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1510.0, -923.0, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1510.0, -923.0, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1510.0, -923.0, 18.4);
                                 $.flag_8ball_moved6 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1510.0, -923.0, 1.0, 1.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1510.0, -923.0, 1.0, 1.0, false)) {
                         $.flag_8ball_moved6 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 3) {
@@ -1482,13 +1482,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved7 == 0) {
                         if (TIMERA >= 25000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1504.4, -928.6, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1504.4, -928.6, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1504.4, -928.6, 18.4);
                                 $.flag_8ball_moved7 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1504.4, -928.6, 1.0, 1.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1504.4, -928.6, 1.0, 1.0, false)) {
                         $.flag_8ball_moved7 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 4) {
@@ -1526,13 +1526,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved8 == 0) {
                         if (TIMERA >= 25000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1493.7, -922.1, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1493.7, -922.1, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1493.7, -922.1, 18.4);
                                 $.flag_8ball_moved8 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1493.7, -922.1, 1.0, 1.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1493.7, -922.1, 1.0, 1.0, false)) {
                         $.flag_8ball_moved8 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 5) {
@@ -1570,13 +1570,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved9 == 0) {
                         if (TIMERA >= 25000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1487.0, -930.2, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1487.0, -930.2, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1487.0, -930.2, 18.4);
                                 $.flag_8ball_moved9 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1487.0, -930.2, 1.0, 1.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1487.0, -930.2, 1.0, 1.0, false)) {
                         $.flag_8ball_moved9 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 6) {
@@ -1614,13 +1614,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved10 == 0) {
                         if (TIMERA >= 15000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1481.5, -926.8, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1481.5, -926.8, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1481.5, -926.8, 18.4);
                                 $.flag_8ball_moved10 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1481.5, -926.8, 1.0, 1.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1481.5, -926.8, 1.0, 1.0, false)) {
                         $.flag_8ball_moved10 = 1;
                         $.flag_bloke_in_area_fm3 = 11;
                     }
@@ -1636,13 +1636,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved11 == 0) {
                         if (TIMERA >= 15000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1475.8, -940.3, 1.0, 1.0, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1475.8, -940.3, 1.0, 1.0, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1475.8, -940.3, 18.4);
                                 $.flag_8ball_moved11 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1475.8, -940.3, 1.0, 1.0, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1475.8, -940.3, 1.0, 1.0, false)) {
                         $.flag_8ball_moved11 = 1;
                         $.flag_bloke_in_area_fm3 = 12;
                     }
@@ -1658,13 +1658,13 @@ async function body() {
                     }
                     if ($.flag_8ball_moved12 == 0) {
                         if (TIMERA >= 25000) {
-                            if (!$.ped_8ball_fm3.locateOnFoot2D(1474.2, -940.2, 0.5, 0.5, false /* FALSE */)) {
+                            if (!$.ped_8ball_fm3.locateOnFoot2D(1474.2, -940.2, 0.5, 0.5, false)) {
                                 $.ped_8ball_fm3.setCoordinates(1474.2, -940.2, 18.4);
                                 $.flag_8ball_moved12 = 1;
                             }
                         }
                     }
-                    if ($.ped_8ball_fm3.locateOnFoot2D(1474.2, -940.2, 0.5, 0.5, false /* FALSE */)) {
+                    if ($.ped_8ball_fm3.locateOnFoot2D(1474.2, -940.2, 0.5, 0.5, false)) {
                         $.flag_8ball_moved12 = 1;
                         $.ped_8ball_fm3.setIdle();
                         $.flag_bloke_in_area_fm3 = 13;
@@ -1758,7 +1758,7 @@ async function body() {
         $.guard11_fm3.removeElegantly();
         $.guard12_fm3.removeElegantly();
 
-        World.ClearArea(1519.02, -934.6, 18.4, 25.0, true /* TRUE */);
+        World.ClearArea(1519.02, -934.6, 18.4, 25.0, true);
 
         $.boat_barrel7.delete();
         $.boat_barrel8.delete();
@@ -1777,13 +1777,13 @@ async function body() {
 
         // Swaps boat for building lod then sets boat lod to invisible
 
-        World.SetVisibilityOfClosestObjectOfType(1508.77, -937.206, 20.6832, 50.0, 952 /* rustship_structure */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(1508.77, -937.206, 20.6832, 50.0, 952 /* rustship_structure */, false);
 
         World.SwapNearestBuildingModel(1508.77, -937.206, 20.6832, 50.0, 952 /* rustship_structure */, 218 /* LOD_land014 */);
 
-        World.SetVisibilityOfClosestObjectOfType(1508.77, -937.206, 20.6832, 50.0, 1060 /* LODtship_structure */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(1508.77, -937.206, 20.6832, 50.0, 1060 /* LODtship_structure */, false);
 
-        World.SetVisibilityOfClosestObjectOfType(1526.75, -907.423, 14.2965, 50.0, 1033 /* boatramp1 */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(1526.75, -907.423, 14.2965, 50.0, 1033 /* boatramp1 */, false);
 
         World.SwapNearestBuildingModel(1526.75, -907.423, 14.2965, 50.0, 1033 /* boatramp1 */, 218 /* LOD_land014 */);
 
@@ -1803,7 +1803,7 @@ async function body() {
 
         $.cs_gangplank.setAnim('gangp');
 
-        World.ClearArea(1526.5, -894.8, -100.0, 1.0, true /* TRUE */);
+        World.ClearArea(1526.5, -894.8, -100.0, 1.0, true);
 
         $.player.setCoordinates(1526.5, -894.8, -100.0);
 
@@ -1981,51 +1981,51 @@ async function cleanup() {
     $.flag_player_on_frankie_mission = 0;
     $.flag_on_frankie3 = 0;
     if (!Char.IsDead($.guard1_fm3)) {
-        $.guard1_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard1_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard2_fm3)) {
-        $.guard2_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard2_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard3_fm3)) {
-        $.guard3_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard3_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard4_fm3)) {
-        $.guard4_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard4_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard5_fm3)) {
-        $.guard5_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard5_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard6_fm3)) {
-        $.guard6_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard6_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard7_fm3)) {
-        $.guard7_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard7_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard8_fm3)) {
-        $.guard8_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard8_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard9_fm3)) {
-        $.guard9_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard9_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard10_fm3)) {
-        $.guard10_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard10_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard11_fm3)) {
-        $.guard11_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard11_fm3.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.guard12_fm3)) {
-        $.guard12_fm3.setStayInSamePlace(false /* FALSE */);
+        $.guard12_fm3.setStayInSamePlace(false);
     }
 
     $.ped_8ball_fm3.removeElegantly();
@@ -2078,15 +2078,15 @@ async function guard_death_check() {
             }
             if ($.flag_guard1_looking_for_8ball == 1) {
                 if ($.flag_columb_car2_dead == 0) {
-                    if ($.guard1_fm3.locateOnFoot3D(1517.6, -896.6, 10.8, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                    if ($.guard1_fm3.locateOnFoot3D(1517.6, -896.6, 10.8, 0.5, 0.5, 2.0, false)) {
                         $.guard1_fm3.setObjGuardSpot(1517.6, -896.6, 10.8);
-                        $.guard1_fm3.setStayInSamePlace(true /* TRUE */);
+                        $.guard1_fm3.setStayInSamePlace(true);
                         $.guard1_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
                     }
                 } else {
-                    if ($.guard1_fm3.locateOnFoot3D(1523.3, -893.7, 10.8, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                    if ($.guard1_fm3.locateOnFoot3D(1523.3, -893.7, 10.8, 0.5, 0.5, 2.0, false)) {
                         $.guard1_fm3.setObjGuardSpot(1523.3, -893.7, 10.8);
-                        $.guard1_fm3.setStayInSamePlace(true /* TRUE */);
+                        $.guard1_fm3.setStayInSamePlace(true);
                         $.guard1_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
                     }
                 }
@@ -2114,16 +2114,16 @@ async function guard_death_check() {
             }
             if ($.flag_guard2_looking_for_8ball == 1) {
                 if ($.flag_columb_car1_dead == 0) {
-                    if ($.guard2_fm3.locateOnFoot3D(1532.9, -893.8, 10.8, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                    if ($.guard2_fm3.locateOnFoot3D(1532.9, -893.8, 10.8, 0.5, 0.5, 2.0, false)) {
                         $.guard2_fm3.setObjGuardSpot(1532.9, -893.8, 10.8);
                         $.guard2_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                        $.guard2_fm3.setStayInSamePlace(true /* TRUE */);
+                        $.guard2_fm3.setStayInSamePlace(true);
                     }
                 } else {
-                    if ($.guard2_fm3.locateOnFoot3D(1528.6, -892.2, 10.8, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                    if ($.guard2_fm3.locateOnFoot3D(1528.6, -892.2, 10.8, 0.5, 0.5, 2.0, false)) {
                         $.guard2_fm3.setObjGuardSpot(1528.6, -892.2, 10.8);
                         $.guard2_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                        $.guard2_fm3.setStayInSamePlace(true /* TRUE */);
+                        $.guard2_fm3.setStayInSamePlace(true);
                     }
                 }
             }
@@ -2145,10 +2145,10 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard3_looking_for_8ball == 1) {
-                if ($.guard3_fm3.locateOnFoot3D(1534.1, -931.2, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard3_fm3.locateOnFoot3D(1534.1, -931.2, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard3_fm3.setObjGuardSpot(1534.1, -931.2, 18.4);
                     $.guard3_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard3_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard3_fm3.setStayInSamePlace(true);
                     //flag_guard3_looking_for_8ball = 2
                 }
             }
@@ -2170,16 +2170,16 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard4_looking_for_8ball == 1) {
-                if ($.guard4_fm3.locateAnyMeans3D(1517.5, -940.6, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard4_fm3.locateAnyMeans3D(1517.5, -940.6, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard4_fm3.setObjRunToCoord(1516.1, -932.6);
                     $.flag_guard4_looking_for_8ball = 2;
                 }
             }
             if ($.flag_guard4_looking_for_8ball == 2) {
-                if ($.guard4_fm3.locateAnyMeans3D(1516.1, -932.6, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard4_fm3.locateAnyMeans3D(1516.1, -932.6, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard4_fm3.setObjGuardSpot(1516.1, -932.6, 18.4);
                     $.guard4_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard4_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard4_fm3.setStayInSamePlace(true);
                 }
             }
         }
@@ -2200,16 +2200,16 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard5_looking_for_8ball == 1) {
-                if ($.guard5_fm3.locateAnyMeans3D(1505.6, -926.1, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard5_fm3.locateAnyMeans3D(1505.6, -926.1, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard5_fm3.setObjRunToCoord(1507.2, -924.0);
                     $.flag_guard5_looking_for_8ball = 2;
                 }
             }
             if ($.flag_guard5_looking_for_8ball == 2) {
-                if ($.guard5_fm3.locateAnyMeans3D(1507.2, -924.0, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard5_fm3.locateAnyMeans3D(1507.2, -924.0, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard5_fm3.setObjGuardSpot(1507.2, -924.0, 18.4);
                     $.guard5_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard5_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard5_fm3.setStayInSamePlace(true);
                 }
             }
         }
@@ -2230,10 +2230,10 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard6_looking_for_8ball == 1) {
-                if ($.guard6_fm3.locateAnyMeans3D(1501.0, -919.8, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard6_fm3.locateAnyMeans3D(1501.0, -919.8, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard6_fm3.setObjGuardSpot(1501.0, -919.8, 18.4);
                     $.guard6_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard6_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard6_fm3.setStayInSamePlace(true);
                 }
             }
         }
@@ -2254,16 +2254,16 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard7_looking_for_8ball == 1) {
-                if ($.guard7_fm3.locateAnyMeans3D(1499.4, -937.8, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard7_fm3.locateAnyMeans3D(1499.4, -937.8, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard7_fm3.setObjRunToCoord(1502.2, -930.8);
                     $.flag_guard7_looking_for_8ball = 2;
                 }
             }
             if ($.flag_guard7_looking_for_8ball == 2) {
-                if ($.guard7_fm3.locateAnyMeans3D(1502.2, -930.8, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard7_fm3.locateAnyMeans3D(1502.2, -930.8, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard7_fm3.setObjGuardSpot(1502.2, -930.8, 18.4);
                     $.guard7_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard7_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard7_fm3.setStayInSamePlace(true);
                 }
             }
         }
@@ -2284,16 +2284,16 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard8_looking_for_8ball == 1) {
-                if ($.guard8_fm3.locateAnyMeans3D(1491.6, -935.8, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard8_fm3.locateAnyMeans3D(1491.6, -935.8, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard8_fm3.setObjRunToCoord(1487.6, -933.6);
                     $.flag_guard8_looking_for_8ball = 2;
                 }
             }
             if ($.flag_guard8_looking_for_8ball == 2) {
-                if ($.guard8_fm3.locateAnyMeans3D(1487.6, -933.6, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard8_fm3.locateAnyMeans3D(1487.6, -933.6, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard8_fm3.setObjGuardSpot(1487.6, -933.6, 18.4);
                     $.guard8_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard8_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard8_fm3.setStayInSamePlace(true);
                 }
             }
         }
@@ -2310,7 +2310,7 @@ async function guard_death_check() {
                 if ($.flag_bloke_in_area_fm3 == 6 || $.flag_guard8_fm3_dead == 1 || $.flag_guard10_fm3_dead == 1 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1) {
                     $.guard9_fm3.setObjGuardSpot(1484.4, -930.5, 19.8);
                     $.guard9_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard9 now looks out for 8-ball
-                    $.guard9_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard9_fm3.setStayInSamePlace(true);
                     $.guard9_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
                     $.flag_guard9_looking_for_8ball = 1;
                 }
@@ -2333,16 +2333,16 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard10_looking_for_8ball == 1) {
-                if ($.guard10_fm3.locateAnyMeans3D(1476.7, -936.3, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard10_fm3.locateAnyMeans3D(1476.7, -936.3, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard10_fm3.setObjRunToCoord(1482.6, -930.5);
                     $.flag_guard10_looking_for_8ball = 2;
                 }
             }
             if ($.flag_guard10_looking_for_8ball == 2) {
-                if ($.guard10_fm3.locateAnyMeans3D(1482.6, -930.5, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard10_fm3.locateAnyMeans3D(1482.6, -930.5, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard10_fm3.setObjGuardSpot(1482.6, -930.5, 18.4);
                     $.guard10_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard10_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard10_fm3.setStayInSamePlace(true);
                 }
             }
         }
@@ -2370,16 +2370,16 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard11_looking_for_8ball == 1) {
-                if ($.guard11_fm3.locateAnyMeans3D(1528.5, -927.5, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard11_fm3.locateAnyMeans3D(1528.5, -927.5, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard11_fm3.setObjRunToCoord(1521.5, -927.2);
                     $.flag_guard11_looking_for_8ball = 2;
                 }
             }
             if ($.flag_guard11_looking_for_8ball == 2) {
-                if ($.guard11_fm3.locateAnyMeans3D(1521.5, -927.2, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard11_fm3.locateAnyMeans3D(1521.5, -927.2, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard11_fm3.setObjGuardSpot(1521.5, -927.2, 18.4);
                     $.guard11_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard11_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard11_fm3.setStayInSamePlace(true);
                 }
             }
         }
@@ -2407,16 +2407,16 @@ async function guard_death_check() {
                 }
             }
             if ($.flag_guard12_looking_for_8ball == 1) {
-                if ($.guard12_fm3.locateAnyMeans3D(1517.6, -923.1, 18.4, 0.5, 0.5, 2.0, false /* FALSE */)) {
+                if ($.guard12_fm3.locateAnyMeans3D(1517.6, -923.1, 18.4, 0.5, 0.5, 2.0, false)) {
                     $.guard12_fm3.setObjRunToCoord(1512.7, -929.0);
                     $.flag_guard12_looking_for_8ball = 2;
                 }
             }
             if ($.flag_guard12_looking_for_8ball == 2) {
-                if ($.guard12_fm3.locateAnyMeans3D(1512.7, -929.0, 18.4, 0.2, 0.2, 2.0, false /* FALSE */)) {
+                if ($.guard12_fm3.locateAnyMeans3D(1512.7, -929.0, 18.4, 0.2, 0.2, 2.0, false)) {
                     $.guard12_fm3.setObjGuardSpot(1512.7, -929.0, 18.4);
                     $.guard12_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
-                    $.guard12_fm3.setStayInSamePlace(true /* TRUE */);
+                    $.guard12_fm3.setStayInSamePlace(true);
                 }
             }
         }
@@ -2439,113 +2439,113 @@ async function car_dead_check() {
 
 async function clear_area_check_fm3() {
     if ($.flag_bloke_in_area_fm3 <= 2) {
-        World.ClearArea(1545.9, -867.7, 10.8, 1.0, false /* FALSE */);
-        World.ClearArea(1527.0, -899.0, 10.8, 1.0, false /* FALSE */);
-        World.ClearArea(1526.0, -919.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1522.9, -924.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1545.9, -867.7, 10.8, 1.0, false);
+        World.ClearArea(1527.0, -899.0, 10.8, 1.0, false);
+        World.ClearArea(1526.0, -919.0, 18.4, 1.0, false);
+        World.ClearArea(1522.9, -924.3, 18.4, 1.0, false);
+        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false);
+        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false);
+        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false);
+        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 3) {
-        World.ClearArea(1527.0, -899.0, 10.8, 1.0, false /* FALSE */);
-        World.ClearArea(1526.0, -919.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1522.9, -924.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1527.0, -899.0, 10.8, 1.0, false);
+        World.ClearArea(1526.0, -919.0, 18.4, 1.0, false);
+        World.ClearArea(1522.9, -924.3, 18.4, 1.0, false);
+        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false);
+        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false);
+        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false);
+        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 4) {
-        World.ClearArea(1526.0, -919.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1522.9, -924.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1526.0, -919.0, 18.4, 1.0, false);
+        World.ClearArea(1522.9, -924.3, 18.4, 1.0, false);
+        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false);
+        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false);
+        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false);
+        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 5) {
-        World.ClearArea(1522.9, -924.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1522.9, -924.3, 18.4, 1.0, false);
+        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false);
+        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false);
+        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false);
+        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 6) {
-        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1517.0, -929.0, 18.4, 1.0, false);
+        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false);
+        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false);
+        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 7) {
-        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1510.0, -923.0, 18.4, 1.0, false);
+        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false);
+        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 8) {
-        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1504.4, -928.6, 18.4, 1.0, false);
+        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 9) {
-        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1493.7, -922.1, 18.4, 1.0, false);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 10) {
-        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1487.0, -930.2, 18.4, 1.0, false);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 11) {
-        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1481.5, -926.8, 18.4, 1.0, false);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 
     if ($.flag_bloke_in_area_fm3 == 12) {
-        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false /* FALSE */);
-        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false /* FALSE */);
+        World.ClearArea(1475.8, -940.3, 18.4, 1.0, false);
+        World.ClearArea(1474.2, -940.2, 18.4, 1.0, false);
     }
 }
 

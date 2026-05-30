@@ -98,7 +98,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
+    World.ClearArea(39.0, -723.5, 22.0, 1.0, true);
 
     $.player.setCoordinates(39.0, -723.5, 22.0);
 
@@ -225,8 +225,8 @@ async function body() {
 
     $.player.setControl(false /* OFF */);
     Hud.SwitchWidescreen(true /* ON */);
-    Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
-    Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+    Game.SetEveryoneIgnorePlayer($.player, true);
+    Game.SetAllCarsCanBeDamaged(false);
     Camera.SetFixedPosition(373.29, -444.714, 28.537, 0.0, 0.0, 0.0);
     Camera.PointAtPoint(374.1447, -444.2669, 28.8032, 1 /* INTERPOLATION */);
 
@@ -234,8 +234,8 @@ async function body() {
 
     $.player.setControl(true /* ON */);
     Hud.SwitchWidescreen(false /* OFF */);
-    Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
-    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+    Game.SetEveryoneIgnorePlayer($.player, false);
+    Game.SetAllCarsCanBeDamaged(true);
     Camera.Restore();
 
     Audio.LoadMissionAudio('r1_a' as any);
@@ -271,8 +271,8 @@ async function body() {
 
     $.player.setControl(false /* OFF */);
     Hud.SwitchWidescreen(true /* ON */);
-    Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
-    Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+    Game.SetEveryoneIgnorePlayer($.player, true);
+    Game.SetAllCarsCanBeDamaged(false);
     Camera.SetFixedPosition(373.29, -444.714, 28.537, 0.0, 0.0, 0.0);
     Camera.PointAtPoint(374.1447, -444.2669, 28.8032, 1 /* INTERPOLATION */);
 
@@ -286,10 +286,10 @@ async function body() {
     $.fire_2 = ScriptFire.Create(377.0, -443.0, 28.1);
     $.fire_3 = ScriptFire.Create(379.0, -444.0, 28.1);
     $.fire_4 = ScriptFire.Create(379.0, -443.0, 28.1);
-    $.fire_1.setAudio(true /* TRUE */);
-    $.fire_2.setAudio(false /* FALSE */);
-    $.fire_3.setAudio(false /* FALSE */);
-    $.fire_4.setAudio(false /* FALSE */);
+    $.fire_1.setAudio(true);
+    $.fire_2.setAudio(false);
+    $.fire_3.setAudio(false);
+    $.fire_4.setAudio(false);
 
     await asyncWait(250);
 
@@ -313,8 +313,8 @@ async function body() {
 
     $.player.setControl(true /* ON */);
     Hud.SwitchWidescreen(false /* OFF */);
-    Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
-    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+    Game.SetEveryoneIgnorePlayer($.player, false);
+    Game.SetAllCarsCanBeDamaged(true);
     Camera.RestoreJumpcut();
     Camera.SetBehindPlayer();
 
@@ -325,7 +325,7 @@ async function body() {
     $.get_away_car = Car.Create(95 /* CAR_SENTINEL */, 380.0, -437.5, 21.1); // IN GARAGE
     $.get_away_car.setHeading(90.0);
     $.get_away_car.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-    $.get_away_car.setStrong(true /* TRUE */);
+    $.get_away_car.setStrong(true);
 
     $.police_guard1 = Char.CreateInsideCar($.get_away_car, 4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */);
     $.the_witness = Char.CreateAsPassenger($.get_away_car, 4 /* PEDTYPE_CIVMALE */, 50 /* PED_LI_MAN2 */, 1);
@@ -346,7 +346,7 @@ async function body() {
     $.get_away_car.setCruiseSpeed(20.0);
     $.get_away_car.setDrivingStyle(2);
     $.get_away_car.wanderRandomly();
-    $.get_away_car.setAvoidLevelTransitions(true /* TRUE */);
+    $.get_away_car.setAvoidLevelTransitions(true);
 
     Text.PrintNow('RM1_2', 5000, 1); //"Take out the witness!"
 
@@ -413,7 +413,7 @@ async function body() {
                     if (!$.get_away_car.locate2D(380.0, -437.5, 40.0, 40.0, false)) {
                         $.get_away_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
                         $.get_away_car.setCruiseSpeed(40.0);
-                        $.get_away_car.setStrong(false /* FALSE */);
+                        $.get_away_car.setStrong(false);
                         if ($.get_away_car.isHealthGreater(800)) {
                             $.get_away_car.setHealth(800);
                         }

@@ -246,7 +246,7 @@ async function body() {
 
     $.cs_playerhead.setAnim('player');
 
-    World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */);
+    World.ClearArea(459.1, -1413.0, 25.11, 1.0, true);
 
     $.player.setCoordinates(459.1, -1413.0, 25.11);
 
@@ -394,7 +394,7 @@ async function body() {
 
     // waiting for the player to reach the yakuza gang members
 
-    while (!$.player.locateInCarChar3D($.yakuza1_km3, 8.0, 8.0, 8.0, false /* FALSE */) || !$.player.isInModel(135 /* CAR_YARDIE */) || !$.player.isStopped()) {
+    while (!$.player.locateInCarChar3D($.yakuza1_km3, 8.0, 8.0, 8.0, false) || !$.player.isInModel(135 /* CAR_YARDIE */) || !$.player.isStopped()) {
         await asyncWait(0);
         if (Char.IsDead($.yakuza1_km3)) {
             Text.PrintNow('KM3_10', 5000, 1); //"The contact is dead!"
@@ -420,7 +420,7 @@ async function body() {
 
     // waiting for the yakuza guy to get into the players car and give his message
 
-    while (!$.player.locateInCarChar3D($.yakuza1_km3, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isInModel(135 /* CAR_YARDIE */)) {
+    while (!$.player.locateInCarChar3D($.yakuza1_km3, 1.0, 1.0, 3.0, false) || !$.player.isInModel(135 /* CAR_YARDIE */)) {
         //OR NOT IS_PLAYER_STOPPED player
 
         await asyncWait(0);
@@ -446,7 +446,7 @@ async function body() {
             $.radar_blip_ped1_km3 = Blip.AddForChar($.yakuza1_km3);
             $.flag_yakuza_message_km3 = 1;
         }
-        if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false /* FALSE */) && $.flag_yakuza_message_km3 == 1) {
+        if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false) && $.flag_yakuza_message_km3 == 1) {
             $.yakuza1_km3.followPlayer($.player);
             $.radar_blip_ped1_km3.remove();
             $.flag_yakuza_message_km3 = 0;
@@ -465,7 +465,7 @@ async function body() {
 
     $.colombian_car1_km3.setHeading(0.0);
 
-    $.colombian_car1_km3.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.colombian_car1_km3.setOnlyDamagedByPlayer(true);
 
     $.colombian_car1_km3.changeLock(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
 
@@ -477,7 +477,7 @@ async function body() {
 
     $.colombian_car2_km3.setHeading(0.0);
 
-    $.colombian_car2_km3.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.colombian_car2_km3.setOnlyDamagedByPlayer(true);
 
     $.colombian_car2_km3.changeLock(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
 
@@ -536,7 +536,7 @@ async function body() {
                     $.flag_blip_on_yakuza_km3 = 1;
                     $.blob_flag = 0;
                 }
-                if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_yakuza_km3 == 1) {
+                if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false) && $.flag_blip_on_yakuza_km3 == 1) {
                     $.yakuza1_km3.followPlayer($.player);
                     $.radar_blip_ped1_km3.remove();
                     $.radar_blip_coord2_km3 = Blip.AddForCoord(231.1, -26.3, -100.0);
@@ -588,7 +588,7 @@ async function body() {
             $.flag_player_had_car_message_km3 = 0;
             $.blob_flag = 1;
         }
-        if ($.player.locateAnyMeans2D(231.1, -26.3, 10.0, 10.0, false /* FALSE */)) {
+        if ($.player.locateAnyMeans2D(231.1, -26.3, 10.0, 10.0, false)) {
             if (!$.player.isInModel(135 /* CAR_YARDIE */) || $.player.isShooting()) {
                 Text.PrintNow('KM3_14', 7000, 1); //"You have been seen the deals off"
                 
@@ -602,11 +602,11 @@ async function body() {
     $.radar_blip_coord2_km3.remove();
 
     if ($.flag_colombian_car1_dead_km3 == 0) {
-        $.colombian_car1_km3.setOnlyDamagedByPlayer(false /* FALSE */);
+        $.colombian_car1_km3.setOnlyDamagedByPlayer(false);
     }
 
     if ($.flag_colombian_car2_dead_km3 == 0) {
-        $.colombian_car2_km3.setOnlyDamagedByPlayer(false /* FALSE */);
+        $.colombian_car2_km3.setOnlyDamagedByPlayer(false);
     }
 
     Text.PrintNow('KM3_5', 7000, 1); //"Press the horn to get the deal going, as soon as the Columbians are out of the car kill them all!"
@@ -628,7 +628,7 @@ async function body() {
                     $.flag_blip_on_yakuza_km3 = 1;
                     $.blob_flag = 0;
                 }
-                if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_yakuza_km3 == 1) {
+                if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 8.0, 8.0, false) && $.flag_blip_on_yakuza_km3 == 1) {
                     $.yakuza1_km3.followPlayer($.player);
                     $.radar_blip_ped1_km3.remove();
                     $.radar_blip_coord2_km3 = Blip.AddForCoord(231.1, -26.3, -100.0);
@@ -674,7 +674,7 @@ async function body() {
             // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
         }
-        if ($.player.locateAnyMeans2D(231.1, -26.3, 10.0, 10.0, false /* FALSE */)) {
+        if ($.player.locateAnyMeans2D(231.1, -26.3, 10.0, 10.0, false)) {
             if (!$.player.isInModel(135 /* CAR_YARDIE */) || $.player.isShooting()) {
                 Text.PrintNow('KM3_14', 7000, 1); //"You have been seen the deals off"
                 // SCM GOSUB attack_player
@@ -696,7 +696,7 @@ async function body() {
 
     Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
 
-    World.ClearArea(252.0, -45.75, 20.8, 1.0, true /* TRUE */);
+    World.ClearArea(252.0, -45.75, 20.8, 1.0, true);
 
     Camera.SetFixedPosition(252.0, -45.75, 20.8, 0.0, 0.0, 0.0);
 
@@ -910,10 +910,10 @@ async function body() {
         if (!$.player.isInModel(135 /* CAR_YARDIE */)) {
             $.flag_go_for_player_km3 = 1;
         }
-        if (!$.player.locateAnyMeans2D(231.1, -26.3, 6.0, 6.0, false /* FALSE */)) {
+        if (!$.player.locateAnyMeans2D(231.1, -26.3, 6.0, 6.0, false)) {
             $.flag_go_for_player_km3 = 1;
         }
-        if ($.player.locateAnyMeans2D(231.1, -26.3, 6.0, 6.0, false /* FALSE */)) {
+        if ($.player.locateAnyMeans2D(231.1, -26.3, 6.0, 6.0, false)) {
             if ($.player.isShooting()) {
                 $.flag_go_for_player_km3 = 1;
             }
@@ -1039,7 +1039,7 @@ async function body() {
             }
             if ($.counter_number_of_colombians_killed_km3 == 4) {
                 if (!Char.IsDead($.yakuza1_km3)) {
-                    if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 20.0, 20.0, false /* FALSE */)) {
+                    if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 20.0, 20.0, false)) {
                         $.yakuza1_km3.followPlayer($.player);
                     }
                 }
@@ -1090,7 +1090,7 @@ async function body() {
         }
 
         if (!Char.IsDead($.yakuza1_km3)) {
-            if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 20.0, 20.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar2D($.yakuza1_km3, 20.0, 20.0, false)) {
                 $.yakuza1_km3.followPlayer($.player);
             }
         }
@@ -1203,14 +1203,14 @@ async function cleanup() {
     if (!Car.IsDead($.colombian_car1_km3)) {
         if ($.flag_colombian_car1_dead_km3 == 0) {
             $.colombian_car1_km3.changeLock(1 /* CARLOCK_UNLOCKED */);
-            $.colombian_car1_km3.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.colombian_car1_km3.setOnlyDamagedByPlayer(false);
         }
     }
 
     if (!Car.IsDead($.colombian_car2_km3)) {
         if ($.flag_colombian_car2_dead_km3 == 0) {
             $.colombian_car2_km3.changeLock(1 /* CARLOCK_UNLOCKED */);
-            $.colombian_car2_km3.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.colombian_car2_km3.setOnlyDamagedByPlayer(false);
         }
     }
 

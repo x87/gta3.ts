@@ -95,7 +95,7 @@ async function body() {
     $.cs_troll = CutsceneObject.Create(187 /* CUT_OBJ3 */);
     $.cs_troll.setAnim('TROLL');
 
-    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */);
+    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true);
     $.player.setCoordinates(1191.9, -870.4, -100.0);
 
     $.player.setHeading(230.0);
@@ -210,9 +210,9 @@ async function body() {
     pick_up_thugs: while (true) {
         await asyncWait(0);
 
-        while (!$.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, true /* TRUE */) || !$.player.isPressingHorn() || $.player.isWantedLevelGreater(0)) {
+        while (!$.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, true) || !$.player.isPressingHorn() || $.player.isWantedLevelGreater(0)) {
             await asyncWait(0);
-            if ($.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, false /* FALSE */)) {
+            if ($.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, false)) {
                 if ($.player.isWantedLevelGreater(0)) {
                     if ($.flag_not_enough_seats == 0) {
                         Text.PrintNow('WANTED1', 5000, 1);
@@ -225,11 +225,11 @@ async function body() {
             } else {
                 $.flag_not_enough_seats = 0;
             }
-            if (!$.player.isInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, false /* FALSE */)) {
+            if (!$.player.isInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, false)) {
                 Text.ClearThisPrint('WANTED1');
                 Text.ClearThisPrint('HORN');
             }
-            if ($.player.isInAreaOnFoot2D(1089.9, -223.9, 1084.5, -228.5, false /* FALSE */)) {
+            if ($.player.isInAreaOnFoot2D(1089.9, -223.9, 1084.5, -228.5, false)) {
                 Text.PrintNow('JM6_5', 5000, 1); //"We need a getaway vehicle"
             } else {
                 Text.ClearThisPrint('JM6_5');
@@ -265,7 +265,7 @@ async function body() {
 
         //PICK UP THUGS CUT_SCENE**************************************************************************************
 
-        World.ClearArea(1087.7, -229.2, 8.0, 6.0, true /* TRUE */);
+        World.ClearArea(1087.7, -229.2, 8.0, 6.0, true);
 
         if (!Car.IsDead($.any_car_jm6)) {
             $.any_car_jm6.lockDoors(4 /* CARLOCK_LOCKED_PLAYER_INSIDE */);
@@ -315,7 +315,7 @@ async function body() {
 
         await asyncWait(1000);
 
-        while (!$.Bank_job_door.slide(1087.523, -233.801, 13.5, 0.0, 0.0, 0.07, false /* FALSE */)) {
+        while (!$.Bank_job_door.slide(1087.523, -233.801, 13.5, 0.0, 0.0, 0.07, false)) {
             await asyncWait(0);
             const { hours, minutes } = Clock.GetTimeOfDay();
             $.hours = hours;
@@ -334,19 +334,19 @@ async function body() {
 
         if (!Char.IsDead($.thug1)) {
             $.thug1.followPlayer($.player);
-            $.thug1.setRunning(true /* TRUE */);
+            $.thug1.setRunning(true);
             await asyncWait(800);
         }
 
         if (!Char.IsDead($.thug2)) {
             $.thug2.followPlayer($.player);
-            $.thug2.setRunning(true /* TRUE */);
+            $.thug2.setRunning(true);
             await asyncWait(800);
         }
 
         if (!Char.IsDead($.thug3)) {
             $.thug3.followPlayer($.player);
-            $.thug3.setRunning(true /* TRUE */);
+            $.thug3.setRunning(true);
             //WAIT 400
         }
 
@@ -401,7 +401,7 @@ async function body() {
 
         Text.PrintNow('JM6_1', 5000, 1); //"Lets go"
 
-        while (!$.Bank_job_door.slide(1087.523, -233.801, 11.012, 0.0, 0.0, 0.2, false /* FALSE */)) {
+        while (!$.Bank_job_door.slide(1087.523, -233.801, 11.012, 0.0, 0.0, 0.2, false)) {
             await asyncWait(0);
             const { hours, minutes } = Clock.GetTimeOfDay();
             $.hours = hours;
@@ -431,7 +431,7 @@ async function body() {
         if (Car.IsDead($.any_car_jm6)) {
         }
 
-        while (!$.player.isStoppedInArea3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, true /* TRUE */) || !$.player.isInAnyCar() || $.player.isWantedLevelGreater(0)) {
+        while (!$.player.isStoppedInArea3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, true) || !$.player.isInAnyCar() || $.player.isWantedLevelGreater(0)) {
             await asyncWait(0);
             if (Car.IsDead($.any_car_jm6)) {
             }
@@ -444,7 +444,7 @@ async function body() {
                         $.thug1_blip = Blip.AddForChar($.thug1);
                         $.blip_for_thug_added1 = 1;
                     }
-                    if ($.player.locateAnyMeansChar2D($.thug1, 30.0, 30.0, false /* FALSE */)) {
+                    if ($.player.locateAnyMeansChar2D($.thug1, 30.0, 30.0, false)) {
                         if ($.blip_for_thug_added1 == 1) {
                             $.thug1.followPlayer($.player);
                             $.thug1_blip.remove();
@@ -459,7 +459,7 @@ async function body() {
                         $.thug2_blip = Blip.AddForChar($.thug2);
                         $.blip_for_thug_added2 = 1;
                     }
-                    if ($.player.locateAnyMeansChar2D($.thug2, 30.0, 30.0, false /* FALSE */)) {
+                    if ($.player.locateAnyMeansChar2D($.thug2, 30.0, 30.0, false)) {
                         if ($.blip_for_thug_added2 == 1) {
                             $.thug2.followPlayer($.player);
                             $.thug2_blip.remove();
@@ -474,7 +474,7 @@ async function body() {
                         $.thug3_blip = Blip.AddForChar($.thug3);
                         $.blip_for_thug_added3 = 1;
                     }
-                    if ($.player.locateAnyMeansChar2D($.thug3, 30.0, 30.0, false /* FALSE */)) {
+                    if ($.player.locateAnyMeansChar2D($.thug3, 30.0, 30.0, false)) {
                         if ($.blip_for_thug_added3 == 1) {
                             $.thug3.followPlayer($.player);
                             $.thug3_blip.remove();
@@ -488,7 +488,7 @@ async function body() {
                 // SCM GOTO → mission_joey6_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey6_failed'); // fallback: would break linear control flow
             }
-            if ($.player.isStoppedInAreaInCar3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, false /* FALSE */)) {
+            if ($.player.isStoppedInAreaInCar3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, false)) {
                 if ($.player.isWantedLevelGreater(0)) {
                     if ($.flag_displayed_wanted_message_jm6 == 0) {
                         Text.PrintNow('WANTED1', 5000, 1);
@@ -496,11 +496,11 @@ async function body() {
                     }
                 }
             } else {
-                if (!$.player.isInArea3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, false /* FALSE */)) {
+                if (!$.player.isInArea3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, false)) {
                     $.flag_displayed_wanted_message_jm6 = 0;
                 }
             }
-            if ($.player.isInAreaOnFoot3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, false /* FALSE */)) {
+            if ($.player.isInAreaOnFoot3D(1040.5, -691.5, 14.0, 1043.8, -698.5, 17.0, false)) {
                 Text.PrintNow('JM6_5', 5000, 1); //"We need a getaway vehicle"
             } else {
                 Text.ClearThisPrint('JM6_5');
@@ -535,7 +535,7 @@ async function body() {
 
         // BANK ROBBERY CUT SCENE**************************************************************************************
 
-        World.ClearArea(1037.3, -699.6, 15.0, 6.0, true /* TRUE */);
+        World.ClearArea(1037.3, -699.6, 15.0, 6.0, true);
         World.SetPedDensityMultiplier(0.0);
 
         $.player.setControl(false /* OFF */);
@@ -686,8 +686,8 @@ async function body() {
         $.bankdoor2_Y = $.bankdoor2_Y + 1.0;
 
         while (
-            !$.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false /* FALSE */) ||
-            !$.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false /* FALSE */)
+            !$.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false) ||
+            !$.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false)
         ) {
             await asyncWait(0);
         }
@@ -829,8 +829,8 @@ async function body() {
         $.bankdoor2_Y = $.bankdoor2_Y - 1.0;
 
         while (
-            !$.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false /* FALSE */) ||
-            !$.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false /* FALSE */)
+            !$.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false) ||
+            !$.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false)
         ) {
             await asyncWait(0);
         }
@@ -851,7 +851,7 @@ async function body() {
 
         //THUGS COME OUT OF BANK
 
-        World.ClearArea(1037.3, -699.6, 15.0, 4.0, true /* TRUE */);
+        World.ClearArea(1037.3, -699.6, 15.0, 4.0, true);
 
         const _res279 = $.bankdoor1.getCoordinates();
         $.bankdoor_X = _res279.x;
@@ -866,8 +866,8 @@ async function body() {
         $.bankdoor2_Y = $.bankdoor2_Y + 1.0;
 
         while (
-            !$.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false /* FALSE */) ||
-            !$.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false /* FALSE */)
+            !$.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false) ||
+            !$.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false)
         ) {
             await asyncWait(0);
         }
@@ -982,8 +982,8 @@ async function body() {
         $.bankdoor2_Y = $.bankdoor2_Y - 1.0;
 
         while (
-            !$.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false /* FALSE */) ||
-            !$.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false /* FALSE */)
+            !$.bankdoor1.slide($.bankdoor_X, $.bankdoor_Y, $.bankdoor_Z, 0.0, 0.1, 0.0, false) ||
+            !$.bankdoor2.slide($.bankdoor2_X, $.bankdoor2_Y, $.bankdoor2_Z, 0.0, 0.1, 0.0, false)
         ) {
             await asyncWait(0);
         }
@@ -1105,7 +1105,7 @@ async function body() {
         if (Car.IsDead($.any_car_jm6)) {
         }
 
-        while (!$.player.isStoppedInArea2D(1089.9, -223.9, 1084.5, -228.5, true /* TRUE */) || !$.player.isInAnyCar() || $.player.isWantedLevelGreater(0)) {
+        while (!$.player.isStoppedInArea2D(1089.9, -223.9, 1084.5, -228.5, true) || !$.player.isInAnyCar() || $.player.isWantedLevelGreater(0)) {
             await asyncWait(0);
             if (Car.IsDead($.any_car_jm6)) {
             }
@@ -1123,7 +1123,7 @@ async function body() {
                         $.thug1_blip = Blip.AddForChar($.thug1);
                         $.blip_for_thug_added1 = 1;
                     }
-                    if ($.player.locateAnyMeansChar2D($.thug1, 30.0, 30.0, false /* FALSE */)) {
+                    if ($.player.locateAnyMeansChar2D($.thug1, 30.0, 30.0, false)) {
                         if ($.blip_for_thug_added1 == 1) {
                             $.thug1.followPlayer($.player);
                             $.thug1_blip.remove();
@@ -1138,7 +1138,7 @@ async function body() {
                         $.thug2_blip = Blip.AddForChar($.thug2);
                         $.blip_for_thug_added2 = 1;
                     }
-                    if ($.player.locateAnyMeansChar2D($.thug2, 30.0, 30.0, false /* FALSE */)) {
+                    if ($.player.locateAnyMeansChar2D($.thug2, 30.0, 30.0, false)) {
                         if ($.blip_for_thug_added2 == 1) {
                             $.thug2.followPlayer($.player);
                             $.thug2_blip.remove();
@@ -1153,7 +1153,7 @@ async function body() {
                         $.thug3_blip = Blip.AddForChar($.thug3);
                         $.blip_for_thug_added3 = 1;
                     }
-                    if ($.player.locateAnyMeansChar2D($.thug3, 30.0, 30.0, false /* FALSE */)) {
+                    if ($.player.locateAnyMeansChar2D($.thug3, 30.0, 30.0, false)) {
                         if ($.blip_for_thug_added3 == 1) {
                             $.thug3.followPlayer($.player);
                             $.thug3_blip.remove();
@@ -1162,7 +1162,7 @@ async function body() {
                     }
                 }
             }
-            if ($.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, false /* FALSE */)) {
+            if ($.player.isStoppedInAreaInCar2D(1089.9, -223.9, 1084.5, -228.5, false)) {
                 if ($.player.isWantedLevelGreater(0)) {
                     if ($.flag_displayed_wanted_message_jm6 == 0) {
                         Text.PrintNow('WANTED1', 5000, 1);
@@ -1170,11 +1170,11 @@ async function body() {
                     }
                 }
             } else {
-                if (!$.player.isInArea2D(1089.9, -223.9, 1084.5, -228.5, false /* FALSE */)) {
+                if (!$.player.isInArea2D(1089.9, -223.9, 1084.5, -228.5, false)) {
                     $.flag_displayed_wanted_message_jm6 = 0;
                 }
             }
-            if ($.player.isInAreaOnFoot2D(1089.9, -223.9, 1084.5, -228.5, true /* TRUE */)) {
+            if ($.player.isInAreaOnFoot2D(1089.9, -223.9, 1084.5, -228.5, true)) {
                 Text.PrintNow('EBAL_5', 5000, 1);
             } else {
                 Text.ClearThisPrint('EBAL_5');
@@ -1204,7 +1204,7 @@ async function body() {
             }
         }
 
-        World.ClearArea(1087.7, -229.2, 8.0, 6.0, true /* TRUE */);
+        World.ClearArea(1087.7, -229.2, 8.0, 6.0, true);
 
         $.player.setControl(false /* Off */);
         Hud.SwitchWidescreen(true /* ON */);
@@ -1242,7 +1242,7 @@ async function body() {
         }
 
         if (!Char.IsDead($.thug1)) {
-            if (!$.player.locateAnyMeansChar2D($.thug1, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar2D($.thug1, 30.0, 30.0, false)) {
                 if (!Char.IsDead($.thug1)) {
                     $.thug1.markAsNoLongerNeeded();
                 }
@@ -1251,7 +1251,7 @@ async function body() {
         }
 
         if (!Char.IsDead($.thug2)) {
-            if (!$.player.locateAnyMeansChar2D($.thug2, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar2D($.thug2, 30.0, 30.0, false)) {
                 if (!Char.IsDead($.thug2)) {
                     $.thug2.markAsNoLongerNeeded();
                 }
@@ -1260,7 +1260,7 @@ async function body() {
         }
 
         if (!Char.IsDead($.thug3)) {
-            if (!$.player.locateAnyMeansChar2D($.thug3, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar2D($.thug3, 30.0, 30.0, false)) {
                 if (!Char.IsDead($.thug3)) {
                     $.thug3.markAsNoLongerNeeded();
                 }
@@ -1273,7 +1273,7 @@ async function body() {
         $.objective_count_done_before2 = 0;
         $.objective_count_done_before3 = 0;
 
-        while (!$.Bank_job_door.slide(1087.523, -233.801, 14.012, 0.0, 0.0, 0.2, false /* FALSE */)) {
+        while (!$.Bank_job_door.slide(1087.523, -233.801, 14.012, 0.0, 0.0, 0.2, false)) {
             await asyncWait(0);
         }
 
@@ -1416,7 +1416,7 @@ async function body() {
             $.thug3.setObjWaitOnFoot();
         }
 
-        while (!$.Bank_job_door.slide(1087.523, -233.801, 11.012, 0.0, 0.0, 0.1, false /* FALSE */)) {
+        while (!$.Bank_job_door.slide(1087.523, -233.801, 11.012, 0.0, 0.0, 0.1, false)) {
             await asyncWait(0);
         }
 

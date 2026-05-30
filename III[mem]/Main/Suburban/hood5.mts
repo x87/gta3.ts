@@ -371,7 +371,7 @@ async function body() {
 
     $.goodie_hm5.clearThreatSearch();
 
-    while (!$.player.locateAnyMeansChar2D($.goodie_hm5, 8.0, 8.0, false /* FALSE */)) {
+    while (!$.player.locateAnyMeansChar2D($.goodie_hm5, 8.0, 8.0, false)) {
         await asyncWait(0);
         if (Char.IsDead($.goodie_hm5)) {
             Text.PrintNow('HM5_4', 5000, 1); //"Your contact is dead!"
@@ -407,7 +407,7 @@ async function body() {
             $.radar_blip_goodie_hm5 = Blip.AddForChar($.goodie_hm5);
             $.flag_goodie_message_hm5 = 1;
         }
-        if ($.player.locateAnyMeansChar2D($.goodie_hm5, 8.0, 8.0, false /* FALSE */) && $.flag_goodie_message_hm5 == 1) {
+        if ($.player.locateAnyMeansChar2D($.goodie_hm5, 8.0, 8.0, false) && $.flag_goodie_message_hm5 == 1) {
             $.goodie_hm5.followPlayer($.player);
             $.radar_blip_goodie_hm5.remove();
             $.flag_goodie_message_hm5 = 0;
@@ -544,11 +544,11 @@ async function body() {
 
     $.radar_blip_ped1_hm5 = Blip.AddForChar($.baddie1_hm5);
 
-    $.baddie1_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie1_hm5.setHeedThreats(true);
 
     $.baddie1_hm5.turnToFaceCoord(-232.0, 253.0, -100.0);
 
-    $.baddie1_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie1_hm5.setOnlyDamagedByPlayer(true);
 
     // Creates baddie2
 
@@ -564,11 +564,11 @@ async function body() {
 
     $.radar_blip_ped2_hm5 = Blip.AddForChar($.baddie2_hm5);
 
-    $.baddie2_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie2_hm5.setHeedThreats(true);
 
     $.baddie2_hm5.turnToFaceCoord(-232.0, 253.0, -100.0);
 
-    $.baddie2_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie2_hm5.setOnlyDamagedByPlayer(true);
 
     // Creates baddie3
 
@@ -584,11 +584,11 @@ async function body() {
 
     $.radar_blip_ped3_hm5 = Blip.AddForChar($.baddie3_hm5);
 
-    $.baddie3_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie3_hm5.setHeedThreats(true);
 
     $.baddie3_hm5.turnToFaceCoord(-232.0, 253.0, -100.0);
 
-    $.baddie3_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie3_hm5.setOnlyDamagedByPlayer(true);
 
     // Creates baddie4
 
@@ -604,11 +604,11 @@ async function body() {
 
     $.radar_blip_ped4_hm5 = Blip.AddForChar($.baddie4_hm5);
 
-    $.baddie4_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie4_hm5.setHeedThreats(true);
 
     $.baddie4_hm5.turnToFaceCoord(-226.1, 280.8, -100.0);
 
-    $.baddie4_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie4_hm5.setOnlyDamagedByPlayer(true);
 
     // Creates baddie5
 
@@ -624,11 +624,11 @@ async function body() {
 
     $.radar_blip_ped5_hm5 = Blip.AddForChar($.baddie5_hm5);
 
-    $.baddie5_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie5_hm5.setHeedThreats(true);
 
     $.baddie5_hm5.turnToFaceCoord(-226.1, 280.8, -100.0);
 
-    $.baddie5_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie5_hm5.setOnlyDamagedByPlayer(true);
 
     // Creates baddie6
 
@@ -644,11 +644,11 @@ async function body() {
 
     $.radar_blip_ped6_hm5 = Blip.AddForChar($.baddie6_hm5);
 
-    $.baddie6_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie6_hm5.setHeedThreats(true);
 
     $.baddie6_hm5.turnToFaceCoord(-226.1, 280.8, -100.0);
 
-    $.baddie6_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie6_hm5.setOnlyDamagedByPlayer(true);
 
     // Creates baddie7
 
@@ -664,11 +664,11 @@ async function body() {
 
     $.radar_blip_ped7_hm5 = Blip.AddForChar($.baddie7_hm5);
 
-    $.baddie7_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie7_hm5.setHeedThreats(true);
 
     $.baddie7_hm5.turnToFaceCoord(-226.1, 280.8, -100.0);
 
-    $.baddie7_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie7_hm5.setOnlyDamagedByPlayer(true);
 
     // Creates baddie8
 
@@ -684,11 +684,11 @@ async function body() {
 
     $.radar_blip_ped8_hm5 = Blip.AddForChar($.baddie8_hm5);
 
-    $.baddie8_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie8_hm5.setHeedThreats(true);
 
     $.baddie8_hm5.turnToFaceCoord(-226.1, 280.8, -100.0);
 
-    $.baddie8_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie8_hm5.setOnlyDamagedByPlayer(true);
 
     // Creates baddie9
 
@@ -704,11 +704,11 @@ async function body() {
 
     $.radar_blip_ped9_hm5 = Blip.AddForChar($.baddie9_hm5);
 
-    $.baddie9_hm5.setHeedThreats(true /* TRUE */);
+    $.baddie9_hm5.setHeedThreats(true);
 
     $.baddie9_hm5.turnToFaceCoord(-226.1, 280.8, -100.0);
 
-    $.baddie9_hm5.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.baddie9_hm5.setOnlyDamagedByPlayer(true);
 
     // waiting for all the guys to be dead
 
@@ -717,7 +717,7 @@ async function body() {
         if (Char.IsDead($.goodie_hm5)) {
             $.flag_goodie_hm5_dead_hm5 = 1;
         }
-        if ($.player.isInArea3D(-247.3, 333.9, 2.0, -209.5, 250.2, 15.0, false /* FALSE */)) {
+        if ($.player.isInArea3D(-247.3, 333.9, 2.0, -209.5, 250.2, 15.0, false)) {
             $.flag_player_in_area_hm5 = 1;
             if ($.flag_goodie_hm5_dead_hm5 == 0) {
                 if (!$.goodie_hm5.isInAnyCar()) {
@@ -939,7 +939,7 @@ async function body() {
                 }
             }
         }
-        if ($.player.isShootingInArea(-327.0, 72.0, -134.0, 350.0, false /* FALSE */)) {
+        if ($.player.isShootingInArea(-327.0, 72.0, -134.0, 350.0, false)) {
             if ($.flag_baddie1_dead_hm5 == 0) {
                 $.baddie1_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
             }
@@ -1035,55 +1035,55 @@ async function cleanup() {
 
     if ($.flag_baddie1_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie1_hm5)) {
-            $.baddie1_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie1_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 
     if ($.flag_baddie2_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie2_hm5)) {
-            $.baddie2_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie2_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 
     if ($.flag_baddie3_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie3_hm5)) {
-            $.baddie3_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie3_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 
     if ($.flag_baddie4_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie4_hm5)) {
-            $.baddie4_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie4_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 
     if ($.flag_baddie5_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie5_hm5)) {
-            $.baddie5_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie5_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 
     if ($.flag_baddie6_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie6_hm5)) {
-            $.baddie6_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie6_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 
     if ($.flag_baddie7_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie7_hm5)) {
-            $.baddie7_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie7_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 
     if ($.flag_baddie8_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie8_hm5)) {
-            $.baddie8_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie8_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 
     if ($.flag_baddie9_dead_hm5 == 0) {
         if (!Char.IsDead($.baddie9_hm5)) {
-            $.baddie9_hm5.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.baddie9_hm5.setOnlyDamagedByPlayer(false);
         }
     }
 

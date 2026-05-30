@@ -267,11 +267,11 @@ async function body() {
 
     $.radar_blip_ped1_meat1 = Blip.AddForChar($.bankmanager_meat1);
 
-    $.bankmanager_meat1.setCantBeDraggedOut(true /* TRUE */);
+    $.bankmanager_meat1.setCantBeDraggedOut(true);
 
     // waiting for the player and the Bank manager to be in the same area
 
-    while (!$.player.locateInCarChar2D($.bankmanager_meat1, 8.0, 8.0, false /* FALSE */) || !$.player.isInCar($.car_meat1)) {
+    while (!$.player.locateInCarChar2D($.bankmanager_meat1, 8.0, 8.0, false) || !$.player.isInCar($.car_meat1)) {
         await asyncWait(0);
         if (Car.IsDead($.car_meat1)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -332,7 +332,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat1
             throw new Error('unresolved GOTO mission_failed_meat1');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.bankmanager_meat1, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.bankmanager_meat1, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA1_4', 5000, 1); //You have left the Bank Manager behind!"
                 // SCM GOTO → mission_failed_meat1
                 throw new Error('unresolved GOTO mission_failed_meat1');
@@ -397,7 +397,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat1
             throw new Error('unresolved GOTO mission_failed_meat1');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.bankmanager_meat1, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.bankmanager_meat1, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA1_4', 5000, 1); //You have left the Bank Manager behind!"
                 // SCM GOTO → mission_failed_meat1
                 throw new Error('unresolved GOTO mission_failed_meat1');
@@ -424,11 +424,11 @@ async function body() {
 
     $.player.setControl(false /* OFF */);
 
-    World.ClearArea(1201.8, -799.7, 13.8, 5.0, true /* TRUE */);
+    World.ClearArea(1201.8, -799.7, 13.8, 5.0, true);
 
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
 
-    $.bankmanager_meat1.setCantBeDraggedOut(false /* FALSE */);
+    $.bankmanager_meat1.setCantBeDraggedOut(false);
 
     $.bankmanager_meat1.setObjLeaveCar($.car_meat1);
 
@@ -463,7 +463,7 @@ async function body() {
 
     Camera.PointAtPoint(1204.4, -802.7, 15.0, 2 /* JUMP_CUT */);
 
-    World.ClearArea(1200.8, -799.3, 14.0, 10.0, true /* TRUE */);
+    World.ClearArea(1200.8, -799.3, 14.0, 10.0, true);
 
     // Waiting for the blokes to get to the meat grinding area
 
@@ -487,7 +487,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_failed_meat1');
         }
         if ($.flag_bankmanager_in_area == 0) {
-            if ($.bankmanager_meat1.locateOnFoot2D(1204.2, -801.9, 0.5, 0.5, false /* FALSE */)) {
+            if ($.bankmanager_meat1.locateOnFoot2D(1204.2, -801.9, 0.5, 0.5, false)) {
                 $.flag_bankmanager_in_area = 1;
             }
         }
@@ -501,7 +501,7 @@ async function body() {
 
     // opens the door
 
-    while (!$.doggy_door.rotate(135.0, 5.0, false /* FALSE */)) {
+    while (!$.doggy_door.rotate(135.0, 5.0, false)) {
         await asyncWait(0);
         if (Char.IsDead($.bankmanager_meat1)) {
             Text.PrintNow('MEA1_1', 5000, 1); //The Bank Managers dead!"
@@ -524,7 +524,7 @@ async function body() {
 
     TIMERB = 0;
 
-    while (!$.bankmanager_meat1.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false /* FALSE */)) {
+    while (!$.bankmanager_meat1.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false)) {
         await asyncWait(0);
         if (Char.IsDead($.bankmanager_meat1)) {
             Text.PrintNow('MEA1_1', 5000, 1); //The Bank Managers dead!"
@@ -537,7 +537,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_failed_meat1');
         }
         if (TIMERB >= 20000) {
-            if (!$.bankmanager_meat1.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false /* FALSE */)) {
+            if (!$.bankmanager_meat1.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false)) {
                 $.bankmanager_meat1.removeElegantly();
                 // SCM GOTO → bloke_got_stuck_meat1
                 break;
@@ -555,7 +555,7 @@ async function body() {
     bloke_got_stuck_meat1: {
         Audio.LoadMissionAudio('mf4_a' as any);
 
-        while (!$.doggy_door.rotate(45.0, 5.0, false /* FALSE */) || !Audio.HasMissionAudioLoaded()) {
+        while (!$.doggy_door.rotate(45.0, 5.0, false) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
             if (Char.IsDead($.bankmanager_meat1)) {
                 Text.PrintNow('MEA1_1', 5000, 1); //The Bank Managers dead!"
@@ -615,7 +615,7 @@ async function body() {
                 // SCM GOTO → mission_failed_meat1
                 throw new Error('unresolved GOTO mission_failed_meat1');
             } else {
-                if ($.car_meat1.isStoppedInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 9.0, false /* FALSE */)) {
+                if ($.car_meat1.isStoppedInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 9.0, false)) {
                     $.flag_dont_do_car_check_meat1 = 1;
                     if ($.flag_leave_car_message_meat1 == 0) {
                         Text.PrintNow('MEA1_3', 5000, 1); //"Get out of the car!"
@@ -642,7 +642,7 @@ async function body() {
                 }
             }
             if ($.flag_player_had_crusher_help_hm5 == 0) {
-                if ($.player.locateAnyMeans2D(1140.3, 50.1, 20.0, 20.0, false /* FALSE */) && $.player.isInCar($.car_meat1)) {
+                if ($.player.locateAnyMeans2D(1140.3, 50.1, 20.0, 20.0, false) && $.player.isInCar($.car_meat1)) {
                     Text.PrintHelp('CRUSH'); //"To crush the car..."
                     $.flag_player_had_crusher_help_hm5 = 1;
                 }

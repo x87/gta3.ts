@@ -293,7 +293,7 @@ async function body() {
         $.flag_buggy_help1_hm2 = 1;
     }
 
-    World.ClearArea(-681.42, 91.35, 17.7, 2.0, true /* TRUE */);
+    World.ClearArea(-681.42, 91.35, 17.7, 2.0, true);
 
     Rc.GiveCarToPlayer($.player, -681.42, 91.35, 17.7, 94.0);
 
@@ -305,9 +305,9 @@ async function body() {
 
     $.van_driver1_hm2 = Char.CreateInsideCar($.target_van1_hm2, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
 
-    $.target_van1_hm2.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.target_van1_hm2.setOnlyDamagedByPlayer(true);
 
-    $.target_van1_hm2.setAvoidLevelTransitions(true /* TRUE */);
+    $.target_van1_hm2.setAvoidLevelTransitions(true);
 
     $.radar_blip_van1_hm2 = Blip.AddForCar($.target_van1_hm2);
 
@@ -323,9 +323,9 @@ async function body() {
 
     $.van_driver2_hm2 = Char.CreateInsideCar($.target_van2_hm2, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
 
-    $.target_van2_hm2.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.target_van2_hm2.setOnlyDamagedByPlayer(true);
 
-    $.target_van2_hm2.setAvoidLevelTransitions(true /* TRUE */);
+    $.target_van2_hm2.setAvoidLevelTransitions(true);
 
     $.radar_blip_van2_hm2 = Blip.AddForCar($.target_van2_hm2);
 
@@ -341,9 +341,9 @@ async function body() {
 
     $.van_driver3_hm2 = Char.CreateInsideCar($.target_van3_hm2, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
 
-    $.target_van3_hm2.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.target_van3_hm2.setOnlyDamagedByPlayer(true);
 
-    $.target_van3_hm2.setAvoidLevelTransitions(true /* TRUE */);
+    $.target_van3_hm2.setAvoidLevelTransitions(true);
 
     $.radar_blip_van3_hm2 = Blip.AddForCar($.target_van3_hm2);
 
@@ -380,7 +380,7 @@ async function body() {
         $.player.clearWantedLevel();
         if (!Car.IsDead($.mission_car_hm2)) {
             if (!$.player.isInRemoteMode() && $.counter_no_of_cars_player_had_hm2 < 6 && $.flag_player_got_car_hm2 == 0 && $.player.isSittingInCar($.mission_car_hm2)) {
-                World.ClearArea(-681.42, 91.35, 17.7, 2.0, false /* FALSE */);
+                World.ClearArea(-681.42, 91.35, 17.7, 2.0, false);
                 Rc.GiveCarToPlayer($.player, -681.42, 91.35, 17.7, 94.0);
                 ++$.counter_no_of_cars_player_had_hm2;
                 $.flag_player_got_car_hm2 = 1;

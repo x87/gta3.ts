@@ -153,7 +153,7 @@ verbose('[+] camera script loaded');
                                 }
                                 if ($.rays_camera_1 == 4) {
                                     if (!Camera.GetFadingStatus()) {
-                                        World.ClearArea(38.9115, -726.0132, 22.2, 2.0, true /* TRUE */);
+                                        World.ClearArea(38.9115, -726.0132, 22.2, 2.0, true);
                                         $.player.setCoordinates(38.9115, -726.0132, 21.6);
                                         $.player.setHeading(0.0);
                                         Camera.RestoreJumpcut();

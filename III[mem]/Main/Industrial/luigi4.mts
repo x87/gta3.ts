@@ -205,7 +205,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false);
 
     Cutscene.Load('l4_pap');
 
@@ -234,7 +234,7 @@ async function body() {
     //CLEAR_AREA 902.2 -425.8 13.9 1.0 TRUE
     //SET_PLAYER_COORDINATES player 902.2 -425.8 13.9
 
-    World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */);
+    World.ClearArea(896.6, -426.2, 13.9, 1.0, true);
     $.player.setCoordinates(896.6, -426.2, 13.9);
 
     $.player.setHeading(270.0);
@@ -308,7 +308,7 @@ async function body() {
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
-    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true /* TRUE */);
+    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true);
 
     Streaming.UnloadSpecialCharacter(1);
 
@@ -352,9 +352,9 @@ async function body() {
 
     $.car_lm4.setHeading(360.0);
 
-    $.car_lm4.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.car_lm4.setOnlyDamagedByPlayer(true);
 
-    $.car_lm4.setWatertight(true /* TRUE */);
+    $.car_lm4.setWatertight(true);
 
     $.rival_pimp_to_kill = Char.CreateInsideCar($.car_lm4, 4 /* PEDTYPE_CIVMALE */, 14 /* PED_GANG_DIABLO_A */);
 
@@ -400,7 +400,7 @@ async function body() {
         }
         if ($.flag_done_camera_lm4 == 0) {
             if (!Car.IsDead($.car_lm4)) {
-                if ($.car_lm4.locate2D(1058.5, -398.5, 6.0, 6.0, false /* FALSE */)) {
+                if ($.car_lm4.locate2D(1058.5, -398.5, 6.0, 6.0, false)) {
                     Camera.PointAtPoint(1048.6, -397.4, 15.5, 1 /* INTERPOLATION */);
                     $.flag_done_camera_lm4 = 1;
                 }
@@ -418,7 +418,7 @@ async function body() {
             }
 
             if ($.flag_player_had_shop_audio_lm4 == 0) {
-                if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false)) {
                     if ($.camera_ammu1 == 1) {
                         await audio_load_lm4(); // SCM GOSUB audio_load_lm4
                     }
@@ -460,7 +460,7 @@ async function body() {
             }
 
             if ($.flag_player_had_shop_audio_lm4 == 0) {
-                if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false)) {
                     await audio_load_lm4(); // SCM GOSUB audio_load_lm4
                 }
             }
@@ -539,7 +539,7 @@ async function ped_death_check_lm4() {
 // **************************************************END OF PED GOSUB******************************
 
 async function audio_load_lm4() {
-    if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false /* FALSE */)) {
+    if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false)) {
         $.special_ammu_audio = 1;
         if ($.camera_ammu1 == 1) {
             if (!Char.IsDead($.ammu_shop_bloke1)) {
@@ -603,7 +603,7 @@ async function car_check_lm4() {
         } else {
             if ($.car_lm4.isInWater()) {
                 if ($.car_lm4.isOnScreen()) {
-                    $.car_lm4.setWatertight(false /* FALSE */);
+                    $.car_lm4.setWatertight(false);
                 } else {
                     const _res283 = $.car_lm4.getCoordinates();
                     $.car_lm4_x = _res283.x;
@@ -630,7 +630,7 @@ async function car_check_lm4() {
 
 async function help_text_check_lm4() {
     if ($.flag_player_had_gun_message == 0) {
-        if ($.player.isInAreaOnFoot3D(1075.2, -384.8, 14.0, 1086.2, -403.3, 17.0, false /* FALSE */)) {
+        if ($.player.isInAreaOnFoot3D(1075.2, -384.8, 14.0, 1086.2, -403.3, 17.0, false)) {
             $.controlmode = Pad.GetControllerMode();
             if ($.controlmode == 0) {
                 if ($.flag_gun_message_lm4 == 0) {
@@ -837,9 +837,9 @@ async function cleanup() {
 
     if ($.flag_car_dead_lm4 == 0) {
         if (!Car.IsDead($.car_lm4)) {
-            $.car_lm4.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.car_lm4.setOnlyDamagedByPlayer(false);
             $.car_lm4.lockDoors(1 /* CARLOCK_UNLOCKED */);
-            $.car_lm4.setWatertight(false /* FALSE */);
+            $.car_lm4.setWatertight(false);
         }
     }
 

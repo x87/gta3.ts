@@ -96,7 +96,7 @@ async function body() {
         $.cs_troll = CutsceneObject.Create(187 /* CUT_OBJ3 */);
         $.cs_troll.setAnim('TROLL');
 
-        World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */);
+        World.ClearArea(1191.9, -870.4, 15.0, 1.0, true);
         $.player.setCoordinates(1191.9, -870.4, -100.0);
 
         $.player.setHeading(230.0);
@@ -210,21 +210,21 @@ async function body() {
 
         $.lipsbrother1_car = Car.Create(95 /* CAR_SENTINEL */, 892.0, -992.3, 4.6);
         $.lipsbrother1_car.setHeading(90.0);
-        $.lipsbrother1_car.setStrong(true /* TRUE */);
+        $.lipsbrother1_car.setStrong(true);
         $.lipsbrother1 = Char.CreateInsideCar($.lipsbrother1_car, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */);
         $.lipsbrother1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
         $.lipsbrother1_car.setIdle();
         $.lipsbrother1_car.lockDoors(2 /* CARLOCK_LOCKED */);
-        $.lipsbrother1_car.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.lipsbrother1_car.setOnlyDamagedByPlayer(true);
 
         $.lipsbrother2_car = Car.Create(95 /* CAR_SENTINEL */, 800.0, -961.9, -100.0);
         $.lipsbrother2_car.setHeading(241.0);
-        $.lipsbrother2_car.setStrong(true /* TRUE */);
+        $.lipsbrother2_car.setStrong(true);
         $.lipsbrother2 = Char.CreateInsideCar($.lipsbrother2_car, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */);
         $.lipsbrother2.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
         $.lipsbrother2_car.setIdle();
         $.lipsbrother2_car.lockDoors(2 /* CARLOCK_LOCKED */);
-        $.lipsbrother2_car.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.lipsbrother2_car.setOnlyDamagedByPlayer(true);
 
         while (!$.player.isInCar($.deadman_car)) {
             await asyncWait(0);
@@ -275,7 +275,7 @@ async function body() {
         if (!Char.IsDead($.lipsbrother1)) {
             if (!Car.IsDead($.lipsbrother1_car)) {
                 $.lipsbrother1_car.setMission(2 /* MISSION_RAMPLAYER_FARAWAY */);
-                $.lipsbrother1_car.setOnlyDamagedByPlayer(false /* FALSE */);
+                $.lipsbrother1_car.setOnlyDamagedByPlayer(false);
                 $.lipsbrother1_car.setCruiseSpeed(40.0);
                 $.lipsbrother1_car.setDrivingStyle(2);
                 $.lipsbrother1.setThreatSearch(1 /* THREAT_PLAYER1 */);
@@ -285,7 +285,7 @@ async function body() {
         if (!Char.IsDead($.lipsbrother2)) {
             if (!Car.IsDead($.lipsbrother2_car)) {
                 $.lipsbrother2_car.setMission(4 /* MISSION_BLOCKPLAYER_FARAWAY */);
-                $.lipsbrother2_car.setOnlyDamagedByPlayer(false /* FALSE */);
+                $.lipsbrother2_car.setOnlyDamagedByPlayer(false);
                 $.lipsbrother2_car.setCruiseSpeed(40.0);
                 $.lipsbrother2_car.setDrivingStyle(2);
                 $.lipsbrother2.setThreatSearch(1 /* THREAT_PLAYER1 */);
@@ -305,7 +305,7 @@ async function body() {
         if (!Char.IsDead($.lipsbrother1)) {
             if (!Car.IsDead($.lipsbrother1_car)) {
                 $.lipsbrother1_car.setMission(2 /* MISSION_RAMPLAYER_FARAWAY */);
-                $.lipsbrother1_car.setOnlyDamagedByPlayer(false /* FALSE */);
+                $.lipsbrother1_car.setOnlyDamagedByPlayer(false);
                 $.lipsbrother1_car.setCruiseSpeed(40.0);
                 $.lipsbrother1_car.setDrivingStyle(2);
                 $.lipsbrother1.setThreatSearch(1 /* THREAT_PLAYER1 */);
@@ -315,7 +315,7 @@ async function body() {
         if (!Char.IsDead($.lipsbrother2)) {
             if (!Car.IsDead($.lipsbrother2_car)) {
                 $.lipsbrother2_car.setMission(2 /* MISSION_RAMPLAYER_FARAWAY */);
-                $.lipsbrother2_car.setOnlyDamagedByPlayer(false /* FALSE */);
+                $.lipsbrother2_car.setOnlyDamagedByPlayer(false);
                 $.lipsbrother2_car.setCruiseSpeed(40.0);
                 $.lipsbrother2_car.setDrivingStyle(2);
                 $.lipsbrother2.setThreatSearch(1 /* THREAT_PLAYER1 */);
@@ -350,7 +350,7 @@ async function body() {
             // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_joey5_failed'); // fallback: would break linear control flow
         } else {
-            if ($.deadman_car.isInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 30.0, false /* FALSE */)) {
+            if ($.deadman_car.isInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 30.0, false)) {
                 $.flag_dont_do_car_check_joey5 = 1;
                 if ($.flag_leave_car_message_joey5 == 0) {
                     Text.PrintNow('OUT_VEH', 4000, 1); //"Get out of the car!"
@@ -389,7 +389,7 @@ async function body() {
             }
         }
         if ($.flag_player_had_crusher_help_hm5 == 0) {
-            if ($.player.locateAnyMeans2D(1140.3, 50.1, 20.0, 20.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeans2D(1140.3, 50.1, 20.0, 20.0, false)) {
                 if ($.player.isInCar($.deadman_car)) {
                     Text.PrintHelp('CRUSH'); //"To crush the car..."
                     $.flag_player_had_crusher_help_hm5 = 1;
@@ -538,7 +538,7 @@ async function skunk_car_check() {
                 }
                 $.on_new_objective_joey5_1 = 1;
             }
-            if ($.lipsbrother1_car.isInArea2D(1122.7, 2.9, 1183.8, 111.9, false /* FALSE */) && $.on_new_objective_joey5_1 == 0) {
+            if ($.lipsbrother1_car.isInArea2D(1122.7, 2.9, 1183.8, 111.9, false) && $.on_new_objective_joey5_1 == 0) {
                 if (!Char.IsDead($.lipsbrother1)) {
                     $.lipsbrother1_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
                     $.lipsbrother1.setObjKillPlayerOnFoot($.player);
@@ -556,7 +556,7 @@ async function skunk_car_check() {
                 $.on_new_objective_joey5_2 = 1;
             }
             if (!Car.IsDead($.lipsbrother2_car)) {
-                if ($.lipsbrother2_car.isInArea2D(1122.7, 2.9, 1183.8, 111.9, false /* FALSE */) && $.on_new_objective_joey5_1 == 0) {
+                if ($.lipsbrother2_car.isInArea2D(1122.7, 2.9, 1183.8, 111.9, false) && $.on_new_objective_joey5_1 == 0) {
                     if (!Char.IsDead($.lipsbrother2)) {
                         $.lipsbrother2_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
                         $.lipsbrother2.setObjKillPlayerOnFoot($.player);

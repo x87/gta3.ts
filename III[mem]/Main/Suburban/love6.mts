@@ -60,7 +60,7 @@ async function body() {
     $.cs_lovehead = CutsceneHead.Create($.cs_love, 185 /* CUT_OBJ1 */);
     $.cs_lovehead.setAnim('love');
 
-    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */);
+    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true);
 
     $.player.setCoordinates(82.44, -1548.49, 28.0);
 
@@ -142,7 +142,7 @@ async function body() {
     Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */);
     Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
 
-    Game.SetSwatRequired(true /* TRUE */);
+    Game.SetSwatRequired(true);
     Streaming.RequestModel(117 /* CAR_ENFORCER */);
     Streaming.RequestModel(2 /* PED_SWAT */);
     Streaming.RequestModel(1 /* PED_COP */);
@@ -190,7 +190,7 @@ async function body() {
     $.decoy_van.setHeading(270.0);
     $.decoy_van.setIdle();
     $.decoy_van.lockDoors(1 /* CARLOCK_UNLOCKED */);
-    $.decoy_van.setStrong(true /* TRUE */);
+    $.decoy_van.setStrong(true);
 
     $.decoy_van_blip.remove();
     $.decoy_van_blip = Blip.AddForCar($.decoy_van);
@@ -511,7 +511,7 @@ async function cleanup() {
     $.decoy_van_blip.remove();
     Hud.ClearTimer($.$id.survival_time);
     Hud.ClearCounter($.$id.decoy_van_health);
-    Game.SetSwatRequired(false /* FALSE */);
+    Game.SetSwatRequired(false);
     Streaming.MarkModelAsNoLongerNeeded(118 /* CAR_SECURICAR */);
     Streaming.MarkModelAsNoLongerNeeded(116 /* CAR_POLICE */);
     Streaming.MarkModelAsNoLongerNeeded(1 /* PED_COP */);

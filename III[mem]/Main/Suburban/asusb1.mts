@@ -486,7 +486,7 @@ async function body() {
         $.player_X = _res293.x;
         $.player_Y = _res293.y;
         $.player_Z = _res293.z;
-        if ($.player.locateAnyMeans3D($.killzone_min_x, $.killzone_min_y, 65.0, $.killzone_max_x, $.killzone_max_y, 75.0, false /* false */)) {
+        if ($.player.locateAnyMeans3D($.killzone_min_x, $.killzone_min_y, 65.0, $.killzone_max_x, $.killzone_max_y, 75.0, false)) {
             $.flag_wellybob = 1;
         } else {
             $.flag_wellybob = 0;
@@ -523,7 +523,7 @@ async function body() {
                         $.yakuza1_as1.setThreatSearch(64 /* THREAT_COP */);
                         $.yakuza1_as1.addArmor(100);
                         $.yakuza1_as1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 999);
-                        $.yakuza1_as1.setStayInSamePlace(true /* true */);
+                        $.yakuza1_as1.setStayInSamePlace(true);
                     }
                     if ($.flag_yak2_dead == 0) {
                         $.yakuza2_as1 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 17 /* PED_GANG_YAKUZA_B */, $.yak2_x, $.yak2_y, 72.06);
@@ -533,7 +533,7 @@ async function body() {
                         $.yakuza2_as1.setThreatSearch(64 /* THREAT_COP */);
                         $.yakuza2_as1.addArmor(100);
                         $.yakuza2_as1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                        $.yakuza2_as1.setStayInSamePlace(true /* true */);
+                        $.yakuza2_as1.setStayInSamePlace(true);
                     }
                     if ($.flag_yak3_dead == 0) {
                         $.yakuza3_as1 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 17 /* PED_GANG_YAKUZA_B */, $.yak3_x, $.yak3_y, 72.06);
@@ -543,7 +543,7 @@ async function body() {
                         $.yakuza3_as1.setThreatSearch(64 /* THREAT_COP */);
                         $.yakuza3_as1.addArmor(100);
                         $.yakuza3_as1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 999);
-                        $.yakuza3_as1.setStayInSamePlace(true /* true */);
+                        $.yakuza3_as1.setStayInSamePlace(true);
                     }
                     if ($.flag_yak4_dead == 0) {
                         $.yakuza4_as1 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, $.yak4_x, $.yak4_y, 72.06);
@@ -553,7 +553,7 @@ async function body() {
                         $.yakuza4_as1.setThreatSearch(64 /* THREAT_COP */);
                         $.yakuza4_as1.addArmor(100);
                         $.yakuza4_as1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 999);
-                        $.yakuza4_as1.setStayInSamePlace(true /* true */);
+                        $.yakuza4_as1.setStayInSamePlace(true);
                     }
                     if ($.flag_yak5_dead == 0) {
                         $.yakuza5_as1 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, $.yak5_x, $.yak5_y, 72.44);
@@ -563,7 +563,7 @@ async function body() {
                         $.yakuza5_as1.setThreatSearch(2097152 /* THREAT_COP_CAR */);
                         $.yakuza5_as1.addArmor(100);
                         $.yakuza5_as1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 999);
-                        $.yakuza5_as1.setStayInSamePlace(true /* true */);
+                        $.yakuza5_as1.setStayInSamePlace(true);
                     }
                     if ($.flag_yak6_dead == 0) {
                         $.yakuza6_as1 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 17 /* PED_GANG_YAKUZA_B */, $.yak6_x, $.yak6_y, 68.76);
@@ -573,7 +573,7 @@ async function body() {
                         $.yakuza6_as1.setThreatSearch(2097152 /* THREAT_COP_CAR */);
                         $.yakuza6_as1.addArmor(100);
                         $.yakuza6_as1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                        $.yakuza6_as1.setStayInSamePlace(true /* true */);
+                        $.yakuza6_as1.setStayInSamePlace(true);
                     }
 
                     $.flag_yakuza_created_as1 = 1;
@@ -646,7 +646,7 @@ async function body() {
             if ($.player.isInZone('SUB_IND') || $.player.isInZone('AIRPORT')) {
                 $.cartel_car_a_as1 = Car.Create(95 /* CAR_SENTINEL */, $.cartel_a_x, $.cartel_a_y, 34.0);
                 $.cartel_car_a_as1.setHeading(270.0);
-                $.cartel_car_a_as1.setUpsidedownNotDamaged(true /* true */);
+                $.cartel_car_a_as1.setUpsidedownNotDamaged(true);
                 $.cartel1_as1 = Char.CreateInsideCar($.cartel_car_a_as1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */);
                 $.cartel2_as1 = Char.CreateAsPassenger($.cartel_car_a_as1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, 0);
                 $.cartel3_as1 = Char.CreateAsPassenger($.cartel_car_a_as1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, 1);
@@ -660,17 +660,17 @@ async function body() {
 
         if ($.flag_cartel_a_created == 1) {
             if ($.flag_a_attack == 0) {
-                if ($.player.locateAnyMeans2D($.cartel_a_x, $.cartel_a_y, 30.0, 30.0, false /* false */)) {
+                if ($.player.locateAnyMeans2D($.cartel_a_x, $.cartel_a_y, 30.0, 30.0, false)) {
                     if (!Car.IsDead($.cartel_car_a_as1)) {
-                        $.cartel_car_a_as1.setStrong(true /* TRUE */);
+                        $.cartel_car_a_as1.setStrong(true);
                         $.cartel_car_a_as1.lockDoors(2 /* CARLOCK_LOCKED */);
-                        $.cartel_car_a_as1.setOnlyDamagedByPlayer(true /* True */);
+                        $.cartel_car_a_as1.setOnlyDamagedByPlayer(true);
                         $.blip_cartel_a_as1.remove();
                         $.cartel_car_a_as1.setCruiseSpeed(50.0);
                         $.cartel_car_a_as1.setMission(2 /* MISSION_RAMPLAYER_FARAWAY */);
                         $.cartel_car_a_as1.setDrivingStyle(2);
                         $.blip_cartelcar_a = Blip.AddForCar($.cartel_car_a_as1);
-                        $.cartel_car_a_as1.setStaysInCurrentLevel(false /* FALSE */);
+                        $.cartel_car_a_as1.setStaysInCurrentLevel(false);
                         //SET_CAR_WATERTIGHT cartel_car_a_as1 TRUE
                         $.flag_a_attack = 1;
                     }
@@ -688,7 +688,7 @@ async function body() {
 
             if (!Car.IsDead($.cartel_car_a_as1)) {
                 if ($.flag_bailout_a == 0 && $.flag_a_attack == 1) {
-                    if (!$.cartel_car_a_as1.locate2D($.player_X, $.player_Y, 40.0, 40.0, false /* false */)) {
+                    if (!$.cartel_car_a_as1.locate2D($.player_X, $.player_Y, 40.0, 40.0, false)) {
                         $.cartel_car_a_as1.setCruiseSpeed(30.0);
                         //CAR_WANDER_RANDOMLY cartel_car_a_as1
                         //SET_CAR_MISSION cartel_car_a_as1 MISSION_NONE
@@ -708,14 +708,14 @@ async function body() {
                             $.player_X = _res294.x;
                             $.player_Y = _res294.y;
                             $.player_Z = _res294.z;
-                            if ($.cartel_car_a_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false /* false */)) {
+                            if ($.cartel_car_a_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false)) {
                                 await bailout_a(); // SCM GOSUB bailout_a
                             }
                         }
                     }
                     if (!Car.IsDead($.cartel_car_a_as1)) {
-                        if ($.cartel_car_a_as1.locate3D($.killzone_cent_x, $.killzone_cent_y, 70.0, 17.0, 30.0, 3.0, false /* false */) && $.flag_bailout_a == 0) {
-                            $.cartel_car_a_as1.setOnlyDamagedByPlayer(false /* false */);
+                        if ($.cartel_car_a_as1.locate3D($.killzone_cent_x, $.killzone_cent_y, 70.0, 17.0, 30.0, 3.0, false) && $.flag_bailout_a == 0) {
+                            $.cartel_car_a_as1.setOnlyDamagedByPlayer(false);
                             ++$.counter_asukas_revenge;
                             await bailout_a(); // SCM GOSUB bailout_a
                         }
@@ -734,7 +734,7 @@ async function body() {
                     $.cartel3_as1.setObjKillPlayerAnyMeans($.player);
                 }
                 if (!Char.IsDead($.cartel4_as1)) {
-                    if ($.cartel4_as1.locateOnFoot2D($.killzone_cent_x, $.killzone_cent_y, 15.0, 15.0, false /* false */) && !Char.IsDead($.yakuza1_as1)) {
+                    if ($.cartel4_as1.locateOnFoot2D($.killzone_cent_x, $.killzone_cent_y, 15.0, 15.0, false) && !Char.IsDead($.yakuza1_as1)) {
                         $.cartel4_as1.setObjKillCharAnyMeans($.yakuza1_as1);
                     } else {
                         $.cartel4_as1.setObjKillPlayerAnyMeans($.player);
@@ -748,7 +748,7 @@ async function body() {
         if ($.flag_cartel_b_created == 0) {
             if ($.player.isInZone('BIG_DAM')) {
                 $.cartel_car_b_as1 = Car.Create(95 /* CAR_SENTINEL */, $.cartel_b_x, $.cartel_b_y, 74.2);
-                $.cartel_car_b_as1.setUpsidedownNotDamaged(true /* true */);
+                $.cartel_car_b_as1.setUpsidedownNotDamaged(true);
                 $.cartel_car_b_as1.setHeading(180.0);
                 $.cartel5_as1 = Char.CreateInsideCar($.cartel_car_b_as1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */);
                 $.cartel6_as1 = Char.CreateAsPassenger($.cartel_car_b_as1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, 0);
@@ -763,17 +763,17 @@ async function body() {
 
         if ($.flag_cartel_b_created == 1) {
             if ($.flag_b_attack == 0) {
-                if ($.player.locateAnyMeans2D($.cartel_b_x, $.cartel_b_y, 40.0, 40.0, false /* false */)) {
+                if ($.player.locateAnyMeans2D($.cartel_b_x, $.cartel_b_y, 40.0, 40.0, false)) {
                     if (!Car.IsDead($.cartel_car_b_as1)) {
-                        $.cartel_car_b_as1.setStrong(true /* TRUE */);
+                        $.cartel_car_b_as1.setStrong(true);
                         $.cartel_car_b_as1.lockDoors(2 /* CARLOCK_LOCKED */);
-                        $.cartel_car_b_as1.setOnlyDamagedByPlayer(true /* True */);
+                        $.cartel_car_b_as1.setOnlyDamagedByPlayer(true);
                         $.blip_cartel_b_as1.remove();
                         $.cartel_car_b_as1.setCruiseSpeed(50.0);
                         $.cartel_car_b_as1.setMission(2 /* MISSION_RAMPLAYER_FARAWAY */);
                         $.cartel_car_b_as1.setDrivingStyle(2);
                         $.blip_cartelcar_b = Blip.AddForCar($.cartel_car_b_as1);
-                        $.cartel_car_b_as1.setStaysInCurrentLevel(false /* FALSE */);
+                        $.cartel_car_b_as1.setStaysInCurrentLevel(false);
                         //SET_CAR_WATERTIGHT cartel_car_b_as1 TRUE
                         $.flag_b_attack = 1;
                     }
@@ -790,7 +790,7 @@ async function body() {
             }
             if (!Car.IsDead($.cartel_car_b_as1)) {
                 if ($.flag_bailout_b == 0 && $.flag_b_attack == 1) {
-                    if (!$.cartel_car_b_as1.locate2D($.player_X, $.player_Y, 40.0, 40.0, false /* false */)) {
+                    if (!$.cartel_car_b_as1.locate2D($.player_X, $.player_Y, 40.0, 40.0, false)) {
                         $.cartel_car_b_as1.setCruiseSpeed(30.0);
                         //CAR_WANDER_RANDOMLY cartel_car_b_as1
                         //SET_CAR_MISSION cartel_car_b_as1 MISSION_NONE
@@ -816,14 +816,14 @@ async function body() {
                             $.player_X = _res295.x;
                             $.player_Y = _res295.y;
                             $.player_Z = _res295.z;
-                            if ($.cartel_car_b_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false /* false */)) {
+                            if ($.cartel_car_b_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false)) {
                                 await bailout_b(); // SCM GOSUB bailout_b
                             }
                         }
                     }
                     if (!Car.IsDead($.cartel_car_b_as1)) {
-                        if ($.cartel_car_b_as1.locate3D($.killzone_cent_x, $.killzone_cent_y, 70.0, 17.0, 30.0, 3.0, false /* false */) && $.flag_bailout_b == 0) {
-                            $.cartel_car_b_as1.setOnlyDamagedByPlayer(false /* false */);
+                        if ($.cartel_car_b_as1.locate3D($.killzone_cent_x, $.killzone_cent_y, 70.0, 17.0, 30.0, 3.0, false) && $.flag_bailout_b == 0) {
+                            $.cartel_car_b_as1.setOnlyDamagedByPlayer(false);
                             ++$.counter_asukas_revenge;
                             await bailout_b(); // SCM GOSUB bailout_b
                         }
@@ -842,7 +842,7 @@ async function body() {
                     $.cartel7_as1.setObjKillPlayerAnyMeans($.player);
                 }
                 if (!Char.IsDead($.cartel8_as1)) {
-                    if ($.cartel8_as1.locateOnFoot2D($.killzone_cent_x, $.killzone_cent_y, 15.0, 15.0, false /* false */) && !Char.IsDead($.yakuza4_as1)) {
+                    if ($.cartel8_as1.locateOnFoot2D($.killzone_cent_x, $.killzone_cent_y, 15.0, 15.0, false) && !Char.IsDead($.yakuza4_as1)) {
                         $.cartel8_as1.setObjKillCharAnyMeans($.yakuza4_as1);
                     } else {
                         $.cartel8_as1.setObjKillPlayerAnyMeans($.player);
@@ -967,9 +967,9 @@ async function body() {
         //--------------------------------CARTEL DEATH SQUAD 4 GENERATOR-----------------------------------
 
         if ($.flag_cartel_d_created == 0) {
-            if ($.player.locateAnyMeans3D($.cartel_d_x, $.cartel_d_y, 70.0, 70.0, 70.0, 20.0, false /* false */)) {
+            if ($.player.locateAnyMeans3D($.cartel_d_x, $.cartel_d_y, 70.0, 70.0, 70.0, 20.0, false)) {
                 $.cartel_car_d_as1 = Car.Create(95 /* CAR_SENTINEL */, $.cartel_d_x, $.cartel_d_y, 70.0);
-                $.cartel_car_d_as1.setUpsidedownNotDamaged(true /* true */);
+                $.cartel_car_d_as1.setUpsidedownNotDamaged(true);
                 $.cartel_car_d_as1.setHeading(180.0);
                 $.cartel_car_d_as1.setIdle();
                 $.cartel13_as1 = Char.CreateInsideCar($.cartel_car_d_as1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */);
@@ -985,17 +985,17 @@ async function body() {
 
         if ($.flag_cartel_d_created == 1) {
             if ($.flag_d_attack == 0) {
-                if ($.player.locateAnyMeans3D($.cartel_d_x, $.cartel_d_y, 70.0, 30.0, 30.0, 20.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.cartel_d_x, $.cartel_d_y, 70.0, 30.0, 30.0, 20.0, false)) {
                     if (!Car.IsDead($.cartel_car_d_as1)) {
-                        $.cartel_car_d_as1.setStrong(true /* TRUE */);
+                        $.cartel_car_d_as1.setStrong(true);
                         $.cartel_car_d_as1.lockDoors(2 /* CARLOCK_LOCKED */);
-                        $.cartel_car_d_as1.setOnlyDamagedByPlayer(true /* True */);
+                        $.cartel_car_d_as1.setOnlyDamagedByPlayer(true);
                         $.blip_cartel_d_as1.remove();
                         $.cartel_car_d_as1.setCruiseSpeed(50.0);
                         $.cartel_car_d_as1.setMission(2 /* MISSION_RAMPLAYER_FARAWAY */);
                         $.cartel_car_d_as1.setDrivingStyle(2);
                         $.blip_cartelcar_d = Blip.AddForCar($.cartel_car_d_as1);
-                        $.cartel_car_d_as1.setStaysInCurrentLevel(false /* FALSE */);
+                        $.cartel_car_d_as1.setStaysInCurrentLevel(false);
                         //SET_CAR_WATERTIGHT cartel_car_d_as1 TRUE
                         $.flag_d_attack = 1;
                     }
@@ -1012,7 +1012,7 @@ async function body() {
             }
             if (!Car.IsDead($.cartel_car_d_as1)) {
                 if ($.flag_bailout_d == 0 && $.flag_d_attack == 1) {
-                    if (!$.cartel_car_d_as1.locate2D($.player_X, $.player_Y, 40.0, 40.0, false /* false */)) {
+                    if (!$.cartel_car_d_as1.locate2D($.player_X, $.player_Y, 40.0, 40.0, false)) {
                         $.cartel_car_d_as1.setCruiseSpeed(30.0);
                         //CAR_WANDER_RANDOMLY cartel_car_d_as1
                         //SET_CAR_MISSION cartel_car_d_as1 MISSION_NONE
@@ -1039,14 +1039,14 @@ async function body() {
                             $.player_X = _res296.x;
                             $.player_Y = _res296.y;
                             $.player_Z = _res296.z;
-                            if ($.cartel_car_d_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false /* false */)) {
+                            if ($.cartel_car_d_as1.locate3D($.player_X, $.player_Y, $.player_Z, 10.0, 10.0, 5.0, false)) {
                                 await bailout_d(); // SCM GOSUB bailout_d
                             }
                         }
                     }
                     if (!Car.IsDead($.cartel_car_d_as1)) {
-                        if ($.cartel_car_d_as1.locate3D($.killzone_cent_x, $.killzone_cent_y, 70.0, 17.0, 30.0, 3.0, false /* false */) && $.flag_bailout_d == 0) {
-                            $.cartel_car_d_as1.setOnlyDamagedByPlayer(false /* false */);
+                        if ($.cartel_car_d_as1.locate3D($.killzone_cent_x, $.killzone_cent_y, 70.0, 17.0, 30.0, 3.0, false) && $.flag_bailout_d == 0) {
+                            $.cartel_car_d_as1.setOnlyDamagedByPlayer(false);
                             ++$.counter_asukas_revenge;
                             await bailout_d(); // SCM GOSUB bailout_d
                         }
@@ -1065,7 +1065,7 @@ async function body() {
                     $.cartel15_as1.setObjKillPlayerAnyMeans($.player);
                 }
                 if (!Char.IsDead($.cartel16_as1)) {
-                    if ($.cartel16_as1.locateOnFoot2D($.killzone_cent_x, $.killzone_cent_y, 15.0, 15.0, false /* false */) && !Char.IsDead($.yakuza4_as1)) {
+                    if ($.cartel16_as1.locateOnFoot2D($.killzone_cent_x, $.killzone_cent_y, 15.0, 15.0, false) && !Char.IsDead($.yakuza4_as1)) {
                         $.cartel16_as1.setObjKillCharAnyMeans($.yakuza4_as1);
                     } else {
                         $.cartel16_as1.setObjKillPlayerAnyMeans($.player);
@@ -1959,7 +1959,7 @@ async function cartel_car_a_stuck() {
                 $.flag_bailout_a = 1;
                 ++$.counter_bailouts;
                 $.blip_cartelcar_a.remove();
-                $.cartel_car_a_as1.setWatertight(false /* FALSE */);
+                $.cartel_car_a_as1.setWatertight(false);
                 await cartel_deaths(); // SCM GOSUB cartel_deaths
                 return;
             }
@@ -2042,7 +2042,7 @@ async function cartel_car_b_stuck() {
                 }
             } else {
                 $.flag_bailout_b = 1;
-                $.cartel_car_b_as1.setWatertight(false /* FALSE */);
+                $.cartel_car_b_as1.setWatertight(false);
                 ++$.counter_bailouts;
                 $.blip_cartelcar_b.remove();
                 await cartel_deaths(); // SCM GOSUB cartel_deaths
@@ -2197,7 +2197,7 @@ async function cartel_car_d_stuck() {
                 }
             } else {
                 $.flag_bailout_d = 1;
-                $.cartel_car_d_as1.setWatertight(false /* FALSE */);
+                $.cartel_car_d_as1.setWatertight(false);
                 ++$.counter_bailouts;
                 $.blip_cartelcar_d.remove();
                 await cartel_deaths(); // SCM GOSUB cartel_deaths
@@ -2348,7 +2348,7 @@ async function unhappy_car_check() {
             $.car_a_as1_x = _res309.x;
             $.car_a_as1_y = _res309.y;
             $.car_a_as1_z = _res309.z;
-            if ($.cartel_car_a_as1.locate2D($.car_a_x_old, $.car_a_y_old, 3.0, 3.0, false /* false */)) {
+            if ($.cartel_car_a_as1.locate2D($.car_a_x_old, $.car_a_y_old, 3.0, 3.0, false)) {
                 if (!$.cartel_car_a_as1.isOnScreen()) {
                     //GET_CAR_COORDINATES cartel_car_a_as1 cartel_car_a_as1_x cartel_car_a_as1_y cartel_car_a_as1_z
                     const _res310 = Path.GetClosestCarNodeWithHeading($.car_a_as1_x, $.car_a_as1_y, $.car_a_as1_z);
@@ -2372,7 +2372,7 @@ async function unhappy_car_check() {
             $.car_b_as1_x = _res311.x;
             $.car_b_as1_y = _res311.y;
             $.car_b_as1_z = _res311.z;
-            if ($.cartel_car_b_as1.locate2D($.car_b_x_old, $.car_b_y_old, 3.0, 3.0, false /* false */)) {
+            if ($.cartel_car_b_as1.locate2D($.car_b_x_old, $.car_b_y_old, 3.0, 3.0, false)) {
                 if (!$.cartel_car_b_as1.isOnScreen()) {
                     //GET_CAR_COORDINATES cartel_car_b_as1 cartel_car_b_as1_x cartel_car_b_as1_y cartel_car_b_as1_z
                     const _res312 = Path.GetClosestCarNodeWithHeading($.car_b_as1_x, $.car_b_as1_y, $.car_b_as1_z);
@@ -2396,7 +2396,7 @@ async function unhappy_car_check() {
             $.car_d_as1_x = _res313.x;
             $.car_d_as1_y = _res313.y;
             $.car_d_as1_z = _res313.z;
-            if ($.cartel_car_d_as1.locate2D($.car_d_x_old, $.car_d_y_old, 3.0, 3.0, false /* false */)) {
+            if ($.cartel_car_d_as1.locate2D($.car_d_x_old, $.car_d_y_old, 3.0, 3.0, false)) {
                 if (!$.cartel_car_d_as1.isOnScreen()) {
                     //GET_CAR_COORDINATES cartel_car_d_as1 cartel_car_d_as1_x cartel_car_d_as1_y cartel_car_d_as1_z
                     const _res314 = Path.GetClosestCarNodeWithHeading($.car_d_as1_x, $.car_d_as1_y, $.car_d_as1_z);

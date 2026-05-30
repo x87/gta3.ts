@@ -173,7 +173,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false);
 
     Cutscene.Load('l5_tfb');
 
@@ -210,7 +210,7 @@ async function body() {
     //CLEAR_AREA 902.2 -425.8 13.9 1.0 TRUE
     //SET_PLAYER_COORDINATES player 902.2 -425.8 13.9
 
-    World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */);
+    World.ClearArea(896.6, -426.2, 13.9, 1.0, true);
     $.player.setCoordinates(896.6, -426.2, 13.9);
 
     $.player.setHeading(270.0);
@@ -298,7 +298,7 @@ async function body() {
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
-    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true /* TRUE */);
+    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
@@ -373,7 +373,7 @@ async function body() {
 
     $.flag_blip_on_prossie1_lm5 = 1;
 
-    $.prossie1_lm5.setRunning(true /* TRUE */);
+    $.prossie1_lm5.setRunning(true);
 
     // creates prossie 2
 
@@ -387,7 +387,7 @@ async function body() {
 
     $.flag_blip_on_prossie2_lm5 = 1;
 
-    $.prossie2_lm5.setRunning(true /* TRUE */);
+    $.prossie2_lm5.setRunning(true);
 
     // creates prossie 3
 
@@ -399,7 +399,7 @@ async function body() {
 
     $.flag_blip_on_prossie3_lm5 = 1;
 
-    $.prossie3_lm5.setRunning(true /* TRUE */);
+    $.prossie3_lm5.setRunning(true);
 
     // creates prossie 4
 
@@ -413,7 +413,7 @@ async function body() {
 
     $.flag_blip_on_prossie4_lm5 = 1;
 
-    $.prossie4_lm5.setRunning(true /* TRUE */);
+    $.prossie4_lm5.setRunning(true);
 
     // creates prossie 5
 
@@ -425,7 +425,7 @@ async function body() {
 
     $.flag_blip_on_prossie5_lm5 = 1;
 
-    $.prossie5_lm5.setRunning(true /* TRUE */);
+    $.prossie5_lm5.setRunning(true);
 
     // creates prossie 6
 
@@ -437,7 +437,7 @@ async function body() {
 
     $.flag_blip_on_prossie6_lm5 = 1;
 
-    $.prossie6_lm5.setRunning(true /* TRUE */);
+    $.prossie6_lm5.setRunning(true);
 
     // creates prossie 7
 
@@ -449,7 +449,7 @@ async function body() {
 
     $.flag_blip_on_prossie7_lm5 = 1;
 
-    $.prossie7_lm5.setRunning(true /* TRUE */);
+    $.prossie7_lm5.setRunning(true);
 
     // creates prossie 8
 
@@ -463,7 +463,7 @@ async function body() {
 
     $.flag_blip_on_prossie8_lm5 = 1;
 
-    $.prossie8_lm5.setRunning(true /* TRUE */);
+    $.prossie8_lm5.setRunning(true);
 
     if ($.timer_help_message_displayed == 0) {
         Text.PrintHelp('TIMER'); //"This is a timed mission, you must complete it before the timer runs out."
@@ -479,7 +479,7 @@ async function body() {
     prossie_checks: while ($.timer_lm5 > 0) {
         //while ($.timer_lm5 > 0) {
         await asyncWait(0);
-        World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */); // This should clear the area
+        World.ClearArea(1000.4, -886.7, 14.4, 6.0, false); // This should clear the area
         await check_for_dead_prossies(); // SCM GOSUB check_for_dead_prossies
         if ($.number_of_dead_prossies > 0) {
             Text.PrintNow('LM5_2', 5000, 1); //"A girl has died!"
@@ -501,14 +501,14 @@ async function body() {
 
         if ($.flag_prossie1_at_ball == 0) {
             if ($.flag_prossie1_lm5_in_car == 0) {
-                if ($.player.locateOnFootChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message1_lm5 == 0) {
+                if ($.player.locateOnFootChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message1_lm5 == 0) {
                     Text.PrintNow('LM5_3', 5000, 1); //"You need a car!"
                     $.flag_had_car_message1_lm5 = 1;
                 }
-                if (!$.player.locateAnyMeansChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false)) {
                     $.flag_had_car_message1_lm5 = 0;
                 }
-                if ($.player.locateInCarChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateInCarChar3D($.prossie1_lm5, 8.0, 8.0, 2.0, false)) {
                     if ($.flag_prossie1_lm5_in_car == 0) {
                         $.prossie1_lm5.turnToFacePlayer($.player);
                     }
@@ -549,7 +549,7 @@ async function body() {
 
                                             continue prossie_checks; // SCM GOTO → prossie_checks
                                         }
-                                        if ($.player.locateAnyMeansChar2D($.prossie1_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie1_lm5 == 1) {
+                                        if ($.player.locateAnyMeansChar2D($.prossie1_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie1_lm5 == 1) {
                                             $.prossie1_lm5.followPlayer($.player);
                                             $.radarped_prossie1_lm5.remove();
                                             $.flag_blip_on_prossie1_lm5 = 0;
@@ -558,7 +558,7 @@ async function body() {
                                 }
                             }
                             $.flag_prossie1_lm5_in_car = 1;
-                            $.prossie1_lm5.setRunning(false /* FALSE */);
+                            $.prossie1_lm5.setRunning(false);
                         } else {
                             if ($.flag_had_room_message_lm5 == 0) {
                                 Text.PrintNow('LM5_1', 7000, 1); //"Get a bigger car!"
@@ -579,14 +579,14 @@ async function body() {
                         $.flag_blip_on_prossie1_lm5 = 1;
                         $.flag_prossie1_lm5_in_car = 0;
                     }
-                    if ($.player.locateAnyMeansChar2D($.prossie1_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie1_lm5 == 1) {
+                    if ($.player.locateAnyMeansChar2D($.prossie1_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie1_lm5 == 1) {
                         $.prossie1_lm5.followPlayer($.player);
                         $.radarped_prossie1_lm5.remove();
                         $.flag_blip_on_prossie1_lm5 = 0;
                     }
                 }
                 if (
-                    $.prossie1_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) &&
+                    $.prossie1_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
                     $.flag_prossie1_at_ball == 0 &&
                     $.flag_prossie1_in_car_park == 0
                 ) {
@@ -623,7 +623,7 @@ async function body() {
                     $.player.clearWantedLevel();
                     $.flag_prossie1_told_to_go_into_ball = 1;
                 }
-                if ($.prossie1_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie1_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie1_lm5.setIdle();
                     $.prossie1_lm5.removeElegantly();
                     //++ counter_no_of_girls_at_the_ball
@@ -653,14 +653,14 @@ async function body() {
                 throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
             }
             if ($.flag_prossie2_lm5_in_car == 0) {
-                if ($.player.locateOnFootChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message2_lm5 == 0) {
+                if ($.player.locateOnFootChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message2_lm5 == 0) {
                     Text.PrintNow('LM5_3', 5000, 1); //"You need a car!"
                     $.flag_had_car_message2_lm5 = 1;
                 }
-                if (!$.player.locateAnyMeansChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false)) {
                     $.flag_had_car_message2_lm5 = 0;
                 }
-                if ($.player.locateInCarChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateInCarChar3D($.prossie2_lm5, 8.0, 8.0, 2.0, false)) {
                     if ($.flag_prossie2_lm5_in_car == 0) {
                         $.prossie2_lm5.turnToFacePlayer($.player);
                     }
@@ -702,7 +702,7 @@ async function body() {
                                             // SCM GOTO → prossie_checks
                                             continue prossie_checks;
                                         }
-                                        if ($.player.locateAnyMeansChar2D($.prossie2_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie2_lm5 == 1) {
+                                        if ($.player.locateAnyMeansChar2D($.prossie2_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie2_lm5 == 1) {
                                             $.prossie2_lm5.followPlayer($.player);
                                             $.radarped_prossie2_lm5.remove();
                                             $.flag_blip_on_prossie2_lm5 = 0;
@@ -711,7 +711,7 @@ async function body() {
                                 }
                             }
                             $.flag_prossie2_lm5_in_car = 1;
-                            $.prossie2_lm5.setRunning(false /* FALSE */);
+                            $.prossie2_lm5.setRunning(false);
                         } else {
                             if ($.flag_had_room_message_lm5 == 0) {
                                 Text.PrintNow('LM5_1', 7000, 1); //"Get a bigger car!"
@@ -732,14 +732,14 @@ async function body() {
                         $.flag_blip_on_prossie2_lm5 = 1;
                         $.flag_prossie2_lm5_in_car = 0;
                     }
-                    if ($.player.locateAnyMeansChar2D($.prossie2_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie2_lm5 == 1) {
+                    if ($.player.locateAnyMeansChar2D($.prossie2_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie2_lm5 == 1) {
                         $.prossie2_lm5.followPlayer($.player);
                         $.radarped_prossie2_lm5.remove();
                         $.flag_blip_on_prossie2_lm5 = 0;
                     }
                 }
                 if (
-                    $.prossie2_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) &&
+                    $.prossie2_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
                     $.flag_prossie2_at_ball == 0 &&
                     $.flag_prossie2_in_car_park == 0
                 ) {
@@ -776,7 +776,7 @@ async function body() {
                     $.player.clearWantedLevel();
                     $.flag_prossie2_told_to_go_into_ball = 1;
                 }
-                if ($.prossie2_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie2_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie2_lm5.setIdle();
                     $.prossie2_lm5.removeElegantly();
                     //++ counter_no_of_girls_at_the_ball
@@ -806,14 +806,14 @@ async function body() {
                 throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
             }
             if ($.flag_prossie3_lm5_in_car == 0) {
-                if ($.player.locateOnFootChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message3_lm5 == 0) {
+                if ($.player.locateOnFootChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message3_lm5 == 0) {
                     Text.PrintNow('LM5_3', 5000, 1); //"You need a car!"
                     $.flag_had_car_message3_lm5 = 1;
                 }
-                if (!$.player.locateAnyMeansChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false)) {
                     $.flag_had_car_message3_lm5 = 0;
                 }
-                if ($.player.locateInCarChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateInCarChar3D($.prossie3_lm5, 8.0, 8.0, 2.0, false)) {
                     if ($.flag_prossie3_lm5_in_car == 0) {
                         $.prossie3_lm5.turnToFacePlayer($.player);
                     }
@@ -855,7 +855,7 @@ async function body() {
                                             // SCM GOTO → prossie_checks
                                             continue prossie_checks;
                                         }
-                                        if ($.player.locateAnyMeansChar2D($.prossie3_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie3_lm5 == 1) {
+                                        if ($.player.locateAnyMeansChar2D($.prossie3_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie3_lm5 == 1) {
                                             $.prossie3_lm5.followPlayer($.player);
                                             $.radarped_prossie3_lm5.remove();
                                             $.flag_blip_on_prossie3_lm5 = 0;
@@ -864,7 +864,7 @@ async function body() {
                                 }
                             }
                             $.flag_prossie3_lm5_in_car = 1;
-                            $.prossie3_lm5.setRunning(false /* FALSE */);
+                            $.prossie3_lm5.setRunning(false);
                         } else {
                             if ($.flag_had_room_message_lm5 == 0) {
                                 Text.PrintNow('LM5_1', 7000, 1); //"Get a bigger car!"
@@ -885,14 +885,14 @@ async function body() {
                         $.flag_blip_on_prossie3_lm5 = 1;
                         $.flag_prossie3_lm5_in_car = 0;
                     }
-                    if ($.player.locateAnyMeansChar2D($.prossie3_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie3_lm5 == 1) {
+                    if ($.player.locateAnyMeansChar2D($.prossie3_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie3_lm5 == 1) {
                         $.prossie3_lm5.followPlayer($.player);
                         $.radarped_prossie3_lm5.remove();
                         $.flag_blip_on_prossie3_lm5 = 0;
                     }
                 }
                 if (
-                    $.prossie3_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) &&
+                    $.prossie3_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
                     $.flag_prossie3_at_ball == 0 &&
                     $.flag_prossie3_in_car_park == 0
                 ) {
@@ -929,7 +929,7 @@ async function body() {
                     $.player.clearWantedLevel();
                     $.flag_prossie3_told_to_go_into_ball = 1;
                 }
-                if ($.prossie3_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie3_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie3_lm5.setIdle();
                     $.prossie3_lm5.removeElegantly();
                     //++ counter_no_of_girls_at_the_ball
@@ -959,14 +959,14 @@ async function body() {
                 throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
             }
             if ($.flag_prossie4_lm5_in_car == 0) {
-                if ($.player.locateOnFootChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message4_lm5 == 0) {
+                if ($.player.locateOnFootChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message4_lm5 == 0) {
                     Text.PrintNow('LM5_3', 5000, 1); //"You need a car!"
                     $.flag_had_car_message4_lm5 = 1;
                 }
-                if (!$.player.locateAnyMeansChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false)) {
                     $.flag_had_car_message4_lm5 = 0;
                 }
-                if ($.player.locateInCarChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateInCarChar3D($.prossie4_lm5, 8.0, 8.0, 2.0, false)) {
                     if ($.flag_prossie4_lm5_in_car == 0) {
                         $.prossie4_lm5.turnToFacePlayer($.player);
                     }
@@ -1009,7 +1009,7 @@ async function body() {
                                             // SCM GOTO → prossie_checks
                                             continue prossie_checks;
                                         }
-                                        if ($.player.locateAnyMeansChar2D($.prossie4_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie4_lm5 == 1) {
+                                        if ($.player.locateAnyMeansChar2D($.prossie4_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie4_lm5 == 1) {
                                             $.prossie4_lm5.followPlayer($.player);
                                             $.radarped_prossie4_lm5.remove();
                                             $.flag_blip_on_prossie4_lm5 = 0;
@@ -1018,7 +1018,7 @@ async function body() {
                                 }
                             }
                             $.flag_prossie4_lm5_in_car = 1;
-                            $.prossie4_lm5.setRunning(false /* FALSE */);
+                            $.prossie4_lm5.setRunning(false);
                         } else {
                             if ($.flag_had_room_message_lm5 == 0) {
                                 Text.PrintNow('LM5_1', 7000, 1); //"Get a bigger car!"
@@ -1039,14 +1039,14 @@ async function body() {
                         $.flag_blip_on_prossie4_lm5 = 1;
                         $.flag_prossie4_lm5_in_car = 0;
                     }
-                    if ($.player.locateAnyMeansChar2D($.prossie4_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie4_lm5 == 1) {
+                    if ($.player.locateAnyMeansChar2D($.prossie4_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie4_lm5 == 1) {
                         $.prossie4_lm5.followPlayer($.player);
                         $.radarped_prossie4_lm5.remove();
                         $.flag_blip_on_prossie4_lm5 = 0;
                     }
                 }
                 if (
-                    $.prossie4_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) &&
+                    $.prossie4_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
                     $.flag_prossie4_at_ball == 0 &&
                     $.flag_prossie4_in_car_park == 0
                 ) {
@@ -1083,7 +1083,7 @@ async function body() {
                     $.player.clearWantedLevel();
                     $.flag_prossie4_told_to_go_into_ball = 1;
                 }
-                if ($.prossie4_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie4_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie4_lm5.setIdle();
                     $.prossie4_lm5.removeElegantly();
                     //++ counter_no_of_girls_at_the_ball
@@ -1113,14 +1113,14 @@ async function body() {
                 throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
             }
             if ($.flag_prossie5_lm5_in_car == 0) {
-                if ($.player.locateOnFootChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message5_lm5 == 0) {
+                if ($.player.locateOnFootChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message5_lm5 == 0) {
                     Text.PrintNow('LM5_3', 5000, 1); //"You need a car!"
                     $.flag_had_car_message5_lm5 = 1;
                 }
-                if (!$.player.locateAnyMeansChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false)) {
                     $.flag_had_car_message5_lm5 = 0;
                 }
-                if ($.player.locateInCarChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateInCarChar3D($.prossie5_lm5, 8.0, 8.0, 2.0, false)) {
                     if ($.flag_prossie5_lm5_in_car == 0) {
                         $.prossie5_lm5.turnToFacePlayer($.player);
                     }
@@ -1161,7 +1161,7 @@ async function body() {
                                             // SCM GOTO → prossie_checks
                                             continue prossie_checks;
                                         }
-                                        if ($.player.locateAnyMeansChar2D($.prossie5_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie5_lm5 == 1) {
+                                        if ($.player.locateAnyMeansChar2D($.prossie5_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie5_lm5 == 1) {
                                             $.prossie5_lm5.followPlayer($.player);
                                             $.radarped_prossie5_lm5.remove();
                                             $.flag_blip_on_prossie5_lm5 = 0;
@@ -1170,7 +1170,7 @@ async function body() {
                                 }
                             }
                             $.flag_prossie5_lm5_in_car = 1;
-                            $.prossie5_lm5.setRunning(false /* FALSE */);
+                            $.prossie5_lm5.setRunning(false);
                         } else {
                             if ($.flag_had_room_message_lm5 == 0) {
                                 Text.PrintNow('LM5_1', 7000, 1); //"Get a bigger car!"
@@ -1191,14 +1191,14 @@ async function body() {
                         $.flag_blip_on_prossie5_lm5 = 1;
                         $.flag_prossie5_lm5_in_car = 0;
                     }
-                    if ($.player.locateAnyMeansChar2D($.prossie5_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie5_lm5 == 1) {
+                    if ($.player.locateAnyMeansChar2D($.prossie5_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie5_lm5 == 1) {
                         $.prossie5_lm5.followPlayer($.player);
                         $.radarped_prossie5_lm5.remove();
                         $.flag_blip_on_prossie5_lm5 = 0;
                     }
                 }
                 if (
-                    $.prossie5_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) &&
+                    $.prossie5_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
                     $.flag_prossie5_at_ball == 0 &&
                     $.flag_prossie5_in_car_park == 0
                 ) {
@@ -1234,7 +1234,7 @@ async function body() {
                     $.player.clearWantedLevel();
                     $.flag_prossie5_told_to_go_into_ball = 1;
                 }
-                if ($.prossie5_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie5_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie5_lm5.setIdle();
                     $.prossie5_lm5.removeElegantly();
                     //++ counter_no_of_girls_at_the_ball
@@ -1264,14 +1264,14 @@ async function body() {
                 throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
             }
             if ($.flag_prossie6_lm5_in_car == 0) {
-                if ($.player.locateOnFootChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message6_lm5 == 0) {
+                if ($.player.locateOnFootChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message6_lm5 == 0) {
                     Text.PrintNow('LM5_3', 5000, 1); //"You need a car!"
                     $.flag_had_car_message6_lm5 = 1;
                 }
-                if (!$.player.locateAnyMeansChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false)) {
                     $.flag_had_car_message6_lm5 = 0;
                 }
-                if ($.player.locateInCarChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateInCarChar3D($.prossie6_lm5, 8.0, 8.0, 2.0, false)) {
                     if ($.flag_prossie6_lm5_in_car == 0) {
                         $.prossie6_lm5.turnToFacePlayer($.player);
                     }
@@ -1313,7 +1313,7 @@ async function body() {
                                             // SCM GOTO → prossie_checks
                                             continue prossie_checks;
                                         }
-                                        if ($.player.locateAnyMeansChar2D($.prossie6_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie6_lm5 == 1) {
+                                        if ($.player.locateAnyMeansChar2D($.prossie6_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie6_lm5 == 1) {
                                             $.prossie6_lm5.followPlayer($.player);
                                             $.radarped_prossie6_lm5.remove();
                                             $.flag_blip_on_prossie6_lm5 = 0;
@@ -1322,7 +1322,7 @@ async function body() {
                                 }
                             }
                             $.flag_prossie6_lm5_in_car = 1;
-                            $.prossie6_lm5.setRunning(false /* FALSE */);
+                            $.prossie6_lm5.setRunning(false);
                         } else {
                             if ($.flag_had_room_message_lm5 == 0) {
                                 Text.PrintNow('LM5_1', 7000, 1); //"Get a bigger car!"
@@ -1343,14 +1343,14 @@ async function body() {
                         $.flag_blip_on_prossie6_lm5 = 1;
                         $.flag_prossie6_lm5_in_car = 0;
                     }
-                    if ($.player.locateAnyMeansChar2D($.prossie6_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie6_lm5 == 1) {
+                    if ($.player.locateAnyMeansChar2D($.prossie6_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie6_lm5 == 1) {
                         $.prossie6_lm5.followPlayer($.player);
                         $.radarped_prossie6_lm5.remove();
                         $.flag_blip_on_prossie6_lm5 = 0;
                     }
                 }
                 if (
-                    $.prossie6_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) &&
+                    $.prossie6_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
                     $.flag_prossie6_at_ball == 0 &&
                     $.flag_prossie6_in_car_park == 0
                 ) {
@@ -1387,7 +1387,7 @@ async function body() {
                     $.player.clearWantedLevel();
                     $.flag_prossie6_told_to_go_into_ball = 1;
                 }
-                if ($.prossie6_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie6_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie6_lm5.setIdle();
                     $.prossie6_lm5.removeElegantly();
                     //++ counter_no_of_girls_at_the_ball
@@ -1417,14 +1417,14 @@ async function body() {
                 throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
             }
             if ($.flag_prossie7_lm5_in_car == 0) {
-                if ($.player.locateOnFootChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message7_lm5 == 0) {
+                if ($.player.locateOnFootChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message7_lm5 == 0) {
                     Text.PrintNow('LM5_3', 5000, 1); //"You need a car!"
                     $.flag_had_car_message7_lm5 = 1;
                 }
-                if (!$.player.locateAnyMeansChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false)) {
                     $.flag_had_car_message7_lm5 = 0;
                 }
-                if ($.player.locateInCarChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateInCarChar3D($.prossie7_lm5, 8.0, 8.0, 2.0, false)) {
                     if ($.flag_prossie7_lm5_in_car == 0) {
                         $.prossie7_lm5.turnToFacePlayer($.player);
                     }
@@ -1465,7 +1465,7 @@ async function body() {
                                             // SCM GOTO → prossie_checks
                                             continue prossie_checks;
                                         }
-                                        if ($.player.locateAnyMeansChar2D($.prossie7_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie7_lm5 == 1) {
+                                        if ($.player.locateAnyMeansChar2D($.prossie7_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie7_lm5 == 1) {
                                             $.prossie7_lm5.followPlayer($.player);
                                             $.radarped_prossie7_lm5.remove();
                                             $.flag_blip_on_prossie7_lm5 = 0;
@@ -1474,7 +1474,7 @@ async function body() {
                                 }
                             }
                             $.flag_prossie7_lm5_in_car = 1;
-                            $.prossie7_lm5.setRunning(false /* FALSE */);
+                            $.prossie7_lm5.setRunning(false);
                         } else {
                             if ($.flag_had_room_message_lm5 == 0) {
                                 Text.PrintNow('LM5_1', 7000, 1); //"Get a bigger car!"
@@ -1495,14 +1495,14 @@ async function body() {
                         $.flag_blip_on_prossie7_lm5 = 1;
                         $.flag_prossie7_lm5_in_car = 0;
                     }
-                    if ($.player.locateAnyMeansChar2D($.prossie7_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie7_lm5 == 1) {
+                    if ($.player.locateAnyMeansChar2D($.prossie7_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie7_lm5 == 1) {
                         $.prossie7_lm5.followPlayer($.player);
                         $.radarped_prossie7_lm5.remove();
                         $.flag_blip_on_prossie7_lm5 = 0;
                     }
                 }
                 if (
-                    $.prossie7_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) &&
+                    $.prossie7_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
                     $.flag_prossie7_at_ball == 0 &&
                     $.flag_prossie7_in_car_park == 0
                 ) {
@@ -1539,7 +1539,7 @@ async function body() {
                     $.player.clearWantedLevel();
                     $.flag_prossie7_told_to_go_into_ball = 1;
                 }
-                if ($.prossie7_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie7_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie7_lm5.setIdle();
                     $.prossie7_lm5.removeElegantly();
                     //++ counter_no_of_girls_at_the_ball
@@ -1569,14 +1569,14 @@ async function body() {
                 throw new Error('unresolved GOTO mission_luigi5_failed'); // fallback: would break linear control flow
             }
             if ($.flag_prossie8_lm5_in_car == 0) {
-                if ($.player.locateOnFootChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false /* FALSE */) && $.flag_had_car_message8_lm5 == 0) {
+                if ($.player.locateOnFootChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false) && $.flag_had_car_message8_lm5 == 0) {
                     Text.PrintNow('LM5_3', 5000, 1); //"You need a car!"
                     $.flag_had_car_message8_lm5 = 1;
                 }
-                if (!$.player.locateAnyMeansChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false)) {
                     $.flag_had_car_message8_lm5 = 0;
                 }
-                if ($.player.locateInCarChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false /* FALSE */)) {
+                if ($.player.locateInCarChar3D($.prossie8_lm5, 8.0, 8.0, 2.0, false)) {
                     if ($.flag_prossie8_lm5_in_car == 0) {
                         $.prossie8_lm5.turnToFacePlayer($.player);
                     }
@@ -1617,7 +1617,7 @@ async function body() {
                                             // SCM GOTO → prossie_checks
                                             continue prossie_checks;
                                         }
-                                        if ($.player.locateAnyMeansChar2D($.prossie8_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie8_lm5 == 1) {
+                                        if ($.player.locateAnyMeansChar2D($.prossie8_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie8_lm5 == 1) {
                                             $.prossie8_lm5.followPlayer($.player);
                                             $.radarped_prossie8_lm5.remove();
                                             $.flag_blip_on_prossie8_lm5 = 0;
@@ -1626,7 +1626,7 @@ async function body() {
                                 }
                             }
                             $.flag_prossie8_lm5_in_car = 1;
-                            $.prossie8_lm5.setRunning(false /* FALSE */);
+                            $.prossie8_lm5.setRunning(false);
                         } else {
                             if ($.flag_had_room_message_lm5 == 0) {
                                 Text.PrintNow('LM5_1', 7000, 1); //"Get a bigger car!"
@@ -1647,14 +1647,14 @@ async function body() {
                         $.flag_blip_on_prossie8_lm5 = 1;
                         $.flag_prossie8_lm5_in_car = 0;
                     }
-                    if ($.player.locateAnyMeansChar2D($.prossie8_lm5, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_prossie8_lm5 == 1) {
+                    if ($.player.locateAnyMeansChar2D($.prossie8_lm5, 8.0, 8.0, false) && $.flag_blip_on_prossie8_lm5 == 1) {
                         $.prossie8_lm5.followPlayer($.player);
                         $.radarped_prossie8_lm5.remove();
                         $.flag_blip_on_prossie8_lm5 = 0;
                     }
                 }
                 if (
-                    $.prossie8_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false /* FALSE */) &&
+                    $.prossie8_lm5.isStoppedInArea3D(1003.5, -883.0, 13.9, 996.8, -876.4, 18.0, false) &&
                     $.flag_prossie8_at_ball == 0 &&
                     $.flag_prossie8_in_car_park == 0
                 ) {
@@ -1691,7 +1691,7 @@ async function body() {
                     $.player.clearWantedLevel();
                     $.flag_prossie8_told_to_go_into_ball = 1;
                 }
-                if ($.prossie8_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie8_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie8_lm5.setIdle();
                     $.prossie8_lm5.removeElegantly();
                     //++ counter_no_of_girls_at_the_ball
@@ -1732,7 +1732,7 @@ async function onFailed() {
 
 // mission Luigi1 passed
 async function onPassed() {
-    Hud.FreezeTimer(true /* TRUE */);
+    Hud.FreezeTimer(true);
 
     await mission_end_cutscene(); // SCM GOSUB mission_end_cutscene
 
@@ -1742,7 +1742,7 @@ async function onPassed() {
         $.player.setControl(false /* OFF */);
         Game.SetPoliceIgnorePlayer($.player, true /* ON */);
         Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-        World.ClearArea(1006.845, -885.5, 14.7, 2.0, true /* TRUE */);
+        World.ClearArea(1006.845, -885.5, 14.7, 2.0, true);
         Camera.SetFixedPosition(1006.845, -885.5, 14.7, 0.0, 0.0, 0.0);
         Camera.PointAtPoint(1005.9, -885.0, 14.6, 2 /* JUMP_CUT */);
         await mission_end_cutscene2(); // SCM GOSUB mission_end_cutscene2
@@ -1782,7 +1782,7 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);
     Streaming.MarkModelAsNoLongerNeeded(40 /* PED_PROSTITUTE2 */);
     Hud.ClearTimer($.$id.timer_lm5);
-    Hud.FreezeTimer(false /* FALSE */);
+    Hud.FreezeTimer(false);
     Hud.ClearCounter($.$id.counter_no_of_girls_at_the_ball);
     $.radar_blip_coord1_lm5.remove();
     $.radarped_prossie1_lm5.remove();
@@ -1932,13 +1932,13 @@ async function mission_end_cutscene2() {
 
     while ($.counter_girls_trying_to_get_to_ball > 0) {
         await asyncWait(0);
-        World.ClearArea(1000.4, -886.7, 14.4, 6.0, false /* FALSE */); // This should clear the area
+        World.ClearArea(1000.4, -886.7, 14.4, 6.0, false); // This should clear the area
         if ($.flag_prossie1_at_ball == 0) {
             if (!Char.IsDead($.prossie1_lm5)) {
                 if (TIMERB > 20000) {
                     $.prossie1_lm5.setCoordinates(999.0, -891.0, 14.3);
                 }
-                if ($.prossie1_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie1_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie1_lm5.setIdle();
                     $.prossie1_lm5.removeElegantly();
                     --$.counter_girls_trying_to_get_to_ball;
@@ -1954,7 +1954,7 @@ async function mission_end_cutscene2() {
                 if (TIMERB > 20000) {
                     $.prossie2_lm5.setCoordinates(999.0, -891.0, 14.3);
                 }
-                if ($.prossie2_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie2_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie2_lm5.setIdle();
                     $.prossie2_lm5.removeElegantly();
                     --$.counter_girls_trying_to_get_to_ball;
@@ -1970,7 +1970,7 @@ async function mission_end_cutscene2() {
                 if (TIMERB > 20000) {
                     $.prossie3_lm5.setCoordinates(999.0, -891.0, 14.3);
                 }
-                if ($.prossie3_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie3_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie3_lm5.setIdle();
                     $.prossie3_lm5.removeElegantly();
                     --$.counter_girls_trying_to_get_to_ball;
@@ -1986,7 +1986,7 @@ async function mission_end_cutscene2() {
                 if (TIMERB > 20000) {
                     $.prossie4_lm5.setCoordinates(999.0, -891.0, 14.3);
                 }
-                if ($.prossie4_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie4_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie4_lm5.setIdle();
                     $.prossie4_lm5.removeElegantly();
                     --$.counter_girls_trying_to_get_to_ball;
@@ -2002,7 +2002,7 @@ async function mission_end_cutscene2() {
                 if (TIMERB > 20000) {
                     $.prossie5_lm5.setCoordinates(999.0, -891.0, 14.3);
                 }
-                if ($.prossie5_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie5_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie5_lm5.setIdle();
                     $.prossie5_lm5.removeElegantly();
                     --$.counter_girls_trying_to_get_to_ball;
@@ -2018,7 +2018,7 @@ async function mission_end_cutscene2() {
                 if (TIMERB > 20000) {
                     $.prossie6_lm5.setCoordinates(999.0, -891.0, 14.3);
                 }
-                if ($.prossie6_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie6_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie6_lm5.setIdle();
                     $.prossie6_lm5.removeElegantly();
                     --$.counter_girls_trying_to_get_to_ball;
@@ -2034,7 +2034,7 @@ async function mission_end_cutscene2() {
                 if (TIMERB > 20000) {
                     $.prossie7_lm5.setCoordinates(999.0, -891.0, 14.3);
                 }
-                if ($.prossie7_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie7_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie7_lm5.setIdle();
                     $.prossie7_lm5.removeElegantly();
                     --$.counter_girls_trying_to_get_to_ball;
@@ -2050,7 +2050,7 @@ async function mission_end_cutscene2() {
                 if (TIMERB > 20000) {
                     $.prossie8_lm5.setCoordinates(999.0, -891.0, 14.3);
                 }
-                if ($.prossie8_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false /* FALSE */)) {
+                if ($.prossie8_lm5.locateOnFoot2D(999.0, -891.0, 1.0, 1.0, false)) {
                     $.prossie8_lm5.setIdle();
                     $.prossie8_lm5.removeElegantly();
                     --$.counter_girls_trying_to_get_to_ball;
@@ -2075,11 +2075,11 @@ async function close_fuzz_doors() {
         while ($.flag_moved_door1_lm5 == 0 || $.flag_moved_door2_lm5 == 0) {
             await asyncWait(0);
             if ($.counter_girls_trying_to_get_to_ball == 0) {
-                if (!World.IsAreaOccupied(1008.0, -899.0, 14.0, 996.5, -886.5, 20.0, false /* FALSE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */)) {
-                    if ($.fuzz_door1.rotate(180.0, 10.0, false /* FALSE */)) {
+                if (!World.IsAreaOccupied(1008.0, -899.0, 14.0, 996.5, -886.5, 20.0, false, true, true, false, true)) {
+                    if ($.fuzz_door1.rotate(180.0, 10.0, false)) {
                         $.flag_moved_door1_lm5 = 1;
                     }
-                    if ($.fuzz_door2.rotate(0.0, 10.0, false /* FALSE */)) {
+                    if ($.fuzz_door2.rotate(0.0, 10.0, false)) {
                         $.flag_moved_door2_lm5 = 1;
                     }
                 }

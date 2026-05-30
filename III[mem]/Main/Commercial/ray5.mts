@@ -122,7 +122,7 @@ async function body() {
 
     //SET_PLAYER_HEADING player 270.0
 
-    World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
+    World.ClearArea(39.0, -723.5, 22.0, 1.0, true);
 
     $.player.setCoordinates(39.0, -723.5, 22.0);
 
@@ -259,7 +259,7 @@ async function body() {
     $.swat1_rc5.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.swat1_rc5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
     $.swat1_rc5.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
-    $.swat1_rc5.setStayInSamePlace(true /* true */);
+    $.swat1_rc5.setStayInSamePlace(true);
     $.swat1_rc5.addArmor(100);
 
     $.swat2_rc5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 365.0, -1146.7, 23.0);
@@ -268,7 +268,7 @@ async function body() {
     $.swat2_rc5.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.swat2_rc5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
     $.swat2_rc5.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
-    $.swat2_rc5.setStayInSamePlace(true /* true */);
+    $.swat2_rc5.setStayInSamePlace(true);
     $.swat2_rc5.addArmor(100);
 
     $.swat3_rc5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 331.5, -1184.1, 26.2);
@@ -277,7 +277,7 @@ async function body() {
     $.swat3_rc5.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.swat3_rc5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
     $.swat3_rc5.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
-    $.swat3_rc5.setStayInSamePlace(true /* true */);
+    $.swat3_rc5.setStayInSamePlace(true);
     $.swat3_rc5.addArmor(100);
 
     $.swat4_rc5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 336.0, -1122.0, 26.0);
@@ -286,7 +286,7 @@ async function body() {
     $.swat4_rc5.setThreatSearch(1 /* THREAT_PLAYER1 */);
     $.swat4_rc5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
     $.swat4_rc5.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
-    $.swat4_rc5.setStayInSamePlace(true /* true */);
+    $.swat4_rc5.setStayInSamePlace(true);
     $.swat4_rc5.addArmor(100);
 
     Audio.LoadMissionAudio('r5_a' as any);
@@ -302,7 +302,7 @@ async function body() {
             $.ambulance_rc5.setHeading(166.0);
             $.ambulance_rc5.setCruiseSpeed(20.0);
             $.ambulance_rc5.setDrivingStyle(0);
-            $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+            $.ambulance_rc5.setOnlyDamagedByPlayer(true);
             //SWITCH_CAR_SIREN ambulance_rc5 ON
 
             $.ambulance_health = $.ambulance_rc5.getHealth();
@@ -338,25 +338,25 @@ async function body() {
                     //ambulance_health = ambulance_health * 5
 
                     if ($.flag_random_ray5 == 0) {
-                        if ($.ambulance_rc5.locate2D(-148.93, 18.04, 15.0, 15.0, false /* false */)) {
+                        if ($.ambulance_rc5.locate2D(-148.93, 18.04, 15.0, 15.0, false)) {
                             $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
                             $.flag_random_ray5 = 3;
                         }
                     }
                     if ($.flag_random_ray5 == 1) {
-                        if ($.ambulance_rc5.locate2D(402.88, -404.88, 15.0, 15.0, false /* false */)) {
+                        if ($.ambulance_rc5.locate2D(402.88, -404.88, 15.0, 15.0, false)) {
                             $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
                             $.flag_random_ray5 = 3;
                         }
                     }
                     if ($.flag_random_ray5 == 2) {
-                        if ($.ambulance_rc5.locate2D(-13.2, -804.7, 15.0, 15.0, false /* false */)) {
+                        if ($.ambulance_rc5.locate2D(-13.2, -804.7, 15.0, 15.0, false)) {
                             $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0); //---amb goto penultimate waypoint
                             $.flag_random_ray5 = 3;
                         }
                     }
                     if ($.flag_random_ray5 == 3) {
-                        if ($.ambulance_rc5.locate2D(405.2, -1137.7, 15.0, 15.0, false /* false */)) {
+                        if ($.ambulance_rc5.locate2D(405.2, -1137.7, 15.0, 15.0, false)) {
                             $.flag_redalert = 1;
                             $.ambulance_rc5.gotoCoordinates(362.0, -1138.0, 23.0); //----amb goto final destination
                             $.ambulance_rc5.setCruiseSpeed(15.0);
@@ -364,9 +364,9 @@ async function body() {
                         }
                     }
                     if ($.ambulance_rc5.isOnScreen()) {
-                        $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(false);
                     } else {
-                        $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(true);
                     }
                 } else {
                     Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
@@ -378,7 +378,7 @@ async function body() {
                     $.flag_police_trigger = 0;
                     continue amb_generator; // SCM GOTO → amb_generator
                 }
-                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */)) {
+                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false)) {
                     if (!Car.IsDead($.ambulance_rc5)) {
                         Text.PrintNow('RM5_2', 3000, 1);
                         $.ambulance_rc5.setCruiseSpeed(28.0);
@@ -412,7 +412,7 @@ async function body() {
 
                         break before_injured_cop_bailout; // SCM GOTO → injured_cop_bailout
                     }
-                    if ($.ambulance_rc5.locate2D(405.2, -1137.7, 15.0, 15.0, false /* false */)) {
+                    if ($.ambulance_rc5.locate2D(405.2, -1137.7, 15.0, 15.0, false)) {
                         $.ambulance_rc5.setCruiseSpeed(10.0);
                         $.flag_redalert = 2;
                         $.ambulance_rc5.gotoCoordinates(362.0, -1138.0, 23.0); //----amb goto final destination
@@ -420,9 +420,9 @@ async function body() {
                         $.ambulance_rc5.setDrivingStyle(0);
                     }
                     if ($.ambulance_rc5.isOnScreen()) {
-                        $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(false);
                     } else {
-                        $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(true);
                     }
                 } else {
                     Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
@@ -435,7 +435,7 @@ async function body() {
 
                     continue amb_generator; // SCM GOTO → amb_generator
                 }
-                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */) && $.flag_police_trigger == 0) {
+                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false) && $.flag_police_trigger == 0) {
                     if (!Car.IsDead($.ambulance_rc5)) {
                         Text.PrintNow('RM5_2', 3000, 1);
                         $.ambulance_rc5.setCruiseSpeed(28.0);
@@ -463,7 +463,7 @@ async function body() {
                     //ambulance_health = ambulance_health / 10
                     //ambulance_health = ambulance_health * 5
 
-                    if ($.ambulance_rc5.locate2D(362.0, -1138.0, 5.0, 5.0, true /* true */)) {
+                    if ($.ambulance_rc5.locate2D(362.0, -1138.0, 5.0, 5.0, true)) {
                         $.flag_redalert = 3;
                         $.ambulance_rc5.setCruiseSpeed(0.0);
                         $.ambulance_rc5.setDrivingStyle(0);
@@ -476,9 +476,9 @@ async function body() {
                         break before_injured_cop_bailout; // SCM GOTO → injured_cop_bailout
                     }
                     if ($.ambulance_rc5.isOnScreen()) {
-                        $.ambulance_rc5.setOnlyDamagedByPlayer(false /* false */);
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(false);
                     } else {
-                        $.ambulance_rc5.setOnlyDamagedByPlayer(true /* true */);
+                        $.ambulance_rc5.setOnlyDamagedByPlayer(true);
                     }
                 } else {
                     Text.PrintNow('RM5_3', 2500, 1); //---ambulance was decoy!!
@@ -491,7 +491,7 @@ async function body() {
 
                     continue amb_generator; // SCM GOTO → amb_generator
                 }
-                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false /* false */) && $.flag_police_trigger == 0) {
+                if ($.player.locateAnyMeans2D($.amb_rc5_x, $.amb_rc5_y, 25.0, 25.0, false) && $.flag_police_trigger == 0) {
                     Text.PrintNow('RM5_2', 3000, 1);
                     $.player.alterWantedLevelNoDrop(2);
                     $.flag_police_trigger = 1;
@@ -513,8 +513,8 @@ async function body() {
         $.amb_rc5_z = _res117.z;
         $.amb_rc5_z = $.amb_rc5_z + 2.5;
         $.injured_cop_rc5 = ScriptObject.Create(1395 /* bodycast */, $.amb_rc5_x, $.amb_rc5_y, $.amb_rc5_z);
-        $.injured_cop_rc5.setCollision(true /* TRUE */);
-        $.injured_cop_rc5.setDynamic(true /* true */);
+        $.injured_cop_rc5.setCollision(true);
+        $.injured_cop_rc5.setDynamic(true);
         $.injured_cop_rc5.makeTargetable();
         $.injured_cop_rc5.addToVelocity(0.0, 0.0, 5.0);
         $.blip_injured_cop_rc5 = Blip.AddForObject($.injured_cop_rc5);
@@ -646,7 +646,7 @@ async function cleanup() {
 
 //------GOSUBS------------------------------
 async function swat_team() {
-    if ($.player.isInArea3D(366.0, -1146.0, 21.0, 396.0, -1134.0, 28.0, false /* false */)) {
+    if ($.player.isInArea3D(366.0, -1146.0, 21.0, 396.0, -1134.0, 28.0, false)) {
         if (!Char.IsDead($.swat1_rc5)) {
             $.swat1_rc5.setObjKillPlayerAnyMeans($.player);
         }
@@ -654,7 +654,7 @@ async function swat_team() {
             $.swat2_rc5.setObjKillPlayerAnyMeans($.player);
         }
     }
-    if ($.player.isInArea3D(318.0, -1170.0, 22.0, 366.0, -1120.0, 25.0, false /* false */)) {
+    if ($.player.isInArea3D(318.0, -1170.0, 22.0, 366.0, -1120.0, 25.0, false)) {
         if (!Char.IsDead($.swat1_rc5)) {
             $.swat1_rc5.setObjKillPlayerAnyMeans($.player);
         }

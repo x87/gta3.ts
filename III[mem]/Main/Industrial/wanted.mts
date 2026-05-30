@@ -155,7 +155,7 @@ async function body() {
             $.flag_info = 2;
         }
         if ($.info_time_lapsed > 5500 && $.flag_copcar_progress == 0) {
-            World.ClearArea(1142.0, -666.0, 14.8, 10.0, true /* true */);
+            World.ClearArea(1142.0, -666.0, 14.8, 10.0, true);
             $.swatvan_info = Car.Create(117 /* CAR_ENFORCER */, 1142.0, -666.0, 14.8);
             //CREATE_CAR CAR_RUMPO 1142.0 -666.0 14.8 swatvan_info
             $.swatvan_info.setHeading(90.0);
@@ -295,7 +295,7 @@ async function body() {
             }
         }
         if (!Car.IsDead($.swatvan_info)) {
-            if ($.swatvan_info.locate2D(1133.0, -669.0, 3.0, 3.0, false /* false */) && $.flag_swat_progress == 1 && $.info_time_lapsed > 22000) {
+            if ($.swatvan_info.locate2D(1133.0, -669.0, 3.0, 3.0, false) && $.flag_swat_progress == 1 && $.info_time_lapsed > 22000) {
                 $.swatvan_info.gotoCoordinates(982.0, -617.0, 15.0);
                 $.swatvan_info.setCruiseSpeed(30.0);
                 $.swatvan_info.setDrivingStyle(3);
@@ -346,7 +346,7 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(137 /* CAR_DIABLOS */);
     Streaming.MarkModelAsNoLongerNeeded(117 /* CAR_ENFORCER */);
     Streaming.MarkModelAsNoLongerNeeded(116 /* CAR_POLICE */);
-    Game.SetSwatRequired(false /* FALSE */);
+    Game.SetSwatRequired(false);
     //REMOVE_PICKUP heal_info
 
     ONMISSION = false;

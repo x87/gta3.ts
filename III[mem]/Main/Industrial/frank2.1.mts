@@ -109,7 +109,7 @@ async function body() {
 
         $.cs_mafia.setAnim('gang02');
 
-        World.ClearArea(1455.1, -187.8, -100.0, 1.0, true /* TRUE */);
+        World.ClearArea(1455.1, -187.8, -100.0, 1.0, true);
 
         $.player.setCoordinates(1455.1, -187.8, -100.0);
 

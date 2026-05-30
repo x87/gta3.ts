@@ -156,7 +156,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false);
 
     Cutscene.Load('l3_dm');
 
@@ -190,7 +190,7 @@ async function body() {
 
     $.cs_ludoor.setAnim('LUDOOR');
 
-    World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */);
+    World.ClearArea(896.6, -426.2, 13.9, 1.0, true);
     $.player.setCoordinates(896.6, -426.2, 13.9);
 
     $.player.setHeading(270.0);
@@ -306,7 +306,7 @@ async function body() {
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
-    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true /* TRUE */);
+    World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
@@ -430,7 +430,7 @@ async function body() {
 
     $.script_controlled_player = $.player.getChar();
 
-    $.script_controlled_player.setCantBeDraggedOut(true /* TRUE */);
+    $.script_controlled_player.setCantBeDraggedOut(true);
 
     /*
         IF IS_PLAYER_IN_ANY_CAR player
@@ -462,9 +462,9 @@ async function body() {
         ENDIF
         */
 
-    World.ClearArea(936.2, -263.9, 5.0, 1.0, true /* TRUE */);
+    World.ClearArea(936.2, -263.9, 5.0, 1.0, true);
 
-    if ($.player.locateInCar2D(937.9, -259.8, 3.0, 3.0, false /* FALSE */)) {
+    if ($.player.locateInCar2D(937.9, -259.8, 3.0, 3.0, false)) {
         if (
             $.player.isInModel(121 /* CAR_BUS */) ||
             $.player.isInModel(127 /* CAR_COACH */) ||
@@ -497,11 +497,11 @@ async function body() {
     }
 
     if ($.flag_camera_mode_lm3 == 1) {
-        World.ClearArea(930.112, -264.972, 7.336, 4.0, true /* TRUE */);
+        World.ClearArea(930.112, -264.972, 7.336, 4.0, true);
         Camera.SetFixedPosition(930.112, -264.972, 7.336, 0.0, 0.0, 0.0);
         Camera.PointAtPoint(930.959, -265.474, 7.164, 2 /* JUMP_CUT */);
     } else {
-        World.ClearArea(928.169, -267.549, 4.0, 4.0, true /* TRUE */);
+        World.ClearArea(928.169, -267.549, 4.0, 4.0, true);
         Camera.SetFixedPosition(928.169, -267.549, 5.623, 0.0, 0.0, 0.0);
         Camera.PointAtPoint(929.162, -267.43, 5.656, 2 /* JUMP_CUT */);
     }
@@ -512,7 +512,7 @@ async function body() {
 
     //CLEAR_AREA 943.8 -271.5 4.0 4.0 TRUE // This should get rid of any stuff to block the cut-scene area
 
-    World.ClearArea(941.7, -269.2, 4.0, 1.0, true /* TRUE */); // Location misty is going to run to
+    World.ClearArea(941.7, -269.2, 4.0, 1.0, true); // Location misty is going to run to
 
     $.radar_blip_coord1_lm3.remove();
 
@@ -552,7 +552,7 @@ async function body() {
         throw new Error('unresolved GOTO mission_luigi3_failed'); // fallback: would break linear control flow
     }
 
-    World.ClearArea(944.1, -270.7, 4.0, 2.0, true /* TRUE */);
+    World.ClearArea(944.1, -270.7, 4.0, 2.0, true);
 
     $.misty_lm3.setObjGotoCoordOnFoot(944.1, -270.7);
 
@@ -582,7 +582,7 @@ async function body() {
         }
     }
 
-    World.ClearArea(941.0, -264.0, -100.0, 4.0, true /* TRUE */);
+    World.ClearArea(941.0, -264.0, -100.0, 4.0, true);
 
     /*
         // Close the door
@@ -628,8 +628,8 @@ async function body() {
     $.misty_door1.setHeading(0.0);
 
     if (!Char.IsDead($.misty_lm3)) {
-        if (!World.IsAreaOccupied(934.1, -266.46, 2.0, 935.08, -268.9, 10.0, false /* FALSE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */)) {
-            World.ClearArea(934.79, -267.47, 3.9, 1.0, true /* TRUE */);
+        if (!World.IsAreaOccupied(934.1, -266.46, 2.0, 935.08, -268.9, 10.0, false, true, true, true, true)) {
+            World.ClearArea(934.79, -267.47, 3.9, 1.0, true);
             $.misty_lm3.setCoordinates(934.79, -267.47, 3.9);
         }
     }
@@ -695,7 +695,7 @@ async function body() {
 
     Camera.Restore();
 
-    $.script_controlled_player.setCantBeDraggedOut(false /* FALSE */);
+    $.script_controlled_player.setCantBeDraggedOut(false);
 
     $.player.setControl(true /* ON */);
 
@@ -721,7 +721,7 @@ async function body() {
             $.flag_blip_on_misty_lm3 = 1;
             $.blob_flag = 0;
         }
-        if ($.player.locateAnyMeansChar2D($.misty_lm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_misty_lm3 == 1) {
+        if ($.player.locateAnyMeansChar2D($.misty_lm3, 8.0, 8.0, false) && $.flag_blip_on_misty_lm3 == 1) {
             $.misty_lm3.followPlayer($.player);
             //PRINT_NOW ( LM3_2 ) 5000 1 //"Take Misty to see Joey Leone."
             $.radar_blip_ped1_lm3.remove();
@@ -739,7 +739,7 @@ async function body() {
 
     $.blob_flag = 1;
 
-    while (!$.player.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, !!$.blob_flag) || !$.misty_lm3.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, false /* FALSE */)) {
+    while (!$.player.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, !!$.blob_flag) || !$.misty_lm3.locateStoppedAnyMeans2D(1196.0, -874.0, 3.0, 4.0, false)) {
         await asyncWait(0);
         if (Char.IsDead($.misty_lm3)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!"
@@ -753,7 +753,7 @@ async function body() {
             $.flag_blip_on_misty_lm3 = 1;
             $.blob_flag = 0;
         }
-        if ($.player.locateAnyMeansChar2D($.misty_lm3, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_misty_lm3 == 1) {
+        if ($.player.locateAnyMeansChar2D($.misty_lm3, 8.0, 8.0, false) && $.flag_blip_on_misty_lm3 == 1) {
             $.misty_lm3.followPlayer($.player);
             Text.PrintNow('LM3_2', 5000, 1); //"Take Misty to see Joey Leone."
             $.radar_blip_ped1_lm3.remove();
@@ -783,7 +783,7 @@ async function body() {
 
     $.player.clearWantedLevel();
 
-    World.ClearArea(1190.6, -869.1, -100.0, 6.0, true /* TRUE */); // This should get rid of any stuff to block the cut-scene area
+    World.ClearArea(1190.6, -869.1, -100.0, 6.0, true); // This should get rid of any stuff to block the cut-scene area
 
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
 
@@ -936,11 +936,11 @@ async function body() {
     $.cs_joedoor = CutsceneObject.Create(185 /* cut_obj1 */);
     $.cs_joedoor.setAnim('JOEDOOR');
 
-    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, false);
 
-    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, false);
 
-    World.ClearArea(1194.0, -872.5, 14.0, 2.0, true /* TRUE */);
+    World.ClearArea(1194.0, -872.5, 14.0, 2.0, true);
 
     $.player.setCoordinates(1194.0, -872.5, -100.0);
 
@@ -1050,8 +1050,8 @@ async function body() {
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
-    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, true /* TRUE */);
-    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, true /* TRUE */);
+    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1375 /* joey_door1 */, true);
+    World.SetVisibilityOfClosestObjectOfType(1192.23, -867.252, 14.124, 6.0, 1374 /* joey_door2 */, true);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);

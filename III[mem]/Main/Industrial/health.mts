@@ -73,8 +73,8 @@ async function body() {
             /*SET_FADING_COLOUR 0 0 0
       DO_FADE 1500 FADE_OUT
       WAIT 1500*/
-            World.ClearArea(1141.0, -622.0, 14.8, 30.0, true /* true */);
-            World.ClearArea(1125.77, -594.0, 14.8, 10.0, true /* true */);
+            World.ClearArea(1141.0, -622.0, 14.8, 30.0, true);
+            World.ClearArea(1125.77, -594.0, 14.8, 10.0, true);
             World.SetCarDensityMultiplier(0.0);
             World.SetPedDensityMultiplier(0.0);
             $.amb_info = Car.Create(106 /* CAR_AMBULANCE */, 1140.2, -621.5, 14.8);
@@ -82,7 +82,7 @@ async function body() {
             $.medic_info = Char.Create(4 /* PEDTYPE_CIVMALE */, 5 /* PED_MEDIC */, 1136.75, -617.8, 14.7);
             $.medic_info.setHeading(25.0);
             $.medic_info.setIdle();
-            $.medic_info.setStayInSamePlace(true /* true */);
+            $.medic_info.setStayInSamePlace(true);
             //CAR_SET_IDLE amb_info
             /*SET_FADING_COLOUR 0 0 0
       DO_FADE 1500 FADE_IN
@@ -106,7 +106,7 @@ async function body() {
             if (!Car.IsDead($.amb_info) && !Char.IsDead($.medic_info)) {
                 Camera.SetFixedPosition(1133.0, -613.5, 17.0, 0.0, 0.0, 0.0);
                 Camera.PointAtCar($.amb_info, 15 /* FIXED */, 2 /* JUMP_CUT */);
-                $.medic_info.setStayInSamePlace(false /* false */);
+                $.medic_info.setStayInSamePlace(false);
                 $.medic_info.setObjEnterCarAsDriver($.amb_info);
             }
             Text.PrintHelp('HEAL_C');

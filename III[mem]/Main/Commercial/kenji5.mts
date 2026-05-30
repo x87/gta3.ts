@@ -172,7 +172,7 @@ async function body() {
     //CREATE_CUTSCENE_HEAD cs_player cut_obj2 cs_playerhead
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */);
+    World.ClearArea(459.1, -1413.0, 25.11, 1.0, true);
     $.player.setCoordinates(459.1, -1413.0, 25.11);
     $.player.setHeading(132.0);
 
@@ -737,7 +737,7 @@ async function body() {
                         $.ped_1.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_1.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_1.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_1.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_1.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_1.wanderDir($.random_direction);
                         $.ped_1_blip.remove();
@@ -789,7 +789,7 @@ async function body() {
                         $.ped_2.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_2.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_2.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_2.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_2.setOnlyDamagedByPlayer(true);
                         $.ped_2_blip.remove();
                         $.ped_2_blip = Blip.AddForCharOld($.ped_2, 1 /* GREEN */, 3 /* BOTH */);
                         $.ped_2_blip.changeScale(3);
@@ -839,7 +839,7 @@ async function body() {
                         $.ped_3.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_3.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_3.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_3.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_3.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_3.wanderDir($.random_direction);
                         $.ped_3_blip.remove();
@@ -886,7 +886,7 @@ async function body() {
                         $.ped_4.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_4.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_4.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_4.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_4.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_4.wanderDir($.random_direction);
                         $.ped_4_blip.remove();
@@ -933,7 +933,7 @@ async function body() {
                         $.ped_5.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_5.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_5.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_5.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_5.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_5.wanderDir($.random_direction);
                         $.ped_5_blip.remove();
@@ -980,7 +980,7 @@ async function body() {
                         $.ped_6.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_6.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_6.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_6.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_6.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_6.wanderDir($.random_direction);
                         $.ped_6_blip.remove();
@@ -1027,7 +1027,7 @@ async function body() {
                         $.ped_7.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_7.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_7.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_7.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_7.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_7.wanderDir($.random_direction);
                         $.ped_7_blip.remove();
@@ -1074,7 +1074,7 @@ async function body() {
                         $.ped_8.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_8.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_8.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_8.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_8.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_8.wanderDir($.random_direction);
                         $.ped_8_blip.remove();
@@ -1121,7 +1121,7 @@ async function body() {
                         $.ped_9.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_9.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_9.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_9.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_9.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_9.wanderDir($.random_direction);
                         $.ped_9_blip.remove();
@@ -1168,7 +1168,7 @@ async function body() {
                         $.ped_10.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_10.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_10.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_10.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_10.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_10.wanderDir($.random_direction);
                         $.ped_10_blip.remove();
@@ -1215,7 +1215,7 @@ async function body() {
                         $.ped_11.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_11.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_11.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_11.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_11.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_11.wanderDir($.random_direction);
                         $.ped_11_blip.remove();
@@ -1262,7 +1262,7 @@ async function body() {
                         $.ped_12.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_12.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_12.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_12.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_12.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_12.wanderDir($.random_direction);
                         $.ped_12_blip.remove();
@@ -1309,7 +1309,7 @@ async function body() {
                         $.ped_13.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_13.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_13.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_13.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_13.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_13.wanderDir($.random_direction);
                         $.ped_13_blip.remove();
@@ -1356,7 +1356,7 @@ async function body() {
                         $.ped_14.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_14.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_14.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_14.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_14.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_14.wanderDir($.random_direction);
                         $.ped_14_blip.remove();
@@ -1403,7 +1403,7 @@ async function body() {
                         $.ped_15.setThreatSearch(2 /* THREAT_PLAYER2 */);
                         $.ped_15.setThreatSearch(4 /* THREAT_PLAYER3 */);
                         $.ped_15.setThreatSearch(8 /* THREAT_PLAYER4 */);
-                        $.ped_15.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.ped_15.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_15.wanderDir($.random_direction);
                         $.ped_15_blip.remove();

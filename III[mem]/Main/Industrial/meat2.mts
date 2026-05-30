@@ -288,7 +288,7 @@ async function body() {
 
     $.victim1_meat2.turnToFaceCoord(869.0, -615.0, -100.0);
 
-    $.victim1_meat2.setCantBeDraggedOut(true /* TRUE */);
+    $.victim1_meat2.setCantBeDraggedOut(true);
 
     $.radar_blip_ped1_meat2 = Blip.AddForChar($.victim1_meat2);
 
@@ -298,15 +298,15 @@ async function body() {
 
     $.victim2_meat2.turnToFaceCoord(869.0, -615.0, -100.0);
 
-    $.victim2_meat2.setCantBeDraggedOut(true /* TRUE */);
+    $.victim2_meat2.setCantBeDraggedOut(true);
 
     $.radar_blip_ped2_meat2 = Blip.AddForChar($.victim2_meat2);
 
     // waiting for the player to get to the creditors
 
     while (
-        !$.player.locateInCarChar2D($.victim1_meat2, 8.0, 8.0, false /* FALSE */) ||
-        !$.player.locateInCarChar2D($.victim2_meat2, 8.0, 8.0, false /* FALSE */) ||
+        !$.player.locateInCarChar2D($.victim1_meat2, 8.0, 8.0, false) ||
+        !$.player.locateInCarChar2D($.victim2_meat2, 8.0, 8.0, false) ||
         !$.player.isInCar($.car_meat2)
     ) {
         await asyncWait(0);
@@ -371,7 +371,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat2
             throw new Error('unresolved GOTO mission_failed_meat2');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.victim1_meat2, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.victim1_meat2, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA2_4', 5000, 1); //"You have left a creditor behind!"
                 // SCM GOTO → mission_failed_meat2
                 throw new Error('unresolved GOTO mission_failed_meat2');
@@ -382,7 +382,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat2
             throw new Error('unresolved GOTO mission_failed_meat2');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.victim2_meat2, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.victim2_meat2, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA2_4', 5000, 1); //"You have left a creditor behind!"
                 // SCM GOTO → mission_failed_meat2
                 throw new Error('unresolved GOTO mission_failed_meat2');
@@ -430,7 +430,7 @@ async function body() {
 
     while (
         !$.victim1_meat2.locateStoppedInCar3D(1205.7, -789.2, 13.9, 4.0, 4.0, 6.0, !!$.blob_flag) ||
-        !$.victim2_meat2.locateStoppedInCar3D(1205.7, -789.2, 13.9, 4.0, 4.0, 6.0, false /* FALSE */) ||
+        !$.victim2_meat2.locateStoppedInCar3D(1205.7, -789.2, 13.9, 4.0, 4.0, 6.0, false) ||
         !$.victim1_meat2.isInCar($.car_meat2) ||
         !$.victim2_meat2.isInCar($.car_meat2)
     ) {
@@ -451,7 +451,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat2
             throw new Error('unresolved GOTO mission_failed_meat2');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.victim1_meat2, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.victim1_meat2, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA2_4', 5000, 1); //"You have left a creditor behind!"
                 // SCM GOTO → mission_failed_meat2
                 throw new Error('unresolved GOTO mission_failed_meat2');
@@ -462,7 +462,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat2
             throw new Error('unresolved GOTO mission_failed_meat2');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.victim2_meat2, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.victim2_meat2, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA2_4', 5000, 1); //"You have left a creditor behind!"
                 // SCM GOTO → mission_failed_meat2
                 throw new Error('unresolved GOTO mission_failed_meat2');
@@ -496,11 +496,11 @@ async function body() {
 
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
 
-    $.victim1_meat2.setCantBeDraggedOut(false /* FALSE */);
+    $.victim1_meat2.setCantBeDraggedOut(false);
 
     $.victim1_meat2.setObjLeaveCar($.car_meat2);
 
-    $.victim2_meat2.setCantBeDraggedOut(false /* FALSE */);
+    $.victim2_meat2.setCantBeDraggedOut(false);
 
     $.victim2_meat2.setObjLeaveCar($.car_meat2);
 
@@ -550,7 +550,7 @@ async function body() {
 
     Camera.PointAtPoint(1204.4, -802.7, 15.0, 2 /* JUMP_CUT */);
 
-    World.ClearArea(1201.8, -799.7, 13.8, 10.0, true /* TRUE */);
+    World.ClearArea(1201.8, -799.7, 13.8, 10.0, true);
 
     TIMERB = 0;
 
@@ -558,7 +558,7 @@ async function body() {
 
     while (!($.flag_victim1_in_area == 2) || !($.flag_victim2_in_area == 2)) {
         await asyncWait(0);
-        if (!$.doggy_door.rotate(135.0, 5.0, false /* FALSE */)) {
+        if (!$.doggy_door.rotate(135.0, 5.0, false)) {
             const _res285 = $.doggy_door.getCoordinates();
             $.doorx = _res285.x;
             $.doory = _res285.y;
@@ -580,25 +580,25 @@ async function body() {
             throw new Error('unresolved GOTO mission_failed_meat2');
         }
         if ($.flag_victim1_in_area == 0) {
-            if ($.victim1_meat2.locateOnFoot2D(1203.3, -801.7, 0.5, 0.5, false /* FALSE */)) {
+            if ($.victim1_meat2.locateOnFoot2D(1203.3, -801.7, 0.5, 0.5, false)) {
                 $.flag_victim1_in_area = 1;
                 $.victim1_meat2.setObjGotoCoordOnFoot(1209.4, -807.2);
             }
         }
         if ($.flag_victim1_in_area == 1) {
-            if ($.victim1_meat2.locateOnFoot3D(1209.4, -807.2, 14.0, 4.0, 4.0, 4.0, false /* FALSE */)) {
+            if ($.victim1_meat2.locateOnFoot3D(1209.4, -807.2, 14.0, 4.0, 4.0, 4.0, false)) {
                 $.flag_victim1_in_area = 2;
             }
         }
 
         if ($.flag_victim2_in_area == 0) {
-            if ($.victim2_meat2.locateOnFoot2D(1202.4, -800.0, 0.5, 0.5, false /* FALSE */)) {
+            if ($.victim2_meat2.locateOnFoot2D(1202.4, -800.0, 0.5, 0.5, false)) {
                 $.flag_victim2_in_area = 1;
                 $.victim2_meat2.setObjGotoCoordOnFoot(1209.4, -807.2);
             }
         }
         if ($.flag_victim2_in_area == 1) {
-            if ($.victim2_meat2.locateOnFoot3D(1209.4, -807.2, 14.0, 4.0, 4.0, 4.0, false /* FALSE */)) {
+            if ($.victim2_meat2.locateOnFoot3D(1209.4, -807.2, 14.0, 4.0, 4.0, 4.0, false)) {
                 $.flag_victim2_in_area = 2;
             }
         }
@@ -622,7 +622,7 @@ async function body() {
 
         // Shuts the door
 
-        while (!$.doggy_door.rotate(45.0, 5.0, false /* FALSE */) || !Audio.HasMissionAudioLoaded()) {
+        while (!$.doggy_door.rotate(45.0, 5.0, false) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
             if (Car.IsDead($.car_meat2)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -682,7 +682,7 @@ async function body() {
 
         // waiting for the player to respray the car
 
-        while (!$.sprayshop1.hasResprayHappened() || !$.player.isInCar($.car_meat2) || !$.player.isStoppedInArea2D(922.6, -366.1, 928.6, -354.3, false /* FALSE */)) {
+        while (!$.sprayshop1.hasResprayHappened() || !$.player.isInCar($.car_meat2) || !$.player.isStoppedInArea2D(922.6, -366.1, 928.6, -354.3, false)) {
             await asyncWait(0);
             if (Car.IsDead($.car_meat2)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -724,7 +724,7 @@ async function body() {
                 // SCM GOTO → mission_failed_meat2
                 throw new Error('unresolved GOTO mission_failed_meat2');
             }
-            if ($.car_meat2.locateStopped3D(1195.6, -805.0, 13.7, 4.0, 4.0, 4.0, false /* FALSE */)) {
+            if ($.car_meat2.locateStopped3D(1195.6, -805.0, 13.7, 4.0, 4.0, 4.0, false)) {
                 if ($.flag_player_had_out_car_message_meat2 == 0) {
                     Text.PrintNow('OUT_VEH', 5000, 1); //"Get out of the vehicle!"
                     $.flag_player_had_out_car_message_meat2 = 1;

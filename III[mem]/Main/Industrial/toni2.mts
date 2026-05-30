@@ -72,12 +72,12 @@ async function body() {
     $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
     $.cs_note.setAnim('NOTE');
 
-    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
+    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true);
     $.player.setCoordinates(1219.5, -321.1, 26.4);
 
     $.player.setHeading(180.0);
 
-    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
+    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
@@ -200,12 +200,12 @@ async function body() {
         $.player.setControl(false /* Off */);
         Hud.SwitchWidescreen(true /* ON */);
 
-        World.ClearArea(869.4, -639.0, 15.0, 1.0, true /* TRUE */);
+        World.ClearArea(869.4, -639.0, 15.0, 1.0, true);
         $.thong1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 869.4, -639.0, -100.0);
         $.thong1.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
         $.thong1.setObjGotoCoordOnFoot(869.4, -656.0);
 
-        World.ClearArea(868.5, -637.0, 15.0, 1.0, true /* TRUE */);
+        World.ClearArea(868.5, -637.0, 15.0, 1.0, true);
         $.thong1B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 868.5, -637.0, -100.0);
         $.thong1B.setHeading(180.0);
         $.thong1B.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 200);
@@ -217,12 +217,12 @@ async function body() {
 
         await asyncWait(2500);
 
-        World.ClearArea(869.4, -688.0, 15.0, 1.0, true /* TRUE */);
+        World.ClearArea(869.4, -688.0, 15.0, 1.0, true);
         $.thong2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 869.4, -688.0, -100.0);
         $.thong2.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
         $.thong2.setObjGotoCoordOnFoot(869.4, -678.0);
 
-        World.ClearArea(868.5, -690.0, 15.0, 1.0, true /* TRUE */);
+        World.ClearArea(868.5, -690.0, 15.0, 1.0, true);
         $.thong2B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 868.5, -690.0, -100.0);
         $.thong2B.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
         //SET_CHAR_OBJ_GOTO_COORD_ON_FOOT thong2B 869.4 -678.0
@@ -231,7 +231,7 @@ async function body() {
 
         await asyncWait(2500);
 
-        World.ClearArea(892.6, -666.0, 15.0, 4.0, true /* TRUE */);
+        World.ClearArea(892.6, -666.0, 15.0, 4.0, true);
         $.thong_car = Car.Create(132 /* CAR_BELLYUP */, 892.5, -666.0, -100.0);
         $.thong_car.setHeading(180.0);
         $.thong3 = Char.CreateInsideCar($.thong_car, 8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */);
@@ -350,7 +350,7 @@ async function body() {
                 $.thong_blip3B.remove();
                 $.thong3B_dead = 1;
             }
-            if (!$.player.isInArea2D(890.0, -639.3, 846.6, -688.0, false /* FALSE */)) {
+            if (!$.player.isInArea2D(890.0, -639.3, 846.6, -688.0, false)) {
                 if (!Char.IsDead($.thong1B)) {
                     $.thong1B.setObjKillPlayerAnyMeans($.player);
                     //SET_CHAR_THREAT_SEARCH thong1B THREAT_PLAYER1
@@ -371,7 +371,7 @@ async function body() {
         $.blip2_t2 = Blip.AddForCoord(1223.0, -327.0, -100.0);
         //CHANGE_BLIP_DISPLAY blip2_t2 BLIP_ONLY
 
-        while (!$.player.locateOnFoot3D(1219.6, -320.7, 27.4, 1.0, 1.0, 2.0, true /* TRUE */)) {
+        while (!$.player.locateOnFoot3D(1219.6, -320.7, 27.4, 1.0, 1.0, 2.0, true)) {
             await asyncWait(0);
 
             /*
@@ -389,12 +389,12 @@ async function body() {
         Hud.SwitchWidescreen(true /* ON */);
 
         $.script_controlled_player = $.player.getChar();
-        $.script_controlled_player.setRunning(true /* TRUE */);
+        $.script_controlled_player.setRunning(true);
 
         Camera.SetFixedPosition(1214.4, -323.9, 29.8, 0.0, 0.0, 0);
         Camera.PointAtPoint(1215.2, -323.4, 29.4, 2 /* JUMP_CUT */);
 
-        World.ClearArea(1219.6, -314.0, 29.7, 2.0, true /* TRUE */);
+        World.ClearArea(1219.6, -314.0, 29.7, 2.0, true);
         $.script_controlled_player.setObjRunToCoord(1219.6, -314.0);
 
         Audio.PlayMissionPassedTune(1);
@@ -413,7 +413,7 @@ async function body() {
             }
         }
 
-        World.ClearArea(1219.6, -323.8, 26.8, 2.0, true /* TRUE */);
+        World.ClearArea(1219.6, -323.8, 26.8, 2.0, true);
         $.script_controlled_player.setObjRunToCoord(1219.6, -323.8);
 
         TIMERB = 0;
@@ -431,7 +431,7 @@ async function body() {
         Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
         Hud.SwitchWidescreen(false /* OFF */);
         Camera.RestoreJumpcut();
-        $.script_controlled_player.setRunning(false /* FALSE */);
+        $.script_controlled_player.setRunning(false);
     }
 
     return; // SCM GOTO → mission_toni2_passed

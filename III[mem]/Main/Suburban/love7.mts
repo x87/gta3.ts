@@ -61,7 +61,7 @@ async function body() {
     $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
     $.cs_player.setAnim('player');
 
-    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */);
+    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true);
 
     $.player.setCoordinates(82.44, -1548.49, 28.0);
 

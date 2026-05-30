@@ -105,7 +105,7 @@ verbose('[+] import script loaded');
         if ($.player.isPlaying()) {
             if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
                 if ($.player.isInZone('REDLIGH')) {
-                    if ($.player.isInArea3D(828.9, -283.8, 0.0, 894.2, -323.5, 26.0, false /* FALSE */)) {
+                    if ($.player.isInArea3D(828.9, -283.8, 0.0, 894.2, -323.5, 26.0, false)) {
                         if ($.bonus_weapons_created == 0) {
                             if ($.earned_free_pistol == 1) {
                                 $.bonus_gun1 = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 14 /* PICKUP_ON_STREET_SLOW */, 90, 876.8, -317.1, 10.0);
@@ -182,7 +182,7 @@ verbose('[+] import script loaded');
 
             if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
                 if ($.player.isInZone('PARK')) {
-                    if ($.player.isInArea3D(39.5, -443.8, 53.0, 167.5, -484.6, 15.0, false /* FALSE */)) {
+                    if ($.player.isInArea3D(39.5, -443.8, 53.0, 167.5, -484.6, 15.0, false)) {
                         if ($.bonus_weapons_created == 0) {
                             if ($.earned_free_pistol == 1) {
                                 $.bonus_gun1 = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 14 /* PICKUP_ON_STREET_SLOW */, 90, 132.7, -477.9, 15.9);
@@ -259,7 +259,7 @@ verbose('[+] import script loaded');
 
             if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
                 if ($.player.isInZone('PROJECT')) {
-                    if ($.player.isInArea3D(-595.8, -68.2, 10.0, -700.7, 3.1, 30.0, false /* FALSE */)) {
+                    if ($.player.isInArea3D(-595.8, -68.2, 10.0, -700.7, 3.1, 30.0, false)) {
                         if ($.bonus_weapons_created == 0) {
                             if ($.earned_free_pistol == 1) {
                                 $.bonus_gun1 = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 14 /* PICKUP_ON_STREET_SLOW */, 90, -650.5, -24.8, 18.8);
@@ -487,7 +487,7 @@ async function import1_loop() {
                     pick_up_pick_ups: while (true) {
                         await asyncWait(0);
                         if ($.player.isPlaying()) {
-                            if ($.player.isInArea2D(1486.9, -686.2, 1524.1, -666.8, false /* FALSE */)) {
+                            if ($.player.isInArea2D(1486.9, -686.2, 1524.1, -666.8, false)) {
                                 if ($.create_car_pickups_industrial == 0) {
                                     $.securicar_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 1, 1501.0, -683.0, 12.1);
                                     $.moonbeam_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 2, 1505.0, -683.0, 12.1);
@@ -601,7 +601,7 @@ async function import1_loop() {
                                     await mission_remove_pickups_ind(); // SCM GOSUB mission_remove_pickups_ind
                                     if ($.import_car_been_created_before == 1) {
                                         if (!Car.IsDead($.imported_car)) {
-                                            if ($.imported_car.isInArea2D(1496.8, -686.2, 1523.3, -666.8, false /* FALSE */)) {
+                                            if ($.imported_car.isInArea2D(1496.8, -686.2, 1523.3, -666.8, false)) {
                                                 $.imported_car.delete();
                                             } else {
                                                 $.imported_car.markAsNoLongerNeeded();
@@ -628,7 +628,7 @@ async function military_crane_loop() {
         await asyncWait(500);
 
         if ($.player.isPlaying()) {
-            if ($.player.isInArea2D(1548.1, -745.5, 1583.0, -675.1, false /* FALSE */)) {
+            if ($.player.isInArea2D(1548.1, -745.5, 1583.0, -675.1, false)) {
                 if (Crane.HasMilitaryCollectedAllCars()) {
                     if ($.cran_activated_before == 0) {
                         Crane.Deactivate(1570.3, -675.4);
@@ -645,11 +645,11 @@ async function military_crane_loop() {
                             1577.2,
                             -686.3,
                             20.0,
-                            false /* FALSE */,
-                            true /* TRUE */,
-                            false /* FALSE */,
-                            false /* FALSE */,
-                            false /* FALSE */
+                            false,
+                            true,
+                            false,
+                            false,
+                            false
                         )
                     ) {
                         if ($.create_military_pickups == 0 && $.military_car_been_created_before == 0) {
@@ -714,7 +714,7 @@ async function military_crane_loop() {
                         if (Car.IsDead($.military_car)) {
                             $.military_car_been_created_before = 0;
                         } else {
-                            if (!$.military_car.isInArea2D(1668.6, -685.7, 1548.1, -745.5, false /* FALSE */)) {
+                            if (!$.military_car.isInArea2D(1668.6, -685.7, 1548.1, -745.5, false)) {
                                 $.military_car.markAsNoLongerNeeded();
                                 $.military_car_been_created_before = 0;
                             }
@@ -880,7 +880,7 @@ async function import2_loop() {
                     pick_up_pick_ups2: while (true) {
                         await asyncWait(0);
                         if ($.player.isPlaying()) {
-                            if ($.player.isInArea2D(-1117.4, 158.1, -1098.0, 121.5, false /* FALSE */)) {
+                            if ($.player.isInArea2D(-1117.4, 158.1, -1098.0, 121.5, false)) {
                                 if ($.create_car_pickups_suburban == 0) {
                                     $.sentinet_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 17, -1115.0, 145.5, 59.0);
                                     $.cheetah_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 18, -1115.0, 142.0, 59.0);
@@ -994,7 +994,7 @@ async function import2_loop() {
                                     await mission_remove_pickups_sub(); // SCM GOSUB mission_remove_pickups_sub
                                     if ($.import_car_been_created_before2 == 1) {
                                         if (!Car.IsDead($.imported_car2)) {
-                                            if ($.imported_car2.isInArea2D(-1117.4, 149.8, -1098.0, 121.5, false /* FALSE */)) {
+                                            if ($.imported_car2.isInArea2D(-1117.4, 149.8, -1098.0, 121.5, false)) {
                                                 $.imported_car2.delete();
                                             } else {
                                                 $.imported_car2.markAsNoLongerNeeded();
@@ -1021,7 +1021,7 @@ async function load_vehicle() {
     await mission_remove_pickups_ind();
     // fallback if label was not emitted as async function: no-op continues linearly
     if ($.player.isPlaying()) {
-        while (!$.player.isInArea2D(1486.9, -686.2, 1495.5, -674.1, false /* FALSE */)) {
+        while (!$.player.isInArea2D(1486.9, -686.2, 1495.5, -674.1, false)) {
             await asyncWait(0);
             if ($.player.isPlaying()) {
             }
@@ -1056,7 +1056,7 @@ async function load_vehicle2() {
     await mission_remove_pickups_sub(); // SCM GOSUB mission_remove_pickups_sub
     // fallback if label was not emitted as async function: no-op continues linearly
     if ($.player.isPlaying()) {
-        while (!$.player.isInArea2D(-1117.4, 158.1, -1105.0, 150.9, false /* FALSE */)) {
+        while (!$.player.isInArea2D(-1117.4, 158.1, -1105.0, 150.9, false)) {
             await asyncWait(0);
             if ($.player.isPlaying()) {
             }

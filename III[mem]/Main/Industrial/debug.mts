@@ -81,12 +81,12 @@ verbose('[+] debug script loaded');
         if ($.player.isPlaying()) {
             if (Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */) && invulnerability_on == 0) {
                 $.script_controlled_player = $.player.getChar();
-                $.script_controlled_player.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */);
+                $.script_controlled_player.setProofs(true, true, true, true, true);
                 invulnerability_on = 1;
             }
             if (Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */) && invulnerability_on == 2) {
                 $.script_controlled_player = $.player.getChar();
-                $.script_controlled_player.setProofs(false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+                $.script_controlled_player.setProofs(false, false, false, false, false);
                 invulnerability_on = 3;
             }
             if (!Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */)) {

@@ -128,7 +128,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
+    World.ClearArea(39.0, -723.5, 22.0, 1.0, true);
 
     $.player.setCoordinates(39.0, -723.5, 22.0);
 
@@ -278,15 +278,15 @@ async function body() {
     // ******************************************END OF CUTSCENE********************************
 
     $.ia_car_rm3 = Car.Create(112 /* CAR_BOBCAT */, $.ia_start_x, $.ia_start_y, $.ia_start_z);
-    $.ia_car_rm3.setAvoidLevelTransitions(true /* TRUE */);
-    $.ia_car_rm3.setWatertight(true /* TRUE */);
+    $.ia_car_rm3.setAvoidLevelTransitions(true);
+    $.ia_car_rm3.setWatertight(true);
     $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, 4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */);
     //SET_CHAR_AVOID_LEVEL_TRANSITIONS ia_car_driver_1 TRUE
 
-    $.ia_car_driver_1.setCantBeDraggedOut(true /* TRUE */);
-    $.ia_car_rm3.setOnlyDamagedByPlayer(true /* TRUE */);
-    $.ia_car_rm3.setUpsidedownNotDamaged(true /* TRUE */);
-    $.ia_car_rm3.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */);
+    $.ia_car_driver_1.setCantBeDraggedOut(true);
+    $.ia_car_rm3.setOnlyDamagedByPlayer(true);
+    $.ia_car_rm3.setUpsidedownNotDamaged(true);
+    $.ia_car_rm3.setProofs(true, true, true, false, true);
     $.ia_car_rm3.setCruiseSpeed(20.0);
     $.ia_car_rm3.setDrivingStyle(2);
     $.ia_car_rm3.wanderRandomly();
@@ -318,12 +318,12 @@ async function body() {
     $.ia_car_z += 1.0;
     $.evidence_6 = ScriptObject.Create(1367 /* files */, $.ia_car_x, $.ia_car_y, $.ia_car_z);
 
-    $.evidence_1.setCollision(false /* FALSE */);
-    $.evidence_2.setCollision(false /* FALSE */);
-    $.evidence_3.setCollision(false /* FALSE */);
-    $.evidence_4.setCollision(false /* FALSE */);
-    $.evidence_5.setCollision(false /* FALSE */);
-    $.evidence_6.setCollision(false /* FALSE */);
+    $.evidence_1.setCollision(false);
+    $.evidence_2.setCollision(false);
+    $.evidence_3.setCollision(false);
+    $.evidence_4.setCollision(false);
+    $.evidence_5.setCollision(false);
+    $.evidence_6.setCollision(false);
 
     $.evidence_1.placeRelativeToCar($.ia_car_rm3, 0.3, -1.7, -0.1);
     $.evidence_2.placeRelativeToCar($.ia_car_rm3, 0.3, -1.2, -0.1);
@@ -533,8 +533,8 @@ async function body() {
             if ($.drop_evidence == 1) {
                 $.evidence_1.placeRelativeToCar($.ia_car_rm3, 0.3, -1.7, 0.2);
                 $.rays_evidence_blip = Blip.AddForObject($.evidence_1);
-                $.evidence_1.setCollision(true /* TRUE */);
-                $.evidence_1.setDynamic(true /* TRUE */);
+                $.evidence_1.setCollision(true);
+                $.evidence_1.setDynamic(true);
                 $.evidence_1.addToVelocity(0.0, 0.0, 16.0);
                 $.evidence_1.makeTargetable();
                 $.player.alterWantedLevelNoDrop(2);
@@ -546,8 +546,8 @@ async function body() {
             if ($.drop_evidence == 2) {
                 $.evidence_2.placeRelativeToCar($.ia_car_rm3, 0.3, -1.2, 0.2);
                 $.rays_evidence_blip = Blip.AddForObject($.evidence_2);
-                $.evidence_2.setCollision(true /* TRUE */);
-                $.evidence_2.setDynamic(true /* TRUE */);
+                $.evidence_2.setCollision(true);
+                $.evidence_2.setDynamic(true);
                 $.evidence_2.addToVelocity(0.0, 0.0, 16.0);
                 $.evidence_2.makeTargetable();
                 TIMERB = 0;
@@ -555,8 +555,8 @@ async function body() {
             if ($.drop_evidence == 3) {
                 $.evidence_3.placeRelativeToCar($.ia_car_rm3, -0.3, -1.2, 0.2);
                 $.rays_evidence_blip = Blip.AddForObject($.evidence_3);
-                $.evidence_3.setCollision(true /* TRUE */);
-                $.evidence_3.setDynamic(true /* TRUE */);
+                $.evidence_3.setCollision(true);
+                $.evidence_3.setDynamic(true);
                 $.evidence_3.addToVelocity(0.0, 0.0, 16.0);
                 $.evidence_3.makeTargetable();
                 TIMERB = 0;
@@ -564,8 +564,8 @@ async function body() {
             if ($.drop_evidence == 4) {
                 $.evidence_4.placeRelativeToCar($.ia_car_rm3, 0.3, -0.7, 0.2);
                 $.rays_evidence_blip = Blip.AddForObject($.evidence_4);
-                $.evidence_4.setCollision(true /* TRUE */);
-                $.evidence_4.setDynamic(true /* TRUE */);
+                $.evidence_4.setCollision(true);
+                $.evidence_4.setDynamic(true);
                 $.evidence_4.addToVelocity(0.0, 0.0, 16.0);
                 $.evidence_4.makeTargetable();
                 TIMERB = 0;
@@ -573,8 +573,8 @@ async function body() {
             if ($.drop_evidence == 5) {
                 $.evidence_5.placeRelativeToCar($.ia_car_rm3, -0.3, -0.7, 0.2);
                 $.rays_evidence_blip = Blip.AddForObject($.evidence_5);
-                $.evidence_5.setCollision(true /* TRUE */);
-                $.evidence_5.setDynamic(true /* TRUE */);
+                $.evidence_5.setCollision(true);
+                $.evidence_5.setDynamic(true);
                 $.evidence_5.addToVelocity(0.0, 0.0, 16.0);
                 $.evidence_5.makeTargetable();
                 TIMERB = 0;
@@ -582,8 +582,8 @@ async function body() {
             if ($.drop_evidence == 6) {
                 $.evidence_6.placeRelativeToCar($.ia_car_rm3, -0.3, -1.7, 0.2);
                 $.rays_evidence_blip = Blip.AddForObject($.evidence_6);
-                $.evidence_6.setCollision(true /* TRUE */);
-                $.evidence_6.setDynamic(true /* TRUE */);
+                $.evidence_6.setCollision(true);
+                $.evidence_6.setDynamic(true);
                 $.evidence_6.addToVelocity(0.0, 0.0, 16.0);
                 $.evidence_6.makeTargetable();
                 $.prosecution_car_blip.remove();
@@ -777,17 +777,17 @@ async function create_another_car() {
                 $.ia_car_rm3 = Car.Create(112 /* CAR_BOBCAT */, $.ia_start_x, $.ia_start_y, $.ia_start_z);
             }
             $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, 4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */);
-            $.ia_car_rm3.setWatertight(true /* TRUE */);
-            $.ia_car_driver_1.setCantBeDraggedOut(true /* TRUE */);
-            $.ia_car_rm3.setOnlyDamagedByPlayer(true /* TRUE */);
-            $.ia_car_rm3.setUpsidedownNotDamaged(true /* TRUE */);
-            $.ia_car_rm3.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */);
+            $.ia_car_rm3.setWatertight(true);
+            $.ia_car_driver_1.setCantBeDraggedOut(true);
+            $.ia_car_rm3.setOnlyDamagedByPlayer(true);
+            $.ia_car_rm3.setUpsidedownNotDamaged(true);
+            $.ia_car_rm3.setProofs(true, true, true, false, true);
             $.ia_car_rm3.setCruiseSpeed(100.0);
             $.ia_car_rm3.setDrivingStyle(2);
             $.ia_car_rm3.wanderRandomly();
             $.prosecution_car_blip = Blip.AddForCar($.ia_car_rm3);
             $.ia_car_rm3.lockDoors(2 /* CARLOCK_LOCKED */);
-            $.ia_car_rm3.setAvoidLevelTransitions(true /* TRUE */);
+            $.ia_car_rm3.setAvoidLevelTransitions(true);
             $.timerd_reset_flag_r3 = 0;
         }
     }

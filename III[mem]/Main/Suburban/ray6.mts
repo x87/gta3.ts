@@ -70,7 +70,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
+    World.ClearArea(39.0, -723.5, 22.0, 1.0, true);
 
     $.player.setCoordinates(39.0, -723.5, 22.0);
 
@@ -209,7 +209,7 @@ async function body() {
         throw new Error('unresolved GOTO mission_ray6_failed'); // fallback: would break linear control flow
     }
 
-    $.ray.setRunning(true /* TRUE */);
+    $.ray.setRunning(true);
 
     Text.PrintNow('RM6_5', 15000, 1); //"The CIA have the bridge under surveillance, find another route across."
 
@@ -234,11 +234,11 @@ async function body() {
                     $.cia_1 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -25.8545, -612.5001, 42.1683);
                     $.cia_1.setHeading(239.6049);
                     $.cia_1.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_1.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_1.setOnlyDamagedByPlayer(true);
                     $.cia_1.setIdle();
                     $.cia_1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_1.setStayInSamePlace(true /* TRUE */);
+                    $.cia_1.setStayInSamePlace(true);
                     $.cia_1.addArmor(100);
                     ++$.total_cia;
                     $.cia_1_flag = 1;
@@ -274,11 +274,11 @@ async function body() {
                     $.cia_2 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -24.0225, -630.3363, 42.1125);
                     $.cia_2.setHeading(293.6046);
                     $.cia_2.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_2.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_2.setOnlyDamagedByPlayer(true);
                     $.cia_2.setIdle();
                     $.cia_2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_2.setStayInSamePlace(true /* TRUE */);
+                    $.cia_2.setStayInSamePlace(true);
                     $.cia_2.addArmor(100);
                     ++$.total_cia;
                     $.cia_2_flag = 1;
@@ -314,11 +314,11 @@ async function body() {
                     $.cia_3 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -35.1159, -632.8395, 42.4257);
                     $.cia_3.setHeading(255.4109);
                     $.cia_3.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_3.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_3.setOnlyDamagedByPlayer(true);
                     $.cia_3.setIdle();
                     $.cia_3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_3.setStayInSamePlace(true /* TRUE */);
+                    $.cia_3.setStayInSamePlace(true);
                     $.cia_3.addArmor(100);
                     ++$.total_cia;
                     $.cia_3_flag = 1;
@@ -354,11 +354,11 @@ async function body() {
                     $.cia_4 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -24.3022, -650.4634, 46.5876);
                     $.cia_4.setHeading(344.2893);
                     $.cia_4.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_4.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_4.setOnlyDamagedByPlayer(true);
                     $.cia_4.setIdle();
                     $.cia_4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_4.setStayInSamePlace(true /* TRUE */);
+                    $.cia_4.setStayInSamePlace(true);
                     $.cia_4.addArmor(100);
                     ++$.total_cia;
                     $.cia_4_flag = 1;
@@ -394,11 +394,11 @@ async function body() {
                     $.cia_5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -217.9545, -630.407, 45.9975);
                     $.cia_5.setHeading(344.2893);
                     $.cia_5.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_5.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_5.setOnlyDamagedByPlayer(true);
                     $.cia_5.setIdle();
                     $.cia_5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_5.setStayInSamePlace(true /* TRUE */);
+                    $.cia_5.setStayInSamePlace(true);
                     $.cia_5.addArmor(100);
                     ++$.total_cia;
                     $.cia_5_flag = 1;
@@ -434,11 +434,11 @@ async function body() {
                     $.cia_6 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -212.4922, -632.7455, 45.9514);
                     $.cia_6.setHeading(247.0256);
                     $.cia_6.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_6.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_6.setOnlyDamagedByPlayer(true);
                     $.cia_6.setIdle();
                     $.cia_6.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_6.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_6.setStayInSamePlace(true /* TRUE */);
+                    $.cia_6.setStayInSamePlace(true);
                     $.cia_6.addArmor(100);
                     ++$.total_cia;
                     $.cia_6_flag = 1;
@@ -474,11 +474,11 @@ async function body() {
                     $.cia_7 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -437.0927, -612.5157, 44.5994);
                     $.cia_7.setHeading(247.0256);
                     $.cia_7.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_7.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_7.setOnlyDamagedByPlayer(true);
                     $.cia_7.setIdle();
                     $.cia_7.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_7.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_7.setStayInSamePlace(true /* TRUE */);
+                    $.cia_7.setStayInSamePlace(true);
                     $.cia_7.addArmor(100);
                     ++$.total_cia;
                     $.cia_7_flag = 1;
@@ -514,11 +514,11 @@ async function body() {
                     $.cia_8 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -534.6777, -631.2995, 42.277);
                     $.cia_8.setHeading(247.0256);
                     $.cia_8.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_8.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_8.setOnlyDamagedByPlayer(true);
                     $.cia_8.setIdle();
                     $.cia_8.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_8.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_8.setStayInSamePlace(true /* TRUE */);
+                    $.cia_8.setStayInSamePlace(true);
                     $.cia_8.addArmor(100);
                     ++$.total_cia;
                     $.cia_8_flag = 1;
@@ -554,11 +554,11 @@ async function body() {
                     $.cia_9 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -523.4218, -650.3831, 42.5261);
                     $.cia_9.setHeading(316.7352);
                     $.cia_9.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
-                    $.cia_9.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_9.setOnlyDamagedByPlayer(true);
                     $.cia_9.setIdle();
                     $.cia_9.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_9.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_9.setStayInSamePlace(true /* TRUE */);
+                    $.cia_9.setStayInSamePlace(true);
                     $.cia_9.addArmor(100);
                     ++$.total_cia;
                     $.cia_9_flag = 1;
@@ -594,11 +594,11 @@ async function body() {
                     $.cia_10 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -628.0785, -498.4106, 22.3884);
                     $.cia_10.setHeading(76.5552);
                     $.cia_10.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
-                    $.cia_10.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_10.setOnlyDamagedByPlayer(true);
                     $.cia_10.setIdle();
                     $.cia_10.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_10.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_10.setStayInSamePlace(true /* TRUE */);
+                    $.cia_10.setStayInSamePlace(true);
                     $.cia_10.addArmor(100);
                     ++$.total_cia;
                     $.cia_10_flag = 1;
@@ -634,11 +634,11 @@ async function body() {
                     $.cia_11 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -637.6517, -501.7922, 22.3455);
                     $.cia_11.setHeading(76.5552);
                     $.cia_11.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
-                    $.cia_11.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_11.setOnlyDamagedByPlayer(true);
                     $.cia_11.setIdle();
                     $.cia_11.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_11.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_11.setStayInSamePlace(true /* TRUE */);
+                    $.cia_11.setStayInSamePlace(true);
                     $.cia_11.addArmor(100);
                     ++$.total_cia;
                     $.cia_11_flag = 1;
@@ -674,11 +674,11 @@ async function body() {
                     $.cia_12 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -692.3098, -563.0333, 21.511);
                     $.cia_12.setHeading(344.2857);
                     $.cia_12.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
-                    $.cia_12.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_12.setOnlyDamagedByPlayer(true);
                     $.cia_12.setIdle();
                     $.cia_12.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_12.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_12.setStayInSamePlace(true /* TRUE */);
+                    $.cia_12.setStayInSamePlace(true);
                     $.cia_12.addArmor(100);
                     ++$.total_cia;
                     $.cia_12_flag = 1;
@@ -714,11 +714,11 @@ async function body() {
                     $.cia_13 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -671.1359, -540.5952, 22.9211);
                     $.cia_13.setHeading(281.8996);
                     $.cia_13.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
-                    $.cia_13.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_13.setOnlyDamagedByPlayer(true);
                     $.cia_13.setIdle();
                     $.cia_13.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_13.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_13.setStayInSamePlace(true /* TRUE */);
+                    $.cia_13.setStayInSamePlace(true);
                     $.cia_13.addArmor(100);
                     ++$.total_cia;
                     $.cia_13_flag = 1;
@@ -754,11 +754,11 @@ async function body() {
                     $.cia_14 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -638.4215, -419.262, 17.8198);
                     $.cia_14.setHeading(113.6173);
                     $.cia_14.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
-                    $.cia_14.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_14.setOnlyDamagedByPlayer(true);
                     $.cia_14.setIdle();
                     $.cia_14.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_14.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_14.setStayInSamePlace(true /* TRUE */);
+                    $.cia_14.setStayInSamePlace(true);
                     $.cia_14.addArmor(100);
                     ++$.total_cia;
                     $.cia_14_flag = 1;
@@ -794,11 +794,11 @@ async function body() {
                     $.cia_15 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -655.3353, -404.4556, 17.8198);
                     $.cia_15.setHeading(191.1247);
                     $.cia_15.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
-                    $.cia_15.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_15.setOnlyDamagedByPlayer(true);
                     $.cia_15.setIdle();
                     $.cia_15.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_15.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_15.setStayInSamePlace(true /* TRUE */);
+                    $.cia_15.setStayInSamePlace(true);
                     $.cia_15.addArmor(100);
                     ++$.total_cia;
                     $.cia_15_flag = 1;
@@ -834,11 +834,11 @@ async function body() {
                     $.cia_16 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -677.0261, -425.047, 18.514);
                     $.cia_16.setHeading(265.4145);
                     $.cia_16.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
-                    $.cia_16.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_16.setOnlyDamagedByPlayer(true);
                     $.cia_16.setIdle();
                     $.cia_16.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_16.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_16.setStayInSamePlace(true /* TRUE */);
+                    $.cia_16.setStayInSamePlace(true);
                     $.cia_16.addArmor(100);
                     ++$.total_cia;
                     $.cia_16_flag = 1;
@@ -874,11 +874,11 @@ async function body() {
                     $.cia_17 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -679.1292, -485.1575, 18.2578);
                     $.cia_17.setHeading(260.2034);
                     $.cia_17.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
-                    $.cia_17.setOnlyDamagedByPlayer(true /* TRUE */);
+                    $.cia_17.setOnlyDamagedByPlayer(true);
                     $.cia_17.setIdle();
                     $.cia_17.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.cia_17.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.cia_17.setStayInSamePlace(true /* TRUE */);
+                    $.cia_17.setStayInSamePlace(true);
                     $.cia_17.addArmor(100);
                     ++$.total_cia;
                     $.cia_17_flag = 1;
@@ -915,7 +915,7 @@ async function body() {
             $.flag_blip_on_ray = 1;
         }
         if ($.flag_blip_on_ray == 1) {
-            if ($.player.locateAnyMeansChar2D($.ray, 8.0, 8.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar2D($.ray, 8.0, 8.0, false)) {
                 $.ray.followPlayer($.player);
                 $.rays_blip.remove();
                 $.rays_blip = Blip.AddForCoord(-739.0, -583.0, 8.0);
@@ -1105,8 +1105,8 @@ async function body() {
     //SET_CAR_DO_NOT_DELETE	maybe
 
     $.rays_prize_car.setHeading(270.0);
-    $.rays_prize_car.setProofs(true /* TRUE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
-    $.rays_prize_car.setStrong(true /* TRUE */);
+    $.rays_prize_car.setProofs(true, false, false, false, false);
+    $.rays_prize_car.setStrong(true);
     $.rays_prize_weapon1 = Pickup.CreateWithAmmo(180 /* WEAPON_M16 */, 3 /* PICKUP_ONCE */, 1000, 244.0506, -993.9206, 21.0);
     $.rays_prize_weapon2 = Pickup.CreateWithAmmo(181 /* WEAPON_FLAME */, 3 /* PICKUP_ONCE */, 1000, 237.3226, -998.5697, 21.0);
     $.rays_prize_weapon3 = Pickup.CreateWithAmmo(175 /* WEAPON_ROCKET */, 3 /* PICKUP_ONCE */, 25, 243.8931, -995.5624, 21.0);

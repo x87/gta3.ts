@@ -34,9 +34,9 @@ async function body() {
 
     Camera.DoFade(0, 0 /* FADE_OUT */);
 
-    Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
+    Game.SetEveryoneIgnorePlayer($.player, true);
     $.player.setControl(false /* OFF */);
-    $.player.setVisible(false /* FALSE */);
+    $.player.setVisible(false);
     Streaming.Switch(false /* OFF */);
 
     //SET_DEATHARREST_STATE OFF
@@ -47,7 +47,7 @@ async function body() {
 
     $.player.makeSafeForCutscene();
 
-    Game.SetIntroIsPlaying(true /* TRUE */);
+    Game.SetIntroIsPlaying(true);
 
     Streaming.LoadCollision(0 /* LEVEL_GENERIC */);
     Streaming.LoadSpecialCharacter(1, 'cat');
@@ -130,7 +130,7 @@ async function body() {
     $.cs_colt2 = CutsceneObject.Create(188 /* cut_obj4 */);
     $.cs_colt2.setAnim('colt2');
 
-    $.cs_cs_ban.setDrawLast(true /* TRUE */);
+    $.cs_cs_ban.setDrawLast(true);
 
     Streaming.Switch(true /* ON */);
 
@@ -139,8 +139,8 @@ async function body() {
     if ($.skip_flag == 2) {
         Hud.LoadSplash('splash1');
         await asyncWait(0);
-        Text.UseCommands(false /* FALSE */);
-        Audio.SetMusicDoesFade(true /* TRUE */);
+        Text.UseCommands(false);
+        Audio.SetMusicDoesFade(true);
         Camera.SetFadingColor(0, 0, 0);
         Camera.DoFade(0, 0 /* FADE_OUT */);
         await bridge_swap();
@@ -151,7 +151,7 @@ async function body() {
         await do_bridge_particles();
     }
 
-    Audio.SetMusicDoesFade(true /* TRUE */);
+    Audio.SetMusicDoesFade(true);
 
     Camera.SetMotionBlur(0);
     Camera.SetNearClip(0.9);
@@ -166,9 +166,9 @@ async function body() {
     World.SwitchRubbish(true /* ON */);
     World.SwitchProcessing(true /* ON */);
     Streaming.Switch(true /* ON */);
-    Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
+    Game.SetEveryoneIgnorePlayer($.player, false);
     $.player.setControl(true /* ON */);
-    $.player.setVisible(true /* TRUE */);
+    $.player.setVisible(true);
 
     Streaming.LoadCollision(1 /* LEVEL_INDUSTRIAL */);
     $.player.setCoordinates(811.9, -939.95, 35.8);
@@ -202,11 +202,11 @@ async function body() {
 
     // *******************************END OF JAIL BREAK CUTSCENE***************************
 
-    Game.SetIntroIsPlaying(false /* FALSE */);
+    Game.SetIntroIsPlaying(false);
 
-    Audio.SetMusicDoesFade(true /* TRUE */);
+    Audio.SetMusicDoesFade(true);
 
-    Weather.ForceRain(false /* FALSE */);
+    Weather.ForceRain(false);
 
     // START_NEW_SCRIPT eightball_mission_loop
     $._flag_intro_passed = 1;
@@ -244,7 +244,7 @@ async function cutscene() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Audio.SetMusicDoesFade(false /* FALSE */);
+    Audio.SetMusicDoesFade(false);
     if (!Cutscene.HasFinished()) {
         Camera.SetFadingColor(255, 255, 255); //FLASH SCREEN FOR PLAYER SHOOTING CAMERA
         Camera.DoFade(100, 0 /* FADE_OUT */);
@@ -476,7 +476,7 @@ async function cutscene() {
 
     Text.PrintNow('BETRA_C', 2282, 1); //"you're just small time."
 
-    Audio.SetMusicDoesFade(true /* TRUE */);
+    Audio.SetMusicDoesFade(true);
 
     while ($.cs_time < 29200) {
         await asyncWait(0);
@@ -531,7 +531,7 @@ async function cutscene() {
     $.text_alpha = 0;
     $.text_fading_flag = 0;
 
-    Text.UseCommands(true /* TRUE */);
+    Text.UseCommands(true);
 
     await draw_intro_text();
 
@@ -571,7 +571,7 @@ async function cutscene() {
     $.player.makeSafeForCutscene();
 
     Weather.ForceNow(2 /* WEATHER_RAINY */);
-    Weather.ForceRain(true /* TRUE */);
+    Weather.ForceRain(true);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
@@ -708,8 +708,8 @@ async function cutscene() {
     $.brbomb = CutsceneObject.Create(187 /* cut_obj3 */);
     $.brbomb.setAnim('brbomb');
 
-    $.cs_colt1.setDrawLast(true /* TRUE */);
-    $.cs_colt2.setDrawLast(true /* TRUE */);
+    $.cs_colt1.setDrawLast(true);
+    $.cs_colt2.setDrawLast(true);
 
     Cutscene.Start();
     ChaseScene.Start(1.0);
@@ -791,7 +791,7 @@ async function cutscene() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Text.UseCommands(false /* FALSE */);
+    Text.UseCommands(false);
     Text.PrintNow('JAILB_V', 10000, 1); //"Liberty city is in shock today."
 
     while ($.cs_time < 14500) {
@@ -1323,7 +1323,7 @@ async function cutscene() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Audio.SetMusicDoesFade(false /* FALSE */);
+    Audio.SetMusicDoesFade(false);
     Camera.SetMotionBlur(7); //THE EXPLOSION
 
     if (!Cutscene.HasFinished()) {
@@ -1339,7 +1339,7 @@ async function cutscene() {
 
     await bridge_swap();
 
-    $.player.setVisible(true /* TRUE */);
+    $.player.setVisible(true);
     Streaming.RequestModel(111 /* CAR_KURUMA */);
     Streaming.LoadAllModelsNow();
     while (!Streaming.HasModelLoaded(111 /* CAR_KURUMA */)) {
@@ -1411,7 +1411,7 @@ async function cutscene() {
         $.cs_time = Cutscene.GetTime();
     }
     if (!Cutscene.HasFinished()) {
-        Audio.SetMusicDoesFade(true /* TRUE */);
+        Audio.SetMusicDoesFade(true);
         Camera.SetFadingColor(0, 0, 0);
         Camera.DoFade(500, 0 /* FADE_OUT */);
         Text.ClearPrints();
@@ -1551,7 +1551,7 @@ async function bridge_swap() {
     World.SwitchProcessing(true /* ON */);
     Streaming.Switch(true /* ON */);
 
-    Text.UseCommands(false /* FALSE */);
+    Text.UseCommands(false);
 
     //ADD_PARTICLE_EFFECT 4 791.661 -936.916 38.313 TRUE //SMOKE ON CARS
     //ADD_PARTICLE_EFFECT 4 788.337 -938.467 38.073 TRUE
@@ -1566,7 +1566,7 @@ async function bridge_swap() {
 
     $.fire_sound_8ball = Sound.AddContinuous(790.537, -935.67, 38.005, 102 /* SOUND_PRETEND_FIRE_LOOP */);
 
-    Text.UseCommands(false /* FALSE */);
+    Text.UseCommands(false);
 }
 
 async function skip_intro_button() {

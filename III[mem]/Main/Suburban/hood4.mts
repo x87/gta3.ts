@@ -225,7 +225,7 @@ async function body() {
     while (!($.total_no_pills_carried_hm4 >= 30)) {
         await asyncWait(0);
         $.no_of_pills_carried_hm4 = Pacman.GetNumberOfPowerPillsCarried();
-        if ($.player.isInArea3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false /* FALSE */)) {
+        if ($.player.isInArea3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false)) {
             $.player.clearWantedLevel();
         }
 
@@ -245,13 +245,13 @@ async function body() {
         if ($.player.isInAnyCar()) {
             $.car_hm4 = $.player.storeCarIsIn();
             $.garage_hm4.setTargetCarForMission($.car_hm4);
-            if ($.player.isStoppedInAreaInCar3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false /* FALSE */) && $.flag_player_in_area_hm4 == 0) {
+            if ($.player.isStoppedInAreaInCar3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false) && $.flag_player_in_area_hm4 == 0) {
                 $.total_no_pills_carried_hm4 += $.no_of_pills_carried_hm4;
                 Sound.AddOneOffSound(-834.9, -168.8, 33.9, 83 /* SOUND_UNLOAD_GOLD */);
                 Pacman.ClearNumberOfPowerPillsCarried();
                 $.flag_player_in_area_hm4 = 1;
             }
-            if ($.player.isInCar($.car_hm4) && !$.player.isStoppedInAreaInCar3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false /* FALSE */) && $.flag_player_in_area_hm4 == 1) {
+            if ($.player.isInCar($.car_hm4) && !$.player.isStoppedInAreaInCar3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false) && $.flag_player_in_area_hm4 == 1) {
                 $.flag_player_in_area_hm4 = 0;
             }
         }

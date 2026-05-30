@@ -263,12 +263,12 @@ async function body() {
     // --------Mission stuff goes here-----------------------------------------------------
 
     is_player_there: while (true) {
-        if ($.player.isStoppedInAreaInCar2D(45.0, 65.0, 55.0, 75.0, true /* true */)) {
+        if ($.player.isStoppedInAreaInCar2D(45.0, 65.0, 55.0, 75.0, true)) {
             $.player_car = $.player.storeCarIsIn();
             break; // SCM GOTO → player_is_there
         }
 
-        if ($.player.locateOnFoot2D($.start_x, $.start_y, 5.0, 5.0, false /* false */)) {
+        if ($.player.locateOnFoot2D($.start_x, $.start_y, 5.0, 5.0, false)) {
             Text.PrintNow('YD1_G', 2000, 1);
         }
         await asyncWait(0);
@@ -292,10 +292,10 @@ async function body() {
         Camera.DoFade(1500, 1 /* FADE_IN */);
         await asyncWait(1500);
 
-        World.ClearArea(90.0, 50.0, 16.0, 20.0, true /* true */);
-        World.ClearArea(93.0, 57.0, 16.0, 20.0, true /* true */);
-        World.ClearArea(78.0, 50.0, 16.0, 20.0, true /* true */);
-        World.ClearArea(93.0, 43.0, 16.0, 20.0, true /* true */);
+        World.ClearArea(90.0, 50.0, 16.0, 20.0, true);
+        World.ClearArea(93.0, 57.0, 16.0, 20.0, true);
+        World.ClearArea(78.0, 50.0, 16.0, 20.0, true);
+        World.ClearArea(93.0, 43.0, 16.0, 20.0, true);
 
         World.SetCarDensityMultiplier(0.0);
         World.SetPedDensityMultiplier(0.0);
@@ -304,33 +304,33 @@ async function body() {
 
         Camera.PointAtPoint(90.0, 50.0, 16.0, 1 /* INTERPOLATION */);
 
-        World.ClearArea(102.0, 90.0, 16.0, 20.0, true /* true */);
+        World.ClearArea(102.0, 90.0, 16.0, 20.0, true);
         $.hot_rod_1 = Car.Create(96 /* CAR_PATRIOT */, 102.0, 90.0, 16.0);
         $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
-        $.hot_rod_1.setWatertight(true /* true */);
-        $.hot_rod_1.setUpsidedownNotDamaged(true /* true */);
+        $.hot_rod_1.setWatertight(true);
+        $.hot_rod_1.setUpsidedownNotDamaged(true);
         $.hot_rod_1.lockDoors(2 /* CARLOCK_LOCKED */);
         $.hot_rod_1.setHeading(190.0);
         $.hot_rod_1.setCruiseSpeed(20.0);
         $.hot_rod_1.setDrivingStyle(0);
         $.hot_rod_1.gotoCoordinatesAccurate(93.0, 57.0, 16.0);
 
-        World.ClearArea(75.0, 76.0, 16.0, 20.0, true /* true */);
+        World.ClearArea(75.0, 76.0, 16.0, 20.0, true);
         $.hot_rod_2 = Car.Create(105 /* CAR_CHEETAH */, 75.0, 76.0, 16.0);
         $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
-        $.hot_rod_2.setWatertight(true /* true */);
-        $.hot_rod_2.setUpsidedownNotDamaged(true /* true */);
+        $.hot_rod_2.setWatertight(true);
+        $.hot_rod_2.setUpsidedownNotDamaged(true);
         $.hot_rod_2.lockDoors(2 /* CARLOCK_LOCKED */);
         $.hot_rod_2.setHeading(220.0);
         $.hot_rod_2.setCruiseSpeed(20.0);
         $.hot_rod_2.setDrivingStyle(0);
         $.hot_rod_2.gotoCoordinatesAccurate(78.0, 50.0, 16.0);
 
-        World.ClearArea(108.0, 3.0, 16.0, 20.0, true /* true */);
+        World.ClearArea(108.0, 3.0, 16.0, 20.0, true);
         $.hot_rod_3 = Car.Create(112 /* CAR_BOBCAT */, 108.0, 3.0, 16.0);
         $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
-        $.hot_rod_3.setWatertight(true /* true */);
-        $.hot_rod_3.setUpsidedownNotDamaged(true /* true */);
+        $.hot_rod_3.setWatertight(true);
+        $.hot_rod_3.setUpsidedownNotDamaged(true);
         $.hot_rod_3.lockDoors(2 /* CARLOCK_LOCKED */);
         //SET_CAR_HEADING hot_rod_3 360.0
 
@@ -349,7 +349,7 @@ async function body() {
         while ($.counter_hotrods < 3) {
             await asyncWait(0);
             if (!Car.IsDead($.hot_rod_1)) {
-                if ($.hot_rod_1.locate2D(93.0, 57.0, 3.0, 3.0, false /* false */) && $.flag_hotrod1_start == 0) {
+                if ($.hot_rod_1.locate2D(93.0, 57.0, 3.0, 3.0, false) && $.flag_hotrod1_start == 0) {
                     $.hot_rod_1.setIdle();
                     $.flag_hotrod1_start = 1;
                     ++$.counter_hotrods;
@@ -357,7 +357,7 @@ async function body() {
             }
             $.hot_rod_1.setHealth(1000);
             if (!Car.IsDead($.hot_rod_2)) {
-                if ($.hot_rod_2.locate2D(78.0, 50.0, 3.0, 3.0, false /* false */) && $.flag_hotrod2_start == 0) {
+                if ($.hot_rod_2.locate2D(78.0, 50.0, 3.0, 3.0, false) && $.flag_hotrod2_start == 0) {
                     $.hot_rod_2.setIdle();
                     $.flag_hotrod2_start = 1;
                     ++$.counter_hotrods;
@@ -365,7 +365,7 @@ async function body() {
             }
             $.hot_rod_2.setHealth(1000);
             if (!Car.IsDead($.hot_rod_3)) {
-                if ($.hot_rod_3.locate2D(93.0, 43.0, 3.0, 3.0, false /* false */) && $.flag_hotrod3_start == 0) {
+                if ($.hot_rod_3.locate2D(93.0, 43.0, 3.0, 3.0, false) && $.flag_hotrod3_start == 0) {
                     $.hot_rod_3.setIdle();
                     $.flag_hotrod3_start = 1;
                     ++$.counter_hotrods;
@@ -417,7 +417,7 @@ async function body() {
             $.player_car = $.player.storeCarIsIn();
         }
 
-        while (!Car.IsDead($.player_car) && $.player_car.locate2D($.start_x, $.start_y, 10.0, 10.0, false /* false */)) {
+        while (!Car.IsDead($.player_car) && $.player_car.locate2D($.start_x, $.start_y, 10.0, 10.0, false)) {
             await asyncWait(1000);
             if ($.counter_rush_start == 4) {
                 // SCM GOTO → and_its_go_go_go
@@ -830,24 +830,24 @@ async function body() {
             await driving_style_car_3(); // SCM GOSUB driving_style_car_3
         }
 
-        if ($.player.locateInCar2D($.finish_x, $.finish_y, 6.0, 6.0, false /* false */)) {
+        if ($.player.locateInCar2D($.finish_x, $.finish_y, 6.0, 6.0, false)) {
             await player_points(); // SCM GOSUB player_points
         }
 
         if (!Car.IsDead($.hot_rod_1)) {
-            if ($.hot_rod_1.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false /* false */)) {
+            if ($.hot_rod_1.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false)) {
                 await nonplayer_points_1(); // SCM GOSUB nonplayer_points_1
             }
         }
 
         if (!Car.IsDead($.hot_rod_2)) {
-            if ($.hot_rod_2.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false /* false */)) {
+            if ($.hot_rod_2.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false)) {
                 await nonplayer_points_2(); // SCM GOSUB nonplayer_points_2
             }
         }
 
         if (!Car.IsDead($.hot_rod_3)) {
-            if ($.hot_rod_3.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false /* false */)) {
+            if ($.hot_rod_3.locate2D($.finish_x, $.finish_y, 6.0, 6.0, false)) {
                 await nonplayer_points_3(); // SCM GOSUB nonplayer_points_3
             }
         }

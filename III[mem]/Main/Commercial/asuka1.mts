@@ -181,7 +181,7 @@ async function body() {
     $.cs_mariahead = CutsceneHead.Create($.cs_maria, 187 /* cut_obj3 */);
     $.cs_mariahead.setAnim('maria');
 
-    World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */);
+    World.ClearArea(523.6, -639.4, 16.6, 1.0, true);
     $.player.setCoordinates(523.6, -639.4, 16.0);
 
     $.player.setHeading(180.0);
@@ -432,20 +432,20 @@ async function body() {
         $.beamer_heading = $.beamer_heading - 180.0;
         $.beamer1_a1.setHeading($.beamer_heading);
         $.beamer1_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-        $.beamer1_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-        $.beamer1_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.beamer1_a1.setOnlyDamagedByPlayer(true);
+        $.beamer1_a1.setUpsidedownNotDamaged(true);
         $.working_y_a1 = $.working_y_a1 + 11.0;
         $.beamer2_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
         $.beamer2_a1.setHeading($.beamer_heading);
         $.beamer2_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-        $.beamer2_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-        $.beamer2_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.beamer2_a1.setOnlyDamagedByPlayer(true);
+        $.beamer2_a1.setUpsidedownNotDamaged(true);
         $.working_y_a1 = $.working_y_a1 + 11.0;
         $.beamer3_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
         $.beamer3_a1.setHeading($.beamer_heading);
         $.beamer3_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-        $.beamer3_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-        $.beamer3_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.beamer3_a1.setOnlyDamagedByPlayer(true);
+        $.beamer3_a1.setUpsidedownNotDamaged(true);
     } else {
         $.working_x_a1 = 1123.67;
         $.working_y_a1 = -59.3;
@@ -455,20 +455,20 @@ async function body() {
         $.beamer_heading = $.beamer_heading - 180.0;
         $.beamer3_a1.setHeading($.beamer_heading);
         $.beamer3_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-        $.beamer3_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-        $.beamer3_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.beamer3_a1.setOnlyDamagedByPlayer(true);
+        $.beamer3_a1.setUpsidedownNotDamaged(true);
         $.working_y_a1 = $.working_y_a1 - 11.0;
         $.beamer2_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
         $.beamer2_a1.setHeading($.beamer_heading);
         $.beamer2_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-        $.beamer2_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-        $.beamer2_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.beamer2_a1.setOnlyDamagedByPlayer(true);
+        $.beamer2_a1.setUpsidedownNotDamaged(true);
         $.working_y_a1 = $.working_y_a1 - 11.0;
         $.beamer1_a1 = Car.Create(134 /* CAR_MAFIA */, $.working_x_a1, $.working_y_a1, $.working_z_a1);
         $.beamer1_a1.setHeading($.beamer_heading);
         $.beamer1_a1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-        $.beamer1_a1.setOnlyDamagedByPlayer(true /* TRUE */);
-        $.beamer1_a1.setUpsidedownNotDamaged(true /* TRUE */);
+        $.beamer1_a1.setOnlyDamagedByPlayer(true);
+        $.beamer1_a1.setUpsidedownNotDamaged(true);
     }
 
     $.mafia_1X = Char.CreateInsideCar($.beamer1_a1, 7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */);
@@ -531,7 +531,7 @@ async function body() {
     if (!$.player.isInArea2D(873.0, -443.0, 927.0, -378.0, false)) {
         $.player.setControl(false /* OFF */);
         Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-        Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+        Game.SetAllCarsCanBeDamaged(false);
         if ($.player.isInAnyCar()) {
             $.player.applyBrakesToCar(true /* ON */);
         }
@@ -543,7 +543,7 @@ async function body() {
         //		WAIT 0
         //	ENDWHILE
         Hud.SwitchWidescreen(true /* ON */);
-        World.ClearArea(905.759, -419.944, 8.0, 8.0, false /* FALSE */);
+        World.ClearArea(905.759, -419.944, 8.0, 8.0, false);
         Streaming.RequestModel(257 /* indhibuild3 */);
         Streaming.RequestModel(256 /* luigiclubout */);
         Streaming.RequestModel(243 /* luigiineerclub */);
@@ -566,7 +566,7 @@ async function body() {
                 Hud.SwitchWidescreen(false /* OFF */);
                 $.player.setControl(true /* ON */);
                 Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-                Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+                Game.SetAllCarsCanBeDamaged(true);
                 Streaming.Switch(true /* ON */);
                 if ($.player.isInAnyCar()) {
                     $.player.applyBrakesToCar(false /* OFF */);
@@ -590,7 +590,7 @@ async function body() {
                     Hud.SwitchWidescreen(false /* OFF */);
                     $.player.setControl(true /* ON */);
                     Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-                    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+                    Game.SetAllCarsCanBeDamaged(true);
                     Streaming.Switch(true /* ON */);
                     if ($.player.isInAnyCar()) {
                         $.player.applyBrakesToCar(false /* OFF */);
@@ -922,7 +922,7 @@ async function body() {
                     Hud.SwitchWidescreen(false /* OFF */);
                     $.player.setControl(true /* ON */);
                     Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-                    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+                    Game.SetAllCarsCanBeDamaged(true);
                     Streaming.Switch(true /* ON */);
                     if ($.player.isInAnyCar()) {
                         $.player.applyBrakesToCar(false /* OFF */);
@@ -1128,7 +1128,7 @@ async function body() {
 
         $.frankie.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.frankie.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
-        $.frankie.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.frankie.setOnlyDamagedByPlayer(true);
 
         $.mission_blip_am1.remove();
         $.mission_blip_am1 = Blip.AddForChar($.frankie);
@@ -1396,7 +1396,7 @@ async function body() {
 
         if ($.mafia_8_flag == 3) {
             $.mafia_8X.setObjGotoCoordOnFoot($.back_of_alley_x, $.back_of_alley_y);
-            $.mafia_8X.setHeedThreats(true /* TRUE */);
+            $.mafia_8X.setHeedThreats(true);
             $.mafia_8_flag = 5;
         }
 
@@ -1431,7 +1431,7 @@ async function body() {
 
         if ($.mafia_9_flag == 3) {
             $.mafia_9X.setObjGotoCoordOnFoot($.back_of_alley_x, $.back_of_alley_y);
-            $.mafia_9X.setHeedThreats(true /* TRUE */);
+            $.mafia_9X.setHeedThreats(true);
             $.mafia_9_flag = 5;
         }
 
@@ -1466,7 +1466,7 @@ async function body() {
 
         if ($.mafia_10_flag == 3) {
             $.mafia_10X.setObjGotoCoordOnFoot($.back_of_alley_x, $.back_of_alley_y);
-            $.mafia_10X.setHeedThreats(true /* TRUE */);
+            $.mafia_10X.setHeedThreats(true);
             $.mafia_10_flag = 5;
         }
 
@@ -1501,7 +1501,7 @@ async function body() {
 
         if ($.mafia_11_flag == 3) {
             $.mafia_11X.setObjGotoCoordOnFoot($.back_of_alley_x, $.back_of_alley_y);
-            $.mafia_11X.setHeedThreats(true /* TRUE */);
+            $.mafia_11X.setHeedThreats(true);
             $.mafia_11_flag = 5;
         }
 
@@ -1536,7 +1536,7 @@ async function body() {
 
         if ($.mafia_12_flag == 3) {
             $.mafia_12X.setObjGotoCoordOnFoot($.back_of_alley_x, $.back_of_alley_y);
-            $.mafia_12X.setHeedThreats(true /* TRUE */);
+            $.mafia_12X.setHeedThreats(true);
             $.mafia_12_flag = 5;
         }
 
@@ -1571,7 +1571,7 @@ async function body() {
 
         if ($.mafia_13_flag == 3) {
             $.mafia_13X.setObjGotoCoordOnFoot($.back_of_alley_x, $.back_of_alley_y);
-            $.mafia_13X.setHeedThreats(true /* TRUE */);
+            $.mafia_13X.setHeedThreats(true);
             $.mafia_13_flag = 5;
         }
 
@@ -1746,11 +1746,11 @@ async function body() {
                         if ($.mafia_1X.locateInCarCar2D($.players_car_a1, 10.0, 10.0, false)) {
                             if (!Char.IsDead($.mafia_6X)) {
                                 $.mafia_6X.setObjKillPlayerAnyMeans($.player);
-                                $.mafia_6X.setRunning(true /* TRUE */);
+                                $.mafia_6X.setRunning(true);
                             }
                             if (!Char.IsDead($.mafia_7X)) {
                                 $.mafia_7X.setObjKillPlayerAnyMeans($.player);
-                                $.mafia_7X.setRunning(true /* TRUE */);
+                                $.mafia_7X.setRunning(true);
                             }
                         }
                     }
@@ -1768,7 +1768,7 @@ async function body() {
                         if ($.mafia_2X.locateInCarCar2D($.players_car_a1, 10.0, 10.0, false)) {
                             if (!Char.IsDead($.mafia_14X)) {
                                 $.mafia_14X.setObjKillPlayerAnyMeans($.player);
-                                $.mafia_14X.setRunning(true /* TRUE */);
+                                $.mafia_14X.setRunning(true);
                             }
                         }
                     }
@@ -1786,11 +1786,11 @@ async function body() {
                         if ($.mafia_3X.locateInCarCar2D($.players_car_a1, 10.0, 10.0, false)) {
                             if (!Char.IsDead($.mafia_4X)) {
                                 $.mafia_4X.setObjKillPlayerAnyMeans($.player);
-                                $.mafia_4X.setRunning(true /* TRUE */);
+                                $.mafia_4X.setRunning(true);
                             }
                             if (!Char.IsDead($.mafia_5X)) {
                                 $.mafia_5X.setObjKillPlayerAnyMeans($.player);
-                                $.mafia_5X.setRunning(true /* TRUE */);
+                                $.mafia_5X.setRunning(true);
                             }
                         }
                     }
@@ -2481,7 +2481,7 @@ async function kill_player_now_script() {
     }
 
     if (!Char.IsDead($.frankie)) {
-        $.frankie.setRunning(true /* TRUE */);
+        $.frankie.setRunning(true);
     }
 
     if (
@@ -2492,13 +2492,13 @@ async function kill_player_now_script() {
         if (!($.mafia_13_flag == 4)) {
             if (!($.mafia_13_flag == 0)) {
                 if ($.mafia_13_flag > 1 && $.mafia_13_kill_player_flag == 0) {
-                    $.mafia_13X.setUsePednodeSeek(true /* TRUE */);
+                    $.mafia_13X.setUsePednodeSeek(true);
                     $.mafia_13X.setObjRunToCoord(886.0037, -414.0266); // NEAR BOTTOM OF STEPS
                     $.mafia_13_kill_player_flag = 1;
                 }
                 if ($.mafia_13_kill_player_flag == 1) {
                     if ($.mafia_13X.locateOnFoot2D(886.0037, -414.0266, 1.0, 1.0, false)) {
-                        $.mafia_13X.setUsePednodeSeek(false /* FALSE */);
+                        $.mafia_13X.setUsePednodeSeek(false);
                         $.mafia_13X.setObjRunToCoord(888.8883, -409.8141); // AT BOTTOM OF STEPS
                         $.mafia_13_kill_player_flag = 2;
                     }
@@ -2541,16 +2541,16 @@ async function kill_player_now_script() {
                     if ($.player.isInArea3D(890.77, -433.71, 23.05, 900.78, -403.76, 46.0, false)) {
                         $.mafia_13X.setObjRunToCoord(893.2559, -425.0609); // ABOVE SMALL ROOF BETWEEN BILLBOARDS
                         if ($.mafia_13X.locateStoppedOnFoot2D(893.2559, -425.0609, 1.0, 1.0, false)) {
-                            $.mafia_13X.setUsePednodeSeek(true /* TRUE */);
-                            $.mafia_13X.setStayInSamePlace(true /* TRUE */);
+                            $.mafia_13X.setUsePednodeSeek(true);
+                            $.mafia_13X.setStayInSamePlace(true);
                             $.mafia_13X.setObjKillPlayerOnFoot($.player);
                             $.mafia_13_kill_player_flag = 8;
                         }
                     } else {
                         $.mafia_13X.setObjRunToCoord(892.1462, -429.0872); // ABOVE SMALL ROOF
                         if ($.mafia_13X.locateStoppedOnFoot2D(892.1462, -429.0872, 1.0, 1.0, false)) {
-                            $.mafia_13X.setUsePednodeSeek(true /* TRUE */);
-                            $.mafia_13X.setStayInSamePlace(true /* TRUE */);
+                            $.mafia_13X.setUsePednodeSeek(true);
+                            $.mafia_13X.setStayInSamePlace(true);
                             $.mafia_13X.setObjKillPlayerOnFoot($.player);
                             $.mafia_13_kill_player_flag = 8;
                         }
@@ -2562,13 +2562,13 @@ async function kill_player_now_script() {
             if (!($.mafia_12_flag == 0)) {
                 if ($.player.isInArea3D(890.77, -433.71, 23.05, 900.78, -403.76, 46.0, false)) {
                     if ($.mafia_12_flag > 1 && $.mafia_12_kill_player_flag == 0) {
-                        $.mafia_12X.setUsePednodeSeek(true /* TRUE */);
+                        $.mafia_12X.setUsePednodeSeek(true);
                         $.mafia_12X.setObjRunToCoord(886.0037, -414.0266); // NEAR BOTTOM OF STEPS
                         $.mafia_12_kill_player_flag = 1;
                     }
                     if ($.mafia_12_kill_player_flag == 1) {
                         if ($.mafia_12X.locateOnFoot2D(886.0037, -414.0266, 1.0, 1.0, false)) {
-                            $.mafia_12X.setUsePednodeSeek(false /* FALSE */);
+                            $.mafia_12X.setUsePednodeSeek(false);
                             $.mafia_12X.setObjRunToCoord(888.8883, -409.8141); // AT BOTTOM OF STEPS
                             $.mafia_12_kill_player_flag = 2;
                         }
@@ -2600,22 +2600,22 @@ async function kill_player_now_script() {
                     }
                     if ($.mafia_12_kill_player_flag == 6) {
                         if ($.mafia_12X.locateStoppedOnFoot2D(899.3036, -408.1849, 1.0, 1.0, false)) {
-                            $.mafia_12X.setUsePednodeSeek(true /* TRUE */);
-                            $.mafia_12X.setStayInSamePlace(true /* TRUE */);
+                            $.mafia_12X.setUsePednodeSeek(true);
+                            $.mafia_12X.setStayInSamePlace(true);
                             $.mafia_12X.setObjKillPlayerOnFoot($.player);
                             $.mafia_12_kill_player_flag = 7;
                         }
                     }
                 } else {
                     if ($.mafia_12_flag > 1 && $.mafia_12_kill_player_flag == 0) {
-                        $.mafia_12X.setUsePednodeSeek(true /* TRUE */);
+                        $.mafia_12X.setUsePednodeSeek(true);
                         $.mafia_12X.setObjRunToCoord(882.7668, -414.3651);
                         $.mafia_12_kill_player_flag = 1;
                     }
                     if ($.mafia_12_kill_player_flag == 1) {
                         if ($.mafia_12X.locateStoppedOnFoot2D(882.7668, -414.3651, 1.0, 1.0, false)) {
-                            $.mafia_12X.setUsePednodeSeek(true /* TRUE */);
-                            $.mafia_12X.setStayInSamePlace(true /* TRUE */);
+                            $.mafia_12X.setUsePednodeSeek(true);
+                            $.mafia_12X.setStayInSamePlace(true);
                             $.mafia_12X.setObjKillPlayerOnFoot($.player);
                             $.mafia_12_kill_player_flag = 7;
                         }
@@ -2626,13 +2626,13 @@ async function kill_player_now_script() {
         if (!($.mafia_11_flag == 4)) {
             if (!($.mafia_11_flag == 0)) {
                 if ($.mafia_11_flag > 1 && $.mafia_11_kill_player_flag == 0) {
-                    $.mafia_11X.setUsePednodeSeek(true /* TRUE */);
+                    $.mafia_11X.setUsePednodeSeek(true);
                     $.mafia_11X.setObjRunToCoord(886.0037, -414.0266); // NEAR BOTTOM OF STEPS
                     $.mafia_11_kill_player_flag = 1;
                 }
                 if ($.mafia_11_kill_player_flag == 1) {
                     if ($.mafia_11X.locateOnFoot2D(886.0037, -414.0266, 1.0, 1.0, false)) {
-                        $.mafia_11X.setUsePednodeSeek(false /* FALSE */);
+                        $.mafia_11X.setUsePednodeSeek(false);
                         $.mafia_11X.setObjRunToCoord(888.8883, -409.8141); // AT BOTTOM OF STEPS
                         $.mafia_11_kill_player_flag = 2;
                     }
@@ -2664,8 +2664,8 @@ async function kill_player_now_script() {
                 }
                 if ($.mafia_11_kill_player_flag == 6) {
                     if ($.mafia_11X.locateStoppedOnFoot2D(892.2498, -421.2303, 1.0, 1.0, false)) {
-                        $.mafia_11X.setUsePednodeSeek(true /* TRUE */);
-                        $.mafia_11X.setStayInSamePlace(true /* TRUE */);
+                        $.mafia_11X.setUsePednodeSeek(true);
+                        $.mafia_11X.setStayInSamePlace(true);
                         $.mafia_11X.setObjKillPlayerOnFoot($.player);
                         $.mafia_11_kill_player_flag = 7;
                     }
@@ -2675,13 +2675,13 @@ async function kill_player_now_script() {
         if (!($.mafia_10_flag == 4)) {
             if (!($.mafia_10_flag == 0)) {
                 if ($.mafia_10_flag > 1 && $.mafia_10_kill_player_flag == 0) {
-                    $.mafia_10X.setUsePednodeSeek(true /* TRUE */);
+                    $.mafia_10X.setUsePednodeSeek(true);
                     $.mafia_10X.setObjRunToCoord(886.0037, -414.0266); // NEAR BOTTOM OF STEPS
                     $.mafia_10_kill_player_flag = 1;
                 }
                 if ($.mafia_10_kill_player_flag == 1) {
                     if ($.mafia_10X.locateOnFoot2D(886.0037, -414.0266, 1.0, 1.0, false)) {
-                        $.mafia_10X.setUsePednodeSeek(false /* FALSE */);
+                        $.mafia_10X.setUsePednodeSeek(false);
                         $.mafia_10X.setObjRunToCoord(888.8883, -409.8141); // AT BOTTOM OF STEPS
                         $.mafia_10_kill_player_flag = 2;
                     }
@@ -2707,8 +2707,8 @@ async function kill_player_now_script() {
                 }
                 if ($.mafia_10_kill_player_flag == 5) {
                     if ($.mafia_10X.locateStoppedOnFoot2D(892.101, -406.2053, 1.0, 1.0, false)) {
-                        $.mafia_10X.setUsePednodeSeek(true /* TRUE */);
-                        $.mafia_10X.setStayInSamePlace(true /* TRUE */);
+                        $.mafia_10X.setUsePednodeSeek(true);
+                        $.mafia_10X.setStayInSamePlace(true);
                         $.mafia_10X.setObjKillPlayerOnFoot($.player);
                         $.mafia_10_kill_player_flag = 6;
                     }
@@ -2718,7 +2718,7 @@ async function kill_player_now_script() {
         if (!($.mafia_9_flag == 4)) {
             if (!($.mafia_9_flag == 0)) {
                 if ($.mafia_9_flag > 1 && $.mafia_9_kill_player_flag == 0) {
-                    $.mafia_9X.setStayInSamePlace(true /* TRUE */);
+                    $.mafia_9X.setStayInSamePlace(true);
                     $.mafia_9X.setObjKillPlayerOnFoot($.player);
                     $.mafia_9_kill_player_flag = 1;
                 }
@@ -2727,7 +2727,7 @@ async function kill_player_now_script() {
         if (!($.mafia_8_flag == 4)) {
             if (!($.mafia_8_flag == 0)) {
                 if ($.mafia_8_flag > 1 && $.mafia_8_kill_player_flag == 0) {
-                    $.mafia_8X.setStayInSamePlace(true /* TRUE */);
+                    $.mafia_8X.setStayInSamePlace(true);
                     $.mafia_8X.setObjKillPlayerOnFoot($.player);
                     $.mafia_8_kill_player_flag = 1;
                 }
@@ -2764,8 +2764,8 @@ async function kill_player_now_script() {
         if (!($.mafia_8_flag == 4)) {
             if (!($.mafia_8_flag == 0)) {
                 if ($.mafia_8_kill_player_flag == 1) {
-                    $.mafia_8X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_8X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_8X.setUsePednodeSeek(true);
+                    $.mafia_8X.setStayInSamePlace(false);
                     $.mafia_8_kill_player_flag = 0;
                 }
             }
@@ -2773,8 +2773,8 @@ async function kill_player_now_script() {
         if (!($.mafia_9_flag == 4)) {
             if (!($.mafia_9_flag == 0)) {
                 if ($.mafia_9_kill_player_flag == 1) {
-                    $.mafia_9X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_9X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_9X.setUsePednodeSeek(true);
+                    $.mafia_9X.setStayInSamePlace(false);
                     $.mafia_9_kill_player_flag = 0;
                 }
             }
@@ -2782,8 +2782,8 @@ async function kill_player_now_script() {
         if (!($.mafia_10_flag == 4)) {
             if (!($.mafia_10_flag == 0)) {
                 if ($.mafia_10_kill_player_flag == 6) {
-                    $.mafia_10X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_10X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_10X.setUsePednodeSeek(true);
+                    $.mafia_10X.setStayInSamePlace(false);
                     $.mafia_10_kill_player_flag = 0;
                 }
             }
@@ -2791,8 +2791,8 @@ async function kill_player_now_script() {
         if (!($.mafia_11_flag == 4)) {
             if (!($.mafia_11_flag == 0)) {
                 if ($.mafia_11_kill_player_flag == 7) {
-                    $.mafia_11X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_11X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_11X.setUsePednodeSeek(true);
+                    $.mafia_11X.setStayInSamePlace(false);
                     $.mafia_11_kill_player_flag = 0;
                 }
             }
@@ -2800,8 +2800,8 @@ async function kill_player_now_script() {
         if (!($.mafia_12_flag == 4)) {
             if (!($.mafia_12_flag == 0)) {
                 if ($.mafia_12_kill_player_flag == 7) {
-                    $.mafia_12X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_12X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_12X.setUsePednodeSeek(true);
+                    $.mafia_12X.setStayInSamePlace(false);
                     $.mafia_12_kill_player_flag = 0;
                 }
             }
@@ -2809,8 +2809,8 @@ async function kill_player_now_script() {
         if (!($.mafia_13_flag == 4)) {
             if (!($.mafia_13_flag == 0)) {
                 if ($.mafia_13_kill_player_flag == 8) {
-                    $.mafia_13X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_13X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_13X.setUsePednodeSeek(true);
+                    $.mafia_13X.setStayInSamePlace(false);
                     $.mafia_13_kill_player_flag = 0;
                 }
             }
@@ -2835,7 +2835,7 @@ async function kill_player_now_script() {
             }
             if ($.mafia_5_kill_player_flag == 2) {
                 if ($.mafia_5X.locateOnFoot2D(958.428, -397.0979, 1.0, 1.0, false)) {
-                    $.mafia_5X.setUsePednodeSeek(false /* FALSE */);
+                    $.mafia_5X.setUsePednodeSeek(false);
                     $.mafia_5X.setObjRunToCoord(958.0251, -416.7367); //BOTTOM OF STEPS
                     $.mafia_5_kill_player_flag = 3;
                 }
@@ -2860,9 +2860,9 @@ async function kill_player_now_script() {
             }
             if ($.mafia_5_kill_player_flag == 6) {
                 if ($.mafia_5X.locateOnFoot2D(929.8204, -404.7728, 1.0, 1.0, false)) {
-                    $.mafia_5X.setStayInSamePlace(true /* TRUE */);
+                    $.mafia_5X.setStayInSamePlace(true);
                     $.mafia_5X.setObjKillPlayerOnFoot($.player);
-                    $.mafia_5X.setUsePednodeSeek(true /* TRUE */);
+                    $.mafia_5X.setUsePednodeSeek(true);
                     $.mafia_5_kill_player_flag = 7;
                 }
             }
@@ -2884,7 +2884,7 @@ async function kill_player_now_script() {
             }
             if ($.mafia_7_kill_player_flag == 2) {
                 if ($.mafia_7X.locateOnFoot2D(958.428, -397.0979, 1.0, 1.0, false)) {
-                    $.mafia_7X.setUsePednodeSeek(false /* FALSE */);
+                    $.mafia_7X.setUsePednodeSeek(false);
                     $.mafia_7X.setObjRunToCoord(958.0251, -416.7367); //BOTTOM OF STEPS
                     $.mafia_7_kill_player_flag = 3;
                 }
@@ -2909,9 +2909,9 @@ async function kill_player_now_script() {
             }
             if ($.mafia_7_kill_player_flag == 6) {
                 if ($.mafia_7X.locateOnFoot2D(930.0654, -407.9679, 1.0, 1.0, false)) {
-                    $.mafia_7X.setStayInSamePlace(true /* TRUE */);
+                    $.mafia_7X.setStayInSamePlace(true);
                     $.mafia_7X.setObjKillPlayerOnFoot($.player);
-                    $.mafia_7X.setUsePednodeSeek(true /* TRUE */);
+                    $.mafia_7X.setUsePednodeSeek(true);
                     $.mafia_7_kill_player_flag = 7;
                 }
             }
@@ -2921,7 +2921,7 @@ async function kill_player_now_script() {
                 $.mafia_15X = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, 958.0251, -416.7367, 14.2); //BOTTOM OF STEPS
                 $.mafia_15X.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                 $.mafia_15X.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
-                $.mafia_15X.setUsePednodeSeek(false /* FALSE */);
+                $.mafia_15X.setUsePednodeSeek(false);
                 $.mafia_15X.setObjGotoCoordOnFoot(949.0732, -416.6061); //LANDING ON STEPS
                 $.mafia_15_kill_player_flag = 1;
             }
@@ -2946,9 +2946,9 @@ async function kill_player_now_script() {
             }
             if ($.mafia_15_kill_player_flag == 3) {
                 if ($.mafia_15X.locateOnFoot2D(929.5118, -406.648, 1.0, 1.0, false)) {
-                    $.mafia_15X.setStayInSamePlace(true /* TRUE */);
+                    $.mafia_15X.setStayInSamePlace(true);
                     $.mafia_15X.setObjKillPlayerOnFoot($.player);
-                    $.mafia_15X.setUsePednodeSeek(true /* TRUE */);
+                    $.mafia_15X.setUsePednodeSeek(true);
                     $.mafia_15_kill_player_flag = 4;
                 }
             }
@@ -3001,8 +3001,8 @@ async function kill_player_now_script() {
         if (!($.mafia_5_kill_player_flag == -100)) {
             if (!($.mafia_5_kill_player_flag == 0)) {
                 if (!Char.IsDead($.mafia_5X)) {
-                    $.mafia_5X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_5X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_5X.setUsePednodeSeek(true);
+                    $.mafia_5X.setStayInSamePlace(false);
                     $.mafia_5_kill_player_flag = 0;
                 } else {
                     $.mafia_5_kill_player_flag = -100;
@@ -3012,8 +3012,8 @@ async function kill_player_now_script() {
         if (!($.mafia_7_kill_player_flag == -100)) {
             if (!($.mafia_7_kill_player_flag == 0)) {
                 if (!Char.IsDead($.mafia_7X)) {
-                    $.mafia_7X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_7X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_7X.setUsePednodeSeek(true);
+                    $.mafia_7X.setStayInSamePlace(false);
                     $.mafia_7_kill_player_flag = 0;
                 } else {
                     $.mafia_7_kill_player_flag = -100;
@@ -3023,8 +3023,8 @@ async function kill_player_now_script() {
         if (!($.mafia_15_kill_player_flag == -100)) {
             if (!($.mafia_15_kill_player_flag == 0)) {
                 if (!Char.IsDead($.mafia_15X)) {
-                    $.mafia_15X.setUsePednodeSeek(true /* TRUE */);
-                    $.mafia_15X.setStayInSamePlace(false /* FALSE */);
+                    $.mafia_15X.setUsePednodeSeek(true);
+                    $.mafia_15X.setStayInSamePlace(false);
                     $.mafia_15_kill_player_flag = -100;
                 } else {
                     $.mafia_15_kill_player_flag = -100;
@@ -3106,7 +3106,7 @@ async function move_fuckers_car() {
         $.player.isInArea3D(890.77, -433.71, 23.05, 900.78, -403.76, 46.0, false)
     ) {
         $.fuckers_car.wanderRandomly();
-        $.fuckers_car.setAvoidLevelTransitions(true /* TRUE */);
+        $.fuckers_car.setAvoidLevelTransitions(true);
     } else {
         $.fuckers_car.setMission(2 /* MISSION_RAMPLAYER_FARAWAY */);
     }

@@ -305,7 +305,7 @@ async function body() {
         $.blip_abandoned_car_y4.remove();
         $.player.setControl(false /* Off */);
         Hud.ClearTimer($.$id.timer_y4);
-        World.ClearArea(-113.4, -1431.5, 26.0, 20.0, true /* true */);
+        World.ClearArea(-113.4, -1431.5, 26.0, 20.0, true);
 
         $.gen1_van = Car.Create(103 /* CAR_PONY */, $.gen1_x, $.gen1_y, 26.2);
         $.gen1_van.setHeading(180.0);
@@ -332,13 +332,13 @@ async function body() {
         Hud.SwitchWidescreen(true /* on */);
 
         Text.PrintNow('YD4_B', 3500, 2);
-        // MESSAGE_WAIT(3500, true /* true */);
+        // MESSAGE_WAIT(3500, true);
 
         Text.PrintNow('YD4_C', 3500, 2);
-        // MESSAGE_WAIT(3500, true /* true */);
+        // MESSAGE_WAIT(3500, true);
 
         Text.PrintNow('YD4_D', 2500, 2);
-        // MESSAGE_WAIT(2500, true /* true */);
+        // MESSAGE_WAIT(2500, true);
 
         if (!Car.IsDead($.gen1_van)) {
             $.gen1_van.gotoCoordinatesAccurate(-113.2, -1442.5, 26.2);
@@ -351,7 +351,7 @@ async function body() {
         while ($.flag_van1_arrived == 0) {
             await asyncWait(0);
             if (!Car.IsDead($.gen1_van)) {
-                if ($.gen1_van.locate2D(-113.2, -1442.5, 4.0, 4.0, false /* false */)) {
+                if ($.gen1_van.locate2D(-113.2, -1442.5, 4.0, 4.0, false)) {
                     $.flag_van1_arrived = 1;
                 }
             } else {

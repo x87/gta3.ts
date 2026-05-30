@@ -259,7 +259,7 @@ async function mission_start_luigi1() {
                 // Checks for girl1
 
                 if ($.flag_girl1_in_car_lm1 == 0) {
-                    if ($.player.locateInCarChar2D($.girl1_lm1, 8.0, 8.0, false /* FALSE */) && $.player.isStopped()) {
+                    if ($.player.locateInCarChar2D($.girl1_lm1, 8.0, 8.0, false) && $.player.isStopped()) {
                         $.flag_player_had_car_message_lm1 = 0;
                         $.passenger_count_lm1 = $.car_lm1.getNumberOfPassengers();
                         $.total_space_in_car_lm1 = $.no_of_passengers_car_lm1 - $.passenger_count_lm1;
@@ -302,7 +302,7 @@ async function mission_start_luigi1() {
                 // Checks for girl 2
 
                 if (flag_girl2_in_car_lm1 == 0) {
-                    if ($.player.locateInCarChar2D(girl2_lm1, 8.0, 8.0, false /* FALSE */) && $.player.isStopped()) {
+                    if ($.player.locateInCarChar2D(girl2_lm1, 8.0, 8.0, false) && $.player.isStopped()) {
                         $.flag_player_had_car_message_lm1 = 0;
                         $.passenger_count_lm1 = $.car_lm1.getNumberOfPassengers();
                         $.total_space_in_car_lm1 = $.no_of_passengers_car_lm1 - $.passenger_count_lm1;
@@ -410,9 +410,9 @@ async function mission_start_luigi1() {
         // waiting for the player to get to luigi's
 
         while (
-            !$.player.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, true /* TRUE */) ||
-            !$.girl1_lm1.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, false /* FALSE */) ||
-            !girl2_lm1.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, false /* FALSE */)
+            !$.player.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, true) ||
+            !$.girl1_lm1.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, false) ||
+            !girl2_lm1.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, false)
         ) {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
@@ -464,13 +464,13 @@ async function mission_start_luigi1() {
                 $.radar_blip_coord1_lm1.remove();
                 flag_blip_on_girl2_lm1 = 1;
             }
-            if ($.player.locateAnyMeansChar2D($.girl1_lm1, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_girl1_lm1 == 1) {
+            if ($.player.locateAnyMeansChar2D($.girl1_lm1, 8.0, 8.0, false) && $.flag_blip_on_girl1_lm1 == 1) {
                 $.girl1_lm1.followPlayer($.player);
                 $.radar_blip_ped1_lm1.remove();
                 $.flag_coord_blip_on = 0;
                 $.flag_blip_on_girl1_lm1 = 0;
             }
-            if ($.player.locateAnyMeansChar2D(girl2_lm1, 8.0, 8.0, false /* FALSE */) && flag_blip_on_girl2_lm1 == 1) {
+            if ($.player.locateAnyMeansChar2D(girl2_lm1, 8.0, 8.0, false) && flag_blip_on_girl2_lm1 == 1) {
                 girl2_lm1.followPlayer($.player);
                 $.radar_blip_ped2_lm1.remove();
                 $.flag_coord_blip_on = 0;

@@ -263,13 +263,13 @@ async function body() {
 
             $.player.setControl(false /* OFF */);
 
-            Fx.AddParticleEffect(4, 791.661, -936.916, 38.313, false /* FALSE */); //SMOKE ON CARS
-            Fx.AddParticleEffect(4, 788.337, -938.467, 38.073, false /* FALSE */);
-            Fx.AddParticleEffect(4, 786.493, -942.398, 39.8, false /* FALSE */);
+            Fx.AddParticleEffect(4, 791.661, -936.916, 38.313, false); //SMOKE ON CARS
+            Fx.AddParticleEffect(4, 788.337, -938.467, 38.073, false);
+            Fx.AddParticleEffect(4, 786.493, -942.398, 39.8, false);
 
-            Fx.AddParticleEffect(10, 783.572, -938.549, 38.448, false /* FALSE */); //FIRE ON CARS
-            Fx.AddParticleEffect(10, 790.537, -935.67, 38.005, false /* FALSE */);
-            Fx.AddParticleEffect(10, 789.295, -938.882, 38.127, false /* FALSE */);
+            Fx.AddParticleEffect(10, 783.572, -938.549, 38.448, false); //FIRE ON CARS
+            Fx.AddParticleEffect(10, 790.537, -935.67, 38.005, false);
+            Fx.AddParticleEffect(10, 789.295, -938.882, 38.127, false);
 
             $.fire_sound_8ball.remove();
 
@@ -489,7 +489,7 @@ async function body() {
                 Audio.SetRadioChannel(0 /* HEAD_RADIO */, -1);
             }
 
-            $.eightball.setCantBeDraggedOut(true /* TRUE */);
+            $.eightball.setCantBeDraggedOut(true);
 
             Hud.SwitchWidescreen(false /* OFF */);
 
@@ -754,7 +754,7 @@ async function body() {
                         }
                     }
                 }
-                if ($.player.locateInCar2D(875.0, -309.0, 20.0, 20.0, false /* FALSE */) && $.player.isInCar($.car_eightball) && $.flag_help_8ball1 == 0) {
+                if ($.player.locateInCar2D(875.0, -309.0, 20.0, 20.0, false) && $.player.isInCar($.car_eightball) && $.flag_help_8ball1 == 0) {
                     Text.PrintHelp('HELP1'); //Stop in the centre of the red dome."
                     $.flag_help_8ball1 = 1;
                 }
@@ -770,7 +770,7 @@ async function body() {
 
             while (
                 !$.player.isStoppedInAreaInCar3D(879.4, -303.4, 7.3, 870.1, -311.7, 10.0, !!$.blob_flag) ||
-                !$.eightball.isStoppedInAreaInCar3D(879.4, -303.4, 7.3, 870.1, -311.7, 10.0, false /* FALSE */) ||
+                !$.eightball.isStoppedInAreaInCar3D(879.4, -303.4, 7.3, 870.1, -311.7, 10.0, false) ||
                 !$.player.isSittingInCar($.car_eightball) ||
                 !$.eightball.isSittingInCar($.car_eightball) ||
                 !Audio.HasMissionAudioLoaded()
@@ -860,7 +860,7 @@ async function body() {
                         }
                     }
                 }
-                if ($.player.locateInCar2D(875.0, -309.0, 20.0, 20.0, false /* FALSE */) && $.player.isInCar($.car_eightball) && $.flag_help_8ball1 == 0) {
+                if ($.player.locateInCar2D(875.0, -309.0, 20.0, 20.0, false) && $.player.isInCar($.car_eightball) && $.flag_help_8ball1 == 0) {
                     Text.PrintHelp('HELP1'); //Stop in the centre of the red dome."
                     $.flag_help_8ball1 = 1;
                 }
@@ -888,7 +888,7 @@ async function body() {
                 $.cop_car2_8ball.delete();
             }
 
-            World.ClearArea(886.8, -310.1, -100.0, 2.0, true /* TRUE */);
+            World.ClearArea(886.8, -310.1, -100.0, 2.0, true);
 
             const _res163 = $.car_eightball.getCoordinates();
             $.car_8ball_x = _res163.x;
@@ -901,7 +901,7 @@ async function body() {
             $.car_colour1_8ball = _res164.color1;
             $.car_colour2_8ball = _res164.color2;
 
-            while (!$.playersdoor.rotate(210.0, 10.0, false /* FALSE */)) {
+            while (!$.playersdoor.rotate(210.0, 10.0, false)) {
                 await asyncWait(0);
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
@@ -927,7 +927,7 @@ async function body() {
                 }
             }
 
-            World.ClearArea(889.7, -308.2, 8.6, 3.0, true /* TRUE */); // This should remove any stuff that is in the way for the cut-scene
+            World.ClearArea(889.7, -308.2, 8.6, 3.0, true); // This should remove any stuff that is in the way for the cut-scene
 
             $.script_controlled_player = $.player.getChar();
 
@@ -1007,9 +1007,9 @@ async function body() {
 
             $.script_controlled_player.setObjLeaveCar($.car_eightball);
 
-            World.ClearArea(868.63, -311.7, 8.3, 1.0, true /* TRUE */);
+            World.ClearArea(868.63, -311.7, 8.3, 1.0, true);
 
-            if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false /* FALSE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */)) {
+            if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false, true, true, true, true)) {
                 Camera.SetFixedPosition(848.265, -295.26, 19.136, 0.0, 0.0, 0.0); //high camera that points to the water tower
                 Camera.PointAtPoint(849.11, -295.79, 19.18, 2 /* jump_cut */);
             } else {
@@ -1077,25 +1077,25 @@ async function body() {
                     throw new Error('unresolved GOTO mission_eightball_failed');
                 }
                 if ($.flag_player_in_area == 0) {
-                    if ($.script_controlled_player.locateOnFoot2D(892.4, -308.5, 0.5, 0.5, false /* FALSE */)) {
+                    if ($.script_controlled_player.locateOnFoot2D(892.4, -308.5, 0.5, 0.5, false)) {
                         $.script_controlled_player.setObjRunToCoord(892.4, -305.6);
                         $.flag_player_in_area = 1;
                     }
                 }
 
                 if ($.flag_eightball_in_area == 0) {
-                    if ($.eightball.locateOnFoot2D(892.7, -308.6, 0.5, 0.5, false /* FALSE */)) {
+                    if ($.eightball.locateOnFoot2D(892.7, -308.6, 0.5, 0.5, false)) {
                         $.eightball.setObjRunToCoord(894.2, -304.3);
                         $.flag_eightball_in_area = 1;
                     }
                 }
                 if ($.flag_player_in_area == 1) {
-                    if ($.script_controlled_player.locateOnFoot2D(892.4, -305.6, 0.5, 0.5, false /* FALSE */)) {
+                    if ($.script_controlled_player.locateOnFoot2D(892.4, -305.6, 0.5, 0.5, false)) {
                         $.flag_player_in_area = 2;
                     }
                 }
                 if ($.flag_eightball_in_area == 1) {
-                    if ($.eightball.locateOnFoot2D(894.2, -304.3, 0.5, 0.5, false /* FALSE */)) {
+                    if ($.eightball.locateOnFoot2D(894.2, -304.3, 0.5, 0.5, false)) {
                         $.flag_eightball_in_area = 2;
                     }
                 }
@@ -1263,9 +1263,9 @@ async function body() {
 
                 $.script_controlled_player.setObjEnterCarAsDriver($.car_eightball);
 
-                World.ClearArea(868.63, -311.7, 8.3, 1.0, true /* TRUE */);
+                World.ClearArea(868.63, -311.7, 8.3, 1.0, true);
 
-                if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false /* FALSE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */)) {
+                if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false, true, true, true, true)) {
                     Camera.SetFixedPosition(848.265, -295.26, 19.136, 0.0, 0.0, 0.0); //high camera that points to the water tower
                     Camera.PointAtPoint(849.11, -295.79, 19.18, 2 /* jump_cut */);
                 } else {
@@ -1301,7 +1301,7 @@ async function body() {
                     }
                 }
 
-                while (!$.playersdoor.rotate(0.0, 10.0, false /* FALSE */)) {
+                while (!$.playersdoor.rotate(0.0, 10.0, false)) {
                     await asyncWait(0);
                     if (Car.IsDead($.car_eightball)) {
                         if (Char.IsDead($.eightball)) {
@@ -1352,8 +1352,8 @@ async function body() {
             $.player.setControl(false /* OFF */);
             Game.SetPoliceIgnorePlayer($.player, true /* ON */);
             $.player.setHeading(90.0);
-            World.ClearArea(868.63, -311.7, 8.3, 1.0, true /* TRUE */);
-            if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false /* FALSE */, true /* TRUE */, true /* TRUE */, true /* TRUE */, true /* TRUE */)) {
+            World.ClearArea(868.63, -311.7, 8.3, 1.0, true);
+            if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false, true, true, true, true)) {
                 Camera.SetFixedPosition(848.265, -295.26, 19.136, 0.0, 0.0, 0.0); //high camera that points to the water tower
                 Camera.PointAtPoint(849.11, -295.79, 19.18, 2 /* jump_cut */);
             } else {
@@ -1402,7 +1402,7 @@ async function body() {
                     throw new Error('unresolved GOTO mission_eightball_failed');
                 }
             }
-            $.eightball.setCantBeDraggedOut(true /* TRUE */);
+            $.eightball.setCantBeDraggedOut(true);
             Camera.RestoreJumpcut();
             Camera.SetInFrontOfPlayer();
             Hud.SwitchWidescreen(false /* OFF */);
@@ -1418,7 +1418,7 @@ async function body() {
             $.damagea.delete();
             $.damageb.delete();
             World.SwapNearestBuildingModel(1027.26, -933.796, 15.042, 50.0, 218 /* LOD_land014 */, 855 /* indhelix_barrier */);
-            World.SetVisibilityOfClosestObjectOfType(1027.26, -933.796, 15.042, 50.0, 855 /* indhelix_barrier */, true /* TRUE */);
+            World.SetVisibilityOfClosestObjectOfType(1027.26, -933.796, 15.042, 50.0, 855 /* indhelix_barrier */, true);
         }
         $.flag_reached_hideout = 1;
 
@@ -1578,7 +1578,7 @@ async function body() {
 
         while (
             !$.player.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, !!$.blob_flag) ||
-            !$.eightball.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false /* FALSE */) ||
+            !$.eightball.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false) ||
             !$.player.isInCar($.car_eightball) ||
             !$.eightball.isInCar($.car_eightball) ||
             !Audio.HasMissionAudioLoaded()
@@ -1622,7 +1622,7 @@ async function body() {
                 // SCM GOTO → mission_eightball_failed
                 throw new Error('unresolved GOTO mission_eightball_failed');
             }
-            if ($.player.locateInCar2D(902.8, -425.6, 15.0, 15.0, false /* FALSE */) && $.player.isInCar($.car_eightball) && $.flag_help_8ball2 == 0) {
+            if ($.player.locateInCar2D(902.8, -425.6, 15.0, 15.0, false) && $.player.isInCar($.car_eightball) && $.flag_help_8ball2 == 0) {
                 Text.PrintHelp('HELP1'); //Stop in the centre of the red dome."
                 $.flag_help_8ball2 = 1;
             }
@@ -1642,7 +1642,7 @@ async function body() {
 
         $.player.setControl(false /* OFF */);
 
-        World.ClearArea(887.4, -417.3, 13.9, 10.0, true /* TRUE */); // This should get rid of any stuff for the cut-scene
+        World.ClearArea(887.4, -417.3, 13.9, 10.0, true); // This should get rid of any stuff for the cut-scene
 
         $.script_controlled_player = $.player.getChar();
 
@@ -1741,7 +1741,7 @@ async function body() {
 
         Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
 
-        $.eightball.setCantBeDraggedOut(false /* FALSE */);
+        $.eightball.setCantBeDraggedOut(false);
 
         Text.ClearHelp();
 
@@ -1825,7 +1825,7 @@ async function body() {
 
         $.eightball.delete();
 
-        World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, false);
 
         Cutscene.Load('l1_lg');
 
@@ -1867,7 +1867,7 @@ async function body() {
 
         $.cs_ludoor.setAnim('LUDOOR');
 
-        World.ClearArea(896.6, -426.2, 13.9, 1.0, true /* TRUE */);
+        World.ClearArea(896.6, -426.2, 13.9, 1.0, true);
         $.player.setCoordinates(896.6, -426.2, 13.9);
 
         $.player.setHeading(270.0);
@@ -1880,13 +1880,13 @@ async function body() {
 
         Camera.DoFade(1500, 1 /* FADE_IN */);
 
-        World.ClearArea(887.4, -417.3, 13.9, 10.0, true /* TRUE */); // This should get rid of anything in the alleway
+        World.ClearArea(887.4, -417.3, 13.9, 10.0, true); // This should get rid of anything in the alleway
 
-        World.ClearArea(892.8, -425.5, 13.9, 3.0, true /* TRUE */);
+        World.ClearArea(892.8, -425.5, 13.9, 3.0, true);
 
-        World.ClearArea(896.3, -425.6, 13.8, 3.0, true /* TRUE */);
+        World.ClearArea(896.3, -425.6, 13.8, 3.0, true);
 
-        World.ClearArea(899.7, -425.7, 14.0, 0.5, true /* TRUE */);
+        World.ClearArea(899.7, -425.7, 14.0, 0.5, true);
 
         World.SwitchRubbish(false /* OFF */);
 
@@ -1994,7 +1994,7 @@ async function body() {
 
         Streaming.LoadScene(920.3, -425.4, 15.0);
 
-        World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true /* TRUE */);
+        World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true);
 
         Streaming.UnloadSpecialCharacter(1);
 
@@ -2099,7 +2099,7 @@ async function body() {
                     throw new Error('unresolved GOTO mission_eightball_failed');
                 }
                 if ($.flag_misty_stop == 0) {
-                    if ($.player.locateInCarChar2D($.girl1_lm1, 20.0, 20.0, false /* FALSE */)) {
+                    if ($.player.locateInCarChar2D($.girl1_lm1, 20.0, 20.0, false)) {
                         Text.PrintHelp('LM1_7'); //"Stop the vehicle next to Misty and allow her to enter it."
                         $.flag_misty_stop = 1;
                     }
@@ -2126,7 +2126,7 @@ async function body() {
                 }
                 if ($.player.isInAnyCar()) {
                     $.car_lm1 = $.player.storeCarIsIn();
-                    if ($.player.locateInCarChar2D($.girl1_lm1, 8.0, 8.0, false /* FALSE */)) {
+                    if ($.player.locateInCarChar2D($.girl1_lm1, 8.0, 8.0, false)) {
                         if ($.player.isStopped()) {
                             $.girl1_lm1.setObjEnterCarAsPassenger($.car_lm1);
                             while (!$.girl1_lm1.isInCar($.car_lm1) || !$.player.isInCar($.car_lm1)) {
@@ -2148,7 +2148,7 @@ async function body() {
                                     }
                                 }
                                 if ($.girl1_lm1.isInCar($.car_lm1)) {
-                                    $.girl1_lm1.setCantBeDraggedOut(true /* TRUE */);
+                                    $.girl1_lm1.setCantBeDraggedOut(true);
                                 }
                                 if (!$.player.isInCar($.car_lm1)) {
                                     if ($.flag_player_had_vehicle_message_lm1 == 0) {
@@ -2208,7 +2208,7 @@ async function body() {
                     if ($.girl1_lm1.isInCar($.car_lm1)) {
                         Text.PrintNow('LM1_9', 10000, 1); //"Hey I'm Misty!"
                         Audio.PlayMissionAudio();
-                        $.girl1_lm1.setCantBeDraggedOut(false /* FALSE */);
+                        $.girl1_lm1.setCantBeDraggedOut(false);
                         $.flag_girl1_in_car_lm1 = 1;
                     }
                     if ($.flag_player_had_car_message_lm1 == 1) {
@@ -2235,7 +2235,7 @@ async function body() {
                     $.radar_blip_ped1_lm1 = Blip.AddForChar($.girl1_lm1);
                     $.flag_blip_on_girl1_lm1 = 1;
                 }
-                if ($.player.locateAnyMeansChar2D($.girl1_lm1, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_girl1_lm1 == 1) {
+                if ($.player.locateAnyMeansChar2D($.girl1_lm1, 8.0, 8.0, false) && $.flag_blip_on_girl1_lm1 == 1) {
                     $.girl1_lm1.followPlayer($.player);
                     //PRINT_NOW ( LM1_2 ) 7000 1 //"Hi take us to the Red Light District please, we'll be ever so 'grateful'!"
                     $.radar_blip_ped1_lm1.remove();
@@ -2271,7 +2271,7 @@ async function body() {
 
         while (
             !$.girl1_lm1.isStoppedInArea3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, !!$.blob_flag) ||
-            !$.player.isStoppedInArea3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false /* FALSE */)
+            !$.player.isStoppedInArea3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, false)
         ) {
             await asyncWait(0);
             if ($.flag_player_had_camera_message_8ball == 0) {
@@ -2307,7 +2307,7 @@ async function body() {
                     $.blob_flag = 0;
                     $.flag_blip_on_girl1_lm1 = 1;
                 }
-                if ($.player.locateAnyMeansChar2D($.girl1_lm1, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_girl1_lm1 == 1) {
+                if ($.player.locateAnyMeansChar2D($.girl1_lm1, 8.0, 8.0, false) && $.flag_blip_on_girl1_lm1 == 1) {
                     $.girl1_lm1.followPlayer($.player);
                     Text.PrintNow('LM1_2', 7000, 1); //"Hi take us to the Red Light District please, we'll be ever so 'grateful'!"
                     $.radar_blip_coord1_lm1 = Blip.AddForCoord(906.2, -426.0, -100.0);
@@ -2334,14 +2334,14 @@ async function body() {
 
         Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
 
-        World.ClearArea(887.4, -417.3, 13.9, 10.0, true /* TRUE */); // This should get rid of any stuff for the cut-scene
+        World.ClearArea(887.4, -417.3, 13.9, 10.0, true); // This should get rid of any stuff for the cut-scene
 
         Streaming.RequestModel(257 /* indhibuild3 */);
         Streaming.RequestModel(256 /* luigiclubout */);
         Streaming.RequestModel(243 /* luigiineerclub */);
 
         if ($.girl1_lm1.isInAnyCar()) {
-            $.girl1_lm1.setCantBeDraggedOut(false /* FALSE */);
+            $.girl1_lm1.setCantBeDraggedOut(false);
             $.car_lm1 = $.girl1_lm1.storeCarIsIn();
             $.girl1_lm1.setObjLeaveCar($.car_lm1);
             while ($.girl1_lm1.isInAnyCar()) {
@@ -2498,7 +2498,7 @@ async function cleanup() {
     }
 
     if (!Char.IsDead($.girl1_lm1)) {
-        $.girl1_lm1.setCantBeDraggedOut(false /* FALSE */);
+        $.girl1_lm1.setCantBeDraggedOut(false);
     }
 
     Mission.Finish();

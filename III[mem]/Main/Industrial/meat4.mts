@@ -257,11 +257,11 @@ async function body() {
 
     $.radar_blip_ped1_meat4 = Blip.AddForChar($.loanshark_meat4);
 
-    $.loanshark_meat4.setCantBeDraggedOut(true /* TRUE */);
+    $.loanshark_meat4.setCantBeDraggedOut(true);
 
     // player is in area
 
-    while (!$.player.locateInCarChar2D($.loanshark_meat4, 8.0, 8.0, false /* FALSE */) || !$.player.isInCar($.car_meat4)) {
+    while (!$.player.locateInCarChar2D($.loanshark_meat4, 8.0, 8.0, false) || !$.player.isInCar($.car_meat4)) {
         await asyncWait(0);
         if (Car.IsDead($.car_meat4)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -315,7 +315,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat4
             throw new Error('unresolved GOTO mission_failed_meat4');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.loanshark_meat4, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.loanshark_meat4, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA4_3', 5000, 1); //"You left the Loan Shark behind"
                 // SCM GOTO → mission_failed_meat4
                 throw new Error('unresolved GOTO mission_failed_meat4');
@@ -383,7 +383,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat4
             throw new Error('unresolved GOTO mission_failed_meat4');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.loanshark_meat4, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.loanshark_meat4, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA4_3', 5000, 1); //"You left the Loan Shark behind"
                 // SCM GOTO → mission_failed_meat4
                 throw new Error('unresolved GOTO mission_failed_meat4');
@@ -424,7 +424,7 @@ async function body() {
 
     $.loanshark_meat4.leaveGroup();
 
-    $.loanshark_meat4.setCantBeDraggedOut(false /* FALSE */);
+    $.loanshark_meat4.setCantBeDraggedOut(false);
 
     $.loanshark_meat4.setObjLeaveCar($.car_meat4);
 
@@ -464,7 +464,7 @@ async function body() {
 
     Camera.PointAtPoint(1204.6, -785.7, 13.9, 2 /* JUMP_CUT */);
 
-    World.ClearArea(1212.0, -792.0, 14.0, 10.0, true /* TRUE */);
+    World.ClearArea(1212.0, -792.0, 14.0, 10.0, true);
 
     Audio.LoadMissionAudio('mf3_b' as any);
 
@@ -485,7 +485,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_failed_meat4');
         }
         if ($.flag_loanshark_in_area == 0) {
-            if ($.loanshark_meat4.locateOnFoot2D(1209.6, -791.0, 0.5, 0.5, false /* FALSE */)) {
+            if ($.loanshark_meat4.locateOnFoot2D(1209.6, -791.0, 0.5, 0.5, false)) {
                 $.flag_loanshark_in_area = 1;
             }
         }

@@ -282,7 +282,7 @@ async function body() {
         }
 
         $.criminal_car = Car.Create($.car_model, $.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z);
-        $.criminal_car.setAvoidLevelTransitions(true /* TRUE */);
+        $.criminal_car.setAvoidLevelTransitions(true);
         $.criminal_car.setHealth(800);
         Streaming.MarkModelAsNoLongerNeeded($.car_model);
         $.criminal_car.setHeading($.criminal_heading);
@@ -292,12 +292,12 @@ async function body() {
         $.criminal_coord_y = _res181.nodeY;
         $.criminal_coord_z = _res181.nodeZ;
         $.criminal = Char.CreateRandom($.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z);
-        $.criminal.setIsChrisCriminal(true /* TRUE */);
+        $.criminal.setIsChrisCriminal(true);
         //SET_CHAR_AVOID_LEVEL_TRANSITIONS criminal TRUE
 
         $.criminal.warpIntoCar($.criminal_car);
-        $.criminal.setRunning(true /* TRUE */);
-        $.criminal.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.criminal.setRunning(true);
+        $.criminal.setOnlyDamagedByPlayer(true);
 
         $.criminal.clearThreatSearch();
 
@@ -325,7 +325,7 @@ async function body() {
         $.criminal.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
         $.criminal.setThreatSearch(16777216 /* THREAT_FIREMAN */);
 
-        $.criminal.setHeedThreats(true /* TRUE */);
+        $.criminal.setHeedThreats(true);
 
         $.criminal_car.markAsNoLongerNeeded();
 
@@ -509,11 +509,11 @@ async function body() {
             if ($.criminal.isInAnyCar() && $.got_car_crim_is_in == 0) {
                 $.criminal_car.markAsNoLongerNeeded();
                 $.criminal_car = $.criminal.storeCarIsIn();
-                $.criminal_car.setUpsidedownNotDamaged(true /* TRUE */);
+                $.criminal_car.setUpsidedownNotDamaged(true);
                 $.criminal_car.setDrivingStyle(2);
                 $.criminal_car.setCruiseSpeed(42.0);
                 $.criminal_car.wanderRandomly();
-                $.criminal_car.setAvoidLevelTransitions(true /* TRUE */);
+                $.criminal_car.setAvoidLevelTransitions(true);
                 $.got_car_crim_is_in = 1;
             }
             if ($.got_car_crim_is_in == 1) {
@@ -617,7 +617,7 @@ async function body() {
                     if ($.criminal_car.isUpsidedown() && $.criminal_car.isStopped()) {
                         if ($.player.locateAnyMeansChar2D($.criminal, 90.0, 90.0, false)) {
                             $.criminal.setObjLeaveCar($.criminal_car);
-                            $.criminal_car.setUpsidedownNotDamaged(false /* FALSE */);
+                            $.criminal_car.setUpsidedownNotDamaged(false);
                         } else {
                             if (!$.criminal_car.isOnScreen()) {
                                 const _res187 = $.criminal_car.getCoordinates();
@@ -670,7 +670,7 @@ async function body() {
             //FLASH_HUD_OBJECT OnscreenCounter
             if ($.vigilante_bonus_kills == 10) {
                 //ADD_PAGER_MESSAGE PAGEB12 140 100 1	//"Get out of jail free!"
-                $.player.setGetOutOfJailFree(true /* TRUE */);
+                $.player.setGetOutOfJailFree(true);
             }
             $.vigilante_bonus_kills += 5;
         }

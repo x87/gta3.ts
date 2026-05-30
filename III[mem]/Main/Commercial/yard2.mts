@@ -260,15 +260,15 @@ async function body() {
     //DO_FADE 1500 FADE_OUT
     //WAIT 1500
 
-    World.ClearArea(4.2, -310.1, 16.0, 40.0, true /* true */);
-    World.ClearArea(97.0, -285.5, 16.0, 50.0, true /* true */);
+    World.ClearArea(4.2, -310.1, 16.0, 40.0, true);
+    World.ClearArea(97.0, -285.5, 16.0, 50.0, true);
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
     await asyncWait(1500);
 
     $.gang_car_yd2 = Car.Create(94 /* CAR_PERENNIAL */, 4.2, -310.1, 16.0);
     $.gang_car_yd2.setHeading(0.0);
-    $.gang_car_yd2.setOnlyDamagedByPlayer(true /* True */);
+    $.gang_car_yd2.setOnlyDamagedByPlayer(true);
 
     $.chaperone_1 = Char.CreateInsideCar($.gang_car_yd2, 4 /* PEDTYPE_CIVMALE */, 18 /* PED_GANG_YARDIE_A */);
     $.chaperone_2 = Char.CreateAsPassenger($.gang_car_yd2, 4 /* PEDTYPE_CIVMALE */, 19 /* PED_GANG_YARDIE_B */, 0);
@@ -281,13 +281,13 @@ async function body() {
         Camera.PointAtCar($.gang_car_yd2, 15 /* FIXED */, 1 /* INTERPOLATION */);
     }
 
-    while (!$.gang_car_yd2.locateStopped2D(113.0, -272.0, 5.0, 5.0, false /* false */)) {
+    while (!$.gang_car_yd2.locateStopped2D(113.0, -272.0, 5.0, 5.0, false)) {
         await asyncWait(0);
         if (Car.IsDead($.gang_car_yd2)) {
             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
         }
         if ($.flag_clear == 0) {
-            World.ClearArea(115.0, -272.0, 16.0, 10.0, true /* true */);
+            World.ClearArea(115.0, -272.0, 16.0, 10.0, true);
             $.flag_clear = 1;
         }
     }
@@ -340,7 +340,7 @@ async function body() {
             //GET_CHAR_COORDINATES chaperone_2 yd2_x yd2_y yd2_z
             $.chaperone_2.lookAtCharAlways($.player_yd2);
             $.player_yd2.lookAtCharAlways($.chaperone_2);
-            if (!$.chaperone_2.locateOnFoot2D($.y2_x, $.y2_y, 2.0, 2.0, false /* false */)) {
+            if (!$.chaperone_2.locateOnFoot2D($.y2_x, $.y2_y, 2.0, 2.0, false)) {
                 continue plinky_yd2; // SCM GOTO → plinky_yd2
             }
         } else {
@@ -495,17 +495,17 @@ async function body() {
         }
 
         if (!Car.IsDead($.gang_car_yd2)) {
-            $.gang_car_yd2.setOnlyDamagedByPlayer(false /* false */);
+            $.gang_car_yd2.setOnlyDamagedByPlayer(false);
             //LOCK_CAR_DOORS gang_car_yd2 CARLOCK_LOCKED
         }
 
         if (!Char.IsDead($.chaperone_1)) {
-            $.chaperone_1.setCantBeDraggedOut(true /* TRUE */);
-            $.chaperone_1.setStaysInCurrentLevel(false /* FALSE */);
+            $.chaperone_1.setCantBeDraggedOut(true);
+            $.chaperone_1.setStaysInCurrentLevel(false);
         }
         if (!Char.IsDead($.chaperone_2)) {
-            $.chaperone_2.setCantBeDraggedOut(true /* TRUE */);
-            $.chaperone_2.setStaysInCurrentLevel(false /* FALSE */);
+            $.chaperone_2.setCantBeDraggedOut(true);
+            $.chaperone_2.setStaysInCurrentLevel(false);
         }
 
         Camera.RestoreJumpcut();
@@ -554,8 +554,8 @@ async function body() {
                     }
                     if (!$.gang_car_yd2.isHealthGreater(250)) {
                         if (
-                            !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false /* false */) &&
-                            !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false /* false */)
+                            !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) &&
+                            !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)
                         ) {
                             $.flag_upsidedown = 1;
                             // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
@@ -620,8 +620,8 @@ async function body() {
                 }
                 if (!$.gang_car_yd2.isHealthGreater(250)) {
                     if (
-                        !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false /* false */) &&
-                        !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false /* false */)
+                        !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) &&
+                        !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)
                     ) {
                         $.flag_upsidedown = 1;
                         // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
@@ -677,7 +677,7 @@ async function body() {
         $.blip_driveby_yd2 = Blip.AddForCoord($.yd2turf_x, $.yd2turf_y, 26.0);
 
         if (!Car.IsDead($.gang_car_yd2)) {
-            while (!$.gang_car_yd2.locateStopped3D($.yd2turf_x, $.yd2turf_y, 26.0, 5.0, 5.0, 5.0, true /* true */)) {
+            while (!$.gang_car_yd2.locateStopped3D($.yd2turf_x, $.yd2turf_y, 26.0, 5.0, 5.0, 5.0, true)) {
                 await asyncWait(0);
                 if (!Car.IsDead($.gang_car_yd2)) {
                     if ($.gang_car_yd2.isUpsidedown() && $.gang_car_yd2.isStopped()) {
@@ -687,8 +687,8 @@ async function body() {
                     }
                     if (!$.gang_car_yd2.isHealthGreater(250)) {
                         if (
-                            !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false /* false */) &&
-                            !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false /* false */)
+                            !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) &&
+                            !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)
                         ) {
                             $.flag_upsidedown = 1;
                             // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)
@@ -986,8 +986,8 @@ async function player_out_of_car() {
         if (!Car.IsDead($.gang_car_yd2)) {
             if (!$.gang_car_yd2.isHealthGreater(250)) {
                 if (
-                    !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false /* false */) &&
-                    !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false /* false */)
+                    !$.gang_car_yd2.locate3D(379.0, -493.7, 26.2, 15.0, 15.0, 15.0, false) &&
+                    !$.gang_car_yd2.locate3D(925.4, -358.7, 10.8, 15.0, 15.0, 15.0, false)
                 ) {
                     $.flag_upsidedown = 1;
                     // SCM GOTO → mission_yd2_failed (not lowered; manual jump required)

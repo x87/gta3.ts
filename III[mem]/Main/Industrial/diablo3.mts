@@ -187,7 +187,7 @@ async function body() {
 
     $.blip1_diablo3.remove();
 
-    KillFrenzy.Start('DIAB3_1', 9 /* WEAPONTYPE_FLAMETHROWER */, 151000, 25, 12 /* PED_GANG_TRIAD_A */, 13 /* PED_GANG_TRIAD_B */, -1, -1, false /* FALSE */);
+    KillFrenzy.Start('DIAB3_1', 9 /* WEAPONTYPE_FLAMETHROWER */, 151000, 25, 12 /* PED_GANG_TRIAD_A */, 13 /* PED_GANG_TRIAD_B */, -1, -1, false);
 
     Diablo3_loop: while (true) {
         await asyncWait(0);
@@ -203,7 +203,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_diablo3_failed'); // fallback: would break linear control flow
         }
 
-        if ($.player.isInArea2D(1038.0, -781.0, 838.0, -915.0, false /* FALSE */)) {
+        if ($.player.isInArea2D(1038.0, -781.0, 838.0, -915.0, false)) {
             if ($.all_gang_created_before == 0) {
                 $.burn_man1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 932.0, -846.0, 14.5);
                 $.burn_man1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
@@ -258,7 +258,7 @@ async function body() {
                 Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */);
                 $.given_money_before = 1;
             }
-            if ($.player.isShootingInArea(916.0, -863.0, 956.0, -830.0, false /* FALSE */) || $.player.isInArea2D(916.0, -863.0, 956.0, -830.0, false /* FALSE */)) {
+            if ($.player.isShootingInArea(916.0, -863.0, 956.0, -830.0, false) || $.player.isInArea2D(916.0, -863.0, 956.0, -830.0, false)) {
                 if ($.dead_burn_man1 == 0) {
                     $.burn_man1.setObjKillPlayerOnFoot($.player);
                 }

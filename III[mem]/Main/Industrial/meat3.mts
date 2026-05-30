@@ -219,11 +219,11 @@ async function body() {
 
     $.radar_blip_ped1_meat3 = Blip.AddForChar($.wife_meat3);
 
-    $.wife_meat3.setCantBeDraggedOut(true /* TRUE */);
+    $.wife_meat3.setCantBeDraggedOut(true);
 
     // Waiting for the player to be in the area
 
-    while (!$.player.locateInCarChar2D($.wife_meat3, 8.0, 8.0, false /* FALSE */) || !$.player.isInCar($.car_meat3)) {
+    while (!$.player.locateInCarChar2D($.wife_meat3, 8.0, 8.0, false) || !$.player.isInCar($.car_meat3)) {
         await asyncWait(0);
         if (Car.IsDead($.car_meat3)) {
             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -277,7 +277,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat3
             throw new Error('unresolved GOTO mission_failed_meat3');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.wife_meat3, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.wife_meat3, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA3_3', 5000, 1); //"You have left his wife behind"
                 // SCM GOTO → mission_failed_meat3
                 throw new Error('unresolved GOTO mission_failed_meat3');
@@ -340,7 +340,7 @@ async function body() {
             // SCM GOTO → mission_failed_meat3
             throw new Error('unresolved GOTO mission_failed_meat3');
         } else {
-            if (!$.player.locateAnyMeansChar3D($.wife_meat3, 30.0, 30.0, 30.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.wife_meat3, 30.0, 30.0, 30.0, false)) {
                 Text.PrintNow('MEA3_3', 5000, 1); //"You have left his wife behind"
                 // SCM GOTO → mission_failed_meat3
                 throw new Error('unresolved GOTO mission_failed_meat3');
@@ -374,7 +374,7 @@ async function body() {
 
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
 
-    $.wife_meat3.setCantBeDraggedOut(false /* FALSE */);
+    $.wife_meat3.setCantBeDraggedOut(false);
 
     $.wife_meat3.setObjLeaveCar($.car_meat3);
 
@@ -409,7 +409,7 @@ async function body() {
 
     Camera.PointAtPoint(1204.4, -802.7, 15.0, 2 /* JUMP_CUT */);
 
-    World.ClearArea(1200.8, -799.3, 14.0, 10.0, true /* TRUE */);
+    World.ClearArea(1200.8, -799.3, 14.0, 10.0, true);
 
     TIMERB = 0;
 
@@ -428,7 +428,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_failed_meat3');
         }
         if ($.flag_wife_in_area == 0) {
-            if ($.wife_meat3.locateOnFoot2D(1204.2, -801.9, 0.5, 0.5, false /* FALSE */)) {
+            if ($.wife_meat3.locateOnFoot2D(1204.2, -801.9, 0.5, 0.5, false)) {
                 $.flag_wife_in_area = 1;
             }
         }
@@ -449,7 +449,7 @@ async function body() {
     wife_stuck1: {
         // opens the door
 
-        while (!$.doggy_door.rotate(135.0, 5.0, false /* FALSE */)) {
+        while (!$.doggy_door.rotate(135.0, 5.0, false)) {
             await asyncWait(0);
             if (Car.IsDead($.car_meat3)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -472,7 +472,7 @@ async function body() {
 
         TIMERB = 0;
 
-        while (!$.wife_meat3.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false /* FALSE */)) {
+        while (!$.wife_meat3.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false)) {
             await asyncWait(0);
             if (Car.IsDead($.car_meat3)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -485,7 +485,7 @@ async function body() {
                 throw new Error('unresolved GOTO mission_failed_meat3');
             }
             if (TIMERB >= 25000) {
-                if (!$.wife_meat3.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false /* FALSE */)) {
+                if (!$.wife_meat3.locateOnFoot3D(1205.9, -805.8, 14.0, 1.0, 1.0, 1.0, false)) {
                     $.wife_meat3.removeElegantly();
                     // SCM GOTO → mission_bloke_stuck_meat3
                     break;
@@ -503,7 +503,7 @@ async function body() {
         // Shuts the door
         Audio.LoadMissionAudio('mf4_c' as any);
 
-        while (!$.doggy_door.rotate(45.0, 5.0, false /* FALSE */) || !Audio.HasMissionAudioLoaded()) {
+        while (!$.doggy_door.rotate(45.0, 5.0, false) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
             if (Car.IsDead($.car_meat3)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"

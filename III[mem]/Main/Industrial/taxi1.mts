@@ -146,14 +146,14 @@ async function body() {
 
         $.taxi_ped1.setIdle();
         $.taxi_ped1.clearThreatSearch();
-        $.taxi_ped1.setHeedThreats(false /* False */);
+        $.taxi_ped1.setHeedThreats(false);
         $.blip1_ct1 = Blip.AddForChar($.taxi_ped1);
         $.taxi_ped1.setObjHailTaxi();
 
         //PRINT_NOW ( TAXI1 ) 2000 2 //Pick up a fare
 
         ped_get_in_taxi: while (true) {
-            while (!$.player.locateInCarChar3D($.taxi_ped1, 7.0, 7.0, 2.0, false /* FALSE */) || !$.taxi_car1.isStopped()) {
+            while (!$.player.locateInCarChar3D($.taxi_ped1, 7.0, 7.0, 2.0, false) || !$.taxi_car1.isStopped()) {
                 //	OR NOT IS_PLAYER_IN_CAR player taxi_car1
 
                 await asyncWait(0);
@@ -170,7 +170,7 @@ async function body() {
                 if (!$.player.isInCar($.taxi_car1)) {
                     return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
                 }
-                if (!$.player.locateInCarChar3D($.taxi_ped1, 90.0, 90.0, 20.0, false /* FALSE */)) {
+                if (!$.player.locateInCarChar3D($.taxi_ped1, 90.0, 90.0, 20.0, false)) {
                     await mission_taxi1_passed(); // SCM GOTO → mission_taxi1_passed
                     continue Start_taxi_mission; // SCM GOTO → Start_taxi_mission
                 }
@@ -217,7 +217,7 @@ async function body() {
                 continue Start_taxi_mission; // SCM GOTO → Start_taxi_mission
             }
 
-            $.taxi_ped1.setRunning(true /* TRUE */);
+            $.taxi_ped1.setRunning(true);
             $.taxi_ped1.setObjEnterCarAsPassenger($.taxi_car1);
 
             while (!$.taxi_ped1.isInCar($.taxi_car1)) {
@@ -235,7 +235,7 @@ async function body() {
                 if (!$.player.isInCar($.taxi_car1)) {
                     return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
                 }
-                if (!$.player.locateInCarChar3D($.taxi_ped1, 90.0, 90.0, 20.0, false /* FALSE */)) {
+                if (!$.player.locateInCarChar3D($.taxi_ped1, 90.0, 90.0, 20.0, false)) {
                     await mission_taxi1_passed(); // SCM GOTO → mission_taxi1_passed
                     continue Start_taxi_mission; // SCM GOTO → Start_taxi_mission
                 }
@@ -256,7 +256,7 @@ async function body() {
                     $.spray_taxi.remove();
                     $.spray_blip_onscreen = 0;
                 }
-                if (!$.player.locateInCarChar3D($.taxi_ped1, 7.0, 7.0, 2.0, false /* FALSE */)) {
+                if (!$.player.locateInCarChar3D($.taxi_ped1, 7.0, 7.0, 2.0, false)) {
                     continue ped_get_in_taxi; // SCM GOTO → ped_get_in_taxi
                 }
             }
@@ -720,7 +720,7 @@ async function body() {
                 }
             }
 
-            while (!$.taxi_car1.isStoppedInArea3D($.taxi_destx1, $.taxi_desty1, $.taxi_destz1, $.taxi_destx2, $.taxi_desty2, $.taxi_destz2, true /* TRUE */)) {
+            while (!$.taxi_car1.isStoppedInArea3D($.taxi_destx1, $.taxi_desty1, $.taxi_destz1, $.taxi_destx2, $.taxi_desty2, $.taxi_destz2, true)) {
                 await asyncWait(0);
                 if (!$.player.isPlaying()) {
                     return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed

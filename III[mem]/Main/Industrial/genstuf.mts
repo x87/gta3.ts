@@ -226,13 +226,13 @@ async function ind_ammu() {
 
         if ($.player.isPlaying()) {
             if ($.player.isInZone('LITTLEI')) {
-                if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false)) {
                     if ($.camera_ammu1 == 0) {
                         $.player.setControl(false /* Off */);
                         Camera.SetFadingColor(1, 1, 1);
                         Streaming.Switch(false /* OFF */);
                         Streaming.LoadSpecialCharacter(4, 'sam');
-                        Audio.SetMusicDoesFade(false /* FALSE */);
+                        Audio.SetMusicDoesFade(false);
                         Camera.DoFade(500, 0 /* FADE_OUT */);
                         while (!Streaming.HasSpecialCharacterLoaded(4)) {
                             await asyncWait(0);
@@ -247,7 +247,7 @@ async function ind_ammu() {
                             $.ammu_shop_bloke1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 29 /* PED_SPECIAL4 */, 1070.81, -396.97, 14.2);
                             $.ammu_shop_bloke1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                             $.ammu_shop_bloke1.setHeading(170.0);
-                            $.ammu_shop_bloke1.setStayInSamePlace(true /* TRUE */);
+                            $.ammu_shop_bloke1.setStayInSamePlace(true);
                             $.ammu_shop_bloke1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
                             if ($.player.isPlaying()) {
                                 $.ammu_shop_bloke1.lookAtPlayerAlways($.player);
@@ -258,7 +258,7 @@ async function ind_ammu() {
                         Camera.EnablePlayerControl();
                         if ($.player.isPlaying()) {
                             Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
-                            World.ClearArea(1067.9, -397.3, 14.2, 1.0, true /* TRUE */);
+                            World.ClearArea(1067.9, -397.3, 14.2, 1.0, true);
                             $.player.setCoordinates(1067.9, -397.3, 14.2);
                             $.player.setHeading(200.0);
                         }
@@ -306,7 +306,7 @@ async function ind_ammu() {
                             $.time_since_murdering_shopkeeper1 = Clock.GetGameTimer();
                         }
                         $.ammu_shop_bloke1.delete();
-                        World.ClearArea(1063.3, -395.3, 14.2, 1.0, true /* TRUE */);
+                        World.ClearArea(1063.3, -395.3, 14.2, 1.0, true);
                         if ($.player.isPlaying()) {
                             $.player.setCoordinates(1063.3, -395.3, 14.2);
                             $.player.setHeading(90.0);
@@ -317,7 +317,7 @@ async function ind_ammu() {
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
-                        Audio.SetMusicDoesFade(true /* TRUE */);
+                        Audio.SetMusicDoesFade(true);
                         if ($.player.isPlaying()) {
                             $.player.setControl(true /* on */);
                         }
@@ -337,7 +337,7 @@ async function ind_ammu() {
                     Camera.RestoreJumpcut();
                     Camera.SetInFrontOfPlayer();
                     $.ammu_shop_bloke1.delete();
-                    Audio.SetMusicDoesFade(true /* TRUE */);
+                    Audio.SetMusicDoesFade(true);
                     $.camera_ammu1 = 0;
                 }
             }
@@ -450,7 +450,7 @@ async function tramp_tunnel() {
 
             //CREATES TRAMPS IN ABANDONED TUNNEL
             if ($.player.isInZone('LITTLEI')) {
-                if ($.player.isInArea3D(1325.0, -512.0, 14.0, 1315.0, -165.8, 17.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(1325.0, -512.0, 14.0, 1315.0, -165.8, 17.0, false)) {
                     if ($.has_player_been_in_tramp_tunnel_before == 0) {
                         Streaming.RequestModel(55 /* PED_SCUM_MAN */);
                         Streaming.RequestModel(56 /* PED_SCUM_WOMAN */);
@@ -629,13 +629,13 @@ async function com_ammu() {
             // AMMU NATION COMMERCIAL
 
             if ($.player.isInZone('COM_EAS')) {
-                if ($.player.isInArea3D(353.3, -711.7, 24.0, 339.8, -722.4, 28.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(353.3, -711.7, 24.0, 339.8, -722.4, 28.0, false)) {
                     if ($.camera_ammu2 == 0) {
                         $.player.setControl(false /* Off */);
                         Camera.SetFadingColor(1, 1, 1);
                         Streaming.Switch(false /* OFF */);
                         Streaming.LoadSpecialCharacter(4, 'sam');
-                        Audio.SetMusicDoesFade(false /* FALSE */);
+                        Audio.SetMusicDoesFade(false);
                         Camera.DoFade(500, 0 /* FADE_OUT */);
                         while (!Streaming.HasSpecialCharacterLoaded(4)) {
                             await asyncWait(0);
@@ -650,7 +650,7 @@ async function com_ammu() {
                             $.ammu_shop_bloke1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 29 /* PED_SPECIAL4 */, 350.2, -719.9, 25.4);
                             $.ammu_shop_bloke1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                             $.ammu_shop_bloke1.setHeading(70.0);
-                            $.ammu_shop_bloke1.setStayInSamePlace(true /* TRUE */);
+                            $.ammu_shop_bloke1.setStayInSamePlace(true);
                             $.ammu_shop_bloke1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
                             if ($.player.isPlaying()) {
                                 $.ammu_shop_bloke1.lookAtPlayerAlways($.player);
@@ -661,7 +661,7 @@ async function com_ammu() {
                         Camera.EnablePlayerControl();
                         if ($.player.isPlaying()) {
                             Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
-                            World.ClearArea(350.7, -713.1, 26.4, 1.0, true /* TRUE */);
+                            World.ClearArea(350.7, -713.1, 26.4, 1.0, true);
                             $.player.setCoordinates(350.7, -713.1, 25.4);
                             $.player.setHeading(108.0);
                         }
@@ -709,7 +709,7 @@ async function com_ammu() {
                             $.time_since_murdering_shopkeeper1 = Clock.GetGameTimer();
                         }
                         $.ammu_shop_bloke1.delete();
-                        World.ClearArea(352.0, -708.8, 25.4, 1.0, true /* TRUE */);
+                        World.ClearArea(352.0, -708.8, 25.4, 1.0, true);
                         if ($.player.isPlaying()) {
                             $.player.setCoordinates(352.0, -708.8, 25.4);
                             $.player.setHeading(0.0);
@@ -720,7 +720,7 @@ async function com_ammu() {
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
-                        Audio.SetMusicDoesFade(true /* TRUE */);
+                        Audio.SetMusicDoesFade(true);
                         if ($.player.isPlaying()) {
                             $.player.setControl(true /* on */);
                         }
@@ -740,7 +740,7 @@ async function com_ammu() {
                     Camera.RestoreJumpcut();
                     Camera.SetInFrontOfPlayer();
                     $.ammu_shop_bloke1.delete();
-                    Audio.SetMusicDoesFade(true /* TRUE */);
+                    Audio.SetMusicDoesFade(true);
                     $.camera_ammu2 = 0;
                 }
             }

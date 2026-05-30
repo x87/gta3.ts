@@ -293,7 +293,7 @@ async function body() {
 
     $.cs_playerhead.setAnim('player');
 
-    World.ClearArea(83.1, -1548.7, 27.3, 1.0, true /* TRUE */);
+    World.ClearArea(83.1, -1548.7, 27.3, 1.0, true);
 
     $.player.setCoordinates(83.1, -1548.7, 27.3);
 
@@ -695,7 +695,7 @@ async function body() {
 
         // Checks to see if the player has located close enough to the player to be set into his group
 
-        if ($.flag_ojg_in_group == 0 && $.player.locateAnyMeansChar2D($.ojg_love1, 3.0, 3.0, false /* FALSE */)) {
+        if ($.flag_ojg_in_group == 0 && $.player.locateAnyMeansChar2D($.ojg_love1, 3.0, 3.0, false)) {
             $.ojg_love1.followPlayer($.player);
             Text.PrintNow('LOVE1_3', 7000, 1); //"Thanks get me back to loves!"
             $.radar_blip_coord2_love1.remove();
@@ -704,7 +704,7 @@ async function body() {
             $.flag_ojg_in_group = 1;
         }
         if ($.flag_ojg_in_group == 0) {
-            if ($.player.isInArea3D(92.2, -329.4, 15.0, 96.4, -315.8, 18.0, false /* FALSE */)) {
+            if ($.player.isInArea3D(92.2, -329.4, 15.0, 96.4, -315.8, 18.0, false)) {
                 if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.flag_message_car_again == 0 && $.flag_player_in_area_love1 == 1) {
                     //PRINT_NOW ( LOVE1_5 ) 5000 1 //"Get a colombian car and get on with the mission
                     Text.PrintNow('LOVE1_7', 5000, 1); //"The gate will only open for a Colombian Car.
@@ -820,7 +820,7 @@ async function body() {
 
         // Checks to see if the player is in the colombian compound and if the guards are alive sets them to kill the player
 
-        if ($.player.isInArea3D(31.0, -317.0, 14.0, 91.0, -394.0, 25.0, false /* FALSE */)) {
+        if ($.player.isInArea3D(31.0, -317.0, 14.0, 91.0, -394.0, 25.0, false)) {
             $.flag_kill_player_love1 = 1;
         }
 
@@ -840,10 +840,10 @@ async function body() {
                         $.flag_baddie1_in_area_love1 = 1;
                     }
                     if ($.flag_baddie1_in_area_love1 == 1) {
-                        if ($.baddie1_love1.locateAnyMeans2D(72.5, -321.9, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie1_love1.locateAnyMeans2D(72.5, -321.9, 0.5, 0.5, false)) {
                             $.baddie1_love1.setObjGuardSpot(72.5, -321.9, 15.17);
                             $.baddie1_love1.turnToFacePlayer($.player);
-                            $.baddie1_love1.setStayInSamePlace(true /* TRUE */);
+                            $.baddie1_love1.setStayInSamePlace(true);
                         }
                     }
                 }
@@ -855,10 +855,10 @@ async function body() {
                         $.flag_baddie2_in_area_love1 = 1;
                     }
                     if ($.flag_baddie2_in_area_love1 == 1) {
-                        if ($.baddie2_love1.locateAnyMeans2D(66.5, -332.0, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie2_love1.locateAnyMeans2D(66.5, -332.0, 0.5, 0.5, false)) {
                             $.baddie2_love1.setObjGuardSpot(66.5, -332.0, 15.17);
                             $.baddie2_love1.turnToFacePlayer($.player);
-                            $.baddie2_love1.setStayInSamePlace(true /* TRUE */);
+                            $.baddie2_love1.setStayInSamePlace(true);
                         }
                     }
                 }
@@ -870,16 +870,16 @@ async function body() {
                         $.flag_baddie3_in_area_love1 = 1;
                     }
                     if ($.flag_baddie3_in_area_love1 == 1) {
-                        if ($.baddie3_love1.locateAnyMeans2D(44.4, -360.7, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie3_love1.locateAnyMeans2D(44.4, -360.7, 0.5, 0.5, false)) {
                             $.baddie3_love1.setObjRunToCoord(47.9, -360.1);
                             $.flag_baddie3_in_area_love1 = 2;
                         }
                     }
                     if ($.flag_baddie3_in_area_love1 == 2) {
-                        if ($.baddie3_love1.locateAnyMeans2D(47.9, -360.1, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie3_love1.locateAnyMeans2D(47.9, -360.1, 0.5, 0.5, false)) {
                             $.baddie3_love1.setObjGuardSpot(47.9, -360.1, 15.1);
                             $.baddie3_love1.turnToFacePlayer($.player);
-                            $.baddie3_love1.setStayInSamePlace(true /* TRUE */);
+                            $.baddie3_love1.setStayInSamePlace(true);
                         }
                     }
                 }
@@ -891,10 +891,10 @@ async function body() {
                         $.flag_baddie4_in_area_love1 = 1;
                     }
                     if ($.flag_baddie4_in_area_love1 == 1) {
-                        if ($.baddie4_love1.locateAnyMeans2D(57.0, -365.3, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie4_love1.locateAnyMeans2D(57.0, -365.3, 0.5, 0.5, false)) {
                             $.baddie4_love1.setObjGuardSpot(57.0, -365.3, 15.1);
                             $.baddie4_love1.turnToFacePlayer($.player);
-                            $.baddie4_love1.setStayInSamePlace(true /* TRUE */);
+                            $.baddie4_love1.setStayInSamePlace(true);
                         }
                     }
                 }
@@ -906,16 +906,16 @@ async function body() {
                         $.flag_baddie5_in_area_love1 = 1;
                     }
                     if ($.flag_baddie5_in_area_love1 == 1) {
-                        if ($.baddie5_love1.locateAnyMeans2D(38.7, -345.1, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie5_love1.locateAnyMeans2D(38.7, -345.1, 0.5, 0.5, false)) {
                             $.baddie5_love1.setObjRunToCoord(45.8, -344.3);
                             $.flag_baddie5_in_area_love1 = 2;
                         }
                     }
                     if ($.flag_baddie5_in_area_love1 == 2) {
-                        if ($.baddie5_love1.locateAnyMeans2D(45.8, -344.3, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie5_love1.locateAnyMeans2D(45.8, -344.3, 0.5, 0.5, false)) {
                             $.baddie5_love1.setObjGuardSpot(45.8, -344.3, 15.1);
                             $.baddie5_love1.turnToFacePlayer($.player);
-                            $.baddie5_love1.setStayInSamePlace(true /* TRUE */);
+                            $.baddie5_love1.setStayInSamePlace(true);
                         }
                     }
                 }
@@ -927,16 +927,16 @@ async function body() {
                         $.flag_baddie6_in_area_love1 = 1;
                     }
                     if ($.flag_baddie6_in_area_love1 == 1) {
-                        if ($.baddie6_love1.locateAnyMeans2D(37.3, -331.0, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie6_love1.locateAnyMeans2D(37.3, -331.0, 0.5, 0.5, false)) {
                             $.baddie6_love1.setObjRunToCoord(42.5, -331.8);
                             $.flag_baddie6_in_area_love1 = 2;
                         }
                     }
                     if ($.flag_baddie6_in_area_love1 == 2) {
-                        if ($.baddie6_love1.locateAnyMeans2D(42.5, -331.8, 0.5, 0.5, false /* FALSE */)) {
+                        if ($.baddie6_love1.locateAnyMeans2D(42.5, -331.8, 0.5, 0.5, false)) {
                             $.baddie6_love1.setObjGuardSpot(42.5, -331.8, 15.1);
                             $.baddie6_love1.turnToFacePlayer($.player);
-                            $.baddie6_love1.setStayInSamePlace(true /* TRUE */);
+                            $.baddie6_love1.setStayInSamePlace(true);
                         }
                     }
                 }
@@ -944,7 +944,7 @@ async function body() {
 
             // Checks for garage1
 
-            if ($.player.isInAreaOnFoot3D(63.01, -317.5, 13.0, 69.28, -321.73, 20.0, false /* FALSE */)) {
+            if ($.player.isInAreaOnFoot3D(63.01, -317.5, 13.0, 69.28, -321.73, 20.0, false)) {
                 if ($.flag_garage1_open == 0) {
                     $.garage1_love1.open();
                     $.flag_garage1_open = 1;
@@ -953,7 +953,7 @@ async function body() {
 
             // Checks for garage2
 
-            if ($.player.isInAreaOnFoot3D(53.7, -317.56, 13.0, 61.0, -320.46, 20.0, false /* FALSE */)) {
+            if ($.player.isInAreaOnFoot3D(53.7, -317.56, 13.0, 61.0, -320.46, 20.0, false)) {
                 if ($.flag_garage2_open == 0) {
                     $.garage2_love1.open();
                     $.flag_garage2_open = 1;
@@ -962,7 +962,7 @@ async function body() {
 
             // Checks for garage3
 
-            if ($.player.isInAreaOnFoot3D(31.8, -344.4, 13.0, 35.1, -335.6, 20.0, false /* FALSE */)) {
+            if ($.player.isInAreaOnFoot3D(31.8, -344.4, 13.0, 35.1, -335.6, 20.0, false)) {
                 if ($.flag_garage3_open == 0) {
                     $.garage3_love1.open();
                     $.flag_garage3_open = 1;
@@ -971,7 +971,7 @@ async function body() {
 
             // Checks for garage4
 
-            if ($.player.isInAreaOnFoot3D(31.41, -355.6, 13.0, 34.21, -344.81, 20.0, false /* FALSE */)) {
+            if ($.player.isInAreaOnFoot3D(31.41, -355.6, 13.0, 34.21, -344.81, 20.0, false)) {
                 if ($.flag_garage4_open == 0) {
                     $.garage4_love1.open();
                     $.flag_garage4_open = 1;
@@ -980,7 +980,7 @@ async function body() {
 
             // Checks for garage5
 
-            if ($.player.isInAreaOnFoot3D(52.9, -376.3, 13.0, 42.0, -373.2, 20.0, false /* FALSE */)) {
+            if ($.player.isInAreaOnFoot3D(52.9, -376.3, 13.0, 42.0, -373.2, 20.0, false)) {
                 if ($.flag_garage5_open == 0) {
                     $.garage5_love1.open();
                     $.flag_garage5_open = 1;
@@ -1003,7 +1003,7 @@ async function body() {
                 $.flag_blip_on_ojg_love1 = 1;
                 $.blob_flag = 0;
             }
-            if ($.player.locateAnyMeansChar2D($.ojg_love1, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_ojg_love1 == 1) {
+            if ($.player.locateAnyMeansChar2D($.ojg_love1, 8.0, 8.0, false) && $.flag_blip_on_ojg_love1 == 1) {
                 $.ojg_love1.followPlayer($.player);
                 Text.PrintNow('LOVE1_3', 7000, 1); //"Thanks get me back to loves!"
                 $.radar_blip_ped1_love1.remove();
@@ -1067,7 +1067,7 @@ async function body() {
 
     TIMERB = 0;
 
-    while (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false /* FALSE */)) {
+    while (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false)) {
         await asyncWait(0);
         if (Char.IsDead($.ojg_love1)) {
             Text.PrintNow('LOVE1_6', 5000, 1); //"The Old Oriental Gentleman is dead!"
@@ -1075,7 +1075,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_love1_failed'); // fallback: would break linear control flow
         }
         if (TIMERB >= 8000) {
-            if (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false /* FALSE */)) {
+            if (!$.ojg_love1.locateOnFoot3D(98.7, -1548.8, 27.3, 0.5, 0.5, 4.0, false)) {
                 $.ojg_love1.removeElegantly();
                 break; // SCM GOTO → mission_bloke_stuck_love1
             }
@@ -1133,27 +1133,27 @@ async function cleanup() {
     $.radar_blip_coord2_love1.remove();
 
     if (!Char.IsDead($.baddie1_love1)) {
-        $.baddie1_love1.setStayInSamePlace(false /* FALSE */);
+        $.baddie1_love1.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.baddie2_love1)) {
-        $.baddie2_love1.setStayInSamePlace(false /* FALSE */);
+        $.baddie2_love1.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.baddie3_love1)) {
-        $.baddie3_love1.setStayInSamePlace(false /* FALSE */);
+        $.baddie3_love1.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.baddie4_love1)) {
-        $.baddie4_love1.setStayInSamePlace(false /* FALSE */);
+        $.baddie4_love1.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.baddie5_love1)) {
-        $.baddie5_love1.setStayInSamePlace(false /* FALSE */);
+        $.baddie5_love1.setStayInSamePlace(false);
     }
 
     if (!Char.IsDead($.baddie6_love1)) {
-        $.baddie6_love1.setStayInSamePlace(false /* FALSE */);
+        $.baddie6_love1.setStayInSamePlace(false);
     }
 
     Mission.Finish();

@@ -82,7 +82,7 @@ async function body() {
     $.cs_troll = CutsceneObject.Create(187 /* CUT_OBJ3 */);
     $.cs_troll.setAnim('TROLL');
 
-    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */);
+    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true);
     $.player.setCoordinates(1191.9, -870.4, -100.0);
 
     $.player.setHeading(230.0);
@@ -189,8 +189,8 @@ async function body() {
 
     $.van_jm3 = Car.Create(118 /* CAR_SECURICAR */, 1063.0, -805.0, 14.6);
     $.van_jm3.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-    $.van_jm3.setOnlyDamagedByPlayer(true /* TRUE */);
-    $.van_jm3.setProofs(true /* TRUE */, true /* TRUE */, false /* FALSE */, false /* FALSE */, true /* TRUE */);
+    $.van_jm3.setOnlyDamagedByPlayer(true);
+    $.van_jm3.setProofs(true, true, false, false, true);
     $.van_jm3.setCruiseSpeed(14.0);
     $.van_jm3.setDrivingStyle(0);
     $.blip1_jm3 = Blip.AddForCar($.van_jm3);
@@ -235,7 +235,7 @@ async function body() {
         $.van_jm3.setDrivingStyle(2);
         $.van_jm3.setCruiseSpeed(20.0);
         $.player.alterWantedLevelNoDrop(1);
-        $.van_jm3.setOnlyDamagedByPlayer(false /* FALSE */);
+        $.van_jm3.setOnlyDamagedByPlayer(false);
         $.old_van_health = $.van_jm3.getHealth();
     }
 
@@ -346,7 +346,7 @@ async function body() {
         // SCM label garage_stop
         TIMERB = 0;
 
-        while (!$.van_jm3.isStoppedInArea3D(1440.7, -805.6, 10.9, 1449.8, -782.1, 15.9, false /* FALSE */) || !$.player.isInCar($.van_jm3)) {
+        while (!$.van_jm3.isStoppedInArea3D(1440.7, -805.6, 10.9, 1449.8, -782.1, 15.9, false) || !$.player.isInCar($.van_jm3)) {
             await asyncWait(0);
             if (Car.IsDead($.van_jm3)) {
                 Text.PrintNow('WRECKED', 5000, 1);
@@ -381,15 +381,15 @@ async function body() {
                 }
             }
             if ($.in_the_locate_joey3 == 0) {
-                if ($.player.locateInCar3D(1445.0, -811.5, 11.8, 4.0, 6.0, 4.0, true /* TRUE */)) {
+                if ($.player.locateInCar3D(1445.0, -811.5, 11.8, 4.0, 6.0, 4.0, true)) {
                     $.player.clearWantedLevel();
                     $.in_the_locate_joey3 = 1;
                 }
             }
             if ($.in_the_locate_joey3 == 1) {
                 if (
-                    !$.van_jm3.isInArea3D(1440.7, -805.6, 10.9, 1449.8, -782.1, 15.9, false /* FALSE */) &&
-                    !$.player.locateInCar3D(1445.0, -811.5, 11.8, 4.0, 6.0, 4.0, false /* FALSE */)
+                    !$.van_jm3.isInArea3D(1440.7, -805.6, 10.9, 1449.8, -782.1, 15.9, false) &&
+                    !$.player.locateInCar3D(1445.0, -811.5, 11.8, 4.0, 6.0, 4.0, false)
                 ) {
                     $.in_the_locate_joey3 = 0;
                 }
@@ -404,7 +404,7 @@ async function body() {
                 // SCM GOTO → mission_joey3_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey3_failed'); // fallback: would break linear control flow
             }
-            if (!$.van_jm3.isInArea3D(1440.7, -805.6, 10.9, 1449.8, -782.1, 15.9, false /* FALSE */)) {
+            if (!$.van_jm3.isInArea3D(1440.7, -805.6, 10.9, 1449.8, -782.1, 15.9, false)) {
                 continue garage_stop; // SCM GOTO → garage_stop
             }
             if ($.van_jm3.isUpsidedown() && $.van_jm3.isStopped()) {

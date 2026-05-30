@@ -162,7 +162,7 @@ async function body() {
     $.cs_lovehead = CutsceneHead.Create($.cs_love, 185 /* cut_obj1 */);
     $.cs_lovehead.setAnim('love');
 
-    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */);
+    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true);
 
     $.player.setCoordinates(82.44, -1548.49, 28.0);
 
@@ -701,8 +701,8 @@ async function body() {
         $.goon_at_yard1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 343.9994, -306.3081, 15.8); // area 1 chatting
         $.goon_at_yard1.clearThreatSearch();
         $.goon_at_yard1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.goon_at_yard1.setStayInSamePlace(true /* TRUE */);
-        $.goon_at_yard1.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard1.setStayInSamePlace(true);
+        $.goon_at_yard1.setUsePednodeSeek(false);
 
         $.goon_at_yard2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 341.5678, -306.8592, 15.8); // area 1 chatting
         $.goon_at_yard2.clearThreatSearch();
@@ -710,16 +710,16 @@ async function body() {
         $.goon_at_yard2.turnToFaceChar($.goon_at_yard1);
         $.goon_at_yard1.turnToFaceChar($.goon_at_yard2);
         Game.SetCharsChatting($.goon_at_yard2, $.goon_at_yard1, 10000000);
-        $.goon_at_yard2.setStayInSamePlace(true /* TRUE */);
-        $.goon_at_yard2.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard2.setStayInSamePlace(true);
+        $.goon_at_yard2.setUsePednodeSeek(false);
 
         $.goon_at_yard3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 327.7796, -316.6461, 15.9); // by concrete area
         $.goon_at_yard3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
         $.goon_at_yard3.clearThreatSearch();
         $.goon_at_yard3.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.goon_at_yard3.setHeading(315.0);
-        $.goon_at_yard3.setStayInSamePlace(true /* TRUE */);
-        $.goon_at_yard3.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard3.setStayInSamePlace(true);
+        $.goon_at_yard3.setUsePednodeSeek(false);
 
         $.goon_at_yard4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 335.0769, -338.2184, 15.8); // by pile of wood SW
         $.goon_at_yard4.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
@@ -727,32 +727,32 @@ async function body() {
         $.goon_at_yard4.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.goon_at_yard4.setHeading(25.0);
         $.goon_at_yard4.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 10000000);
-        $.goon_at_yard4.setStayInSamePlace(true /* TRUE */);
-        $.goon_at_yard4.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard4.setStayInSamePlace(true);
+        $.goon_at_yard4.setUsePednodeSeek(false);
 
         $.goon_at_yard5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 348.7184, -320.0932, 15.8); // by wooden steps
         $.goon_at_yard5.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
         $.goon_at_yard5.clearThreatSearch();
         $.goon_at_yard5.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.goon_at_yard5.setHeading(250.0);
-        $.goon_at_yard5.setStayInSamePlace(true /* TRUE */);
-        $.goon_at_yard5.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard5.setStayInSamePlace(true);
+        $.goon_at_yard5.setUsePednodeSeek(false);
 
         $.goon_at_yard6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 357.1986, -319.7162, 15.9); // by concrete steps
         $.goon_at_yard6.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
         $.goon_at_yard6.clearThreatSearch();
         $.goon_at_yard6.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.goon_at_yard6.setHeading(250.0);
-        $.goon_at_yard6.setStayInSamePlace(true /* TRUE */);
-        $.goon_at_yard6.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard6.setStayInSamePlace(true);
+        $.goon_at_yard6.setUsePednodeSeek(false);
 
         $.goon_at_yard7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 358.6874, -340.7191, 16.0); // behind last box
         $.goon_at_yard7.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
         $.goon_at_yard7.clearThreatSearch();
         $.goon_at_yard7.setThreatSearch(1 /* THREAT_PLAYER1 */);
         $.goon_at_yard7.setHeading(90.0);
-        $.goon_at_yard7.setStayInSamePlace(true /* TRUE */);
-        $.goon_at_yard7.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard7.setStayInSamePlace(true);
+        $.goon_at_yard7.setUsePednodeSeek(false);
 
         $.goon_at_yard8 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 360.173, -336.0494, 16.0); // by last box
         $.goon_at_yard8.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
@@ -761,7 +761,7 @@ async function body() {
         $.goon_at_yard8.setObjFollowRoute($.yard_route3, 2 /* FOLLOW_ROUTE_BACKFORWARD */);
         $.goon_at_yard8.clearThreatSearch();
         $.goon_at_yard8.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.goon_at_yard8.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard8.setUsePednodeSeek(false);
 
         $.goon_at_yard9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 374.7956, -340.4126, 16.0); // behind lift
         $.goon_at_yard9.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 9999);
@@ -770,7 +770,7 @@ async function body() {
         $.goon_at_yard9.setObjFollowRoute($.yard_route2, 2 /* FOLLOW_ROUTE_BACKFORWARD */);
         $.goon_at_yard9.clearThreatSearch();
         $.goon_at_yard9.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.goon_at_yard9.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard9.setUsePednodeSeek(false);
 
         $.goon_at_yard10 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 391.0353, -298.6616, 17.2); // on building near maze
         $.goon_at_yard10.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
@@ -779,8 +779,8 @@ async function body() {
         $.goon_at_yard10.setObjFollowRoute($.yard_route1, 2 /* FOLLOW_ROUTE_BACKFORWARD */);
         $.goon_at_yard10.clearThreatSearch();
         $.goon_at_yard10.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.goon_at_yard10.setHeedThreats(true /* TRUE */);
-        $.goon_at_yard10.setUsePednodeSeek(false /* FALSE */);
+        $.goon_at_yard10.setHeedThreats(true);
+        $.goon_at_yard10.setUsePednodeSeek(false);
 
         while (!$.player.locateOnFoot3D(366.939, -328.025, 20.268, 1.0, 1.0, 2.0, true)) {
             await asyncWait(0);
@@ -940,7 +940,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        World.SetVisibilityOfClosestObjectOfType(374.7956, -340.4126, 16.0, 16.0, 2002 /* scaffoldlift */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(374.7956, -340.4126, 16.0, 16.0, 2002 /* scaffoldlift */, false);
 
         Cutscene.Load('D4_GTA2');
 
@@ -1322,7 +1322,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        World.SetVisibilityOfClosestObjectOfType(374.7956, -340.4126, 16.0, 16.0, 2002 /* scaffoldlift */, true /* TRUE */);
+        World.SetVisibilityOfClosestObjectOfType(374.7956, -340.4126, 16.0, 16.0, 2002 /* scaffoldlift */, true);
 
         Camera.SetBehindPlayer();
 
@@ -1348,30 +1348,30 @@ async function body() {
 
         $.yakuza_guard1 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 367.3908, -334.2422, 16.1);
         $.yakuza_guard1.giveWeapon(3 /* WEAPONTYPE_UZI */, 300);
-        $.yakuza_guard1.setHeedThreats(true /* TRUE */);
+        $.yakuza_guard1.setHeedThreats(true);
 
         $.yakuza_guard2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 367.6573, -337.8994, 16.1);
         $.yakuza_guard2.giveWeapon(3 /* WEAPONTYPE_UZI */, 300);
         $.yakuza_guard2.turnToFaceChar($.yakuza_guard1);
         $.yakuza_guard1.turnToFaceChar($.yakuza_guard2);
-        $.yakuza_guard2.setHeedThreats(true /* TRUE */);
+        $.yakuza_guard2.setHeedThreats(true);
         Game.SetCharsChatting($.yakuza_guard1, $.yakuza_guard2, 10000000);
 
         $.yakuza_guard3 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 361.8262, -345.2548, 16.0);
         $.yakuza_guard3.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 300);
         $.yakuza_guard3.setHeading(170.0);
-        $.yakuza_guard3.setHeedThreats(true /* TRUE */);
+        $.yakuza_guard3.setHeedThreats(true);
 
         $.yakuza_guard4 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 335.5756, -295.7485, 16.0);
         $.yakuza_guard4.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 300);
         $.yakuza_guard4.setHeading(237.0);
-        $.yakuza_guard4.setHeedThreats(true /* TRUE */);
+        $.yakuza_guard4.setHeedThreats(true);
 
         $.yakuza_guard5 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 335.8966, -298.0577, 16.0);
         $.yakuza_guard5.giveWeapon(3 /* WEAPONTYPE_UZI */, 300);
         $.yakuza_guard5.setHeading(129.0);
-        $.yakuza_guard5.setStayInSamePlace(true /* TRUE */);
-        $.yakuza_guard5.setHeedThreats(true /* TRUE */);
+        $.yakuza_guard5.setStayInSamePlace(true);
+        $.yakuza_guard5.setHeedThreats(true);
 
         if (!Char.IsDead($.goon_at_yard1)) {
             $.goon_at_yard1.explodeHead();
@@ -1453,7 +1453,7 @@ async function body() {
         $.player.setControl(false /* OFF */);
 
         Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-        Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+        Game.SetAllCarsCanBeDamaged(false);
         $.player.clearWantedLevel();
 
         Camera.SetFixedPosition(81.3343, -1540.0887, 27.7976, 0.0, 0.0, 0.0);
@@ -1500,7 +1500,7 @@ async function body() {
         $.player.setControl(true /* ON */);
         Camera.SetInFrontOfPlayer();
         Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-        Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+        Game.SetAllCarsCanBeDamaged(true);
 
         Camera.DoFade(1000, 1 /* FADE_IN */);
     }
@@ -1644,7 +1644,7 @@ async function ducking_routine() {
         if ($.ducking_flag == 0) {
             if ($.goon_in_hangar1.locateStoppedOnFoot2D(-1280.2, -520.1, 1.5, 1.5, false)) {
                 $.goon_in_hangar1.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.goon_in_hangar1.setStayInSamePlace(true /* TRUE */);
+                $.goon_in_hangar1.setStayInSamePlace(true);
                 if ($.player.isInAnyCar()) {
                     $.players_vehicle = $.player.storeCarIsIn();
                     $.goon_in_hangar1.setObjDestroyCar($.players_vehicle);
@@ -1653,19 +1653,19 @@ async function ducking_routine() {
                 }
                 $.goon_in_hangar1_waitstate = 0;
             } else {
-                $.goon_in_hangar1.setStayInSamePlace(false /* FALSE */);
+                $.goon_in_hangar1.setStayInSamePlace(false);
                 $.goon_in_hangar1.setObjRunToCoord(-1280.2, -520.1);
             }
         } else {
             if ($.goon_in_hangar1.locateStoppedOnFoot2D(-1280.2, -520.1, 1.5, 1.5, false)) {
                 if ($.goon_in_hangar1_waitstate == 0) {
-                    $.goon_in_hangar1.setStayInSamePlace(true /* TRUE */);
+                    $.goon_in_hangar1.setStayInSamePlace(true);
                     $.goon_in_hangar1.setObjWaitOnFoot();
                     $.goon_in_hangar1.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 3000);
                     $.goon_in_hangar1_waitstate = 1;
                 }
             } else {
-                $.goon_in_hangar1.setStayInSamePlace(false /* FALSE */);
+                $.goon_in_hangar1.setStayInSamePlace(false);
                 $.goon_in_hangar1.setObjRunToCoord(-1280.2, -520.1);
             }
         }
@@ -1675,7 +1675,7 @@ async function ducking_routine() {
         if ($.ducking_flag == 0) {
             if ($.goon_in_hangar2.locateStoppedOnFoot2D(-1256.4, -521.3, 1.5, 1.5, false)) {
                 $.goon_in_hangar2.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.goon_in_hangar2.setStayInSamePlace(true /* TRUE */);
+                $.goon_in_hangar2.setStayInSamePlace(true);
                 if ($.player.isInAnyCar()) {
                     $.players_vehicle = $.player.storeCarIsIn();
                     $.goon_in_hangar2.setObjDestroyCar($.players_vehicle);
@@ -1684,19 +1684,19 @@ async function ducking_routine() {
                 }
                 $.goon_in_hangar2_waitstate = 0;
             } else {
-                $.goon_in_hangar2.setStayInSamePlace(false /* FALSE */);
+                $.goon_in_hangar2.setStayInSamePlace(false);
                 $.goon_in_hangar2.setObjRunToCoord(-1256.4, -521.3);
             }
         } else {
             if ($.goon_in_hangar2.locateStoppedOnFoot2D(-1256.4, -521.3, 1.5, 1.5, false)) {
                 if ($.goon_in_hangar2_waitstate == 0) {
-                    $.goon_in_hangar2.setStayInSamePlace(true /* TRUE */);
+                    $.goon_in_hangar2.setStayInSamePlace(true);
                     $.goon_in_hangar2.setObjWaitOnFoot();
                     $.goon_in_hangar2.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 3000);
                     $.goon_in_hangar2_waitstate = 1;
                 }
             } else {
-                $.goon_in_hangar2.setStayInSamePlace(false /* FALSE */);
+                $.goon_in_hangar2.setStayInSamePlace(false);
                 $.goon_in_hangar2.setObjRunToCoord(-1256.4, -521.3);
             }
         }
@@ -1706,7 +1706,7 @@ async function ducking_routine() {
         if ($.ducking_flag == 1) {
             if ($.goon_in_hangar3.locateStoppedOnFoot2D(-1254.4, -521.3, 1.5, 1.5, false)) {
                 $.goon_in_hangar3.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.goon_in_hangar3.setStayInSamePlace(true /* TRUE */);
+                $.goon_in_hangar3.setStayInSamePlace(true);
                 if ($.player.isInAnyCar()) {
                     $.players_vehicle = $.player.storeCarIsIn();
                     $.goon_in_hangar3.setObjDestroyCar($.players_vehicle);
@@ -1715,19 +1715,19 @@ async function ducking_routine() {
                 }
                 $.goon_in_hangar3_waitstate = 0;
             } else {
-                $.goon_in_hangar3.setStayInSamePlace(false /* FALSE */);
+                $.goon_in_hangar3.setStayInSamePlace(false);
                 $.goon_in_hangar3.setObjRunToCoord(-1254.4, -521.3);
             }
         } else {
             if ($.goon_in_hangar3.locateStoppedOnFoot2D(-1254.4, -521.3, 1.5, 1.5, false)) {
                 if ($.goon_in_hangar3_waitstate == 0) {
-                    $.goon_in_hangar3.setStayInSamePlace(true /* TRUE */);
+                    $.goon_in_hangar3.setStayInSamePlace(true);
                     $.goon_in_hangar3.setObjWaitOnFoot();
                     $.goon_in_hangar3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 3000);
                     $.goon_in_hangar3_waitstate = 1;
                 }
             } else {
-                $.goon_in_hangar3.setStayInSamePlace(false /* FALSE */);
+                $.goon_in_hangar3.setStayInSamePlace(false);
                 $.goon_in_hangar3.setObjRunToCoord(-1254.4, -521.3);
             }
         }
@@ -1737,7 +1737,7 @@ async function ducking_routine() {
         if ($.ducking_flag == 1) {
             if ($.goon_in_hangar4.locateStoppedOnFoot2D(-1280.8, -529.2, 1.5, 1.5, false)) {
                 $.goon_in_hangar4.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.goon_in_hangar4.setStayInSamePlace(true /* TRUE */);
+                $.goon_in_hangar4.setStayInSamePlace(true);
                 if ($.player.isInAnyCar()) {
                     $.players_vehicle = $.player.storeCarIsIn();
                     $.goon_in_hangar4.setObjDestroyCar($.players_vehicle);
@@ -1746,19 +1746,19 @@ async function ducking_routine() {
                 }
                 $.goon_in_hangar4_waitstate = 0;
             } else {
-                $.goon_in_hangar4.setStayInSamePlace(false /* FALSE */);
+                $.goon_in_hangar4.setStayInSamePlace(false);
                 $.goon_in_hangar4.setObjRunToCoord(-1280.8, -529.2);
             }
         } else {
             if ($.goon_in_hangar4.locateStoppedOnFoot2D(-1280.8, -529.2, 1.5, 1.5, false)) {
                 if ($.goon_in_hangar4_waitstate == 0) {
-                    $.goon_in_hangar4.setStayInSamePlace(true /* TRUE */);
+                    $.goon_in_hangar4.setStayInSamePlace(true);
                     $.goon_in_hangar4.setObjWaitOnFoot();
                     $.goon_in_hangar4.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 3000);
                     $.goon_in_hangar4_waitstate = 1;
                 }
             } else {
-                $.goon_in_hangar4.setStayInSamePlace(false /* FALSE */);
+                $.goon_in_hangar4.setStayInSamePlace(false);
                 $.goon_in_hangar4.setObjRunToCoord(-1280.8, -529.2);
             }
         }
@@ -1771,7 +1771,7 @@ async function goon_at_yard1_routine() {
     if ($.c_site_area_flag > 0) {
         if (!Char.IsDead($.goon_at_yard1)) {
             if ($.goon_at_yard1_flag == 0) {
-                $.goon_at_yard1.setStayInSamePlace(false /* FALSE */);
+                $.goon_at_yard1.setStayInSamePlace(false);
                 $.goon_at_yard1.setWaitState(0 /* WAITSTATE_FALSE */, 100);
                 $.goon_at_yard1.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
                 $.goon_at_yard1.setObjRunToCoord(345.0805, -309.6011);
@@ -1791,7 +1791,7 @@ async function goon_at_yard1_routine() {
             }
             if ($.goon_at_yard1_flag == 3) {
                 if ($.goon_at_yard1.locateStoppedOnFoot2D(342.1783, -312.7577, 1.0, 1.0, false)) {
-                    $.goon_at_yard1.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard1.setStayInSamePlace(true);
                     $.goon_at_yard1_flag = 4;
                 }
             }
@@ -1828,7 +1828,7 @@ async function goon_at_yard2_routine() {
             if ($.goon_at_yard2_flag == 0) {
                 $.goon_at_yard2.setWaitState(0 /* WAITSTATE_FALSE */, 100);
                 $.goon_at_yard2.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-                $.goon_at_yard2.setStayInSamePlace(true /* TRUE */);
+                $.goon_at_yard2.setStayInSamePlace(true);
                 if ($.player.isInAnyCar()) {
                     $.players_vehicle = $.player.storeCarIsIn();
                     $.goon_at_yard2.setObjDestroyCar($.players_vehicle);
@@ -1840,7 +1840,7 @@ async function goon_at_yard2_routine() {
             }
             if ($.goon_at_yard2_flag == 1) {
                 if ($.game_timer_var > $.goon_at_yard2_duck_timer) {
-                    $.goon_at_yard2.setStayInSamePlace(false /* FALSE */);
+                    $.goon_at_yard2.setStayInSamePlace(false);
                     $.goon_at_yard2.setObjRunToCoord(333.639, -307.5708);
                     $.goon_at_yard2_flag = 2;
                 }
@@ -1853,7 +1853,7 @@ async function goon_at_yard2_routine() {
             }
             if ($.goon_at_yard2_flag == 3) {
                 if ($.goon_at_yard2.locateStoppedOnFoot2D(333.498, -304.7924, 1.0, 1.0, false)) {
-                    $.goon_at_yard2.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard2.setStayInSamePlace(true);
                     $.goon_at_yard2_flag = 4;
                 }
             }
@@ -1889,7 +1889,7 @@ async function goon_at_yard3_routine() {
         if (!Char.IsDead($.goon_at_yard3)) {
             if ($.goon_at_yard3_flag == 0) {
                 $.goon_at_yard3.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.goon_at_yard3.setStayInSamePlace(true /* TRUE */);
+                $.goon_at_yard3.setStayInSamePlace(true);
                 if ($.player.isInAnyCar()) {
                     $.players_vehicle = $.player.storeCarIsIn();
                     $.goon_at_yard3.setObjDestroyCar($.players_vehicle);
@@ -1901,7 +1901,7 @@ async function goon_at_yard3_routine() {
             }
             if ($.goon_at_yard3_flag == 1) {
                 if ($.game_timer_var > $.goon_at_yard3_duck_timer) {
-                    $.goon_at_yard3.setStayInSamePlace(false /* FALSE */);
+                    $.goon_at_yard3.setStayInSamePlace(false);
                     $.goon_at_yard3.setObjRunToCoord(331.6994, -329.1375);
                     $.goon_at_yard3_flag = 2;
                 }
@@ -1914,7 +1914,7 @@ async function goon_at_yard3_routine() {
             }
             if ($.goon_at_yard3_flag == 3) {
                 if ($.goon_at_yard3.locateStoppedOnFoot2D(327.6451, -329.1378, 1.0, 1.0, false)) {
-                    $.goon_at_yard3.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard3.setStayInSamePlace(true);
                     $.goon_at_yard3_flag = 4;
                 }
             }
@@ -1949,7 +1949,7 @@ async function goon_at_yard4_routine() {
     if ($.c_site_area_flag > 2) {
         if (!Char.IsDead($.goon_at_yard4)) {
             if ($.goon_at_yard4_flag == 0) {
-                $.goon_at_yard4.setStayInSamePlace(true /* TRUE */);
+                $.goon_at_yard4.setStayInSamePlace(true);
                 $.goon_at_yard4.setWaitState(0 /* WAITSTATE_FALSE */, 100);
                 if ($.player.isInAnyCar()) {
                     $.players_vehicle = $.player.storeCarIsIn();
@@ -1967,14 +1967,14 @@ async function goon_at_yard4_routine() {
             }
             if ($.goon_at_yard4_flag == 2) {
                 if ($.game_timer_var > $.goon_at_yard4_duck_timer) {
-                    $.goon_at_yard4.setStayInSamePlace(false /* FALSE */);
+                    $.goon_at_yard4.setStayInSamePlace(false);
                     $.goon_at_yard4.setObjRunToCoord(338.6765, -329.4054);
                     $.goon_at_yard4_flag = 3;
                 }
             }
             if ($.goon_at_yard4_flag == 3) {
                 if ($.goon_at_yard4.locateStoppedOnFoot2D(338.6765, -329.4054, 1.0, 1.0, false)) {
-                    $.goon_at_yard4.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard4.setStayInSamePlace(true);
                     $.goon_at_yard4_flag = 4;
                 }
             }
@@ -2010,7 +2010,7 @@ async function goon_at_yard5_routine() {
     if ($.c_site_area_flag > 3) {
         if (!Char.IsDead($.goon_at_yard5)) {
             if ($.goon_at_yard5_flag == 0) {
-                $.goon_at_yard5.setStayInSamePlace(false /* FALSE */);
+                $.goon_at_yard5.setStayInSamePlace(false);
                 $.goon_at_yard5.setWaitState(0 /* WAITSTATE_FALSE */, 100);
                 $.goon_at_yard5.setObjRunToCoord(354.6851, -325.3922);
                 $.goon_at_yard5_flag = 1;
@@ -2029,7 +2029,7 @@ async function goon_at_yard5_routine() {
             }
             if ($.goon_at_yard5_flag == 3) {
                 if ($.goon_at_yard5.locateStoppedOnFoot2D(341.6781, -327.4943, 1.0, 1.0, false)) {
-                    $.goon_at_yard5.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard5.setStayInSamePlace(true);
                     if ($.player.isInAnyCar()) {
                         $.players_vehicle = $.player.storeCarIsIn();
                         $.goon_at_yard5.setObjDestroyCar($.players_vehicle);
@@ -2049,7 +2049,7 @@ async function goon_at_yard6_routine() {
     if ($.c_site_area_flag > 2) {
         if (!Char.IsDead($.goon_at_yard6)) {
             if ($.goon_at_yard6_flag == 0) {
-                $.goon_at_yard6.setStayInSamePlace(false /* FALSE */);
+                $.goon_at_yard6.setStayInSamePlace(false);
                 $.goon_at_yard6.setWaitState(0 /* WAITSTATE_FALSE */, 100);
                 $.goon_at_yard6.setObjRunToCoord(365.8858, -317.3099);
                 $.goon_at_yard6_flag = 1;
@@ -2062,7 +2062,7 @@ async function goon_at_yard6_routine() {
             }
             if ($.goon_at_yard6_flag == 2) {
                 if ($.goon_at_yard6.locateStoppedOnFoot2D(335.6921, -316.2758, 1.0, 1.0, false)) {
-                    $.goon_at_yard6.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard6.setStayInSamePlace(true);
                     if ($.player.isInAnyCar()) {
                         $.players_vehicle = $.player.storeCarIsIn();
                         $.goon_at_yard6.setObjDestroyCar($.players_vehicle);
@@ -2082,7 +2082,7 @@ async function goon_at_yard7_routine() {
     if ($.c_site_area_flag > 3) {
         if (!Char.IsDead($.goon_at_yard7)) {
             if ($.game_timer_var > $.goon_at_yard7_duck_timer) {
-                $.goon_at_yard7.setStayInSamePlace(true /* TRUE */);
+                $.goon_at_yard7.setStayInSamePlace(true);
                 $.goon_at_yard7_duck_timer = $.game_timer_var + 3000;
                 if ($.goon_at_yard7_duck == 0) {
                     $.goon_at_yard7.setWaitState(0 /* WAITSTATE_FALSE */, 100);
@@ -2115,7 +2115,7 @@ async function goon_at_yard8_routine() {
                 $.goon_at_yard8.setIdle();
                 Path.RemoveRoute($.yard_route3);
                 $.goon_at_yard8.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.goon_at_yard8.setStayInSamePlace(false /* FALSE */);
+                $.goon_at_yard8.setStayInSamePlace(false);
                 $.goon_at_yard8.setObjRunToCoord(375.475, -331.2);
                 $.goon_at_yard8_flag = 1;
             }
@@ -2127,7 +2127,7 @@ async function goon_at_yard8_routine() {
             }
             if ($.goon_at_yard8_flag == 2) {
                 if ($.goon_at_yard8.locateStoppedOnFoot2D(363.7481, -330.9657, 1.0, 1.0, false)) {
-                    $.goon_at_yard8.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard8.setStayInSamePlace(true);
                     $.goon_at_yard8_flag = 3;
                 }
             }
@@ -2169,7 +2169,7 @@ async function goon_at_yard9_routine() {
                 $.goon_at_yard9.setIdle();
                 Path.RemoveRoute($.yard_route2);
                 $.goon_at_yard9.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.goon_at_yard9.setStayInSamePlace(false /* FALSE */);
+                $.goon_at_yard9.setStayInSamePlace(false);
                 $.goon_at_yard9.setObjRunToCoord(374.9931, -311.8263);
                 $.goon_at_yard9_flag = 1;
             }
@@ -2194,7 +2194,7 @@ async function goon_at_yard9_routine() {
             if ($.goon_at_yard9_flag == 4) {
                 if ($.goon_at_yard9.locateOnFoot2D(327.6495, -317.261, 1.0, 1.0, false)) {
                     if ($.c_site_area_flag == 4) {
-                        $.goon_at_yard9.setStayInSamePlace(true /* TRUE */);
+                        $.goon_at_yard9.setStayInSamePlace(true);
                         if ($.player.isInAnyCar()) {
                             $.players_vehicle = $.player.storeCarIsIn();
                             $.goon_at_yard9.setObjDestroyCar($.players_vehicle);
@@ -2202,7 +2202,7 @@ async function goon_at_yard9_routine() {
                             $.goon_at_yard9.setObjKillPlayerOnFoot($.player);
                         }
                     } else {
-                        $.goon_at_yard9.setStayInSamePlace(false /* FALSE */);
+                        $.goon_at_yard9.setStayInSamePlace(false);
                         $.goon_at_yard9.setObjRunToCoord(335.2008, -334.9071);
                         $.goon_at_yard9_flag = 5;
                     }
@@ -2211,7 +2211,7 @@ async function goon_at_yard9_routine() {
             if ($.goon_at_yard9_flag == 5) {
                 if ($.goon_at_yard9.locateOnFoot2D(335.2008, -334.9071, 1.0, 1.0, false)) {
                     if ($.c_site_area_flag == 5) {
-                        $.goon_at_yard9.setStayInSamePlace(true /* TRUE */);
+                        $.goon_at_yard9.setStayInSamePlace(true);
                         if ($.player.isInAnyCar()) {
                             $.players_vehicle = $.player.storeCarIsIn();
                             $.goon_at_yard9.setObjDestroyCar($.players_vehicle);
@@ -2219,7 +2219,7 @@ async function goon_at_yard9_routine() {
                             $.goon_at_yard9.setObjKillPlayerOnFoot($.player);
                         }
                     } else {
-                        $.goon_at_yard9.setStayInSamePlace(false /* FALSE */);
+                        $.goon_at_yard9.setStayInSamePlace(false);
                         $.goon_at_yard9.setObjRunToCoord(360.4199, -337.9403);
                         $.goon_at_yard9_flag = 6;
                     }
@@ -2227,7 +2227,7 @@ async function goon_at_yard9_routine() {
             }
             if ($.goon_at_yard9_flag == 6) {
                 if ($.goon_at_yard9.locateOnFoot2D(360.4199, -337.9403, 1.0, 1.0, false)) {
-                    $.goon_at_yard9.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard9.setStayInSamePlace(true);
                     if ($.player.isInAnyCar()) {
                         $.players_vehicle = $.player.storeCarIsIn();
                         $.goon_at_yard9.setObjDestroyCar($.players_vehicle);
@@ -2246,18 +2246,18 @@ async function goon_at_yard10_routine() {
     if ($.c_site_area_flag > 0) {
         if (!Char.IsDead($.goon_at_yard10)) {
             if ($.goon_at_yard10_flag == 0) {
-                $.goon_at_yard10.setHeedThreats(false /* FALSE */);
+                $.goon_at_yard10.setHeedThreats(false);
                 $.goon_at_yard10.setObjWaitOnFoot();
                 $.goon_at_yard10.setIdle();
                 Path.RemoveRoute($.yard_route1);
                 $.goon_at_yard10.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.goon_at_yard10.setStayInSamePlace(false /* FALSE */);
+                $.goon_at_yard10.setStayInSamePlace(false);
                 $.goon_at_yard10.setObjRunToCoord(372.5888, -298.4539);
                 $.goon_at_yard10_flag = 1;
             }
             if ($.goon_at_yard10_flag == 1) {
                 if ($.goon_at_yard10.locateStoppedOnFoot2D(372.5888, -298.4539, 1.0, 1.0, false)) {
-                    $.goon_at_yard10.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard10.setStayInSamePlace(true);
                     $.goon_at_yard10_flag = 2;
                 }
             }
@@ -2281,7 +2281,7 @@ async function goon_at_yard10_routine() {
                         }
                     }
                 } else {
-                    $.goon_at_yard10.setStayInSamePlace(false /* FALSE */);
+                    $.goon_at_yard10.setStayInSamePlace(false);
                     $.goon_at_yard10.setWaitState(0 /* WAITSTATE_FALSE */, 100);
                     $.goon_at_yard10.setObjRunToCoord(372.8152, -266.8551);
                     $.goon_at_yard10_flag = 3;
@@ -2314,7 +2314,7 @@ async function goon_at_yard10_routine() {
             if ($.goon_at_yard10_flag == 7) {
                 if ($.goon_at_yard10.locateStoppedOnFoot2D(342.3168, -303.6481, 1.0, 1.0, false)) {
                     if ($.c_site_area_flag == 2) {
-                        $.goon_at_yard10.setStayInSamePlace(true /* TRUE */);
+                        $.goon_at_yard10.setStayInSamePlace(true);
                         if ($.player.isInAnyCar()) {
                             $.players_vehicle = $.player.storeCarIsIn();
                             $.goon_at_yard10.setObjDestroyCar($.players_vehicle);
@@ -2322,7 +2322,7 @@ async function goon_at_yard10_routine() {
                             $.goon_at_yard10.setObjKillPlayerOnFoot($.player);
                         }
                     } else {
-                        $.goon_at_yard10.setStayInSamePlace(false /* FALSE */);
+                        $.goon_at_yard10.setStayInSamePlace(false);
                         $.goon_at_yard10.setObjRunToCoord(338.2401, -308.2155);
                         $.goon_at_yard10_flag = 8;
                     }
@@ -2337,7 +2337,7 @@ async function goon_at_yard10_routine() {
             if ($.goon_at_yard10_flag == 9) {
                 if ($.goon_at_yard10.locateStoppedOnFoot2D(330.4936, -314.1106, 1.0, 1.0, false)) {
                     if ($.c_site_area_flag == 3 || $.c_site_area_flag == 4) {
-                        $.goon_at_yard10.setStayInSamePlace(true /* TRUE */);
+                        $.goon_at_yard10.setStayInSamePlace(true);
                         if ($.player.isInAnyCar()) {
                             $.players_vehicle = $.player.storeCarIsIn();
                             $.goon_at_yard10.setObjDestroyCar($.players_vehicle);
@@ -2345,7 +2345,7 @@ async function goon_at_yard10_routine() {
                             $.goon_at_yard10.setObjKillPlayerOnFoot($.player);
                         }
                     } else {
-                        $.goon_at_yard10.setStayInSamePlace(false /* FALSE */);
+                        $.goon_at_yard10.setStayInSamePlace(false);
                         $.goon_at_yard10.setObjRunToCoord(334.6789, -338.7348);
                         $.goon_at_yard10_flag = 10;
                     }
@@ -2354,7 +2354,7 @@ async function goon_at_yard10_routine() {
             if ($.goon_at_yard10_flag == 10) {
                 if ($.goon_at_yard10.locateStoppedOnFoot2D(334.6789, -338.7348, 1.0, 1.0, false)) {
                     if ($.c_site_area_flag == 5) {
-                        $.goon_at_yard10.setStayInSamePlace(true /* TRUE */);
+                        $.goon_at_yard10.setStayInSamePlace(true);
                         if ($.player.isInAnyCar()) {
                             $.players_vehicle = $.player.storeCarIsIn();
                             $.goon_at_yard10.setObjDestroyCar($.players_vehicle);
@@ -2362,7 +2362,7 @@ async function goon_at_yard10_routine() {
                             $.goon_at_yard10.setObjKillPlayerOnFoot($.player);
                         }
                     } else {
-                        $.goon_at_yard10.setStayInSamePlace(false /* FALSE */);
+                        $.goon_at_yard10.setStayInSamePlace(false);
                         $.goon_at_yard10.setObjRunToCoord(360.2491, -336.6913);
                         $.goon_at_yard10_flag = 11;
                     }
@@ -2370,7 +2370,7 @@ async function goon_at_yard10_routine() {
             }
             if ($.goon_at_yard10_flag == 11) {
                 if ($.goon_at_yard10.locateStoppedOnFoot2D(360.2491, -336.6913, 1.0, 1.0, false)) {
-                    $.goon_at_yard10.setStayInSamePlace(true /* TRUE */);
+                    $.goon_at_yard10.setStayInSamePlace(true);
                     if ($.player.isInAnyCar()) {
                         $.players_vehicle = $.player.storeCarIsIn();
                         $.goon_at_yard10.setObjDestroyCar($.players_vehicle);

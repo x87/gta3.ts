@@ -177,7 +177,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.ClearArea(918.2, -269.7, 5.0, 5.0, true /* TRUE */);
+    World.ClearArea(918.2, -269.7, 5.0, 5.0, true);
     $.diablo_collect_porn_van = Car.Create(130 /* CAR_RUMPO */, 918.2, -269.7, -100.0);
     $.blip1_porn_van = Blip.AddForCar($.diablo_collect_porn_van);
 
@@ -202,7 +202,7 @@ async function body() {
     $.player.setControl(false /* OFF */);
     Hud.SwitchWidescreen(true /* ON */);
 
-    if ($.diablo_collect_porn_van.locate2D(918.2, -269.7, 10.0, 10.0, false /* FALSE */)) {
+    if ($.diablo_collect_porn_van.locate2D(918.2, -269.7, 10.0, 10.0, false)) {
         Camera.SetFixedPosition(914.282, -157.729, 6.409, 0.0, 0.0, 0.0);
         Camera.PointAtPoint(914.107, -156.829, 6.012, 1 /* INTERPOLATION */);
     } else {
@@ -243,7 +243,7 @@ async function body() {
             throw new Error('unresolved GOTO mission_diablo4_failed'); // fallback: would break linear control flow
         }
         if (!Char.IsDead($.porn_man)) {
-            if ($.player.locateAnyMeansChar2D($.porn_man, 30.0, 30.0, false /* FALSE */) && $.found_perv_before == 0) {
+            if ($.player.locateAnyMeansChar2D($.porn_man, 30.0, 30.0, false) && $.found_perv_before == 0) {
                 Hud.ClearTimer($.$id.counter_diablo4);
                 $.found_perv_before = 1;
             }
@@ -307,7 +307,7 @@ async function body() {
         $.flag_car_blip_displayed_dm4 = 0 /* FALSE */;
     }
 
-    while (!$.diablo_collect_porn_van.isStoppedInArea3D(976.5, -422.8, 14.5, 970.8, -433.4, 16.9, true /* TRUE */)) {
+    while (!$.diablo_collect_porn_van.isStoppedInArea3D(976.5, -422.8, 14.5, 970.8, -433.4, 16.9, true)) {
         await asyncWait(0);
         if (Car.IsDead($.diablo_collect_porn_van)) {
             Text.PrintNow('WRECKED', 5000, 1);
@@ -347,13 +347,13 @@ async function body() {
 
     await asyncWait(1000);
 
-    Audio.SetMusicDoesFade(false /* FALSE */);
+    Audio.SetMusicDoesFade(false);
     Camera.SetFadingColor(0, 0, 0);
     Camera.DoFade(1000, 0 /* FADE_OUT */);
 
     await asyncWait(1000);
 
-    World.ClearArea(988.9, -444.7, 14.9, 10.0, true /* TRUE */);
+    World.ClearArea(988.9, -444.7, 14.9, 10.0, true);
 
     $.pervert1 = Char.Create(4 /* PEDTYPE_CIVMALE */, 26 /* PED_SPECIAL1 */, 988.7, -444.5, 14.1);
     $.pervert1.setHeading(180.0);
@@ -405,7 +405,7 @@ async function body() {
 
     await asyncWait(3000);
 
-    World.ClearArea(978.9, -444.4, 14.9, 3.0, true /* TRUE */);
+    World.ClearArea(978.9, -444.4, 14.9, 3.0, true);
 
     if (!Char.IsDead($.pervert3)) {
         $.pervert3.setObjGotoCoordOnFoot(935.6, -445.8);
@@ -436,11 +436,11 @@ async function body() {
 
     if (!Car.IsDead($.diablo_collect_porn_van)) {
         if ($.player.isInCar($.diablo_collect_porn_van)) {
-            World.ClearArea(978.3, -442.7, 13.9, 1.0, true /* TRUE */);
+            World.ClearArea(978.3, -442.7, 13.9, 1.0, true);
             $.player.warpFromCarToCoord(978.3, -442.7, 13.9);
             $.player.setHeading(180.0);
         } else {
-            World.ClearArea(978.3, -442.7, 13.9, 1.0, true /* TRUE */);
+            World.ClearArea(978.3, -442.7, 13.9, 1.0, true);
             $.player.setCoordinates(978.3, -442.7, 13.9);
             $.player.setHeading(180.0);
         }
@@ -489,7 +489,7 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(130 /* CAR_RUMPO */);
     Hud.ClearTimer($.$id.counter_diablo4);
     Pacman.Clear();
-    Audio.SetMusicDoesFade(true /* TRUE */);
+    Audio.SetMusicDoesFade(true);
     Streaming.UnloadSpecialCharacter(1);
     if ($.flag_asuka_mission1_passed == 1) {
         Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */); //The Mafia

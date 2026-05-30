@@ -108,7 +108,7 @@ async function body() {
     $.cs_lovehead = CutsceneHead.Create($.cs_love, 185 /* cut_obj1 */);
     $.cs_lovehead.setAnim('love');
 
-    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true /* TRUE */);
+    World.ClearArea(82.44, -1548.49, 28.0, 2.0, true);
 
     $.player.setCoordinates(82.44, -1548.49, 28.0);
 
@@ -539,7 +539,7 @@ async function body() {
         $.player.setControl(false /* OFF */);
 
         Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-        Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+        Game.SetAllCarsCanBeDamaged(false);
         $.player.clearWantedLevel();
 
         Camera.SetFixedPosition(81.3343, -1540.0887, 27.7976, 0.0, 0.0, 0.0);
@@ -587,7 +587,7 @@ async function body() {
         $.player.setControl(true /* ON */);
         Camera.SetInFrontOfPlayer();
         Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-        Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+        Game.SetAllCarsCanBeDamaged(true);
 
         Camera.DoFade(1000, 1 /* FADE_IN */);
 

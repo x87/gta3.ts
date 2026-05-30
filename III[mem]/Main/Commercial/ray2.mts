@@ -270,7 +270,7 @@ async function body() {
 
     //SET_PLAYER_HEADING player 270.0
 
-    World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
+    World.ClearArea(39.0, -723.5, 22.0, 1.0, true);
 
     $.player.setCoordinates(39.0, -723.5, 22.0);
 
@@ -431,7 +431,7 @@ async function body() {
 
     //------------------WAITING FOR PLAYER TO ARRIVE---------------------------------------
 
-    while (!$.player.locateAnyMeans2D($.wh_x_rm2, $.wh_y_rm2, 4.0, 4.0, true /* true */)) {
+    while (!$.player.locateAnyMeans2D($.wh_x_rm2, $.wh_y_rm2, 4.0, 4.0, true)) {
         //AND NOT LOCATE_PLAYER_ANY_MEANS_2D player wh2_x_rm2 wh2_y_rm2 2.0 2.0 false
         await asyncWait(0);
         if ($.player.isInZone('HOSPI_2') && $.flag_trucks == 0) {
@@ -440,12 +440,12 @@ async function body() {
             $.phil_truck_1 = Car.Create(122 /* CAR_RHINO */, 132.0, 173.9, 11.6);
             $.phil_truck_1.setHeading(0.0);
             $.phil_truck_1.setIdle();
-            $.phil_truck_1.setProofs(true /* TRUE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+            $.phil_truck_1.setProofs(true, false, false, false, false);
             $.phil_truck_1.lockDoors(2 /* CARLOCK_LOCKED */);
             $.phil_truck_2 = Car.Create(123 /* CAR_BARRACKS */, 133.56, 208.76, 11.93);
             $.phil_truck_2.setHeading(180.0);
             $.phil_truck_2.setIdle();
-            $.phil_truck_2.setProofs(true /* TRUE */, false /* FALSE */, false /* FALSE */, false /* FALSE */, false /* FALSE */);
+            $.phil_truck_2.setProofs(true, false, false, false, false);
             $.phil_truck_2.lockDoors(2 /* CARLOCK_LOCKED */);
             /*
             CREATE_CAR CAR_PATRIOT 141.23 192.52 11.6 phil_truck_3
@@ -461,7 +461,7 @@ async function body() {
                 Sound.AddOneOffSound(147.249, 207.323, 10.599, 92 /* SOUND_GATE_START_CLUNK */);
                 $.gate2_sfx1 = 1;
             }
-            while (!$.phils_compnd_gate.slide(147.249, 214.823, 10.599, 0.0, 0.1, 0.0, false /* FALSE */)) {
+            while (!$.phils_compnd_gate.slide(147.249, 214.823, 10.599, 0.0, 0.1, 0.0, false)) {
                 await asyncWait(0);
             }
             if ($.not_clunked_yet == 1) {
@@ -479,7 +479,7 @@ async function body() {
     //--------------------PLAYER ARRIVED (CUTSCENE)------------------------------------------
     //-----------------------CREATE PHIL-------------------
 
-    World.ClearArea($.phils_defcon_x, $.phils_defcon_y, 11.5, 20.0, true /* true */);
+    World.ClearArea($.phils_defcon_x, $.phils_defcon_y, 11.5, 20.0, true);
     $.phil = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, $.phils_defcon_x, $.phils_defcon_y, $.phils_defcon_z);
     $.phil.setHeading(360.0);
     $.phil.giveWeapon(6 /* WEAPONTYPE_M16 */, 200);
@@ -487,7 +487,7 @@ async function body() {
     $.phil.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     $.phil.clearThreatSearch();
     $.phil.setThreatSearch(4096 /* THREAT_GANG_COLOMBIAN */);
-    $.phil.setStayInSamePlace(true /* true */);
+    $.phil.setStayInSamePlace(true);
     //CHAR_SET_IDLE phil
 
     //-----------------------CREATE PHIL'S 'SUPPLIES'-------------------------------------
@@ -530,7 +530,7 @@ async function body() {
         $.phils_defcon_y = $.phils_defcon_y + 3.0;
         $.player_rm2.setObjRunToCoord($.phils_defcon_x, $.phils_defcon_y);
 
-        while (!$.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false /* false */)) {
+        while (!$.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false)) {
             await asyncWait(0);
         }
         //SET_CHAR_OBJ_NO_OBJ player_rm2
@@ -618,10 +618,10 @@ async function body() {
 
         //-------GIVE PLAYER TIME TO GET PICKUPS WITHOUT LEAVING COMPOUND-------
 
-        World.ClearArea($.varmint_gen1_x, $.varmint_gen1_y, 11.5, 20.0, true /* true */);
-        World.ClearArea($.stage_3_x, $.stage_3_y, 11.5, 20.0, true /* true */);
-        World.ClearArea($.stage_1_x, $.stage_1_y, 11.5, 20.0, true /* true */);
-        World.ClearArea($.stage_2_x, $.stage_2_y, 11.5, 20.0, true /* true */);
+        World.ClearArea($.varmint_gen1_x, $.varmint_gen1_y, 11.5, 20.0, true);
+        World.ClearArea($.stage_3_x, $.stage_3_y, 11.5, 20.0, true);
+        World.ClearArea($.stage_1_x, $.stage_1_y, 11.5, 20.0, true);
+        World.ClearArea($.stage_2_x, $.stage_2_y, 11.5, 20.0, true);
 
         /*IF NOT IS_CAR_DEAD phil_truck_3
         LOCK_CAR_DOORS phil_truck_3 CARLOCK_UNLOCKED
@@ -631,11 +631,11 @@ async function body() {
             $.phil_truck_2.lockDoors(1 /* CARLOCK_UNLOCKED */);
         }
 
-        while ($.timer_dif_rm2 < 25000 && $.player.isInArea2D(119.0, 167.0, 147.0, 246.0, false /* false */)) {
+        while ($.timer_dif_rm2 < 25000 && $.player.isInArea2D(119.0, 167.0, 147.0, 246.0, false)) {
             await asyncWait(0);
             await pickups(); // SCM GOSUB pickups
 
-            if ($.player.isInArea2D(147.0, 198.0, 156.0, 208.0, false /* false */)) {
+            if ($.player.isInArea2D(147.0, 198.0, 156.0, 208.0, false)) {
                 break peedle; // SCM GOTO → herring
             }
             if ($.player.isInAnyCar()) {
@@ -674,7 +674,7 @@ async function body() {
 
             if ($.timer_dif_rm2 > 2000 && $.flag_sentinel_created == 0) {
                 $.sentinel1_rm2 = Car.Create(138 /* CAR_COLUMB */, $.varmint_gen1_x, $.varmint_gen1_y, -100.0);
-                $.sentinel1_rm2.setOnlyDamagedByPlayer(true /* TRUE */);
+                $.sentinel1_rm2.setOnlyDamagedByPlayer(true);
                 $.sentinel1_rm2.lockDoors(2 /* CARLOCK_LOCKED */);
                 $.blip_sentinel1 = Blip.AddForCar($.sentinel1_rm2);
                 $.varmint_1 = Char.CreateInsideCar($.sentinel1_rm2, 12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */);
@@ -688,7 +688,7 @@ async function body() {
             }
             if ($.flag_launch_stallion == 0 && $.flag_sentinel_created == 1) {
                 if (!Car.IsDead($.sentinel1_rm2)) {
-                    if ($.sentinel1_rm2.locate2D($.stage_1_x, $.stage_1_y, 4.0, 4.0, false /* false */)) {
+                    if ($.sentinel1_rm2.locate2D($.stage_1_x, $.stage_1_y, 4.0, 4.0, false)) {
                         $.sentinel1_rm2.gotoCoordinatesAccurate($.stage_2_x, $.stage_2_y, 11.6);
                         $.flag_launch_stallion = 1;
                     }
@@ -696,10 +696,10 @@ async function body() {
             }
             if ($.flag_launch_stallion == 1 && $.flag_sentinel_created == 1) {
                 if (!Car.IsDead($.sentinel1_rm2)) {
-                    if ($.sentinel1_rm2.locate2D($.stage_2_x, $.stage_2_y, 4.0, 4.0, false /* false */)) {
+                    if ($.sentinel1_rm2.locate2D($.stage_2_x, $.stage_2_y, 4.0, 4.0, false)) {
                         $.flag_launch_stallion = 2;
                         $.flag_sentinel_arrived = 1;
-                        $.sentinel1_rm2.setOnlyDamagedByPlayer(false /* FALSE */);
+                        $.sentinel1_rm2.setOnlyDamagedByPlayer(false);
                         $.sentinel1_rm2.lockDoors(1 /* CARLOCK_UNLOCKED */);
                         if ($.flag_cartel_arrived < 2) {
                             $.flag_cartel_arrived = 1;
@@ -728,7 +728,7 @@ async function body() {
 
             if ($.timer_dif_rm2 > 4000 && $.flag_stallion_created == 0 && $.flag_launch_stallion > 0) {
                 $.stallion1_rm2 = Car.Create(138 /* CAR_COLUMB */, $.varmint_gen1_x, $.varmint_gen1_y, -100.0);
-                $.stallion1_rm2.setOnlyDamagedByPlayer(true /* TRUE */);
+                $.stallion1_rm2.setOnlyDamagedByPlayer(true);
                 $.stallion1_rm2.lockDoors(2 /* CARLOCK_LOCKED */);
                 $.blip_stallion1 = Blip.AddForCar($.stallion1_rm2);
                 $.varmint_5 = Char.CreateInsideCar($.stallion1_rm2, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */);
@@ -740,7 +740,7 @@ async function body() {
             }
             if ($.flag_launch_perenial == 0 && $.flag_stallion_created == 1) {
                 if (!Car.IsDead($.stallion1_rm2)) {
-                    if ($.stallion1_rm2.locate2D($.stage_1_x, $.stage_1_y, 4.0, 4.0, false /* false */)) {
+                    if ($.stallion1_rm2.locate2D($.stage_1_x, $.stage_1_y, 4.0, 4.0, false)) {
                         $.stallion1_rm2.gotoCoordinatesAccurate($.stage_3_x, $.stage_3_y, 11.6);
                         $.flag_launch_perenial = 1;
                     }
@@ -748,10 +748,10 @@ async function body() {
             }
             if ($.flag_launch_perenial == 1 && $.flag_stallion_created == 1) {
                 if (!Car.IsDead($.stallion1_rm2)) {
-                    if ($.stallion1_rm2.locate2D($.stage_3_x, $.stage_3_y, 4.0, 4.0, false /* false */)) {
+                    if ($.stallion1_rm2.locate2D($.stage_3_x, $.stage_3_y, 4.0, 4.0, false)) {
                         $.flag_launch_perenial = 2;
                         $.flag_stallion_arrived = 1;
-                        $.stallion1_rm2.setOnlyDamagedByPlayer(false /* FALSE */);
+                        $.stallion1_rm2.setOnlyDamagedByPlayer(false);
                         $.stallion1_rm2.lockDoors(1 /* CARLOCK_UNLOCKED */);
                         if ($.flag_cartel_arrived < 2) {
                             $.flag_cartel_arrived = 1;
@@ -777,7 +777,7 @@ async function body() {
 
             if ($.timer_dif_rm2 > 6000 && $.flag_perenial_created == 0 && $.flag_launch_perenial > 0) {
                 $.perenial1_rm2 = Car.Create(138 /* CAR_COLUMB */, $.varmint_gen1_x, $.varmint_gen1_y, -100.0);
-                $.perenial1_rm2.setOnlyDamagedByPlayer(true /* TRUE */);
+                $.perenial1_rm2.setOnlyDamagedByPlayer(true);
                 $.perenial1_rm2.lockDoors(2 /* CARLOCK_LOCKED */);
                 $.blip_perenial1 = Blip.AddForCar($.perenial1_rm2);
                 $.varmint_7 = Char.CreateInsideCar($.perenial1_rm2, 12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */);
@@ -792,9 +792,9 @@ async function body() {
 
             if ($.flag_perenial_created == 1) {
                 if (!Car.IsDead($.perenial1_rm2)) {
-                    if ($.perenial1_rm2.locate2D($.stage_1_x, $.stage_1_y, 4.0, 4.0, false /* false */)) {
+                    if ($.perenial1_rm2.locate2D($.stage_1_x, $.stage_1_y, 4.0, 4.0, false)) {
                         $.flag_perenial_arrived = 1;
-                        $.perenial1_rm2.setOnlyDamagedByPlayer(false /* FALSE */);
+                        $.perenial1_rm2.setOnlyDamagedByPlayer(false);
                         $.perenial1_rm2.lockDoors(1 /* CARLOCK_UNLOCKED */);
                         if ($.flag_cartel_arrived < 2) {
                             $.flag_cartel_arrived = 1;
@@ -828,7 +828,7 @@ async function body() {
                         $.varmint_11.setObjRunToCoord($.phils_defcon_x, $.phils_defcon_y);
                         $.varmint_11.setThreatSearch(1 /* THREAT_PLAYER1 */);
                         $.varmint_11.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                        $.varmint_11.setHeedThreats(true /* true */);
+                        $.varmint_11.setHeedThreats(true);
                         $.flag_sneaky_1 = 1;
                     }
                 }
@@ -841,7 +841,7 @@ async function body() {
                         $.varmint_12.setObjRunToCoord(124.15, 184.7);
                         $.varmint_12.setThreatSearch(1 /* THREAT_PLAYER1 */);
                         $.varmint_12.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                        $.varmint_12.setHeedThreats(true /* true */);
+                        $.varmint_12.setHeedThreats(true);
                         /*IF NOT IS_CHAR_DEAD phil
                         SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_12 phil
                         ENDIF*/
@@ -875,15 +875,15 @@ async function body() {
         }
 
         if (!Char.IsDead($.phil)) {
-            $.phil.setStayInSamePlace(true /* true */);
+            $.phil.setStayInSamePlace(true);
             const _res70 = $.phil.getCoordinates();
             $.phils_defcon_x = _res70.x;
             $.phils_defcon_y = _res70.y;
             $.phils_defcon_z = _res70.z;
-            if (!$.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false /* false */)) {
+            if (!$.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false)) {
                 Text.PrintNow('RM2_G', 2500, 1); //"Go check on Phil!"
                 $.blip_phil = Blip.AddForChar($.phil);
-                while (!$.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false /* false */)) {
+                while (!$.player.locateAnyMeans2D($.phils_defcon_x, $.phils_defcon_y, 2.0, 2.0, false)) {
                     await asyncWait(0);
                     if (Char.IsDead($.phil)) {
                         $.flag_phil_dead = 1;
@@ -1026,7 +1026,7 @@ async function body() {
         while ($.flag_phil_arrived == 0) {
             await asyncWait(0);
             if (!Char.IsDead($.phil)) {
-                if ($.phil.locateOnFoot2D(144.0, 174.4, 1.0, 1.0, false /* false */)) {
+                if ($.phil.locateOnFoot2D(144.0, 174.4, 1.0, 1.0, false)) {
                     $.flag_phil_arrived = 1;
                 }
             } else {
@@ -1167,7 +1167,7 @@ async function big_bailout_routine() {
                             $.varmint_5.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
                             $.varmint_5.setThreatSearch(1 /* THREAT_PLAYER1 */);
                             $.varmint_5.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                            $.varmint_5.setHeedThreats(true /* true */);
+                            $.varmint_5.setHeedThreats(true);
                             //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_5 player
                         }
                     }
@@ -1195,7 +1195,7 @@ async function big_bailout_routine() {
                         $.varmint_6.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
                         $.varmint_6.setThreatSearch(1 /* THREAT_PLAYER1 */);
                         $.varmint_6.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                        $.varmint_6.setHeedThreats(true /* true */);
+                        $.varmint_6.setHeedThreats(true);
                         //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_6 phil
                     }
                 }
@@ -1229,7 +1229,7 @@ async function big_bailout_routine() {
                             $.varmint_1.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
                             $.varmint_1.setThreatSearch(1 /* THREAT_PLAYER1 */);
                             $.varmint_1.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                            $.varmint_1.setHeedThreats(true /* true */);
+                            $.varmint_1.setHeedThreats(true);
                             //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_1 player
                         }
                     }
@@ -1258,7 +1258,7 @@ async function big_bailout_routine() {
                             $.varmint_2.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
                             $.varmint_2.setThreatSearch(1 /* THREAT_PLAYER1 */);
                             $.varmint_2.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                            $.varmint_2.setHeedThreats(true /* true */);
+                            $.varmint_2.setHeedThreats(true);
                             //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_2 phil
                         }
                     }
@@ -1287,7 +1287,7 @@ async function big_bailout_routine() {
                             $.varmint_3.setObjRunToCoord(140.0, 209.5);
                             $.varmint_3.setThreatSearch(1 /* THREAT_PLAYER1 */);
                             $.varmint_3.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                            $.varmint_3.setHeedThreats(true /* true */);
+                            $.varmint_3.setHeedThreats(true);
                             //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_3 phil
                         }
                     }
@@ -1315,7 +1315,7 @@ async function big_bailout_routine() {
                         $.varmint_4.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
                         $.varmint_4.setThreatSearch(1 /* THREAT_PLAYER1 */);
                         $.varmint_4.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                        $.varmint_4.setHeedThreats(true /* true */);
+                        $.varmint_4.setHeedThreats(true);
                         //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_4 player
                     }
                 }
@@ -1349,7 +1349,7 @@ async function big_bailout_routine() {
                             $.varmint_7.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
                             $.varmint_7.setThreatSearch(1 /* THREAT_PLAYER1 */);
                             $.varmint_7.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                            $.varmint_7.setHeedThreats(true /* true */);
+                            $.varmint_7.setHeedThreats(true);
                             //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_7 player
                         }
                     }
@@ -1378,7 +1378,7 @@ async function big_bailout_routine() {
                             $.varmint_8.setObjRunToCoord(129.7, 199.8);
                             $.varmint_8.setThreatSearch(1 /* THREAT_PLAYER1 */);
                             $.varmint_8.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                            $.varmint_8.setHeedThreats(true /* true */);
+                            $.varmint_8.setHeedThreats(true);
                             //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_8 phil
                         }
                     }
@@ -1407,7 +1407,7 @@ async function big_bailout_routine() {
                             $.varmint_9.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
                             $.varmint_9.setThreatSearch(1 /* THREAT_PLAYER1 */);
                             $.varmint_9.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                            $.varmint_9.setHeedThreats(true /* true */);
+                            $.varmint_9.setHeedThreats(true);
                             //SET_CHAR_OBJ_KILL_CHAR_ON_FOOT varmint_9 phil
                         }
                     }
@@ -1435,7 +1435,7 @@ async function big_bailout_routine() {
                         $.varmint_10.setObjRunToCoord($.wh_x_rm2, $.wh_y_rm2);
                         $.varmint_10.setThreatSearch(1 /* THREAT_PLAYER1 */);
                         $.varmint_10.setThreatSearch(524288 /* THREAT_SPECIAL */);
-                        $.varmint_10.setHeedThreats(true /* true */);
+                        $.varmint_10.setHeedThreats(true);
                         //SET_CHAR_OBJ_KILL_PLAYER_ON_FOOT varmint_10 player
                     }
                 }

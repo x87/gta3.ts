@@ -274,7 +274,7 @@ async function body() {
 
         $.cs_playerhead.setAnim('player');
 
-        World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */);
+        World.ClearArea(459.1, -1413.0, 25.11, 1.0, true);
 
         $.player.setCoordinates(459.1, -1413.0, 25.11);
 
@@ -440,7 +440,7 @@ async function body() {
                 }
                 $.flag_had_bomb_message_km1 = 0;
             }
-            if ($.player.locateInCar2D(373.9, -576.4, 2.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateInCar2D(373.9, -576.4, 2.0, 2.0, false)) {
                 if ($.flag_player_had_dome_message_km1 == 0) {
                     Text.PrintHelp('KM1_13'); //"Drive the car...
                     $.sphere_km1.remove();
@@ -567,7 +567,7 @@ async function body() {
 
         $.police_alarm = Sound.AddContinuous(328.418, -1088.174, 28.3, 69 /* SOUND_BANK_ALARM_LOOP_L */);
 
-        World.ClearArea(327.0, -1086.0, -100.0, 4.0, true /* TRUE */);
+        World.ClearArea(327.0, -1086.0, -100.0, 4.0, true);
 
         World.SwapNearestBuildingModel(328.026, -1090.262, 26.941, 2.0, 1331 /* police_cell_wall */, 1332 /* police_celhole */);
 
@@ -579,7 +579,7 @@ async function body() {
 
         $.yakuza_ped1_km1 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 328.2, -1092.2, 24.9);
 
-        $.yakuza_ped1_km1.setRunning(true /* TRUE */);
+        $.yakuza_ped1_km1.setRunning(true);
 
         $.yakuza_ped1_km1.clearThreatSearch();
 
@@ -616,7 +616,7 @@ async function body() {
                     $.flag_blip_on_yakuza_ped1_km1 = 1;
                 }
             }
-            if ($.player.locateAnyMeansChar2D($.yakuza_ped1_km1, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_yakuza_ped1_km1 == 1) {
+            if ($.player.locateAnyMeansChar2D($.yakuza_ped1_km1, 8.0, 8.0, false) && $.flag_blip_on_yakuza_ped1_km1 == 1) {
                 $.yakuza_ped1_km1.followPlayer($.player);
                 $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
                 $.radar_blip_ped1_km1.remove();
@@ -640,7 +640,7 @@ async function body() {
 
         while (
             !$.player.locateStoppedAnyMeans2D(105.6, -1292.68, 3.0, 4.0, !!$.blob_flag) ||
-            !$.yakuza_ped1_km1.locateStoppedAnyMeans2D(105.6, -1292.68, 3.0, 4.0, false /* FALSE */) ||
+            !$.yakuza_ped1_km1.locateStoppedAnyMeans2D(105.6, -1292.68, 3.0, 4.0, false) ||
             !Audio.HasMissionAudioLoaded() ||
             $.player.isWantedLevelGreater(0)
         ) {
@@ -663,7 +663,7 @@ async function body() {
                     $.flag_player_got_cops_message_km1 = 0;
                 }
             }
-            if ($.player.locateAnyMeansChar2D($.yakuza_ped1_km1, 8.0, 8.0, false /* FALSE */) && $.flag_blip_on_yakuza_ped1_km1 == 1) {
+            if ($.player.locateAnyMeansChar2D($.yakuza_ped1_km1, 8.0, 8.0, false) && $.flag_blip_on_yakuza_ped1_km1 == 1) {
                 $.yakuza_ped1_km1.followPlayer($.player);
                 $.radar_blip_ped1_km1.remove();
                 $.flag_blip_on_yakuza_ped1_km1 = 0;
@@ -731,7 +731,7 @@ async function body() {
 
         Camera.PointAtPoint(94.19, -1279.91, 34.79, 2 /* JUMP_CUT */);
 
-        $.yakuza_ped1_km1.setRunning(false /* FALSE */);
+        $.yakuza_ped1_km1.setRunning(false);
 
         // Tells ped to get out of car
 
@@ -753,13 +753,13 @@ async function body() {
             }
         }
 
-        World.ClearArea(111.05, -1274.75, 25.16, 6.0, true /* TRUE */);
+        World.ClearArea(111.05, -1274.75, 25.16, 6.0, true);
 
         $.yakuza_ped1_km1.setObjRunToCoord(111.05, -1274.75);
 
         TIMERB = 0;
 
-        while (!$.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false /* FALSE */)) {
+        while (!$.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false)) {
             await asyncWait(0);
             if (Char.IsDead($.yakuza_ped1_km1)) {
                 Text.PrintNow('KM1_10', 5000, 1); //"The Yakuza Kanbu is dead!"
@@ -767,7 +767,7 @@ async function body() {
                 throw new Error('unresolved GOTO mission_kenji1_failed'); // fallback: would break linear control flow
             }
             if (TIMERB >= 8000) {
-                if (!$.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false /* FALSE */)) {
+                if (!$.yakuza_ped1_km1.locateOnFoot3D(111.05, -1274.75, 25.16, 2.0, 2.0, 2.0, false)) {
                     $.yakuza_ped1_km1.removeElegantly();
                     break before_mission_bloke_got_stuck_km1; // SCM GOTO → mission_bloke_got_stuck_km1
                 }
@@ -833,10 +833,10 @@ async function wall_explosion() {
     $.debris2 = ScriptObject.Create(1370 /* rubble02 */, 328.5, -1084.7, 27.0);
     $.debris3 = ScriptObject.Create(1369 /* rubble01 */, 326.6, -1083.7, 26.0);
     $.debris4 = ScriptObject.Create(1369 /* rubble01 */, 330.0, -1084.4, 27.0);
-    $.debris1.setDynamic(true /* TRUE */);
-    $.debris2.setDynamic(true /* TRUE */);
-    $.debris3.setDynamic(true /* TRUE */);
-    $.debris4.setDynamic(true /* TRUE */);
+    $.debris1.setDynamic(true);
+    $.debris2.setDynamic(true);
+    $.debris3.setDynamic(true);
+    $.debris4.setDynamic(true);
     $.debris1.setVelocity(3.0, 16.0, 15.0);
     $.debris2.setVelocity(-5.0, 10.0, 5.0);
     $.debris3.setVelocity(7.0, 7.0, 7.0);

@@ -119,7 +119,7 @@ async function body() {
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 1192.23 -867.252 14.124 6.0 joey_door1 FALSE
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 1192.23 -867.252 14.124 6.0 joey_door2 FALSE
 
-    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true /* TRUE */);
+    World.ClearArea(1191.9, -870.4, 15.0, 1.0, true);
     $.player.setCoordinates(1191.9, -870.4, -100.0);
 
     $.player.setHeading(230.0);
@@ -284,7 +284,7 @@ async function body() {
     $.blip1_jm2 = Blip.AddForChar($.chunky);
     $.chunky.setObjWaitOnFoot();
     $.chunky.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
-    $.chunky.setRunning(true /* TRUE */);
+    $.chunky.setRunning(true);
     //SET_CHAR_HEALTH chunky 100
 
     $.chunky.addArmor(100);
@@ -292,7 +292,7 @@ async function body() {
     $.chunky.setAnimGroup(18 /* ANIM_PANIC_CHUNKYPED */);
 
     setup_block: {
-        while (!$.player.locateAnyMeansChar3D($.chunky, 25.0, 26.0, 4.0, false /* FALSE */)) {
+        while (!$.player.locateAnyMeansChar3D($.chunky, 25.0, 26.0, 4.0, false)) {
             await asyncWait(0);
             if (!$.gun_chunky.hasBeenCollected()) {
                 await Ammu_bloke_audio(); // SCM GOSUB Ammu_bloke_audio
@@ -307,19 +307,19 @@ async function body() {
                 $.been_in_shop_before = 1;
             }
             if (!Char.IsDead($.chunky)) {
-                $.chunky.setOnlyDamagedByPlayer(true /* True */);
+                $.chunky.setOnlyDamagedByPlayer(true);
                 $.chunkyhealth = $.chunky.getHealth();
             }
             if (!Char.IsDead($.chunky_mate1)) {
-                $.chunky_mate1.setOnlyDamagedByPlayer(true /* True */);
+                $.chunky_mate1.setOnlyDamagedByPlayer(true);
                 $.mate1health = $.chunky_mate1.getHealth();
             }
             if (!Char.IsDead($.chunky_mate2)) {
-                $.chunky_mate2.setOnlyDamagedByPlayer(true /* True */);
+                $.chunky_mate2.setOnlyDamagedByPlayer(true);
                 $.mate2health = $.chunky_mate2.getHealth();
             }
             if (!Char.IsDead($.chunky_mate3)) {
-                $.chunky_mate3.setOnlyDamagedByPlayer(true /* True */);
+                $.chunky_mate3.setOnlyDamagedByPlayer(true);
                 $.mate3health = $.chunky_mate3.getHealth();
             }
             if ($.mate1health < 99 || $.mate2health < 99 || $.mate3health < 99 || $.chunkyhealth < 99) {
@@ -367,7 +367,7 @@ async function body() {
             return; // SCM GOTO → mission_joey2_passed
         }
 
-        while (!$.player.locateAnyMeansChar3D($.chunky, 20.0, 18.0, 4.0, false /* FALSE */)) {
+        while (!$.player.locateAnyMeansChar3D($.chunky, 20.0, 18.0, 4.0, false)) {
             await asyncWait(0);
             if (!$.gun_chunky.hasBeenCollected()) {
                 await Ammu_bloke_audio(); // SCM GOSUB Ammu_bloke_audio
@@ -382,19 +382,19 @@ async function body() {
                 $.been_in_shop_before = 1;
             }
             if (!Char.IsDead($.chunky)) {
-                $.chunky.setOnlyDamagedByPlayer(true /* True */);
+                $.chunky.setOnlyDamagedByPlayer(true);
                 $.chunkyhealth = $.chunky.getHealth();
             }
             if (!Char.IsDead($.chunky_mate1)) {
-                $.chunky_mate1.setOnlyDamagedByPlayer(true /* True */);
+                $.chunky_mate1.setOnlyDamagedByPlayer(true);
                 $.mate1health = $.chunky_mate1.getHealth();
             }
             if (!Char.IsDead($.chunky_mate2)) {
-                $.chunky_mate2.setOnlyDamagedByPlayer(true /* True */);
+                $.chunky_mate2.setOnlyDamagedByPlayer(true);
                 $.mate2health = $.chunky_mate2.getHealth();
             }
             if (!Char.IsDead($.chunky_mate3)) {
-                $.chunky_mate3.setOnlyDamagedByPlayer(true /* True */);
+                $.chunky_mate3.setOnlyDamagedByPlayer(true);
                 $.mate3health = $.chunky_mate3.getHealth();
             }
             if ($.mate1health < 99 || $.mate2health < 99 || $.mate3health < 99 || $.chunkyhealth < 99) {
@@ -413,25 +413,25 @@ async function body() {
 
         if (!Char.IsDead($.chunky_mate1)) {
             $.chunky_mate1.setObjKillPlayerOnFoot($.player);
-            $.chunky_mate1.setOnlyDamagedByPlayer(false /* false */);
+            $.chunky_mate1.setOnlyDamagedByPlayer(false);
             $.chunky_mate1.setThreatSearch(1 /* THREAT_PLAYER1 */);
         }
 
         if (!Char.IsDead($.chunky_mate2)) {
             $.chunky_mate2.setObjKillPlayerOnFoot($.player);
-            $.chunky_mate2.setOnlyDamagedByPlayer(false /* false */);
+            $.chunky_mate2.setOnlyDamagedByPlayer(false);
             $.chunky_mate2.setThreatSearch(1 /* THREAT_PLAYER1 */);
         }
 
         if (!Char.IsDead($.chunky_mate3)) {
             $.chunky_mate3.setObjKillPlayerOnFoot($.player);
-            $.chunky_mate3.setOnlyDamagedByPlayer(false /* false */);
+            $.chunky_mate3.setOnlyDamagedByPlayer(false);
             $.chunky_mate3.setThreatSearch(1 /* THREAT_PLAYER1 */);
         }
 
         if (!Char.IsDead($.chunky)) {
-            $.chunky.setHeedThreats(false /* False */);
-            $.chunky.setOnlyDamagedByPlayer(false /* false */);
+            $.chunky.setHeedThreats(false);
+            $.chunky.setOnlyDamagedByPlayer(false);
         }
 
         $.chunky.setObjRunToCoord(975.5, -722.9);
@@ -446,7 +446,7 @@ async function body() {
             await pickup_and_audio(); // SCM GOSUB pickup_and_audio
         }
 
-        if ($.player.isInArea2D(974.2, -727.5, 1003.4, -748.8, false /* FALSE */)) {
+        if ($.player.isInArea2D(974.2, -727.5, 1003.4, -748.8, false)) {
             // SCM GOTO → run_the_other_way
             run_the_other_way: {
                 $.chunky.setObjRunToCoord(979.1, -720.8);
@@ -500,7 +500,7 @@ async function body() {
                 if (Car.IsDead($.chunkys_car2)) {
                     break kill_and_run; // SCM GOTO → fuckin_run_for_it
                 } else {
-                    if (!$.chunkys_car2.isInArea2D(922.7, -673.9, 906.6, -698.0, false /* FALSE */) || !$.chunkys_car2.isHealthGreater(300)) {
+                    if (!$.chunkys_car2.isInArea2D(922.7, -673.9, 906.6, -698.0, false) || !$.chunkys_car2.isHealthGreater(300)) {
                         break kill_and_run; // SCM GOTO → fuckin_run_for_it
                     }
                 }
@@ -512,7 +512,7 @@ async function body() {
                     if (Car.IsDead($.chunkys_car2)) {
                         break kill_and_run; // SCM GOTO → fuckin_run_for_it
                     } else {
-                        if (!$.chunkys_car2.isInArea2D(922.7, -673.9, 906.6, -698.0, false /* FALSE */) || !$.chunkys_car2.isHealthGreater(300)) {
+                        if (!$.chunkys_car2.isInArea2D(922.7, -673.9, 906.6, -698.0, false) || !$.chunkys_car2.isHealthGreater(300)) {
                             break kill_and_run; // SCM GOTO → fuckin_run_for_it
                         }
                     }
@@ -547,7 +547,7 @@ async function body() {
                     if (Char.IsDead($.chunky)) {
                         return; // SCM GOTO → mission_joey2_passed
                     }
-                    if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false /* FALSE */)) {
+                    if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                         Text.PrintNow('AWAY', 5000, 2); // Mission brief
                         // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
@@ -581,7 +581,7 @@ async function body() {
                     if (Char.IsDead($.chunky)) {
                         return; // SCM GOTO → mission_joey2_passed
                     }
-                    if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false /* FALSE */)) {
+                    if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                         Text.PrintNow('AWAY', 5000, 2); // Mission brief
                         // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
@@ -638,7 +638,7 @@ async function body() {
         if (Car.IsDead($.chunkys_car)) {
             break kill_and_run; // SCM GOTO → fuckin_run_for_it
         } else {
-            if (!$.chunkys_car.isInArea2D(1004.0, -738.0, 1012.0, -763.0, false /* FALSE */) || !$.chunkys_car.isHealthGreater(300)) {
+            if (!$.chunkys_car.isInArea2D(1004.0, -738.0, 1012.0, -763.0, false) || !$.chunkys_car.isHealthGreater(300)) {
                 break kill_and_run; // SCM GOTO → fuckin_run_for_it
             }
         }
@@ -650,7 +650,7 @@ async function body() {
             if (Car.IsDead($.chunkys_car)) {
                 break kill_and_run; // SCM GOTO → fuckin_run_for_it
             } else {
-                if (!$.chunkys_car.isInArea2D(1004.0, -738.0, 1012.0, -763.0, false /* FALSE */) || !$.chunkys_car.isHealthGreater(300)) {
+                if (!$.chunkys_car.isInArea2D(1004.0, -738.0, 1012.0, -763.0, false) || !$.chunkys_car.isHealthGreater(300)) {
                     break kill_and_run; // SCM GOTO → fuckin_run_for_it
                 }
             }
@@ -685,7 +685,7 @@ async function body() {
             if (Char.IsDead($.chunky)) {
                 return; // SCM GOTO → mission_joey2_passed
             }
-            if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                 Text.PrintNow('AWAY', 5000, 2); // Mission brief
                 // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
@@ -719,7 +719,7 @@ async function body() {
             if (Char.IsDead($.chunky)) {
                 return; // SCM GOTO → mission_joey2_passed
             }
-            if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                 Text.PrintNow('AWAY', 5000, 2); // Mission brief
                 // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
@@ -755,7 +755,7 @@ async function body() {
             if (!$.gun_chunky.hasBeenCollected()) {
                 await Ammu_bloke_audio(); // SCM GOSUB Ammu_bloke_audio
             }
-            if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar2D($.chunky, 160.0, 160.0, false)) {
                 Text.PrintNow('AWAY', 5000, 2); // Mission brief
                 // SCM GOTO → mission_joey2_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_joey2_failed'); // fallback: would break linear control flow
@@ -804,7 +804,7 @@ async function cleanup() {
 
 async function controller_modes() {
     if ($.flag_player_had_gun_message == 0) {
-        if ($.player.isInAreaOnFoot3D(1075.2, -384.8, 14.0, 1086.2, -403.3, 17.0, false /* FALSE */)) {
+        if ($.player.isInAreaOnFoot3D(1075.2, -384.8, 14.0, 1086.2, -403.3, 17.0, false)) {
             $.controlmode = Pad.GetControllerMode();
 
             // Control Mode 0
@@ -974,7 +974,7 @@ async function controller_modes() {
 
 async function Ammu_bloke_audio() {
     if ($.has_audio_been_activated == 0) {
-        if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false /* FALSE */)) {
+        if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false)) {
             $.special_ammu_audio = 1;
             Audio.LoadMissionAudio('ammu_b' as any); //AMMU_B
             if ($.camera_ammu1 == 1) {

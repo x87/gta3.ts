@@ -1341,7 +1341,7 @@ async function body() {
                     Text.PrintBig('A_COMP2', 6000, 6); //"You will never get tired!"
                     Pager.AddMessage('A_COMP3', 140, 100, 1); //"Ambulance missions complete! You will never get tired when running!"
                     Audio.PlayMissionPassedTune(1);
-                    $.player.setNeverGetsTired(true /* TRUE */);
+                    $.player.setNeverGetsTired(true);
                     Stat.PlayerMadeProgress(1);
                     return;
                 }
@@ -1357,11 +1357,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 0 && $.injured_ped_1_flag == 0) {
         $.injured_ped_1 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_1_flag = 1;
-        $.injured_ped_1.setBleeding(true /* TRUE */);
-        $.injured_ped_1.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_1.setBleeding(true);
+        $.injured_ped_1.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_1.setHeading($.random_ped_heading);
-        $.injured_ped_1.setRunning(true /* TRUE */);
+        $.injured_ped_1.setRunning(true);
         $.injured_ped_1.clearThreatSearch();
         $.injured_ped_1_blip = Blip.AddForChar($.injured_ped_1);
         $.injured_ped_1.setObjWaitOnFoot();
@@ -1371,11 +1371,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 1 && $.injured_ped_2_flag == 0) {
         $.injured_ped_2 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_2_flag = 1;
-        $.injured_ped_2.setBleeding(true /* TRUE */);
-        $.injured_ped_2.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_2.setBleeding(true);
+        $.injured_ped_2.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_2.setHeading($.random_ped_heading);
-        $.injured_ped_2.setRunning(true /* TRUE */);
+        $.injured_ped_2.setRunning(true);
         $.injured_ped_2.clearThreatSearch();
         $.injured_ped_2_blip = Blip.AddForChar($.injured_ped_2);
         $.injured_ped_2.setObjWaitOnFoot();
@@ -1385,11 +1385,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 2 && $.injured_ped_3_flag == 0) {
         $.injured_ped_3 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_3_flag = 1;
-        $.injured_ped_3.setBleeding(true /* TRUE */);
-        $.injured_ped_3.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_3.setBleeding(true);
+        $.injured_ped_3.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_3.setHeading($.random_ped_heading);
-        $.injured_ped_3.setRunning(true /* TRUE */);
+        $.injured_ped_3.setRunning(true);
         $.injured_ped_3.clearThreatSearch();
         $.injured_ped_3_blip = Blip.AddForChar($.injured_ped_3);
         $.injured_ped_3.setObjWaitOnFoot();
@@ -1399,11 +1399,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 3 && $.injured_ped_4_flag == 0) {
         $.injured_ped_4 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_4_flag = 1;
-        $.injured_ped_4.setBleeding(true /* TRUE */);
-        $.injured_ped_4.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_4.setBleeding(true);
+        $.injured_ped_4.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_4.setHeading($.random_ped_heading);
-        $.injured_ped_4.setRunning(true /* TRUE */);
+        $.injured_ped_4.setRunning(true);
         $.injured_ped_4.clearThreatSearch();
         $.injured_ped_4_blip = Blip.AddForChar($.injured_ped_4);
         $.injured_ped_4.setObjWaitOnFoot();
@@ -1413,11 +1413,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 4 && $.injured_ped_5_flag == 0) {
         $.injured_ped_5 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_5_flag = 1;
-        $.injured_ped_5.setBleeding(true /* TRUE */);
-        $.injured_ped_5.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_5.setBleeding(true);
+        $.injured_ped_5.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_5.setHeading($.random_ped_heading);
-        $.injured_ped_5.setRunning(true /* TRUE */);
+        $.injured_ped_5.setRunning(true);
         $.injured_ped_5.clearThreatSearch();
         $.injured_ped_5_blip = Blip.AddForChar($.injured_ped_5);
         $.injured_ped_5.setObjWaitOnFoot();
@@ -1427,11 +1427,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 5 && $.injured_ped_6_flag == 0) {
         $.injured_ped_6 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_6_flag = 1;
-        $.injured_ped_6.setBleeding(true /* TRUE */);
-        $.injured_ped_6.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_6.setBleeding(true);
+        $.injured_ped_6.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_6.setHeading($.random_ped_heading);
-        $.injured_ped_6.setRunning(true /* TRUE */);
+        $.injured_ped_6.setRunning(true);
         $.injured_ped_6.clearThreatSearch();
         $.injured_ped_6_blip = Blip.AddForChar($.injured_ped_6);
         $.injured_ped_6.setObjWaitOnFoot();
@@ -1441,11 +1441,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 6 && $.injured_ped_7_flag == 0) {
         $.injured_ped_7 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_7_flag = 1;
-        $.injured_ped_7.setBleeding(true /* TRUE */);
-        $.injured_ped_7.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_7.setBleeding(true);
+        $.injured_ped_7.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_7.setHeading($.random_ped_heading);
-        $.injured_ped_7.setRunning(true /* TRUE */);
+        $.injured_ped_7.setRunning(true);
         $.injured_ped_7.clearThreatSearch();
         $.injured_ped_7_blip = Blip.AddForChar($.injured_ped_7);
         $.injured_ped_7.setObjWaitOnFoot();
@@ -1455,11 +1455,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 7 && $.injured_ped_8_flag == 0) {
         $.injured_ped_8 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_8_flag = 1;
-        $.injured_ped_8.setBleeding(true /* TRUE */);
-        $.injured_ped_8.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_8.setBleeding(true);
+        $.injured_ped_8.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_8.setHeading($.random_ped_heading);
-        $.injured_ped_8.setRunning(true /* TRUE */);
+        $.injured_ped_8.setRunning(true);
         $.injured_ped_8.clearThreatSearch();
         $.injured_ped_8_blip = Blip.AddForChar($.injured_ped_8);
         $.injured_ped_8.setObjWaitOnFoot();
@@ -1469,11 +1469,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 8 && $.injured_ped_9_flag == 0) {
         $.injured_ped_9 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_9_flag = 1;
-        $.injured_ped_9.setBleeding(true /* TRUE */);
-        $.injured_ped_9.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_9.setBleeding(true);
+        $.injured_ped_9.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_9.setHeading($.random_ped_heading);
-        $.injured_ped_9.setRunning(true /* TRUE */);
+        $.injured_ped_9.setRunning(true);
         $.injured_ped_9.clearThreatSearch();
         $.injured_ped_9_blip = Blip.AddForChar($.injured_ped_9);
         $.injured_ped_9.setObjWaitOnFoot();
@@ -1483,11 +1483,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 9 && $.injured_ped_10_flag == 0) {
         $.injured_ped_10 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_10_flag = 1;
-        $.injured_ped_10.setBleeding(true /* TRUE */);
-        $.injured_ped_10.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_10.setBleeding(true);
+        $.injured_ped_10.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_10.setHeading($.random_ped_heading);
-        $.injured_ped_10.setRunning(true /* TRUE */);
+        $.injured_ped_10.setRunning(true);
         $.injured_ped_10.clearThreatSearch();
         $.injured_ped_10_blip = Blip.AddForChar($.injured_ped_10);
         $.injured_ped_10.setObjWaitOnFoot();
@@ -1497,11 +1497,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 10 && $.injured_ped_11_flag == 0) {
         $.injured_ped_11 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_11_flag = 1;
-        $.injured_ped_11.setBleeding(true /* TRUE */);
-        $.injured_ped_11.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_11.setBleeding(true);
+        $.injured_ped_11.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_11.setHeading($.random_ped_heading);
-        $.injured_ped_11.setRunning(true /* TRUE */);
+        $.injured_ped_11.setRunning(true);
         $.injured_ped_11.clearThreatSearch();
         $.injured_ped_11_blip = Blip.AddForChar($.injured_ped_11);
         $.injured_ped_11.setObjWaitOnFoot();
@@ -1511,11 +1511,11 @@ async function create_random_injured_ped() {
     if ($.number_of_injured_peds > 11 && $.injured_ped_12_flag == 0) {
         $.injured_ped_12 = Char.CreateRandom($.ped_coord_x, $.ped_coord_y, $.ped_coord_z);
         $.injured_ped_12_flag = 1;
-        $.injured_ped_12.setBleeding(true /* TRUE */);
-        $.injured_ped_12.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.injured_ped_12.setBleeding(true);
+        $.injured_ped_12.setOnlyDamagedByPlayer(true);
         $.random_ped_heading = Math.RandomFloatInRange(0.0, 359.9);
         $.injured_ped_12.setHeading($.random_ped_heading);
-        $.injured_ped_12.setRunning(true /* TRUE */);
+        $.injured_ped_12.setRunning(true);
         $.injured_ped_12.clearThreatSearch();
         $.injured_ped_12_blip = Blip.AddForChar($.injured_ped_12);
         $.injured_ped_12.setObjWaitOnFoot();

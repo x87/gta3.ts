@@ -77,7 +77,7 @@ async function body() {
     if (!Car.IsDead($.rc_van)) {
         $.rc_van.lockDoors(2 /* CARLOCK_LOCKED */);
         Camera.PointAtCar($.rc_van, 15 /* FIXED */, 2 /* JUMP_CUT */);
-        World.ClearArea($.rc_x, $.rc_y, $.rc_z, 5.0, true /* true */);
+        World.ClearArea($.rc_x, $.rc_y, $.rc_z, 5.0, true);
     }
 
     Text.PrintNow('RC_3', 4000, 1); //You have 4 minutes to blow up as many Diablo Gang Cars as possible!

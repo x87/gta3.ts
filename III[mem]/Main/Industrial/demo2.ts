@@ -13,7 +13,7 @@ async function demo_start() {
 
         // Player position Luigi's
 
-        $.player.setVisible(false /* FALSE */);
+        $.player.setVisible(false);
         $.player.setControl(false /* OFF */);
         Game.SetPoliceIgnorePlayer($.player, true /* ON */);
         $.player.setCoordinates(892.9, -445.0, 14.0);
@@ -50,7 +50,7 @@ async function demo_start() {
         Camera.DoFade(1000, 0 /* FADE_OUT */);
 
         await asyncWait(1000);
-        $.player.setVisible(false /* FALSE */);
+        $.player.setVisible(false);
 
         // player position Docks
 
@@ -267,7 +267,7 @@ async function mission_cleanup_demo() {
     $.player.setControl(true /* ON */);
     Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
     Hud.SwitchWidescreen(false /* OFF */);
-    $.player.setVisible(true /* TRUE */);
+    $.player.setVisible(true);
     Weather.Release();
     Mission.Finish();
     return;

@@ -114,12 +114,12 @@ async function body() {
     $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
     $.cs_playerhead.setAnim('player');
 
-    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true /* TRUE */);
+    World.ClearArea(1219.5, -321.1, 27.5, 1.0, true);
     $.player.setCoordinates(1219.5, -321.1, 26.4);
 
     $.player.setHeading(180.0);
 
-    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true /* TRUE */); //TONIS RESTAURANT
+    World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
@@ -249,7 +249,7 @@ async function body() {
     $.blip1_van1 = Blip.AddForCar($.t1_triad_van1);
     $.t1_triad_van1.setCruiseSpeed(17.0);
     $.t1_triad_van1.setDrivingStyle(0);
-    $.t1_triad_van1.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.t1_triad_van1.setOnlyDamagedByPlayer(true);
     $.vanman1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     //SET_CAR_HEALTH t1_triad_van1 600
 
@@ -258,7 +258,7 @@ async function body() {
     $.blip2_van2 = Blip.AddForCar($.t1_triad_van2);
     $.t1_triad_van2.setCruiseSpeed(17.0);
     $.t1_triad_van2.setDrivingStyle(0);
-    $.t1_triad_van2.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.t1_triad_van2.setOnlyDamagedByPlayer(true);
     $.vanman2.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
     //SET_CAR_HEALTH t1_triad_van2 600
 
@@ -267,7 +267,7 @@ async function body() {
     $.blip3_van3 = Blip.AddForCar($.t1_triad_van3);
     $.t1_triad_van3.setCruiseSpeed(17.0);
     $.t1_triad_van3.setDrivingStyle(0);
-    $.t1_triad_van3.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.t1_triad_van3.setOnlyDamagedByPlayer(true);
     $.vanman3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
     //SET_CAR_HEALTH t1_triad_van3 600
     /*
@@ -294,14 +294,14 @@ async function body() {
                     if ($.vanman1.isInCar($.t1_triad_van1)) {
                         $.t1_triad_van1.setCruiseSpeed(18.0);
                         $.t1_triad_van1.setDrivingStyle(2);
-                        $.t1_triad_van1.setOnlyDamagedByPlayer(false /* FALSE */);
+                        $.t1_triad_van1.setOnlyDamagedByPlayer(false);
                     }
                 }
             }
         }
         if (!Car.IsDead($.t1_triad_van1)) {
             if ($.player.isInCar($.t1_triad_van1) && $.in_van1 == 0) {
-                $.t1_triad_van1.setOnlyDamagedByPlayer(false /* FALSE */);
+                $.t1_triad_van1.setOnlyDamagedByPlayer(false);
                 $.in_van1 = 1;
             }
         }
@@ -316,14 +316,14 @@ async function body() {
                     if ($.vanman2.isInCar($.t1_triad_van2)) {
                         $.t1_triad_van2.setCruiseSpeed(17.0);
                         $.t1_triad_van2.setDrivingStyle(2);
-                        $.t1_triad_van2.setOnlyDamagedByPlayer(false /* FALSE */);
+                        $.t1_triad_van2.setOnlyDamagedByPlayer(false);
                     }
                 }
             }
         }
         if (!Car.IsDead($.t1_triad_van2)) {
             if ($.player.isInCar($.t1_triad_van2) && $.in_van2 == 0) {
-                $.t1_triad_van2.setOnlyDamagedByPlayer(false /* FALSE */);
+                $.t1_triad_van2.setOnlyDamagedByPlayer(false);
                 $.in_van2 = 1;
             }
         }
@@ -338,14 +338,14 @@ async function body() {
                     if ($.vanman3.isInCar($.t1_triad_van3)) {
                         $.t1_triad_van3.setCruiseSpeed(19.0);
                         $.t1_triad_van3.setDrivingStyle(2);
-                        $.t1_triad_van3.setOnlyDamagedByPlayer(false /* FALSE */);
+                        $.t1_triad_van3.setOnlyDamagedByPlayer(false);
                     }
                 }
             }
         }
         if (!Car.IsDead($.t1_triad_van3)) {
             if ($.player.isInCar($.t1_triad_van3) && $.in_van3 == 0) {
-                $.t1_triad_van3.setOnlyDamagedByPlayer(false /* FALSE */);
+                $.t1_triad_van3.setOnlyDamagedByPlayer(false);
                 $.in_van3 = 1;
             }
         }

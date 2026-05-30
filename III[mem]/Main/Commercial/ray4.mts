@@ -156,13 +156,13 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
+    World.ClearArea(39.0, -723.5, 22.0, 1.0, true);
 
     $.player.setCoordinates(39.0, -723.5, 22.0);
 
     $.player.setHeading(90.0);
 
-    World.SetVisibilityOfClosestObjectOfType(47.322, -732.055, 22.846, 4.0, 2300 /* toilet_cubicle_dr2 */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(47.322, -732.055, 22.846, 4.0, 2300 /* toilet_cubicle_dr2 */, false);
 
     Cutscene.Load('r4_gf');
 
@@ -269,7 +269,7 @@ async function body() {
 
     Camera.DoFade(1500, 1 /* FADE_IN */);
 
-    World.SetVisibilityOfClosestObjectOfType(47.322, -732.055, 22.846, 4.0, 2300 /* toilet_cubicle_dr2 */, true /* TRUE */);
+    World.SetVisibilityOfClosestObjectOfType(47.322, -732.055, 22.846, 4.0, 2300 /* toilet_cubicle_dr2 */, true);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */);
@@ -321,7 +321,7 @@ async function body() {
     //CREATE_CAR BOAT_GHOST 1695.0 -381.5 -1.3 partners_boat
 
     $.partners_boat = Boat.Create(150 /* BOAT_GHOST */, 1695.0, -381.5, -1.4);
-    $.partners_boat.setStrong(true /* TRUE */);
+    $.partners_boat.setStrong(true);
 
     $.barrel2_a = ScriptObject.Create(1336 /* barrel2 */, 837.0, -1115.6, 10.0);
     $.barrel2_b = ScriptObject.Create(1336 /* barrel2 */, 837.0, -1115.6, 20.0);
@@ -331,8 +331,8 @@ async function body() {
     $.barrel2_b.setCollision(false /* OFF */);
     //SET_OBJECT_COLLISION sniper_object OFF
 
-    $.barrel2_a.setDynamic(false /* FALSE */);
-    $.barrel2_b.setDynamic(false /* FALSE */);
+    $.barrel2_a.setDynamic(false);
+    $.barrel2_b.setDynamic(false);
     //SET_OBJECT_DYNAMIC sniper_object FALSE
 
     $.barrel2_a.placeRelativeToCar($.partners_boat, -0.3, -2.5, 0.2);
@@ -391,7 +391,7 @@ async function body() {
     $.partners_blip.remove();
     $.rays_partner = Char.Create(4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */, $.vector_x, $.vector_y, $.partner_z);
     $.rays_partner.setHeading($.distance_resultB);
-    $.rays_partner.setStayInSamePlace(true /* TRUE */);
+    $.rays_partner.setStayInSamePlace(true);
     $.rays_partner.clearThreatSearch();
     $.rays_partner.addArmor(100);
     $.rays_partner.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 1700);
@@ -405,12 +405,12 @@ async function body() {
     Hud.SwitchWidescreen(true /* ON */);
     $.player.setControl(false /* OFF */);
     Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
-    Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+    Game.SetAllCarsCanBeDamaged(false);
     if ($.player.isInAnyCar()) {
         if ($.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(150 /* BOAT_GHOST */)) {
             $.players_boat_with_guns.markAsNoLongerNeeded();
             $.players_boat_with_guns = $.player.storeCarIsIn() as Boat;
-            $.players_boat_with_guns.anchor(true /* TRUE */);
+            $.players_boat_with_guns.anchor(true);
         }
         $.player.applyBrakesToCar(true /* ON */);
     }
@@ -612,7 +612,7 @@ async function body() {
     $.fish_target_z = $.partner_z;
 
     $.fishy_1 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_1.setDynamic(true /* TRUE */);
+    $.fishy_1.setDynamic(true);
     $.fishy_1.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_1.setHeading($.temp_x);
@@ -634,7 +634,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_2 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_2.setDynamic(true /* TRUE */);
+    $.fishy_2.setDynamic(true);
     $.fishy_2.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_2.setHeading($.temp_x);
@@ -653,7 +653,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_3 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_3.setDynamic(true /* TRUE */);
+    $.fishy_3.setDynamic(true);
     $.fishy_3.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_3.setHeading($.temp_x);
@@ -672,7 +672,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_4 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_4.setDynamic(true /* TRUE */);
+    $.fishy_4.setDynamic(true);
     $.fishy_4.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_4.setHeading($.temp_x);
@@ -691,7 +691,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_5 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_5.setDynamic(true /* TRUE */);
+    $.fishy_5.setDynamic(true);
     $.fishy_5.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_5.setHeading($.temp_x);
@@ -710,7 +710,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_6 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_6.setDynamic(true /* TRUE */);
+    $.fishy_6.setDynamic(true);
     $.fishy_6.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_6.setHeading($.temp_x);
@@ -729,7 +729,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_7 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_7.setDynamic(true /* TRUE */);
+    $.fishy_7.setDynamic(true);
     $.fishy_7.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_7.setHeading($.temp_x);
@@ -748,7 +748,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_8 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_8.setDynamic(true /* TRUE */);
+    $.fishy_8.setDynamic(true);
     $.fishy_8.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_8.setHeading($.temp_x);
@@ -767,7 +767,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_9 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_9.setDynamic(true /* TRUE */);
+    $.fishy_9.setDynamic(true);
     $.fishy_9.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_9.setHeading($.temp_x);
@@ -786,7 +786,7 @@ async function body() {
     $.fish_target_y = $.partner_y + $.temp_x;
 
     $.fishy_10 = ScriptObject.Create(1413 /* fish01 */, $.fish_target_x, $.fish_target_y, $.fish_target_z);
-    $.fishy_10.setDynamic(true /* TRUE */);
+    $.fishy_10.setDynamic(true);
     $.fishy_10.addToVelocity(0.0, 0.0, 1.0);
     $.temp_x = Math.RandomFloatInRange(0.0, 359.9);
     $.fishy_10.setHeading($.temp_x);
@@ -908,11 +908,11 @@ async function body() {
 
     Hud.SwitchWidescreen(false /* OFF */);
     $.player.setControl(true /* ON */);
-    Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
-    Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+    Game.SetEveryoneIgnorePlayer($.player, false);
+    Game.SetAllCarsCanBeDamaged(true);
     $.player.applyBrakesToCar(false /* OFF */);
     if (Car.IsStillAlive($.players_boat_with_guns)) {
-        $.players_boat_with_guns.anchor(false /* FALSE */);
+        $.players_boat_with_guns.anchor(false);
     }
     Camera.Restore();
 
@@ -1050,7 +1050,7 @@ async function body() {
                                 // SCM GOSUB exit_boat
                                 await exit_boat();
                                 // fallback if label was not emitted as async function: no-op continues linearly
-                                $.rays_partner.setStayInSamePlace(true /* TRUE */);
+                                $.rays_partner.setStayInSamePlace(true);
                                 if ($.player.isInAnyCar()) {
                                     $.players_boat_with_guns.markAsNoLongerNeeded();
                                     $.players_boat_with_guns = $.player.storeCarIsIn() as Boat;
@@ -1071,7 +1071,7 @@ async function body() {
                                     // SCM GOSUB exit_boat
                                     await exit_boat();
                                     // fallback if label was not emitted as async function: no-op continues linearly
-                                    $.rays_partner.setStayInSamePlace(true /* TRUE */);
+                                    $.rays_partner.setStayInSamePlace(true);
                                     if ($.player.isInAnyCar()) {
                                         $.players_boat_with_guns.markAsNoLongerNeeded();
                                         $.players_boat_with_guns = $.player.storeCarIsIn() as Boat;
@@ -1139,7 +1139,7 @@ async function body() {
                                 $.players_boat_with_guns.markAsNoLongerNeeded();
                                 $.players_boat_with_guns = $.player.storeCarIsIn() as Boat;
                                 $.rays_partner.setAccuracy(100);
-                                $.rays_partner.setStayInSamePlace(true /* TRUE */);
+                                $.rays_partner.setStayInSamePlace(true);
                                 //SET_CHAR_HEED_THREATS rays_partner TRUE
                                 $.rays_partner.setObjDestroyCar($.players_boat_with_guns);
                             }
@@ -1149,7 +1149,7 @@ async function body() {
                 }
                 if ($.shoot_at_player_flag == 2) {
                     if ($.player.isInArea2D(1364.1, -614.512, 1473.801, -560.223, false)) {
-                        $.rays_partner.setStayInSamePlace(false /* FALSE */);
+                        $.rays_partner.setStayInSamePlace(false);
                         //SET_CHAR_HEED_THREATS rays_partner FALSE
                         $.rays_partner.setObjRunToCoord(1365.7308, -617.1476);
                         $.partner_on_foot_counter = 2;
@@ -1160,7 +1160,7 @@ async function body() {
             if (!($.partners_boat_health == -1)) {
                 $.partners_boat_health = $.rays_partner.getHealth();
                 if ($.partners_boat_health < 250) {
-                    $.rays_partner.setHeedThreats(true /* TRUE */);
+                    $.rays_partner.setHeedThreats(true);
                     $.partners_boat_health = -1;
                 }
             }
@@ -1239,12 +1239,12 @@ async function body() {
                     if ($.rays_partner.isInAnyCar()) {
                         $.partners_car.markAsNoLongerNeeded();
                         $.partners_car = $.rays_partner.storeCarIsIn();
-                        $.partners_car.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.partners_car.setOnlyDamagedByPlayer(true);
                         $.partners_car.setCruiseSpeed(50.0);
                         $.partners_car.setDrivingStyle(2);
                         $.partners_car.wanderRandomly();
-                        $.partners_car.setAvoidLevelTransitions(true /* TRUE */);
-                        $.partners_car.setUpsidedownNotDamaged(true /* TRUE */);
+                        $.partners_car.setAvoidLevelTransitions(true);
+                        $.partners_car.setUpsidedownNotDamaged(true);
                         $.partner_on_foot_flag = 2;
                     }
                 }
@@ -1254,7 +1254,7 @@ async function body() {
                     if ($.rays_partner.isInAnyCar()) {
                         $.partners_car.markAsNoLongerNeeded();
                         $.partners_car = $.rays_partner.storeCarIsIn();
-                        $.partners_car.setOnlyDamagedByPlayer(true /* TRUE */);
+                        $.partners_car.setOnlyDamagedByPlayer(true);
                         $.partners_car.setCruiseSpeed(30.0);
                         $.partners_car.setDrivingStyle(3);
                         $.partners_car.gotoCoordinatesAccurate(1331.2119, -662.4428, 11.0086);
@@ -1284,12 +1284,12 @@ async function body() {
                         if ($.rays_partner.locateInCar2D(1331.3907, -715.4436, 5.0, 5.0, false)) {
                             $.partners_car.markAsNoLongerNeeded();
                             $.partners_car = $.rays_partner.storeCarIsIn();
-                            $.partners_car.setOnlyDamagedByPlayer(true /* TRUE */);
+                            $.partners_car.setOnlyDamagedByPlayer(true);
                             $.partners_car.setCruiseSpeed(50.0);
                             $.partners_car.setDrivingStyle(2);
                             $.partners_car.wanderRandomly();
-                            $.partners_car.setAvoidLevelTransitions(true /* TRUE */);
-                            $.partners_car.setUpsidedownNotDamaged(true /* TRUE */);
+                            $.partners_car.setAvoidLevelTransitions(true);
+                            $.partners_car.setUpsidedownNotDamaged(true);
                             $.partner_on_foot_flag = 2;
                         }
                     }
@@ -1298,12 +1298,12 @@ async function body() {
             if ($.rays_partner.isInAnyCar() && $.partner_on_foot_flag == 3) {
                 $.partners_car.markAsNoLongerNeeded();
                 $.partners_car = $.rays_partner.storeCarIsIn();
-                $.partners_car.setOnlyDamagedByPlayer(true /* TRUE */);
+                $.partners_car.setOnlyDamagedByPlayer(true);
                 $.partners_car.setCruiseSpeed(50.0);
                 $.partners_car.setDrivingStyle(2);
                 $.partners_car.wanderRandomly();
-                $.partners_car.setAvoidLevelTransitions(true /* TRUE */);
-                $.partners_car.setUpsidedownNotDamaged(true /* TRUE */);
+                $.partners_car.setAvoidLevelTransitions(true);
+                $.partners_car.setUpsidedownNotDamaged(true);
                 $.partner_on_foot_flag = 2;
             }
             if ($.partner_on_foot_flag == 2) {
@@ -1361,7 +1361,7 @@ async function body() {
                     if ($.partners_car.isUpsidedown() && $.partners_car.isStopped()) {
                         if ($.player.locateAnyMeansChar2D($.rays_partner, 120.0, 120.0, false)) {
                             $.rays_partner.setObjLeaveCar($.partners_car);
-                            $.partners_car.setUpsidedownNotDamaged(false /* FALSE */);
+                            $.partners_car.setUpsidedownNotDamaged(false);
                         } else {
                             if (!$.partners_car.isOnScreen()) {
                                 const _res106 = $.partners_car.getCoordinates();
@@ -1577,7 +1577,7 @@ async function exit_boat() {
             }
         }
         $.rays_partner.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
-        $.rays_partner.setRunning(true /* TRUE */);
+        $.rays_partner.setRunning(true);
         Hud.ClearCounter($.$id.partners_boat_health);
         $.exit_boat_flag = 1;
     }

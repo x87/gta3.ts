@@ -260,7 +260,7 @@ async function body() {
     $.radar_blip_coord_hm1.remove();
     $.flag_blip_on_hm1 = 0;
 
-    KillFrenzy.Start('HM1_1', 19 as any /* WEAPONTYPE_UZI_DRIVEBY */, 150000, 20, 23 /* PED_GANG_HOOD_B */, -1, -1, -1, false /* FALSE */);
+    KillFrenzy.Start('HM1_1', 19 as any /* WEAPONTYPE_UZI_DRIVEBY */, 150000, 20, 23 /* PED_GANG_HOOD_B */, -1, -1, -1, false);
 
     $.frenzy_state = KillFrenzy.ReadStatus();
 

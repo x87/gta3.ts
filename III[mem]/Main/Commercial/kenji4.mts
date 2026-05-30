@@ -237,7 +237,7 @@ async function body() {
 
     $.cs_playerhead.setAnim('player');
 
-    World.ClearArea(459.1, -1413.0, 25.11, 1.0, true /* TRUE */);
+    World.ClearArea(459.1, -1413.0, 25.11, 1.0, true);
 
     $.player.setCoordinates(459.1, -1413.0, 25.11);
 
@@ -368,7 +368,7 @@ async function body() {
             if (Char.IsDead($.hispanic6_km4)) {
                 $.flag_hispanic6_km4_dead = 1;
             } else {
-                if ($.player.locateAnyMeansChar2D($.hispanic6_km4, 10.0, 10.0, false /* FALSE */)) {
+                if ($.player.locateAnyMeansChar2D($.hispanic6_km4, 10.0, 10.0, false)) {
                     $.hispanic6_km4.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.hispanic6_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
                     $.hispanic6_km4.setObjKillPlayerAnyMeans($.player);
@@ -385,7 +385,7 @@ async function body() {
 
     $.radar_blip_coord5_km4 = Blip.AddForCoord(-91.5, -484.2, 15.2);
 
-    while (!$.player.locateStoppedAnyMeans3D(-91.5, -484.2, 15.2, 4.0, 4.0, 3.0, true /* TRUE */)) {
+    while (!$.player.locateStoppedAnyMeans3D(-91.5, -484.2, 15.2, 4.0, 4.0, 3.0, true)) {
         await asyncWait(0);
     }
 
@@ -395,7 +395,7 @@ async function body() {
 
     $.player.setControl(false /* OFF */);
 
-    World.ClearArea(-91.0, -488.9, 18.7, 2.0, true /* TRUE */);
+    World.ClearArea(-91.0, -488.9, 18.7, 2.0, true);
 
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
 
@@ -476,7 +476,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SetVisibilityOfClosestObjectOfType(-88.3, -487.6, 15.1, 6.0, 415 /* convstore01_door */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(-88.3, -487.6, 15.1, 6.0, 415 /* convstore01_door */, false);
 
     Cutscene.Load('k4_shi2');
 
@@ -504,7 +504,7 @@ async function body() {
 
     $.cs_playerhead.setAnim('player');
 
-    World.ClearArea(-93.01, -489.43, 15.16, 1.0, true /* TRUE */);
+    World.ClearArea(-93.01, -489.43, 15.16, 1.0, true);
 
     $.player.setCoordinates(-93.01, -489.43, 15.16);
 
@@ -586,7 +586,7 @@ async function body() {
 
     Camera.SetBehindPlayer();
 
-    World.SetVisibilityOfClosestObjectOfType(-88.3, -487.6, 15.1, 6.0, 415 /* convstore01_door */, true /* TRUE */);
+    World.SetVisibilityOfClosestObjectOfType(-88.3, -487.6, 15.1, 6.0, 415 /* convstore01_door */, true);
 
     Streaming.UnloadSpecialCharacter(2);
     Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
@@ -763,7 +763,7 @@ async function body() {
                 $.flag_briefcase3_pickedup_km4 = 1;
             }
         }
-        if ($.player.locateAnyMeans3D(940.0, -185.0, 4.2, 25.0, 25.0, 10.0, false /* FALSE */)) {
+        if ($.player.locateAnyMeans3D(940.0, -185.0, 4.2, 25.0, 25.0, 10.0, false)) {
             if ($.flag_hispanic1_km4_dead == 0 && $.flag_hispanic1_hate_player_km4 == 0) {
                 $.hispanic1_km4.setThreatSearch(1 /* THREAT_PLAYER1 */);
                 $.hispanic1_km4.turnToFacePlayer($.player);

@@ -412,17 +412,17 @@ async function body() {
             case 'while_loop_1': {
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 3;
                         next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
                         continue state_machine;
                     }
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 1;
                         next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 2;
                         next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
                         continue state_machine;
@@ -440,17 +440,17 @@ async function body() {
             case 'while_loop_2': {
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 3;
                         next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 0;
                         next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 2;
                         next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
                         continue state_machine;
@@ -477,17 +477,17 @@ async function body() {
 
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 3;
                         next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 0;
                         next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
                         continue state_machine;
                     }
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 1;
                         next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
                         continue state_machine;
@@ -498,7 +498,7 @@ async function body() {
                     }
                     if (
                         !$.player.isInAnyCar() &&
-                        $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)
+                        $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)
                     ) {
                         Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
                         if ($.flag_yak_created_love2 == 1) {
@@ -508,7 +508,7 @@ async function body() {
                         }
                         throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
                     }
-                    if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)) {
+                    if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)) {
                         if (!$.player.isInModel(138 /* CAR_COLUMB */)) {
                             Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
                             if ($.flag_yak_created_love2 == 1) {
@@ -542,7 +542,7 @@ async function body() {
                     await asyncWait(0);
                     if ($.player.isInModel(138 /* CAR_COLUMB */)) {
                         $.player_car = $.player.storeCarIsIn();
-                        $.player_car.setStrong(true /* true */);
+                        $.player_car.setStrong(true);
                     }
                     /*
                     IF NOT IS_PLAYER_IN_MODEL player CAR_COLUMB
@@ -553,7 +553,7 @@ async function body() {
                     */
                     if (
                         $.flag_yak_attack_love2 == 0 &&
-                        $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)
+                        $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)
                     ) {
                         if (!Char.IsDead($.yak_7_love2)) {
                             $.yak_7_love2.setObjKillPlayerAnyMeans($.player);
@@ -565,7 +565,7 @@ async function body() {
                     }
                     if (
                         !$.player.isInAnyCar() &&
-                        $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)
+                        $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)
                     ) {
                         Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
                         if ($.flag_yak_created_love2 == 1) {
@@ -575,7 +575,7 @@ async function body() {
                         }
                         throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
                     }
-                    if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)) {
+                    if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)) {
                         if (!$.player.isInModel(138 /* CAR_COLUMB */)) {
                             Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
                             if ($.flag_yak_created_love2 == 1) {
@@ -590,7 +590,7 @@ async function body() {
                             }
                         }
                     }
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         if (!Char.IsDead($.yak_7_love2)) {
                             $.yak_7_love2.setObjNoObj();
                         }
@@ -602,23 +602,23 @@ async function body() {
                         next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 0;
                         next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false /* false */)) {
+                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 2;
                         next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
                         continue state_machine;
                     }
 
                     if ($.flag_yak_created_love2 == 1 && $.flag_kenji_cut == 0 && $.player.isInModel(138 /* CAR_COLUMB */)) {
-                        if ($.player.isInArea3D(317.2, -603.5, 33.0, 332.0, -593.1, 35.0, false /* false */)) {
+                        if ($.player.isInArea3D(317.2, -603.5, 33.0, 332.0, -593.1, 35.0, false)) {
                             $.flag_kenji_cut = 1;
                             await kenji_cut(); // SCM GOSUB kenji_cut
                         }
-                        if ($.player.isInArea3D(317.2, -506.3, 33.0, 332.0, -497.3, 35.0, false /* false */)) {
+                        if ($.player.isInArea3D(317.2, -506.3, 33.0, 332.0, -497.3, 35.0, false)) {
                             $.flag_kenji_cut = 2;
                             await kenji_cut(); // SCM GOSUB kenji_cut
                         }
@@ -653,7 +653,7 @@ async function body() {
                     }
                     if (
                         !$.player.isInModel(138 /* CAR_COLUMB */) &&
-                        $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false /* false */)
+                        $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)
                     ) {
                         Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
                         throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed
@@ -768,19 +768,19 @@ async function create_yakuza() {
         $.kenji_car_love2 = Car.Create(136 /* CAR_YAKUZA */, 302.0, -550.0, 37.0);
         $.kenji_car_love2.setHeading(90.0);
         $.kenji_car_love2.setIdle();
-        $.kenji_car_love2.setOnlyDamagedByPlayer(false /* False */);
+        $.kenji_car_love2.setOnlyDamagedByPlayer(false);
         $.yak_car_1_love2 = Car.Create(99 /* CAR_STRETCH */, 291.4, -547.0, 37.0);
         $.yak_car_1_love2.setHeading(320.0);
         $.yak_car_1_love2.setIdle();
-        $.yak_car_1_love2.setOnlyDamagedByPlayer(false /* False */);
+        $.yak_car_1_love2.setOnlyDamagedByPlayer(false);
         $.yak_car_2_love2 = Car.Create(136 /* CAR_YAKUZA */, 294.6, -558.0, 37.0);
         $.yak_car_2_love2.setHeading(96.0);
         $.yak_car_2_love2.setIdle();
-        $.yak_car_2_love2.setOnlyDamagedByPlayer(false /* False */);
+        $.yak_car_2_love2.setOnlyDamagedByPlayer(false);
         $.yak_car_1_love2 = Car.Create(99 /* CAR_STRETCH */, 299.4, -540.0, 37.0);
         $.yak_car_1_love2.setHeading(296.0);
         $.yak_car_1_love2.setIdle();
-        $.yak_car_1_love2.setOnlyDamagedByPlayer(false /* False */);
+        $.yak_car_1_love2.setOnlyDamagedByPlayer(false);
         $.yak_1_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 286.4, -543.5, 37.0);
         $.yak_1_love2.setHeading(180.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_1_love2 267.7 -592.0 306.0 -480.0
@@ -839,7 +839,7 @@ async function create_yakuza() {
         $.kenji.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
         $.kenji.addArmor(100);
         $.blip_kenji_love2 = Blip.AddForChar($.kenji);
-        $.kenji.setStayInSamePlace(true /* true */);
+        $.kenji.setStayInSamePlace(true);
         $.flag_yak_created_love2 = 1;
     }
 }

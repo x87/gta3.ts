@@ -55,17 +55,17 @@ async function fish_factory_gate() {
 
             if ($.player.isInZone('PORT_W')) {
                 // Fish Factory Gate
-                if ($.player.isInArea3D(1025.2, -1108.4, 12.0, 1008.2, -1098.4, 16.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(1025.2, -1108.4, 12.0, 1008.2, -1098.4, 16.0, false)) {
                     if (
                         $.player.isInModel(132 /* CAR_BELLYUP */) ||
                         $.player.isInModel(98 /* CAR_TRASHMASTER */) ||
-                        $.player.isInArea3D(1015.6, -1100.5, 12.0, 1009.2, -1108.1, 16.0, false /* FALSE */)
+                        $.player.isInArea3D(1015.6, -1100.5, 12.0, 1009.2, -1108.1, 16.0, false)
                     ) {
                         if ($.gate_sfx1_fish == 0) {
                             Sound.AddOneOffSound(1016.0, -1107.955, 12.294, 92 /* SOUND_GATE_START_CLUNK */);
                             $.gate_sfx1_fish = 1;
                         }
-                        while (!$.fish_factory_gate.slide(1016.0, -1099.455, 12.294, 0.0, 0.1, 0.0, false /* FALSE */)) {
+                        while (!$.fish_factory_gate.slide(1016.0, -1099.455, 12.294, 0.0, 0.1, 0.0, false)) {
                             await asyncWait(0);
                         }
                         if ($.not_clunked_yet == 1) {
@@ -81,7 +81,7 @@ async function fish_factory_gate() {
                     if ($.gate_sfx1_fish == 1) {
                         Sound.AddOneOffSound(1016.0, -1099.455, 12.294, 92 /* SOUND_GATE_START_CLUNK */);
                     }
-                    while (!$.fish_factory_gate.slide(1016.0, -1107.955, 12.294, 0.0, 0.1, 0.0, true /* TRUE */)) {
+                    while (!$.fish_factory_gate.slide(1016.0, -1107.955, 12.294, 0.0, 0.1, 0.0, true)) {
                         //					GET_OBJECT_COORDINATES fish_factory_gate objectx objecty objectz
                         await asyncWait(0);
                     }
@@ -118,12 +118,12 @@ async function dog_food_factory_gate() {
 
             if ($.player.isInZone('PORT_I')) {
                 // Dog Food Factory Gate
-                if ($.player.isInAngledArea3D(1247.58, -822.0, 12.0, 1253.94, -815.0, 18.0, 14.0, false /* FALSE */)) {
+                if ($.player.isInAngledArea3D(1247.58, -822.0, 12.0, 1253.94, -815.0, 18.0, 14.0, false)) {
                     if ($.gate_sfx1_meat == 0) {
                         Sound.AddOneOffSound(1250.4, -812.0, 13.97, 92 /* SOUND_GATE_START_CLUNK */);
                         $.gate_sfx1_meat = 1;
                     }
-                    while (!$.dogfood_factory_gate.slide(1244.4, -818.0, 13.97, 0.1, 0.1, 0.0, false /* FALSE */)) {
+                    while (!$.dogfood_factory_gate.slide(1244.4, -818.0, 13.97, 0.1, 0.1, 0.0, false)) {
                         await asyncWait(0);
                     }
                     if ($.not_clunked_yet == 1) {
@@ -138,7 +138,7 @@ async function dog_food_factory_gate() {
                     if ($.gate_sfx1_meat == 1) {
                         Sound.AddOneOffSound(1244.4, -818.0, 13.97, 92 /* SOUND_GATE_START_CLUNK */);
                     }
-                    while (!$.dogfood_factory_gate.slide(1250.4, -812.0, 13.97, 0.1, 0.1, 0.0, true /* TRUE */)) {
+                    while (!$.dogfood_factory_gate.slide(1250.4, -812.0, 13.97, 0.1, 0.1, 0.0, true)) {
                         //GET_OBJECT_COORDINATES dogfood_factory_gate objectx objecty objectz
                         await asyncWait(0);
                     }
@@ -177,13 +177,13 @@ async function police_gate1() {
 
             if ($.player.isInZone('YAKUSA')) {
                 // Commercial Police Gate one
-                if ($.player.isInArea3D(358.0, -1138.0, 18.0, 366.0, -1121.0, 30.0, false /* FALSE */)) {
-                    if ($.player.isInModel(116 /* CAR_POLICE */) || $.player.isInArea3D(365.9, -1128.2, 21.9, 358.5, -1119.5, 26.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(358.0, -1138.0, 18.0, 366.0, -1121.0, 30.0, false)) {
+                    if ($.player.isInModel(116 /* CAR_POLICE */) || $.player.isInArea3D(365.9, -1128.2, 21.9, 358.5, -1119.5, 26.0, false)) {
                         if ($.gate_sfx1 == 0) {
                             Sound.AddOneOffSound(366.158, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
                             $.gate_sfx1 = 1;
                         }
-                        while (!$.police_door_one.slide(358.158, -1128.522, 21.941, 0.1, 0.0, 0.0, false /* FALSE */)) {
+                        while (!$.police_door_one.slide(358.158, -1128.522, 21.941, 0.1, 0.0, 0.0, false)) {
                             await asyncWait(0);
                         }
                         if ($.not_clunked_yet == 1) {
@@ -199,7 +199,7 @@ async function police_gate1() {
                     if ($.gate_sfx1 == 1) {
                         Sound.AddOneOffSound(358.158, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
                     }
-                    while (!$.police_door_one.slide(366.158, -1128.522, 21.941, 0.1, 0.0, 0.0, true /* TRUE */)) {
+                    while (!$.police_door_one.slide(366.158, -1128.522, 21.941, 0.1, 0.0, 0.0, true)) {
                         //					GET_OBJECT_COORDINATES police_door_one objectx objecty objectz
                         await asyncWait(0);
                     }
@@ -237,13 +237,13 @@ async function police_gate2() {
 
             if ($.player.isInZone('YAKUSA')) {
                 // commercial police gate two
-                if ($.player.isInArea3D(317.87, -1136.0, 18.0, 322.84, -1119.82, 30.0, false /* FALSE */)) {
-                    if ($.player.isInModel(116 /* CAR_POLICE */) || $.player.isInArea3D(322.7, -1128.1, 21.9, 318.0, -1119.3, 26.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(317.87, -1136.0, 18.0, 322.84, -1119.82, 30.0, false)) {
+                    if ($.player.isInModel(116 /* CAR_POLICE */) || $.player.isInArea3D(322.7, -1128.1, 21.9, 318.0, -1119.3, 26.0, false)) {
                         if ($.gate2_sfx1 == 0) {
                             Sound.AddOneOffSound(326.3, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
                             $.gate2_sfx1 = 1;
                         }
-                        while (!$.police_door_two.slide(332.0, -1128.522, 21.941, 0.1, 0.0, 0.0, false /* FALSE */)) {
+                        while (!$.police_door_two.slide(332.0, -1128.522, 21.941, 0.1, 0.0, 0.0, false)) {
                             await asyncWait(0);
                         }
                         if ($.not_clunked_yet == 1) {
@@ -259,7 +259,7 @@ async function police_gate2() {
                     if ($.gate2_sfx1 == 1) {
                         Sound.AddOneOffSound(332.0, -1128.522, 21.941, 92 /* SOUND_GATE_START_CLUNK */);
                     }
-                    while (!$.police_door_two.slide(326.3, -1128.522, 21.941, 0.1, 0.0, 0.0, true /* TRUE */)) {
+                    while (!$.police_door_two.slide(326.3, -1128.522, 21.941, 0.1, 0.0, 0.0, true)) {
                         //					GET_OBJECT_COORDINATES police_door_two objectx objecty objectz
                         await asyncWait(0);
                     }
@@ -296,13 +296,13 @@ async function colombian_gate() {
 
             if ($.player.isInZone('STADIUM')) {
                 // Colombian Compound Gate
-                if ($.player.isInArea3D(98.6, -337.53, 14.0, 81.9, -317.56, 20.0, false /* FALSE */)) {
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) || $.player.isInArea3D(31.0, -317.0, 14.0, 91.0, -394.0, 25.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(98.6, -337.53, 14.0, 81.9, -317.56, 20.0, false)) {
+                    if ($.player.isInModel(138 /* CAR_COLUMB */) || $.player.isInArea3D(31.0, -317.0, 14.0, 91.0, -394.0, 25.0, false)) {
                         if ($.gate2_sfx1 == 0) {
                             Sound.AddOneOffSound(91.589, -318.592, 15.296, 92 /* SOUND_GATE_START_CLUNK */);
                             $.gate2_sfx1 = 1;
                         }
-                        while (!$.colombian_gate.slide(91.589, -327.365, 15.296, 0.0, 0.1, 0.0, false /* FALSE */)) {
+                        while (!$.colombian_gate.slide(91.589, -327.365, 15.296, 0.0, 0.1, 0.0, false)) {
                             await asyncWait(0);
                         }
                         if ($.not_clunked_yet == 1) {
@@ -318,7 +318,7 @@ async function colombian_gate() {
                     if ($.gate2_sfx1 == 1) {
                         Sound.AddOneOffSound(91.589, -327.365, 15.296, 92 /* SOUND_GATE_START_CLUNK */);
                     }
-                    while (!$.colombian_gate.slide(91.589, -318.592, 15.296, 0.0, 0.1, 0.0, true /* TRUE */)) {
+                    while (!$.colombian_gate.slide(91.589, -318.592, 15.296, 0.0, 0.1, 0.0, true)) {
                         //					GET_OBJECT_COORDINATES colombian_gate objectx objecty objectz
                         await asyncWait(0);
                     }
@@ -358,14 +358,14 @@ async function phils_gate() {
 
                 $.open_phils_gate = 0 /* FALSE */;
                 if ($.flag_ray_mission2_passed == 1) {
-                    if ($.player.isInArea2D(134.0, 198.0, 156.0, 207.0, false /* FALSE */)) {
+                    if ($.player.isInArea2D(134.0, 198.0, 156.0, 207.0, false)) {
                         $.open_phils_gate = 1 /* TRUE */;
                     }
                 } else {
                     if ($.flag_player_on_phil_mission == 1) {                        
                         continue phils_gate_inner; // SCM GOTO → phils_gate_inner
                     }
-                    if ($.player.isInArea2D(138.0, 198.0, 146.0, 207.0, false /* FALSE */)) {
+                    if ($.player.isInArea2D(138.0, 198.0, 146.0, 207.0, false)) {
                         $.open_phils_gate = 1 /* TRUE */;
                     }
                 }
@@ -374,7 +374,7 @@ async function phils_gate() {
                         Sound.AddOneOffSound(147.249, 207.323, 10.599, 92 /* SOUND_GATE_START_CLUNK */);
                         $.gate2_sfx1 = 1;
                     }
-                    while (!$.phils_compnd_gate.slide(147.249, 214.523, 10.599, 0.0, 0.1, 0.0, false /* FALSE */)) {
+                    while (!$.phils_compnd_gate.slide(147.249, 214.523, 10.599, 0.0, 0.1, 0.0, false)) {
                         await asyncWait(0);
                     }
                     if ($.not_clunked_yet == 1) {
@@ -389,7 +389,7 @@ async function phils_gate() {
                     if ($.gate2_sfx1 == 1) {
                         Sound.AddOneOffSound(147.249, 214.523, 10.599, 92 /* SOUND_GATE_START_CLUNK */);
                     }
-                    while (!$.phils_compnd_gate.slide(147.249, 207.323, 10.599, 0.0, 0.1, 0.0, true /* TRUE */)) {
+                    while (!$.phils_compnd_gate.slide(147.249, 207.323, 10.599, 0.0, 0.1, 0.0, true)) {
                         //					GET_OBJECT_COORDINATES phils_compnd_gate objectx objecty objectz
                         await asyncWait(0);
                     }
@@ -428,13 +428,13 @@ async function colombian_gate2() {
 
             if ($.player.isInZone('SWANKS')) {
                 // Columbian gate
-                if ($.player.isInArea3D(-367.3, 241.0, 59.0, -358.8, 259.6, 65.0, false /* FALSE */)) {
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) || $.player.isInArea3D(-367.3, 251.0, 59.0, -358.8, 259.6, 65.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(-367.3, 241.0, 59.0, -358.8, 259.6, 65.0, false)) {
+                    if ($.player.isInModel(138 /* CAR_COLUMB */) || $.player.isInArea3D(-367.3, 251.0, 59.0, -358.8, 259.6, 65.0, false)) {
                         if ($.gate_sfx1 == 0) {
                             Sound.AddOneOffSound(-363.05, 250.455, 61.355, 92 /* SOUND_GATE_START_CLUNK */);
                             $.gate_sfx1 = 1;
                         }
-                        while (!$.Columbian_gate2.slide(-370.05, 250.455, 61.355, 0.1, 0.0, 0.0, false /* FALSE */)) {
+                        while (!$.Columbian_gate2.slide(-370.05, 250.455, 61.355, 0.1, 0.0, 0.0, false)) {
                             await asyncWait(0);
                         }
                         if ($.not_clunked_yet == 1) {
@@ -450,7 +450,7 @@ async function colombian_gate2() {
                     if ($.gate_sfx1 == 1) {
                         Sound.AddOneOffSound(-370.05, 250.455, 61.355, 92 /* SOUND_GATE_START_CLUNK */);
                     }
-                    while (!$.Columbian_gate2.slide(-363.05, 250.455, 61.355, 0.1, 0.0, 0.0, true /* TRUE */)) {
+                    while (!$.Columbian_gate2.slide(-363.05, 250.455, 61.355, 0.1, 0.0, 0.0, true)) {
                         //					GET_OBJECT_COORDINATES Columbian_gate2 objectx objecty objectz
                         await asyncWait(0);
                     }

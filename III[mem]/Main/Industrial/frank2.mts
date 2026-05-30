@@ -271,7 +271,7 @@ async function body() {
 
     $.cs_mafia.setAnim('gang02');
 
-    World.ClearArea(1455.1, -187.8, -100.0, 1.0, true /* TRUE */);
+    World.ClearArea(1455.1, -187.8, -100.0, 1.0, true);
 
     $.player.setCoordinates(1455.1, -187.8, -100.0);
 
@@ -434,7 +434,7 @@ async function body() {
 
     $.car_fm2 = Car.Create(110 /* CAR_TAXI */, 906.9, -433.7, -100.0);
 
-    $.car_fm2.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.car_fm2.setOnlyDamagedByPlayer(true);
 
     $.flag_car_fm2_created = 1;
 
@@ -444,7 +444,7 @@ async function body() {
 
     $.van_driver_fm2 = Char.CreateInsideCar($.car_fm2, 4 /* PEDTYPE_CIVMALE */, 8 /* PED_TAXI_DRIVER */);
 
-    $.van_driver_fm2.setCantBeDraggedOut(true /* TRUE */);
+    $.van_driver_fm2.setCantBeDraggedOut(true);
 
     $.van_driver_fm2.clearThreatSearch();
 
@@ -486,17 +486,17 @@ async function body() {
 
     // checks to see where curly will be created
 
-    if ($.player.isInArea3D(901.2, -427.8, 12.0, 878.1, -422.4, 27.0, false /* FALSE */) || $.player.isInArea3D(878.1, -422.4, 12.0, 900.4, -404.2, 27.0, false /* FALSE */)) {
+    if ($.player.isInArea3D(901.2, -427.8, 12.0, 878.1, -422.4, 27.0, false) || $.player.isInArea3D(878.1, -422.4, 12.0, 900.4, -404.2, 27.0, false)) {
         // creates curley bob infront of the club
 
-        World.ClearArea(902.9, -398.8, 14.0, 1.0, true /* TRUE */);
+        World.ClearArea(902.9, -398.8, 14.0, 1.0, true);
         $.curley_bob_fm2 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 902.9, -398.8, 14.0);
         $.radar_blip_ped1_fm2 = Blip.AddForChar($.curley_bob_fm2);
         $.radar_blip_ped1_fm2.changeDisplay(1 /* MARKER_ONLY */);
         $.curley_bob_fm2.clearThreatSearch();
         $.curley_bob_fm2.setObjGotoCoordOnFoot(902.7, -430.4);
         TIMERB = 0;
-        while (!$.curley_bob_fm2.locateOnFoot2D(902.7, -430.4, 1.0, 1.0, false /* FALSE */)) {
+        while (!$.curley_bob_fm2.locateOnFoot2D(902.7, -430.4, 1.0, 1.0, false)) {
             await asyncWait(0);
             if (Char.IsDead($.curley_bob_fm2)) {
                 Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
@@ -511,7 +511,7 @@ async function body() {
             }
             if ($.flag_curly_moved_fm2 == 0) {
                 if (TIMERB >= 15000) {
-                    if (!$.curley_bob_fm2.locateOnFoot2D(902.7, -430.4, 1.0, 1.0, false /* FALSE */)) {
+                    if (!$.curley_bob_fm2.locateOnFoot2D(902.7, -430.4, 1.0, 1.0, false)) {
                         $.curley_bob_fm2.setCoordinates(902.7, -430.4, 13.7);
                         $.flag_curly_moved_fm2 = 1;
                     }
@@ -524,22 +524,22 @@ async function body() {
     } else {
         // creates curley bob down the alleyway
 
-        World.ClearArea(886.3, -422.2, 13.8, 1.0, true /* TRUE */);
+        World.ClearArea(886.3, -422.2, 13.8, 1.0, true);
         $.curley_bob_fm2 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 886.3, -422.2, 13.8);
         $.radar_blip_ped1_fm2 = Blip.AddForChar($.curley_bob_fm2);
         $.radar_blip_ped1_fm2.changeDisplay(1 /* MARKER_ONLY */);
         $.curley_bob_fm2.clearThreatSearch();
         $.curley_bob_fm2.setObjGotoCoordOnFoot(888.0, -425.0);
-        World.ClearArea(887.4, -417.3, 13.9, 10.0, false /* FALSE */); // This should get rid of anything is his way
-        World.ClearArea(892.8, -425.5, 13.9, 3.0, false /* FALSE */);
-        World.ClearArea(896.3, -425.6, 13.8, 3.0, false /* FALSE */);
-        World.ClearArea(899.1, -424.6, 14.0, 3.0, false /* FALSE */);
-        World.ClearArea(903.4, -425.6, 13.9, 2.0, false /* FALSE */);
+        World.ClearArea(887.4, -417.3, 13.9, 10.0, false); // This should get rid of anything is his way
+        World.ClearArea(892.8, -425.5, 13.9, 3.0, false);
+        World.ClearArea(896.3, -425.6, 13.8, 3.0, false);
+        World.ClearArea(899.1, -424.6, 14.0, 3.0, false);
+        World.ClearArea(903.4, -425.6, 13.9, 2.0, false);
 
         //waiting for curly bob to get to the pavement
 
         TIMERB = 0;
-        while (!$.curley_bob_fm2.locateOnFoot2D(904.0, -427.3, 1.0, 1.0, false /* FALSE */)) {
+        while (!$.curley_bob_fm2.locateOnFoot2D(904.0, -427.3, 1.0, 1.0, false)) {
             await asyncWait(0);
             if (Char.IsDead($.curley_bob_fm2)) {
                 Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
@@ -552,16 +552,16 @@ async function body() {
                     throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
                 }
             }
-            if ($.curley_bob_fm2.locateOnFoot2D(888.0, -425.0, 1.0, 1.0, false /* FALSE */)) {
+            if ($.curley_bob_fm2.locateOnFoot2D(888.0, -425.0, 1.0, 1.0, false)) {
                 $.curley_bob_fm2.setObjRunToCoord(892.1, -425.3);
             }
 
-            if ($.curley_bob_fm2.locateOnFoot2D(892.1, -425.3, 1.0, 1.0, false /* FALSE */)) {
+            if ($.curley_bob_fm2.locateOnFoot2D(892.1, -425.3, 1.0, 1.0, false)) {
                 $.curley_bob_fm2.setObjGotoCoordOnFoot(904.0, -427.3);
             }
             if ($.flag_curly_moved_fm2 == 0) {
                 if (TIMERB >= 25000) {
-                    if (!$.curley_bob_fm2.locateOnFoot2D(904.0, -427.3, 1.0, 1.0, false /* FALSE */)) {
+                    if (!$.curley_bob_fm2.locateOnFoot2D(904.0, -427.3, 1.0, 1.0, false)) {
                         $.curley_bob_fm2.setCoordinates(904.0, -427.3, 13.9);
                         $.flag_curly_moved_fm2 = 1;
                     }
@@ -578,7 +578,7 @@ async function body() {
 
                 // Checks to see which part of the mission the player will get
 
-                if (!$.player.isStoppedInAreaInCar2D(905.0, -432.0, 910.0, -419.0, false /* FALSE */)) {
+                if (!$.player.isStoppedInAreaInCar2D(905.0, -432.0, 910.0, -419.0, false)) {
                     break mission_check; // SCM GOTO → mission_jump3
                 }
 
@@ -593,7 +593,7 @@ async function body() {
 
                 // *********************If player is in a taxi luanches part one of the mission*************
 
-                if ($.player.locateStoppedInCar2D(906.0, -425.0, 4.0, 4.0, false /* FALSE */) && $.player.isInCar($.mission_taxi_fm2)) {
+                if ($.player.locateStoppedInCar2D(906.0, -425.0, 4.0, 4.0, false) && $.player.isInCar($.mission_taxi_fm2)) {
                     if (Char.IsDead($.curley_bob_fm2)) {
                         Text.PrintNow('FM2_9', 5000, 1); //Curly Bob's dead!"
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
@@ -646,7 +646,7 @@ async function body() {
                                 throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
                             }
                         }
-                        if (!$.player.locateInCarChar2D($.curley_bob_fm2, 5.0, 5.0, false /* FALSE */)) {
+                        if (!$.player.locateInCarChar2D($.curley_bob_fm2, 5.0, 5.0, false)) {
                             Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                             // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                             throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -738,7 +738,7 @@ async function body() {
                 }
             }
 
-            if ($.car_fm2.locateStopped2D(906.9, -433.0, 6.0, 6.0, false /* FALSE */) && !$.car_fm2.isUpsidedown()) {
+            if ($.car_fm2.locateStopped2D(906.9, -433.0, 6.0, 6.0, false) && !$.car_fm2.isUpsidedown()) {
                 $.curley_bob_fm2.setObjEnterCarAsPassenger($.car_fm2);
             } else {
                 Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
@@ -814,7 +814,7 @@ async function body() {
 
             // Waiting for the car to get to the bottom of the dock area
 
-            while (!$.car_fm2.locate2D(1529.0, -827.0, 3.0, 3.0, false /* FALSE */)) {
+            while (!$.car_fm2.locate2D(1529.0, -827.0, 3.0, 3.0, false)) {
                 await asyncWait(0);
                 if ($.spooked_check == 0) {
                     if (TIMERB > 1500) {
@@ -846,16 +846,16 @@ async function body() {
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
                     }
                 }
-                World.ClearArea(1529.0, -827.0, -100.0, 4.0, false /* FALSE */); // This should clear the area at the bottom of the docks
+                World.ClearArea(1529.0, -827.0, -100.0, 4.0, false); // This should clear the area at the bottom of the docks
                 if (Char.IsDead($.curley_bob_fm2)) {
                     Text.PrintNow('FM2_9', 5000, 1); //"Curly's dead!"
                     // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
                 } else {
                     if ($.spooked_check == 1) {
-                        if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 40.0, 40.0, 40.0, false /* FALSE */)) {
-                            if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 30.0, 30.0, 30.0, false /* FALSE */)) {
-                                if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 20.0, 20.0, 20.0, false /* FALSE */)) {
+                        if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 40.0, 40.0, 40.0, false)) {
+                            if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 30.0, 30.0, 30.0, false)) {
+                                if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 20.0, 20.0, 20.0, false)) {
                                     if ($.player.isInModel(134 /* CAR_MAFIA */)) {
                                         if (TIMERA > 8) {
                                             ++$.spooked_counter;
@@ -931,13 +931,13 @@ async function body() {
                         // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                         throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
                     }
-                    if ($.curley_bob_fm2.isInArea2D(1538.0, -741.0, 1304.0, -901.0, false /* FALSE */)) {
+                    if ($.curley_bob_fm2.isInArea2D(1538.0, -741.0, 1304.0, -901.0, false)) {
                         $.car_fm2.setDrivingStyle(1);
                         $.car_fm2.setCruiseSpeed(10.0);
                         $.flag_no_longer_mad = 1;
                     }
                     if ($.flag_no_longer_mad == 0) {
-                        if ($.player.locateAnyMeansChar2D($.curley_bob_fm2, 30.0, 30.0, false /* FALSE */)) {
+                        if ($.player.locateAnyMeansChar2D($.curley_bob_fm2, 30.0, 30.0, false)) {
                             $.car_fm2.setDrivingStyle(2 /* DRIVINGMODE_AVOIDCARS */);
                             $.car_fm2.setCruiseSpeed(25.0);
                         } else {
@@ -1023,7 +1023,7 @@ async function body() {
                     }
                 }
                 Hud.ClearCounter($.$id.spooked_counter);
-                if (!$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 160.0, false /* FALSE */)) {
+                if (!$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 160.0, false)) {
                     Text.PrintNow('FM2_12', 5000, 1); //"You lost him!"
                     // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -1031,7 +1031,7 @@ async function body() {
 
                 // Checks to see if the player is around the ramp and will fail the mission
 
-                if ($.player.isInArea3D(1573.72, -876.49, 5.0, 1404.09, -1034.3, 30.0, false /* FALSE */)) {
+                if ($.player.isInArea3D(1573.72, -876.49, 5.0, 1404.09, -1034.3, 30.0, false)) {
                     $.spooked_counter = 100;
                     Text.PrintNow('FM2_7', 7000, 1); //"Something's spooked Curly, the meeting's off!"
                     // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
@@ -1080,7 +1080,7 @@ async function body() {
                     }
                 }
             }
-            if (!$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 160.0, false /* FALSE */)) {
+            if (!$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 160.0, false)) {
                 Text.PrintNow('FM2_12', 5000, 1); //"You lost him!"
                 // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -1103,12 +1103,12 @@ async function body() {
     $.player.clearWantedLevel(); // This might have to come out when this bit is an Alex cut-scene
 
     if (!Char.IsDead($.van_driver_fm2)) {
-        $.van_driver_fm2.setCantBeDraggedOut(false /* FALSE */);
+        $.van_driver_fm2.setCantBeDraggedOut(false);
     }
 
     Game.SetPoliceIgnorePlayer($.player, true /* ON */);
 
-    World.ClearArea(1546.56, -834.79, 12.7, 1.0, true /* TRUE */);
+    World.ClearArea(1546.56, -834.79, 12.7, 1.0, true);
 
     Camera.SetFixedPosition(1546.56, -834.79, 12.7, 0.0, 0.0, 0.0);
 
@@ -1120,7 +1120,7 @@ async function body() {
 
     while (TIMERB < 1500) {
         await asyncWait(0);
-        World.ClearArea(1532.0, -889.0, -100.0, 3.0, false /* FALSE */); // Clears area curly is running to.
+        World.ClearArea(1532.0, -889.0, -100.0, 3.0, false); // Clears area curly is running to.
         if (Char.IsDead($.curley_bob_fm2)) {
             Text.PrintNow('FM2_9', 5000, 1); //"Curly Bob's dead!"
             $.flag_curley_bob_fm2_dead = 1;
@@ -1228,7 +1228,7 @@ async function body() {
 
     $.cs_curlyhead.setAnim('curly');
 
-    World.ClearArea(898.6, -425.6, 13.9, 1.0, true /* TRUE */);
+    World.ClearArea(898.6, -425.6, 13.9, 1.0, true);
 
     //SET_PLAYER_COORDINATES player 898.6 -425.6 13.9  // Player is in a taxi so don't comment back in
 
@@ -1395,7 +1395,7 @@ async function body() {
             if (Char.IsDead($.curley_bob_fm2)) {
                 $.flag_curley_bob_dead_fm2 = 1;
             } else {
-                if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 25.0, 25.0, 25.0, false /* FALSE */)) {
+                if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 25.0, 25.0, 25.0, false)) {
                     if ($.flag_curly_mad_fm2 == 0) {
                         $.curley_bob_fm2.setObjKillPlayerAnyMeans($.player);
                         $.flag_curly_mad_fm2 = 1;
@@ -1405,7 +1405,7 @@ async function body() {
                     $.curley_bob_fm2.setObjFleePlayerOnFootAlways($.player);
                 }
 
-                if (!$.curley_bob_fm2.isOnScreen() && !$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 80.0, false /* FALSE */)) {
+                if (!$.curley_bob_fm2.isOnScreen() && !$.player.locateAnyMeansChar3D($.curley_bob_fm2, 160.0, 160.0, 80.0, false)) {
                     Text.PrintNow('FM2_10', 5000, 1); //"Curly got away!"
                     // SCM GOTO → mission_frankie2_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_frankie2_failed'); // fallback: would break linear control flow
@@ -1451,7 +1451,7 @@ async function cleanup() {
     if ($.flag_car_fm2_dead == 0) {
         if (!Car.IsDead($.car_fm2)) {
             $.car_fm2.changeLock(1 /* CARLOCK_UNLOCKED */);
-            $.car_fm2.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.car_fm2.setOnlyDamagedByPlayer(false);
         }
     }
     Streaming.MarkModelAsNoLongerNeeded(110 /* CAR_TAXI */);

@@ -221,7 +221,7 @@ async function body() {
             // SCM GOTO → mission_diablo2_failed (not lowered; manual jump required)
             throw new Error('unresolved GOTO mission_diablo2_failed'); // fallback: would break linear control flow
         }
-        if ($.icecreamvan_any.isStoppedInArea3D(1215.9, -1128.7, 11.2, 1210.4, -1123.3, 14.2, false /* FALSE */) && $.player.isInCar($.icecreamvan_any)) {
+        if ($.icecreamvan_any.isStoppedInArea3D(1215.9, -1128.7, 11.2, 1210.4, -1123.3, 14.2, false) && $.player.isInCar($.icecreamvan_any)) {
             $.controlmode = Pad.GetControllerMode();
             if ($.controlmode == 0) {
                 Text.PrintNow('DIAB2_6', 1000, 1); // Tap L3 quickly to set the Icecream jingle
@@ -255,16 +255,16 @@ async function body() {
         }
     }
 
-    World.ClearArea(1190.5, -1141.2, 11.6, 2.0, true /* TRUE */);
+    World.ClearArea(1190.5, -1141.2, 11.6, 2.0, true);
     $.creamed_guy1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1190.5, -1141.2, 11.6);
 
-    World.ClearArea(1192.5, -1141.2, 11.6, 2.0, true /* TRUE */);
+    World.ClearArea(1192.5, -1141.2, 11.6, 2.0, true);
     $.creamed_guy2 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1192.5, -1141.2, 11.6);
 
-    World.ClearArea(1194.5, -1141.2, 11.6, 2.0, true /* TRUE */);
+    World.ClearArea(1194.5, -1141.2, 11.6, 2.0, true);
     $.creamed_guy3 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1194.5, -1141.2, 11.6);
 
-    World.ClearArea(1196.5, -1141.2, 11.6, 2.0, true /* TRUE */);
+    World.ClearArea(1196.5, -1141.2, 11.6, 2.0, true);
     $.creamed_guy4 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1196.5, -1141.2, 11.6);
 
     $.creamed_guy1.giveWeapon(3 /* WEAPONTYPE_UZI */, 160);
@@ -280,7 +280,7 @@ async function body() {
 
     await asyncWait(2000);
 
-    World.ClearArea(1205.6, -1141.1, 11.6, 10.0, true /* TRUE */);
+    World.ClearArea(1205.6, -1141.1, 11.6, 10.0, true);
 
     if (!Char.IsDead($.creamed_guy1)) {
         $.creamed_guy1.setObjGotoCoordOnFoot(1205.6, -1141.1);
@@ -349,25 +349,25 @@ async function body() {
             $.ojective_creamed_guy4_done_before = 1;
         }
         if (!Char.IsDead($.creamed_guy1)) {
-            if ($.player.locateAnyMeansChar3D($.creamed_guy1, 8.0, 8.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar3D($.creamed_guy1, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy1.setObjKillPlayerOnFoot($.player);
                 $.creamed_guy1.setThreatSearch(1 /* THREAT_PLAYER1 */);
             }
         }
         if (!Char.IsDead($.creamed_guy2)) {
-            if ($.player.locateAnyMeansChar3D($.creamed_guy2, 8.0, 8.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar3D($.creamed_guy2, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy2.setObjKillPlayerOnFoot($.player);
                 $.creamed_guy2.setThreatSearch(1 /* THREAT_PLAYER1 */);
             }
         }
         if (!Char.IsDead($.creamed_guy3)) {
-            if ($.player.locateAnyMeansChar3D($.creamed_guy3, 8.0, 8.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar3D($.creamed_guy3, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy3.setObjKillPlayerOnFoot($.player);
                 $.creamed_guy3.setThreatSearch(1 /* THREAT_PLAYER1 */);
             }
         }
         if (!Char.IsDead($.creamed_guy4)) {
-            if ($.player.locateAnyMeansChar3D($.creamed_guy4, 8.0, 8.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar3D($.creamed_guy4, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy4.setObjKillPlayerOnFoot($.player);
                 $.creamed_guy4.setThreatSearch(1 /* THREAT_PLAYER1 */);
             }
@@ -447,25 +447,25 @@ async function body() {
             }
         }
         if (!Char.IsDead($.creamed_guy1)) {
-            if ($.player.locateAnyMeansChar3D($.creamed_guy1, 8.0, 8.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar3D($.creamed_guy1, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy1.setObjKillPlayerOnFoot($.player);
                 $.creamed_guy1.setThreatSearch(1 /* THREAT_PLAYER1 */);
             }
         }
         if (!Char.IsDead($.creamed_guy2)) {
-            if ($.player.locateAnyMeansChar3D($.creamed_guy2, 8.0, 8.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar3D($.creamed_guy2, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy2.setObjKillPlayerOnFoot($.player);
                 $.creamed_guy2.setThreatSearch(1 /* THREAT_PLAYER1 */);
             }
         }
         if (!Char.IsDead($.creamed_guy3)) {
-            if ($.player.locateAnyMeansChar3D($.creamed_guy3, 8.0, 8.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar3D($.creamed_guy3, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy3.setObjKillPlayerOnFoot($.player);
                 $.creamed_guy3.setThreatSearch(1 /* THREAT_PLAYER1 */);
             }
         }
         if (!Char.IsDead($.creamed_guy4)) {
-            if ($.player.locateAnyMeansChar3D($.creamed_guy4, 8.0, 8.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateAnyMeansChar3D($.creamed_guy4, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy4.setObjKillPlayerOnFoot($.player);
                 $.creamed_guy4.setThreatSearch(1 /* THREAT_PLAYER1 */);
             }

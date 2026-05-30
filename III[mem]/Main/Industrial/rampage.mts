@@ -142,7 +142,7 @@ async function rampage_loop() {
         if ($.rampage_01_flag == 0) {
             if ($.rampage_01.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 6 /* WEAPONTYPE_M16 */, 120000, $.rampage_01_kills, 14 /* PED_GANG_DIABLO_A */, 15 /* PED_GANG_DIABLO_B */, -1, -1, false /* FALSE */); // "Murder 20 Diablos in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 6 /* WEAPONTYPE_M16 */, 120000, $.rampage_01_kills, 14 /* PED_GANG_DIABLO_A */, 15 /* PED_GANG_DIABLO_B */, -1, -1, false); // "Murder 20 Diablos in 120 seconds!"
                 Streaming.RequestModel(14 /* PED_GANG_DIABLO_A */);
                 Streaming.RequestModel(15 /* PED_GANG_DIABLO_B */);
                 World.ForceRandomPedType(9 /* PEDTYPE_GANG_DIABLO */);
@@ -178,7 +178,7 @@ async function rampage_loop() {
         if ($.rampage_02_flag == 0) {
             if ($.rampage_02.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 8 /* WEAPONTYPE_ROCKET */, 120000, $.rampage_02_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 8 /* WEAPONTYPE_ROCKET */, 120000, $.rampage_02_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_02', $.rampage_02_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -217,7 +217,7 @@ async function rampage_loop() {
                     11 /* PED_GANG_MAFIA_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Kill 20 Mafia in 120 seconds!"
                 Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
                 Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
@@ -253,7 +253,7 @@ async function rampage_loop() {
         if ($.rampage_04_flag == 0) {
             if ($.rampage_04.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 3 /* WEAPONTYPE_UZI */, 120000, $.rampage_04_kills, 12 /* PED_GANG_TRIAD_A */, 13 /* PED_GANG_TRIAD_B */, -1, -1, false /* FALSE */); // "Kill 20 Triads in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 3 /* WEAPONTYPE_UZI */, 120000, $.rampage_04_kills, 12 /* PED_GANG_TRIAD_A */, 13 /* PED_GANG_TRIAD_B */, -1, -1, false); // "Kill 20 Triads in 120 seconds!"
                 Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
                 Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
                 World.ForceRandomPedType(8 /* PEDTYPE_GANG_TRIAD */);
@@ -297,7 +297,7 @@ async function rampage_loop() {
                     13 /* PED_GANG_TRIAD_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Kill 20 Triads in 120 seconds!"
                 Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
                 Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
@@ -333,7 +333,7 @@ async function rampage_loop() {
         if ($.rampage_06_flag == 0) {
             if ($.rampage_06.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 11 /* WEAPONTYPE_GRENADE */, 120000, $.rampage_06_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 11 /* WEAPONTYPE_GRENADE */, 120000, $.rampage_06_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_06', $.rampage_06_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -371,7 +371,7 @@ async function rampage_loop() {
                     19 /* PED_GANG_YARDIE_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Pop 20 Yardie heads in 120 seconds!"
                 Streaming.RequestModel(18 /* PED_GANG_YARDIE_A */);
                 Streaming.RequestModel(19 /* PED_GANG_YARDIE_B */);
@@ -416,7 +416,7 @@ async function rampage_loop() {
                     17 /* PED_GANG_YAKUZA_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Burn 20 Yakuza in 120 seconds!"
                 Streaming.RequestModel(16 /* PED_GANG_YAKUZA_A */);
                 Streaming.RequestModel(17 /* PED_GANG_YAKUZA_B */);
@@ -452,7 +452,7 @@ async function rampage_loop() {
         if ($.rampage_09_flag == 0) {
             if ($.rampage_09.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 4 /* WEAPONTYPE_SHOTGUN */, 120000, $.rampage_09_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 4 /* WEAPONTYPE_SHOTGUN */, 120000, $.rampage_09_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_09', $.rampage_09_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -481,7 +481,7 @@ async function rampage_loop() {
         if ($.rampage_10_flag == 0) {
             if ($.rampage_10.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 6 /* WEAPONTYPE_M16 */, 120000, $.rampage_10_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 6 /* WEAPONTYPE_M16 */, 120000, $.rampage_10_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_10', $.rampage_10_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -519,7 +519,7 @@ async function rampage_loop() {
                     19 /* PED_GANG_YARDIE_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Annihialate 20 Yardies in 120 seconds!"
                 Streaming.RequestModel(18 /* PED_GANG_YARDIE_A */);
                 Streaming.RequestModel(19 /* PED_GANG_YARDIE_B */);
@@ -564,7 +564,7 @@ async function rampage_loop() {
                     17 /* PED_GANG_YAKUZA_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Torch 20 Yakuza in 120 seconds!"
                 Streaming.RequestModel(16 /* PED_GANG_YAKUZA_A */);
                 Streaming.RequestModel(17 /* PED_GANG_YAKUZA_B */);
@@ -609,7 +609,7 @@ async function rampage_loop() {
                     19 /* PED_GANG_YARDIE_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Explode 20 Yardies in 120 seconds!"
                 Streaming.RequestModel(18 /* PED_GANG_YARDIE_A */);
                 Streaming.RequestModel(19 /* PED_GANG_YARDIE_B */);
@@ -654,7 +654,7 @@ async function rampage_loop() {
                     21 /* PED_GANG_COLOMBIAN_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Fry 20 Colombians in 120 seconds!"
                 Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
@@ -690,7 +690,7 @@ async function rampage_loop() {
         if ($.rampage_15_flag == 0) {
             if ($.rampage_15.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 4 /* WEAPONTYPE_SHOTGUN */, 120000, $.rampage_15_kills, 22 /* PED_GANG_HOOD_A */, 23 /* PED_GANG_HOOD_B */, -1, -1, false /* FALSE */); // "Splatter 20 Hoods in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 4 /* WEAPONTYPE_SHOTGUN */, 120000, $.rampage_15_kills, 22 /* PED_GANG_HOOD_A */, 23 /* PED_GANG_HOOD_B */, -1, -1, false); // "Splatter 20 Hoods in 120 seconds!"
                 Streaming.RequestModel(22 /* PED_GANG_HOOD_A */);
                 Streaming.RequestModel(23 /* PED_GANG_HOOD_B */);
                 World.ForceRandomPedType(13 /* PEDTYPE_GANG_HOOD */);
@@ -725,7 +725,7 @@ async function rampage_loop() {
         if ($.rampage_16_flag == 0) {
             if ($.rampage_16.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 8 /* WEAPONTYPE_ROCKET */, 120000, $.rampage_16_kills, -2, -1, -1, -1, false /* FALSE */); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 8 /* WEAPONTYPE_ROCKET */, 120000, $.rampage_16_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_16', $.rampage_16_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -763,7 +763,7 @@ async function rampage_loop() {
                     21 /* PED_GANG_COLOMBIAN_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Splatter 20 Colombians with a car in 120 seconds!"
                 Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
@@ -799,7 +799,7 @@ async function rampage_loop() {
         if ($.rampage_18_flag == 0) {
             if ($.rampage_18.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 19 /* WEAPONTYPE_UZI_DRIVEBY */, 120000, $.rampage_18_kills, -2, -1, -1, -1, false /* FALSE */); // "Driveby and Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', 19 /* WEAPONTYPE_UZI_DRIVEBY */, 120000, $.rampage_18_kills, -2, -1, -1, -1, false); // "Driveby and Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_18', $.rampage_18_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -858,7 +858,7 @@ async function rampage_loop() {
                     21 /* PED_GANG_COLOMBIAN_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Remove 20 Colombian heads in 120 seconds!"
                 Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
                 Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
@@ -903,7 +903,7 @@ async function rampage_loop() {
                     23 /* PED_GANG_HOOD_B */,
                     -1,
                     -1,
-                    false /* FALSE */
+                    false
                 ); // "Behead 20 Hoods in 120 seconds!"
                 Streaming.RequestModel(22 /* PED_GANG_HOOD_A */);
                 Streaming.RequestModel(23 /* PED_GANG_HOOD_B */);

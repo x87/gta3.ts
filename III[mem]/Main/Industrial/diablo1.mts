@@ -298,32 +298,32 @@ async function body() {
 
     $.car1_d1 = Car.Create(105 /* CAR_CHEETAH */, 1048.1465, -858.6693, 13.7827);
     $.car1_d1.lockDoors(2 /* CARLOCK_LOCKED */);
-    $.car1_d1.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */);
-    $.car1_d1.setWatertight(true /* TRUE */);
-    $.car1_d1.setStrong(true /* TRUE */);
-    $.car1_d1.setUpsidedownNotDamaged(true /* TRUE */);
+    $.car1_d1.setProofs(true, true, true, false, true);
+    $.car1_d1.setWatertight(true);
+    $.car1_d1.setStrong(true);
+    $.car1_d1.setUpsidedownNotDamaged(true);
 
     $.car2_d1 = Car.Create(105 /* CAR_CHEETAH */, 1053.3384, -859.3337, 13.7827);
     $.car2_d1.lockDoors(2 /* CARLOCK_LOCKED */);
-    $.car2_d1.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */);
-    $.car2_d1.setWatertight(true /* TRUE */);
-    $.car2_d1.setStrong(true /* TRUE */);
-    $.car2_d1.setUpsidedownNotDamaged(true /* TRUE */);
+    $.car2_d1.setProofs(true, true, true, false, true);
+    $.car2_d1.setWatertight(true);
+    $.car2_d1.setStrong(true);
+    $.car2_d1.setUpsidedownNotDamaged(true);
 
     $.car3_d1 = Car.Create(105 /* CAR_CHEETAH */, 1058.6385, -859.2989, 13.7827);
     $.car3_d1.lockDoors(2 /* CARLOCK_LOCKED */);
-    $.car3_d1.setProofs(true /* TRUE */, true /* TRUE */, true /* TRUE */, false /* FALSE */, true /* TRUE */);
-    $.car3_d1.setWatertight(true /* TRUE */);
-    $.car3_d1.setStrong(true /* TRUE */);
-    $.car3_d1.setUpsidedownNotDamaged(true /* TRUE */);
+    $.car3_d1.setProofs(true, true, true, false, true);
+    $.car3_d1.setWatertight(true);
+    $.car3_d1.setStrong(true);
+    $.car3_d1.setUpsidedownNotDamaged(true);
 
     $.ped_car1_driver_d1 = Char.CreateInsideCar($.car1_d1, 4 /* PEDTYPE_CIVMALE */, 14 /* PED_GANG_DIABLO_A */);
     $.ped_car2_driver_d1 = Char.CreateInsideCar($.car2_d1, 4 /* PEDTYPE_CIVMALE */, 15 /* PED_GANG_DIABLO_B */);
     $.ped_car3_driver_d1 = Char.CreateInsideCar($.car3_d1, 4 /* PEDTYPE_CIVMALE */, 14 /* PED_GANG_DIABLO_A */);
 
-    $.ped_car1_driver_d1.setCantBeDraggedOut(true /* TRUE */);
-    $.ped_car2_driver_d1.setCantBeDraggedOut(true /* TRUE */);
-    $.ped_car3_driver_d1.setCantBeDraggedOut(true /* TRUE */);
+    $.ped_car1_driver_d1.setCantBeDraggedOut(true);
+    $.ped_car2_driver_d1.setCantBeDraggedOut(true);
+    $.ped_car3_driver_d1.setCantBeDraggedOut(true);
 
     $.car1_d1.setHeading(180.0);
     $.car2_d1.setHeading(180.0);
@@ -342,9 +342,9 @@ async function body() {
     $.car3_d1.setDrivingStyle(2);
     $.car3_d1.setCruiseSpeed(50.0);
 
-    $.car1_d1.setOnlyDamagedByPlayer(true /* TRUE */);
-    $.car2_d1.setOnlyDamagedByPlayer(true /* TRUE */);
-    $.car3_d1.setOnlyDamagedByPlayer(true /* TRUE */);
+    $.car1_d1.setOnlyDamagedByPlayer(true);
+    $.car2_d1.setOnlyDamagedByPlayer(true);
+    $.car3_d1.setOnlyDamagedByPlayer(true);
 
     $.blip_chase_d1 = Blip.AddForCoord(1042.9772, -858.7398, 13.7827);
 
@@ -392,16 +392,16 @@ async function body() {
     }
 
     race_start: {
-        $.car1_d1.setOnlyDamagedByPlayer(false /* FALSE */);
-        $.car2_d1.setOnlyDamagedByPlayer(false /* FALSE */);
-        $.car3_d1.setOnlyDamagedByPlayer(false /* FALSE */);
+        $.car1_d1.setOnlyDamagedByPlayer(false);
+        $.car2_d1.setOnlyDamagedByPlayer(false);
+        $.car3_d1.setOnlyDamagedByPlayer(false);
 
         if ($.timerc == 9) {
             Text.PrintBig('DIAB1_1', 1200, 4); // "3..2..1.. GO GO GO!"
         } else {
             $.player.setControl(false /* OFF */);
-            Game.SetEveryoneIgnorePlayer($.player, true /* TRUE */);
-            Game.SetAllCarsCanBeDamaged(false /* FALSE */);
+            Game.SetEveryoneIgnorePlayer($.player, true);
+            Game.SetAllCarsCanBeDamaged(false);
             Text.PrintBig('YD1_3', 1100, 4);
             Sound.AddOneOffSound(0.0, 0.0, 0.0, 97 /* SOUND_RACE_START_3 */);
             await asyncWait(1000);
@@ -414,8 +414,8 @@ async function body() {
             Text.PrintBig('YD1GO', 800, 4);
             Sound.AddOneOffSound(0.0, 0.0, 0.0, 100 /* SOUND_RACE_START_GO */);
             $.player.setControl(true /* ON */);
-            Game.SetEveryoneIgnorePlayer($.player, false /* FALSE */);
-            Game.SetAllCarsCanBeDamaged(true /* TRUE */);
+            Game.SetEveryoneIgnorePlayer($.player, false);
+            Game.SetAllCarsCanBeDamaged(true);
         }
 
         if (Car.IsDead($.car1_d1)) {
@@ -463,7 +463,7 @@ async function body() {
         $.blip_chase_d1 = Blip.AddForCoord($.player_x_d1, $.player_y_d1, $.player_z_d1);
         $.second_blip = Blip.AddForCoordOld($.blip_2nd_x, $.blip_2nd_y, $.blip_2nd_z, 5 /* PURPLE */, 2 /* BLIP_ONLY */);
         $.second_blip.changeScale(2);
-        $.second_blip.dim(true /* TRUE */);
+        $.second_blip.dim(true);
         $.car1_d1.gotoCoordinates($.car1_x_d1, $.car1_y_d1, $.car1_z_d1);
         $.car2_d1.gotoCoordinates($.car2_x_d1, $.car2_y_d1, $.car2_z_d1);
         $.car3_d1.gotoCoordinates($.car3_x_d1, $.car3_y_d1, $.car3_z_d1);

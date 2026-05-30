@@ -1,4 +1,21 @@
-import { $ } from '../utils';
+import {
+    $,
+    CAR_AMBULANCE,
+    CAR_ENFORCER,
+    CAR_FBI,
+    CAR_FIRETRUCK,
+    CAR_LANDSTALKER,
+    CAR_PATRIOT,
+    CAR_POLICE,
+    CAR_RHINO,
+    CAR_STALLION,
+    CAR_TOYZ,
+    FADE_OUT,
+    OFF,
+    PAD1,
+    RIGHTSHOCK,
+    SQUARE,
+} from '../utils';
 
 interface MissionDefinition {
     name: string;
@@ -31,11 +48,11 @@ const missions: MissionDefinition[] = [
             }
             if ($.flag_eightball_mission_launched == 0) {
                 if ($.flag_reached_hideout == 0) {
-                    if ($.player.locateOnFoot2D(811.9, -939.95, 3.5, 3.5, false /* FALSE */)) {
+                    if ($.player.locateOnFoot2D(811.9, -939.95, 3.5, 3.5, false)) {
                         return true;
                     }
                 } else {
-                    if ($.player.locateOnFoot2D(883.5, -308.2, 3.5, 3.5, false /* FALSE */)) {
+                    if ($.player.locateOnFoot2D(883.5, -308.2, 3.5, 3.5, false)) {
                         return true;
                     }
                 }
@@ -60,7 +77,7 @@ const missions: MissionDefinition[] = [
             return false;
         },
         async beforeMission() {
-            $.player.setControl(false /* off */);
+            $.player.setControl(OFF);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
@@ -78,7 +95,7 @@ const missions: MissionDefinition[] = [
             return false;
         },
         async beforeMission() {
-            $.player.setControl(false /* off */);
+            $.player.setControl(OFF);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
@@ -90,10 +107,10 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Industrial/rc1.mts`,
         name: 'RC Diablo Destruction',
         async canStart() {
-            if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
+            if (!$.player.isInModel(CAR_TOYZ)) {
                 $.flag_just_done_rc_mission = 0;
             }
-            return $.flag_just_done_rc_mission == 0 && $.player.isInModel(149 /* CAR_TOYZ */) && $.player.locateAnyMeans3D(1014.0, -120.0, 5.0, 5.0, 5.0, 5.0, false /* false */);
+            return $.flag_just_done_rc_mission == 0 && $.player.isInModel(CAR_TOYZ) && $.player.locateAnyMeans3D(1014.0, -120.0, 5.0, 5.0, 5.0, 5.0, false);
         },
         async beforeMission() {
             Text.PrintBig('RC1', 15000, 2);
@@ -104,10 +121,10 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Industrial/rc2.mts`,
         name: 'RC Mafia Massacre',
         async canStart() {
-            if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
+            if (!$.player.isInModel(CAR_TOYZ)) {
                 $.flag_just_done_rc_mission = 0;
             }
-            return $.flag_just_done_rc_mission == 0 && $.player.isInModel(149 /* CAR_TOYZ */) && $.player.locateAnyMeans3D(1158.0, -309.0, 23.0, 5.0, 5.0, 5.0, false /* false */);
+            return $.flag_just_done_rc_mission == 0 && $.player.isInModel(CAR_TOYZ) && $.player.locateAnyMeans3D(1158.0, -309.0, 23.0, 5.0, 5.0, 5.0, false);
         },
         async beforeMission() {
             Text.PrintBig('RC2', 15000, 2);
@@ -118,10 +135,10 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Industrial/rc3.mts`,
         name: 'RC Rumpo Rampage',
         async canStart() {
-            if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
+            if (!$.player.isInModel(CAR_TOYZ)) {
                 $.flag_just_done_rc_mission = 0;
             }
-            return $.flag_just_done_rc_mission == 0 && $.player.isInModel(149 /* CAR_TOYZ */) && $.player.locateAnyMeans3D(-636.0, 65.0, 19.0, 5.0, 5.0, 5.0, false /* false */);
+            return $.flag_just_done_rc_mission == 0 && $.player.isInModel(CAR_TOYZ) && $.player.locateAnyMeans3D(-636.0, 65.0, 19.0, 5.0, 5.0, 5.0, false);
         },
         async beforeMission() {
             Text.PrintBig('RC4', 15000, 2);
@@ -132,10 +149,10 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Industrial/rc4.mts`,
         name: 'RC Casino Calamity',
         async canStart() {
-            if (!$.player.isInModel(149 /* CAR_TOYZ */)) {
+            if (!$.player.isInModel(CAR_TOYZ)) {
                 $.flag_just_done_rc_mission = 0;
             }
-            return $.flag_just_done_rc_mission == 0 && $.player.isInModel(149 /* CAR_TOYZ */) && $.player.locateAnyMeans3D(366.0, -1312.0, 26.0, 5.0, 5.0, 5.0, false /* false */);
+            return $.flag_just_done_rc_mission == 0 && $.player.isInModel(CAR_TOYZ) && $.player.locateAnyMeans3D(366.0, -1312.0, 26.0, 5.0, 5.0, 5.0, false);
         },
         async beforeMission() {
             Text.PrintBig('RC3', 15000, 2);
@@ -152,10 +169,10 @@ const missions: MissionDefinition[] = [
                 $.record_4x4_one = 300;
             }
             if ($.player.isInZone('S_VIEW')) {
-                if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(1294.0, -656.0, 1316.0, -638.0, false /* false */)) {
+                if ($.player.isInModel(CAR_PATRIOT) && !$.player.isInArea2D(1294.0, -656.0, 1316.0, -638.0, false)) {
                     $.flag_4x4one_trigger = 1;
                 }
-                if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4one_trigger == 0) {
+                if ($.player.isInModel(CAR_PATRIOT) && $.flag_4x4one_trigger == 0) {
                     return true;
                 }
 
@@ -179,10 +196,10 @@ const missions: MissionDefinition[] = [
             }
 
             if ($.player.isInZone('PARK')) {
-                if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && !$.player.isInArea2D(58.0, -585.0, 68.0, -595.0, false /* false */)) {
+                if ($.player.isInModel(CAR_LANDSTALKER) && !$.player.isInArea2D(58.0, -585.0, 68.0, -595.0, false)) {
                     $.flag_4x4two_trigger = 1;
                 }
-                if ($.player.isInModel(90 /* CAR_LANDSTALKER */) && $.flag_4x4two_trigger == 0) {
+                if ($.player.isInModel(CAR_LANDSTALKER) && $.flag_4x4two_trigger == 0) {
                     return true;
                 }
                 if (!$.player.isInAnyCar()) {
@@ -205,11 +222,11 @@ const missions: MissionDefinition[] = [
                 $.record_4x4_three = 300;
             }
 
-            if ($.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
-                if ($.player.isInModel(96 /* CAR_PATRIOT */) && !$.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false /* false */)) {
+            if ($.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false)) {
+                if ($.player.isInModel(CAR_PATRIOT) && !$.player.isInArea2D(-230.0, 255.0, -210.0, 275.0, false)) {
                     $.flag_4x4three_trigger = 1;
                 }
-                if ($.player.isInModel(96 /* CAR_PATRIOT */) && $.flag_4x4three_trigger == 0) {
+                if ($.player.isInModel(CAR_PATRIOT) && $.flag_4x4three_trigger == 0) {
                     return true;
                 }
 
@@ -230,10 +247,10 @@ const missions: MissionDefinition[] = [
         name: 'Multistorey Mayhem',
         async canStart() {
             if ($.player.isInZone('COM_EAS')) {
-                if ($.player.isInModel(129 /* CAR_STALLION */) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false /* false */)) {
+                if ($.player.isInModel(CAR_STALLION) && !$.player.isInArea2D(238.0, -612.0, 267.0, -469.0, false)) {
                     $.flag_mayhem_trigger = 1;
                 }
-                if ($.player.isInModel(129 /* CAR_STALLION */) && $.flag_mayhem_trigger == 0) {
+                if ($.player.isInModel(CAR_STALLION) && $.flag_mayhem_trigger == 0) {
                     return true;
                 }
 
@@ -254,7 +271,7 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Industrial/ambulance.mts`,
         name: 'Paramedic',
         async canStart() {
-            if ($.player.isInModel(106 /* CAR_AMBULANCE */)) {
+            if ($.player.isInModel(CAR_AMBULANCE)) {
                 if ($.flag_player_on_ambulance_mission == 0) {
                     $.controlmode = Pad.GetControllerMode();
                     if ($.been_in_ambulance_before == 0) {
@@ -266,22 +283,20 @@ const missions: MissionDefinition[] = [
                         $.been_in_ambulance_before = 1;
                     }
                     if (!($.controlmode == 3)) {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                            while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                        if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
+                            while (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                                 await asyncWait(0);
                                 if (!$.player.isPlaying()) {
-                                    // SCM GOTO → ambulance_mission_loop
                                     return false;
                                 }
                             }
                             return true;
                         }
                     } else {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                            while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                        if (Pad.IsButtonPressed(PAD1, SQUARE)) {
+                            while (Pad.IsButtonPressed(PAD1, SQUARE)) {
                                 await asyncWait(0);
                                 if (!$.player.isPlaying()) {
-                                    // SCM GOTO → ambulance_mission_loop
                                     return false;
                                 }
                             }
@@ -309,7 +324,7 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Industrial/firetruck.mts`,
         name: 'Firefighter',
         async canStart() {
-            if ($.player.isInModel(97 /* CAR_FIRETRUCK */)) {
+            if ($.player.isInModel(CAR_FIRETRUCK)) {
                 if ($.flag_player_on_fire_mission == 0) {
                     $.controlmode = Pad.GetControllerMode();
                     if ($.been_in_a_firetruk_before == 0) {
@@ -321,22 +336,20 @@ const missions: MissionDefinition[] = [
                         $.been_in_a_firetruk_before = 1;
                     }
                     if (!($.controlmode == 3)) {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                            while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                        if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
+                            while (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                                 await asyncWait(0);
                                 if (!$.player.isPlaying()) {
-                                    // SCM GOTO → fire_truck_mission_loop
                                     return false;
                                 }
                             }
                             return true;
                         }
                     } else {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                            while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                        if (Pad.IsButtonPressed(PAD1, SQUARE)) {
+                            while (Pad.IsButtonPressed(PAD1, SQUARE)) {
                                 await asyncWait(0);
                                 if (!$.player.isPlaying()) {
-                                    // SCM GOTO → fire_truck_mission_loop
                                     return false;
                                 }
                             }
@@ -364,12 +377,7 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Industrial/copcar.mts`,
         name: 'Vigilante',
         async canStart() {
-            if (
-                $.player.isInModel(116 /* CAR_POLICE */) ||
-                $.player.isInModel(117 /* CAR_ENFORCER */) ||
-                $.player.isInModel(122 /* CAR_RHINO */) ||
-                $.player.isInModel(107 /* CAR_FBI */)
-            ) {
+            if ($.player.isInModel(CAR_POLICE) || $.player.isInModel(CAR_ENFORCER) || $.player.isInModel(CAR_RHINO) || $.player.isInModel(CAR_FBI)) {
                 if ($.flag_player_on_cop_mission == 0) {
                     $.controlmode = Pad.GetControllerMode();
                     if ($.been_in_a_copcar_before == 0) {
@@ -381,8 +389,8 @@ const missions: MissionDefinition[] = [
                         $.been_in_a_copcar_before = 1;
                     }
                     if (!($.controlmode == 3)) {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                            while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                        if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
+                            while (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                                 await asyncWait(0);
                                 if (!$.player.isPlaying()) {
                                     return false;
@@ -391,8 +399,8 @@ const missions: MissionDefinition[] = [
                             return true;
                         }
                     } else {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                            while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                        if (Pad.IsButtonPressed(PAD1, SQUARE)) {
+                            while (Pad.IsButtonPressed(PAD1, SQUARE)) {
                                 await asyncWait(0);
                                 if (!$.player.isPlaying()) {
                                     return false;
@@ -433,8 +441,8 @@ const missions: MissionDefinition[] = [
                         $.been_in_a_taxi_before = 1;
                     }
                     if (!($.controlmode == 3)) {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
-                            while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                        if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
+                            while (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                                 await asyncWait(0);
                                 if (!$.player.isPlaying()) {
                                     return false;
@@ -443,8 +451,8 @@ const missions: MissionDefinition[] = [
                             return true;
                         }
                     } else {
-                        if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
-                            while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                        if (Pad.IsButtonPressed(PAD1, SQUARE)) {
+                            while (Pad.IsButtonPressed(PAD1, SQUARE)) {
                                 await asyncWait(0);
                                 if (!$.player.isPlaying()) {
                                     return false;
@@ -478,7 +486,7 @@ const missions: MissionDefinition[] = [
                 return false;
             }
 
-            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false)) {
                 const { hours } = Clock.GetTimeOfDay();
                 if (hours >= 9 && hours < 19) {
                     return true;
@@ -489,7 +497,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('MEA1', 15000, 2); //"THE CROOK"
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -509,7 +517,7 @@ const missions: MissionDefinition[] = [
                 return false;
             }
 
-            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false)) {
                 const { hours } = Clock.GetTimeOfDay();
                 if (hours >= 9 && hours < 19) {
                     return true;
@@ -520,7 +528,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('MEA2', 15000, 2); //"THE THIEVES"
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -540,7 +548,7 @@ const missions: MissionDefinition[] = [
                 return false;
             }
 
-            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false)) {
                 const { hours } = Clock.GetTimeOfDay();
                 if (hours >= 9 && hours < 19) {
                     return true;
@@ -551,7 +559,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('MEA3', 15000, 2); //"THE WIFE"
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -571,7 +579,7 @@ const missions: MissionDefinition[] = [
                 return false;
             }
 
-            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false)) {
                 const { hours } = Clock.GetTimeOfDay();
                 if (hours >= 9 && hours < 19) {
                     return true;
@@ -582,7 +590,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('MEA4', 15000, 2); //"HER LOVER"
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -608,7 +616,7 @@ const missions: MissionDefinition[] = [
                 return false;
             }
 
-            if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateOnFoot3D(892.8, -425.8, 13.9, 1.5, 2.0, 2.0, false)) {
                 return true;
             }
             return false;
@@ -616,8 +624,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LM2', 15000, 2); //"Don'a SPANK ma bitch up"
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -642,8 +650,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LM3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -672,8 +680,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LM4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -702,8 +710,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LM5', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -737,8 +745,8 @@ const missions: MissionDefinition[] = [
             }
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('JM1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -763,8 +771,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('JM2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -789,8 +797,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('JM3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -815,8 +823,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('JM4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -845,8 +853,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('JM5', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -882,8 +890,8 @@ const missions: MissionDefinition[] = [
             }
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('JM6', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -910,8 +918,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('TM1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -936,8 +944,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('TM2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -962,8 +970,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('TM3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -988,8 +996,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('TM4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1014,8 +1022,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('TM5', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1044,8 +1052,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('FM1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1072,8 +1080,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('FM2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1104,8 +1112,8 @@ const missions: MissionDefinition[] = [
             }
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('FM21', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1135,8 +1143,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('FM3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1163,8 +1171,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('FM4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1191,7 +1199,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('DIAB1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1216,7 +1224,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('DIAB2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1241,7 +1249,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('DIAB3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1266,7 +1274,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('DIAB4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1290,8 +1298,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('AM1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1313,8 +1321,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('AM2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1336,8 +1344,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('AM3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1359,8 +1367,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('AM4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1385,8 +1393,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('AM5', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1410,8 +1418,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('KM1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1433,8 +1441,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('KM2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1456,8 +1464,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('KM3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1479,8 +1487,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('KM4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1502,8 +1510,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('KM5', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1528,8 +1536,8 @@ const missions: MissionDefinition[] = [
             $.rays_cutscene_flag = 1;
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('RM1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1552,8 +1560,8 @@ const missions: MissionDefinition[] = [
             $.rays_cutscene_flag = 1;
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('RM2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1576,8 +1584,8 @@ const missions: MissionDefinition[] = [
             $.rays_cutscene_flag = 1;
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('RM3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1600,8 +1608,8 @@ const missions: MissionDefinition[] = [
             $.rays_cutscene_flag = 1;
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('RM4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1624,8 +1632,8 @@ const missions: MissionDefinition[] = [
             $.rays_cutscene_flag = 1;
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('RM5', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1648,8 +1656,8 @@ const missions: MissionDefinition[] = [
             $.rays_cutscene_flag = 1;
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('RM6', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1673,8 +1681,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LOVE1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1696,8 +1704,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LOVE2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1719,8 +1727,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LOVE3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1742,8 +1750,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LOVE4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1765,8 +1773,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LOVE5', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1788,8 +1796,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LOVE6', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1811,8 +1819,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('LOVE7', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1839,7 +1847,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('YD1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1861,7 +1869,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('YD2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1883,7 +1891,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('YD3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1905,7 +1913,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('YD4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1929,8 +1937,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('AS1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1952,8 +1960,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('AS2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -1975,8 +1983,8 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('AS3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -2003,7 +2011,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('HM_1', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -2025,7 +2033,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('HM_2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -2047,7 +2055,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('HM_3', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -2069,7 +2077,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('HM_4', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -2091,7 +2099,7 @@ const missions: MissionDefinition[] = [
         async beforeMission() {
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.PrintBig('HM_5', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -2119,8 +2127,8 @@ const missions: MissionDefinition[] = [
             }
             $.player.makeSafeForCutscene();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
-            Streaming.Switch(false /* OFF */);
+            Camera.DoFade(1500, FADE_OUT);
+            Streaming.Switch(OFF);
             Text.PrintBig('CAT2', 15000, 2);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);

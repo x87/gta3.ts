@@ -255,7 +255,7 @@ async function body() {
             if ($.player.isInModel(137 /* CAR_DIABLOS */)) {
                 if ($.flag_diablo_delivered_yd3 == 0) {
                     $.gangcar_yd3 = $.player.storeCarIsIn();
-                    $.gangcar_yd3.setCanRespray(false /* False */);
+                    $.gangcar_yd3.setCanRespray(false);
                     $.flag_player_in_diablocar = 1;
                     $.flag_player_in_mafiacar = 0;
                     $.flag_player_in_yakuzacar = 0;
@@ -270,7 +270,7 @@ async function body() {
             if ($.player.isInModel(134 /* CAR_MAFIA */)) {
                 if ($.flag_mafia_delivered_yd3 == 0) {
                     $.gangcar_yd3 = $.player.storeCarIsIn();
-                    $.gangcar_yd3.setCanRespray(false /* False */);
+                    $.gangcar_yd3.setCanRespray(false);
                     $.flag_player_in_diablocar = 0;
                     $.flag_player_in_mafiacar = 1;
                     $.flag_player_in_yakuzacar = 0;
@@ -285,7 +285,7 @@ async function body() {
             if ($.player.isInModel(136 /* CAR_YAKUZA */)) {
                 if ($.flag_yakuzacar_delivered_yd3 == 0) {
                     $.gangcar_yd3 = $.player.storeCarIsIn();
-                    $.gangcar_yd3.setCanRespray(false /* False */);
+                    $.gangcar_yd3.setCanRespray(false);
                     $.flag_player_in_diablocar = 0;
                     $.flag_player_in_mafiacar = 0;
                     $.flag_player_in_yakuzacar = 1;
@@ -340,8 +340,8 @@ async function body() {
 
         if (!Car.IsDead($.gangcar_yd3)) {
             if (
-                $.gangcar_yd3.isInArea2D($.garage_min_x_yd3, $.garage_min_y_yd3, $.garage_max_x_yd3, $.garage_max_y_yd3, false /* false */) &&
-                !$.player.isInArea2D($.garage_min_x_yd3, $.garage_min_y_yd3, $.garage_max_x_yd3, $.garage_max_y_yd3, false /* false */) &&
+                $.gangcar_yd3.isInArea2D($.garage_min_x_yd3, $.garage_min_y_yd3, $.garage_max_x_yd3, $.garage_max_y_yd3, false) &&
+                !$.player.isInArea2D($.garage_min_x_yd3, $.garage_min_y_yd3, $.garage_max_x_yd3, $.garage_max_y_yd3, false) &&
                 !$.gangcar_yd3.isHealthGreater(800)
             ) {
                 $.gangcar_yd3.markAsNoLongerNeeded();

@@ -442,16 +442,16 @@ async function body() {
         //-------------------------------------------CREATE KAPPAS------------------------------------------------------------------------------------
         if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
             if ($.flag_kappa1_created == 0) {
-                if ($.player.locateAnyMeans2D($.kappa1_x, $.kappa1_y, 150.0, 150.0, false /* false */)) {
+                if ($.player.locateAnyMeans2D($.kappa1_x, $.kappa1_y, 150.0, 150.0, false)) {
                     $.kappa_cartel1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, $.kappa1_x, $.kappa1_y, -100.0);
                     //SET_CHAR_HEADING kappa_cartel1 270.0
                     $.kappa_cartel1.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.kappa_cartel1.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
-                    $.kappa_cartel1.setStayInSamePlace(true /* true */);
+                    $.kappa_cartel1.setStayInSamePlace(true);
                     $.kappa_1 = ScriptObject.Create(1403 /* coffee */, $.kappa1_x, $.kappa1_y, -100.0);
                     $.kappa_1.setHeading(180.0);
-                    $.kappa_1.setCollision(true /* true */);
-                    $.kappa_1.setDynamic(false /* false */);
+                    $.kappa_1.setCollision(true);
+                    $.kappa_1.setDynamic(false);
                     //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -1350.4 -259.6 49.7 false
                     if ($.blip_kappa1_created == 0) {
                         $.blip_kappa1 = Blip.AddForObject($.kappa_1);
@@ -489,11 +489,11 @@ async function body() {
                     $.kappa_cartel3.setHeading(270.0);
                     $.kappa_cartel3.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.kappa_cartel3.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
-                    $.kappa_cartel3.setStayInSamePlace(true /* true */);
+                    $.kappa_cartel3.setStayInSamePlace(true);
                     $.kappa_3 = ScriptObject.Create(1403 /* coffee */, $.kappa3_x, $.kappa3_y, -100.0);
                     $.kappa_3.setHeading(180.0);
-                    $.kappa_3.setCollision(true /* true */);
-                    $.kappa_3.setDynamic(false /* false */);
+                    $.kappa_3.setCollision(true);
+                    $.kappa_3.setDynamic(false);
                     //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 1343.3 -845.5 15.0 false
                     if ($.blip_kappa3_created == 0) {
                         $.blip_kappa3 = Blip.AddForObject($.kappa_3);
@@ -550,13 +550,13 @@ async function body() {
                 $.kappa_cartel4.setHeading(360.0);
                 $.kappa_cartel4.setThreatSearch(1 /* THREAT_PLAYER1 */);
                 $.kappa_cartel4.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
-                $.kappa_cartel4.setStayInSamePlace(true /* true */);
+                $.kappa_cartel4.setStayInSamePlace(true);
                 $.kappa_cartel4.addArmor(100);
                 $.kappa_4 = ScriptObject.Create(1403 /* coffee */, $.kappa4_x, $.kappa4_y, -100.0);
                 //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE_SLOWMOTION 286.5 -668.5 26.2 false
                 $.kappa_4.setHeading(270.0);
-                $.kappa_4.setCollision(true /* true */);
-                $.kappa_4.setDynamic(false /* false */);
+                $.kappa_4.setCollision(true);
+                $.kappa_4.setDynamic(false);
                 if ($.blip_kappa4_created == 0) {
                     $.blip_kappa4 = Blip.AddForObject($.kappa_4);
                     $.blip_kappa4_created = 1;
@@ -569,10 +569,10 @@ async function body() {
                     $.kappa_cartel5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, $.kappa5_x, $.kappa5_y, -100.0);
                     $.kappa_cartel5.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.kappa_cartel5.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
-                    $.kappa_cartel5.setStayInSamePlace(true /* true */);
+                    $.kappa_cartel5.setStayInSamePlace(true);
                     $.kappa_5 = ScriptObject.Create(1403 /* coffee */, $.kappa5_x, $.kappa5_y, -100.0);
-                    $.kappa_5.setCollision(true /* true */);
-                    $.kappa_5.setDynamic(false /* false */);
+                    $.kappa_5.setCollision(true);
+                    $.kappa_5.setDynamic(false);
                     //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 28.6 -849.9 32.7 false
                     if ($.blip_kappa5_created == 0) {
                         $.blip_kappa5 = Blip.AddForObject($.kappa_5);
@@ -587,11 +587,11 @@ async function body() {
                     $.kappa_cartel6.setHeading(190.0);
                     $.kappa_cartel6.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.kappa_cartel6.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
-                    $.kappa_cartel6.setStayInSamePlace(true /* true */);
+                    $.kappa_cartel6.setStayInSamePlace(true);
                     $.kappa_6 = ScriptObject.Create(1403 /* coffee */, $.kappa6_x, $.kappa6_y, -100.0);
                     $.kappa_6.setHeading(145.0);
-                    $.kappa_6.setCollision(true /* true */);
-                    $.kappa_6.setDynamic(false /* false */);
+                    $.kappa_6.setCollision(true);
+                    $.kappa_6.setDynamic(false);
                     //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 13.67 -1140.5 26.19 false
                     if ($.blip_kappa6_created == 0) {
                         $.blip_kappa6 = Blip.AddForObject($.kappa_6);
@@ -606,10 +606,10 @@ async function body() {
                     //SET_CHAR_HEADING kappa_cartel7 190.0
                     $.kappa_cartel7.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.kappa_cartel7.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
-                    $.kappa_cartel7.setStayInSamePlace(true /* true */);
+                    $.kappa_cartel7.setStayInSamePlace(true);
                     $.kappa_7 = ScriptObject.Create(1403 /* coffee */, $.kappa7_x, $.kappa7_y, -100.0);
-                    $.kappa_7.setCollision(true /* true */);
-                    $.kappa_7.setDynamic(false /* false */);
+                    $.kappa_7.setCollision(true);
+                    $.kappa_7.setDynamic(false);
                     //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 74.0 -1359.6 26.2 false
                     if ($.blip_kappa7_created == 0) {
                         $.blip_kappa7 = Blip.AddForObject($.kappa_7);
@@ -644,11 +644,11 @@ async function body() {
                     $.kappa_cartel9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, $.kappa9_x, $.kappa9_y, 23.7);
                     $.kappa_cartel9.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.kappa_cartel9.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
-                    $.kappa_cartel9.setStayInSamePlace(true /* true */);
+                    $.kappa_cartel9.setStayInSamePlace(true);
                     $.kappa_9 = ScriptObject.Create(1403 /* coffee */, $.kappa9_x, $.kappa9_y, -100.0);
                     $.kappa_9.setHeading(270.0);
-                    $.kappa_9.setCollision(true /* true */);
-                    $.kappa_9.setDynamic(false /* false */);
+                    $.kappa_9.setCollision(true);
+                    $.kappa_9.setDynamic(false);
                     //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE 282.9 -1493.1 23.7 false
                     if ($.blip_kappa9_created == 0) {
                         $.blip_kappa9 = Blip.AddForObject($.kappa_9);
@@ -741,10 +741,10 @@ async function body() {
                     $.kappa_cartel10.setHeading(50.0);
                     $.kappa_cartel10.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.kappa_cartel10.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
-                    $.kappa_cartel10.setStayInSamePlace(true /* true */);
+                    $.kappa_cartel10.setStayInSamePlace(true);
                     $.kappa_10 = ScriptObject.Create(1403 /* coffee */, $.kappa10_x, $.kappa10_y, -100.0);
-                    $.kappa_10.setCollision(true /* true */);
-                    $.kappa_10.setDynamic(false /* false */);
+                    $.kappa_10.setCollision(true);
+                    $.kappa_10.setDynamic(false);
                     //ADD_PARTICLE_EFFECT POBJECT_DRY_ICE -724.3 -548.8 9.1 false
                     if ($.blip_kappa10_created == 0) {
                         $.blip_kappa10 = Blip.AddForObject($.kappa_10);
@@ -780,9 +780,9 @@ async function body() {
                     $.kappa_cartel12.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     $.kappa_cartel12.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
                     $.kappa_12 = ScriptObject.Create(1403 /* coffee */, $.kappa12_x, $.kappa12_y, -100.0);
-                    $.kappa_cartel12.setStayInSamePlace(true /* true */);
-                    $.kappa_12.setCollision(true /* true */);
-                    $.kappa_12.setDynamic(false /* false */);
+                    $.kappa_cartel12.setStayInSamePlace(true);
+                    $.kappa_12.setCollision(true);
+                    $.kappa_12.setDynamic(false);
                     if ($.blip_kappa12_created == 0) {
                         $.blip_kappa12 = Blip.AddForObject($.kappa_12);
                         $.blip_kappa12_created = 1;
@@ -862,7 +862,7 @@ async function body() {
             if (!Char.IsDead($.kappa_cartel1)) {
                 if ($.kappa_cartel1.isObjectivePassed()) {
                     $.kappa_cartel1.turnToFacePlayer($.player);
-                    $.kappa_cartel1.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel1.setStayInSamePlace(false);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel1
                     $.kappa_cartel1.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel1 player
@@ -909,7 +909,7 @@ async function body() {
                 if ($.kappa_cartel3.isObjectivePassed()) {
                     $.kappa_cartel3.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel3
-                    $.kappa_cartel3.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel3.setStayInSamePlace(false);
                     $.kappa_cartel3.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel3 player
                 }
@@ -937,7 +937,7 @@ async function body() {
                 if ($.kappa_cartel4.isObjectivePassed()) {
                     $.kappa_cartel4.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel4
-                    $.kappa_cartel4.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel4.setStayInSamePlace(false);
                     $.kappa_cartel4.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel4 player
                 }
@@ -965,7 +965,7 @@ async function body() {
                 if ($.kappa_cartel5.isObjectivePassed()) {
                     $.kappa_cartel5.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel5
-                    $.kappa_cartel5.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel5.setStayInSamePlace(false);
                     $.kappa_cartel5.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel5 player
                 }
@@ -993,7 +993,7 @@ async function body() {
                 if ($.kappa_cartel6.isObjectivePassed()) {
                     $.kappa_cartel6.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel6
-                    $.kappa_cartel6.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel6.setStayInSamePlace(false);
                     $.kappa_cartel6.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel6 player
                 }
@@ -1021,7 +1021,7 @@ async function body() {
                 if ($.kappa_cartel7.isObjectivePassed()) {
                     $.kappa_cartel7.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel7
-                    $.kappa_cartel7.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel7.setStayInSamePlace(false);
                     $.kappa_cartel7.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel7 player
                 }
@@ -1066,7 +1066,7 @@ async function body() {
                 if ($.kappa_cartel9.isObjectivePassed()) {
                     $.kappa_cartel9.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel9
-                    $.kappa_cartel9.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel9.setStayInSamePlace(false);
                     $.kappa_cartel9.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel9 player
                 }
@@ -1094,7 +1094,7 @@ async function body() {
                 if ($.kappa_cartel10.isObjectivePassed()) {
                     $.kappa_cartel10.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel10
-                    $.kappa_cartel10.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel10.setStayInSamePlace(false);
                     $.kappa_cartel10.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel10 player
                 }
@@ -1140,7 +1140,7 @@ async function body() {
                 if ($.kappa_cartel12.isObjectivePassed()) {
                     $.kappa_cartel12.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel12
-                    $.kappa_cartel12.setStayInSamePlace(false /* false */);
+                    $.kappa_cartel12.setStayInSamePlace(false);
                     $.kappa_cartel12.setThreatSearch(1 /* THREAT_PLAYER1 */);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel12 player
                 }

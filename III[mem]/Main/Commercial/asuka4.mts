@@ -75,7 +75,7 @@ async function body() {
     $.cs_note = CutsceneObject.Create(187 /* cut_obj3 */);
     $.cs_note.setAnim('minnote');
 
-    World.ClearArea(523.6, -639.4, 16.6, 1.0, true /* TRUE */);
+    World.ClearArea(523.6, -639.4, 16.6, 1.0, true);
     $.player.setCoordinates(523.6, -639.4, 16.0);
 
     $.player.setHeading(180.0);
@@ -200,7 +200,7 @@ async function body() {
     $.Ray_phone1.setMessage('AM4_1A');
     Audio.LoadMissionAudio('a4_a' as any);
 
-    while (!$.player.locateOnFoot3D(229.2, -1537.6, 26.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
+    while (!$.player.locateOnFoot3D(229.2, -1537.6, 26.0, 1.0, 1.0, 3.0, false) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
         if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
@@ -211,7 +211,7 @@ async function body() {
 
     Game.SetPoliceIgnorePlayer($.player, true /* On */);
     Game.SetEveryoneIgnorePlayer($.player, true /* On */);
-    Hud.FreezeTimer(true /* TRUE */);
+    Hud.FreezeTimer(true);
     Camera.SetFixedPosition(214.844, -1549.911, 32.448, 0.0, 0.0, 0.0);
     Camera.PointAtPoint(215.507, -1549.246, 32.105, 2 /* JUMP_CUT */);
 
@@ -226,7 +226,7 @@ async function body() {
     }
 
     Camera.RestoreJumpcut();
-    Hud.FreezeTimer(false /* FALSE */);
+    Hud.FreezeTimer(false);
     $.blip1_as4.remove();
     $.blip1_as4 = Blip.AddForObject($.phone_2_obj);
     $.Ray_phone2.setMessage('AM4_1B');
@@ -235,7 +235,7 @@ async function body() {
 
     Audio.LoadMissionAudio('a4_b' as any);
 
-    while (!$.player.locateOnFoot3D(-53.5, -699.1, 26.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
+    while (!$.player.locateOnFoot3D(-53.5, -699.1, 26.0, 1.0, 1.0, 3.0, false) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
         if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
@@ -246,7 +246,7 @@ async function body() {
 
     Game.SetPoliceIgnorePlayer($.player, true /* On */);
     Game.SetEveryoneIgnorePlayer($.player, true /* On */);
-    Hud.FreezeTimer(true /* TRUE */);
+    Hud.FreezeTimer(true);
     Camera.SetFixedPosition(-77.442, -702.532, 33.574, 0.0, 0.0, 0.0);
     Camera.PointAtPoint(-76.5, -702.391, 33.27, 2 /* JUMP_CUT */);
 
@@ -261,7 +261,7 @@ async function body() {
     }
 
     Camera.RestoreJumpcut();
-    Hud.FreezeTimer(false /* FALSE */);
+    Hud.FreezeTimer(false);
     $.blip1_as4.remove();
     $.blip1_as4 = Blip.AddForObject($.phone_3_obj);
     $.Ray_phone3.setMessage('AM4_1C');
@@ -270,7 +270,7 @@ async function body() {
 
     Audio.LoadMissionAudio('a4_c' as any);
 
-    while (!$.player.locateOnFoot3D(204.8, -135.0, 16.0, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
+    while (!$.player.locateOnFoot3D(204.8, -135.0, 16.0, 1.0, 1.0, 3.0, false) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
         if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
@@ -281,7 +281,7 @@ async function body() {
 
     Game.SetPoliceIgnorePlayer($.player, true /* On */);
     Game.SetEveryoneIgnorePlayer($.player, true /* On */);
-    Hud.FreezeTimer(true /* TRUE */);
+    Hud.FreezeTimer(true);
     Camera.SetFixedPosition(191.656, -130.53, 20.037, 0.0, 0.0, 0.0);
     Camera.PointAtPoint(192.56, -130.834, 19.734, 2 /* JUMP_CUT */);
 
@@ -296,7 +296,7 @@ async function body() {
     }
 
     Camera.RestoreJumpcut();
-    Hud.FreezeTimer(false /* FALSE */);
+    Hud.FreezeTimer(false);
     $.blip1_as4.remove();
     $.blip1_as4 = Blip.AddForObject($.phone_4_obj);
     $.Ray_phone4.setMessage('AM4_1D');
@@ -305,7 +305,7 @@ async function body() {
 
     Audio.LoadMissionAudio('a4_d' as any);
 
-    while (!$.player.locateOnFoot3D(60.3, -964.8, 26.1, 1.0, 1.0, 3.0, false /* FALSE */) || !$.player.isLiftingAPhone()) {
+    while (!$.player.locateOnFoot3D(60.3, -964.8, 26.1, 1.0, 1.0, 3.0, false) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
         if ($.countdown_as4 == 0) {
             Text.PrintNow('OUTTIME', 5000, 1);
@@ -316,7 +316,7 @@ async function body() {
 
     Game.SetPoliceIgnorePlayer($.player, true /* On */);
     Game.SetEveryoneIgnorePlayer($.player, true /* On */);
-    Hud.FreezeTimer(true /* TRUE */);
+    Hud.FreezeTimer(true);
     Camera.SetFixedPosition(51.733, -973.067, 30.559, 0.0, 0.0, 0.0);
     Camera.PointAtPoint(52.418, -972.45, 30.172, 2 /* JUMP_CUT */);
 
@@ -339,7 +339,7 @@ async function body() {
 
     $.rays_cutscene_flag = 1;
 
-    while (!$.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.0, 1.0, 2.0, true /* TRUE */)) {
+    while (!$.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.0, 1.0, 2.0, true)) {
         await asyncWait(0);
     }
 
@@ -397,7 +397,7 @@ async function body() {
     $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
     $.cs_rayhead.setAnim('ray');
 
-    World.ClearArea(39.0, -723.5, 22.0, 1.0, true /* TRUE */);
+    World.ClearArea(39.0, -723.5, 22.0, 1.0, true);
 
     $.player.setCoordinates(39.0, -723.5, 22.0);
 
@@ -547,7 +547,7 @@ async function cleanup() {
     $.phone_3_obj.delete();
     $.phone_4_obj.delete();
     $.rays_cutscene_flag = 0;
-    Hud.FreezeTimer(false /* FALSE */);
+    Hud.FreezeTimer(false);
     Mission.Finish();
 }
 

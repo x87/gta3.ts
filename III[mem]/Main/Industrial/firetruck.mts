@@ -298,7 +298,7 @@ async function body() {
         $.car_on_fire.setIdle();
         $.dummy_ped_for_zone.setIdle();
         $.car_on_fire.setCruiseSpeed(0.0);
-        $.car_on_fire.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.car_on_fire.setOnlyDamagedByPlayer(true);
 
         //PRINT_NOW F_START 3000 1
 
@@ -557,7 +557,7 @@ async function passed() {
     if ($.car_on_fire_created == 1) {
         $.car_on_fire.markAsNoLongerNeeded();
         if (!Car.IsDead($.car_on_fire)) {
-            $.car_on_fire.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.car_on_fire.setOnlyDamagedByPlayer(false);
         }
         $.car_on_fire_created = 0;
     }
@@ -578,7 +578,7 @@ async function onFailed() {
 
     if ($.car_on_fire_created == 1) {
         if (!Car.IsDead($.car_on_fire)) {
-            $.car_on_fire.setOnlyDamagedByPlayer(false /* FALSE */);
+            $.car_on_fire.setOnlyDamagedByPlayer(false);
             $.car_on_fire.explode();
         }
         $.car_on_fire.markAsNoLongerNeeded();

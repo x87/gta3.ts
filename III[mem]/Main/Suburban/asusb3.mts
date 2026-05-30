@@ -417,28 +417,28 @@ async function body() {
     $.bouy_9_as3 = ScriptObject.Create(1373 /* bouy */, -605.0, -1335.0, 2.0);
     $.bouy_point = ScriptObject.Create(1373 /* bouy */, $.platform_x, $.platform_y, 2.0);
 
-    $.bouy_1_as3.setCollision(true /* true */);
-    $.bouy_1_as3.setDynamic(true /* true */);
-    $.bouy_2_as3.setCollision(true /* true */);
-    $.bouy_2_as3.setDynamic(true /* true */);
-    $.bouy_3_as3.setCollision(true /* true */);
-    $.bouy_3_as3.setDynamic(true /* true */);
-    $.bouy_4_as3.setCollision(true /* true */);
-    $.bouy_4_as3.setDynamic(true /* true */);
-    $.bouy_5_as3.setCollision(true /* true */);
-    $.bouy_5_as3.setDynamic(true /* true */);
-    $.bouy_6_as3.setCollision(true /* true */);
-    $.bouy_6_as3.setDynamic(true /* true */);
-    $.bouy_7_as3.setCollision(true /* true */);
-    $.bouy_7_as3.setDynamic(true /* true */);
-    $.bouy_8_as3.setCollision(true /* true */);
-    $.bouy_8_as3.setDynamic(true /* true */);
-    $.bouy_9_as3.setCollision(true /* true */);
-    $.bouy_9_as3.setDynamic(true /* true */);
-    $.bouy_10_as3.setCollision(true /* true */);
-    $.bouy_10_as3.setDynamic(true /* true */);
-    $.bouy_point.setCollision(true /* true */);
-    $.bouy_point.setDynamic(true /* true */);
+    $.bouy_1_as3.setCollision(true);
+    $.bouy_1_as3.setDynamic(true);
+    $.bouy_2_as3.setCollision(true);
+    $.bouy_2_as3.setDynamic(true);
+    $.bouy_3_as3.setCollision(true);
+    $.bouy_3_as3.setDynamic(true);
+    $.bouy_4_as3.setCollision(true);
+    $.bouy_4_as3.setDynamic(true);
+    $.bouy_5_as3.setCollision(true);
+    $.bouy_5_as3.setDynamic(true);
+    $.bouy_6_as3.setCollision(true);
+    $.bouy_6_as3.setDynamic(true);
+    $.bouy_7_as3.setCollision(true);
+    $.bouy_7_as3.setDynamic(true);
+    $.bouy_8_as3.setCollision(true);
+    $.bouy_8_as3.setDynamic(true);
+    $.bouy_9_as3.setCollision(true);
+    $.bouy_9_as3.setDynamic(true);
+    $.bouy_10_as3.setCollision(true);
+    $.bouy_10_as3.setDynamic(true);
+    $.bouy_point.setCollision(true);
+    $.bouy_point.setDynamic(true);
 
     //ADD_BLIP_FOR_OBJECT bouy_point blip_as3_bouy
     //CHANGE_BLIP_COLOUR blip_as3_bouy 4
@@ -507,13 +507,13 @@ async function body() {
                         }
                     }
 
-                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false /* false */)) {
+                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false)) {
                         if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
                             Streaming.LoadCollisionWithScreen(3 /* LEVEL_SUBURBAN */);
                         }
                     }
 
-                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 15.0, 15.0, false /* false */)) {
+                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 15.0, 15.0, false)) {
                         $.blip_as3_bouy.remove();
                         Text.ClearPrints();
                         $.flag_messages = 0;
@@ -588,13 +588,13 @@ async function body() {
                         }
                     }
 
-                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false /* false */)) {
+                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false)) {
                         if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
                             Streaming.LoadCollisionWithScreen(3 /* LEVEL_SUBURBAN */);
                         }
                     }
 
-                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 15.0, 15.0, false /* false */)) {
+                    if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 15.0, 15.0, false)) {
                         $.blip_as3_bouy.remove();
                         Text.ClearPrints();
                         $.flag_messages = 0;
@@ -766,8 +766,8 @@ async function body() {
 
     $.charlie_1 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.charlie_1.flash(true /* On */);
-    $.charlie_1.setCollision(true /* TRUE */);
-    $.charlie_1.setDynamic(true /* TRUE */);
+    $.charlie_1.setCollision(true);
+    $.charlie_1.setDynamic(true);
     $.blip_charlie_1 = Blip.AddForObject($.charlie_1);
     $.charlie_1.addToVelocity(18.0, 12.0, 6.0); //blossom pattern
     //ADD_TO_OBJECT_VELOCITY charlie_1 10.0 0.0 0.0 //dodo velocity
@@ -776,8 +776,8 @@ async function body() {
 
     $.charlie_2 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.charlie_2.flash(true /* On */);
-    $.charlie_2.setCollision(true /* TRUE */);
-    $.charlie_2.setDynamic(true /* TRUE */);
+    $.charlie_2.setCollision(true);
+    $.charlie_2.setDynamic(true);
     $.blip_charlie_2 = Blip.AddForObject($.charlie_2);
     $.charlie_2.addToVelocity(14.0, -19.0, 7.0);
 
@@ -785,8 +785,8 @@ async function body() {
 
     $.charlie_3 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.charlie_3.flash(true /* On */);
-    $.charlie_3.setCollision(true /* TRUE */);
-    $.charlie_3.setDynamic(true /* TRUE */);
+    $.charlie_3.setCollision(true);
+    $.charlie_3.setDynamic(true);
     $.blip_charlie_3 = Blip.AddForObject($.charlie_3);
     $.charlie_3.addToVelocity(13.0, -15.0, 1.0);
 
@@ -794,8 +794,8 @@ async function body() {
 
     $.charlie_4 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.charlie_4.flash(true /* On */);
-    $.charlie_4.setCollision(true /* TRUE */);
-    $.charlie_4.setDynamic(true /* TRUE */);
+    $.charlie_4.setCollision(true);
+    $.charlie_4.setDynamic(true);
     $.blip_charlie_4 = Blip.AddForObject($.charlie_4);
     $.charlie_4.addToVelocity(-18.0, -19.5, 4.0);
 
@@ -803,8 +803,8 @@ async function body() {
 
     $.charlie_5 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.charlie_5.flash(true /* On */);
-    $.charlie_5.setCollision(true /* TRUE */);
-    $.charlie_5.setDynamic(true /* TRUE */);
+    $.charlie_5.setCollision(true);
+    $.charlie_5.setDynamic(true);
     $.blip_charlie_5 = Blip.AddForObject($.charlie_5);
     $.charlie_5.addToVelocity(-7.0, 11.0, 8.0);
 
@@ -812,8 +812,8 @@ async function body() {
 
     $.charlie_6 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.charlie_6.flash(true /* On */);
-    $.charlie_6.setCollision(true /* TRUE */);
-    $.charlie_6.setDynamic(true /* TRUE */);
+    $.charlie_6.setCollision(true);
+    $.charlie_6.setDynamic(true);
     $.blip_charlie_6 = Blip.AddForObject($.charlie_6);
     $.charlie_6.addToVelocity(-17.0, 4.8, 7.0);
 
@@ -821,8 +821,8 @@ async function body() {
 
     $.charlie_7 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.charlie_7.flash(true /* On */);
-    $.charlie_7.setCollision(true /* TRUE */);
-    $.charlie_7.setDynamic(true /* TRUE */);
+    $.charlie_7.setCollision(true);
+    $.charlie_7.setDynamic(true);
     $.blip_charlie_7 = Blip.AddForObject($.charlie_7);
     $.charlie_7.addToVelocity(-11.0, 12.0, 7.0);
 
@@ -830,8 +830,8 @@ async function body() {
 
     $.charlie_8 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.charlie_8.flash(true /* On */);
-    $.charlie_8.setCollision(true /* TRUE */);
-    $.charlie_8.setDynamic(true /* TRUE */);
+    $.charlie_8.setCollision(true);
+    $.charlie_8.setDynamic(true);
     $.blip_charlie_8 = Blip.AddForObject($.charlie_8);
     $.charlie_8.addToVelocity(10.0, 10.0, 0.0);
 
@@ -965,7 +965,7 @@ async function body() {
 
         if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
             if ($.flag_charlie_1 == 0) {
-                if ($.player.locateAnyMeans3D($.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 4.0, 4.0, 4.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_1.remove();
                     $.charlie_1.delete();
                     ++$.counter_charlie;
@@ -974,7 +974,7 @@ async function body() {
                 }
             }
             if ($.flag_charlie_2 == 0) {
-                if ($.player.locateAnyMeans3D($.charlie_2_x, $.charlie_2_y, $.charlie_2_z, 4.0, 4.0, 4.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.charlie_2_x, $.charlie_2_y, $.charlie_2_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_2.remove();
                     $.charlie_2.delete();
                     ++$.counter_charlie;
@@ -983,7 +983,7 @@ async function body() {
                 }
             }
             if ($.flag_charlie_3 == 0) {
-                if ($.player.locateAnyMeans3D($.charlie_3_x, $.charlie_3_y, $.charlie_3_z, 4.0, 4.0, 4.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.charlie_3_x, $.charlie_3_y, $.charlie_3_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_3.remove();
                     $.charlie_3.delete();
                     ++$.counter_charlie;
@@ -992,7 +992,7 @@ async function body() {
                 }
             }
             if ($.flag_charlie_4 == 0) {
-                if ($.player.locateAnyMeans3D($.charlie_4_x, $.charlie_4_y, $.charlie_4_z, 4.0, 4.0, 4.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.charlie_4_x, $.charlie_4_y, $.charlie_4_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_4.remove();
                     $.charlie_4.delete();
                     ++$.counter_charlie;
@@ -1001,7 +1001,7 @@ async function body() {
                 }
             }
             if ($.flag_charlie_5 == 0) {
-                if ($.player.locateAnyMeans3D($.charlie_5_x, $.charlie_5_y, $.charlie_5_z, 4.0, 4.0, 4.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.charlie_5_x, $.charlie_5_y, $.charlie_5_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_5.remove();
                     $.charlie_5.delete();
                     ++$.counter_charlie;
@@ -1010,7 +1010,7 @@ async function body() {
                 }
             }
             if ($.flag_charlie_6 == 0) {
-                if ($.player.locateAnyMeans3D($.charlie_6_x, $.charlie_6_y, $.charlie_6_z, 4.0, 4.0, 4.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.charlie_6_x, $.charlie_6_y, $.charlie_6_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_6.remove();
                     $.charlie_6.delete();
                     ++$.counter_charlie;
@@ -1019,7 +1019,7 @@ async function body() {
                 }
             }
             if ($.flag_charlie_7 == 0) {
-                if ($.player.locateAnyMeans3D($.charlie_7_x, $.charlie_7_y, $.charlie_7_z, 4.0, 4.0, 4.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.charlie_7_x, $.charlie_7_y, $.charlie_7_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_7.remove();
                     $.charlie_7.delete();
                     ++$.counter_charlie;
@@ -1028,7 +1028,7 @@ async function body() {
                 }
             }
             if ($.flag_charlie_8 == 0) {
-                if ($.player.locateAnyMeans3D($.charlie_8_x, $.charlie_8_y, $.charlie_8_z, 4.0, 4.0, 4.0, false /* false */)) {
+                if ($.player.locateAnyMeans3D($.charlie_8_x, $.charlie_8_y, $.charlie_8_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_8.remove();
                     $.charlie_8.delete();
                     ++$.counter_charlie;
@@ -1118,7 +1118,7 @@ async function body() {
 
     $.blip_stash = Blip.AddForCoord(367.25, -328.0, 19.5);
 
-    while (!$.player.locateOnFoot3D(366.939, -328.025, 18.5, 1.0, 1.0, 4.0, true /* true */)) {
+    while (!$.player.locateOnFoot3D(366.939, -328.025, 18.5, 1.0, 1.0, 4.0, true)) {
         await asyncWait(0);
     }
 
@@ -1392,18 +1392,18 @@ async function baddies() {
             $.kappa_cartel10.setThreatSearch(1 /* THREAT_PLAYER1 */);
             $.kappa_cartel10.giveWeapon(8 /* WEAPONTYPE_ROCKET */, 5);
             $.kappa_cartel10.addArmor(100);
-            $.kappa_cartel1.setStayInSamePlace(true /* true */);
+            $.kappa_cartel1.setStayInSamePlace(true);
             $.flag_created_baddies = 1;
         }
     }
 
     if ($.flag_created_baddies == 1) {
-        if ($.player.locateAnyMeans2D(-1019.0, -1263.0, 60.0, 60.0, false /* false */)) {
+        if ($.player.locateAnyMeans2D(-1019.0, -1263.0, 60.0, 60.0, false)) {
             if (!Char.IsDead($.kappa_cartel3)) {
                 $.kappa_cartel3.setObjKillPlayerAnyMeans($.player);
             }
         }
-        if ($.player.locateAnyMeans2D(-1385.3, -1035.0, 80.0, 80.0, false /* false */)) {
+        if ($.player.locateAnyMeans2D(-1385.3, -1035.0, 80.0, 80.0, false)) {
             if (!Char.IsDead($.kappa_cartel4)) {
                 $.kappa_cartel4.setObjKillPlayerAnyMeans($.player);
             }
@@ -1411,7 +1411,7 @@ async function baddies() {
                 $.kappa_cartel5.setObjKillPlayerAnyMeans($.player);
             }
         }
-        if ($.player.locateAnyMeans2D(-1478.3, -1062.8, 80.0, 80.0, false /* false */)) {
+        if ($.player.locateAnyMeans2D(-1478.3, -1062.8, 80.0, 80.0, false)) {
             if (!Char.IsDead($.kappa_cartel6)) {
                 $.kappa_cartel6.setObjKillPlayerAnyMeans($.player);
             }

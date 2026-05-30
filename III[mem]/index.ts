@@ -1320,7 +1320,7 @@ async function main() {
         $.target2.makeTargetable();
         $.target3.makeTargetable();
 
-        World.SetVisibilityOfClosestObjectOfType(1027.26, -933.796, 15.042, 50.0, 855 /* indhelix_barrier */, false /* FALSE */);
+        World.SetVisibilityOfClosestObjectOfType(1027.26, -933.796, 15.042, 50.0, 855 /* indhelix_barrier */, false);
         World.SwapNearestBuildingModel(1027.26, -933.796, 15.042, 50.0, 855 /* indhelix_barrier */, 218 /* LOD_land014 */);
 
         if ($.player.isPlaying()) {
@@ -1340,7 +1340,7 @@ async function main() {
             Streaming.LoadScene(916.3, -413.6, 15.0); //START LUIGIS***************************************************************
             $.flag_eightball_mission_passed = 1; //TEST SO SAVE HOUSE WORKS
             if ($.player.isPlaying()) {
-                Game.SetIntroIsPlaying(false /* FALSE */);
+                Game.SetIntroIsPlaying(false);
                 Clock.SetTimeOfDay(9, 0);
                 $.player.setCoordinates(916.3, -413.6, -100.0);
                 $.player.setHeading(140.0);
@@ -1503,7 +1503,7 @@ async function meat_phone_loop() {
         }
 
         if ($.player.isPlaying()) {
-            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false)) {
                 if (!ONMISSION) {
                     if ($.player.canStartMission()) {
                         $.meat_phone.turnOff();
@@ -1511,7 +1511,7 @@ async function meat_phone_loop() {
                     if (!$.player.isPlaying()) {
                         continue;
                     }
-                    while ($.player.locateOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                    while ($.player.locateOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false)) {
                         await asyncWait(0);
                         if (!$.player.isPlaying()) {
                             break;
@@ -1527,7 +1527,7 @@ async function ind_save_loop() {
     //	Should be called before main loop
     // SCRIPT_NAME I_SAVE
 
-    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false /* FALSE */)) {
+    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false)) {
         log('[*] Loading from industrial area save...');
         await postSave();
     }
@@ -1549,11 +1549,11 @@ async function ind_save_loop() {
                 if ($.player.isInZone('REDLIGH')) {
                     if ($.flag_eightball_mission_passed == 1) {
                         if (!ONMISSION) {
-                            while (!$.playersdoor.rotate(210.0, 10.0, false /* FALSE */)) {
+                            while (!$.playersdoor.rotate(210.0, 10.0, false)) {
                                 await asyncWait(0);
                             }
                         } else {
-                            while (!$.playersdoor.rotate(0.0, 10.0, false /* FALSE */)) {
+                            while (!$.playersdoor.rotate(0.0, 10.0, false)) {
                                 await asyncWait(0);
                             }
                         }
@@ -1563,7 +1563,7 @@ async function ind_save_loop() {
                     if ($.player.isPlaying()) {
                         if ($.player.canStartMission()) {
                             if (!ONMISSION) {
-                                if ($.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false /* FALSE */)) {
+                                if ($.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false)) {
                                     $.player.setControl(false /* Off */);
                                     Camera.SetFixedPosition(884.56, -305.35, 13.53, 0.0, 0.0, 0.0);
                                     Camera.PointAtPoint(885.25, -305.85, 13.0, 2 /* JUMP_CUT */);
@@ -1572,7 +1572,7 @@ async function ind_save_loop() {
                                         await asyncWait(0);
                                     }
                                     Audio.PlayMissionAudio();
-                                    while (!$.playersdoor.rotate(0.0, 8.0, false /* FALSE */)) {
+                                    while (!$.playersdoor.rotate(0.0, 8.0, false)) {
                                         await asyncWait(0);
                                     }
                                     while (!Audio.HasMissionAudioFinished()) {
@@ -1612,10 +1612,10 @@ async function ind_save_loop() {
             ENDWHILE
             PLAY_MISSION_AUDIO
             */
-        while (!$.playersdoor.rotate(210.0, 10.0, false /* FALSE */)) {
+        while (!$.playersdoor.rotate(210.0, 10.0, false)) {
             await asyncWait(0);
         }
-        World.ClearArea(888.6, -308.4, -100.0, 1.0, true /* TRUE */);
+        World.ClearArea(888.6, -308.4, -100.0, 1.0, true);
         if ($.player.isPlaying()) {
             $.player.setCoordinates(888.6, -308.4, -100.0);
             $.player.setHeading(90.0);
@@ -1691,7 +1691,7 @@ async function diablo_phone_loop() {
         }
 
         if ($.player.isPlaying()) {
-            if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateStoppedOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false)) {
                 if (!ONMISSION) {
                     if ($.player.canStartMission()) {
                         $.Diablo_phone.turnOff();
@@ -1699,7 +1699,7 @@ async function diablo_phone_loop() {
                     if (!$.player.isPlaying()) {
                         continue;
                     }
-                    while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                    while ($.player.locateOnFoot3D(938.4, -230.5, 3.9, 1.0, 1.0, 2.0, false)) {
                         await asyncWait(0);
                         if (!$.player.isPlaying()) {
                             break;
@@ -1800,7 +1800,7 @@ async function blob_help_loop() {
 
         if ($.player.isPlaying()) {
             //CONTACT BLOB HELP MESSAGE
-            if ($.player.isInAreaOnFoot3D(895.3, -428.0, 12.0, 900.3, -423.2, 18.0, false /* FALSE */)) {
+            if ($.player.isInAreaOnFoot3D(895.3, -428.0, 12.0, 900.3, -423.2, 18.0, false)) {
                 Text.PrintHelp('HELP12'); // Tells player about contact blobs
                 return; // TERMINATE_THIS_SCRIPT
             }
@@ -1862,7 +1862,7 @@ async function toni5_pager_loop() {
 async function com_save_loop() {
     // Should be called before main loop
 
-    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(105.7, -486.0, 15.0, 100.8, -483.4, 18.0, false /* FALSE */)) {
+    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(105.7, -486.0, 15.0, 100.8, -483.4, 18.0, false)) {
         log('[*] Loading from commercial area save...');
         await postSave();
     }
@@ -1885,15 +1885,15 @@ async function com_save_loop() {
                 if ($.player.isInZone('PARK')) {
                     if (!ONMISSION) {
                         while (
-                            !$.plysav_lftdr_lft.slide(105.35, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */) ||
-                            !$.plysav_lftdr_rght.slide(100.692, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */)
+                            !$.plysav_lftdr_lft.slide(105.35, -482.8, 16.25, 0.1, 0.0, 0.0, false) ||
+                            !$.plysav_lftdr_rght.slide(100.692, -482.8, 16.25, 0.1, 0.0, 0.0, false)
                         ) {
                             await asyncWait(0);
                         }
                     } else {
                         while (
-                            !$.plysav_lftdr_lft.slide(103.85, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */) ||
-                            !$.plysav_lftdr_rght.slide(102.192, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */)
+                            !$.plysav_lftdr_lft.slide(103.85, -482.8, 16.25, 0.1, 0.0, 0.0, false) ||
+                            !$.plysav_lftdr_rght.slide(102.192, -482.8, 16.25, 0.1, 0.0, 0.0, false)
                         ) {
                             await asyncWait(0);
                         }
@@ -1903,7 +1903,7 @@ async function com_save_loop() {
                     if ($.player.isPlaying()) {
                         if ($.player.canStartMission()) {
                             if (!ONMISSION) {
-                                if ($.player.isInAreaOnFoot3D(105.7, -486.0, 15.0, 100.8, -483.4, 18.0, false /* FALSE */)) {
+                                if ($.player.isInAreaOnFoot3D(105.7, -486.0, 15.0, 100.8, -483.4, 18.0, false)) {
                                     $.player.setControl(false /* Off */);
                                     Camera.SetFixedPosition(98.53, -472.06, 19.84, 0.0, 0.0, 0.0);
                                     Camera.PointAtPoint(98.94, -472.9, 19.47, 2 /* JUMP_CUT */);
@@ -1913,8 +1913,8 @@ async function com_save_loop() {
                                     }
                                     Audio.PlayMissionAudio();
                                     while (
-                                        !$.plysav_lftdr_lft.slide(103.85, -482.8, 16.25, 0.0625, 0.0, 0.0, false /* FALSE */) ||
-                                        !$.plysav_lftdr_rght.slide(102.192, -482.8, 16.25, 0.0625, 0.0, 0.0, false /* FALSE */)
+                                        !$.plysav_lftdr_lft.slide(103.85, -482.8, 16.25, 0.0625, 0.0, 0.0, false) ||
+                                        !$.plysav_lftdr_rght.slide(102.192, -482.8, 16.25, 0.0625, 0.0, 0.0, false)
                                     ) {
                                         await asyncWait(0);
                                     }
@@ -1956,12 +1956,12 @@ async function com_save_loop() {
             PLAY_MISSION_AUDIO
         */
         while (
-            !$.plysav_lftdr_lft.slide(105.35, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */) ||
-            !$.plysav_lftdr_rght.slide(100.692, -482.8, 16.25, 0.1, 0.0, 0.0, false /* FALSE */)
+            !$.plysav_lftdr_lft.slide(105.35, -482.8, 16.25, 0.1, 0.0, 0.0, false) ||
+            !$.plysav_lftdr_rght.slide(100.692, -482.8, 16.25, 0.1, 0.0, 0.0, false)
         ) {
             await asyncWait(0);
         }
-        World.ClearArea(103.0, -478.5, 14.9, 1.0, true /* TRUE */);
+        World.ClearArea(103.0, -478.5, 14.9, 1.0, true);
         if ($.player.isPlaying()) {
             $.player.setCoordinates(103.0, -478.5, 14.9);
             $.player.setHeading(0.0);
@@ -2040,7 +2040,7 @@ async function yardie_phone_loop() {
         }
 
         if ($.player.isPlaying()) {
-            if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false)) {
                 if (!ONMISSION) {
                     if ($.player.canStartMission()) {
                         $.yardie_phone.turnOff();
@@ -2048,7 +2048,7 @@ async function yardie_phone_loop() {
                     if (!$.player.isPlaying()) {
                         continue;
                     }
-                    while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                    while ($.player.locateOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false)) {
                         await asyncWait(0);
                         if (!$.player.isPlaying()) {
                             break;
@@ -2098,7 +2098,7 @@ async function sub_save_loop() {
     //	Should be called before main loop
     // SCRIPT_NAME S_SAVE
 
-    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(-670.5, 3.9, 18.0, -660.0, 12.7, 22.0, false /* FALSE */)) {
+    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(-670.5, 3.9, 18.0, -660.0, 12.7, 22.0, false)) {
         log('[*] Loading from suburban area save...');
         await postSave();
     }
@@ -2119,11 +2119,11 @@ async function sub_save_loop() {
                 //SAVE HOUSE DOOR
                 if ($.player.isInZone('PROJECT')) {
                     if (!ONMISSION) {
-                        while (!$.newtowerdoor1.rotate(250.0, 10.0, false /* FALSE */)) {
+                        while (!$.newtowerdoor1.rotate(250.0, 10.0, false)) {
                             await asyncWait(0);
                         }
                     } else {
-                        while (!$.newtowerdoor1.rotate(180.0, 10.0, false /* FALSE */)) {
+                        while (!$.newtowerdoor1.rotate(180.0, 10.0, false)) {
                             await asyncWait(0);
                         }
                     }
@@ -2132,7 +2132,7 @@ async function sub_save_loop() {
                     if ($.player.isPlaying()) {
                         if ($.player.canStartMission()) {
                             if (!ONMISSION) {
-                                if ($.player.isInAreaOnFoot3D(-670.5, 3.9, 18.0, -660.0, 12.7, 22.0, false /* FALSE */)) {
+                                if ($.player.isInAreaOnFoot3D(-670.5, 3.9, 18.0, -660.0, 12.7, 22.0, false)) {
                                     $.player.setControl(false /* Off */);
                                     Camera.SetFixedPosition(-678.15, -6.46, 24.49, 0.0, 0.0, 0.0);
                                     Camera.PointAtPoint(-677.39, -5.92, 24.11, 2 /* JUMP_CUT */);
@@ -2143,7 +2143,7 @@ async function sub_save_loop() {
                                             ENDWHILE
                                             PLAY_MISSION_AUDIO
                                             */
-                                    while (!$.newtowerdoor1.rotate(180.0, 8.0, false /* FALSE */)) {
+                                    while (!$.newtowerdoor1.rotate(180.0, 8.0, false)) {
                                         await asyncWait(0);
                                     }
                                     /*
@@ -2186,10 +2186,10 @@ async function sub_save_loop() {
         ENDWHILE
         PLAY_MISSION_AUDIO
         */
-        while (!$.newtowerdoor1.rotate(250.0, 10.0, false /* FALSE */)) {
+        while (!$.newtowerdoor1.rotate(250.0, 10.0, false)) {
             await asyncWait(0);
         }
-        World.ClearArea(-666.8, -1.8, -100.0, 1.0, true /* TRUE */);
+        World.ClearArea(-666.8, -1.8, -100.0, 1.0, true);
         if ($.player.isPlaying()) {
             $.player.setCoordinates(-666.8, -1.8, -100.0);
             $.player.setHeading(180.0);
@@ -2268,7 +2268,7 @@ async function hood_phone_loop() {
         }
 
         if ($.player.isPlaying()) {
-            if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
+            if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false)) {
                 if (!ONMISSION) {
                     if ($.player.canStartMission()) {
                         $.hood_phone.turnOff();
@@ -2276,7 +2276,7 @@ async function hood_phone_loop() {
                     if (!$.player.isPlaying()) {
                         continue;
                     }
-                    while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false /* FALSE */)) {
+                    while ($.player.locateOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false)) {
                         await asyncWait(0);
                         if (!$.player.isPlaying()) {
                             break;

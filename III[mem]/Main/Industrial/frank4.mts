@@ -274,13 +274,13 @@ async function body() {
     SET_CHAR_HEADING asuka 5.0
     */
 
-    while (!$.player.locateStoppedInCar3D(827.3, -1084.3, 6.8, 5.0, 5.0, 4.0, true /* TRUE */)) {
+    while (!$.player.locateStoppedInCar3D(827.3, -1084.3, 6.8, 5.0, 5.0, 4.0, true)) {
         await asyncWait(0);
         if (Car.IsDead($.bomb_car) && $.car_dead_once == 0) {
             $.blip1_fm4.remove();
             $.car_dead_once = 1;
         }
-        if ($.player.locateOnFoot3D(827.3, -1084.3, 6.8, 5.0, 5.0, 4.0, false /* FALSE */)) {
+        if ($.player.locateOnFoot3D(827.3, -1084.3, 6.8, 5.0, 5.0, 4.0, false)) {
             break; // SCM GOTO → on_foot_frank4
         }
 
@@ -336,7 +336,7 @@ async function body() {
 
         $.boat_mar = Boat.Create(143 /* BOAT_REEFER */, 835.0, -1117.0, 0.4);
         $.boat_mar.setHeading(143.0);
-        $.boat_mar.anchor(true /* TRUE */);
+        $.boat_mar.anchor(true);
         $.boat_mar.stop();
 
         Streaming.LoadAllModelsNow();
@@ -504,17 +504,17 @@ async function body() {
         Camera.SetBehindPlayer();
 
         $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 837.0, -1116.5, 1.8);
-        $.maria.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.maria.setOnlyDamagedByPlayer(true);
         $.maria.setHeading(17.0);
-        $.maria.setStaysInCurrentLevel(false /* FALSE */);
-        $.maria.setIgnoreLevelTransitions(true /* TRUE */);
+        $.maria.setStaysInCurrentLevel(false);
+        $.maria.setIgnoreLevelTransitions(true);
         //boat_mar_Y = boat_mar_Y	- 1.0
 
         $.asuka = Char.Create(21 /* PEDTYPE_SPECIAL */, 28 /* PED_SPECIAL3 */, 836.6, -1114.6, 1.8);
-        $.asuka.setOnlyDamagedByPlayer(true /* TRUE */);
+        $.asuka.setOnlyDamagedByPlayer(true);
         $.asuka.setHeading(178.0);
-        $.asuka.setStaysInCurrentLevel(false /* FALSE */);
-        $.asuka.setIgnoreLevelTransitions(true /* TRUE */);
+        $.asuka.setStaysInCurrentLevel(false);
+        $.asuka.setIgnoreLevelTransitions(true);
 
         Game.SetCharsChatting($.maria, $.asuka, 999999);
 
@@ -538,7 +538,7 @@ async function body() {
         //GOTO skip_frank_cut2 //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         if (!Car.IsDead($.boat_mar)) {
-            $.boat_mar.anchor(false /* FALSE */);
+            $.boat_mar.anchor(false);
         }
 
         $.flag_car_blip_displayed_fm4 = 1 /* TRUE */;
@@ -549,9 +549,9 @@ async function body() {
         }
 
         while (
-            !$.player.isInArea3D(565.3, -678.4, -2.0, 575.3, -688.4, 4.0, true /* TRUE */) ||
-            !$.maria.isInArea3D(565.3, -678.4, -2.0, 575.3, -688.4, 4.0, false /* FALSE */) ||
-            !$.asuka.isInArea3D(565.3, -678.4, -2.0, 575.3, -688.4, 4.0, false /* FALSE */)
+            !$.player.isInArea3D(565.3, -678.4, -2.0, 575.3, -688.4, 4.0, true) ||
+            !$.maria.isInArea3D(565.3, -678.4, -2.0, 575.3, -688.4, 4.0, false) ||
+            !$.asuka.isInArea3D(565.3, -678.4, -2.0, 575.3, -688.4, 4.0, false)
         ) {
             //OR NOT IS_PLAYER_IN_CAR player boat_mar
             await asyncWait(0);
@@ -596,7 +596,7 @@ async function body() {
         }
 
         if (!Car.IsDead($.boat_mar)) {
-            $.boat_mar.anchor(true /* TRUE */);
+            $.boat_mar.anchor(true);
             $.boat_mar.stop();
         }
 
@@ -830,7 +830,7 @@ async function onPassed() {
     World.SwapNearestBuildingModel(529.023, -940.098, 43.504, 20.0, 1186 /* lodgbbridgerda */, 1184 /* lodridgerda */);
     World.SwapNearestBuildingModel(702.764, -919.963, 38.736, 20.0, 1186 /* lodgbbridgerda */, 1184 /* lodridgerda */);
 
-    World.SetVisibilityOfClosestObjectOfType(1027.26, -933.796, 15.042, 50.0, 855 /* indhelix_barrier */, false /* FALSE */);
+    World.SetVisibilityOfClosestObjectOfType(1027.26, -933.796, 15.042, 50.0, 855 /* indhelix_barrier */, false);
 
     World.SwapNearestBuildingModel(1027.26, -933.796, 15.042, 50.0, 855 /* indhelix_barrier */, 218 /* LOD_land014 */);
 
