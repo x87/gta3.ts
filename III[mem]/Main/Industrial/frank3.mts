@@ -34,7 +34,7 @@ async function body() {
     $.flag_on_frankie3 = 0;
     $.flag_bloke_leave_group_fm3 = 0;
     $.flag_bloke_in_area_fm3 = 0;
-    //xxx: $.timer_fm3 = 25000;
+    $.timer_fm3 = 25000;
     $.flag_guard1_fm3_dead = 0;
     $.flag_guard2_fm3_dead = 0;
     $.flag_guard3_fm3_dead = 0;
@@ -2036,7 +2036,7 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
     $.radar_blip_coord2_fm3.remove();
     $.radar_blip_coord3_fm3.remove();
-    // xxx: Hud.ClearTimer($.timer_fm3);
+    Hud.ClearTimer($.$id.timer_fm3);
     Path.RemoveRoute(0);
     Path.RemoveRoute(1);
     Path.RemoveRoute(2);

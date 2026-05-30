@@ -55,7 +55,7 @@ async function body() {
     $.rc_y = -117.0;
     $.rc_z = 5.5;
 
-    // xxx: $.timer_RCDD = 120000;
+    $.timer_RCDD = 120000;
 
     Player.ResetNumOfModelsKilled();
 
@@ -93,7 +93,6 @@ async function body() {
     Hud.DisplayTimer($.$id.timer_RCDD);
     $.timer_intro_start = Clock.GetGameTimer();
 
-    // xxx: while (!($.timer_RCDD < 1)) {
     while ($.timer_RCDD > 0) {
         await asyncWait(0);
         $.timer_intro_now = Clock.GetGameTimer();
