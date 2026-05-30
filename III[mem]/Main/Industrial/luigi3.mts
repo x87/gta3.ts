@@ -410,7 +410,7 @@ async function body() {
 
     $.blob_flag = 1;
 
-    while (!$.player.isPressingHorn() || !$.player.locateStoppedInCar2D(937.9, -259.8, 3.0, 3.0, !!$.blob_flag) || !$.player.isSittingInAnyCar()) {
+    while (!$.player.locateStoppedInCar2D(937.9, -259.8, 3.0, 3.0, !!$.blob_flag) || !$.player.isSittingInAnyCar() || !$.player.isPressingHorn()) {
         await asyncWait(0);
         if (!$.player.isInAnyCar() && $.flag_player_got_message_lm3 == 0) {
             Text.PrintNow('IN_VEH2', 5000, 1); //"Get a vehicle and get on with the mission!"
