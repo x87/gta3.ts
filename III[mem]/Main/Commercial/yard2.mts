@@ -564,9 +564,7 @@ async function body() {
                     }
                     if (!$.player.isInCar($.gang_car_yd2)) {
                         $.flag_upsidedown = 2;
-                        // SCM GOSUB player_out_of_car
-                        await player_out_of_car();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await player_out_of_car(); // SCM GOSUB player_out_of_car
                         if (!Car.IsDead($.gang_car_yd2)) {
                             if (!$.player.isInCar($.gang_car_yd2)) {
                                 $.flag_upsidedown = 2;
@@ -629,9 +627,7 @@ async function body() {
                     }
                 }
                 if (!$.player.isInCar($.gang_car_yd2)) {
-                    // SCM GOSUB player_out_of_car
-                    await player_out_of_car();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await player_out_of_car(); // SCM GOSUB player_out_of_car
                     if (!Car.IsDead($.gang_car_yd2)) {
                         if (!$.player.isInCar($.gang_car_yd2)) {
                             $.flag_upsidedown = 2;
@@ -696,9 +692,7 @@ async function body() {
                         }
                     }
                     if (!$.player.isInCar($.gang_car_yd2)) {
-                        // SCM GOSUB player_out_of_car
-                        await player_out_of_car();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await player_out_of_car(); // SCM GOSUB player_out_of_car
                         if (!Car.IsDead($.gang_car_yd2)) {
                             if (!$.player.isInCar($.gang_car_yd2)) {
                                 $.flag_upsidedown = 2;

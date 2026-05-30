@@ -1,8 +1,65 @@
 // Generated from Main/Industrial/luigi1.sc
 import { $ } from '../../utils';
 
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************Luigi mission 1*********************************
+// *****************************************************************************************
+// *****************************************************************************************
+// *****************************************************************************************
 
-async function mission_start_luigi1() {
+async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_luigi1
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+
+    // 	GOSUB mission_luigi1_failed
+
+    // ENDIF
+
+    // GOSUB mission_cleanup_luigi1
+
+    // Variable for mission
+
+    // VAR_INT radar_blip_coord1_lm1
+
+    // VAR_INT radar_blip_ped1_lm1
+
+    // VAR_INT radar_blip_ped2_lm1
+
+    // VAR_INT girl1_lm1
+
+    // VAR_INT girl2_lm1
+
+    // VAR_INT car_lm1
+
+    // VAR_INT flag_player_had_car_message_lm1
+
+    // VAR_INT flag_player_not_in_car_message_lm1
+
+    // VAR_INT flag_luigi_created_lm1
+
+    // VAR_INT no_of_passengers_car_lm1
+
+    // VAR_INT flag_girl1_in_car_lm1
+
+    // VAR_INT flag_girl2_in_car_lm1
+
+    // VAR_INT passenger_count_lm1
+
+    // VAR_INT total_space_in_car_lm1
+
+    // VAR_INT flag_blip_on_girl1_lm1
+
+    // VAR_INT flag_blip_on_girl2_lm1
+
+    // VAR_INT flag_coord_blip_on
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
 
     $.flag_player_on_luigi_mission = 1;
@@ -13,13 +70,13 @@ async function mission_start_luigi1() {
 
     $.flag_player_not_in_car_message_lm1 = 0;
 
-    flag_luigi_created_lm1 = 0;
+    $.flag_luigi_created_lm1 = 0;
 
     $.no_of_passengers_car_lm1 = 0;
 
     $.flag_girl1_in_car_lm1 = 0;
 
-    flag_girl2_in_car_lm1 = 0;
+    $.flag_girl2_in_car_lm1 = 0;
 
     $.passenger_count_lm1 = 0;
 
@@ -27,7 +84,7 @@ async function mission_start_luigi1() {
 
     $.flag_blip_on_girl1_lm1 = 0;
 
-    flag_blip_on_girl2_lm1 = 0;
+    $.flag_blip_on_girl2_lm1 = 0;
 
     $.flag_coord_blip_on = 0;
 
@@ -219,13 +276,13 @@ async function mission_start_luigi1() {
 
         // Creates second girl
 
-        girl2_lm1 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 39 /* PED_PROSTITUTE */, 1383.0, -392.0, -100.0);
+        $.girl2_lm1 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 39 /* PED_PROSTITUTE */, 1383.0, -392.0, -100.0);
 
-        girl2_lm1.clearThreatSearch();
+        $.girl2_lm1.clearThreatSearch();
 
-        girl2_lm1.turnToFaceCoord(1380.0, -391.0, -100.0);
+        $.girl2_lm1.turnToFaceCoord(1380.0, -391.0, -100.0);
 
-        $.radar_blip_ped2_lm1 = Blip.AddForChar(girl2_lm1);
+        $.radar_blip_ped2_lm1 = Blip.AddForChar($.girl2_lm1);
 
         // Waiting for the player to be in a car
 
@@ -239,14 +296,14 @@ async function mission_start_luigi1() {
 
         // Waiting for the player and the girls all to be in the one car
 
-        while (!$.player.isInAnyCar() || !($.flag_girl1_in_car_lm1 == 1) || !(flag_girl2_in_car_lm1 == 1)) {
+        while (!$.player.isInAnyCar() || !($.flag_girl1_in_car_lm1 == 1) || !($.flag_girl2_in_car_lm1 == 1)) {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
                 // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
             }
-            if (Char.IsDead(girl2_lm1)) {
+            if (Char.IsDead($.girl2_lm1)) {
                 Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
                 // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
@@ -277,7 +334,7 @@ async function mission_start_luigi1() {
                                     // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
                                 }
-                                if (Char.IsDead(girl2_lm1)) {
+                                if (Char.IsDead($.girl2_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
                                     // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
@@ -301,15 +358,15 @@ async function mission_start_luigi1() {
 
                 // Checks for girl 2
 
-                if (flag_girl2_in_car_lm1 == 0) {
-                    if ($.player.locateInCarChar2D(girl2_lm1, 8.0, 8.0, false) && $.player.isStopped()) {
+                if ($.flag_girl2_in_car_lm1 == 0) {
+                    if ($.player.locateInCarChar2D($.girl2_lm1, 8.0, 8.0, false) && $.player.isStopped()) {
                         $.flag_player_had_car_message_lm1 = 0;
                         $.passenger_count_lm1 = $.car_lm1.getNumberOfPassengers();
                         $.total_space_in_car_lm1 = $.no_of_passengers_car_lm1 - $.passenger_count_lm1;
 
                         if ($.total_space_in_car_lm1 >= 1) {
-                            girl2_lm1.followPlayer($.player);
-                            while (!girl2_lm1.isInCar($.car_lm1)) {
+                            $.girl2_lm1.followPlayer($.player);
+                            while (!$.girl2_lm1.isInCar($.car_lm1)) {
                                 await asyncWait(0);
                                 if (Car.IsDead($.car_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
@@ -321,7 +378,7 @@ async function mission_start_luigi1() {
                                     // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
                                 }
-                                if (Char.IsDead(girl2_lm1)) {
+                                if (Char.IsDead($.girl2_lm1)) {
                                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
                                     // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                                     throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
@@ -368,12 +425,12 @@ async function mission_start_luigi1() {
                     //	GOTO mission_luigi1_failed
                     //ENDIF
                 }
-                if (flag_girl2_in_car_lm1 == 1) {
-                    if (!girl2_lm1.isInPlayersGroup($.player) && flag_blip_on_girl2_lm1 == 0) {
+                if ($.flag_girl2_in_car_lm1 == 1) {
+                    if (!$.girl2_lm1.isInPlayersGroup($.player) && $.flag_blip_on_girl2_lm1 == 0) {
                         Text.PrintSoon('HEY', 5000, 1); //"Hey wait for me!"
-                        $.radar_blip_ped2_lm1 = Blip.AddForChar(girl2_lm1);
-                        flag_girl2_in_car_lm1 = 0;
-                        flag_blip_on_girl2_lm1 = 1;
+                        $.radar_blip_ped2_lm1 = Blip.AddForChar($.girl2_lm1);
+                        $.flag_girl2_in_car_lm1 = 0;
+                        $.flag_blip_on_girl2_lm1 = 1;
                     }
 
                     //IF LOCATE_PLAYER_ANY_MEANS_CHAR_2D player girl2_lm1 8.0 8.0 FALSE
@@ -412,7 +469,7 @@ async function mission_start_luigi1() {
         while (
             !$.player.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, true) ||
             !$.girl1_lm1.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, false) ||
-            !girl2_lm1.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, false)
+            !$.girl2_lm1.locateStoppedAnyMeans2D(908.0, -425.0, 4.0, 4.0, false)
         ) {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
@@ -420,7 +477,7 @@ async function mission_start_luigi1() {
                 // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
             }
-            if (Char.IsDead(girl2_lm1)) {
+            if (Char.IsDead($.girl2_lm1)) {
                 Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
                 // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
@@ -458,11 +515,11 @@ async function mission_start_luigi1() {
                 $.radar_blip_coord1_lm1.remove();
                 $.flag_blip_on_girl1_lm1 = 1;
             }
-            if (!girl2_lm1.isInPlayersGroup($.player) && flag_blip_on_girl2_lm1 == 0) {
+            if (!$.girl2_lm1.isInPlayersGroup($.player) && $.flag_blip_on_girl2_lm1 == 0) {
                 Text.PrintSoon('HEY', 5000, 1); //"Hey wait for me!"
-                $.radar_blip_ped2_lm1 = Blip.AddForChar(girl2_lm1);
+                $.radar_blip_ped2_lm1 = Blip.AddForChar($.girl2_lm1);
                 $.radar_blip_coord1_lm1.remove();
-                flag_blip_on_girl2_lm1 = 1;
+                $.flag_blip_on_girl2_lm1 = 1;
             }
             if ($.player.locateAnyMeansChar2D($.girl1_lm1, 8.0, 8.0, false) && $.flag_blip_on_girl1_lm1 == 1) {
                 $.girl1_lm1.followPlayer($.player);
@@ -470,13 +527,13 @@ async function mission_start_luigi1() {
                 $.flag_coord_blip_on = 0;
                 $.flag_blip_on_girl1_lm1 = 0;
             }
-            if ($.player.locateAnyMeansChar2D(girl2_lm1, 8.0, 8.0, false) && flag_blip_on_girl2_lm1 == 1) {
-                girl2_lm1.followPlayer($.player);
+            if ($.player.locateAnyMeansChar2D($.girl2_lm1, 8.0, 8.0, false) && $.flag_blip_on_girl2_lm1 == 1) {
+                $.girl2_lm1.followPlayer($.player);
                 $.radar_blip_ped2_lm1.remove();
                 $.flag_coord_blip_on = 0;
-                flag_blip_on_girl2_lm1 = 0;
+                $.flag_blip_on_girl2_lm1 = 0;
             }
-            if ($.girl1_lm1.isInPlayersGroup($.player) && girl2_lm1.isInPlayersGroup($.player) && $.flag_coord_blip_on == 0) {
+            if ($.girl1_lm1.isInPlayersGroup($.player) && $.girl2_lm1.isInPlayersGroup($.player) && $.flag_coord_blip_on == 0) {
                 $.radar_blip_coord1_lm1 = Blip.AddForCoord(908.0, -425.0, -100.0);
                 $.flag_coord_blip_on = 1;
             }
@@ -486,21 +543,21 @@ async function mission_start_luigi1() {
 
         $.girl1_lm1.leaveGroup();
 
-        girl2_lm1.leaveGroup();
+        $.girl2_lm1.leaveGroup();
 
-        if ($.girl1_lm1.isInAnyCar() && girl2_lm1.isInAnyCar()) {
+        if ($.girl1_lm1.isInAnyCar() && $.girl2_lm1.isInAnyCar()) {
             $.car_lm1 = $.girl1_lm1.storeCarIsIn();
             $.girl1_lm1.setObjLeaveCar($.car_lm1);
-            $.car_lm1 = girl2_lm1.storeCarIsIn();
-            girl2_lm1.setObjLeaveCar($.car_lm1);
-            while ($.girl1_lm1.isInAnyCar() && girl2_lm1.isInAnyCar()) {
+            $.car_lm1 = $.girl2_lm1.storeCarIsIn();
+            $.girl2_lm1.setObjLeaveCar($.car_lm1);
+            while ($.girl1_lm1.isInAnyCar() && $.girl2_lm1.isInAnyCar()) {
                 await asyncWait(0);
                 if (Char.IsDead($.girl1_lm1)) {
                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
                     // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
                 }
-                if (Char.IsDead(girl2_lm1)) {
+                if (Char.IsDead($.girl2_lm1)) {
                     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
                     // SCM GOTO → mission_luigi1_failed (not lowered; manual jump required)
                     throw new Error('unresolved GOTO mission_luigi1_failed'); // fallback: would break linear control flow
@@ -509,32 +566,26 @@ async function mission_start_luigi1() {
         }
     }
 
-    // SCM GOTO → mission_luigi1_passed (not lowered; manual jump required)
-    throw new Error('unresolved GOTO mission_luigi1_passed'); // fallback: would break linear control flow
-
-    // Mission Luigi1 failed
+    return; // SCM GOTO → mission_luigi1_passed
 }
 
-async function mission_luigi1_failed() {
+// Mission Luigi1 failed
+async function onFailed() {
     $.flag_failed_luigi1 = 1;
     // START_NEW_SCRIPT luigi_mission1.2_loop
-    return;
-
-    // mission Luigi1 passed
 }
 
-async function mission_luigi1_passed() {
+// mission Luigi1 passed
+async function onPassed() {
     $.flag_luigi_mission1_passed = 1;
     Text.PrintBig('M_PASS', 2000, 1);
     $.player.clearWantedLevel();
     $.player.addScore(1500);
     // START_NEW_SCRIPT luigi_mission2_loop
-    return;
-
-    // mission cleanup
 }
 
-async function mission_cleanup_luigi1() {
+// mission cleanup
+async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_luigi_mission = 0;
     Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);
@@ -564,72 +615,6 @@ async function mission_cleanup_luigi1() {
     //ENDIF
 
     Mission.Finish();
-    return;
 }
 
-export async function luigi1() {
-    
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************Luigi mission 1*********************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-    // *****************************************************************************************
-
-    // Mission start stuff
-
-    // SCM GOSUB mission_start_luigi1
-    await mission_start_luigi1();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    if (HAS_DEATHARREST_BEEN_EXECUTED()) {
-        // SCM GOSUB mission_luigi1_failed
-        await mission_luigi1_failed();
-        // fallback if label was not emitted as async function: no-op continues linearly
-    }
-
-    // SCM GOSUB mission_cleanup_luigi1
-    await mission_cleanup_luigi1();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    
-
-    // Variable for mission
-
-    // VAR_INT radar_blip_coord1_lm1
-
-    // VAR_INT radar_blip_ped1_lm1
-
-    // VAR_INT radar_blip_ped2_lm1
-
-    // VAR_INT girl1_lm1
-
-    // VAR_INT girl2_lm1
-
-    // VAR_INT car_lm1
-
-    // VAR_INT flag_player_had_car_message_lm1
-
-    // VAR_INT flag_player_not_in_car_message_lm1
-
-    // VAR_INT flag_luigi_created_lm1
-
-    // VAR_INT no_of_passengers_car_lm1
-
-    // VAR_INT flag_girl1_in_car_lm1
-
-    // VAR_INT flag_girl2_in_car_lm1
-
-    // VAR_INT passenger_count_lm1
-
-    // VAR_INT total_space_in_car_lm1
-
-    // VAR_INT flag_blip_on_girl1_lm1
-
-    // VAR_INT flag_blip_on_girl2_lm1
-
-    // VAR_INT flag_coord_blip_on
-
-    // ****************************************Mission Start************************************
-}
+export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

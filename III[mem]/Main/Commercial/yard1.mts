@@ -591,9 +591,7 @@ async function body() {
                         $.hot_rod_1.setMission(2); //MISSION_RAMPLAYER_FARAWAY
                     }
                     if ($.player_dist > $.hot_rod_1_dist) {
-                        // SCM GOSUB driving_style_car_1
-                        await driving_style_car_1();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await driving_style_car_1(); // SCM GOSUB driving_style_car_1
                     }
                 } else {
                     $.hot_rod_1.setIdle();
@@ -712,10 +710,8 @@ async function body() {
                         $.hot_rod_2.setMission(2); //RAMPLAYER_FARAWAY
                     }
 
-                    if ($.player_dist > $.hot_rod_2_dist) {
-                        // SCM GOSUB driving_style_car_2
-                        await driving_style_car_2();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                    if ($.player_dist > $.hot_rod_2_dist) {                        
+                        await driving_style_car_2(); // SCM GOSUB driving_style_car_2
                     }
                 } else {
                     $.hot_rod_2.setIdle();

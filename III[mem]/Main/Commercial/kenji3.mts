@@ -677,9 +677,7 @@ async function body() {
         if ($.player.locateAnyMeans2D(231.1, -26.3, 10.0, 10.0, false)) {
             if (!$.player.isInModel(135 /* CAR_YARDIE */) || $.player.isShooting()) {
                 Text.PrintNow('KM3_14', 7000, 1); //"You have been seen the deals off"
-                // SCM GOSUB attack_player
-                await attack_player();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await attack_player(); // SCM GOSUB attack_player
                 // SCM GOTO → mission_kenji3_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_kenji3_failed'); // fallback: would break linear control flow
             }

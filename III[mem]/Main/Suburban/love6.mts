@@ -1,6 +1,36 @@
 // Generated from Main/Suburban/love6.sc
 import { $ } from '../../utils';
+
+// *****************************************************************************************
+// *******************************    Donald Love 6    *************************************
+// *******************************    Swat the SWAT    *************************************
+// *****************************************************************************************
+// *** Ray has tipped off Love that the Liberty PD are going to mount a raid on his pad. ***
+// *** Three SWAT vans are going to approach the contact point from different directions ***
+// *** to trap any one escaping.  The player must take out the SWAT teams.				 ***
+// *****************************************************************************************
+
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_love6
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_love6_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_love6
+
+    // Variables For Mission
+
+    // VAR_INT decoy_van swat_1 swat_2 swat_3 swat_4 swat_5 cop_1 cop_2 cop_3
+    // VAR_INT ped_swat_1 ped_swat_2 ped_swat_3 ped_swat_4 ped_swat_5 ped_swat_6 ped_swat_7 ped_swat_8
+    // VAR_INT ped_cop_1 ped_cop_2 ped_cop_3 ped_cop_4 ped_cop_5 ped_cop_6
+    // VAR_INT survival_time decoy_van_blip get_in_van decoy_van_health decoy_van_health2
+    // VAR_INT out_of_car_timer_present out_of_car_timer_start out_of_car_timer out_of_car_timer_diff out_of_car_timer_secs
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
     $.flag_player_on_love_mission = 1;
 
@@ -477,19 +507,15 @@ async function body() {
         throw new Error('unresolved GOTO mission_love6_failed'); // fallback: would break linear control flow
     }
 
-    // SCM GOTO → mission_love6_passed (not lowered; manual jump required)
-    return;
-
-    // Mission Love 6 failed
+    return; // SCM GOTO → mission_love6_passed
 }
 
+// Mission Love 6 failed
 async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1);
-    return;
-
-    // mission Love 6 passed
 }
 
+// mission Love 6 passed
 async function onPassed() {
     $.flag_love_mission6_passed = 1;
     Text.PrintWithNumberBig('M_PASS', 35000, 5000, 1);
@@ -499,11 +525,9 @@ async function onPassed() {
     Audio.PlayMissionPassedTune(1);
     Stat.PlayerMadeProgress(1);
     // START_NEW_SCRIPT love_mission7_loop
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_love_mission = 0;
@@ -519,41 +543,6 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(2 /* PED_SWAT */);
 
     Mission.Finish();
-    return;
 }
 
-
-// *****************************************************************************************
-// *******************************    Donald Love 6    *************************************
-// *******************************    Swat the SWAT    *************************************
-// *****************************************************************************************
-// *** Ray has tipped off Love that the Liberty PD are going to mount a raid on his pad. ***
-// *** Three SWAT vans are going to approach the contact point from different directions ***
-// *** to trap any one escaping.  The player must take out the SWAT teams.				 ***
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_love6
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_love6_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_love6
-// fallback if label was not emitted as async function: no-op continues linearly
-
-
-
-// Variables For Mission
-
-// VAR_INT decoy_van swat_1 swat_2 swat_3 swat_4 swat_5 cop_1 cop_2 cop_3
-// VAR_INT ped_swat_1 ped_swat_2 ped_swat_3 ped_swat_4 ped_swat_5 ped_swat_6 ped_swat_7 ped_swat_8
-// VAR_INT ped_cop_1 ped_cop_2 ped_cop_3 ped_cop_4 ped_cop_5 ped_cop_6
-// VAR_INT survival_time decoy_van_blip get_in_van decoy_van_health decoy_van_health2
-// VAR_INT out_of_car_timer_present out_of_car_timer_start out_of_car_timer out_of_car_timer_diff out_of_car_timer_secs
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

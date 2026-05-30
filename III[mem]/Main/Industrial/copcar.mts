@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/copcar.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -71,10 +71,10 @@ async function body() {
         $.cop_time_limit_float = 0.0;
         $.criminal_heading = 0.0;
 
-        const _res179 = $.player.getCoordinates();
-        $.player_c_x = _res179.x;
-        $.player_c_y = _res179.y;
-        $.player_c_z = _res179.z;
+        const { x, y, z } = $.player.getCoordinates();
+        $.player_c_x = x;
+        $.player_c_y = y;
+        $.player_c_z = z;
         Streaming.RequestModel(95 /* CAR_SENTINEL */);
 
         criminal_in_car: while (true) {
@@ -117,16 +117,13 @@ async function body() {
                     Text.PrintNow('C_RANGE', 5000, 1); //"The radio is out of range, get closer to a police station!"
                     $.got_range_message = 1;
                 }
-                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+                FAIL('cop_car_failed');
             }
+            
+            await copcar_cancelled_checks(); // SCM GOSUB copcar_cancelled_checks
 
-            // SCM GOSUB copcar_cancelled_checks
-            await copcar_cancelled_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
             if ($.copcar_cancelled_flag == 1) {
-                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+                FAIL('cop_car_failed');
             }
 
             const _res180 = Path.GetClosestCarNode($.random_crim_x, $.random_crim_y, $.player_c_z);
@@ -259,12 +256,10 @@ async function body() {
 
         while (!Streaming.HasModelLoaded($.car_model)) {
             await asyncWait(0);
-            // SCM GOSUB copcar_cancelled_checks
-            await copcar_cancelled_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            
+            await copcar_cancelled_checks(); // SCM GOSUB copcar_cancelled_checks
             if ($.copcar_cancelled_flag == 1) {
-                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+                FAIL('cop_car_failed');
             }
         }
 
@@ -272,12 +267,10 @@ async function body() {
 
         while (!(TIMERB > 3000)) {
             await asyncWait(0);
-            // SCM GOSUB copcar_cancelled_checks
-            await copcar_cancelled_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            
+            await copcar_cancelled_checks(); // SCM GOSUB copcar_cancelled_checks
             if ($.copcar_cancelled_flag == 1) {
-                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+                FAIL('cop_car_failed');
             }
         }
 
@@ -491,15 +484,12 @@ async function body() {
                 } else {
                     Text.PrintNow('C_TIME', 3000, 1); //"Your time as a law enforcer is over!"
                 }
-                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+                FAIL('cop_car_failed');
             }
-            // SCM GOSUB copcar_cancelled_checks
-            await copcar_cancelled_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            
+            await copcar_cancelled_checks(); // SCM GOSUB copcar_cancelled_checks
             if ($.copcar_cancelled_flag == 1) {
-                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+                FAIL('cop_car_failed');
             }
             if ($.got_car_crim_is_in == 0) {
                 if (!$.criminal.isHealthGreater(70)) {
@@ -758,8 +748,7 @@ async function body() {
             Text.PrintWithNumberNow('COPCART', $.timer_in_secs, 200, 1); //You have ~1~ seconds to return to the car before the mission ends.
             if ($.timer_in_secs < 1) {
                 Text.PrintNow('C_TIME', 3000, 1); //"Your time as a law enforcer is over!"
-                // SCM GOTO → cop_car_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO cop_car_failed'); // fallback: would break linear control flow
+                FAIL('cop_car_failed');
             }
             await asyncWait(0);
         }

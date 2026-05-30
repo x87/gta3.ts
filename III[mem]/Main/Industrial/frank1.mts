@@ -917,9 +917,7 @@ async function body() {
 
         while (!$.maria.locateStoppedInCar2D(1259.041, -1107.7825, 3.0, 3.0, !!$.locate_dome_flag)) {
             await asyncWait(0);
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await draw_disco_lights(); // SCM GOSUB draw_disco_lights
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
                 // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
@@ -1016,9 +1014,7 @@ async function body() {
 
         while ($.maria.isInCar($.frankies_limo)) {
             await asyncWait(0);
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await draw_disco_lights(); // SCM GOSUB draw_disco_lights
             if (Char.IsDead($.maria)) {
                 Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
                 // SCM GOTO → mission_frankie1_failed (not lowered; manual jump required)
@@ -1042,9 +1038,7 @@ async function body() {
 
         while (!$.maria.locateOnFoot2D(1266.85, -1107.65, 1.0, 1.0, false)) {
             await asyncWait(0);
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await draw_disco_lights(); // SCM GOSUB draw_disco_lights
             if (TIMERA > 20000) {
                 World.ClearArea(1267.665, -1107.569, 11.38, 3.0, false);
             }
@@ -1070,9 +1064,7 @@ async function body() {
 
         while (!$.maria.locateOnFoot2D($.inside_warehouse_x, $.inside_warehouse_y, 1.0, 1.0, false)) {
             await asyncWait(0);
-            // SCM GOSUB draw_disco_lights
-            await draw_disco_lights();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await draw_disco_lights(); // SCM GOSUB draw_disco_lights
             if (TIMERA > 20000) {
                 World.ClearArea(1267.665, -1107.569, 11.38, 4.0, false);
             }

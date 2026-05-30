@@ -1,6 +1,55 @@
 // Generated from Main/Suburban/ray6.sc
 import { $ } from '../../utils';
+
+// *****************************************************************************************
+// ************************************   Ray 6    *****************************************
+// ************************************ Marked Man *****************************************
+// *****************************************************************************************
+// *** The CIA is making money from Cartel deals and is concerned that the Yakuza are 	 ***
+// *** hindering the operation. They've discovered that Ray is helping them and they've  ***
+// *** decided to 'rub him out'. Ray is running scared and needs a ride to the airport.  ***
+// *** His contact point is empty, but the player will get a pager message. The player is***
+// *** followed by the C.I.A Ray is dressed in a Hawaiian shirt and has two cases packed.***
+// *** He's booked on a flight (timed mission). The CIA give chase.						 ***
+// *****************************************************************************************
+
 async function body() {
+    // Mission start stuff
+
+    // GOSUB mission_start_ray6
+
+    // IF HAS_DEATHARREST_BEEN_EXECUTED
+    // 	GOSUB mission_ray6_failed
+    // ENDIF
+
+    // GOSUB mission_cleanup_ray6
+
+    // MISSION_END
+
+    // Variables for mission
+
+    // VAR_INT time_till_flight flag_blip_on_ray rays_blip total_cia player_death_car airport_door_flag door1_closed door2_closed
+    // VAR_INT cia_1 cia_1_flag
+    // VAR_INT cia_2 cia_2_flag
+    // VAR_INT cia_3 cia_3_flag
+    // VAR_INT cia_4 cia_4_flag
+    // VAR_INT cia_5 cia_5_flag
+    // VAR_INT cia_6 cia_6_flag
+    // VAR_INT cia_7 cia_7_flag
+    // VAR_INT cia_8 cia_8_flag
+    // VAR_INT cia_9 cia_9_flag
+    // VAR_INT cia_10 cia_10_flag
+    // VAR_INT cia_11 cia_11_flag
+    // VAR_INT cia_12 cia_12_flag
+    // VAR_INT cia_13 cia_13_flag
+    // VAR_INT cia_14 cia_14_flag
+    // VAR_INT cia_15 cia_15_flag
+    // VAR_INT cia_16 cia_16_flag
+    // VAR_INT cia_17 cia_17_flag
+    // VAR_INT rays_prize_car rays_prize_weapon1 rays_prize_weapon2 rays_prize_weapon3 rays_prize_weapon4 rays_cash pickups_created_rm6
+
+    // ****************************************Mission Start************************************
+
     ONMISSION = true;
     $.flag_player_on_ray_mission = 1;
     $.rays_cutscene_flag = 1;
@@ -1125,12 +1174,10 @@ async function body() {
 
     await asyncWait(13000);
 
-    // SCM GOTO → mission_ray6_passed (not lowered; manual jump required)
-    return;
-
-    // Mission Ray 6 failed
+    return; // SCM GOTO → mission_ray6_passed
 }
 
+// Mission Ray 6 failed
 async function onFailed() {
     if ($.pickups_created_rm6 == 1) {
         $.rays_prize_weapon1.remove();
@@ -1143,11 +1190,9 @@ async function onFailed() {
     }
     $.ray.removeElegantly();
     Text.PrintBig('M_FAIL', 5000, 1);
-    return;
-
-    // mission Ray 6 passed
 }
 
+// mission Ray 6 passed
 async function onPassed() {
     $.flag_ray_mission6_passed = 1;
     Text.PrintWithNumberBig('M_PASS', 20000, 2000, 1);
@@ -1157,11 +1202,9 @@ async function onPassed() {
     Audio.PlayMissionPassedTune(1);
     Stat.PlayerMadeProgress(1);
     $.ray_contact_blip.remove();
-    return;
-
-    // mission cleanup
 }
 
+// mission cleanup
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
@@ -1188,58 +1231,6 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(96 /* CAR_PATRIOT */);
 
     Mission.Finish();
-    return;
 }
 
-
-// *****************************************************************************************
-// ************************************   Ray 6    *****************************************
-// ************************************ Marked Man *****************************************
-// *****************************************************************************************
-// *** The CIA is making money from Cartel deals and is concerned that the Yakuza are 	 ***
-// *** hindering the operation. They've discovered that Ray is helping them and they've  ***
-// *** decided to 'rub him out'. Ray is running scared and needs a ride to the airport.  ***
-// *** His contact point is empty, but the player will get a pager message. The player is***
-// *** followed by the C.I.A Ray is dressed in a Hawaiian shirt and has two cases packed.***
-// *** He's booked on a flight (timed mission). The CIA give chase.						 ***
-// *****************************************************************************************
-
-// Mission start stuff
-
-// SCM GOSUB mission_start_ray6
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_ray6_failed
-// fallback if label was not emitted as async function: no-op continues linearly
-
-// SCM GOSUB mission_cleanup_ray6
-// fallback if label was not emitted as async function: no-op continues linearly
-
-
-
-// Variables for mission
-
-// VAR_INT time_till_flight flag_blip_on_ray rays_blip total_cia player_death_car airport_door_flag door1_closed door2_closed
-// VAR_INT cia_1 cia_1_flag
-// VAR_INT cia_2 cia_2_flag
-// VAR_INT cia_3 cia_3_flag
-// VAR_INT cia_4 cia_4_flag
-// VAR_INT cia_5 cia_5_flag
-// VAR_INT cia_6 cia_6_flag
-// VAR_INT cia_7 cia_7_flag
-// VAR_INT cia_8 cia_8_flag
-// VAR_INT cia_9 cia_9_flag
-// VAR_INT cia_10 cia_10_flag
-// VAR_INT cia_11 cia_11_flag
-// VAR_INT cia_12 cia_12_flag
-// VAR_INT cia_13 cia_13_flag
-// VAR_INT cia_14 cia_14_flag
-// VAR_INT cia_15 cia_15_flag
-// VAR_INT cia_16 cia_16_flag
-// VAR_INT cia_17 cia_17_flag
-// VAR_INT rays_prize_car rays_prize_weapon1 rays_prize_weapon2 rays_prize_weapon3 rays_prize_weapon4 rays_cash pickups_created_rm6
-
-// ****************************************Mission Start************************************
-
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);
-

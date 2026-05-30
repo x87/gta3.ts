@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/diablo1.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // ***********************************    Diablo 1 	  **************************************
 // *********************************** Low Rider Race **************************************
@@ -356,16 +356,13 @@ async function body() {
             Text.PrintNow('YD1_G', 5000, 1);
         }
         if (Car.IsDead($.car1_d1)) {
-            // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+            FAIL("mission_d1_failed");
         }
         if (Car.IsDead($.car2_d1)) {
-            // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+            FAIL("mission_d1_failed");
         }
         if (Car.IsDead($.car3_d1)) {
-            // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+            FAIL("mission_d1_failed");
         }
         $.timerc = $.car1_d1.getHealth();
         if ($.timerc < 1000) {
@@ -419,18 +416,15 @@ async function body() {
         }
 
         if (Car.IsDead($.car1_d1)) {
-            // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+            FAIL("mission_d1_failed");
         }
 
         if (Car.IsDead($.car2_d1)) {
-            // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+            FAIL("mission_d1_failed");
         }
 
         if (Car.IsDead($.car3_d1)) {
-            // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+            FAIL("mission_d1_failed");
         }
 
         $.timerc = 0;
@@ -872,8 +866,7 @@ async function body() {
                 if ($.car1_cpcounter == 18) {
                     //		AND	position > 0
                     Text.PrintNow('DIAB1_3', 5000, 1); //"~r~You failed to win the race!"
-                    // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_d1_failed");
                 }
                 if ($.ai_car1_locate_size == 7.0) {
                     $.car1_d1.gotoCoordinates($.car1_x_d1, $.car1_y_d1, $.car1_z_d1);
@@ -1119,8 +1112,7 @@ async function body() {
                 if ($.car2_cpcounter == 18) {
                     //		AND	position > 0
                     Text.PrintNow('DIAB1_3', 5000, 1); //"~r~You failed to win the race!"
-                    // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_d1_failed");
                 }
                 if ($.ai_car2_locate_size == 7.0) {
                     $.car2_d1.gotoCoordinates($.car2_x_d1, $.car2_y_d1, $.car2_z_d1);
@@ -1370,8 +1362,7 @@ async function body() {
                 if ($.car3_cpcounter == 18) {
                     //		AND	position > 0
                     Text.PrintNow('DIAB1_3', 5000, 1); //"~r~You failed to win the race!"
-                    // SCM GOTO → mission_d1_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO mission_d1_failed'); // fallback: would break linear control flow
+                    FAIL("mission_d1_failed");
                 }
                 if ($.ai_car3_locate_size == 7.0) {
                     $.car3_d1.gotoCoordinates($.car3_x_d1, $.car3_y_d1, $.car3_z_d1);

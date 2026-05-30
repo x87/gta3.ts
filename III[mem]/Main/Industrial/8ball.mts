@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/8ball.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
 // *****************************************************************************************
@@ -11,7 +11,6 @@ import { $ } from '../../utils';
 // *****************************************************************************************
 
 async function body() {
-
     // SCRIPT_NAME eight
 
     // Mission start stuff
@@ -297,24 +296,20 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
             }
@@ -323,25 +318,21 @@ async function body() {
 
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
 
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
 
@@ -359,24 +350,20 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
             }
@@ -389,24 +376,20 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
             }
@@ -421,25 +404,21 @@ async function body() {
 
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
 
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
 
@@ -454,24 +433,20 @@ async function body() {
                 }
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
             }
@@ -500,10 +475,8 @@ async function body() {
             Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
 
             $.radar_blip_car1_eightball = Blip.AddForCar($.car_eightball);
-
-            // SCM GOSUB car_gen_start_8ball
-            await car_gen_start_8ball();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            
+            await car_gen_start_8ball(); // SCM GOSUB car_gen_start_8ball
 
             await asyncWait(500);
 
@@ -513,25 +486,21 @@ async function body() {
 
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
 
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
 
@@ -561,25 +530,21 @@ async function body() {
 
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
 
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
 
@@ -593,24 +558,20 @@ async function body() {
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
 
@@ -661,25 +622,21 @@ async function body() {
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
 
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
 
             $.controlmode = Pad.GetControllerMode();
@@ -718,24 +675,20 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                     if (!$.player.isInCar($.car_eightball)) {
                         $.blob_flag = 0;
@@ -824,24 +777,20 @@ async function body() {
                 }
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                     if (!$.player.isInCar($.car_eightball)) {
                         $.blob_flag = 0;
@@ -890,40 +839,36 @@ async function body() {
 
             World.ClearArea(886.8, -310.1, -100.0, 2.0, true);
 
-            const _res163 = $.car_eightball.getCoordinates();
-            $.car_8ball_x = _res163.x;
-            $.car_8ball_y = _res163.y;
-            $.car_8ball_z = _res163.z;
+            const {x, y, z} = $.car_eightball.getCoordinates();
+            $.car_8ball_x = x;
+            $.car_8ball_y = y;
+            $.car_8ball_z = z;
 
             $.car_8ball_heading = $.car_eightball.getHeading();
 
-            const _res164 = $.car_eightball.getColors();
-            $.car_colour1_8ball = _res164.color1;
-            $.car_colour2_8ball = _res164.color2;
+            const {color1, color2} = $.car_eightball.getColors();
+            $.car_colour1_8ball = color1;
+            $.car_colour2_8ball = color2;
 
             while (!$.playersdoor.rotate(210.0, 10.0, false)) {
                 await asyncWait(0);
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
 
@@ -939,24 +884,20 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
             }
@@ -979,25 +920,21 @@ async function body() {
 
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
 
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
 
@@ -1024,24 +961,20 @@ async function body() {
                 }
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
             }
@@ -1057,24 +990,20 @@ async function body() {
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if ($.flag_player_in_area == 0) {
                     if ($.script_controlled_player.locateOnFoot2D(892.4, -308.5, 0.5, 0.5, false)) {
@@ -1126,25 +1055,21 @@ async function body() {
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
 
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
 
                 Text.PrintHelp('S_PROM2'); //"The garage next door can store one car."
@@ -1165,13 +1090,11 @@ async function body() {
                         await asyncWait(0);
                         if (Car.IsDead($.car_eightball)) {
                             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                            // SCM GOTO → mission_eightball_failed
-                            throw new Error('unresolved GOTO mission_eightball_failed');
+                            FAIL('mission_eightball_failed');
                         } else {
                             if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                                 Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                                // SCM GOTO → mission_eightball_failed
-                                throw new Error('unresolved GOTO mission_eightball_failed');
+                                FAIL('mission_eightball_failed');
                             }
                         }
                     }
@@ -1188,13 +1111,11 @@ async function body() {
                         await asyncWait(0);
                         if (Car.IsDead($.car_eightball)) {
                             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                            // SCM GOTO → mission_eightball_failed
-                            throw new Error('unresolved GOTO mission_eightball_failed');
+                            FAIL('mission_eightball_failed');
                         } else {
                             if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                                 Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                                // SCM GOTO → mission_eightball_failed
-                                throw new Error('unresolved GOTO mission_eightball_failed');
+                                FAIL('mission_eightball_failed');
                             }
                         }
                     }
@@ -1208,25 +1129,21 @@ async function body() {
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
 
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
 
                 $.player.setCoordinates(883.5, -308.2, 7.6);
@@ -1239,25 +1156,21 @@ async function body() {
 
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
 
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
 
@@ -1280,24 +1193,20 @@ async function body() {
                     if (Car.IsDead($.car_eightball)) {
                         if (Char.IsDead($.eightball)) {
                             Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                            // SCM GOTO → mission_eightball_failed
-                            throw new Error('unresolved GOTO mission_eightball_failed');
+                            FAIL('mission_eightball_failed');
                         } else {
                             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                            // SCM GOTO → mission_eightball_failed
-                            throw new Error('unresolved GOTO mission_eightball_failed');
+                            FAIL('mission_eightball_failed');
                         }
                     } else {
                         if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                             Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                            // SCM GOTO → mission_eightball_failed
-                            throw new Error('unresolved GOTO mission_eightball_failed');
+                            FAIL('mission_eightball_failed');
                         }
                     }
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
 
@@ -1306,24 +1215,20 @@ async function body() {
                     if (Car.IsDead($.car_eightball)) {
                         if (Char.IsDead($.eightball)) {
                             Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                            // SCM GOTO → mission_eightball_failed
-                            throw new Error('unresolved GOTO mission_eightball_failed');
+                            FAIL('mission_eightball_failed');
                         } else {
                             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                            // SCM GOTO → mission_eightball_failed
-                            throw new Error('unresolved GOTO mission_eightball_failed');
+                            FAIL('mission_eightball_failed');
                         }
                     } else {
                         if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                             Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                            // SCM GOTO → mission_eightball_failed
-                            throw new Error('unresolved GOTO mission_eightball_failed');
+                            FAIL('mission_eightball_failed');
                         }
                     }
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
 
@@ -1382,24 +1287,20 @@ async function body() {
                 if (Car.IsDead($.car_eightball)) {
                     if (Char.IsDead($.eightball)) {
                         Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 } else {
                     if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                         Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
             $.eightball.setCantBeDraggedOut(true);
@@ -1426,8 +1327,7 @@ async function body() {
 
         if (Char.IsDead($.eightball)) {
             Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-            // SCM GOTO → mission_eightball_failed
-            throw new Error('unresolved GOTO mission_eightball_failed');
+            FAIL('mission_eightball_failed');
         }
 
         $.radar_blip_coord2_eightball = Blip.AddForCoord(906.2, -426.0, -100.0); //Luigis blip
@@ -1439,18 +1339,15 @@ async function body() {
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (!$.player.isInCar($.car_eightball)) {
                     $.blob_flag = 0;
@@ -1471,8 +1368,7 @@ async function body() {
             }
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
         }
 
@@ -1485,18 +1381,15 @@ async function body() {
         if (Car.IsDead($.car_eightball)) {
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             } else {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
         } else {
             if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                 Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
             if (!$.player.isInCar($.car_eightball)) {
                 $.blob_flag = 0;
@@ -1518,8 +1411,7 @@ async function body() {
 
         if (Char.IsDead($.eightball)) {
             Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-            // SCM GOTO → mission_eightball_failed
-            throw new Error('unresolved GOTO mission_eightball_failed');
+            FAIL('mission_eightball_failed');
         }
 
         Text.PrintNow('EBAL_D1', 7000, 1); //"Me an' him go back so I could probably get you some work."
@@ -1531,18 +1423,15 @@ async function body() {
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (!$.player.isInCar($.car_eightball)) {
                     $.blob_flag = 0;
@@ -1563,8 +1452,7 @@ async function body() {
             }
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
         }
 
@@ -1587,18 +1475,15 @@ async function body() {
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (!$.player.isInCar($.car_eightball)) {
                     $.blob_flag = 0;
@@ -1619,8 +1504,7 @@ async function body() {
             }
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
             if ($.player.locateInCar2D(902.8, -425.6, 15.0, 15.0, false) && $.player.isInCar($.car_eightball) && $.flag_help_8ball2 == 0) {
                 Text.PrintHelp('HELP1'); //Stop in the centre of the red dome."
@@ -1660,24 +1544,20 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
             if (Audio.HasMissionAudioFinished()) {
@@ -1687,8 +1567,7 @@ async function body() {
 
         if (Char.IsDead($.eightball)) {
             Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-            // SCM GOTO → mission_eightball_failed
-            throw new Error('unresolved GOTO mission_eightball_failed');
+            FAIL('mission_eightball_failed');
         }
 
         while ($.eightball.isInCar($.car_eightball)) {
@@ -1696,24 +1575,20 @@ async function body() {
             if (Car.IsDead($.car_eightball)) {
                 if (Char.IsDead($.eightball)) {
                     Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             } else {
                 if ($.car_eightball.isUpsidedown() && $.car_eightball.isStopped()) {
                     Text.PrintNow('UPSIDE', 5000, 1); //You've flipped your wheels!"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
             if (Audio.HasMissionAudioFinished()) {
                 Text.ClearThisPrint('EBAL_G');
@@ -1730,8 +1605,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
         }
 
@@ -1755,8 +1629,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.eightball)) {
                 Text.PrintNow('EBAL_4', 5000, 1); //"8-Balls dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
             $.breakout_timer = Clock.GetGameTimer();
             $.breakout_diff = $.breakout_timer - $.breakout_timer_start;
@@ -2056,8 +1929,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
             if ($.player.isInAnyCar()) {
                 $.car_lm1 = $.player.storeCarIsIn();
@@ -2095,8 +1967,7 @@ async function body() {
             if ($.flag_girl_in_group_lm1 == 0) {
                 if (Char.IsDead($.girl1_lm1)) {
                     Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if ($.flag_misty_stop == 0) {
                     if ($.player.locateInCarChar2D($.girl1_lm1, 20.0, 20.0, false)) {
@@ -2133,18 +2004,15 @@ async function body() {
                                 await asyncWait(0);
                                 if (Char.IsDead($.girl1_lm1)) {
                                     Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                                    // SCM GOTO → mission_eightball_failed
-                                    throw new Error('unresolved GOTO mission_eightball_failed');
+                                    FAIL('mission_eightball_failed');
                                 }
                                 if (Car.IsDead($.car_lm1)) {
                                     if (Char.IsDead($.girl1_lm1)) {
                                         Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                                        // SCM GOTO → mission_eightball_failed
-                                        throw new Error('unresolved GOTO mission_eightball_failed');
+                                        FAIL('mission_eightball_failed');
                                     } else {
                                         Text.PrintNow('WRECKED', 5000, 1); //"The Vehicles wrecked"
-                                        // SCM GOTO → mission_eightball_failed
-                                        throw new Error('unresolved GOTO mission_eightball_failed');
+                                        FAIL('mission_eightball_failed');
                                     }
                                 }
                                 if ($.girl1_lm1.isInCar($.car_lm1)) {
@@ -2183,18 +2051,15 @@ async function body() {
             if ($.flag_girl_in_group_lm1 == 1) {
                 if (Char.IsDead($.girl1_lm1)) {
                     Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
                 if (Car.IsDead($.car_lm1)) {
                     if (Char.IsDead($.girl1_lm1)) {
                         Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     } else {
                         Text.PrintNow('WRECKED', 5000, 1); //"The Vehicles wrecked"
-                        // SCM GOTO → mission_eightball_failed
-                        throw new Error('unresolved GOTO mission_eightball_failed');
+                        FAIL('mission_eightball_failed');
                     }
                 }
                 if (!$.player.isInCar($.car_lm1)) {
@@ -2227,8 +2092,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             } else {
                 if (!$.girl1_lm1.isInPlayersGroup($.player) && $.flag_blip_on_girl1_lm1 == 0) {
                     Text.PrintNow('HEY4', 5000, 1); //"You have left Misty behind go and get her!"
@@ -2245,12 +2109,10 @@ async function body() {
             if (Car.IsDead($.car_lm1)) {
                 if (Char.IsDead($.girl1_lm1)) {
                     Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 } else {
                     Text.PrintNow('WRECKED', 5000, 1); //"The Vehicles wrecked"
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
         }
@@ -2297,8 +2159,7 @@ async function body() {
             }
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             } else {
                 if (!$.girl1_lm1.isInPlayersGroup($.player) && $.flag_blip_on_girl1_lm1 == 0) {
                     Text.PrintNow('HEY4', 5000, 1); //"You have left Misty behind go and get her!"
@@ -2348,8 +2209,7 @@ async function body() {
                 await asyncWait(0);
                 if (Char.IsDead($.girl1_lm1)) {
                     Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                    // SCM GOTO → mission_eightball_failed
-                    throw new Error('unresolved GOTO mission_eightball_failed');
+                    FAIL('mission_eightball_failed');
                 }
             }
         }
@@ -2358,8 +2218,7 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
         }
 
@@ -2373,15 +2232,13 @@ async function body() {
             await asyncWait(0);
             if (Char.IsDead($.girl1_lm1)) {
                 Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-                // SCM GOTO → mission_eightball_failed
-                throw new Error('unresolved GOTO mission_eightball_failed');
+                FAIL('mission_eightball_failed');
             }
         }
 
         if (Char.IsDead($.girl1_lm1)) {
             Text.PrintNow('MISTY1', 5000, 1); //"Misty's dead!
-            // SCM GOTO → mission_eightball_failed
-            throw new Error('unresolved GOTO mission_eightball_failed');
+            FAIL('mission_eightball_failed');
         }
 
         $.girl1_lm1.setCoordinates(898.9, -425.8, 13.9);

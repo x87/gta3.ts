@@ -427,9 +427,7 @@ async function body() {
             await set_death_flags(); // SCM GOSUB set_death_flags
         }
         if ($.player.isInArea2D(-1285.05, -586.535, -1254.959, -542.262, false) && $.wingless_cessna.isOnScreen()) {
-            // SCM GOSUB set_death_flags
-            await set_death_flags();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await set_death_flags(); // SCM GOSUB set_death_flags
         }
         if ($.player.isInArea2D(-1290.216, -542.262, -1244.057, -531.793, false)) {
             if (!Char.IsDead($.goon_in_hangar2)) {
@@ -462,9 +460,7 @@ async function body() {
 
             await set_death_flags(); // SCM GOSUB set_death_flags
         }
-        // SCM GOSUB ducking_routine
-        await ducking_routine();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await ducking_routine(); // SCM GOSUB ducking_routine
         if ($.goon_in_hangar1_ducking > -1) {
             if ($.goon_in_hangar1_flag == 0) {
                 $.goon_in_hangar1.setIdle();
@@ -844,36 +840,18 @@ async function body() {
                 }
             }
             $.game_timer_var = Clock.GetGameTimer();
-            // SCM GOSUB goon_at_yard1_routine
-            await goon_at_yard1_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard2_routine
-            await goon_at_yard2_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard3_routine
-            await goon_at_yard3_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard4_routine
-            await goon_at_yard4_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard5_routine
-            await goon_at_yard5_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard6_routine
-            await goon_at_yard6_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard7_routine
-            await goon_at_yard7_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard8_routine
-            await goon_at_yard8_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard9_routine
-            await goon_at_yard9_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB goon_at_yard10_routine
-            await goon_at_yard10_routine();
-            // fallback if label was not emitted as async function: no-op continues linearly
+
+            await goon_at_yard1_routine(); // SCM GOSUB goon_at_yard1_routine
+            await goon_at_yard2_routine(); // SCM GOSUB goon_at_yard2_routine
+            await goon_at_yard3_routine(); // SCM GOSUB goon_at_yard3_routine
+            await goon_at_yard4_routine(); // SCM GOSUB goon_at_yard4_routine
+            await goon_at_yard5_routine(); // SCM GOSUB goon_at_yard5_routine
+            await goon_at_yard6_routine(); // SCM GOSUB goon_at_yard6_routine
+            await goon_at_yard7_routine(); // SCM GOSUB goon_at_yard7_routine
+            await goon_at_yard8_routine(); // SCM GOSUB goon_at_yard8_routine
+            await goon_at_yard9_routine(); // SCM GOSUB goon_at_yard9_routine
+            await goon_at_yard10_routine(); // SCM GOSUB goon_at_yard10_routine
+
             if (Char.IsDead($.goon_at_yard1) && Char.IsDead($.goon_at_yard2) && Char.IsDead($.goon_at_yard3) && Char.IsDead($.goon_at_yard4) && Char.IsDead($.goon_at_yard5)) {
                 if (Char.IsDead($.goon_at_yard6) && Char.IsDead($.goon_at_yard7) && Char.IsDead($.goon_at_yard8) && Char.IsDead($.goon_at_yard9)) {
                     if ($.reset_timera_flag == 0) {

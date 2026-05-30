@@ -448,9 +448,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 1500) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     if (Char.IsDead($.rays_partner)) {
@@ -485,9 +483,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 1600) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     if (Char.IsDead($.rays_partner)) {
@@ -517,9 +513,7 @@ async function body() {
 
     while (!World.IsProjectileInArea($.partner_x, $.partner_y, $.partner_z, $.temp_x, $.vector_x, $.vector_y)) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
         if (Char.IsDead($.rays_partner)) {
             return; // SCM GOTO → mission_ray4_passed (not lowered; manual jump required)
         }
@@ -548,9 +542,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 300) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.partner_z = 0.0;
@@ -585,9 +577,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 1000) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.fish_target_z -= 0.2;
@@ -597,9 +587,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 1500) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.fish_target_z = -0.5;
@@ -620,9 +608,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 600) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.fish_target_x += 0.9;
@@ -642,9 +628,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 200) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.temp_x = Math.RandomFloatInRange(-4.0, 2.0);
@@ -661,9 +645,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 400) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.temp_x = Math.RandomFloatInRange(-4.0, 2.0);
@@ -680,9 +662,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 100) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.temp_x = Math.RandomFloatInRange(-4.0, 2.0);
@@ -699,9 +679,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 300) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.temp_x = Math.RandomFloatInRange(-4.0, 2.0);
@@ -718,9 +696,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 200) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.temp_x = Math.RandomFloatInRange(-4.0, 2.0);
@@ -737,9 +713,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 120) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.temp_x = Math.RandomFloatInRange(-4.0, 2.0);
@@ -756,9 +730,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 70) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.temp_x = Math.RandomFloatInRange(-4.0, 2.0);
@@ -775,9 +747,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 35) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     $.temp_x = Math.RandomFloatInRange(-4.0, 2.0);
@@ -794,9 +764,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 2500) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     if (Char.IsDead($.rays_partner)) {
@@ -808,9 +776,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 200) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     if (Car.IsDead($.partners_boat)) {
@@ -843,9 +809,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 800) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     if (Char.IsDead($.rays_partner)) {
@@ -857,9 +821,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 600) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     if (Char.IsDead($.rays_partner)) {
@@ -886,9 +848,7 @@ async function body() {
     TIMERA = 0;
     while (TIMERA < 1000) {
         await asyncWait(0);
-        // SCM GOSUB object_placement
-        await object_placement();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await object_placement(); // SCM GOSUB object_placement
     }
 
     if (Char.IsDead($.rays_partner)) {
@@ -960,9 +920,7 @@ async function body() {
         if ($.partner_on_foot_flag == -1) {
             if (!Car.IsDead($.partners_boat)) {
                 if (ScriptObject.DoesExist($.barrel2_a) && ScriptObject.DoesExist($.barrel2_b)) {
-                    // SCM GOSUB object_placement
-                    await object_placement();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await object_placement(); // SCM GOSUB object_placement
                 }
             }
             if (TIMERA > 500) {
@@ -981,17 +939,11 @@ async function body() {
         if ($.partner_on_foot_flag == 0) {
             if (!Car.IsDead($.partners_boat)) {
                 if (ScriptObject.DoesExist($.barrel2_a) && ScriptObject.DoesExist($.barrel2_b)) {
-                    // SCM GOSUB object_placement
-                    await object_placement();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await object_placement(); // SCM GOSUB object_placement
                 }
-                // SCM GOSUB boat_health_counter
-                await boat_health_counter();
-                // fallback if label was not emitted as async function: no-op continues linearly
+                await boat_health_counter(); // SCM GOSUB boat_health_counter
                 if ($.boat_node_counter > 0) {
-                    // SCM GOSUB drop_mines
-                    await drop_mines();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await drop_mines(); // SCM GOSUB drop_mines
                     if ($.boat_speed_flag == 1) {
                         if (!$.player.locateAnyMeansCar2D($.partners_boat, 100.0, 100.0, false)) {
                             $.partners_boat.setCruiseSpeed(25.0);
@@ -1007,9 +959,7 @@ async function body() {
                 }
                 if (!($.boat_node_counter == 0)) {
                     if ($.partners_boat.locate2D($.boat_node_x, $.boat_node_y, 5.0, 5.0, false)) {
-                        // SCM GOSUB select_boat_node
-                        await select_boat_node();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await select_boat_node(); // SCM GOSUB select_boat_node
                         $.partners_boat.goto($.boat_node_x, $.boat_node_y, 0.0);
                     }
                 }
@@ -1031,9 +981,7 @@ async function body() {
                         Pickup.DropNauticalMine($.fish_target_x, $.fish_target_y, $.fish_target_z);
                     }
                     if ($.rays_partner.isStoppedInArea2D(1364.1, -614.512, 1473.801, -560.223, false)) {
-                        // SCM GOSUB exit_boat
-                        await exit_boat();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await exit_boat(); // SCM GOSUB exit_boat
                         $.partner_on_foot_flag = 1;
                     }
                 }
@@ -1047,9 +995,7 @@ async function body() {
                         $.timerc_r4 = $.timerc_current_r4 - $.timerc_started_r4;
                         if ($.timerc_r4 > 8000) {
                             if ($.rays_partner.isInArea2D(1608.0, -536.0, 1684.0, -472.0, false)) {
-                                // SCM GOSUB exit_boat
-                                await exit_boat();
-                                // fallback if label was not emitted as async function: no-op continues linearly
+                                await exit_boat(); // SCM GOSUB exit_boat
                                 $.rays_partner.setStayInSamePlace(true);
                                 if ($.player.isInAnyCar()) {
                                     $.players_boat_with_guns.markAsNoLongerNeeded();
@@ -1068,9 +1014,7 @@ async function body() {
                                 $.fish_target_z = _res100.z;
                                 $.fish_target_z = World.GetGroundZFor3DCoord($.fish_target_x, $.fish_target_y, $.fish_target_z);
                                 if (!($.fish_target_z == 0.0)) {
-                                    // SCM GOSUB exit_boat
-                                    await exit_boat();
-                                    // fallback if label was not emitted as async function: no-op continues linearly
+                                    await exit_boat(); // SCM GOSUB exit_boat
                                     $.rays_partner.setStayInSamePlace(true);
                                     if ($.player.isInAnyCar()) {
                                         $.players_boat_with_guns.markAsNoLongerNeeded();
@@ -1115,9 +1059,7 @@ async function body() {
         }
 
         if ($.partner_on_foot_flag == 1) {
-            // SCM GOSUB partner_escape_checks
-            await partner_escape_checks();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await partner_escape_checks(); // SCM GOSUB partner_escape_checks
             if ($.goto_mission_ray4_failed == 1) {
                 // SCM GOTO → mission_ray4_failed (not lowered; manual jump required)
                 throw new Error('unresolved GOTO mission_ray4_failed'); // fallback: would break linear control flow
@@ -1229,9 +1171,7 @@ async function body() {
                 }
                 if ($.partner_on_foot_counter == 10) {
                     if ($.rays_partner.locateOnFoot2D(1309.8854, -695.2979, 1.0, 1.0, false)) {
-                        // SCM GOSUB steal_a_car
-                        await steal_a_car();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await steal_a_car(); // SCM GOSUB steal_a_car
                         $.partner_on_foot_counter = 11;
                     }
                 }
@@ -1308,9 +1248,7 @@ async function body() {
             }
             if ($.partner_on_foot_flag == 2) {
                 if (!$.rays_partner.isInAnyCar()) {
-                    // SCM GOSUB steal_a_car
-                    await steal_a_car();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await steal_a_car(); // SCM GOSUB steal_a_car
                     //SET_CHAR_HEED_THREATS rays_partner TRUE
                     $.partner_on_foot_flag = 3;
                 }

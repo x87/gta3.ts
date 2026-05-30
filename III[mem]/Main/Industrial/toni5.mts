@@ -311,12 +311,8 @@ async function body() {
                 Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 break toni5_wait_for_van; // SCM GOTO → explosion
             }
-            // SCM GOSUB triad_AI
-            await triad_AI();
-            // fallback if label was not emitted as async function: no-op continues linearly
-            // SCM GOSUB Truck_health
-            await Truck_health();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await triad_AI(); // SCM GOSUB triad_AI
+            await Truck_health(); // SCM GOSUB Truck_health
             const _res292 = $.explosive_truck.getCoordinates();
             $.truck_x = _res292.x;
             $.truck_y = _res292.y;

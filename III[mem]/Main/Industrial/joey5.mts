@@ -342,9 +342,7 @@ async function body() {
 
     while (!$.deadman_car.isStoppedInArea3D(1135.8, 55.5, -1.0, 1149.8, 46.3, 30.0, !!$.blob_flag)) {
         await asyncWait(0);
-        // SCM GOSUB skunk_car_check
-        await skunk_car_check();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await skunk_car_check(); // SCM GOSUB skunk_car_check
         if (Car.IsDead($.deadman_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
             // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
@@ -412,9 +410,7 @@ async function body() {
 
     while (!Crane.IsLiftingCar(1120.0, 46.0, $.deadman_car)) {
         await asyncWait(0);
-        // SCM GOSUB skunk_car_check
-        await skunk_car_check();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await skunk_car_check(); // SCM GOSUB skunk_car_check
         if (Car.IsDead($.deadman_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
             // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)
@@ -459,9 +455,7 @@ async function body() {
     Text.ClearPrints();
 
     while (!$.deadman_car.isCrushed()) {
-        // SCM GOSUB skunk_car_check
-        await skunk_car_check();
-        // fallback if label was not emitted as async function: no-op continues linearly
+        await skunk_car_check(); // SCM GOSUB skunk_car_check
         if (Car.IsDead($.deadman_car)) {
             Text.PrintNow('WRECKED', 5000, 1);
             // SCM GOTO → mission_joey5_failed (not lowered; manual jump required)

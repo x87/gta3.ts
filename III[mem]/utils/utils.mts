@@ -60,4 +60,10 @@ export function unwrapError(error: any): string {
     return String(error);
 }
 
+
+export function FAIL(reason: string): never {
+    verbose(reason);
+    throw new Error(reason);
+}
+
 export { $ };

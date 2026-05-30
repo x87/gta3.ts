@@ -1017,9 +1017,7 @@ async function import2_loop() {
 async function load_vehicle() {
 
     Text.PrintNow('IMPORT1', 5000, 2);
-    // SCM GOSUB mission_remove_pickups_ind
-    await mission_remove_pickups_ind();
-    // fallback if label was not emitted as async function: no-op continues linearly
+    await mission_remove_pickups_ind(); // SCM GOSUB mission_remove_pickups_ind
     if ($.player.isPlaying()) {
         while (!$.player.isInArea2D(1486.9, -686.2, 1495.5, -674.1, false)) {
             await asyncWait(0);
@@ -1054,7 +1052,6 @@ async function load_vehicle2() {
     Text.PrintNow('IMPORT1', 5000, 2);
 
     await mission_remove_pickups_sub(); // SCM GOSUB mission_remove_pickups_sub
-    // fallback if label was not emitted as async function: no-op continues linearly
     if ($.player.isPlaying()) {
         while (!$.player.isInArea2D(-1117.4, 158.1, -1105.0, 150.9, false)) {
             await asyncWait(0);

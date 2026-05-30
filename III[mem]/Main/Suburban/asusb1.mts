@@ -1229,9 +1229,7 @@ async function cleanup() {
     $.flag_player_on_asuka_suburban_mission = 0;
 
     Hud.ClearCounter($.$id.counter_cartels_killed_as1);
-    // SCM GOSUB blip_removal
-    await blip_removal();
-    // fallback if label was not emitted as async function: no-op continues linearly
+    await blip_removal(); // SCM GOSUB blip_removal
 
     $.blip_cartel_a_as1.remove();
     $.blip_cartel_b_as1.remove();

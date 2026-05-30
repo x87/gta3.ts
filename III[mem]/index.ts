@@ -1274,45 +1274,44 @@ async function main() {
         // WAIT 0 // xxx: moved before the main loop
 
         // ********************************create and delete all the contact bips**************************
+        
+        $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, 13 /* RADAR_SPRITE_LUIGI */);
+        $.luigi_contact_blip.remove();
+        $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, 10 /* RADAR_SPRITE_JOEY */);
+        $.joey_contact_blip.remove();
+        $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, -100.0, 19 /* RADAR_SPRITE_TONY */);
+        $.toni_contact_blip.remove();
+        $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, 16 /* RADAR_SPRITE_SAL */);
+        $.frankie_contact_blip.remove();
+        $.eightball_contact_blip = Blip.AddSpriteForContactPoint(1272.2, -92.9, -100.0, 7 /* RADAR_SPRITE_EIGHT */);
+        $.eightball_contact_blip.remove();
+        $.diablo_contact_blip = Blip.AddSpriteForContactPoint(938.4, -230.5, -100.0, 8 /* RADAR_SPRITE_EL */);
+        $.diablo_contact_blip.remove();
 
-        // xxx: disabled as this is just a no-op
-        // $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, 13 /* RADAR_SPRITE_LUIGI */);
-        // $.luigi_contact_blip.remove();
-        // $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, 10 /* RADAR_SPRITE_JOEY */);
-        // $.joey_contact_blip.remove();
-        // $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, -100.0, 19 /* RADAR_SPRITE_TONY */);
-        // $.toni_contact_blip.remove();
-        // $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, 16 /* RADAR_SPRITE_SAL */);
-        // $.frankie_contact_blip.remove();
-        // $.eightball_contact_blip = Blip.AddSpriteForContactPoint(1272.2, -92.9, -100.0, 7 /* RADAR_SPRITE_EIGHT */);
-        // $.eightball_contact_blip.remove();
-        // $.diablo_contact_blip = Blip.AddSpriteForContactPoint(938.4, -230.5, -100.0, 8 /* RADAR_SPRITE_EL */);
-        // $.diablo_contact_blip.remove();
+        $.asuka_contact_blip = Blip.AddSpriteForContactPoint(523.6, -639.4, 16.6, 1 /* RADAR_SPRITE_ASUKA */);
+        $.asuka_contact_blip.remove();
+        $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, 11 /* RADAR_SPRITE_KENJI */);
+        $.kenji_contact_blip.remove();
+        $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, 15 /* RADAR_SPRITE_RAY */);
+        $.ray_contact_blip.remove();
+        $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, 6 /* RADAR_SPRITE_DON */);
+        $.love_contact_blip.remove();
+        $.yardie_contact_blip = Blip.AddSpriteForContactPoint(120.7, -272.1, 16.1, 12 /* RADAR_SPRITE_LIZ */);
+        $.yardie_contact_blip.remove();
 
-        // $.asuka_contact_blip = Blip.AddSpriteForContactPoint(523.6, -639.4, 16.6, 1 /* RADAR_SPRITE_ASUKA */);
-        // $.asuka_contact_blip.remove();
-        // $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, 11 /* RADAR_SPRITE_KENJI */);
-        // $.kenji_contact_blip.remove();
-        // $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, 15 /* RADAR_SPRITE_RAY */);
-        // $.ray_contact_blip.remove();
-        // $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, 6 /* RADAR_SPRITE_DON */);
-        // $.love_contact_blip.remove();
-        // $.yardie_contact_blip = Blip.AddSpriteForContactPoint(120.7, -272.1, 16.1, 12 /* RADAR_SPRITE_LIZ */);
-        // $.yardie_contact_blip.remove();
+        $.maria_contact_blip = Blip.AddSpriteForContactPoint(-363.7, 246.1, 60.0, 3 /* RADAR_SPRITE_CAT */);
+        $.maria_contact_blip.remove();
+        $.hood_contact_blip = Blip.AddSpriteForContactPoint(-443.5, -6.1, 3.8, 9 /* RADAR_SPRITE_ICE */);
+        $.hood_contact_blip.remove();
 
-        // $.maria_contact_blip = Blip.AddSpriteForContactPoint(-363.7, 246.1, 60.0, 3 /* RADAR_SPRITE_CAT */);
-        // $.maria_contact_blip.remove();
-        // $.hood_contact_blip = Blip.AddSpriteForContactPoint(-443.5, -6.1, 3.8, 9 /* RADAR_SPRITE_ICE */);
-        // $.hood_contact_blip.remove();
-
-        // $.industrail_save_blip = Blip.AddSpriteForContactPoint(893.5, -306.1, -100.0, 17 /* RADAR_SPRITE_SAVE */);
-        // $.industrail_save_blip.remove();
-        // $.commercial_save_blip = Blip.AddSpriteForContactPoint(103.0, -484.2, -100.0, 17 /* RADAR_SPRITE_SAVE */);
-        // $.commercial_save_blip.remove();
-        // $.suburban_save_blip = Blip.AddSpriteForContactPoint(-665.0, -6.5, -100.0, 17 /* RADAR_SPRITE_SAVE */);
-        // $.suburban_save_blip.remove();
-        // $.spray_taxi = Blip.AddSpriteForCoord(925.0, -359.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
-        // $.spray_taxi.remove();
+        $.industrail_save_blip = Blip.AddSpriteForContactPoint(893.5, -306.1, -100.0, 17 /* RADAR_SPRITE_SAVE */);
+        $.industrail_save_blip.remove();
+        $.commercial_save_blip = Blip.AddSpriteForContactPoint(103.0, -484.2, -100.0, 17 /* RADAR_SPRITE_SAVE */);
+        $.commercial_save_blip.remove();
+        $.suburban_save_blip = Blip.AddSpriteForContactPoint(-665.0, -6.5, -100.0, 17 /* RADAR_SPRITE_SAVE */);
+        $.suburban_save_blip.remove();
+        $.spray_taxi = Blip.AddSpriteForCoord(925.0, -359.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+        $.spray_taxi.remove();
 
         //Targettable objects
 

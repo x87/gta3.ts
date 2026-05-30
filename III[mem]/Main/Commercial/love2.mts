@@ -646,7 +646,6 @@ async function body() {
                         $.flag_kenji_dead = 2;
                     }
                     await yak_death_count(); // SCM GOSUB yak_death_count
-                    // fallback if label was not emitted as async function: no-op continues linearly
                     if ($.counter_kenji_guards_dead == 8) {
                         Text.PrintNow('LOVE2_6', 3000, 1); //You've killed all the witnesses!!
                         throw new Error('unresolved GOTO mission_love2_failed'); // SCM GOTO → mission_love2_failed

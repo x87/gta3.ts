@@ -366,9 +366,7 @@ async function body() {
             }
             if ($.escort_truck_flag == 7) {
                 if ($.escort_truck.locate2D(-975.167, -74.5367, 10.0, 10.0, false)) {
-                    // SCM GOSUB call_off_the_attackers
-                    await call_off_the_attackers();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await call_off_the_attackers(); // SCM GOSUB call_off_the_attackers
                     $.escort_truck.gotoCoordinatesAccurate(-1044.0, -73.4361, 37.8615); // inside garage
                     $.escort_truck.setCruiseSpeed(12.0);
                     $.escort_truck_flag = 8;

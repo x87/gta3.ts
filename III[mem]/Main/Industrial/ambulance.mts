@@ -1,5 +1,5 @@
 // Generated from Main/Industrial/ambulance.sc
-import { $ } from '../../utils';
+import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -173,22 +173,19 @@ async function body() {
                 if (!($.controlmode == 3)) {
                     if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
                         Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
-                        // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                        FAIL('ambulance_failed');
                     }
                 } else {
                     if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
                         Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
-                        // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                        throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                        FAIL('ambulance_failed');
                     }
                 }
             }
 
             if (!$.player.isInModel(106 /* CAR_AMBULANCE */)) {
                 Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
-                // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                FAIL('ambulance_failed');
             } else {
                 $.players_ambulance = $.player.storeCarIsIn();
             }
@@ -211,18 +208,14 @@ async function body() {
             if ($.ambulance_pager_flag == 0) {
                 if ($.total_saved_peds > 34) {
                     Pager.AddMessage('PAGEB13', 140, 100, 1); //"Health delivered to hideout"
-                    // SCM GOSUB progress_counter1
-                    await progress_counter1();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await progress_counter1(); // SCM GOSUB progress_counter1
                     $.ambulance_pager_flag = 1;
                 }
             }
             if ($.ambulance_pager_flag == 1) {
                 if ($.total_saved_peds > 69) {
                     Pager.AddMessage('PAGEB14', 140, 100, 1); //"Adrenaline delivered to hideout"
-                    // SCM GOSUB progress_counter2
-                    await progress_counter2();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await progress_counter2(); // SCM GOSUB progress_counter2
                     $.ambulance_pager_flag = 2;
                 }
             }
@@ -230,15 +223,13 @@ async function body() {
             if ($.injured_ped_1_flag > 0) {
                 if (Char.IsDead($.injured_ped_1)) {
                     Text.PrintNow('A_FAIL3', 3000, 1); //The patient is dead
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_1.explodeHead();
                     $.injured_ped_1.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1); //"Your too late"
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_1_flag == 3) {
                     if ($.injured_ped_1.isMale()) {
@@ -246,19 +237,16 @@ async function body() {
                     } else {
                         $.ped_sex_flag = 1;
                     }
-                    const _res167 = $.injured_ped_1.getCoordinates();
-                    $.sound_x = _res167.x;
-                    $.sound_y = _res167.y;
-                    $.sound_z = _res167.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    const { x, y, z } = $.injured_ped_1.getCoordinates();
+                    $.sound_x = x;
+                    $.sound_y = y;
+                    $.sound_z = z;
+
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_1_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_1, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_1.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_1_flag = 2;
@@ -273,9 +261,7 @@ async function body() {
                 if ($.injured_ped_1_flag == 2) {
                     if ($.injured_ped_1.isInAnyCar()) {
                         $.injured_ped_1_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_1_flag = 3;
                     }
                 }
@@ -289,9 +275,7 @@ async function body() {
                     if (!$.injured_ped_1.isInAnyCar()) {
                         $.injured_ped_1.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_1.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_1_flag = 0;
                     }
                 }
@@ -302,15 +286,13 @@ async function body() {
             if ($.injured_ped_2_flag > 0) {
                 if (Char.IsDead($.injured_ped_2)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_2.explodeHead();
                     $.injured_ped_2.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_2_flag == 3) {
                     if ($.injured_ped_2.isMale()) {
@@ -318,19 +300,15 @@ async function body() {
                     } else {
                         $.ped_sex_flag = 1;
                     }
-                    const _res168 = $.injured_ped_2.getCoordinates();
-                    $.sound_x = _res168.x;
-                    $.sound_y = _res168.y;
-                    $.sound_z = _res168.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    const { x, y, z } = $.injured_ped_2.getCoordinates();
+                    $.sound_x = x;
+                    $.sound_y = y;
+                    $.sound_z = z;
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_2_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_2, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_2.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_2_flag = 2;
@@ -345,9 +323,7 @@ async function body() {
                 if ($.injured_ped_2_flag == 2) {
                     if ($.injured_ped_2.isInAnyCar()) {
                         $.injured_ped_2_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_2_flag = 3;
                     }
                 }
@@ -361,9 +337,7 @@ async function body() {
                     if (!$.injured_ped_2.isInAnyCar()) {
                         $.injured_ped_2.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_2.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_2_flag = 0;
                     }
                 }
@@ -374,15 +348,13 @@ async function body() {
             if ($.injured_ped_3_flag > 0) {
                 if (Char.IsDead($.injured_ped_3)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_3.explodeHead();
                     $.injured_ped_3.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_3_flag == 3) {
                     if ($.injured_ped_3.isMale()) {
@@ -390,19 +362,16 @@ async function body() {
                     } else {
                         $.ped_sex_flag = 1;
                     }
-                    const _res169 = $.injured_ped_3.getCoordinates();
-                    $.sound_x = _res169.x;
-                    $.sound_y = _res169.y;
-                    $.sound_z = _res169.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    const { x, y, z } = $.injured_ped_3.getCoordinates();
+                    $.sound_x = x;
+                    $.sound_y = y;
+                    $.sound_z = z;
+
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_3_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_3, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_3.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_3_flag = 2;
@@ -417,9 +386,7 @@ async function body() {
                 if ($.injured_ped_3_flag == 2) {
                     if ($.injured_ped_3.isInAnyCar()) {
                         $.injured_ped_3_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_3_flag = 3;
                     }
                 }
@@ -433,9 +400,7 @@ async function body() {
                     if (!$.injured_ped_3.isInAnyCar()) {
                         $.injured_ped_3.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_3.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_3_flag = 0;
                     }
                 }
@@ -446,15 +411,13 @@ async function body() {
             if ($.injured_ped_4_flag > 0) {
                 if (Char.IsDead($.injured_ped_4)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_4.explodeHead();
                     $.injured_ped_4.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_4_flag == 3) {
                     if ($.injured_ped_4.isMale()) {
@@ -462,19 +425,15 @@ async function body() {
                     } else {
                         $.ped_sex_flag = 1;
                     }
-                    const _res170 = $.injured_ped_4.getCoordinates();
-                    $.sound_x = _res170.x;
-                    $.sound_y = _res170.y;
-                    $.sound_z = _res170.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    const { x, y, z } = $.injured_ped_4.getCoordinates();
+                    $.sound_x = x;
+                    $.sound_y = y;
+                    $.sound_z = z;
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_4_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_4, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_4.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_4_flag = 2;
@@ -489,9 +448,7 @@ async function body() {
                 if ($.injured_ped_4_flag == 2) {
                     if ($.injured_ped_4.isInAnyCar()) {
                         $.injured_ped_4_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_4_flag = 3;
                     }
                 }
@@ -505,9 +462,7 @@ async function body() {
                     if (!$.injured_ped_4.isInAnyCar()) {
                         $.injured_ped_4.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_4.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_4_flag = 0;
                     }
                 }
@@ -518,15 +473,13 @@ async function body() {
             if ($.injured_ped_5_flag > 0) {
                 if (Char.IsDead($.injured_ped_5)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_5.explodeHead();
                     $.injured_ped_5.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_5_flag == 3) {
                     if ($.injured_ped_5.isMale()) {
@@ -534,19 +487,15 @@ async function body() {
                     } else {
                         $.ped_sex_flag = 1;
                     }
-                    const _res171 = $.injured_ped_5.getCoordinates();
-                    $.sound_x = _res171.x;
-                    $.sound_y = _res171.y;
-                    $.sound_z = _res171.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    const { x, y, z } = $.injured_ped_5.getCoordinates();
+                    $.sound_x = x;
+                    $.sound_y = y;
+                    $.sound_z = z;
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_5_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_5, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_5.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_5_flag = 2;
@@ -561,9 +510,7 @@ async function body() {
                 if ($.injured_ped_5_flag == 2) {
                     if ($.injured_ped_5.isInAnyCar()) {
                         $.injured_ped_5_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_5_flag = 3;
                     }
                 }
@@ -577,9 +524,7 @@ async function body() {
                     if (!$.injured_ped_5.isInAnyCar()) {
                         $.injured_ped_5.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_5.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_5_flag = 0;
                     }
                 }
@@ -590,15 +535,13 @@ async function body() {
             if ($.injured_ped_6_flag > 0) {
                 if (Char.IsDead($.injured_ped_6)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_6.explodeHead();
                     $.injured_ped_6.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_6_flag == 3) {
                     if ($.injured_ped_6.isMale()) {
@@ -606,19 +549,15 @@ async function body() {
                     } else {
                         $.ped_sex_flag = 1;
                     }
-                    const _res172 = $.injured_ped_6.getCoordinates();
-                    $.sound_x = _res172.x;
-                    $.sound_y = _res172.y;
-                    $.sound_z = _res172.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    const { x, y, z } = $.injured_ped_6.getCoordinates();
+                    $.sound_x = x;
+                    $.sound_y = y;
+                    $.sound_z = z;
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_6_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_6, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_6.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_6_flag = 2;
@@ -633,9 +572,7 @@ async function body() {
                 if ($.injured_ped_6_flag == 2) {
                     if ($.injured_ped_6.isInAnyCar()) {
                         $.injured_ped_6_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_6_flag = 3;
                     }
                 }
@@ -649,9 +586,7 @@ async function body() {
                     if (!$.injured_ped_6.isInAnyCar()) {
                         $.injured_ped_6.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_6.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_6_flag = 0;
                     }
                 }
@@ -662,15 +597,13 @@ async function body() {
             if ($.injured_ped_7_flag > 0) {
                 if (Char.IsDead($.injured_ped_7)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_7.explodeHead();
                     $.injured_ped_7.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_7_flag == 3) {
                     if ($.injured_ped_7.isMale()) {
@@ -682,15 +615,11 @@ async function body() {
                     $.sound_x = _res173.x;
                     $.sound_y = _res173.y;
                     $.sound_z = _res173.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_7_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_7, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_7.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_7_flag = 2;
@@ -705,9 +634,7 @@ async function body() {
                 if ($.injured_ped_7_flag == 2) {
                     if ($.injured_ped_7.isInAnyCar()) {
                         $.injured_ped_7_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_7_flag = 3;
                     }
                 }
@@ -721,9 +648,7 @@ async function body() {
                     if (!$.injured_ped_7.isInAnyCar()) {
                         $.injured_ped_7.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_7.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_7_flag = 0;
                     }
                 }
@@ -734,15 +659,13 @@ async function body() {
             if ($.injured_ped_8_flag > 0) {
                 if (Char.IsDead($.injured_ped_8)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_8.explodeHead();
                     $.injured_ped_8.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_8_flag == 3) {
                     if ($.injured_ped_8.isMale()) {
@@ -754,15 +677,11 @@ async function body() {
                     $.sound_x = _res174.x;
                     $.sound_y = _res174.y;
                     $.sound_z = _res174.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_8_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_8, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_8.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_8_flag = 2;
@@ -777,9 +696,7 @@ async function body() {
                 if ($.injured_ped_8_flag == 2) {
                     if ($.injured_ped_8.isInAnyCar()) {
                         $.injured_ped_8_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_8_flag = 3;
                     }
                 }
@@ -793,9 +710,7 @@ async function body() {
                     if (!$.injured_ped_8.isInAnyCar()) {
                         $.injured_ped_8.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_8.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_8_flag = 0;
                     }
                 }
@@ -806,15 +721,13 @@ async function body() {
             if ($.injured_ped_9_flag > 0) {
                 if (Char.IsDead($.injured_ped_9)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_9.explodeHead();
                     $.injured_ped_9.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_9_flag == 3) {
                     if ($.injured_ped_9.isMale()) {
@@ -826,15 +739,11 @@ async function body() {
                     $.sound_x = _res175.x;
                     $.sound_y = _res175.y;
                     $.sound_z = _res175.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_9_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_9, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_9.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_9_flag = 2;
@@ -849,9 +758,7 @@ async function body() {
                 if ($.injured_ped_9_flag == 2) {
                     if ($.injured_ped_9.isInAnyCar()) {
                         $.injured_ped_9_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_9_flag = 3;
                     }
                 }
@@ -865,9 +772,7 @@ async function body() {
                     if (!$.injured_ped_9.isInAnyCar()) {
                         $.injured_ped_9.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_9.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_9_flag = 0;
                     }
                 }
@@ -878,15 +783,13 @@ async function body() {
             if ($.injured_ped_10_flag > 0) {
                 if (Char.IsDead($.injured_ped_10)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_10.explodeHead();
                     $.injured_ped_10.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_10_flag == 3) {
                     if ($.injured_ped_10.isMale()) {
@@ -898,15 +801,11 @@ async function body() {
                     $.sound_x = _res176.x;
                     $.sound_y = _res176.y;
                     $.sound_z = _res176.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_10_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_10, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_10.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_10_flag = 2;
@@ -921,9 +820,7 @@ async function body() {
                 if ($.injured_ped_10_flag == 2) {
                     if ($.injured_ped_10.isInAnyCar()) {
                         $.injured_ped_10_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_10_flag = 3;
                     }
                 }
@@ -937,9 +834,7 @@ async function body() {
                     if (!$.injured_ped_10.isInAnyCar()) {
                         $.injured_ped_10.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_10.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_10_flag = 0;
                     }
                 }
@@ -950,15 +845,13 @@ async function body() {
             if ($.injured_ped_11_flag > 0) {
                 if (Char.IsDead($.injured_ped_11)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_11.explodeHead();
                     $.injured_ped_11.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_11_flag == 3) {
                     if ($.injured_ped_11.isMale()) {
@@ -970,15 +863,11 @@ async function body() {
                     $.sound_x = _res177.x;
                     $.sound_y = _res177.y;
                     $.sound_z = _res177.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_11_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_11, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_11.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_11_flag = 2;
@@ -993,9 +882,7 @@ async function body() {
                 if ($.injured_ped_11_flag == 2) {
                     if ($.injured_ped_11.isInAnyCar()) {
                         $.injured_ped_11_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_11_flag = 3;
                     }
                 }
@@ -1009,9 +896,7 @@ async function body() {
                     if (!$.injured_ped_11.isInAnyCar()) {
                         $.injured_ped_11.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_11.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_11_flag = 0;
                     }
                 }
@@ -1022,15 +907,13 @@ async function body() {
             if ($.injured_ped_12_flag > 0) {
                 if (Char.IsDead($.injured_ped_12)) {
                     Text.PrintNow('A_FAIL3', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.ped_time_limit == 0) {
                     $.injured_ped_12.explodeHead();
                     $.injured_ped_12.removeElegantly();
                     Text.PrintNow('A_FAIL2', 3000, 1);
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
                 if ($.injured_ped_12_flag == 3) {
                     if ($.injured_ped_12.isMale()) {
@@ -1042,15 +925,11 @@ async function body() {
                     $.sound_x = _res178.x;
                     $.sound_y = _res178.y;
                     $.sound_z = _res178.z;
-                    // SCM GOSUB chunk1_ambulance
-                    await chunk1_ambulance();
-                    // fallback if label was not emitted as async function: no-op continues linearly
+                    await chunk1_ambulance(); // SCM GOSUB chunk1_ambulance
                 }
                 if ($.injured_ped_12_flag == 1) {
                     if ($.player.locateInCarChar3D($.injured_ped_12, 10.0, 10.0, 2.0, false)) {
-                        // SCM GOSUB chunk2_ambulance
-                        await chunk2_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk2_ambulance(); // SCM GOSUB chunk2_ambulance
                         if ($.car_full_flag == 0) {
                             $.injured_ped_12.setObjEnterCarAsPassenger($.players_ambulance);
                             $.injured_ped_12_flag = 2;
@@ -1065,9 +944,7 @@ async function body() {
                 if ($.injured_ped_12_flag == 2) {
                     if ($.injured_ped_12.isInAnyCar()) {
                         $.injured_ped_12_blip.remove();
-                        // SCM GOSUB chunk3_ambulance
-                        await chunk3_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk3_ambulance(); // SCM GOSUB chunk3_ambulance
                         $.injured_ped_12_flag = 3;
                     }
                 }
@@ -1081,9 +958,7 @@ async function body() {
                     if (!$.injured_ped_12.isInAnyCar()) {
                         $.injured_ped_12.setObjGotoCoordOnFoot($.hospital_door_x, $.hospital_door_y);
                         $.injured_ped_12.markAsNoLongerNeeded();
-                        // SCM GOSUB chunk4_ambulance
-                        await chunk4_ambulance();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await chunk4_ambulance(); // SCM GOSUB chunk4_ambulance
                         $.injured_ped_12_flag = 0;
                     }
                 }
@@ -1297,18 +1172,14 @@ async function body() {
                 if ($.ambulance_pager_flag == 0) {
                     if ($.total_saved_peds > 34) {
                         Pager.AddMessage('PAGEB13', 140, 100, 1); //"Health delivered to hideout"
-                        // SCM GOSUB progress_counter1
-                        await progress_counter1();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await progress_counter1(); // SCM GOSUB progress_counter1
                         $.ambulance_pager_flag = 1;
                     }
                 }
                 if ($.ambulance_pager_flag == 1) {
                     if ($.total_saved_peds > 69) {
                         Pager.AddMessage('PAGEB14', 140, 100, 1); //"Adrenaline delivered to hideout"
-                        // SCM GOSUB progress_counter2
-                        await progress_counter2();
-                        // fallback if label was not emitted as async function: no-op continues linearly
+                        await progress_counter2(); // SCM GOSUB progress_counter2
                         $.ambulance_pager_flag = 2;
                     }
                 }
@@ -1348,7 +1219,6 @@ async function body() {
                 continue mission_root; // SCM GOTO → mission_root
             }
         }
-
     }
 }
 
@@ -1565,7 +1435,6 @@ async function create_random_injured_ped() {
     //ENDIF
 
     return;
-
 }
 ////////////////
 
@@ -1622,8 +1491,7 @@ async function generate_random_coord() {
                 Text.PrintNow('A_RANGE', 5000, 1); //"The ambulance radio is out of range, get closer to a hospital."
                 $.flag_got_range_message = 1;
             }
-            // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+            FAIL('ambulance_failed');
         }
 
         $.controlmode = Pad.GetControllerMode();
@@ -1642,22 +1510,19 @@ async function generate_random_coord() {
             if (!($.controlmode == 3)) {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
                     Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
             } else {
                 if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
                     Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
-                    // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-                    throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+                    FAIL('ambulance_failed');
                 }
             }
         }
 
         if (!$.player.isInModel(106 /* CAR_AMBULANCE */)) {
             Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
-            // SCM GOTO → ambulance_failed (not lowered; manual jump required)
-            throw new Error('unresolved GOTO ambulance_failed'); // fallback: would break linear control flow
+            FAIL('ambulance_failed');
         }
 
         const _res166 = Path.GetClosestCharNode($.random_x, $.random_y, $.player1_a_z);

@@ -1,10 +1,28 @@
 // Generated from Main/Industrial/demo2.sc
 import { $ } from '../../utils';
 
+// *******************************************************************************************
+// *******************************************************************************************
+// *************************************Player Demo2****************************************
+// *******************************************************************************************
+// *******************************************************************************************
+// *******************************************************************************************
 
-async function mission_start_demo() {}
+async function body() {
+    // Mission start stuff
 
-async function demo_start() {
+    // GOSUB mission_start_demo
+
+    // GOSUB mission_cleanup_demo
+
+    // MISSION_END
+
+    // Variables for mission
+
+    //VAR_INT flag_done_loop_once
+
+    // ***************************************Mission Start*************************************
+
     // SCM GOTO → demo_start lowered to endless loop
     while (true) {
         Restart.OverrideNext(892.9, -445.0, 14.0);
@@ -250,18 +268,14 @@ async function demo_start() {
         Weather.Release();
 
         await asyncWait(1000);
-
-        // mission joey1 passed
     }
 }
 
-async function mission_demo_passed() {
-    return;
+// mission joey1 passed
+async function onPassed() {}
 
-    // mission cleanup
-}
-
-async function mission_cleanup_demo() {
+// mission cleanup
+async function cleanup() {
     ONMISSION = false;
     Camera.Restore();
     $.player.setControl(true /* ON */);
@@ -270,33 +284,4 @@ async function mission_cleanup_demo() {
     $.player.setVisible(true);
     Weather.Release();
     Mission.Finish();
-    return;
-}
-
-export async function demo2() {
-    
-    // *******************************************************************************************
-    // *******************************************************************************************
-    // *************************************Player Demo2****************************************
-    // *******************************************************************************************
-    // *******************************************************************************************
-    // *******************************************************************************************
-
-    // Mission start stuff
-
-    // SCM GOSUB mission_start_demo
-    await mission_start_demo();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    // SCM GOSUB mission_cleanup_demo
-    await mission_cleanup_demo();
-    // fallback if label was not emitted as async function: no-op continues linearly
-
-    
-
-    // Variables for mission
-
-    //VAR_INT flag_done_loop_once
-
-    // ***************************************Mission Start*************************************
 }

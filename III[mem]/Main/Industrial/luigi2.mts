@@ -426,9 +426,7 @@ async function body() {
         TIMERB = 0;
 
         while (!Char.IsDead($.victim_ped_lm2)) {
-            // SCM GOSUB girls_running
-            await girls_running();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await girls_running(); // SCM GOSUB girls_running
             if ($.flag_player_had_bat_message_lm2 == 0) {
                 if ($.bat_lm2.hasBeenCollected()) {
                     Text.PrintHelp('GUN_1A');
@@ -585,9 +583,7 @@ async function body() {
 
         while (!$.player.isInCar($.car_lm2)) {
             await asyncWait(0);
-            // SCM GOSUB girls_running
-            await girls_running();
-            // fallback if label was not emitted as async function: no-op continues linearly
+            await girls_running(); // SCM GOSUB girls_running
             if (Car.IsDead($.car_lm2)) {
                 Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
                 // SCM GOTO → mission_luigi2_failed (not lowered; manual jump required)
