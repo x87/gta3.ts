@@ -138,31 +138,31 @@ async function body() {
 
     Cutscene.SetOffset(39.424, -726.677, 21.692);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_ray = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_ray = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_ray.setAnim('ray');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
+    $.cs_rayhead = CutsceneHead.Create($.cs_ray, CUT_OBJ2);
     $.cs_rayhead.setAnim('ray');
 
     //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
     //
     //SET_PLAYER_HEADING player 270.0
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Camera.SetNearClip(0.2);
 
     Cutscene.Start();
 
-    Streaming.Switch(false /* OFF */);
+    Streaming.Switch(OFF);
     // Displays cutscene text
 
     $.cs_time = Cutscene.GetTime();
@@ -228,7 +228,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -244,7 +244,7 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
     Camera.SetNearClip(0.9);
 
     $.player.setHeading(90.0);
@@ -256,18 +256,18 @@ async function body() {
     Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
 
     Streaming.RequestModel(1367 /* files */);
-    Streaming.RequestModel(112 /* CAR_BOBCAT */);
-    Streaming.RequestModel(61 /* PED_B_MAN3 */);
+    Streaming.RequestModel(CAR_BOBCAT);
+    Streaming.RequestModel(PED_B_MAN3);
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasModelLoaded(112 /* CAR_BOBCAT */) || !Streaming.HasModelLoaded(61 /* PED_B_MAN3 */) || !Streaming.HasModelLoaded(1367 /* files */)) {
+    while (!Streaming.HasModelLoaded(CAR_BOBCAT) || !Streaming.HasModelLoaded(PED_B_MAN3) || !Streaming.HasModelLoaded(1367 /* files */)) {
         await asyncWait(0);
     }
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     $.rays_cutscene_flag = 0;
 
@@ -277,10 +277,10 @@ async function body() {
 
     // ******************************************END OF CUTSCENE********************************
 
-    $.ia_car_rm3 = Car.Create(112 /* CAR_BOBCAT */, $.ia_start_x, $.ia_start_y, $.ia_start_z);
+    $.ia_car_rm3 = Car.Create(CAR_BOBCAT, $.ia_start_x, $.ia_start_y, $.ia_start_z);
     $.ia_car_rm3.setAvoidLevelTransitions(true);
     $.ia_car_rm3.setWatertight(true);
-    $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, 4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */);
+    $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, PEDTYPE_CIVMALE, PED_B_MAN3);
     //SET_CHAR_AVOID_LEVEL_TRANSITIONS ia_car_driver_1 TRUE
 
     $.ia_car_driver_1.setCantBeDraggedOut(true);
@@ -291,7 +291,7 @@ async function body() {
     $.ia_car_rm3.setDrivingStyle(2);
     $.ia_car_rm3.wanderRandomly();
     $.prosecution_car_blip = Blip.AddForCar($.ia_car_rm3);
-    $.ia_car_rm3.lockDoors(2 /* CARLOCK_LOCKED */);
+    $.ia_car_rm3.lockDoors(CARLOCK_LOCKED);
 
     if (!ONMISSION) {
         $.rays_evidence_blip = Blip.AddForChar($.ia_car_driver_1);
@@ -664,8 +664,8 @@ async function body() {
                 $.object_current_coords_y,
                 $.object_current_coords_z,
                 0.5,
-                6 /* CORONATYPE_CIRCLE */,
-                0 /* FLARETYPE_NONE */,
+                CORONATYPE_CIRCLE,
+                FLARETYPE_NONE,
                 $.red,
                 $.green,
                 0
@@ -733,7 +733,7 @@ async function onPassed() {
     Stat.RegisterMissionPassed('RM3');
     Audio.PlayMissionPassedTune(1);
     Stat.PlayerMadeProgress(1);
-    $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, 6 /* RADAR_SPRITE_DON */);
+    $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, RADAR_SPRITE_DON);
     // START_NEW_SCRIPT ray_mission4_loop
     // START_NEW_SCRIPT love_mission1_loop
 }
@@ -747,8 +747,8 @@ async function cleanup() {
     $.rays_evidence_blip.remove();
     $.prosecution_car_blip.remove();
     Hud.ClearCounter($.$id.amount_of_evidence_player_has);
-    Streaming.MarkModelAsNoLongerNeeded(112 /* CAR_BOBCAT */);
-    Streaming.MarkModelAsNoLongerNeeded(61 /* PED_B_MAN3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_BOBCAT);
+    Streaming.MarkModelAsNoLongerNeeded(PED_B_MAN3);
     Streaming.MarkModelAsNoLongerNeeded(1325 /* DONKEYMAG */);
     ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
@@ -771,11 +771,11 @@ async function create_another_car() {
             $.ia_car_rm3.markAsNoLongerNeeded();
             $.ia_car_driver_1.markAsNoLongerNeeded();
             if ($.player.locateAnyMeans2D($.ia_start_x, $.ia_start_y, 150.0, 150.0, false)) {
-                $.ia_car_rm3 = Car.Create(112 /* CAR_BOBCAT */, 254.8355, -667.3972, 25.3);
+                $.ia_car_rm3 = Car.Create(CAR_BOBCAT, 254.8355, -667.3972, 25.3);
             } else {
-                $.ia_car_rm3 = Car.Create(112 /* CAR_BOBCAT */, $.ia_start_x, $.ia_start_y, $.ia_start_z);
+                $.ia_car_rm3 = Car.Create(CAR_BOBCAT, $.ia_start_x, $.ia_start_y, $.ia_start_z);
             }
-            $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, 4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */);
+            $.ia_car_driver_1 = Char.CreateInsideCar($.ia_car_rm3, PEDTYPE_CIVMALE, PED_B_MAN3);
             $.ia_car_rm3.setWatertight(true);
             $.ia_car_driver_1.setCantBeDraggedOut(true);
             $.ia_car_rm3.setOnlyDamagedByPlayer(true);
@@ -785,7 +785,7 @@ async function create_another_car() {
             $.ia_car_rm3.setDrivingStyle(2);
             $.ia_car_rm3.wanderRandomly();
             $.prosecution_car_blip = Blip.AddForCar($.ia_car_rm3);
-            $.ia_car_rm3.lockDoors(2 /* CARLOCK_LOCKED */);
+            $.ia_car_rm3.lockDoors(CARLOCK_LOCKED);
             $.ia_car_rm3.setAvoidLevelTransitions(true);
             $.timerd_reset_flag_r3 = 0;
         }
@@ -795,7 +795,7 @@ async function create_another_car() {
 async function evidence_collected() {
     $.rays_evidence_blip.remove();
     $.get_coords_flag = 0;
-    Sound.AddOneOffSound($.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z, 82 /* SOUND_EVIDENCE_PICKUP */);
+    Sound.AddOneOffSound($.object_current_coords_x, $.object_current_coords_y, $.object_current_coords_z, SOUND_EVIDENCE_PICKUP);
     if ($.drop_evidence == 1) {
         $.evidence_1.delete();
         Hud.DisplayCounterWithString($.$id.amount_of_evidence_player_has, 0, 'COLLECT');

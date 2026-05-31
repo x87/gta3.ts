@@ -1,21 +1,4 @@
-import {
-    $,
-    CAR_AMBULANCE,
-    CAR_ENFORCER,
-    CAR_FBI,
-    CAR_FIRETRUCK,
-    CAR_LANDSTALKER,
-    CAR_PATRIOT,
-    CAR_POLICE,
-    CAR_RHINO,
-    CAR_STALLION,
-    CAR_TOYZ,
-    FADE_OUT,
-    OFF,
-    PAD1,
-    RIGHTSHOCK,
-    SQUARE,
-} from '../utils';
+import { $ } from '../utils';
 
 interface MissionDefinition {
     name: string;

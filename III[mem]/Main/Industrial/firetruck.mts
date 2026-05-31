@@ -68,7 +68,7 @@ async function body() {
         $.player1_y = y;
         $.player1_z = z;
 
-        if (!$.player.isInModel(97 /* CAR_FIRETRUCK */)) {
+        if (!$.player.isInModel(CAR_FIRETRUCK)) {
             Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
             FAIL("failed"); // SCM GOTO → failed
         }
@@ -76,23 +76,23 @@ async function body() {
         $.controlmode = Pad.GetControllerMode();
 
         if (!($.controlmode == 3)) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+            if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                 $.mission_end_button_ft = 1;
             }
         } else {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+            if (Pad.IsButtonPressed(PAD1, SQUARE)) {
                 $.mission_end_button_ft = 1;
             }
         }
 
         if ($.mission_end_button_ft == 1) {
             if (!($.controlmode == 3)) {
-                if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                if (!Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                     Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
                     FAIL("failed"); // SCM GOTO → failed
                 }
             } else {
-                if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                if (!Pad.IsButtonPressed(PAD1, SQUARE)) {
                     Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
                     FAIL("failed"); // SCM GOTO → failed
                 }
@@ -101,7 +101,7 @@ async function body() {
 
         //IF IS_PLAYER_IN_AREA_2D player 778.0 -1110.0 1540.0 190.0 0	 //INDUSTRIAL
 
-        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
             $.random_fire_x = Math.RandomFloatInRange(778.0, 1540.0);
             $.random_fire_y = Math.RandomFloatInRange(-1110.0, 190.0);
             $.flag_got_range_mssg = 0;
@@ -112,7 +112,7 @@ async function body() {
 
         //IF IS_PLAYER_IN_AREA_2D player -192.0 -1626.0 545.0 98.0 0  //COMMERCIAL
 
-        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
             $.random_fire_x = Math.RandomFloatInRange(-192.0, 545.0);
             $.random_fire_y = Math.RandomFloatInRange(-1626.0, 98.0);
             $.flag_got_range_mssg = 0;
@@ -123,7 +123,7 @@ async function body() {
 
         //IF IS_PLAYER_IN_AREA_2D player -1300.0 -608.8 -265.0 380.0 0  //SUBURBIA
 
-        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
             $.random_fire_x = Math.RandomFloatInRange(-1300.0, -414.0);
             $.random_fire_y = Math.RandomFloatInRange(-608.8, 380.0);
             $.flag_got_range_mssg = 0;
@@ -246,28 +246,28 @@ async function body() {
                 Text.PrintNow('F_FAIL2', 5000, 1);
                 FAIL("failed"); // SCM GOTO → failed
             }
-            if (!$.player.isInModel(97 /* CAR_FIRETRUCK */)) {
+            if (!$.player.isInModel(CAR_FIRETRUCK)) {
                 Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
                 FAIL("failed"); // SCM GOTO → failed
             }
             $.controlmode = Pad.GetControllerMode();
             if (!($.controlmode == 3)) {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                     $.mission_end_button_ft = 1;
                 }
             } else {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                if (Pad.IsButtonPressed(PAD1, SQUARE)) {
                     $.mission_end_button_ft = 1;
                 }
             }
             if ($.mission_end_button_ft == 1) {
                 if (!($.controlmode == 3)) {
-                    if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                    if (!Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                         Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
                         FAIL("failed"); // SCM GOTO → failed
                     }
                 } else {
-                    if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                    if (!Pad.IsButtonPressed(PAD1, SQUARE)) {
                         Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
                         FAIL("failed"); // SCM GOTO → failed
                     }
@@ -282,7 +282,7 @@ async function body() {
             $.car_on_fire_created = 1;
         }
 
-        $.dummy_ped_for_zone = Char.CreateInsideCar($.car_on_fire, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
+        $.dummy_ped_for_zone = Char.CreateInsideCar($.car_on_fire, PEDTYPE_CIVMALE, PED_MALE1);
         Streaming.MarkModelAsNoLongerNeeded($.random_car_model);
         $.car_on_fire.setHeading($.random_car_heading);
         $.fire_to_extinguish = ScriptFire.CreateCarFire($.car_on_fire);
@@ -455,7 +455,7 @@ async function body() {
                 Text.PrintNow('F_FAIL2', 5000, 1);
                 FAIL("failed"); // SCM GOTO → failed
             }
-            if (!$.player.isInModel(97 /* CAR_FIRETRUCK */)) {
+            if (!$.player.isInModel(CAR_FIRETRUCK)) {
                 Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
                 FAIL("failed"); // SCM GOTO → failed
             }
@@ -465,22 +465,22 @@ async function body() {
             }
             $.controlmode = Pad.GetControllerMode();
             if (!($.controlmode == 3)) {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                     $.mission_end_button_ft = 1;
                 }
             } else {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                if (Pad.IsButtonPressed(PAD1, SQUARE)) {
                     $.mission_end_button_ft = 1;
                 }
             }
             if ($.mission_end_button_ft == 1) {
                 if (!($.controlmode == 3)) {
-                    if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                    if (!Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                         Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
                         FAIL("failed"); 
                     } // SCM GOTO → failed
                 } else {
-                    if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                    if (!Pad.IsButtonPressed(PAD1, SQUARE)) {
                         Text.PrintNow('F_CANC', 3000, 1); //"Fire truck mission cancelled!"
                         FAIL("failed"); 
                     } // SCM GOTO → failed
@@ -525,7 +525,7 @@ async function passed() {
     $.score_ft += 250;
     World.RemoveAllScriptFires();
     $.fire_to_extinguish_blip.remove();
-    Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+    Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_PART_MISSION_COMPLETE);
 
     if ($.player.isInAnyCar()) {
         $.players_firetruck = $.player.storeCarIsIn();

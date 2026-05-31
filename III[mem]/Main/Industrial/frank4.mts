@@ -52,7 +52,7 @@ async function body() {
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
     Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'FRANKH');
 
-    Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
+    Streaming.RequestModel(PED_GANG_MAFIA_B);
     Streaming.RequestModel(541 /* franksclb02 */);
     Streaming.RequestModel(542 /* salvsdetail */);
     Streaming.RequestModel(540 /* swank_inside */);
@@ -70,7 +70,7 @@ async function body() {
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
         !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */)
+        !Streaming.HasModelLoaded(PED_GANG_MAFIA_B)
     ) {
         await asyncWait(0);
     }
@@ -82,19 +82,19 @@ async function body() {
     Cutscene.Load('S5_LRQ');
     Cutscene.SetOffset(1457.776, -185.348, 54.925);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_frankie = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_frankie = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_frankie.setAnim('frankie');
 
-    $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, 186 /* CUT_OBJ2 */);
+    $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, CUT_OBJ2);
     $.cs_frankiehead.setAnim('frank');
 
-    $.cs_mafia = CutsceneObject.Create(11 /* PED_GANG_MAFIA_B */);
+    $.cs_mafia = CutsceneObject.Create(PED_GANG_MAFIA_B);
     $.cs_mafia.setAnim('gang02');
 
     //CREATE_CUTSCENE_OBJECT PED_SPECIAL2 cs_mafia
@@ -104,12 +104,12 @@ async function body() {
 
     $.player.setHeading(130.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SWITCH_WORLD_PROCESSING OFF
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -177,7 +177,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1000, 0 /* FADE_OUT */);
+    Camera.DoFade(1000, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -191,20 +191,20 @@ async function body() {
 
     //SWITCH_WORLD_PROCESSING ON
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1000, 1 /* FADE_IN */);
+    Camera.DoFade(1000, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
     //UNLOAD_SPECIAL_CHARACTER 2
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_B);
     Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */);
     Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */);
     Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */);
@@ -220,10 +220,10 @@ async function body() {
     ENDWHILE
     */
 
-    Streaming.RequestModel(143 /* BOAT_REEFER */);
-    Streaming.RequestModel(105 /* CAR_CHEETAH */);
+    Streaming.RequestModel(BOAT_REEFER);
+    Streaming.RequestModel(CAR_CHEETAH);
 
-    while (!Streaming.HasModelLoaded(143 /* BOAT_REEFER */) || !Streaming.HasModelLoaded(105 /* CAR_CHEETAH */)) {
+    while (!Streaming.HasModelLoaded(BOAT_REEFER) || !Streaming.HasModelLoaded(CAR_CHEETAH)) {
         await asyncWait(0);
     }
 
@@ -246,8 +246,8 @@ async function body() {
 
     // START OF MISSION
 
-    $.bomb_car = Car.Create(105 /* CAR_CHEETAH */, 951.0, -421.0, 14.6);
-    $.bomb_car.armWithBomb(5 /* CARBOMB_ONIGNITIONACTIVE */);
+    $.bomb_car = Car.Create(CAR_CHEETAH, 951.0, -421.0, 14.6);
+    $.bomb_car.armWithBomb(CARBOMB_ONIGNITIONACTIVE);
     $.blip1_fm4 = Blip.AddForCar($.bomb_car);
 
     while (!$.player.isInZone('REDLIGH')) {
@@ -292,12 +292,12 @@ async function body() {
     }
 
     on_foot_frank4: {
-        $.player.setControl(false /* Off */);
+        $.player.setControl(OFF);
 
         //skip_frank_cut1: //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //SET_PLAYER_COORDINATES player 845.5 -1098.0 -100.0 //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        Weather.ForceNow(0 /* WEATHER_SUNNY */);
+        Weather.ForceNow(WEATHER_SUNNY);
 
         $.blip1_fm4.remove();
         $.blip2_fm4.remove();
@@ -319,9 +319,9 @@ async function body() {
 
         Camera.SetFadingColor(0, 0, 0);
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
-        Streaming.Switch(false /* OFF */);
+        Streaming.Switch(OFF);
 
         Streaming.LoadSpecialCharacter(2, 'maria');
         Streaming.LoadSpecialCharacter(3, 'asuka');
@@ -334,7 +334,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        $.boat_mar = Boat.Create(143 /* BOAT_REEFER */, 835.0, -1117.0, 0.4);
+        $.boat_mar = Boat.Create(BOAT_REEFER, 835.0, -1117.0, 0.4);
         $.boat_mar.setHeading(143.0);
         $.boat_mar.anchor(true);
         $.boat_mar.stop();
@@ -353,22 +353,22 @@ async function body() {
         Cutscene.SetOffset(831.0839, -1114.2113, 0.1822);
         //SET_CUTSCENE_OFFSET 830.0839 -1114.2113 0.1822
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
         $.cs_player.setAnim('player');
 
-        $.cs_maria = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+        $.cs_maria = CutsceneObject.Create(PED_SPECIAL2);
         $.cs_maria.setAnim('maria');
 
-        $.cs_asuka = CutsceneObject.Create(28 /* PED_SPECIAL3 */);
+        $.cs_asuka = CutsceneObject.Create(PED_SPECIAL3);
         $.cs_asuka.setAnim('asuka');
 
         //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-        $.cs_mariahead = CutsceneHead.Create($.cs_maria, 186 /* CUT_OBJ2 */);
+        $.cs_mariahead = CutsceneHead.Create($.cs_maria, CUT_OBJ2);
         $.cs_mariahead.setAnim('maria');
 
-        $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 187 /* CUT_OBJ3 */);
+        $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ3);
         $.cs_asukahead.setAnim('asuka');
 
         //SET_PLAYER_COORDINATES player 835.4 -1108.7 1.0
@@ -383,12 +383,12 @@ async function body() {
 
         $.player.warpIntoCar($.boat_mar);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         //SWITCH_WORLD_PROCESSING OFF
 
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
+        World.SwitchRubbish(OFF);
+        Streaming.Switch(ON);
         Cutscene.Start();
 
         // Displays cutscene text
@@ -484,7 +484,7 @@ async function body() {
         ENDIF
         */
 
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -498,19 +498,19 @@ async function body() {
 
         //SWITCH_WORLD_PROCESSING ON
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
         Cutscene.Clear();
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
         Camera.SetBehindPlayer();
 
-        $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 837.0, -1116.5, 1.8);
+        $.maria = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 837.0, -1116.5, 1.8);
         $.maria.setOnlyDamagedByPlayer(true);
         $.maria.setHeading(17.0);
         $.maria.setStaysInCurrentLevel(false);
         $.maria.setIgnoreLevelTransitions(true);
         //boat_mar_Y = boat_mar_Y	- 1.0
 
-        $.asuka = Char.Create(21 /* PEDTYPE_SPECIAL */, 28 /* PED_SPECIAL3 */, 836.6, -1114.6, 1.8);
+        $.asuka = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL3, 836.6, -1114.6, 1.8);
         $.asuka.setOnlyDamagedByPlayer(true);
         $.asuka.setHeading(178.0);
         $.asuka.setStaysInCurrentLevel(false);
@@ -527,13 +527,13 @@ async function body() {
 
         await asyncWait(500);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         //UNLOAD_SPECIAL_CHARACTER 2
         //UNLOAD_SPECIAL_CHARACTER 3
 
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
         //GOTO skip_frank_cut2 //TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -581,11 +581,11 @@ async function body() {
                 if (!$.asuka.isHealthGreater(96) || !$.maria.isHealthGreater(96)) {
                     if (!Char.IsDead($.asuka)) {
                         $.asuka.setObjKillPlayerOnFoot($.player);
-                        $.asuka.giveWeapon(3 /* WEAPONTYPE_UZI */, 200);
+                        $.asuka.giveWeapon(WEAPONTYPE_UZI, 200);
                     }
                     if (!Char.IsDead($.maria)) {
                         $.maria.setObjKillPlayerOnFoot($.player);
-                        $.maria.giveWeapon(3 /* WEAPONTYPE_UZI */, 200);
+                        $.maria.giveWeapon(WEAPONTYPE_UZI, 200);
                     }
                     $.girls_attack_player = 1;
                 }
@@ -624,7 +624,7 @@ async function body() {
 
         Camera.SetFadingColor(0, 0, 0);
 
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
 
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
@@ -641,13 +641,13 @@ async function body() {
         $.player.setCoordinates(515.1, -650.9, 16.0); //612.3 -674.5 1.8
         $.player.setHeading(90.0);
 
-        Streaming.Switch(false /* OFF */);
+        Streaming.Switch(OFF);
 
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
         Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'MARIAH');
         Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'ASUKAH');
-        Streaming.RequestModel(136 /* CAR_YAKUZA */);
-        Streaming.RequestModel(102 /* CAR_BLISTA */);
+        Streaming.RequestModel(CAR_YAKUZA);
+        Streaming.RequestModel(CAR_BLISTA);
 
         //PRINT_BIG ( FM4 ) 15000 2 //"Frankie Mission 4"
 
@@ -657,7 +657,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        while (!Streaming.HasModelLoaded(136 /* CAR_YAKUZA */) || !Streaming.HasModelLoaded(102 /* CAR_BLISTA */)) {
+        while (!Streaming.HasModelLoaded(CAR_YAKUZA) || !Streaming.HasModelLoaded(CAR_BLISTA)) {
             await asyncWait(0);
         }
 
@@ -667,42 +667,42 @@ async function body() {
         Cutscene.Load('S5_LRQC');
         Cutscene.SetOffset(523.102, -636.96, 15.616); //563.0 -683.0 1.8
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
         $.cs_player.setAnim('player');
 
-        $.cs_maria = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+        $.cs_maria = CutsceneObject.Create(PED_SPECIAL2);
         $.cs_maria.setAnim('maria');
 
-        $.cs_asuka = CutsceneObject.Create(28 /* PED_SPECIAL3 */);
+        $.cs_asuka = CutsceneObject.Create(PED_SPECIAL3);
         $.cs_asuka.setAnim('asuka');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
         $.cs_playerhead.setAnim('player');
 
-        $.cs_mariahead = CutsceneHead.Create($.cs_maria, 186 /* CUT_OBJ2 */);
+        $.cs_mariahead = CutsceneHead.Create($.cs_maria, CUT_OBJ2);
         $.cs_mariahead.setAnim('maria');
 
-        $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 187 /* CUT_OBJ3 */);
+        $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ3);
         $.cs_asukahead.setAnim('asuka');
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         $.player.setCoordinates(515.1, -650.9, 16.0);
         $.player.setHeading(90.0);
 
-        $.frank4_car1 = Car.Create(136 /* CAR_YAKUZA */, 500.0, -659.4, -100.0);
+        $.frank4_car1 = Car.Create(CAR_YAKUZA, 500.0, -659.4, -100.0);
 
-        $.frank4_car2 = Car.Create(102 /* CAR_BLISTA */, 486.5, -643.6, -100.0);
+        $.frank4_car2 = Car.Create(CAR_BLISTA, 486.5, -643.6, -100.0);
 
-        Streaming.MarkModelAsNoLongerNeeded(136 /* CAR_YAKUZA */);
-        Streaming.MarkModelAsNoLongerNeeded(102 /* CAR_BLISTA */);
+        Streaming.MarkModelAsNoLongerNeeded(CAR_YAKUZA);
+        Streaming.MarkModelAsNoLongerNeeded(CAR_BLISTA);
         $.frank4_car1.markAsNoLongerNeeded();
         $.frank4_car2.markAsNoLongerNeeded();
 
         //SWITCH_WORLD_PROCESSING OFF
 
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
+        World.SwitchRubbish(OFF);
+        Streaming.Switch(ON);
         Cutscene.Start();
 
         // Displays cutscene text
@@ -763,7 +763,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -777,20 +777,20 @@ async function body() {
 
         //SWITCH_WORLD_PROCESSING ON
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
         Cutscene.Clear();
         Camera.SetInFrontOfPlayer();
         //SET_CAMERA_BEHIND_PLAYER
 
         await asyncWait(500);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         Streaming.UnloadSpecialCharacter(2);
         Streaming.UnloadSpecialCharacter(3);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
         Weather.Release();
     }
 
@@ -833,8 +833,8 @@ async function onPassed() {
     $.tunnel_gate_industrial.delete();
 
     if ($.ammu2_blip_added == 0) {
-        $.com_ammu_nation2 = Blip.AddSpriteForCoord(345.5, -713.5, 26.1, 20 /* RADAR_SPRITE_WEAPON */);
-        $.com_sprayshop2 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
+        $.com_ammu_nation2 = Blip.AddSpriteForCoord(345.5, -713.5, 26.1, RADAR_SPRITE_WEAPON);
+        $.com_sprayshop2 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, RADAR_SPRITE_SPRAY);
         $.ammu2_blip_added = 1;
     }
 
@@ -852,7 +852,7 @@ async function onPassed() {
     $.player.addScore(20000);
     // START_NEW_SCRIPT asuka_mission1_loop
     $.asuka_contact_blip.remove();
-    $.asuka_contact_blip = Blip.AddSpriteForContactPoint(523.7, -643.0, 16.1, 1 /* RADAR_SPRITE_ASUKA */);
+    $.asuka_contact_blip = Blip.AddSpriteForContactPoint(523.7, -643.0, 16.1, RADAR_SPRITE_ASUKA);
 }
 
 // mission cleanup
@@ -864,10 +864,10 @@ async function cleanup() {
     $.blip3_fm4.remove();
     $.boat_blip.remove();
     Weather.Release();
-    Streaming.MarkModelAsNoLongerNeeded(143 /* BOAT_REEFER */);
-    Streaming.MarkModelAsNoLongerNeeded(105 /* CAR_CHEETAH */);
-    Streaming.MarkModelAsNoLongerNeeded(136 /* CAR_YAKUZA */);
-    Streaming.MarkModelAsNoLongerNeeded(102 /* CAR_BLISTA */);
+    Streaming.MarkModelAsNoLongerNeeded(BOAT_REEFER);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_CHEETAH);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_YAKUZA);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_BLISTA);
     $.maria.removeElegantly();
     $.asuka.removeElegantly();
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ1

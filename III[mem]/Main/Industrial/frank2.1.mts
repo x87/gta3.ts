@@ -57,7 +57,7 @@ async function body() {
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'FRANKH');
         //LOAD_SPECIAL_MODEL cut_obj2 PLAYERH
 
-        Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
+        Streaming.RequestModel(PED_GANG_MAFIA_B);
 
         Streaming.RequestModel(541 /* franksclb02 */);
         Streaming.RequestModel(542 /* salvsdetail */);
@@ -75,7 +75,7 @@ async function body() {
 
         // Cutscene stuff
 
-        while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */)) {
+        while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(PED_GANG_MAFIA_B)) {
             //OR NOT HAS_MODEL_LOADED cut_obj2
 
             await asyncWait(0);
@@ -89,15 +89,15 @@ async function body() {
 
         Cutscene.SetOffset(1457.776, -185.348, 54.925);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
         $.cs_player.setAnim('player');
 
-        $.cs_frankie = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+        $.cs_frankie = CutsceneObject.Create(PED_SPECIAL1);
 
         $.cs_frankie.setAnim('frankie');
 
-        $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, 185 /* CUT_OBJ1 */);
+        $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, CUT_OBJ1);
 
         $.cs_frankiehead.setAnim('frank');
 
@@ -105,7 +105,7 @@ async function body() {
 
         //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-        $.cs_mafia = CutsceneObject.Create(11 /* PED_GANG_MAFIA_B */);
+        $.cs_mafia = CutsceneObject.Create(PED_GANG_MAFIA_B);
 
         $.cs_mafia.setAnim('gang02');
 
@@ -115,11 +115,11 @@ async function body() {
 
         $.player.setHeading(180.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        World.SwitchRubbish(false /* OFF */);
+        World.SwitchRubbish(OFF);
 
-        Streaming.Switch(true /* ON */);
+        Streaming.Switch(ON);
 
         Cutscene.Start();
 
@@ -204,7 +204,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -218,17 +218,17 @@ async function body() {
 
         Cutscene.Clear();
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
 
         Camera.SetBehindPlayer();
 
         await asyncWait(500);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_B);
         //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ2
 
         Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */);
@@ -255,7 +255,7 @@ async function onPassed() {
     Stat.RegisterMissionPassed('FM21');
     Stat.PlayerMadeProgress(1);
     $.frankie_contact_blip.remove();
-    $.eightball_contact_blip = Blip.AddSpriteForContactPoint(1272.2, -92.9, -100.0, 7 /* RADAR_SPRITE_EIGHT */);
+    $.eightball_contact_blip = Blip.AddSpriteForContactPoint(1272.2, -92.9, -100.0, RADAR_SPRITE_EIGHT);
     // START_NEW_SCRIPT frankie_mission3_loop
 }
 

@@ -127,15 +127,15 @@ async function body() {
     Cutscene.Load('hd_ph3');
     Cutscene.SetOffset(-444.714, -6.321, 2.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -203,7 +203,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -221,7 +221,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ1
 
@@ -229,27 +229,27 @@ async function body() {
 
     // *********************************************END OF CUTSCENE*****************************
 
-    Game.ClearThreatForPedType(7 /* PEDTYPE_GANG_MAFIA */, 1 /* THREAT_PLAYER1 */);
+    Game.ClearThreatForPedType(PEDTYPE_GANG_MAFIA, THREAT_PLAYER1);
 
-    Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+    Game.ClearThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
 
-    Game.ClearThreatForPedType(9 /* PEDTYPE_GANG_DIABLO */, 1 /* THREAT_PLAYER1 */);
+    Game.ClearThreatForPedType(PEDTYPE_GANG_DIABLO, THREAT_PLAYER1);
 
-    Game.ClearThreatForPedType(10 /* PEDTYPE_GANG_YAKUZA */, 1 /* THREAT_PLAYER1 */);
+    Game.ClearThreatForPedType(PEDTYPE_GANG_YAKUZA, THREAT_PLAYER1);
 
-    Game.ClearThreatForPedType(11 /* PEDTYPE_GANG_YARDIE */, 1 /* THREAT_PLAYER1 */);
+    Game.ClearThreatForPedType(PEDTYPE_GANG_YARDIE, THREAT_PLAYER1);
 
-    Game.ClearThreatForPedType(12 /* PEDTYPE_GANG_COLOMBIAN */, 1 /* THREAT_PLAYER1 */);
+    Game.ClearThreatForPedType(PEDTYPE_GANG_COLOMBIAN, THREAT_PLAYER1);
 
-    Game.ClearThreatForPedType(13 /* PEDTYPE_GANG_HOOD */, 1 /* THREAT_PLAYER1 */);
+    Game.ClearThreatForPedType(PEDTYPE_GANG_HOOD, THREAT_PLAYER1);
 
-    Streaming.RequestModel(101 /* CAR_INFERNUS */);
+    Streaming.RequestModel(CAR_INFERNUS);
 
-    while (!Streaming.HasModelLoaded(101 /* CAR_INFERNUS */)) {
+    while (!Streaming.HasModelLoaded(CAR_INFERNUS)) {
         await asyncWait(0);
     }
 
-    $.car_hm3 = Car.Create(101 /* CAR_INFERNUS */, -682.0, 76.0, -100.0);
+    $.car_hm3 = Car.Create(CAR_INFERNUS, -682.0, 76.0, -100.0);
 
     $.car_hm3.setHeading(0.0);
 
@@ -409,7 +409,7 @@ async function body() {
     }
 
     if (!Car.IsDead($.car_hm3)) {
-        $.car_hm3.changeLock(2 /* CARLOCK_LOCKED */);
+        $.car_hm3.changeLock(CARLOCK_LOCKED);
     }
 
     $.radar_blip_coord2_hm3.remove();
@@ -422,11 +422,11 @@ async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
 
     if ($.player.hasBeenArrested()) {
-        Restart.OverridePolice(3 /* LEVEL_SUBURBAN */);
+        Restart.OverridePolice(LEVEL_SUBURBAN);
     }
 
     if ($.player.isDead()) {
-        Restart.OverrideHospital(3 /* LEVEL_SUBURBAN */);
+        Restart.OverrideHospital(LEVEL_SUBURBAN);
     }
 }
 
@@ -456,20 +456,20 @@ async function cleanup() {
     $.garage_hm3.setTargetCarForMission(-1 as any);
     Hud.ClearTimer($.$id.timer_hm3);
     Hud.ClearCounter($.$id.car_damage_hm3);
-    Streaming.MarkModelAsNoLongerNeeded(101 /* CAR_INFERNUS */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_INFERNUS);
     $.radar_blip_car1_hm3.remove();
     $.radar_blip_coord1_hm3.remove();
     $.radar_blip_coord2_hm3.remove();
-    Game.SetThreatForPedType(7 /* PEDTYPE_GANG_MAFIA */, 1 /* THREAT_PLAYER1 */);
-    Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
-    Game.SetThreatForPedType(12 /* PEDTYPE_GANG_COLOMBIAN */, 1 /* THREAT_PLAYER1 */);
+    Game.SetThreatForPedType(PEDTYPE_GANG_MAFIA, THREAT_PLAYER1);
+    Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
+    Game.SetThreatForPedType(PEDTYPE_GANG_COLOMBIAN, THREAT_PLAYER1);
 
     if ($.flag_yardie_mission2_passed == 1) {
-        Game.SetThreatForPedType(9 /* PEDTYPE_GANG_DIABLO */, 1 /* THREAT_PLAYER1 */);
+        Game.SetThreatForPedType(PEDTYPE_GANG_DIABLO, THREAT_PLAYER1);
     }
 
     if ($.flag_yardie_mission4_passed == 1) {
-        Game.SetThreatForPedType(11 /* PEDTYPE_GANG_YARDIE */, 1 /* THREAT_PLAYER1 */);
+        Game.SetThreatForPedType(PEDTYPE_GANG_YARDIE, THREAT_PLAYER1);
     }
 
     Mission.Finish();

@@ -196,7 +196,7 @@ async function body() {
     // Cutscene stuff
 
     Streaming.LoadSpecialCharacter(1, 'KENJI');
-    Streaming.RequestModel(16 /* PED_GANG_YAKUZA_A */);
+    Streaming.RequestModel(PED_GANG_YAKUZA_A);
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KENJIH');
     Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
     Streaming.RequestModel(1570 /* casino_garden */);
@@ -205,7 +205,7 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(16 /* PED_GANG_YAKUZA_A */) ||
+        !Streaming.HasModelLoaded(PED_GANG_YAKUZA_A) ||
         !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
         !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
         !Streaming.HasModelLoaded(1570 /* casino_garden */)
@@ -217,23 +217,23 @@ async function body() {
 
     Cutscene.SetOffset(476.38, -1382.168, 67.347);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_kenji = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_kenji = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_kenji.setAnim('kenji');
 
-    $.cs_yakuza = CutsceneObject.Create(16 /* PED_GANG_YAKUZA_A */);
+    $.cs_yakuza = CutsceneObject.Create(PED_GANG_YAKUZA_A);
 
     $.cs_yakuza.setAnim('gang07');
 
-    $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, 185 /* CUT_OBJ1 */);
+    $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, CUT_OBJ1);
 
     $.cs_kenjihead.setAnim('kenji');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ2);
 
     $.cs_playerhead.setAnim('player');
 
@@ -243,11 +243,11 @@ async function body() {
 
     $.player.setHeading(132.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -288,7 +288,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -302,24 +302,24 @@ async function body() {
 
     Cutscene.Clear();
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
     Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */);
 
     // *******************************************END OF CUTSCENE*******************************
 
-    Streaming.RequestModel(14 /* PED_GANG_DIABLO_A */);
+    Streaming.RequestModel(PED_GANG_DIABLO_A);
 
-    while (!Streaming.HasModelLoaded(14 /* PED_GANG_DIABLO_A */)) {
+    while (!Streaming.HasModelLoaded(PED_GANG_DIABLO_A)) {
         await asyncWait(0);
     }
 
@@ -349,9 +349,9 @@ async function body() {
 
     // creates Diablo 6 who is by the second briefcase
 
-    $.hispanic6_km4 = Char.Create(4 /* PEDTYPE_CIVMALE */, 14 /* PED_GANG_DIABLO_A */, 122.2, -1113.2, 25.2);
+    $.hispanic6_km4 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_DIABLO_A, 122.2, -1113.2, 25.2);
 
-    $.hispanic6_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
+    $.hispanic6_km4.giveWeapon(WEAPONTYPE_UZI, 30000); // sets weapon to have infinate bullets
 
     $.hispanic6_km4.clearThreatSearch();
 
@@ -359,8 +359,8 @@ async function body() {
 
     // waiting for the player to get the second briefcase
 
-    Zone.SetPedDensity('park', 1 /* DAY */, 0);
-    Zone.SetPedDensity('park', 0 /* NIGHT */, 0);
+    Zone.SetPedDensity('park', DAY, 0);
+    Zone.SetPedDensity('park', NIGHT, 0);
 
     while (!$.briefcase2_km4.hasBeenCollected()) {
         await asyncWait(0);
@@ -369,8 +369,8 @@ async function body() {
                 $.flag_hispanic6_km4_dead = 1;
             } else {
                 if ($.player.locateAnyMeansChar2D($.hispanic6_km4, 10.0, 10.0, false)) {
-                    $.hispanic6_km4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.hispanic6_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    $.hispanic6_km4.setThreatSearch(THREAT_PLAYER1);
+                    $.hispanic6_km4.setPersonality(PEDSTAT_TOUGH_GUY);
                     $.hispanic6_km4.setObjKillPlayerAnyMeans($.player);
                 }
             }
@@ -389,21 +389,21 @@ async function body() {
         await asyncWait(0);
     }
 
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
 
     $.radar_blip_coord5_km4.remove();
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
 
     World.ClearArea(-91.0, -488.9, 18.7, 2.0, true);
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
-    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
 
     Camera.SetFixedPosition(-87.33, -502.99, 21.33, 0.0, 0.0, 0.0);
 
-    Camera.PointAtPoint(-87.37, -502.06, 20.97, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(-87.37, -502.06, 20.97, JUMP_CUT);
 
     $.script_controlled_player = $.player.getChar();
 
@@ -443,16 +443,16 @@ async function body() {
 
     Camera.SetFadingColor(0, 0, 0);
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
-    Streaming.Switch(false /* OFF */);
+    Streaming.Switch(OFF);
 
     // Cutscene stuff
 
     Streaming.LoadSpecialCharacter(2, 'KEEPER');
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KEEPERH');
     Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(187 /* CUT_OBJ3 */, 'SHDOOR');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'SHDOOR');
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -483,11 +483,11 @@ async function body() {
 
     //SET_CUTSCENE_OFFSET -90.1829 -491.4236 15.143  // Test one
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_keeper = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_keeper = CutsceneObject.Create(PED_SPECIAL2);
 
     $.cs_keeper.setAnim('keeper');
 
@@ -495,11 +495,11 @@ async function body() {
 
     $.cs_shopdoor.setAnim('shdoor');
 
-    $.cs_keeperhead = CutsceneHead.Create($.cs_keeper, 185 /* CUT_OBJ1 */);
+    $.cs_keeperhead = CutsceneHead.Create($.cs_keeper, CUT_OBJ1);
 
     $.cs_keeperhead.setAnim('keeper');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ2);
 
     $.cs_playerhead.setAnim('player');
 
@@ -509,11 +509,11 @@ async function body() {
 
     $.player.setHeading(101.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -561,7 +561,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -575,59 +575,59 @@ async function body() {
 
     Cutscene.Clear();
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Camera.SetBehindPlayer();
 
     World.SetVisibilityOfClosestObjectOfType(-88.3, -487.6, 15.1, 6.0, 415 /* convstore01_door */, true);
 
     Streaming.UnloadSpecialCharacter(2);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
     World.SetPedDensityMultiplier(1.0);
 
     // **********************************END OF CUTSCENE WITH SHOPKEEPER************************
 
-    Hud.SwitchWidescreen(false /* OFF */);
+    Hud.SwitchWidescreen(OFF);
 
-    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
-    $.player.setControl(true /* ON */);
+    $.player.setControl(ON);
 
-    Zone.SetPedDensity('park', 1 /* DAY */, 1);
-    Zone.SetPedDensity('park', 0 /* NIGHT */, 1);
+    Zone.SetPedDensity('park', DAY, 1);
+    Zone.SetPedDensity('park', NIGHT, 1);
 
-    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+    Game.SetEveryoneIgnorePlayer($.player, OFF);
 
-    $.radar_blip_coord1_km4 = Blip.AddForCoordOld(938.0, -180.0, -100.0, 5, 3 /* BOTH */);
+    $.radar_blip_coord1_km4 = Blip.AddForCoordOld(938.0, -180.0, -100.0, 5, BOTH);
 
     $.radar_blip_coord1_km4.changeScale(3);
 
-    $.radar_blip_dummy1_km4 = Blip.AddForCoordOld(930.0, -190.0, -100.0, 1, 3 /* BOTH */);
+    $.radar_blip_dummy1_km4 = Blip.AddForCoordOld(930.0, -190.0, -100.0, 1, BOTH);
 
     $.radar_blip_dummy1_km4.changeScale(3);
 
-    $.radar_blip_dummy2_km4 = Blip.AddForCoordOld(931.0, -184.0, -100.0, 1, 3 /* BOTH */);
+    $.radar_blip_dummy2_km4 = Blip.AddForCoordOld(931.0, -184.0, -100.0, 1, BOTH);
 
     $.radar_blip_dummy2_km4.changeScale(3);
 
-    $.radar_blip_dummy3_km4 = Blip.AddForCoordOld(943.0, -182.0, -100.0, 1, 3 /* BOTH */);
+    $.radar_blip_dummy3_km4 = Blip.AddForCoordOld(943.0, -182.0, -100.0, 1, BOTH);
 
     $.radar_blip_dummy3_km4.changeScale(3);
 
-    $.radar_blip_dummy4_km4 = Blip.AddForCoordOld(943.0, -190.0, -100.0, 1, 3 /* BOTH */);
+    $.radar_blip_dummy4_km4 = Blip.AddForCoordOld(943.0, -190.0, -100.0, 1, BOTH);
 
     $.radar_blip_dummy4_km4.changeScale(3);
 
-    $.radar_blip_dummy5_km4 = Blip.AddForCoordOld(939.0, -183.0, -100.0, 1, 3 /* BOTH */);
+    $.radar_blip_dummy5_km4 = Blip.AddForCoordOld(939.0, -183.0, -100.0, 1, BOTH);
 
     $.radar_blip_dummy5_km4.changeScale(3);
 
@@ -635,7 +635,7 @@ async function body() {
 
     // creates the final briefcase and the hispanics
 
-    while (!Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+    while (!Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
         await asyncWait(0);
     }
 
@@ -649,73 +649,73 @@ async function body() {
 
     // hispanic 1
 
-    $.hispanic1_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, 14 /* PED_GANG_DIABLO_A */, 930.0, -190.0, -100.0);
+    $.hispanic1_km4 = Char.Create(PEDTYPE_GANG_DIABLO, PED_GANG_DIABLO_A, 930.0, -190.0, -100.0);
 
     $.radar_blip_diablo1_km4 = Blip.AddForChar($.hispanic1_km4);
 
     $.radar_blip_dummy1_km4.remove();
 
-    $.hispanic1_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
+    $.hispanic1_km4.giveWeapon(WEAPONTYPE_UZI, 30000); // sets weapon to have infinate bullets
 
     $.hispanic1_km4.clearThreatSearch();
 
-    $.hispanic1_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.hispanic1_km4.setPersonality(PEDSTAT_TOUGH_GUY);
 
     // hispanic 2
 
-    $.hispanic2_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, 14 /* PED_GANG_DIABLO_A */, 931.0, -184.0, -100.0);
+    $.hispanic2_km4 = Char.Create(PEDTYPE_GANG_DIABLO, PED_GANG_DIABLO_A, 931.0, -184.0, -100.0);
 
     $.radar_blip_diablo2_km4 = Blip.AddForChar($.hispanic2_km4);
 
     $.radar_blip_dummy2_km4.remove();
 
-    $.hispanic2_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
+    $.hispanic2_km4.giveWeapon(WEAPONTYPE_UZI, 30000); // sets weapon to have infinate bullets
 
     $.hispanic2_km4.clearThreatSearch();
 
-    $.hispanic2_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.hispanic2_km4.setPersonality(PEDSTAT_TOUGH_GUY);
 
     // hispanic 3
 
-    $.hispanic3_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, 14 /* PED_GANG_DIABLO_A */, 943.0, -182.0, -100.0);
+    $.hispanic3_km4 = Char.Create(PEDTYPE_GANG_DIABLO, PED_GANG_DIABLO_A, 943.0, -182.0, -100.0);
 
     $.radar_blip_diablo3_km4 = Blip.AddForChar($.hispanic3_km4);
 
     $.radar_blip_dummy3_km4.remove();
 
-    $.hispanic3_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
+    $.hispanic3_km4.giveWeapon(WEAPONTYPE_UZI, 30000); // sets weapon to have infinate bullets
 
     $.hispanic3_km4.clearThreatSearch();
 
-    $.hispanic3_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.hispanic3_km4.setPersonality(PEDSTAT_TOUGH_GUY);
 
     // hispanic 4
 
-    $.hispanic4_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, 14 /* PED_GANG_DIABLO_A */, 943.0, -190.0, -100.0);
+    $.hispanic4_km4 = Char.Create(PEDTYPE_GANG_DIABLO, PED_GANG_DIABLO_A, 943.0, -190.0, -100.0);
 
     $.radar_blip_diablo4_km4 = Blip.AddForChar($.hispanic4_km4);
 
     $.radar_blip_dummy4_km4.remove();
 
-    $.hispanic4_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
+    $.hispanic4_km4.giveWeapon(WEAPONTYPE_UZI, 30000); // sets weapon to have infinate bullets
 
     $.hispanic4_km4.clearThreatSearch();
 
-    $.hispanic4_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.hispanic4_km4.setPersonality(PEDSTAT_TOUGH_GUY);
 
     // hispanic 5
 
-    $.hispanic5_km4 = Char.Create(9 /* PEDTYPE_GANG_DIABLO */, 14 /* PED_GANG_DIABLO_A */, 939.0, -183.0, -100.0);
+    $.hispanic5_km4 = Char.Create(PEDTYPE_GANG_DIABLO, PED_GANG_DIABLO_A, 939.0, -183.0, -100.0);
 
     $.radar_blip_diablo5_km4 = Blip.AddForChar($.hispanic5_km4);
 
     $.radar_blip_dummy5_km4.remove();
 
-    $.hispanic5_km4.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to have infinate bullets
+    $.hispanic5_km4.giveWeapon(WEAPONTYPE_UZI, 30000); // sets weapon to have infinate bullets
 
     $.hispanic5_km4.clearThreatSearch();
 
-    $.hispanic5_km4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.hispanic5_km4.setPersonality(PEDSTAT_TOUGH_GUY);
 
     while ($.flag_briefcase3_pickedup_km4 == 0 || $.counter_number_of_hispanics_dead < 5) {
         await asyncWait(0);
@@ -764,31 +764,31 @@ async function body() {
         }
         if ($.player.locateAnyMeans3D(940.0, -185.0, 4.2, 25.0, 25.0, 10.0, false)) {
             if ($.flag_hispanic1_km4_dead == 0 && $.flag_hispanic1_hate_player_km4 == 0) {
-                $.hispanic1_km4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.hispanic1_km4.setThreatSearch(THREAT_PLAYER1);
                 $.hispanic1_km4.turnToFacePlayer($.player);
                 $.hispanic1_km4.setObjKillPlayerAnyMeans($.player);
                 $.flag_hispanic1_hate_player_km4 = 1;
             }
             if ($.flag_hispanic2_km4_dead == 0 && $.flag_hispanic2_hate_player_km4 == 0) {
-                $.hispanic2_km4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.hispanic2_km4.setThreatSearch(THREAT_PLAYER1);
                 $.hispanic2_km4.turnToFacePlayer($.player);
                 $.hispanic2_km4.setObjKillPlayerAnyMeans($.player);
                 $.flag_hispanic2_hate_player_km4 = 1;
             }
             if ($.flag_hispanic3_km4_dead == 0 && $.flag_hispanic3_hate_player_km4 == 0) {
-                $.hispanic3_km4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.hispanic3_km4.setThreatSearch(THREAT_PLAYER1);
                 $.hispanic3_km4.turnToFacePlayer($.player);
                 $.hispanic3_km4.setObjKillPlayerAnyMeans($.player);
                 $.flag_hispanic3_hate_player_km4 = 1;
             }
             if ($.flag_hispanic4_km4_dead == 0 && $.flag_hispanic4_hate_player_km4 == 0) {
-                $.hispanic4_km4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.hispanic4_km4.setThreatSearch(THREAT_PLAYER1);
                 $.hispanic4_km4.turnToFacePlayer($.player);
                 $.hispanic4_km4.setObjKillPlayerAnyMeans($.player);
                 $.flag_hispanic4_hate_player_km4 = 1;
             }
             if ($.flag_hispanic5_km4_dead == 0 && $.flag_hispanic5_hate_player_km4 == 0) {
-                $.hispanic5_km4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.hispanic5_km4.setThreatSearch(THREAT_PLAYER1);
                 $.hispanic5_km4.turnToFacePlayer($.player);
                 $.hispanic5_km4.setObjKillPlayerAnyMeans($.player);
                 $.flag_hispanic5_hate_player_km4 = 1;
@@ -808,13 +808,13 @@ async function body() {
 
     $.radar_blip_coord6_km4.remove();
 
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
-    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
 
     $.script_controlled_player = $.player.getChar();
 
@@ -832,7 +832,7 @@ async function body() {
 
     Camera.SetFixedPosition(420.41, -1479.59, 26.13, 0.0, 0.0, 0.0);
 
-    Camera.PointAtPoint(420.87, -1478.75, 26.38, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(420.87, -1478.75, 26.38, JUMP_CUT);
 
     $.player.setCoordinates(425.85, -1477.16, -100.0);
 
@@ -844,7 +844,7 @@ async function body() {
 
     Camera.SetFadingColor(0, 0, 0);
 
-    Camera.DoFade(1000, 0 /* FADE_OUT */);
+    Camera.DoFade(1000, FADE_OUT);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -860,19 +860,19 @@ async function body() {
 
     Camera.SetFadingColor(0, 0, 0);
 
-    Camera.DoFade(1000, 1 /* FADE_IN */);
+    Camera.DoFade(1000, FADE_IN);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
     }
 
-    Hud.SwitchWidescreen(false /* OFF */);
+    Hud.SwitchWidescreen(OFF);
 
-    $.player.setControl(true /* ON */);
+    $.player.setControl(ON);
 
-    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
-    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+    Game.SetEveryoneIgnorePlayer($.player, OFF);
 
     return; // SCM GOTO → mission_kenji4_passed
 }
@@ -923,8 +923,8 @@ async function cleanup() {
     $.radar_blip_diablo3_km4.remove();
     $.radar_blip_diablo4_km4.remove();
     $.radar_blip_diablo5_km4.remove();
-    Streaming.MarkModelAsNoLongerNeeded(14 /* PED_GANG_DIABLO_A */);
-    Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_DIABLO_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_A);
     $.radar_blip_coord2_km4.remove();
     $.radar_blip_coord3_km4.remove();
     $.radar_blip_coord4_km4.remove();
@@ -936,8 +936,8 @@ async function cleanup() {
     $.radar_blip_dummy3_km4.remove();
     $.radar_blip_dummy4_km4.remove();
     $.radar_blip_dummy5_km4.remove();
-    Zone.SetPedDensity('park', 1 /* DAY */, 1);
-    Zone.SetPedDensity('park', 0 /* NIGHT */, 1);
+    Zone.SetPedDensity('park', DAY, 1);
+    Zone.SetPedDensity('park', NIGHT, 1);
     Mission.Finish();
 }
 

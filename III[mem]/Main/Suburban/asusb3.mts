@@ -156,32 +156,32 @@ async function body() {
 
     Cutscene.Load('a8_ps');
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.SetOffset(369.02, -327.5, 18.46);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_asuka = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_asuka = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_asuka.setAnim('asuka');
 
-    $.cs_miguel = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_miguel = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_miguel.setAnim('miguel');
 
-    $.cs_maria = CutsceneObject.Create(28 /* PED_SPECIAL3 */);
+    $.cs_maria = CutsceneObject.Create(PED_SPECIAL3);
     $.cs_maria.setAnim('maria');
 
     $.cs_whip = CutsceneObject.Create(188 /* cut_obj4 */);
     $.cs_whip.setAnim('WHIP');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_mariahead = CutsceneHead.Create($.cs_maria, 187 /* CUT_OBJ3 */);
+    $.cs_mariahead = CutsceneHead.Create($.cs_maria, CUT_OBJ3);
     $.cs_mariahead.setAnim('maria');
 
-    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 186 /* CUT_OBJ2 */);
+    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ2);
     $.cs_asukahead.setAnim('asuka');
     /*
     CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
@@ -192,10 +192,10 @@ async function body() {
 
     $.player.setHeading(270.0);
 
-    Camera.DoFade(250, 1 /* FADE_IN */);
+    Camera.DoFade(250, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(false /* OFF */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(OFF);
     //SWITCH_WORLD_PROCESSING OFF
 
     Cutscene.Start();
@@ -316,7 +316,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -330,13 +330,13 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1000, 1 /* FADE_IN */);
+    Camera.DoFade(1000, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
@@ -344,13 +344,13 @@ async function body() {
 
     Streaming.MarkModelAsNoLongerNeeded(2011 /* csitecutscene */);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
-    Streaming.MarkModelAsNoLongerNeeded(188 /* CUT_OBJ4 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
 
-    Streaming.Switch(true /* ON */);
-    World.SwitchRubbish(true /* ON */);
+    Streaming.Switch(ON);
+    World.SwitchRubbish(ON);
     //SWITCH_WORLD_PROCESSING ON
 
     // ******************************************END OF CUTSCENE********************************
@@ -360,21 +360,21 @@ async function body() {
     Hud.DisplayTimer($.$id.timer_as3);
     //----------------------------LOAD MODELS------------------------------------------------------
 
-    Streaming.RequestModel(143 /* BOAT_REEFER */);
-    while (!Streaming.HasModelLoaded(143 /* BOAT_REEFER */)) {
+    Streaming.RequestModel(BOAT_REEFER);
+    while (!Streaming.HasModelLoaded(BOAT_REEFER)) {
         await asyncWait(0);
     }
 
-    $.player_as3_boat = Car.Create(143 /* BOAT_REEFER */, -330.5, -1462.4, 0.0);
+    $.player_as3_boat = Car.Create(BOAT_REEFER, -330.5, -1462.4, 0.0);
     $.player_as3_boat.setHeading(95.0);
 
     $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
     $.flag_boat_blip = 1;
 
-    $.rocket_as3 = Pickup.Create(175 /* WEAPON_ROCKET */, 3 /* PICKUP_ONCE */, -279.6, -1473.8, 6.2);
+    $.rocket_as3 = Pickup.Create(WEAPON_ROCKET, PICKUP_ONCE, -279.6, -1473.8, 6.2);
 
-    Streaming.RequestModel(141 /* PLANE_DEADDODO */);
-    while (!Streaming.HasModelLoaded(141 /* PLANE_DEADDODO */)) {
+    Streaming.RequestModel(PLANE_DEADDODO);
+    while (!Streaming.HasModelLoaded(PLANE_DEADDODO)) {
         await asyncWait(0);
     }
 
@@ -388,8 +388,8 @@ async function body() {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(126 /* PLANE_DODO */);
-    while (!Streaming.HasModelLoaded(126 /* PLANE_DODO */)) {
+    Streaming.RequestModel(PLANE_DODO);
+    while (!Streaming.HasModelLoaded(PLANE_DODO)) {
         await asyncWait(0);
     }
 
@@ -445,18 +445,18 @@ async function body() {
 
     //-----------------CREATE CARTEL BADDIES--------------------------------------
 
-    Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
-    while (!Streaming.HasModelLoaded(20 /* PED_GANG_COLOMBIAN_A */)) {
+    Streaming.RequestModel(PED_GANG_COLOMBIAN_A);
+    while (!Streaming.HasModelLoaded(PED_GANG_COLOMBIAN_A)) {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
-    while (!Streaming.HasModelLoaded(21 /* PED_GANG_COLOMBIAN_B */)) {
+    Streaming.RequestModel(PED_GANG_COLOMBIAN_B);
+    while (!Streaming.HasModelLoaded(PED_GANG_COLOMBIAN_B)) {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(138 /* CAR_COLUMB */);
-    while (!Streaming.HasModelLoaded(138 /* CAR_COLUMB */)) {
+    Streaming.RequestModel(CAR_COLUMB);
+    while (!Streaming.HasModelLoaded(CAR_COLUMB)) {
         await asyncWait(0);
     }
 
@@ -484,7 +484,7 @@ async function body() {
                         }
                     }
 
-                    if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                    if ($.player.isInModel(BOAT_REEFER) || $.player.isInModel(BOAT_PREDATOR) || $.player.isInModel(BOAT_SPEEDER)) {
                         if ($.flag_boat_blip == 1) {
                             $.blip_as3_boat.remove();
                             $.flag_boat_blip = 0;
@@ -495,7 +495,7 @@ async function body() {
                             $.flag_messages = 0;
                         }
                     }
-                    if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                    if (!$.player.isInModel(BOAT_REEFER) && !$.player.isInModel(BOAT_PREDATOR) && !$.player.isInModel(BOAT_SPEEDER)) {
                         if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
                             $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
                             $.flag_boat_blip = 1;
@@ -508,8 +508,8 @@ async function body() {
                     }
 
                     if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false)) {
-                        if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                            Streaming.LoadCollisionWithScreen(3 /* LEVEL_SUBURBAN */);
+                        if (!Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
+                            Streaming.LoadCollisionWithScreen(LEVEL_SUBURBAN);
                         }
                     }
 
@@ -563,7 +563,7 @@ async function body() {
                         }
                     }
 
-                    if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                    if ($.player.isInModel(BOAT_REEFER) || $.player.isInModel(BOAT_PREDATOR) || $.player.isInModel(BOAT_SPEEDER)) {
                         if ($.flag_boat_blip == 1) {
                             $.blip_as3_boat.remove();
                             $.flag_boat_blip = 0;
@@ -575,7 +575,7 @@ async function body() {
                             $.flag_boat_message = 1;
                         }
                     }
-                    if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                    if (!$.player.isInModel(BOAT_REEFER) && !$.player.isInModel(BOAT_PREDATOR) && !$.player.isInModel(BOAT_SPEEDER)) {
                         if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
                             $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
                             $.flag_boat_blip = 1;
@@ -589,8 +589,8 @@ async function body() {
                     }
 
                     if ($.player.locateAnyMeans2D($.platform_x, $.platform_y, 160.0, 160.0, false)) {
-                        if (!Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                            Streaming.LoadCollisionWithScreen(3 /* LEVEL_SUBURBAN */);
+                        if (!Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
+                            Streaming.LoadCollisionWithScreen(LEVEL_SUBURBAN);
                         }
                     }
 
@@ -645,7 +645,7 @@ async function body() {
                     $.flag_messages = 0;
                 }
 
-                if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                if ($.player.isInModel(BOAT_REEFER) || $.player.isInModel(BOAT_PREDATOR) || $.player.isInModel(BOAT_SPEEDER)) {
                     if ($.flag_boat_blip == 1) {
                         $.blip_as3_boat.remove();
                         $.flag_boat_blip = 0;
@@ -656,7 +656,7 @@ async function body() {
                         $.flag_messages = 0;
                     }
                 }
-                if (!$.player.isInModel(143 /* BOAT_REEFER */) && !$.player.isInModel(120 /* BOAT_PREDATOR */) && !$.player.isInModel(142 /* BOAT_SPEEDER */)) {
+                if (!$.player.isInModel(BOAT_REEFER) && !$.player.isInModel(BOAT_PREDATOR) && !$.player.isInModel(BOAT_SPEEDER)) {
                     if ($.flag_boat_blip == 0 && !Car.IsDead($.player_as3_boat)) {
                         $.blip_as3_boat = Blip.AddForCar($.player_as3_boat);
                         $.flag_boat_blip = 1;
@@ -756,12 +756,12 @@ async function body() {
 
     $.blip_as3_boat.remove();
     $.blip_as3_bouy.remove();
-    $.dodo_as3 = Car.Create(126 /* PLANE_DODO */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
+    $.dodo_as3 = Car.Create(PLANE_DODO, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
     $.dodo_as3.setHealth(1);
     $.dodo_as3_x = $.dodo_as3_x + 1.0;
 
     $.charlie_1 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
-    $.charlie_1.flash(true /* On */);
+    $.charlie_1.flash(ON);
     $.charlie_1.setCollision(true);
     $.charlie_1.setDynamic(true);
     $.blip_charlie_1 = Blip.AddForObject($.charlie_1);
@@ -771,7 +771,7 @@ async function body() {
     $.dodo_as3_y = $.dodo_as3_y - 1.0;
 
     $.charlie_2 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
-    $.charlie_2.flash(true /* On */);
+    $.charlie_2.flash(ON);
     $.charlie_2.setCollision(true);
     $.charlie_2.setDynamic(true);
     $.blip_charlie_2 = Blip.AddForObject($.charlie_2);
@@ -780,7 +780,7 @@ async function body() {
     $.dodo_as3_x = $.dodo_as3_x - 1.0;
 
     $.charlie_3 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
-    $.charlie_3.flash(true /* On */);
+    $.charlie_3.flash(ON);
     $.charlie_3.setCollision(true);
     $.charlie_3.setDynamic(true);
     $.blip_charlie_3 = Blip.AddForObject($.charlie_3);
@@ -789,7 +789,7 @@ async function body() {
     $.dodo_as3_x = $.dodo_as3_x - 1.0;
 
     $.charlie_4 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
-    $.charlie_4.flash(true /* On */);
+    $.charlie_4.flash(ON);
     $.charlie_4.setCollision(true);
     $.charlie_4.setDynamic(true);
     $.blip_charlie_4 = Blip.AddForObject($.charlie_4);
@@ -798,7 +798,7 @@ async function body() {
     $.dodo_as3_y = $.dodo_as3_y + 1.0;
 
     $.charlie_5 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
-    $.charlie_5.flash(true /* On */);
+    $.charlie_5.flash(ON);
     $.charlie_5.setCollision(true);
     $.charlie_5.setDynamic(true);
     $.blip_charlie_5 = Blip.AddForObject($.charlie_5);
@@ -807,7 +807,7 @@ async function body() {
     $.dodo_as3_y = $.dodo_as3_y + 1.0;
 
     $.charlie_6 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
-    $.charlie_6.flash(true /* On */);
+    $.charlie_6.flash(ON);
     $.charlie_6.setCollision(true);
     $.charlie_6.setDynamic(true);
     $.blip_charlie_6 = Blip.AddForObject($.charlie_6);
@@ -816,7 +816,7 @@ async function body() {
     $.dodo_as3_x = $.dodo_as3_x + 1.0;
 
     $.charlie_7 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
-    $.charlie_7.flash(true /* On */);
+    $.charlie_7.flash(ON);
     $.charlie_7.setCollision(true);
     $.charlie_7.setDynamic(true);
     $.blip_charlie_7 = Blip.AddForObject($.charlie_7);
@@ -825,7 +825,7 @@ async function body() {
     $.dodo_as3_x = $.dodo_as3_x + 1.0;
 
     $.charlie_8 = ScriptObject.CreateNoOffset(1366 /* packagelarge */, $.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z);
-    $.charlie_8.flash(true /* On */);
+    $.charlie_8.flash(ON);
     $.charlie_8.setCollision(true);
     $.charlie_8.setDynamic(true);
     $.blip_charlie_8 = Blip.AddForObject($.charlie_8);
@@ -866,10 +866,10 @@ async function body() {
                 REMOVE_PARTICLE_EFFECTS_IN_AREA Min_x Min_y Min_z Max_x Max_y Max_z
                 */
                 if ($.timer_as3_dif < 6000) {
-                    Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_FIRE_TRAIL, $.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
                 if ($.timer_as3_dif > 6000) {
-                    Fx.AddMovingParticleEffect(11 /* POBJECT_DRY_ICE */, $.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_DRY_ICE, $.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
                 }
             }
             if ($.flag_charlie_2 == 0) {
@@ -878,10 +878,10 @@ async function body() {
                 $.charlie_2_y = _res338.y;
                 $.charlie_2_z = _res338.z;
                 if ($.timer_as3_dif < 4000) {
-                    Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_2_x, $.charlie_2_y, $.charlie_2_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_FIRE_TRAIL, $.charlie_2_x, $.charlie_2_y, $.charlie_2_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
                 if ($.timer_as3_dif > 4000) {
-                    Fx.AddMovingParticleEffect(11 /* POBJECT_DRY_ICE */, $.charlie_2_x, $.charlie_2_y, $.charlie_2_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_DRY_ICE, $.charlie_2_x, $.charlie_2_y, $.charlie_2_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
                 }
             }
             if ($.flag_charlie_3 == 0) {
@@ -890,10 +890,10 @@ async function body() {
                 $.charlie_3_y = _res339.y;
                 $.charlie_3_z = _res339.z;
                 if ($.timer_as3_dif < 7000) {
-                    Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_3_x, $.charlie_3_y, $.charlie_3_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_FIRE_TRAIL, $.charlie_3_x, $.charlie_3_y, $.charlie_3_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
                 if ($.timer_as3_dif > 7000) {
-                    Fx.AddMovingParticleEffect(11 /* POBJECT_DRY_ICE */, $.charlie_3_x, $.charlie_3_y, $.charlie_3_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_DRY_ICE, $.charlie_3_x, $.charlie_3_y, $.charlie_3_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
                 }
             }
             if ($.flag_charlie_4 == 0) {
@@ -902,10 +902,10 @@ async function body() {
                 $.charlie_4_y = _res340.y;
                 $.charlie_4_z = _res340.z;
                 if ($.timer_as3_dif < 3500) {
-                    Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_4_x, $.charlie_4_y, $.charlie_4_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_FIRE_TRAIL, $.charlie_4_x, $.charlie_4_y, $.charlie_4_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
                 if ($.timer_as3_dif > 3500) {
-                    Fx.AddMovingParticleEffect(11 /* POBJECT_DRY_ICE */, $.charlie_4_x, $.charlie_4_y, $.charlie_4_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_DRY_ICE, $.charlie_4_x, $.charlie_4_y, $.charlie_4_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
                 }
             }
             if ($.flag_charlie_5 == 0) {
@@ -914,10 +914,10 @@ async function body() {
                 $.charlie_5_y = _res341.y;
                 $.charlie_5_z = _res341.z;
                 if ($.timer_as3_dif < 8000) {
-                    Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_5_x, $.charlie_5_y, $.charlie_5_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_FIRE_TRAIL, $.charlie_5_x, $.charlie_5_y, $.charlie_5_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
                 if ($.timer_as3_dif > 8000) {
-                    Fx.AddMovingParticleEffect(11 /* POBJECT_DRY_ICE */, $.charlie_5_x, $.charlie_5_y, $.charlie_5_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_DRY_ICE, $.charlie_5_x, $.charlie_5_y, $.charlie_5_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
                 }
             }
             if ($.flag_charlie_6 == 0) {
@@ -926,10 +926,10 @@ async function body() {
                 $.charlie_6_y = _res342.y;
                 $.charlie_6_z = _res342.z;
                 if ($.timer_as3_dif < 6000) {
-                    Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_6_x, $.charlie_6_y, $.charlie_6_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_FIRE_TRAIL, $.charlie_6_x, $.charlie_6_y, $.charlie_6_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
                 if ($.timer_as3_dif > 6000) {
-                    Fx.AddMovingParticleEffect(11 /* POBJECT_DRY_ICE */, $.charlie_6_x, $.charlie_6_y, $.charlie_6_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_DRY_ICE, $.charlie_6_x, $.charlie_6_y, $.charlie_6_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
                 }
             }
             if ($.flag_charlie_7 == 0) {
@@ -938,10 +938,10 @@ async function body() {
                 $.charlie_7_y = _res343.y;
                 $.charlie_7_z = _res343.z;
                 if ($.timer_as3_dif < 7500) {
-                    Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_7_x, $.charlie_7_y, $.charlie_7_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_FIRE_TRAIL, $.charlie_7_x, $.charlie_7_y, $.charlie_7_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
                 if ($.timer_as3_dif > 7500) {
-                    Fx.AddMovingParticleEffect(11 /* POBJECT_DRY_ICE */, $.charlie_7_x, $.charlie_7_y, $.charlie_7_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_DRY_ICE, $.charlie_7_x, $.charlie_7_y, $.charlie_7_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
                 }
             }
             if ($.flag_charlie_8 == 0) {
@@ -950,16 +950,16 @@ async function body() {
                 $.charlie_8_y = _res344.y;
                 $.charlie_8_z = _res344.z;
                 if ($.timer_as3_dif < 4750) {
-                    Fx.AddMovingParticleEffect(13 /* POBJECT_FIRE_TRAIL */, $.charlie_8_x, $.charlie_8_y, $.charlie_8_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_FIRE_TRAIL, $.charlie_8_x, $.charlie_8_y, $.charlie_8_z, 0.0, 0.0, 0.0, 0.4, 0, 0, 0, 200);
                 }
                 if ($.timer_as3_dif > 4750) {
-                    Fx.AddMovingParticleEffect(11 /* POBJECT_DRY_ICE */, $.charlie_8_x, $.charlie_8_y, $.charlie_8_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
+                    Fx.AddMovingParticleEffect(POBJECT_DRY_ICE, $.charlie_8_x, $.charlie_8_y, $.charlie_8_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 200);
                 }
             }
             $.flag_particle = 0;
         }
 
-        if ($.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */)) {
+        if ($.player.isInModel(BOAT_REEFER) || $.player.isInModel(BOAT_PREDATOR) || $.player.isInModel(BOAT_SPEEDER)) {
             if ($.flag_charlie_1 == 0) {
                 if ($.player.locateAnyMeans3D($.charlie_1_x, $.charlie_1_y, $.charlie_1_z, 4.0, 4.0, 4.0, false)) {
                     $.blip_charlie_1.remove();
@@ -1126,9 +1126,9 @@ async function body() {
 
     Camera.SetFadingColor(0, 0, 0);
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
-    Streaming.Switch(false /* OFF */);
+    Streaming.Switch(OFF);
 
     Text.PrintBig('AS4', 15000, 2);
 
@@ -1167,19 +1167,19 @@ async function body() {
 
     Cutscene.SetOffset(369.02, -327.5, 18.46);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_asuka = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_asuka = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_asuka.setAnim('asuka');
 
-    $.cs_miguel = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_miguel = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_miguel.setAnim('miguel');
 
-    $.cs_whip = CutsceneObject.Create(185 /* CUT_OBJ1 */);
+    $.cs_whip = CutsceneObject.Create(CUT_OBJ1);
     $.cs_whip.setAnim('whip');
 
-    $.cs_note = CutsceneObject.Create(186 /* CUT_OBJ2 */);
+    $.cs_note = CutsceneObject.Create(CUT_OBJ2);
     $.cs_note.setAnim('note');
 
     //CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
@@ -1189,10 +1189,10 @@ async function body() {
 
     $.player.setHeading(270.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     //------CUTSCENE TEXT-----------------------------
@@ -1218,7 +1218,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -1238,16 +1238,16 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
     Streaming.MarkModelAsNoLongerNeeded(2011 /* csitecutscene */);
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     // ******************************************END OF CUTSCENE********************************
 
@@ -1259,11 +1259,11 @@ async function onFailed() {
     Text.PrintBig('M_FAIL', 2000, 1);
 
     if ($.player.hasBeenArrested()) {
-        Restart.OverridePolice(2 /* LEVEL_COMMERCIAL */);
+        Restart.OverridePolice(LEVEL_COMMERCIAL);
     }
 
     if ($.player.isDead()) {
-        Restart.OverrideHospital(2 /* LEVEL_COMMERCIAL */);
+        Restart.OverrideHospital(LEVEL_COMMERCIAL);
     }
 }
 
@@ -1276,7 +1276,7 @@ async function onPassed() {
     $.player.addScore(45000);
     $.asuka_contact_blip.remove();
     $.maria_contact_blip.remove();
-    $.maria_contact_blip = Blip.AddSpriteForContactPoint(-362.8, 245.9, 60.0, 3 /* RADAR_SPRITE_CAT */);
+    $.maria_contact_blip = Blip.AddSpriteForContactPoint(-362.8, 245.9, 60.0, RADAR_SPRITE_CAT);
     // START_NEW_SCRIPT cat_mission1_loop
     Stat.RegisterMissionPassed('AS3');
     Stat.PlayerMadeProgress(1);
@@ -1299,13 +1299,13 @@ async function cleanup() {
     }
 
     Streaming.MarkModelAsNoLongerNeeded(1373 /* bouy */);
-    Streaming.MarkModelAsNoLongerNeeded(143 /* BOAT_REEFER */);
+    Streaming.MarkModelAsNoLongerNeeded(BOAT_REEFER);
     Streaming.MarkModelAsNoLongerNeeded(1366 /* packagelarge */);
-    Streaming.MarkModelAsNoLongerNeeded(141 /* PLANE_DEADDODO */);
-    Streaming.MarkModelAsNoLongerNeeded(126 /* PLANE_DODO */);
-    Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
-    Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
-    Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
+    Streaming.MarkModelAsNoLongerNeeded(PLANE_DEADDODO);
+    Streaming.MarkModelAsNoLongerNeeded(PLANE_DODO);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_B);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_A);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_COLUMB);
 
     Mission.Finish();
 }
@@ -1313,80 +1313,80 @@ async function cleanup() {
 ///________________________________GOSUBS_______GOSUBS________________________________BYTHEWAY
 async function baddies() {
     if ($.flag_created_baddies == 0) {
-        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-            $.kappa_cartel1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -1015.0, -1269.0, -100.0);
+        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
+            $.kappa_cartel1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, -1015.0, -1269.0, -100.0);
             $.kappa_cartel1.setHeading(265.0);
-            $.kappa_cartel1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
+            $.kappa_cartel1.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel1.giveWeapon(WEAPONTYPE_CHAINGUN, 100);
             $.kappa_cartel1.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
 
-            $.kappa_cartel2 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1013.0, -1260.7, -100.0);
+            $.kappa_cartel2 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, -1013.0, -1260.7, -100.0);
             $.kappa_cartel2.setHeading(300.0);
-            $.kappa_cartel2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel2.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
+            $.kappa_cartel2.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel2.giveWeapon(WEAPONTYPE_M16, 100);
             $.kappa_cartel2.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel2 true
 
-            $.kappa_cartel3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -1027.3, -1265.2, -100.0);
+            $.kappa_cartel3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, -1027.3, -1265.2, -100.0);
             $.kappa_cartel3.setHeading(265.0);
-            $.kappa_cartel3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
+            $.kappa_cartel3.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel3.giveWeapon(WEAPONTYPE_CHAINGUN, 100);
             $.kappa_cartel3.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel3 true
 
-            $.kappa_cartel4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1380.0, -1043.0, -100.0);
+            $.kappa_cartel4 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, -1380.0, -1043.0, -100.0);
             $.kappa_cartel4.setHeading(340.0);
-            $.kappa_cartel4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel4.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
+            $.kappa_cartel4.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel4.giveWeapon(WEAPONTYPE_M16, 100);
             $.kappa_cartel4.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel4 true
 
-            $.kappa_cartel5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -1392.0, -1043.3, -100.0);
+            $.kappa_cartel5 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, -1392.0, -1043.3, -100.0);
             $.kappa_cartel5.setHeading(240.0);
-            $.kappa_cartel5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
+            $.kappa_cartel5.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel5.giveWeapon(WEAPONTYPE_M16, 100);
             $.kappa_cartel5.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel5 true
 
-            $.kappa_cartel6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1488.0, -1056.0, -100.0);
+            $.kappa_cartel6 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, -1488.0, -1056.0, -100.0);
             $.kappa_cartel6.setHeading(110.0);
-            $.kappa_cartel6.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel6.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
+            $.kappa_cartel6.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel6.giveWeapon(WEAPONTYPE_M16, 100);
             $.kappa_cartel6.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel6 true
 
-            $.kappa_cartel7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1473.0, -1062.0, -100.0);
+            $.kappa_cartel7 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, -1473.0, -1062.0, -100.0);
             $.kappa_cartel7.setHeading(280.0);
-            $.kappa_cartel7.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel7.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
+            $.kappa_cartel7.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel7.giveWeapon(WEAPONTYPE_M16, 100);
             $.kappa_cartel7.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel7 true
 
-            $.kappa_cartel8 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, -849.0, -1235.0, -100.0);
+            $.kappa_cartel8 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, -849.0, -1235.0, -100.0);
             $.kappa_cartel8.setHeading(250.0);
-            $.kappa_cartel8.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel8.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
+            $.kappa_cartel8.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel8.giveWeapon(WEAPONTYPE_CHAINGUN, 100);
             $.kappa_cartel8.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
 
-            $.kappa_cartel9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1478.0, -1055.0, -100.0);
+            $.kappa_cartel9 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, -1478.0, -1055.0, -100.0);
             $.kappa_cartel9.setHeading(250.0);
-            $.kappa_cartel9.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel9.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
+            $.kappa_cartel9.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel9.giveWeapon(WEAPONTYPE_CHAINGUN, 100);
             $.kappa_cartel9.addArmor(100);
             //SET_CHAR_STAY_IN_SAME_PLACE kappa_cartel1 true
 
-            $.cartel_car_a_as1 = Car.Create(138 /* CAR_COLUMB */, -1019.0, -1263.0, -100.0);
+            $.cartel_car_a_as1 = Car.Create(CAR_COLUMB, -1019.0, -1263.0, -100.0);
             $.cartel_car_a_as1.setHeading(50.0);
-            $.cartel_car_b_as1 = Car.Create(138 /* CAR_COLUMB */, -1383.3, -1045.0, -100.0);
+            $.cartel_car_b_as1 = Car.Create(CAR_COLUMB, -1383.3, -1045.0, -100.0);
             $.cartel_car_b_as1.setHeading(231.5);
-            $.cartel_car_d_as1 = Car.Create(138 /* CAR_COLUMB */, -1478.3, -1062.8, -100.0);
+            $.cartel_car_d_as1 = Car.Create(CAR_COLUMB, -1478.3, -1062.8, -100.0);
             $.cartel_car_b_as1.setHeading(250.0);
-            $.kappa_cartel10 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, -1385.3, -1035.0, -100.0);
+            $.kappa_cartel10 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, -1385.3, -1035.0, -100.0);
             $.kappa_cartel10.setHeading(231.0);
-            $.kappa_cartel10.setThreatSearch(1 /* THREAT_PLAYER1 */);
-            $.kappa_cartel10.giveWeapon(8 /* WEAPONTYPE_ROCKET */, 5);
+            $.kappa_cartel10.setThreatSearch(THREAT_PLAYER1);
+            $.kappa_cartel10.giveWeapon(WEAPONTYPE_ROCKET, 5);
             $.kappa_cartel10.addArmor(100);
             $.kappa_cartel1.setStayInSamePlace(true);
             $.flag_created_baddies = 1;

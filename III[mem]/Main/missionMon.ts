@@ -1,3 +1,4 @@
+import '../utils/constants.mts';
 import { type MissionDefinition, missions } from './missions.mts';
 import { unwrapError, verbose } from '../utils';
 

@@ -251,11 +251,11 @@ async function body() {
 
     Cutscene.SetOffset(476.38, -1382.168, 67.347);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_kenji = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_kenji = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_kenji.setAnim('kenji');
 
@@ -263,7 +263,7 @@ async function body() {
 
     //SET_CUTSCENE_ANIM cs_yakuza gang07
 
-    $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, 185 /* CUT_OBJ1 */);
+    $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, CUT_OBJ1);
 
     $.cs_kenjihead.setAnim('kenji');
 
@@ -271,7 +271,7 @@ async function body() {
 
     $.cs_note.setAnim('MINNOTE');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ2);
 
     $.cs_playerhead.setAnim('player');
 
@@ -281,11 +281,11 @@ async function body() {
 
     $.player.setHeading(132.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -347,7 +347,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -361,35 +361,35 @@ async function body() {
 
     Cutscene.Clear();
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
     Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */);
 
     // **************************************END OF CUSTSCENE***********************************
 
-    Streaming.RequestModel(105 /* CAR_CHEETAH */); //car1 to steal
+    Streaming.RequestModel(CAR_CHEETAH); //car1 to steal
 
-    Streaming.RequestModel(92 /* CAR_STINGER */); // car3 to steal
+    Streaming.RequestModel(CAR_STINGER); // car3 to steal
 
-    Streaming.RequestModel(101 /* CAR_INFERNUS */); // car4 to steal
+    Streaming.RequestModel(CAR_INFERNUS); // car4 to steal
 
     //REQUEST_MODEL CAR_BANSHEE // car2 to steal
 
     //REQUEST_MODEL CAR_LANDSTALKER  // car5 to steal
 
-    while (!Streaming.HasModelLoaded(105 /* CAR_CHEETAH */) || !Streaming.HasModelLoaded(92 /* CAR_STINGER */) || !Streaming.HasModelLoaded(101 /* CAR_INFERNUS */)) {
+    while (!Streaming.HasModelLoaded(CAR_CHEETAH) || !Streaming.HasModelLoaded(CAR_STINGER) || !Streaming.HasModelLoaded(CAR_INFERNUS)) {
         //OR NOT HAS_MODEL_LOADED CAR_LANDSTALKER
         //OR NOT HAS_MODEL_LOADED CAR_BANSHEE
 
@@ -402,11 +402,11 @@ async function body() {
 
     // creates car1 the testarossa
 
-    $.car_to_steal1_km2 = Car.Create(105 /* CAR_CHEETAH */, 348.3, -0.5, -100.0);
+    $.car_to_steal1_km2 = Car.Create(CAR_CHEETAH, 348.3, -0.5, -100.0);
 
     $.car_to_steal1_km2.setHeading(270.0);
 
-    $.car_to_steal1_km2.changeColor(13 /* CARCOLOUR_RED4 */, 13 /* CARCOLOUR_RED4 */);
+    $.car_to_steal1_km2.changeColor(CARCOLOUR_RED4, CARCOLOUR_RED4);
 
     $.car_to_steal1_km2.setCanRespray(false);
 
@@ -433,9 +433,9 @@ async function body() {
 
     // creates car3 the boxster
 
-    $.car_to_steal3_km2 = Car.Create(92 /* CAR_STINGER */, -71.1, -1467.4, 25.1);
+    $.car_to_steal3_km2 = Car.Create(CAR_STINGER, -71.1, -1467.4, 25.1);
 
-    $.car_to_steal3_km2.changeColor(13 /* CARCOLOUR_RED4 */, 13 /* CARCOLOUR_RED4 */);
+    $.car_to_steal3_km2.changeColor(CARCOLOUR_RED4, CARCOLOUR_RED4);
 
     $.car_to_steal3_km2.setCanRespray(false);
 
@@ -447,9 +447,9 @@ async function body() {
 
     // creates car4 the Diablo
 
-    $.car_to_steal4_km2 = Car.Create(101 /* CAR_INFERNUS */, -61.7, -358.4, 15.2);
+    $.car_to_steal4_km2 = Car.Create(CAR_INFERNUS, -61.7, -358.4, 15.2);
 
-    $.car_to_steal4_km2.changeColor(13 /* CARCOLOUR_RED4 */, 13 /* CARCOLOUR_RED4 */);
+    $.car_to_steal4_km2.changeColor(CARCOLOUR_RED4, CARCOLOUR_RED4);
 
     $.car_to_steal4_km2.setCanRespray(false);
 
@@ -493,7 +493,7 @@ async function body() {
             if ($.garage_km2.isCarInMission() && $.flag_garage_no_blip_car1_km2 == 1) {
                 $.flag_car1_destroyed = 1;
                 ++$.counter_number_of_cars_in_garage_km2;
-                Sound.AddOneOffSound(380.3, -506.8, 26.1, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound(380.3, -506.8, 26.1, SOUND_PART_MISSION_COMPLETE);
                 Text.PrintNow('KM2_2', 5000, 1); //"Car delivered"
                 if (!Car.IsDead($.car_to_steal1_km2)) {
                     $.car_to_steal1_km2.delete();
@@ -539,7 +539,7 @@ async function body() {
                             $.flag_player_damage_message_car1_km2 = 1;
                         }
                         if ($.flag_spray_blip_on_car1_km2 == 0) {
-                            $.spray_blip_km2 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
+                            $.spray_blip_km2 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, RADAR_SPRITE_SPRAY);
                             $.flag_spray_blip_on_car1_km2 = 1;
                         }
                     } else {
@@ -683,7 +683,7 @@ async function body() {
             if ($.garage_km2.isCarInMission() && $.flag_garage_no_blip_car3_km2 == 1) {
                 $.flag_car3_destroyed = 1;
                 ++$.counter_number_of_cars_in_garage_km2;
-                Sound.AddOneOffSound(380.3, -506.8, 26.1, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound(380.3, -506.8, 26.1, SOUND_PART_MISSION_COMPLETE);
                 Text.PrintNow('KM2_2', 5000, 1); //"Car delivered"
                 if (!Car.IsDead($.car_to_steal3_km2)) {
                     $.car_to_steal3_km2.delete();
@@ -729,7 +729,7 @@ async function body() {
                             $.flag_player_damage_message_car3_km2 = 1;
                         }
                         if ($.flag_spray_blip_on_car3_km2 == 0) {
-                            $.spray_blip_km2 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
+                            $.spray_blip_km2 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, RADAR_SPRITE_SPRAY);
                             $.flag_spray_blip_on_car3_km2 = 1;
                         }
                     } else {
@@ -763,7 +763,7 @@ async function body() {
             if ($.garage_km2.isCarInMission() && $.flag_garage_no_blip_car4_km2 == 1) {
                 $.flag_car4_destroyed = 1;
                 ++$.counter_number_of_cars_in_garage_km2;
-                Sound.AddOneOffSound(380.3, -506.8, 26.1, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound(380.3, -506.8, 26.1, SOUND_PART_MISSION_COMPLETE);
                 Text.PrintNow('KM2_2', 5000, 1); //"Car delivered"
                 if (!Car.IsDead($.car_to_steal4_km2)) {
                     $.car_to_steal4_km2.delete();
@@ -808,7 +808,7 @@ async function body() {
                             $.flag_player_damage_message_car4_km2 = 1;
                         }
                         if ($.flag_spray_blip_on_car4_km2 == 0) {
-                            $.spray_blip_km2 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
+                            $.spray_blip_km2 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, RADAR_SPRITE_SPRAY);
                             $.flag_spray_blip_on_car4_km2 = 1;
                         }
                     } else {
@@ -983,11 +983,11 @@ async function cleanup() {
     //REMOVE_BLIP radar_blip_car5_km2
 
     $.spray_blip_km2.remove();
-    Streaming.MarkModelAsNoLongerNeeded(105 /* CAR_CHEETAH */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_CHEETAH);
     //MARK_MODEL_AS_NO_LONGER_NEEDED CAR_BANSHEE
 
-    Streaming.MarkModelAsNoLongerNeeded(92 /* CAR_STINGER */);
-    Streaming.MarkModelAsNoLongerNeeded(101 /* CAR_INFERNUS */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_STINGER);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_INFERNUS);
     //MARK_MODEL_AS_NO_LONGER_NEEDED CAR_LANDSTALKER
 
     Mission.Finish();

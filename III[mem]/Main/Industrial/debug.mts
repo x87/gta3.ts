@@ -43,19 +43,19 @@ verbose('[+] debug script loaded');
 
     // SCRIPT_NAME debug
 
-    // SET_DEATHARREST_STATE(false /* OFF */);
+    // SET_DEATHARREST_STATE(OFF);
 
     while (true) {
         await asyncWait(0);
 
-        if (Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */) && Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && cheat_mode_on_flag == 0) {
+        if (Pad.IsButtonPressed(PAD2, SQUARE) && Pad.IsButtonPressed(PAD2, TRIANGLE) && cheat_mode_on_flag == 0) {
             if (
-                !Pad.IsButtonPressed(1 /* PAD2 */, 16 /* CROSS */) ||
-                !Pad.IsButtonPressed(1 /* PAD2 */, 12 /* CIRCLE */) ||
-                !Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */) ||
-                !Pad.IsButtonPressed(1 /* PAD2 */, 5 /* LEFTSHOULDER2 */) ||
-                !Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */) ||
-                !Pad.IsButtonPressed(1 /* PAD2 */, 13 /* SELECT */)
+                !Pad.IsButtonPressed(PAD2, CROSS) ||
+                !Pad.IsButtonPressed(PAD2, CIRCLE) ||
+                !Pad.IsButtonPressed(PAD2, LEFTSHOULDER1) ||
+                !Pad.IsButtonPressed(PAD2, LEFTSHOULDER2) ||
+                !Pad.IsButtonPressed(PAD2, START) ||
+                !Pad.IsButtonPressed(PAD2, SELECT)
             ) {
                 Text.PrintNow('CHEATON', 2000, 1); //CHEAT MODE ON
                 cheat_mode_on = 1;
@@ -63,7 +63,7 @@ verbose('[+] debug script loaded');
             }
         }
 
-        if (!Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */) || !Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */)) {
+        if (!Pad.IsButtonPressed(PAD2, SQUARE) || !Pad.IsButtonPressed(PAD2, TRIANGLE)) {
             if (cheat_mode_on_flag == 1) {
                 cheat_mode_on_flag = 2;
             }
@@ -72,24 +72,24 @@ verbose('[+] debug script loaded');
             }
         }
 
-        if (Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */) && Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && cheat_mode_on_flag == 2) {
+        if (Pad.IsButtonPressed(PAD2, SQUARE) && Pad.IsButtonPressed(PAD2, TRIANGLE) && cheat_mode_on_flag == 2) {
             Text.PrintNow('CHEATOF', 2000, 1); //CHEAT MODE OFF
             cheat_mode_on = 0;
             cheat_mode_on_flag = 3;
         }
 
         if ($.player.isPlaying()) {
-            if (Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */) && invulnerability_on == 0) {
+            if (Pad.IsButtonPressed(PAD2, START) && invulnerability_on == 0) {
                 $.script_controlled_player = $.player.getChar();
                 $.script_controlled_player.setProofs(true, true, true, true, true);
                 invulnerability_on = 1;
             }
-            if (Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */) && invulnerability_on == 2) {
+            if (Pad.IsButtonPressed(PAD2, START) && invulnerability_on == 2) {
                 $.script_controlled_player = $.player.getChar();
                 $.script_controlled_player.setProofs(false, false, false, false, false);
                 invulnerability_on = 3;
             }
-            if (!Pad.IsButtonPressed(1 /* PAD2 */, 12 /* START */)) {
+            if (!Pad.IsButtonPressed(PAD2, START)) {
                 if (invulnerability_on == 1) {
                     invulnerability_on = 2;
                 }
@@ -99,59 +99,59 @@ verbose('[+] debug script loaded');
             }
         }
 
-        if (Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && debug_crap_on == 0 /* FALSE */ && crap_press_flag == 0) {
+        if (Pad.IsButtonPressed(PAD2, TRIANGLE) && debug_crap_on == 0 /* FALSE */ && crap_press_flag == 0) {
             Debugger.Enable();
             debug_crap_on = 1 /* TRUE */;
             crap_press_flag = 1;
         }
 
-        if (Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && debug_crap_on == 1 /* TRUE */ && crap_press_flag == 0) {
+        if (Pad.IsButtonPressed(PAD2, TRIANGLE) && debug_crap_on == 1 /* TRUE */ && crap_press_flag == 0) {
             Debugger.Disable();
             debug_crap_on = 0 /* FALSE */;
             crap_press_flag = 1;
         }
 
-        if (!Pad.IsButtonPressed(1 /* PAD2 */, 15 /* TRIANGLE */) && crap_press_flag == 1) {
+        if (!Pad.IsButtonPressed(PAD2, TRIANGLE) && crap_press_flag == 1) {
             crap_press_flag = 0;
         }
 
-        if (Pad.IsButtonPressed(1 /* PAD2 */, 16 /* CROSS */) && Pad.IsButtonPressed(1 /* PAD2 */, 14 /* SQUARE */)) {
+        if (Pad.IsButtonPressed(PAD2, CROSS) && Pad.IsButtonPressed(PAD2, SQUARE)) {
             if ($.player.isPlaying()) {
                 if (!$.player.isInAnyCar()) {
                     $.player.explodeHead();
                 } else {
                     let { x, y, z } = $.player.getCoordinates();
-                    Fx.AddExplosion(x, y, z, 3 /* EXPLOSION_CAR */);
-                    Fx.AddExplosion(x, y, z, 3 /* EXPLOSION_CAR */);
-                    Fx.AddExplosion(x, y, z, 3 /* EXPLOSION_CAR */);
+                    Fx.AddExplosion(x, y, z, EXPLOSION_CAR);
+                    Fx.AddExplosion(x, y, z, EXPLOSION_CAR);
+                    Fx.AddExplosion(x, y, z, EXPLOSION_CAR);
                 }
                 await asyncWait(1000);
             }
         }
 
-        if (cheat_mode_on == 0 && Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */)) {
+        if (cheat_mode_on == 0 && Pad.IsButtonPressed(PAD2, LEFTSHOULDER1)) {
             if ($.player.isPlaying()) {
                 weather_crap++;
                 if (weather_crap > 5) {
                     weather_crap = 1;
                 }
                 if (weather_crap == 1) {
-                    Weather.ForceNow(0 /* WEATHER_SUNNY */);
+                    Weather.ForceNow(WEATHER_SUNNY);
                     Text.PrintNow('WEATHER', 1000, 1); //CHEAT MODE ON
                     await asyncWait(300);
                 }
                 if (weather_crap == 2) {
-                    Weather.ForceNow(1 /* WEATHER_CLOUDY */);
+                    Weather.ForceNow(WEATHER_CLOUDY);
                     Text.PrintNow('WEATHER', 1000, 1); //CHEAT MODE ON
                     await asyncWait(300);
                 }
                 if (weather_crap == 3) {
-                    Weather.ForceNow(2 /* WEATHER_RAINY */);
+                    Weather.ForceNow(WEATHER_RAINY);
                     Text.PrintNow('WEATHER', 1000, 1); //CHEAT MODE ON
                     await asyncWait(300);
                 }
                 if (weather_crap == 4) {
-                    Weather.ForceNow(3 /* WEATHER_FOGGY */);
+                    Weather.ForceNow(WEATHER_FOGGY);
                     Text.PrintNow('WEATHER', 1000, 1); //CHEAT MODE ON
                     await asyncWait(300);
                 }
@@ -164,7 +164,7 @@ verbose('[+] debug script loaded');
         }
 
         if (cheat_mode_on == 1 && cheat_mode_on_flag == 2) {
-            if (Pad.IsButtonPressed(1 /* PAD2 */, 5 /* LEFTSHOULDER2 */) && repeat_button_press == 0 && slow_motion == 0) {
+            if (Pad.IsButtonPressed(PAD2, LEFTSHOULDER2) && repeat_button_press == 0 && slow_motion == 0) {
                 //		IF IS_PLAYER_IN_ANY_CAR player
                 //			STORE_CAR_PLAYER_IS_IN_NO_SAVE player players_car_debug
                 //			SET_CAR_BIG_WHEELS players_car_debug TRUE
@@ -173,7 +173,7 @@ verbose('[+] debug script loaded');
                 repeat_button_press = 1;
                 //		ENDIF
             }
-            if (Pad.IsButtonPressed(1 /* PAD2 */, 5 /* LEFTSHOULDER2 */) && repeat_button_press == 0 && slow_motion == 1) {
+            if (Pad.IsButtonPressed(PAD2, LEFTSHOULDER2) && repeat_button_press == 0 && slow_motion == 1) {
                 //		IF IS_PLAYER_IN_ANY_CAR player
                 //			STORE_CAR_PLAYER_IS_IN_NO_SAVE player players_car_debug
                 //			SET_CAR_BIG_WHEELS players_car_debug FALSE
@@ -182,24 +182,24 @@ verbose('[+] debug script loaded');
                 repeat_button_press = 1;
                 //		ENDIF
             }
-            if (!Pad.IsButtonPressed(1 /* PAD2 */, 5 /* LEFTSHOULDER2 */)) {
+            if (!Pad.IsButtonPressed(PAD2, LEFTSHOULDER2)) {
                 if (repeat_button_press == 1) {
                     repeat_button_press = 0;
                 }
             }
-            if (Pad.IsButtonPressed(1 /* PAD2 */, 13 /* SELECT */) && repeat_butt_press == 0 && no_cars == 0) {
+            if (Pad.IsButtonPressed(PAD2, SELECT) && repeat_butt_press == 0 && no_cars == 0) {
                 World.SetCarDensityMultiplier(0.0);
                 Text.PrintNow('CARSOFF', 2000, 1);
                 no_cars = 1;
                 repeat_butt_press = 1;
             }
-            if (Pad.IsButtonPressed(1 /* PAD2 */, 13 /* SELECT */) && repeat_butt_press == 0 && no_cars == 1) {
+            if (Pad.IsButtonPressed(PAD2, SELECT) && repeat_butt_press == 0 && no_cars == 1) {
                 World.SetCarDensityMultiplier(1.0);
                 Text.PrintNow('CARS_ON', 2000, 1);
                 no_cars = 0;
                 repeat_butt_press = 1;
             }
-            if (!Pad.IsButtonPressed(1 /* PAD2 */, 13 /* SELECT */)) {
+            if (!Pad.IsButtonPressed(PAD2, SELECT)) {
                 if (repeat_butt_press == 1) {
                     repeat_butt_press = 0;
                 }
@@ -208,7 +208,7 @@ verbose('[+] debug script loaded');
 
         if ($.player.isPlaying()) {
             if (cheat_mode_on == 1 && cheat_mode_on_flag == 2) {
-                if (Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */) && text_button_pressed == 0) {
+                if (Pad.IsButtonPressed(PAD2, LEFTSHOULDER1) && text_button_pressed == 0) {
                     let { x: text_x, y: text_y, z: text_z } = $.player.getCoordinates();
                     text_z = World.GetGroundZFor3DCoord(text_x, text_y, text_z);
                     text_h = $.player.getHeading();
@@ -220,10 +220,10 @@ verbose('[+] debug script loaded');
                     Text.PrintNow('TEXTXYZ', 800, 1); // Writing coordinates to file...
                     text_button_pressed = 1;
                 }
-                if (!Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */) && text_button_pressed == 1) {
+                if (!Pad.IsButtonPressed(PAD2, LEFTSHOULDER1) && text_button_pressed == 1) {
                     text_button_pressed = 0;
                 }
-                if (Pad.IsButtonPressed(1 /* PAD2 */, 6 /* RIGHTSHOULDER1 */) && flag_create_car == 0 && button_press_flag == 0) {
+                if (Pad.IsButtonPressed(PAD2, RIGHTSHOULDER1) && flag_create_car == 0 && button_press_flag == 0) {
                     let { x, y, z } = $.player.getCoordinates();
                     let player_heading_debug = $.player.getHeading();
                     if (player_heading_debug < 45.0 && player_heading_debug > 0.0) {
@@ -253,14 +253,14 @@ verbose('[+] debug script loaded');
                         while (!Streaming.HasModelLoaded(counter_create_car)) {
                             await asyncWait(0);
                             Text.PrintNow('LOADCAR', 100, 1); //"Loading vehicle, press pad2 leftshoulder1 to cancel"
-                            if (Pad.IsButtonPressed(1 /* PAD2 */, 4 /* LEFTSHOULDER1 */)) {
+                            if (Pad.IsButtonPressed(PAD2, LEFTSHOULDER1)) {
                                 //++ counter_create_car
                                 break before_next_carzzz; // SCM GOTO → next_carzzz
                             }
                         }
                         magic_car = Car.Create(counter_create_car, x_float_m, y_float_m, z_float_m);
                         magic_car.setHeading(debug_car_heading);
-                        magic_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+                        magic_car.lockDoors(CARLOCK_UNLOCKED);
                         Streaming.MarkModelAsNoLongerNeeded(counter_create_car);
                         magic_car.markAsNoLongerNeeded();
                     }
@@ -341,10 +341,10 @@ verbose('[+] debug script loaded');
                 //			ENDIF
                 //		ENDIF
 
-                if (!Pad.IsButtonPressed(1 /* PAD2 */, 6 /* RIGHTSHOULDER1 */) && button_press_flag == 1) {
+                if (!Pad.IsButtonPressed(PAD2, RIGHTSHOULDER1) && button_press_flag == 1) {
                     button_press_flag = 0;
                 }
-                if (Pad.IsButtonPressed(1 /* PAD2 */, 6 /* RIGHTSHOULDER1 */) && flag_create_car == 1 && button_press_flag == 0) {
+                if (Pad.IsButtonPressed(PAD2, RIGHTSHOULDER1) && flag_create_car == 1 && button_press_flag == 0) {
                     if (Car.IsDead(magic_car)) {
                         magic_car.delete();
                     } else {
@@ -364,7 +364,7 @@ verbose('[+] debug script loaded');
 
             //WARP PLAYER
             //IF flag_player_on_mission = 0
-            if (Pad.IsButtonPressed(1 /* PAD2 */, 8 /* DPADUP */)) {
+            if (Pad.IsButtonPressed(PAD2, DPADUP)) {
                 if ($.player.isPlaying()) {
                     button_pressed_warp++;
                     if (button_pressed_warp > 14) {
@@ -473,7 +473,7 @@ verbose('[+] debug script loaded');
 
             //WARP PLAYER
             //IF flag_player_on_mission = 0
-            if (Pad.IsButtonPressed(1 /* PAD2 */, 9 /* DPADDOWN */)) {
+            if (Pad.IsButtonPressed(PAD2, DPADDOWN)) {
                 if ($.player.isPlaying()) {
                     before_start_mission_warp: {
                         if (button_pressed_warp == 0) {
@@ -593,9 +593,9 @@ verbose('[+] debug script loaded');
 
             //INDUSTRIAL MISSION SKIP RIGHT
             if (!ONMISSION) {
-                if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
+                if (Pad.IsButtonPressed(PAD2, DPADRIGHT)) {
                     if ($.player.isPlaying()) {
-                        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+                        if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
                             //flag_industrial_passed = 0
                             button_pressed_ind++;
                             if (button_pressed_ind > 29) {
@@ -648,7 +648,7 @@ verbose('[+] debug script loaded');
                                 // START_NEW_SCRIPT luigi_mission2_loop
                                 $.flag_eightball_mission_passed = 1;
                                 $.luigi_contact_blip.remove();
-                                $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, 13 /* RADAR_SPRITE_LUIGI */);
+                                $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, RADAR_SPRITE_LUIGI);
                             }
                             if (button_pressed_ind == 3) {
                                 $.flag_luigi_mission3_passed = 1;
@@ -684,7 +684,7 @@ verbose('[+] debug script loaded');
                                 $.flag_luigi_mission5_passed = 1;
                                 $.luigi_contact_blip.remove(); //REMOVE LUIGIS BLIP
                                 $.joey_contact_blip.remove();
-                                $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, 10 /* RADAR_SPRITE_JOEY */);
+                                $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, RADAR_SPRITE_JOEY);
                             }
                             if (button_pressed_ind == 7) {
                                 $.flag_joey_mission2_passed = 1;
@@ -736,7 +736,7 @@ verbose('[+] debug script loaded');
                                 $.flag_joey_mission6_passed = 1;
                                 $.joey_contact_blip.remove(); //REMOVE JOEYS BLIP
                                 $.toni_contact_blip.remove();
-                                $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, 26.4, 19 /* RADAR_SPRITE_TONY */);
+                                $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, 26.4, RADAR_SPRITE_TONY);
                             }
                             if (button_pressed_ind == 13) {
                                 $.flag_toni_mission2_passed = 1;
@@ -780,7 +780,7 @@ verbose('[+] debug script loaded');
                                 $.flag_toni_mission5_passed = 1;
                                 $.toni_contact_blip.remove(); //REMOVE TONIS BLIP
                                 $.frankie_contact_blip.remove();
-                                $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, 16 /* RADAR_SPRITE_SAL */);
+                                $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, RADAR_SPRITE_SAL);
                             }
                             if (button_pressed_ind == 18) {
                                 $.flag_frankie_mission2_passed = 1;
@@ -807,7 +807,7 @@ verbose('[+] debug script loaded');
                                 $.flag_frankie_mission2_1_passed = 1;
                                 $.frankie_contact_blip.remove(); //REMOVE FRANKIES BLIP
                                 $.eightball_contact_blip.remove();
-                                $.eightball_contact_blip = Blip.AddSpriteForContactPoint(1272.2, -92.9, -100.0, 7 /* RADAR_SPRITE_EIGHT */);
+                                $.eightball_contact_blip = Blip.AddSpriteForContactPoint(1272.2, -92.9, -100.0, RADAR_SPRITE_EIGHT);
                             }
                             if (button_pressed_ind == 21) {
                                 $.flag_frankie_mission4_passed = 1;
@@ -818,7 +818,7 @@ verbose('[+] debug script loaded');
                                 $.flag_frankie_mission3_passed = 1;
                                 $.eightball_contact_blip.remove(); //REMOVE 8_BALLS BLIP
                                 $.frankie_contact_blip.remove();
-                                $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, 16 /* RADAR_SPRITE_SAL */);
+                                $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, RADAR_SPRITE_SAL);
                             }
                             if (button_pressed_ind == 22) {
                                 $.flag_diablo_mission1_passed = 1;
@@ -829,7 +829,7 @@ verbose('[+] debug script loaded');
                                 $.flag_frankie_mission4_passed = 1;
                                 $.frankie_contact_blip.remove(); //REMOVE FRANKIES BLIP
                                 $.diablo_contact_blip.remove();
-                                $.diablo_contact_blip = Blip.AddSpriteForContactPoint(938.4, -230.5, -100.0, 8 /* RADAR_SPRITE_EL */);
+                                $.diablo_contact_blip = Blip.AddSpriteForContactPoint(938.4, -230.5, -100.0, RADAR_SPRITE_EL);
                             }
                             if (button_pressed_ind == 23) {
                                 $.flag_diablo_mission2_passed = 1;
@@ -896,9 +896,9 @@ verbose('[+] debug script loaded');
             //COMMERCIAL MISSION SKIP RIGHT
 
             if (!ONMISSION) {
-                if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
+                if (Pad.IsButtonPressed(PAD2, DPADRIGHT)) {
                     if ($.player.isPlaying()) {
-                        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+                        if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
                             //flag_industrial_passed = 1
                             //flag_commercial_passed = 0
                             button_pressed_com++;
@@ -946,7 +946,7 @@ verbose('[+] debug script loaded');
                                 // START_NEW_SCRIPT asuka_mission1_loop
                                 $.yardie_contact_blip.remove();
                                 $.asuka_contact_blip.remove();
-                                $.asuka_contact_blip = Blip.AddSpriteForContactPoint(523.7, -643.0, 16.1, 1 /* RADAR_SPRITE_ASUKA */);
+                                $.asuka_contact_blip = Blip.AddSpriteForContactPoint(523.7, -643.0, 16.1, RADAR_SPRITE_ASUKA);
                             }
                             if (button_pressed_com == 2) {
                                 $.flag_asuka_mission2_passed = 1;
@@ -991,7 +991,7 @@ verbose('[+] debug script loaded');
                                 // START_NEW_SCRIPT asuka_suburban_mission1_loop
                                 $.flag_asuka_mission5_passed = 1;
                                 $.asuka_contact_blip.remove();
-                                $.asuka_contact_blip = Blip.AddSpriteForContactPoint(366.939, -328.025, 20.268, 1 /* RADAR_SPRITE_ASUKA */);
+                                $.asuka_contact_blip = Blip.AddSpriteForContactPoint(366.939, -328.025, 20.268, RADAR_SPRITE_ASUKA);
                             }
                             if (button_pressed_com == 7) {
                                 $.flag_asuka_suburban_mission2_passed = 1;
@@ -1019,7 +1019,7 @@ verbose('[+] debug script loaded');
                                 $.flag_asuka_suburban_mission3_passed = 1;
                                 $.asuka_contact_blip.remove();
                                 $.kenji_contact_blip.remove();
-                                $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, 11 /* RADAR_SPRITE_KENJI */);
+                                $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, RADAR_SPRITE_KENJI);
                             }
                             if (button_pressed_com == 10) {
                                 $.flag_kenji_mission2_passed = 1;
@@ -1063,7 +1063,7 @@ verbose('[+] debug script loaded');
                                 $.flag_kenji_mission5_passed = 1;
                                 $.kenji_contact_blip.remove();
                                 $.ray_contact_blip.remove();
-                                $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, 15 /* RADAR_SPRITE_RAY */);
+                                $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, RADAR_SPRITE_RAY);
                             }
                             if (button_pressed_com == 15) {
                                 $.flag_ray_mission2_passed = 1;
@@ -1118,7 +1118,7 @@ verbose('[+] debug script loaded');
                                 $.flag_ray_mission6_passed = 1;
                                 $.ray_contact_blip.remove();
                                 $.love_contact_blip.remove();
-                                $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, 6 /* RADAR_SPRITE_DON */);
+                                $.love_contact_blip = Blip.AddSpriteForContactPoint(86.1, -1548.7, 28.3, RADAR_SPRITE_DON);
                             }
                             if (button_pressed_com == 21) {
                                 $.flag_love_mission2_passed = 1;
@@ -1187,7 +1187,7 @@ verbose('[+] debug script loaded');
                                 $.flag_love_mission7_passed = 1;
                                 $.love_contact_blip.remove();
                                 $.yardie_contact_blip.remove();
-                                $.yardie_contact_blip = Blip.AddSpriteForContactPoint(120.7, -272.1, 16.1, 12 /* RADAR_SPRITE_LIZ */);
+                                $.yardie_contact_blip = Blip.AddSpriteForContactPoint(120.7, -272.1, 16.1, RADAR_SPRITE_LIZ);
                             }
                             if (button_pressed_com == 28) {
                                 $.flag_yardie_mission2_passed = 1;
@@ -1222,9 +1222,9 @@ verbose('[+] debug script loaded');
             // SUBURBAN MISSION SKIP RIGHT
 
             if (!ONMISSION) {
-                if (Pad.IsButtonPressed(1 /* PAD2 */, 11 /* DPADRIGHT */)) {
+                if (Pad.IsButtonPressed(PAD2, DPADRIGHT)) {
                     if ($.player.isPlaying()) {
-                        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
                             //flag_commercial_passed = 1
                             //flag_suburban_passed = 0
                             button_pressed_sub++;
@@ -1248,7 +1248,7 @@ verbose('[+] debug script loaded');
                                 // START_NEW_SCRIPT hood_mission1_loop
                                 $.maria_contact_blip.remove();
                                 $.hood_contact_blip.remove();
-                                $.hood_contact_blip = Blip.AddSpriteForContactPoint(-443.5, -6.1, 3.8, 9 /* RADAR_SPRITE_ICE */);
+                                $.hood_contact_blip = Blip.AddSpriteForContactPoint(-443.5, -6.1, 3.8, RADAR_SPRITE_ICE);
                             }
                             if (button_pressed_sub == 2) {
                                 $.flag_hood_mission2_passed = 1;
@@ -1291,7 +1291,7 @@ verbose('[+] debug script loaded');
                                 $.flag_hood_mission5_passed = 1;
                                 $.hood_contact_blip.remove();
                                 $.maria_contact_blip.remove();
-                                $.maria_contact_blip = Blip.AddSpriteForContactPoint(-362.8, 245.9, 60.0, 3 /* RADAR_SPRITE_CAT */);
+                                $.maria_contact_blip = Blip.AddSpriteForContactPoint(-362.8, 245.9, 60.0, RADAR_SPRITE_CAT);
                             }
                         }
                     }

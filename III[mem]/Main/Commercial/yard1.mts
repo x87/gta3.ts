@@ -101,7 +101,7 @@ async function body() {
     // ******************************************CUTSCENE***************************************
 
     World.SetPedDensityMultiplier(0.0);
-    Game.SetPoliceIgnorePlayer($.player, true /* on */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
     //WHILE NOT HAS_MODEL_LOADED cut_obj1
     //	WAIT 0
@@ -112,7 +112,7 @@ async function body() {
     Cutscene.SetOffset(121.0, -272.3, 15.25);
     World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
@@ -123,7 +123,7 @@ async function body() {
 
     //SET_PLAYER_HEADING player 180.0
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SWITCH_STREAMING OFF
 
@@ -195,7 +195,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -205,16 +205,16 @@ async function body() {
         await asyncWait(0);
     }
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
     Text.ClearPrints();
     Cutscene.Clear();
     //SET_CAMERA_IN_FRONT_OF_PLAYER
 
     World.SetPedDensityMultiplier(1.0);
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //------------LOCATION VARIABLES---(NB: ALL LOCATIONS SHOULD HAVE X Y & Z IN FINISHED SCRIPT!!)-----------------------------------------------------
 
@@ -246,16 +246,16 @@ async function body() {
     $.flag_leader = 0;
     $.flag_random_yd1 = 0;
 
-    Streaming.RequestModel(30 /* PED_MALE2 */);
-    Streaming.RequestModel(96 /* CAR_PATRIOT */);
-    Streaming.RequestModel(105 /* CAR_CHEETAH */);
-    Streaming.RequestModel(112 /* CAR_BOBCAT */);
+    Streaming.RequestModel(PED_MALE2);
+    Streaming.RequestModel(CAR_PATRIOT);
+    Streaming.RequestModel(CAR_CHEETAH);
+    Streaming.RequestModel(CAR_BOBCAT);
 
     while (
-        !Streaming.HasModelLoaded(30 /* PED_MALE2 */) ||
-        !Streaming.HasModelLoaded(96 /* CAR_PATRIOT */) ||
-        !Streaming.HasModelLoaded(105 /* CAR_CHEETAH */) ||
-        !Streaming.HasModelLoaded(112 /* CAR_BOBCAT */)
+        !Streaming.HasModelLoaded(PED_MALE2) ||
+        !Streaming.HasModelLoaded(CAR_PATRIOT) ||
+        !Streaming.HasModelLoaded(CAR_CHEETAH) ||
+        !Streaming.HasModelLoaded(CAR_BOBCAT)
     ) {
         await asyncWait(1000);
     }
@@ -280,16 +280,16 @@ async function body() {
 
         $.blip_start_yd1.remove();
 
-        $.player.setControl(false /* off */);
-        $.player_car.lockDoors(2 /* CARLOCK_LOCKED */);
+        $.player.setControl(OFF);
+        $.player_car.lockDoors(CARLOCK_LOCKED);
         Camera.SetFixedPosition(66.7, 51.0, 18.0, 0.0, 0.0, 0.0);
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
         await asyncWait(1500);
-        Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
-        Hud.SwitchWidescreen(true /* on */);
+        Camera.PointAtPlayer($.player, FIXED, JUMP_CUT);
+        Hud.SwitchWidescreen(ON);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
         await asyncWait(1500);
 
         World.ClearArea(90.0, 50.0, 16.0, 20.0, true);
@@ -302,36 +302,36 @@ async function body() {
 
         await asyncWait(2000);
 
-        Camera.PointAtPoint(90.0, 50.0, 16.0, 1 /* INTERPOLATION */);
+        Camera.PointAtPoint(90.0, 50.0, 16.0, INTERPOLATION);
 
         World.ClearArea(102.0, 90.0, 16.0, 20.0, true);
-        $.hot_rod_1 = Car.Create(96 /* CAR_PATRIOT */, 102.0, 90.0, 16.0);
-        $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+        $.hot_rod_1 = Car.Create(CAR_PATRIOT, 102.0, 90.0, 16.0);
+        $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, PEDTYPE_CIVMALE, PED_MALE2);
         $.hot_rod_1.setWatertight(true);
         $.hot_rod_1.setUpsidedownNotDamaged(true);
-        $.hot_rod_1.lockDoors(2 /* CARLOCK_LOCKED */);
+        $.hot_rod_1.lockDoors(CARLOCK_LOCKED);
         $.hot_rod_1.setHeading(190.0);
         $.hot_rod_1.setCruiseSpeed(20.0);
         $.hot_rod_1.setDrivingStyle(0);
         $.hot_rod_1.gotoCoordinatesAccurate(93.0, 57.0, 16.0);
 
         World.ClearArea(75.0, 76.0, 16.0, 20.0, true);
-        $.hot_rod_2 = Car.Create(105 /* CAR_CHEETAH */, 75.0, 76.0, 16.0);
-        $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+        $.hot_rod_2 = Car.Create(CAR_CHEETAH, 75.0, 76.0, 16.0);
+        $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, PEDTYPE_CIVMALE, PED_MALE2);
         $.hot_rod_2.setWatertight(true);
         $.hot_rod_2.setUpsidedownNotDamaged(true);
-        $.hot_rod_2.lockDoors(2 /* CARLOCK_LOCKED */);
+        $.hot_rod_2.lockDoors(CARLOCK_LOCKED);
         $.hot_rod_2.setHeading(220.0);
         $.hot_rod_2.setCruiseSpeed(20.0);
         $.hot_rod_2.setDrivingStyle(0);
         $.hot_rod_2.gotoCoordinatesAccurate(78.0, 50.0, 16.0);
 
         World.ClearArea(108.0, 3.0, 16.0, 20.0, true);
-        $.hot_rod_3 = Car.Create(112 /* CAR_BOBCAT */, 108.0, 3.0, 16.0);
-        $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+        $.hot_rod_3 = Car.Create(CAR_BOBCAT, 108.0, 3.0, 16.0);
+        $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, PEDTYPE_CIVMALE, PED_MALE2);
         $.hot_rod_3.setWatertight(true);
         $.hot_rod_3.setUpsidedownNotDamaged(true);
-        $.hot_rod_3.lockDoors(2 /* CARLOCK_LOCKED */);
+        $.hot_rod_3.lockDoors(CARLOCK_LOCKED);
         //SET_CAR_HEADING hot_rod_3 360.0
 
         $.hot_rod_3.setCruiseSpeed(10.0);
@@ -377,18 +377,18 @@ async function body() {
         await asyncWait(1500);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
         await asyncWait(1500);
 
         Camera.RestoreJumpcut();
-        Hud.SwitchWidescreen(false /* off */);
+        Hud.SwitchWidescreen(OFF);
         $.player.alterWantedLevel($.wanted_yd1);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
         await asyncWait(1500);
 
         if (!Car.IsDead($.player_car)) {
-            $.player_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+            $.player_car.lockDoors(CARLOCK_UNLOCKED);
         }
 
         World.SetCarDensityMultiplier(1.0);
@@ -425,23 +425,23 @@ async function body() {
             if ($.counter_rush_start == 3) {
                 Text.PrintBig('YD1GO', 1000, 4);
                 ++$.counter_rush_start;
-                $.player.setControl(true /* on */);
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 100 /* SOUND_RACE_START_GO */);
+                $.player.setControl(ON);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_RACE_START_GO);
             }
             if ($.counter_rush_start == 2) {
                 Text.PrintBig('YD1_1', 1000, 4);
                 ++$.counter_rush_start;
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 99 /* SOUND_RACE_START_1 */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_RACE_START_1);
             }
             if ($.counter_rush_start == 1) {
                 Text.PrintBig('YD1_2', 1000, 4);
                 ++$.counter_rush_start;
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 98 /* SOUND_RACE_START_2 */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_RACE_START_2);
             }
             if ($.counter_rush_start == 0) {
                 Text.PrintBig('YD1_3', 1000, 4);
                 ++$.counter_rush_start;
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 97 /* SOUND_RACE_START_3 */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_RACE_START_3);
             }
         }
 
@@ -461,7 +461,7 @@ async function body() {
 
     main_loop: while (true) {
         if ($.flag_corona_yd1 == 0) {
-            Fx.DrawCorona($.finish_x, $.finish_y, -100.0, 2.0, 6 /* CORONATYPE_CIRCLE */, 0 /* FLARETYPE_NONE */, 200, 120, 120);
+            Fx.DrawCorona($.finish_x, $.finish_y, -100.0, 2.0, CORONATYPE_CIRCLE, FLARETYPE_NONE, 200, 120, 120);
             /*ELSE
           DRAW_CORONA finish_x finish_y 16.1 2.0 CORONATYPE_HEX FLARETYPE_NONE 0 200 200*/
         }
@@ -517,7 +517,7 @@ async function body() {
                                 $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
                                 $.hot_rod_1.setHeading($.hot_rod_heading);
                                 $.street_racer_1.delete();
-                                $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+                                $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, PEDTYPE_CIVMALE, PED_MALE2);
                             }
                         }
                     }
@@ -538,7 +538,7 @@ async function body() {
                                 $.hot_rod_1.setCoordinates($.hot_rod_1_x, $.hot_rod_1_y, $.hot_rod_1_z);
                                 $.hot_rod_1.setHeading($.hot_rod_heading);
                                 $.street_racer_1.delete();
-                                $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+                                $.street_racer_1 = Char.CreateInsideCar($.hot_rod_1, PEDTYPE_CIVMALE, PED_MALE2);
                             }
                         }
                     }
@@ -635,7 +635,7 @@ async function body() {
                                 $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
                                 $.hot_rod_2.setHeading($.hot_rod_heading);
                                 $.street_racer_2.delete();
-                                $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+                                $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, PEDTYPE_CIVMALE, PED_MALE2);
                             }
                         }
                     }
@@ -656,7 +656,7 @@ async function body() {
                                 $.hot_rod_2.setCoordinates($.hot_rod_2_x, $.hot_rod_2_y, $.hot_rod_2_z);
                                 $.hot_rod_2.setHeading($.hot_rod_heading);
                                 $.street_racer_2.delete();
-                                $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+                                $.street_racer_2 = Char.CreateInsideCar($.hot_rod_2, PEDTYPE_CIVMALE, PED_MALE2);
                             }
                         }
                     }
@@ -754,7 +754,7 @@ async function body() {
                                 $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
                                 $.hot_rod_3.setHeading($.hot_rod_heading);
                                 $.street_racer_3.delete();
-                                $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+                                $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, PEDTYPE_CIVMALE, PED_MALE2);
                             }
                         }
                     }
@@ -775,7 +775,7 @@ async function body() {
                                 $.hot_rod_3.setCoordinates($.hot_rod_3_x, $.hot_rod_3_y, $.hot_rod_3_z);
                                 $.hot_rod_3.setHeading($.hot_rod_heading);
                                 $.street_racer_3.delete();
-                                $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, 4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */);
+                                $.street_racer_3 = Char.CreateInsideCar($.hot_rod_3, PEDTYPE_CIVMALE, PED_MALE2);
                             }
                         }
                     }
@@ -962,7 +962,7 @@ async function onPassed() {
 // mission cleanup
 async function cleanup() {
     Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* off */);
+    Hud.SwitchWidescreen(OFF);
     //SET_PLAYER_CONTROL player on
 
     $.blip_hot_rod_1.remove();
@@ -970,10 +970,10 @@ async function cleanup() {
     $.blip_hot_rod_3.remove();
     $.blip_start_yd1.remove();
 
-    Streaming.MarkModelAsNoLongerNeeded(30 /* PED_MALE2 */);
-    Streaming.MarkModelAsNoLongerNeeded(96 /* CAR_PATRIOT */);
-    Streaming.MarkModelAsNoLongerNeeded(105 /* CAR_CHEETAH */);
-    Streaming.MarkModelAsNoLongerNeeded(112 /* CAR_BOBCAT */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_MALE2);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_PATRIOT);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_CHEETAH);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_BOBCAT);
 
     Path.SwitchRoadsOn(500.0, 60.0, -25.0, 600.0, 140.0, 0.0);
     Path.SwitchRoadsOn(-400.0, 60.0, -25.0, -300.0, 140.0, 0.0);
@@ -1024,7 +1024,7 @@ async function player_points() {
     //PRINT_BIG ( YD1_BON ) 1000 4
 
     Text.PrintWithNumberBig('YD1_CNT', $.counter_player_points, 2000, 4);
-    Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
+    Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, SOUND_PART_MISSION_COMPLETE);
 
     await finish_coord_generator(); // SCM GOSUB finish_coord_generator
 }
@@ -1032,7 +1032,7 @@ async function player_points() {
 async function nonplayer_points_1() {
     ++$.counter_nonplayer1_points;
     ++$.counter_finish;
-    Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
+    Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, SOUND_PART_MISSION_COMPLETE);
 
     await finish_coord_generator(); // SCM GOSUB finish_coord_generator
 }
@@ -1040,7 +1040,7 @@ async function nonplayer_points_1() {
 async function nonplayer_points_2() {
     ++$.counter_nonplayer2_points;
     ++$.counter_finish;
-    Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
+    Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, SOUND_PART_MISSION_COMPLETE);
 
     await finish_coord_generator(); // SCM GOSUB finish_coord_generator
 }
@@ -1048,7 +1048,7 @@ async function nonplayer_points_2() {
 async function nonplayer_points_3() {
     ++$.counter_nonplayer3_points;
     ++$.counter_finish;
-    Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, 94 /* SOUND_PART_MISSION_COMPLETE */);
+    Sound.AddOneOffSound($.player_car_x, $.player_car_y, $.player_car_z, SOUND_PART_MISSION_COMPLETE);
 
     await finish_coord_generator(); // SCM GOSUB finish_coord_generator
 }

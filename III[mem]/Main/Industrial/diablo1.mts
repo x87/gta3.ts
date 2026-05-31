@@ -218,10 +218,10 @@ async function body() {
 
     Cutscene.SetOffset(938.27, -229.561, 4.023);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Cutscene.Start();
 
@@ -260,14 +260,14 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
     }
 
     Text.ClearPrints();
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -278,15 +278,15 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //____________________________________________________________________//
 
-    Streaming.RequestModel(14 /* PED_GANG_DIABLO_A */);
-    Streaming.RequestModel(15 /* PED_GANG_DIABLO_B */);
-    Streaming.RequestModel(105 /* CAR_CHEETAH */);
+    Streaming.RequestModel(PED_GANG_DIABLO_A);
+    Streaming.RequestModel(PED_GANG_DIABLO_B);
+    Streaming.RequestModel(CAR_CHEETAH);
 
-    while (!Streaming.HasModelLoaded(105 /* CAR_CHEETAH */) || !Streaming.HasModelLoaded(14 /* PED_GANG_DIABLO_A */) || !Streaming.HasModelLoaded(15 /* PED_GANG_DIABLO_B */)) {
+    while (!Streaming.HasModelLoaded(CAR_CHEETAH) || !Streaming.HasModelLoaded(PED_GANG_DIABLO_A) || !Streaming.HasModelLoaded(PED_GANG_DIABLO_B)) {
         await asyncWait(0);
     }
 
@@ -296,30 +296,30 @@ async function body() {
 
     Path.SwitchRoadsOff(1034.0, -956.0, 12.0, 1063.0, -847.0, 20.0);
 
-    $.car1_d1 = Car.Create(105 /* CAR_CHEETAH */, 1048.1465, -858.6693, 13.7827);
-    $.car1_d1.lockDoors(2 /* CARLOCK_LOCKED */);
+    $.car1_d1 = Car.Create(CAR_CHEETAH, 1048.1465, -858.6693, 13.7827);
+    $.car1_d1.lockDoors(CARLOCK_LOCKED);
     $.car1_d1.setProofs(true, true, true, false, true);
     $.car1_d1.setWatertight(true);
     $.car1_d1.setStrong(true);
     $.car1_d1.setUpsidedownNotDamaged(true);
 
-    $.car2_d1 = Car.Create(105 /* CAR_CHEETAH */, 1053.3384, -859.3337, 13.7827);
-    $.car2_d1.lockDoors(2 /* CARLOCK_LOCKED */);
+    $.car2_d1 = Car.Create(CAR_CHEETAH, 1053.3384, -859.3337, 13.7827);
+    $.car2_d1.lockDoors(CARLOCK_LOCKED);
     $.car2_d1.setProofs(true, true, true, false, true);
     $.car2_d1.setWatertight(true);
     $.car2_d1.setStrong(true);
     $.car2_d1.setUpsidedownNotDamaged(true);
 
-    $.car3_d1 = Car.Create(105 /* CAR_CHEETAH */, 1058.6385, -859.2989, 13.7827);
-    $.car3_d1.lockDoors(2 /* CARLOCK_LOCKED */);
+    $.car3_d1 = Car.Create(CAR_CHEETAH, 1058.6385, -859.2989, 13.7827);
+    $.car3_d1.lockDoors(CARLOCK_LOCKED);
     $.car3_d1.setProofs(true, true, true, false, true);
     $.car3_d1.setWatertight(true);
     $.car3_d1.setStrong(true);
     $.car3_d1.setUpsidedownNotDamaged(true);
 
-    $.ped_car1_driver_d1 = Char.CreateInsideCar($.car1_d1, 4 /* PEDTYPE_CIVMALE */, 14 /* PED_GANG_DIABLO_A */);
-    $.ped_car2_driver_d1 = Char.CreateInsideCar($.car2_d1, 4 /* PEDTYPE_CIVMALE */, 15 /* PED_GANG_DIABLO_B */);
-    $.ped_car3_driver_d1 = Char.CreateInsideCar($.car3_d1, 4 /* PEDTYPE_CIVMALE */, 14 /* PED_GANG_DIABLO_A */);
+    $.ped_car1_driver_d1 = Char.CreateInsideCar($.car1_d1, PEDTYPE_CIVMALE, PED_GANG_DIABLO_A);
+    $.ped_car2_driver_d1 = Char.CreateInsideCar($.car2_d1, PEDTYPE_CIVMALE, PED_GANG_DIABLO_B);
+    $.ped_car3_driver_d1 = Char.CreateInsideCar($.car3_d1, PEDTYPE_CIVMALE, PED_GANG_DIABLO_A);
 
     $.ped_car1_driver_d1.setCantBeDraggedOut(true);
     $.ped_car2_driver_d1.setCantBeDraggedOut(true);
@@ -396,21 +396,21 @@ async function body() {
         if ($.timerc == 9) {
             Text.PrintBig('DIAB1_1', 1200, 4); // "3..2..1.. GO GO GO!"
         } else {
-            $.player.setControl(false /* OFF */);
+            $.player.setControl(OFF);
             Game.SetEveryoneIgnorePlayer($.player, true);
             Game.SetAllCarsCanBeDamaged(false);
             Text.PrintBig('YD1_3', 1100, 4);
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 97 /* SOUND_RACE_START_3 */);
+            Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_RACE_START_3);
             await asyncWait(1000);
             Text.PrintBig('YD1_2', 1100, 4);
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 98 /* SOUND_RACE_START_2 */);
+            Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_RACE_START_2);
             await asyncWait(1000);
             Text.PrintBig('YD1_1', 1100, 4);
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 99 /* SOUND_RACE_START_1 */);
+            Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_RACE_START_1);
             await asyncWait(1000);
             Text.PrintBig('YD1GO', 800, 4);
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 100 /* SOUND_RACE_START_GO */);
-            $.player.setControl(true /* ON */);
+            Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_RACE_START_GO);
+            $.player.setControl(ON);
             Game.SetEveryoneIgnorePlayer($.player, false);
             Game.SetAllCarsCanBeDamaged(true);
         }
@@ -431,9 +431,9 @@ async function body() {
 
         $.blip_chase_d1.remove();
 
-        $.blip_car1_d1 = Blip.AddForCarOld($.car1_d1, 0 /* RED */, 1 /* MARKER_ONLY */);
-        $.blip_car2_d1 = Blip.AddForCarOld($.car2_d1, 0 /* RED */, 1 /* MARKER_ONLY */);
-        $.blip_car3_d1 = Blip.AddForCarOld($.car3_d1, 0 /* RED */, 1 /* MARKER_ONLY */);
+        $.blip_car1_d1 = Blip.AddForCarOld($.car1_d1, RED, MARKER_ONLY);
+        $.blip_car2_d1 = Blip.AddForCarOld($.car2_d1, RED, MARKER_ONLY);
+        $.blip_car3_d1 = Blip.AddForCarOld($.car3_d1, RED, MARKER_ONLY);
 
         $.player_x_d1 = $.cp2_x_d1;
         $.player_y_d1 = $.cp2_y_d1;
@@ -455,7 +455,7 @@ async function body() {
         $.car3_z_d1 = $.cp2_z_d1;
 
         $.blip_chase_d1 = Blip.AddForCoord($.player_x_d1, $.player_y_d1, $.player_z_d1);
-        $.second_blip = Blip.AddForCoordOld($.blip_2nd_x, $.blip_2nd_y, $.blip_2nd_z, 5 /* PURPLE */, 2 /* BLIP_ONLY */);
+        $.second_blip = Blip.AddForCoordOld($.blip_2nd_x, $.blip_2nd_y, $.blip_2nd_z, PURPLE, BLIP_ONLY);
         $.second_blip.changeScale(2);
         $.second_blip.dim(true);
         $.car1_d1.gotoCoordinates($.car1_x_d1, $.car1_y_d1, $.car1_z_d1);
@@ -466,7 +466,7 @@ async function body() {
         $.game_timer_end_d1 = Clock.GetGameTimer();
         $.game_timer_end_d1 = $.game_timer_end_d1 - $.game_timer_start_d1;
         $.game_timer_end_d1 = $.game_timer_end_d1 / 1000;
-        Hud.DisplayCounterWithString($.$id.game_timer_end_d1, 0 /* COUNTER_DISPLAY_NUMBER */, 'DIAB1_5');
+        Hud.DisplayCounterWithString($.$id.game_timer_end_d1, COUNTER_DISPLAY_NUMBER, 'DIAB1_5');
     }
 
     loop1: while (true) {
@@ -497,9 +497,9 @@ async function body() {
         }
 
         if ($.player_cpcounter == 17) {
-            Fx.DrawCorona($.player_x_d1, $.player_y_d1, $.player_z_d1, 5.5, 6 /* CORONATYPE_CIRCLE */, 0 /* FLARETYPE_NONE */, 100, 0, 0);
+            Fx.DrawCorona($.player_x_d1, $.player_y_d1, $.player_z_d1, 5.5, CORONATYPE_CIRCLE, FLARETYPE_NONE, 100, 0, 0);
         } else {
-            Fx.DrawCorona($.player_x_d1, $.player_y_d1, $.player_z_d1, 5.5, 6 /* CORONATYPE_CIRCLE */, 0 /* FLARETYPE_NONE */, 0, 0, 100);
+            Fx.DrawCorona($.player_x_d1, $.player_y_d1, $.player_z_d1, 5.5, CORONATYPE_CIRCLE, FLARETYPE_NONE, 0, 0, 100);
         }
 
         if ($.player.locateInCar3D($.player_x_d1, $.player_y_d1, $.player_z_d1, 6.0, 6.0, 6.0, false)) {
@@ -646,8 +646,8 @@ async function body() {
                 //	AND	position = 0
                 return; // SCM GOTO → mission_d1_passed
             }
-            $.second_blip = Blip.AddForCoordOld($.blip_2nd_x, $.blip_2nd_y, $.blip_2nd_z, 5 /* PURPLE */, 2 /* BLIP_ONLY */);
-            $.second_blip.dim(true /* ON */);
+            $.second_blip = Blip.AddForCoordOld($.blip_2nd_x, $.blip_2nd_y, $.blip_2nd_z, PURPLE, BLIP_ONLY);
+            $.second_blip.dim(ON);
             $.second_blip.changeScale(2);
             $.blip_chase_d1 = Blip.AddForCoord($.player_x_d1, $.player_y_d1, $.player_z_d1);
         }
@@ -1433,9 +1433,9 @@ async function cleanup() {
     $.blip_car3_d1.remove();
     $.blip_chase_d1.remove();
     $.second_blip.remove();
-    Streaming.MarkModelAsNoLongerNeeded(14 /* PED_GANG_DIABLO_A */);
-    Streaming.MarkModelAsNoLongerNeeded(15 /* PED_GANG_DIABLO_B */);
-    Streaming.MarkModelAsNoLongerNeeded(105 /* CAR_CHEETAH */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_DIABLO_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_DIABLO_B);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_CHEETAH);
     Hud.ClearCounter($.$id.game_timer_end_d1);
     ONMISSION = false;
     $.flag_player_on_diablo_mission = 0;

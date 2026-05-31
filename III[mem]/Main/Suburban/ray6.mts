@@ -1,4 +1,5 @@
 // Generated from Main/Suburban/ray6.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
@@ -129,32 +130,32 @@ async function body() {
 
     Cutscene.SetOffset(39.424, -726.677, 21.692);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_ray = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_ray = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_ray.setAnim('ray');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
+    $.cs_rayhead = CutsceneHead.Create($.cs_ray, CUT_OBJ2);
     $.cs_rayhead.setAnim('ray');
 
     //SET_PLAYER_COORDINATES player 38.7 -725.7 22.0
     //
     //SET_PLAYER_HEADING player 270.0
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Camera.SetNearClip(0.2);
 
     Cutscene.Start();
 
-    Streaming.Switch(false /* OFF */);
-    World.SwitchRubbish(false /* OFF */);
+    Streaming.Switch(OFF);
+    World.SwitchRubbish(OFF);
     // Displays cutscene text
 
     $.cs_time = Cutscene.GetTime();
@@ -206,13 +207,13 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     Text.ClearPrints();
 
@@ -222,7 +223,7 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
     Camera.SetNearClip(0.9);
 
     Camera.SetBehindPlayer();
@@ -230,21 +231,21 @@ async function body() {
     Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
     Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
     Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */);
-    Streaming.RequestModel(61 /* PED_B_MAN3 */);
+    Streaming.RequestModel(PED_B_MAN3);
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasModelLoaded(61 /* PED_B_MAN3 */)) {
+    while (!Streaming.HasModelLoaded(PED_B_MAN3)) {
         await asyncWait(0);
     }
 
-    $.ray = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 38.7, -727.7, 22.0);
+    $.ray = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL1, 38.7, -727.7, 22.0);
     $.ray.addArmor(100);
 
     $.ray.followPlayer($.player);
 
-    Streaming.Switch(true /* ON */);
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Streaming.Switch(ON);
+    Camera.DoFade(1500, FADE_IN);
     $.rays_cutscene_flag = 0;
 
     // ******************************************END OF CUTSCENE********************************
@@ -277,13 +278,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_1_flag == 0) {
                 if ($.player.locateAnyMeans2D(-25.8545, -612.5001, 100.0, 100.0, false)) {
-                    $.cia_1 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -25.8545, -612.5001, 42.1683);
+                    $.cia_1 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -25.8545, -612.5001, 42.1683);
                     $.cia_1.setHeading(239.6049);
-                    $.cia_1.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_1.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_1.setOnlyDamagedByPlayer(true);
                     $.cia_1.setIdle();
-                    $.cia_1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_1.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_1.setThreatSearch(THREAT_PLAYER1);
                     $.cia_1.setStayInSamePlace(true);
                     $.cia_1.addArmor(100);
                     ++$.total_cia;
@@ -317,13 +318,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_2_flag == 0) {
                 if ($.player.locateAnyMeans2D(-24.0225, -630.3363, 100.0, 100.0, false)) {
-                    $.cia_2 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -24.0225, -630.3363, 42.1125);
+                    $.cia_2 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -24.0225, -630.3363, 42.1125);
                     $.cia_2.setHeading(293.6046);
-                    $.cia_2.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_2.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_2.setOnlyDamagedByPlayer(true);
                     $.cia_2.setIdle();
-                    $.cia_2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_2.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_2.setThreatSearch(THREAT_PLAYER1);
                     $.cia_2.setStayInSamePlace(true);
                     $.cia_2.addArmor(100);
                     ++$.total_cia;
@@ -357,13 +358,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_3_flag == 0) {
                 if ($.player.locateAnyMeans2D(-35.1159, -632.8395, 100.0, 100.0, false)) {
-                    $.cia_3 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -35.1159, -632.8395, 42.4257);
+                    $.cia_3 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -35.1159, -632.8395, 42.4257);
                     $.cia_3.setHeading(255.4109);
-                    $.cia_3.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_3.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_3.setOnlyDamagedByPlayer(true);
                     $.cia_3.setIdle();
-                    $.cia_3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_3.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_3.setThreatSearch(THREAT_PLAYER1);
                     $.cia_3.setStayInSamePlace(true);
                     $.cia_3.addArmor(100);
                     ++$.total_cia;
@@ -397,13 +398,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_4_flag == 0) {
                 if ($.player.locateAnyMeans2D(-24.3022, -650.4634, 100.0, 100.0, false)) {
-                    $.cia_4 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -24.3022, -650.4634, 46.5876);
+                    $.cia_4 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -24.3022, -650.4634, 46.5876);
                     $.cia_4.setHeading(344.2893);
-                    $.cia_4.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_4.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_4.setOnlyDamagedByPlayer(true);
                     $.cia_4.setIdle();
-                    $.cia_4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_4.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_4.setThreatSearch(THREAT_PLAYER1);
                     $.cia_4.setStayInSamePlace(true);
                     $.cia_4.addArmor(100);
                     ++$.total_cia;
@@ -437,13 +438,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_5_flag == 0) {
                 if ($.player.locateAnyMeans2D(-217.9545, -630.407, 100.0, 100.0, false)) {
-                    $.cia_5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -217.9545, -630.407, 45.9975);
+                    $.cia_5 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -217.9545, -630.407, 45.9975);
                     $.cia_5.setHeading(344.2893);
-                    $.cia_5.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_5.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_5.setOnlyDamagedByPlayer(true);
                     $.cia_5.setIdle();
-                    $.cia_5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_5.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_5.setThreatSearch(THREAT_PLAYER1);
                     $.cia_5.setStayInSamePlace(true);
                     $.cia_5.addArmor(100);
                     ++$.total_cia;
@@ -477,13 +478,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_6_flag == 0) {
                 if ($.player.locateAnyMeans2D(-212.4922, -632.7455, 100.0, 100.0, false)) {
-                    $.cia_6 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -212.4922, -632.7455, 45.9514);
+                    $.cia_6 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -212.4922, -632.7455, 45.9514);
                     $.cia_6.setHeading(247.0256);
-                    $.cia_6.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_6.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_6.setOnlyDamagedByPlayer(true);
                     $.cia_6.setIdle();
-                    $.cia_6.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_6.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_6.setThreatSearch(THREAT_PLAYER1);
                     $.cia_6.setStayInSamePlace(true);
                     $.cia_6.addArmor(100);
                     ++$.total_cia;
@@ -517,13 +518,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_7_flag == 0) {
                 if ($.player.locateAnyMeans2D(-437.0927, -612.5157, 100.0, 100.0, false)) {
-                    $.cia_7 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -437.0927, -612.5157, 44.5994);
+                    $.cia_7 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -437.0927, -612.5157, 44.5994);
                     $.cia_7.setHeading(247.0256);
-                    $.cia_7.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_7.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_7.setOnlyDamagedByPlayer(true);
                     $.cia_7.setIdle();
-                    $.cia_7.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_7.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_7.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_7.setThreatSearch(THREAT_PLAYER1);
                     $.cia_7.setStayInSamePlace(true);
                     $.cia_7.addArmor(100);
                     ++$.total_cia;
@@ -557,13 +558,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_8_flag == 0) {
                 if ($.player.locateAnyMeans2D(-534.6777, -631.2995, 100.0, 100.0, false)) {
-                    $.cia_8 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -534.6777, -631.2995, 42.277);
+                    $.cia_8 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -534.6777, -631.2995, 42.277);
                     $.cia_8.setHeading(247.0256);
-                    $.cia_8.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_8.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_8.setOnlyDamagedByPlayer(true);
                     $.cia_8.setIdle();
-                    $.cia_8.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_8.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_8.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_8.setThreatSearch(THREAT_PLAYER1);
                     $.cia_8.setStayInSamePlace(true);
                     $.cia_8.addArmor(100);
                     ++$.total_cia;
@@ -597,13 +598,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_9_flag == 0) {
                 if ($.player.locateAnyMeans2D(-523.4218, -650.3831, 100.0, 100.0, false)) {
-                    $.cia_9 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -523.4218, -650.3831, 42.5261);
+                    $.cia_9 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -523.4218, -650.3831, 42.5261);
                     $.cia_9.setHeading(316.7352);
-                    $.cia_9.giveWeapon(6 /* WEAPONTYPE_M16 */, 9999);
+                    $.cia_9.giveWeapon(WEAPONTYPE_M16, 9999);
                     $.cia_9.setOnlyDamagedByPlayer(true);
                     $.cia_9.setIdle();
-                    $.cia_9.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_9.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_9.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_9.setThreatSearch(THREAT_PLAYER1);
                     $.cia_9.setStayInSamePlace(true);
                     $.cia_9.addArmor(100);
                     ++$.total_cia;
@@ -637,13 +638,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_10_flag == 0) {
                 if ($.player.locateAnyMeans2D(-628.0785, -498.4106, 100.0, 100.0, false)) {
-                    $.cia_10 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -628.0785, -498.4106, 22.3884);
+                    $.cia_10 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -628.0785, -498.4106, 22.3884);
                     $.cia_10.setHeading(76.5552);
-                    $.cia_10.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
+                    $.cia_10.giveWeapon(WEAPONTYPE_UZI, 9999);
                     $.cia_10.setOnlyDamagedByPlayer(true);
                     $.cia_10.setIdle();
-                    $.cia_10.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_10.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_10.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_10.setThreatSearch(THREAT_PLAYER1);
                     $.cia_10.setStayInSamePlace(true);
                     $.cia_10.addArmor(100);
                     ++$.total_cia;
@@ -677,13 +678,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_11_flag == 0) {
                 if ($.player.locateAnyMeans2D(-637.6517, -501.7922, 100.0, 100.0, false)) {
-                    $.cia_11 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -637.6517, -501.7922, 22.3455);
+                    $.cia_11 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -637.6517, -501.7922, 22.3455);
                     $.cia_11.setHeading(76.5552);
-                    $.cia_11.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
+                    $.cia_11.giveWeapon(WEAPONTYPE_UZI, 9999);
                     $.cia_11.setOnlyDamagedByPlayer(true);
                     $.cia_11.setIdle();
-                    $.cia_11.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_11.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_11.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_11.setThreatSearch(THREAT_PLAYER1);
                     $.cia_11.setStayInSamePlace(true);
                     $.cia_11.addArmor(100);
                     ++$.total_cia;
@@ -717,13 +718,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_12_flag == 0) {
                 if ($.player.locateAnyMeans2D(-692.3098, -563.0333, 100.0, 100.0, false)) {
-                    $.cia_12 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -692.3098, -563.0333, 21.511);
+                    $.cia_12 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -692.3098, -563.0333, 21.511);
                     $.cia_12.setHeading(344.2857);
-                    $.cia_12.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
+                    $.cia_12.giveWeapon(WEAPONTYPE_UZI, 9999);
                     $.cia_12.setOnlyDamagedByPlayer(true);
                     $.cia_12.setIdle();
-                    $.cia_12.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_12.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_12.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_12.setThreatSearch(THREAT_PLAYER1);
                     $.cia_12.setStayInSamePlace(true);
                     $.cia_12.addArmor(100);
                     ++$.total_cia;
@@ -757,13 +758,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_13_flag == 0) {
                 if ($.player.locateAnyMeans2D(-671.1359, -540.5952, 100.0, 100.0, false)) {
-                    $.cia_13 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -671.1359, -540.5952, 22.9211);
+                    $.cia_13 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -671.1359, -540.5952, 22.9211);
                     $.cia_13.setHeading(281.8996);
-                    $.cia_13.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
+                    $.cia_13.giveWeapon(WEAPONTYPE_UZI, 9999);
                     $.cia_13.setOnlyDamagedByPlayer(true);
                     $.cia_13.setIdle();
-                    $.cia_13.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_13.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_13.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_13.setThreatSearch(THREAT_PLAYER1);
                     $.cia_13.setStayInSamePlace(true);
                     $.cia_13.addArmor(100);
                     ++$.total_cia;
@@ -797,13 +798,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_14_flag == 0) {
                 if ($.player.locateAnyMeans2D(-638.4215, -419.262, 100.0, 100.0, false)) {
-                    $.cia_14 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -638.4215, -419.262, 17.8198);
+                    $.cia_14 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -638.4215, -419.262, 17.8198);
                     $.cia_14.setHeading(113.6173);
-                    $.cia_14.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
+                    $.cia_14.giveWeapon(WEAPONTYPE_UZI, 9999);
                     $.cia_14.setOnlyDamagedByPlayer(true);
                     $.cia_14.setIdle();
-                    $.cia_14.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_14.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_14.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_14.setThreatSearch(THREAT_PLAYER1);
                     $.cia_14.setStayInSamePlace(true);
                     $.cia_14.addArmor(100);
                     ++$.total_cia;
@@ -837,13 +838,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_15_flag == 0) {
                 if ($.player.locateAnyMeans2D(-655.3353, -404.4556, 100.0, 100.0, false)) {
-                    $.cia_15 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -655.3353, -404.4556, 17.8198);
+                    $.cia_15 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -655.3353, -404.4556, 17.8198);
                     $.cia_15.setHeading(191.1247);
-                    $.cia_15.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
+                    $.cia_15.giveWeapon(WEAPONTYPE_UZI, 9999);
                     $.cia_15.setOnlyDamagedByPlayer(true);
                     $.cia_15.setIdle();
-                    $.cia_15.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_15.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_15.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_15.setThreatSearch(THREAT_PLAYER1);
                     $.cia_15.setStayInSamePlace(true);
                     $.cia_15.addArmor(100);
                     ++$.total_cia;
@@ -877,13 +878,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_16_flag == 0) {
                 if ($.player.locateAnyMeans2D(-677.0261, -425.047, 100.0, 100.0, false)) {
-                    $.cia_16 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -677.0261, -425.047, 18.514);
+                    $.cia_16 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -677.0261, -425.047, 18.514);
                     $.cia_16.setHeading(265.4145);
-                    $.cia_16.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
+                    $.cia_16.giveWeapon(WEAPONTYPE_UZI, 9999);
                     $.cia_16.setOnlyDamagedByPlayer(true);
                     $.cia_16.setIdle();
-                    $.cia_16.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_16.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_16.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_16.setThreatSearch(THREAT_PLAYER1);
                     $.cia_16.setStayInSamePlace(true);
                     $.cia_16.addArmor(100);
                     ++$.total_cia;
@@ -917,13 +918,13 @@ async function body() {
         if ($.total_cia < 16) {
             if ($.cia_17_flag == 0) {
                 if ($.player.locateAnyMeans2D(-679.1292, -485.1575, 100.0, 100.0, false)) {
-                    $.cia_17 = Char.Create(4 /* PEDTYPE_CIVMALE */, 61 /* PED_B_MAN3 */, -679.1292, -485.1575, 18.2578);
+                    $.cia_17 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN3, -679.1292, -485.1575, 18.2578);
                     $.cia_17.setHeading(260.2034);
-                    $.cia_17.giveWeapon(3 /* WEAPONTYPE_UZI */, 9999);
+                    $.cia_17.giveWeapon(WEAPONTYPE_UZI, 9999);
                     $.cia_17.setOnlyDamagedByPlayer(true);
                     $.cia_17.setIdle();
-                    $.cia_17.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.cia_17.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.cia_17.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.cia_17.setThreatSearch(THREAT_PLAYER1);
                     $.cia_17.setStayInSamePlace(true);
                     $.cia_17.addArmor(100);
                     ++$.total_cia;
@@ -973,13 +974,13 @@ async function body() {
     $.rays_blip.remove();
 
     Hud.ClearTimer($.$id.time_till_flight);
-    $.player.setControl(false /* OFF */);
-    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+    $.player.setControl(OFF);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
     //SET_ALL_CARS_CAN_BE_DAMAGED FALSE
 
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
     Camera.SetFixedPosition(-732.0104, -571.0955, 14.0482, 0.0, 0.0, 0.0);
-    Camera.PointAtChar($.ray, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    Camera.PointAtChar($.ray, FIXED, JUMP_CUT);
 
     if (!$.ray.isInAnyCar() || !$.player.isInAnyCar()) {
         $.ray.turnToFacePlayer($.player);
@@ -987,7 +988,7 @@ async function body() {
         $.script_controlled_player.turnToFaceChar($.ray);
     }
 
-    Audio.LoadMissionAudio('r6_a' as any);
+    Audio.LoadMissionAudio(SfxMission.R6_a);
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
@@ -1008,7 +1009,7 @@ async function body() {
         }
     }
 
-    Audio.LoadMissionAudio('r6_a1' as any);
+    Audio.LoadMissionAudio(SfxMission.R6_a1);
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
@@ -1029,7 +1030,7 @@ async function body() {
         }
     }
 
-    Audio.LoadMissionAudio('r6_b' as any);
+    Audio.LoadMissionAudio(SfxMission.R6_b);
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
@@ -1061,7 +1062,7 @@ async function body() {
                 $.ray.leaveGroup();
                 $.ray.setObjRunToCoord(-744.7192, -586.4615);
                 Camera.SetFixedPosition(-751.3805, -603.0235, 11.4096, 0.0, 0.0, 0.0);
-                Camera.PointAtChar($.ray, 15 /* FIXED */, 2 /* JUMP_CUT */);
+                Camera.PointAtChar($.ray, FIXED, JUMP_CUT);
                 $.airport_door_flag = 1;
             }
         }
@@ -1115,8 +1116,8 @@ async function body() {
         }
         if ($.airport_door_flag == 5) {
             if ($.ray.locateOnFoot2D(-772.6249, -604.7247, 1.5, 1.5, false)) {
-                $.player.setControl(true /* ON */);
-                Hud.SwitchWidescreen(false /* OFF */);
+                $.player.setControl(ON);
+                Hud.SwitchWidescreen(OFF);
                 Camera.SetBehindPlayer();
                 Camera.RestoreJumpcut();
                 $.ray.delete();
@@ -1129,17 +1130,17 @@ async function body() {
 
     $.rays_blip = Blip.AddForCoord(241.1441, -997.766, 20.9853);
 
-    Streaming.RequestModel(96 /* CAR_PATRIOT */);
+    Streaming.RequestModel(CAR_PATRIOT);
 
     while (!$.player.locateAnyMeans2D(241.1441, -997.766, 50.0, 50.0, false)) {
         await asyncWait(0);
     }
 
-    while (!Streaming.HasModelLoaded(96 /* CAR_PATRIOT */)) {
+    while (!Streaming.HasModelLoaded(CAR_PATRIOT)) {
         await asyncWait(0);
     }
 
-    $.rays_prize_car = Car.Create(96 /* CAR_PATRIOT */, 241.1441, -997.766, 20.9853);
+    $.rays_prize_car = Car.Create(CAR_PATRIOT, 241.1441, -997.766, 20.9853);
     //SET_CAR_COLOUR 256 256/WHITE
     //SET_CAR_CANT_BE_RESPRAYED
     //SET_CAR_DO_NOT_DELETE	maybe
@@ -1147,10 +1148,10 @@ async function body() {
     $.rays_prize_car.setHeading(270.0);
     $.rays_prize_car.setProofs(true, false, false, false, false);
     $.rays_prize_car.setStrong(true);
-    $.rays_prize_weapon1 = Pickup.CreateWithAmmo(180 /* WEAPON_M16 */, 3 /* PICKUP_ONCE */, 1000, 244.0506, -993.9206, 21.0);
-    $.rays_prize_weapon2 = Pickup.CreateWithAmmo(181 /* WEAPON_FLAME */, 3 /* PICKUP_ONCE */, 1000, 237.3226, -998.5697, 21.0);
-    $.rays_prize_weapon3 = Pickup.CreateWithAmmo(175 /* WEAPON_ROCKET */, 3 /* PICKUP_ONCE */, 25, 243.8931, -995.5624, 21.0);
-    $.rays_prize_weapon4 = Pickup.CreateWithAmmo(177 /* WEAPON_SNIPER */, 3 /* PICKUP_ONCE */, 50, 241.2706, -993.679, 21.0);
+    $.rays_prize_weapon1 = Pickup.CreateWithAmmo(WEAPON_M16, PICKUP_ONCE, 1000, 244.0506, -993.9206, 21.0);
+    $.rays_prize_weapon2 = Pickup.CreateWithAmmo(WEAPON_FLAME, PICKUP_ONCE, 1000, 237.3226, -998.5697, 21.0);
+    $.rays_prize_weapon3 = Pickup.CreateWithAmmo(WEAPON_ROCKET, PICKUP_ONCE, 25, 243.8931, -995.5624, 21.0);
+    $.rays_prize_weapon4 = Pickup.CreateWithAmmo(WEAPON_SNIPER, PICKUP_ONCE, 50, 241.2706, -993.679, 21.0);
     $.rays_cash = Pickup.CreateMoney(238.9743, -993.6944, 21.0, 20000);
 
     $.pickups_created_rm6 = 1;
@@ -1217,9 +1218,9 @@ async function cleanup() {
     $.rays_blip.remove();
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(61 /* PED_B_MAN3 */);
-    Streaming.MarkModelAsNoLongerNeeded(105 /* CAR_CHEETAH */);
-    Streaming.MarkModelAsNoLongerNeeded(96 /* CAR_PATRIOT */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_B_MAN3);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_CHEETAH);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_PATRIOT);
 
     Mission.Finish();
 }

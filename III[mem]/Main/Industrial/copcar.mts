@@ -75,7 +75,7 @@ async function body() {
         $.player_c_x = x;
         $.player_c_y = y;
         $.player_c_z = z;
-        Streaming.RequestModel(95 /* CAR_SENTINEL */);
+        Streaming.RequestModel(CAR_SENTINEL);
 
         criminal_in_car: while (true) {
             await asyncWait(0);
@@ -88,7 +88,7 @@ async function body() {
                 TIMERB = 3000;
             }
 
-            if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
                 $.random_crim_x = Math.RandomFloatInRange(778.0, 1540.0);
                 $.random_crim_y = Math.RandomFloatInRange(-1110.0, 190.0);
                 $.got_range_message = 0;
@@ -96,7 +96,7 @@ async function body() {
                 $.location = 1;
             }
 
-            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
                 $.random_crim_x = Math.RandomFloatInRange(-192.0, 545.0);
                 $.random_crim_y = Math.RandomFloatInRange(-1626.0, 98.0);
                 $.got_range_message = 0;
@@ -104,7 +104,7 @@ async function body() {
                 $.location = 2;
             }
 
-            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
                 $.random_crim_x = Math.RandomFloatInRange(-1300.0, -414.0);
                 $.random_crim_y = Math.RandomFloatInRange(-608.8, 380.0);
                 $.got_range_message = 0;
@@ -294,29 +294,29 @@ async function body() {
 
         $.criminal.clearThreatSearch();
 
-        $.criminal.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.criminal.setPersonality(PEDSTAT_TOUGH_GUY);
 
-        $.criminal.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.criminal.setThreatSearch(2 /* THREAT_PLAYER2 */);
-        $.criminal.setThreatSearch(4 /* THREAT_PLAYER3 */);
-        $.criminal.setThreatSearch(8 /* THREAT_PLAYER4 */);
-        $.criminal.setThreatSearch(16 /* THREAT_CIVMALE */);
-        $.criminal.setThreatSearch(32 /* THREAT_CIVFEMALE */);
-        $.criminal.setThreatSearch(64 /* THREAT_COP */);
-        $.criminal.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-        $.criminal.setThreatSearch(512 /* THREAT_GANG_DIABLO */);
-        $.criminal.setThreatSearch(256 /* THREAT_GANG_TRIAD */);
-        $.criminal.setThreatSearch(2048 /* THREAT_GANG_YARDIE */);
-        $.criminal.setThreatSearch(4096 /* THREAT_GANG_COLOMBIAN */);
-        $.criminal.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-        $.criminal.setThreatSearch(1024 /* THREAT_GANG_YAKUZA */);
-        $.criminal.setThreatSearch(65536 /* THREAT_EMERGENCY */);
-        $.criminal.setThreatSearch(131072 /* THREAT_PROSTITUTE */);
-        $.criminal.setThreatSearch(262144 /* THREAT_CRIMINAL */);
-        $.criminal.setThreatSearch(1048576 /* THREAT_GUN */);
-        $.criminal.setThreatSearch(2097152 /* THREAT_COP_CAR */);
-        $.criminal.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-        $.criminal.setThreatSearch(16777216 /* THREAT_FIREMAN */);
+        $.criminal.setThreatSearch(THREAT_PLAYER1);
+        $.criminal.setThreatSearch(THREAT_PLAYER2);
+        $.criminal.setThreatSearch(THREAT_PLAYER3);
+        $.criminal.setThreatSearch(THREAT_PLAYER4);
+        $.criminal.setThreatSearch(THREAT_CIVMALE);
+        $.criminal.setThreatSearch(THREAT_CIVFEMALE);
+        $.criminal.setThreatSearch(THREAT_COP);
+        $.criminal.setThreatSearch(THREAT_GANG_MAFIA);
+        $.criminal.setThreatSearch(THREAT_GANG_DIABLO);
+        $.criminal.setThreatSearch(THREAT_GANG_TRIAD);
+        $.criminal.setThreatSearch(THREAT_GANG_YARDIE);
+        $.criminal.setThreatSearch(THREAT_GANG_COLOMBIAN);
+        $.criminal.setThreatSearch(THREAT_GANG_HOOD);
+        $.criminal.setThreatSearch(THREAT_GANG_YAKUZA);
+        $.criminal.setThreatSearch(THREAT_EMERGENCY);
+        $.criminal.setThreatSearch(THREAT_PROSTITUTE);
+        $.criminal.setThreatSearch(THREAT_CRIMINAL);
+        $.criminal.setThreatSearch(THREAT_GUN);
+        $.criminal.setThreatSearch(THREAT_COP_CAR);
+        $.criminal.setThreatSearch(THREAT_FAST_CAR);
+        $.criminal.setThreatSearch(THREAT_FIREMAN);
 
         $.criminal.setHeedThreats(true);
 
@@ -516,7 +516,7 @@ async function body() {
                         if ($.player.locateAnyMeansChar2D($.criminal, 150.0, 150.0, false)) {
                             $.criminal.setObjStealAnyCar();
                         } else {
-                            if (Streaming.HasModelLoaded(95 /* CAR_SENTINEL */)) {
+                            if (Streaming.HasModelLoaded(CAR_SENTINEL)) {
                                 const _res183 = $.criminal.getCoordinates();
                                 $.criminal_coord_x = _res183.x;
                                 $.criminal_coord_y = _res183.y;
@@ -527,7 +527,7 @@ async function body() {
                                 $.criminal_coord_z = _res184.nodeZ;
                                 $.warp_heading_cop = _res184.angle;
                                 $.criminal_car.markAsNoLongerNeeded();
-                                $.criminal_car = Car.Create(95 /* CAR_SENTINEL */, $.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z);
+                                $.criminal_car = Car.Create(CAR_SENTINEL, $.criminal_coord_x, $.criminal_coord_y, $.criminal_coord_z);
                                 $.criminal_car.setHeading($.warp_heading_cop);
                                 $.criminal.setObjEnterCarAsDriver($.criminal_car);
                             } else {
@@ -640,7 +640,7 @@ async function body() {
         ++$.total_criminals_killed;
         $.total_criminals_killed = $.total_criminals_killed;
         Stat.RegisterCriminalCaught();
-        Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+        Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_PART_MISSION_COMPLETE);
         if ($.total_criminals_killed == 1) {
             Hud.DisplayCounterWithString($.$id.total_criminals_killed, 0, 'KILLS');
         }
@@ -726,10 +726,10 @@ async function body() {
         }
 
         while (
-            !$.player.isInModel(116 /* CAR_POLICE */) &&
-            !$.player.isInModel(117 /* CAR_ENFORCER */) &&
-            !$.player.isInModel(122 /* CAR_RHINO */) &&
-            !$.player.isInModel(107 /* CAR_FBI */)
+            !$.player.isInModel(CAR_POLICE) &&
+            !$.player.isInModel(CAR_ENFORCER) &&
+            !$.player.isInModel(CAR_RHINO) &&
+            !$.player.isInModel(CAR_FBI)
         ) {
             if ($.game_time_flag == 0) {
                 $.game_timer_start = Clock.GetGameTimer();
@@ -785,7 +785,7 @@ async function onFailed() {
     Hud.ClearCounter($.$id.total_criminals_killed);
     $.criminal_blip.remove();
     Text.ClearHelp();
-    Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_SENTINEL);
     Streaming.MarkModelAsNoLongerNeeded($.car_model);
 
     if ($.criminal_created_flag == 1) {
@@ -800,10 +800,10 @@ async function onFailed() {
 
 async function copcar_cancelled_checks() {
     if (
-        !$.player.isInModel(116 /* CAR_POLICE */) &&
-        !$.player.isInModel(117 /* CAR_ENFORCER */) &&
-        !$.player.isInModel(122 /* CAR_RHINO */) &&
-        !$.player.isInModel(107 /* CAR_FBI */)
+        !$.player.isInModel(CAR_POLICE) &&
+        !$.player.isInModel(CAR_ENFORCER) &&
+        !$.player.isInModel(CAR_RHINO) &&
+        !$.player.isInModel(CAR_FBI)
     ) {
         if ($.game_time_flag == 0) {
             $.game_timer_start = Clock.GetGameTimer();
@@ -830,17 +830,17 @@ async function copcar_cancelled_checks() {
     $.controlmode = Pad.GetControllerMode();
 
     if (
-        $.player.isInModel(116 /* CAR_POLICE */) ||
-        $.player.isInModel(117 /* CAR_ENFORCER */) ||
-        $.player.isInModel(122 /* CAR_RHINO */) ||
-        $.player.isInModel(107 /* CAR_FBI */)
+        $.player.isInModel(CAR_POLICE) ||
+        $.player.isInModel(CAR_ENFORCER) ||
+        $.player.isInModel(CAR_RHINO) ||
+        $.player.isInModel(CAR_FBI)
     ) {
         if (!($.controlmode == 3)) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+            if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                 $.mission_end_button = 1;
             }
         } else {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+            if (Pad.IsButtonPressed(PAD1, SQUARE)) {
                 $.mission_end_button = 1;
             }
         }
@@ -849,13 +849,13 @@ async function copcar_cancelled_checks() {
 
     if ($.mission_end_button == 1) {
         if (!($.controlmode == 3)) {
-            if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+            if (!Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                 Text.PrintNow('C_CANC', 3000, 1); //"Police mission cancelled!"
                 $.copcar_cancelled_flag = 1;
                 return;
             }
         } else {
-            if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+            if (!Pad.IsButtonPressed(PAD1, SQUARE)) {
                 Text.PrintNow('C_CANC', 3000, 1); //"Police mission cancelled!"
                 $.copcar_cancelled_flag = 1;
                 return;

@@ -75,7 +75,7 @@ async function body() {
     // ******************************************CUTSCENE***************************************
 
     World.SetPedDensityMultiplier(0.0);
-    Game.SetPoliceIgnorePlayer($.player, true /* on */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
     //WHILE NOT HAS_MODEL_LOADED cut_obj1
     //	WAIT 0
@@ -86,7 +86,7 @@ async function body() {
     Cutscene.SetOffset(121.0, -272.3, 15.25);
     World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
@@ -97,7 +97,7 @@ async function body() {
 
     //SET_PLAYER_HEADING player 180.0
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Cutscene.Start();
 
@@ -167,7 +167,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -177,16 +177,16 @@ async function body() {
         await asyncWait(0);
     }
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
     Text.ClearPrints();
     Cutscene.Clear();
     //SET_CAMERA_IN_FRONT_OF_PLAYER
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
     World.SetPedDensityMultiplier(1.0);
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
     //PRINT_BIG ( YD3 ) 15000 2
 
@@ -252,7 +252,7 @@ async function body() {
         await blippage(); // SCM GOSUB blippage
 
         if ($.player.isInAnyCar()) {
-            if ($.player.isInModel(137 /* CAR_DIABLOS */)) {
+            if ($.player.isInModel(CAR_DIABLOS)) {
                 if ($.flag_diablo_delivered_yd3 == 0) {
                     $.gangcar_yd3 = $.player.storeCarIsIn();
                     $.gangcar_yd3.setCanRespray(false);
@@ -267,7 +267,7 @@ async function body() {
                     $.flag_already_boosted_message = 1;
                 }
             }
-            if ($.player.isInModel(134 /* CAR_MAFIA */)) {
+            if ($.player.isInModel(CAR_MAFIA)) {
                 if ($.flag_mafia_delivered_yd3 == 0) {
                     $.gangcar_yd3 = $.player.storeCarIsIn();
                     $.gangcar_yd3.setCanRespray(false);
@@ -282,7 +282,7 @@ async function body() {
                     $.flag_already_boosted_message = 1;
                 }
             }
-            if ($.player.isInModel(136 /* CAR_YAKUZA */)) {
+            if ($.player.isInModel(CAR_YAKUZA)) {
                 if ($.flag_yakuzacar_delivered_yd3 == 0) {
                     $.gangcar_yd3 = $.player.storeCarIsIn();
                     $.gangcar_yd3.setCanRespray(false);
@@ -318,7 +318,7 @@ async function body() {
                 $.flag_player_in_diablocar = 0;
                 $.loop_2_passport = 0;
                 Text.PrintNow('YD3_H', 3000, 1); //Diablo gangcar boosted!
-                Sound.AddOneOffSound(260.0, -790.0, 28.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound(260.0, -790.0, 28.0, SOUND_PART_MISSION_COMPLETE);
             }
             if ($.flag_player_in_mafiacar == 1 && $.flag_mafia_delivered_yd3 == 0) {
                 $.flag_mafia_delivered_yd3 = 1;
@@ -326,7 +326,7 @@ async function body() {
                 $.flag_player_in_mafiacar = 0;
                 $.loop_2_passport = 0;
                 Text.PrintNow('YD3_I', 3000, 1); //Mafia gangcar boosted!
-                Sound.AddOneOffSound(260.0, -790.0, 28.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound(260.0, -790.0, 28.0, SOUND_PART_MISSION_COMPLETE);
             }
             if ($.flag_player_in_yakuzacar == 1 && $.flag_yakuzacar_delivered_yd3 == 0) {
                 ++$.counter_cars_yd3;
@@ -334,7 +334,7 @@ async function body() {
                 $.flag_player_in_yakuzacar = 0;
                 $.loop_2_passport = 0;
                 Text.PrintNow('YD3_J', 3000, 1); //Triad gangcar boosted!
-                Sound.AddOneOffSound(260.0, -790.0, 28.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound(260.0, -790.0, 28.0, SOUND_PART_MISSION_COMPLETE);
             }
         }
 
@@ -385,19 +385,19 @@ async function cleanup() {
 // ******************GOSUBS***********************************
 async function blippage() {
     if ($.flag_dam_message == 1) {
-        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
             $.blip_garage_yd3.remove();
-            $.blip_garage_yd3 = Blip.AddSpriteForCoord(925.3, -359.2, 11.0, 18 /* RADAR_SPRITE_SPRAY */);
+            $.blip_garage_yd3 = Blip.AddSpriteForCoord(925.3, -359.2, 11.0, RADAR_SPRITE_SPRAY);
             //flag_blip_spray = 1
         }
-        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
             $.blip_garage_yd3.remove();
-            $.blip_garage_yd3 = Blip.AddSpriteForCoord(380.4, -493.8, 26.2, 18 /* RADAR_SPRITE_SPRAY */);
+            $.blip_garage_yd3 = Blip.AddSpriteForCoord(380.4, -493.8, 26.2, RADAR_SPRITE_SPRAY);
             //flag_blip_spray = 1
         }
-        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
             $.blip_garage_yd3.remove();
-            $.blip_garage_yd3 = Blip.AddSpriteForCoord(-1142.1, 34.0, 59.0, 18 /* RADAR_SPRITE_SPRAY */);
+            $.blip_garage_yd3 = Blip.AddSpriteForCoord(-1142.1, 34.0, 59.0, RADAR_SPRITE_SPRAY);
             //flag_blip_spray = 1
         }
     } else {

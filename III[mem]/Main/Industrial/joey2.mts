@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/joey2.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
@@ -101,19 +102,19 @@ async function body() {
     Cutscene.Load('J2_KCL');
     Cutscene.SetOffset(1190.079, -869.861, 13.977);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_joey = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_joey = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_joey.setAnim('joey');
 
-    $.cs_joeyhead = CutsceneHead.Create($.cs_joey, 185 /* CUT_OBJ1 */);
+    $.cs_joeyhead = CutsceneHead.Create($.cs_joey, CUT_OBJ1);
     $.cs_joeyhead.setAnim('joey');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ2);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_troll = CutsceneObject.Create(187 /* CUT_OBJ3 */);
+    $.cs_troll = CutsceneObject.Create(CUT_OBJ3);
     $.cs_troll.setAnim('TROLL');
 
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 1192.23 -867.252 14.124 6.0 joey_door1 FALSE
@@ -124,12 +125,12 @@ async function body() {
 
     $.player.setHeading(230.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SWITCH_WORLD_PROCESSING OFF
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -204,7 +205,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -218,7 +219,7 @@ async function body() {
 
     //SWITCH_WORLD_PROCESSING ON
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 1192.23 -867.252 14.124 6.0 joey_door1 TRUE
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 1192.23 -867.252 14.124 6.0 joey_door2 TRUE
@@ -227,69 +228,69 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
     Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */);
     Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */);
 
     Streaming.LoadSpecialCharacter(2, 'chunky');
-    Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-    Streaming.RequestModel(94 /* CAR_PERENNIAL */);
+    Streaming.RequestModel(PED_GANG_TRIAD_A);
+    Streaming.RequestModel(CAR_PERENNIAL);
 
-    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(12 /* PED_GANG_TRIAD_A */) || !Streaming.HasModelLoaded(94 /* CAR_PERENNIAL */)) {
+    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(PED_GANG_TRIAD_A) || !Streaming.HasModelLoaded(CAR_PERENNIAL)) {
         await asyncWait(0);
     }
 
     //ADD_BLIP_FOR_COORD 1080.0 -397.0 -100.0 blip2_jm2
 
-    $.gun_chunky = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 3 /* PICKUP_ONCE */, 45, 1080.5, -396.0, -100.0);
-    $.blip2_jm2 = Blip.AddSpriteForPickup($.gun_chunky, 20 /* RADAR_SPRITE_WEAPON */);
+    $.gun_chunky = Pickup.CreateWithAmmo(WEAPON_COLT45, PICKUP_ONCE, 45, 1080.5, -396.0, -100.0);
+    $.blip2_jm2 = Blip.AddSpriteForPickup($.gun_chunky, RADAR_SPRITE_WEAPON);
 
     $.noodle_stand = ScriptObject.Create(1406 /* noodlesbox */, 975.0, -720.0, 14.0);
 
     // START OF MISSION
 
-    $.chunkys_car = Car.Create(94 /* CAR_PERENNIAL */, 1007.1, -756.4, 14.5);
+    $.chunkys_car = Car.Create(CAR_PERENNIAL, 1007.1, -756.4, 14.5);
     $.chunkys_car.setHeading(120.0);
     //LOCK_CAR_DOORS chunkys_car CARLOCK_LOCKOUT_PLAYER_ONLY
 
-    $.chunkys_car2 = Car.Create(94 /* CAR_PERENNIAL */, 912.3, -686.1, 14.5);
+    $.chunkys_car2 = Car.Create(CAR_PERENNIAL, 912.3, -686.1, 14.5);
     $.chunkys_car2.setHeading(90.0);
     //LOCK_CAR_DOORS chunkys_car2 CARLOCK_LOCKOUT_PLAYER_ONLY
 
-    $.chunky_mate1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 976.1, -715.3, 14.2);
+    $.chunky_mate1 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 976.1, -715.3, 14.2);
     $.chunky_mate1.setHeading(346.0);
-    $.chunky_mate1.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 0);
+    $.chunky_mate1.giveWeapon(WEAPONTYPE_BASEBALLBAT, 0);
     $.chunky_mate1.setObjGuardSpot(976.1, -715.3, 14.2);
-    $.chunky_mate1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.chunky_mate1.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.chunky_mate2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 975.7, -724.7, 14.2);
+    $.chunky_mate2 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 975.7, -724.7, 14.2);
     $.chunky_mate2.setHeading(222.0);
-    $.chunky_mate2.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 0);
+    $.chunky_mate2.giveWeapon(WEAPONTYPE_BASEBALLBAT, 0);
     $.chunky_mate2.setObjGuardSpot(975.7, -724.7, 14.2);
-    $.chunky_mate2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.chunky_mate2.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.chunky_mate3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 984.0, -727.7, 14.2);
+    $.chunky_mate3 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 984.0, -727.7, 14.2);
     $.chunky_mate3.setHeading(243.0);
-    $.chunky_mate3.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+    $.chunky_mate3.giveWeapon(WEAPONTYPE_PISTOL, 100);
     $.chunky_mate3.setObjGuardSpot(984.0, -727.7, 14.2);
-    $.chunky_mate3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.chunky_mate3.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.chunky = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 975.3, -720.4, 14.2);
+    $.chunky = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 975.3, -720.4, 14.2);
     $.chunky.setHeading(270.0);
     $.blip1_jm2 = Blip.AddForChar($.chunky);
     $.chunky.setObjWaitOnFoot();
-    $.chunky.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
+    $.chunky.setPersonality(PEDSTAT_GEEK_GUY);
     $.chunky.setRunning(true);
     //SET_CHAR_HEALTH chunky 100
 
     $.chunky.addArmor(100);
-    $.blip1_jm2.changeDisplay(2 /* BLIP_ONLY */);
-    $.chunky.setAnimGroup(18 /* ANIM_PANIC_CHUNKYPED */);
+    $.blip1_jm2.changeDisplay(BLIP_ONLY);
+    $.chunky.setAnimGroup(ANIM_PANIC_CHUNKYPED);
 
     setup_block: {
         while (!$.player.locateAnyMeansChar3D($.chunky, 25.0, 26.0, 4.0, false)) {
@@ -330,15 +331,15 @@ async function body() {
             }
         }
 
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-        $.player.setControl(false /* OFF */);
-        Hud.SwitchWidescreen(true /* ON */);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        $.player.setControl(OFF);
+        Hud.SwitchWidescreen(ON);
         World.SetPedDensityMultiplier(0.0);
 
         //SET_FIXED_CAMERA_POSITION 977.756 -719.673 16.206 0.0 0.0 0.0
 
         Camera.SetFixedPosition(984.819, -704.631, 21.468, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(984.279, -705.429, 21.202, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(984.279, -705.429, 21.202, JUMP_CUT);
 
         //IF NOT IS_CHAR_DEAD	chunky
         //	POINT_CAMERA_AT_CHAR chunky FIXED JUMP_CUT
@@ -347,7 +348,7 @@ async function body() {
         await asyncWait(3000);
 
         Camera.SetFixedPosition(978.135, -718.497, 15.642, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(977.293, -719.016, 15.794, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(977.293, -719.016, 15.794, JUMP_CUT);
 
         //SET_FIXED_CAMERA_POSITION 984.1 -714.9 17.4 0.0 0.0 0.0
         //IF NOT IS_CHAR_DEAD	chunky
@@ -357,9 +358,9 @@ async function body() {
         await asyncWait(3000);
 
         World.SetPedDensityMultiplier(1.0);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        $.player.setControl(true /* ON */);
-        Hud.SwitchWidescreen(false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        $.player.setControl(ON);
+        Hud.SwitchWidescreen(OFF);
         Camera.RestoreJumpcut();
         //REMOVE_BLIP blip3_jm2
 
@@ -409,24 +410,24 @@ async function body() {
     kill_and_run: while (true) {
         //REMOVE_BLIP blip3_jm2
 
-        $.blip1_jm2.changeDisplay(3 /* BOTH */);
+        $.blip1_jm2.changeDisplay(BOTH);
 
         if (!Char.IsDead($.chunky_mate1)) {
             $.chunky_mate1.setObjKillPlayerOnFoot($.player);
             $.chunky_mate1.setOnlyDamagedByPlayer(false);
-            $.chunky_mate1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.chunky_mate1.setThreatSearch(THREAT_PLAYER1);
         }
 
         if (!Char.IsDead($.chunky_mate2)) {
             $.chunky_mate2.setObjKillPlayerOnFoot($.player);
             $.chunky_mate2.setOnlyDamagedByPlayer(false);
-            $.chunky_mate2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.chunky_mate2.setThreatSearch(THREAT_PLAYER1);
         }
 
         if (!Char.IsDead($.chunky_mate3)) {
             $.chunky_mate3.setObjKillPlayerOnFoot($.player);
             $.chunky_mate3.setOnlyDamagedByPlayer(false);
-            $.chunky_mate3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.chunky_mate3.setThreatSearch(THREAT_PLAYER1);
         }
 
         if (!Char.IsDead($.chunky)) {
@@ -783,8 +784,8 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_joey_mission = 0;
     $.special_ammu_audio = 0;
-    Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-    Streaming.MarkModelAsNoLongerNeeded(94 /* CAR_PERENNIAL */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_PERENNIAL);
     Streaming.UnloadSpecialCharacter(2);
     $.blip1_jm2.remove();
     $.blip2_jm2.remove();
@@ -967,7 +968,7 @@ async function Ammu_bloke_audio() {
     if ($.has_audio_been_activated == 0) {
         if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false)) {
             $.special_ammu_audio = 1;
-            Audio.LoadMissionAudio('ammu_b' as any); //AMMU_B
+            Audio.LoadMissionAudio(SfxMission.Ammu_b); //AMMU_B
             if ($.camera_ammu1 == 1) {
                 if (!Char.IsDead($.ammu_shop_bloke1)) {
                     clear_audio: {
@@ -985,7 +986,7 @@ async function Ammu_bloke_audio() {
                                 break clear_audio; // SCM GOTO → clear_audio
                             }
                         }
-                        Audio.LoadMissionAudio('ammu_c' as any); //AMMU_C
+                        Audio.LoadMissionAudio(SfxMission.Ammu_c); //AMMU_C
                         while (!Audio.HasMissionAudioLoaded()) {
                             await asyncWait(0);
                             if (Char.IsDead($.ammu_shop_bloke1) || $.player.isShooting()) {
@@ -1020,7 +1021,7 @@ async function pickup_and_audio() {
     if (!Char.IsDead($.chunky)) {
         if (TIMERB > 2500) {
             TIMERB = 0;
-            $.chunky.setSay(95 /* SOUND_CHUNKY_RUN_SHOUT */);
+            $.chunky.setSay(SOUND_CHUNKY_RUN_SHOUT);
         }
     }
 }

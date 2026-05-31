@@ -43,11 +43,11 @@ async function body() {
     is_he_dead_yet: {
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
         Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
-        Streaming.RequestModel(7 /* PED_MALE1 */);
-        Streaming.RequestModel(143 /* BOAT_REEFER */);
-        Streaming.RequestModel(142 /* BOAT_SPEEDER */);
-        Streaming.RequestModel(120 /* BOAT_PREDATOR */);
-        Streaming.RequestModel(129 /* CAR_STALLION */);
+        Streaming.RequestModel(PED_MALE1);
+        Streaming.RequestModel(BOAT_REEFER);
+        Streaming.RequestModel(BOAT_SPEEDER);
+        Streaming.RequestModel(BOAT_PREDATOR);
+        Streaming.RequestModel(CAR_STALLION);
         Streaming.RequestModel(2216 /* condo_ivy */);
         Streaming.RequestModel(2215 /* kmricndo01 */);
 
@@ -65,10 +65,10 @@ async function body() {
         Cutscene.Load('A2_PP');
         Cutscene.SetOffset(523.102, -636.96, 15.616);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
         $.cs_player.setAnim('player');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
         $.cs_playerhead.setAnim('player');
 
         $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
@@ -79,10 +79,10 @@ async function body() {
 
         $.player.setHeading(180.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
+        World.SwitchRubbish(OFF);
+        Streaming.Switch(ON);
         Cutscene.Start();
 
         // Displays cutscene text
@@ -115,7 +115,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -127,68 +127,68 @@ async function body() {
             await asyncWait(0);
         }
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
         Cutscene.Clear();
         Camera.SetInFrontOfPlayer();
 
         await asyncWait(1000);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
         Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */);
         Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */);
 
         while (
-            !Streaming.HasModelLoaded(7 /* PED_MALE1 */) ||
-            !Streaming.HasModelLoaded(142 /* BOAT_SPEEDER */) ||
-            !Streaming.HasModelLoaded(129 /* CAR_STALLION */) ||
-            !Streaming.HasModelLoaded(120 /* BOAT_PREDATOR */) ||
-            !Streaming.HasModelLoaded(143 /* BOAT_REEFER */)
+            !Streaming.HasModelLoaded(PED_MALE1) ||
+            !Streaming.HasModelLoaded(BOAT_SPEEDER) ||
+            !Streaming.HasModelLoaded(CAR_STALLION) ||
+            !Streaming.HasModelLoaded(BOAT_PREDATOR) ||
+            !Streaming.HasModelLoaded(BOAT_REEFER)
         ) {
             await asyncWait(0);
         }
 
         World.ClearArea(640.0, -608.0, 0.0, 6.0, true);
-        $.spy_boat = Boat.Create(142 /* BOAT_SPEEDER */, 612.0, -597.0, 0.0);
+        $.spy_boat = Boat.Create(BOAT_SPEEDER, 612.0, -597.0, 0.0);
         $.spy_boat.setHeading(0.0);
         $.spy_boat.setOnlyDamagedByPlayer(true);
         $.spy_boat.setHealth(1500);
         $.spy_boat.setStrong(true);
 
-        $.spy_bloke = Char.CreateInsideCar($.spy_boat, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
+        $.spy_bloke = Char.CreateInsideCar($.spy_boat, PEDTYPE_CIVMALE, PED_MALE1);
 
         World.ClearArea(568.0, -686.0, 0.0, 6.0, true);
-        $.asuka_boat = Car.Create(143 /* BOAT_REEFER */, 568.0, -686.0, 0.0);
+        $.asuka_boat = Car.Create(BOAT_REEFER, 568.0, -686.0, 0.0);
         $.asuka_boat.setHeading(180.0);
 
         World.ClearArea(554.8, -767.6, 0.0, 6.0, true);
-        $.cop_boat = Car.Create(120 /* BOAT_PREDATOR */, 554.8, -767.6, 0.0);
+        $.cop_boat = Car.Create(BOAT_PREDATOR, 554.8, -767.6, 0.0);
         $.blip1_as3 = Blip.AddForCar($.cop_boat);
 
         // START MISSION
 
         if (!Char.IsDead($.spy_bloke)) {
             $.blip2_as3 = Blip.AddForChar($.spy_bloke);
-            $.blip2_as3.changeDisplay(1 /* MARKER_ONLY */);
+            $.blip2_as3.changeDisplay(MARKER_ONLY);
         }
 
         await asyncWait(1500);
 
-        $.player.setControl(false /* OFF */);
-        Hud.SwitchWidescreen(true /* ON */);
+        $.player.setControl(OFF);
+        Hud.SwitchWidescreen(ON);
 
         Camera.SetFixedPosition(526.0, -643.3, 19.6, 0.0, 0.0, 0.0);
 
         if (!Car.IsDead($.spy_boat)) {
-            Camera.PointAtCar($.spy_boat, 15 /* FIXED */, 2 /* JUMP_CUT */);
+            Camera.PointAtCar($.spy_boat, FIXED, JUMP_CUT);
         }
 
         await asyncWait(3000);
 
-        $.player.setControl(true /* ON */);
-        Hud.SwitchWidescreen(false /* OFF */);
+        $.player.setControl(ON);
+        Hud.SwitchWidescreen(OFF);
         Camera.Restore();
 
         if (!Car.IsDead($.spy_boat)) {
@@ -786,7 +786,7 @@ async function body() {
             Hud.ClearCounter($.$id.boat_health);
         }
 
-        $.spy_car = Car.Create(129 /* CAR_STALLION */, 499.7, -734.4, -100.0);
+        $.spy_car = Car.Create(CAR_STALLION, 499.7, -734.4, -100.0);
         $.spy_car.setHeading(90.0);
 
         $.spy_bloke.setRunning(true);
@@ -838,7 +838,7 @@ async function body() {
 
         if (!Car.IsDead($.spy_car)) {
             $.spy_car.gotoCoordinatesAccurate(463.0, -727.4, 16.1);
-            $.spy_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
+            $.spy_car.setMission(MISSION_GOTOCOORDS_STRAIGHT_ACCURATE);
             $.spy_car.setDrivingStyle(1);
             $.spy_car.setCruiseSpeed(15.0);
         }
@@ -869,7 +869,7 @@ async function body() {
 
         if (!Car.IsDead($.spy_car)) {
             $.spy_car.gotoCoordinatesAccurate(456.0, -707.1, 16.0);
-            $.spy_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
+            $.spy_car.setMission(MISSION_GOTOCOORDS_STRAIGHT_ACCURATE);
         }
 
         while (!$.spy_car.locate3D(456.0, -707.1, 16.0, 3.0, 3.0, 3.0, false)) {
@@ -899,7 +899,7 @@ async function body() {
 
         if (!Car.IsDead($.spy_car)) {
             $.spy_car.gotoCoordinatesAccurate(459.0, -678.1, 16.0);
-            $.spy_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
+            $.spy_car.setMission(MISSION_GOTOCOORDS_STRAIGHT_ACCURATE);
         }
 
         while (!$.spy_car.locate3D(459.0, -678.1, 16.0, 3.0, 3.0, 3.0, false)) {
@@ -999,11 +999,11 @@ async function cleanup() {
     $.flag_player_on_asuka_mission = 0;
     $.blip1_as3.remove();
     $.blip2_as3.remove();
-    Streaming.MarkModelAsNoLongerNeeded(7 /* PED_MALE1 */);
-    Streaming.MarkModelAsNoLongerNeeded(142 /* BOAT_SPEEDER */);
-    Streaming.MarkModelAsNoLongerNeeded(143 /* BOAT_REEFER */);
-    Streaming.MarkModelAsNoLongerNeeded(120 /* BOAT_PREDATOR */);
-    Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_MALE1);
+    Streaming.MarkModelAsNoLongerNeeded(BOAT_SPEEDER);
+    Streaming.MarkModelAsNoLongerNeeded(BOAT_REEFER);
+    Streaming.MarkModelAsNoLongerNeeded(BOAT_PREDATOR);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_STALLION);
     Hud.ClearCounter($.$id.boat_health);
     Mission.Finish();
 }

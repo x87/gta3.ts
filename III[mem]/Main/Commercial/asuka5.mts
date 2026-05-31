@@ -1,4 +1,5 @@
 // Generated from Main/Commercial/asuka5.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
@@ -66,13 +67,13 @@ async function body() {
         Cutscene.Load('A5_K2FT');
         Cutscene.SetOffset(523.102, -636.96, 15.616);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
         $.cs_player.setAnim('player');
 
         $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
         $.cs_note.setAnim('NOTE');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
         $.cs_playerhead.setAnim('player');
 
         World.ClearArea(523.6, -639.4, 16.6, 1.0, true);
@@ -80,10 +81,10 @@ async function body() {
 
         $.player.setHeading(180.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
+        World.SwitchRubbish(OFF);
+        Streaming.Switch(ON);
         Cutscene.Start();
 
         // Displays cutscene text
@@ -130,7 +131,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -142,27 +143,27 @@ async function body() {
             await asyncWait(0);
         }
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
         Cutscene.Clear();
         Camera.SetInFrontOfPlayer();
 
         await asyncWait(500);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
         Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */);
         Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */);
 
-        Streaming.RequestModel(109 /* CAR_ESPERANTO */);
+        Streaming.RequestModel(CAR_ESPERANTO);
         Streaming.LoadSpecialCharacter(1, 'tanner');
 
-        while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(109 /* CAR_ESPERANTO */)) {
+        while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(CAR_ESPERANTO)) {
             await asyncWait(0);
         }
 
-        Audio.LoadMissionAudio('a5_a' as any);
+        Audio.LoadMissionAudio(SfxMission.A5_a);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -170,15 +171,15 @@ async function body() {
 
         //START MISSION
 
-        $.tanner_car = Car.Create(109 /* CAR_ESPERANTO */, 420.9, -1396.5, 26.0); //TEST INDUSTRIAL!!!!!!!!!
+        $.tanner_car = Car.Create(CAR_ESPERANTO, 420.9, -1396.5, 26.0); //TEST INDUSTRIAL!!!!!!!!!
         $.tanner_car.setHeading(90.0);
         $.tanner_car.setOnlyDamagedByPlayer(true);
-        $.tanner_car.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.tanner_car.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
         $.tanner_car.setStaysInCurrentLevel(true);
         $.tanner_car.setAvoidLevelTransitions(true);
 
         $.blip1_as5 = Blip.AddForCoord(414.0, -1378.0, -100.0);
-        $.blip1_as5.changeDisplay(2 /* BLIP_ONLY */);
+        $.blip1_as5.changeDisplay(BLIP_ONLY);
 
         while (!$.player.isStoppedInArea3D(411.8, -1375.3, 25.6, 417.0, -1381.9, 28.6, true)) {
             await asyncWait(0);
@@ -195,16 +196,16 @@ async function body() {
 
         $.blip2_as5 = Blip.AddForCar($.tanner_car);
 
-        $.player.setControl(false /* Off */);
+        $.player.setControl(OFF);
         World.ClearArea(427.9, -1392.7, 21.1, 20.0, true);
-        Game.SetPoliceIgnorePlayer($.player, true /* On */);
-        Hud.SwitchWidescreen(true /* ON */);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        Hud.SwitchWidescreen(ON);
 
-        $.tanner = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 436.5, -1399.8, 33.7); //TEST INDUSTRIAL!!!!!!!!
+        $.tanner = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL1, 436.5, -1399.8, 33.7); //TEST INDUSTRIAL!!!!!!!!
         $.tanner.setRunning(true);
 
         Camera.SetFixedPosition(437.4, -1387.4, 30.9, 0.0, 0.0, 0.0); //TEST INDUSTRIAL!!!!!!!!
-        Camera.PointAtChar($.tanner, 15 /* FIXED */, 2 /* JUMP_CUT */);
+        Camera.PointAtChar($.tanner, FIXED, JUMP_CUT);
 
         TIMERB = 0;
         $.tanner.setObjRunToCoord(435.7, -1388.8);
@@ -261,7 +262,7 @@ async function body() {
         }
 
         Camera.SetFixedPosition(436.0, -1390.8, 31.0, 0.0, 0.0, 0.0); //TEST INDUSTRIAL!!!!!!!!
-        Camera.PointAtChar($.tanner, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtChar($.tanner, FIXED, INTERPOLATION);
 
         $.tanner.setObjEnterCarAsDriver($.tanner_car);
 
@@ -280,23 +281,23 @@ async function body() {
         }
 
         World.ClearArea(427.9, -1392.7, 21.1, 20.0, true);
-        Camera.PointAtCar($.tanner_car, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtCar($.tanner_car, FIXED, INTERPOLATION);
 
         Hud.DisplayCounterWithString($.$id.test_tanner_health_counter, 1, 'DAM');
 
         await tanner_health(); // SCM GOSUB tanner_health
 
         $.tanner_car.gotoCoordinatesAccurate(319.9, -1388.6, -100.0);
-        $.tanner_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
+        $.tanner_car.setMission(MISSION_GOTOCOORDS_STRAIGHT_ACCURATE);
         $.tanner_car.setCruiseSpeed(20.0);
         $.tanner_car.setDrivingStyle(2);
 
         await asyncWait(1000);
 
         Camera.RestoreJumpcut();
-        $.player.setControl(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Hud.SwitchWidescreen(false /* OFF */);
+        $.player.setControl(ON);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        Hud.SwitchWidescreen(OFF);
 
         if (!Car.IsDead($.tanner_car)) {
             while ($.tanner_car.isHealthGreater(999)) {
@@ -311,7 +312,7 @@ async function body() {
                 if (!$.tanner_car.locate2D(319.9, -1388.6, 8.0, 8.0, false)) {
                     if ($.got_to_coord_once == 0) {
                         $.tanner_car.gotoCoordinatesAccurate(319.9, -1388.6, -100.0);
-                        $.tanner_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
+                        $.tanner_car.setMission(MISSION_GOTOCOORDS_STRAIGHT_ACCURATE);
                     }
                 } else {
                     $.tanner_car.wanderRandomly();
@@ -354,7 +355,7 @@ async function body() {
             if (!$.tanner_car.locate2D(319.9, -1388.6, 6.0, 6.0, false)) {
                 if ($.got_to_coord_once == 0) {
                     $.tanner_car.gotoCoordinatesAccurate(319.9, -1388.6, -100.0);
-                    $.tanner_car.setMission(13 /* MISSION_GOTOCOORDS_STRAIGHT_ACCURATE */);
+                    $.tanner_car.setMission(MISSION_GOTOCOORDS_STRAIGHT_ACCURATE);
                 }
             } else {
                 $.tanner_car.wanderRandomly();
@@ -377,11 +378,11 @@ async function body() {
 
     Hud.ClearCounter($.$id.test_tanner_health_counter);
     $.blip2_as5.remove();
-    $.tanner_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+    $.tanner_car.lockDoors(CARLOCK_UNLOCKED);
     $.tanner.setObjLeaveCar($.tanner_car);
     $.blip3_as5 = Blip.AddForChar($.tanner);
     $.tanner_car.setCruiseSpeed(0.0);
-    $.tanner_car.setMission(11 /* MISSION_STOP_FOREVER */);
+    $.tanner_car.setMission(MISSION_STOP_FOREVER);
 
     while ($.tanner.isInCar($.tanner_car)) {
         await asyncWait(0);
@@ -406,7 +407,7 @@ async function body() {
     }
 
     $.tanner.setObjFleePlayerOnFootAlways($.player);
-    $.tanner.setAnimGroup(18 /* ANIM_PANIC_CHUNKYPED */);
+    $.tanner.setAnimGroup(ANIM_PANIC_CHUNKYPED);
 
     while (!Char.IsDead($.tanner)) {
         await asyncWait(0);
@@ -438,7 +439,7 @@ async function onPassed() {
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
-    Streaming.MarkModelAsNoLongerNeeded(109 /* CAR_ESPERANTO */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_ESPERANTO);
     Streaming.UnloadSpecialCharacter(1);
     if (!Char.IsDead($.tanner)) {
         $.tanner.removeElegantly();

@@ -40,7 +40,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
         $.usj_number = 0;
         $.total_completed_usj = 0;
 
-        // SET_DEATHARREST_STATE(false /* OFF */);
+        // SET_DEATHARREST_STATE(OFF);
         Stat.SetUniqueJumpsTotal(20);
         verbose('[*] USJ variables initialized');
     });
@@ -74,7 +74,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
             continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
-        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
             if ($.player.isInZone('ROADBR1')) {
                 if ($.player.locateInCar2D(940.4, -933.7, 4.0, 4.0, false)) {
                     $.usj_number = 1;
@@ -153,7 +153,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
             continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
-        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
             if ($.player.isInZone('COM_EAS')) {
                 if ($.player.locateInCar3D(470.728, -918.38, 19.828, 6.0, 3.0, 3.0, false)) {
                     $.usj_number = 4;
@@ -193,7 +193,7 @@ verbose('[*] Unique Stunt Jumps script loaded');
             continue mission_start_usj; // SCM GOTO → mission_start_usj
         }
 
-        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
             if ($.player.isInZone('SUB_IND')) {
                 if ($.player.locateInCar3D(-1182.442, 22.213, 74.03, 3.0, 4.0, 3.0, false)) {
                     $.usj_number = 8;
@@ -280,7 +280,7 @@ async function the_jump() {
 
     Clock.SetTimeScale(0.3);
     Camera.SetFixedPosition($.camera_x, $.camera_y, $.camera_z, 0.0, 0.0, 0.0);
-    Camera.PointAtCar($.players_car_usj, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    Camera.PointAtCar($.players_car_usj, FIXED, JUMP_CUT);
 
     while ($.players_car_usj.isInAirProper() || $.collision_counter_usj < 10) {
         ++$.collision_counter_usj;
@@ -669,7 +669,7 @@ async function reward_usj() {
         $.player.addScore(1000000);
     }
 
-    Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+    Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_PART_MISSION_COMPLETE);
 
     Stat.RegisterUniqueJumpFound();
     $.cash_reward_usj += 5000;

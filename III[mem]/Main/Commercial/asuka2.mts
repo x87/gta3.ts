@@ -79,22 +79,22 @@ async function body() {
     Cutscene.Load('A3_SS');
     Cutscene.SetOffset(523.102, -636.96, 15.616);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_asuka = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_asuka = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_asuka.setAnim('asuka');
 
-    $.cs_kenji = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_kenji = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_kenji.setAnim('kenji');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 186 /* CUT_OBJ2 */);
+    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ2);
     $.cs_asukahead.setAnim('asuka');
 
-    $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, 187 /* CUT_OBJ3 */);
+    $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, CUT_OBJ3);
     $.cs_kenjihead.setAnim('kenji');
 
     World.ClearArea(523.6, -639.4, 16.6, 1.0, true);
@@ -102,10 +102,10 @@ async function body() {
 
     $.player.setHeading(180.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -187,7 +187,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -199,27 +199,27 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
     Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */);
     Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */);
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
 
-    Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
-    Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
-    Streaming.RequestModel(130 /* CAR_RUMPO */);
+    Streaming.RequestModel(PED_GANG_MAFIA_A);
+    Streaming.RequestModel(PED_GANG_MAFIA_B);
+    Streaming.RequestModel(CAR_RUMPO);
 
-    while (!Streaming.HasModelLoaded(10 /* PED_GANG_MAFIA_A */) || !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */) || !Streaming.HasModelLoaded(130 /* CAR_RUMPO */)) {
+    while (!Streaming.HasModelLoaded(PED_GANG_MAFIA_A) || !Streaming.HasModelLoaded(PED_GANG_MAFIA_B) || !Streaming.HasModelLoaded(CAR_RUMPO)) {
         await asyncWait(0);
     }
 
@@ -243,98 +243,98 @@ async function body() {
     Hud.DisplayTimer($.$id.countdown_as2);
     //FEDS ON TOWER BLOCK*****************************************************************************
 
-    $.FBI1 = Char.Create(4 /* PEDTYPE_CIVMALE */, 10 /* PED_GANG_MAFIA_A */, 383.0, -1447.9, 51.4); //Floor4
+    $.FBI1 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_MAFIA_A, 383.0, -1447.9, 51.4); //Floor4
     $.FBI1.setHeading(304.0);
-    $.FBI1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI1.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
+    $.FBI1.setThreatSearch(THREAT_PLAYER1);
+    $.FBI1.giveWeapon(WEAPONTYPE_M16, 600);
     $.FBI1.setStayInSamePlace(true);
-    $.FBI1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.FBI1.setPersonality(PEDSTAT_TOUGH_GUY);
     $.blip1_FBI1 = Blip.AddForChar($.FBI1);
     //ADD_ARMOUR_TO_CHAR FBI1 99
 
-    $.FBI2 = Char.Create(4 /* PEDTYPE_CIVMALE */, 11 /* PED_GANG_MAFIA_B */, 381.2, -1438.2, 63.4); //floor6
+    $.FBI2 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_MAFIA_B, 381.2, -1438.2, 63.4); //floor6
     $.FBI2.setHeading(304.0);
-    $.FBI2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI2.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
+    $.FBI2.setThreatSearch(THREAT_PLAYER1);
+    $.FBI2.giveWeapon(WEAPONTYPE_M16, 600);
     $.FBI2.setStayInSamePlace(true);
-    $.FBI2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.FBI2.setPersonality(PEDSTAT_TOUGH_GUY);
     $.blip2_FBI2 = Blip.AddForChar($.FBI2);
     //ADD_ARMOUR_TO_CHAR FBI2 99
 
-    $.FBI3 = Char.Create(4 /* PEDTYPE_CIVMALE */, 10 /* PED_GANG_MAFIA_A */, 383.5, -1452.3, 69.4); //floor7
+    $.FBI3 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_MAFIA_A, 383.5, -1452.3, 69.4); //floor7
     $.FBI3.setHeading(304.0);
-    $.FBI3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI3.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
+    $.FBI3.setThreatSearch(THREAT_PLAYER1);
+    $.FBI3.giveWeapon(WEAPONTYPE_M16, 600);
     $.FBI3.setStayInSamePlace(true);
-    $.FBI3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.FBI3.setPersonality(PEDSTAT_TOUGH_GUY);
     $.blip3_FBI3 = Blip.AddForChar($.FBI3);
     //ADD_ARMOUR_TO_CHAR FBI3 99
 
-    $.FBI8 = Char.Create(4 /* PEDTYPE_CIVMALE */, 11 /* PED_GANG_MAFIA_B */, 381.6, -1451.7, 57.5); //floor5
+    $.FBI8 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_MAFIA_B, 381.6, -1451.7, 57.5); //floor5
     $.FBI8.setHeading(304.0);
-    $.FBI8.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI8.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
+    $.FBI8.setThreatSearch(THREAT_PLAYER1);
+    $.FBI8.giveWeapon(WEAPONTYPE_M16, 600);
     $.FBI8.setStayInSamePlace(true);
-    $.FBI8.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.FBI8.setPersonality(PEDSTAT_TOUGH_GUY);
     $.blip8_FBI8 = Blip.AddForChar($.FBI8);
     //ADD_ARMOUR_TO_CHAR FBI8 99
 
-    $.FBI9 = Char.Create(4 /* PEDTYPE_CIVMALE */, 10 /* PED_GANG_MAFIA_A */, 381.4, -1443.5, 75.5); //floor8
+    $.FBI9 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_MAFIA_A, 381.4, -1443.5, 75.5); //floor8
     $.FBI9.setHeading(304.0);
-    $.FBI9.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI9.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
+    $.FBI9.setThreatSearch(THREAT_PLAYER1);
+    $.FBI9.giveWeapon(WEAPONTYPE_M16, 600);
     $.FBI9.setStayInSamePlace(true);
-    $.FBI9.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.FBI9.setPersonality(PEDSTAT_TOUGH_GUY);
     $.blip9_FBI9 = Blip.AddForChar($.FBI9);
     //ADD_ARMOUR_TO_CHAR FBI9 99
 
-    $.FBI10 = Char.Create(4 /* PEDTYPE_CIVMALE */, 11 /* PED_GANG_MAFIA_B */, 379.0, -1449.6, 81.4); //floor9 (Top)
+    $.FBI10 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_MAFIA_B, 379.0, -1449.6, 81.4); //floor9 (Top)
     $.FBI10.setHeading(304.0);
-    $.FBI10.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI10.giveWeapon(6 /* WEAPONTYPE_M16 */, 600);
+    $.FBI10.setThreatSearch(THREAT_PLAYER1);
+    $.FBI10.giveWeapon(WEAPONTYPE_M16, 600);
     $.FBI10.setStayInSamePlace(true);
-    $.FBI10.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.FBI10.setPersonality(PEDSTAT_TOUGH_GUY);
     $.blip10_FBI10 = Blip.AddForChar($.FBI10);
     //ADD_ARMOUR_TO_CHAR FBI10 99
 
     //FEDS AT PARK**********************************************************************************
 
-    $.FBI4 = Char.Create(4 /* PEDTYPE_CIVMALE */, 10 /* PED_GANG_MAFIA_A */, 48.4, -642.8, 29.0); //Park
+    $.FBI4 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_MAFIA_A, 48.4, -642.8, 29.0); //Park
     $.FBI4.setHeading(169.0);
-    $.FBI4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI4.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
+    $.FBI4.setThreatSearch(THREAT_PLAYER1);
+    $.FBI4.giveWeapon(WEAPONTYPE_CHAINGUN, 100);
     $.FBI4.setStayInSamePlace(true);
-    $.FBI4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.FBI4.setPersonality(PEDSTAT_TOUGH_GUY);
     $.blip4_FBI4 = Blip.AddForChar($.FBI4);
     //ADD_ARMOUR_TO_CHAR FBI4 99
 
-    $.FBI7 = Char.Create(4 /* PEDTYPE_CIVMALE */, 11 /* PED_GANG_MAFIA_B */, 42.2, -641.3, 27.8); //Park
+    $.FBI7 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_MAFIA_B, 42.2, -641.3, 27.8); //Park
     $.FBI7.setHeading(208.0);
-    $.FBI7.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI7.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
+    $.FBI7.setThreatSearch(THREAT_PLAYER1);
+    $.FBI7.giveWeapon(WEAPONTYPE_CHAINGUN, 100);
     $.FBI7.setStayInSamePlace(true);
-    $.FBI7.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.FBI7.setPersonality(PEDSTAT_TOUGH_GUY);
     $.blip7_FBI7 = Blip.AddForChar($.FBI7);
     //ADD_ARMOUR_TO_CHAR FBI7 99
 
     //FEDS IN VAN**********************************************************************************
 
-    $.FBI_VAN1 = Car.Create(130 /* CAR_RUMPO */, 61.3, -1389.4, 26.3);
-    $.FBI_VAN1.changeColor(0 /* CARCOLOUR_BLACK */, 0 /* CARCOLOUR_BLACK */);
+    $.FBI_VAN1 = Car.Create(CAR_RUMPO, 61.3, -1389.4, 26.3);
+    $.FBI_VAN1.changeColor(CARCOLOUR_BLACK, CARCOLOUR_BLACK);
     $.FBI_VAN1.setOnlyDamagedByPlayer(true);
-    $.FBI_VAN1.lockDoors(2 /* CARLOCK_LOCKED */);
+    $.FBI_VAN1.lockDoors(CARLOCK_LOCKED);
     $.FBI_VAN1.setHeading(151.0);
-    $.FBI5 = Char.CreateInsideCar($.FBI_VAN1, 4 /* PEDTYPE_CIVMALE */, 10 /* PED_GANG_MAFIA_A */);
+    $.FBI5 = Char.CreateInsideCar($.FBI_VAN1, PEDTYPE_CIVMALE, PED_GANG_MAFIA_A);
     $.blip5_FBI5 = Blip.AddForChar($.FBI5);
-    $.FBI6 = Char.CreateAsPassenger($.FBI_VAN1, 4 /* PEDTYPE_CIVMALE */, 11 /* PED_GANG_MAFIA_B */, 2);
+    $.FBI6 = Char.CreateAsPassenger($.FBI_VAN1, PEDTYPE_CIVMALE, PED_GANG_MAFIA_B, 2);
     $.blip6_FBI6 = Blip.AddForChar($.FBI6);
     $.FBI_VAN1.setIdle();
-    $.FBI5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI6.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.FBI5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.FBI6.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.FBI5.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
-    $.FBI6.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 100);
+    $.FBI5.setThreatSearch(THREAT_PLAYER1);
+    $.FBI6.setThreatSearch(THREAT_PLAYER1);
+    $.FBI5.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.FBI6.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.FBI5.giveWeapon(WEAPONTYPE_CHAINGUN, 100);
+    $.FBI6.giveWeapon(WEAPONTYPE_CHAINGUN, 100);
 
     /*
     LOAD_MISSION_AUDIO A3_A
@@ -543,7 +543,7 @@ async function body() {
                     $.FBI_VAN1.setOnlyDamagedByPlayer(false);
                     $.FBI5.setObjKillPlayerAnyMeans($.player);
                     $.FBI6.setObjKillPlayerAnyMeans($.player);
-                    $.FBI_VAN1.lockDoors(1 /* CARLOCK_UNLOCKED */);
+                    $.FBI_VAN1.lockDoors(CARLOCK_UNLOCKED);
                     $.been_damaged_before = 1;
                 }
             }
@@ -568,7 +568,7 @@ async function onPassed() {
     $.player.addScore(15000);
     Stat.RegisterMissionPassed('AM2');
     Stat.PlayerMadeProgress(1);
-    $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, 11 /* RADAR_SPRITE_KENJI */); //TEST STUFF
+    $.kenji_contact_blip = Blip.AddSpriteForContactPoint(459.1, -1413.0, 26.1, RADAR_SPRITE_KENJI); //TEST STUFF
     $.com_ammu_nation2.remove();
     $.com_sprayshop2.remove();
     // START_NEW_SCRIPT asuka_mission3_loop
@@ -579,9 +579,9 @@ async function onPassed() {
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_asuka_mission = 0;
-    Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
-    Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
-    Streaming.MarkModelAsNoLongerNeeded(130 /* CAR_RUMPO */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_B);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_RUMPO);
     $.blip1_FBI1.remove();
     $.blip2_FBI2.remove();
     $.blip3_FBI3.remove();

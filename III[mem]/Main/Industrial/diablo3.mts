@@ -48,8 +48,8 @@ async function body() {
     // SCRIPT_NAME diablo3
     await asyncWait(0);
 
-    Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-    Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
+    Streaming.RequestModel(PED_GANG_TRIAD_A);
+    Streaming.RequestModel(PED_GANG_TRIAD_B);
 
     $.traid_threat_cleared_D3 = 0;
 
@@ -59,12 +59,12 @@ async function body() {
     Cutscene.Load('EL_PH4');
     Cutscene.SetOffset(938.27, -229.561, 4.023);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -131,7 +131,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -147,12 +147,12 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     World.SetPedDensityMultiplier(1.0);
 
-    Zone.SetPedInfo('CHINA', 1 /* DAY */, 30, 0, 650, 0, 0, 0, 0, 0, 0);
-    Zone.SetPedInfo('CHINA', 0 /* NIGHT */, 30, 0, 650, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('CHINA', DAY, 30, 0, 650, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('CHINA', NIGHT, 30, 0, 650, 0, 0, 0, 0, 0, 0);
 
     // START MISSION
 
@@ -166,18 +166,18 @@ async function body() {
     $.dead_burn_man6 = 0;
     $.given_money_before = 0;
 
-    if (Game.IsThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */)) {
-        Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+    if (Game.IsThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1)) {
+        Game.ClearThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
         $.traid_threat_cleared_D3 = 1;
     }
 
     Player.ResetNumOfModelsKilled();
 
-    $.flamethrower_diablo3 = Pickup.CreateWithAmmo(181 /* WEAPON_FLAME */, 3 /* PICKUP_ONCE */, 0, 879.2, -810.0, -100.0);
-    $.blip1_diablo3 = Blip.AddSpriteForCoord(879.2, -810.0, -100.0, 20 /* RADAR_SPRITE_WEAPON */);
+    $.flamethrower_diablo3 = Pickup.CreateWithAmmo(WEAPON_FLAME, PICKUP_ONCE, 0, 879.2, -810.0, -100.0);
+    $.blip1_diablo3 = Blip.AddSpriteForCoord(879.2, -810.0, -100.0, RADAR_SPRITE_WEAPON);
     //CHANGE_BLIP_DISPLAY blip1_diablo3 BLIP_ONLY
 
-    while (!Streaming.HasModelLoaded(12 /* PED_GANG_TRIAD_A */) || !Streaming.HasModelLoaded(13 /* PED_GANG_TRIAD_B */)) {
+    while (!Streaming.HasModelLoaded(PED_GANG_TRIAD_A) || !Streaming.HasModelLoaded(PED_GANG_TRIAD_B)) {
         await asyncWait(0);
     }
 
@@ -187,7 +187,7 @@ async function body() {
 
     $.blip1_diablo3.remove();
 
-    KillFrenzy.Start('DIAB3_1', 9 /* WEAPONTYPE_FLAMETHROWER */, 151000, 25, 12 /* PED_GANG_TRIAD_A */, 13 /* PED_GANG_TRIAD_B */, -1, -1, false);
+    KillFrenzy.Start('DIAB3_1', WEAPONTYPE_FLAMETHROWER, 151000, 25, PED_GANG_TRIAD_A, PED_GANG_TRIAD_B, -1, -1, false);
 
     Diablo3_loop: while (true) {
         await asyncWait(0);
@@ -204,22 +204,22 @@ async function body() {
 
         if ($.player.isInArea2D(1038.0, -781.0, 838.0, -915.0, false)) {
             if ($.all_gang_created_before == 0) {
-                $.burn_man1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 932.0, -846.0, 14.5);
-                $.burn_man1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
-                $.burn_man2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 933.0, -846.0, 14.5);
-                $.burn_man2.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
+                $.burn_man1 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 932.0, -846.0, 14.5);
+                $.burn_man1.giveWeapon(WEAPONTYPE_PISTOL, 60);
+                $.burn_man2 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 933.0, -846.0, 14.5);
+                $.burn_man2.giveWeapon(WEAPONTYPE_PISTOL, 60);
                 $.burn_man2.followChar($.burn_man1);
-                $.burn_man3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 934.0, -846.0, 14.5);
-                $.burn_man3.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
+                $.burn_man3 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 934.0, -846.0, 14.5);
+                $.burn_man3.giveWeapon(WEAPONTYPE_PISTOL, 60);
                 $.burn_man3.followChar($.burn_man1);
-                $.burn_man4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 935.0, -846.0, 14.5);
-                $.burn_man4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
+                $.burn_man4 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 935.0, -846.0, 14.5);
+                $.burn_man4.giveWeapon(WEAPONTYPE_PISTOL, 60);
                 $.burn_man4.followChar($.burn_man1);
-                $.burn_man5 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 936.0, -846.0, 14.5);
-                $.burn_man5.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
+                $.burn_man5 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 936.0, -846.0, 14.5);
+                $.burn_man5.giveWeapon(WEAPONTYPE_PISTOL, 60);
                 $.burn_man5.followChar($.burn_man1);
-                $.burn_man6 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 937.0, -846.0, 14.5);
-                $.burn_man6.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 60);
+                $.burn_man6 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 937.0, -846.0, 14.5);
+                $.burn_man6.giveWeapon(WEAPONTYPE_PISTOL, 60);
                 $.burn_man6.followChar($.burn_man1);
                 $.all_gang_created_before = 1;
             }
@@ -254,7 +254,7 @@ async function body() {
                 $.player_X = x;
                 $.player_Y = y;
                 $.player_Z = z;
-                Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, SOUND_PART_MISSION_COMPLETE);
                 $.given_money_before = 1;
             }
             if ($.player.isShootingInArea(916.0, -863.0, 956.0, -830.0, false) || $.player.isInArea2D(916.0, -863.0, 956.0, -830.0, false)) {
@@ -297,7 +297,7 @@ async function onPassed() {
     $.player.addScore(10000);
     Stat.RegisterMissionPassed('DIAB3');
     Stat.PlayerMadeProgress(1);
-    Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+    Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
     // START_NEW_SCRIPT diablo_mission4_loop // xxx: moved to mission monitor
 }
 
@@ -307,12 +307,12 @@ async function cleanup() {
     $.flag_player_on_diablo_mission = 0;
     $.blip1_diablo3.remove();
     $.flamethrower_diablo3.remove();
-    Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-    Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
-    Zone.SetPedInfo('CHINA', 1 /* DAY */, 20, 0, 200, 0, 0, 0, 0, 0, 20); //China town
-    Zone.SetPedInfo('CHINA', 0 /* NIGHT */, 10, 0, 300, 0, 0, 0, 0, 0, 10);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_B);
+    Zone.SetPedInfo('CHINA', DAY, 20, 0, 200, 0, 0, 0, 0, 0, 20); //China town
+    Zone.SetPedInfo('CHINA', NIGHT, 10, 0, 300, 0, 0, 0, 0, 0, 10);
     if ($.traid_threat_cleared_D3 == 1) {
-        Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+        Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
     }
     Mission.Finish();
 }

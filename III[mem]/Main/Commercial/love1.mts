@@ -277,19 +277,19 @@ async function body() {
 
     Cutscene.SetOffset(85.2162, -1532.9093, 243.5422);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_love = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_love = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_love.setAnim('love2');
 
-    $.cs_lovehead = CutsceneHead.Create($.cs_love, 185 /* CUT_OBJ1 */);
+    $.cs_lovehead = CutsceneHead.Create($.cs_love, CUT_OBJ1);
 
     $.cs_lovehead.setAnim('love');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ2);
 
     $.cs_playerhead.setAnim('player');
 
@@ -299,9 +299,9 @@ async function body() {
 
     $.player.setHeading(90.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
     Cutscene.Start();
 
@@ -384,7 +384,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -398,23 +398,23 @@ async function body() {
 
     Cutscene.Clear();
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Camera.SetBehindPlayer();
 
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
 
     Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */);
 
@@ -422,13 +422,13 @@ async function body() {
 
     // *******************************************END OF CUTSCENE*******************************
 
-    Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
+    Streaming.RequestModel(PED_GANG_COLOMBIAN_A);
 
-    Streaming.RequestModel(138 /* CAR_COLUMB */);
+    Streaming.RequestModel(CAR_COLUMB);
 
     Streaming.LoadSpecialCharacter(2, 'OJG');
 
-    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(20 /* PED_GANG_COLOMBIAN_A */) || !Streaming.HasModelLoaded(138 /* CAR_COLUMB */)) {
+    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(PED_GANG_COLOMBIAN_A) || !Streaming.HasModelLoaded(CAR_COLUMB)) {
         await asyncWait(0);
     }
 
@@ -436,7 +436,7 @@ async function body() {
 
     // Waiting for the player to be in a colombian car
 
-    while (!$.player.isInModel(138 /* CAR_COLUMB */)) {
+    while (!$.player.isInModel(CAR_COLUMB)) {
         await asyncWait(0);
     }
 
@@ -447,28 +447,28 @@ async function body() {
     $.ogg_position = Math.RandomIntInRange(2, 6);
 
     if ($.ogg_position == 2) {
-        $.ojg_love1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 25.2, -340.3, 15.1);
+        $.ojg_love1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 25.2, -340.3, 15.1);
         $.ojg_love1.clearThreatSearch();
         $.ojg_love1.turnToFaceCoord(57.0, -314.0, -100.0);
         $.ojg_love1.setIdle();
     }
 
     if ($.ogg_position == 3) {
-        $.ojg_love1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 26.3, -339.7, 15.1);
+        $.ojg_love1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 26.3, -339.7, 15.1);
         $.ojg_love1.clearThreatSearch();
         $.ojg_love1.turnToFaceCoord(29.0, -339.0, -100.0);
         $.ojg_love1.setIdle();
     }
 
     if ($.ogg_position == 4) {
-        $.ojg_love1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 25.5, -350.4, 15.1);
+        $.ojg_love1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 25.5, -350.4, 15.1);
         $.ojg_love1.clearThreatSearch();
         $.ojg_love1.turnToFaceCoord(29.0, -350.0, -100.0);
         $.ojg_love1.setIdle();
     }
 
     if ($.ogg_position == 5) {
-        $.ojg_love1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 47.0, -386.0, 15.1);
+        $.ojg_love1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 47.0, -386.0, 15.1);
         $.ojg_love1.clearThreatSearch();
         $.ojg_love1.turnToFaceCoord(47.0, -381.0, 16.0);
         $.ojg_love1.setIdle();
@@ -476,23 +476,23 @@ async function body() {
 
     Text.PrintNow('LOVE1_2', 7000, 1); //"Rescue the Old Japanese Gentleman."
 
-    $.garage_car1_love1 = Car.Create(138 /* CAR_COLUMB */, 26.2, -365.5, 15.1);
+    $.garage_car1_love1 = Car.Create(CAR_COLUMB, 26.2, -365.5, 15.1);
 
     $.garage_car1_love1.setHeading(270.0);
 
-    $.garage_car2_love1 = Car.Create(138 /* CAR_COLUMB */, 73.6, -352.7, 15.1);
+    $.garage_car2_love1 = Car.Create(CAR_COLUMB, 73.6, -352.7, 15.1);
 
     $.garage_car2_love1.setHeading(270.0);
 
     // Creates the first guard he follows route 0
 
-    $.baddie1_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 71.0, -332.0, -100.0);
+    $.baddie1_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 71.0, -332.0, -100.0);
 
     $.baddie1_love1.setThreatSearch(1 /* threat_player1 */);
 
-    $.baddie1_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+    $.baddie1_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
-    $.baddie1_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie1_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR baddie1_love1 100
 
@@ -502,17 +502,17 @@ async function body() {
 
     Path.AddRoutePoint(0, 71.0, -332.0, -100.0);
 
-    $.baddie1_love1.setObjFollowRoute(0, 3 /* FOLLOW_ROUTE_LOOP */);
+    $.baddie1_love1.setObjFollowRoute(0, FOLLOW_ROUTE_LOOP);
 
     // Creates the second guard he follows route 1
 
-    $.baddie2_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 61.0, -318.0, -100.0);
+    $.baddie2_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 61.0, -318.0, -100.0);
 
     $.baddie2_love1.setThreatSearch(1 /* threat_player1 */);
 
-    $.baddie2_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+    $.baddie2_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
-    $.baddie2_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie2_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR baddie2_love1 100
 
@@ -522,17 +522,17 @@ async function body() {
 
     Path.AddRoutePoint(1, 61.0, -335.0, -100.0);
 
-    $.baddie2_love1.setObjFollowRoute(1, 3 /* FOLLOW_ROUTE_LOOP */);
+    $.baddie2_love1.setObjFollowRoute(1, FOLLOW_ROUTE_LOOP);
 
     // Creates the third guard - does not patrol
 
-    $.baddie3_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 42.0, -375.0, -100.0);
+    $.baddie3_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 42.0, -375.0, -100.0);
 
     $.baddie3_love1.setThreatSearch(1 /* threat_player1 */);
 
-    $.baddie3_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.baddie3_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.baddie3_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie3_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR baddie3_love1 100
 
@@ -540,13 +540,13 @@ async function body() {
 
     // Creates the fourth guard - does not patrol
 
-    $.baddie4_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 52.0, -375.0, -100.0);
+    $.baddie4_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 52.0, -375.0, -100.0);
 
     $.baddie4_love1.setThreatSearch(1 /* threat_player1 */);
 
-    $.baddie4_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.baddie4_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.baddie4_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie4_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR baddie4_love1 100
 
@@ -554,13 +554,13 @@ async function body() {
 
     // Creates the fifth guard - does not patrol
 
-    $.baddie5_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 32.0, -345.0, -100.0);
+    $.baddie5_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 32.0, -345.0, -100.0);
 
     $.baddie5_love1.setThreatSearch(1 /* threat_player1 */);
 
-    $.baddie5_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.baddie5_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.baddie5_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie5_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR baddie5_love1 100
 
@@ -568,13 +568,13 @@ async function body() {
 
     // Creates the sixth guard - does not patrol
 
-    $.baddie6_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 33.0, -328.0, -100.0);
+    $.baddie6_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 33.0, -328.0, -100.0);
 
     $.baddie6_love1.setThreatSearch(1 /* threat_player1 */);
 
-    $.baddie6_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.baddie6_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.baddie6_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie6_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR baddie6_love1 100
 
@@ -582,13 +582,13 @@ async function body() {
 
     // Garage guard1 in garage 2
 
-    $.garage_baddie1_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 55.87, -312.77, 15.1);
+    $.garage_baddie1_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 55.87, -312.77, 15.1);
 
     $.garage_baddie1_love1.clearThreatSearch();
 
-    $.garage_baddie1_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.garage_baddie1_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.garage_baddie1_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.garage_baddie1_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR garage_baddie1_love1 100
 
@@ -596,13 +596,13 @@ async function body() {
 
     // Garage guard2 in garage 2
 
-    $.garage_baddie2_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 58.24, -312.77, 15.1);
+    $.garage_baddie2_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 58.24, -312.77, 15.1);
 
     $.garage_baddie2_love1.clearThreatSearch();
 
-    $.garage_baddie2_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.garage_baddie2_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.garage_baddie2_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.garage_baddie2_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR garage_baddie2_love1 100
 
@@ -610,13 +610,13 @@ async function body() {
 
     // Garage guard3 in garage 1
 
-    $.garage_baddie3_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 66.26, -309.99, 15.1);
+    $.garage_baddie3_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 66.26, -309.99, 15.1);
 
     $.garage_baddie3_love1.clearThreatSearch();
 
-    $.garage_baddie3_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.garage_baddie3_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.garage_baddie3_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.garage_baddie3_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR garage_baddie3_love1 100
 
@@ -624,13 +624,13 @@ async function body() {
 
     // Garage guard4 in garage 3
 
-    $.garage_baddie4_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 28.64, -339.83, 15.1);
+    $.garage_baddie4_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 28.64, -339.83, 15.1);
 
     $.garage_baddie4_love1.clearThreatSearch();
 
-    $.garage_baddie4_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.garage_baddie4_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.garage_baddie4_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.garage_baddie4_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR garage_baddie4_love1 100
 
@@ -638,13 +638,13 @@ async function body() {
 
     // Garage guard5 in garage 4
 
-    $.garage_baddie5_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 29.8, -350.5, 15.1);
+    $.garage_baddie5_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 29.8, -350.5, 15.1);
 
     $.garage_baddie5_love1.clearThreatSearch();
 
-    $.garage_baddie5_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.garage_baddie5_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.garage_baddie5_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.garage_baddie5_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR garage_baddie5_love1 100
 
@@ -652,13 +652,13 @@ async function body() {
 
     // Garage guard6 in garage 5
 
-    $.garage_baddie6_love1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 46.7, -379.3, 15.1);
+    $.garage_baddie6_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 46.7, -379.3, 15.1);
 
     $.garage_baddie6_love1.clearThreatSearch();
 
-    $.garage_baddie6_love1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+    $.garage_baddie6_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
-    $.garage_baddie6_love1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.garage_baddie6_love1.setPersonality(PEDSTAT_TOUGH_GUY);
 
     //ADD_ARMOUR_TO_CHAR garage_baddie6_love1 100
 
@@ -678,7 +678,7 @@ async function body() {
         // Checks to see while the player is not in the compound if he is in a colombian car or not
 
         if ($.flag_player_in_area_love1 == 0) {
-            if (!$.player.isInModel(138 /* CAR_COLUMB */)) {
+            if (!$.player.isInModel(CAR_COLUMB)) {
                 if ($.flag_player_got_car_message_love1 == 0) {
                     Text.PrintNow('LOVE1_5', 5000, 1); //"Get a colombian car and get on with the mission."
                     $.radar_blip_coord2_love1.remove();
@@ -704,7 +704,7 @@ async function body() {
         }
         if ($.flag_ojg_in_group == 0) {
             if ($.player.isInArea3D(92.2, -329.4, 15.0, 96.4, -315.8, 18.0, false)) {
-                if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.flag_message_car_again == 0 && $.flag_player_in_area_love1 == 1) {
+                if (!$.player.isInModel(CAR_COLUMB) && $.flag_message_car_again == 0 && $.flag_player_in_area_love1 == 1) {
                     //PRINT_NOW ( LOVE1_5 ) 5000 1 //"Get a colombian car and get on with the mission
                     Text.PrintNow('LOVE1_7', 5000, 1); //"The gate will only open for a Colombian Car.
                     $.flag_message_car_again = 1;
@@ -760,7 +760,7 @@ async function body() {
                 $.flag_garage_baddie1_dead_love1 = 1;
             } else {
                 if ($.flag_garage2_open == 1) {
-                    $.garage_baddie1_love1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.garage_baddie1_love1.setThreatSearch(THREAT_PLAYER1);
                     $.garage_baddie1_love1.setObjKillPlayerAnyMeans($.player);
                 }
             }
@@ -770,7 +770,7 @@ async function body() {
                 $.flag_garage_baddie2_dead_love1 = 1;
             } else {
                 if ($.flag_garage2_open == 1) {
-                    $.garage_baddie2_love1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.garage_baddie2_love1.setThreatSearch(THREAT_PLAYER1);
                     $.garage_baddie2_love1.setObjKillPlayerAnyMeans($.player);
                 }
             }
@@ -780,7 +780,7 @@ async function body() {
                 $.flag_garage_baddie3_dead_love1 = 1;
             } else {
                 if ($.flag_garage1_open == 1) {
-                    $.garage_baddie3_love1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.garage_baddie3_love1.setThreatSearch(THREAT_PLAYER1);
                     $.garage_baddie3_love1.setObjKillPlayerAnyMeans($.player);
                 }
             }
@@ -790,7 +790,7 @@ async function body() {
                 $.flag_garage_baddie4_dead_love1 = 1;
             } else {
                 if ($.flag_garage3_open == 1) {
-                    $.garage_baddie4_love1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.garage_baddie4_love1.setThreatSearch(THREAT_PLAYER1);
                     $.garage_baddie4_love1.setObjKillPlayerAnyMeans($.player);
                 }
             }
@@ -801,7 +801,7 @@ async function body() {
                 $.flag_garage_baddie5_dead_love1 = 1;
             } else {
                 if ($.flag_garage4_open == 1) {
-                    $.garage_baddie5_love1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.garage_baddie5_love1.setThreatSearch(THREAT_PLAYER1);
                     $.garage_baddie5_love1.setObjKillPlayerAnyMeans($.player);
                 }
             }
@@ -811,7 +811,7 @@ async function body() {
                 $.flag_garage_baddie6_dead_love1 = 1;
             } else {
                 if ($.flag_garage5_open == 1) {
-                    $.garage_baddie6_love1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.garage_baddie6_love1.setThreatSearch(THREAT_PLAYER1);
                     $.garage_baddie6_love1.setObjKillPlayerAnyMeans($.player);
                 }
             }
@@ -1016,13 +1016,13 @@ async function body() {
 
     $.ojg_love1.leaveGroup();
 
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
-    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
 
     // Checks to see if the OJG is in a car, if so orders him to get out
 
@@ -1059,7 +1059,7 @@ async function body() {
 
     Camera.SetFixedPosition(77.5, -1548.8, 28.2, 0.0, 0.0, 0.0);
 
-    Camera.PointAtPoint(93.9, -1548.9, 28.3, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(93.9, -1548.9, 28.3, JUMP_CUT);
 
     TIMERB = 0;
 
@@ -1084,13 +1084,13 @@ async function body() {
 
         $.ojg_love1.removeElegantly();
 
-        Hud.SwitchWidescreen(false /* OFF */);
+        Hud.SwitchWidescreen(OFF);
 
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
 
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
 
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
     }
 
     return; // SCM GOTO → mission_love1_passed
@@ -1120,9 +1120,9 @@ async function cleanup() {
     $.flag_player_on_love_mission = 0;
     Path.RemoveRoute(0);
     Path.RemoveRoute(1);
-    $.player.setControl(true /* ON */);
-    Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
-    Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
+    $.player.setControl(ON);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_A);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_COLUMB);
     $.radar_blip_ped1_love1.remove();
     $.radar_blip_coord1_love1.remove();
     $.radar_blip_coord2_love1.remove();

@@ -63,10 +63,10 @@ async function body() {
     Cutscene.Load('T2_TPU');
     Cutscene.SetOffset(1218.42, -314.5, 28.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
     $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
@@ -79,10 +79,10 @@ async function body() {
 
     World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -142,7 +142,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -154,36 +154,36 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
     Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */);
 
     // START OF MISSION
 
-    if (Game.IsThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */)) {
-        Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+    if (Game.IsThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1)) {
+        Game.ClearThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
         $.traid_threat_cleared_T2 = 1;
     }
 
     $.gen_car31.switch(0);
 
-    $.briefcase_tm2 = Pickup.Create(1319 /* briefcase */, 3 /* PICKUP_ONCE */, 865.7, -663.6, 14.8);
+    $.briefcase_tm2 = Pickup.Create(1319 /* briefcase */, PICKUP_ONCE, 865.7, -663.6, 14.8);
 
     $.blip1_t2 = Blip.AddForPickup($.briefcase_tm2);
 
-    Streaming.RequestModel(132 /* CAR_BELLYUP */);
-    Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-    Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
+    Streaming.RequestModel(CAR_BELLYUP);
+    Streaming.RequestModel(PED_GANG_TRIAD_A);
+    Streaming.RequestModel(PED_GANG_TRIAD_B);
 
-    while (!Streaming.HasModelLoaded(132 /* CAR_BELLYUP */) || !Streaming.HasModelLoaded(12 /* PED_GANG_TRIAD_A */) || !Streaming.HasModelLoaded(13 /* PED_GANG_TRIAD_B */)) {
+    while (!Streaming.HasModelLoaded(CAR_BELLYUP) || !Streaming.HasModelLoaded(PED_GANG_TRIAD_A) || !Streaming.HasModelLoaded(PED_GANG_TRIAD_B)) {
         await asyncWait(0);
     }
 
@@ -196,51 +196,51 @@ async function body() {
 
         $.blip1_t2.remove();
 
-        Game.SetPoliceIgnorePlayer($.player, true /* On */);
-        $.player.setControl(false /* Off */);
-        Hud.SwitchWidescreen(true /* ON */);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        $.player.setControl(OFF);
+        Hud.SwitchWidescreen(ON);
 
         World.ClearArea(869.4, -639.0, 15.0, 1.0, true);
-        $.thong1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 869.4, -639.0, -100.0);
-        $.thong1.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+        $.thong1 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 869.4, -639.0, -100.0);
+        $.thong1.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
         $.thong1.setObjGotoCoordOnFoot(869.4, -656.0);
 
         World.ClearArea(868.5, -637.0, 15.0, 1.0, true);
-        $.thong1B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 868.5, -637.0, -100.0);
+        $.thong1B = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 868.5, -637.0, -100.0);
         $.thong1B.setHeading(180.0);
-        $.thong1B.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 200);
+        $.thong1B.giveWeapon(WEAPONTYPE_PISTOL, 200);
         //SET_CHAR_OBJ_GOTO_COORD_ON_FOOT thong1B 869.4 -656.0
 
         Camera.SetFixedPosition(869.7, -666.0, 16.0, 0.0, 0.0, 0.0);
 
-        Camera.PointAtChar($.thong1, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtChar($.thong1, FIXED, INTERPOLATION);
 
         await asyncWait(2500);
 
         World.ClearArea(869.4, -688.0, 15.0, 1.0, true);
-        $.thong2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 869.4, -688.0, -100.0);
-        $.thong2.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+        $.thong2 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 869.4, -688.0, -100.0);
+        $.thong2.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
         $.thong2.setObjGotoCoordOnFoot(869.4, -678.0);
 
         World.ClearArea(868.5, -690.0, 15.0, 1.0, true);
-        $.thong2B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 868.5, -690.0, -100.0);
-        $.thong2B.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+        $.thong2B = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 868.5, -690.0, -100.0);
+        $.thong2B.giveWeapon(WEAPONTYPE_PISTOL, 100);
         //SET_CHAR_OBJ_GOTO_COORD_ON_FOOT thong2B 869.4 -678.0
 
-        Camera.PointAtChar($.thong2, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtChar($.thong2, FIXED, INTERPOLATION);
 
         await asyncWait(2500);
 
         World.ClearArea(892.6, -666.0, 15.0, 4.0, true);
-        $.thong_car = Car.Create(132 /* CAR_BELLYUP */, 892.5, -666.0, -100.0);
+        $.thong_car = Car.Create(CAR_BELLYUP, 892.5, -666.0, -100.0);
         $.thong_car.setHeading(180.0);
-        $.thong3 = Char.CreateInsideCar($.thong_car, 8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */);
-        $.thong3B = Char.CreateAsPassenger($.thong_car, 8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 0);
-        $.thong3.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 27);
-        $.thong3B.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+        $.thong3 = Char.CreateInsideCar($.thong_car, PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A);
+        $.thong3B = Char.CreateAsPassenger($.thong_car, PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 0);
+        $.thong3.giveWeapon(WEAPONTYPE_PISTOL, 27);
+        $.thong3B.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
         $.thong_car.setIdle();
 
-        Camera.PointAtCar($.thong_car, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtCar($.thong_car, FIXED, INTERPOLATION);
 
         $.thong3B.setObjLeaveCar($.thong_car);
 
@@ -259,36 +259,36 @@ async function body() {
     }
 
     next_bit_tm2: {
-        $.player.setControl(true /* On */);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Hud.SwitchWidescreen(false /* OFF */);
+        $.player.setControl(ON);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        Hud.SwitchWidescreen(OFF);
         Camera.Restore();
 
         await asyncWait(0);
 
         if (!Char.IsDead($.thong1)) {
             $.thong1.setObjKillPlayerAnyMeans($.player);
-            $.thong1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.thong1.setThreatSearch(THREAT_PLAYER1);
         }
 
         if (!Char.IsDead($.thong1B)) {
             //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS thong1B player
-            $.thong1B.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.thong1B.setThreatSearch(THREAT_PLAYER1);
         }
 
         if (!Char.IsDead($.thong2)) {
             $.thong2.setObjKillPlayerAnyMeans($.player);
-            $.thong2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.thong2.setThreatSearch(THREAT_PLAYER1);
         }
 
         if (!Char.IsDead($.thong2B)) {
             //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS thong2B player
-            $.thong2B.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.thong2B.setThreatSearch(THREAT_PLAYER1);
         }
 
         if (!Char.IsDead($.thong3B)) {
             $.thong3B.setObjKillPlayerAnyMeans($.player);
-            $.thong3B.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.thong3B.setThreatSearch(THREAT_PLAYER1);
         }
 
         Text.PrintNow('TM2_3', 5000, 1); // " Get back to Toni's!"
@@ -361,7 +361,7 @@ async function body() {
                 }
                 if (!Char.IsDead($.thong3)) {
                     $.thong3.setObjKillPlayerAnyMeans($.player);
-                    $.thong3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.thong3.setThreatSearch(THREAT_PLAYER1);
                 }
             }
         }
@@ -384,15 +384,15 @@ async function body() {
             */
         }
 
-        $.player.setControl(false /* OFF */);
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-        Hud.SwitchWidescreen(true /* ON */);
+        $.player.setControl(OFF);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        Hud.SwitchWidescreen(ON);
 
         $.script_controlled_player = $.player.getChar();
         $.script_controlled_player.setRunning(true);
 
         Camera.SetFixedPosition(1214.4, -323.9, 29.8, 0.0, 0.0, 0);
-        Camera.PointAtPoint(1215.2, -323.4, 29.4, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(1215.2, -323.4, 29.4, JUMP_CUT);
 
         World.ClearArea(1219.6, -314.0, 29.7, 2.0, true);
         $.script_controlled_player.setObjRunToCoord(1219.6, -314.0);
@@ -427,9 +427,9 @@ async function body() {
             }
         }
 
-        $.player.setControl(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Hud.SwitchWidescreen(false /* OFF */);
+        $.player.setControl(ON);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        Hud.SwitchWidescreen(OFF);
         Camera.RestoreJumpcut();
         $.script_controlled_player.setRunning(false);
     }
@@ -450,7 +450,7 @@ async function onPassed() {
     //CLEAR_WANTED_LEVEL player
     //ADD_SCORE player 10000
 
-    Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+    Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
     Stat.RegisterMissionPassed('TM2');
     Stat.PlayerMadeProgress(1);
     // START_NEW_SCRIPT toni_mission3_loop
@@ -470,11 +470,11 @@ async function cleanup() {
     $.thong_blip3.remove();
     $.thong_blip3B.remove();
     $.briefcase_tm2.remove();
-    Streaming.MarkModelAsNoLongerNeeded(132 /* CAR_BELLYUP */);
-    Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-    Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_BELLYUP);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_B);
     if ($.traid_threat_cleared_T2 == 1) {
-        Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+        Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
     }
     Mission.Finish();
 }

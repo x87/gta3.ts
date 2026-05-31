@@ -179,27 +179,27 @@ async function body() {
 
     Cutscene.SetOffset(900.782, -427.523, 13.829);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_luigi = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_luigi = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_luigi.setAnim('luigi');
 
-    $.cs_micky = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_micky = CutsceneObject.Create(PED_SPECIAL2);
 
     $.cs_micky.setAnim('micky');
 
-    $.cs_luigihead = CutsceneHead.Create($.cs_luigi, 186 /* CUT_OBJ2 */);
+    $.cs_luigihead = CutsceneHead.Create($.cs_luigi, CUT_OBJ2);
 
     $.cs_luigihead.setAnim('luigi');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 187 /* CUT_OBJ3 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ3);
 
     $.cs_playerhead.setAnim('player');
 
-    $.cs_mickyhead = CutsceneHead.Create($.cs_micky, 188 /* CUT_OBJ4 */);
+    $.cs_mickyhead = CutsceneHead.Create($.cs_micky, CUT_OBJ4);
 
     $.cs_mickyhead.setAnim('micky');
 
@@ -215,9 +215,9 @@ async function body() {
 
     $.player.setHeading(270.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
     Cutscene.Start();
 
@@ -272,7 +272,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -286,9 +286,9 @@ async function body() {
 
     Cutscene.Clear();
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Streaming.LoadScene(920.3, -425.4, 15.0);
 
@@ -296,20 +296,20 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
 
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
 
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
-    Streaming.MarkModelAsNoLongerNeeded(188 /* CUT_OBJ4 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
 
     Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
 
@@ -325,11 +325,11 @@ async function body() {
 
     $.sphere_lm5 = Sphere.Create(999.9, -879.3, 14.0, 4.0);
 
-    Streaming.RequestModel(39 /* PED_PROSTITUTE */);
+    Streaming.RequestModel(PED_PROSTITUTE);
 
-    Streaming.RequestModel(40 /* PED_PROSTITUTE2 */);
+    Streaming.RequestModel(PED_PROSTITUTE2);
 
-    while (!Streaming.HasModelLoaded(39 /* PED_PROSTITUTE */) || !Streaming.HasModelLoaded(40 /* PED_PROSTITUTE2 */)) {
+    while (!Streaming.HasModelLoaded(PED_PROSTITUTE) || !Streaming.HasModelLoaded(PED_PROSTITUTE2)) {
         await asyncWait(0);
     }
 
@@ -337,21 +337,21 @@ async function body() {
         await asyncWait(0);
     }
 
-    $.cop_car1_lm5 = Car.Create(116 /* CAR_POLICE */, 1027.7, -873.1, 13.9);
+    $.cop_car1_lm5 = Car.Create(CAR_POLICE, 1027.7, -873.1, 13.9);
 
     $.cop_car1_lm5.setHeading(90.0);
 
-    $.cop_car1_lm5.lockDoors(1 /* CARLOCK_UNLOCKED */);
+    $.cop_car1_lm5.lockDoors(CARLOCK_UNLOCKED);
 
-    $.cop_car2_lm5 = Car.Create(116 /* CAR_POLICE */, 998.68, -860.8, 14.5);
+    $.cop_car2_lm5 = Car.Create(CAR_POLICE, 998.68, -860.8, 14.5);
 
     $.cop_car2_lm5.setHeading(90.0);
 
-    $.cop_car2_lm5.lockDoors(1 /* CARLOCK_UNLOCKED */);
+    $.cop_car2_lm5.lockDoors(CARLOCK_UNLOCKED);
 
     $.fuzzball_sign = ScriptObject.CreateNoOffset(1329 /* policeballsigns */, 1010.74, -896.46, 24.161);
 
-    $.ball_sounds = Sound.AddContinuous(999.9, -892.4, 16.0, 71 /* SOUND_POLICE_BALL_LOOP_L */);
+    $.ball_sounds = Sound.AddContinuous(999.9, -892.4, 16.0, SOUND_POLICE_BALL_LOOP_L);
 
     $.fuzz_door1.setHeading(270.0);
 
@@ -363,7 +363,7 @@ async function body() {
 
     // creates prossie 1
 
-    $.prossie1_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 40 /* PED_PROSTITUTE2 */, 870.0, -482.0, -100.0);
+    $.prossie1_lm5 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE2, 870.0, -482.0, -100.0);
 
     $.prossie1_lm5.setHeading(180.0);
 
@@ -377,7 +377,7 @@ async function body() {
 
     // creates prossie 2
 
-    $.prossie2_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 39 /* PED_PROSTITUTE */, 916.0, -90.0, -100.0);
+    $.prossie2_lm5 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE, 916.0, -90.0, -100.0);
 
     $.prossie2_lm5.setHeading(180.0);
 
@@ -391,7 +391,7 @@ async function body() {
 
     // creates prossie 3
 
-    $.prossie3_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 40 /* PED_PROSTITUTE2 */, 1203.0, 23.0, -100.0);
+    $.prossie3_lm5 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE2, 1203.0, 23.0, -100.0);
 
     $.prossie3_lm5.clearThreatSearch();
 
@@ -403,7 +403,7 @@ async function body() {
 
     // creates prossie 4
 
-    $.prossie4_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 39 /* PED_PROSTITUTE */, 1240.0, -336.0, -100.0);
+    $.prossie4_lm5 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE, 1240.0, -336.0, -100.0);
 
     $.prossie4_lm5.setHeading(180.0);
 
@@ -417,7 +417,7 @@ async function body() {
 
     // creates prossie 5
 
-    $.prossie5_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 40 /* PED_PROSTITUTE2 */, 1231.0, -511.0, -100.0);
+    $.prossie5_lm5 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE2, 1231.0, -511.0, -100.0);
 
     $.prossie5_lm5.clearThreatSearch();
 
@@ -429,7 +429,7 @@ async function body() {
 
     // creates prossie 6
 
-    $.prossie6_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 39 /* PED_PROSTITUTE */, 1360.0, -798.0, -100.0);
+    $.prossie6_lm5 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE, 1360.0, -798.0, -100.0);
 
     $.prossie6_lm5.clearThreatSearch();
 
@@ -441,7 +441,7 @@ async function body() {
 
     // creates prossie 7
 
-    $.prossie7_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 40 /* PED_PROSTITUTE2 */, 1093.0, -973.0, -100.0);
+    $.prossie7_lm5 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE2, 1093.0, -973.0, -100.0);
 
     $.prossie7_lm5.clearThreatSearch();
 
@@ -453,7 +453,7 @@ async function body() {
 
     // creates prossie 8
 
-    $.prossie8_lm5 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 39 /* PED_PROSTITUTE */, 975.0, -754.0, -100.0);
+    $.prossie8_lm5 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE, 975.0, -754.0, -100.0);
 
     $.prossie8_lm5.setHeading(180.0);
 
@@ -607,7 +607,7 @@ async function body() {
                     }
                     $.prossie1_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
                     ++$.counter_no_of_girls_at_the_ball;
-                    Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                    Sound.AddOneOffSound(999.9, -879.3, 15.0, SOUND_PART_MISSION_COMPLETE);
                     //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
                     $.flag_prossie1_told_to_go_into_ball = 1;
@@ -749,7 +749,7 @@ async function body() {
                     }
                     $.prossie2_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
                     ++$.counter_no_of_girls_at_the_ball;
-                    Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                    Sound.AddOneOffSound(999.9, -879.3, 15.0, SOUND_PART_MISSION_COMPLETE);
                     //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
                     $.flag_prossie2_told_to_go_into_ball = 1;
@@ -891,7 +891,7 @@ async function body() {
                     }
                     $.prossie3_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
                     ++$.counter_no_of_girls_at_the_ball;
-                    Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                    Sound.AddOneOffSound(999.9, -879.3, 15.0, SOUND_PART_MISSION_COMPLETE);
                     //PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
                     $.flag_prossie3_told_to_go_into_ball = 1;
@@ -1034,7 +1034,7 @@ async function body() {
                     }
                     $.prossie4_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
                     ++$.counter_no_of_girls_at_the_ball;
-                    Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                    Sound.AddOneOffSound(999.9, -879.3, 15.0, SOUND_PART_MISSION_COMPLETE);
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
                     $.flag_prossie4_told_to_go_into_ball = 1;
@@ -1316,7 +1316,7 @@ async function body() {
                     }
                     $.prossie6_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
                     ++$.counter_no_of_girls_at_the_ball;
-                    Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                    Sound.AddOneOffSound(999.9, -879.3, 15.0, SOUND_PART_MISSION_COMPLETE);
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
                     $.flag_prossie6_told_to_go_into_ball = 1;
@@ -1457,7 +1457,7 @@ async function body() {
                     }
                     $.prossie7_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
                     ++$.counter_no_of_girls_at_the_ball;
-                    Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                    Sound.AddOneOffSound(999.9, -879.3, 15.0, SOUND_PART_MISSION_COMPLETE);
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
                     $.flag_prossie7_told_to_go_into_ball = 1;
@@ -1598,7 +1598,7 @@ async function body() {
                     }
                     $.prossie8_lm5.setObjGotoCoordOnFoot(999.0, -891.0);
                     ++$.counter_no_of_girls_at_the_ball;
-                    Sound.AddOneOffSound(999.9, -879.3, 15.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                    Sound.AddOneOffSound(999.9, -879.3, 15.0, SOUND_PART_MISSION_COMPLETE);
                     //	PRINT_WITH_NUMBER_NOW ( LM5_8 ) counter_no_of_girls_at_the_ball 5000 1 // Girls at ball
                     $.player.clearWantedLevel();
                     $.flag_prossie8_told_to_go_into_ball = 1;
@@ -1648,19 +1648,19 @@ async function onPassed() {
 
     if ($.counter_girls_trying_to_get_to_ball > 0) {
         $.sphere_lm5.remove();
-        Hud.SwitchWidescreen(true /* ON */);
-        $.player.setControl(false /* OFF */);
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        Hud.SwitchWidescreen(ON);
+        $.player.setControl(OFF);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
         World.ClearArea(1006.845, -885.5, 14.7, 2.0, true);
         Camera.SetFixedPosition(1006.845, -885.5, 14.7, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1005.9, -885.0, 14.6, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(1005.9, -885.0, 14.6, JUMP_CUT);
         await mission_end_cutscene2(); // SCM GOSUB mission_end_cutscene2
-        Hud.SwitchWidescreen(false /* OFF */);
+        Hud.SwitchWidescreen(OFF);
         Camera.RestoreJumpcut();
-        $.player.setControl(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+        $.player.setControl(ON);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
     }
 
     $.flag_luigi_mission5_passed = 1;
@@ -1687,8 +1687,8 @@ async function cleanup() {
     $.ball_sounds.remove();
     $.sphere_lm5.remove();
     $.fuzzball_sign.markAsNoLongerNeeded();
-    Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);
-    Streaming.MarkModelAsNoLongerNeeded(40 /* PED_PROSTITUTE2 */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_PROSTITUTE);
+    Streaming.MarkModelAsNoLongerNeeded(PED_PROSTITUTE2);
     Hud.ClearTimer($.$id.timer_lm5);
     Hud.FreezeTimer(false);
     Hud.ClearCounter($.$id.counter_no_of_girls_at_the_ball);

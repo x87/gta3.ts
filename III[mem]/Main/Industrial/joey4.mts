@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/joey4.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
@@ -68,19 +69,19 @@ async function body() {
         Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'JOEYH');
         Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'PLAYERH');
         Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'TONYH');
-        Streaming.RequestModel(134 /* CAR_MAFIA */);
-        Streaming.RequestModel(91 /* CAR_IDAHO */);
-        Streaming.RequestModel(129 /* CAR_STALLION */);
+        Streaming.RequestModel(CAR_MAFIA);
+        Streaming.RequestModel(CAR_IDAHO);
+        Streaming.RequestModel(CAR_STALLION);
         Streaming.RequestModel(939 /* jogarageext */);
         Streaming.RequestModel(1074 /* jogarageint */);
 
         Streaming.LoadAllModelsNow();
 
-        while (!Streaming.HasModelLoaded(134 /* CAR_MAFIA */) || !Streaming.HasModelLoaded(91 /* CAR_IDAHO */) || !Streaming.HasModelLoaded(129 /* CAR_STALLION */)) {
+        while (!Streaming.HasModelLoaded(CAR_MAFIA) || !Streaming.HasModelLoaded(CAR_IDAHO) || !Streaming.HasModelLoaded(CAR_STALLION)) {
             await asyncWait(0);
         }
 
-        $.tonis_ride = Car.Create(134 /* CAR_MAFIA */, 1189.72, -864.28, 14.1);
+        $.tonis_ride = Car.Create(CAR_MAFIA, 1189.72, -864.28, 14.1);
         $.tonis_car_created_before = 1;
         $.tonis_ride.setHeading(-142.0);
         Audio.SetRadioChannel(1, -1);
@@ -107,28 +108,28 @@ async function body() {
         Cutscene.Load('J4_ETH');
         Cutscene.SetOffset(1190.079, -869.861, 13.977);
 
-        $.cut_car2_lm3 = Car.Create(91 /* CAR_IDAHO */, 1182.5, -857.0, 14.1);
+        $.cut_car2_lm3 = Car.Create(CAR_IDAHO, 1182.5, -857.0, 14.1);
         $.cut_car2_lm3.setHeading(291.2);
 
-        $.cut_car3_lm3 = Car.Create(129 /* CAR_STALLION */, 1192.9, -860.8, 14.0);
+        $.cut_car3_lm3 = Car.Create(CAR_STALLION, 1192.9, -860.8, 14.0);
         $.cut_car3_lm3.setHeading(150.0);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
         $.cs_player.setAnim('player');
 
-        $.cs_joey = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+        $.cs_joey = CutsceneObject.Create(PED_SPECIAL1);
         $.cs_joey.setAnim('joey');
 
-        $.cs_tony = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+        $.cs_tony = CutsceneObject.Create(PED_SPECIAL2);
         $.cs_tony.setAnim('tony');
 
-        $.cs_joeyhead = CutsceneHead.Create($.cs_joey, 186 /* CUT_OBJ2 */);
+        $.cs_joeyhead = CutsceneHead.Create($.cs_joey, CUT_OBJ2);
         $.cs_joeyhead.setAnim('joey');
 
-        $.cs_tonyhead = CutsceneHead.Create($.cs_tony, 188 /* CUT_OBJ4 */);
+        $.cs_tonyhead = CutsceneHead.Create($.cs_tony, CUT_OBJ4);
         $.cs_tonyhead.setAnim('tony');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 187 /* CUT_OBJ3 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ3);
         $.cs_playerhead.setAnim('player');
 
         $.cs_joedoor = CutsceneObject.Create(185 /* cut_obj1 */);
@@ -168,12 +169,12 @@ async function body() {
             }
         }
 
-        Camera.DoFade(1800, 1 /* FADE_IN */);
+        Camera.DoFade(1800, FADE_IN);
 
         //SWITCH_WORLD_PROCESSING OFF
 
-        World.SwitchRubbish(false /* OFF */);
-        Streaming.Switch(true /* ON */);
+        World.SwitchRubbish(OFF);
+        Streaming.Switch(ON);
         Cutscene.Start();
 
         // Displays cutscene text
@@ -253,12 +254,12 @@ async function body() {
 
         //SWITCH_WORLD_PROCESSING ON
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
         Text.ClearPrints();
         Cutscene.Clear();
 
         if (!Car.IsDead($.tonis_ride)) {
-            $.toni = Char.CreateAsPassenger($.tonis_ride, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 0);
+            $.toni = Char.CreateAsPassenger($.tonis_ride, PEDTYPE_SPECIAL, PED_SPECIAL2, 0);
             $.toni.clearThreatSearch();
             $.toni.setCantBeDraggedOut(true);
             $.toni.addArmor(100);
@@ -273,31 +274,31 @@ async function body() {
         //POINT_CAMERA_AT_PLAYER player FIXED JUMP_CUT
 
         Camera.SetFixedPosition(1200.831, -869.373, 15.001, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1199.887, -869.701, 15.025, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(1199.887, -869.701, 15.025, JUMP_CUT);
 
         await asyncWait(0);
-        Hud.SwitchWidescreen(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-        $.player.setControl(false /* OFF */);
+        Hud.SwitchWidescreen(ON);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        $.player.setControl(OFF);
 
         //WAIT 500
 
         //DO_FADE 1000 FADE_IN
 
         Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
-        Streaming.MarkModelAsNoLongerNeeded(188 /* CUT_OBJ4 */);
-        Streaming.MarkModelAsNoLongerNeeded(91 /* CAR_IDAHO */);
-        Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
+        Streaming.MarkModelAsNoLongerNeeded(CAR_IDAHO);
+        Streaming.MarkModelAsNoLongerNeeded(CAR_STALLION);
         Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */);
         Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */);
 
         $.cut_car2_lm3.delete();
         $.cut_car3_lm3.delete();
 
-        Audio.LoadMissionAudio('j4t_1' as any);
+        Audio.LoadMissionAudio(SfxMission.J4t_1);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -333,7 +334,7 @@ async function body() {
                         FAIL("mission_joey4_failed");
                     }
                 }
-                Audio.LoadMissionAudio('j4t_2' as any);
+                Audio.LoadMissionAudio(SfxMission.J4t_2);
                 while (!Audio.HasMissionAudioLoaded()) {
                     await asyncWait(0);
                     if (Car.IsDead($.tonis_ride) || Char.IsDead($.toni)) {
@@ -350,7 +351,7 @@ async function body() {
                         FAIL("mission_joey4_failed");
                     }
                 }
-                Audio.LoadMissionAudio('j4t_3' as any);
+                Audio.LoadMissionAudio(SfxMission.J4t_3);
                 $.tonis_audio_all_finished = 1;
             }
         }
@@ -403,7 +404,7 @@ async function body() {
             }
         }
 
-        Audio.LoadMissionAudio('j4t_4' as any);
+        Audio.LoadMissionAudio(SfxMission.J4t_4);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -431,19 +432,19 @@ async function body() {
 
         Text.ClearPrints();
 
-        Hud.SwitchWidescreen(false /* OFF */);
-        $.player.setControl(true /* On */);
-        $.tonis_ride.setStatus(0 /* STATUS_PLAYER */);
-        Game.SetPoliceIgnorePlayer($.player, false /* Off */);
+        Hud.SwitchWidescreen(OFF);
+        $.player.setControl(ON);
+        $.tonis_ride.setStatus(STATUS_PLAYER);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
         Camera.Restore();
         World.SetCarDensityMultiplier(1.0); // TURN ALL THE CARS BACK ON
         $.gen_car12.switch(0);
 
-        Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-        Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
-        Audio.LoadMissionAudio('j4_a' as any);
+        Streaming.RequestModel(PED_GANG_TRIAD_A);
+        Streaming.RequestModel(PED_GANG_TRIAD_B);
+        Audio.LoadMissionAudio(SfxMission.J4_a);
 
-        while (!Streaming.HasModelLoaded(12 /* PED_GANG_TRIAD_A */) || !Streaming.HasModelLoaded(13 /* PED_GANG_TRIAD_B */) || !Audio.HasMissionAudioLoaded()) {
+        while (!Streaming.HasModelLoaded(PED_GANG_TRIAD_A) || !Streaming.HasModelLoaded(PED_GANG_TRIAD_B) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
         }
 
@@ -452,13 +453,13 @@ async function body() {
         World.ClearArea(843.4, -663.8, 15.0, 10.0, true);
 
         $.blip1_jm4 = Blip.AddForCoord(843.0, -660.0, -100.0);
-        $.blip1_jm4.changeDisplay(2 /* BLIP_ONLY */);
+        $.blip1_jm4.changeDisplay(BLIP_ONLY);
 
-        $.triad1_jm4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 850.0, -663.0, 14.7);
+        $.triad1_jm4 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 850.0, -663.0, 14.7);
         $.triad1_jm4.clearThreatSearch();
         $.triad1_jm4.setProofs(true, true, true, true, true);
 
-        $.triad2_jm4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 850.0, -664.7, 14.7);
+        $.triad2_jm4 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 850.0, -664.7, 14.7);
         $.triad2_jm4.clearThreatSearch();
         $.triad2_jm4.setProofs(true, true, true, true, true);
 
@@ -521,13 +522,13 @@ async function body() {
         }
 
         $.blip1_jm4.remove();
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-        $.player.setControl(false /* Off */);
-        Hud.SwitchWidescreen(true /* ON */);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        $.player.setControl(OFF);
+        Hud.SwitchWidescreen(ON);
         Camera.SetFixedPosition(825.604, -680.602, 16.567, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(826.336, -679.921, 16.539, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(826.336, -679.921, 16.539, JUMP_CUT);
 
-        Audio.LoadMissionAudio('j4_b' as any);
+        Audio.LoadMissionAudio(SfxMission.J4_b);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -555,7 +556,7 @@ async function body() {
             FAIL("mission_joey4_failed");
         }
 
-        $.toni.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 0);
+        $.toni.giveWeapon(WEAPONTYPE_BASEBALLBAT, 0);
         $.toni.setObjLeaveCar($.tonis_ride);
 
         while ($.toni.isInCar($.tonis_ride)) {
@@ -578,7 +579,7 @@ async function body() {
         //POINT_CAMERA_AT_CHAR toni FIXED INTERPOLATION
 
         Camera.SetFixedPosition(841.312, -669.063, 16.536, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(842.117, -668.501, 16.343, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(842.117, -668.501, 16.343, JUMP_CUT);
 
         //TONI WALKS TO DOORS
 
@@ -691,8 +692,8 @@ async function body() {
         $.toni.turnToFaceCoord(843.9, -663.7, 15.1);
 
         if (!Char.IsDead($.triad1_jm4) || !Char.IsDead($.triad2_jm4)) {
-            $.triad1_jm4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
-            $.triad2_jm4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+            $.triad1_jm4.giveWeapon(WEAPONTYPE_PISTOL, 100);
+            $.triad2_jm4.giveWeapon(WEAPONTYPE_PISTOL, 100);
         }
 
         $.toni.setRunning(true);
@@ -739,7 +740,7 @@ async function body() {
 
         $.toni.setObjEnterCarAsPassenger($.tonis_ride);
         Camera.SetFixedPosition(836.029, -677.868, 15.84, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(836.713, -677.156, 15.68, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(836.713, -677.156, 15.68, JUMP_CUT);
 
         await asyncWait(1500);
 
@@ -796,15 +797,15 @@ async function body() {
             }
         }
 
-        $.triad3_jm4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 843.1, -689.0, 13.9);
-        $.triad3_jm4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+        $.triad3_jm4 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 843.1, -689.0, 13.9);
+        $.triad3_jm4.giveWeapon(WEAPONTYPE_PISTOL, 100);
         $.triad3_jm4.setObjKillPlayerOnFoot($.player);
-        $.triad3_jm4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.triad3_jm4.setThreatSearch(THREAT_PLAYER1);
 
-        $.triad4_jm4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 844.3, -634.8, 13.9);
-        $.triad4_jm4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+        $.triad4_jm4 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 844.3, -634.8, 13.9);
+        $.triad4_jm4.giveWeapon(WEAPONTYPE_PISTOL, 100);
         $.triad4_jm4.setObjKillPlayerOnFoot($.player);
-        $.triad4_jm4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.triad4_jm4.setThreatSearch(THREAT_PLAYER1);
 
         if (!Char.IsDead($.toni)) {
             $.toni.setProofs(false, false, false, false, false);
@@ -815,11 +816,11 @@ async function body() {
             $.triad2_jm4.setProofs(false, false, false, false, false);
         }
 
-        $.player.setControl(true /* On */);
-        Hud.SwitchWidescreen(false /* OFF */);
+        $.player.setControl(ON);
+        Hud.SwitchWidescreen(OFF);
         Camera.Restore();
 
-        Audio.LoadMissionAudio('j4_c' as any);
+        Audio.LoadMissionAudio(SfxMission.J4_c);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -827,10 +828,10 @@ async function body() {
 
         Audio.PlayMissionAudio();
         Text.PrintNow('JM4_3', 4000, 1); //"GO GO GO!"
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
 
         $.blip3_jm4 = Blip.AddForCoord(1216.8, -327.6, -100.0);
-        $.blip3_jm4.changeDisplay(2 /* BLIP_ONLY */);
+        $.blip3_jm4.changeDisplay(BLIP_ONLY);
 
         // CLOSE DOORS
 
@@ -860,11 +861,11 @@ async function body() {
         // waiting for the player to get to Toni's
 
         if (!Char.IsDead($.triad1_jm4)) {
-            $.triad1_jm4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.triad1_jm4.setThreatSearch(THREAT_PLAYER1);
         }
 
         if (!Char.IsDead($.triad2_jm4)) {
-            $.triad2_jm4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+            $.triad2_jm4.setThreatSearch(THREAT_PLAYER1);
         }
 
         World.ClearArea(1216.7, -328.1, 26.0, 6.0, true);
@@ -921,7 +922,7 @@ async function body() {
                 $.player_X = _res269.x;
                 $.player_Y = _res269.y;
                 $.player_Z = _res269.z;
-                Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, SOUND_PART_MISSION_COMPLETE);
                 $.played_tune_before = 1;
             }
             if ($.player.isStoppedInAreaInCar3D(1215.0, -326.9, 25.0, 1220.2, -330.5, 27.0, false)) {
@@ -942,15 +943,15 @@ async function body() {
 
         World.ClearArea(1216.5, -326.8, 26.0, 6.0, true);
         World.ClearArea(1219.6, -319.2, 27.7, 2.0, true);
-        $.player.setControl(false /* Off */);
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-        Hud.SwitchWidescreen(true /* ON */);
+        $.player.setControl(OFF);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        Hud.SwitchWidescreen(ON);
 
         Camera.SetFixedPosition(1224.119, -333.413, 26.529, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1223.382, -332.738, 26.568, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(1223.382, -332.738, 26.568, JUMP_CUT);
 
         if (!Char.IsDead($.toni)) {
-            $.toni.setCurrentWeapon(0 /* WEAPONTYPE_UNARMED */);
+            $.toni.setCurrentWeapon(WEAPONTYPE_UNARMED);
             $.toni.lookAtPlayerAlways($.player);
             $.player.lookAtCharAlways($.toni);
         }
@@ -959,7 +960,7 @@ async function body() {
 
         //SAMPLE 1***************************************************
 
-        Audio.LoadMissionAudio('j4_d' as any);
+        Audio.LoadMissionAudio(SfxMission.J4_d);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -978,7 +979,7 @@ async function body() {
 
         //SAMPLE 2***************************************************
 
-        Audio.LoadMissionAudio('j4_e' as any);
+        Audio.LoadMissionAudio(SfxMission.J4_e);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -997,7 +998,7 @@ async function body() {
 
         //SAMPLE 3***************************************************
 
-        Audio.LoadMissionAudio('j4_f' as any);
+        Audio.LoadMissionAudio(SfxMission.J4_f);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -1086,9 +1087,9 @@ async function body() {
             }
         }
 
-        Hud.SwitchWidescreen(false /* OFF */);
-        $.player.setControl(true /* On */);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Hud.SwitchWidescreen(OFF);
+        $.player.setControl(ON);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
         Camera.RestoreJumpcut();
         $.toni.delete();
     }
@@ -1115,9 +1116,9 @@ async function onPassed() {
 
     Stat.RegisterMissionPassed('JM4');
     Stat.PlayerMadeProgress(1);
-    $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, 26.4, 19 /* RADAR_SPRITE_TONY */);
+    $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, 26.4, RADAR_SPRITE_TONY);
     $.SHOP_UZI.remove();
-    $.SHOP_UZI2 = Pickup.Create(178 /* WEAPON_UZI */, 1 /* PICKUP_IN_SHOP */, 1070.5, -400.8, 15.2);
+    $.SHOP_UZI2 = Pickup.Create(WEAPON_UZI, PICKUP_IN_SHOP, 1070.5, -400.8, 15.2);
     // START_NEW_SCRIPT toni_mission1_loop
     // START_NEW_SCRIPT joey_mission5_loop
     // START_NEW_SCRIPT uzi_message
@@ -1130,9 +1131,9 @@ async function cleanup() {
     $.blip1_jm4.remove();
     $.blip2_jm4.remove();
     $.blip3_jm4.remove();
-    Streaming.MarkModelAsNoLongerNeeded(134 /* CAR_MAFIA */);
-    Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-    Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_MAFIA);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_B);
     Path.SwitchPedRoadsOn(824.9, -633.8, 13.0, 845.3, -693.8, 18.0);
     Path.SwitchRoadsOn(824.9, -633.8, 13.0, 845.3, -693.8, 18.0);
     Streaming.UnloadSpecialCharacter(2);

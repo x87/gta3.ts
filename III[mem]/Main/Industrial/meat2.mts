@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/meat2.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
@@ -135,15 +136,15 @@ async function body() {
     Cutscene.Load('mt_ph2');
     Cutscene.SetOffset(1223.88, -839.414, 13.95);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -218,7 +219,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -234,7 +235,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ1
 
@@ -242,13 +243,13 @@ async function body() {
 
     // **************************************END OF CUTSCENE************************************
 
-    Streaming.RequestModel(24 /* PED_CRIMINAL1 */);
+    Streaming.RequestModel(PED_CRIMINAL1);
 
-    Streaming.RequestModel(25 /* PED_CRIMINAL2 */);
+    Streaming.RequestModel(PED_CRIMINAL2);
 
-    Streaming.RequestModel(95 /* CAR_SENTINEL */);
+    Streaming.RequestModel(CAR_SENTINEL);
 
-    while (!Streaming.HasModelLoaded(24 /* PED_CRIMINAL1 */) || !Streaming.HasModelLoaded(25 /* PED_CRIMINAL2 */) || !Streaming.HasModelLoaded(95 /* CAR_SENTINEL */)) {
+    while (!Streaming.HasModelLoaded(PED_CRIMINAL1) || !Streaming.HasModelLoaded(PED_CRIMINAL2) || !Streaming.HasModelLoaded(CAR_SENTINEL)) {
         await asyncWait(0);
     }
 
@@ -256,7 +257,7 @@ async function body() {
 
     //WAIT 1000
 
-    $.car_meat2 = Car.Create(95 /* CAR_SENTINEL */, 1190.0, -796.0, 13.8);
+    $.car_meat2 = Car.Create(CAR_SENTINEL, 1190.0, -796.0, 13.8);
 
     $.car_meat2.setHeading(300.0);
 
@@ -280,7 +281,7 @@ async function body() {
 
     Text.PrintNow('MEA2_B3', 7000, 1); //"Go and meet the creditors."
 
-    $.victim1_meat2 = Char.Create(4 /* PEDTYPE_CIVMALE */, 24 /* PED_CRIMINAL1 */, 869.0, -611.0, -100.0);
+    $.victim1_meat2 = Char.Create(PEDTYPE_CIVMALE, PED_CRIMINAL1, 869.0, -611.0, -100.0);
 
     $.victim1_meat2.clearThreatSearch();
 
@@ -290,7 +291,7 @@ async function body() {
 
     $.radar_blip_ped1_meat2 = Blip.AddForChar($.victim1_meat2);
 
-    $.victim2_meat2 = Char.Create(4 /* PEDTYPE_CIVMALE */, 25 /* PED_CRIMINAL2 */, 871.0, -612.0, -100.0);
+    $.victim2_meat2 = Char.Create(PEDTYPE_CIVMALE, PED_CRIMINAL2, 871.0, -612.0, -100.0);
 
     $.victim2_meat2.clearThreatSearch();
 
@@ -466,11 +467,11 @@ async function body() {
 
     $.radar_blip_coord2_meat2.remove();
 
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
     $.victim1_meat2.setCantBeDraggedOut(false);
 
@@ -518,7 +519,7 @@ async function body() {
 
     Camera.SetFixedPosition(1201.8, -784.7, 17.0, 0.0, 0.0, 0.0);
 
-    Camera.PointAtPoint(1204.4, -802.7, 15.0, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(1204.4, -802.7, 15.0, JUMP_CUT);
 
     World.ClearArea(1201.8, -799.7, 13.8, 10.0, true);
 
@@ -583,7 +584,7 @@ async function body() {
     }
 
     mission_bloke_stuck: {
-        Audio.LoadMissionAudio('mf4_b' as any);
+        Audio.LoadMissionAudio(SfxMission.Mf4_b);
 
         // Shuts the door
 
@@ -627,15 +628,15 @@ async function body() {
             }
         }
 
-        Hud.SwitchWidescreen(false /* OFF */);
+        Hud.SwitchWidescreen(OFF);
 
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
 
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
 
         Text.PrintSoon('MEA2_B6', 5000, 1); //"Take the car to the crusher to get rid of evidence, get out of the car and the crane will pick it up."
 
-        $.radar_blip_coord3_meat2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, 18 /* RADAR_SPRITE_SPRAY */);
+        $.radar_blip_coord3_meat2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, RADAR_SPRITE_SPRAY);
 
         $.sprayshop1.hasResprayHappened();
 
@@ -656,7 +657,7 @@ async function body() {
             }
             if ($.player.isInCar($.car_meat2) && $.flag_player_had_car_message_meat2 == 1) {
                 $.radar_blip_car_meat2.remove();
-                $.radar_blip_coord3_meat2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, 18 /* RADAR_SPRITE_SPRAY */);
+                $.radar_blip_coord3_meat2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, RADAR_SPRITE_SPRAY);
                 $.flag_player_had_car_message_meat2 = 0;
                 $.blob_flag = 1;
             }
@@ -712,7 +713,7 @@ async function body() {
         }
 
         if (!Car.IsDead($.car_meat2)) {
-            $.car_meat2.changeLock(2 /* CARLOCK_LOCKED */);
+            $.car_meat2.changeLock(CARLOCK_LOCKED);
         }
 
         $.radar_blip_coord4_meat2.remove();
@@ -744,9 +745,9 @@ async function cleanup() {
     $.flag_player_on_meat_mission = 0;
     $.victim1_meat2.removeElegantly();
     $.victim2_meat2.removeElegantly();
-    Streaming.MarkModelAsNoLongerNeeded(24 /* PED_CRIMINAL1 */);
-    Streaming.MarkModelAsNoLongerNeeded(25 /* PED_CRIMINAL2 */);
-    Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_CRIMINAL1);
+    Streaming.MarkModelAsNoLongerNeeded(PED_CRIMINAL2);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_SENTINEL);
     $.radar_blip_ped1_meat2.remove();
     $.radar_blip_ped2_meat2.remove();
     $.radar_blip_car_meat2.remove();

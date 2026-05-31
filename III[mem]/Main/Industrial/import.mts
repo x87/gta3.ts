@@ -90,7 +90,7 @@ verbose('[+] import script loaded');
     });
 
     // SCRIPT_NAME import
-    // SET_DEATHARREST_STATE(false /* OFF */);
+    // SET_DEATHARREST_STATE(OFF);
 
     await asyncWait(100);
 
@@ -103,66 +103,66 @@ verbose('[+] import script loaded');
         await asyncWait(500);
 
         if ($.player.isPlaying()) {
-            if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
                 if ($.player.isInZone('REDLIGH')) {
                     if ($.player.isInArea3D(828.9, -283.8, 0.0, 894.2, -323.5, 26.0, false)) {
                         if ($.bonus_weapons_created == 0) {
                             if ($.earned_free_pistol == 1) {
-                                $.bonus_gun1 = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 14 /* PICKUP_ON_STREET_SLOW */, 90, 876.8, -317.1, 10.0);
+                                $.bonus_gun1 = Pickup.CreateWithAmmo(WEAPON_COLT45, PICKUP_ON_STREET_SLOW, 90, 876.8, -317.1, 10.0);
                             }
                             if ($.earned_free_uzi == 1) {
-                                $.bonus_gun2 = Pickup.CreateWithAmmo(178 /* WEAPON_UZI */, 14 /* PICKUP_ON_STREET_SLOW */, 250, 874.8, -317.1, 10.0);
+                                $.bonus_gun2 = Pickup.CreateWithAmmo(WEAPON_UZI, PICKUP_ON_STREET_SLOW, 250, 874.8, -317.1, 10.0);
                             }
                             if ($.earned_free_grenades == 1) {
-                                $.bonus_gun3 = Pickup.CreateWithAmmo(170 /* WEAPON_GRENADE */, 14 /* PICKUP_ON_STREET_SLOW */, 10, 872.8, -317.1, 10.0);
+                                $.bonus_gun3 = Pickup.CreateWithAmmo(WEAPON_GRENADE, PICKUP_ON_STREET_SLOW, 10, 872.8, -317.1, 10.0);
                             }
                             if ($.earned_free_shotgun == 1) {
-                                $.bonus_gun4 = Pickup.CreateWithAmmo(176 /* WEAPON_SHOTGUN */, 14 /* PICKUP_ON_STREET_SLOW */, 50, 870.8, -317.1, 10.0);
+                                $.bonus_gun4 = Pickup.CreateWithAmmo(WEAPON_SHOTGUN, PICKUP_ON_STREET_SLOW, 50, 870.8, -317.1, 10.0);
                             }
                             if ($.earned_free_armour == 1) {
-                                $.bonus_gun5 = Pickup.Create(1364 /* bodyarmour */, 14 /* PICKUP_ON_STREET_SLOW */, 868.8, -317.1, 10.0);
+                                $.bonus_gun5 = Pickup.Create(1364 /* bodyarmour */, PICKUP_ON_STREET_SLOW, 868.8, -317.1, 10.0);
                             }
                             if ($.earned_free_molotovs == 1) {
-                                $.bonus_gun6 = Pickup.CreateWithAmmo(174 /* WEAPON_MOLOTOV */, 14 /* PICKUP_ON_STREET_SLOW */, 10, 866.8, -317.1, 10.0);
+                                $.bonus_gun6 = Pickup.CreateWithAmmo(WEAPON_MOLOTOV, PICKUP_ON_STREET_SLOW, 10, 866.8, -317.1, 10.0);
                             }
                             if ($.earned_free_ak47 == 1) {
-                                $.bonus_gun7 = Pickup.CreateWithAmmo(171 /* WEAPON_AK47 */, 14 /* PICKUP_ON_STREET_SLOW */, 300, 864.8, -317.1, 10.0);
+                                $.bonus_gun7 = Pickup.CreateWithAmmo(WEAPON_AK47, PICKUP_ON_STREET_SLOW, 300, 864.8, -317.1, 10.0);
                             }
                             if ($.earned_free_sniper == 1) {
-                                $.bonus_gun8 = Pickup.CreateWithAmmo(177 /* WEAPON_SNIPER */, 14 /* PICKUP_ON_STREET_SLOW */, 50, 862.8, -317.1, 10.0);
+                                $.bonus_gun8 = Pickup.CreateWithAmmo(WEAPON_SNIPER, PICKUP_ON_STREET_SLOW, 50, 862.8, -317.1, 10.0);
                             }
                             if ($.earned_free_m16 == 1) {
-                                $.bonus_gun9 = Pickup.CreateWithAmmo(180 /* WEAPON_M16 */, 14 /* PICKUP_ON_STREET_SLOW */, 600, 860.8, -317.1, 10.0);
+                                $.bonus_gun9 = Pickup.CreateWithAmmo(WEAPON_M16, PICKUP_ON_STREET_SLOW, 600, 860.8, -317.1, 10.0);
                             }
                             if ($.earned_free_flamethrower == 1) {
-                                $.bonus_gunflame = Pickup.CreateWithAmmo(181 /* WEAPON_FLAME */, 14 /* PICKUP_ON_STREET_SLOW */, 2000, 858.8, -317.1, 10.0);
+                                $.bonus_gunflame = Pickup.CreateWithAmmo(WEAPON_FLAME, PICKUP_ON_STREET_SLOW, 2000, 858.8, -317.1, 10.0);
                             }
                             if ($.earned_free_launcher == 1) {
-                                $.bonus_gun10 = Pickup.CreateWithAmmo(175 /* WEAPON_ROCKET */, 14 /* PICKUP_ON_STREET_SLOW */, 50, 856.8, -317.1, 10.0);
+                                $.bonus_gun10 = Pickup.CreateWithAmmo(WEAPON_ROCKET, PICKUP_ON_STREET_SLOW, 50, 856.8, -317.1, 10.0);
                             }
                             if ($.ind_copcar_kills > 9) {
-                                $.bonus_bribe1 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 877.6, -313.8, 8.5);
+                                $.bonus_bribe1 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 877.6, -313.8, 8.5);
                             }
                             if ($.ind_copcar_kills > 19) {
-                                $.bonus_bribe2 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 875.6, -313.8, 8.5);
+                                $.bonus_bribe2 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 875.6, -313.8, 8.5);
                             }
                             if ($.com_copcar_kills > 9) {
-                                $.bonus_bribe3 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 873.6, -313.8, 8.5);
+                                $.bonus_bribe3 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 873.6, -313.8, 8.5);
                             }
                             if ($.com_copcar_kills > 19) {
-                                $.bonus_bribe4 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 871.6, -313.8, 8.5);
+                                $.bonus_bribe4 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 871.6, -313.8, 8.5);
                             }
                             if ($.sub_copcar_kills > 9) {
-                                $.bonus_bribe5 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 869.6, -313.8, 8.5);
+                                $.bonus_bribe5 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 869.6, -313.8, 8.5);
                             }
                             if ($.sub_copcar_kills > 19) {
-                                $.bonus_bribe6 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 867.6, -313.8, 8.5);
+                                $.bonus_bribe6 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 867.6, -313.8, 8.5);
                             }
                             if ($.total_saved_peds > 34) {
-                                $.bonus_health = Pickup.Create(1362 /* HEALTH */, 14 /* PICKUP_ON_STREET_SLOW */, 878.9, -299.0, 8.2);
+                                $.bonus_health = Pickup.Create(1362 /* HEALTH */, PICKUP_ON_STREET_SLOW, 878.9, -299.0, 8.2);
                             }
                             if ($.total_saved_peds > 69) {
-                                $.bonus_adrenaline = Pickup.Create(1363 /* ADRENALINE */, 14 /* PICKUP_ON_STREET_SLOW */, 876.9, -299.0, 8.2);
+                                $.bonus_adrenaline = Pickup.Create(1363 /* ADRENALINE */, PICKUP_ON_STREET_SLOW, 876.9, -299.0, 8.2);
                             }
                             $.bonus_weapons_created = 1;
                         }
@@ -180,66 +180,66 @@ verbose('[+] import script loaded');
                 }
             }
 
-            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
                 if ($.player.isInZone('PARK')) {
                     if ($.player.isInArea3D(39.5, -443.8, 53.0, 167.5, -484.6, 15.0, false)) {
                         if ($.bonus_weapons_created == 0) {
                             if ($.earned_free_pistol == 1) {
-                                $.bonus_gun1 = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 14 /* PICKUP_ON_STREET_SLOW */, 90, 132.7, -477.9, 15.9);
+                                $.bonus_gun1 = Pickup.CreateWithAmmo(WEAPON_COLT45, PICKUP_ON_STREET_SLOW, 90, 132.7, -477.9, 15.9);
                             }
                             if ($.earned_free_uzi == 1) {
-                                $.bonus_gun2 = Pickup.CreateWithAmmo(178 /* WEAPON_UZI */, 14 /* PICKUP_ON_STREET_SLOW */, 250, 132.7, -479.9, 15.9);
+                                $.bonus_gun2 = Pickup.CreateWithAmmo(WEAPON_UZI, PICKUP_ON_STREET_SLOW, 250, 132.7, -479.9, 15.9);
                             }
                             if ($.earned_free_grenades == 1) {
-                                $.bonus_gun3 = Pickup.CreateWithAmmo(170 /* WEAPON_GRENADE */, 14 /* PICKUP_ON_STREET_SLOW */, 10, 129.1, -477.9, 15.9);
+                                $.bonus_gun3 = Pickup.CreateWithAmmo(WEAPON_GRENADE, PICKUP_ON_STREET_SLOW, 10, 129.1, -477.9, 15.9);
                             }
                             if ($.earned_free_shotgun == 1) {
-                                $.bonus_gun4 = Pickup.CreateWithAmmo(176 /* WEAPON_SHOTGUN */, 14 /* PICKUP_ON_STREET_SLOW */, 50, 129.1, -479.9, 15.9);
+                                $.bonus_gun4 = Pickup.CreateWithAmmo(WEAPON_SHOTGUN, PICKUP_ON_STREET_SLOW, 50, 129.1, -479.9, 15.9);
                             }
                             if ($.earned_free_armour == 1) {
-                                $.bonus_gun5 = Pickup.Create(1364 /* bodyarmour */, 14 /* PICKUP_ON_STREET_SLOW */, 125.6, -477.9, 15.9);
+                                $.bonus_gun5 = Pickup.Create(1364 /* bodyarmour */, PICKUP_ON_STREET_SLOW, 125.6, -477.9, 15.9);
                             }
                             if ($.earned_free_molotovs == 1) {
-                                $.bonus_gun6 = Pickup.CreateWithAmmo(174 /* WEAPON_MOLOTOV */, 14 /* PICKUP_ON_STREET_SLOW */, 10, 125.6, -479.9, 15.9);
+                                $.bonus_gun6 = Pickup.CreateWithAmmo(WEAPON_MOLOTOV, PICKUP_ON_STREET_SLOW, 10, 125.6, -479.9, 15.9);
                             }
                             if ($.earned_free_ak47 == 1) {
-                                $.bonus_gun7 = Pickup.CreateWithAmmo(171 /* WEAPON_AK47 */, 14 /* PICKUP_ON_STREET_SLOW */, 300, 122.1, -477.9, 15.9);
+                                $.bonus_gun7 = Pickup.CreateWithAmmo(WEAPON_AK47, PICKUP_ON_STREET_SLOW, 300, 122.1, -477.9, 15.9);
                             }
                             if ($.earned_free_sniper == 1) {
-                                $.bonus_gun8 = Pickup.CreateWithAmmo(177 /* WEAPON_SNIPER */, 14 /* PICKUP_ON_STREET_SLOW */, 50, 122.1, -479.9, 15.9);
+                                $.bonus_gun8 = Pickup.CreateWithAmmo(WEAPON_SNIPER, PICKUP_ON_STREET_SLOW, 50, 122.1, -479.9, 15.9);
                             }
                             if ($.earned_free_m16 == 1) {
-                                $.bonus_gun9 = Pickup.CreateWithAmmo(180 /* WEAPON_M16 */, 14 /* PICKUP_ON_STREET_SLOW */, 600, 118.7, -477.9, 15.9);
+                                $.bonus_gun9 = Pickup.CreateWithAmmo(WEAPON_M16, PICKUP_ON_STREET_SLOW, 600, 118.7, -477.9, 15.9);
                             }
                             if ($.earned_free_flamethrower == 1) {
-                                $.bonus_gunflame = Pickup.CreateWithAmmo(181 /* WEAPON_FLAME */, 14 /* PICKUP_ON_STREET_SLOW */, 2000, 118.7, -479.9, 15.9);
+                                $.bonus_gunflame = Pickup.CreateWithAmmo(WEAPON_FLAME, PICKUP_ON_STREET_SLOW, 2000, 118.7, -479.9, 15.9);
                             }
                             if ($.earned_free_launcher == 1) {
-                                $.bonus_gun10 = Pickup.CreateWithAmmo(175 /* WEAPON_ROCKET */, 14 /* PICKUP_ON_STREET_SLOW */, 50, 125.6, -475.9, 15.9);
+                                $.bonus_gun10 = Pickup.CreateWithAmmo(WEAPON_ROCKET, PICKUP_ON_STREET_SLOW, 50, 125.6, -475.9, 15.9);
                             }
                             if ($.ind_copcar_kills > 9) {
-                                $.bonus_bribe1 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 114.5, -458.0, 15.5);
+                                $.bonus_bribe1 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 114.5, -458.0, 15.5);
                             }
                             if ($.ind_copcar_kills > 19) {
-                                $.bonus_bribe2 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 112.5, -458.0, 15.5);
+                                $.bonus_bribe2 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 112.5, -458.0, 15.5);
                             }
                             if ($.com_copcar_kills > 9) {
-                                $.bonus_bribe3 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 110.5, -458.0, 15.5);
+                                $.bonus_bribe3 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 110.5, -458.0, 15.5);
                             }
                             if ($.com_copcar_kills > 19) {
-                                $.bonus_bribe4 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 108.5, -458.0, 15.5);
+                                $.bonus_bribe4 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 108.5, -458.0, 15.5);
                             }
                             if ($.sub_copcar_kills > 9) {
-                                $.bonus_bribe5 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 106.5, -458.0, 15.5);
+                                $.bonus_bribe5 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 106.5, -458.0, 15.5);
                             }
                             if ($.sub_copcar_kills > 19) {
-                                $.bonus_bribe6 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, 104.5, -458.0, 15.5);
+                                $.bonus_bribe6 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, 104.5, -458.0, 15.5);
                             }
                             if ($.total_saved_peds > 34) {
-                                $.bonus_health = Pickup.Create(1362 /* HEALTH */, 14 /* PICKUP_ON_STREET_SLOW */, 94.6, -472.5, 15.5);
+                                $.bonus_health = Pickup.Create(1362 /* HEALTH */, PICKUP_ON_STREET_SLOW, 94.6, -472.5, 15.5);
                             }
                             if ($.total_saved_peds > 69) {
-                                $.bonus_adrenaline = Pickup.Create(1363 /* ADRENALINE */, 14 /* PICKUP_ON_STREET_SLOW */, 92.6, -472.5, 15.5);
+                                $.bonus_adrenaline = Pickup.Create(1363 /* ADRENALINE */, PICKUP_ON_STREET_SLOW, 92.6, -472.5, 15.5);
                             }
                             $.bonus_weapons_created = 1;
                         }
@@ -257,66 +257,66 @@ verbose('[+] import script loaded');
                 }
             }
 
-            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
                 if ($.player.isInZone('PROJECT')) {
                     if ($.player.isInArea3D(-595.8, -68.2, 10.0, -700.7, 3.1, 30.0, false)) {
                         if ($.bonus_weapons_created == 0) {
                             if ($.earned_free_pistol == 1) {
-                                $.bonus_gun1 = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 14 /* PICKUP_ON_STREET_SLOW */, 90, -650.5, -24.8, 18.8);
+                                $.bonus_gun1 = Pickup.CreateWithAmmo(WEAPON_COLT45, PICKUP_ON_STREET_SLOW, 90, -650.5, -24.8, 18.8);
                             }
                             if ($.earned_free_uzi == 1) {
-                                $.bonus_gun2 = Pickup.CreateWithAmmo(178 /* WEAPON_UZI */, 14 /* PICKUP_ON_STREET_SLOW */, 250, -648.5, -24.8, 18.8);
+                                $.bonus_gun2 = Pickup.CreateWithAmmo(WEAPON_UZI, PICKUP_ON_STREET_SLOW, 250, -648.5, -24.8, 18.8);
                             }
                             if ($.earned_free_grenades == 1) {
-                                $.bonus_gun3 = Pickup.CreateWithAmmo(170 /* WEAPON_GRENADE */, 14 /* PICKUP_ON_STREET_SLOW */, 10, -646.5, -24.8, 18.8);
+                                $.bonus_gun3 = Pickup.CreateWithAmmo(WEAPON_GRENADE, PICKUP_ON_STREET_SLOW, 10, -646.5, -24.8, 18.8);
                             }
                             if ($.earned_free_shotgun == 1) {
-                                $.bonus_gun4 = Pickup.CreateWithAmmo(176 /* WEAPON_SHOTGUN */, 14 /* PICKUP_ON_STREET_SLOW */, 50, -644.5, -24.8, 18.8);
+                                $.bonus_gun4 = Pickup.CreateWithAmmo(WEAPON_SHOTGUN, PICKUP_ON_STREET_SLOW, 50, -644.5, -24.8, 18.8);
                             }
                             if ($.earned_free_armour == 1) {
-                                $.bonus_gun5 = Pickup.Create(1364 /* bodyarmour */, 14 /* PICKUP_ON_STREET_SLOW */, -642.5, -24.8, 18.8);
+                                $.bonus_gun5 = Pickup.Create(1364 /* bodyarmour */, PICKUP_ON_STREET_SLOW, -642.5, -24.8, 18.8);
                             }
                             if ($.earned_free_molotovs == 1) {
-                                $.bonus_gun6 = Pickup.CreateWithAmmo(174 /* WEAPON_MOLOTOV */, 14 /* PICKUP_ON_STREET_SLOW */, 10, -640.5, -24.8, 18.8);
+                                $.bonus_gun6 = Pickup.CreateWithAmmo(WEAPON_MOLOTOV, PICKUP_ON_STREET_SLOW, 10, -640.5, -24.8, 18.8);
                             }
                             if ($.earned_free_ak47 == 1) {
-                                $.bonus_gun7 = Pickup.CreateWithAmmo(171 /* WEAPON_AK47 */, 14 /* PICKUP_ON_STREET_SLOW */, 300, -638.5, -24.8, 18.8);
+                                $.bonus_gun7 = Pickup.CreateWithAmmo(WEAPON_AK47, PICKUP_ON_STREET_SLOW, 300, -638.5, -24.8, 18.8);
                             }
                             if ($.earned_free_sniper == 1) {
-                                $.bonus_gun8 = Pickup.CreateWithAmmo(177 /* WEAPON_SNIPER */, 14 /* PICKUP_ON_STREET_SLOW */, 50, -636.5, -24.8, 18.8);
+                                $.bonus_gun8 = Pickup.CreateWithAmmo(WEAPON_SNIPER, PICKUP_ON_STREET_SLOW, 50, -636.5, -24.8, 18.8);
                             }
                             if ($.earned_free_m16 == 1) {
-                                $.bonus_gun9 = Pickup.CreateWithAmmo(180 /* WEAPON_M16 */, 14 /* PICKUP_ON_STREET_SLOW */, 600, -634.5, -24.8, 18.8);
+                                $.bonus_gun9 = Pickup.CreateWithAmmo(WEAPON_M16, PICKUP_ON_STREET_SLOW, 600, -634.5, -24.8, 18.8);
                             }
                             if ($.earned_free_flamethrower == 1) {
-                                $.bonus_gunflame = Pickup.CreateWithAmmo(181 /* WEAPON_FLAME */, 14 /* PICKUP_ON_STREET_SLOW */, 2000, -632.5, -24.8, 18.8);
+                                $.bonus_gunflame = Pickup.CreateWithAmmo(WEAPON_FLAME, PICKUP_ON_STREET_SLOW, 2000, -632.5, -24.8, 18.8);
                             }
                             if ($.earned_free_launcher == 1) {
-                                $.bonus_gun10 = Pickup.CreateWithAmmo(175 /* WEAPON_ROCKET */, 14 /* PICKUP_ON_STREET_SLOW */, 20, -630.5, -24.8, 18.8);
+                                $.bonus_gun10 = Pickup.CreateWithAmmo(WEAPON_ROCKET, PICKUP_ON_STREET_SLOW, 20, -630.5, -24.8, 18.8);
                             }
                             if ($.ind_copcar_kills > 9) {
-                                $.bonus_bribe1 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, -663.0, -28.0, 18.3);
+                                $.bonus_bribe1 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, -663.0, -28.0, 18.3);
                             }
                             if ($.ind_copcar_kills > 19) {
-                                $.bonus_bribe2 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, -665.0, -28.0, 18.3);
+                                $.bonus_bribe2 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, -665.0, -28.0, 18.3);
                             }
                             if ($.com_copcar_kills > 9) {
-                                $.bonus_bribe3 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, -667.0, -28.0, 18.3);
+                                $.bonus_bribe3 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, -667.0, -28.0, 18.3);
                             }
                             if ($.com_copcar_kills > 19) {
-                                $.bonus_bribe4 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, -669.0, -28.0, 18.3);
+                                $.bonus_bribe4 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, -669.0, -28.0, 18.3);
                             }
                             if ($.sub_copcar_kills > 9) {
-                                $.bonus_bribe5 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, -671.0, -28.0, 18.3);
+                                $.bonus_bribe5 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, -671.0, -28.0, 18.3);
                             }
                             if ($.sub_copcar_kills > 19) {
-                                $.bonus_bribe6 = Pickup.Create(1383 /* BRIBE */, 14 /* PICKUP_ON_STREET_SLOW */, -673.0, -28.0, 18.3);
+                                $.bonus_bribe6 = Pickup.Create(1383 /* BRIBE */, PICKUP_ON_STREET_SLOW, -673.0, -28.0, 18.3);
                             }
                             if ($.total_saved_peds > 34) {
-                                $.bonus_health = Pickup.Create(1362 /* HEALTH */, 14 /* PICKUP_ON_STREET_SLOW */, -654.3, -21.7, 18.3);
+                                $.bonus_health = Pickup.Create(1362 /* HEALTH */, PICKUP_ON_STREET_SLOW, -654.3, -21.7, 18.3);
                             }
                             if ($.total_saved_peds > 69) {
-                                $.bonus_adrenaline = Pickup.Create(1363 /* ADRENALINE */, 14 /* PICKUP_ON_STREET_SLOW */, -654.3, -19.7, 18.3);
+                                $.bonus_adrenaline = Pickup.Create(1363 /* ADRENALINE */, PICKUP_ON_STREET_SLOW, -654.3, -19.7, 18.3);
                             }
                             $.bonus_weapons_created = 1;
                         }
@@ -480,7 +480,7 @@ async function import1_loop() {
                     //IF industrial_garage_slots_filled = 16
 
                     if ($.changed_industrial_garage_before == 0) {
-                        $.collect_all_cars1.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
+                        $.collect_all_cars1.changeType(GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE);
                         $.changed_industrial_garage_before = 1;
                     }
 
@@ -489,22 +489,22 @@ async function import1_loop() {
                         if ($.player.isPlaying()) {
                             if ($.player.isInArea2D(1486.9, -686.2, 1524.1, -666.8, false)) {
                                 if ($.create_car_pickups_industrial == 0) {
-                                    $.securicar_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 1, 1501.0, -683.0, 12.1);
-                                    $.moonbeam_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 2, 1505.0, -683.0, 12.1);
-                                    $.coach_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 3, 1509.0, -683.0, 12.1);
-                                    $.flatbed_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 4, 1513.0, -683.0, 12.1);
-                                    $.linerunner_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 5, 1517.0, -683.0, 12.1);
-                                    $.trashmaster_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 6, 1521.0, -683.0, 12.1);
-                                    $.patriot_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 7, 1521.0, -680.0, 12.1);
-                                    $.whoopee_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 8, 1521.0, -677.0, 12.1);
-                                    $.blista_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 9, 1521.0, -674.0, 12.1);
-                                    $.mule_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 10, 1521.0, -671.0, 12.1);
-                                    $.yankee_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 11, 1521.0, -668.0, 12.1);
-                                    $.bobcat_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 12, 1517.0, -668.0, 12.1);
-                                    $.dodo_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 13, 1513.0, -668.0, 12.1);
-                                    $.bus_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 14, 1509.0, -668.0, 12.1);
-                                    $.rumpo_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 15, 1505.0, -668.0, 12.1);
-                                    $.pony_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 16, 1501.0, -668.0, 12.1);
+                                    $.securicar_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 1, 1501.0, -683.0, 12.1);
+                                    $.moonbeam_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 2, 1505.0, -683.0, 12.1);
+                                    $.coach_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 3, 1509.0, -683.0, 12.1);
+                                    $.flatbed_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 4, 1513.0, -683.0, 12.1);
+                                    $.linerunner_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 5, 1517.0, -683.0, 12.1);
+                                    $.trashmaster_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 6, 1521.0, -683.0, 12.1);
+                                    $.patriot_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 7, 1521.0, -680.0, 12.1);
+                                    $.whoopee_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 8, 1521.0, -677.0, 12.1);
+                                    $.blista_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 9, 1521.0, -674.0, 12.1);
+                                    $.mule_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 10, 1521.0, -671.0, 12.1);
+                                    $.yankee_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 11, 1521.0, -668.0, 12.1);
+                                    $.bobcat_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 12, 1517.0, -668.0, 12.1);
+                                    $.dodo_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 13, 1513.0, -668.0, 12.1);
+                                    $.bus_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 14, 1509.0, -668.0, 12.1);
+                                    $.rumpo_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 15, 1505.0, -668.0, 12.1);
+                                    $.pony_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 16, 1501.0, -668.0, 12.1);
                                     await asyncWait(1000);
                                     $.collect_all_cars1.open();
                                     $.create_car_pickups_industrial = 1;
@@ -653,13 +653,13 @@ async function military_crane_loop() {
                         )
                     ) {
                         if ($.create_military_pickups == 0 && $.military_car_been_created_before == 0) {
-                            $.copcar_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 39, 1571.0, -687.0, 11.8);
-                            $.swatvan_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 35, 1571.0, -691.0, 11.8);
-                            $.fbi_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 36, 1571.0, -694.0, 11.8);
-                            $.tank_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 37, 1571.0, -697.0, 11.8);
-                            $.barracks_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 38, 1571.0, -700.0, 11.8);
-                            $.ambulance_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 34, 1571.0, -703.0, 11.8);
-                            $.firetruck_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 33, 1571.0, -706.0, 11.8);
+                            $.copcar_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 39, 1571.0, -687.0, 11.8);
+                            $.swatvan_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 35, 1571.0, -691.0, 11.8);
+                            $.fbi_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 36, 1571.0, -694.0, 11.8);
+                            $.tank_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 37, 1571.0, -697.0, 11.8);
+                            $.barracks_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 38, 1571.0, -700.0, 11.8);
+                            $.ambulance_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 34, 1571.0, -703.0, 11.8);
+                            $.firetruck_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 33, 1571.0, -706.0, 11.8);
                             $.create_military_pickups = 1;
                         }
                     }
@@ -873,7 +873,7 @@ async function import2_loop() {
                     //IF suburban_garage_slots_filled = 16
 
                     if ($.changed_suburban_garage_before == 0) {
-                        $.collect_all_cars2.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
+                        $.collect_all_cars2.changeType(GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE);
                         $.changed_suburban_garage_before = 1;
                     }
 
@@ -882,22 +882,22 @@ async function import2_loop() {
                         if ($.player.isPlaying()) {
                             if ($.player.isInArea2D(-1117.4, 158.1, -1098.0, 121.5, false)) {
                                 if ($.create_car_pickups_suburban == 0) {
-                                    $.sentinet_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 17, -1115.0, 145.5, 59.0);
-                                    $.cheetah_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 18, -1115.0, 142.0, 59.0);
-                                    $.banshee_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 19, -1115.0, 138.5, 59.0);
-                                    $.idaho_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 20, -1115.0, 135.0, 59.0);
-                                    $.infernus_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 21, -1115.0, 131.5, 59.0);
-                                    $.taxi_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 22, -1115.0, 128.0, 59.0);
-                                    $.kuruma_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 23, -1112.0, 128.0, 59.0);
-                                    $.stretch_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 24, -1109.0, 128.0, 59.0);
-                                    $.perennial_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 25, -1106.0, 128.0, 59.0);
-                                    $.stinger_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 26, -1103.0, 128.0, 59.0);
-                                    $.manana_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 27, -1100.0, 128.0, 59.0);
-                                    $.landstalker_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 28, -1100.0, 131.5, 59.0);
-                                    $.stallion_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 29, -1100.0, 135.0, 59.0);
-                                    $.injection_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 30, -1100.0, 138.5, 59.0);
-                                    $.cabbie_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 31, -1100.0, 142.0, 59.0);
-                                    $.esperanto_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, 3 /* PICKUP_ONCE */, 32, -1100.0, 145.5, 59.0);
+                                    $.sentinet_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 17, -1115.0, 145.5, 59.0);
+                                    $.cheetah_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 18, -1115.0, 142.0, 59.0);
+                                    $.banshee_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 19, -1115.0, 138.5, 59.0);
+                                    $.idaho_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 20, -1115.0, 135.0, 59.0);
+                                    $.infernus_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 21, -1115.0, 131.5, 59.0);
+                                    $.taxi_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 22, -1115.0, 128.0, 59.0);
+                                    $.kuruma_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 23, -1112.0, 128.0, 59.0);
+                                    $.stretch_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 24, -1109.0, 128.0, 59.0);
+                                    $.perennial_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 25, -1106.0, 128.0, 59.0);
+                                    $.stinger_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 26, -1103.0, 128.0, 59.0);
+                                    $.manana_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 27, -1100.0, 128.0, 59.0);
+                                    $.landstalker_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 28, -1100.0, 131.5, 59.0);
+                                    $.stallion_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 29, -1100.0, 135.0, 59.0);
+                                    $.injection_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 30, -1100.0, 138.5, 59.0);
+                                    $.cabbie_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 31, -1100.0, 142.0, 59.0);
+                                    $.esperanto_pickup = Pickup.CreateWithAmmo(1384 /* bonus */, PICKUP_ONCE, 32, -1100.0, 145.5, 59.0);
                                     await asyncWait(1000);
                                     $.collect_all_cars2.open();
                                     $.create_car_pickups_suburban = 1;
@@ -1026,7 +1026,7 @@ async function load_vehicle() {
         }
     }
     if ($.player.isPlaying()) {
-        $.player.setControl(false /* Off */);
+        $.player.setControl(OFF);
     }
     $.collect_all_cars1.close();
     while (!$.collect_all_cars1.isClosed()) {
@@ -1039,11 +1039,11 @@ async function load_vehicle() {
     $.imported_car = Car.Create($.import_car_type, 1504.1, -680.1, 12.1);
     Streaming.MarkModelAsNoLongerNeeded($.import_car_type);
     $.imported_car.setHeading(90.0);
-    $.imported_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+    $.imported_car.lockDoors(CARLOCK_UNLOCKED);
     await asyncWait(1000);
     $.collect_all_cars1.open();
     if ($.player.isPlaying()) {
-        $.player.setControl(true /* On */);
+        $.player.setControl(ON);
     }
     $.import_car_been_created_before = 1;
 }
@@ -1060,7 +1060,7 @@ async function load_vehicle2() {
         }
     }
     if ($.player.isPlaying()) {
-        $.player.setControl(false /* Off */);
+        $.player.setControl(OFF);
     }
     $.collect_all_cars2.close();
     while (!$.collect_all_cars2.isClosed()) {
@@ -1073,11 +1073,11 @@ async function load_vehicle2() {
     $.imported_car2 = Car.Create($.import_car_type2, -1112.0, 143.2, 59.0);
     Streaming.MarkModelAsNoLongerNeeded($.import_car_type2);
     $.imported_car2.setHeading(0.0);
-    $.imported_car2.lockDoors(1 /* CARLOCK_UNLOCKED */);
+    $.imported_car2.lockDoors(CARLOCK_UNLOCKED);
     await asyncWait(1000);
     $.collect_all_cars2.open();
     if ($.player.isPlaying()) {
-        $.player.setControl(true /* On */);
+        $.player.setControl(ON);
     }
     $.import_car_been_created_before2 = 1;
 }
@@ -1091,7 +1091,7 @@ async function load_vehicle3() {
     $.military_car = Car.Create($.military_car_type3, 1643.2, -693.2, -100.0);
     Streaming.MarkModelAsNoLongerNeeded($.military_car_type3);
     $.military_car.setHeading(0.0);
-    $.military_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+    $.military_car.lockDoors(CARLOCK_UNLOCKED);
     $.military_car_been_created_before = 1;
 }
 

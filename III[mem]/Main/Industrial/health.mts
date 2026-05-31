@@ -48,22 +48,22 @@ async function body() {
 
     //Mission Script
 
-    $.player.setControl(false /* off */);
+    $.player.setControl(OFF);
 
     $.wanted_level = $.player.storeWantedLevel();
     $.player.clearWantedLevel();
-    Game.SetPoliceIgnorePlayer($.player, true /* on */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
     //SWITCH_WIDESCREEN on
 
-    Streaming.RequestModel(106 /* CAR_AMBULANCE */);
-    Streaming.RequestModel(5 /* PED_MEDIC */);
+    Streaming.RequestModel(CAR_AMBULANCE);
+    Streaming.RequestModel(PED_MEDIC);
 
-    while (!Streaming.HasModelLoaded(106 /* CAR_AMBULANCE */) || !Streaming.HasModelLoaded(5 /* PED_MEDIC */)) {
+    while (!Streaming.HasModelLoaded(CAR_AMBULANCE) || !Streaming.HasModelLoaded(PED_MEDIC)) {
         await asyncWait(0);
     }
 
     Camera.SetFixedPosition(1138.6, -600.0, 18.0, 0.0, 0.0, 0.0);
-    Camera.PointAtPlayer($.player, 15 /* FIXED */, 1 /* INTERPOLATION */);
+    Camera.PointAtPlayer($.player, FIXED, INTERPOLATION);
 
     while ($.flag_info < 8) {
         await asyncWait(0);
@@ -77,9 +77,9 @@ async function body() {
             World.ClearArea(1125.77, -594.0, 14.8, 10.0, true);
             World.SetCarDensityMultiplier(0.0);
             World.SetPedDensityMultiplier(0.0);
-            $.amb_info = Car.Create(106 /* CAR_AMBULANCE */, 1140.2, -621.5, 14.8);
+            $.amb_info = Car.Create(CAR_AMBULANCE, 1140.2, -621.5, 14.8);
             $.amb_info.setHeading(90.0);
-            $.medic_info = Char.Create(4 /* PEDTYPE_CIVMALE */, 5 /* PED_MEDIC */, 1136.75, -617.8, 14.7);
+            $.medic_info = Char.Create(PEDTYPE_CIVMALE, PED_MEDIC, 1136.75, -617.8, 14.7);
             $.medic_info.setHeading(25.0);
             $.medic_info.setIdle();
             $.medic_info.setStayInSamePlace(true);
@@ -88,7 +88,7 @@ async function body() {
       DO_FADE 1500 FADE_IN
       WAIT 1500*/
             Text.PrintHelp('HEAL_A');
-            Hud.FlashObject(4 /* HUD_FLASH_HEALTH */);
+            Hud.FlashObject(HUD_FLASH_HEALTH);
             $.flag_info = 1;
         }
         if ($.flag_intro_jump == 0) {
@@ -105,7 +105,7 @@ async function body() {
         if ($.info_time_lapsed > 11000 && $.flag_info == 2) {
             if (!Car.IsDead($.amb_info) && !Char.IsDead($.medic_info)) {
                 Camera.SetFixedPosition(1133.0, -613.5, 17.0, 0.0, 0.0, 0.0);
-                Camera.PointAtCar($.amb_info, 15 /* FIXED */, 2 /* JUMP_CUT */);
+                Camera.PointAtCar($.amb_info, FIXED, JUMP_CUT);
                 $.medic_info.setStayInSamePlace(false);
                 $.medic_info.setObjEnterCarAsDriver($.amb_info);
             }
@@ -122,21 +122,21 @@ async function body() {
         if ($.info_time_lapsed > 19500 && $.flag_info == 5) {
             Text.PrintHelp('HEAL_E');
             Camera.SetFixedPosition(1138.6, -600.0, 18.0, 0.0, 0.0, 0.0);
-            Camera.PointAtPoint(1144.3, -603.5, 15.0, 2 /* JUMP_CUT */);
-            $.health_pickup_info = Pickup.Create(1362 /* health */, 14 /* PICKUP_ON_STREET_SLOW */, 1144.3, -603.5, 15.0);
+            Camera.PointAtPoint(1144.3, -603.5, 15.0, JUMP_CUT);
+            $.health_pickup_info = Pickup.Create(1362 /* health */, PICKUP_ON_STREET_SLOW, 1144.3, -603.5, 15.0);
             if (!Car.IsDead($.amb_info)) {
                 $.amb_info.wanderRandomly();
             }
             $.flag_info = 6;
         }
         if ($.info_time_lapsed > 22500 && $.flag_info == 6) {
-            Camera.PointAtPoint(1147.0, -601.1, 15.0, 1 /* INTERPOLATION */);
-            $.armour_pickup_info = Pickup.Create(1364 /* bodyarmour */, 14 /* PICKUP_ON_STREET_SLOW */, 1147.0, -601.1, 15.0);
+            Camera.PointAtPoint(1147.0, -601.1, 15.0, INTERPOLATION);
+            $.armour_pickup_info = Pickup.Create(1364 /* bodyarmour */, PICKUP_ON_STREET_SLOW, 1147.0, -601.1, 15.0);
             $.flag_info = 7;
         }
         if ($.info_time_lapsed > 24000 && $.flag_info == 7) {
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             Text.ClearHelp();
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -147,10 +147,10 @@ async function body() {
             $.armour_pickup_info.remove();
             Camera.RestoreJumpcut();
             //SWITCH_WIDESCREEN off
-            $.player.setControl(true /* on */);
+            $.player.setControl(ON);
             $.player.alterWantedLevel($.wanted_level);
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 1 /* FADE_IN */);
+            Camera.DoFade(1500, FADE_IN);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
@@ -161,14 +161,14 @@ async function body() {
                 if ($.medic_info.isInCar($.amb_info) && $.flag_bottom == 0) {
                     $.amb_info.setCruiseSpeed(40.0);
                     $.amb_info.setDrivingStyle(2);
-                    $.amb_info.switchSiren(true /* ON */);
+                    $.amb_info.switchSiren(ON);
                     $.amb_info.gotoCoordinates(1023.0, -480.0, 19.7);
                     $.flag_bottom = 1;
                 }
             }
         }
         if ($.flag_intro_jump == 0 && $.flag_info < 7) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 $.info_time_lapsed = 24001;
                 $.flag_info = 7;
                 $.flag_intro_jump = 1;
@@ -179,15 +179,15 @@ async function body() {
 
 async function cleanup() {
     Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* off */);
-    $.player.setControl(true /* on */);
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
+    Hud.SwitchWidescreen(OFF);
+    $.player.setControl(ON);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
     $.amb_info.markAsNoLongerNeeded();
     $.medic_info.markAsNoLongerNeeded();
 
-    Streaming.MarkModelAsNoLongerNeeded(106 /* CAR_AMBULANCE */);
-    Streaming.MarkModelAsNoLongerNeeded(5 /* PED_MEDIC */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_AMBULANCE);
+    Streaming.MarkModelAsNoLongerNeeded(PED_MEDIC);
 
     World.SetCarDensityMultiplier(1.0);
     World.SetPedDensityMultiplier(1.0);

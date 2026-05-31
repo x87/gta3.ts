@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/toni4.sc
+import { SfxMission } from '../../../.config/enums';
 import { $ } from '../../utils';
 
 // *******************************************************************************************
@@ -61,8 +62,8 @@ async function body() {
     $.pay_back_for_traids2 = 0;
     $.pay_back_for_traids3 = 0;
 
-    Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
-    Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
+    Streaming.RequestModel(PED_GANG_MAFIA_A);
+    Streaming.RequestModel(PED_GANG_MAFIA_B);
     Streaming.RequestModel(537 /* ind_newrizzos */);
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
     Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
@@ -72,26 +73,26 @@ async function body() {
     while (
         !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
         !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(10 /* PED_GANG_MAFIA_A */) ||
-        !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */) ||
+        !Streaming.HasModelLoaded(PED_GANG_MAFIA_A) ||
+        !Streaming.HasModelLoaded(PED_GANG_MAFIA_B) ||
         !Streaming.HasModelLoaded(537 /* ind_newrizzos */)
     ) {
         await asyncWait(0);
     }
 
-    $.mafia_goon1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 11 /* PED_GANG_MAFIA_B */, 1216.4, -309.9, -100.0);
-    $.mafia_goon2 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1215.9, -311.2, 29.0);
+    $.mafia_goon1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_B, 1216.4, -309.9, -100.0);
+    $.mafia_goon2 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, 1215.9, -311.2, 29.0);
 
     if (!Char.IsDead($.mafia_goon1) && !Char.IsDead($.mafia_goon2)) {
-        $.mafia_goon1.giveWeapon(3 /* WEAPONTYPE_UZI */, 300);
-        $.mafia_goon1.setThreatSearch(64 /* THREAT_COP */);
-        $.mafia_goon1.setThreatSearch(256 /* THREAT_GANG_TRIAD */);
+        $.mafia_goon1.giveWeapon(WEAPONTYPE_UZI, 300);
+        $.mafia_goon1.setThreatSearch(THREAT_COP);
+        $.mafia_goon1.setThreatSearch(THREAT_GANG_TRIAD);
         $.mafia_goon1.setRunning(true);
         $.mafia_goon1.turnToFaceChar($.mafia_goon2);
         Game.SetCharsChatting($.mafia_goon1, $.mafia_goon2, 24000);
-        $.mafia_goon2.giveWeapon(3 /* WEAPONTYPE_UZI */, 300);
-        $.mafia_goon2.setThreatSearch(64 /* THREAT_COP */);
-        $.mafia_goon2.setThreatSearch(256 /* THREAT_GANG_TRIAD */);
+        $.mafia_goon2.giveWeapon(WEAPONTYPE_UZI, 300);
+        $.mafia_goon2.setThreatSearch(THREAT_COP);
+        $.mafia_goon2.setThreatSearch(THREAT_GANG_TRIAD);
         $.mafia_goon2.setRunning(true);
         $.mafia_goon2.turnToFaceChar($.mafia_goon1);
     }
@@ -99,10 +100,10 @@ async function body() {
     Cutscene.Load('T4_TAT');
     Cutscene.SetOffset(1218.42, -314.5, 28.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
     $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
@@ -115,12 +116,12 @@ async function body() {
 
     World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SWITCH_WORLD_PROCESSING OFF
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -188,7 +189,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -202,7 +203,7 @@ async function body() {
 
     //SWITCH_WORLD_PROCESSING ON
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetInFrontOfPlayer();
 
@@ -210,8 +211,8 @@ async function body() {
         Game.SetCharsChatting($.mafia_goon1, $.mafia_goon2, 0);
     }
 
-    $.player.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 20);
-    $.player.setCurrentWeapon(4 /* WEAPONTYPE_SHOTGUN */);
+    $.player.giveWeapon(WEAPONTYPE_SHOTGUN, 20);
+    $.player.setCurrentWeapon(WEAPONTYPE_SHOTGUN);
 
     if (!Char.IsDead($.mafia_goon1) && !Char.IsDead($.mafia_goon2)) {
         $.mafia_goon1.setCoordinates(1220.2, -321.8, 26.4);
@@ -220,20 +221,20 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
     Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */);
 
-    Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-    Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
+    Streaming.RequestModel(PED_GANG_TRIAD_A);
+    Streaming.RequestModel(PED_GANG_TRIAD_B);
 
-    while (!Streaming.HasModelLoaded(12 /* PED_GANG_TRIAD_A */) || !Streaming.HasModelLoaded(13 /* PED_GANG_TRIAD_B */)) {
+    while (!Streaming.HasModelLoaded(PED_GANG_TRIAD_A) || !Streaming.HasModelLoaded(PED_GANG_TRIAD_B)) {
         await asyncWait(0);
     }
 
-    Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
+    Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1); //TEST
 
     $.warlords_dead = 0;
     $.triads_spot_you = 0;
@@ -247,45 +248,45 @@ async function body() {
         $.mafia_goon2.followPlayer($.player);
     }
 
-    Zone.SetPedInfo('LITTLEI', 1 /* DAY */, 15, 500, 250, 0, 0, 0, 0, 0, 0);
-    Zone.SetPedInfo('LITTLEI', 0 /* NIGHT */, 8, 500, 250, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('LITTLEI', DAY, 15, 500, 250, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('LITTLEI', NIGHT, 8, 500, 250, 0, 0, 0, 0, 0, 0);
 
-    Zone.SetPedInfo('CHINA', 1 /* DAY */, 30, 350, 600, 0, 0, 0, 0, 0, 0);
-    Zone.SetPedInfo('CHINA', 0 /* NIGHT */, 30, 350, 600, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('CHINA', DAY, 30, 350, 600, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('CHINA', NIGHT, 30, 350, 600, 0, 0, 0, 0, 0, 0);
 
     // START MISSION
 
     //RESET_NUM_OF_MODELS_KILLED_BY_PLAYER
 
-    $.triad_head1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 906.4, -541.4, 14.4); //Fish warhouse (Chinatown)
-    $.triad_head1.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+    $.triad_head1 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 906.4, -541.4, 14.4); //Fish warhouse (Chinatown)
+    $.triad_head1.giveWeapon(WEAPONTYPE_UZI, 80);
     $.triad_head1.setHeading(109.0);
     $.blip1_tm4 = Blip.AddForChar($.triad_head1);
     $.triad_head1.addArmor(100);
     //SET_CHAR_THREAT_SEARCH triad_head1 THREAT_GANG_MAFIA
 
-    $.triad_head1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.triad_head1.setThreatSearch(THREAT_PLAYER1);
     $.triad_head1.setOnlyDamagedByPlayer(true);
     $.triad_head1.setStayInSamePlace(true);
 
-    $.triad_head2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 968.6, -682.2, 14.3); //Market place
-    $.triad_head2.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+    $.triad_head2 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 968.6, -682.2, 14.3); //Market place
+    $.triad_head2.giveWeapon(WEAPONTYPE_UZI, 80);
     $.blip2_tm4 = Blip.AddForChar($.triad_head2);
     $.triad_head2.addArmor(100);
     //SET_CHAR_THREAT_SEARCH triad_head2 THREAT_GANG_MAFIA
 
-    $.triad_head2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.triad_head2.setThreatSearch(THREAT_PLAYER1);
     $.triad_head2.setOnlyDamagedByPlayer(true);
     $.triad_head2.setStayInSamePlace(true);
 
-    $.triad_head3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 968.3, -1136.8, 15.0); //Fish factory
-    $.triad_head3.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+    $.triad_head3 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 968.3, -1136.8, 15.0); //Fish factory
+    $.triad_head3.giveWeapon(WEAPONTYPE_UZI, 80);
     $.triad_head3.setHeading(38.0);
     $.blip3_tm4 = Blip.AddForChar($.triad_head3);
     $.triad_head3.addArmor(100);
     //SET_CHAR_THREAT_SEARCH triad_head3 THREAT_GANG_MAFIA
 
-    $.triad_head3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.triad_head3.setThreatSearch(THREAT_PLAYER1);
     $.triad_head3.setOnlyDamagedByPlayer(true);
     $.triad_head3.setStayInSamePlace(true);
 
@@ -293,7 +294,7 @@ async function body() {
     $.char_already_dead2 = 0;
     $.char_already_dead3 = 0;
 
-    Audio.LoadMissionAudio('t4_a' as any);
+    Audio.LoadMissionAudio(SfxMission.T4_a);
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
@@ -335,29 +336,29 @@ async function body() {
             if (!Char.IsDead($.fish_triad6)) {
                 $.fish_triad6.clearThreatSearch();
             }
-            Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+            Game.ClearThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
             $.clear_triads_threats = 1;
         }
         if ($.player.isInZone('FISHFAC')) {
             if ($.triads_spot_you == 0) {
                 if (!$.player.isInAnyCar()) {
                     if (!Char.IsDead($.fish_triad1)) {
-                        $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad1.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad2)) {
-                        $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad2.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad3)) {
-                        $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad3.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad4)) {
-                        $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad4.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad5)) {
-                        $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad5.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad6)) {
-                        $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad6.setThreatSearch(THREAT_PLAYER1);
                     }
                     $.triads_spot_you = 1;
                 }
@@ -370,22 +371,22 @@ async function body() {
                     Char.IsDead($.fish_triad6)
                 ) {
                     if (!Char.IsDead($.fish_triad1)) {
-                        $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad1.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad2)) {
-                        $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad2.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad3)) {
-                        $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad3.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad4)) {
-                        $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad4.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad5)) {
-                        $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad5.setThreatSearch(THREAT_PLAYER1);
                     }
                     if (!Char.IsDead($.fish_triad6)) {
-                        $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad6.setThreatSearch(THREAT_PLAYER1);
                     }
                     $.triads_spot_you = 1;
                 }
@@ -398,16 +399,16 @@ async function body() {
         if ($.grunts1_been_created_before == 0) {
             if (!Char.IsDead($.triad_head1)) {
                 if ($.player.locateAnyMeansChar2D($.triad_head1, 80.0, 80.0, false)) {
-                    $.triad_grunt1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 907.4, -542.4, 14.4);
+                    $.triad_grunt1 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 907.4, -542.4, 14.4);
                     $.triad_grunt1.setHeading(180.0);
-                    $.triad_grunt1.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+                    $.triad_grunt1.giveWeapon(WEAPONTYPE_UZI, 80);
                     $.triad_grunt1.followChar($.triad_head1);
-                    $.triad_grunt1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.triad_grunt1B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 907.4, -542.4, 14.4);
+                    $.triad_grunt1.setThreatSearch(THREAT_PLAYER1);
+                    $.triad_grunt1B = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 907.4, -542.4, 14.4);
                     $.triad_grunt1B.setHeading(160.0);
-                    $.triad_grunt1B.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+                    $.triad_grunt1B.giveWeapon(WEAPONTYPE_UZI, 80);
                     $.triad_grunt1B.followChar($.triad_head1);
-                    $.triad_grunt1B.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.triad_grunt1B.setThreatSearch(THREAT_PLAYER1);
                     $.triad_head1.setOnlyDamagedByPlayer(false);
                     $.grunts1_been_created_before = 1;
                 }
@@ -422,14 +423,14 @@ async function body() {
         if ($.grunts2_been_created_before == 0) {
             if (!Char.IsDead($.triad_head2)) {
                 if ($.player.locateAnyMeansChar2D($.triad_head2, 80.0, 80.0, false)) {
-                    $.triad_grunt2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 965.6, -680.2, 14.3);
-                    $.triad_grunt2.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+                    $.triad_grunt2 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 965.6, -680.2, 14.3);
+                    $.triad_grunt2.giveWeapon(WEAPONTYPE_UZI, 80);
                     $.triad_grunt2.followChar($.triad_head2);
-                    $.triad_grunt2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.triad_grunt2B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 965.5, -683.0, 14.3);
-                    $.triad_grunt2B.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+                    $.triad_grunt2.setThreatSearch(THREAT_PLAYER1);
+                    $.triad_grunt2B = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 965.5, -683.0, 14.3);
+                    $.triad_grunt2B.giveWeapon(WEAPONTYPE_UZI, 80);
                     $.triad_grunt2B.followChar($.triad_head2);
-                    $.triad_grunt2B.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.triad_grunt2B.setThreatSearch(THREAT_PLAYER1);
                     $.triad_head2.setOnlyDamagedByPlayer(false);
                     $.grunts2_been_created_before = 1;
                 }
@@ -444,15 +445,15 @@ async function body() {
         if ($.grunts3_been_created_before == 0) {
             if (!Char.IsDead($.triad_head3)) {
                 if ($.player.locateAnyMeansChar2D($.triad_head3, 80.0, 80.0, false)) {
-                    $.triad_grunt3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 967.1, -1134.0, 15.0);
-                    $.triad_grunt3.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+                    $.triad_grunt3 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 967.1, -1134.0, 15.0);
+                    $.triad_grunt3.giveWeapon(WEAPONTYPE_UZI, 80);
                     $.triad_grunt3.followChar($.triad_head3);
-                    $.triad_grunt3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.triad_grunt3.setThreatSearch(THREAT_PLAYER1);
                     $.triad_head3.setOnlyDamagedByPlayer(false);
-                    $.triad_grunt3B = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 966.1, -1129.0, 15.0);
-                    $.triad_grunt3B.giveWeapon(3 /* WEAPONTYPE_UZI */, 80);
+                    $.triad_grunt3B = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 966.1, -1129.0, 15.0);
+                    $.triad_grunt3B.giveWeapon(WEAPONTYPE_UZI, 80);
                     $.triad_grunt3B.followChar($.triad_head3);
-                    $.triad_grunt3B.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.triad_grunt3B.setThreatSearch(THREAT_PLAYER1);
                     $.triad_head3.setOnlyDamagedByPlayer(false);
                     $.grunts3_been_created_before = 1;
                 }
@@ -525,7 +526,7 @@ async function body() {
             }
         }
         if ($.player.isInArea3D(1025.2, -1108.4, 12.0, 1009.2, -1098.4, 16.0, false)) {
-            if (!$.player.isInModel(132 /* CAR_BELLYUP */) && !$.player.isInModel(98 /* CAR_TRASHMASTER */)) {
+            if (!$.player.isInModel(CAR_BELLYUP) && !$.player.isInModel(CAR_TRASHMASTER)) {
                 if ($.player.isInArea3D(1015.6, -1100.5, 12.0, 1009.2, -1108.1, 16.0, false) && $.been_in_fish_factory == 0) {
                     $.been_in_fish_factory = 1;
                 }
@@ -541,8 +542,8 @@ async function body() {
 
 // Mission toni4 failed
 async function onFailed() {
-    Zone.SetPedInfo('CHINA', 1 /* DAY */, 20, 0, 300, 0, 0, 0, 0, 0, 20); //China town
-    Zone.SetPedInfo('CHINA', 0 /* NIGHT */, 10, 0, 400, 0, 0, 0, 0, 0, 10);
+    Zone.SetPedInfo('CHINA', DAY, 20, 0, 300, 0, 0, 0, 0, 0, 20); //China town
+    Zone.SetPedInfo('CHINA', NIGHT, 10, 0, 400, 0, 0, 0, 0, 0, 10);
 }
 
 // mission toni4 passed
@@ -555,8 +556,8 @@ async function onPassed() {
     Stat.RegisterMissionPassed('TM4');
     Stat.PlayerMadeProgress(1);
     // START_NEW_SCRIPT toni_mission5_loop
-    Zone.SetPedInfo('CHINA', 1 /* DAY */, 20, 0, 200, 0, 0, 0, 0, 0, 20); //China town
-    Zone.SetPedInfo('CHINA', 0 /* NIGHT */, 10, 0, 300, 0, 0, 0, 0, 0, 10);
+    Zone.SetPedInfo('CHINA', DAY, 20, 0, 200, 0, 0, 0, 0, 0, 20); //China town
+    Zone.SetPedInfo('CHINA', NIGHT, 10, 0, 300, 0, 0, 0, 0, 0, 10);
 }
 
 // mission cleanup
@@ -566,15 +567,15 @@ async function cleanup() {
     $.blip1_tm4.remove();
     $.blip2_tm4.remove();
     $.blip3_tm4.remove();
-    Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
-    Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
-    Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-    Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_B);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_B);
     //UNLOAD_SPECIAL_CHARACTER 1
 
-    Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
-    Zone.SetPedInfo('LITTLEI', 1 /* DAY */, 17, 300, 0, 0, 0, 0, 0, 0, 20); //St Marks
-    Zone.SetPedInfo('LITTLEI', 0 /* NIGHT */, 11, 400, 0, 0, 0, 0, 0, 0, 10);
+    Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1); //TEST
+    Zone.SetPedInfo('LITTLEI', DAY, 17, 300, 0, 0, 0, 0, 0, 0, 20); //St Marks
+    Zone.SetPedInfo('LITTLEI', NIGHT, 11, 400, 0, 0, 0, 0, 0, 0, 10);
     Mission.Finish();
 }
 

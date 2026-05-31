@@ -142,15 +142,15 @@ async function body() {
     Cutscene.Load('hd_ph2');
     Cutscene.SetOffset(-444.714, -6.321, 2.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -211,7 +211,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -229,7 +229,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ1
 
@@ -237,17 +237,17 @@ async function body() {
 
     // ******************************************END OF CUTSCENE********************************
 
-    Streaming.RequestModel(149 /* CAR_TOYZ */);
+    Streaming.RequestModel(CAR_TOYZ);
 
-    Streaming.RequestModel(118 /* CAR_SECURICAR */);
+    Streaming.RequestModel(CAR_SECURICAR);
 
     Streaming.RequestModel(131 /* car_rcbandit */);
 
-    while (!Streaming.HasModelLoaded(149 /* CAR_TOYZ */) || !Streaming.HasModelLoaded(118 /* CAR_SECURICAR */) || !Streaming.HasModelLoaded(131 /* car_rcbandit */)) {
+    while (!Streaming.HasModelLoaded(CAR_TOYZ) || !Streaming.HasModelLoaded(CAR_SECURICAR) || !Streaming.HasModelLoaded(131 /* car_rcbandit */)) {
         await asyncWait(0);
     }
 
-    $.mission_car_hm2 = Car.Create(149 /* CAR_TOYZ */, -682.02, 76.6, -100.0);
+    $.mission_car_hm2 = Car.Create(CAR_TOYZ, -682.02, 76.6, -100.0);
 
     //SET_CAR_HEADING mission_car_hm2 0.0
 
@@ -266,7 +266,7 @@ async function body() {
     $.buggies_left_hm2 = $.total_buggy_hm2 - $.counter_no_of_cars_player_had_hm2;
 
     Hud.DisplayCounterWithString($.$id.buggies_left_hm2, 0, 'BUGGY');
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
     $.radar_blip_car1_hm2.remove();
 
@@ -300,9 +300,9 @@ async function body() {
 
     // creates van 1
 
-    $.target_van1_hm2 = Car.Create(118 /* CAR_SECURICAR */, -841.0, -130.0, -100.0);
+    $.target_van1_hm2 = Car.Create(CAR_SECURICAR, -841.0, -130.0, -100.0);
 
-    $.van_driver1_hm2 = Char.CreateInsideCar($.target_van1_hm2, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
+    $.van_driver1_hm2 = Char.CreateInsideCar($.target_van1_hm2, PEDTYPE_CIVMALE, PED_MALE1);
 
     $.target_van1_hm2.setOnlyDamagedByPlayer(true);
 
@@ -318,9 +318,9 @@ async function body() {
 
     // creates van 2
 
-    $.target_van2_hm2 = Car.Create(118 /* CAR_SECURICAR */, -437.0, -67.0, -100.0);
+    $.target_van2_hm2 = Car.Create(CAR_SECURICAR, -437.0, -67.0, -100.0);
 
-    $.van_driver2_hm2 = Char.CreateInsideCar($.target_van2_hm2, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
+    $.van_driver2_hm2 = Char.CreateInsideCar($.target_van2_hm2, PEDTYPE_CIVMALE, PED_MALE1);
 
     $.target_van2_hm2.setOnlyDamagedByPlayer(true);
 
@@ -336,9 +336,9 @@ async function body() {
 
     // creates van 3
 
-    $.target_van3_hm2 = Car.Create(118 /* CAR_SECURICAR */, -1172.0, 467.0, -100.0);
+    $.target_van3_hm2 = Car.Create(CAR_SECURICAR, -1172.0, 467.0, -100.0);
 
-    $.van_driver3_hm2 = Char.CreateInsideCar($.target_van3_hm2, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
+    $.van_driver3_hm2 = Char.CreateInsideCar($.target_van3_hm2, PEDTYPE_CIVMALE, PED_MALE1);
 
     $.target_van3_hm2.setOnlyDamagedByPlayer(true);
 
@@ -433,11 +433,11 @@ async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
 
     if ($.player.hasBeenArrested()) {
-        Restart.OverridePolice(3 /* LEVEL_SUBURBAN */);
+        Restart.OverridePolice(LEVEL_SUBURBAN);
     }
 
     if ($.player.isDead()) {
-        Restart.OverrideHospital(3 /* LEVEL_SUBURBAN */);
+        Restart.OverrideHospital(LEVEL_SUBURBAN);
     }
 }
 
@@ -458,8 +458,8 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_hood_mission = 0;
     Streaming.LoadScene(-660.9, 76.0, 18.7);
-    Streaming.MarkModelAsNoLongerNeeded(149 /* CAR_TOYZ */);
-    Streaming.MarkModelAsNoLongerNeeded(118 /* CAR_SECURICAR */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_TOYZ);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_SECURICAR);
     Streaming.MarkModelAsNoLongerNeeded(131 /* car_rcbandit */);
     Hud.ClearCounter($.$id.buggies_left_hm2);
     $.radar_blip_car1_hm2.remove();

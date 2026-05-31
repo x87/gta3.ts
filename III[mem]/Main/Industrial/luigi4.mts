@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/luigi4.sc
+import { SfxMission } from '../../../.config/enums';
 import { $ } from '../../utils';
 
 // *****************************************************************************************
@@ -165,9 +166,9 @@ async function body() {
 
     Streaming.RequestModel(243 /* luigiineerclub */);
 
-    Streaming.RequestModel(137 /* CAR_DIABLOS */);
-    Streaming.RequestModel(14 /* PED_GANG_DIABLO_A */);
-    Streaming.RequestModel(9 /* PED_PIMP */);
+    Streaming.RequestModel(CAR_DIABLOS);
+    Streaming.RequestModel(PED_GANG_DIABLO_A);
+    Streaming.RequestModel(PED_PIMP);
 
     /*
     WHILE GET_FADING_STATUS
@@ -198,9 +199,9 @@ async function body() {
         !Streaming.HasModelLoaded(257 /* indhibuild3 */) ||
         !Streaming.HasModelLoaded(256 /* luigiclubout */) ||
         !Streaming.HasModelLoaded(243 /* luigiineerclub */) ||
-        !Streaming.HasModelLoaded(137 /* CAR_DIABLOS */) ||
-        !Streaming.HasModelLoaded(14 /* PED_GANG_DIABLO_A */) ||
-        !Streaming.HasModelLoaded(9 /* PED_PIMP */)
+        !Streaming.HasModelLoaded(CAR_DIABLOS) ||
+        !Streaming.HasModelLoaded(PED_GANG_DIABLO_A) ||
+        !Streaming.HasModelLoaded(PED_PIMP)
     ) {
         await asyncWait(0);
     }
@@ -211,19 +212,19 @@ async function body() {
 
     Cutscene.SetOffset(900.782, -427.523, 13.829);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_luigi = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_luigi = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_luigi.setAnim('luigi');
 
-    $.cs_luigihead = CutsceneHead.Create($.cs_luigi, 186 /* CUT_OBJ2 */);
+    $.cs_luigihead = CutsceneHead.Create($.cs_luigi, CUT_OBJ2);
 
     $.cs_luigihead.setAnim('luigi');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 187 /* CUT_OBJ3 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ3);
 
     $.cs_playerhead.setAnim('player');
 
@@ -239,9 +240,9 @@ async function body() {
 
     $.player.setHeading(270.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
     Cutscene.Start();
 
@@ -282,7 +283,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -296,9 +297,9 @@ async function body() {
 
     Cutscene.Clear();
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Streaming.LoadScene(920.3, -425.4, 15.0);
 
@@ -306,17 +307,17 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true);
 
     Streaming.UnloadSpecialCharacter(1);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
 
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
 
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
     Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
 
@@ -328,27 +329,27 @@ async function body() {
 
     // ******************************************END OF CUT_SCENE*******************************
 
-    Streaming.RequestModel(137 /* CAR_DIABLOS */);
-    Streaming.RequestModel(14 /* PED_GANG_DIABLO_A */);
-    Streaming.RequestModel(9 /* PED_PIMP */);
+    Streaming.RequestModel(CAR_DIABLOS);
+    Streaming.RequestModel(PED_GANG_DIABLO_A);
+    Streaming.RequestModel(PED_PIMP);
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasModelLoaded(137 /* CAR_DIABLOS */) || !Streaming.HasModelLoaded(14 /* PED_GANG_DIABLO_A */) || !Streaming.HasModelLoaded(9 /* PED_PIMP */)) {
+    while (!Streaming.HasModelLoaded(CAR_DIABLOS) || !Streaming.HasModelLoaded(PED_GANG_DIABLO_A) || !Streaming.HasModelLoaded(PED_PIMP)) {
         await asyncWait(0);
     }
 
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
-    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
 
-    $.car_lm4 = Car.Create(137 /* CAR_DIABLOS */, 1058.5, -421.0, -100.0);
+    $.car_lm4 = Car.Create(CAR_DIABLOS, 1058.5, -421.0, -100.0);
 
-    $.car_lm4.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+    $.car_lm4.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
 
     $.car_lm4.setHeading(360.0);
 
@@ -356,19 +357,19 @@ async function body() {
 
     $.car_lm4.setWatertight(true);
 
-    $.rival_pimp_to_kill = Char.CreateInsideCar($.car_lm4, 4 /* PEDTYPE_CIVMALE */, 14 /* PED_GANG_DIABLO_A */);
+    $.rival_pimp_to_kill = Char.CreateInsideCar($.car_lm4, PEDTYPE_CIVMALE, PED_GANG_DIABLO_A);
 
     $.rival_pimp_to_kill.clearThreatSearch();
 
-    $.rival_pimp_to_kill.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000); // sets weapon to infinate ammo
+    $.rival_pimp_to_kill.giveWeapon(WEAPONTYPE_UZI, 30000); // sets weapon to infinate ammo
 
-    $.pimp_lm4 = Char.CreateAsPassenger($.car_lm4, 4 /* PEDTYPE_CIVMALE */, 9 /* PED_PIMP */, 0);
+    $.pimp_lm4 = Char.CreateAsPassenger($.car_lm4, PEDTYPE_CIVMALE, PED_PIMP, 0);
 
     $.pimp_lm4.clearThreatSearch();
 
-    $.pimp_lm4.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 30000); // sets weapon to infinate ammo
+    $.pimp_lm4.giveWeapon(WEAPONTYPE_SHOTGUN, 30000); // sets weapon to infinate ammo
 
-    $.car_lm4.setMission(11 /* MISSION_STOP_FOREVER */);
+    $.car_lm4.setMission(MISSION_STOP_FOREVER);
 
     $.radar_blip_car1_lm4 = Blip.AddForCar($.car_lm4);
 
@@ -378,11 +379,11 @@ async function body() {
 
     Camera.SetFixedPosition(1048.1, -398.3, 15.5, 0.0, 0.0, 0.0);
 
-    Camera.PointAtPoint(1049.1, -398.3, 15.5, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(1049.1, -398.3, 15.5, JUMP_CUT);
 
-    $.gun_lm4 = Pickup.CreateWithAmmo(173 /* WEAPON_COLT45 */, 3 /* pickup_once */, 45, 1080.5, -396.0, 14.5);
+    $.gun_lm4 = Pickup.CreateWithAmmo(WEAPON_COLT45, 3 /* pickup_once */, 45, 1080.5, -396.0, 14.5);
 
-    $.radar_blip_coord1_lm4 = Blip.AddSpriteForPickup($.gun_lm4, 20 /* RADAR_SPRITE_WEAPON */);
+    $.radar_blip_coord1_lm4 = Blip.AddSpriteForPickup($.gun_lm4, RADAR_SPRITE_WEAPON);
 
     TIMERB = 0;
 
@@ -392,7 +393,7 @@ async function body() {
         if ($.flag_set_car_driving_lm4 == 0) {
             if (TIMERB >= 2000) {
                 if (!Car.IsDead($.car_lm4)) {
-                    $.car_lm4.setMission(1 /* MISSION_CRUISE */);
+                    $.car_lm4.setMission(MISSION_CRUISE);
                     $.car_lm4.setCruiseSpeed(20.0);
                     $.flag_set_car_driving_lm4 = 1;
                 }
@@ -401,7 +402,7 @@ async function body() {
         if ($.flag_done_camera_lm4 == 0) {
             if (!Car.IsDead($.car_lm4)) {
                 if ($.car_lm4.locate2D(1058.5, -398.5, 6.0, 6.0, false)) {
-                    Camera.PointAtPoint(1048.6, -397.4, 15.5, 1 /* INTERPOLATION */);
+                    Camera.PointAtPoint(1048.6, -397.4, 15.5, INTERPOLATION);
                     $.flag_done_camera_lm4 = 1;
                 }
             }
@@ -438,13 +439,13 @@ async function body() {
 
     Camera.RestoreJumpcut();
 
-    Hud.SwitchWidescreen(false /* OFF */);
+    Hud.SwitchWidescreen(OFF);
 
-    $.player.setControl(true /* ON */);
+    $.player.setControl(ON);
 
-    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
-    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+    Game.SetEveryoneIgnorePlayer($.player, OFF);
 
     while ($.flag_pimp_dead_lm4 == 0 || $.flag_pimp2_dead_lm4 == 0) {
         await asyncWait(0);
@@ -493,8 +494,8 @@ async function ped_death_check_lm4() {
             if ($.flag_blokes_get_out_of_car_lm4 == 1 || !$.rival_pimp_to_kill.isInCar($.car_lm4)) {
                 if ($.flag_player_got_message_luigi4 == 0) {
                     $.rival_pimp_to_kill.setObjKillPlayerAnyMeans($.player);
-                    $.rival_pimp_to_kill.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.rival_pimp_to_kill.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    $.rival_pimp_to_kill.setThreatSearch(THREAT_PLAYER1);
+                    $.rival_pimp_to_kill.setPersonality(PEDSTAT_TOUGH_GUY);
                     $.flag_player_got_message_luigi4 = 1;
                 }
             }
@@ -518,8 +519,8 @@ async function ped_death_check_lm4() {
             if ($.flag_blokes_get_out_of_car_lm4 == 1 || !$.pimp_lm4.isInCar($.car_lm4)) {
                 if ($.flag_pimp_kill_player_luigi4 == 0) {
                     $.pimp_lm4.setObjKillPlayerAnyMeans($.player);
-                    $.pimp_lm4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.pimp_lm4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    $.pimp_lm4.setThreatSearch(THREAT_PLAYER1);
+                    $.pimp_lm4.setPersonality(PEDSTAT_TOUGH_GUY);
                     $.flag_pimp_kill_player_luigi4 = 1;
                 }
             }
@@ -544,7 +545,7 @@ async function audio_load_lm4() {
         if ($.camera_ammu1 == 1) {
             if (!Char.IsDead($.ammu_shop_bloke1)) {
                 if ($.flag_player_had_message1_lm4 == 0) {
-                    Audio.LoadMissionAudio('ammu_a' as any);
+                    Audio.LoadMissionAudio(SfxMission.Ammu_a);
                     $.flag_player_had_message1_lm4 = 1;
                 }
                 if ($.flag_player_had_message1_lm4 == 1) {
@@ -561,7 +562,7 @@ async function audio_load_lm4() {
                     }
                 }
                 if ($.flag_player_had_message1_lm4 == 3 && $.flag_player_had_message2_lm4 == 0) {
-                    Audio.LoadMissionAudio('ammu_c' as any);
+                    Audio.LoadMissionAudio(SfxMission.Ammu_c);
                     $.flag_player_had_message2_lm4 = 1;
                 }
                 if ($.flag_player_had_message2_lm4 == 1) {
@@ -836,15 +837,15 @@ async function cleanup() {
     if ($.flag_car_dead_lm4 == 0) {
         if (!Car.IsDead($.car_lm4)) {
             $.car_lm4.setOnlyDamagedByPlayer(false);
-            $.car_lm4.lockDoors(1 /* CARLOCK_UNLOCKED */);
+            $.car_lm4.lockDoors(CARLOCK_UNLOCKED);
             $.car_lm4.setWatertight(false);
         }
     }
 
     $.gun_lm4.remove();
-    Streaming.MarkModelAsNoLongerNeeded(137 /* CAR_DIABLOS */);
-    Streaming.MarkModelAsNoLongerNeeded(14 /* PED_GANG_DIABLO_A */);
-    Streaming.MarkModelAsNoLongerNeeded(9 /* PED_PIMP */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_DIABLOS);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_DIABLO_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_PIMP);
     if ($.flag_collected_gun_lm4 == 0) {
         $.gun_lm4.remove();
     }

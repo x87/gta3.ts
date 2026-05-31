@@ -32,16 +32,16 @@ async function body() {
 
     Camera.SetFadingColor(0, 0, 0);
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
     Game.SetEveryoneIgnorePlayer($.player, true);
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
     $.player.setVisible(false);
-    Streaming.Switch(false /* OFF */);
+    Streaming.Switch(OFF);
 
     //SET_DEATHARREST_STATE OFF
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
     // **********************************START OF BANK CUTSCENE****************************
 
@@ -64,7 +64,7 @@ async function body() {
 
     if (!Char.IsDead($.script_controlled_player)) {
         $.script_controlled_player.undress('player');
-        while (!Streaming.HasModelLoaded(0 /* PED_PLAYER */)) {
+        while (!Streaming.HasModelLoaded(PED_PLAYER)) {
             await asyncWait(0);
         }
         if (!Char.IsDead($.script_controlled_player)) {
@@ -73,10 +73,10 @@ async function body() {
     }
 
     Camera.SetMotionBlur(5);
-    Weather.ForceNow(3 /* WEATHER_FOGGY */);
+    Weather.ForceNow(WEATHER_FOGGY);
     Clock.SetTimeOfDay(12, 0);
 
-    World.SwitchProcessing(false /* OFF */);
+    World.SwitchProcessing(OFF);
 
     Streaming.LoadAllModelsNow();
 
@@ -100,16 +100,16 @@ async function body() {
 
     Cutscene.SetOffset(-537.42, 1051.204, 36.884);
 
-    $.cs_player = CutsceneObject.Create(29 /* PED_SPECIAL4 */);
+    $.cs_player = CutsceneObject.Create(PED_SPECIAL4);
     $.cs_player.setAnim('playerx');
 
-    $.cs_cat = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_cat = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_cat.setAnim('cat');
 
-    $.cs_robb = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_robb = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_robb.setAnim('colrob');
 
-    $.cs_miguel = CutsceneObject.Create(28 /* PED_SPECIAL3 */);
+    $.cs_miguel = CutsceneObject.Create(PED_SPECIAL3);
     $.cs_miguel.setAnim('miguel');
 
     $.cs_cathead = CutsceneHead.Create($.cs_cat, 189 /* cut_obj5 */);
@@ -132,7 +132,7 @@ async function body() {
 
     $.cs_cs_ban.setDrawLast(true);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     await cutscene();
 
@@ -142,7 +142,7 @@ async function body() {
         Text.UseCommands(false);
         Audio.SetMusicDoesFade(true);
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(0, 0 /* FADE_OUT */);
+        Camera.DoFade(0, FADE_OUT);
         await bridge_swap();
     }
 
@@ -161,16 +161,16 @@ async function body() {
     Text.ClearSmallPrints();
 
     Camera.SetFadingColor(0, 0, 0);
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
-    World.SwitchRubbish(true /* ON */);
-    World.SwitchProcessing(true /* ON */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(ON);
+    World.SwitchProcessing(ON);
+    Streaming.Switch(ON);
     Game.SetEveryoneIgnorePlayer($.player, false);
-    $.player.setControl(true /* ON */);
+    $.player.setControl(ON);
     $.player.setVisible(true);
 
-    Streaming.LoadCollision(1 /* LEVEL_INDUSTRIAL */);
+    Streaming.LoadCollision(LEVEL_INDUSTRIAL);
     $.player.setCoordinates(811.9, -939.95, 35.8);
     $.player.setHeading(180.0);
 
@@ -178,7 +178,7 @@ async function body() {
 
     if (!Char.IsDead($.script_controlled_player)) {
         $.script_controlled_player.undress('playerp');
-        while (!Streaming.HasModelLoaded(0 /* PED_PLAYER */)) {
+        while (!Streaming.HasModelLoaded(PED_PLAYER)) {
             await asyncWait(0);
             await do_bridge_particles();
         }
@@ -218,7 +218,7 @@ async function body() {
 async function cutscene() {
     Cutscene.Start();
 
-    Camera.DoFade(2000, 1 /* FADE_IN */);
+    Camera.DoFade(2000, FADE_IN);
 
     $.cs_time = Cutscene.GetTime();
 
@@ -247,7 +247,7 @@ async function cutscene() {
     Audio.SetMusicDoesFade(false);
     if (!Cutscene.HasFinished()) {
         Camera.SetFadingColor(255, 255, 255); //FLASH SCREEN FOR PLAYER SHOOTING CAMERA
-        Camera.DoFade(100, 0 /* FADE_OUT */);
+        Camera.DoFade(100, FADE_OUT);
         $.particle_x = -537.42 + 1.759;
         $.particle_y = 1051.204 - 0.416;
         $.particle_z = 36.884 + 1.9891;
@@ -261,7 +261,7 @@ async function cutscene() {
         $.temp_var = $.particle_target_z;
         $.particle_target_z = $.particle_z - $.temp_var;
         Fx.AddMovingParticleEffect(
-            19 /* POBJECT_CATALINAS_SHOTGUNFLASH */,
+            POBJECT_CATALINAS_SHOTGUNFLASH,
             $.particle_x,
             $.particle_y,
             $.particle_z,
@@ -290,7 +290,7 @@ async function cutscene() {
 
     if (!Cutscene.HasFinished()) {
         Camera.SetFadingColor(1, 1, 1);
-        Camera.DoFade(0, 0 /* FADE_OUT */);
+        Camera.DoFade(0, FADE_OUT);
         //	WHILE GET_FADING_STATUS
         //		WAIT 0
         //		GOSUB skip_intro_button
@@ -312,7 +312,7 @@ async function cutscene() {
 
     if (!Cutscene.HasFinished()) {
         Camera.SetFadingColor(1, 1, 1);
-        Camera.DoFade(0, 1 /* FADE_IN */);
+        Camera.DoFade(0, FADE_IN);
     }
 
     Camera.SetMotionBlur(5);
@@ -369,7 +369,7 @@ async function cutscene() {
     $.particle_target_z = $.particle_z - $.temp_var;
 
     Fx.AddMovingParticleEffect(
-        18 /* POBJECT_CATALINAS_GUNFLASH */,
+        POBJECT_CATALINAS_GUNFLASH,
         $.particle_x,
         $.particle_y,
         $.particle_z,
@@ -411,7 +411,7 @@ async function cutscene() {
     $.particle_target_z = $.particle_z - $.temp_var;
 
     Fx.AddMovingParticleEffect(
-        18 /* POBJECT_CATALINAS_GUNFLASH */,
+        POBJECT_CATALINAS_GUNFLASH,
         $.particle_x,
         $.particle_y,
         $.particle_z,
@@ -439,7 +439,7 @@ async function cutscene() {
 
     if (!Cutscene.HasFinished()) {
         Camera.SetFadingColor(255, 255, 255);
-        Camera.DoFade(100, 0 /* FADE_OUT */);
+        Camera.DoFade(100, FADE_OUT);
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
             await skip_intro_button();
@@ -451,7 +451,7 @@ async function cutscene() {
     }
 
     if (!Cutscene.HasFinished()) {
-        Camera.DoFade(600, 1 /* FADE_IN */);
+        Camera.DoFade(600, FADE_IN);
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
             await skip_intro_button();
@@ -526,7 +526,7 @@ async function cutscene() {
     }
 
     Camera.SetFadingColor(0, 0, 0);
-    Camera.DoFade(4000, 0 /* FADE_OUT */);
+    Camera.DoFade(4000, FADE_OUT);
 
     $.text_alpha = 0;
     $.text_fading_flag = 0;
@@ -570,7 +570,7 @@ async function cutscene() {
 
     $.player.makeSafeForCutscene();
 
-    Weather.ForceNow(2 /* WEATHER_RAINY */);
+    Weather.ForceNow(WEATHER_RAINY);
     Weather.ForceRain(true);
 
     Streaming.UnloadSpecialCharacter(1);
@@ -587,9 +587,9 @@ async function cutscene() {
 
     // ******************************START OF JAIL BREAK CUTSCENE**************************
 
-    Streaming.Switch(false /* OFF */);
+    Streaming.Switch(OFF);
 
-    Streaming.LoadCollision(2 /* LEVEL_COMMERCIAL */);
+    Streaming.LoadCollision(LEVEL_COMMERCIAL);
     $.player.setCoordinates(820.9, -941.1, -100.0);
 
     Camera.SetFadingColor(0, 0, 0);
@@ -662,7 +662,7 @@ async function cutscene() {
 
     if (!Char.IsDead($.script_controlled_player)) {
         $.script_controlled_player.undress('playerp');
-        while (!Streaming.HasModelLoaded(0 /* PED_PLAYER */)) {
+        while (!Streaming.HasModelLoaded(PED_PLAYER)) {
             await asyncWait(0);
             await draw_intro_text();
         }
@@ -675,25 +675,25 @@ async function cutscene() {
 
     Cutscene.SetOffset(0.0, 0.0, 0.0);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('playerp');
 
-    $.cs_eight = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_eight = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_eight.setAnim('eight');
 
-    $.cs_ojg = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_ojg = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_ojg.setAnim('ojg_p');
 
-    $.cs_colombian1 = CutsceneObject.Create(28 /* PED_SPECIAL3 */);
+    $.cs_colombian1 = CutsceneObject.Create(PED_SPECIAL3);
     $.cs_colombian1.setAnim('col1');
 
-    $.cs_colombian2 = CutsceneObject.Create(29 /* PED_SPECIAL4 */);
+    $.cs_colombian2 = CutsceneObject.Create(PED_SPECIAL4);
     $.cs_colombian2.setAnim('col2');
 
-    $.cs_cop1 = CutsceneObject.Create(1 /* PED_COP */);
+    $.cs_cop1 = CutsceneObject.Create(PED_COP);
     $.cs_cop1.setAnim('cop');
 
-    $.cs_cop2 = CutsceneObject.Create(1 /* PED_COP */);
+    $.cs_cop2 = CutsceneObject.Create(PED_COP);
     $.cs_cop2.setAnim('male01');
 
     $.cs_colombian1head = CutsceneHead.Create($.cs_colombian1, 188 /* cut_obj4 */);
@@ -717,7 +717,7 @@ async function cutscene() {
     Text.ClearPrints();
     Text.ClearSmallPrints();
 
-    Camera.DoFade(2000, 1 /* FADE_IN */);
+    Camera.DoFade(2000, FADE_IN);
 
     $.cs_time = Cutscene.GetTime();
 
@@ -1328,7 +1328,7 @@ async function cutscene() {
 
     if (!Cutscene.HasFinished()) {
         Camera.SetFadingColor(255, 255, 255);
-        Camera.DoFade(100, 0 /* FADE_OUT */);
+        Camera.DoFade(100, FADE_OUT);
         Text.ClearPrints();
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
@@ -1340,17 +1340,17 @@ async function cutscene() {
     await bridge_swap();
 
     $.player.setVisible(true);
-    Streaming.RequestModel(111 /* CAR_KURUMA */);
+    Streaming.RequestModel(CAR_KURUMA);
     Streaming.LoadAllModelsNow();
-    while (!Streaming.HasModelLoaded(111 /* CAR_KURUMA */)) {
+    while (!Streaming.HasModelLoaded(CAR_KURUMA)) {
         await asyncWait(0);
         await do_bridge_particles();
     }
-    $.car_eightball = Car.Create(111 /* CAR_KURUMA */, 812.0131, -945.5528, 35.7889);
+    $.car_eightball = Car.Create(CAR_KURUMA, 812.0131, -945.5528, 35.7889);
     $.car_eightball.changeColor(58, 1);
     $.car_eightball.setHeading(262.3871);
-    $.eightball = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 811.9, -942.47, -100.0);
-    $.eightball.setAnimGroup(9 /* ANIM_GANG2_PED */);
+    $.eightball = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL1, 811.9, -942.47, -100.0);
+    $.eightball.setAnimGroup(ANIM_GANG2_PED);
     $.eightball.clearThreatSearch();
     $.eightball.turnToFaceCoord(811.9, -939.95, 35.8);
     $.eightball.lookAtPlayerAlways($.player);
@@ -1391,7 +1391,7 @@ async function cutscene() {
     }
     if (!Cutscene.HasFinished()) {
         Camera.SetFadingColor(255, 255, 255);
-        Camera.DoFade(6000, 1 /* FADE_IN */);
+        Camera.DoFade(6000, FADE_IN);
         Text.ClearPrints();
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
@@ -1413,7 +1413,7 @@ async function cutscene() {
     if (!Cutscene.HasFinished()) {
         Audio.SetMusicDoesFade(true);
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(500, 0 /* FADE_OUT */);
+        Camera.DoFade(500, FADE_OUT);
         Text.ClearPrints();
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
@@ -1548,8 +1548,8 @@ async function bridge_swap() {
     $.player.setCoordinates(811.9, -939.95, 35.8);
     $.player.setHeading(180.0);
 
-    World.SwitchProcessing(true /* ON */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchProcessing(ON);
+    Streaming.Switch(ON);
 
     Text.UseCommands(false);
 
@@ -1564,20 +1564,20 @@ async function bridge_swap() {
     TIMERA = 6001;
     await do_bridge_particles();
 
-    $.fire_sound_8ball = Sound.AddContinuous(790.537, -935.67, 38.005, 102 /* SOUND_PRETEND_FIRE_LOOP */);
+    $.fire_sound_8ball = Sound.AddContinuous(790.537, -935.67, 38.005, SOUND_PRETEND_FIRE_LOOP);
 
     Text.UseCommands(false);
 }
 
 async function skip_intro_button() {
     if ($.skip_flag == 0) {
-        if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */) && !Pad.IsButtonPressed(0 /* PAD1 */, 12 /* START */)) {
+        if (!Pad.IsButtonPressed(PAD1, CROSS) && !Pad.IsButtonPressed(PAD1, START)) {
             $.skip_flag = 1;
         }
     }
 
     if ($.skip_flag == 1) {
-        if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */) || Pad.IsButtonPressed(0 /* PAD1 */, 12 /* START */)) {
+        if (Pad.IsButtonPressed(PAD1, CROSS) || Pad.IsButtonPressed(PAD1, START)) {
             $.skip_flag = 2;
         }
     }
@@ -1585,13 +1585,13 @@ async function skip_intro_button() {
 
 async function draw_intro_text() {
     Text.SetCenterSize(580.0);
-    Text.SetFont(0 /* FONT_BANK */); //FONT_PAGER//FONT_HEADING
-    Text.SetCenter(true /* ON */);
+    Text.SetFont(FONT_BANK); //FONT_PAGER//FONT_HEADING
+    Text.SetCenter(ON);
     Text.SetColor(190, 190, 190, $.text_alpha);
     Text.SetScale(0.8, 1.0); //0.5 0.75
-    Text.SetProportional(true /* ON */);
+    Text.SetProportional(ON);
     Text.SetBackgroundColor(0, 0, 0, $.text_alpha);
-    Text.SetBackground(true /* ON */);
+    Text.SetBackground(ON);
 
     Text.Display(320.0, 400.0, 'PAPER1');
 

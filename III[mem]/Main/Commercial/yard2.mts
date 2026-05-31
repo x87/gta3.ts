@@ -1,4 +1,5 @@
 // Generated from Main/Commercial/yard2.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
@@ -88,7 +89,7 @@ async function body() {
     // ******************************************CUTSCENE***************************************
 
     World.SetPedDensityMultiplier(0.0);
-    Game.SetPoliceIgnorePlayer($.player, true /* on */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
     //WHILE NOT HAS_MODEL_LOADED cut_obj1
     //	WAIT 0
@@ -99,7 +100,7 @@ async function body() {
     Cutscene.SetOffset(121.0, -272.3, 15.25);
     World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
@@ -110,7 +111,7 @@ async function body() {
 
     //SET_PLAYER_HEADING player 180.0
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SWITCH_STREAMING OFF
 
@@ -182,7 +183,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -192,18 +193,18 @@ async function body() {
         await asyncWait(0);
     }
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
     Text.ClearPrints();
     Cutscene.Clear();
     //SET_CAMERA_IN_FRONT_OF_PLAYER
 
     await asyncWait(0);
 
-    Streaming.RequestModel(94 /* CAR_PERENNIAL */);
-    Streaming.RequestModel(18 /* PED_GANG_YARDIE_A */);
-    Streaming.RequestModel(19 /* PED_GANG_YARDIE_B */);
+    Streaming.RequestModel(CAR_PERENNIAL);
+    Streaming.RequestModel(PED_GANG_YARDIE_A);
+    Streaming.RequestModel(PED_GANG_YARDIE_B);
 
-    while (!Streaming.HasModelLoaded(94 /* CAR_PERENNIAL */) || !Streaming.HasModelLoaded(18 /* PED_GANG_YARDIE_A */) || !Streaming.HasModelLoaded(19 /* PED_GANG_YARDIE_B */)) {
+    while (!Streaming.HasModelLoaded(CAR_PERENNIAL) || !Streaming.HasModelLoaded(PED_GANG_YARDIE_A) || !Streaming.HasModelLoaded(PED_GANG_YARDIE_B)) {
         await asyncWait(0);
     }
 
@@ -234,12 +235,12 @@ async function body() {
     $.wanted_yd2 = $.player.storeWantedLevel();
     $.player.clearWantedLevel();
 
-    $.player.setControl(false /* off */);
+    $.player.setControl(OFF);
     $.player_yd2 = $.player.getChar();
 
     Camera.SetFixedPosition(117.3, -266.3, 17.0, 0.0, 0.0, 0.0);
-    Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
-    Hud.SwitchWidescreen(true /* on */);
+    Camera.PointAtPlayer($.player, FIXED, JUMP_CUT);
+    Hud.SwitchWidescreen(ON);
 
     //clear traffic--------------------------
 
@@ -263,22 +264,22 @@ async function body() {
     World.ClearArea(4.2, -310.1, 16.0, 40.0, true);
     World.ClearArea(97.0, -285.5, 16.0, 50.0, true);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
     await asyncWait(1500);
 
-    $.gang_car_yd2 = Car.Create(94 /* CAR_PERENNIAL */, 4.2, -310.1, 16.0);
+    $.gang_car_yd2 = Car.Create(CAR_PERENNIAL, 4.2, -310.1, 16.0);
     $.gang_car_yd2.setHeading(0.0);
     $.gang_car_yd2.setOnlyDamagedByPlayer(true);
 
-    $.chaperone_1 = Char.CreateInsideCar($.gang_car_yd2, 4 /* PEDTYPE_CIVMALE */, 18 /* PED_GANG_YARDIE_A */);
-    $.chaperone_2 = Char.CreateAsPassenger($.gang_car_yd2, 4 /* PEDTYPE_CIVMALE */, 19 /* PED_GANG_YARDIE_B */, 0);
+    $.chaperone_1 = Char.CreateInsideCar($.gang_car_yd2, PEDTYPE_CIVMALE, PED_GANG_YARDIE_A);
+    $.chaperone_2 = Char.CreateAsPassenger($.gang_car_yd2, PEDTYPE_CIVMALE, PED_GANG_YARDIE_B, 0);
 
     $.gang_car_yd2.gotoCoordinates(113.0, -272.0, 16.0);
     $.gang_car_yd2.setCruiseSpeed(25.0);
     $.gang_car_yd2.setDrivingStyle(3);
 
     if (!Car.IsDead($.gang_car_yd2)) {
-        Camera.PointAtCar($.gang_car_yd2, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtCar($.gang_car_yd2, FIXED, INTERPOLATION);
     }
 
     while (!$.gang_car_yd2.locateStopped2D(113.0, -272.0, 5.0, 5.0, false)) {
@@ -314,7 +315,7 @@ async function body() {
     }
 
     if (!Char.IsDead($.chaperone_2)) {
-        Camera.PointAtChar($.chaperone_2, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtChar($.chaperone_2, FIXED, INTERPOLATION);
     }
 
     if (!Char.IsDead($.chaperone_1) && !Char.IsDead($.player_yd2)) {
@@ -354,10 +355,10 @@ async function body() {
             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
         }
 
-        Audio.LoadMissionAudio('yd2_a' as any);
+        Audio.LoadMissionAudio(SfxMission.Yd2_a);
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 break plinky_yd2; // SCM GOTO → poodle
             }
         }
@@ -365,7 +366,7 @@ async function body() {
         Text.PrintNow('YD2_C', 10000, 1); //We're going for a little ride into Hepburn Heights, Whack us some Diablo's.
         while (!Audio.HasMissionAudioFinished()) {
             await asyncWait(0);
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 break plinky_yd2; // SCM GOTO → poodle
             }
         }
@@ -378,10 +379,10 @@ async function body() {
             $.chaperone_2.setHealth(100);
         }
 
-        Audio.LoadMissionAudio('yd2_b' as any);
+        Audio.LoadMissionAudio(SfxMission.Yd2_b);
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 break plinky_yd2; // SCM GOTO → poodle
             }
         }
@@ -389,7 +390,7 @@ async function body() {
         Text.PrintNow('YD2_D', 10000, 1); //You do the driving and shooting. We'll make sure you don't get cold feet
         while (!Audio.HasMissionAudioFinished()) {
             await asyncWait(0);
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 break plinky_yd2; // SCM GOTO → poodle
             }
         }
@@ -402,10 +403,10 @@ async function body() {
             $.chaperone_2.setHealth(100);
         }
 
-        Audio.LoadMissionAudio('yd2_c' as any);
+        Audio.LoadMissionAudio(SfxMission.Yd2_c);
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 break plinky_yd2; // SCM GOTO → poodle
             }
         }
@@ -413,7 +414,7 @@ async function body() {
         Text.PrintNow('YD2_CC', 10000, 1); //Here, you'll need a 'piece'
         while (!Audio.HasMissionAudioFinished()) {
             await asyncWait(0);
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 break plinky_yd2; // SCM GOTO → poodle
             }
         }
@@ -427,17 +428,17 @@ async function body() {
         //SET_CHAR_OBJ_NO_OBJ player_yd2
         //SET_PLAYER_CONTROL player on
 
-        $.player.giveWeapon(3 /* WEAPONTYPE_UZI */, 150);
+        $.player.giveWeapon(WEAPONTYPE_UZI, 150);
         await asyncWait(1000);
-        $.player.setCurrentWeapon(3 /* WEAPONTYPE_UZI */);
+        $.player.setCurrentWeapon(WEAPONTYPE_UZI);
 
-        while (!$.player.isCurrentWeapon(3 /* WEAPONTYPE_UZI */)) {
+        while (!$.player.isCurrentWeapon(WEAPONTYPE_UZI)) {
             await asyncWait(0);
         }
 
         //SET_PLAYER_CONTROL player off
 
-        Camera.PointAtPlayer($.player, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtPlayer($.player, FIXED, INTERPOLATION);
 
         if (!Char.IsDead($.chaperone_1)) {
             $.chaperone_1.setHealth(100);
@@ -451,7 +452,7 @@ async function body() {
             $.chaperone_2.lookAtCharAlways($.player_yd2);
         }
 
-        Audio.SetRadioChannel(2 /* JAH_RADIO */, 0);
+        Audio.SetRadioChannel(JAH_RADIO, 0);
 
         if (!Car.IsDead($.gang_car_yd2)) {
             $.player_yd2.setObjEnterCarAsDriver($.gang_car_yd2);
@@ -508,10 +509,10 @@ async function body() {
         }
 
         Camera.RestoreJumpcut();
-        Hud.SwitchWidescreen(false /* off */);
-        $.player.setControl(true /* on */);
+        Hud.SwitchWidescreen(OFF);
+        $.player.setControl(ON);
 
-        Audio.LoadMissionAudio('yd2_c1' as any);
+        Audio.LoadMissionAudio(SfxMission.Yd2_c1);
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
         }
@@ -524,7 +525,7 @@ async function body() {
         $.blip_driveby_yd2 = Blip.AddForCoord($.driveby_x, $.driveby_y, -100.0);
 
         World.SetPedDensityMultiplier(1.0);
-        Game.SetPoliceIgnorePlayer($.player, false /* off */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
 
         //----reset traffic density--------------------------
 
@@ -532,8 +533,8 @@ async function body() {
 
         //---------------------SET PED DENSITIES----------------------------------------------------
 
-        Zone.SetPedInfo('TOWERS', 1 /* DAY */, 15, 0, 0, 700, 0, 0, 0, 0, 20);
-        Zone.SetPedInfo('TOWERS', 0 /* NIGHT */, 10, 0, 0, 800, 0, 0, 0, 0, 10);
+        Zone.SetPedInfo('TOWERS', DAY, 15, 0, 0, 700, 0, 0, 0, 0, 20);
+        Zone.SetPedInfo('TOWERS', NIGHT, 10, 0, 0, 800, 0, 0, 0, 0, 10);
 
         //-----------------------GETTING TO THE HIT-------------------------------------------------
 
@@ -567,7 +568,7 @@ async function body() {
                         } else {
                             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
                         }
-                        $.gang_car_yd2.lockDoors(2 /* CARLOCK_LOCKED */);
+                        $.gang_car_yd2.lockDoors(CARLOCK_LOCKED);
                     }
                 } else {
                     throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
@@ -577,7 +578,7 @@ async function body() {
             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
         }
 
-        Audio.LoadMissionAudio('yd2_f' as any);
+        Audio.LoadMissionAudio(SfxMission.Yd2_f);
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
         }
@@ -587,7 +588,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        Audio.LoadMissionAudio('yd2_g' as any);
+        Audio.LoadMissionAudio(SfxMission.Yd2_g);
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
         }
@@ -628,8 +629,8 @@ async function body() {
             } else {
                 throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
             }
-            $.driveby_total_1 = Player.GetNumOfModelsKilled(14 /* PED_GANG_DIABLO_A */);
-            $.driveby_total_2 = Player.GetNumOfModelsKilled(15 /* PED_GANG_DIABLO_B */);
+            $.driveby_total_1 = Player.GetNumOfModelsKilled(PED_GANG_DIABLO_A);
+            $.driveby_total_2 = Player.GetNumOfModelsKilled(PED_GANG_DIABLO_B);
             $.body_count_yd2 = $.driveby_total_1 + $.driveby_total_2;
             /*
             IF body_count_yd2 > 1
@@ -643,7 +644,7 @@ async function body() {
 
         //------------------------------------BACK TO YARDIE TURF-------------------------------------------------------
 
-        Audio.LoadMissionAudio('yd2_h' as any);
+        Audio.LoadMissionAudio(SfxMission.Yd2_h);
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
         }
@@ -735,7 +736,7 @@ async function body() {
         ENDIF
         */
 
-        $.player.setControl(false /* off */);
+        $.player.setControl(OFF);
 
         if (!Char.IsDead($.chaperone_1) && !Char.IsDead($.chaperone_2) && !Car.IsDead($.gang_car_yd2)) {
             $.gang_car_yd2.setHealth(850);
@@ -745,7 +746,7 @@ async function body() {
             throw new mission_yd2_failed_assert(); // SCM GOTO → mission_yd2_failed_assert
         }
 
-        Audio.LoadMissionAudio('yd2_ok' as any);
+        Audio.LoadMissionAudio(SfxMission.Yd2_ok);
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
         }
@@ -755,7 +756,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        $.player.setControl(true /* on */);
+        $.player.setControl(ON);
     }
 
     return; // SCM GOTO → mission_yd2_passed
@@ -774,7 +775,7 @@ async function onFailed(error?: unknown) {
         }
 
         if ($.flag_upsidedown == 1) {
-            Audio.LoadMissionAudio('yd2_d' as any);
+            Audio.LoadMissionAudio(SfxMission.Yd2_d);
             while (!Audio.HasMissionAudioLoaded()) {
                 await asyncWait(0);
             }
@@ -783,7 +784,7 @@ async function onFailed(error?: unknown) {
         }
 
         if ($.flag_upsidedown == 2) {
-            Audio.LoadMissionAudio('yd2_e' as any);
+            Audio.LoadMissionAudio(SfxMission.Yd2_e);
             while (!Audio.HasMissionAudioLoaded()) {
                 await asyncWait(0);
             }
@@ -815,8 +816,8 @@ async function onFailed(error?: unknown) {
                 }
 
                 if (!Char.IsDead($.chaperone_1)) {
-                    $.chaperone_1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
-                    while (!$.chaperone_1.isCurrentWeapon(4 /* WEAPONTYPE_SHOTGUN */)) {
+                    $.chaperone_1.giveWeapon(WEAPONTYPE_SHOTGUN, 10);
+                    while (!$.chaperone_1.isCurrentWeapon(WEAPONTYPE_SHOTGUN)) {
                         await asyncWait(0);
                         if (Char.IsDead($.chaperone_1)) {
                             break boddle; // SCM GOTO → oink
@@ -825,17 +826,17 @@ async function onFailed(error?: unknown) {
                     if (!Char.IsDead($.chaperone_1)) {
                         $.chaperone_1.turnToFacePlayer($.player);
                         if ($.player.isInZone('TOWERS')) {
-                            $.chaperone_1.setThreatSearch(512 /* THREAT_GANG_DIABLO */);
+                            $.chaperone_1.setThreatSearch(THREAT_GANG_DIABLO);
                         }
-                        $.chaperone_1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.chaperone_1.setThreatSearch(THREAT_PLAYER1);
                     }
                 }
             }
 
             oink: {
                 if (!Char.IsDead($.chaperone_2)) {
-                    $.chaperone_2.giveWeapon(3 /* WEAPONTYPE_UZI */, 30);
-                    while (!$.chaperone_2.isCurrentWeapon(3 /* WEAPONTYPE_UZI */)) {
+                    $.chaperone_2.giveWeapon(WEAPONTYPE_UZI, 30);
+                    while (!$.chaperone_2.isCurrentWeapon(WEAPONTYPE_UZI)) {
                         await asyncWait(0);
                         if (Char.IsDead($.chaperone_2)) {
                             break oink; // SCM GOTO → poink
@@ -844,9 +845,9 @@ async function onFailed(error?: unknown) {
                     if (!Char.IsDead($.chaperone_2)) {
                         $.chaperone_2.turnToFacePlayer($.player);
                         if ($.player.isInZone('TOWERS')) {
-                            $.chaperone_2.setThreatSearch(512 /* THREAT_GANG_DIABLO */);
+                            $.chaperone_2.setThreatSearch(THREAT_GANG_DIABLO);
                         }
-                        $.chaperone_2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.chaperone_2.setThreatSearch(THREAT_PLAYER1);
                     }
                 }
             }
@@ -918,7 +919,7 @@ async function onPassed() {
     $.player.addScore(10000);
     Stat.RegisterMissionPassed('YD2');
     Stat.PlayerMadeProgress(1);
-    Game.SetThreatForPedType(9 /* PEDTYPE_GANG_DIABLO */, 1 /* THREAT_PLAYER1 */);
+    Game.SetThreatForPedType(PEDTYPE_GANG_DIABLO, THREAT_PLAYER1);
     // START_NEW_SCRIPT yardie_mission3_loop
 }
 
@@ -932,20 +933,20 @@ async function cleanup() {
     $.blip_driveby_yd2.remove();
     //SET_PLAYER_CONTROL player on
 
-    Hud.SwitchWidescreen(false /* off */);
+    Hud.SwitchWidescreen(OFF);
     Camera.RestoreJumpcut();
     if (!Car.IsDead($.gang_car_yd2)) {
-        $.gang_car_yd2.lockDoors(1 /* CARLOCK_UNLOCKED */);
+        $.gang_car_yd2.lockDoors(CARLOCK_UNLOCKED);
     }
-    Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
-    Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_B);
 
-    Streaming.MarkModelAsNoLongerNeeded(94 /* CAR_PERENNIAL */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_PERENNIAL);
 
     //------------RESTORE PED DENSITIES---------------------------------------
 
-    Zone.SetPedInfo('TOWERS', 1 /* DAY */, 15, 0, 0, 300, 0, 0, 0, 0, 20);
-    Zone.SetPedInfo('TOWERS', 0 /* NIGHT */, 10, 0, 0, 500, 0, 0, 0, 0, 10);
+    Zone.SetPedInfo('TOWERS', DAY, 15, 0, 0, 300, 0, 0, 0, 0, 20);
+    Zone.SetPedInfo('TOWERS', NIGHT, 10, 0, 0, 500, 0, 0, 0, 0, 10);
 
     Mission.Finish();
 }
@@ -954,7 +955,7 @@ async function cleanup() {
 
 async function player_out_of_car() {
     if (!Car.IsDead($.gang_car_yd2)) {
-        $.gang_car_yd2.lockDoors(1 /* CARLOCK_UNLOCKED */);
+        $.gang_car_yd2.lockDoors(CARLOCK_UNLOCKED);
     }
     while ($.timer_dif_yd2 < 7500) {
         await asyncWait(0);
@@ -966,7 +967,7 @@ async function player_out_of_car() {
                 }
             }
             if ($.flag_out_of_car_message == 0) {
-                Audio.LoadMissionAudio('yd2_ass' as any);
+                Audio.LoadMissionAudio(SfxMission.Yd2_ass);
                 while (!Audio.HasMissionAudioLoaded()) {
                     await asyncWait(0);
                 }
@@ -986,7 +987,7 @@ async function player_out_of_car() {
         }
     }
 
-    $.gang_car_yd2.lockDoors(2 /* CARLOCK_LOCKED */);
+    $.gang_car_yd2.lockDoors(CARLOCK_LOCKED);
 }
 
 export default () => body().then(onPassed).catch(onFailed).finally(cleanup);

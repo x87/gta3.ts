@@ -104,7 +104,7 @@ async function body() {
     // ******************************************CUTSCENE***************************************
 
     World.SetPedDensityMultiplier(0.0);
-    Game.SetPoliceIgnorePlayer($.player, true /* on */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
     //WHILE NOT HAS_MODEL_LOADED cut_obj1
     //	WAIT 0
@@ -115,7 +115,7 @@ async function body() {
     Cutscene.SetOffset(121.0, -272.3, 15.25);
     World.ClearAreaOfChars(100.5, -250.0, 0.0, 130.5, -290.0, 25.0);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
@@ -126,7 +126,7 @@ async function body() {
 
     //SET_PLAYER_HEADING player 180.0
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SWITCH_STREAMING OFF
 
@@ -198,7 +198,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -208,7 +208,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
     Text.ClearPrints();
     Cutscene.Clear();
     //SET_CAMERA_IN_FRONT_OF_PLAYER
@@ -216,9 +216,9 @@ async function body() {
     await asyncWait(500);
 
     World.SetPedDensityMultiplier(1.0);
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     $.flag_van1_arrived = 0;
 
@@ -243,9 +243,9 @@ async function body() {
     $.abandoned_car_x = -71.5;
     $.abandoned_car_y = -1471.0;
 
-    Streaming.RequestModel(109 /* CAR_ESPERANTO */);
-    Streaming.RequestModel(103 /* CAR_PONY */);
-    while (!Streaming.HasModelLoaded(109 /* CAR_ESPERANTO */) || !Streaming.HasModelLoaded(103 /* CAR_PONY */)) {
+    Streaming.RequestModel(CAR_ESPERANTO);
+    Streaming.RequestModel(CAR_PONY);
+    while (!Streaming.HasModelLoaded(CAR_ESPERANTO) || !Streaming.HasModelLoaded(CAR_PONY)) {
         await asyncWait(0);
     }
 
@@ -270,15 +270,15 @@ async function body() {
 
     Hud.DisplayTimer($.$id.timer_y4);
     create_car_yd5: {
-        $.abandoned_car_y4 = Car.Create(109 /* CAR_ESPERANTO */, $.abandoned_car_x, $.abandoned_car_y, -100.0);
+        $.abandoned_car_y4 = Car.Create(CAR_ESPERANTO, $.abandoned_car_x, $.abandoned_car_y, -100.0);
         $.abandoned_car_y4.setHeading(270.0);
         $.abandoned_car_y4.setIdle();
         $.blip_abandoned_car_y4 = Blip.AddForCar($.abandoned_car_y4);
 
-        $.gen2_van = Car.Create(103 /* CAR_PONY */, $.gen2_x, $.gen2_y, 27.0);
+        $.gen2_van = Car.Create(CAR_PONY, $.gen2_x, $.gen2_y, 27.0);
         $.gen2_van.setHeading(345.0);
         $.gen2_van.setIdle();
-        $.gen2_van.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.gen2_van.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
 
         // Mission stuff goes here
 
@@ -300,33 +300,33 @@ async function body() {
         }
 
         $.blip_abandoned_car_y4.remove();
-        $.player.setControl(false /* Off */);
+        $.player.setControl(OFF);
         Hud.ClearTimer($.$id.timer_y4);
         World.ClearArea(-113.4, -1431.5, 26.0, 20.0, true);
 
-        $.gen1_van = Car.Create(103 /* CAR_PONY */, $.gen1_x, $.gen1_y, 26.2);
+        $.gen1_van = Car.Create(CAR_PONY, $.gen1_x, $.gen1_y, 26.2);
         $.gen1_van.setHeading(180.0);
         $.gen1_van.setIdle();
-        $.gen1_van.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
-        $.human_bomb_demo = Char.CreateAsPassenger($.gen1_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
+        $.gen1_van.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
+        $.human_bomb_demo = Char.CreateAsPassenger($.gen1_van, PEDTYPE_SPECIAL, PED_SPECIAL1, 0);
 
-        $.gen3_van = Car.Create(103 /* CAR_PONY */, $.gen3_x, $.gen3_y, 26.2);
+        $.gen3_van = Car.Create(CAR_PONY, $.gen3_x, $.gen3_y, 26.2);
         $.gen3_van.setHeading(90.0);
         $.gen3_van.setIdle();
-        $.gen3_van.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.gen3_van.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
 
-        $.gen4_van = Car.Create(103 /* CAR_PONY */, $.gen4_x, $.gen4_y, 26.2);
+        $.gen4_van = Car.Create(CAR_PONY, $.gen4_x, $.gen4_y, 26.2);
         $.gen4_van.setHeading(90.0);
         $.gen4_van.setIdle();
-        $.gen4_van.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+        $.gen4_van.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
 
         Camera.SetFixedPosition(-82.0, -1472.0, 27.5, 0.0, 0.0, 0.0);
         if (!Car.IsDead($.abandoned_car_y4)) {
-            Camera.PointAtCar($.abandoned_car_y4, 15 /* FIXED */, 2 /* JUMP_CUT */);
+            Camera.PointAtCar($.abandoned_car_y4, FIXED, JUMP_CUT);
         }
         //POINT_CAMERA_AT_PLAYER player FIXED JUMP_CUT
 
-        Hud.SwitchWidescreen(true /* on */);
+        Hud.SwitchWidescreen(ON);
 
         Text.PrintNow('YD4_B', 3500, 2);
         // MESSAGE_WAIT(3500, true);
@@ -339,7 +339,7 @@ async function body() {
 
         if (!Car.IsDead($.gen1_van)) {
             $.gen1_van.gotoCoordinatesAccurate(-113.2, -1442.5, 26.2);
-            Camera.PointAtCar($.gen1_van, 15 /* FIXED */, 1 /* INTERPOLATION */);
+            Camera.PointAtCar($.gen1_van, FIXED, INTERPOLATION);
         }
         if (!Car.IsDead($.gen3_van)) {
             $.gen3_van.gotoCoordinates(-53.5, -1446.7, 26.2);
@@ -378,7 +378,7 @@ async function body() {
         $.human_bomb_demo.setHeading(180.0);
         Camera.SetFixedPosition(-115.76, -1455.0, 25.9, 0.0, 0.0, 0.0);
         $.human_bomb_demo.setIdle();
-        Camera.PointAtChar($.human_bomb_demo, 15 /* FIXED */, 2 /* JUMP_CUT */);
+        Camera.PointAtChar($.human_bomb_demo, FIXED, JUMP_CUT);
         //SET_CAMERA_ZOOM CAM_ZOOM_TWO
 
         Text.PrintNow('YD4_1', 3000, 1);
@@ -406,7 +406,7 @@ async function body() {
             $.y4_x = _res149.x;
             $.y4_y = _res149.y;
             $.y4_z = _res149.z;
-            Camera.PointAtChar($.human_bomb_demo, 4 /* FOLLOWPED */, 1 /* INTERPOLATION */);
+            Camera.PointAtChar($.human_bomb_demo, FOLLOWPED, INTERPOLATION);
             $.human_bomb_demo.setObjRunToCoord($.y4_x, $.y4_y);
             while (!$.human_bomb_demo.locateOnFoot2D($.y4_x, $.y4_y, 5.0, 5.0, false)) {
                 await asyncWait(0);
@@ -426,15 +426,15 @@ async function body() {
 }
 
 async function selkirk() {
-    Fx.AddExplosion($.bomb_x, $.bomb_y, $.bomb_z, 0 /* EXPLOSION_GRENADE */);
+    Fx.AddExplosion($.bomb_x, $.bomb_y, $.bomb_z, EXPLOSION_GRENADE);
     Sound.AddOneOffSound($.bomb_x, $.bomb_y, $.bomb_z, 0 /* sound_test_1 */);
     Camera.Shake(500);
 
     await asyncWait(1000);
 
     Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* off */);
-    $.player.setControl(true /* on */);
+    Hud.SwitchWidescreen(OFF);
+    $.player.setControl(ON);
     await asyncWait(0);
     $.human_bomb_demo.markAsNoLongerNeeded();
     Text.PrintNow('YD4_2', 3000, 1);
@@ -568,7 +568,7 @@ async function selkirk() {
 // DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****DETONATIONS*****
 async function generator_1_easy() {
     if (!Car.IsDead($.gen1_van)) {
-        $.human_bomb_1 = Char.CreateAsPassenger($.gen1_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
+        $.human_bomb_1 = Char.CreateAsPassenger($.gen1_van, PEDTYPE_SPECIAL, PED_SPECIAL1, 0);
         $.flag_bomb1_active = 1;
         $.human_bomb_1.setObjLeaveCar($.gen1_van);
         $.blip_bomber_1 = Blip.AddForChar($.human_bomb_1);
@@ -588,7 +588,7 @@ async function generator_1_easy() {
 //222222222222222222222222222222222222222222222222222222222222222222222222
 async function generator_2_easy() {
     if (!Car.IsDead($.gen2_van)) {
-        $.human_bomb_4 = Char.CreateAsPassenger($.gen2_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
+        $.human_bomb_4 = Char.CreateAsPassenger($.gen2_van, PEDTYPE_SPECIAL, PED_SPECIAL1, 0);
         $.flag_bomb4_active = 1;
         $.human_bomb_4.setObjLeaveCar($.gen2_van);
         $.blip_bomber_4 = Blip.AddForChar($.human_bomb_4);
@@ -609,7 +609,7 @@ async function generator_2_easy() {
 //333333333333333333333333333333333333333333333333333333333333333333333333
 async function generator_3_easy() {
     if (!Car.IsDead($.gen3_van)) {
-        $.human_bomb_7 = Char.CreateAsPassenger($.gen3_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
+        $.human_bomb_7 = Char.CreateAsPassenger($.gen3_van, PEDTYPE_SPECIAL, PED_SPECIAL1, 0);
         $.flag_bomb7_active = 1;
         $.human_bomb_7.setObjLeaveCar($.gen3_van);
         $.blip_bomber_7 = Blip.AddForChar($.human_bomb_7);
@@ -629,7 +629,7 @@ async function generator_3_easy() {
 //444444444444444444444444444444444444444444444444444444444444444444444444
 async function generator_4_easy() {
     if (!Car.IsDead($.gen4_van)) {
-        $.human_bomb_9 = Char.CreateAsPassenger($.gen4_van, 21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 0);
+        $.human_bomb_9 = Char.CreateAsPassenger($.gen4_van, PEDTYPE_SPECIAL, PED_SPECIAL1, 0);
         $.flag_bomb9_active = 1;
         $.human_bomb_9.setObjLeaveCar($.gen4_van);
         $.blip_bomber_9 = Blip.AddForChar($.human_bomb_9);
@@ -649,7 +649,7 @@ async function generator_4_easy() {
 // MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****MAIN LOOP*****
 async function detonate_1() {
     if ($.flag_bomb1_active == 1) {
-        Fx.AddExplosion($.bomb_x, $.bomb_y, $.bomb_z, 0 /* EXPLOSION_GRENADE */);
+        Fx.AddExplosion($.bomb_x, $.bomb_y, $.bomb_z, EXPLOSION_GRENADE);
         Sound.AddOneOffSound($.bomb_x, $.bomb_y, $.bomb_z, 0 /* sound_test_1 */);
         Camera.Shake(500);
         $.flag_bomb1_active = 0;
@@ -659,7 +659,7 @@ async function detonate_1() {
 
 async function detonate_4() {
     if ($.flag_bomb4_active == 1) {
-        Fx.AddExplosion($.bomb4_x, $.bomb4_y, $.bomb4_z, 0 /* EXPLOSION_GRENADE */);
+        Fx.AddExplosion($.bomb4_x, $.bomb4_y, $.bomb4_z, EXPLOSION_GRENADE);
         Sound.AddOneOffSound($.bomb4_x, $.bomb4_y, $.bomb4_z, 0 /* sound_test_1 */);
         Camera.Shake(500);
         $.blip_bomber_4.remove();
@@ -668,7 +668,7 @@ async function detonate_4() {
 
 async function detonate_7() {
     if ($.flag_bomb7_active == 1) {
-        Fx.AddExplosion($.bomb7_x, $.bomb7_y, $.bomb7_z, 0 /* EXPLOSION_GRENADE */);
+        Fx.AddExplosion($.bomb7_x, $.bomb7_y, $.bomb7_z, EXPLOSION_GRENADE);
         Sound.AddOneOffSound($.bomb7_x, $.bomb7_y, $.bomb7_z, 0 /* sound_test_1 */);
         Camera.Shake(500);
         $.flag_bomb7_active = 0;
@@ -678,7 +678,7 @@ async function detonate_7() {
 
 async function detonate_9() {
     if ($.flag_bomb9_active == 1) {
-        Fx.AddExplosion($.bomb9_x, $.bomb9_y, $.bomb9_z, 0 /* EXPLOSION_GRENADE */);
+        Fx.AddExplosion($.bomb9_x, $.bomb9_y, $.bomb9_z, EXPLOSION_GRENADE);
         Sound.AddOneOffSound($.bomb9_x, $.bomb9_y, $.bomb9_z, 0 /* sound_test_1 */);
         Camera.Shake(500);
         $.flag_bomb9_active = 0;
@@ -700,7 +700,7 @@ async function onPassed() {
     $.player.addScore(10000);
     Stat.RegisterMissionPassed('YD4');
     Stat.PlayerMadeProgress(1);
-    Game.SetThreatForPedType(11 /* PEDTYPE_GANG_YARDIE */, 1 /* THREAT_PLAYER1 */);
+    Game.SetThreatForPedType(PEDTYPE_GANG_YARDIE, THREAT_PLAYER1);
 
     $.yardie_contact_blip.remove();
     // START_NEW_SCRIPT yardie_mission1_loop
@@ -715,9 +715,9 @@ async function cleanup() {
     $.blip_abandoned_car_y4.remove();
     Hud.ClearTimer($.$id.timer_y4);
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(26 /* PED_SPECIAL1 */);
-    Streaming.MarkModelAsNoLongerNeeded(109 /* CAR_ESPERANTO */);
-    Streaming.MarkModelAsNoLongerNeeded(103 /* CAR_PONY */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_SPECIAL1);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_ESPERANTO);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_PONY);
     Mission.Finish();
 }
 

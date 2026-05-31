@@ -62,22 +62,22 @@ async function body() {
 
     Player.ResetNumOfModelsKilled();
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-    $.player.setControl(false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
+    $.player.setControl(OFF);
     $.wanted_4x4 = $.player.storeWantedLevel();
     $.player.clearWantedLevel();
     $.rc_van = $.player.storeCarIsIn();
-    Hud.SwitchWidescreen(true /* on */);
+    Hud.SwitchWidescreen(ON);
 
     //UP GANGCAR NUMBERS AND DENSITY
 
-    Zone.SetCarInfo('LITTLEI', 1 /* DAY */, 10, 250, 0, 0, 0, 0, 0, 0, 20, 400, 0, 0, 250, 50, 0);
-    Zone.SetCarInfo('LITTLEI', 0 /* NIGHT */, 8, 250, 0, 0, 0, 0, 0, 0, 10, 550, 0, 0, 150, 0, 0);
+    Zone.SetCarInfo('LITTLEI', DAY, 10, 250, 0, 0, 0, 0, 0, 0, 20, 400, 0, 0, 250, 50, 0);
+    Zone.SetCarInfo('LITTLEI', NIGHT, 8, 250, 0, 0, 0, 0, 0, 0, 10, 550, 0, 0, 150, 0, 0);
 
     Camera.SetFixedPosition($.cam_x, $.cam_y, $.cam_z, 0.0, 0.0, 0.0);
     if (!Car.IsDead($.rc_van)) {
-        $.rc_van.lockDoors(2 /* CARLOCK_LOCKED */);
-        Camera.PointAtCar($.rc_van, 15 /* FIXED */, 2 /* JUMP_CUT */);
+        $.rc_van.lockDoors(CARLOCK_LOCKED);
+        Camera.PointAtCar($.rc_van, FIXED, JUMP_CUT);
         World.ClearArea($.rc_x, $.rc_y, $.rc_z, 5.0, true);
     }
 
@@ -124,8 +124,8 @@ async function body() {
                     Text.PrintHelp('RCHELPA'); //"Press the R1 button, or drive the RC car into a vehicle's wheels to detonate"
                     $.flag_buggy_help1_hm2 = 1;
                 }
-                Hud.SwitchWidescreen(false /* off */);
-                $.player.setControl(true /* on */);
+                Hud.SwitchWidescreen(OFF);
+                $.player.setControl(ON);
                 Camera.Restore();
             }
             if (!$.player.isSittingInCar($.rc_van)) {
@@ -134,7 +134,7 @@ async function body() {
         } else {
             FAIL("mission_rc2_failed");
         }
-        $.counter_RCDD = Player.GetNumOfModelsKilled(134 /* CAR_MAFIA */);
+        $.counter_RCDD = Player.GetNumOfModelsKilled(CAR_MAFIA);
         if ($.intro_time_lapsed > 4000) {
             if (!$.player.isInRemoteMode()) {
                 Rc.GiveCarToPlayer($.player, $.rc_x, $.rc_y, $.rc_z, 180.0);
@@ -190,10 +190,10 @@ async function cleanup() {
     $.flag_just_done_rc_mission = 1;
     Streaming.LoadScene($.cam_x, $.cam_y, $.cam_z);
     Streaming.MarkModelAsNoLongerNeeded(131 /* car_rcbandit */);
-    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-    $.player.setControl(true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
+    $.player.setControl(ON);
     Camera.Restore();
-    Hud.SwitchWidescreen(false /* OFF */);
+    Hud.SwitchWidescreen(OFF);
     $.player.alterWantedLevel($.wanted_4x4);
 
     Hud.ClearTimer($.$id.timer_RCDD);
@@ -201,13 +201,13 @@ async function cleanup() {
     Rc.BlowUpBuggy();
 
     if (!Car.IsDead($.rc_van)) {
-        $.rc_van.lockDoors(1 /* CARLOCK_UNLOCKED */);
+        $.rc_van.lockDoors(CARLOCK_UNLOCKED);
     }
 
-    Zone.SetCarInfo('LITTLEI', 1 /* DAY */, 10, 100, 0, 0, 0, 0, 0, 0, 20, 400, 0, 0, 350, 50, 0);
-    Zone.SetCarInfo('LITTLEI', 0 /* NIGHT */, 8, 150, 0, 0, 0, 0, 0, 0, 10, 550, 0, 0, 150, 0, 0);
+    Zone.SetCarInfo('LITTLEI', DAY, 10, 100, 0, 0, 0, 0, 0, 0, 20, 400, 0, 0, 350, 50, 0);
+    Zone.SetCarInfo('LITTLEI', NIGHT, 8, 150, 0, 0, 0, 0, 0, 0, 10, 550, 0, 0, 150, 0, 0);
 
-    Streaming.MarkModelAsNoLongerNeeded(134 /* CAR_MAFIA */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_MAFIA);
 
     Mission.Finish();
 }

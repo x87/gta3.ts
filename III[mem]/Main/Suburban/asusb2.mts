@@ -245,26 +245,26 @@ async function body() {
 
     Cutscene.Load('a7_etg');
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.SetOffset(369.02, -327.5, 18.46);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_asuka = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_asuka = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_asuka.setAnim('asuka');
 
-    $.cs_miguel = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_miguel = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_miguel.setAnim('miguel');
 
     $.cs_whip = CutsceneObject.Create(187 /* cut_obj3 */);
     $.cs_whip.setAnim('WHIP');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 186 /* CUT_OBJ2 */);
+    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ2);
     $.cs_asukahead.setAnim('asuka');
 
     //CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead
@@ -274,11 +274,11 @@ async function body() {
 
     $.player.setHeading(270.0);
 
-    Camera.DoFade(250, 1 /* FADE_IN */);
+    Camera.DoFade(250, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(false /* OFF */);
-    World.SwitchProcessing(false /* OFF */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(OFF);
+    World.SwitchProcessing(OFF);
 
     Cutscene.Start();
 
@@ -347,7 +347,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -361,25 +361,25 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
     Streaming.MarkModelAsNoLongerNeeded(2011 /* csitecutscene */);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
-    World.SwitchRubbish(true /* ON */);
-    Streaming.Switch(true /* ON */);
-    World.SwitchProcessing(true /* ON */);
+    World.SwitchRubbish(ON);
+    Streaming.Switch(ON);
+    World.SwitchProcessing(ON);
     // ******************************************END OF CUTSCENE********************************
 
     // Mission stuff goes here
@@ -391,7 +391,7 @@ async function body() {
 
     Text.PrintSoon('AS2_12A', 5000, 1);
 
-    Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */); //The Mafia
+    Gang.SetWeapons(GANG_MAFIA, WEAPONTYPE_PISTOL, WEAPONTYPE_UZI); //The Mafia
 
     /*
     REQUEST_MODEL PED_FEMALE1
@@ -405,16 +405,16 @@ async function body() {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(138 /* CAR_COLUMB */);
-    while (!Streaming.HasModelLoaded(138 /* CAR_COLUMB */)) {
+    Streaming.RequestModel(CAR_COLUMB);
+    while (!Streaming.HasModelLoaded(CAR_COLUMB)) {
         await asyncWait(0);
     }
-    Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
-    while (!Streaming.HasModelLoaded(20 /* PED_GANG_COLOMBIAN_A */)) {
+    Streaming.RequestModel(PED_GANG_COLOMBIAN_A);
+    while (!Streaming.HasModelLoaded(PED_GANG_COLOMBIAN_A)) {
         await asyncWait(0);
     }
-    Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
-    while (!Streaming.HasModelLoaded(21 /* PED_GANG_COLOMBIAN_B */)) {
+    Streaming.RequestModel(PED_GANG_COLOMBIAN_B);
+    while (!Streaming.HasModelLoaded(PED_GANG_COLOMBIAN_B)) {
         await asyncWait(0);
     }
 
@@ -440,13 +440,13 @@ async function body() {
     while ($.counter_kappa_dead < 9) {
         await asyncWait(0);
         //-------------------------------------------CREATE KAPPAS------------------------------------------------------------------------------------
-        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
             if ($.flag_kappa1_created == 0) {
                 if ($.player.locateAnyMeans2D($.kappa1_x, $.kappa1_y, 150.0, 150.0, false)) {
-                    $.kappa_cartel1 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, $.kappa1_x, $.kappa1_y, -100.0);
+                    $.kappa_cartel1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, $.kappa1_x, $.kappa1_y, -100.0);
                     //SET_CHAR_HEADING kappa_cartel1 270.0
-                    $.kappa_cartel1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.kappa_cartel1.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+                    $.kappa_cartel1.setThreatSearch(THREAT_PLAYER1);
+                    $.kappa_cartel1.giveWeapon(WEAPONTYPE_UZI, 60);
                     $.kappa_cartel1.setStayInSamePlace(true);
                     $.kappa_1 = ScriptObject.Create(1403 /* coffee */, $.kappa1_x, $.kappa1_y, -100.0);
                     $.kappa_1.setHeading(180.0);
@@ -485,10 +485,10 @@ async function body() {
 
             if ($.flag_kappa3_created == 0) {
                 if ($.player.isInZone('LITTLEI')) {
-                    $.kappa_cartel3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, $.kappa3_x, $.kappa3_y, -100.0);
+                    $.kappa_cartel3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, $.kappa3_x, $.kappa3_y, -100.0);
                     $.kappa_cartel3.setHeading(270.0);
-                    $.kappa_cartel3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.kappa_cartel3.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
+                    $.kappa_cartel3.setThreatSearch(THREAT_PLAYER1);
+                    $.kappa_cartel3.giveWeapon(WEAPONTYPE_SHOTGUN, 10);
                     $.kappa_cartel3.setStayInSamePlace(true);
                     $.kappa_3 = ScriptObject.Create(1403 /* coffee */, $.kappa3_x, $.kappa3_y, -100.0);
                     $.kappa_3.setHeading(180.0);
@@ -543,13 +543,13 @@ async function body() {
             ENDIF
             */
         }
-        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
             if ($.flag_kappa4_created == 0) {
                 //IF IS_PLAYER_IN_ZONE player COM_EAS
-                $.kappa_cartel4 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, $.kappa4_x, $.kappa4_y, -100.0);
+                $.kappa_cartel4 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, $.kappa4_x, $.kappa4_y, -100.0);
                 $.kappa_cartel4.setHeading(360.0);
-                $.kappa_cartel4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                $.kappa_cartel4.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+                $.kappa_cartel4.setThreatSearch(THREAT_PLAYER1);
+                $.kappa_cartel4.giveWeapon(WEAPONTYPE_UZI, 60);
                 $.kappa_cartel4.setStayInSamePlace(true);
                 $.kappa_cartel4.addArmor(100);
                 $.kappa_4 = ScriptObject.Create(1403 /* coffee */, $.kappa4_x, $.kappa4_y, -100.0);
@@ -566,9 +566,9 @@ async function body() {
             }
             if ($.flag_kappa5_created == 0) {
                 if ($.player.isInZone('PARK')) {
-                    $.kappa_cartel5 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, $.kappa5_x, $.kappa5_y, -100.0);
-                    $.kappa_cartel5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.kappa_cartel5.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+                    $.kappa_cartel5 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, $.kappa5_x, $.kappa5_y, -100.0);
+                    $.kappa_cartel5.setThreatSearch(THREAT_PLAYER1);
+                    $.kappa_cartel5.giveWeapon(WEAPONTYPE_UZI, 60);
                     $.kappa_cartel5.setStayInSamePlace(true);
                     $.kappa_5 = ScriptObject.Create(1403 /* coffee */, $.kappa5_x, $.kappa5_y, -100.0);
                     $.kappa_5.setCollision(true);
@@ -583,10 +583,10 @@ async function body() {
             }
             if ($.flag_kappa6_created == 0) {
                 if ($.player.isInZone('SHOPING')) {
-                    $.kappa_cartel6 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, $.kappa6_x, $.kappa6_y, -100.0);
+                    $.kappa_cartel6 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, $.kappa6_x, $.kappa6_y, -100.0);
                     $.kappa_cartel6.setHeading(190.0);
-                    $.kappa_cartel6.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.kappa_cartel6.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+                    $.kappa_cartel6.setThreatSearch(THREAT_PLAYER1);
+                    $.kappa_cartel6.giveWeapon(WEAPONTYPE_UZI, 60);
                     $.kappa_cartel6.setStayInSamePlace(true);
                     $.kappa_6 = ScriptObject.Create(1403 /* coffee */, $.kappa6_x, $.kappa6_y, -100.0);
                     $.kappa_6.setHeading(145.0);
@@ -602,10 +602,10 @@ async function body() {
             }
             if ($.flag_kappa7_created == 0) {
                 if ($.player.isInZone('SHOPING')) {
-                    $.kappa_cartel7 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, $.kappa7_x, $.kappa7_y, -100.0);
+                    $.kappa_cartel7 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, $.kappa7_x, $.kappa7_y, -100.0);
                     //SET_CHAR_HEADING kappa_cartel7 190.0
-                    $.kappa_cartel7.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.kappa_cartel7.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+                    $.kappa_cartel7.setThreatSearch(THREAT_PLAYER1);
+                    $.kappa_cartel7.giveWeapon(WEAPONTYPE_UZI, 60);
                     $.kappa_cartel7.setStayInSamePlace(true);
                     $.kappa_7 = ScriptObject.Create(1403 /* coffee */, $.kappa7_x, $.kappa7_y, -100.0);
                     $.kappa_7.setCollision(true);
@@ -641,9 +641,9 @@ async function body() {
             */
             if ($.flag_kappa9_created == 0) {
                 if ($.player.isInZone('YAKUSA')) {
-                    $.kappa_cartel9 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, $.kappa9_x, $.kappa9_y, 23.7);
-                    $.kappa_cartel9.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.kappa_cartel9.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
+                    $.kappa_cartel9 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, $.kappa9_x, $.kappa9_y, 23.7);
+                    $.kappa_cartel9.setThreatSearch(THREAT_PLAYER1);
+                    $.kappa_cartel9.giveWeapon(WEAPONTYPE_SHOTGUN, 10);
                     $.kappa_cartel9.setStayInSamePlace(true);
                     $.kappa_9 = ScriptObject.Create(1403 /* coffee */, $.kappa9_x, $.kappa9_y, -100.0);
                     $.kappa_9.setHeading(270.0);
@@ -734,13 +734,13 @@ async function body() {
             ENDIF
             */
         }
-        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
             if ($.flag_kappa10_created == 0) {
                 if ($.player.isInZone('AIRPORT')) {
-                    $.kappa_cartel10 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, $.kappa10_x, $.kappa10_y, 18.9);
+                    $.kappa_cartel10 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, $.kappa10_x, $.kappa10_y, 18.9);
                     $.kappa_cartel10.setHeading(50.0);
-                    $.kappa_cartel10.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.kappa_cartel10.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+                    $.kappa_cartel10.setThreatSearch(THREAT_PLAYER1);
+                    $.kappa_cartel10.giveWeapon(WEAPONTYPE_UZI, 60);
                     $.kappa_cartel10.setStayInSamePlace(true);
                     $.kappa_10 = ScriptObject.Create(1403 /* coffee */, $.kappa10_x, $.kappa10_y, -100.0);
                     $.kappa_10.setCollision(true);
@@ -776,9 +776,9 @@ async function body() {
             */
             if ($.flag_kappa12_created == 0) {
                 if ($.player.isInZone('SUB_IND')) {
-                    $.kappa_cartel12 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, $.kappa12_x, $.kappa12_y, -100.0);
-                    $.kappa_cartel12.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                    $.kappa_cartel12.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+                    $.kappa_cartel12 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, $.kappa12_x, $.kappa12_y, -100.0);
+                    $.kappa_cartel12.setThreatSearch(THREAT_PLAYER1);
+                    $.kappa_cartel12.giveWeapon(WEAPONTYPE_UZI, 60);
                     $.kappa_12 = ScriptObject.Create(1403 /* coffee */, $.kappa12_x, $.kappa12_y, -100.0);
                     $.kappa_cartel12.setStayInSamePlace(true);
                     $.kappa_12.setCollision(true);
@@ -792,9 +792,9 @@ async function body() {
             }
             if ($.flag_kappa10_created == 1 || $.flag_kappa12_created == 1) {
                 if ($.flag_guard1_created == 0) {
-                    $.patriot_1 = Car.Create(138 /* CAR_COLUMB */, -706.3, -285.7, 18.3);
-                    $.varmint_1 = Char.CreateInsideCar($.patriot_1, 12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */);
-                    $.varmint_1.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+                    $.patriot_1 = Car.Create(CAR_COLUMB, -706.3, -285.7, 18.3);
+                    $.varmint_1 = Char.CreateInsideCar($.patriot_1, PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A);
+                    $.varmint_1.giveWeapon(WEAPONTYPE_UZI, 60);
                     $.varmint_1.setObjKillPlayerAnyMeans($.player);
                     $.flag_guard1_created = 1;
                 }
@@ -864,7 +864,7 @@ async function body() {
                     $.kappa_cartel1.turnToFacePlayer($.player);
                     $.kappa_cartel1.setStayInSamePlace(false);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel1
-                    $.kappa_cartel1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel1.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel1 player
                 }
             }
@@ -910,7 +910,7 @@ async function body() {
                     $.kappa_cartel3.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel3
                     $.kappa_cartel3.setStayInSamePlace(false);
-                    $.kappa_cartel3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel3.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel3 player
                 }
             }
@@ -938,7 +938,7 @@ async function body() {
                     $.kappa_cartel4.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel4
                     $.kappa_cartel4.setStayInSamePlace(false);
-                    $.kappa_cartel4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel4.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel4 player
                 }
             }
@@ -966,7 +966,7 @@ async function body() {
                     $.kappa_cartel5.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel5
                     $.kappa_cartel5.setStayInSamePlace(false);
-                    $.kappa_cartel5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel5.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel5 player
                 }
             }
@@ -994,7 +994,7 @@ async function body() {
                     $.kappa_cartel6.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel6
                     $.kappa_cartel6.setStayInSamePlace(false);
-                    $.kappa_cartel6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel6.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel6 player
                 }
             }
@@ -1022,7 +1022,7 @@ async function body() {
                     $.kappa_cartel7.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel7
                     $.kappa_cartel7.setStayInSamePlace(false);
-                    $.kappa_cartel7.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel7.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel7 player
                 }
             }
@@ -1067,7 +1067,7 @@ async function body() {
                     $.kappa_cartel9.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel9
                     $.kappa_cartel9.setStayInSamePlace(false);
-                    $.kappa_cartel9.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel9.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel9 player
                 }
             }
@@ -1095,7 +1095,7 @@ async function body() {
                     $.kappa_cartel10.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel10
                     $.kappa_cartel10.setStayInSamePlace(false);
-                    $.kappa_cartel10.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel10.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel10 player
                 }
             }
@@ -1141,7 +1141,7 @@ async function body() {
                     $.kappa_cartel12.turnToFacePlayer($.player);
                     //MARK_CHAR_AS_NO_LONGER_NEEDED kappa_cartel12
                     $.kappa_cartel12.setStayInSamePlace(false);
-                    $.kappa_cartel12.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.kappa_cartel12.setThreatSearch(THREAT_PLAYER1);
                     //SET_CHAR_OBJ_KILL_PLAYER_ANY_MEANS kappa_cartel12 player
                 }
             }
@@ -1164,7 +1164,7 @@ async function body() {
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
                 $.steam_y = $.steam_y - 1.0;
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa1_dead == 1 && $.flag_kappa1_created == 1) {
                 const _res316 = $.kappa_1.getCoordinates();
@@ -1208,7 +1208,7 @@ async function body() {
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
                 $.steam_y = $.steam_y - 1.0;
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa3_dead == 1 && $.flag_kappa3_created == 1) {
                 const _res318 = $.kappa_3.getCoordinates();
@@ -1231,7 +1231,7 @@ async function body() {
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
                 //steam_y = steam_y - 1.0
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa4_dead == 1 && $.flag_kappa4_created == 1) {
                 const _res320 = $.kappa_4.getCoordinates();
@@ -1254,7 +1254,7 @@ async function body() {
                 $.steam_y = $.steam_y + 1.0;
                 //steam_x = steam_x - 1.0
                 //steam_y = steam_y - 1.0
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa5_dead == 1 && $.flag_kappa5_created == 1) {
                 const _res322 = $.kappa_5.getCoordinates();
@@ -1277,7 +1277,7 @@ async function body() {
                 //steam_y = steam_y + 1.0
                 $.steam_x = $.steam_x - 1.0;
                 $.steam_y = $.steam_y - 1.0;
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa6_dead == 1 && $.flag_kappa6_created == 1) {
                 const _res324 = $.kappa_6.getCoordinates();
@@ -1300,7 +1300,7 @@ async function body() {
                 $.steam_y = $.steam_y + 1.0;
                 //steam_x = steam_x - 1.0
                 //steam_y = steam_y - 1.0
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa7_dead == 1 && $.flag_kappa7_created == 1) {
                 const _res326 = $.kappa_7.getCoordinates();
@@ -1344,7 +1344,7 @@ async function body() {
                 //steam_y = steam_y + 1.0
                 //steam_x = steam_x - 1.0
                 //steam_y = steam_y - 1.0
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa9_dead == 1 && $.flag_kappa9_created == 1) {
                 const _res328 = $.kappa_9.getCoordinates();
@@ -1367,7 +1367,7 @@ async function body() {
                 $.steam_y = $.steam_y + 1.0;
                 //steam_x = steam_x - 1.0
                 //steam_y = steam_y - 1.0
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa10_dead == 1 && $.flag_kappa10_created == 1) {
                 const _res330 = $.kappa_10.getCoordinates();
@@ -1411,7 +1411,7 @@ async function body() {
                 $.steam_y = $.steam_y + 1.0;
                 //steam_x = steam_x - 1.0
                 //steam_y = steam_y - 1.0
-                Fx.AddMovingParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
+                Fx.AddMovingParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, $.steam_x, $.steam_y, $.steam_z, 0.0, 0.0, 0.0, 0.3, 0, 0, 0, 50);
             }
             if ($.flag_kappa12_dead == 1 && $.flag_kappa12_created == 1) {
                 const _res332 = $.kappa_12.getCoordinates();
@@ -1503,11 +1503,11 @@ async function onFailed() {
     Text.PrintBig('M_FAIL', 2000, 1);
 
     if ($.player.hasBeenArrested()) {
-        Restart.OverridePolice(2 /* LEVEL_COMMERCIAL */);
+        Restart.OverridePolice(LEVEL_COMMERCIAL);
     }
 
     if ($.player.isDead()) {
-        Restart.OverrideHospital(2 /* LEVEL_COMMERCIAL */);
+        Restart.OverrideHospital(LEVEL_COMMERCIAL);
     }
 }
 
@@ -1530,7 +1530,7 @@ async function cleanup() {
 
     Hud.ClearTimer($.$id.kappa_time);
     Hud.ClearCounter($.$id.counter_kappa_dead);
-    Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */); //The Mafia
+    Gang.SetWeapons(GANG_MAFIA, WEAPONTYPE_PISTOL, WEAPONTYPE_SHOTGUN); //The Mafia
 
     if ($.flag_kappa1_dead == 0 && $.flag_kappa1_created == 1) {
         $.blip_kappa1.remove();
@@ -1593,11 +1593,11 @@ async function cleanup() {
 
     $.kappa_12.markAsNoLongerNeeded();
 
-    Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_COLUMB);
     Streaming.MarkModelAsNoLongerNeeded(1403 /* coffee */);
 
-    Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
-    Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_B);
 
     Mission.Finish();
 }

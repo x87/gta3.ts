@@ -100,7 +100,7 @@ async function body() {
     {
         if ($.flag_failed_luigi1 == 0) {
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(250, 0 /* FADE_OUT */);
+            Camera.DoFade(250, FADE_OUT);
             Text.PrintBig('LM2', 10000, 2); //"  "
             TIMERA = 0;
 
@@ -127,33 +127,33 @@ async function body() {
 
             Cutscene.Load('luigi1');
             Cutscene.SetOffset(901.82, -426.3, 13.85);
-            $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+            $.cs_player = CutsceneObject.Create(PED_PLAYER);
             $.cs_player.setAnim('player');
-            $.cs_micky = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+            $.cs_micky = CutsceneObject.Create(PED_SPECIAL1);
             $.cs_micky.setAnim('micky');
-            $.cs_eight = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+            $.cs_eight = CutsceneObject.Create(PED_SPECIAL2);
             $.cs_eight.setAnim('eight');
-            $.cs_luigi = CutsceneObject.Create(28 /* PED_SPECIAL3 */);
+            $.cs_luigi = CutsceneObject.Create(PED_SPECIAL3);
             $.cs_luigi.setAnim('luigi');
-            $.cs_mickyhead = CutsceneHead.Create($.cs_micky, 186 /* CUT_OBJ2 */);
+            $.cs_mickyhead = CutsceneHead.Create($.cs_micky, CUT_OBJ2);
             $.cs_mickyhead.setAnim('micky');
-            $.cs_eighthead = CutsceneHead.Create($.cs_eight, 187 /* CUT_OBJ3 */);
+            $.cs_eighthead = CutsceneHead.Create($.cs_eight, CUT_OBJ3);
             $.cs_eighthead.setAnim('eight');
-            $.cs_luigihead = CutsceneHead.Create($.cs_luigi, 188 /* CUT_OBJ4 */);
+            $.cs_luigihead = CutsceneHead.Create($.cs_luigi, CUT_OBJ4);
             $.cs_luigihead.setAnim('luigi');
             $.cs_ludoor = CutsceneObject.Create(185 /* cut_obj1 */);
             $.cs_ludoor.setAnim('LUDOOR');
             while (TIMERA < 3500) {
                 await asyncWait(0);
             }
-            Camera.DoFade(250, 1 /* FADE_IN */);
+            Camera.DoFade(250, FADE_IN);
 
             //WHILE GET_FADING_STATUS
             //	WAIT 0
             //ENDWHILE
 
             Cutscene.Start();
-            $.player.setVisible(false /* OFF */);
+            $.player.setVisible(OFF);
 
             //SET_PLAYER_COORDINATES player 903.1 -424.8 13.9
             $.player.setCoordinates(896.6, -426.2, 13.9);
@@ -184,13 +184,13 @@ async function body() {
 
         //SWITCH_WIDESCREEN ON
 
-        $.player.setControl(false /* off */);
+        $.player.setControl(OFF);
 
-        Streaming.RequestModel(39 /* PED_PROSTITUTE */);
+        Streaming.RequestModel(PED_PROSTITUTE);
 
         Streaming.LoadSpecialCharacter(2, 'misty');
 
-        while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(39 /* PED_PROSTITUTE */)) {
+        while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(PED_PROSTITUTE)) {
             await asyncWait(0);
         }
 
@@ -260,13 +260,13 @@ async function body() {
   RESTORE_CAMERA
   */
 
-        $.player.setControl(true /* on */);
+        $.player.setControl(ON);
 
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
 
         // Creates the first girl
 
-        $.girl1_lm1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1158.0, -536.0, 20.0);
+        $.girl1_lm1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 1158.0, -536.0, 20.0);
 
         $.girl1_lm1.clearThreatSearch();
 
@@ -276,7 +276,7 @@ async function body() {
 
         // Creates second girl
 
-        $.girl2_lm1 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 39 /* PED_PROSTITUTE */, 1383.0, -392.0, -100.0);
+        $.girl2_lm1 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE, 1383.0, -392.0, -100.0);
 
         $.girl2_lm1.clearThreatSearch();
 
@@ -576,13 +576,13 @@ async function onPassed() {
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_luigi_mission = 0;
-    Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_PROSTITUTE);
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
     Camera.Restore();
-    $.player.setControl(true /* on */);
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
-    Hud.SwitchWidescreen(false /* OFF */);
+    $.player.setControl(ON);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
+    Hud.SwitchWidescreen(OFF);
 
     //IF flag_girl1_in_car_lm1 = 1
     //AND flag_girl2_in_car_lm1 = 1

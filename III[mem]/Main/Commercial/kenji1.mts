@@ -1,4 +1,5 @@
 // Generated from Main/Commercial/kenji1.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
@@ -222,7 +223,7 @@ async function body() {
         // Cutscene stuff
 
         Streaming.LoadSpecialCharacter(1, 'KENJI');
-        Streaming.RequestModel(16 /* PED_GANG_YAKUZA_A */);
+        Streaming.RequestModel(PED_GANG_YAKUZA_A);
         Streaming.RequestModel(1570 /* casino_garden */);
 
         Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KENJIH');
@@ -240,7 +241,7 @@ async function body() {
 
         while (
             !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasModelLoaded(16 /* PED_GANG_YAKUZA_A */) ||
+            !Streaming.HasModelLoaded(PED_GANG_YAKUZA_A) ||
             !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
             !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
             !Streaming.HasModelLoaded(1570 /* casino_garden */)
@@ -254,23 +255,23 @@ async function body() {
 
         Cutscene.SetOffset(476.38, -1382.168, 67.347);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
         $.cs_player.setAnim('player');
 
-        $.cs_kenji = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+        $.cs_kenji = CutsceneObject.Create(PED_SPECIAL1);
 
         $.cs_kenji.setAnim('kenji');
 
-        $.cs_yakuza = CutsceneObject.Create(16 /* PED_GANG_YAKUZA_A */);
+        $.cs_yakuza = CutsceneObject.Create(PED_GANG_YAKUZA_A);
 
         $.cs_yakuza.setAnim('gang07');
 
-        $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, 185 /* CUT_OBJ1 */);
+        $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, CUT_OBJ1);
 
         $.cs_kenjihead.setAnim('kenji');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ2);
 
         $.cs_playerhead.setAnim('player');
 
@@ -280,11 +281,11 @@ async function body() {
 
         $.player.setHeading(132.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        World.SwitchRubbish(false /* OFF */);
+        World.SwitchRubbish(OFF);
 
-        Streaming.Switch(true /* ON */);
+        Streaming.Switch(ON);
 
         Cutscene.Start();
 
@@ -353,7 +354,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -367,19 +368,19 @@ async function body() {
 
         Cutscene.Clear();
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
 
         Camera.SetInFrontOfPlayer();
 
         await asyncWait(500);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
 
         Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
         Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */);
 
         // *******************************************END OF CUTSCENE*******************************
@@ -388,7 +389,7 @@ async function body() {
 
         Streaming.RequestModel(1369 /* rubble01 */);
         Streaming.RequestModel(1370 /* rubble02 */);
-        Audio.LoadMissionAudio('k1_a' as any);
+        Audio.LoadMissionAudio(SfxMission.K1_a);
 
         while (!Streaming.HasModelLoaded(1369 /* rubble01 */) || !Streaming.HasModelLoaded(1370 /* rubble02 */) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -396,9 +397,9 @@ async function body() {
 
         // waiting for the player to be in a cop car
 
-        $.cell_beating = Sound.AddContinuous(326.4, -1092.4, 26.0, 77 /* SOUND_POLICE_CELL_BEATING_LOOP_L */);
+        $.cell_beating = Sound.AddContinuous(326.4, -1092.4, 26.0, SOUND_POLICE_CELL_BEATING_LOOP_L);
 
-        while (!$.player.isInModel(116 /* CAR_POLICE */)) {
+        while (!$.player.isInModel(CAR_POLICE)) {
             await asyncWait(0);
         }
 
@@ -408,22 +409,22 @@ async function body() {
 
         $.sphere_km1 = Sphere.Create(373.9, -576.4, 25.1, 4.0);
 
-        $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, 2 /* RADAR_SPRITE_BOMB */);
+        $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, RADAR_SPRITE_BOMB);
 
         // waiting for the cop car to be rigged
 
         while (!($.flag_car_got_bomb_km1 == 1)) {
             await asyncWait(0);
-            if ($.player.isInModel(116 /* CAR_POLICE */)) {
+            if ($.player.isInModel(CAR_POLICE)) {
                 $.mission_cop_car_km1 = $.player.storeCarIsIn();
                 if ($.flag_player_had_car_message_km1 == 1) {
-                    $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, 2 /* RADAR_SPRITE_BOMB */);
+                    $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, RADAR_SPRITE_BOMB);
                     if ($.flag_player_had_dome_message_km1 == 0) {
                         $.sphere_km1 = Sphere.Create(373.9, -576.4, 25.1, 4.0);
                     }
                     $.flag_player_had_car_message_km1 = 0;
                 }
-                if ($.mission_cop_car_km1.isArmedWithBomb(1 /* CARBOMB_TIMED */)) {
+                if ($.mission_cop_car_km1.isArmedWithBomb(CARBOMB_TIMED)) {
                     $.flag_car_got_bomb_km1 = 1;
                 } else {
                     if ($.flag_had_bomb_message_km1 == 0) {
@@ -470,10 +471,10 @@ async function body() {
         while ($.counter_bomb_km1 == 0) {
             await asyncWait(0);
             if ($.flag_area_bomb_message_km1 == 0) {
-                if ($.player.isInModel(116 /* CAR_POLICE */)) {
+                if ($.player.isInModel(CAR_POLICE)) {
                     $.mission_cop_car_km1 = $.player.storeCarIsIn();
                     $.flag_player_had_car_message_km1 = 0;
-                    if ($.mission_cop_car_km1.isArmedWithBomb(1 /* CARBOMB_TIMED */) || $.mission_cop_car_km1.isArmedWithBomb(4 /* CARBOMB_TIMEDACTIVE */)) {
+                    if ($.mission_cop_car_km1.isArmedWithBomb(CARBOMB_TIMED) || $.mission_cop_car_km1.isArmedWithBomb(CARBOMB_TIMEDACTIVE)) {
                         if ($.flag_player_had_bomb_message_km1 == 1) {
                             $.radar_blip_coord1_km1.remove(); // bombshop
                             $.flag_player_had_bomb_message_km1 = 0;
@@ -500,7 +501,7 @@ async function body() {
                                 }
                                 $.flag_bomb_km1 = 1;
                             }
-                            if ($.mission_cop_car_km1.isArmedWithBomb(4 /* CARBOMB_TIMEDACTIVE */)) {
+                            if ($.mission_cop_car_km1.isArmedWithBomb(CARBOMB_TIMEDACTIVE)) {
                                 $.counter_bomb_km1 = 1;
                                 $.flag_area_bomb_message_km1 = 1;
                             } else {
@@ -512,7 +513,7 @@ async function body() {
                         if ($.flag_area_bomb_message_km1 == 0) {
                             if ($.flag_player_had_bomb_message_km1 == 0) {
                                 Text.PrintNow('KM1_6', 7000, 1); //"Get a bomb fitted to the car!"
-                                $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, 2 /* RADAR_SPRITE_BOMB */); //bombshop
+                                $.radar_blip_coord1_km1 = Blip.AddSpriteForCoord(380.0, -577.0, 25.1, RADAR_SPRITE_BOMB); //bombshop
                                 $.flag_player_had_bomb_message_km1 = 1;
                                 if ($.flag_blip_on_km1 == 1) {
                                     $.radar_blip_coord2_km1.remove(); // police station
@@ -544,7 +545,7 @@ async function body() {
 
         // Waiting for the player to destroy the car outside the cell
 
-        while (!World.IsExplosionInArea(3 /* EXPLOSION_CAR */, 323.3, -1072.6, 24.0, 335.5, -1094.0, 33.0)) {
+        while (!World.IsExplosionInArea(EXPLOSION_CAR, 323.3, -1072.6, 24.0, 335.5, -1094.0, 33.0)) {
             if (Car.IsDead($.mission_cop_car_km1)) {
                 Text.PrintNow('KM1_11', 5000, 1); //"You have alerted the cops"
                 $.player.alterWantedLevelNoDrop(3);
@@ -563,7 +564,7 @@ async function body() {
 
         $.cell_beating.remove();
 
-        $.police_alarm = Sound.AddContinuous(328.418, -1088.174, 28.3, 69 /* SOUND_BANK_ALARM_LOOP_L */);
+        $.police_alarm = Sound.AddContinuous(328.418, -1088.174, 28.3, SOUND_BANK_ALARM_LOOP_L);
 
         World.ClearArea(327.0, -1086.0, -100.0, 4.0, true);
 
@@ -575,7 +576,7 @@ async function body() {
 
         await asyncWait(500);
 
-        $.yakuza_ped1_km1 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 328.2, -1092.2, 24.9);
+        $.yakuza_ped1_km1 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_A, 328.2, -1092.2, 24.9);
 
         $.yakuza_ped1_km1.setRunning(true);
 
@@ -587,7 +588,7 @@ async function body() {
 
         $.player.alterWantedLevelNoDrop(3);
 
-        $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
+        $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, RADAR_SPRITE_SPRAY);
 
         // waiting for the player to get rid of his wanted level
 
@@ -615,7 +616,7 @@ async function body() {
             }
             if ($.player.locateAnyMeansChar2D($.yakuza_ped1_km1, 8.0, 8.0, false) && $.flag_blip_on_yakuza_ped1_km1 == 1) {
                 $.yakuza_ped1_km1.followPlayer($.player);
-                $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
+                $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, RADAR_SPRITE_SPRAY);
                 $.radar_blip_ped1_km1.remove();
                 $.flag_blip_on_yakuza_ped1_km1 = 0;
             }
@@ -629,7 +630,7 @@ async function body() {
 
         $.flag_dojo_blip_on = 1;
 
-        Audio.LoadMissionAudio('k1_b' as any);
+        Audio.LoadMissionAudio(SfxMission.K1_b);
 
         // Waiting for the player to be back at the safehouse
 
@@ -669,7 +670,7 @@ async function body() {
                 if ($.flag_player_got_cops_message_km1 == 0) {
                     if ($.flag_blip_on_yakuza_ped1_km1 == 0) {
                         Text.PrintNow('WANTED1', 7000, 1); //"Get rid of the cops!"
-                        $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, 18 /* RADAR_SPRITE_SPRAY */);
+                        $.spray_blip_km1 = Blip.AddSpriteForCoord(379.0, -493.8, 25.2, RADAR_SPRITE_SPRAY);
                         $.flag_player_got_cops_message_km1 = 1;
                         $.flag_spray_blip_on_km1 = 1;
                     }
@@ -702,13 +703,13 @@ async function body() {
 
         $.radar_blip_coord3_km1.remove();
 
-        $.player.setControl(false /* OFF */);
+        $.player.setControl(OFF);
 
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+        Game.SetPoliceIgnorePlayer($.player, ON);
 
-        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
 
-        Hud.SwitchWidescreen(true /* ON */);
+        Hud.SwitchWidescreen(ON);
 
         $.yakuza_ped1_km1.leaveGroup();
 
@@ -724,7 +725,7 @@ async function body() {
 
         Camera.SetFixedPosition(93.45, -1279.27, 35.08, 0.0, 0.0, 0.0);
 
-        Camera.PointAtPoint(94.19, -1279.91, 34.79, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(94.19, -1279.91, 34.79, JUMP_CUT);
 
         $.yakuza_ped1_km1.setRunning(false);
 
@@ -772,13 +773,13 @@ async function body() {
 
     $.yakuza_ped1_km1.delete();
 
-    Hud.SwitchWidescreen(false /* OFF */);
+    Hud.SwitchWidescreen(OFF);
 
-    $.player.setControl(true /* ON */);
+    $.player.setControl(ON);
 
-    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
-    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+    Game.SetEveryoneIgnorePlayer($.player, OFF);
 
     Camera.RestoreJumpcut();
 }
@@ -806,7 +807,7 @@ async function cleanup() {
     $.flag_player_on_kenji_mission = 0;
     $.police_alarm.remove();
     $.cell_beating.remove();
-    Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_A);
     Streaming.MarkModelAsNoLongerNeeded(1369 /* rubble01 */);
     Streaming.MarkModelAsNoLongerNeeded(1370 /* rubble02 */);
     $.radar_blip_coord1_km1.remove();
@@ -819,8 +820,8 @@ async function cleanup() {
 }
 
 async function wall_explosion() {
-    Fx.AddExplosion(328.1, -1087.5, 27.7, 5 /* EXPLOSION_HELI */);
-    Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, 328.1, -1088.3, 26.0, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 3000);
+    Fx.AddExplosion(328.1, -1087.5, 27.7, EXPLOSION_HELI);
+    Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, 328.1, -1088.3, 26.0, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 3000);
     $.debris1 = ScriptObject.Create(1370 /* rubble02 */, 328.1, -1084.1, 27.0);
     $.debris2 = ScriptObject.Create(1370 /* rubble02 */, 328.5, -1084.7, 27.0);
     $.debris3 = ScriptObject.Create(1369 /* rubble01 */, 326.6, -1083.7, 26.0);

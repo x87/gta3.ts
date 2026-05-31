@@ -73,28 +73,28 @@ verbose('[+] Rampage script loaded');
         $.rampage_19_failed = 0;
         $.rampage_20_failed = 0;
 
-        $.rampage_01 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 958.0, -431.0, 14.5); //OPPOSITE LUIGI'S IN AN ALLEYWAY
-        $.rampage_02 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1076.9, -859.9, 15.2); //BOTTOM OF CALAHAN BRIDGE
-        $.rampage_03 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1312.3, -315.7, 42.6); //ST MARKS BEHIND TONI'S
-        $.rampage_04 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 883.3, -806.2, 15.0); //BEHIND BUILDING CHINATOWN NEAR BRIDGE
-        $.rampage_05 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1274.7, -742.7, 15.0); //IN ALLEY NEAR DOG FOOD FACTORY
-        $.rampage_06 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1195.3, -497.9, 39.3); //ON TOP TRAIN TRACKS BY HOSPITAL
+        $.rampage_01 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 958.0, -431.0, 14.5); //OPPOSITE LUIGI'S IN AN ALLEYWAY
+        $.rampage_02 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1076.9, -859.9, 15.2); //BOTTOM OF CALAHAN BRIDGE
+        $.rampage_03 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1312.3, -315.7, 42.6); //ST MARKS BEHIND TONI'S
+        $.rampage_04 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 883.3, -806.2, 15.0); //BEHIND BUILDING CHINATOWN NEAR BRIDGE
+        $.rampage_05 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1274.7, -742.7, 15.0); //IN ALLEY NEAR DOG FOOD FACTORY
+        $.rampage_06 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1195.3, -497.9, 39.3); //ON TOP TRAIN TRACKS BY HOSPITAL
 
-        $.rampage_07 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 204.1, -1237.4, 45.1); //ON ROOF ON AMCO BUILDING COMMERCIAL
-        $.rampage_08 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -22.1, -1526.9, 26.1); //CARPARK AREA OPPOSITE LOVES BUILDING
-        $.rampage_09 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 8.0, -910.0, 26.5); //SOUTH WEST CORNER OF PARK
-        $.rampage_10 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 181.1, -338.2, 16.5); //BEHIND UNIVERSITY	SOUTH
-        $.rampage_11 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -57.5, -1070.8, 26.3); //IN GRAVEYARD BY CATHEDRAL
-        $.rampage_12 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 392.9, -795.4, 31.3); //BETWEEN OVERPASS LANES NEAR ASUKA'S KENDO
-        $.rampage_13 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -41.6, -451.8, 16.6); //BEHIND FIRESTATION
+        $.rampage_07 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 204.1, -1237.4, 45.1); //ON ROOF ON AMCO BUILDING COMMERCIAL
+        $.rampage_08 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -22.1, -1526.9, 26.1); //CARPARK AREA OPPOSITE LOVES BUILDING
+        $.rampage_09 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 8.0, -910.0, 26.5); //SOUTH WEST CORNER OF PARK
+        $.rampage_10 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 181.1, -338.2, 16.5); //BEHIND UNIVERSITY	SOUTH
+        $.rampage_11 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -57.5, -1070.8, 26.3); //IN GRAVEYARD BY CATHEDRAL
+        $.rampage_12 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 392.9, -795.4, 31.3); //BETWEEN OVERPASS LANES NEAR ASUKA'S KENDO
+        $.rampage_13 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -41.6, -451.8, 16.6); //BEHIND FIRESTATION
 
-        $.rampage_14 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -585.4, 284.7, 64.0); //BEHIND A GARAGE IN THE MANSION AREA SUBURBIA
-        $.rampage_15 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -560.3, -23.6, 9.3); //ONTOP OF A GARAGE IN THE PROJECTS AREA UNDER OVERPASS
-        $.rampage_16 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -867.0, -145.4, 49.8); //ONTOP OF WAREHOUSE PIKE CREEK AIRPORT END
-        $.rampage_17 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -705.9, -617.5, 16.4); //BEHIND BILLBOARD AT AIRPORT
-        $.rampage_18 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -987.7, -206.1, 33.6); //BEHIND A GUARD BOX SOUTH PIKE CREEK
-        $.rampage_19 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -1186.3, 41.0, 68.8); //BEHIND BOX IN THE BAIT WAREHOUSE
-        $.rampage_20 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -431.6, 110.9, 15.6); //BEHIND BILLBOARD NORTH PROJECTS
+        $.rampage_14 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -585.4, 284.7, 64.0); //BEHIND A GARAGE IN THE MANSION AREA SUBURBIA
+        $.rampage_15 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -560.3, -23.6, 9.3); //ONTOP OF A GARAGE IN THE PROJECTS AREA UNDER OVERPASS
+        $.rampage_16 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -867.0, -145.4, 49.8); //ONTOP OF WAREHOUSE PIKE CREEK AIRPORT END
+        $.rampage_17 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -705.9, -617.5, 16.4); //BEHIND BILLBOARD AT AIRPORT
+        $.rampage_18 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -987.7, -206.1, 33.6); //BEHIND A GUARD BOX SOUTH PIKE CREEK
+        $.rampage_19 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -1186.3, 41.0, 68.8); //BEHIND BOX IN THE BAIT WAREHOUSE
+        $.rampage_20 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -431.6, 110.9, 15.6); //BEHIND BILLBOARD NORTH PROJECTS
 
         Stat.SetTotalNumberOfKillFrenzies(20);
 
@@ -124,7 +124,7 @@ verbose('[+] Rampage script loaded');
     //				   | TEXT LABEL	|		   | MILLISEC |		  	  |	-1 ALL PEDS	 |									 | True	- Has Kill Frenzy text
     //				   | 			|		   |		  |			  |	-2 ALL CARS	 |		-1 TO IGNORE THESE			 | False - No text
 
-    // SET_DEATHARREST_STATE(false /* OFF */);
+    // SET_DEATHARREST_STATE(OFF);
 
     // SCRIPT_NAME rampage
     run_gated('_flag_rampage_complete', rampage_loop);
@@ -142,10 +142,10 @@ async function rampage_loop() {
         if ($.rampage_01_flag == 0) {
             if ($.rampage_01.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 6 /* WEAPONTYPE_M16 */, 120000, $.rampage_01_kills, 14 /* PED_GANG_DIABLO_A */, 15 /* PED_GANG_DIABLO_B */, -1, -1, false); // "Murder 20 Diablos in 120 seconds!"
-                Streaming.RequestModel(14 /* PED_GANG_DIABLO_A */);
-                Streaming.RequestModel(15 /* PED_GANG_DIABLO_B */);
-                World.ForceRandomPedType(9 /* PEDTYPE_GANG_DIABLO */);
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_M16, 120000, $.rampage_01_kills, PED_GANG_DIABLO_A, PED_GANG_DIABLO_B, -1, -1, false); // "Murder 20 Diablos in 120 seconds!"
+                Streaming.RequestModel(PED_GANG_DIABLO_A);
+                Streaming.RequestModel(PED_GANG_DIABLO_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_DIABLO);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_01', $.rampage_01_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -161,16 +161,16 @@ async function rampage_loop() {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     $.rampage_01.remove();
                     if ($.rampage_01_failed == 0) {
-                        $.rampage_01 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 987.6, -907.3, 15.3); //NEXT TO FUZZBALL
+                        $.rampage_01 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 987.6, -907.3, 15.3); //NEXT TO FUZZBALL
                         $.rampage_01_failed = 1;
                     } else {
-                        $.rampage_01 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 958.0, -431.0, 14.5); //OPPOSITE LUIGI'S IN AN ALLEYWAY
+                        $.rampage_01 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 958.0, -431.0, 14.5); //OPPOSITE LUIGI'S IN AN ALLEYWAY
                         $.rampage_01_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(14 /* PED_GANG_DIABLO_A */);
-                Streaming.MarkModelAsNoLongerNeeded(15 /* PED_GANG_DIABLO_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_DIABLO_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_DIABLO_B);
                 ONMISSION = false;
             }
         }
@@ -178,7 +178,7 @@ async function rampage_loop() {
         if ($.rampage_02_flag == 0) {
             if ($.rampage_02.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 8 /* WEAPONTYPE_ROCKET */, 120000, $.rampage_02_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_ROCKET, 120000, $.rampage_02_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_02', $.rampage_02_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -194,10 +194,10 @@ async function rampage_loop() {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     $.rampage_02.remove();
                     if ($.rampage_02_failed == 0) {
-                        $.rampage_02 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 982.4, -1009.4, 14.9); //EAST OF GREASY JOES
+                        $.rampage_02 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 982.4, -1009.4, 14.9); //EAST OF GREASY JOES
                         $.rampage_02_failed = 1;
                     } else {
-                        $.rampage_02 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1076.9, -859.9, 15.2); //BOTTOM OF CALAHAN BRIDGE
+                        $.rampage_02 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1076.9, -859.9, 15.2); //BOTTOM OF CALAHAN BRIDGE
                         $.rampage_02_failed = 0;
                     }
                 }
@@ -210,18 +210,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    5 /* WEAPONTYPE_CHAINGUN */,
+                    WEAPONTYPE_CHAINGUN,
                     120000,
                     $.rampage_03_kills,
-                    10 /* PED_GANG_MAFIA_A */,
-                    11 /* PED_GANG_MAFIA_B */,
+                    PED_GANG_MAFIA_A,
+                    PED_GANG_MAFIA_B,
                     -1,
                     -1,
                     false
                 ); // "Kill 20 Mafia in 120 seconds!"
-                Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
-                Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
-                World.ForceRandomPedType(7 /* PEDTYPE_GANG_MAFIA */);
+                Streaming.RequestModel(PED_GANG_MAFIA_A);
+                Streaming.RequestModel(PED_GANG_MAFIA_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_MAFIA);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_03', $.rampage_03_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -236,16 +236,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_03_failed == 0) {
-                        $.rampage_03 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1209.5, -380.1, 25.5); //JUST SOUTH OF TONI'S BEHIND WALL
+                        $.rampage_03 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1209.5, -380.1, 25.5); //JUST SOUTH OF TONI'S BEHIND WALL
                         $.rampage_03_failed = 1;
                     } else {
-                        $.rampage_03 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1312.3, -315.7, 42.6); //ST MARKS BEHIND TONI'S
+                        $.rampage_03 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1312.3, -315.7, 42.6); //ST MARKS BEHIND TONI'S
                         $.rampage_03_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
-                Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_B);
                 ONMISSION = false;
             }
         }
@@ -253,10 +253,10 @@ async function rampage_loop() {
         if ($.rampage_04_flag == 0) {
             if ($.rampage_04.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 3 /* WEAPONTYPE_UZI */, 120000, $.rampage_04_kills, 12 /* PED_GANG_TRIAD_A */, 13 /* PED_GANG_TRIAD_B */, -1, -1, false); // "Kill 20 Triads in 120 seconds!"
-                Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-                Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
-                World.ForceRandomPedType(8 /* PEDTYPE_GANG_TRIAD */);
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_UZI, 120000, $.rampage_04_kills, PED_GANG_TRIAD_A, PED_GANG_TRIAD_B, -1, -1, false); // "Kill 20 Triads in 120 seconds!"
+                Streaming.RequestModel(PED_GANG_TRIAD_A);
+                Streaming.RequestModel(PED_GANG_TRIAD_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_TRIAD);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_04', $.rampage_04_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -271,16 +271,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_04_failed == 0) {
-                        $.rampage_04 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1253.9, -572.9, 12.5); //SUPASAVE
+                        $.rampage_04 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1253.9, -572.9, 12.5); //SUPASAVE
                         $.rampage_04_failed = 1;
                     } else {
-                        $.rampage_04 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 883.3, -806.2, 15.0); //BEHIND BUILDING CHINATOWN NEAR BRIDGE
+                        $.rampage_04 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 883.3, -806.2, 15.0); //BEHIND BUILDING CHINATOWN NEAR BRIDGE
                         $.rampage_04_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-                Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_B);
                 ONMISSION = false;
             }
         }
@@ -290,18 +290,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    4 /* WEAPONTYPE_SHOTGUN */,
+                    WEAPONTYPE_SHOTGUN,
                     120000,
                     $.rampage_05_kills,
-                    12 /* PED_GANG_TRIAD_A */,
-                    13 /* PED_GANG_TRIAD_B */,
+                    PED_GANG_TRIAD_A,
+                    PED_GANG_TRIAD_B,
                     -1,
                     -1,
                     false
                 ); // "Kill 20 Triads in 120 seconds!"
-                Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-                Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
-                World.ForceRandomPedType(8 /* PEDTYPE_GANG_TRIAD */);
+                Streaming.RequestModel(PED_GANG_TRIAD_A);
+                Streaming.RequestModel(PED_GANG_TRIAD_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_TRIAD);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_05', $.rampage_05_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -316,16 +316,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_05_failed == 0) {
-                        $.rampage_05 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1179.2, -566.0, 27.3); //ON TOP OF HOSPITAL ROOF
+                        $.rampage_05 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1179.2, -566.0, 27.3); //ON TOP OF HOSPITAL ROOF
                         $.rampage_05_failed = 1;
                     } else {
-                        $.rampage_05 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1274.7, -742.7, 15.0); //IN ALLEY NEAR DOG FOOD FACTORY
+                        $.rampage_05 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1274.7, -742.7, 15.0); //IN ALLEY NEAR DOG FOOD FACTORY
                         $.rampage_05_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-                Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_B);
                 ONMISSION = false;
             }
         }
@@ -333,7 +333,7 @@ async function rampage_loop() {
         if ($.rampage_06_flag == 0) {
             if ($.rampage_06.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 11 /* WEAPONTYPE_GRENADE */, 120000, $.rampage_06_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_GRENADE, 120000, $.rampage_06_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_06', $.rampage_06_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -348,10 +348,10 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_06_failed == 0) {
-                        $.rampage_06 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1124.6, -816.8, 26.5); //ON TOP OF TRAIN TRACKS NEAR FUZZ BALL
+                        $.rampage_06 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1124.6, -816.8, 26.5); //ON TOP OF TRAIN TRACKS NEAR FUZZ BALL
                         $.rampage_06_failed = 1;
                     } else {
-                        $.rampage_06 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 1195.3, -497.9, 39.3); //ON TOP TRAIN TRACKS BY HOSPITAL
+                        $.rampage_06 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 1195.3, -497.9, 39.3); //ON TOP TRAIN TRACKS BY HOSPITAL
                         $.rampage_06_failed = 0;
                     }
                 }
@@ -364,18 +364,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.StartHeadshot(
                     'PAGE_00',
-                    7 /* WEAPONTYPE_SNIPERRIFLE */,
+                    WEAPONTYPE_SNIPERRIFLE,
                     120000,
                     $.rampage_07_kills,
-                    18 /* PED_GANG_YARDIE_A */,
-                    19 /* PED_GANG_YARDIE_B */,
+                    PED_GANG_YARDIE_A,
+                    PED_GANG_YARDIE_B,
                     -1,
                     -1,
                     false
                 ); // "Pop 20 Yardie heads in 120 seconds!"
-                Streaming.RequestModel(18 /* PED_GANG_YARDIE_A */);
-                Streaming.RequestModel(19 /* PED_GANG_YARDIE_B */);
-                World.ForceRandomPedType(11 /* PEDTYPE_GANG_YARDIE */);
+                Streaming.RequestModel(PED_GANG_YARDIE_A);
+                Streaming.RequestModel(PED_GANG_YARDIE_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_YARDIE);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_07', $.rampage_07_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -390,16 +390,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_07_failed == 0) {
-                        $.rampage_07 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 440.3, -1391.2, 44.2); //ON TOP OF CASINO
+                        $.rampage_07 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 440.3, -1391.2, 44.2); //ON TOP OF CASINO
                         $.rampage_07_failed = 1;
                     } else {
-                        $.rampage_07 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 204.1, -1237.4, 45.1); //ON ROOF ON AMCO BUILDING COMMERCIAL
+                        $.rampage_07 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 204.1, -1237.4, 45.1); //ON ROOF ON AMCO BUILDING COMMERCIAL
                         $.rampage_07_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
-                Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_B);
                 ONMISSION = false;
             }
         }
@@ -409,18 +409,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    9 /* WEAPONTYPE_FLAMETHROWER */,
+                    WEAPONTYPE_FLAMETHROWER,
                     120000,
                     $.rampage_08_kills,
-                    16 /* PED_GANG_YAKUZA_A */,
-                    17 /* PED_GANG_YAKUZA_B */,
+                    PED_GANG_YAKUZA_A,
+                    PED_GANG_YAKUZA_B,
                     -1,
                     -1,
                     false
                 ); // "Burn 20 Yakuza in 120 seconds!"
-                Streaming.RequestModel(16 /* PED_GANG_YAKUZA_A */);
-                Streaming.RequestModel(17 /* PED_GANG_YAKUZA_B */);
-                World.ForceRandomPedType(10 /* PEDTYPE_GANG_YAKUZA */);
+                Streaming.RequestModel(PED_GANG_YAKUZA_A);
+                Streaming.RequestModel(PED_GANG_YAKUZA_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_YAKUZA);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_08', $.rampage_08_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -435,16 +435,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_08_failed == 0) {
-                        $.rampage_08 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -22.7, -1116.7, 26.1); //SOUTH END OF CATHEDRAL
+                        $.rampage_08 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -22.7, -1116.7, 26.1); //SOUTH END OF CATHEDRAL
                         $.rampage_08_failed = 1;
                     } else {
-                        $.rampage_08 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -22.1, -1526.9, 26.1); //CARPARK AREA OPPOSITE LOVES BUILDING
+                        $.rampage_08 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -22.1, -1526.9, 26.1); //CARPARK AREA OPPOSITE LOVES BUILDING
                         $.rampage_08_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
-                Streaming.MarkModelAsNoLongerNeeded(17 /* PED_GANG_YAKUZA_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_B);
                 ONMISSION = false;
             }
         }
@@ -452,7 +452,7 @@ async function rampage_loop() {
         if ($.rampage_09_flag == 0) {
             if ($.rampage_09.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 4 /* WEAPONTYPE_SHOTGUN */, 120000, $.rampage_09_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_SHOTGUN, 120000, $.rampage_09_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_09', $.rampage_09_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -467,10 +467,10 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_09_failed == 0) {
-                        $.rampage_09 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 134.2, -552.8, 26.0); //NORTH EAST CORNER OF PARK
+                        $.rampage_09 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 134.2, -552.8, 26.0); //NORTH EAST CORNER OF PARK
                         $.rampage_09_failed = 1;
                     } else {
-                        $.rampage_09 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 8.0, -910.0, 26.5); //SOUTH WEST CORNER OF PARK
+                        $.rampage_09 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 8.0, -910.0, 26.5); //SOUTH WEST CORNER OF PARK
                         $.rampage_09_failed = 0;
                     }
                 }
@@ -481,7 +481,7 @@ async function rampage_loop() {
         if ($.rampage_10_flag == 0) {
             if ($.rampage_10.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 6 /* WEAPONTYPE_M16 */, 120000, $.rampage_10_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_M16, 120000, $.rampage_10_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_10', $.rampage_10_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -496,10 +496,10 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_10_failed == 0) {
-                        $.rampage_10 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 434.3, -147.8, 20.9); //IN CONTRUCTION YARD NE
+                        $.rampage_10 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 434.3, -147.8, 20.9); //IN CONTRUCTION YARD NE
                         $.rampage_10_failed = 1;
                     } else {
-                        $.rampage_10 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 181.1, -338.2, 16.5); //BEHIND UNIVERSITY	SOUTH
+                        $.rampage_10 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 181.1, -338.2, 16.5); //BEHIND UNIVERSITY	SOUTH
                         $.rampage_10_failed = 0;
                     }
                 }
@@ -512,18 +512,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    8 /* WEAPONTYPE_ROCKET */,
+                    WEAPONTYPE_ROCKET,
                     120000,
                     $.rampage_11_kills,
-                    18 /* PED_GANG_YARDIE_A */,
-                    19 /* PED_GANG_YARDIE_B */,
+                    PED_GANG_YARDIE_A,
+                    PED_GANG_YARDIE_B,
                     -1,
                     -1,
                     false
                 ); // "Annihialate 20 Yardies in 120 seconds!"
-                Streaming.RequestModel(18 /* PED_GANG_YARDIE_A */);
-                Streaming.RequestModel(19 /* PED_GANG_YARDIE_B */);
-                World.ForceRandomPedType(11 /* PEDTYPE_GANG_YARDIE */);
+                Streaming.RequestModel(PED_GANG_YARDIE_A);
+                Streaming.RequestModel(PED_GANG_YARDIE_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_YARDIE);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_11', $.rampage_11_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -538,16 +538,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_11_failed == 0) {
-                        $.rampage_11 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -101.4, -1386.8, 26.3); //BY LIBERTY TREE BUILDING
+                        $.rampage_11 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -101.4, -1386.8, 26.3); //BY LIBERTY TREE BUILDING
                         $.rampage_11_failed = 1;
                     } else {
-                        $.rampage_11 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -57.5, -1070.8, 26.3); //IN GRAVEYARD BY CATHEDRAL
+                        $.rampage_11 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -57.5, -1070.8, 26.3); //IN GRAVEYARD BY CATHEDRAL
                         $.rampage_11_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
-                Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_B);
                 ONMISSION = false;
             }
         }
@@ -557,18 +557,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    10 /* WEAPONTYPE_MOLOTOV */,
+                    WEAPONTYPE_MOLOTOV,
                     120000,
                     $.rampage_12_kills,
-                    16 /* PED_GANG_YAKUZA_A */,
-                    17 /* PED_GANG_YAKUZA_B */,
+                    PED_GANG_YAKUZA_A,
+                    PED_GANG_YAKUZA_B,
                     -1,
                     -1,
                     false
                 ); // "Torch 20 Yakuza in 120 seconds!"
-                Streaming.RequestModel(16 /* PED_GANG_YAKUZA_A */);
-                Streaming.RequestModel(17 /* PED_GANG_YAKUZA_B */);
-                World.ForceRandomPedType(10 /* PEDTYPE_GANG_YAKUZA */);
+                Streaming.RequestModel(PED_GANG_YAKUZA_A);
+                Streaming.RequestModel(PED_GANG_YAKUZA_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_YAKUZA);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_12', $.rampage_12_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -583,16 +583,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_12_failed == 0) {
-                        $.rampage_12 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 374.4, -609.4, 26.7); //BEHIND MULTISTOREY
+                        $.rampage_12 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 374.4, -609.4, 26.7); //BEHIND MULTISTOREY
                         $.rampage_12_failed = 1;
                     } else {
-                        $.rampage_12 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 392.9, -795.4, 31.3); //BETWEEN OVERPASS LANES NEAR ASUKA'S KENDO
+                        $.rampage_12 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 392.9, -795.4, 31.3); //BETWEEN OVERPASS LANES NEAR ASUKA'S KENDO
                         $.rampage_12_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
-                Streaming.MarkModelAsNoLongerNeeded(17 /* PED_GANG_YAKUZA_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_B);
                 ONMISSION = false;
             }
         }
@@ -602,18 +602,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    11 /* WEAPONTYPE_GRENADE */,
+                    WEAPONTYPE_GRENADE,
                     120000,
                     $.rampage_13_kills,
-                    18 /* PED_GANG_YARDIE_A */,
-                    19 /* PED_GANG_YARDIE_B */,
+                    PED_GANG_YARDIE_A,
+                    PED_GANG_YARDIE_B,
                     -1,
                     -1,
                     false
                 ); // "Explode 20 Yardies in 120 seconds!"
-                Streaming.RequestModel(18 /* PED_GANG_YARDIE_A */);
-                Streaming.RequestModel(19 /* PED_GANG_YARDIE_B */);
-                World.ForceRandomPedType(11 /* PEDTYPE_GANG_YARDIE */);
+                Streaming.RequestModel(PED_GANG_YARDIE_A);
+                Streaming.RequestModel(PED_GANG_YARDIE_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_YARDIE);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_13', $.rampage_13_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -628,16 +628,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_13_failed == 0) {
-                        $.rampage_13 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, 176.8, -360.1, 16.2); //ALLEYWAY BETWEEN STADIUM AND PARK
+                        $.rampage_13 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, 176.8, -360.1, 16.2); //ALLEYWAY BETWEEN STADIUM AND PARK
                         $.rampage_13_failed = 1;
                     } else {
-                        $.rampage_13 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -41.6, -451.8, 16.6); //BEHIND FIRESTATION
+                        $.rampage_13 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -41.6, -451.8, 16.6); //BEHIND FIRESTATION
                         $.rampage_13_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
-                Streaming.MarkModelAsNoLongerNeeded(19 /* PED_GANG_YARDIE_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_B);
                 ONMISSION = false;
             }
         }
@@ -647,18 +647,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    9 /* WEAPONTYPE_FLAMETHROWER */,
+                    WEAPONTYPE_FLAMETHROWER,
                     120000,
                     $.rampage_14_kills,
-                    20 /* PED_GANG_COLOMBIAN_A */,
-                    21 /* PED_GANG_COLOMBIAN_B */,
+                    PED_GANG_COLOMBIAN_A,
+                    PED_GANG_COLOMBIAN_B,
                     -1,
                     -1,
                     false
                 ); // "Fry 20 Colombians in 120 seconds!"
-                Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
-                Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
-                World.ForceRandomPedType(12 /* PEDTYPE_GANG_COLOMBIAN */);
+                Streaming.RequestModel(PED_GANG_COLOMBIAN_A);
+                Streaming.RequestModel(PED_GANG_COLOMBIAN_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_COLOMBIAN);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_14', $.rampage_14_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -673,16 +673,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_14_failed == 0) {
-                        $.rampage_14 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -1149.2, 160.5, 58.9); //NORTH PIKE CREEK IN WAREHOUSE COURTYARD
+                        $.rampage_14 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -1149.2, 160.5, 58.9); //NORTH PIKE CREEK IN WAREHOUSE COURTYARD
                         $.rampage_14_failed = 1;
                     } else {
-                        $.rampage_14 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -585.4, 284.7, 64.0); //BEHIND A GARAGE IN THE MANSION AREA SUBURBIA
+                        $.rampage_14 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -585.4, 284.7, 64.0); //BEHIND A GARAGE IN THE MANSION AREA SUBURBIA
                         $.rampage_14_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
-                Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_B);
                 ONMISSION = false;
             }
         }
@@ -690,10 +690,10 @@ async function rampage_loop() {
         if ($.rampage_15_flag == 0) {
             if ($.rampage_15.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 4 /* WEAPONTYPE_SHOTGUN */, 120000, $.rampage_15_kills, 22 /* PED_GANG_HOOD_A */, 23 /* PED_GANG_HOOD_B */, -1, -1, false); // "Splatter 20 Hoods in 120 seconds!"
-                Streaming.RequestModel(22 /* PED_GANG_HOOD_A */);
-                Streaming.RequestModel(23 /* PED_GANG_HOOD_B */);
-                World.ForceRandomPedType(13 /* PEDTYPE_GANG_HOOD */);
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_SHOTGUN, 120000, $.rampage_15_kills, PED_GANG_HOOD_A, PED_GANG_HOOD_B, -1, -1, false); // "Splatter 20 Hoods in 120 seconds!"
+                Streaming.RequestModel(PED_GANG_HOOD_A);
+                Streaming.RequestModel(PED_GANG_HOOD_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_HOOD);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_15', $.rampage_15_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -708,16 +708,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_15_failed == 0) {
-                        $.rampage_15 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -632.1, -413.8, 18.0); //BEHIND BILLBOARD NEAR AIRPORT
+                        $.rampage_15 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -632.1, -413.8, 18.0); //BEHIND BILLBOARD NEAR AIRPORT
                         $.rampage_15_failed = 1;
                     } else {
-                        $.rampage_15 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -560.3, -23.6, 9.3); //ONTOP OF A GARAGE IN THE PROJECTS AREA UNDER OVERPASS
+                        $.rampage_15 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -560.3, -23.6, 9.3); //ONTOP OF A GARAGE IN THE PROJECTS AREA UNDER OVERPASS
                         $.rampage_15_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(22 /* PED_GANG_HOOD_A */);
-                Streaming.MarkModelAsNoLongerNeeded(23 /* PED_GANG_HOOD_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_HOOD_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_HOOD_B);
                 ONMISSION = false;
             }
         }
@@ -725,7 +725,7 @@ async function rampage_loop() {
         if ($.rampage_16_flag == 0) {
             if ($.rampage_16.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 8 /* WEAPONTYPE_ROCKET */, 120000, $.rampage_16_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_ROCKET, 120000, $.rampage_16_kills, -2, -1, -1, -1, false); // "Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_16', $.rampage_16_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -740,10 +740,10 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_16_failed == 0) {
-                        $.rampage_16 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -939.0, -303.3, 33.6); //BEHIND BILLBOARD BETWEEN AIRPORT & PIKE CREEK
+                        $.rampage_16 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -939.0, -303.3, 33.6); //BEHIND BILLBOARD BETWEEN AIRPORT & PIKE CREEK
                         $.rampage_16_failed = 1;
                     } else {
-                        $.rampage_16 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -867.0, -145.4, 49.8); //ONTOP OF WAREHOUSE PIKE CREEK AIRPORT END
+                        $.rampage_16 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -867.0, -145.4, 49.8); //ONTOP OF WAREHOUSE PIKE CREEK AIRPORT END
                         $.rampage_16_failed = 0;
                     }
                 }
@@ -756,18 +756,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.Start(
                     'PAGE_00',
-                    17 /* WEAPONTYPE_RUNOVERBYCAR */ as any,
+                    WEAPONTYPE_RUNOVERBYCAR as any,
                     120000,
                     $.rampage_17_kills,
-                    20 /* PED_GANG_COLOMBIAN_A */,
-                    21 /* PED_GANG_COLOMBIAN_B */,
+                    PED_GANG_COLOMBIAN_A,
+                    PED_GANG_COLOMBIAN_B,
                     -1,
                     -1,
                     false
                 ); // "Splatter 20 Colombians with a car in 120 seconds!"
-                Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
-                Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
-                World.ForceRandomPedType(12 /* PEDTYPE_GANG_COLOMBIAN */);
+                Streaming.RequestModel(PED_GANG_COLOMBIAN_A);
+                Streaming.RequestModel(PED_GANG_COLOMBIAN_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_COLOMBIAN);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_17', $.rampage_17_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -782,16 +782,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_17_failed == 0) {
-                        $.rampage_17 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -1181.9, -264.8, 46.0); //IN GRASSY HILLY AREA NORTH OF AIRPORT
+                        $.rampage_17 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -1181.9, -264.8, 46.0); //IN GRASSY HILLY AREA NORTH OF AIRPORT
                         $.rampage_17_failed = 1;
                     } else {
-                        $.rampage_17 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -705.9, -617.5, 16.4); //BEHIND BILLBOARD AT AIRPORT
+                        $.rampage_17 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -705.9, -617.5, 16.4); //BEHIND BILLBOARD AT AIRPORT
                         $.rampage_17_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
-                Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_B);
                 ONMISSION = false;
             }
         }
@@ -799,7 +799,7 @@ async function rampage_loop() {
         if ($.rampage_18_flag == 0) {
             if ($.rampage_18.hasBeenCollected()) {
                 ONMISSION = true;
-                KillFrenzy.Start('PAGE_00', 19 /* WEAPONTYPE_UZI_DRIVEBY */ as any, 120000, $.rampage_18_kills, -2, -1, -1, -1, false); // "Driveby and Destroy 20 vehicles in 120 seconds!"
+                KillFrenzy.Start('PAGE_00', WEAPONTYPE_UZI_DRIVEBY as any, 120000, $.rampage_18_kills, -2, -1, -1, -1, false); // "Driveby and Destroy 20 vehicles in 120 seconds!"
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_18', $.rampage_18_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -835,10 +835,10 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_18_failed == 0) {
-                        $.rampage_18 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -1080.2, 208.4, 3.7); //BEHIND ROCK AT BOTTOM OF DAM
+                        $.rampage_18 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -1080.2, 208.4, 3.7); //BEHIND ROCK AT BOTTOM OF DAM
                         $.rampage_18_failed = 1;
                     } else {
-                        $.rampage_18 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -987.7, -206.1, 33.6); //BEHIND A GUARD BOX SOUTH PIKE CREEK
+                        $.rampage_18 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -987.7, -206.1, 33.6); //BEHIND A GUARD BOX SOUTH PIKE CREEK
                         $.rampage_18_failed = 0;
                     }
                 }
@@ -851,18 +851,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.StartHeadshot(
                     'PAGE_00',
-                    7 /* WEAPONTYPE_SNIPERRIFLE */,
+                    WEAPONTYPE_SNIPERRIFLE,
                     120000,
                     $.rampage_19_kills,
-                    20 /* PED_GANG_COLOMBIAN_A */,
-                    21 /* PED_GANG_COLOMBIAN_B */,
+                    PED_GANG_COLOMBIAN_A,
+                    PED_GANG_COLOMBIAN_B,
                     -1,
                     -1,
                     false
                 ); // "Remove 20 Colombian heads in 120 seconds!"
-                Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
-                Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
-                World.ForceRandomPedType(12 /* PEDTYPE_GANG_COLOMBIAN */);
+                Streaming.RequestModel(PED_GANG_COLOMBIAN_A);
+                Streaming.RequestModel(PED_GANG_COLOMBIAN_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_COLOMBIAN);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_19', $.rampage_19_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -877,16 +877,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_19_failed == 0) {
-                        $.rampage_19 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -1170.2, -42.2, 59.2); //ONTOP OF ROOF SOUTH OF BAIT WAREHOUSE
+                        $.rampage_19 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -1170.2, -42.2, 59.2); //ONTOP OF ROOF SOUTH OF BAIT WAREHOUSE
                         $.rampage_19_failed = 1;
                     } else {
-                        $.rampage_19 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -1186.3, 41.0, 68.8); //BEHIND BOX IN THE BAIT WAREHOUSE
+                        $.rampage_19 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -1186.3, 41.0, 68.8); //BEHIND BOX IN THE BAIT WAREHOUSE
                         $.rampage_19_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
-                Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_B);
                 ONMISSION = false;
             }
         }
@@ -896,18 +896,18 @@ async function rampage_loop() {
                 ONMISSION = true;
                 KillFrenzy.StartHeadshot(
                     'PAGE_00',
-                    6 /* WEAPONTYPE_M16 */,
+                    WEAPONTYPE_M16,
                     120000,
                     $.rampage_20_kills,
-                    22 /* PED_GANG_HOOD_A */,
-                    23 /* PED_GANG_HOOD_B */,
+                    PED_GANG_HOOD_A,
+                    PED_GANG_HOOD_B,
                     -1,
                     -1,
                     false
                 ); // "Behead 20 Hoods in 120 seconds!"
-                Streaming.RequestModel(22 /* PED_GANG_HOOD_A */);
-                Streaming.RequestModel(23 /* PED_GANG_HOOD_B */);
-                World.ForceRandomPedType(13 /* PEDTYPE_GANG_HOOD */);
+                Streaming.RequestModel(PED_GANG_HOOD_A);
+                Streaming.RequestModel(PED_GANG_HOOD_B);
+                World.ForceRandomPedType(PEDTYPE_GANG_HOOD);
                 Text.PrintBig('RAMPAGE', 5000, 5);
                 Text.PrintWithNumberBig('PAGE_20', $.rampage_20_kills, 6000, 6);
                 $.frenzy_status = KillFrenzy.ReadStatus();
@@ -922,16 +922,16 @@ async function rampage_loop() {
                 if ($.frenzy_status == 3) {
                     Text.PrintBig('RAMP_F', 5000, 5);
                     if ($.rampage_20_failed == 0) {
-                        $.rampage_20 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -798.4, 126.0, 29.0); //BEHIND BILLBOARD NW PROJECTS
+                        $.rampage_20 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -798.4, 126.0, 29.0); //BEHIND BILLBOARD NW PROJECTS
                         $.rampage_20_failed = 1;
                     } else {
-                        $.rampage_20 = Pickup.Create(1392 /* killfrenzy */, 3 /* PICKUP_ONCE */, -431.6, 110.9, 15.6); //BEHIND BILLBOARD NORTH PROJECTS
+                        $.rampage_20 = Pickup.Create(1392 /* killfrenzy */, PICKUP_ONCE, -431.6, 110.9, 15.6); //BEHIND BILLBOARD NORTH PROJECTS
                         $.rampage_20_failed = 0;
                     }
                 }
                 World.ForceRandomPedType(-1 as any);
-                Streaming.MarkModelAsNoLongerNeeded(22 /* PED_GANG_HOOD_A */);
-                Streaming.MarkModelAsNoLongerNeeded(23 /* PED_GANG_HOOD_B */);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_HOOD_A);
+                Streaming.MarkModelAsNoLongerNeeded(PED_GANG_HOOD_B);
                 ONMISSION = false;
             }
         }

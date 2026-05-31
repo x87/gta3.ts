@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/frank3.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
@@ -158,19 +159,19 @@ async function body() {
 
         Cutscene.SetOffset(1272.5, -90.7, 13.8);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
         $.cs_player.setAnim('player');
 
-        $.cs_eight = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+        $.cs_eight = CutsceneObject.Create(PED_SPECIAL1);
 
         $.cs_eight.setAnim('eight2');
 
-        $.cs_eighthead = CutsceneHead.Create($.cs_eight, 186 /* CUT_OBJ2 */);
+        $.cs_eighthead = CutsceneHead.Create($.cs_eight, CUT_OBJ2);
 
         $.cs_eighthead.setAnim('eight');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 187 /* CUT_OBJ3 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ3);
 
         $.cs_playerhead.setAnim('player');
 
@@ -184,11 +185,11 @@ async function body() {
 
         $.player.setHeading(270.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        World.SwitchRubbish(false /* OFF */);
+        World.SwitchRubbish(OFF);
 
-        Streaming.Switch(true /* ON */);
+        Streaming.Switch(ON);
 
         Cutscene.Start();
 
@@ -243,7 +244,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -257,20 +258,20 @@ async function body() {
 
         Cutscene.Clear();
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
 
         Camera.SetBehindPlayer();
 
         await asyncWait(500);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, true);
 
         Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
         Streaming.MarkModelAsNoLongerNeeded(605 /* ind_land089c */);
         Streaming.MarkModelAsNoLongerNeeded(531 /* mak_semtech */);
         Streaming.MarkModelAsNoLongerNeeded(533 /* mak_bomb01 */);
@@ -339,19 +340,19 @@ async function body() {
 
         Cutscene.SetOffset(1272.5, -90.7, 13.8);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
         $.cs_player.setAnim('player');
 
-        $.cs_eight = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+        $.cs_eight = CutsceneObject.Create(PED_SPECIAL1);
 
         $.cs_eight.setAnim('eight2');
 
-        $.cs_eighthead = CutsceneHead.Create($.cs_eight, 186 /* CUT_OBJ2 */);
+        $.cs_eighthead = CutsceneHead.Create($.cs_eight, CUT_OBJ2);
 
         $.cs_eighthead.setAnim('eight');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 187 /* CUT_OBJ3 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ3);
 
         $.cs_playerhead.setAnim('player');
 
@@ -373,11 +374,11 @@ async function body() {
 
         $.player.setHeading(270.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        World.SwitchRubbish(false /* OFF */);
+        World.SwitchRubbish(OFF);
 
-        Streaming.Switch(true /* ON */);
+        Streaming.Switch(ON);
 
         Cutscene.Start();
 
@@ -418,7 +419,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -432,23 +433,23 @@ async function body() {
 
         Cutscene.Clear();
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
 
         Camera.SetBehindPlayer();
 
         await asyncWait(500);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         World.SetVisibilityOfClosestObjectOfType(1271.8, -91.3, 13.9, 3.0, 538 /* cs8_door */, true);
 
         //UNLOAD_SPECIAL_CHARACTER 1
 
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
-        Streaming.MarkModelAsNoLongerNeeded(188 /* CUT_OBJ4 */);
-        Streaming.MarkModelAsNoLongerNeeded(189 /* CUT_OBJ5 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ5);
         Streaming.MarkModelAsNoLongerNeeded(605 /* ind_land089c */);
         Streaming.MarkModelAsNoLongerNeeded(531 /* mak_semtech */);
         Streaming.MarkModelAsNoLongerNeeded(533 /* mak_bomb01 */);
@@ -465,29 +466,29 @@ async function body() {
 
         // *********************************START OF THE MISSION STUFF******************************
 
-        Streaming.RequestModel(20 /* PED_GANG_COLOMBIAN_A */);
+        Streaming.RequestModel(PED_GANG_COLOMBIAN_A);
 
-        Streaming.RequestModel(21 /* PED_GANG_COLOMBIAN_B */);
+        Streaming.RequestModel(PED_GANG_COLOMBIAN_B);
 
         Streaming.RequestModel(1344 /* barrel4 */);
 
-        Streaming.RequestModel(138 /* CAR_COLUMB */);
+        Streaming.RequestModel(CAR_COLUMB);
 
         while (
-            !Streaming.HasModelLoaded(21 /* PED_GANG_COLOMBIAN_B */) ||
-            !Streaming.HasModelLoaded(20 /* PED_GANG_COLOMBIAN_A */) ||
+            !Streaming.HasModelLoaded(PED_GANG_COLOMBIAN_B) ||
+            !Streaming.HasModelLoaded(PED_GANG_COLOMBIAN_A) ||
             !Streaming.HasModelLoaded(1344 /* barrel4 */) ||
-            !Streaming.HasModelLoaded(138 /* CAR_COLUMB */)
+            !Streaming.HasModelLoaded(CAR_COLUMB)
         ) {
             //OR NOT HAS_SPECIAL_CHARACTER_LOADED 1
 
             await asyncWait(0);
         }
 
-        Zone.SetPedInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        Zone.SetPedInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        Zone.SetCarInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        Zone.SetCarInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Zone.SetPedInfo('PORT_E', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Zone.SetPedInfo('PORT_E', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Zone.SetCarInfo('PORT_E', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Zone.SetCarInfo('PORT_E', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
         // barrels on the boat 1 - 6, 10 - 14 removed as they were doubles
 
@@ -505,7 +506,7 @@ async function body() {
 
         World.ClearArea(1272.8, -96.5, -100.0, 1.0, true);
 
-        $.ped_8ball_fm3 = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 1272.8, -96.5, -100.0);
+        $.ped_8ball_fm3 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL1, 1272.8, -96.5, -100.0);
 
         $.ped_8ball_fm3.setHeading(270.0);
 
@@ -513,9 +514,9 @@ async function body() {
 
         $.ped_8ball_fm3.setIdle();
 
-        $.player.giveWeapon(7 /* WEAPONTYPE_SNIPERRIFLE */, 30);
+        $.player.giveWeapon(WEAPONTYPE_SNIPERRIFLE, 30);
 
-        $.player.setCurrentWeapon(7 /* WEAPONTYPE_SNIPERRIFLE */);
+        $.player.setCurrentWeapon(WEAPONTYPE_SNIPERRIFLE);
 
         $.ped_8ball_fm3.followPlayer($.player);
 
@@ -545,7 +546,7 @@ async function body() {
 
         $.controlmode = Pad.GetControllerMode();
 
-        Audio.LoadMissionAudio('s3_a' as any);
+        Audio.LoadMissionAudio(SfxMission.S3_a);
 
         TIMERA = 0;
 
@@ -681,39 +682,39 @@ async function body() {
 
         //guard1 on quayside righthand side of the ramp
 
-        $.guard1_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1524.0, -900.0, -100.0);
+        $.guard1_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 1524.0, -900.0, -100.0);
 
         $.guard1_fm3.turnToFaceCoord(1524.0, -887.0, -100.0);
 
-        $.guard1_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard1_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard1_fm3.clearThreatSearch();
 
-        $.guard1_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard1_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard1_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard1_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard1_fm3.setHeedThreats(true);
 
         //guard2 on quayside left side of the ramp
 
-        $.guard2_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, 1530.0, -901.0, -100.0);
+        $.guard2_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, 1530.0, -901.0, -100.0);
 
         $.guard2_fm3.turnToFaceCoord(1530.0, -887.0, -100.0);
 
-        $.guard2_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard2_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard2_fm3.clearThreatSearch();
 
-        $.guard2_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard2_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard2_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard2_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard2_fm3.setHeedThreats(true);
 
         //guard3 on boat left hand side by exploding creates
 
-        $.guard3_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1534.6, -936.8, 18.4); //follows route 0
+        $.guard3_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 1534.6, -936.8, 18.4); //follows route 0
 
         Path.AddRoutePoint(0, 1533.9, -926.0, -100.0);
 
@@ -721,19 +722,19 @@ async function body() {
 
         $.guard3_fm3.setObjFollowRoute(0, 3 /* follow_route_loop */);
 
-        $.guard3_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard3_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard3_fm3.clearThreatSearch();
 
-        $.guard3_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard3_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard3_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard3_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard3_fm3.setHeedThreats(true);
 
         //guard4 on boat walks behind the large containers towards the rear of the shop
 
-        $.guard4_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, 1510.2, -941.7, 18.4); //follows route 1
+        $.guard4_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, 1510.2, -941.7, 18.4); //follows route 1
 
         Path.AddRoutePoint(1, 1527.5, -942.9, -100.0);
 
@@ -741,19 +742,19 @@ async function body() {
 
         $.guard4_fm3.setObjFollowRoute(1, 3 /* follow_route_loop */);
 
-        $.guard4_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard4_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard4_fm3.clearThreatSearch();
 
-        $.guard4_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard4_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard4_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard4_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard4_fm3.setHeedThreats(true);
 
         //guard5 on boat just behid the first row of boxes
 
-        $.guard5_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1502.6, -926.7, -100.0); //follows route 2
+        $.guard5_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 1502.6, -926.7, -100.0); //follows route 2
 
         Path.AddRoutePoint(2, 1512.2, -927.6, -100.0);
 
@@ -761,21 +762,21 @@ async function body() {
 
         $.guard5_fm3.setObjFollowRoute(2, 3 /* follow_route_loop */);
 
-        $.guard5_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard5_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard5_fm3.clearThreatSearch();
 
-        $.guard5_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard5_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard5_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */);
+        $.guard5_fm3.setThreatSearch(THREAT_SPECIAL);
 
-        $.guard5_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard5_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard5_fm3.setHeedThreats(true);
 
         //guard6 on boat by the rail of the boat
 
-        $.guard6_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, 1472.5, -917.7, -100.0); //follows route 3
+        $.guard6_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, 1472.5, -917.7, -100.0); //follows route 3
 
         Path.AddRoutePoint(3, 1507.1, -918.7, -100.0);
 
@@ -783,19 +784,19 @@ async function body() {
 
         $.guard6_fm3.setObjFollowRoute(3, 3 /* follow_route_loop */);
 
-        $.guard6_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard6_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard6_fm3.clearThreatSearch();
 
-        $.guard6_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard6_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard6_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard6_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard6_fm3.setHeedThreats(true);
 
         //guard7 on boat end of large boxes by crate 4
 
-        $.guard7_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1500.3, -922.2, -100.0); //follows route 4
+        $.guard7_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 1500.3, -922.2, -100.0); //follows route 4
 
         Path.AddRoutePoint(4, 1499.1, -943.7, -100.0);
 
@@ -803,19 +804,19 @@ async function body() {
 
         $.guard7_fm3.setObjFollowRoute(4, 3 /* follow_route_loop */);
 
-        $.guard7_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard7_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard7_fm3.clearThreatSearch();
 
-        $.guard7_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard7_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard7_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard7_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard7_fm3.setHeedThreats(true);
 
         //Guard8 between second last container and crates 5,6 and 7
 
-        $.guard8_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1489.5, -955.8, -100.0); //follows route 5
+        $.guard8_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 1489.5, -955.8, -100.0); //follows route 5
 
         Path.AddRoutePoint(5, 1490.2, -924.8, -100.0);
 
@@ -823,35 +824,35 @@ async function body() {
 
         $.guard8_fm3.setObjFollowRoute(5, 3 /* follow_route_loop */);
 
-        $.guard8_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard8_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard8_fm3.clearThreatSearch();
 
-        $.guard8_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard8_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard8_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard8_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard8_fm3.setHeedThreats(true);
 
         //guard9 stands on top of crate6 does not patrol
 
-        $.guard9_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 21 /* PED_GANG_COLOMBIAN_B */, 1484.4, -930.5, 19.8);
+        $.guard9_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_B, 1484.4, -930.5, 19.8);
 
         $.guard9_fm3.turnToFaceCoord(1487.8, -925.6, -100.0);
 
-        $.guard9_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard9_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard9_fm3.clearThreatSearch();
 
-        $.guard9_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard9_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard9_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard9_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard9_fm3.setHeedThreats(true);
 
         //guard10 walks from right hand side boat door to behind containers and back again
 
-        $.guard10_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1476.8, -950.9, -100.0); //follows route 6
+        $.guard10_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 1476.8, -950.9, -100.0); //follows route 6
 
         Path.AddRoutePoint(6, 1476.8, -950.9, -100.0);
 
@@ -859,53 +860,53 @@ async function body() {
 
         $.guard10_fm3.setObjFollowRoute(6, 3 /* follow_route_loop */);
 
-        $.guard10_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // sets weapon to infinate ammo
+        $.guard10_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
         $.guard10_fm3.clearThreatSearch();
 
-        $.guard10_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard10_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard10_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard10_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard10_fm3.setHeedThreats(true);
 
         //guard11 on boat top right of the gang plank
 
-        $.guard11_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1524.0, -919.0, -100.0);
+        $.guard11_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 1524.0, -919.0, -100.0);
 
         $.guard11_fm3.turnToFaceCoord(1525.0, -897.0, -100.0);
 
-        $.guard11_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+        $.guard11_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
         $.guard11_fm3.clearThreatSearch();
 
-        $.guard11_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard11_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard11_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard11_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard11_fm3.setHeedThreats(true);
 
         //guard12 on boat top left hand side of the gang plank
 
-        $.guard12_fm3 = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 20 /* PED_GANG_COLOMBIAN_A */, 1529.0, -919.0, -100.0);
+        $.guard12_fm3 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 1529.0, -919.0, -100.0);
 
         $.guard12_fm3.turnToFaceCoord(1525.0, -897.0, -100.0);
 
-        $.guard12_fm3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 30000); // AK47 sets weapon to infinate ammo
+        $.guard12_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
         $.guard12_fm3.clearThreatSearch();
 
-        $.guard12_fm3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+        $.guard12_fm3.setThreatSearch(THREAT_PLAYER1);
 
-        $.guard12_fm3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.guard12_fm3.setPersonality(PEDSTAT_TOUGH_GUY);
 
         $.guard12_fm3.setHeedThreats(true);
 
-        $.car_columb1_fm3 = Car.Create(138 /* CAR_COLUMB */, 1534.4, -891.5, 10.8);
+        $.car_columb1_fm3 = Car.Create(CAR_COLUMB, 1534.4, -891.5, 10.8);
 
         $.car_columb1_fm3.setHeading(90.0);
 
-        $.car_columb2_fm3 = Car.Create(138 /* CAR_COLUMB */, 1515.7, -896.3, 10.8);
+        $.car_columb2_fm3 = Car.Create(CAR_COLUMB, 1515.7, -896.3, 10.8);
 
         $.car_columb2_fm3.setHeading(314.0);
 
@@ -970,10 +971,10 @@ async function body() {
                     $.radar_blip_coord2_fm3.remove();
                     $.ped_8ball_fm3.leaveGroup();
                     $.flag_bloke_leave_group_fm3 = 1;
-                    Hud.SwitchWidescreen(true /* ON */);
-                    $.player.setControl(false /* OFF */);
-                    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-                    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+                    Hud.SwitchWidescreen(ON);
+                    $.player.setControl(OFF);
+                    Game.SetPoliceIgnorePlayer($.player, ON);
+                    Game.SetEveryoneIgnorePlayer($.player, ON);
                     if ($.flag_got_message_fm3 == 0 && $.flag_bloke_leave_group_fm3 == 1) {
                         if ($.flag_played_8ball_audio_fm3 == 0) {
                             Audio.PlayMissionAudio();
@@ -1002,14 +1003,14 @@ async function body() {
                     // Camera looks at the boat and guards
                     before_camera_jump_fm3: {
                         Camera.SetFixedPosition(1543.01, -877.81, 16.84, 0.0, 0.0, 0.0);
-                        Camera.PointAtPoint(1542.43, -878.62, 16.75, 2 /* JUMP_CUT */);
+                        Camera.PointAtPoint(1542.43, -878.62, 16.75, JUMP_CUT);
                         if ($.flag_timer_fm3 == 0) {
                             TIMERA = 0;
                             $.flag_timer_fm3 = 1;
                         }
                         while (TIMERA <= 5000) {
                             await asyncWait(0);
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                                 break before_camera_jump_fm3; // SCM GOTO → camera_jump_fm3
                             }
                             
@@ -1023,14 +1024,14 @@ async function body() {
                         }
                         World.ClearArea(1536.8, -895.0, 10.8, 1.0, false);
                         Camera.SetFixedPosition(1537.1, -899.8, 12.5, 0.0, 0.0, 0.0);
-                        Camera.PointAtPoint(1536.4, -900.4, 12.7, 2 /* JUMP_CUT */);
+                        Camera.PointAtPoint(1536.4, -900.4, 12.7, JUMP_CUT);
                         if ($.flag_timer_fm3 == 1 && $.flag_timer2_fm3 == 0) {
                             TIMERA = 0;
                             $.flag_timer2_fm3 = 1;
                         }
                         while (TIMERA <= 5000) {
                             await asyncWait(0);
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                                 break before_camera_jump_fm3; // SCM GOTO → camera_jump_fm3
                             }
 
@@ -1047,14 +1048,14 @@ async function body() {
                         }
                         World.ClearArea(1522.839, -916.137, 19.602, 1.0, false);
                         Camera.SetFixedPosition(1522.839, -916.137, 19.602, 0.0, 0.0, 0.0);
-                        Camera.PointAtPoint(1521.984, -916.648, 19.699, 2 /* JUMP_CUT */);
+                        Camera.PointAtPoint(1521.984, -916.648, 19.699, JUMP_CUT);
                         if ($.flag_timer3_fm3 == 0 && $.flag_timer2_fm3 == 1) {
                             TIMERA = 0;
                             $.flag_timer3_fm3 = 1;
                         }
                         while (TIMERA <= 5000) {
                             await asyncWait(0);
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                                 break before_camera_jump_fm3; // SCM GOTO → camera_jump_fm3
                             }
 
@@ -1071,14 +1072,14 @@ async function body() {
                         }
                         World.ClearArea(1476.3, -922.7, 19.0, 1.0, false);
                         Camera.SetFixedPosition(1476.3, -922.7, 19.0, 0.0, 0.0, 0.0);
-                        Camera.PointAtPoint(1477.1, -923.3, 19.1, 2 /* JUMP_CUT */);
+                        Camera.PointAtPoint(1477.1, -923.3, 19.1, JUMP_CUT);
                         if ($.flag_timer4_fm3 == 0 && $.flag_timer3_fm3 == 1) {
                             TIMERA = 0;
                             $.flag_timer4_fm3 = 1;
                         }
                         while (TIMERA <= 5000) {
                             await asyncWait(0);
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                                 break before_camera_jump_fm3; // SCM GOTO → camera_jump_fm3
                             }
 
@@ -1185,10 +1186,10 @@ async function body() {
                             }
                         }
                     }
-                    Hud.SwitchWidescreen(false /* OFF */);
-                    $.player.setControl(true /* ON */);
-                    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-                    Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+                    Hud.SwitchWidescreen(OFF);
+                    $.player.setControl(ON);
+                    Game.SetPoliceIgnorePlayer($.player, OFF);
+                    Game.SetEveryoneIgnorePlayer($.player, OFF);
                 }
             }
 
@@ -1228,7 +1229,7 @@ async function body() {
                     if ($.flag_8ball_ducking_fm3 == 0) {
                         if ($.ped_8ball_fm3.locateOnFoot2D(1545.9, -867.7, 1.0, 1.0, false)) {
                             $.flag_8ball_moved1 = 1;
-                            $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 10000);
+                            $.ped_8ball_fm3.setWaitState(WAITSTATE_PLAYANIM_DUCK, 10000);
                             $.flag_8ball_ducking_fm3 = 1;
                         }
                     }
@@ -1321,7 +1322,7 @@ async function body() {
                         $.flag_8ball_moved4 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 1) {
-                                $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 5000);
+                                $.ped_8ball_fm3.setWaitState(WAITSTATE_PLAYANIM_DUCK, 5000);
                                 $.flag_8ball_ducking_fm3 = 2;
                             }
                             TIMERB = 0;
@@ -1362,10 +1363,10 @@ async function body() {
                     }
                     if ($.ped_8ball_fm3.locateOnFoot2D(1517.0, -929.0, 1.0, 1.0, false)) {
                         $.flag_8ball_moved5 = 1;
-                        Audio.LoadMissionAudio('s3_b' as any);
+                        Audio.LoadMissionAudio(SfxMission.S3_b);
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 2) {
-                                $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 5000);
+                                $.ped_8ball_fm3.setWaitState(WAITSTATE_PLAYANIM_DUCK, 5000);
                                 $.flag_8ball_ducking_fm3 = 3;
                             }
                             TIMERB = 0;
@@ -1418,7 +1419,7 @@ async function body() {
                         $.flag_8ball_moved6 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 3) {
-                                $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 5000);
+                                $.ped_8ball_fm3.setWaitState(WAITSTATE_PLAYANIM_DUCK, 5000);
                                 $.flag_8ball_ducking_fm3 = 4;
                             }
                             TIMERB = 0;
@@ -1461,7 +1462,7 @@ async function body() {
                         $.flag_8ball_moved7 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 4) {
-                                $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 5000);
+                                $.ped_8ball_fm3.setWaitState(WAITSTATE_PLAYANIM_DUCK, 5000);
                                 $.flag_8ball_ducking_fm3 = 5;
                             }
                             TIMERB = 0;
@@ -1504,7 +1505,7 @@ async function body() {
                         $.flag_8ball_moved8 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 5) {
-                                $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 5000);
+                                $.ped_8ball_fm3.setWaitState(WAITSTATE_PLAYANIM_DUCK, 5000);
                                 $.flag_8ball_ducking_fm3 = 6;
                             }
                             TIMERB = 0;
@@ -1547,7 +1548,7 @@ async function body() {
                         $.flag_8ball_moved9 = 1;
                         if ($.counter_no_guards_dead_fm3 < 12) {
                             if ($.flag_8ball_ducking_fm3 == 6) {
-                                $.ped_8ball_fm3.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 5000);
+                                $.ped_8ball_fm3.setWaitState(WAITSTATE_PLAYANIM_DUCK, 5000);
                                 $.flag_8ball_ducking_fm3 = 7;
                             }
                             TIMERB = 0;
@@ -1692,9 +1693,9 @@ async function body() {
 
         Camera.SetFadingColor(0, 0, 0);
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
-        Streaming.Switch(false /* OFF */);
+        Streaming.Switch(OFF);
 
         // Cutscene stuff
 
@@ -1752,7 +1753,7 @@ async function body() {
 
         Cutscene.SetOffset(1573.8866, -906.0611, 11.1);
 
-        $.cs_eight = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+        $.cs_eight = CutsceneObject.Create(PED_SPECIAL1);
 
         $.cs_eight.setAnim('eight2');
 
@@ -1770,13 +1771,13 @@ async function body() {
 
         $.player.setHeading(180.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         $.ped_8ball_fm3.delete();
 
-        World.SwitchRubbish(false /* OFF */);
+        World.SwitchRubbish(OFF);
 
-        Streaming.Switch(true /* ON */);
+        Streaming.Switch(ON);
 
         Cutscene.Start();
 
@@ -1792,7 +1793,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1478.48, -936.52, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1478.48, -936.52, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 2565) {
             await asyncWait(0);
@@ -1800,7 +1801,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1479.48, -936.52, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1479.48, -936.52, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 3433) {
             await asyncWait(0);
@@ -1808,7 +1809,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1481.48, -936.52, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1481.48, -936.52, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 4433) {
             await asyncWait(0);
@@ -1816,7 +1817,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1487.92, -933.9, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1487.92, -933.9, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 5833) {
             await asyncWait(0);
@@ -1824,7 +1825,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1490.7, -928.15, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1490.7, -928.15, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 6433) {
             await asyncWait(0);
@@ -1832,7 +1833,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1595.53, -921.84, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1595.53, -921.84, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 7433) {
             await asyncWait(0);
@@ -1840,7 +1841,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1500.53, -921.84, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1500.53, -921.84, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 8433) {
             await asyncWait(0);
@@ -1848,7 +1849,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1502.53, -921.84, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1502.53, -921.84, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 9633) {
             await asyncWait(0);
@@ -1856,7 +1857,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1510.5, -918.2, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1510.5, -918.2, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 12833) {
             await asyncWait(0);
@@ -1864,7 +1865,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1510.5, -918.2, 20.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1510.5, -918.2, 20.4, EXPLOSION_HELI);
 
         while ($.cs_time < 13000) {
             await asyncWait(0);
@@ -1872,7 +1873,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Fx.AddExplosion(1518.02, -931.86, 19.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(1518.02, -931.86, 19.4, EXPLOSION_HELI);
 
         while ($.cs_time < 33333) {
             await asyncWait(0);
@@ -1880,7 +1881,7 @@ async function body() {
             Fx.UpdateBoatFoamAnimation($.cs_ship);
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -1894,17 +1895,17 @@ async function body() {
 
         Cutscene.Clear();
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
 
         Camera.SetBehindPlayer();
 
         await asyncWait(500);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
 
         // *****************************END OF BOAT BLOWING UP CUTSCENE*****************************
 
@@ -1914,7 +1915,7 @@ async function body() {
 
 // Mission Failed stuff
 async function onFailed() {
-    $.player.setAmmo(7 /* WEAPONTYPE_SNIPERRIFLE */, 0);
+    $.player.setAmmo(WEAPONTYPE_SNIPERRIFLE, 0);
 
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
 }
@@ -1931,7 +1932,7 @@ async function onPassed() {
     $.player.clearWantedLevel();
     $.eightball_contact_blip.remove();
     $.flag_frankie_switched_off = 0;
-    $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, 16 /* RADAR_SPRITE_SAL */);
+    $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, RADAR_SPRITE_SAL);
     // START_NEW_SCRIPT frankie_mission4_loop
     // START_NEW_SCRIPT emergency_crane_pager
 }
@@ -1990,11 +1991,11 @@ async function cleanup() {
     }
 
     $.ped_8ball_fm3.removeElegantly();
-    Streaming.MarkModelAsNoLongerNeeded(20 /* PED_GANG_COLOMBIAN_A */);
-    Streaming.MarkModelAsNoLongerNeeded(21 /* PED_GANG_COLOMBIAN_B */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_COLOMBIAN_B);
     Streaming.MarkModelAsNoLongerNeeded(1344 /* barrel4 */);
     $.ped_8ball_fm3.markAsNoLongerNeeded();
-    Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_COLUMB);
     $.radar_blip_coord2_fm3.remove();
     $.radar_blip_coord3_fm3.remove();
     Hud.ClearTimer($.$id.timer_fm3);
@@ -2005,10 +2006,10 @@ async function cleanup() {
     Path.RemoveRoute(4);
     Path.RemoveRoute(5);
     Path.RemoveRoute(6);
-    Zone.SetPedInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetPedInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetCarInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetCarInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('PORT_E', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('PORT_E', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetCarInfo('PORT_E', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetCarInfo('PORT_E', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     $.boat_barrel7.delete();
     $.boat_barrel8.delete();
     $.boat_barrel9.delete();
@@ -2033,7 +2034,7 @@ async function guard_death_check() {
                     } else {
                         $.guard1_fm3.setObjRunToCoord(1523.3, -893.7);
                     }
-                    $.guard1_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard now looks out for 8-ball
+                    $.guard1_fm3.setThreatSearch(THREAT_SPECIAL); //Guard now looks out for 8-ball
                     $.flag_guard1_looking_for_8ball = 1;
                 }
             }
@@ -2069,7 +2070,7 @@ async function guard_death_check() {
                     } else {
                         $.guard2_fm3.setObjRunToCoord(1528.6, -892.2);
                     }
-                    $.guard2_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard now looks out for 8-ball
+                    $.guard2_fm3.setThreatSearch(THREAT_SPECIAL); //Guard now looks out for 8-ball
                     $.flag_guard2_looking_for_8ball = 1;
                 }
             }
@@ -2100,7 +2101,7 @@ async function guard_death_check() {
         } else {
             if ($.flag_guard3_looking_for_8ball == 0) {
                 if ($.flag_bloke_in_area_fm3 == 2 || $.counter_no_guards_dead_fm3 > 0 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1) {
-                    $.guard3_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard3 now looks out for 8-ball
+                    $.guard3_fm3.setThreatSearch(THREAT_SPECIAL); //Guard3 now looks out for 8-ball
                     $.guard3_fm3.setObjRunToCoord(1534.1, -931.2);
                     $.flag_guard3_looking_for_8ball = 1;
                 }
@@ -2126,7 +2127,7 @@ async function guard_death_check() {
             if ($.flag_guard4_looking_for_8ball == 0) {
                 if ($.flag_bloke_in_area_fm3 == 4 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1 || $.counter_no_guards_dead_fm3 > 0) {
                     $.guard4_fm3.setObjRunToCoord(1517.5, -940.6);
-                    $.guard4_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard4 now looks out for 8-ball
+                    $.guard4_fm3.setThreatSearch(THREAT_SPECIAL); //Guard4 now looks out for 8-ball
                     $.flag_guard4_looking_for_8ball = 1;
                 }
             }
@@ -2156,7 +2157,7 @@ async function guard_death_check() {
             if ($.flag_guard5_looking_for_8ball == 0) {
                 if ($.flag_bloke_in_area_fm3 == 5 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1 || $.flag_guard6_fm3_dead == 1 || $.flag_guard7_fm3_dead == 1) {
                     $.guard5_fm3.setObjRunToCoord(1505.6, -926.1);
-                    $.guard5_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard5 now looks out for 8-ball
+                    $.guard5_fm3.setThreatSearch(THREAT_SPECIAL); //Guard5 now looks out for 8-ball
                     $.flag_guard5_looking_for_8ball = 1;
                 }
             }
@@ -2186,7 +2187,7 @@ async function guard_death_check() {
             if ($.flag_guard6_looking_for_8ball == 0) {
                 if ($.flag_bloke_in_area_fm3 == 5 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1 || $.flag_guard5_fm3_dead == 1 || $.flag_guard7_fm3_dead == 1) {
                     $.guard6_fm3.setObjRunToCoord(1501.0, -919.8);
-                    $.guard6_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard6 now looks out for 8-ball
+                    $.guard6_fm3.setThreatSearch(THREAT_SPECIAL); //Guard6 now looks out for 8-ball
                     $.flag_guard6_looking_for_8ball = 1;
                 }
             }
@@ -2210,7 +2211,7 @@ async function guard_death_check() {
             if ($.flag_guard7_looking_for_8ball == 0) {
                 if ($.flag_bloke_in_area_fm3 == 5 || $.flag_guard5_fm3_dead == 1 || $.flag_guard6_fm3_dead == 1 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1) {
                     $.guard7_fm3.setObjRunToCoord(1499.4, -937.8);
-                    $.guard7_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard7 now looks out for 8-ball
+                    $.guard7_fm3.setThreatSearch(THREAT_SPECIAL); //Guard7 now looks out for 8-ball
                     $.flag_guard7_looking_for_8ball = 1;
                 }
             }
@@ -2240,7 +2241,7 @@ async function guard_death_check() {
             if ($.flag_guard8_looking_for_8ball == 0) {
                 if ($.flag_bloke_in_area_fm3 == 5 || $.flag_guard9_fm3_dead == 1 || $.flag_guard10_fm3_dead == 1 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1) {
                     $.guard8_fm3.setObjRunToCoord(1491.6, -935.8);
-                    $.guard8_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard8 now looks out for 8-ball
+                    $.guard8_fm3.setThreatSearch(THREAT_SPECIAL); //Guard8 now looks out for 8-ball
                     $.flag_guard8_looking_for_8ball = 1;
                 }
             }
@@ -2270,7 +2271,7 @@ async function guard_death_check() {
             if ($.flag_guard9_looking_for_8ball == 0) {
                 if ($.flag_bloke_in_area_fm3 == 6 || $.flag_guard8_fm3_dead == 1 || $.flag_guard10_fm3_dead == 1 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1) {
                     $.guard9_fm3.setObjGuardSpot(1484.4, -930.5, 19.8);
-                    $.guard9_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard9 now looks out for 8-ball
+                    $.guard9_fm3.setThreatSearch(THREAT_SPECIAL); //Guard9 now looks out for 8-ball
                     $.guard9_fm3.setStayInSamePlace(true);
                     $.guard9_fm3.turnToFaceCoord($.eightball_x_fm3, $.eightball_y_fm3, $.eightball_z_fm3);
                     $.flag_guard9_looking_for_8ball = 1;
@@ -2289,7 +2290,7 @@ async function guard_death_check() {
             if ($.flag_guard10_looking_for_8ball == 0) {
                 if ($.flag_bloke_in_area_fm3 == 6 || $.flag_guard8_fm3_dead == 1 || $.flag_guard9_fm3_dead == 1 || $.flag_columb_car1_dead == 1 || $.flag_columb_car2_dead == 1) {
                     $.guard10_fm3.setObjRunToCoord(1476.7, -936.3);
-                    $.guard10_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard10 now looks out for 8-ball
+                    $.guard10_fm3.setThreatSearch(THREAT_SPECIAL); //Guard10 now looks out for 8-ball
                     $.flag_guard10_looking_for_8ball = 1;
                 }
             }
@@ -2326,7 +2327,7 @@ async function guard_death_check() {
                     $.flag_guard2_fm3_dead == 1
                 ) {
                     $.guard11_fm3.setObjRunToCoord(1528.5, -927.5);
-                    $.guard11_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard now looks out for 8-ball
+                    $.guard11_fm3.setThreatSearch(THREAT_SPECIAL); //Guard now looks out for 8-ball
                     $.flag_guard11_looking_for_8ball = 1;
                 }
             }
@@ -2363,7 +2364,7 @@ async function guard_death_check() {
                     $.flag_guard2_fm3_dead == 1
                 ) {
                     $.guard12_fm3.setObjRunToCoord(1517.6, -923.1);
-                    $.guard12_fm3.setThreatSearch(524288 /* THREAT_SPECIAL */); //Guard now looks out for 8-ball
+                    $.guard12_fm3.setThreatSearch(THREAT_SPECIAL); //Guard now looks out for 8-ball
                     $.flag_guard12_looking_for_8ball = 1;
                 }
             }

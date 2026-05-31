@@ -217,7 +217,7 @@ async function body() {
         */
 
     Streaming.LoadSpecialCharacter(1, 'FRANKIE');
-    Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
+    Streaming.RequestModel(PED_GANG_MAFIA_B);
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'FRANKH');
     //LOAD_SPECIAL_MODEL cut_obj2 PLAYERH
 
@@ -237,7 +237,7 @@ async function body() {
 
     // Cutscene stuff
 
-    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */) || !Streaming.HasModelLoaded(185 /* cut_obj1 */)) {
+    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(PED_GANG_MAFIA_B) || !Streaming.HasModelLoaded(185 /* cut_obj1 */)) {
         //OR NOT HAS_MODEL_LOADED cut_obj2
 
         await asyncWait(0);
@@ -251,15 +251,15 @@ async function body() {
 
     Cutscene.SetOffset(1457.776, -185.348, 54.925);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_frankie = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_frankie = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_frankie.setAnim('frankie');
 
-    $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, 185 /* CUT_OBJ1 */);
+    $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, CUT_OBJ1);
 
     $.cs_frankiehead.setAnim('frank');
 
@@ -267,7 +267,7 @@ async function body() {
 
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    $.cs_mafia = CutsceneObject.Create(11 /* PED_GANG_MAFIA_B */);
+    $.cs_mafia = CutsceneObject.Create(PED_GANG_MAFIA_B);
 
     $.cs_mafia.setAnim('gang02');
 
@@ -277,11 +277,11 @@ async function body() {
 
     $.player.setHeading(180.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -371,7 +371,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -385,19 +385,19 @@ async function body() {
 
     Cutscene.Clear();
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_B);
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ2
 
     Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */);
@@ -410,10 +410,10 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(2, 'curly');
 
-    Streaming.RequestModel(110 /* CAR_TAXI */);
-    Streaming.RequestModel(8 /* PED_TAXI_DRIVER */);
+    Streaming.RequestModel(CAR_TAXI);
+    Streaming.RequestModel(PED_TAXI_DRIVER);
 
-    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(110 /* CAR_TAXI */) || !Streaming.HasModelLoaded(8 /* PED_TAXI_DRIVER */)) {
+    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(CAR_TAXI) || !Streaming.HasModelLoaded(PED_TAXI_DRIVER)) {
         await asyncWait(0);
     }
 
@@ -421,10 +421,10 @@ async function body() {
         await asyncWait(0);
     }
 
-    Zone.SetPedInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetPedInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetCarInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetCarInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('PORT_E', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('PORT_E', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetCarInfo('PORT_E', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetCarInfo('PORT_E', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     // CREATES THE TAXI FOR THE BLOKE TO GET INTO
 
@@ -432,7 +432,7 @@ async function body() {
 
     $.radar_blip_club_fm2 = Blip.AddForCoord(907.0, -424.7, 13.8);
 
-    $.car_fm2 = Car.Create(110 /* CAR_TAXI */, 906.9, -433.7, -100.0);
+    $.car_fm2 = Car.Create(CAR_TAXI, 906.9, -433.7, -100.0);
 
     $.car_fm2.setOnlyDamagedByPlayer(true);
 
@@ -440,9 +440,9 @@ async function body() {
 
     $.car_fm2.setHeading(180.0);
 
-    $.car_fm2.changeLock(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+    $.car_fm2.changeLock(CARLOCK_LOCKOUT_PLAYER_ONLY);
 
-    $.van_driver_fm2 = Char.CreateInsideCar($.car_fm2, 4 /* PEDTYPE_CIVMALE */, 8 /* PED_TAXI_DRIVER */);
+    $.van_driver_fm2 = Char.CreateInsideCar($.car_fm2, PEDTYPE_CIVMALE, PED_TAXI_DRIVER);
 
     $.van_driver_fm2.setCantBeDraggedOut(true);
 
@@ -450,13 +450,13 @@ async function body() {
 
     $.car_fm2.setIdle();
 
-    Hud.SwitchWidescreen(false /* OFF */);
+    Hud.SwitchWidescreen(OFF);
 
     Camera.Restore();
 
-    $.player.setControl(true /* on */);
+    $.player.setControl(ON);
 
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
     TIMERB = 0;
 
@@ -490,9 +490,9 @@ async function body() {
         // creates curley bob infront of the club
 
         World.ClearArea(902.9, -398.8, 14.0, 1.0, true);
-        $.curley_bob_fm2 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 902.9, -398.8, 14.0);
+        $.curley_bob_fm2 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 902.9, -398.8, 14.0);
         $.radar_blip_ped1_fm2 = Blip.AddForChar($.curley_bob_fm2);
-        $.radar_blip_ped1_fm2.changeDisplay(1 /* MARKER_ONLY */);
+        $.radar_blip_ped1_fm2.changeDisplay(MARKER_ONLY);
         $.curley_bob_fm2.clearThreatSearch();
         $.curley_bob_fm2.setObjGotoCoordOnFoot(902.7, -430.4);
         TIMERB = 0;
@@ -523,9 +523,9 @@ async function body() {
         // creates curley bob down the alleyway
 
         World.ClearArea(886.3, -422.2, 13.8, 1.0, true);
-        $.curley_bob_fm2 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 886.3, -422.2, 13.8);
+        $.curley_bob_fm2 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 886.3, -422.2, 13.8);
         $.radar_blip_ped1_fm2 = Blip.AddForChar($.curley_bob_fm2);
-        $.radar_blip_ped1_fm2.changeDisplay(1 /* MARKER_ONLY */);
+        $.radar_blip_ped1_fm2.changeDisplay(MARKER_ONLY);
         $.curley_bob_fm2.clearThreatSearch();
         $.curley_bob_fm2.setObjGotoCoordOnFoot(888.0, -425.0);
         World.ClearArea(887.4, -417.3, 13.9, 10.0, false); // This should get rid of anything is his way
@@ -676,7 +676,7 @@ async function body() {
                         }
                         if ($.player.isInCar($.mission_taxi_fm2) && $.flag_player_got_car_message_fm2 == 1) {
                             $.radar_blip_coord2_fm2 = Blip.AddForCoord(1529.0, -827.0, -100.0);
-                            $.radar_blip_coord2_fm2.changeDisplay(2 /* BLIP_ONLY */);
+                            $.radar_blip_coord2_fm2.changeDisplay(BLIP_ONLY);
                             $.radar_blip_car1_fm2.remove();
                             $.flag_player_got_car_message_fm2 = 0;
                             $.blob_flag = 1;
@@ -759,23 +759,23 @@ async function body() {
 
             Text.PrintNow('FM2_2', 7000, 1); //Tail Curly Bob!"
 
-            Hud.SwitchWidescreen(false /* OFF */);
+            Hud.SwitchWidescreen(OFF);
 
             Camera.Restore();
 
-            $.player.setControl(true /* on */);
+            $.player.setControl(ON);
 
-            Game.SetPoliceIgnorePlayer($.player, false /* off */);
+            Game.SetPoliceIgnorePlayer($.player, OFF);
 
             $.radar_blip_car2_fm2 = Blip.AddForCar($.car_fm2);
 
-            $.radar_blip_car2_fm2.changeDisplay(1 /* MARKER_ONLY */);
+            $.radar_blip_car2_fm2.changeDisplay(MARKER_ONLY);
 
             $.car_fm2.setCruiseSpeed(30.0);
 
             $.car_fm2.gotoCoordinatesAccurate(1529.0, -827.0, -100.0);
 
-            $.car_fm2.setDrivingStyle(1 /* DRIVINGMODE_SLOWDOWNFORCARS */);
+            $.car_fm2.setDrivingStyle(DRIVINGMODE_SLOWDOWNFORCARS);
 
             $.car_fm2.setCruiseSpeed(20.0);
 
@@ -825,7 +825,7 @@ async function body() {
                         if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 40.0, 40.0, 40.0, false)) {
                             if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 30.0, 30.0, 30.0, false)) {
                                 if ($.player.locateAnyMeansChar3D($.curley_bob_fm2, 20.0, 20.0, 20.0, false)) {
-                                    if ($.player.isInModel(134 /* CAR_MAFIA */)) {
+                                    if ($.player.isInModel(CAR_MAFIA)) {
                                         if (TIMERA > 8) {
                                             ++$.spooked_counter;
                                             TIMERA = 0;
@@ -837,7 +837,7 @@ async function body() {
                                         }
                                     }
                                 } else {
-                                    if ($.player.isInModel(134 /* CAR_MAFIA */)) {
+                                    if ($.player.isInModel(CAR_MAFIA)) {
                                         if (TIMERA > 16) {
                                             ++$.spooked_counter;
                                             TIMERA = 0;
@@ -850,7 +850,7 @@ async function body() {
                                     }
                                 }
                             } else {
-                                if ($.player.isInModel(134 /* CAR_MAFIA */)) {
+                                if ($.player.isInModel(CAR_MAFIA)) {
                                     if (TIMERA > 32) {
                                         ++$.spooked_counter;
                                         TIMERA = 0;
@@ -863,7 +863,7 @@ async function body() {
                                 }
                             }
                         } else {
-                            if ($.player.isInModel(134 /* CAR_MAFIA */)) {
+                            if ($.player.isInModel(CAR_MAFIA)) {
                                 if (TIMERA > 500) {
                                     if ($.spooked_counter > 0) {
                                         --$.spooked_counter;
@@ -905,10 +905,10 @@ async function body() {
                     }
                     if ($.flag_no_longer_mad == 0) {
                         if ($.player.locateAnyMeansChar2D($.curley_bob_fm2, 30.0, 30.0, false)) {
-                            $.car_fm2.setDrivingStyle(2 /* DRIVINGMODE_AVOIDCARS */);
+                            $.car_fm2.setDrivingStyle(DRIVINGMODE_AVOIDCARS);
                             $.car_fm2.setCruiseSpeed(25.0);
                         } else {
-                            $.car_fm2.setDrivingStyle(1 /* DRIVINGMODE_SLOWDOWNFORCARS */);
+                            $.car_fm2.setDrivingStyle(DRIVINGMODE_SLOWDOWNFORCARS);
                             $.car_fm2.setCruiseSpeed(20.0);
                         }
                     }
@@ -1043,13 +1043,13 @@ async function body() {
     mission_jump4: {
     }
 
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
 
     if ($.player.isInAnyCar()) {
-        $.player.applyBrakesToCar(true /* ON */);
+        $.player.applyBrakesToCar(ON);
     }
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
 
     $.player.clearWantedLevel(); // This might have to come out when this bit is an Alex cut-scene
 
@@ -1057,13 +1057,13 @@ async function body() {
         $.van_driver_fm2.setCantBeDraggedOut(false);
     }
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
     World.ClearArea(1546.56, -834.79, 12.7, 1.0, true);
 
     Camera.SetFixedPosition(1546.56, -834.79, 12.7, 0.0, 0.0, 0.0);
 
-    Camera.PointAtPoint(1545.5, -834.6, 12.79, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(1545.5, -834.6, 12.79, JUMP_CUT);
 
     $.curley_bob_fm2.setObjRunToCoord(1532.0, -889.0);
 
@@ -1106,16 +1106,16 @@ async function body() {
 
     Camera.SetFadingColor(0, 0, 0);
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
-    Streaming.Switch(false /* OFF */);
+    Streaming.Switch(OFF);
 
     Streaming.LoadSpecialCharacter(3, 'miguel');
     Streaming.LoadSpecialCharacter(4, 'cat');
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'MIGUELH');
     Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'CATH');
     Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'CURLYH');
-    Streaming.RequestModel(138 /* CAR_COLUMB */);
+    Streaming.RequestModel(CAR_COLUMB);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -1132,7 +1132,7 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(3) ||
         !Streaming.HasSpecialCharacterLoaded(4) ||
-        !Streaming.HasModelLoaded(138 /* CAR_COLUMB */) ||
+        !Streaming.HasModelLoaded(CAR_COLUMB) ||
         !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
         !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
         !Streaming.HasModelLoaded(187 /* cut_obj3 */)
@@ -1142,7 +1142,7 @@ async function body() {
 
     // creates car
 
-    $.baddie_car_fm2 = Car.Create(138 /* CAR_COLUMB */, 1542.9, -896.1975, 10.6);
+    $.baddie_car_fm2 = Car.Create(CAR_COLUMB, 1542.9, -896.1975, 10.6);
 
     $.baddie_car_fm2.setHeading(90.0);
 
@@ -1152,27 +1152,27 @@ async function body() {
 
     Cutscene.SetOffset(1573.8866, -906.0611, 11.1);
 
-    $.cs_curly = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_curly = CutsceneObject.Create(PED_SPECIAL2);
 
     $.cs_curly.setAnim('curly');
 
-    $.cs_miguel = CutsceneObject.Create(28 /* PED_SPECIAL3 */);
+    $.cs_miguel = CutsceneObject.Create(PED_SPECIAL3);
 
     $.cs_miguel.setAnim('miguel');
 
-    $.cs_catalina = CutsceneObject.Create(29 /* PED_SPECIAL4 */);
+    $.cs_catalina = CutsceneObject.Create(PED_SPECIAL4);
 
     $.cs_catalina.setAnim('cat');
 
-    $.cs_miguelhead = CutsceneHead.Create($.cs_miguel, 185 /* CUT_OBJ1 */);
+    $.cs_miguelhead = CutsceneHead.Create($.cs_miguel, CUT_OBJ1);
 
     $.cs_miguelhead.setAnim('miguel');
 
-    $.cs_catalinahead = CutsceneHead.Create($.cs_catalina, 186 /* CUT_OBJ2 */);
+    $.cs_catalinahead = CutsceneHead.Create($.cs_catalina, CUT_OBJ2);
 
     $.cs_catalinahead.setAnim('cat');
 
-    $.cs_curlyhead = CutsceneHead.Create($.cs_curly, 187 /* CUT_OBJ3 */);
+    $.cs_curlyhead = CutsceneHead.Create($.cs_curly, CUT_OBJ3);
 
     $.cs_curlyhead.setAnim('curly');
 
@@ -1180,11 +1180,11 @@ async function body() {
 
     //SET_PLAYER_COORDINATES player 898.6 -425.6 13.9  // Player is in a taxi so don't comment back in
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     $.curley_bob_fm2.delete();
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -1274,7 +1274,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -1302,34 +1302,34 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Camera.SetBehindPlayer();
 
     Streaming.UnloadSpecialCharacter(3);
     Streaming.UnloadSpecialCharacter(4);
-    Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_COLUMB);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
     // ******************************************END OF CUTSCENE TWO****************************
 
     // ********************************Kill Curley Bob Stuff************************************
 
-    Hud.SwitchWidescreen(false /* OFF */);
+    Hud.SwitchWidescreen(OFF);
 
     Camera.Restore();
 
-    $.player.setControl(true /* ON */);
+    $.player.setControl(ON);
 
-    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
-    $.curley_bob_fm2 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1493.7, -886.6, -100.0);
+    $.curley_bob_fm2 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 1493.7, -886.6, -100.0);
 
     $.curley_bob_fm2.setHeading(90.0);
 
-    $.curley_bob_fm2.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 30000);
+    $.curley_bob_fm2.giveWeapon(WEAPONTYPE_SHOTGUN, 30000);
 
     $.curley_bob_fm2.setObjFleePlayerOnFootAlways($.player);
 
@@ -1397,23 +1397,23 @@ async function cleanup() {
 
     if ($.flag_car_fm2_dead == 0) {
         if (!Car.IsDead($.car_fm2)) {
-            $.car_fm2.changeLock(1 /* CARLOCK_UNLOCKED */);
+            $.car_fm2.changeLock(CARLOCK_UNLOCKED);
             $.car_fm2.setOnlyDamagedByPlayer(false);
         }
     }
-    Streaming.MarkModelAsNoLongerNeeded(110 /* CAR_TAXI */);
-    Streaming.MarkModelAsNoLongerNeeded(138 /* CAR_COLUMB */);
-    Streaming.MarkModelAsNoLongerNeeded(8 /* PED_TAXI_DRIVER */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_TAXI);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_COLUMB);
+    Streaming.MarkModelAsNoLongerNeeded(PED_TAXI_DRIVER);
     $.radar_blip_club_fm2.remove();
     $.radar_blip_ped1_fm2.remove();
     $.radar_blip_coord2_fm2.remove();
     $.radar_blip_car1_fm2.remove();
     $.radar_blip_car2_fm2.remove();
     $.radar_blip_ped2_fm2.remove();
-    Zone.SetPedInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetPedInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetCarInfo('PORT_E', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    Zone.SetCarInfo('PORT_E', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('PORT_E', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetPedInfo('PORT_E', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetCarInfo('PORT_E', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    Zone.SetCarInfo('PORT_E', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     Hud.ClearCounter($.$id.spooked_counter);
     Mission.Finish();
 }

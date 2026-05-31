@@ -168,27 +168,27 @@ async function body() {
 
     Cutscene.SetOffset(39.424, -726.677, 21.692);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_ray = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_ray = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_ray.setAnim('ray');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
+    $.cs_rayhead = CutsceneHead.Create($.cs_ray, CUT_OBJ2);
     $.cs_rayhead.setAnim('ray');
 
     $.cs_ludoor = CutsceneObject.Create(187 /* cut_obj3 */);
     $.cs_ludoor.setAnim('BOGDOOR');
 
-    World.SwitchRubbish(false /* OFF */);
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    World.SwitchRubbish(OFF);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Camera.SetNearClip(0.2);
 
@@ -238,14 +238,14 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
     }
 
-    Streaming.Switch(true /* ON */);
-    World.SwitchRubbish(true /* ON */);
+    Streaming.Switch(ON);
+    World.SwitchRubbish(ON);
 
     Text.ClearPrints();
 
@@ -255,11 +255,11 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
     Camera.SetNearClip(0.9);
 
-    Weather.ForceNow(0 /* WEATHER_SUNNY */);
+    Weather.ForceNow(WEATHER_SUNNY);
 
     Camera.SetBehindPlayer();
 
@@ -267,7 +267,7 @@ async function body() {
 
     $.rays_cutscene_flag = 0;
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     World.SetVisibilityOfClosestObjectOfType(47.322, -732.055, 22.846, 4.0, 2300 /* toilet_cubicle_dr2 */, true);
 
@@ -279,21 +279,21 @@ async function body() {
 
     // ******************************************END OF CUTSCENE********************************
 
-    Streaming.RequestModel(120 /* BOAT_PREDATOR */);
-    Streaming.RequestModel(150 /* BOAT_GHOST */);
-    Streaming.RequestModel(95 /* CAR_SENTINEL */);
-    Streaming.RequestModel(131 /* CAR_RCBANDIT */);
+    Streaming.RequestModel(BOAT_PREDATOR);
+    Streaming.RequestModel(BOAT_GHOST);
+    Streaming.RequestModel(CAR_SENTINEL);
+    Streaming.RequestModel(CAR_RCBANDIT);
 
     while (
-        !Streaming.HasModelLoaded(120 /* BOAT_PREDATOR */) ||
-        !Streaming.HasModelLoaded(150 /* BOAT_GHOST */) ||
-        !Streaming.HasModelLoaded(95 /* CAR_SENTINEL */) ||
-        !Streaming.HasModelLoaded(131 /* CAR_RCBANDIT */)
+        !Streaming.HasModelLoaded(BOAT_PREDATOR) ||
+        !Streaming.HasModelLoaded(BOAT_GHOST) ||
+        !Streaming.HasModelLoaded(CAR_SENTINEL) ||
+        !Streaming.HasModelLoaded(CAR_RCBANDIT)
     ) {
         await asyncWait(0);
     }
 
-    $.players_boat_with_guns = Boat.Create(120 /* BOAT_PREDATOR */, 837.0, -1115.6, -0.2);
+    $.players_boat_with_guns = Boat.Create(BOAT_PREDATOR, 837.0, -1115.6, -0.2);
 
     $.players_boat_with_guns.setHeading(140.0);
     $.players_boat_with_guns_blip = Blip.AddForCar($.players_boat_with_guns);
@@ -312,7 +312,7 @@ async function body() {
     /////////////////////////
     /////////////////////////
 
-    while (!$.player.isInModel(120 /* BOAT_PREDATOR */)) {
+    while (!$.player.isInModel(BOAT_PREDATOR)) {
         await asyncWait(0);
     }
 
@@ -320,15 +320,15 @@ async function body() {
 
     //CREATE_CAR BOAT_GHOST 1695.0 -381.5 -1.3 partners_boat
 
-    $.partners_boat = Boat.Create(150 /* BOAT_GHOST */, 1695.0, -381.5, -1.4);
+    $.partners_boat = Boat.Create(BOAT_GHOST, 1695.0, -381.5, -1.4);
     $.partners_boat.setStrong(true);
 
     $.barrel2_a = ScriptObject.Create(1336 /* barrel2 */, 837.0, -1115.6, 10.0);
     $.barrel2_b = ScriptObject.Create(1336 /* barrel2 */, 837.0, -1115.6, 20.0);
     //CREATE_OBJECT faketarget 837.0 -1115.6 30.0 sniper_object
 
-    $.barrel2_a.setCollision(false /* OFF */);
-    $.barrel2_b.setCollision(false /* OFF */);
+    $.barrel2_a.setCollision(OFF);
+    $.barrel2_b.setCollision(OFF);
     //SET_OBJECT_COLLISION sniper_object OFF
 
     $.barrel2_a.setDynamic(false);
@@ -342,7 +342,7 @@ async function body() {
 
     $.partners_boat_health = $.partners_boat.getHealth();
 
-    $.partners_blip = Blip.AddForCarOld($.partners_boat, 1 /* GREEN */, 3 /* BOTH */);
+    $.partners_blip = Blip.AddForCarOld($.partners_boat, GREEN, BOTH);
     $.partners_blip.changeScale(3);
 
     /////////////////////////
@@ -389,12 +389,12 @@ async function body() {
     }
 
     $.partners_blip.remove();
-    $.rays_partner = Char.Create(4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */, $.vector_x, $.vector_y, $.partner_z);
+    $.rays_partner = Char.Create(PEDTYPE_CIVMALE, PED_MALE1, $.vector_x, $.vector_y, $.partner_z);
     $.rays_partner.setHeading($.distance_resultB);
     $.rays_partner.setStayInSamePlace(true);
     $.rays_partner.clearThreatSearch();
     $.rays_partner.addArmor(100);
-    $.rays_partner.setWaitState(14 /* WAITSTATE_PLAYANIM_DUCK */, 1700);
+    $.rays_partner.setWaitState(WAITSTATE_PLAYANIM_DUCK, 1700);
 
     TIMERA = 0;
     while (TIMERA < 1200) {
@@ -402,17 +402,17 @@ async function body() {
         await object_placement(); // SCM GOSUB object_placement
     }
 
-    Hud.SwitchWidescreen(true /* ON */);
-    $.player.setControl(false /* OFF */);
-    Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+    Hud.SwitchWidescreen(ON);
+    $.player.setControl(OFF);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
     Game.SetAllCarsCanBeDamaged(false);
     if ($.player.isInAnyCar()) {
-        if ($.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(143 /* BOAT_REEFER */) || $.player.isInModel(150 /* BOAT_GHOST */)) {
+        if ($.player.isInModel(BOAT_PREDATOR) || $.player.isInModel(BOAT_REEFER) || $.player.isInModel(BOAT_GHOST)) {
             $.players_boat_with_guns.markAsNoLongerNeeded();
             $.players_boat_with_guns = $.player.storeCarIsIn() as Boat;
             $.players_boat_with_guns.anchor(true);
         }
-        $.player.applyBrakesToCar(true /* ON */);
+        $.player.applyBrakesToCar(ON);
     }
 
     if (Char.IsDead($.rays_partner)) {
@@ -443,7 +443,7 @@ async function body() {
     $.partner_z += 2.0;
 
     Camera.SetFixedPosition($.vector_x, $.vector_y, $.partner_z, 0.0, 0.0, 0.0);
-    Camera.PointAtChar($.rays_partner, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    Camera.PointAtChar($.rays_partner, FIXED, JUMP_CUT);
 
     TIMERA = 0;
     while (TIMERA < 1500) {
@@ -458,7 +458,7 @@ async function body() {
         return; // SCM GOTO → mission_ray4_passed
     }
 
-    $.rays_partner.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 1600);
+    $.rays_partner.setWaitState(WAITSTATE_CROSS_ROAD_LOOK, 1600);
 
     const _res90 = $.partners_boat.getCoordinates();
     $.partner_x = _res90.x;
@@ -494,10 +494,10 @@ async function body() {
         return; // SCM GOTO → mission_ray4_passed
     }
 
-    $.fish_target = Car.Create(131 /* CAR_RCBANDIT */, $.vector_x, $.vector_y, $.partner_z);
-    $.rays_partner.giveWeapon(11 /* WEAPONTYPE_GRENADE */, 20);
+    $.fish_target = Car.Create(CAR_RCBANDIT, $.vector_x, $.vector_y, $.partner_z);
+    $.rays_partner.giveWeapon(WEAPONTYPE_GRENADE, 20);
     $.rays_partner.setObjNoObj();
-    $.rays_partner.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+    $.rays_partner.setWaitState(WAITSTATE_FALSE, 100);
     $.rays_partner.setObjDestroyCar($.fish_target);
     const _res91 = $.fish_target.getCoordinates();
     $.fish_target_x = _res91.x;
@@ -536,7 +536,7 @@ async function body() {
     $.fish_target_x = $.partner_x;
     $.fish_target_y = $.partner_y;
     $.fish_target_z = $.partner_z;
-    Camera.PointAtPoint($.fish_target_x, $.fish_target_y, $.fish_target_z, 1 /* INTERPOLATION */);
+    Camera.PointAtPoint($.fish_target_x, $.fish_target_y, $.fish_target_z, INTERPOLATION);
     $.fish_target.delete();
 
     TIMERA = 0;
@@ -546,7 +546,7 @@ async function body() {
     }
 
     $.partner_z = 0.0;
-    Fx.AddExplosion($.partner_x, $.partner_y, $.partner_z, 0 /* EXPLOSION_GRENADE */);
+    Fx.AddExplosion($.partner_x, $.partner_y, $.partner_z, EXPLOSION_GRENADE);
     $.partner_z = 0.3;
     //ADD_PARTICLE_EFFECT POBJECT_CAR_WATER_SPLASH partner_x partner_y partner_z TRUE
 
@@ -582,7 +582,7 @@ async function body() {
 
     $.fish_target_z -= 0.2;
     Camera.SetFixedPosition($.vector_x, $.vector_y, $.partner_z, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint($.fish_target_x, $.fish_target_y, $.fish_target_z, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint($.fish_target_x, $.fish_target_y, $.fish_target_z, JUMP_CUT);
 
     TIMERA = 0;
     while (TIMERA < 1500) {
@@ -771,7 +771,7 @@ async function body() {
         return; // SCM GOTO → mission_ray4_passed
     }
 
-    Camera.PointAtChar($.rays_partner, 15 /* FIXED */, 1 /* INTERPOLATION */);
+    Camera.PointAtChar($.rays_partner, FIXED, INTERPOLATION);
 
     TIMERA = 0;
     while (TIMERA < 200) {
@@ -860,23 +860,23 @@ async function body() {
     }
 
     $.rays_partner.delete();
-    $.rays_partner = Char.CreateInsideCar($.partners_boat, 4 /* PEDTYPE_CIVMALE */, 7 /* PED_MALE1 */);
-    $.rays_partner.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.rays_partner.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.rays_partner = Char.CreateInsideCar($.partners_boat, PEDTYPE_CIVMALE, PED_MALE1);
+    $.rays_partner.setThreatSearch(THREAT_PLAYER1);
+    $.rays_partner.setPersonality(PEDSTAT_TOUGH_GUY);
     $.rays_partner.setHealth(300);
     $.partners_blip = Blip.AddForChar($.rays_partner);
 
-    Hud.SwitchWidescreen(false /* OFF */);
-    $.player.setControl(true /* ON */);
+    Hud.SwitchWidescreen(OFF);
+    $.player.setControl(ON);
     Game.SetEveryoneIgnorePlayer($.player, false);
     Game.SetAllCarsCanBeDamaged(true);
-    $.player.applyBrakesToCar(false /* OFF */);
+    $.player.applyBrakesToCar(OFF);
     if (Car.IsStillAlive($.players_boat_with_guns)) {
         $.players_boat_with_guns.anchor(false);
     }
     Camera.Restore();
 
-    $.partners_car = Car.Create(95 /* CAR_SENTINEL */, 1329.8947, -641.7307, 11.1765);
+    $.partners_car = Car.Create(CAR_SENTINEL, 1329.8947, -641.7307, 11.1765);
     $.partners_car.setHeading(180.8517);
 
     $.partners_boat.goto($.node_2_x, $.node_2_y, 0.0);
@@ -903,7 +903,7 @@ async function body() {
                 $.fish_target_x = _res96.x;
                 $.fish_target_y = _res96.y;
                 $.fish_target_z = _res96.z;
-                Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */);
+                Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, EXPLOSION_GRENADE);
                 $.barrel2_a.delete();
             }
             if (ScriptObject.DoesExist($.barrel2_b)) {
@@ -911,7 +911,7 @@ async function body() {
                 $.fish_target_x = _res97.x;
                 $.fish_target_y = _res97.y;
                 $.fish_target_z = _res97.z;
-                Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */);
+                Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, EXPLOSION_GRENADE);
                 $.barrel2_b.delete();
             }
             return; // SCM GOTO → mission_ray4_passed
@@ -1044,7 +1044,7 @@ async function body() {
                     $.fish_target_x = _res102.x;
                     $.fish_target_y = _res102.y;
                     $.fish_target_z = _res102.z;
-                    Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */);
+                    Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, EXPLOSION_GRENADE);
                     $.barrel2_a.delete();
                 }
                 if (ScriptObject.DoesExist($.barrel2_b)) {
@@ -1052,7 +1052,7 @@ async function body() {
                     $.fish_target_x = _res103.x;
                     $.fish_target_y = _res103.y;
                     $.fish_target_z = _res103.z;
-                    Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, 0 /* EXPLOSION_GRENADE */);
+                    Fx.AddExplosion($.fish_target_x, $.fish_target_y, $.fish_target_z, EXPLOSION_GRENADE);
                     $.barrel2_b.delete();
                 }
             }
@@ -1388,10 +1388,10 @@ async function cleanup() {
     $.partners_blip.remove();
     $.players_boat_with_guns_blip.remove();
     Hud.ClearCounter($.$id.partners_boat_health);
-    Streaming.MarkModelAsNoLongerNeeded(120 /* BOAT_PREDATOR */);
-    Streaming.MarkModelAsNoLongerNeeded(150 /* BOAT_GHOST */);
-    Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
-    Streaming.MarkModelAsNoLongerNeeded(131 /* CAR_RCBANDIT */);
+    Streaming.MarkModelAsNoLongerNeeded(BOAT_PREDATOR);
+    Streaming.MarkModelAsNoLongerNeeded(BOAT_GHOST);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_SENTINEL);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_RCBANDIT);
     ONMISSION = false;
     $.flag_player_on_ray_mission = 0;
     Mission.Finish();
@@ -1513,7 +1513,7 @@ async function exit_boat() {
                 $.rays_partner.setHeading(90.0);
             }
         }
-        $.rays_partner.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 9999);
+        $.rays_partner.giveWeapon(WEAPONTYPE_CHAINGUN, 9999);
         $.rays_partner.setRunning(true);
         Hud.ClearCounter($.$id.partners_boat_health);
         $.exit_boat_flag = 1;
@@ -1539,7 +1539,7 @@ async function steal_a_car() {
         $.partner_z = _res115.nodeZ;
         $.dot_product = _res115.angle;
         $.partners_car.markAsNoLongerNeeded();
-        $.partners_car = Car.Create(95 /* CAR_SENTINEL */, $.partner_x, $.partner_y, $.partner_z);
+        $.partners_car = Car.Create(CAR_SENTINEL, $.partner_x, $.partner_y, $.partner_z);
         $.partners_car.setHeading($.dot_product);
         $.rays_partner.setObjEnterCarAsDriver($.partners_car);
     }

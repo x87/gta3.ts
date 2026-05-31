@@ -43,7 +43,7 @@ verbose('[+] genstuf script loaded');
     });
 
     // SCRIPT_NAME genstuf
-    // SET_DEATHARREST_STATE(false /* OFF */);
+    // SET_DEATHARREST_STATE(OFF);
 
     ind_ammu(); // START_NEW_SCRIPT ind_ammu
     fish_factory_gen(); // START_NEW_SCRIPT fish_factory_gen
@@ -226,27 +226,27 @@ async function ind_ammu() {
             if ($.player.isInZone('LITTLEI')) {
                 if ($.player.isInArea3D(1066.6, -403.5, 14.0, 1072.8, -394.0, 18.0, false)) {
                     if ($.camera_ammu1 == 0) {
-                        $.player.setControl(false /* Off */);
+                        $.player.setControl(OFF);
                         Camera.SetFadingColor(1, 1, 1);
-                        Streaming.Switch(false /* OFF */);
+                        Streaming.Switch(OFF);
                         Streaming.LoadSpecialCharacter(4, 'sam');
                         Audio.SetMusicDoesFade(false);
-                        Camera.DoFade(500, 0 /* FADE_OUT */);
+                        Camera.DoFade(500, FADE_OUT);
                         while (!Streaming.HasSpecialCharacterLoaded(4)) {
                             await asyncWait(0);
                         }
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
-                        Streaming.Switch(true /* ON */);
+                        Streaming.Switch(ON);
                         $.current_time = Clock.GetGameTimer();
                         $.time_difference = $.current_time - $.time_since_murdering_shopkeeper1;
                         if ($.time_difference > 60000) {
-                            $.ammu_shop_bloke1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 29 /* PED_SPECIAL4 */, 1070.81, -396.97, 14.2);
-                            $.ammu_shop_bloke1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                            $.ammu_shop_bloke1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL4, 1070.81, -396.97, 14.2);
+                            $.ammu_shop_bloke1.setPersonality(PEDSTAT_TOUGH_GUY);
                             $.ammu_shop_bloke1.setHeading(170.0);
                             $.ammu_shop_bloke1.setStayInSamePlace(true);
-                            $.ammu_shop_bloke1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
+                            $.ammu_shop_bloke1.giveWeapon(WEAPONTYPE_SHOTGUN, 999);
                             if ($.player.isPlaying()) {
                                 $.ammu_shop_bloke1.lookAtPlayerAlways($.player);
                             }
@@ -255,28 +255,28 @@ async function ind_ammu() {
                         Camera.SetFixedPosition(1071.95, -402.8, 17.0, 0.0, 0.0, 0.0);
                         Camera.EnablePlayerControl();
                         if ($.player.isPlaying()) {
-                            Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
+                            Camera.PointAtPlayer($.player, FIXED, JUMP_CUT);
                             World.ClearArea(1067.9, -397.3, 14.2, 1.0, true);
                             $.player.setCoordinates(1067.9, -397.3, 14.2);
                             $.player.setHeading(200.0);
                         }
-                        Camera.DoFade(500, 1 /* FADE_IN */);
+                        Camera.DoFade(500, FADE_IN);
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
                         if ($.player.isPlaying()) {
-                            $.player.setControl(true /* on */);
+                            $.player.setControl(ON);
                         }
                         if (!Char.IsDead($.ammu_shop_bloke1)) {
                             if ($.special_ammu_audio == 0) {
                                 if ($.ammu_sample == 0) {
-                                    $.ammu_shop_bloke1.setSay(103 /* SOUND_AMMUNATION_CHAT_1 */);
+                                    $.ammu_shop_bloke1.setSay(SOUND_AMMUNATION_CHAT_1);
                                 }
                                 if ($.ammu_sample == 1) {
-                                    $.ammu_shop_bloke1.setSay(104 /* SOUND_AMMUNATION_CHAT_2 */);
+                                    $.ammu_shop_bloke1.setSay(SOUND_AMMUNATION_CHAT_2);
                                 }
                                 if ($.ammu_sample == 2) {
-                                    $.ammu_shop_bloke1.setSay(105 /* SOUND_AMMUNATION_CHAT_3 */);
+                                    $.ammu_shop_bloke1.setSay(SOUND_AMMUNATION_CHAT_3);
                                 }
                             }
                         }
@@ -295,8 +295,8 @@ async function ind_ammu() {
                     }
                 } else {
                     if ($.camera_ammu1 == 1) {
-                        $.player.setControl(false /* Off */);
-                        Camera.DoFade(500, 0 /* FADE_OUT */);
+                        $.player.setControl(OFF);
+                        Camera.DoFade(500, FADE_OUT);
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
@@ -311,13 +311,13 @@ async function ind_ammu() {
                             Camera.RestoreJumpcut();
                             Camera.SetInFrontOfPlayer();
                         }
-                        Camera.DoFade(500, 1 /* FADE_IN */);
+                        Camera.DoFade(500, FADE_IN);
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
                         Audio.SetMusicDoesFade(true);
                         if ($.player.isPlaying()) {
-                            $.player.setControl(true /* on */);
+                            $.player.setControl(ON);
                         }
                         $.ammu_sample++;
                         if ($.ammu_sample > 2) {
@@ -359,35 +359,35 @@ async function fish_factory_gen() {
                     //CREATES A GANG OF TRIADS DOWN AT THE FISH FACTORY
 
                     if ($.has_player_been_at_fish_before == 0) {
-                        Streaming.RequestModel(12 /* PED_GANG_TRIAD_A */);
-                        Streaming.RequestModel(13 /* PED_GANG_TRIAD_B */);
-                        while (!Streaming.HasModelLoaded(12 /* PED_GANG_TRIAD_A */) || !Streaming.HasModelLoaded(13 /* PED_GANG_TRIAD_B */)) {
+                        Streaming.RequestModel(PED_GANG_TRIAD_A);
+                        Streaming.RequestModel(PED_GANG_TRIAD_B);
+                        while (!Streaming.HasModelLoaded(PED_GANG_TRIAD_A) || !Streaming.HasModelLoaded(PED_GANG_TRIAD_B)) {
                             await asyncWait(0);
                         }
-                        $.fish_triad1 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 997.0, -1112.0, -100.0);
-                        $.fish_triad1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+                        $.fish_triad1 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 997.0, -1112.0, -100.0);
+                        $.fish_triad1.giveWeapon(WEAPONTYPE_PISTOL, 100);
                         //SET_CHAR_THREAT_SEARCH fish_triad1 THREAT_GANG_MAFIA
-                        $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.fish_triad2 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 964.0, -1095.0, -100.0);
-                        $.fish_triad2.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+                        $.fish_triad1.setThreatSearch(THREAT_PLAYER1);
+                        $.fish_triad2 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 964.0, -1095.0, -100.0);
+                        $.fish_triad2.giveWeapon(WEAPONTYPE_PISTOL, 100);
                         //SET_CHAR_THREAT_SEARCH fish_triad2 THREAT_GANG_MAFIA
-                        $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.fish_triad3 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 982.0, -1085.0, -100.0);
-                        $.fish_triad3.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+                        $.fish_triad2.setThreatSearch(THREAT_PLAYER1);
+                        $.fish_triad3 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 982.0, -1085.0, -100.0);
+                        $.fish_triad3.giveWeapon(WEAPONTYPE_PISTOL, 100);
                         //SET_CHAR_THREAT_SEARCH fish_triad3 THREAT_GANG_MAFIA
-                        $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.fish_triad4 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 13 /* PED_GANG_TRIAD_B */, 953.0, -1122.0, -100.0);
-                        $.fish_triad4.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+                        $.fish_triad3.setThreatSearch(THREAT_PLAYER1);
+                        $.fish_triad4 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_B, 953.0, -1122.0, -100.0);
+                        $.fish_triad4.giveWeapon(WEAPONTYPE_PISTOL, 100);
                         //SET_CHAR_THREAT_SEARCH fish_triad4 THREAT_GANG_MAFIA
-                        $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.fish_triad5 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 1008.0, -1126.0, -100.0);
-                        $.fish_triad5.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+                        $.fish_triad4.setThreatSearch(THREAT_PLAYER1);
+                        $.fish_triad5 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 1008.0, -1126.0, -100.0);
+                        $.fish_triad5.giveWeapon(WEAPONTYPE_PISTOL, 100);
                         //SET_CHAR_THREAT_SEARCH fish_triad5 THREAT_GANG_MAFIA
-                        $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.fish_triad6 = Char.Create(8 /* PEDTYPE_GANG_TRIAD */, 12 /* PED_GANG_TRIAD_A */, 974.0, -1142.0, -100.0);
-                        $.fish_triad6.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
+                        $.fish_triad5.setThreatSearch(THREAT_PLAYER1);
+                        $.fish_triad6 = Char.Create(PEDTYPE_GANG_TRIAD, PED_GANG_TRIAD_A, 974.0, -1142.0, -100.0);
+                        $.fish_triad6.giveWeapon(WEAPONTYPE_PISTOL, 100);
                         //SET_CHAR_THREAT_SEARCH fish_triad6 THREAT_GANG_MAFIA
-                        $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                        $.fish_triad6.setThreatSearch(THREAT_PLAYER1);
                         $.fish_triad1.wanderDir(0);
                         $.fish_triad2.wanderDir(0);
                         $.fish_triad3.wanderDir(0);
@@ -405,8 +405,8 @@ async function fish_factory_gen() {
                         $.fish_triad5.markAsNoLongerNeeded();
                         $.fish_triad6.markAsNoLongerNeeded();
                         if (!ONMISSION) {
-                            Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-                            Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
+                            Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+                            Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_B);
                             $.has_player_been_at_fish_before = 0;
                         }
                     }
@@ -420,8 +420,8 @@ async function fish_factory_gen() {
                     $.fish_triad5.markAsNoLongerNeeded();
                     $.fish_triad6.markAsNoLongerNeeded();
                     if (!ONMISSION) {
-                        Streaming.MarkModelAsNoLongerNeeded(12 /* PED_GANG_TRIAD_A */);
-                        Streaming.MarkModelAsNoLongerNeeded(13 /* PED_GANG_TRIAD_B */);
+                        Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_A);
+                        Streaming.MarkModelAsNoLongerNeeded(PED_GANG_TRIAD_B);
                         $.has_player_been_at_fish_before = 0;
                     }
                 }
@@ -446,36 +446,36 @@ async function tramp_tunnel() {
             if ($.player.isInZone('LITTLEI')) {
                 if ($.player.isInArea3D(1325.0, -512.0, 14.0, 1315.0, -165.8, 17.0, false)) {
                     if ($.has_player_been_in_tramp_tunnel_before == 0) {
-                        Streaming.RequestModel(55 /* PED_SCUM_MAN */);
-                        Streaming.RequestModel(56 /* PED_SCUM_WOMAN */);
-                        while (!Streaming.HasModelLoaded(55 /* PED_SCUM_MAN */) || !Streaming.HasModelLoaded(56 /* PED_SCUM_WOMAN */)) {
+                        Streaming.RequestModel(PED_SCUM_MAN);
+                        Streaming.RequestModel(PED_SCUM_WOMAN);
+                        while (!Streaming.HasModelLoaded(PED_SCUM_MAN) || !Streaming.HasModelLoaded(PED_SCUM_WOMAN)) {
                             await asyncWait(0);
                         }
-                        $.tramp1 = Char.Create(19 /* PEDTYPE_BUM */, 55 /* PED_SCUM_MAN */, 1320.4, -370.0, 15.0);
-                        $.tramp1.giveWeapon(10 /* WEAPONTYPE_MOLOTOV */, 1);
-                        $.tramp1.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
-                        $.tramp1.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.tramp1.setThreatSearch(33554432 /* THREAT_DEADPEDS */);
-                        $.tramp2 = Char.Create(19 /* PEDTYPE_BUM */, 56 /* PED_SCUM_WOMAN */, 1317.0, -365.0, 15.0);
-                        $.tramp2.giveWeapon(10 /* WEAPONTYPE_MOLOTOV */, 1);
+                        $.tramp1 = Char.Create(PEDTYPE_BUM, PED_SCUM_MAN, 1320.4, -370.0, 15.0);
+                        $.tramp1.giveWeapon(WEAPONTYPE_MOLOTOV, 1);
+                        $.tramp1.setPersonality(PEDSTAT_GEEK_GUY);
+                        $.tramp1.setThreatSearch(THREAT_GUN);
+                        $.tramp1.setThreatSearch(THREAT_DEADPEDS);
+                        $.tramp2 = Char.Create(PEDTYPE_BUM, PED_SCUM_WOMAN, 1317.0, -365.0, 15.0);
+                        $.tramp2.giveWeapon(WEAPONTYPE_MOLOTOV, 1);
                         $.tramp2.setHeading(290.0);
-                        $.tramp2.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
-                        $.tramp2.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.tramp2.setThreatSearch(33554432 /* THREAT_DEADPEDS */);
-                        $.tramp3 = Char.Create(19 /* PEDTYPE_BUM */, 56 /* PED_SCUM_WOMAN */, 1322.4, -367.0, 15.0);
-                        $.tramp3.giveWeapon(10 /* WEAPONTYPE_MOLOTOV */, 1);
+                        $.tramp2.setPersonality(PEDSTAT_GEEK_GUY);
+                        $.tramp2.setThreatSearch(THREAT_GUN);
+                        $.tramp2.setThreatSearch(THREAT_DEADPEDS);
+                        $.tramp3 = Char.Create(PEDTYPE_BUM, PED_SCUM_WOMAN, 1322.4, -367.0, 15.0);
+                        $.tramp3.giveWeapon(WEAPONTYPE_MOLOTOV, 1);
                         $.tramp3.setHeading(57.0);
-                        $.tramp3.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
-                        $.tramp3.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.tramp3.setThreatSearch(33554432 /* THREAT_DEADPEDS */);
-                        $.tramp4 = Char.Create(19 /* PEDTYPE_BUM */, 55 /* PED_SCUM_MAN */, 1320.0, -362.0, 15.0);
-                        $.tramp4.giveWeapon(10 /* WEAPONTYPE_MOLOTOV */, 1);
+                        $.tramp3.setPersonality(PEDSTAT_GEEK_GUY);
+                        $.tramp3.setThreatSearch(THREAT_GUN);
+                        $.tramp3.setThreatSearch(THREAT_DEADPEDS);
+                        $.tramp4 = Char.Create(PEDTYPE_BUM, PED_SCUM_MAN, 1320.0, -362.0, 15.0);
+                        $.tramp4.giveWeapon(WEAPONTYPE_MOLOTOV, 1);
                         $.tramp4.setHeading(180.0);
-                        $.tramp4.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
-                        $.tramp4.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.tramp4.setThreatSearch(33554432 /* THREAT_DEADPEDS */);
-                        Streaming.MarkModelAsNoLongerNeeded(55 /* PED_SCUM_MAN */);
-                        Streaming.MarkModelAsNoLongerNeeded(56 /* PED_SCUM_WOMAN */);
+                        $.tramp4.setPersonality(PEDSTAT_GEEK_GUY);
+                        $.tramp4.setThreatSearch(THREAT_GUN);
+                        $.tramp4.setThreatSearch(THREAT_DEADPEDS);
+                        Streaming.MarkModelAsNoLongerNeeded(PED_SCUM_MAN);
+                        Streaming.MarkModelAsNoLongerNeeded(PED_SCUM_WOMAN);
                         $.tramps_been_created = 1;
                         $.has_player_been_in_tramp_tunnel_before = 1;
                     } else {
@@ -549,11 +549,11 @@ async function ind_sound() {
                 $.minutes = minutes;
                 if ($.hours >= 20 || $.hours <= 5) {
                     if ($.flag_sounds_added_redlight == 0) {
-                        $.sound_loop8 = Sound.AddContinuous(891.9, -416.9, 16.1, 32 /* SOUND_STRIP_CLUB_LOOP_2_S */); //Luigi's club
-                        $.sound_loop9 = Sound.AddContinuous(924.2, -464.3, 16.0, 30 /* SOUND_STRIP_CLUB_LOOP_1_S */); //Sex Kitten Club
-                        $.sound_loop10 = Sound.AddContinuous(901.1, -392.0, 15.0, 62 /* SOUND_PORN_CINEMA_1_S */); //XXX Cinema1
-                        $.sound_loop11 = Sound.AddContinuous(901.2, -339.0, 10.0, 64 /* SOUND_PORN_CINEMA_2_S */); //XXX Cinema2
-                        $.sound_loop12 = Sound.AddContinuous(960.1, -379.0, 15.0, 66 /* SOUND_PORN_CINEMA_3_S */); //XXX Cinema
+                        $.sound_loop8 = Sound.AddContinuous(891.9, -416.9, 16.1, SOUND_STRIP_CLUB_LOOP_2_S); //Luigi's club
+                        $.sound_loop9 = Sound.AddContinuous(924.2, -464.3, 16.0, SOUND_STRIP_CLUB_LOOP_1_S); //Sex Kitten Club
+                        $.sound_loop10 = Sound.AddContinuous(901.1, -392.0, 15.0, SOUND_PORN_CINEMA_1_S); //XXX Cinema1
+                        $.sound_loop11 = Sound.AddContinuous(901.2, -339.0, 10.0, SOUND_PORN_CINEMA_2_S); //XXX Cinema2
+                        $.sound_loop12 = Sound.AddContinuous(960.1, -379.0, 15.0, SOUND_PORN_CINEMA_3_S); //XXX Cinema
                         $.flag_sounds_added_redlight = 1;
                     }
                 } else {
@@ -590,7 +590,7 @@ async function dog_sound() {
                 if ($.hours >= 9 && $.hours <= 17) {
                     if ($.flag_sounds_added_dog == 0) {
                         //Portland Industrial
-                        $.sound_loop7 = Sound.AddContinuous(1210.9, -802.2, 15.0, 37 /* SOUND_SAWMILL_LOOP_L */); //Dog food factory
+                        $.sound_loop7 = Sound.AddContinuous(1210.9, -802.2, 15.0, SOUND_SAWMILL_LOOP_L); //Dog food factory
                         $.flag_sounds_added_dog = 1;
                     }
                 } else {
@@ -619,27 +619,27 @@ async function com_ammu() {
             if ($.player.isInZone('COM_EAS')) {
                 if ($.player.isInArea3D(353.3, -711.7, 24.0, 339.8, -722.4, 28.0, false)) {
                     if ($.camera_ammu2 == 0) {
-                        $.player.setControl(false /* Off */);
+                        $.player.setControl(OFF);
                         Camera.SetFadingColor(1, 1, 1);
-                        Streaming.Switch(false /* OFF */);
+                        Streaming.Switch(OFF);
                         Streaming.LoadSpecialCharacter(4, 'sam');
                         Audio.SetMusicDoesFade(false);
-                        Camera.DoFade(500, 0 /* FADE_OUT */);
+                        Camera.DoFade(500, FADE_OUT);
                         while (!Streaming.HasSpecialCharacterLoaded(4)) {
                             await asyncWait(0);
                         }
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
-                        Streaming.Switch(true /* ON */);
+                        Streaming.Switch(ON);
                         $.current_time = Clock.GetGameTimer();
                         $.time_difference = $.current_time - $.time_since_murdering_shopkeeper1;
                         if ($.time_difference > 60000) {
-                            $.ammu_shop_bloke1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 29 /* PED_SPECIAL4 */, 350.2, -719.9, 25.4);
-                            $.ammu_shop_bloke1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                            $.ammu_shop_bloke1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL4, 350.2, -719.9, 25.4);
+                            $.ammu_shop_bloke1.setPersonality(PEDSTAT_TOUGH_GUY);
                             $.ammu_shop_bloke1.setHeading(70.0);
                             $.ammu_shop_bloke1.setStayInSamePlace(true);
-                            $.ammu_shop_bloke1.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 999);
+                            $.ammu_shop_bloke1.giveWeapon(WEAPONTYPE_SHOTGUN, 999);
                             if ($.player.isPlaying()) {
                                 $.ammu_shop_bloke1.lookAtPlayerAlways($.player);
                             }
@@ -648,28 +648,28 @@ async function com_ammu() {
                         Camera.SetFixedPosition(341.74, -720.676, 28.019, 0.0, 0.0, 0.0);
                         Camera.EnablePlayerControl();
                         if ($.player.isPlaying()) {
-                            Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
+                            Camera.PointAtPlayer($.player, FIXED, JUMP_CUT);
                             World.ClearArea(350.7, -713.1, 26.4, 1.0, true);
                             $.player.setCoordinates(350.7, -713.1, 25.4);
                             $.player.setHeading(108.0);
                         }
-                        Camera.DoFade(500, 1 /* FADE_IN */);
+                        Camera.DoFade(500, FADE_IN);
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
                         if ($.player.isPlaying()) {
-                            $.player.setControl(true /* on */);
+                            $.player.setControl(ON);
                         }
                         if (!Char.IsDead($.ammu_shop_bloke1)) {
                             if ($.special_ammu_audio == 0) {
                                 if ($.ammu_sample == 0) {
-                                    $.ammu_shop_bloke1.setSay(103 /* SOUND_AMMUNATION_CHAT_1 */);
+                                    $.ammu_shop_bloke1.setSay(SOUND_AMMUNATION_CHAT_1);
                                 }
                                 if ($.ammu_sample == 1) {
-                                    $.ammu_shop_bloke1.setSay(104 /* SOUND_AMMUNATION_CHAT_2 */);
+                                    $.ammu_shop_bloke1.setSay(SOUND_AMMUNATION_CHAT_2);
                                 }
                                 if ($.ammu_sample == 2) {
-                                    $.ammu_shop_bloke1.setSay(105 /* SOUND_AMMUNATION_CHAT_3 */);
+                                    $.ammu_shop_bloke1.setSay(SOUND_AMMUNATION_CHAT_3);
                                 }
                             }
                         }
@@ -688,8 +688,8 @@ async function com_ammu() {
                     }
                 } else {
                     if ($.camera_ammu2 == 1) {
-                        $.player.setControl(false /* Off */);
-                        Camera.DoFade(500, 0 /* FADE_OUT */);
+                        $.player.setControl(OFF);
+                        Camera.DoFade(500, FADE_OUT);
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
@@ -704,13 +704,13 @@ async function com_ammu() {
                             Camera.RestoreJumpcut();
                             Camera.SetInFrontOfPlayer();
                         }
-                        Camera.DoFade(500, 1 /* FADE_IN */);
+                        Camera.DoFade(500, FADE_IN);
                         while (Camera.GetFadingStatus()) {
                             await asyncWait(0);
                         }
                         Audio.SetMusicDoesFade(true);
                         if ($.player.isPlaying()) {
-                            $.player.setControl(true /* on */);
+                            $.player.setControl(ON);
                         }
                         $.ammu_sample++;
                         if ($.ammu_sample > 2) {
@@ -744,7 +744,7 @@ async function com_car_park() {
         await asyncWait(250);
 
         if ($.player.isPlaying()) {
-            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
                 // PARKED CARS GENERATOR FOR THE MULTISTORY CARPARK IN NEWPORT
                 if ($.player.isInZone('COM_EAS')) {
                     if ($.player.isInArea3D(266.83, -610.93, 25.0, 306.31, -479.92, 30.0, false)) {

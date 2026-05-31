@@ -43,7 +43,7 @@ async function body() {
     // ***************************************Mission Start*************************************
     // SCRIPT_NAME TAXI
 
-    // SET_DEATHARREST_STATE(false /* OFF */); // GSW - does deatharrest have to be switched off?  YES! well maybe...
+    // SET_DEATHARREST_STATE(OFF); // GSW - does deatharrest have to be switched off?  YES! well maybe...
 
     ONMISSION = true;
     $.taxi_countdown_already_started = 0;
@@ -71,7 +71,7 @@ async function body() {
     }
 
     //SWITCH_TAXI_TIMER ON
-    $.taxi_car1.setTaxiLights(true /* On */);
+    $.taxi_car1.setTaxiLights(ON);
     Text.PrintNow('TAXI1', 1500, 1); //Pick up a fare
     //WAIT 1500
     await asyncWait(0);
@@ -106,11 +106,11 @@ async function body() {
         //	random_ped_grabber:
 
         if (!($.controlmode == 3)) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
+            if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK) && ONMISSION) {
                 return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
             }
         } else {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
+            if (Pad.IsButtonPressed(PAD1, SQUARE) && ONMISSION) {
                 return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
             }
         }
@@ -120,15 +120,15 @@ async function body() {
             return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
         }
 
-        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
             $.taxi_ped1 = Zone.GetRandomChar('IND_ZON');
         }
 
-        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
             $.taxi_ped1 = Zone.GetRandomChar('COM_ZON');
         }
 
-        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
             $.taxi_ped1 = Zone.GetRandomChar('SUB_ZON');
         }
         //IF IS_PLAYER_IN_ZONE player SUB_ZON
@@ -175,11 +175,11 @@ async function body() {
                     continue Start_taxi_mission; // SCM GOTO → Start_taxi_mission
                 }
                 if (!($.controlmode == 3)) {
-                    if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
+                    if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK) && ONMISSION) {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 } else {
-                    if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
+                    if (Pad.IsButtonPressed(PAD1, SQUARE) && ONMISSION) {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 }
@@ -201,14 +201,14 @@ async function body() {
                 Text.PrintNow('TAXI7', 4000, 1); //I ain't getting in that heap of shit!!
                 if ($.spray_blip_onscreen == 0) {
                     $.spray_taxi.remove();
-                    if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-                        $.spray_taxi = Blip.AddSpriteForCoord(925.0, -359.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                    if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
+                        $.spray_taxi = Blip.AddSpriteForCoord(925.0, -359.5, -100.0, RADAR_SPRITE_SPRAY);
                     }
-                    if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-                        $.spray_taxi = Blip.AddSpriteForCoord(379.0, -493.8, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                    if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
+                        $.spray_taxi = Blip.AddSpriteForCoord(379.0, -493.8, -100.0, RADAR_SPRITE_SPRAY);
                     }
-                    if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                        $.spray_taxi = Blip.AddSpriteForCoord(-1128.0, 32.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                    if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
+                        $.spray_taxi = Blip.AddSpriteForCoord(-1128.0, 32.5, -100.0, RADAR_SPRITE_SPRAY);
                     }
                     $.spray_blip_onscreen = 1;
                     $.taxi_fucked_flag = 1;
@@ -240,11 +240,11 @@ async function body() {
                     continue Start_taxi_mission; // SCM GOTO → Start_taxi_mission
                 }
                 if (!($.controlmode == 3)) {
-                    if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
+                    if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK) && ONMISSION) {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 } else {
-                    if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
+                    if (Pad.IsButtonPressed(PAD1, SQUARE) && ONMISSION) {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 }
@@ -267,7 +267,7 @@ async function body() {
             $.taxi_ped_z = z;
 
             $.blip1_ct1.remove();
-            $.taxi_car1.setTaxiLights(false /* Off */);
+            $.taxi_car1.setTaxiLights(OFF);
 
             //GET_GAME_TIMER taxi_start_time
 
@@ -281,7 +281,7 @@ async function body() {
                 return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
             }
 
-            if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
                 //OR IS_PLAYER_IN_ZONE player SUB_ZON
 
                 $.been_in_taxi1_before = Math.RandomIntInRange(1, 11);
@@ -410,7 +410,7 @@ async function body() {
                 }
             }
 
-            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
                 //OR IS_PLAYER_IN_ZONE player SUB_ZON
 
                 $.been_in_taxi1_before = Math.RandomIntInRange(11, 21);
@@ -539,7 +539,7 @@ async function body() {
                 }
             }
 
-            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
                 $.been_in_taxi1_before = Math.RandomIntInRange(21, 27);
                 if (!$.player.isPlaying()) {
                     return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
@@ -625,7 +625,7 @@ async function body() {
             $.taxi_blipy /= 2.0;
 
             $.blip2_ct1 = Blip.AddForCoord($.taxi_blipx, $.taxi_blipy, -100.0);
-            $.blip2_ct1.changeDisplay(2 /* BLIP_ONLY */);
+            $.blip2_ct1.changeDisplay(BLIP_ONLY);
 
             if (Car.IsDead($.taxi_car1)) {
                 return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
@@ -642,19 +642,19 @@ async function body() {
             $.taxi_distance_int = $.taxi_distance;
             $.taxi_distance_int_old = $.taxi_distance_int;
 
-            if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
                 if ($.taxi_passed_this_shot == 0) {
                     $.taxi_distance_int = $.taxi_distance_int * 100;
                 }
             }
 
-            if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
                 if ($.taxi_passed_this_shot == 0) {
                     $.taxi_distance_int = $.taxi_distance_int * 95;
                 }
             }
 
-            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
                 if ($.taxi_passed_this_shot == 0) {
                     $.taxi_distance_int = $.taxi_distance_int * 115;
                 }
@@ -709,7 +709,7 @@ async function body() {
 
             $.taxi_countdown += $.taxi_distance_int;
 
-            if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+            if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
                 if ($.taxi_passed_this_shot == 0) {
                     $.taxi_countdown = $.taxi_countdown + 15000;
                 }
@@ -732,11 +732,11 @@ async function body() {
                 }
                 $.controlmode = Pad.GetControllerMode();
                 if (!($.controlmode == 3)) {
-                    if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
+                    if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK) && ONMISSION) {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 } else {
-                    if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
+                    if (Pad.IsButtonPressed(PAD1, SQUARE) && ONMISSION) {
                         return taxi_fail_button_pressed(); // SCM GOTO → taxi_fail_button_pressed
                     }
                 }
@@ -746,14 +746,14 @@ async function body() {
                 if (!$.taxi_car1.isHealthGreater(500)) {
                     if ($.spray_blip_onscreen == 0) {
                         $.spray_taxi.remove();
-                        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
-                            $.spray_taxi = Blip.AddSpriteForCoord(925.0, -359.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                        if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
+                            $.spray_taxi = Blip.AddSpriteForCoord(925.0, -359.5, -100.0, RADAR_SPRITE_SPRAY);
                         }
-                        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
-                            $.spray_taxi = Blip.AddSpriteForCoord(379.0, -493.8, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                        if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
+                            $.spray_taxi = Blip.AddSpriteForCoord(379.0, -493.8, -100.0, RADAR_SPRITE_SPRAY);
                         }
-                        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
-                            $.spray_taxi = Blip.AddSpriteForCoord(-1128.0, 32.5, -100.0, 18 /* RADAR_SPRITE_SPRAY */);
+                        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
+                            $.spray_taxi = Blip.AddSpriteForCoord(-1128.0, 32.5, -100.0, RADAR_SPRITE_SPRAY);
                         }
                         $.spray_blip_onscreen = 1;
 
@@ -775,7 +775,7 @@ async function body() {
             }
 
             score: {
-                if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+                if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
                     if (TIMERB > $.speedbonus) {
                         $.score_for_this_fare = $.taxi_distance_int_old;
                         Text.PrintBig('TAXI4', 5000, 5); //Fare delivered
@@ -798,7 +798,7 @@ async function body() {
 
             $.player.addScore($.score_for_this_fare);
             Text.PrintWithNumberBig('TSCORE2', $.score_for_this_fare, 6000, 6); //Your score is...
-            Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+            Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_PART_MISSION_COMPLETE);
             $.taxi_score = $.taxi_score + $.score_for_this_fare;
 
             $.taxi_passed++;
@@ -888,14 +888,14 @@ async function taxi_fucked(cancel_mission: boolean = true) {
 async function taxi_fail_button_pressed() {
     $.controlmode = Pad.GetControllerMode();
     if (!($.controlmode == 3)) {
-        while (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+        while (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
             await asyncWait(0);
             if (!$.player.isPlaying()) {
                 return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
             }
         }
     } else {
-        while (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+        while (Pad.IsButtonPressed(PAD1, SQUARE)) {
             await asyncWait(0);
             if (!$.player.isPlaying()) {
                 return mission_taxi1_failed(); // SCM GOTO → mission_taxi1_failed
@@ -921,7 +921,7 @@ async function mission_taxi1_passed() {
     $.taxi_ped1.markAsNoLongerNeeded();
 
     if (!Car.IsDead($.taxi_car1)) {
-        $.taxi_car1.setTaxiLights(true /* On */);
+        $.taxi_car1.setTaxiLights(ON);
     }
 
     //WAIT 1000
@@ -938,7 +938,7 @@ async function mission_taxi1_failed(cancel_mission: boolean = true) {
                 if ($.taxi_ped1.isInCar($.taxi_car1)) {
                     $.taxi_ped1.setObjLeaveCar($.taxi_car1);
                     if ($.player.isPlaying()) {
-                        $.player.setControl(false /* OFF */);
+                        $.player.setControl(OFF);
                     }
                     while ($.taxi_ped1.isInCar($.taxi_car1)) {
                         await asyncWait(0);
@@ -953,11 +953,11 @@ async function mission_taxi1_failed(cancel_mission: boolean = true) {
                         }
                         $.controlmode = Pad.GetControllerMode();
                         if (!($.controlmode == 3)) {
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */) && ONMISSION) {
+                            if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK) && ONMISSION) {
                                 break ped_check; // SCM GOTO → taxi_ped_leave2
                             }
                         } else {
-                            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */) && ONMISSION) {
+                            if (Pad.IsButtonPressed(PAD1, SQUARE) && ONMISSION) {
                                 break ped_check; // SCM GOTO → taxi_ped_leave2
                             }
                         }
@@ -967,7 +967,7 @@ async function mission_taxi1_failed(cancel_mission: boolean = true) {
         }
 
         if ($.player.isPlaying()) {
-            $.player.setControl(true /* ON */);
+            $.player.setControl(ON);
         }
 
         if ($.taxi_fucked_flag == 1) {
@@ -991,7 +991,7 @@ async function mission_taxi1_failed(cancel_mission: boolean = true) {
         }
 
         if ($.player.isPlaying()) {
-            $.player.setControl(true /* ON */);
+            $.player.setControl(ON);
         }
     }
 
@@ -1005,7 +1005,7 @@ async function cleanup() {
     Hud.ClearTimer($.$id.taxi_countdown);
     Hud.ClearCounter($.$id.taxi_passed_this_shot);
     if (!Car.IsDead($.taxi_car1)) {
-        $.taxi_car1.setTaxiLights(false /* Off */);
+        $.taxi_car1.setTaxiLights(OFF);
     }
     //SWITCH_TAXI_TIMER OFF
 
@@ -1016,11 +1016,11 @@ async function cleanup() {
     Text.PrintBig('TAXI6', 5000, 5); //Taxi mission over
     Text.PrintWithNumberBig('TSCORE', $.taxi_score, 6000, 6); //Your score is...
     Stat.RegisterMoneyMadeTaxi($.taxi_score);
-    // SET_DEATHARREST_STATE(true /* on */);
+    // SET_DEATHARREST_STATE(ON);
     ONMISSION = false;
     $.flag_taxi1_mission_launched = 0;
     if ($.player.isPlaying()) {
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
     }
     Text.ClearHelp();
     Mission.Finish();

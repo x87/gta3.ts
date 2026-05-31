@@ -126,9 +126,9 @@ async function body() {
     */
 
     Streaming.LoadSpecialCharacter(1, 'KENJI');
-    Streaming.RequestModel(16 /* PED_GANG_YAKUZA_A */);
-    Streaming.RequestModel(17 /* PED_GANG_YAKUZA_B */);
-    Streaming.RequestModel(18 /* PED_GANG_YARDIE_A */);
+    Streaming.RequestModel(PED_GANG_YAKUZA_A);
+    Streaming.RequestModel(PED_GANG_YAKUZA_B);
+    Streaming.RequestModel(PED_GANG_YARDIE_A);
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KENJIH');
     Streaming.RequestModel(1570 /* casino_garden */);
 
@@ -142,8 +142,8 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(16 /* PED_GANG_YAKUZA_A */) ||
-        !Streaming.HasModelLoaded(17 /* PED_GANG_YAKUZA_B */) ||
+        !Streaming.HasModelLoaded(PED_GANG_YAKUZA_A) ||
+        !Streaming.HasModelLoaded(PED_GANG_YAKUZA_B) ||
         !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
         !Streaming.HasModelLoaded(1570 /* casino_garden */)
     ) {
@@ -154,16 +154,16 @@ async function body() {
 
     Cutscene.SetOffset(476.38, -1382.168, 67.347);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_kenji = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_kenji = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_kenji.setAnim('kenji');
 
-    $.cs_yakuza = CutsceneObject.Create(16 /* PED_GANG_YAKUZA_A */);
+    $.cs_yakuza = CutsceneObject.Create(PED_GANG_YAKUZA_A);
     $.cs_yakuza.setAnim('gang07');
 
-    $.cs_yakuza2 = CutsceneObject.Create(17 /* PED_GANG_YAKUZA_B */);
+    $.cs_yakuza2 = CutsceneObject.Create(PED_GANG_YAKUZA_B);
     $.cs_yakuza2.setAnim('gang08');
 
     $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, 185 /* cut_obj1 */);
@@ -176,9 +176,9 @@ async function body() {
     $.player.setCoordinates(459.1, -1413.0, 25.11);
     $.player.setHeading(132.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
     Cutscene.Start();
 
@@ -240,7 +240,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -254,25 +254,25 @@ async function body() {
 
     Cutscene.Clear();
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Camera.SetInFrontOfPlayer();
 
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 890.9 -416.9 15.0 6.0 backdoor TRUE
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
-    Streaming.MarkModelAsNoLongerNeeded(17 /* PED_GANG_YAKUZA_B */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_B);
     Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
     Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */);
 
     // *******************************************END OF CUTSCENE*******************************
 
-    while (!Streaming.HasModelLoaded(18 /* PED_GANG_YARDIE_A */)) {
+    while (!Streaming.HasModelLoaded(PED_GANG_YARDIE_A)) {
         await asyncWait(0);
     }
 
@@ -302,7 +302,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_1_blip = Blip.AddForCoordOld($.ped_1_x, $.ped_1_y, $.ped_1_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_1_blip = Blip.AddForCoordOld($.ped_1_x, $.ped_1_y, $.ped_1_z, GREEN, BLIP_ONLY);
             $.ped_1_blip.changeScale(3);
             $.ped_1_exists = 1;
             $.ped_1_time = Clock.GetGameTimer();
@@ -329,7 +329,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, GREEN, BLIP_ONLY);
             $.ped_2_blip.changeScale(3);
             $.ped_2_exists = 1;
             $.ped_2_time = Clock.GetGameTimer();
@@ -356,7 +356,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_3_blip = Blip.AddForCoordOld($.ped_3_x, $.ped_3_y, $.ped_3_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_3_blip = Blip.AddForCoordOld($.ped_3_x, $.ped_3_y, $.ped_3_z, GREEN, BLIP_ONLY);
             $.ped_3_blip.changeScale(3);
             $.ped_3_exists = 1;
             $.ped_3_time = Clock.GetGameTimer();
@@ -383,7 +383,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_4_blip = Blip.AddForCoordOld($.ped_4_x, $.ped_4_y, $.ped_4_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_4_blip = Blip.AddForCoordOld($.ped_4_x, $.ped_4_y, $.ped_4_z, GREEN, BLIP_ONLY);
             $.ped_4_blip.changeScale(3);
             $.ped_4_exists = 1;
             $.ped_4_time = Clock.GetGameTimer();
@@ -410,7 +410,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_5_blip = Blip.AddForCoordOld($.ped_5_x, $.ped_5_y, $.ped_5_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_5_blip = Blip.AddForCoordOld($.ped_5_x, $.ped_5_y, $.ped_5_z, GREEN, BLIP_ONLY);
             $.ped_5_blip.changeScale(3);
             $.ped_5_exists = 1;
             $.ped_5_time = Clock.GetGameTimer();
@@ -437,7 +437,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_6_blip = Blip.AddForCoordOld($.ped_6_x, $.ped_6_y, $.ped_6_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_6_blip = Blip.AddForCoordOld($.ped_6_x, $.ped_6_y, $.ped_6_z, GREEN, BLIP_ONLY);
             $.ped_6_blip.changeScale(3);
             $.ped_6_exists = 1;
             $.ped_6_time = Clock.GetGameTimer();
@@ -464,7 +464,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_7_blip = Blip.AddForCoordOld($.ped_7_x, $.ped_7_y, $.ped_7_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_7_blip = Blip.AddForCoordOld($.ped_7_x, $.ped_7_y, $.ped_7_z, GREEN, BLIP_ONLY);
             $.ped_7_blip.changeScale(3);
             $.ped_7_exists = 1;
             $.ped_7_time = Clock.GetGameTimer();
@@ -491,7 +491,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_8_blip = Blip.AddForCoordOld($.ped_8_x, $.ped_8_y, $.ped_8_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_8_blip = Blip.AddForCoordOld($.ped_8_x, $.ped_8_y, $.ped_8_z, GREEN, BLIP_ONLY);
             $.ped_8_blip.changeScale(3);
             $.ped_8_exists = 1;
             $.ped_8_time = Clock.GetGameTimer();
@@ -518,7 +518,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_9_blip = Blip.AddForCoordOld($.ped_9_x, $.ped_9_y, $.ped_9_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_9_blip = Blip.AddForCoordOld($.ped_9_x, $.ped_9_y, $.ped_9_z, GREEN, BLIP_ONLY);
             $.ped_9_blip.changeScale(3);
             $.ped_9_exists = 1;
             $.ped_9_time = Clock.GetGameTimer();
@@ -545,7 +545,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_10_blip = Blip.AddForCoordOld($.ped_10_x, $.ped_10_y, $.ped_10_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_10_blip = Blip.AddForCoordOld($.ped_10_x, $.ped_10_y, $.ped_10_z, GREEN, BLIP_ONLY);
             $.ped_10_blip.changeScale(3);
             $.ped_10_exists = 1;
             $.ped_10_time = Clock.GetGameTimer();
@@ -572,7 +572,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_11_blip = Blip.AddForCoordOld($.ped_11_x, $.ped_11_y, $.ped_11_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_11_blip = Blip.AddForCoordOld($.ped_11_x, $.ped_11_y, $.ped_11_z, GREEN, BLIP_ONLY);
             $.ped_11_blip.changeScale(3);
             $.ped_11_exists = 1;
             $.ped_11_time = Clock.GetGameTimer();
@@ -599,7 +599,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_12_blip = Blip.AddForCoordOld($.ped_12_x, $.ped_12_y, $.ped_12_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_12_blip = Blip.AddForCoordOld($.ped_12_x, $.ped_12_y, $.ped_12_z, GREEN, BLIP_ONLY);
             $.ped_12_blip.changeScale(3);
             $.ped_12_exists = 1;
             $.ped_12_time = Clock.GetGameTimer();
@@ -626,7 +626,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_13_blip = Blip.AddForCoordOld($.ped_13_x, $.ped_13_y, $.ped_13_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_13_blip = Blip.AddForCoordOld($.ped_13_x, $.ped_13_y, $.ped_13_z, GREEN, BLIP_ONLY);
             $.ped_13_blip.changeScale(3);
             $.ped_13_exists = 1;
             $.ped_13_time = Clock.GetGameTimer();
@@ -653,7 +653,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_14_blip = Blip.AddForCoordOld($.ped_14_x, $.ped_14_y, $.ped_14_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_14_blip = Blip.AddForCoordOld($.ped_14_x, $.ped_14_y, $.ped_14_z, GREEN, BLIP_ONLY);
             $.ped_14_blip.changeScale(3);
             $.ped_14_exists = 1;
             $.ped_14_time = Clock.GetGameTimer();
@@ -680,7 +680,7 @@ async function body() {
                 $.sum_diff = $.difference_x + $.difference_y;
                 $.distance = Math.sqrt($.sum_diff);
             } while ($.distance < 110.0);
-            $.ped_15_blip = Blip.AddForCoordOld($.ped_15_x, $.ped_15_y, $.ped_15_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+            $.ped_15_blip = Blip.AddForCoordOld($.ped_15_x, $.ped_15_y, $.ped_15_z, GREEN, BLIP_ONLY);
             $.ped_15_blip.changeScale(3);
             $.ped_15_exists = 1;
             $.ped_15_time = Clock.GetGameTimer();
@@ -702,10 +702,10 @@ async function body() {
 
         $.delete_oldest_ped_time = 80000;
 
-        $.ped_1_blip = Blip.AddForCoordOld($.ped_1_x, $.ped_1_y, $.ped_1_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+        $.ped_1_blip = Blip.AddForCoordOld($.ped_1_x, $.ped_1_y, $.ped_1_z, GREEN, BLIP_ONLY);
         $.ped_1_blip.changeScale(3);
 
-        $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+        $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, GREEN, BLIP_ONLY);
         $.ped_2_blip.changeScale(3);
 
         Text.PrintNow('KM5_6', 5000, 1); //"You must murder at least 8 Yardie dealers."
@@ -728,20 +728,20 @@ async function body() {
             if ($.ped_1_exists > 0) {
                 if ($.ped_1_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_1_x, $.ped_1_y, 90.0, 90.0, false)) {
-                        $.ped_1 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_1_x, $.ped_1_y, $.ped_1_z);
-                        $.ped_1.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_1.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_1.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_1.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_1.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_1.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_1.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_1 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_1_x, $.ped_1_y, $.ped_1_z);
+                        $.ped_1.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_1.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_1.setThreatSearch(THREAT_GUN);
+                        $.ped_1.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_1.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_1.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_1.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_1.setThreatSearch(THREAT_PLAYER4);
                         $.ped_1.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_1.wanderDir($.random_direction);
                         $.ped_1_blip.remove();
-                        $.ped_1_blip = Blip.AddForCharOld($.ped_1, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_1_blip = Blip.AddForCharOld($.ped_1, GREEN, BOTH);
                         $.ped_1_blip.changeScale(3);
                         $.ped_1_exists = 2;
                     }
@@ -769,7 +769,7 @@ async function body() {
                             $.ped_1_y = _res53.y;
                             $.ped_1_z = _res53.z;
                             $.ped_1_blip.remove();
-                            $.ped_1_blip = Blip.AddForCoordOld($.ped_1_x, $.ped_1_y, $.ped_1_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_1_blip = Blip.AddForCoordOld($.ped_1_x, $.ped_1_y, $.ped_1_z, GREEN, BLIP_ONLY);
                             $.ped_1_blip.changeScale(3);
                             $.ped_1.delete();
                             $.ped_1_exists = 1;
@@ -780,18 +780,18 @@ async function body() {
             if ($.ped_2_exists > 0) {
                 if ($.ped_2_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_2_x, $.ped_2_y, 90.0, 90.0, false)) {
-                        $.ped_2 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_2_x, $.ped_2_y, $.ped_2_z);
-                        $.ped_2.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_2.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_2.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_2.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_2.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_2.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_2 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_2_x, $.ped_2_y, $.ped_2_z);
+                        $.ped_2.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_2.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_2.setThreatSearch(THREAT_GUN);
+                        $.ped_2.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_2.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_2.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_2.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_2.setThreatSearch(THREAT_PLAYER4);
                         $.ped_2.setOnlyDamagedByPlayer(true);
                         $.ped_2_blip.remove();
-                        $.ped_2_blip = Blip.AddForCharOld($.ped_2, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_2_blip = Blip.AddForCharOld($.ped_2, GREEN, BOTH);
                         $.ped_2_blip.changeScale(3);
                         $.ped_2_exists = 2;
                     }
@@ -819,7 +819,7 @@ async function body() {
                             $.ped_2_y = _res54.y;
                             $.ped_2_z = _res54.z;
                             $.ped_2_blip.remove();
-                            $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_2_blip = Blip.AddForCoordOld($.ped_2_x, $.ped_2_y, $.ped_2_z, GREEN, BLIP_ONLY);
                             $.ped_2_blip.changeScale(3);
                             $.ped_2.delete();
                             $.ped_2_exists = 1;
@@ -830,20 +830,20 @@ async function body() {
             if ($.ped_3_exists > 0) {
                 if ($.ped_3_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_3_x, $.ped_3_y, 90.0, 90.0, false)) {
-                        $.ped_3 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_3_x, $.ped_3_y, $.ped_3_z);
-                        $.ped_3.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_3.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_3.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_3.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_3.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_3.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_3.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_3 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_3_x, $.ped_3_y, $.ped_3_z);
+                        $.ped_3.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_3.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_3.setThreatSearch(THREAT_GUN);
+                        $.ped_3.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_3.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_3.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_3.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_3.setThreatSearch(THREAT_PLAYER4);
                         $.ped_3.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_3.wanderDir($.random_direction);
                         $.ped_3_blip.remove();
-                        $.ped_3_blip = Blip.AddForCharOld($.ped_3, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_3_blip = Blip.AddForCharOld($.ped_3, GREEN, BOTH);
                         $.ped_3_blip.changeScale(3);
                         $.ped_3_exists = 2;
                     }
@@ -866,7 +866,7 @@ async function body() {
                             $.ped_3_y = _res55.y;
                             $.ped_3_z = _res55.z;
                             $.ped_3_blip.remove();
-                            $.ped_3_blip = Blip.AddForCoordOld($.ped_3_x, $.ped_3_y, $.ped_3_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_3_blip = Blip.AddForCoordOld($.ped_3_x, $.ped_3_y, $.ped_3_z, GREEN, BLIP_ONLY);
                             $.ped_3_blip.changeScale(3);
                             $.ped_3.delete();
                             $.ped_3_exists = 1;
@@ -877,20 +877,20 @@ async function body() {
             if ($.ped_4_exists > 0) {
                 if ($.ped_4_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_4_x, $.ped_4_y, 90.0, 90.0, false)) {
-                        $.ped_4 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_4_x, $.ped_4_y, $.ped_4_z);
-                        $.ped_4.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_4.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_4.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_4.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_4.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_4.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_4.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_4 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_4_x, $.ped_4_y, $.ped_4_z);
+                        $.ped_4.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_4.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_4.setThreatSearch(THREAT_GUN);
+                        $.ped_4.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_4.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_4.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_4.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_4.setThreatSearch(THREAT_PLAYER4);
                         $.ped_4.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_4.wanderDir($.random_direction);
                         $.ped_4_blip.remove();
-                        $.ped_4_blip = Blip.AddForCharOld($.ped_4, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_4_blip = Blip.AddForCharOld($.ped_4, GREEN, BOTH);
                         $.ped_4_blip.changeScale(3);
                         $.ped_4_exists = 2;
                     }
@@ -913,7 +913,7 @@ async function body() {
                             $.ped_4_y = _res56.y;
                             $.ped_4_z = _res56.z;
                             $.ped_4_blip.remove();
-                            $.ped_4_blip = Blip.AddForCoordOld($.ped_4_x, $.ped_4_y, $.ped_4_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_4_blip = Blip.AddForCoordOld($.ped_4_x, $.ped_4_y, $.ped_4_z, GREEN, BLIP_ONLY);
                             $.ped_4_blip.changeScale(3);
                             $.ped_4.delete();
                             $.ped_4_exists = 1;
@@ -924,20 +924,20 @@ async function body() {
             if ($.ped_5_exists > 0) {
                 if ($.ped_5_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_5_x, $.ped_5_y, 90.0, 90.0, false)) {
-                        $.ped_5 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_5_x, $.ped_5_y, $.ped_5_z);
-                        $.ped_5.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_5.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_5.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_5.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_5.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_5.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_5 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_5_x, $.ped_5_y, $.ped_5_z);
+                        $.ped_5.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_5.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_5.setThreatSearch(THREAT_GUN);
+                        $.ped_5.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_5.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_5.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_5.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_5.setThreatSearch(THREAT_PLAYER4);
                         $.ped_5.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_5.wanderDir($.random_direction);
                         $.ped_5_blip.remove();
-                        $.ped_5_blip = Blip.AddForCharOld($.ped_5, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_5_blip = Blip.AddForCharOld($.ped_5, GREEN, BOTH);
                         $.ped_5_blip.changeScale(3);
                         $.ped_5_exists = 2;
                     }
@@ -960,7 +960,7 @@ async function body() {
                             $.ped_5_y = _res57.y;
                             $.ped_5_z = _res57.z;
                             $.ped_5_blip.remove();
-                            $.ped_5_blip = Blip.AddForCoordOld($.ped_5_x, $.ped_5_y, $.ped_5_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_5_blip = Blip.AddForCoordOld($.ped_5_x, $.ped_5_y, $.ped_5_z, GREEN, BLIP_ONLY);
                             $.ped_5_blip.changeScale(3);
                             $.ped_5.delete();
                             $.ped_5_exists = 1;
@@ -971,20 +971,20 @@ async function body() {
             if ($.ped_6_exists > 0) {
                 if ($.ped_6_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_6_x, $.ped_6_y, 90.0, 90.0, false)) {
-                        $.ped_6 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_6_x, $.ped_6_y, $.ped_6_z);
-                        $.ped_6.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_6.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_6.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_6.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_6.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_6.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_6.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_6.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_6 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_6_x, $.ped_6_y, $.ped_6_z);
+                        $.ped_6.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_6.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_6.setThreatSearch(THREAT_GUN);
+                        $.ped_6.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_6.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_6.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_6.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_6.setThreatSearch(THREAT_PLAYER4);
                         $.ped_6.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_6.wanderDir($.random_direction);
                         $.ped_6_blip.remove();
-                        $.ped_6_blip = Blip.AddForCharOld($.ped_6, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_6_blip = Blip.AddForCharOld($.ped_6, GREEN, BOTH);
                         $.ped_6_blip.changeScale(3);
                         $.ped_6_exists = 2;
                     }
@@ -1007,7 +1007,7 @@ async function body() {
                             $.ped_6_y = _res58.y;
                             $.ped_6_z = _res58.z;
                             $.ped_6_blip.remove();
-                            $.ped_6_blip = Blip.AddForCoordOld($.ped_6_x, $.ped_6_y, $.ped_6_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_6_blip = Blip.AddForCoordOld($.ped_6_x, $.ped_6_y, $.ped_6_z, GREEN, BLIP_ONLY);
                             $.ped_6_blip.changeScale(3);
                             $.ped_6.delete();
                             $.ped_6_exists = 1;
@@ -1018,20 +1018,20 @@ async function body() {
             if ($.ped_7_exists > 0) {
                 if ($.ped_7_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_7_x, $.ped_7_y, 90.0, 90.0, false)) {
-                        $.ped_7 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_7_x, $.ped_7_y, $.ped_7_z);
-                        $.ped_7.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_7.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_7.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_7.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_7.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_7.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_7.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_7.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_7 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_7_x, $.ped_7_y, $.ped_7_z);
+                        $.ped_7.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_7.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_7.setThreatSearch(THREAT_GUN);
+                        $.ped_7.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_7.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_7.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_7.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_7.setThreatSearch(THREAT_PLAYER4);
                         $.ped_7.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_7.wanderDir($.random_direction);
                         $.ped_7_blip.remove();
-                        $.ped_7_blip = Blip.AddForCharOld($.ped_7, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_7_blip = Blip.AddForCharOld($.ped_7, GREEN, BOTH);
                         $.ped_7_blip.changeScale(3);
                         $.ped_7_exists = 2;
                     }
@@ -1054,7 +1054,7 @@ async function body() {
                             $.ped_7_y = _res59.y;
                             $.ped_7_z = _res59.z;
                             $.ped_7_blip.remove();
-                            $.ped_7_blip = Blip.AddForCoordOld($.ped_7_x, $.ped_7_y, $.ped_7_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_7_blip = Blip.AddForCoordOld($.ped_7_x, $.ped_7_y, $.ped_7_z, GREEN, BLIP_ONLY);
                             $.ped_7_blip.changeScale(3);
                             $.ped_7.delete();
                             $.ped_7_exists = 1;
@@ -1065,20 +1065,20 @@ async function body() {
             if ($.ped_8_exists > 0) {
                 if ($.ped_8_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_8_x, $.ped_8_y, 90.0, 90.0, false)) {
-                        $.ped_8 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_8_x, $.ped_8_y, $.ped_8_z);
-                        $.ped_8.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_8.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_8.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_8.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_8.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_8.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_8.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_8.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_8 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_8_x, $.ped_8_y, $.ped_8_z);
+                        $.ped_8.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_8.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_8.setThreatSearch(THREAT_GUN);
+                        $.ped_8.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_8.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_8.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_8.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_8.setThreatSearch(THREAT_PLAYER4);
                         $.ped_8.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_8.wanderDir($.random_direction);
                         $.ped_8_blip.remove();
-                        $.ped_8_blip = Blip.AddForCharOld($.ped_8, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_8_blip = Blip.AddForCharOld($.ped_8, GREEN, BOTH);
                         $.ped_8_blip.changeScale(3);
                         $.ped_8_exists = 2;
                     }
@@ -1101,7 +1101,7 @@ async function body() {
                             $.ped_8_y = _res60.y;
                             $.ped_8_z = _res60.z;
                             $.ped_8_blip.remove();
-                            $.ped_8_blip = Blip.AddForCoordOld($.ped_8_x, $.ped_8_y, $.ped_8_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_8_blip = Blip.AddForCoordOld($.ped_8_x, $.ped_8_y, $.ped_8_z, GREEN, BLIP_ONLY);
                             $.ped_8_blip.changeScale(3);
                             $.ped_8.delete();
                             $.ped_8_exists = 1;
@@ -1112,20 +1112,20 @@ async function body() {
             if ($.ped_9_exists > 0) {
                 if ($.ped_9_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_9_x, $.ped_9_y, 90.0, 90.0, false)) {
-                        $.ped_9 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_9_x, $.ped_9_y, $.ped_9_z);
-                        $.ped_9.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_9.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_9.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_9.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_9.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_9.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_9.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_9.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_9 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_9_x, $.ped_9_y, $.ped_9_z);
+                        $.ped_9.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_9.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_9.setThreatSearch(THREAT_GUN);
+                        $.ped_9.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_9.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_9.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_9.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_9.setThreatSearch(THREAT_PLAYER4);
                         $.ped_9.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_9.wanderDir($.random_direction);
                         $.ped_9_blip.remove();
-                        $.ped_9_blip = Blip.AddForCharOld($.ped_9, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_9_blip = Blip.AddForCharOld($.ped_9, GREEN, BOTH);
                         $.ped_9_blip.changeScale(3);
                         $.ped_9_exists = 2;
                     }
@@ -1148,7 +1148,7 @@ async function body() {
                             $.ped_9_y = _res61.y;
                             $.ped_9_z = _res61.z;
                             $.ped_9_blip.remove();
-                            $.ped_9_blip = Blip.AddForCoordOld($.ped_9_x, $.ped_9_y, $.ped_9_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_9_blip = Blip.AddForCoordOld($.ped_9_x, $.ped_9_y, $.ped_9_z, GREEN, BLIP_ONLY);
                             $.ped_9_blip.changeScale(3);
                             $.ped_9.delete();
                             $.ped_9_exists = 1;
@@ -1159,20 +1159,20 @@ async function body() {
             if ($.ped_10_exists > 0) {
                 if ($.ped_10_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_10_x, $.ped_10_y, 90.0, 90.0, false)) {
-                        $.ped_10 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_10_x, $.ped_10_y, $.ped_10_z);
-                        $.ped_10.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_10.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_10.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_10.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_10.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_10.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_10.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_10.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_10 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_10_x, $.ped_10_y, $.ped_10_z);
+                        $.ped_10.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_10.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_10.setThreatSearch(THREAT_GUN);
+                        $.ped_10.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_10.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_10.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_10.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_10.setThreatSearch(THREAT_PLAYER4);
                         $.ped_10.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_10.wanderDir($.random_direction);
                         $.ped_10_blip.remove();
-                        $.ped_10_blip = Blip.AddForCharOld($.ped_10, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_10_blip = Blip.AddForCharOld($.ped_10, GREEN, BOTH);
                         $.ped_10_blip.changeScale(3);
                         $.ped_10_exists = 2;
                     }
@@ -1195,7 +1195,7 @@ async function body() {
                             $.ped_10_y = _res62.y;
                             $.ped_10_z = _res62.z;
                             $.ped_10_blip.remove();
-                            $.ped_10_blip = Blip.AddForCoordOld($.ped_10_x, $.ped_10_y, $.ped_10_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_10_blip = Blip.AddForCoordOld($.ped_10_x, $.ped_10_y, $.ped_10_z, GREEN, BLIP_ONLY);
                             $.ped_10_blip.changeScale(3);
                             $.ped_10.delete();
                             $.ped_10_exists = 1;
@@ -1206,20 +1206,20 @@ async function body() {
             if ($.ped_11_exists > 0) {
                 if ($.ped_11_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_11_x, $.ped_11_y, 90.0, 90.0, false)) {
-                        $.ped_11 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_11_x, $.ped_11_y, $.ped_11_z);
-                        $.ped_11.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_11.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_11.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_11.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_11.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_11.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_11.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_11.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_11 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_11_x, $.ped_11_y, $.ped_11_z);
+                        $.ped_11.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_11.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_11.setThreatSearch(THREAT_GUN);
+                        $.ped_11.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_11.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_11.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_11.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_11.setThreatSearch(THREAT_PLAYER4);
                         $.ped_11.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_11.wanderDir($.random_direction);
                         $.ped_11_blip.remove();
-                        $.ped_11_blip = Blip.AddForCharOld($.ped_11, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_11_blip = Blip.AddForCharOld($.ped_11, GREEN, BOTH);
                         $.ped_11_blip.changeScale(3);
                         $.ped_11_exists = 2;
                     }
@@ -1242,7 +1242,7 @@ async function body() {
                             $.ped_11_y = _res63.y;
                             $.ped_11_z = _res63.z;
                             $.ped_11_blip.remove();
-                            $.ped_11_blip = Blip.AddForCoordOld($.ped_11_x, $.ped_11_y, $.ped_11_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_11_blip = Blip.AddForCoordOld($.ped_11_x, $.ped_11_y, $.ped_11_z, GREEN, BLIP_ONLY);
                             $.ped_11_blip.changeScale(3);
                             $.ped_11.delete();
                             $.ped_11_exists = 1;
@@ -1253,20 +1253,20 @@ async function body() {
             if ($.ped_12_exists > 0) {
                 if ($.ped_12_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_12_x, $.ped_12_y, 90.0, 90.0, false)) {
-                        $.ped_12 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_12_x, $.ped_12_y, $.ped_12_z);
-                        $.ped_12.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_12.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_12.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_12.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_12.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_12.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_12.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_12.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_12 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_12_x, $.ped_12_y, $.ped_12_z);
+                        $.ped_12.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_12.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_12.setThreatSearch(THREAT_GUN);
+                        $.ped_12.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_12.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_12.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_12.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_12.setThreatSearch(THREAT_PLAYER4);
                         $.ped_12.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_12.wanderDir($.random_direction);
                         $.ped_12_blip.remove();
-                        $.ped_12_blip = Blip.AddForCharOld($.ped_12, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_12_blip = Blip.AddForCharOld($.ped_12, GREEN, BOTH);
                         $.ped_12_blip.changeScale(3);
                         $.ped_12_exists = 2;
                     }
@@ -1289,7 +1289,7 @@ async function body() {
                             $.ped_12_y = _res64.y;
                             $.ped_12_z = _res64.z;
                             $.ped_12_blip.remove();
-                            $.ped_12_blip = Blip.AddForCoordOld($.ped_12_x, $.ped_12_y, $.ped_12_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_12_blip = Blip.AddForCoordOld($.ped_12_x, $.ped_12_y, $.ped_12_z, GREEN, BLIP_ONLY);
                             $.ped_12_blip.changeScale(3);
                             $.ped_12.delete();
                             $.ped_12_exists = 1;
@@ -1300,20 +1300,20 @@ async function body() {
             if ($.ped_13_exists > 0) {
                 if ($.ped_13_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_13_x, $.ped_13_y, 90.0, 90.0, false)) {
-                        $.ped_13 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_13_x, $.ped_13_y, $.ped_13_z);
-                        $.ped_13.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_13.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_13.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_13.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_13.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_13.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_13.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_13.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_13 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_13_x, $.ped_13_y, $.ped_13_z);
+                        $.ped_13.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_13.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_13.setThreatSearch(THREAT_GUN);
+                        $.ped_13.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_13.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_13.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_13.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_13.setThreatSearch(THREAT_PLAYER4);
                         $.ped_13.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_13.wanderDir($.random_direction);
                         $.ped_13_blip.remove();
-                        $.ped_13_blip = Blip.AddForCharOld($.ped_13, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_13_blip = Blip.AddForCharOld($.ped_13, GREEN, BOTH);
                         $.ped_13_blip.changeScale(3);
                         $.ped_13_exists = 2;
                     }
@@ -1336,7 +1336,7 @@ async function body() {
                             $.ped_13_y = _res65.y;
                             $.ped_13_z = _res65.z;
                             $.ped_13_blip.remove();
-                            $.ped_13_blip = Blip.AddForCoordOld($.ped_13_x, $.ped_13_y, $.ped_13_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_13_blip = Blip.AddForCoordOld($.ped_13_x, $.ped_13_y, $.ped_13_z, GREEN, BLIP_ONLY);
                             $.ped_13_blip.changeScale(3);
                             $.ped_13.delete();
                             $.ped_13_exists = 1;
@@ -1347,20 +1347,20 @@ async function body() {
             if ($.ped_14_exists > 0) {
                 if ($.ped_14_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_14_x, $.ped_14_y, 90.0, 90.0, false)) {
-                        $.ped_14 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_14_x, $.ped_14_y, $.ped_14_z);
-                        $.ped_14.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_14.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_14.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_14.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_14.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_14.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_14.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_14.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_14 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_14_x, $.ped_14_y, $.ped_14_z);
+                        $.ped_14.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_14.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_14.setThreatSearch(THREAT_GUN);
+                        $.ped_14.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_14.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_14.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_14.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_14.setThreatSearch(THREAT_PLAYER4);
                         $.ped_14.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_14.wanderDir($.random_direction);
                         $.ped_14_blip.remove();
-                        $.ped_14_blip = Blip.AddForCharOld($.ped_14, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_14_blip = Blip.AddForCharOld($.ped_14, GREEN, BOTH);
                         $.ped_14_blip.changeScale(3);
                         $.ped_14_exists = 2;
                     }
@@ -1383,7 +1383,7 @@ async function body() {
                             $.ped_14_y = _res66.y;
                             $.ped_14_z = _res66.z;
                             $.ped_14_blip.remove();
-                            $.ped_14_blip = Blip.AddForCoordOld($.ped_14_x, $.ped_14_y, $.ped_14_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_14_blip = Blip.AddForCoordOld($.ped_14_x, $.ped_14_y, $.ped_14_z, GREEN, BLIP_ONLY);
                             $.ped_14_blip.changeScale(3);
                             $.ped_14.delete();
                             $.ped_14_exists = 1;
@@ -1394,20 +1394,20 @@ async function body() {
             if ($.ped_15_exists > 0) {
                 if ($.ped_15_exists == 1) {
                     if ($.player.locateAnyMeans2D($.ped_15_x, $.ped_15_y, 90.0, 90.0, false)) {
-                        $.ped_15 = Char.Create(11 /* PEDTYPE_GANG_YARDIE */, 18 /* PED_GANG_YARDIE_A */, $.ped_15_x, $.ped_15_y, $.ped_15_z);
-                        $.ped_15.giveWeapon(3 /* WEAPONTYPE_UZI */, 999);
-                        $.ped_15.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.ped_15.setThreatSearch(1048576 /* THREAT_GUN */);
-                        $.ped_15.setThreatSearch(4194304 /* THREAT_FAST_CAR */);
-                        $.ped_15.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.ped_15.setThreatSearch(2 /* THREAT_PLAYER2 */);
-                        $.ped_15.setThreatSearch(4 /* THREAT_PLAYER3 */);
-                        $.ped_15.setThreatSearch(8 /* THREAT_PLAYER4 */);
+                        $.ped_15 = Char.Create(PEDTYPE_GANG_YARDIE, PED_GANG_YARDIE_A, $.ped_15_x, $.ped_15_y, $.ped_15_z);
+                        $.ped_15.giveWeapon(WEAPONTYPE_UZI, 999);
+                        $.ped_15.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.ped_15.setThreatSearch(THREAT_GUN);
+                        $.ped_15.setThreatSearch(THREAT_FAST_CAR);
+                        $.ped_15.setThreatSearch(THREAT_PLAYER1);
+                        $.ped_15.setThreatSearch(THREAT_PLAYER2);
+                        $.ped_15.setThreatSearch(THREAT_PLAYER3);
+                        $.ped_15.setThreatSearch(THREAT_PLAYER4);
                         $.ped_15.setOnlyDamagedByPlayer(true);
                         $.random_direction = Math.RandomIntInRange(0, 8);
                         $.ped_15.wanderDir($.random_direction);
                         $.ped_15_blip.remove();
-                        $.ped_15_blip = Blip.AddForCharOld($.ped_15, 1 /* GREEN */, 3 /* BOTH */);
+                        $.ped_15_blip = Blip.AddForCharOld($.ped_15, GREEN, BOTH);
                         $.ped_15_blip.changeScale(3);
                         $.ped_15_exists = 2;
                     }
@@ -1430,7 +1430,7 @@ async function body() {
                             $.ped_15_y = _res67.y;
                             $.ped_15_z = _res67.z;
                             $.ped_15_blip.remove();
-                            $.ped_15_blip = Blip.AddForCoordOld($.ped_15_x, $.ped_15_y, $.ped_15_z, 1 /* GREEN */, 2 /* BLIP_ONLY */);
+                            $.ped_15_blip = Blip.AddForCoordOld($.ped_15_x, $.ped_15_y, $.ped_15_z, GREEN, BLIP_ONLY);
                             $.ped_15_blip.changeScale(3);
                             $.ped_15.delete();
                             $.ped_15_exists = 1;
@@ -1700,7 +1700,7 @@ async function cleanup() {
     $.ped_15_blip.remove();
 
     Hud.ClearCounter($.$id.dead_peds);
-    Streaming.MarkModelAsNoLongerNeeded(18 /* PED_GANG_YARDIE_A */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YARDIE_A);
 
     Mission.Finish();
 }

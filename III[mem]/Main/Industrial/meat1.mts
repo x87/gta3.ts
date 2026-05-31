@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/meat1.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
@@ -123,15 +124,15 @@ async function body() {
     Cutscene.Load('mt_ph1');
     Cutscene.SetOffset(1223.88, -839.414, 13.95);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -199,7 +200,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -215,7 +216,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ1
 
@@ -223,17 +224,17 @@ async function body() {
 
     // ******************************************END OF CUTSCENE********************************
 
-    Streaming.RequestModel(59 /* PED_B_MAN1 */);
+    Streaming.RequestModel(PED_B_MAN1);
 
-    Streaming.RequestModel(94 /* CAR_PERENNIAL */);
+    Streaming.RequestModel(CAR_PERENNIAL);
 
-    Audio.LoadMissionAudio('mf1_a' as any);
+    Audio.LoadMissionAudio(SfxMission.Mf1_a);
 
-    while (!Streaming.HasModelLoaded(59 /* PED_B_MAN1 */) || !Streaming.HasModelLoaded(94 /* CAR_PERENNIAL */) || !Audio.HasMissionAudioLoaded()) {
+    while (!Streaming.HasModelLoaded(PED_B_MAN1) || !Streaming.HasModelLoaded(CAR_PERENNIAL) || !Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
     }
 
-    $.car_meat1 = Car.Create(94 /* CAR_PERENNIAL */, 1190.0, -796.0, 13.8);
+    $.car_meat1 = Car.Create(CAR_PERENNIAL, 1190.0, -796.0, 13.8);
 
     $.car_meat1.setHeading(300.0);
 
@@ -257,7 +258,7 @@ async function body() {
 
     Text.PrintNow('MEA1_B3', 7000, 1); //"Go and meet the Bank Manager."
 
-    $.bankmanager_meat1 = Char.Create(4 /* PEDTYPE_CIVMALE */, 59 /* PED_B_MAN1 */, 1039.0, -695.0, 13.9);
+    $.bankmanager_meat1 = Char.Create(PEDTYPE_CIVMALE, PED_B_MAN1, 1039.0, -695.0, 13.9);
 
     $.bankmanager_meat1.clearThreatSearch();
 
@@ -405,13 +406,13 @@ async function body() {
 
     $.radar_blip_coord2_meat1.remove();
 
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
 
     World.ClearArea(1201.8, -799.7, 13.8, 5.0, true);
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
 
     $.bankmanager_meat1.setCantBeDraggedOut(false);
 
@@ -442,7 +443,7 @@ async function body() {
 
     Camera.SetFixedPosition(1201.8, -784.7, 17.0, 0.0, 0.0, 0.0);
 
-    Camera.PointAtPoint(1204.4, -802.7, 15.0, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(1204.4, -802.7, 15.0, JUMP_CUT);
 
     World.ClearArea(1200.8, -799.3, 14.0, 10.0, true);
 
@@ -524,7 +525,7 @@ async function body() {
     // Shuts the door
 
     bloke_got_stuck_meat1: {
-        Audio.LoadMissionAudio('mf4_a' as any);
+        Audio.LoadMissionAudio(SfxMission.Mf4_a);
 
         while (!$.doggy_door.rotate(45.0, 5.0, false) || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -560,11 +561,11 @@ async function body() {
             }
         }
 
-        Hud.SwitchWidescreen(false /* OFF */);
+        Hud.SwitchWidescreen(OFF);
 
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
 
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
 
         Text.PrintSoon('MEA1_B6', 5000, 1); //"Take the car to the crusher to get rid of evidence, get out of the car and the crane will pick it up."
 
@@ -695,8 +696,8 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_meat_mission = 0;
     $.bankmanager_meat1.removeElegantly();
-    Streaming.MarkModelAsNoLongerNeeded(59 /* PED_B_MAN1 */);
-    Streaming.MarkModelAsNoLongerNeeded(94 /* CAR_PERENNIAL */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_B_MAN1);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_PERENNIAL);
     $.radar_blip_ped1_meat1.remove();
     $.radar_blip_car_meat1.remove();
     $.radar_blip_coord2_meat1.remove();

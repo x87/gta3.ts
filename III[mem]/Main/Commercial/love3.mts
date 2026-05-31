@@ -96,13 +96,13 @@ async function body() {
 
     Cutscene.SetOffset(85.2162, -1532.9093, 243.5422);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_love = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_love = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_love.setAnim('love2');
 
-    $.cs_ojg = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_ojg = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_ojg.setAnim('ojg2');
 
     $.cs_lovehead = CutsceneHead.Create($.cs_love, 185 /* cut_obj1 */);
@@ -114,10 +114,10 @@ async function body() {
 
     $.player.setHeading(90.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
-    World.SwitchRubbish(false /* OFF */);
+    Streaming.Switch(ON);
+    World.SwitchRubbish(OFF);
 
     Cutscene.Start();
 
@@ -156,13 +156,13 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     Text.ClearPrints();
 
@@ -172,11 +172,11 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
-    Streaming.RequestModel(141 /* PLANE_DEADDODO */);
-    Streaming.RequestModel(142 /* BOAT_SPEEDER */);
-    Streaming.RequestModel(120 /* BOAT_PREDATOR */);
+    Streaming.RequestModel(PLANE_DEADDODO);
+    Streaming.RequestModel(BOAT_SPEEDER);
+    Streaming.RequestModel(BOAT_PREDATOR);
 
     Streaming.LoadAllModelsNow();
 
@@ -184,7 +184,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -198,11 +198,11 @@ async function body() {
 
     // ******************************************END OF CUTSCENE********************************
 
-    while (!Streaming.HasModelLoaded(141 /* PLANE_DEADDODO */) || !Streaming.HasModelLoaded(142 /* BOAT_SPEEDER */) || !Streaming.HasModelLoaded(120 /* BOAT_PREDATOR */)) {
+    while (!Streaming.HasModelLoaded(PLANE_DEADDODO) || !Streaming.HasModelLoaded(BOAT_SPEEDER) || !Streaming.HasModelLoaded(BOAT_PREDATOR)) {
         await asyncWait(0);
     }
 
-    $.players_boat = Car.Create(142 /* BOAT_SPEEDER */, 837.0, -1115.6, -0.2);
+    $.players_boat = Car.Create(BOAT_SPEEDER, 837.0, -1115.6, -0.2);
     $.players_boat.setHeading(140.0);
 
     $.players_boat_blip = Blip.AddForCar($.players_boat);
@@ -235,7 +235,7 @@ async function body() {
             $.plane_timer = -1000;
         }
 
-        if ($.player.isInModel(120 /* BOAT_PREDATOR */) || $.player.isInModel(142 /* BOAT_SPEEDER */) || $.player.isInModel(143 /* BOAT_REEFER */)) {
+        if ($.player.isInModel(BOAT_PREDATOR) || $.player.isInModel(BOAT_SPEEDER) || $.player.isInModel(BOAT_REEFER)) {
             $.players_boat_blip.remove();
         }
 
@@ -246,7 +246,7 @@ async function body() {
             $.PlaneX = x;
             $.PlaneY = y;
             $.PlaneZ = z;
-            $.plane_blip = Blip.AddForCoordOld($.PlaneX, $.PlaneY, $.PlaneZ, 4, 2 /* BLIP_ONLY */);
+            $.plane_blip = Blip.AddForCoordOld($.PlaneX, $.PlaneY, $.PlaneZ, 4, BLIP_ONLY);
             $.plane_blip.changeScale(3);
             $.drug_current_timer = Clock.GetGameTimer();
             $.temporary_time_drug = $.drug_current_timer - $.last_drug_dropped_timer;
@@ -301,7 +301,7 @@ async function body() {
 
         if ($.packge_01 == 1) {
             if ($.float_packge_01.hasBeenCollected()) {
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_EVIDENCE_PICKUP);
                 if ($.counter_display_flag == 0) {
                     Hud.DisplayCounterWithString($.$id.packages_collected, 0, 'COLLECT');
                     $.counter_display_flag = 1;
@@ -315,7 +315,7 @@ async function body() {
 
         if ($.packge_02 == 1) {
             if ($.float_packge_02.hasBeenCollected()) {
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_EVIDENCE_PICKUP);
                 if ($.counter_display_flag == 0) {
                     Hud.DisplayCounterWithString($.$id.packages_collected, 0, 'COLLECT');
                     $.counter_display_flag = 1;
@@ -329,7 +329,7 @@ async function body() {
 
         if ($.packge_03 == 1) {
             if ($.float_packge_03.hasBeenCollected()) {
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_EVIDENCE_PICKUP);
                 if ($.counter_display_flag == 0) {
                     Hud.DisplayCounterWithString($.$id.packages_collected, 0, 'COLLECT');
                     $.counter_display_flag = 1;
@@ -343,7 +343,7 @@ async function body() {
 
         if ($.packge_04 == 1) {
             if ($.float_packge_04.hasBeenCollected()) {
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_EVIDENCE_PICKUP);
                 if ($.counter_display_flag == 0) {
                     Hud.DisplayCounterWithString($.$id.packages_collected, 0, 'COLLECT');
                     $.counter_display_flag = 1;
@@ -357,7 +357,7 @@ async function body() {
 
         if ($.packge_05 == 1) {
             if ($.float_packge_05.hasBeenCollected()) {
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_EVIDENCE_PICKUP);
                 if ($.counter_display_flag == 0) {
                     Hud.DisplayCounterWithString($.$id.packages_collected, 0, 'COLLECT');
                     $.counter_display_flag = 1;
@@ -371,7 +371,7 @@ async function body() {
 
         if ($.packge_06 == 1) {
             if ($.float_packge_06.hasBeenCollected()) {
-                Sound.AddOneOffSound(0.0, 0.0, 0.0, 82 /* SOUND_EVIDENCE_PICKUP */);
+                Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_EVIDENCE_PICKUP);
                 if ($.counter_display_flag == 0) {
                     Hud.DisplayCounterWithString($.$id.packages_collected, 0, 'COLLECT');
                     $.counter_display_flag = 1;
@@ -386,8 +386,8 @@ async function body() {
         if ($.packge_06 > 0) {
             if ($.police_boat_flag == 0) {
                 if (!Camera.IsPointOnScreen(560.5223, -474.0232, -0.2, 5.0)) {
-                    $.police_boat = Boat.Create(120 /* BOAT_PREDATOR */, 560.5223, -474.0232, -0.2);
-                    $.police_boat_driver = Char.CreateInsideCar($.police_boat, 4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */);
+                    $.police_boat = Boat.Create(BOAT_PREDATOR, 560.5223, -474.0232, -0.2);
+                    $.police_boat_driver = Char.CreateInsideCar($.police_boat, PEDTYPE_CIVMALE, PED_COP);
                     $.police_boat.setHeading(179.7861);
                     $.police_boat.goto($.package_6_x, $.package_6_y, 0.0);
                     $.police_boat_flag = 1;
@@ -521,7 +521,7 @@ async function body() {
     }
 
     garage_loop_l3: {
-        while (!Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+        while (!Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
             await asyncWait(0);
         }
 
@@ -529,16 +529,16 @@ async function body() {
             await asyncWait(0);
         }
 
-        $.player.setControl(false /* OFF */);
+        $.player.setControl(OFF);
 
-        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
         Game.SetAllCarsCanBeDamaged(false);
         $.player.clearWantedLevel();
 
         Camera.SetFixedPosition(81.3343, -1540.0887, 27.7976, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(81.8719, -1540.9318, 27.8039, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(81.8719, -1540.9318, 27.8039, JUMP_CUT);
 
-        Hud.SwitchWidescreen(true /* ON */);
+        Hud.SwitchWidescreen(ON);
 
         $.script_controlled_player = $.player.getChar();
 
@@ -557,7 +557,7 @@ async function body() {
     get_out_of_loop_l3: {
         $.script_controlled_player.setObjRunToCoord(98.7615, -1548.6489);
 
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
 
         World.ClearArea(87.3, -1548.6, 28.3, 2.0, false);
 
@@ -576,13 +576,13 @@ async function body() {
         $.player.setCoordinates(81.2603, -1548.9347, 27.4);
         $.player.setHeading(90.0);
         Camera.RestoreJumpcut();
-        Hud.SwitchWidescreen(false /* OFF */);
-        $.player.setControl(true /* ON */);
+        Hud.SwitchWidescreen(OFF);
+        $.player.setControl(ON);
         Camera.SetInFrontOfPlayer();
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
         Game.SetAllCarsCanBeDamaged(true);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         return; // SCM GOTO → mission_love3_passed
     }
@@ -617,7 +617,7 @@ async function onPassed() {
     Path.SwitchRoadsOn(-46.8, -648.0, 39.0, -69.1, -614.0, 50.0); //Commercial to Suburbia Bridge
 
     if ($.flag_ray_mission5_passed == 1) {
-        $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, 15 /* RADAR_SPRITE_RAY */);
+        $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, RADAR_SPRITE_RAY);
         // START_NEW_SCRIPT ray_mission6_loop
     }
 
@@ -638,8 +638,8 @@ async function cleanup() {
 
     Hud.ClearTimer($.$id.plane_timer);
     Hud.ClearCounter($.$id.packages_collected);
-    Streaming.MarkModelAsNoLongerNeeded(142 /* BOAT_SPEEDER */);
-    Streaming.MarkModelAsNoLongerNeeded(141 /* PLANE_DEADDODO */);
+    Streaming.MarkModelAsNoLongerNeeded(BOAT_SPEEDER);
+    Streaming.MarkModelAsNoLongerNeeded(PLANE_DEADDODO);
     //SET_TARGET_CAR_FOR_MISSION_GARAGE loves_garage -1
 
     $.players_boat_blip.remove();

@@ -181,11 +181,11 @@ async function body() {
     $.player.clearWantedLevel();
     $.player_4x4 = $.player.storeCarIsIn();
 
-    $.player.setControl(false /* off */);
-    Hud.SwitchWidescreen(true /* on */);
+    $.player.setControl(OFF);
+    Hud.SwitchWidescreen(ON);
 
     if (!Car.IsDead($.player_4x4)) {
-        $.player_4x4.lockDoors(2 /* CARLOCK_LOCKED */);
+        $.player_4x4.lockDoors(CARLOCK_LOCKED);
     }
 
     $.blip_1 = Blip.AddForCoord($.x_1, $.y_1, $.z_1);
@@ -213,10 +213,10 @@ async function body() {
         await asyncWait(0);
 
         if ($.flag_blip_1 == 0) {
-            Fx.DrawCorona($.x_1, $.y_1, $.z_1, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_1, $.y_1, $.z_1, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_1, $.y_1, $.z_1, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_1, $.y_1, $.z_1, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_1, $.y_1, $.z_1, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_1.remove();
                 $.flag_blip_1 = 1;
@@ -224,10 +224,10 @@ async function body() {
             }
         }
         if ($.flag_blip_2 == 0) {
-            Fx.DrawCorona($.x_2, $.y_2, $.z_2, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_2, $.y_2, $.z_2, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_2, $.y_2, $.z_2, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_2, $.y_2, $.z_2, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_2, $.y_2, $.z_2, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_2.remove();
                 $.flag_blip_2 = 1;
@@ -235,10 +235,10 @@ async function body() {
             }
         }
         if ($.flag_blip_3 == 0) {
-            Fx.DrawCorona($.x_3, $.y_3, $.z_3, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_3, $.y_3, $.z_3, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_3, $.y_3, $.z_3, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_3, $.y_3, $.z_3, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_3, $.y_3, $.z_3, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_3.remove();
                 $.flag_blip_3 = 1;
@@ -246,10 +246,10 @@ async function body() {
             }
         }
         if ($.flag_blip_4 == 0) {
-            Fx.DrawCorona($.x_4, $.y_4, $.z_4, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_4, $.y_4, $.z_4, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_4, $.y_4, $.z_4, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_4, $.y_4, $.z_4, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_4, $.y_4, $.z_4, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_4.remove();
                 $.flag_blip_4 = 1;
@@ -257,10 +257,10 @@ async function body() {
             }
         }
         if ($.flag_blip_5 == 0) {
-            Fx.DrawCorona($.x_5, $.y_5, $.z_5, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_5, $.y_5, $.z_5, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_5, $.y_5, $.z_5, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_5, $.y_5, $.z_5, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_5, $.y_5, $.z_5, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_5.remove();
                 $.flag_blip_5 = 1;
@@ -268,10 +268,10 @@ async function body() {
             }
         }
         if ($.flag_blip_6 == 0) {
-            Fx.DrawCorona($.x_6, $.y_6, $.z_6, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_6, $.y_6, $.z_6, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_6, $.y_6, $.z_6, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_6, $.y_6, $.z_6, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_6, $.y_6, $.z_6, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_6.remove();
                 $.flag_blip_6 = 1;
@@ -279,10 +279,10 @@ async function body() {
             }
         }
         if ($.flag_blip_7 == 0) {
-            Fx.DrawCorona($.x_7, $.y_7, $.z_7, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_7, $.y_7, $.z_7, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_7, $.y_7, $.z_7, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_7, $.y_7, $.z_7, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_7, $.y_7, $.z_7, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_7.remove();
                 $.flag_blip_7 = 1;
@@ -290,10 +290,10 @@ async function body() {
             }
         }
         if ($.flag_blip_8 == 0) {
-            Fx.DrawCorona($.x_8, $.y_8, $.z_8, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_8, $.y_8, $.z_8, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_8, $.y_8, $.z_8, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_8, $.y_8, $.z_8, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_8, $.y_8, $.z_8, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_8.remove();
                 $.flag_blip_8 = 1;
@@ -301,10 +301,10 @@ async function body() {
             }
         }
         if ($.flag_blip_9 == 0) {
-            Fx.DrawCorona($.x_9, $.y_9, $.z_9, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_9, $.y_9, $.z_9, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_9, $.y_9, $.z_9, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_9, $.y_9, $.z_9, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_9, $.y_9, $.z_9, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_9.remove();
                 $.flag_blip_9 = 1;
@@ -312,10 +312,10 @@ async function body() {
             }
         }
         if ($.flag_blip_10 == 0) {
-            Fx.DrawCorona($.x_10, $.y_10, $.z_10, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_10, $.y_10, $.z_10, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_10, $.y_10, $.z_10, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_10, $.y_10, $.z_10, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_10, $.y_10, $.z_10, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_10.remove();
                 $.flag_blip_10 = 1;
@@ -323,10 +323,10 @@ async function body() {
             }
         }
         if ($.flag_blip_11 == 0) {
-            Fx.DrawCorona($.x_11, $.y_11, $.z_11, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_11, $.y_11, $.z_11, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_11, $.y_11, $.z_11, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_11, $.y_11, $.z_11, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_11, $.y_11, $.z_11, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_11.remove();
                 $.flag_blip_11 = 1;
@@ -334,10 +334,10 @@ async function body() {
             }
         }
         if ($.flag_blip_12 == 0) {
-            Fx.DrawCorona($.x_12, $.y_12, $.z_12, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_12, $.y_12, $.z_12, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_12, $.y_12, $.z_12, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_12, $.y_12, $.z_12, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_12, $.y_12, $.z_12, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_12.remove();
                 $.flag_blip_12 = 1;
@@ -345,10 +345,10 @@ async function body() {
             }
         }
         if ($.flag_blip_13 == 0) {
-            Fx.DrawCorona($.x_13, $.y_13, $.z_13, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_13, $.y_13, $.z_13, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_13, $.y_13, $.z_13, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_13, $.y_13, $.z_13, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_13, $.y_13, $.z_13, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_13.remove();
                 $.flag_blip_13 = 1;
@@ -356,10 +356,10 @@ async function body() {
             }
         }
         if ($.flag_blip_14 == 0) {
-            Fx.DrawCorona($.x_14, $.y_14, $.z_14, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_14, $.y_14, $.z_14, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_14, $.y_14, $.z_14, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_14, $.y_14, $.z_14, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_14, $.y_14, $.z_14, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_14.remove();
                 $.flag_blip_14 = 1;
@@ -367,10 +367,10 @@ async function body() {
             }
         }
         if ($.flag_blip_15 == 0) {
-            Fx.DrawCorona($.x_15, $.y_15, $.z_15, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_15, $.y_15, $.z_15, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_15, $.y_15, $.z_15, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_15, $.y_15, $.z_15, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_15, $.y_15, $.z_15, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_15.remove();
                 $.flag_blip_15 = 1;
@@ -378,10 +378,10 @@ async function body() {
             }
         }
         if ($.flag_blip_16 == 0) {
-            Fx.DrawCorona($.x_16, $.y_16, $.z_16, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_16, $.y_16, $.z_16, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_16, $.y_16, $.z_16, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_16, $.y_16, $.z_16, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_16, $.y_16, $.z_16, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_16.remove();
                 $.flag_blip_16 = 1;
@@ -389,10 +389,10 @@ async function body() {
             }
         }
         if ($.flag_blip_17 == 0) {
-            Fx.DrawCorona($.x_17, $.y_17, $.z_17, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_17, $.y_17, $.z_17, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_17, $.y_17, $.z_17, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_17, $.y_17, $.z_17, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_17, $.y_17, $.z_17, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_17.remove();
                 $.flag_blip_17 = 1;
@@ -400,10 +400,10 @@ async function body() {
             }
         }
         if ($.flag_blip_18 == 0) {
-            Fx.DrawCorona($.x_18, $.y_18, $.z_18, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_18, $.y_18, $.z_18, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_18, $.y_18, $.z_18, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_18, $.y_18, $.z_18, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_18, $.y_18, $.z_18, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_18.remove();
                 $.flag_blip_18 = 1;
@@ -411,10 +411,10 @@ async function body() {
             }
         }
         if ($.flag_blip_19 == 0) {
-            Fx.DrawCorona($.x_19, $.y_19, $.z_19, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_19, $.y_19, $.z_19, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_19, $.y_19, $.z_19, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_19, $.y_19, $.z_19, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_19, $.y_19, $.z_19, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_19.remove();
                 $.flag_blip_19 = 1;
@@ -422,10 +422,10 @@ async function body() {
             }
         }
         if ($.flag_blip_20 == 0) {
-            Fx.DrawCorona($.x_20, $.y_20, $.z_20, 1.0, 5 /* CORONATYPE_HEX */, 0 /* FLARETYPE_NONE */, 0, 200, 200);
+            Fx.DrawCorona($.x_20, $.y_20, $.z_20, 1.0, CORONATYPE_HEX, FLARETYPE_NONE, 0, 200, 200);
             if ($.player.locateInCar3D($.x_20, $.y_20, $.z_20, 2.0, 2.0, 2.0, false)) {
                 ++$.counter_4x4_pickups;
-                Sound.AddOneOffSound($.x_20, $.y_20, $.z_20, 94 /* SOUND_PART_MISSION_COMPLETE */);
+                Sound.AddOneOffSound($.x_20, $.y_20, $.z_20, SOUND_PART_MISSION_COMPLETE);
                 $.timer_4x4 = $.timer_4x4 + 5000;
                 $.blip_20.remove();
                 $.flag_blip_20 = 1;
@@ -434,7 +434,7 @@ async function body() {
         }
         if ($.flag_intro_mayhem_before == 1) {
             if ($.flag_intro_jump == 0 && $.flag_intro < 5) {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+                if (Pad.IsButtonPressed(PAD1, CROSS)) {
                     $.intro_time_lapsed = 10501;
                     $.flag_intro = 4;
                     $.flag_intro_jump = 1;
@@ -445,12 +445,12 @@ async function body() {
             $.timer_intro_start = Clock.GetGameTimer();
             Camera.SetFixedPosition(281.48, -526.25, 26.4, 0.0, 0.0, 0.0);
             Audio.SetMusicDoesFade(false);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
-            Camera.PointAtPoint($.x_1, $.y_1, $.z_1, 2 /* JUMP_CUT */);
-            Camera.DoFade(1500, 1 /* FADE_IN */);
+            Camera.PointAtPoint($.x_1, $.y_1, $.z_1, JUMP_CUT);
+            Camera.DoFade(1500, FADE_IN);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
@@ -462,7 +462,7 @@ async function body() {
             $.intro_time_lapsed = $.timer_intro_now - $.timer_intro_start;
         }
         if ($.intro_time_lapsed > 3500 && $.flag_intro == 1) {
-            Camera.PointAtPoint($.x_2, $.y_2, $.z_2, 1 /* INTERPOLATION */);
+            Camera.PointAtPoint($.x_2, $.y_2, $.z_2, INTERPOLATION);
             $.flag_intro = 2;
         }
         if ($.intro_time_lapsed > 5500 && $.flag_intro == 2) {
@@ -470,23 +470,23 @@ async function body() {
             $.flag_intro = 3;
         }
         if ($.intro_time_lapsed > 7000 && $.flag_intro == 3) {
-            Camera.PointAtPoint($.x_3, $.y_3, $.z_3, 1 /* INTERPOLATION */);
+            Camera.PointAtPoint($.x_3, $.y_3, $.z_3, INTERPOLATION);
             $.flag_intro = 4;
         }
         if ($.intro_time_lapsed > 10500 && $.flag_intro == 4) {
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
             Text.ClearPrints();
             Camera.RestoreJumpcut();
-            Hud.SwitchWidescreen(false /* off */);
-            $.player.setControl(true /* on */);
+            Hud.SwitchWidescreen(OFF);
+            $.player.setControl(ON);
             $.player.alterWantedLevel($.wanted_4x4);
             if (!Car.IsDead($.player_4x4)) {
-                $.player_4x4.lockDoors(1 /* CARLOCK_UNLOCKED */);
+                $.player_4x4.lockDoors(CARLOCK_UNLOCKED);
             }
-            Camera.DoFade(1500, 1 /* FADE_IN */);
+            Camera.DoFade(1500, FADE_IN);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
@@ -499,7 +499,7 @@ async function body() {
             Text.PrintNow('TAXI2', 3000, 1);
             FAIL("mission_mayhem_failed");
         }
-        if (!$.player.isInModel(129 /* CAR_STALLION */)) {
+        if (!$.player.isInModel(CAR_STALLION)) {
             Text.PrintNow('T4X4_F', 3000, 1);
             FAIL("mission_mayhem_failed");
         }
@@ -548,10 +548,10 @@ async function onPassed() {
 
 // mission cleanup
 async function cleanup() {
-    $.player.setControl(true /* on */);
+    $.player.setControl(ON);
     Hud.ClearTimer($.$id.timer_4x4);
     Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* off */);
+    Hud.SwitchWidescreen(OFF);
 
     $.blip_1.remove();
     $.blip_2.remove();

@@ -15,7 +15,7 @@ verbose('[+] HJ script loaded');
     });
 
     // ****************************************Mission Start************************************
-    // SET_DEATHARREST_STATE(false /* OFF */);
+    // SET_DEATHARREST_STATE(OFF);
     // SCRIPT_NAME hj
 
     mission_start_hj: while (true) {
@@ -72,7 +72,7 @@ verbose('[+] HJ script loaded');
                     $.flight_time = 0;
                     $.flag_flight_hj = 0;
                     $.collision_counter = 0;
-                    if ($.car_player_is_in_hj.isModel(126 /* PLANE_DODO */)) {
+                    if ($.car_player_is_in_hj.isModel(PLANE_DODO)) {
                         dodo_flight_time: {
                             while ($.car_player_is_in_hj.isInAirProper()) {
                                 if ($.got_flight_start == 0) {

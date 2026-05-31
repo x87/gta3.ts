@@ -41,10 +41,10 @@ async function body() {
 
     await asyncWait(0);
 
-    // SET_DEATHARREST_STATE(false /* OFF */);
+    // SET_DEATHARREST_STATE(OFF);
 
-    Zone.SetPedInfo('PROJECT', 1 /* DAY */, 30, 0, 0, 0, 0, 0, 0, 800, 0); //WICHITA GARDENS
-    Zone.SetPedInfo('PROJECT', 0 /* NIGHT */, 30, 0, 0, 0, 0, 0, 0, 800, 0);
+    Zone.SetPedInfo('PROJECT', DAY, 30, 0, 0, 0, 0, 0, 0, 800, 0); //WICHITA GARDENS
+    Zone.SetPedInfo('PROJECT', NIGHT, 30, 0, 0, 0, 0, 0, 0, 800, 0);
 
     // ****************************************START OF CUTSCENE********************************
 
@@ -87,15 +87,15 @@ async function body() {
     Cutscene.Load('hd_ph1');
     Cutscene.SetOffset(-444.714, -6.321, 2.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -170,7 +170,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -188,7 +188,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ1
 
@@ -256,7 +256,7 @@ async function body() {
     $.radar_blip_coord_hm1.remove();
     $.flag_blip_on_hm1 = 0;
 
-    KillFrenzy.Start('HM1_1', 19 as any /* WEAPONTYPE_UZI_DRIVEBY */, 150000, 20, 23 /* PED_GANG_HOOD_B */, -1, -1, -1, false);
+    KillFrenzy.Start('HM1_1', 19 as any /* WEAPONTYPE_UZI_DRIVEBY */, 150000, 20, PED_GANG_HOOD_B, -1, -1, -1, false);
 
     $.frenzy_state = KillFrenzy.ReadStatus();
 
@@ -297,11 +297,11 @@ async function body() {
 // Mission hood1 failed
 async function onFailed() {
     if ($.player.hasBeenArrested()) {
-        Restart.OverridePolice(3 /* LEVEL_SUBURBAN */);
+        Restart.OverridePolice(LEVEL_SUBURBAN);
     }
 
     if ($.player.isDead()) {
-        Restart.OverrideHospital(3 /* LEVEL_SUBURBAN */);
+        Restart.OverrideHospital(LEVEL_SUBURBAN);
     }
 }
 
@@ -322,8 +322,8 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_hood_mission = 0;
     $.radar_blip_coord_hm1.remove();
-    Zone.SetPedInfo('PROJECT', 1 /* DAY */, 13, 0, 0, 0, 0, 0, 0, 300, 20); //WICHITA GARDENS
-    Zone.SetPedInfo('PROJECT', 0 /* NIGHT */, 9, 0, 0, 0, 0, 0, 0, 400, 10);
+    Zone.SetPedInfo('PROJECT', DAY, 13, 0, 0, 0, 0, 0, 0, 300, 20); //WICHITA GARDENS
+    Zone.SetPedInfo('PROJECT', NIGHT, 9, 0, 0, 0, 0, 0, 0, 400, 10);
     Mission.Finish();
 }
 

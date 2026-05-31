@@ -1,4 +1,5 @@
 // Generated from Main/Commercial/love2.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
@@ -130,23 +131,23 @@ async function body() {
 
     Cutscene.Load('d2_kk');
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.SetOffset(85.2162, -1532.9093, 243.5422);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_love = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_love = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_love.setAnim('love');
 
     //CREATE_CUTSCENE_OBJECT PED_SPECIAL2 cs_butler
     //SET_CUTSCENE_ANIM cs_butler butler
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_lovehead = CutsceneHead.Create($.cs_love, 186 /* CUT_OBJ2 */);
+    $.cs_lovehead = CutsceneHead.Create($.cs_love, CUT_OBJ2);
     $.cs_lovehead.setAnim('love');
 
     //CREATE_CUTSCENE_HEAD cs_butler CUT_OBJ3 cs_butlerhead
@@ -156,9 +157,9 @@ async function body() {
 
     $.player.setHeading(90.0);
 
-    Camera.DoFade(250, 1 /* FADE_IN */);
+    Camera.DoFade(250, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
     Cutscene.Start();
     //SWITCH_STREAMING OFF
@@ -236,7 +237,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -250,13 +251,13 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //WHILE GET_FADING_STATUS
     // WAIT 0
@@ -265,8 +266,8 @@ async function body() {
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ3
 
     Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */);
@@ -274,7 +275,7 @@ async function body() {
 
     //SWITCH_STREAMING ON
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     // ******************************************END OF CUTSCENE********************************
 
     /*
@@ -370,27 +371,27 @@ async function body() {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(16 /* PED_GANG_YAKUZA_A */);
-    while (!Streaming.HasModelLoaded(16 /* PED_GANG_YAKUZA_A */)) {
+    Streaming.RequestModel(PED_GANG_YAKUZA_A);
+    while (!Streaming.HasModelLoaded(PED_GANG_YAKUZA_A)) {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(17 /* PED_GANG_YAKUZA_B */);
-    while (!Streaming.HasModelLoaded(17 /* PED_GANG_YAKUZA_B */)) {
+    Streaming.RequestModel(PED_GANG_YAKUZA_B);
+    while (!Streaming.HasModelLoaded(PED_GANG_YAKUZA_B)) {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(136 /* CAR_YAKUZA */);
-    while (!Streaming.HasModelLoaded(136 /* CAR_YAKUZA */)) {
+    Streaming.RequestModel(CAR_YAKUZA);
+    while (!Streaming.HasModelLoaded(CAR_YAKUZA)) {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(99 /* CAR_STRETCH */);
-    while (!Streaming.HasModelLoaded(99 /* CAR_STRETCH */)) {
+    Streaming.RequestModel(CAR_STRETCH);
+    while (!Streaming.HasModelLoaded(CAR_STRETCH)) {
         await asyncWait(0);
     }
 
-    Audio.LoadMissionAudio('lo2_a' as any);
+    Audio.LoadMissionAudio(SfxMission.Lo2_a);
 
     /*
     REQUEST_MODEL CAR_COLUMB//test stuff
@@ -412,17 +413,17 @@ async function body() {
             case 'while_loop_1': {
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if ($.player.isInModel(CAR_COLUMB) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 3;
                         next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
                         continue state_machine;
                     }
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if ($.player.isInModel(CAR_COLUMB) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 1;
                         next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if (!$.player.isInModel(CAR_COLUMB) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 2;
                         next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
                         continue state_machine;
@@ -440,17 +441,17 @@ async function body() {
             case 'while_loop_2': {
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if ($.player.isInModel(CAR_COLUMB) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 3;
                         next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if (!$.player.isInModel(CAR_COLUMB) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 0;
                         next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if (!$.player.isInModel(CAR_COLUMB) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 2;
                         next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
                         continue state_machine;
@@ -477,17 +478,17 @@ async function body() {
 
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if ($.player.isInModel(CAR_COLUMB) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 3;
                         next_state = 'while_loop_4'; // SCM GOTO → while_loop_4
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if (!$.player.isInModel(CAR_COLUMB) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 0;
                         next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
                         continue state_machine;
                     }
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if ($.player.isInModel(CAR_COLUMB) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 1;
                         next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
                         continue state_machine;
@@ -509,7 +510,7 @@ async function body() {
                         FAIL("mission_love2_failed");
                     }
                     if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)) {
-                        if (!$.player.isInModel(138 /* CAR_COLUMB */)) {
+                        if (!$.player.isInModel(CAR_COLUMB)) {
                             Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
                             if ($.flag_yak_created_love2 == 1) {
                                 if (!Char.IsDead($.kenji) && !Car.IsDead($.kenji_car_love2)) {
@@ -540,7 +541,7 @@ async function body() {
 
                 while ($.flag_kenji_dead == 0) {
                     await asyncWait(0);
-                    if ($.player.isInModel(138 /* CAR_COLUMB */)) {
+                    if ($.player.isInModel(CAR_COLUMB)) {
                         $.player_car = $.player.storeCarIsIn();
                         $.player_car.setStrong(true);
                     }
@@ -576,7 +577,7 @@ async function body() {
                         FAIL("mission_love2_failed");
                     }
                     if ($.player.isInArea3D($.carpark_minx, $.carpark_miny, 35.0, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)) {
-                        if (!$.player.isInModel(138 /* CAR_COLUMB */)) {
+                        if (!$.player.isInModel(CAR_COLUMB)) {
                             Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
                             if ($.flag_yak_created_love2 == 1) {
                                 if (!Char.IsDead($.kenji) && !Car.IsDead($.kenji_car_love2)) {
@@ -590,7 +591,7 @@ async function body() {
                             }
                         }
                     }
-                    if ($.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if ($.player.isInModel(CAR_COLUMB) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         if (!Char.IsDead($.yak_7_love2)) {
                             $.yak_7_love2.setObjNoObj();
                         }
@@ -602,18 +603,18 @@ async function body() {
                         next_state = 'while_loop_2'; // SCM GOTO → while_loop_2
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if (!$.player.isInModel(CAR_COLUMB) && !$.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 0;
                         next_state = 'while_loop_1'; // SCM GOTO → while_loop_1
                         continue state_machine;
                     }
-                    if (!$.player.isInModel(138 /* CAR_COLUMB */) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
+                    if (!$.player.isInModel(CAR_COLUMB) && $.player.isInArea2D($.carpark_minx, $.carpark_miny, $.carpark_maxx, $.carpark_maxy, false)) {
                         $.flag_message = 2;
                         next_state = 'while_loop_3'; // SCM GOTO → while_loop_3
                         continue state_machine;
                     }
 
-                    if ($.flag_yak_created_love2 == 1 && $.flag_kenji_cut == 0 && $.player.isInModel(138 /* CAR_COLUMB */)) {
+                    if ($.flag_yak_created_love2 == 1 && $.flag_kenji_cut == 0 && $.player.isInModel(CAR_COLUMB)) {
                         if ($.player.isInArea3D(317.2, -603.5, 33.0, 332.0, -593.1, 35.0, false)) {
                             $.flag_kenji_cut = 1;
                             await kenji_cut(); // SCM GOSUB kenji_cut
@@ -651,21 +652,21 @@ async function body() {
                         FAIL("mission_love2_failed");
                     }
                     if (
-                        !$.player.isInModel(138 /* CAR_COLUMB */) &&
+                        !$.player.isInModel(CAR_COLUMB) &&
                         $.player.isInArea3D($.carpark_minx, $.carpark_miny, $.carpark_minz, $.carpark_maxx, $.carpark_maxy, $.carpark_maxz, false)
                     ) {
                         Text.PrintNow('LOVE2_4', 3000, 1); //The Yakuza have identified you!
                         FAIL("mission_love2_failed");
                     }
-                    if (!$.player.isInZone('COM_EAS') && $.player.isInModel(138 /* CAR_COLUMB */) && $.flag_kenji_dead == 2) {
+                    if (!$.player.isInZone('COM_EAS') && $.player.isInModel(CAR_COLUMB) && $.flag_kenji_dead == 2) {
                         Text.PrintNow('LOVE2_7', 3000, 1); //Now dump the car!
                         $.flag_kenji_dead = 3;
                     }
-                    if ($.player.isInZone('COM_EAS') && !$.player.isInModel(138 /* CAR_COLUMB */) && $.flag_kenji_dead == 2) {
+                    if ($.player.isInZone('COM_EAS') && !$.player.isInModel(CAR_COLUMB) && $.flag_kenji_dead == 2) {
                         Text.PrintNow('LOVE2_8', 3000, 1); //Now get out of Newport!
                         $.flag_kenji_dead = 3;
                     }
-                    if (!$.player.isInZone('COM_EAS') && !$.player.isInModel(138 /* CAR_COLUMB */)) {
+                    if (!$.player.isInZone('COM_EAS') && !$.player.isInModel(CAR_COLUMB)) {
                         $.flag_player_clear = 1;
                     }
                 }
@@ -708,16 +709,16 @@ async function cleanup() {
     Streaming.UnloadSpecialCharacter(1);
 
     Camera.RestoreJumpcut();
-    $.player.setControl(true /* on */);
-    Hud.SwitchWidescreen(false /* off */);
+    $.player.setControl(ON);
+    Hud.SwitchWidescreen(OFF);
 
     ONMISSION = false;
     $.flag_player_on_love_mission = 0;
 
-    Streaming.MarkModelAsNoLongerNeeded(16 /* PED_GANG_YAKUZA_A */);
-    Streaming.MarkModelAsNoLongerNeeded(17 /* PED_GANG_YAKUZA_B */);
-    Streaming.MarkModelAsNoLongerNeeded(99 /* CAR_STRETCH */);
-    Streaming.MarkModelAsNoLongerNeeded(136 /* CAR_YAKUZA */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_B);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_STRETCH);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_YAKUZA);
 
     Mission.Finish();
 }
@@ -764,78 +765,78 @@ async function player_wanted_love2() {
 //+++++++++++++++++++++++++++CREATE PEDS GOSUB++++++++++++++++++++++++++++++++++++++++++++
 async function create_yakuza() {
     if ($.flag_yak_created_love2 == 0) {
-        $.kenji_car_love2 = Car.Create(136 /* CAR_YAKUZA */, 302.0, -550.0, 37.0);
+        $.kenji_car_love2 = Car.Create(CAR_YAKUZA, 302.0, -550.0, 37.0);
         $.kenji_car_love2.setHeading(90.0);
         $.kenji_car_love2.setIdle();
         $.kenji_car_love2.setOnlyDamagedByPlayer(false);
-        $.yak_car_1_love2 = Car.Create(99 /* CAR_STRETCH */, 291.4, -547.0, 37.0);
+        $.yak_car_1_love2 = Car.Create(CAR_STRETCH, 291.4, -547.0, 37.0);
         $.yak_car_1_love2.setHeading(320.0);
         $.yak_car_1_love2.setIdle();
         $.yak_car_1_love2.setOnlyDamagedByPlayer(false);
-        $.yak_car_2_love2 = Car.Create(136 /* CAR_YAKUZA */, 294.6, -558.0, 37.0);
+        $.yak_car_2_love2 = Car.Create(CAR_YAKUZA, 294.6, -558.0, 37.0);
         $.yak_car_2_love2.setHeading(96.0);
         $.yak_car_2_love2.setIdle();
         $.yak_car_2_love2.setOnlyDamagedByPlayer(false);
-        $.yak_car_1_love2 = Car.Create(99 /* CAR_STRETCH */, 299.4, -540.0, 37.0);
+        $.yak_car_1_love2 = Car.Create(CAR_STRETCH, 299.4, -540.0, 37.0);
         $.yak_car_1_love2.setHeading(296.0);
         $.yak_car_1_love2.setIdle();
         $.yak_car_1_love2.setOnlyDamagedByPlayer(false);
-        $.yak_1_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 286.4, -543.5, 37.0);
+        $.yak_1_love2 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_A, 286.4, -543.5, 37.0);
         $.yak_1_love2.setHeading(180.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_1_love2 267.7 -592.0 306.0 -480.0
 
-        $.yak_2_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 17 /* PED_GANG_YAKUZA_B */, 304.5, -544.3, 37.0);
+        $.yak_2_love2 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_B, 304.5, -544.3, 37.0);
         $.yak_2_love2.setHeading(40.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_2_love2 MinX MinY MaxX MaxY
         $.yak_2_love2.addArmor(100);
-        $.yak_3_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 299.25, -534.0, 37.0);
+        $.yak_3_love2 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_A, 299.25, -534.0, 37.0);
         $.yak_3_love2.setHeading(20.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_3_love2 MinX MinY MaxX MaxY
 
-        $.yak_4_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 17 /* PED_GANG_YAKUZA_B */, 295.0, -562.0, 37.0);
+        $.yak_4_love2 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_B, 295.0, -562.0, 37.0);
         $.yak_4_love2.setHeading(180.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
 
-        $.yak_5_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 16 /* PED_GANG_YAKUZA_A */, 295.0, -544.0, 37.0);
+        $.yak_5_love2 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_A, 295.0, -544.0, 37.0);
         $.yak_5_love2.setHeading(15.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_5_love2 267.7 -592.0 306.0 -480.0
         $.yak_5_love2.addArmor(100);
-        $.yak_6_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 17 /* PED_GANG_YAKUZA_B */, 300.0, -556.0, 37.0);
+        $.yak_6_love2 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_B, 300.0, -556.0, 37.0);
         $.yak_6_love2.setHeading(160.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
 
-        $.yak_7_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 17 /* PED_GANG_YAKUZA_B */, 301.0, -516.0, 37.0);
+        $.yak_7_love2 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_B, 301.0, -516.0, 37.0);
         $.yak_7_love2.setHeading(45.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
 
-        $.yak_8_love2 = Char.Create(10 /* PEDTYPE_GANG_YAKUZA */, 17 /* PED_GANG_YAKUZA_B */, 273.0, -570.0, 37.0);
+        $.yak_8_love2 = Char.Create(PEDTYPE_GANG_YAKUZA, PED_GANG_YAKUZA_B, 273.0, -570.0, 37.0);
         $.yak_8_love2.setHeading(260.0);
         //SET_CHAR_OBJ_GUARD_AREA yak_4_love2 MinX MinY MaxX MaxY
 
-        $.yak_1_love2.giveWeapon(6 /* WEAPONTYPE_M16 */, 80);
-        $.yak_2_love2.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
-        $.yak_3_love2.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+        $.yak_1_love2.giveWeapon(WEAPONTYPE_M16, 80);
+        $.yak_2_love2.giveWeapon(WEAPONTYPE_UZI, 60);
+        $.yak_3_love2.giveWeapon(WEAPONTYPE_UZI, 60);
         $.yak_3_love2.setAccuracy(40);
-        $.yak_4_love2.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+        $.yak_4_love2.giveWeapon(WEAPONTYPE_UZI, 60);
         $.yak_4_love2.setAccuracy(40);
-        $.yak_5_love2.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+        $.yak_5_love2.giveWeapon(WEAPONTYPE_UZI, 60);
         $.yak_5_love2.setAccuracy(40);
-        $.yak_6_love2.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
-        $.yak_7_love2.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 25);
-        $.yak_8_love2.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+        $.yak_6_love2.giveWeapon(WEAPONTYPE_UZI, 60);
+        $.yak_7_love2.giveWeapon(WEAPONTYPE_SHOTGUN, 25);
+        $.yak_8_love2.giveWeapon(WEAPONTYPE_UZI, 60);
         $.yak_8_love2.setAccuracy(40);
-        $.yak_1_love2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.yak_2_love2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.yak_3_love2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.yak_4_love2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.yak_5_love2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.yak_6_love2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.yak_7_love2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.yak_8_love2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.kenji = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 304.2, -543.1, 36.3);
+        $.yak_1_love2.setThreatSearch(THREAT_PLAYER1);
+        $.yak_2_love2.setThreatSearch(THREAT_PLAYER1);
+        $.yak_3_love2.setThreatSearch(THREAT_PLAYER1);
+        $.yak_4_love2.setThreatSearch(THREAT_PLAYER1);
+        $.yak_5_love2.setThreatSearch(THREAT_PLAYER1);
+        $.yak_6_love2.setThreatSearch(THREAT_PLAYER1);
+        $.yak_7_love2.setThreatSearch(THREAT_PLAYER1);
+        $.yak_8_love2.setThreatSearch(THREAT_PLAYER1);
+        $.kenji = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL1, 304.2, -543.1, 36.3);
         $.kenji.setHeading(140.0);
-        $.kenji.setThreatSearch(1 /* THREAT_PLAYER1 */);
-        $.kenji.giveWeapon(3 /* WEAPONTYPE_UZI */, 60);
+        $.kenji.setThreatSearch(THREAT_PLAYER1);
+        $.kenji.giveWeapon(WEAPONTYPE_UZI, 60);
         $.kenji.addArmor(100);
         $.blip_kenji_love2 = Blip.AddForChar($.kenji);
         $.kenji.setStayInSamePlace(true);
@@ -880,11 +881,11 @@ async function yak_death_count() {
 
 async function kenji_cut() {
     if ($.flag_kenji_cut == 1) {
-        $.player.applyBrakesToCar(true /* On */);
-        Hud.SwitchWidescreen(true /* on */);
-        $.player.setControl(false /* off */);
+        $.player.applyBrakesToCar(ON);
+        Hud.SwitchWidescreen(ON);
+        $.player.setControl(OFF);
         Camera.SetFixedPosition(303.11, -542.44, 37.1, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(303.67, -543.36, 36.92, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(303.67, -543.36, 36.92, JUMP_CUT);
         $.timer_kenji_cut_start = Clock.GetGameTimer();
         $.timer_kenji_cut_dif = $.timer_kenji_cut_start - $.timer_kenji_cut_start;
         while ($.timer_kenji_cut_dif < 7500) {
@@ -895,8 +896,8 @@ async function kenji_cut() {
             if ($.timer_kenji_cut_dif > 1000 && $.flag_kenji_look == 0) {
                 if (!Char.IsDead($.kenji) && !Char.IsDead($.yak_2_love2)) {
                     //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_3_love2
-                    $.kenji.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 4000);
-                    $.yak_2_love2.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 4000);
+                    $.kenji.setWaitState(WAITSTATE_CROSS_ROAD_LOOK, 4000);
+                    $.yak_2_love2.setWaitState(WAITSTATE_PLAYANIM_CHAT, 4000);
                     $.flag_kenji_look = 1;
                 }
             }
@@ -905,28 +906,28 @@ async function kenji_cut() {
                 STOP_CHAR_LOOKING kenji
                 ENDIF*/
                 if (!Char.IsDead($.yak_3_love2)) {
-                    Camera.PointAtChar($.yak_3_love2, 15 /* FIXED */, 1 /* INTERPOLATION */);
+                    Camera.PointAtChar($.yak_3_love2, FIXED, INTERPOLATION);
                 }
                 $.flag_kenji_cut = 3;
             }
             if ($.timer_kenji_cut_dif > 5000 && $.flag_kenji_cut == 3) {
                 if (!Char.IsDead($.yak_1_love2)) {
-                    Camera.PointAtChar($.yak_1_love2, 15 /* FIXED */, 1 /* INTERPOLATION */);
+                    Camera.PointAtChar($.yak_1_love2, FIXED, INTERPOLATION);
                     $.flag_kenji_cut = 4;
                 }
             }
         }
         Camera.RestoreJumpcut();
-        $.player.setControl(true /* on */);
-        Hud.SwitchWidescreen(false /* off */);
+        $.player.setControl(ON);
+        Hud.SwitchWidescreen(OFF);
     }
 
     if ($.flag_kenji_cut == 2) {
-        $.player.applyBrakesToCar(true /* On */);
-        Hud.SwitchWidescreen(true /* on */);
-        $.player.setControl(false /* off */);
+        $.player.applyBrakesToCar(ON);
+        Hud.SwitchWidescreen(ON);
+        $.player.setControl(OFF);
         Camera.SetFixedPosition(303.32, -544.7, 37.09, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(303.83, -543.85, 36.96, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(303.83, -543.85, 36.96, JUMP_CUT);
         $.timer_kenji_cut_start = Clock.GetGameTimer();
         $.timer_kenji_cut_dif = $.timer_kenji_cut_start - $.timer_kenji_cut_start;
         while ($.timer_kenji_cut_dif < 7500) {
@@ -937,8 +938,8 @@ async function kenji_cut() {
             if ($.timer_kenji_cut_dif > 1000 && $.flag_kenji_look == 0) {
                 if (!Char.IsDead($.kenji) && !Char.IsDead($.yak_2_love2)) {
                     //CHAR_LOOK_AT_CHAR_ALWAYS kenji yak_1_love2
-                    $.kenji.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 4000);
-                    $.yak_2_love2.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 4000);
+                    $.kenji.setWaitState(WAITSTATE_CROSS_ROAD_LOOK, 4000);
+                    $.yak_2_love2.setWaitState(WAITSTATE_PLAYANIM_CHAT, 4000);
                     $.flag_kenji_look = 1;
                 }
             }
@@ -947,20 +948,20 @@ async function kenji_cut() {
                 STOP_CHAR_LOOKING kenji
                 ENDIF*/
                 if (!Char.IsDead($.yak_1_love2)) {
-                    Camera.PointAtChar($.yak_1_love2, 15 /* FIXED */, 1 /* INTERPOLATION */);
+                    Camera.PointAtChar($.yak_1_love2, FIXED, INTERPOLATION);
                 }
                 $.flag_kenji_cut = 3;
             }
             if ($.timer_kenji_cut_dif > 5000 && $.flag_kenji_cut == 3) {
                 if (!Char.IsDead($.yak_4_love2)) {
-                    Camera.PointAtChar($.yak_4_love2, 15 /* FIXED */, 1 /* INTERPOLATION */);
+                    Camera.PointAtChar($.yak_4_love2, FIXED, INTERPOLATION);
                     $.flag_kenji_cut = 4;
                 }
             }
         }
         Camera.RestoreJumpcut();
-        $.player.setControl(true /* on */);
-        Hud.SwitchWidescreen(false /* off */);
+        $.player.setControl(ON);
+        Hud.SwitchWidescreen(OFF);
     }
 }
 

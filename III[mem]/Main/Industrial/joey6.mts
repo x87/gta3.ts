@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/joey6.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 
@@ -51,7 +52,7 @@ async function body() {
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'JOEYH');
     Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
     Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'TROLL');
-    Streaming.RequestModel(129 /* CAR_STALLION */);
+    Streaming.RequestModel(CAR_STALLION);
     Streaming.RequestModel(939 /* jogarageext */);
     Streaming.RequestModel(1074 /* jogarageint */);
 
@@ -70,29 +71,29 @@ async function body() {
         await asyncWait(0);
     }
 
-    while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */) || !Streaming.HasModelLoaded(129 /* CAR_STALLION */)) {
+    while (!Streaming.HasModelLoaded(939 /* jogarageext */) || !Streaming.HasModelLoaded(1074 /* jogarageint */) || !Streaming.HasModelLoaded(CAR_STALLION)) {
         await asyncWait(0);
     }
 
     Cutscene.Load('J6_TBJ');
     Cutscene.SetOffset(1190.079, -869.861, 13.977);
 
-    $.cut_car3_lm3 = Car.Create(129 /* CAR_STALLION */, 1192.9, -860.8, 14.0);
+    $.cut_car3_lm3 = Car.Create(CAR_STALLION, 1192.9, -860.8, 14.0);
     $.cut_car3_lm3.setHeading(150.0);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_joey = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_joey = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_joey.setAnim('joey');
 
-    $.cs_joeyhead = CutsceneHead.Create($.cs_joey, 185 /* CUT_OBJ1 */);
+    $.cs_joeyhead = CutsceneHead.Create($.cs_joey, CUT_OBJ1);
     $.cs_joeyhead.setAnim('joey');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ2);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_troll = CutsceneObject.Create(187 /* CUT_OBJ3 */);
+    $.cs_troll = CutsceneObject.Create(CUT_OBJ3);
     $.cs_troll.setAnim('TROLL');
 
     World.ClearArea(1191.9, -870.4, 15.0, 1.0, true);
@@ -100,10 +101,10 @@ async function body() {
 
     $.player.setHeading(230.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -150,7 +151,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -162,19 +163,19 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
-    Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_STALLION);
     Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */);
     Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */);
 
@@ -193,7 +194,7 @@ async function body() {
     // START OF MISSION
 
     $.blip1_jm6 = Blip.AddForCoord(1086.0, -227.0, -100.0);
-    $.blip1_jm6.changeDisplay(2 /* BLIP_ONLY */);
+    $.blip1_jm6.changeDisplay(BLIP_ONLY);
 
     $.flag_displayed_horn_message_jm6 = 0;
     $.flag_displayed_wanted_message_jm6 = 0;
@@ -256,7 +257,7 @@ async function body() {
             continue pick_up_thugs; // SCM GOTO → pick_up_thugs
         }
 
-        if ($.player.isInModel(127 /* CAR_COACH */) || $.player.isInModel(121 /* CAR_BUS */)) {
+        if ($.player.isInModel(CAR_COACH) || $.player.isInModel(CAR_BUS)) {
             Text.PrintNow('JM6_6', 5000, 1); //Go and get a vehicle less conspicuous
             $.flag_not_enough_seats = 1;
             continue pick_up_thugs; // SCM GOTO → pick_up_thugs
@@ -267,50 +268,50 @@ async function body() {
         World.ClearArea(1087.7, -229.2, 8.0, 6.0, true);
 
         if (!Car.IsDead($.any_car_jm6)) {
-            $.any_car_jm6.lockDoors(4 /* CARLOCK_LOCKED_PLAYER_INSIDE */);
+            $.any_car_jm6.lockDoors(CARLOCK_LOCKED_PLAYER_INSIDE);
         }
 
         await asyncWait(500);
 
-        $.player.setControl(false /* OFF */);
-        Hud.SwitchWidescreen(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        $.player.setControl(OFF);
+        Hud.SwitchWidescreen(ON);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
 
         if (!Car.IsDead($.any_car_jm6)) {
-            $.any_car_jm6.lockDoors(1 /* CARLOCK_UNLOCKED */);
+            $.any_car_jm6.lockDoors(CARLOCK_UNLOCKED);
         }
 
         $.blip1_jm6.remove();
 
-        $.thug1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1086.5, -238.3, 9.0);
+        $.thug1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 1086.5, -238.3, 9.0);
         $.thug1.turnToFacePlayer($.player);
         $.thug1.setIdle();
 
-        $.thug2 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1088.4, -237.9, 9.0);
+        $.thug2 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 1088.4, -237.9, 9.0);
         $.thug2.turnToFacePlayer($.player);
         $.thug2.setIdle();
 
-        $.thug3 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1090.4, -238.0, 9.0);
+        $.thug3 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 1090.4, -238.0, 9.0);
         $.thug3.turnToFacePlayer($.player);
         $.thug3.setIdle();
 
-        $.thug1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 100);
-        $.thug2.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 50);
-        $.thug3.giveWeapon(3 /* WEAPONTYPE_UZI */, 100);
+        $.thug1.giveWeapon(WEAPONTYPE_PISTOL, 100);
+        $.thug2.giveWeapon(WEAPONTYPE_SHOTGUN, 50);
+        $.thug3.giveWeapon(WEAPONTYPE_UZI, 100);
 
         Camera.SetFixedPosition(1078.773, -232.474, 12.19, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1079.691, -232.132, 11.99, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(1079.691, -232.132, 11.99, JUMP_CUT);
 
         //APPLY_BRAKES_TO_PLAYERS_CAR Player On
 
-        $.thug1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.thug2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.thug3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+        $.thug1.setPersonality(PEDSTAT_TOUGH_GUY);
+        $.thug2.setPersonality(PEDSTAT_TOUGH_GUY);
+        $.thug3.setPersonality(PEDSTAT_TOUGH_GUY);
 
-        $.thug1.setThreatSearch(64 /* THREAT_COP */);
-        $.thug2.setThreatSearch(64 /* THREAT_COP */);
-        $.thug3.setThreatSearch(64 /* THREAT_COP */);
+        $.thug1.setThreatSearch(THREAT_COP);
+        $.thug2.setThreatSearch(THREAT_COP);
+        $.thug3.setThreatSearch(THREAT_COP);
 
         await asyncWait(1000);
 
@@ -376,7 +377,7 @@ async function body() {
     next_robber_bit: {
         //SAMPLE1*********************************************************
 
-        Audio.LoadMissionAudio('j6_a' as any);
+        Audio.LoadMissionAudio(SfxMission.J6_a);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -385,11 +386,11 @@ async function body() {
         Audio.PlayMissionAudio();
 
         Camera.RestoreJumpcut();
-        $.player.applyBrakesToCar(false /* OFF */);
-        $.player.setControl(true /* ON */);
-        Hud.SwitchWidescreen(false /* OFF */);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+        $.player.applyBrakesToCar(OFF);
+        $.player.setControl(ON);
+        Hud.SwitchWidescreen(OFF);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
 
         //END OF PICK UP THUGS CUT_SCENE*******************************************************************************
 
@@ -505,7 +506,7 @@ async function body() {
             }
         }
 
-        if ($.player.isInModel(127 /* CAR_COACH */) || $.player.isInModel(121 /* CAR_BUS */)) {
+        if ($.player.isInModel(CAR_COACH) || $.player.isInModel(CAR_BUS)) {
             Text.PrintNow('JM6_6', 5000, 1); //Go and get a vehicle less conspicuous
             //WAIT 3000
             continue get_to_the_bank; // SCM GOTO → get_to_the_bank
@@ -527,20 +528,20 @@ async function body() {
         World.ClearArea(1037.3, -699.6, 15.0, 6.0, true);
         World.SetPedDensityMultiplier(0.0);
 
-        $.player.setControl(false /* OFF */);
-        Hud.SwitchWidescreen(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* On */);
-        $.player.applyBrakesToCar(true /* ON */);
+        $.player.setControl(OFF);
+        Hud.SwitchWidescreen(ON);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
+        $.player.applyBrakesToCar(ON);
 
         Camera.SetFixedPosition(1036.448, -705.615, 14.512, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1036.637, -704.639, 14.624, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(1036.637, -704.639, 14.624, JUMP_CUT);
 
         $.blip3_jm6.remove();
 
         //SAMPLE2*********************************************************
 
-        Audio.LoadMissionAudio('j6_b' as any);
+        Audio.LoadMissionAudio(SfxMission.J6_b);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -799,7 +800,7 @@ async function body() {
             }
         }
 
-        Audio.LoadMissionAudio('j6_1' as any);
+        Audio.LoadMissionAudio(SfxMission.J6_1);
 
         const _res277 = $.bankdoor1.getCoordinates();
         $.bankdoor_X = _res277.x;
@@ -938,12 +939,12 @@ async function body() {
             }
         }
 
-        $.joey_alarm_loop = Sound.AddContinuous(1034.8, -700.1, 15.0, 69 /* SOUND_BANK_ALARM_LOOP_L */);
+        $.joey_alarm_loop = Sound.AddContinuous(1034.8, -700.1, 15.0, SOUND_BANK_ALARM_LOOP_L);
         $.sound_already_created_before = 1;
 
         //SAMPLE3*********************************************************
 
-        Audio.LoadMissionAudio('j6_d' as any);
+        Audio.LoadMissionAudio(SfxMission.J6_d);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -981,12 +982,12 @@ async function body() {
         $.objective_count_done_before2 = 0;
         $.objective_count_done_before3 = 0;
 
-        $.player.setControl(true /* ON */);
-        Hud.SwitchWidescreen(false /* OFF */);
+        $.player.setControl(ON);
+        Hud.SwitchWidescreen(OFF);
         Camera.RestoreJumpcut();
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-        $.player.applyBrakesToCar(false /* Off */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
+        $.player.applyBrakesToCar(OFF);
         World.SetPedDensityMultiplier(1.0);
 
         TIMERB = 0;
@@ -1060,11 +1061,11 @@ async function body() {
         //END OF BANK ROBBERY CUT SCENE********************************************************************************
 
         $.blip2_jm6 = Blip.AddForCoord(1086.0, -227.0, -100.0);
-        $.blip2_jm6.changeDisplay(2 /* BLIP_ONLY */);
+        $.blip2_jm6.changeDisplay(BLIP_ONLY);
 
         //SAMPLE4*********************************************************
 
-        Audio.LoadMissionAudio('j6_c' as any);
+        Audio.LoadMissionAudio(SfxMission.J6_c);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -1187,16 +1188,16 @@ async function body() {
 
         World.ClearArea(1087.7, -229.2, 8.0, 6.0, true);
 
-        $.player.setControl(false /* Off */);
-        Hud.SwitchWidescreen(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, true /* On */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* On */);
+        $.player.setControl(OFF);
+        Hud.SwitchWidescreen(ON);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
 
         Camera.SetFixedPosition(1098.781, -228.929, 16.723, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1098.005, -229.116, 16.12, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(1098.005, -229.116, 16.12, JUMP_CUT);
 
         if (!Car.IsDead($.any_car_jm6)) {
-            $.player.applyBrakesToCar(true /* On */);
+            $.player.applyBrakesToCar(ON);
             if (!Char.IsDead($.thug1)) {
                 $.thug1.leaveGroup();
                 if ($.thug1.isInAnyCar()) {
@@ -1399,12 +1400,12 @@ async function body() {
             await asyncWait(0);
         }
 
-        $.player.setControl(true /* ON */);
-        Hud.SwitchWidescreen(false /* OFF */);
+        $.player.setControl(ON);
+        Hud.SwitchWidescreen(OFF);
         Camera.RestoreJumpcut();
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
-        $.player.applyBrakesToCar(false /* Off */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
+        $.player.applyBrakesToCar(OFF);
 
         //THUGS GO BACK INTO SAFEHOUSE CUT_SCENE***********************************************************************
 

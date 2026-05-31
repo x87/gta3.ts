@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/8ball.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
@@ -146,7 +147,7 @@ async function body() {
 
         Stat.RegisterMissionGiven();
 
-        Weather.ForceNow(1 /* WEATHER_CLOUDY */);
+        Weather.ForceNow(WEATHER_CLOUDY);
 
         Clock.SetTimeOfDay(4, 0);
 
@@ -218,7 +219,7 @@ async function body() {
         $.flag_timer_stopped_flashing_8ball = 0;
 
         if ($.flag_reached_hideout == 0) {
-            Streaming.RequestModel(111 /* CAR_KURUMA */);
+            Streaming.RequestModel(CAR_KURUMA);
             Streaming.LoadSpecialCharacter(1, 'eight');
             Streaming.LoadAllModelsNow();
             $.car_8ball_x = 0.0;
@@ -238,15 +239,15 @@ async function body() {
 
             $.player.setHeading(180.0);
 
-            $.car_eightball = Car.Create(111 /* CAR_KURUMA */, 812.0131, -945.5528, 35.7889); // new Aaron position
+            $.car_eightball = Car.Create(CAR_KURUMA, 812.0131, -945.5528, 35.7889); // new Aaron position
 
             $.car_eightball.changeColor(58, 1);
 
             $.car_eightball.setHeading(262.3871);
 
-            $.eightball = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 811.9, -942.47, -100.0); // New Aaron position
+            $.eightball = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL1, 811.9, -942.47, -100.0); // New Aaron position
 
-            $.eightball.setAnimGroup(9 /* ANIM_GANG2_PED */);
+            $.eightball.setAnimGroup(ANIM_GANG2_PED);
 
             $.eightball.clearThreatSearch();
 
@@ -258,9 +259,9 @@ async function body() {
 
             $.playersdoor.setHeading(0.0);
 
-            Hud.SwitchWidescreen(true /* ON */);
+            Hud.SwitchWidescreen(ON);
 
-            $.player.setControl(false /* OFF */);
+            $.player.setControl(OFF);
 
             Fx.AddParticleEffect(4, 791.661, -936.916, 38.313, false); //SMOKE ON CARS
             Fx.AddParticleEffect(4, 788.337, -938.467, 38.073, false);
@@ -272,19 +273,19 @@ async function body() {
 
             $.fire_sound_8ball.remove();
 
-            $.fire_sound_8ball = Sound.AddContinuous(790.537, -935.67, 38.005, 102 /* SOUND_PRETEND_FIRE_LOOP */);
+            $.fire_sound_8ball = Sound.AddContinuous(790.537, -935.67, 38.005, SOUND_PRETEND_FIRE_LOOP);
 
-            Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+            Game.SetPoliceIgnorePlayer($.player, ON);
 
             Camera.SetFixedPosition(785.0, -936.77, 39.75, 0.0, 0.0, 0.0); // New position
 
             Camera.PointAtChar($.eightball, 15 /* fixed */, 2 /* jump_cut */);
 
-            Audio.LoadMissionAudio('lib_a1' as any);
+            Audio.LoadMissionAudio(SfxMission.Lib_a1);
 
             Camera.SetFadingColor(0, 0, 0);
 
-            Camera.DoFade(1000, 1 /* FADE_IN */);
+            Camera.DoFade(1000, FADE_IN);
 
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
@@ -338,7 +339,7 @@ async function body() {
 
             Camera.SetFixedPosition(804.5746, -933.048, 39.9828, 0.0, 0.0, 0.0);
 
-            Camera.PointAtPoint(805.1921, -933.7454, 39.6193, 2 /* JUMP_CUT */);
+            Camera.PointAtPoint(805.1921, -933.7454, 39.6193, JUMP_CUT);
 
             Text.PrintBig('EBAL', 15000, 2); //"Give me Liberty"
 
@@ -370,7 +371,7 @@ async function body() {
 
             Text.ClearThisPrint('EBAL_A');
 
-            Audio.LoadMissionAudio('lib_a2' as any);
+            Audio.LoadMissionAudio(SfxMission.Lib_a2);
 
             while (!Audio.HasMissionAudioLoaded()) {
                 await asyncWait(0);
@@ -458,21 +459,21 @@ async function body() {
             // This will tune the radio to HEAD RADIO
 
             if ($.flag_done_radio_8ball == 0) {
-                Audio.SetRadioChannel(0 /* HEAD_RADIO */, 0);
+                Audio.SetRadioChannel(HEAD_RADIO, 0);
                 $.flag_done_radio_8ball = 1;
             } else {
-                Audio.SetRadioChannel(0 /* HEAD_RADIO */, -1);
+                Audio.SetRadioChannel(HEAD_RADIO, -1);
             }
 
             $.eightball.setCantBeDraggedOut(true);
 
-            Hud.SwitchWidescreen(false /* OFF */);
+            Hud.SwitchWidescreen(OFF);
 
             Camera.Restore();
 
-            $.player.setControl(true /* ON */);
+            $.player.setControl(ON);
 
-            Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+            Game.SetPoliceIgnorePlayer($.player, OFF);
 
             $.radar_blip_car1_eightball = Blip.AddForCar($.car_eightball);
             
@@ -579,13 +580,13 @@ async function body() {
 
             $.cop_car1_8ball = Car.Create(116 /* car_police */, 1083.2, -945.0, 13.8);
 
-            $.cop1_8ball = Char.CreateInsideCar($.cop_car1_8ball, 4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */);
+            $.cop1_8ball = Char.CreateInsideCar($.cop_car1_8ball, PEDTYPE_CIVMALE, PED_COP);
 
             $.cop1_8ball.clearThreatSearch();
 
             $.cop_car1_8ball.setHeading(90.0);
 
-            $.cop_car1_8ball.switchSiren(true /* ON */);
+            $.cop_car1_8ball.switchSiren(ON);
 
             $.cop_car1_8ball.setDrivingStyle(2);
 
@@ -595,13 +596,13 @@ async function body() {
 
             $.cop_car2_8ball = Car.Create(116 /* car_police */, 1074.1, -946.7, 13.8);
 
-            $.cop2_8ball = Char.CreateInsideCar($.cop_car2_8ball, 4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */);
+            $.cop2_8ball = Char.CreateInsideCar($.cop_car2_8ball, PEDTYPE_CIVMALE, PED_COP);
 
             $.cop2_8ball.clearThreatSearch();
 
             $.cop_car2_8ball.setHeading(90.0);
 
-            $.cop_car2_8ball.switchSiren(true /* ON */);
+            $.cop_car2_8ball.switchSiren(ON);
 
             $.cop_car2_8ball.setDrivingStyle(2);
 
@@ -667,7 +668,7 @@ async function body() {
                 $.player.clearWantedLevel();
             }
 
-            Audio.LoadMissionAudio('lib_a' as any);
+            Audio.LoadMissionAudio(SfxMission.Lib_a);
 
             TIMERA = 0;
 
@@ -715,7 +716,7 @@ async function body() {
 
             Text.PrintHelp('EBAL_3'); //"Follow the "blip" to find the hideout!"
 
-            Hud.FlashObject(8 /* HUD_FLASH_RADAR */);
+            Hud.FlashObject(HUD_FLASH_RADAR);
 
             TIMERA = 0;
 
@@ -821,13 +822,13 @@ async function body() {
 
             // ******************************Player and 8ball are at base scripted cutscene*************
 
-            Hud.SwitchWidescreen(true /* ON */);
+            Hud.SwitchWidescreen(ON);
 
             $.player.clearWantedLevel();
 
-            Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+            Game.SetPoliceIgnorePlayer($.player, ON);
 
-            $.player.setControl(false /* OFF */);
+            $.player.setControl(OFF);
 
             if (!Car.IsDead($.cop_car1_8ball)) {
                 $.cop_car1_8ball.delete();
@@ -1042,7 +1043,7 @@ async function body() {
             mission_bloke_stuck_8ball: {
                 Camera.SetFixedPosition(886.8, -310.1, 9.9, 0.0, 0.0, 0.0);
 
-                Camera.PointAtPoint(887.7, -309.8, 9.8, 2 /* JUMP_CUT */);
+                Camera.PointAtPoint(887.7, -309.8, 9.8, JUMP_CUT);
 
                 $.eightball.setIdle();
 
@@ -1086,7 +1087,7 @@ async function body() {
 
                 if (!Char.IsDead($.eightball)) {
                     $.eightball.undress('eight2');
-                    while (!Streaming.HasModelLoaded(26 /* PED_SPECIAL1 */)) {
+                    while (!Streaming.HasModelLoaded(PED_SPECIAL1)) {
                         await asyncWait(0);
                         if (Car.IsDead($.car_eightball)) {
                             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -1107,7 +1108,7 @@ async function body() {
 
                 if (!Char.IsDead($.script_controlled_player)) {
                     $.script_controlled_player.undress('player');
-                    while (!Streaming.HasModelLoaded(0 /* PED_PLAYER */)) {
+                    while (!Streaming.HasModelLoaded(PED_PLAYER)) {
                         await asyncWait(0);
                         if (Car.IsDead($.car_eightball)) {
                             Text.PrintNow('WRECKED', 5000, 1); //"The vehicle's wrecked!"
@@ -1236,11 +1237,11 @@ async function body() {
 
                 Camera.SetInFrontOfPlayer();
 
-                Hud.SwitchWidescreen(false /* OFF */);
+                Hud.SwitchWidescreen(OFF);
 
-                $.player.setControl(true /* ON */);
+                $.player.setControl(ON);
 
-                Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+                Game.SetPoliceIgnorePlayer($.player, OFF);
 
                 //ADD_BLIP_FOR_COORD 906.2 -426.0 -100.0 radar_blip_coord2_eightball
 
@@ -1253,9 +1254,9 @@ async function body() {
 
     hideout_reached: {
         if ($.flag_reached_hideout == 1) {
-            Hud.SwitchWidescreen(true /* ON */);
-            $.player.setControl(false /* OFF */);
-            Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+            Hud.SwitchWidescreen(ON);
+            $.player.setControl(OFF);
+            Game.SetPoliceIgnorePlayer($.player, ON);
             $.player.setHeading(90.0);
             World.ClearArea(868.63, -311.7, 8.3, 1.0, true);
             if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false, true, true, true, true)) {
@@ -1267,16 +1268,16 @@ async function body() {
             }
             $.playersdoor.setHeading(0.0);
             Streaming.LoadSpecialCharacter(1, 'eight2');
-            Streaming.RequestModel(111 /* CAR_KURUMA */);
+            Streaming.RequestModel(CAR_KURUMA);
             Streaming.LoadAllModelsNow();
 
             //CREATE_CHAR PEDTYPE_SPECIAL PED_SPECIAL1 887.2 -308.4 7.6 eightball
 
-            $.eightball = Char.Create(21 /* PEDTYPE_SPECIAL */, 26 /* PED_SPECIAL1 */, 884.3, -309.2, 7.6);
-            $.eightball.setAnimGroup(9 /* ANIM_GANG2_PED */);
+            $.eightball = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL1, 884.3, -309.2, 7.6);
+            $.eightball.setAnimGroup(ANIM_GANG2_PED);
             $.eightball.setHeading(90.0);
             $.eightball.clearThreatSearch();
-            $.car_eightball = Car.Create(111 /* CAR_KURUMA */, $.car_8ball_x, $.car_8ball_y, $.car_8ball_z);
+            $.car_eightball = Car.Create(CAR_KURUMA, $.car_8ball_x, $.car_8ball_y, $.car_8ball_z);
             $.car_eightball.setHeading($.car_8ball_heading);
             $.car_eightball.changeColor($.car_colour1_8ball, $.car_colour2_8ball);
             Weather.Release();
@@ -1306,9 +1307,9 @@ async function body() {
             $.eightball.setCantBeDraggedOut(true);
             Camera.RestoreJumpcut();
             Camera.SetInFrontOfPlayer();
-            Hud.SwitchWidescreen(false /* OFF */);
-            $.player.setControl(true /* ON */);
-            Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+            Hud.SwitchWidescreen(OFF);
+            $.player.setControl(ON);
+            Game.SetPoliceIgnorePlayer($.player, OFF);
         }
 
         // **************************************end of the restart stuff***************************
@@ -1332,7 +1333,7 @@ async function body() {
 
         $.radar_blip_coord2_eightball = Blip.AddForCoord(906.2, -426.0, -100.0); //Luigis blip
 
-        Audio.LoadMissionAudio('lib_b' as any);
+        Audio.LoadMissionAudio(SfxMission.Lib_b);
 
         while (!Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -1462,7 +1463,7 @@ async function body() {
 
         // waiting for the player to get to luigi's
 
-        Audio.LoadMissionAudio('lib_c' as any);
+        Audio.LoadMissionAudio(SfxMission.Lib_c);
 
         while (
             !$.player.isStoppedInAreaInCar3D(903.8, -420.2, 14.0, 908.3, -431.1, 18.0, !!$.blob_flag) ||
@@ -1516,15 +1517,15 @@ async function body() {
 
         $.radar_blip_coord2_eightball.remove();
 
-        Hud.SwitchWidescreen(true /* ON */);
+        Hud.SwitchWidescreen(ON);
 
         $.player.clearWantedLevel();
 
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+        Game.SetPoliceIgnorePlayer($.player, ON);
 
-        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
 
-        $.player.setControl(false /* OFF */);
+        $.player.setControl(OFF);
 
         World.ClearArea(887.4, -417.3, 13.9, 10.0, true); // This should get rid of any stuff for the cut-scene
 
@@ -1611,9 +1612,9 @@ async function body() {
 
         Text.ClearThisPrint('EBAL_G');
 
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
 
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
 
         $.eightball.setCantBeDraggedOut(false);
 
@@ -1639,9 +1640,9 @@ async function body() {
 
         Camera.SetFadingColor(0, 0, 0);
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
-        Streaming.Switch(false /* OFF */);
+        Streaming.Switch(OFF);
 
         Text.PrintBig('LM1', 15000, 2); //"Luigi's Girls"
 
@@ -1704,35 +1705,35 @@ async function body() {
 
         Cutscene.SetOffset(900.782, -427.523, 13.829);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
         $.cs_player.setAnim('player');
 
-        $.cs_micky = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+        $.cs_micky = CutsceneObject.Create(PED_SPECIAL2);
 
         $.cs_micky.setAnim('micky');
 
-        $.cs_eight = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+        $.cs_eight = CutsceneObject.Create(PED_SPECIAL1);
 
         $.cs_eight.setAnim('eight2');
 
-        $.cs_luigi = CutsceneObject.Create(28 /* PED_SPECIAL3 */);
+        $.cs_luigi = CutsceneObject.Create(PED_SPECIAL3);
 
         $.cs_luigi.setAnim('luigi');
 
-        $.cs_mickyhead = CutsceneHead.Create($.cs_micky, 186 /* CUT_OBJ2 */);
+        $.cs_mickyhead = CutsceneHead.Create($.cs_micky, CUT_OBJ2);
 
         $.cs_mickyhead.setAnim('micky');
 
-        $.cs_eighthead = CutsceneHead.Create($.cs_eight, 187 /* CUT_OBJ3 */);
+        $.cs_eighthead = CutsceneHead.Create($.cs_eight, CUT_OBJ3);
 
         $.cs_eighthead.setAnim('eight');
 
-        $.cs_luigihead = CutsceneHead.Create($.cs_luigi, 188 /* CUT_OBJ4 */);
+        $.cs_luigihead = CutsceneHead.Create($.cs_luigi, CUT_OBJ4);
 
         $.cs_luigihead.setAnim('luigi');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 189 /* CUT_OBJ5 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ5);
 
         $.cs_playerhead.setAnim('player');
 
@@ -1751,7 +1752,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         World.ClearArea(887.4, -417.3, 13.9, 10.0, true); // This should get rid of anything in the alleway
 
@@ -1761,13 +1762,13 @@ async function body() {
 
         World.ClearArea(899.7, -425.7, 14.0, 0.5, true);
 
-        World.SwitchRubbish(false /* OFF */);
+        World.SwitchRubbish(OFF);
 
         Cutscene.Start();
 
         $.cs_time = Cutscene.GetTime();
 
-        $.player.setVisible(false /* OFF */);
+        $.player.setVisible(OFF);
 
         // Displays cutscene text
 
@@ -1841,7 +1842,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -1859,11 +1860,11 @@ async function body() {
 
         await asyncWait(500);
 
-        Streaming.Switch(true /* ON */);
+        Streaming.Switch(ON);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
 
         Streaming.LoadScene(920.3, -425.4, 15.0);
 
@@ -1891,7 +1892,7 @@ async function body() {
 
         Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */);
 
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
 
         World.SetPedDensityMultiplier(1.0);
 
@@ -1911,19 +1912,19 @@ async function body() {
 
         // Creates the first girl
 
-        $.girl1_lm1 = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1144.6, -592.8, 13.9);
+        $.girl1_lm1 = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 1144.6, -592.8, 13.9);
 
         $.girl1_lm1.clearThreatSearch();
 
         $.girl1_lm1.setHeading(90.0);
 
-        $.girl1_lm1.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
+        $.girl1_lm1.setAnimGroup(ANIM_SEXY_WOMANPED);
 
         $.radar_blip_ped1_lm1 = Blip.AddForChar($.girl1_lm1);
 
         $.flag_blip_on_girl1_lm1 = 1;
 
-        Audio.LoadMissionAudio('lib_d' as any);
+        Audio.LoadMissionAudio(SfxMission.Lib_d);
 
         while (!$.player.isInAnyCar() || !Audio.HasMissionAudioLoaded()) {
             await asyncWait(0);
@@ -2185,15 +2186,15 @@ async function body() {
 
         // *********************************MISTY CUT AT END****************************************
 
-        Hud.SwitchWidescreen(true /* ON */);
+        Hud.SwitchWidescreen(ON);
 
-        $.player.setControl(false /* OFF */);
+        $.player.setControl(OFF);
 
         $.player.clearWantedLevel();
 
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+        Game.SetPoliceIgnorePlayer($.player, ON);
 
-        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
 
         World.ClearArea(887.4, -417.3, 13.9, 10.0, true); // This should get rid of any stuff for the cut-scene
 
@@ -2246,7 +2247,7 @@ async function body() {
 
         $.girl1_lm1.setObjGotoCoordOnFoot(887.1, -425.22);
 
-        Hud.SwitchWidescreen(true /* ON */);
+        Hud.SwitchWidescreen(ON);
         Camera.SetFixedPosition(882.6, -425.6, 14.4, 0.0, 0.0, 0.0);
 
         Camera.PointAtPoint(890.2, -421.1, 15.0, 2 /* jump_cut */);
@@ -2263,7 +2264,7 @@ async function body() {
 
         Camera.SetFadingColor(0, 0, 0);
 
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
 
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
@@ -2275,7 +2276,7 @@ async function body() {
 
         await asyncWait(0);
 
-        Hud.SwitchWidescreen(false /* OFF */);
+        Hud.SwitchWidescreen(OFF);
 
         await asyncWait(0);
 
@@ -2283,13 +2284,13 @@ async function body() {
 
         await asyncWait(750);
 
-        Camera.DoFade(250, 1 /* FADE_IN */);
+        Camera.DoFade(250, FADE_IN);
 
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
 
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
 
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
 
         return; // SCM GOTO → mission_eightball_passed
     }
@@ -2320,7 +2321,7 @@ async function onPassed() {
     Stat.PlayerMadeProgress(1);
     $.flag_luigi_mission1_passed = 1;
     $.player.clearWantedLevel();
-    $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, 13 /* RADAR_SPRITE_LUIGI */); // New blip down alleyway
+    $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, RADAR_SPRITE_LUIGI); // New blip down alleyway
     // START_NEW_SCRIPT luigi_mission2_loop // xxx: moved to mission monitor
     // START_NEW_SCRIPT blob_help_loop // xxx: moved to main loop
     // START_NEW_SCRIPT luigi_message // xxx: moved to main loop
@@ -2335,7 +2336,7 @@ async function cleanup() {
     Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
     Streaming.MarkModelAsNoLongerNeeded(256 /* luigiclubout */);
     Streaming.MarkModelAsNoLongerNeeded(243 /* luigiineerclub */);
-    Streaming.MarkModelAsNoLongerNeeded(111 /* CAR_KURUMA */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_KURUMA);
     $.radar_blip_coord1_eightball.remove();
     $.radar_blip_coord2_eightball.remove();
     $.radar_blip_car1_eightball.remove();

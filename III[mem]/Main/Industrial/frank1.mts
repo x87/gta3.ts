@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/frank1.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
@@ -118,7 +119,7 @@ async function body() {
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
     Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'FRANKH');
     Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MARIAH');
-    Streaming.RequestModel(11 /* PED_GANG_MAFIA_B */);
+    Streaming.RequestModel(PED_GANG_MAFIA_B);
     Streaming.RequestModel(542 /* salvsdetail */);
     Streaming.RequestModel(540 /* swank_inside */);
     Streaming.RequestModel(541 /* franksclb02 */);
@@ -128,7 +129,7 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
-        !Streaming.HasModelLoaded(11 /* PED_GANG_MAFIA_B */) ||
+        !Streaming.HasModelLoaded(PED_GANG_MAFIA_B) ||
         !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
         !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
         !Streaming.HasModelLoaded(187 /* cut_obj3 */)
@@ -145,29 +146,29 @@ async function body() {
     }
     $.maria_exists = 0;
 
-    $.frankie_garage.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
+    $.frankie_garage.changeType(GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE);
     $.frankie_garage.close();
 
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
     World.ClearArea(1444.99, -186.9, 56.0, 35.0, true);
 
     Cutscene.Load('S1_PF');
 
     Cutscene.SetOffset(1457.776, -185.348, 54.925);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
     $.cs_player.setAnim('player');
 
-    $.cs_frankie = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_frankie = CutsceneObject.Create(PED_SPECIAL1);
 
     $.cs_frankie.setAnim('frankie');
 
-    $.cs_maria = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_maria = CutsceneObject.Create(PED_SPECIAL2);
 
     $.cs_maria.setAnim('maria');
 
-    $.cs_mafia = CutsceneObject.Create(11 /* PED_GANG_MAFIA_B */);
+    $.cs_mafia = CutsceneObject.Create(PED_GANG_MAFIA_B);
 
     $.cs_mafia.setAnim('gang02');
 
@@ -184,7 +185,7 @@ async function body() {
 
     $.player.setHeading(270.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //SWITCH_STREAMING ON
 
@@ -286,7 +287,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -302,10 +303,10 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(11 /* PED_GANG_MAFIA_B */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_B);
     Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
     Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
     Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
@@ -313,41 +314,41 @@ async function body() {
     Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */);
     Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */);
 
-    Streaming.RequestModel(99 /* CAR_STRETCH */);
-    Streaming.RequestModel(24 /* PED_CRIMINAL1 */);
+    Streaming.RequestModel(CAR_STRETCH);
+    Streaming.RequestModel(PED_CRIMINAL1);
 
     World.ClearArea(1444.99, -186.9, 56.0, 35.0, true);
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasModelLoaded(99 /* CAR_STRETCH */) || !Streaming.HasModelLoaded(24 /* PED_CRIMINAL1 */)) {
+    while (!Streaming.HasModelLoaded(CAR_STRETCH) || !Streaming.HasModelLoaded(PED_CRIMINAL1)) {
         await asyncWait(0);
     }
 
-    $.frankies_limo = Car.Create(99 /* CAR_STRETCH */, 1436.0, -183.0, 50.0);
+    $.frankies_limo = Car.Create(CAR_STRETCH, 1436.0, -183.0, 50.0);
     Audio.SetRadioChannel(3, -1);
     $.frankies_limo.setHeading(90.0);
     $.frankies_limo.changeColor(0, 0); // FRANKIES LIMO NEEDS A UNIQUE COLOUR
     $.frankies_limo.setStrong(true);
     $.frankies_limo.setCanRespray(false);
 
-    $.player.setControl(false /* OFF */);
-    Hud.SwitchWidescreen(true /* ON */);
+    $.player.setControl(OFF);
+    Hud.SwitchWidescreen(ON);
 
     $.maria_exists = 1;
-    $.maria = Char.CreateAsPassenger($.frankies_limo, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1);
+    $.maria = Char.CreateAsPassenger($.frankies_limo, PEDTYPE_SPECIAL, PED_SPECIAL2, 1);
     $.maria.clearThreatSearch();
     $.maria.addArmor(100);
     $.maria.setCantBeDraggedOut(true);
-    $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
+    $.maria.setAnimGroup(ANIM_SEXY_WOMANPED);
 
     if (!$.maria.isInCar($.frankies_limo)) {
         $.maria.setObjEnterCarAsPassenger($.frankies_limo);
     }
 
-    $.chico = Char.Create(4 /* PEDTYPE_CIVMALE */, 24 /* PED_CRIMINAL1 */, 770.2257, -565.9869, 13.8);
+    $.chico = Char.Create(PEDTYPE_CIVMALE, PED_CRIMINAL1, 770.2257, -565.9869, 13.8);
     $.chico.setHeading(265.2053);
     $.chico.clearThreatSearch();
     $.chico.setIdle();
@@ -359,27 +360,27 @@ async function body() {
 
     if ($.camera_mode < 1) {
         Camera.SetFixedPosition(1405.736, -190.179, 62.455, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1427.2837, -183.5375, 49.4573, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(1427.2837, -183.5375, 49.4573, JUMP_CUT);
     }
 
     if ($.camera_mode == 1) {
         Camera.SetFixedPosition(1425.685, -178.463, 50.184, 0.0, 0.0, 0.0);
-        Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
+        Camera.PointAtCar($.frankies_limo, FIXED, JUMP_CUT);
     }
 
     if ($.camera_mode == 2) {
         Camera.SetFixedPosition(1432.161, -179.705, 50.643, 0.0, 0.0, 0.0);
-        Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
+        Camera.PointAtCar($.frankies_limo, FIXED, JUMP_CUT);
     }
 
     if ($.camera_mode > 2) {
         Camera.SetFixedPosition(1421.134, -193.771, 63.916, 0.0, 0.0, 0.0);
-        Camera.PointAtCar($.frankies_limo, 15 /* FIXED */, 2 /* JUMP_CUT */);
+        Camera.PointAtCar($.frankies_limo, FIXED, JUMP_CUT);
     }
 
     $.player.warpIntoCar($.frankies_limo);
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
     const _res227 = $.chico.getCoordinates();
     $.chico_x = _res227.x;
@@ -388,23 +389,23 @@ async function body() {
 
     $.fm1_blip = Blip.AddForCoord(775.5, -557.3, 14.0);
 
-    Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
-    Streaming.RequestModel(95 /* CAR_SENTINEL */);
-    Streaming.RequestModel(105 /* CAR_CHEETAH */);
-    Streaming.RequestModel(100 /* CAR_MANANA */);
+    Streaming.RequestModel(PED_GANG_MAFIA_A);
+    Streaming.RequestModel(CAR_SENTINEL);
+    Streaming.RequestModel(CAR_CHEETAH);
+    Streaming.RequestModel(CAR_MANANA);
 
     Streaming.LoadAllModelsNow();
 
     while (
-        !Streaming.HasModelLoaded(10 /* PED_GANG_MAFIA_A */) ||
-        !Streaming.HasModelLoaded(95 /* CAR_SENTINEL */) ||
-        !Streaming.HasModelLoaded(105 /* CAR_CHEETAH */) ||
-        !Streaming.HasModelLoaded(100 /* CAR_MANANA */)
+        !Streaming.HasModelLoaded(PED_GANG_MAFIA_A) ||
+        !Streaming.HasModelLoaded(CAR_SENTINEL) ||
+        !Streaming.HasModelLoaded(CAR_CHEETAH) ||
+        !Streaming.HasModelLoaded(CAR_MANANA)
     ) {
         await asyncWait(0);
     }
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     if (Char.IsDead($.maria)) {
         Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
@@ -419,7 +420,7 @@ async function body() {
         $.maria.setObjEnterCarAsPassenger($.frankies_limo);
     }
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -438,7 +439,7 @@ async function body() {
         $.maria.setObjEnterCarAsPassenger($.frankies_limo);
     }
 
-    $.frankie_garage.changeType(19 /* GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE */);
+    $.frankie_garage.changeType(GARAGE_FOR_SCRIPT_TO_OPEN_AND_CLOSE);
     $.frankie_garage.open();
     $.frankies_limo.gotoCoordinatesAccurate(1416.1118, -189.4448, 49.5264);
 
@@ -450,7 +451,7 @@ async function body() {
     }
 
     $.frankie_garage.close();
-    $.player.applyBrakesToCar(true /* ON */);
+    $.player.applyBrakesToCar(ON);
 
     if (Char.IsDead($.maria)) {
         Text.PrintNow('FM1_7', 5000, 1); // "You failed to protect Maria!"
@@ -459,17 +460,17 @@ async function body() {
 
     Camera.SetInFrontOfPlayer();
     Camera.RestoreJumpcut();
-    $.player.setControl(true /* ON */);
-    $.frankies_limo.setStatus(0 /* STATUS_PLAYER */);
-    Hud.SwitchWidescreen(false /* OFF */);
+    $.player.setControl(ON);
+    $.frankies_limo.setStatus(STATUS_PLAYER);
+    Hud.SwitchWidescreen(OFF);
 
     $.locate_dome_flag = 1;
 
-    Streaming.RequestModel(117 /* CAR_ENFORCER */);
-    Streaming.RequestModel(2 /* PED_SWAT */);
-    Streaming.RequestModel(41 /* PED_P_MAN1 */);
-    Streaming.RequestModel(34 /* PED_FEMALE1 */);
-    Streaming.RequestModel(35 /* PED_FEMALE2 */);
+    Streaming.RequestModel(CAR_ENFORCER);
+    Streaming.RequestModel(PED_SWAT);
+    Streaming.RequestModel(PED_P_MAN1);
+    Streaming.RequestModel(PED_FEMALE1);
+    Streaming.RequestModel(PED_FEMALE2);
 
     //WHILE NOT LOCATE_STOPPED_CHAR_IN_CAR_2D maria chico_x chico_y 10.0 10.0 0
 
@@ -514,9 +515,9 @@ async function body() {
         }
     }
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
     Game.SetEveryoneIgnorePlayer($.player, true);
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
     //MAKE_PLAYER_SAFE player
 
     Game.SetAllCarsCanBeDamaged(false);
@@ -525,7 +526,7 @@ async function body() {
     //POINT_CAMERA_AT_CHAR maria FIXED JUMP_CUT
 
     Camera.SetFixedPosition(770.7659, -569.9462, 14.3248, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(770.7453, -568.9474, 14.4, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(770.7453, -568.9474, 14.4, JUMP_CUT);
 
     $.fm1_blip.remove();
 
@@ -620,21 +621,21 @@ async function body() {
             FAIL("mission_frankie1_failed");
         }
         if ($.skip_cutscene_flag == 0) {
-            if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (!Pad.IsButtonPressed(PAD1, CROSS)) {
                 $.skip_cutscene_flag = 1;
             }
         }
         if ($.skip_cutscene_flag == 1) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 $.skip_cutscene_flag = 2;
             }
         }
         if ($.skip_cutscene_flag == 2) {
-            if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (!Pad.IsButtonPressed(PAD1, CROSS)) {
                 Audio.ClearMissionAudio();
-                Audio.LoadMissionAudio('s1_f' as any);
-                $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
-                $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                Audio.LoadMissionAudio(SfxMission.S1_f);
+                $.chico.setWaitState(WAITSTATE_FALSE, 100);
+                $.maria.setWaitState(WAITSTATE_FALSE, 100);
                 $.chico_audio_flag = 15;
                 $.skip_cutscene_flag = 3;
             }
@@ -642,13 +643,13 @@ async function body() {
         if ($.chico_audio_flag == 0) {
             $.chico.turnToFaceChar($.maria);
             $.maria.turnToFaceChar($.chico);
-            Audio.LoadMissionAudio('s1_a' as any);
+            Audio.LoadMissionAudio(SfxMission.S1_a);
             $.chico_audio_flag = 1;
         }
         if ($.chico_audio_flag == 14) {
             if (Audio.HasMissionAudioFinished()) {
-                Audio.LoadMissionAudio('s1_f' as any);
-                $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                Audio.LoadMissionAudio(SfxMission.S1_f);
+                $.chico.setWaitState(WAITSTATE_FALSE, 100);
                 $.chico_audio_flag = 15;
             }
         }
@@ -660,7 +661,7 @@ async function body() {
                 $.chico_z = _res231.z;
                 Audio.PlayMissionAudio();
                 Text.PrintNow('FM1_U', 2000, 1); //"Ciao baby."
-                $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.chico.setWaitState(WAITSTATE_PLAYANIM_CHAT, 10000);
                 $.chico_audio_flag = 14;
             }
         }
@@ -668,8 +669,8 @@ async function body() {
             if (Audio.HasMissionAudioFinished()) {
                 $.chico.turnToFaceChar($.maria);
                 $.maria.turnToFaceChar($.chico);
-                Audio.LoadMissionAudio('s1_e' as any);
-                $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                Audio.LoadMissionAudio(SfxMission.S1_e);
+                $.maria.setWaitState(WAITSTATE_FALSE, 100);
                 $.chico_audio_flag = 13;
             }
         }
@@ -681,7 +682,7 @@ async function body() {
                 $.chico_z = _res232.z;
                 Audio.PlayMissionAudio();
                 Text.PrintNow('FM1_T', 4000, 2); //"Thanks for the tip. C'mon, let's go party. See you around Chico."
-                $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.maria.setWaitState(WAITSTATE_PLAYANIM_CHAT, 10000);
                 $.chico_audio_flag = 12;
             }
         }
@@ -689,8 +690,8 @@ async function body() {
             if (Audio.HasMissionAudioFinished()) {
                 $.chico.turnToFaceChar($.maria);
                 $.maria.turnToFaceChar($.chico);
-                Audio.LoadMissionAudio('s1_d' as any);
-                $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                Audio.LoadMissionAudio(SfxMission.S1_d);
+                $.chico.setWaitState(WAITSTATE_FALSE, 100);
                 $.chico_audio_flag = 11;
             }
         }
@@ -709,7 +710,7 @@ async function body() {
             if (Audio.HasMissionAudioFinished()) {
                 $.chico.turnToFaceChar($.maria);
                 $.maria.turnToFaceChar($.chico);
-                Audio.LoadMissionAudio('s1_c1' as any);
+                Audio.LoadMissionAudio(SfxMission.S1_c1);
                 $.chico_audio_flag = 9;
             }
         }
@@ -719,7 +720,7 @@ async function body() {
                 $.chico_x = _res234.x;
                 $.chico_y = _res234.y;
                 $.chico_z = _res234.z;
-                $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.chico.setWaitState(WAITSTATE_PLAYANIM_CHAT, 10000);
                 Audio.PlayMissionAudio();
                 Text.PrintNow('FM1_S', 5000, 2); //"Here you go lady"
                 $.chico_audio_flag = 8;
@@ -729,8 +730,8 @@ async function body() {
             if (Audio.HasMissionAudioFinished()) {
                 $.chico.turnToFaceChar($.maria);
                 $.maria.turnToFaceChar($.chico);
-                Audio.LoadMissionAudio('s1_c' as any);
-                $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                Audio.LoadMissionAudio(SfxMission.S1_c);
+                $.maria.setWaitState(WAITSTATE_FALSE, 100);
                 $.chico_audio_flag = 7;
             }
         }
@@ -742,7 +743,7 @@ async function body() {
                 $.chico_z = _res235.z;
                 Audio.PlayMissionAudio();
                 Text.PrintNow('FM1_R', 6000, 2); //"Hi Chico. Yeah just the usual."
-                $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.maria.setWaitState(WAITSTATE_PLAYANIM_CHAT, 10000);
                 $.chico_audio_flag = 6;
             }
         }
@@ -750,8 +751,8 @@ async function body() {
             if (Audio.HasMissionAudioFinished()) {
                 $.chico.turnToFaceChar($.maria);
                 $.maria.turnToFaceChar($.chico);
-                Audio.LoadMissionAudio('s1_b' as any);
-                $.chico.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                Audio.LoadMissionAudio(SfxMission.S1_b);
+                $.chico.setWaitState(WAITSTATE_FALSE, 100);
                 $.chico_audio_flag = 5;
             }
         }
@@ -770,7 +771,7 @@ async function body() {
             if (Audio.HasMissionAudioFinished()) {
                 $.chico.turnToFaceChar($.maria);
                 $.maria.turnToFaceChar($.chico);
-                Audio.LoadMissionAudio('s1_a1' as any);
+                Audio.LoadMissionAudio(SfxMission.S1_a1);
                 $.chico_audio_flag = 3;
             }
         }
@@ -782,7 +783,7 @@ async function body() {
                 $.chico_z = _res237.z;
                 Audio.PlayMissionAudio();
                 Text.PrintNow('FM1_Q', 6000, 2); //"Hey it's my favourite lady!"
-                $.chico.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 10000);
+                $.chico.setWaitState(WAITSTATE_PLAYANIM_CHAT, 10000);
                 $.chico_audio_flag = 2;
             }
         }
@@ -824,9 +825,9 @@ async function body() {
             $.maria_blip = Blip.AddForChar($.maria);
         }
 
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
         Game.SetEveryoneIgnorePlayer($.player, false);
-        Hud.SwitchWidescreen(false /* OFF */);
+        Hud.SwitchWidescreen(OFF);
         Game.SetAllCarsCanBeDamaged(true);
         $.maria.setRunning(false);
 
@@ -853,37 +854,37 @@ async function body() {
         $.maria_blip.remove();
         $.fm1_blip = Blip.AddForCoord(1256.6, -1099.3, -11.7);
 
-        $.doorman1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1267.73, -1109.24, 11.0);
+        $.doorman1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, 1267.73, -1109.24, 11.0);
         $.doorman1.setHeading(90.0);
-        $.doorman1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-        $.doorman1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.doorman1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+        $.doorman1.setThreatSearch(THREAT_GANG_HOOD);
+        $.doorman1.setPersonality(PEDSTAT_TOUGH_GUY);
+        $.doorman1.giveWeapon(WEAPONTYPE_PISTOL, 99);
         $.doorman1.setObjWaitOnFoot();
         $.doorman1.setHeedThreats(true);
 
-        $.doorman2 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1267.73, -1105.62, 11.0);
+        $.doorman2 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, 1267.73, -1105.62, 11.0);
         $.doorman2.setHeading(90.0);
-        $.doorman2.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-        $.doorman2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-        $.doorman2.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+        $.doorman2.setThreatSearch(THREAT_GANG_HOOD);
+        $.doorman2.setPersonality(PEDSTAT_TOUGH_GUY);
+        $.doorman2.giveWeapon(WEAPONTYPE_PISTOL, 99);
         $.doorman2.setObjWaitOnFoot();
         $.doorman2.setHeedThreats(true);
 
-        $.parked_car1 = Car.Create(95 /* CAR_SENTINEL */, 1243.0, -1112.0, 11.0);
-        $.parked_car2 = Car.Create(105 /* CAR_CHEETAH */, 1247.0, -1112.0, 11.0);
-        $.parked_car3 = Car.Create(100 /* CAR_MANANA */, 1251.0, -1112.0, 11.0);
+        $.parked_car1 = Car.Create(CAR_SENTINEL, 1243.0, -1112.0, 11.0);
+        $.parked_car2 = Car.Create(CAR_CHEETAH, 1247.0, -1112.0, 11.0);
+        $.parked_car3 = Car.Create(CAR_MANANA, 1251.0, -1112.0, 11.0);
 
         /////////////CLUB STUFF////
 
-        Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1270.843, -1107.7288, 11.1079, 0.0, 1.0, 0, 255, 0, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
+        Fx.DrawShadow(SHADOW_EXPLOSION, 1270.843, -1107.7288, 11.1079, 0.0, 1.0, 0, 255, 0, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
         Fx.DrawLight(1273.1917, -1107.3098, 11.1079, 255, 0, 0);
-        $.warehouse_rave_loop = Sound.AddContinuous(1269.7494, -1100.4137, 14.0, 73 /* SOUND_RAVE_LOOP_INDUSTRIAL_L */);
-        Fx.AddParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, 1273.0, -1107.2, 10.7, false);
-        Fx.AddParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, 1273.0522, -1107.2312, 10.7, false);
-        Fx.AddParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, 1273.1, -1107.1, 10.7, false);
-        Fx.AddParticleEffect(12 /* POBJECT_DRY_ICE_SLOWMOTION */, 1273.2, -1107.0, 10.7, false);
-        Fx.AddParticleEffect(3 /* POBJECT_WALL_STEAM_SLOWMOTION */, 1270.0, -1107.35, 10.8, false);
-        Fx.AddParticleEffect(1 /* POBJECT_PAVEMENT_STEAM_SLOWMOTION */, 1271.5223, -1107.5471, 10.6, false);
+        $.warehouse_rave_loop = Sound.AddContinuous(1269.7494, -1100.4137, 14.0, SOUND_RAVE_LOOP_INDUSTRIAL_L);
+        Fx.AddParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, 1273.0, -1107.2, 10.7, false);
+        Fx.AddParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, 1273.0522, -1107.2312, 10.7, false);
+        Fx.AddParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, 1273.1, -1107.1, 10.7, false);
+        Fx.AddParticleEffect(POBJECT_DRY_ICE_SLOWMOTION, 1273.2, -1107.0, 10.7, false);
+        Fx.AddParticleEffect(POBJECT_WALL_STEAM_SLOWMOTION, 1270.0, -1107.35, 10.8, false);
+        Fx.AddParticleEffect(POBJECT_PAVEMENT_STEAM_SLOWMOTION, 1271.5223, -1107.5471, 10.6, false);
         $.add_sound_flag = 1;
         $.locate_dome_flag = 1;
         $.chico_message_flag = 0;
@@ -928,7 +929,7 @@ async function body() {
             }
             if ($.chico_audio_flag == 15) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_g' as any);
+                    Audio.LoadMissionAudio(SfxMission.S1_g);
                     $.chico_audio_flag = 16;
                 }
             }
@@ -956,7 +957,7 @@ async function body() {
         $.chico_z = _res238.z;
         Audio.PlayMissionAudio();
 
-        $.player.setControl(false /* OFF */);
+        $.player.setControl(OFF);
         Game.SetEveryoneIgnorePlayer($.player, true);
         Game.SetAllCarsCanBeDamaged(false);
 
@@ -976,7 +977,7 @@ async function body() {
             }
         }
 
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
         Game.SetEveryoneIgnorePlayer($.player, false);
         Game.SetAllCarsCanBeDamaged(true);
 
@@ -995,7 +996,7 @@ async function body() {
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_h' as any);
+                    Audio.LoadMissionAudio(SfxMission.S1_h);
                     $.chico_audio_flag = 18;
                 }
             }
@@ -1020,7 +1021,7 @@ async function body() {
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_h' as any);
+                    Audio.LoadMissionAudio(SfxMission.S1_h);
                     $.chico_audio_flag = 18;
                 }
             }
@@ -1044,7 +1045,7 @@ async function body() {
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_h' as any);
+                    Audio.LoadMissionAudio(SfxMission.S1_h);
                     $.chico_audio_flag = 18;
                 }
             }
@@ -1081,7 +1082,7 @@ async function body() {
             }
             if ($.chico_audio_flag == 17) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_h' as any);
+                    Audio.LoadMissionAudio(SfxMission.S1_h);
                     $.chico_audio_flag = 18;
                 }
             }
@@ -1094,11 +1095,11 @@ async function body() {
     //////////////////////////////////////////////////////////////////////////
     club_busted: {
         while (
-            !Streaming.HasModelLoaded(117 /* CAR_ENFORCER */) ||
-            !Streaming.HasModelLoaded(2 /* PED_SWAT */) ||
-            !Streaming.HasModelLoaded(41 /* PED_P_MAN1 */) ||
-            !Streaming.HasModelLoaded(34 /* PED_FEMALE1 */) ||
-            !Streaming.HasModelLoaded(35 /* PED_FEMALE2 */)
+            !Streaming.HasModelLoaded(CAR_ENFORCER) ||
+            !Streaming.HasModelLoaded(PED_SWAT) ||
+            !Streaming.HasModelLoaded(PED_P_MAN1) ||
+            !Streaming.HasModelLoaded(PED_FEMALE1) ||
+            !Streaming.HasModelLoaded(PED_FEMALE2)
         ) {
             await asyncWait(0);
         }
@@ -1114,7 +1115,7 @@ async function body() {
                     FAIL("mission_frankie1_failed");
                 }
             }
-            Audio.LoadMissionAudio('s1_h' as any);
+            Audio.LoadMissionAudio(SfxMission.S1_h);
             $.chico_audio_flag = 18;
         }
 
@@ -1149,9 +1150,9 @@ async function body() {
                     if ($.swat_cam_needs_restoring == 1) {
                         Camera.SetBehindPlayer();
                         Camera.RestoreJumpcut();
-                        $.player.setControl(true /* ON */);
+                        $.player.setControl(ON);
                         Game.SetEveryoneIgnorePlayer($.player, false);
-                        Hud.SwitchWidescreen(false /* OFF */);
+                        Hud.SwitchWidescreen(OFF);
                         Game.SetAllCarsCanBeDamaged(true);
                         Camera.SetGenerateCarsAround(false);
                         $.swat_cam_needs_restoring = 0;
@@ -1169,7 +1170,7 @@ async function body() {
             }
             if ($.chico_audio_flag == 19) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_i' as any);
+                    Audio.LoadMissionAudio(SfxMission.S1_i);
                     $.chico_audio_flag = 20;
                 }
             }
@@ -1327,9 +1328,9 @@ async function body() {
                 if ($.swat_cam_needs_restoring == 1) {
                     Camera.SetBehindPlayer();
                     Camera.RestoreJumpcut();
-                    $.player.setControl(true /* ON */);
+                    $.player.setControl(ON);
                     Game.SetEveryoneIgnorePlayer($.player, false);
-                    Hud.SwitchWidescreen(false /* OFF */);
+                    Hud.SwitchWidescreen(OFF);
                     Game.SetAllCarsCanBeDamaged(true);
                     Camera.SetGenerateCarsAround(false);
                     $.swat_cam_needs_restoring = 0;
@@ -1391,9 +1392,9 @@ async function body() {
                 if ($.swat_cam_needs_restoring == 1) {
                     Camera.RestoreJumpcut();
                     Camera.SetBehindPlayer();
-                    $.player.setControl(true /* ON */);
+                    $.player.setControl(ON);
                     Game.SetEveryoneIgnorePlayer($.player, false);
-                    Hud.SwitchWidescreen(false /* OFF */);
+                    Hud.SwitchWidescreen(OFF);
                     Game.SetAllCarsCanBeDamaged(true);
                     Camera.SetGenerateCarsAround(false);
                     $.swat_cam_needs_restoring = 0;
@@ -1453,9 +1454,9 @@ async function body() {
         if ($.swat_cam_needs_restoring == 1) {
             Camera.SetBehindPlayer();
             Camera.RestoreJumpcut();
-            $.player.setControl(true /* ON */);
+            $.player.setControl(ON);
             Game.SetEveryoneIgnorePlayer($.player, false);
-            Hud.SwitchWidescreen(false /* OFF */);
+            Hud.SwitchWidescreen(OFF);
             Game.SetAllCarsCanBeDamaged(true);
             Camera.SetGenerateCarsAround(false);
             $.swat_cam_needs_restoring = 0;
@@ -1473,7 +1474,7 @@ async function body() {
             }
             if ($.chico_audio_flag == 22) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_j' as any);
+                    Audio.LoadMissionAudio(SfxMission.S1_j);
                     $.chico_audio_flag = 23;
                 }
             }
@@ -1482,10 +1483,10 @@ async function body() {
                 FAIL("mission_frankie1_failed");
             }
             if ($.clubbers_flee_flag == 0) {
-                $.clubber1_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 41 /* PED_P_MAN1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                $.clubber1_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                $.clubber1_fm1.giveWeapon(3 /* WEAPONTYPE_UZI */, 99);
-                $.clubber1_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                $.clubber1_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_P_MAN1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                $.clubber1_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                $.clubber1_fm1.giveWeapon(WEAPONTYPE_UZI, 99);
+                $.clubber1_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                 $.clubber1_fm1.setRunning(true);
                 $.clubber1_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                 $.clubbers_flee_flag = 1;
@@ -1493,19 +1494,19 @@ async function body() {
             if ($.clubbers_flee_flag == 1) {
                 if (Char.IsDead($.clubber1_fm1)) {
                     $.clubber1_fm1.markAsNoLongerNeeded();
-                    $.clubber2_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 34 /* PED_FEMALE1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                    $.clubber2_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                    $.clubber2_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.clubber2_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                    $.clubber2_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_FEMALE1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                    $.clubber2_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                    $.clubber2_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.clubber2_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                     $.clubber2_fm1.setRunning(true);
                     $.clubber2_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                     $.clubbers_flee_flag = 2;
                 } else {
                     if (!$.clubber1_fm1.locateAnyMeans2D($.inside_warehouse_x, $.inside_warehouse_y, 2.0, 2.0, false)) {
-                        $.clubber2_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 34 /* PED_FEMALE1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                        $.clubber2_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
-                        $.clubber2_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                        $.clubber2_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                        $.clubber2_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_FEMALE1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                        $.clubber2_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
+                        $.clubber2_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                        $.clubber2_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                         $.clubber2_fm1.setRunning(true);
                         $.clubber2_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                         $.clubbers_flee_flag = 2;
@@ -1515,21 +1516,21 @@ async function body() {
             if ($.clubbers_flee_flag == 2) {
                 if (Char.IsDead($.clubber2_fm1)) {
                     $.clubber2_fm1.markAsNoLongerNeeded();
-                    $.clubber3_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 24 /* PED_CRIMINAL1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                    $.clubber3_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                    $.clubber3_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    $.clubber3_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_CRIMINAL1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                    $.clubber3_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                    $.clubber3_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                     $.clubber3_fm1.setRunning(true);
-                    $.clubber3_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                    $.clubber3_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                     $.clubber3_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                     $.clubbers_flee_flag = 3;
                     $.clubber3_car1 = 1;
                 } else {
                     if (!$.clubber2_fm1.locateAnyMeans2D($.inside_warehouse_x, $.inside_warehouse_y, 2.0, 2.0, false)) {
-                        $.clubber3_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 24 /* PED_CRIMINAL1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                        $.clubber3_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                        $.clubber3_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                        $.clubber3_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_CRIMINAL1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                        $.clubber3_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                        $.clubber3_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                         $.clubber3_fm1.setRunning(true);
-                        $.clubber3_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                        $.clubber3_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                         $.clubber3_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                         $.clubbers_flee_flag = 3;
                         $.clubber3_car1 = 1;
@@ -1539,19 +1540,19 @@ async function body() {
             if ($.clubbers_flee_flag == 3) {
                 if (Char.IsDead($.clubber3_fm1)) {
                     $.clubber3_fm1.markAsNoLongerNeeded();
-                    $.clubber4_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 35 /* PED_FEMALE2 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                    $.clubber4_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                    $.clubber4_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.clubber4_fm1.giveWeapon(3 /* WEAPONTYPE_UZI */, 99);
+                    $.clubber4_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_FEMALE2, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                    $.clubber4_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                    $.clubber4_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.clubber4_fm1.giveWeapon(WEAPONTYPE_UZI, 99);
                     $.clubber4_fm1.setRunning(true);
                     $.clubber4_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                     $.clubbers_flee_flag = 4;
                 } else {
                     if (!$.clubber3_fm1.locateAnyMeans2D($.inside_warehouse_x, $.inside_warehouse_y, 2.0, 2.0, false)) {
-                        $.clubber4_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 35 /* PED_FEMALE2 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                        $.clubber4_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                        $.clubber4_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.clubber4_fm1.giveWeapon(3 /* WEAPONTYPE_UZI */, 99);
+                        $.clubber4_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_FEMALE2, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                        $.clubber4_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                        $.clubber4_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.clubber4_fm1.giveWeapon(WEAPONTYPE_UZI, 99);
                         $.clubber4_fm1.setRunning(true);
                         $.clubber4_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                         $.clubbers_flee_flag = 4;
@@ -1561,21 +1562,21 @@ async function body() {
             if ($.clubbers_flee_flag == 4) {
                 if (Char.IsDead($.clubber4_fm1)) {
                     $.clubber4_fm1.markAsNoLongerNeeded();
-                    $.clubber5_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                    $.clubber5_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                    $.clubber5_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    $.clubber5_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                    $.clubber5_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                    $.clubber5_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                     $.clubber5_fm1.setRunning(true);
-                    $.clubber5_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                    $.clubber5_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                     $.clubber5_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                     $.clubbers_flee_flag = 5;
                     $.clubber5_car2 = 1;
                 } else {
                     if (!$.clubber4_fm1.locateAnyMeans2D($.inside_warehouse_x, $.inside_warehouse_y, 2.0, 2.0, false)) {
-                        $.clubber5_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                        $.clubber5_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                        $.clubber5_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                        $.clubber5_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                        $.clubber5_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                        $.clubber5_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                         $.clubber5_fm1.setRunning(true);
-                        $.clubber5_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                        $.clubber5_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                         $.clubber5_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                         $.clubbers_flee_flag = 5;
                         $.clubber5_car2 = 1;
@@ -1585,20 +1586,20 @@ async function body() {
             if ($.clubbers_flee_flag == 5) {
                 if (Char.IsDead($.clubber5_fm1)) {
                     $.clubber5_fm1.markAsNoLongerNeeded();
-                    $.clubber6_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 24 /* PED_CRIMINAL1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                    $.clubber6_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                    $.clubber6_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    $.clubber6_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_CRIMINAL1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                    $.clubber6_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                    $.clubber6_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                     $.clubber6_fm1.setRunning(true);
-                    $.clubber6_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                    $.clubber6_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                     $.clubber6_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                     $.clubbers_flee_flag = 6;
                 } else {
                     if (!$.clubber5_fm1.locateAnyMeans2D($.inside_warehouse_x, $.inside_warehouse_y, 2.0, 2.0, false)) {
-                        $.clubber6_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 24 /* PED_CRIMINAL1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                        $.clubber6_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                        $.clubber6_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                        $.clubber6_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_CRIMINAL1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                        $.clubber6_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                        $.clubber6_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                         $.clubber6_fm1.setRunning(true);
-                        $.clubber6_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                        $.clubber6_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                         $.clubber6_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                         $.clubbers_flee_flag = 6;
                     }
@@ -1607,19 +1608,19 @@ async function body() {
             if ($.clubbers_flee_flag == 6) {
                 if (Char.IsDead($.clubber6_fm1)) {
                     $.clubber6_fm1.markAsNoLongerNeeded();
-                    $.clubber7_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 34 /* PED_FEMALE1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                    $.clubber7_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                    $.clubber7_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                    $.clubber7_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                    $.clubber7_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_FEMALE1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                    $.clubber7_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                    $.clubber7_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+                    $.clubber7_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                     $.clubber7_fm1.setRunning(true);
                     $.clubber7_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                     $.clubbers_flee_flag = 7;
                 } else {
                     if (!$.clubber6_fm1.locateAnyMeans2D($.inside_warehouse_x, $.inside_warehouse_y, 2.0, 2.0, false)) {
-                        $.clubber7_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 34 /* PED_FEMALE1 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                        $.clubber7_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                        $.clubber7_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-                        $.clubber7_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                        $.clubber7_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_FEMALE1, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                        $.clubber7_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                        $.clubber7_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+                        $.clubber7_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                         $.clubber7_fm1.setRunning(true);
                         $.clubber7_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                         $.clubbers_flee_flag = 7;
@@ -1629,21 +1630,21 @@ async function body() {
             if ($.clubbers_flee_flag == 7) {
                 if (Char.IsDead($.clubber7_fm1)) {
                     $.clubber7_fm1.markAsNoLongerNeeded();
-                    $.clubber8_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                    $.clubber8_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                    $.clubber8_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                    $.clubber8_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                    $.clubber8_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                    $.clubber8_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                     $.clubber8_fm1.setRunning(true);
-                    $.clubber8_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                    $.clubber8_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                     $.clubber8_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                     $.clubbers_flee_flag = 8;
                     $.clubber8_car3 = 1;
                 } else {
                     if (!$.clubber7_fm1.locateAnyMeans2D($.inside_warehouse_x, $.inside_warehouse_y, 2.0, 2.0, false)) {
-                        $.clubber8_fm1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                        $.clubber8_fm1.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                        $.clubber8_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                        $.clubber8_fm1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                        $.clubber8_fm1.setThreatSearch(THREAT_GANG_HOOD);
+                        $.clubber8_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
                         $.clubber8_fm1.setRunning(true);
-                        $.clubber8_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 50);
+                        $.clubber8_fm1.giveWeapon(WEAPONTYPE_PISTOL, 50);
                         $.clubber8_fm1.setObjRunToCoord($.outside_warehouse_x, $.outside_warehouse_y);
                         $.clubbers_flee_flag = 8;
                         $.clubber8_car3 = 1;
@@ -1656,16 +1657,16 @@ async function body() {
                     if ($.swat_cam_needs_restoring == 1) {
                         Camera.RestoreJumpcut();
                         Camera.SetBehindPlayer();
-                        $.player.setControl(true /* ON */);
+                        $.player.setControl(ON);
                         Game.SetEveryoneIgnorePlayer($.player, false);
-                        Hud.SwitchWidescreen(false /* OFF */);
+                        Hud.SwitchWidescreen(OFF);
                         Game.SetAllCarsCanBeDamaged(true);
                         Camera.SetGenerateCarsAround(false);
                         $.swat_cam_needs_restoring = 0;
                     }
                     $.maria_exists = 1;
-                    $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                    $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
+                    $.maria = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                    $.maria.setAnimGroup(ANIM_SEXY_WOMANPED);
                     $.maria.addArmor(100);
                     $.maria.clearThreatSearch();
                     $.fm1_blip.remove();
@@ -1684,16 +1685,16 @@ async function body() {
                         if ($.swat_cam_needs_restoring == 1) {
                             Camera.RestoreJumpcut();
                             Camera.SetBehindPlayer();
-                            $.player.setControl(true /* ON */);
+                            $.player.setControl(ON);
                             Game.SetEveryoneIgnorePlayer($.player, false);
-                            Hud.SwitchWidescreen(false /* OFF */);
+                            Hud.SwitchWidescreen(OFF);
                             Game.SetAllCarsCanBeDamaged(true);
                             Camera.SetGenerateCarsAround(false);
                             $.swat_cam_needs_restoring = 0;
                         }
                         $.maria_exists = 1;
-                        $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
-                        $.maria.setAnimGroup(15 /* ANIM_SEXY_WOMANPED */);
+                        $.maria = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, $.inside_warehouse_x, $.inside_warehouse_y, $.inside_warehouse_z);
+                        $.maria.setAnimGroup(ANIM_SEXY_WOMANPED);
                         $.maria.addArmor(100);
                         $.maria.clearThreatSearch();
                         $.fm1_blip.remove();
@@ -1862,7 +1863,7 @@ async function body() {
             }
             if ($.chico_audio_flag == 22) {
                 if (Audio.HasMissionAudioFinished()) {
-                    Audio.LoadMissionAudio('s1_j' as any);
+                    Audio.LoadMissionAudio(SfxMission.S1_j);
                     $.chico_audio_flag = 23;
                 }
             }
@@ -1989,7 +1990,7 @@ async function body() {
         Audio.PlayMissionAudio();
         Text.PrintNow('FM1_X', 5000, 1); //"OK Fido, let's get out of here. YeeEEHAAA"
 
-        $.frankie_garage.changeType(21 /* GARAGE_MISSION_KEEPCAR_REMAINCLOSED */);
+        $.frankie_garage.changeType(GARAGE_MISSION_KEEPCAR_REMAINCLOSED);
 
         if (!Car.IsDead($.frankies_limo)) {
             $.frankie_garage.setTargetCarForMission($.frankies_limo);
@@ -2052,12 +2053,12 @@ async function body() {
 
     $.player.clearWantedLevel();
 
-    Camera.DoFade(500, 0 /* FADE_OUT */);
+    Camera.DoFade(500, FADE_OUT);
 
     await asyncWait(500);
 
-    $.player.setControl(false /* OFF */);
-    Hud.SwitchWidescreen(true /* ON */);
+    $.player.setControl(OFF);
+    Hud.SwitchWidescreen(ON);
     Game.SetEveryoneIgnorePlayer($.player, true);
     Game.SetAllCarsCanBeDamaged(false);
 
@@ -2074,7 +2075,7 @@ async function body() {
     $.player.setHeading(184.9588);
     $.maria_exists = 0;
     $.maria.delete();
-    $.maria = Char.Create(21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 1435.9358, -178.4347, 54.0279);
+    $.maria = Char.Create(PEDTYPE_SPECIAL, PED_SPECIAL2, 1435.9358, -178.4347, 54.0279);
     $.maria_exists = 1;
     $.maria.setHeading(184.9134);
 
@@ -2084,7 +2085,7 @@ async function body() {
     $.script_controlled_player.clearThreatSearch();
 
     Camera.SetFixedPosition(1433.4507, -173.6104, 55.66595, 0.0, 0.0, 0.0);
-    Camera.PointAtChar($.maria, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    Camera.PointAtChar($.maria, FIXED, JUMP_CUT);
 
     $.maria.setObjGotoCoordOnFoot(1436.2628, -180.6451);
     $.script_controlled_player.setObjGotoCoordOnFoot(1436.2628, -180.6451);
@@ -2093,9 +2094,9 @@ async function body() {
 
     World.ClearArea(1423.9675, -189.2235, 49.2032, 5.0, false);
 
-    Camera.DoFade(500, 1 /* FADE_IN */);
+    Camera.DoFade(500, FADE_IN);
 
-    Audio.LoadMissionAudio('s1_k' as any);
+    Audio.LoadMissionAudio(SfxMission.S1_k);
 
     //camera 1433.4507 -173.6104 56.66595
     //point at maria maybe 1433.9979 -174.4381 56.542
@@ -2113,23 +2114,23 @@ async function body() {
             FAIL("mission_frankie1_failed");
         }
         if ($.skip_cutscene_flag == 0) {
-            if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (!Pad.IsButtonPressed(PAD1, CROSS)) {
                 $.skip_cutscene_flag = 1;
             }
         }
         if ($.skip_cutscene_flag == 1) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 $.skip_cutscene_flag = 2;
             }
         }
         if ($.skip_cutscene_flag == 2) {
-            if (!Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
-                Camera.DoFade(0, 0 /* FADE_OUT */);
+            if (!Pad.IsButtonPressed(PAD1, CROSS)) {
+                Camera.DoFade(0, FADE_OUT);
                 await asyncWait(0);
                 Audio.ClearMissionAudio();
                 Text.ClearSmallPrints();
-                Hud.SwitchWidescreen(false /* OFF */);
-                $.player.setControl(true /* ON */);
+                Hud.SwitchWidescreen(OFF);
+                $.player.setControl(ON);
                 Game.SetEveryoneIgnorePlayer($.player, false);
                 Game.SetAllCarsCanBeDamaged(true);
                 $.maria.delete();
@@ -2137,7 +2138,7 @@ async function body() {
                 $.player.setHeading(180.0);
                 Camera.SetBehindPlayer();
                 Camera.RestoreJumpcut();
-                Camera.DoFade(500, 1 /* FADE_IN */);
+                Camera.DoFade(500, FADE_IN);
                 $.skip_cutscene_flag = 3;
                 return; // SCM GOTO → mission_frankie1_passed
             }
@@ -2154,7 +2155,7 @@ async function body() {
         if ($.flag_blip_on_maria == 6) {
             if (Audio.HasMissionAudioFinished()) {
                 Text.ClearSmallPrints();
-                $.maria.setWaitState(0 /* WAITSTATE_FALSE */, 100);
+                $.maria.setWaitState(WAITSTATE_FALSE, 100);
                 $.script_controlled_player.setObjGotoCoordOnFoot(1443.6184, -188.2894);
                 $.maria.setObjGotoCoordOnFoot(1453.5276, -179.3224);
                 $.flag_blip_on_maria = 7;
@@ -2175,7 +2176,7 @@ async function body() {
             if (Audio.HasMissionAudioFinished()) {
                 $.script_controlled_player.turnToFaceChar($.maria);
                 $.maria.turnToFaceChar($.script_controlled_player);
-                Audio.LoadMissionAudio('s1_l' as any);
+                Audio.LoadMissionAudio(SfxMission.S1_l);
                 $.flag_blip_on_maria = 5;
             }
         }
@@ -2189,7 +2190,7 @@ async function body() {
                 $.chico_z = _res252.z;
                 Audio.PlayMissionAudio();
                 Text.PrintNow('FM1_Y', 8000, 1); //"I enjoyed myself for the first time in a long while,"
-                $.maria.setWaitState(19 /* WAITSTATE_PLAYANIM_CHAT */, 20000);
+                $.maria.setWaitState(WAITSTATE_PLAYANIM_CHAT, 20000);
                 $.flag_blip_on_maria = 4;
             }
         }
@@ -2208,7 +2209,7 @@ async function body() {
                 if ($.player.locateStoppedOnFoot2D(1440.6287, -181.4022, 1.0, 1.0, false)) {
                     $.maria.stopLooking();
                     Camera.SetFixedPosition(1442.1001, -173.1516, 55.8166, 0.0, 0.0, 0.0);
-                    Camera.PointAtPoint(1441.78, -174.0602, 55.6919, 2 /* JUMP_CUT */);
+                    Camera.PointAtPoint(1441.78, -174.0602, 55.6919, JUMP_CUT);
                     $.player.setHeading(0.0);
                     $.script_controlled_player.turnToFaceChar($.maria);
                     $.player.turnToFaceChar($.maria);
@@ -2233,8 +2234,8 @@ async function body() {
 
     Camera.SetBehindPlayer();
     Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* OFF */);
-    $.player.setControl(true /* ON */);
+    Hud.SwitchWidescreen(OFF);
+    $.player.setControl(ON);
     Game.SetEveryoneIgnorePlayer($.player, false);
     Game.SetAllCarsCanBeDamaged(true);
 
@@ -2252,23 +2253,23 @@ async function onPassed() {
     if ($.flag_luigi_mission4_terminated == 1) {
         // START_NEW_SCRIPT luigi_mission4_loop
         $.luigi_contact_blip.remove();
-        $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, 13 /* RADAR_SPRITE_LUIGI */);
+        $.luigi_contact_blip = Blip.AddSpriteForContactPoint(892.8, -425.8, 13.9, RADAR_SPRITE_LUIGI);
         //	ADD_SPRITE_BLIP_FOR_CONTACT_POINT 886.2 -417.1 -100.0 RADAR_SPRITE_LUIGI luigi_contact_blip
     }
     if ($.flag_luigi_mission5_terminated == 1) {
         // START_NEW_SCRIPT luigi_mission5_loop
         $.luigi_contact_blip.remove();
-        $.luigi_contact_blip = Blip.AddSpriteForContactPoint(886.2, -417.1, -100.0, 13 /* RADAR_SPRITE_LUIGI */);
+        $.luigi_contact_blip = Blip.AddSpriteForContactPoint(886.2, -417.1, -100.0, RADAR_SPRITE_LUIGI);
     }
     if ($.flag_joey_mission5_terminated == 1) {
         // START_NEW_SCRIPT joey_mission5_loop
         $.joey_contact_blip.remove();
-        $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, 10 /* RADAR_SPRITE_JOEY */);
+        $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, RADAR_SPRITE_JOEY);
     }
     if ($.flag_joey_mission6_terminated == 1) {
         // START_NEW_SCRIPT joey_mission6_loop
         $.joey_contact_blip.remove();
-        $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, 10 /* RADAR_SPRITE_JOEY */);
+        $.joey_contact_blip = Blip.AddSpriteForContactPoint(1191.7, -870.0, -100.0, RADAR_SPRITE_JOEY);
     }
     Text.PrintWithNumberBig('M_PASS', 10000, 5000, 1);
     $.player.addScore(10000);
@@ -2276,7 +2277,7 @@ async function onPassed() {
     Audio.PlayMissionPassedTune(1);
     Stat.RegisterMissionPassed('FM1');
     Stat.PlayerMadeProgress(1);
-    $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, 26.4, 19 /* RADAR_SPRITE_TONY */);
+    $.toni_contact_blip = Blip.AddSpriteForContactPoint(1219.6, -321.0, 26.4, RADAR_SPRITE_TONY);
     // START_NEW_SCRIPT toni_mission4_loop
     // START_NEW_SCRIPT frankie_mission2_loop
     // START_NEW_SCRIPT imp_exp_pager
@@ -2288,8 +2289,8 @@ async function cleanup() {
     $.flag_player_on_frankie_mission = 0;
 
     Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* OFF */);
-    $.player.setControl(true /* ON */);
+    Hud.SwitchWidescreen(OFF);
+    $.player.setControl(ON);
 
     if ($.add_sound_flag == 1) {
         $.warehouse_rave_loop.remove();
@@ -2297,21 +2298,21 @@ async function cleanup() {
 
     World.RemoveParticleEffectsInArea(1264.0, -1111.0, 5.0, 1275.0, -1103.0, 15.0);
 
-    Streaming.MarkModelAsNoLongerNeeded(24 /* PED_CRIMINAL1 */);
-    Streaming.MarkModelAsNoLongerNeeded(99 /* CAR_STRETCH */);
-    Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
-    Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
-    Streaming.MarkModelAsNoLongerNeeded(105 /* CAR_CHEETAH */);
-    Streaming.MarkModelAsNoLongerNeeded(100 /* CAR_MANANA */);
-    Streaming.MarkModelAsNoLongerNeeded(117 /* CAR_ENFORCER */);
-    Streaming.MarkModelAsNoLongerNeeded(2 /* PED_SWAT */);
-    Streaming.MarkModelAsNoLongerNeeded(41 /* PED_P_MAN1 */);
-    Streaming.MarkModelAsNoLongerNeeded(34 /* PED_FEMALE1 */);
-    Streaming.MarkModelAsNoLongerNeeded(35 /* PED_FEMALE2 */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_CRIMINAL1);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_STRETCH);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_A);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_SENTINEL);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_CHEETAH);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_MANANA);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_ENFORCER);
+    Streaming.MarkModelAsNoLongerNeeded(PED_SWAT);
+    Streaming.MarkModelAsNoLongerNeeded(PED_P_MAN1);
+    Streaming.MarkModelAsNoLongerNeeded(PED_FEMALE1);
+    Streaming.MarkModelAsNoLongerNeeded(PED_FEMALE2);
 
     $.fm1_blip.remove();
 
-    $.frankie_garage.changeType(14 /* GARAGE_MISSION_KEEPCAR */);
+    $.frankie_garage.changeType(GARAGE_MISSION_KEEPCAR);
     $.frankie_garage.setTargetCarForMission(-1 as any);
 
     Streaming.UnloadSpecialCharacter(1);
@@ -2616,7 +2617,7 @@ async function clubber_idle_checks() {
 
 async function police_idle_checks() {
     if (!Char.IsDead($.cop1_fm1)) {
-        $.cop1_fm1.setSay(101 /* SOUND_SWAT_PED_SHOUT */);
+        $.cop1_fm1.setSay(SOUND_SWAT_PED_SHOUT);
         if ($.cop1_fm1.isStopped()) {
             if (!$.cop1_fm1.isShooting()) {
                 if (!Char.IsDead($.clubber1_fm1)) {
@@ -2648,7 +2649,7 @@ async function police_idle_checks() {
     }
 
     if (!Char.IsDead($.cop2_fm1)) {
-        $.cop2_fm1.setSay(101 /* SOUND_SWAT_PED_SHOUT */);
+        $.cop2_fm1.setSay(SOUND_SWAT_PED_SHOUT);
         if ($.cop2_fm1.isStopped()) {
             if (!$.cop2_fm1.isShooting()) {
                 if (!Char.IsDead($.clubber7_fm1)) {
@@ -2680,7 +2681,7 @@ async function police_idle_checks() {
     }
 
     if (!Char.IsDead($.cop3_fm1)) {
-        $.cop3_fm1.setSay(101 /* SOUND_SWAT_PED_SHOUT */);
+        $.cop3_fm1.setSay(SOUND_SWAT_PED_SHOUT);
         if ($.cop3_fm1.isStopped()) {
             if (!$.cop3_fm1.isShooting()) {
                 if (!Char.IsDead($.clubber7_fm1)) {
@@ -2712,7 +2713,7 @@ async function police_idle_checks() {
     }
 
     if (!Char.IsDead($.cop4_fm1)) {
-        $.cop4_fm1.setSay(101 /* SOUND_SWAT_PED_SHOUT */);
+        $.cop4_fm1.setSay(SOUND_SWAT_PED_SHOUT);
         if ($.cop4_fm1.isStopped()) {
             if (!$.cop4_fm1.isShooting()) {
                 if (!Char.IsDead($.clubber4_fm1)) {
@@ -2744,7 +2745,7 @@ async function police_idle_checks() {
     }
 
     if (!Char.IsDead($.cop5_fm1)) {
-        $.cop5_fm1.setSay(101 /* SOUND_SWAT_PED_SHOUT */);
+        $.cop5_fm1.setSay(SOUND_SWAT_PED_SHOUT);
         if ($.cop5_fm1.isStopped()) {
             if (!$.cop5_fm1.isShooting()) {
                 if (!Char.IsDead($.clubber4_fm1)) {
@@ -2776,7 +2777,7 @@ async function police_idle_checks() {
     }
 
     if (!Char.IsDead($.cop6_fm1)) {
-        $.cop6_fm1.setSay(101 /* SOUND_SWAT_PED_SHOUT */);
+        $.cop6_fm1.setSay(SOUND_SWAT_PED_SHOUT);
         if ($.cop6_fm1.isStopped()) {
             if (!$.cop6_fm1.isShooting()) {
                 if (!Char.IsDead($.clubber4_fm1)) {
@@ -2808,7 +2809,7 @@ async function police_idle_checks() {
     }
 
     if (!Char.IsDead($.cop7_fm1)) {
-        $.cop7_fm1.setSay(101 /* SOUND_SWAT_PED_SHOUT */);
+        $.cop7_fm1.setSay(SOUND_SWAT_PED_SHOUT);
         if ($.cop7_fm1.isStopped()) {
             if (!$.cop7_fm1.isShooting()) {
                 if (!Char.IsDead($.clubber4_fm1)) {
@@ -2840,7 +2841,7 @@ async function police_idle_checks() {
     }
 
     if (!Char.IsDead($.cop8_fm1)) {
-        $.cop8_fm1.setSay(101 /* SOUND_SWAT_PED_SHOUT */);
+        $.cop8_fm1.setSay(SOUND_SWAT_PED_SHOUT);
         if ($.cop8_fm1.isStopped()) {
             if (!$.cop8_fm1.isShooting()) {
                 if (!Char.IsDead($.clubber6_fm1)) {
@@ -2876,7 +2877,7 @@ async function draw_disco_lights() {
     ++$.shadow_counter;
 
     if ($.shadow_counter > 28 && $.shadow_counter < 32) {
-        Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1272.5963, -1107.4248, 12.0, 30.0, 0.8, 0, $.R, $.G, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
+        Fx.DrawShadow(SHADOW_EXPLOSION, 1272.5963, -1107.4248, 12.0, 30.0, 0.8, 0, $.R, $.G, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
         Fx.DrawLight(1272.45, -1107.6, 13.1, $.R, $.G, 0);
     } else {
         $.G = Math.RandomIntInRange(0, 101);
@@ -2884,7 +2885,7 @@ async function draw_disco_lights() {
     }
 
     if ($.shadow_counter > 15 && $.shadow_counter < 20) {
-        Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1270.9584, -1107.6783, 12.0, 0.0, 1.2, 0, $.R1, $.G1, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
+        Fx.DrawShadow(SHADOW_EXPLOSION, 1270.9584, -1107.6783, 12.0, 0.0, 1.2, 0, $.R1, $.G1, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
         Fx.DrawLight(1272.45, -1107.18, 13.1, $.R1, $.G1, 0);
     } else {
         $.G1 = Math.RandomIntInRange(0, 101);
@@ -2892,7 +2893,7 @@ async function draw_disco_lights() {
     }
 
     if ($.shadow_counter > 20 && $.shadow_counter < 40) {
-        Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1273.3, -1107.0, 12.0, 80.0, 1.0, 0, $.R2, $.G2, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
+        Fx.DrawShadow(SHADOW_EXPLOSION, 1273.3, -1107.0, 12.0, 80.0, 1.0, 0, $.R2, $.G2, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
         Fx.DrawLight(1272.45, -1107.6, 12.8, $.R2, $.G2, 0);
     } else {
         $.G2 = Math.RandomIntInRange(0, 101);
@@ -2900,7 +2901,7 @@ async function draw_disco_lights() {
     }
 
     if ($.shadow_counter > 18 && $.shadow_counter < 40) {
-        Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1273.3, -1107.7, 12.0, 140.0, 0.8, 0, $.R3, $.G3, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
+        Fx.DrawShadow(SHADOW_EXPLOSION, 1273.3, -1107.7, 12.0, 140.0, 0.8, 0, $.R3, $.G3, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
         Fx.DrawLight(1272.45, -1107.18, 12.8, $.R3, $.G3, 0);
     } else {
         $.G3 = Math.RandomIntInRange(0, 101);
@@ -2908,7 +2909,7 @@ async function draw_disco_lights() {
     }
 
     if ($.shadow_counter > 5 && $.shadow_counter < 14) {
-        Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1271.4812, -1108.0588, 12.0, 235.0, 1.1, 0, $.R4, $.G4, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
+        Fx.DrawShadow(SHADOW_EXPLOSION, 1271.4812, -1108.0588, 12.0, 235.0, 1.1, 0, $.R4, $.G4, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
         Fx.DrawLight(1272.45, -1107.6, 12.5, $.R4, $.G4, 0);
     } else {
         $.G4 = Math.RandomIntInRange(0, 101);
@@ -2916,7 +2917,7 @@ async function draw_disco_lights() {
     }
 
     if ($.shadow_counter > 9 && $.shadow_counter < 26) {
-        Fx.DrawShadow(3 /* SHADOW_EXPLOSION */, 1271.557, -1107.0217, 12.0, 325.0, 1.8, 0, $.R5, $.G5, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
+        Fx.DrawShadow(SHADOW_EXPLOSION, 1271.557, -1107.0217, 12.0, 325.0, 1.8, 0, $.R5, $.G5, 0); // ShadowType X Y Z Rotation Scale Transparency Red Green Blue
         Fx.DrawLight(1272.45, -1107.18, 12.5, $.R5, $.G5, 0);
     } else {
         $.G5 = Math.RandomIntInRange(0, 101);
@@ -2933,32 +2934,32 @@ async function delete_char_maria() {
 }
 
 async function swat_car_one() {
-    $.swatvan_fm1 = Car.Create(117 /* CAR_ENFORCER */, 1293.0, -925.0, -100.0);
+    $.swatvan_fm1 = Car.Create(CAR_ENFORCER, 1293.0, -925.0, -100.0);
     $.swatvan_fm1.setHeading(225.0);
     $.swatvan_fm1.setCruiseSpeed(40.0);
     $.swatvan_fm1.setDrivingStyle(2);
-    $.swatvan_fm1.switchSiren(true /* ON */);
-    $.swatvan_fm1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+    $.swatvan_fm1.switchSiren(ON);
+    $.swatvan_fm1.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
 
-    $.cop1_fm1 = Char.CreateInsideCar($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */);
-    $.cop1_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-    $.cop1_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.cop1_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+    $.cop1_fm1 = Char.CreateInsideCar($.swatvan_fm1, PEDTYPE_GANG_HOOD, PED_SWAT);
+    $.cop1_fm1.setThreatSearch(THREAT_GANG_MAFIA);
+    $.cop1_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.cop1_fm1.giveWeapon(WEAPONTYPE_PISTOL, 99);
 
-    $.cop2_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 0);
-    $.cop2_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-    $.cop2_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.cop2_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+    $.cop2_fm1 = Char.CreateAsPassenger($.swatvan_fm1, PEDTYPE_GANG_HOOD, PED_SWAT, 0);
+    $.cop2_fm1.setThreatSearch(THREAT_GANG_MAFIA);
+    $.cop2_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.cop2_fm1.giveWeapon(WEAPONTYPE_PISTOL, 99);
 
-    $.cop3_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 1);
-    $.cop3_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-    $.cop3_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.cop3_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+    $.cop3_fm1 = Char.CreateAsPassenger($.swatvan_fm1, PEDTYPE_GANG_HOOD, PED_SWAT, 1);
+    $.cop3_fm1.setThreatSearch(THREAT_GANG_MAFIA);
+    $.cop3_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.cop3_fm1.giveWeapon(WEAPONTYPE_PISTOL, 99);
 
-    $.cop4_fm1 = Char.CreateAsPassenger($.swatvan_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 2);
-    $.cop4_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-    $.cop4_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.cop4_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+    $.cop4_fm1 = Char.CreateAsPassenger($.swatvan_fm1, PEDTYPE_GANG_HOOD, PED_SWAT, 2);
+    $.cop4_fm1.setThreatSearch(THREAT_GANG_MAFIA);
+    $.cop4_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.cop4_fm1.giveWeapon(WEAPONTYPE_PISTOL, 99);
 
     $.swatvan_fm1.gotoCoordinates(1252.0, -1086.0, -100.0);
 
@@ -2968,41 +2969,41 @@ async function swat_car_one() {
 }
 
 async function swat_car_two() {
-    $.swatvan2_fm1 = Car.Create(117 /* CAR_ENFORCER */, 1084.0, -1012.0, -100.0);
+    $.swatvan2_fm1 = Car.Create(CAR_ENFORCER, 1084.0, -1012.0, -100.0);
     $.swatvan2_fm1.setHeading(180.0);
     $.swatvan2_fm1.setCruiseSpeed(40.0);
     $.swatvan2_fm1.setDrivingStyle(2);
-    $.swatvan2_fm1.switchSiren(true /* ON */);
-    $.swatvan2_fm1.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+    $.swatvan2_fm1.switchSiren(ON);
+    $.swatvan2_fm1.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
 
-    $.cop5_fm1 = Char.CreateInsideCar($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */);
-    $.cop5_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-    $.cop5_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.cop5_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+    $.cop5_fm1 = Char.CreateInsideCar($.swatvan2_fm1, PEDTYPE_GANG_HOOD, PED_SWAT);
+    $.cop5_fm1.setThreatSearch(THREAT_GANG_MAFIA);
+    $.cop5_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.cop5_fm1.giveWeapon(WEAPONTYPE_PISTOL, 99);
 
-    $.cop6_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 0);
-    $.cop6_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-    $.cop6_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.cop6_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+    $.cop6_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, PEDTYPE_GANG_HOOD, PED_SWAT, 0);
+    $.cop6_fm1.setThreatSearch(THREAT_GANG_MAFIA);
+    $.cop6_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.cop6_fm1.giveWeapon(WEAPONTYPE_PISTOL, 99);
 
-    $.cop7_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 1);
-    $.cop7_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-    $.cop7_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.cop7_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+    $.cop7_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, PEDTYPE_GANG_HOOD, PED_SWAT, 1);
+    $.cop7_fm1.setThreatSearch(THREAT_GANG_MAFIA);
+    $.cop7_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.cop7_fm1.giveWeapon(WEAPONTYPE_PISTOL, 99);
 
-    $.cop8_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, 13 /* PEDTYPE_GANG_HOOD */, 2 /* PED_SWAT */, 2);
-    $.cop8_fm1.setThreatSearch(128 /* THREAT_GANG_MAFIA */);
-    $.cop8_fm1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.cop8_fm1.giveWeapon(2 /* WEAPONTYPE_PISTOL */, 99);
+    $.cop8_fm1 = Char.CreateAsPassenger($.swatvan2_fm1, PEDTYPE_GANG_HOOD, PED_SWAT, 2);
+    $.cop8_fm1.setThreatSearch(THREAT_GANG_MAFIA);
+    $.cop8_fm1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.cop8_fm1.giveWeapon(WEAPONTYPE_PISTOL, 99);
 
     $.swatvan2_fm1.gotoCoordinates(1235.0, -1099.0, -100.0);
 
-    $.player.setControl(false /* OFF */);
+    $.player.setControl(OFF);
     Game.SetEveryoneIgnorePlayer($.player, true);
-    Hud.SwitchWidescreen(true /* ON */);
+    Hud.SwitchWidescreen(ON);
     Game.SetAllCarsCanBeDamaged(false);
     Camera.SetFixedPosition(1309.913, -1061.354, 15.691, 0.0, 0.0, 0.0);
-    Camera.PointAtCar($.swatvan_fm1, 15 /* FIXED */, 2 /* JUMP_CUT */);
+    Camera.PointAtCar($.swatvan_fm1, FIXED, JUMP_CUT);
     Camera.SetGenerateCarsAround(true);
     $.swat_cam_needs_restoring = 1;
 

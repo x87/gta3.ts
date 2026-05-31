@@ -160,30 +160,30 @@ async function body() {
             $.controlmode = Pad.GetControllerMode();
 
             if (!($.controlmode == 3)) {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                     $.mission_end_button_ambulance = 1;
                 }
             } else {
-                if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                if (Pad.IsButtonPressed(PAD1, SQUARE)) {
                     $.mission_end_button_ambulance = 1;
                 }
             }
 
             if ($.mission_end_button_ambulance == 1) {
                 if (!($.controlmode == 3)) {
-                    if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                    if (!Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                         Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
                         FAIL('ambulance_failed');
                     }
                 } else {
-                    if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                    if (!Pad.IsButtonPressed(PAD1, SQUARE)) {
                         Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
                         FAIL('ambulance_failed');
                     }
                 }
             }
 
-            if (!$.player.isInModel(106 /* CAR_AMBULANCE */)) {
+            if (!$.player.isInModel(CAR_AMBULANCE)) {
                 Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
                 FAIL('ambulance_failed');
             } else {
@@ -1445,7 +1445,7 @@ async function generate_random_coord() {
         $.player1_a_y = _res165.y;
         $.player1_a_z = _res165.z;
 
-        if (Streaming.IsCollisionInMemory(1 /* LEVEL_INDUSTRIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_INDUSTRIAL)) {
             $.random_x = Math.RandomFloatInRange(778.0, 1540.0);
             $.random_y = Math.RandomFloatInRange(-1110.0, 0.0);
             $.hospital_x = 1141.5;
@@ -1458,7 +1458,7 @@ async function generate_random_coord() {
             $.paramedic_location = 1;
         }
 
-        if (Streaming.IsCollisionInMemory(2 /* LEVEL_COMMERCIAL */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_COMMERCIAL)) {
             $.random_x = Math.RandomFloatInRange(-192.0, 545.0);
             $.random_y = Math.RandomFloatInRange(-1626.0, 98.0);
             $.hospital_x = 178.5;
@@ -1471,7 +1471,7 @@ async function generate_random_coord() {
             $.paramedic_location = 2;
         }
 
-        if (Streaming.IsCollisionInMemory(3 /* LEVEL_SUBURBAN */)) {
+        if (Streaming.IsCollisionInMemory(LEVEL_SUBURBAN)) {
             $.random_x = Math.RandomFloatInRange(-1300.0, -414.0);
             $.random_y = Math.RandomFloatInRange(-608.8, 380.0);
             $.hospital_x = -1255.5;
@@ -1495,30 +1495,30 @@ async function generate_random_coord() {
         $.controlmode = Pad.GetControllerMode();
 
         if (!($.controlmode == 3)) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+            if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                 $.mission_end_button_ambulance = 1;
             }
         } else {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+            if (Pad.IsButtonPressed(PAD1, SQUARE)) {
                 $.mission_end_button_ambulance = 1;
             }
         }
 
         if ($.mission_end_button_ambulance == 1) {
             if (!($.controlmode == 3)) {
-                if (!Pad.IsButtonPressed(0 /* PAD1 */, 19 /* RIGHTSHOCK */)) {
+                if (!Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
                     Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
                     FAIL('ambulance_failed');
                 }
             } else {
-                if (!Pad.IsButtonPressed(0 /* PAD1 */, 14 /* SQUARE */)) {
+                if (!Pad.IsButtonPressed(PAD1, SQUARE)) {
                     Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
                     FAIL('ambulance_failed');
                 }
             }
         }
 
-        if (!$.player.isInModel(106 /* CAR_AMBULANCE */)) {
+        if (!$.player.isInModel(CAR_AMBULANCE)) {
             Text.PrintNow('A_CANC', 3000, 1); //"~r~Ambulance mission cancelled!"
             FAIL('ambulance_failed');
         }
@@ -1805,15 +1805,15 @@ async function chunk1_ambulance() {
         $.random_scream = Math.RandomIntInRange(0, 2);
         if ($.ped_sex_flag == 0) {
             if ($.random_scream == 0) {
-                Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, 78 /* SOUND_INJURED_PED_MALE_OUCH_S */);
+                Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, SOUND_INJURED_PED_MALE_OUCH_S);
             } else {
-                Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, 79 /* SOUND_INJURED_PED_MALE_OUCH_L */);
+                Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, SOUND_INJURED_PED_MALE_OUCH_L);
             }
         } else {
             if ($.random_scream == 0) {
-                Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, 80 /* SOUND_INJURED_PED_FEMALE_OUCH_S */);
+                Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, SOUND_INJURED_PED_FEMALE_OUCH_S);
             } else {
-                Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, 81 /* SOUND_INJURED_PED_FEMALE_OUCH_L */);
+                Sound.AddOneOffSound($.sound_x, $.sound_y, $.sound_z, SOUND_INJURED_PED_FEMALE_OUCH_L);
             }
         }
         if ($.ped_time_limit < 0) {
@@ -1865,7 +1865,7 @@ async function chunk4_ambulance() {
         $.ped_time_limit += $.time_chunk;
         ++$.bonus_time_flag;
     }
-    Sound.AddOneOffSound(0.0, 0.0, 0.0, 94 /* SOUND_PART_MISSION_COMPLETE */);
+    Sound.AddOneOffSound(0.0, 0.0, 0.0, SOUND_PART_MISSION_COMPLETE);
     ++$.saved_peds;
     Stat.RegisterLifeSaved();
 }

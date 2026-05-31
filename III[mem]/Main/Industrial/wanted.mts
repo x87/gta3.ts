@@ -53,42 +53,42 @@ async function body() {
     $.wanted_level = $.player.storeWantedLevel();
     //CLEAR_WANTED_LEVEL player
 
-    Game.SetPoliceIgnorePlayer($.player, true /* on */);
-    $.player.setControl(false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
+    $.player.setControl(OFF);
     //SWITCH_WIDESCREEN on
 
-    Streaming.Switch(false /* OFF */);
+    Streaming.Switch(OFF);
 
     //SET_SWAT_REQUIRED TRUE
 
-    Streaming.RequestModel(117 /* CAR_ENFORCER */);
+    Streaming.RequestModel(CAR_ENFORCER);
     //REQUEST_MODEL CAR_RUMPO
 
-    Streaming.RequestModel(2 /* PED_SWAT */);
-    Streaming.RequestModel(137 /* CAR_DIABLOS */);
-    Streaming.RequestModel(15 /* PED_GANG_DIABLO_B */);
+    Streaming.RequestModel(PED_SWAT);
+    Streaming.RequestModel(CAR_DIABLOS);
+    Streaming.RequestModel(PED_GANG_DIABLO_B);
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasModelLoaded(117 /* CAR_ENFORCER */)) {
+    while (!Streaming.HasModelLoaded(CAR_ENFORCER)) {
         await asyncWait(0);
         //PRINT_NOW TEST1 1000 1
     }
-    while (!Streaming.HasModelLoaded(2 /* PED_SWAT */)) {
+    while (!Streaming.HasModelLoaded(PED_SWAT)) {
         await asyncWait(0);
         //PRINT_NOW TEST2 1000 1
     }
 
-    while (!Streaming.HasModelLoaded(15 /* PED_GANG_DIABLO_B */)) {
+    while (!Streaming.HasModelLoaded(PED_GANG_DIABLO_B)) {
         await asyncWait(0);
         //PRINT_NOW TEST3 1000 1
     }
-    while (!Streaming.HasModelLoaded(137 /* CAR_DIABLOS */)) {
+    while (!Streaming.HasModelLoaded(CAR_DIABLOS)) {
         await asyncWait(0);
         //PRINT_NOW TEST4 1000 1
     }
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     while ($.flag_info < 13) {
         await asyncWait(0);
@@ -101,19 +101,19 @@ async function body() {
       DO_FADE 1500 FADE_OUT
       WAIT 1500*/
 
-            $.copcar_info = Car.Create(116 /* CAR_POLICE */, 1110.0, -823.0, 15.0);
+            $.copcar_info = Car.Create(CAR_POLICE, 1110.0, -823.0, 15.0);
             $.copcar_info.setHeading(330.0);
-            $.cop_info = Char.CreateInsideCar($.copcar_info, 4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */);
+            $.cop_info = Char.CreateInsideCar($.copcar_info, PEDTYPE_CIVMALE, PED_COP);
             //CAR_SET_IDLE copcar_info
 
-            $.copcar2_info = Car.Create(116 /* CAR_POLICE */, 1105.0, -828.0, 15.0);
+            $.copcar2_info = Car.Create(CAR_POLICE, 1105.0, -828.0, 15.0);
             $.copcar2_info.setHeading(330.0);
-            $.cop2_info = Char.CreateInsideCar($.copcar2_info, 4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */);
+            $.cop2_info = Char.CreateInsideCar($.copcar2_info, PEDTYPE_CIVMALE, PED_COP);
             //CAR_SET_IDLE copcar2_info
 
-            $.diablocar_info = Car.Create(137 /* CAR_DIABLOS */, 1115.0, -818.0, 15.0);
+            $.diablocar_info = Car.Create(CAR_DIABLOS, 1115.0, -818.0, 15.0);
             $.diablocar_info.setHeading(0.0);
-            $.diablo_info = Char.CreateInsideCar($.diablocar_info, 9 /* PEDTYPE_GANG_DIABLO */, 15 /* PED_GANG_DIABLO_B */);
+            $.diablo_info = Char.CreateInsideCar($.diablocar_info, PEDTYPE_GANG_DIABLO, PED_GANG_DIABLO_B);
             //CAR_SET_IDLE diablocar_info
 
             World.SetCarDensityMultiplier(0.3);
@@ -140,7 +140,7 @@ async function body() {
             }
             Camera.SetFixedPosition(1134.0, -695.0, 18.0, 0.0, 0.0, 0.0);
             if (!Car.IsDead($.diablocar_info)) {
-                Camera.PointAtCar($.diablocar_info, 15 /* FIXED */, 2 /* JUMP_CUT */);
+                Camera.PointAtCar($.diablocar_info, FIXED, JUMP_CUT);
             }
             if (!Car.IsDead($.diablocar_info)) {
                 $.diablocar_info.setCruiseSpeed(50.0);
@@ -149,24 +149,24 @@ async function body() {
                 //GET_CAR_COORDINATES diablocar_info car_x car_y car_z
             }
             if (!Car.IsDead($.copcar_info) && !Car.IsDead($.copcar2_info)) {
-                $.copcar_info.switchSiren(true /* ON */);
-                $.copcar2_info.switchSiren(true /* ON */);
+                $.copcar_info.switchSiren(ON);
+                $.copcar2_info.switchSiren(ON);
             }
             $.flag_info = 2;
         }
         if ($.info_time_lapsed > 5500 && $.flag_copcar_progress == 0) {
             World.ClearArea(1142.0, -666.0, 14.8, 10.0, true);
-            $.swatvan_info = Car.Create(117 /* CAR_ENFORCER */, 1142.0, -666.0, 14.8);
+            $.swatvan_info = Car.Create(CAR_ENFORCER, 1142.0, -666.0, 14.8);
             //CREATE_CAR CAR_RUMPO 1142.0 -666.0 14.8 swatvan_info
             $.swatvan_info.setHeading(90.0);
-            $.swatvan_info.lockDoors(1 /* CARLOCK_UNLOCKED */);
+            $.swatvan_info.lockDoors(CARLOCK_UNLOCKED);
             $.swatvan_info.setIdle();
-            $.swat2_info = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 1138.0, -671.0, 15.0);
-            $.swat1_info = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 1137.8, -661.3, 15.0);
-            $.swat1_info.giveWeapon(6 /* WEAPONTYPE_M16 */, 60);
+            $.swat2_info = Char.Create(PEDTYPE_CIVMALE, PED_SWAT, 1138.0, -671.0, 15.0);
+            $.swat1_info = Char.Create(PEDTYPE_CIVMALE, PED_SWAT, 1137.8, -661.3, 15.0);
+            $.swat1_info.giveWeapon(WEAPONTYPE_M16, 60);
             $.swat2_info.setHeading(110.0);
             $.swat1_info.setHeading(80.0);
-            $.swat1_info.giveWeapon(4 /* WEAPONTYPE_SHOTGUN */, 10);
+            $.swat1_info.giveWeapon(WEAPONTYPE_SHOTGUN, 10);
             if (!Char.IsDead($.diablo_info)) {
                 $.swat1_info.lookAtCharAlways($.diablo_info);
             }
@@ -187,7 +187,7 @@ async function body() {
             Text.PrintHelp('WANT_B'); //your wanted level is represented by the row of stars in the .....
             if (!Car.IsDead($.swatvan_info)) {
                 Camera.SetFixedPosition(1135.8, -673.0, 14.8, 0.0, 0.0, 0.0);
-                Camera.PointAtCar($.swatvan_info, 15 /* FIXED */, 2 /* JUMP_CUT */);
+                Camera.PointAtCar($.swatvan_info, FIXED, JUMP_CUT);
                 $.copcar_info.delete();
                 $.copcar2_info.delete();
                 $.diablocar_info.delete();
@@ -228,10 +228,10 @@ async function body() {
         }
         if ($.info_time_lapsed > 26000 && $.flag_info == 10) {
             Camera.SetFixedPosition(1135.0, -672.5, 15.5, 0.0, 0.0, 0.0);
-            Camera.PointAtPlayer($.player, 15 /* FIXED */, 2 /* JUMP_CUT */);
+            Camera.PointAtPlayer($.player, FIXED, JUMP_CUT);
             Text.PrintHelp('WANT_J'); // You will find ways of reducing.......
-            $.bribe_pickup = Pickup.Create(1383 /* bribe */, 14 /* PICKUP_ON_STREET_SLOW */, 1143.0, -671.0, 15.0);
-            Camera.PointAtPoint(1143.0, -671.0, 15.0, 1 /* INTERPOLATION */);
+            $.bribe_pickup = Pickup.Create(1383 /* bribe */, PICKUP_ON_STREET_SLOW, 1143.0, -671.0, 15.0);
+            Camera.PointAtPoint(1143.0, -671.0, 15.0, INTERPOLATION);
             $.flag_info = 11;
         }
 
@@ -241,7 +241,7 @@ async function body() {
         if ($.info_time_lapsed > 34000 && $.flag_info == 12) {
             Text.ClearHelp();
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 0 /* FADE_OUT */);
+            Camera.DoFade(1500, FADE_OUT);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
@@ -258,10 +258,10 @@ async function body() {
             //REMOVE_PICKUP armour_pickup_info
             Camera.RestoreJumpcut();
             //SWITCH_WIDESCREEN off
-            $.player.setControl(true /* on */);
+            $.player.setControl(ON);
             $.player.alterWantedLevel($.wanted_level);
             Camera.SetFadingColor(0, 0, 0);
-            Camera.DoFade(1500, 1 /* FADE_IN */);
+            Camera.DoFade(1500, FADE_IN);
             while (Camera.GetFadingStatus()) {
                 await asyncWait(0);
             }
@@ -299,12 +299,12 @@ async function body() {
                 $.swatvan_info.gotoCoordinates(982.0, -617.0, 15.0);
                 $.swatvan_info.setCruiseSpeed(30.0);
                 $.swatvan_info.setDrivingStyle(3);
-                $.swatvan_info.switchSiren(true /* ON */);
+                $.swatvan_info.switchSiren(ON);
                 $.flag_swat_progress = 2;
             }
         }
         if ($.flag_intro_jump == 0 && $.flag_info < 12) {
-            if (Pad.IsButtonPressed(0 /* PAD1 */, 16 /* CROSS */)) {
+            if (Pad.IsButtonPressed(PAD1, CROSS)) {
                 $.info_time_lapsed = 34001;
                 $.flag_info = 12;
                 $.flag_intro_jump = 1;
@@ -315,9 +315,9 @@ async function body() {
 
 async function cleanup() {
     Camera.RestoreJumpcut();
-    Hud.SwitchWidescreen(false /* off */);
-    $.player.setControl(true /* on */);
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
+    Hud.SwitchWidescreen(OFF);
+    $.player.setControl(ON);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
 
     if (!Car.IsDead($.swatvan_info)) {
         $.swatvan_info.wanderRandomly();
@@ -340,12 +340,12 @@ async function cleanup() {
     $.swat2_info.markAsNoLongerNeeded();
     $.diablo_info.markAsNoLongerNeeded();
 
-    Streaming.MarkModelAsNoLongerNeeded(1 /* PED_COP */);
-    Streaming.MarkModelAsNoLongerNeeded(15 /* PED_GANG_DIABLO_B */);
-    Streaming.MarkModelAsNoLongerNeeded(2 /* PED_SWAT */);
-    Streaming.MarkModelAsNoLongerNeeded(137 /* CAR_DIABLOS */);
-    Streaming.MarkModelAsNoLongerNeeded(117 /* CAR_ENFORCER */);
-    Streaming.MarkModelAsNoLongerNeeded(116 /* CAR_POLICE */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_COP);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_DIABLO_B);
+    Streaming.MarkModelAsNoLongerNeeded(PED_SWAT);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_DIABLOS);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_ENFORCER);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_POLICE);
     Game.SetSwatRequired(false);
     //REMOVE_PICKUP heal_info
 

@@ -130,13 +130,13 @@ async function body() {
     $.flag_player_in_car_lm2 = 0;
 
     {
-        Streaming.RequestModel(54 /* PED_DOCKER2 */);
+        Streaming.RequestModel(PED_DOCKER2);
 
-        Streaming.RequestModel(39 /* PED_PROSTITUTE */);
+        Streaming.RequestModel(PED_PROSTITUTE);
 
-        Streaming.RequestModel(40 /* PED_PROSTITUTE2 */);
+        Streaming.RequestModel(PED_PROSTITUTE2);
 
-        Streaming.RequestModel(129 /* CAR_STALLION */);
+        Streaming.RequestModel(CAR_STALLION);
 
         Text.ClearHelp();
 
@@ -207,19 +207,19 @@ async function body() {
 
         Cutscene.SetOffset(900.782, -427.523, 13.829);
 
-        $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+        $.cs_player = CutsceneObject.Create(PED_PLAYER);
 
         $.cs_player.setAnim('player');
 
-        $.cs_micky = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+        $.cs_micky = CutsceneObject.Create(PED_SPECIAL1);
 
         $.cs_micky.setAnim('micky');
 
-        $.cs_mickyhead = CutsceneHead.Create($.cs_micky, 186 /* CUT_OBJ2 */);
+        $.cs_mickyhead = CutsceneHead.Create($.cs_micky, CUT_OBJ2);
 
         $.cs_mickyhead.setAnim('micky');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 187 /* CUT_OBJ3 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ3);
 
         $.cs_playerhead.setAnim('player');
 
@@ -236,9 +236,9 @@ async function body() {
 
         $.player.setHeading(270.0);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
-        World.SwitchRubbish(false /* OFF */);
+        World.SwitchRubbish(OFF);
 
         Cutscene.Start();
 
@@ -307,7 +307,7 @@ async function body() {
             $.cs_time = Cutscene.GetTime();
         }
 
-        Camera.DoFade(1500, 0 /* FADE_OUT */);
+        Camera.DoFade(1500, FADE_OUT);
 
         while (!Cutscene.HasFinished()) {
             await asyncWait(0);
@@ -321,9 +321,9 @@ async function body() {
 
         Cutscene.Clear();
 
-        Streaming.Switch(true /* ON */);
+        Streaming.Switch(ON);
 
-        World.SwitchRubbish(true /* ON */);
+        World.SwitchRubbish(ON);
 
         Streaming.LoadScene(920.3, -425.4, 15.0);
 
@@ -331,20 +331,20 @@ async function body() {
 
         await asyncWait(500);
 
-        Camera.DoFade(1500, 1 /* FADE_IN */);
+        Camera.DoFade(1500, FADE_IN);
 
         Camera.SetBehindPlayer();
 
         World.SetVisibilityOfClosestObjectOfType(890.9, -416.9, 15.0, 6.0, 1376 /* backdoor */, true);
 
         Streaming.UnloadSpecialCharacter(1);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
 
-        Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
 
-        Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
-        Streaming.MarkModelAsNoLongerNeeded(188 /* CUT_OBJ4 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
 
         Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
 
@@ -358,15 +358,15 @@ async function body() {
 
         Path.SwitchPedRoadsOff(1609.8, -615.2, 9.0, 1557.8, -673.4, 20.0);
 
-        $.bat_lm2 = Pickup.Create(172 /* WEAPON_BAT */, 3 /* PICKUP_ONCE */, 917.2, -425.3, 14.5);
+        $.bat_lm2 = Pickup.Create(WEAPON_BAT, PICKUP_ONCE, 917.2, -425.3, 14.5);
 
         $.bat_blip_lm2 = Blip.AddForPickup($.bat_lm2);
 
         while (
-            !Streaming.HasModelLoaded(129 /* CAR_STALLION */) ||
-            !Streaming.HasModelLoaded(54 /* PED_DOCKER2 */) ||
-            !Streaming.HasModelLoaded(39 /* PED_PROSTITUTE */) ||
-            !Streaming.HasModelLoaded(40 /* PED_PROSTITUTE2 */)
+            !Streaming.HasModelLoaded(CAR_STALLION) ||
+            !Streaming.HasModelLoaded(PED_DOCKER2) ||
+            !Streaming.HasModelLoaded(PED_PROSTITUTE) ||
+            !Streaming.HasModelLoaded(PED_PROSTITUTE2)
         ) {
             await asyncWait(0);
         }
@@ -375,7 +375,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        $.player.setControl(true /* ON */);
+        $.player.setControl(ON);
 
         Text.PrintNow('BAT1', 5000, 1); //"Pick up the bat!"
 
@@ -383,7 +383,7 @@ async function body() {
 
         // creates the dealer
 
-        $.victim_ped_lm2 = Char.Create(5 /* PEDTYPE_CIVFEMALE */, 54 /* PED_DOCKER2 */, 1399.64, -833.72, -100.0);
+        $.victim_ped_lm2 = Char.Create(PEDTYPE_CIVFEMALE, PED_DOCKER2, 1399.64, -833.72, -100.0);
 
         $.victim_ped_lm2.turnToFaceCoord(1397.46, -835.52, 10.8);
 
@@ -391,7 +391,7 @@ async function body() {
 
         // creates prostitute one
 
-        $.buyer1_lm2 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 39 /* PED_PROSTITUTE */, 1397.21, -832.86, -100.0); //proper one
+        $.buyer1_lm2 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE, 1397.21, -832.86, -100.0); //proper one
 
         $.buyer1_lm2.clearThreatSearch();
 
@@ -399,7 +399,7 @@ async function body() {
 
         // creates prostitute two
 
-        $.buyer2_lm2 = Char.Create(20 /* PEDTYPE_PROSTITUTE */, 40 /* PED_PROSTITUTE2 */, 1397.28, -834.43, -100.0);
+        $.buyer2_lm2 = Char.Create(PEDTYPE_PROSTITUTE, PED_PROSTITUTE2, 1397.28, -834.43, -100.0);
 
         $.buyer2_lm2.clearThreatSearch();
 
@@ -407,11 +407,11 @@ async function body() {
 
         // dealers car
 
-        $.car_lm2 = Car.Create(129 /* CAR_STALLION */, 1396.67, -837.69, -100.0);
+        $.car_lm2 = Car.Create(CAR_STALLION, 1396.67, -837.69, -100.0);
 
         $.car_lm2.setHeading(301.0);
 
-        $.car_lm2.changeLock(2 /* CARLOCK_LOCKED */);
+        $.car_lm2.changeLock(CARLOCK_LOCKED);
 
         $.radar_blip_ped1_lm2 = Blip.AddForChar($.victim_ped_lm2);
 
@@ -521,8 +521,8 @@ async function body() {
                 if ($.flag_victim_dead_lm2 == 0) {
                     if ($.player.locateAnyMeansChar3D($.victim_ped_lm2, 10.0, 10.0, 10.0, false) && $.flag_victim_ped_lm2_changed == 0) {
                         $.victim_ped_lm2.turnToFacePlayer($.player);
-                        $.victim_ped_lm2.setThreatSearch(1 /* THREAT_PLAYER1 */);
-                        $.victim_ped_lm2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                        $.victim_ped_lm2.setThreatSearch(THREAT_PLAYER1);
+                        $.victim_ped_lm2.setPersonality(PEDSTAT_TOUGH_GUY);
                         $.victim_ped_lm2.setHeedThreats(true);
                         $.victim_ped_lm2.setObjKillPlayerOnFoot($.player);
                         $.flag_victim_ped_lm2_changed = 1;
@@ -569,7 +569,7 @@ async function body() {
             }
         }
 
-        $.car_lm2.changeLock(1 /* CARLOCK_UNLOCKED */);
+        $.car_lm2.changeLock(CARLOCK_UNLOCKED);
 
         $.radar_blip_car1_lm2 = Blip.AddForCar($.car_lm2);
 
@@ -593,11 +593,11 @@ async function body() {
 
         $.flag_player_in_car_lm2 = 1;
 
-        Game.SetFreeResprays(true /* ON */);
+        Game.SetFreeResprays(ON);
 
         $.radar_blip_car1_lm2.remove();
 
-        $.radar_blip_coord1_lm2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, 18 /* RADAR_SPRITE_SPRAY */);
+        $.radar_blip_coord1_lm2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, RADAR_SPRITE_SPRAY);
 
         $.sphere1_lm2 = Sphere.Create(925.1, -350.5, 9.3, 2.5);
 
@@ -625,7 +625,7 @@ async function body() {
             }
             if ($.player.isInCar($.car_lm2) && $.flag_player_had_car_message_lm2 == 1) {
                 $.radar_blip_car1_lm2.remove();
-                $.radar_blip_coord1_lm2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, 18 /* RADAR_SPRITE_SPRAY */);
+                $.radar_blip_coord1_lm2 = Blip.AddSpriteForCoord(924.0, -361.0, 10.0, RADAR_SPRITE_SPRAY);
                 if ($.flag_had_spray_help == 0) {
                     $.sphere1_lm2 = Sphere.Create(925.1, -350.5, 9.3, 2.5);
                 }
@@ -746,14 +746,14 @@ async function cleanup() {
     }
 
     if (!Car.IsDead($.car_lm2)) {
-        $.car_lm2.changeLock(1 /* CARLOCK_UNLOCKED */);
+        $.car_lm2.changeLock(CARLOCK_UNLOCKED);
     }
 
     $.garage_lm2.setTargetCarForMission(-1 as any);
-    Streaming.MarkModelAsNoLongerNeeded(129 /* CAR_STALLION */);
-    Streaming.MarkModelAsNoLongerNeeded(54 /* PED_DOCKER2 */);
-    Streaming.MarkModelAsNoLongerNeeded(39 /* PED_PROSTITUTE */);
-    Streaming.MarkModelAsNoLongerNeeded(40 /* PED_PROSTITUTE2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_STALLION);
+    Streaming.MarkModelAsNoLongerNeeded(PED_DOCKER2);
+    Streaming.MarkModelAsNoLongerNeeded(PED_PROSTITUTE);
+    Streaming.MarkModelAsNoLongerNeeded(PED_PROSTITUTE2);
     $.radar_blip_ped1_lm2.remove();
     $.radar_blip_car1_lm2.remove();
     $.radar_blip_coord1_lm2.remove();
@@ -761,7 +761,7 @@ async function cleanup() {
     $.bat_blip_lm2.remove();
     $.sphere1_lm2.remove();
     $.sphere2_lm2.remove();
-    Game.SetFreeResprays(false /* OFF */);
+    Game.SetFreeResprays(OFF);
     Path.SwitchPedRoadsOn(1609.8, -615.2, 9.0, 1557.8, -673.4, 20.0);
     Mission.Finish();
 }

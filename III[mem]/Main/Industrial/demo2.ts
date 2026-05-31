@@ -31,19 +31,19 @@ async function body() {
         // Player position Luigi's
 
         $.player.setVisible(false);
-        $.player.setControl(false /* OFF */);
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+        $.player.setControl(OFF);
+        Game.SetPoliceIgnorePlayer($.player, ON);
         $.player.setCoordinates(892.9, -445.0, 14.0);
-        Hud.SwitchWidescreen(true /* ON */);
+        Hud.SwitchWidescreen(ON);
         Camera.SetFixedPosition(902.2, -434.2, 14.8, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(920.5, -395.0, 17.0, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(920.5, -395.0, 17.0, JUMP_CUT);
         await asyncWait(8000);
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
 
         await asyncWait(1000);
 
@@ -51,20 +51,20 @@ async function body() {
 
         $.player.setCoordinates(928.8, -687.9, 14.0);
         $.player.setHeading(0.0);
-        $.player.setVisible(true /* ON */);
+        $.player.setVisible(ON);
 
         Camera.SetFixedPosition(913.1, -673.9, 14.7, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(931.6, -685.7, 20.6, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(931.6, -685.7, 20.6, JUMP_CUT);
         Clock.SetTimeOfDay(0, 36);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
 
         await asyncWait(1000);
         $.player.setVisible(false);
@@ -75,18 +75,18 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(1356.3, -921.5, 11.7, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1516.0, -749.2, 69.2, 2 /* JUMP_CUT */);
-        Weather.ForceNow(0 /* WEATHER_SUNNY */);
+        Camera.PointAtPoint(1516.0, -749.2, 69.2, JUMP_CUT);
+        Weather.ForceNow(WEATHER_SUNNY);
         Clock.SetTimeOfDay(6, 33);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
         Weather.Release();
 
         await asyncWait(1000);
@@ -97,18 +97,18 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(846.0, -787.7, 20.4, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(837.2, -778.5, 21.2, 2 /* JUMP_CUT */);
-        Weather.ForceNow(2 /* WEATHER_RAINY */);
+        Camera.PointAtPoint(837.2, -778.5, 21.2, JUMP_CUT);
+        Weather.ForceNow(WEATHER_RAINY);
         Clock.SetTimeOfDay(2, 27);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
         Weather.Release();
 
         await asyncWait(1000);
@@ -121,23 +121,23 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(1021.0, -441.0, 14.8, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1021.8, -441.7, 14.8, 2 /* JUMP_CUT */);
-        Weather.ForceNow(1 /* WEATHER_CLOUDY */);
+        Camera.PointAtPoint(1021.8, -441.7, 14.8, JUMP_CUT);
+        Weather.ForceNow(WEATHER_CLOUDY);
         Clock.SetTimeOfDay(11, 0);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
         $.player.alterWantedLevelNoDrop(3);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
         Weather.Release();
         $.player.clearWantedLevel();
-        Game.SetPoliceIgnorePlayer($.player, true /* ON */);
+        Game.SetPoliceIgnorePlayer($.player, ON);
 
         await asyncWait(1000);
 
@@ -147,17 +147,17 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(856.0, -65.0, 10.6, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(857.3, -65.9, 10.4, 2 /* JUMP_CUT */);
-        Weather.ForceNow(0 /* WEATHER_SUNNY */);
+        Camera.PointAtPoint(857.3, -65.9, 10.4, JUMP_CUT);
+        Weather.ForceNow(WEATHER_SUNNY);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
         Weather.Release();
 
         await asyncWait(1000);
@@ -168,16 +168,16 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(902.1, -262.9, 4.47, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(917.5, -283.1, 7.5, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(917.5, -283.1, 7.5, JUMP_CUT);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
 
         await asyncWait(1000);
 
@@ -187,18 +187,18 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(1188.0, -351.0, 31.0, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(1206.7, -324.4, 30.3, 2 /* JUMP_CUT */);
-        Weather.ForceNow(1 /* WEATHER_CLOUDY */);
+        Camera.PointAtPoint(1206.7, -324.4, 30.3, JUMP_CUT);
+        Weather.ForceNow(WEATHER_CLOUDY);
         Clock.SetTimeOfDay(21, 0);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
         Weather.Release();
 
         await asyncWait(1000);
@@ -209,17 +209,17 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(899.7, -442.3, 15.0, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(914.1, -445.3, 16.0, 2 /* JUMP_CUT */);
-        Weather.ForceNow(1 /* WEATHER_CLOUDY */);
+        Camera.PointAtPoint(914.1, -445.3, 16.0, JUMP_CUT);
+        Weather.ForceNow(WEATHER_CLOUDY);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
         Weather.Release();
 
         await asyncWait(1000);
@@ -230,18 +230,18 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(891.5, -718.4, 14.5, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(906.9, -748.7, 24.0, 2 /* JUMP_CUT */);
-        Weather.ForceNow(2 /* WEATHER_RAINY */);
+        Camera.PointAtPoint(906.9, -748.7, 24.0, JUMP_CUT);
+        Weather.ForceNow(WEATHER_RAINY);
         Clock.SetTimeOfDay(4, 6);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
         Weather.Release();
 
         await asyncWait(1000);
@@ -252,18 +252,18 @@ async function body() {
         $.player.setHeading(90.0);
 
         Camera.SetFixedPosition(1043.3, -299.1, 46.0, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(887.2, -432.9, 38.0, 2 /* JUMP_CUT */);
-        Weather.ForceNow(0 /* WEATHER_SUNNY */);
+        Camera.PointAtPoint(887.2, -432.9, 38.0, JUMP_CUT);
+        Weather.ForceNow(WEATHER_SUNNY);
         Clock.SetTimeOfDay(12, 44);
 
         await asyncWait(3000);
 
-        Camera.DoFade(1000, 1 /* FADE_IN */);
+        Camera.DoFade(1000, FADE_IN);
 
         await asyncWait(15000);
 
         Camera.SetFadingColor(0, 0, 0);
-        Camera.DoFade(1000, 0 /* FADE_OUT */);
+        Camera.DoFade(1000, FADE_OUT);
         Weather.Release();
 
         await asyncWait(1000);
@@ -277,9 +277,9 @@ async function onPassed() {}
 async function cleanup() {
     ONMISSION = false;
     Camera.Restore();
-    $.player.setControl(true /* ON */);
-    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-    Hud.SwitchWidescreen(false /* OFF */);
+    $.player.setControl(ON);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
+    Hud.SwitchWidescreen(OFF);
     $.player.setVisible(true);
     Weather.Release();
     Mission.Finish();

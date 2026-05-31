@@ -105,15 +105,15 @@ async function body() {
     Cutscene.Load('hd_ph4');
     Cutscene.SetOffset(-444.714, -6.321, 2.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -174,7 +174,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -192,7 +192,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ1
 
@@ -247,7 +247,7 @@ async function body() {
             $.garage_hm4.setTargetCarForMission($.car_hm4);
             if ($.player.isStoppedInAreaInCar3D(-824.7, -165.5, 32.8, -843.5, -171.7, 37.0, false) && $.flag_player_in_area_hm4 == 0) {
                 $.total_no_pills_carried_hm4 += $.no_of_pills_carried_hm4;
-                Sound.AddOneOffSound(-834.9, -168.8, 33.9, 83 /* SOUND_UNLOAD_GOLD */);
+                Sound.AddOneOffSound(-834.9, -168.8, 33.9, SOUND_UNLOAD_GOLD);
                 Pacman.ClearNumberOfPowerPillsCarried();
                 $.flag_player_in_area_hm4 = 1;
             }
@@ -295,11 +295,11 @@ async function onFailed() {
     $.garage_hm4.setTargetCarForMission(-1 as any);
 
     if ($.player.hasBeenArrested()) {
-        Restart.OverridePolice(3 /* LEVEL_SUBURBAN */);
+        Restart.OverridePolice(LEVEL_SUBURBAN);
     }
 
     if ($.player.isDead()) {
-        Restart.OverrideHospital(3 /* LEVEL_SUBURBAN */);
+        Restart.OverrideHospital(LEVEL_SUBURBAN);
     }
 }
 

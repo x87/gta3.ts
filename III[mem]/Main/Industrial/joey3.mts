@@ -67,19 +67,19 @@ async function body() {
     Cutscene.Load('J3_VH');
     Cutscene.SetOffset(1190.079, -869.861, 13.977);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_joey = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_joey = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_joey.setAnim('joey');
 
-    $.cs_joeyhead = CutsceneHead.Create($.cs_joey, 185 /* CUT_OBJ1 */);
+    $.cs_joeyhead = CutsceneHead.Create($.cs_joey, CUT_OBJ1);
     $.cs_joeyhead.setAnim('joey');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 186 /* CUT_OBJ2 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ2);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_troll = CutsceneObject.Create(187 /* CUT_OBJ3 */);
+    $.cs_troll = CutsceneObject.Create(CUT_OBJ3);
     $.cs_troll.setAnim('TROLL');
 
     World.ClearArea(1191.9, -870.4, 15.0, 1.0, true);
@@ -87,10 +87,10 @@ async function body() {
 
     $.player.setHeading(230.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -151,7 +151,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -163,43 +163,43 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
     Streaming.MarkModelAsNoLongerNeeded(939 /* jogarageext */);
     Streaming.MarkModelAsNoLongerNeeded(1074 /* jogarageint */);
 
     Streaming.LoadSpecialCharacter(2, 'S_GUARD');
-    Streaming.RequestModel(118 /* CAR_SECURICAR */);
+    Streaming.RequestModel(CAR_SECURICAR);
 
-    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(118 /* CAR_SECURICAR */)) {
+    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(CAR_SECURICAR)) {
         await asyncWait(0);
     }
 
     // START OF MISSION
 
-    $.van_jm3 = Car.Create(118 /* CAR_SECURICAR */, 1063.0, -805.0, 14.6);
-    $.van_jm3.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+    $.van_jm3 = Car.Create(CAR_SECURICAR, 1063.0, -805.0, 14.6);
+    $.van_jm3.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
     $.van_jm3.setOnlyDamagedByPlayer(true);
     $.van_jm3.setProofs(true, true, false, false, true);
     $.van_jm3.setCruiseSpeed(14.0);
     $.van_jm3.setDrivingStyle(0);
     $.blip1_jm3 = Blip.AddForCar($.van_jm3);
 
-    $.van_man1_jm3 = Char.CreateInsideCar($.van_jm3, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */);
-    $.van_man1_jm3.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
+    $.van_man1_jm3 = Char.CreateInsideCar($.van_jm3, PEDTYPE_SPECIAL, PED_SPECIAL2);
+    $.van_man1_jm3.setPersonality(PEDSTAT_GEEK_GUY);
 
-    $.van_man2_jm3 = Char.CreateAsPassenger($.van_jm3, 21 /* PEDTYPE_SPECIAL */, 27 /* PED_SPECIAL2 */, 0);
-    $.van_man2_jm3.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
+    $.van_man2_jm3 = Char.CreateAsPassenger($.van_jm3, PEDTYPE_SPECIAL, PED_SPECIAL2, 0);
+    $.van_man2_jm3.setPersonality(PEDSTAT_GEEK_GUY);
 
     Hud.DisplayCounterWithString($.$id.test_van_health_counter, 1, 'DAM');
 
@@ -284,7 +284,7 @@ async function body() {
     }
 
     if (!Car.IsDead($.van_jm3)) {
-        $.van_jm3.lockDoors(1 /* CARLOCK_UNLOCKED */);
+        $.van_jm3.lockDoors(CARLOCK_UNLOCKED);
 
         Hud.ClearCounter($.$id.test_van_health_counter);
         if (!Char.IsDead($.van_man1_jm3)) {
@@ -323,7 +323,7 @@ async function body() {
     if (!Char.IsDead($.van_man1_jm3) && !Char.IsDead($.van_man2_jm3)) {
         $.van_man1_jm3.setObjFleePlayerOnFootAlways($.player);
         $.van_man2_jm3.setObjFleePlayerOnFootAlways($.player);
-        $.van_man2_jm3.setSay(96 /* SOUND_SECURITY_GUARD_RUN_AWAY_SHOUT */);
+        $.van_man2_jm3.setSay(SOUND_SECURITY_GUARD_RUN_AWAY_SHOUT);
     }
 
     if (!Car.IsDead($.van_jm3)) {
@@ -345,7 +345,7 @@ async function body() {
             if ($.player.isInCar($.van_jm3)) {
                 if ($.flag_car_blip_displayed_jm3 == 1 /* TRUE */) {
                     $.blip2_jm3 = Blip.AddForCoord(1445.8, -796.7, -100.0);
-                    $.blip2_jm3.changeDisplay(2 /* BLIP_ONLY */);
+                    $.blip2_jm3.changeDisplay(BLIP_ONLY);
                     $.blip1_jm3.remove();
                     Text.PrintNow('JM3_1', 5000, 1);
                     $.flag_car_blip_displayed_jm3 = 0 /* FALSE */;
@@ -365,7 +365,7 @@ async function body() {
             if (!Char.IsDead($.van_man2_jm3)) {
                 if (TIMERB > 4000) {
                     TIMERB = 0;
-                    $.van_man2_jm3.setSay(96 /* SOUND_SECURITY_GUARD_RUN_AWAY_SHOUT */);
+                    $.van_man2_jm3.setSay(SOUND_SECURITY_GUARD_RUN_AWAY_SHOUT);
                 }
             }
             if ($.in_the_locate_joey3 == 0) {
@@ -421,7 +421,7 @@ async function onPassed() {
     $.player.addScore(20000);
     Stat.RegisterMissionPassed('JM3');
     Stat.PlayerMadeProgress(1);
-    $.Garage_bank.changeTypeWithCarModel(7 /* GARAGE_COLLECTSPECIFICCARS */, 118 /* CAR_SECURICAR */);
+    $.Garage_bank.changeTypeWithCarModel(GARAGE_COLLECTSPECIFICCARS, CAR_SECURICAR);
     // START_NEW_SCRIPT joey_mission4_loop
     // START_NEW_SCRIPT diablo_phone_start
     // START_NEW_SCRIPT van_heist_garage_pager
@@ -435,7 +435,7 @@ async function cleanup() {
     $.blip2_jm3.remove();
     Streaming.UnloadSpecialCharacter(2);
     $.Garage_bank.setTargetCarForMission(-1 as any);
-    Streaming.MarkModelAsNoLongerNeeded(118 /* CAR_SECURICAR */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_SECURICAR);
     Hud.ClearCounter($.$id.test_van_health_counter);
     Mission.Finish();
 }

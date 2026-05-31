@@ -1,4 +1,5 @@
 // Generated from Main/Commercial/ray1.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *****************************************************************************************
@@ -108,19 +109,19 @@ async function body() {
 
     Cutscene.SetOffset(39.424, -726.677, 21.692);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_ray = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_ray = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_ray.setAnim('ray');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
+    $.cs_rayhead = CutsceneHead.Create($.cs_ray, CUT_OBJ2);
     $.cs_rayhead.setAnim('ray');
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
     Camera.SetNearClip(0.2);
 
     Cutscene.Start();
@@ -167,9 +168,9 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
-    $.player.giveWeapon(11 /* WEAPONTYPE_GRENADE */, 12);
+    $.player.giveWeapon(WEAPONTYPE_GRENADE, 12);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -183,7 +184,7 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
     Camera.SetNearClip(0.9);
 
     Camera.SetBehindPlayer();
@@ -193,17 +194,17 @@ async function body() {
     Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
     Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
 
-    Streaming.RequestModel(50 /* PED_LI_MAN2 */);
-    Streaming.RequestModel(95 /* CAR_SENTINEL */);
+    Streaming.RequestModel(PED_LI_MAN2);
+    Streaming.RequestModel(CAR_SENTINEL);
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasModelLoaded(50 /* PED_LI_MAN2 */) || !Streaming.HasModelLoaded(95 /* CAR_SENTINEL */)) {
+    while (!Streaming.HasModelLoaded(PED_LI_MAN2) || !Streaming.HasModelLoaded(CAR_SENTINEL)) {
         await asyncWait(0);
     }
 
-    Streaming.Switch(true /* ON */);
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Streaming.Switch(ON);
+    Camera.DoFade(1500, FADE_IN);
 
     $.rays_cutscene_flag = 0;
 
@@ -223,22 +224,22 @@ async function body() {
         await asyncWait(0);
     }
 
-    $.player.setControl(false /* OFF */);
-    Hud.SwitchWidescreen(true /* ON */);
+    $.player.setControl(OFF);
+    Hud.SwitchWidescreen(ON);
     Game.SetEveryoneIgnorePlayer($.player, true);
     Game.SetAllCarsCanBeDamaged(false);
     Camera.SetFixedPosition(373.29, -444.714, 28.537, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(374.1447, -444.2669, 28.8032, 1 /* INTERPOLATION */);
+    Camera.PointAtPoint(374.1447, -444.2669, 28.8032, INTERPOLATION);
 
     await asyncWait(3000);
 
-    $.player.setControl(true /* ON */);
-    Hud.SwitchWidescreen(false /* OFF */);
+    $.player.setControl(ON);
+    Hud.SwitchWidescreen(OFF);
     Game.SetEveryoneIgnorePlayer($.player, false);
     Game.SetAllCarsCanBeDamaged(true);
     Camera.Restore();
 
-    Audio.LoadMissionAudio('r1_a' as any);
+    Audio.LoadMissionAudio(SfxMission.R1_a);
 
     $.get_away_car = 0 as any;
     $.police_guard1 = 0 as any;
@@ -246,14 +247,14 @@ async function body() {
 
     while (!World.IsProjectileInArea(376.5, -445.2, 28.1, 380.1, -441.2, 31.7)) {
         await asyncWait(0);
-        $.get_away_car = $.player.getAmmoInWeapon(11 /* WEAPONTYPE_GRENADE */) as any;
-        $.police_guard1 = $.player.getAmmoInWeapon(8 /* WEAPONTYPE_ROCKET */) as any;
+        $.get_away_car = $.player.getAmmoInWeapon(WEAPONTYPE_GRENADE) as any;
+        $.police_guard1 = $.player.getAmmoInWeapon(WEAPONTYPE_ROCKET) as any;
         $.get_away_car += $.police_guard1 as any;
         if ($.police_guard2 == (0 as any)) {
             if ($.get_away_car == (0 as any)) {
                 Text.PrintNow('RM1_4', 5000, 1); //"You have run out of grenades! Get some more from ammunation"
                 $.ray1_blip.remove();
-                $.ray1_blip = Blip.AddSpriteForCoord(345.5, -713.5, 26.1, 20 /* RADAR_SPRITE_WEAPON */);
+                $.ray1_blip = Blip.AddSpriteForCoord(345.5, -713.5, 26.1, RADAR_SPRITE_WEAPON);
                 $.police_guard2 = 1 as any;
             }
         }
@@ -269,16 +270,16 @@ async function body() {
 
     World.DestroyProjectilesInArea(376.1, -445.2, 28.1, 380.1, -441.2, 31.7);
 
-    $.player.setControl(false /* OFF */);
-    Hud.SwitchWidescreen(true /* ON */);
+    $.player.setControl(OFF);
+    Hud.SwitchWidescreen(ON);
     Game.SetEveryoneIgnorePlayer($.player, true);
     Game.SetAllCarsCanBeDamaged(false);
     Camera.SetFixedPosition(373.29, -444.714, 28.537, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(374.1447, -444.2669, 28.8032, 1 /* INTERPOLATION */);
+    Camera.PointAtPoint(374.1447, -444.2669, 28.8032, INTERPOLATION);
 
     await asyncWait(100);
 
-    Fx.AddExplosion(378.0, -443.5, 28.9, 0 /* EXPLOSION_GRENADE */);
+    Fx.AddExplosion(378.0, -443.5, 28.9, EXPLOSION_GRENADE);
 
     await asyncWait(500);
 
@@ -293,26 +294,26 @@ async function body() {
 
     await asyncWait(250);
 
-    $.burning_cop = Char.Create(4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */, 378.0584, -444.7376, 28.3);
+    $.burning_cop = Char.Create(PEDTYPE_CIVMALE, PED_COP, 378.0584, -444.7376, 28.3);
 
     await asyncWait(250);
 
-    Fx.AddParticleEffect(4 /* POBJECT_DARK_SMOKE */, 377.0, -441.6, 28.9, false);
-    Fx.AddParticleEffect(4 /* POBJECT_DARK_SMOKE */, 378.0, -443.3, 28.9, false);
+    Fx.AddParticleEffect(POBJECT_DARK_SMOKE, 377.0, -441.6, 28.9, false);
+    Fx.AddParticleEffect(POBJECT_DARK_SMOKE, 378.0, -443.3, 28.9, false);
 
     await asyncWait(800);
 
-    Fx.AddParticleEffect(4 /* POBJECT_DARK_SMOKE */, 376.0, -443.35, 30.0, false);
+    Fx.AddParticleEffect(POBJECT_DARK_SMOKE, 376.0, -443.35, 30.0, false);
 
     await asyncWait(500);
 
-    Fx.AddParticleEffect(4 /* POBJECT_DARK_SMOKE */, 376.0, -442.7, 30.0, false);
-    Fx.AddParticleEffect(4 /* POBJECT_DARK_SMOKE */, 376.0, -443.8, 30.0, false);
+    Fx.AddParticleEffect(POBJECT_DARK_SMOKE, 376.0, -442.7, 30.0, false);
+    Fx.AddParticleEffect(POBJECT_DARK_SMOKE, 376.0, -443.8, 30.0, false);
 
     await asyncWait(1500);
 
-    $.player.setControl(true /* ON */);
-    Hud.SwitchWidescreen(false /* OFF */);
+    $.player.setControl(ON);
+    Hud.SwitchWidescreen(OFF);
     Game.SetEveryoneIgnorePlayer($.player, false);
     Game.SetAllCarsCanBeDamaged(true);
     Camera.RestoreJumpcut();
@@ -322,20 +323,20 @@ async function body() {
     //police_guard1 = 0
     //police_guard2 = 0
 
-    $.get_away_car = Car.Create(95 /* CAR_SENTINEL */, 380.0, -437.5, 21.1); // IN GARAGE
+    $.get_away_car = Car.Create(CAR_SENTINEL, 380.0, -437.5, 21.1); // IN GARAGE
     $.get_away_car.setHeading(90.0);
-    $.get_away_car.lockDoors(3 /* CARLOCK_LOCKOUT_PLAYER_ONLY */);
+    $.get_away_car.lockDoors(CARLOCK_LOCKOUT_PLAYER_ONLY);
     $.get_away_car.setStrong(true);
 
-    $.police_guard1 = Char.CreateInsideCar($.get_away_car, 4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */);
-    $.the_witness = Char.CreateAsPassenger($.get_away_car, 4 /* PEDTYPE_CIVMALE */, 50 /* PED_LI_MAN2 */, 1);
+    $.police_guard1 = Char.CreateInsideCar($.get_away_car, PEDTYPE_CIVMALE, PED_COP);
+    $.the_witness = Char.CreateAsPassenger($.get_away_car, PEDTYPE_CIVMALE, PED_LI_MAN2, 1);
 
-    $.police_guard2 = Char.Create(4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */, 376.5428, -435.1743, 20.0837);
-    $.police_guard2.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 5000);
+    $.police_guard2 = Char.Create(PEDTYPE_CIVMALE, PED_COP, 376.5428, -435.1743, 20.0837);
+    $.police_guard2.giveWeapon(WEAPONTYPE_CHAINGUN, 5000);
     $.police_guard2.setObjGotoCoordOnFoot(374.0, -435.1743);
 
-    $.police_guard3 = Char.Create(4 /* PEDTYPE_CIVMALE */, 1 /* PED_COP */, 376.5428, -439.7169, 20.0837);
-    $.police_guard3.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 5000);
+    $.police_guard3 = Char.Create(PEDTYPE_CIVMALE, PED_COP, 376.5428, -439.7169, 20.0837);
+    $.police_guard3.giveWeapon(WEAPONTYPE_CHAINGUN, 5000);
     $.police_guard3.setObjGotoCoordOnFoot(374.0, -439.7169);
 
     $.witsec_garage.deactivate();
@@ -410,7 +411,7 @@ async function body() {
             if ($.the_witness.isInCar($.get_away_car)) {
                 if ($.carlock_flag == 0) {
                     if (!$.get_away_car.locate2D(380.0, -437.5, 40.0, 40.0, false)) {
-                        $.get_away_car.lockDoors(1 /* CARLOCK_UNLOCKED */);
+                        $.get_away_car.lockDoors(CARLOCK_UNLOCKED);
                         $.get_away_car.setCruiseSpeed(40.0);
                         $.get_away_car.setStrong(false);
                         if ($.get_away_car.isHealthGreater(800)) {
@@ -423,14 +424,14 @@ async function body() {
                     $.the_witness.setObjLeaveCar($.get_away_car);
                     if (!Char.IsDead($.police_guard1)) {
                         $.police_guard1.setObjKillPlayerOnFoot($.player);
-                        $.police_guard1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 5000);
+                        $.police_guard1.giveWeapon(WEAPONTYPE_CHAINGUN, 5000);
                     }
                 }
                 if ($.player.isInCar($.get_away_car)) {
                     $.the_witness.setObjLeaveCar($.get_away_car);
                     if (!Char.IsDead($.police_guard1)) {
                         $.police_guard1.setObjKillPlayerOnFoot($.player);
-                        $.police_guard1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 5000);
+                        $.police_guard1.giveWeapon(WEAPONTYPE_CHAINGUN, 5000);
                     }
                 }
                 $.get_away_car_health = $.get_away_car.getHealth();
@@ -438,7 +439,7 @@ async function body() {
                     $.the_witness.setObjLeaveCar($.get_away_car);
                     if (!Char.IsDead($.police_guard1)) {
                         $.police_guard1.setObjKillPlayerOnFoot($.player);
-                        $.police_guard1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 5000);
+                        $.police_guard1.giveWeapon(WEAPONTYPE_CHAINGUN, 5000);
                     }
                 }
                 if ($.get_away_car.isStopped()) {
@@ -451,7 +452,7 @@ async function body() {
                             $.the_witness.setObjLeaveCar($.get_away_car);
                             if (!Char.IsDead($.police_guard1)) {
                                 $.police_guard1.setObjKillPlayerOnFoot($.player);
-                                $.police_guard1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 5000);
+                                $.police_guard1.giveWeapon(WEAPONTYPE_CHAINGUN, 5000);
                             }
                         }
                     }
@@ -469,7 +470,7 @@ async function body() {
                             $.the_witness.setObjLeaveCar($.get_away_car);
                             if (!Char.IsDead($.police_guard1)) {
                                 $.police_guard1.setObjKillPlayerOnFoot($.player);
-                                $.police_guard1.giveWeapon(5 /* WEAPONTYPE_CHAINGUN */, 5000);
+                                $.police_guard1.giveWeapon(WEAPONTYPE_CHAINGUN, 5000);
                             }
                         }
                     }
@@ -511,8 +512,8 @@ async function cleanup() {
 
     World.RemoveParticleEffectsInArea(372.0, -449.0, 25.0, 383.0, -436.0, 33.0);
 
-    Streaming.MarkModelAsNoLongerNeeded(50 /* PED_LI_MAN2 */);
-    Streaming.MarkModelAsNoLongerNeeded(95 /* CAR_SENTINEL */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_LI_MAN2);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_SENTINEL);
     Streaming.MarkModelAsNoLongerNeeded(2202 /* safehouse */);
 
     ONMISSION = false;

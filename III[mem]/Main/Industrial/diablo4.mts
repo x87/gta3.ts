@@ -1,4 +1,5 @@
 // Generated from Main/Industrial/diablo4.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 // *******************************************************************************************
 // *******************************************************************************************
@@ -57,12 +58,12 @@ async function body() {
     Cutscene.Load('EL_PH3');
     Cutscene.SetOffset(938.27, -229.561, 4.023);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -137,7 +138,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -153,11 +154,11 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     World.SetPedDensityMultiplier(1.0);
 
-    Audio.LoadMissionAudio('el3_a' as any);
+    Audio.LoadMissionAudio(SfxMission.El3_a);
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
@@ -166,19 +167,19 @@ async function body() {
     $.NumEaten_diablo4 = 0;
 
     if ($.flag_asuka_mission1_passed == 1) {
-        Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 3 /* WEAPONTYPE_UZI */); //The Mafia
+        Gang.SetWeapons(GANG_MAFIA, WEAPONTYPE_PISTOL, WEAPONTYPE_UZI); //The Mafia
     }
 
-    Streaming.RequestModel(130 /* CAR_RUMPO */);
-    Streaming.RequestModel(30 /* PED_MALE2 */);
+    Streaming.RequestModel(CAR_RUMPO);
+    Streaming.RequestModel(PED_MALE2);
     Streaming.LoadSpecialCharacter(1, 'DONKY');
 
-    while (!Streaming.HasModelLoaded(130 /* CAR_RUMPO */) || !Streaming.HasModelLoaded(30 /* PED_MALE2 */)) {
+    while (!Streaming.HasModelLoaded(CAR_RUMPO) || !Streaming.HasModelLoaded(PED_MALE2)) {
         await asyncWait(0);
     }
 
     World.ClearArea(918.2, -269.7, 5.0, 5.0, true);
-    $.diablo_collect_porn_van = Car.Create(130 /* CAR_RUMPO */, 918.2, -269.7, -100.0);
+    $.diablo_collect_porn_van = Car.Create(CAR_RUMPO, 918.2, -269.7, -100.0);
     $.blip1_porn_van = Blip.AddForCar($.diablo_collect_porn_van);
 
     if (Car.IsDead($.diablo_collect_porn_van)) {
@@ -196,33 +197,33 @@ async function body() {
 
     Pacman.StartRace(0);
 
-    Game.SetPoliceIgnorePlayer($.player, true /* ON */);
-    $.player.setControl(false /* OFF */);
-    Hud.SwitchWidescreen(true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
+    $.player.setControl(OFF);
+    Hud.SwitchWidescreen(ON);
 
     if ($.diablo_collect_porn_van.locate2D(918.2, -269.7, 10.0, 10.0, false)) {
         Camera.SetFixedPosition(914.282, -157.729, 6.409, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(914.107, -156.829, 6.012, 1 /* INTERPOLATION */);
+        Camera.PointAtPoint(914.107, -156.829, 6.012, INTERPOLATION);
     } else {
         Camera.SetFixedPosition(914.282, -157.729, 6.409, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(914.107, -156.829, 6.012, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(914.107, -156.829, 6.012, JUMP_CUT);
     }
 
     await asyncWait(4000);
 
-    Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-    $.player.setControl(true /* ON */);
-    Hud.SwitchWidescreen(false /* OFF */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
+    $.player.setControl(ON);
+    Hud.SwitchWidescreen(OFF);
     Camera.RestoreJumpcut();
 
     $.blip1_porn_van.remove();
 
-    $.porn_van = Car.Create(130 /* CAR_RUMPO */, 1577.1, -679.0, -100.0);
+    $.porn_van = Car.Create(CAR_RUMPO, 1577.1, -679.0, -100.0);
     $.porn_van.setHeading(309.0);
 
-    $.porn_man = Char.Create(12 /* PEDTYPE_GANG_COLOMBIAN */, 30 /* PED_MALE2 */, 1574.0, -681.1, -100.0);
+    $.porn_man = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_MALE2, 1574.0, -681.1, -100.0);
     $.blip3_pornman = Blip.AddForChar($.porn_man);
-    $.blip3_pornman.changeDisplay(1 /* MARKER_ONLY */);
+    $.blip3_pornman.changeDisplay(MARKER_ONLY);
 
     $.counter_diablo4 = 26000;
     Hud.DisplayTimer($.$id.counter_diablo4);
@@ -277,7 +278,7 @@ async function body() {
             $.player_X = x;
             $.player_Y = y;
             $.player_Z = z;
-            Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, 94 /* SOUND_PART_MISSION_COMPLETE */);
+            Sound.AddOneOffSound($.player_X, $.player_Y, $.player_Z, SOUND_PART_MISSION_COMPLETE);
             $.eaten_all_the_porn = 1;
         }
     }
@@ -329,9 +330,9 @@ async function body() {
 
     //pervert_test:
 
-    Game.SetPoliceIgnorePlayer($.player, true /* On */);
-    $.player.setControl(false /* Off */);
-    Hud.SwitchWidescreen(true /* ON */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
+    $.player.setControl(OFF);
+    Hud.SwitchWidescreen(ON);
     World.SetPedDensityMultiplier(0.0);
 
     while (!Streaming.HasSpecialCharacterLoaded(1)) {
@@ -342,58 +343,58 @@ async function body() {
 
     Audio.SetMusicDoesFade(false);
     Camera.SetFadingColor(0, 0, 0);
-    Camera.DoFade(1000, 0 /* FADE_OUT */);
+    Camera.DoFade(1000, FADE_OUT);
 
     await asyncWait(1000);
 
     World.ClearArea(988.9, -444.7, 14.9, 10.0, true);
 
-    $.pervert1 = Char.Create(4 /* PEDTYPE_CIVMALE */, 26 /* PED_SPECIAL1 */, 988.7, -444.5, 14.1);
+    $.pervert1 = Char.Create(PEDTYPE_CIVMALE, PED_SPECIAL1, 988.7, -444.5, 14.1);
     $.pervert1.setHeading(180.0);
 
-    $.pervert2 = Char.Create(4 /* PEDTYPE_CIVMALE */, 26 /* PED_SPECIAL1 */, 987.7, -444.3, 13.9);
+    $.pervert2 = Char.Create(PEDTYPE_CIVMALE, PED_SPECIAL1, 987.7, -444.3, 13.9);
     $.pervert2.setHeading(140.0);
 
-    $.pervert3 = Char.Create(4 /* PEDTYPE_CIVMALE */, 26 /* PED_SPECIAL1 */, 986.9, -444.9, 13.9);
+    $.pervert3 = Char.Create(PEDTYPE_CIVMALE, PED_SPECIAL1, 986.9, -444.9, 13.9);
     $.pervert3.setHeading(140.0);
 
-    $.pervert4 = Char.Create(4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */, 990.4, -441.9, 14.1);
+    $.pervert4 = Char.Create(PEDTYPE_CIVMALE, PED_MALE2, 990.4, -441.9, 14.1);
     $.pervert4.setHeading(83.0);
 
-    $.pervert5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */, 991.1, -440.7, 13.9);
+    $.pervert5 = Char.Create(PEDTYPE_CIVMALE, PED_MALE2, 991.1, -440.7, 13.9);
     $.pervert5.setHeading(128.0);
 
-    $.pervert6 = Char.Create(4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */, 992.1, -439.1, 13.9);
+    $.pervert6 = Char.Create(PEDTYPE_CIVMALE, PED_MALE2, 992.1, -439.1, 13.9);
     $.pervert6.setHeading(141.0);
 
-    $.pervert7 = Char.Create(4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */, 992.0, -437.7, 13.9);
+    $.pervert7 = Char.Create(PEDTYPE_CIVMALE, PED_MALE2, 992.0, -437.7, 13.9);
     $.pervert7.setHeading(180.0);
 
-    $.pervert8 = Char.Create(4 /* PEDTYPE_CIVMALE */, 30 /* PED_MALE2 */, 992.1, -436.1, 13.9);
+    $.pervert8 = Char.Create(PEDTYPE_CIVMALE, PED_MALE2, 992.1, -436.1, 13.9);
     $.pervert8.setHeading(180.0);
 
     Camera.SetFixedPosition(982.705, -448.508, 16.014, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(982.707, -447.632, 16.496, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(982.707, -447.632, 16.496, JUMP_CUT);
 
-    $.pervert1.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 10000);
-    $.pervert3.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 10000);
-    $.pervert2.setWaitState(3 /* WAITSTATE_CROSS_ROAD_LOOK */, 10000);
+    $.pervert1.setWaitState(WAITSTATE_CROSS_ROAD_LOOK, 10000);
+    $.pervert3.setWaitState(WAITSTATE_CROSS_ROAD_LOOK, 10000);
+    $.pervert2.setWaitState(WAITSTATE_CROSS_ROAD_LOOK, 10000);
 
     $.pervert1.followChar($.pervert3);
     $.pervert2.followChar($.pervert3);
 
-    Camera.DoFade(1000, 1 /* FADE_IN */);
+    Camera.DoFade(1000, FADE_IN);
 
     await asyncWait(2000);
 
     Camera.SetFixedPosition(986.596, -448.508, 16.014, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(986.514, -447.632, 16.496, 1 /* INTERPOLATION */);
+    Camera.PointAtPoint(986.514, -447.632, 16.496, INTERPOLATION);
 
     await asyncWait(3000);
 
     if (!Char.IsDead($.pervert3)) {
         Camera.SetFixedPosition(988.078, -445.869, 16.3, 0.0, 0.0, 0.0);
-        Camera.PointAtChar($.pervert3, 15 /* FIXED */, 1 /* INTERPOLATION */);
+        Camera.PointAtChar($.pervert3, FIXED, INTERPOLATION);
     }
 
     await asyncWait(3000);
@@ -409,7 +410,7 @@ async function body() {
     World.SetPedDensityMultiplier(1.0);
 
     Camera.SetFixedPosition(994.524, -451.391, 18.02, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(994.048, -450.563, 17.724, 1 /* INTERPOLATION */);
+    Camera.PointAtPoint(994.048, -450.563, 17.724, INTERPOLATION);
 
     await asyncWait(6000);
 
@@ -477,15 +478,15 @@ async function cleanup() {
     $.blip1_porn_van.remove();
     $.blip2_porn_shop.remove();
     $.blip3_pornman.remove();
-    Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
-    Streaming.MarkModelAsNoLongerNeeded(30 /* PED_MALE2 */);
-    Streaming.MarkModelAsNoLongerNeeded(130 /* CAR_RUMPO */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_MALE2);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_RUMPO);
     Hud.ClearTimer($.$id.counter_diablo4);
     Pacman.Clear();
     Audio.SetMusicDoesFade(true);
     Streaming.UnloadSpecialCharacter(1);
     if ($.flag_asuka_mission1_passed == 1) {
-        Gang.SetWeapons(0 /* GANG_MAFIA */, 2 /* WEAPONTYPE_PISTOL */, 4 /* WEAPONTYPE_SHOTGUN */); //The Mafia
+        Gang.SetWeapons(GANG_MAFIA, WEAPONTYPE_PISTOL, WEAPONTYPE_SHOTGUN); //The Mafia
     }
     Mission.Finish();
 }

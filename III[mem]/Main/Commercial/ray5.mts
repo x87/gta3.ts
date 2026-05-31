@@ -1,4 +1,5 @@
 // Generated from Main/Commercial/ray5.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
@@ -99,20 +100,20 @@ async function body() {
 
     Cutscene.Load('r5_pb');
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.SetOffset(39.424, -726.677, 21.692);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_ray = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_ray = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_ray.setAnim('ray');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
+    $.cs_rayhead = CutsceneHead.Create($.cs_ray, CUT_OBJ2);
     $.cs_rayhead.setAnim('ray');
 
     //CREATE_CUTSCENE_OBJECT cut_obj3 cs_ludoor
@@ -128,11 +129,11 @@ async function body() {
 
     $.player.setHeading(90.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
     //SET_NEAR_CLIP 0.2
 
     Cutscene.Start();
-    World.SwitchRubbish(false /* OFF */);
+    World.SwitchRubbish(OFF);
 
     // Displays cutscene text
 
@@ -185,7 +186,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -199,13 +200,13 @@ async function body() {
 
     Cutscene.Clear();
 
-    Camera.DoFade(0, 0 /* FADE_OUT */);
+    Camera.DoFade(0, FADE_OUT);
 
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
     //SET_NEAR_CLIP 0.9
 
     //WHILE GET_FADING_STATUS
@@ -215,90 +216,90 @@ async function body() {
     //SET_VISIBILITY_OF_CLOSEST_OBJECT_OF_TYPE 47.322 -732.055 22.846 4.0 toilet_cubicle_dr2 TRUE
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
     Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */);
 
     //SET_PLAYER_CONTROL player ON
     //SWITCH_WIDESCREEN OFF
 
-    Streaming.Switch(true /* ON */);
-    World.SwitchRubbish(true /* ON */);
+    Streaming.Switch(ON);
+    World.SwitchRubbish(ON);
 
     $.rays_cutscene_flag = 0;
     // ******************************************END OF CUTSCENE********************************
 
-    Streaming.RequestModel(106 /* CAR_AMBULANCE */);
-    Streaming.RequestModel(117 /* CAR_ENFORCER */);
-    Streaming.RequestModel(1 /* PED_COP */);
-    Streaming.RequestModel(2 /* PED_SWAT */);
+    Streaming.RequestModel(CAR_AMBULANCE);
+    Streaming.RequestModel(CAR_ENFORCER);
+    Streaming.RequestModel(PED_COP);
+    Streaming.RequestModel(PED_SWAT);
     while (
-        !Streaming.HasModelLoaded(106 /* CAR_AMBULANCE */) ||
-        !Streaming.HasModelLoaded(1 /* PED_COP */) ||
-        !Streaming.HasModelLoaded(2 /* PED_SWAT */) ||
-        !Streaming.HasModelLoaded(117 /* CAR_ENFORCER */)
+        !Streaming.HasModelLoaded(CAR_AMBULANCE) ||
+        !Streaming.HasModelLoaded(PED_COP) ||
+        !Streaming.HasModelLoaded(PED_SWAT) ||
+        !Streaming.HasModelLoaded(CAR_ENFORCER)
     ) {
         await asyncWait(0);
     }
 
     // Mission stuff goes here
 
-    $.swatvan1 = Car.Create(117 /* CAR_ENFORCER */, 417.8, -1064.0, 26.4);
+    $.swatvan1 = Car.Create(CAR_ENFORCER, 417.8, -1064.0, 26.4);
     $.swatvan1.setHeading(50.0);
     $.swatvan1.setIdle();
-    $.swatvan1.switchSiren(true /* ON */);
+    $.swatvan1.switchSiren(ON);
 
-    $.swatvan2 = Car.Create(117 /* CAR_ENFORCER */, 335.4, -1185.2, 26.4);
+    $.swatvan2 = Car.Create(CAR_ENFORCER, 335.4, -1185.2, 26.4);
     $.swatvan2.setHeading(150.0);
     $.swatvan2.setIdle();
-    $.swatvan2.switchSiren(true /* ON */);
+    $.swatvan2.switchSiren(ON);
 
-    $.swat1_rc5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 414.6, -1060.3, 26.2);
+    $.swat1_rc5 = Char.Create(PEDTYPE_CIVMALE, PED_SWAT, 414.6, -1060.3, 26.2);
     $.swat1_rc5.setHeading(0.0);
     $.swat1_rc5.clearThreatSearch();
-    $.swat1_rc5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.swat1_rc5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-    $.swat1_rc5.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
+    $.swat1_rc5.setThreatSearch(THREAT_PLAYER1);
+    $.swat1_rc5.giveWeapon(WEAPONTYPE_M16, 100);
+    $.swat1_rc5.setCurrentWeapon(WEAPONTYPE_M16);
     $.swat1_rc5.setStayInSamePlace(true);
     $.swat1_rc5.addArmor(100);
 
-    $.swat2_rc5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 365.0, -1146.7, 23.0);
+    $.swat2_rc5 = Char.Create(PEDTYPE_CIVMALE, PED_SWAT, 365.0, -1146.7, 23.0);
     $.swat2_rc5.setHeading(270.0);
     $.swat2_rc5.clearThreatSearch();
-    $.swat2_rc5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.swat2_rc5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-    $.swat2_rc5.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
+    $.swat2_rc5.setThreatSearch(THREAT_PLAYER1);
+    $.swat2_rc5.giveWeapon(WEAPONTYPE_M16, 100);
+    $.swat2_rc5.setCurrentWeapon(WEAPONTYPE_M16);
     $.swat2_rc5.setStayInSamePlace(true);
     $.swat2_rc5.addArmor(100);
 
-    $.swat3_rc5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 331.5, -1184.1, 26.2);
+    $.swat3_rc5 = Char.Create(PEDTYPE_CIVMALE, PED_SWAT, 331.5, -1184.1, 26.2);
     $.swat3_rc5.setHeading(100.0);
     $.swat3_rc5.clearThreatSearch();
-    $.swat3_rc5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.swat3_rc5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-    $.swat3_rc5.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
+    $.swat3_rc5.setThreatSearch(THREAT_PLAYER1);
+    $.swat3_rc5.giveWeapon(WEAPONTYPE_M16, 100);
+    $.swat3_rc5.setCurrentWeapon(WEAPONTYPE_M16);
     $.swat3_rc5.setStayInSamePlace(true);
     $.swat3_rc5.addArmor(100);
 
-    $.swat4_rc5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 2 /* PED_SWAT */, 336.0, -1122.0, 26.0);
+    $.swat4_rc5 = Char.Create(PEDTYPE_CIVMALE, PED_SWAT, 336.0, -1122.0, 26.0);
     $.swat4_rc5.setHeading(230.0);
     $.swat4_rc5.clearThreatSearch();
-    $.swat4_rc5.setThreatSearch(1 /* THREAT_PLAYER1 */);
-    $.swat4_rc5.giveWeapon(6 /* WEAPONTYPE_M16 */, 100);
-    $.swat4_rc5.setCurrentWeapon(6 /* WEAPONTYPE_M16 */);
+    $.swat4_rc5.setThreatSearch(THREAT_PLAYER1);
+    $.swat4_rc5.giveWeapon(WEAPONTYPE_M16, 100);
+    $.swat4_rc5.setCurrentWeapon(WEAPONTYPE_M16);
     $.swat4_rc5.setStayInSamePlace(true);
     $.swat4_rc5.addArmor(100);
 
-    Audio.LoadMissionAudio('r5_a' as any);
+    Audio.LoadMissionAudio(SfxMission.R5_a);
 
     before_injured_cop_bailout: {
         amb_generator: while (true) {
             $.ambulance_health = 0;
             Hud.DisplayCounterWithString($.$id.ambulance_health, 1, 'DAM');
-            $.ambulance_rc5 = Car.Create(106 /* CAR_AMBULANCE */, 387.3, 4.5, 11.4);
+            $.ambulance_rc5 = Car.Create(CAR_AMBULANCE, 387.3, 4.5, 11.4);
             $.blip_ambulance_rc5 = Blip.AddForCar($.ambulance_rc5);
-            $.cop_driver = Char.CreateInsideCar($.ambulance_rc5, 6 /* PEDTYPE_COP */, 1 /* PED_COP */);
-            $.ambulance_rc5.lockDoors(2 /* CARLOCK_LOCKED */);
+            $.cop_driver = Char.CreateInsideCar($.ambulance_rc5, PEDTYPE_COP, PED_COP);
+            $.ambulance_rc5.lockDoors(CARLOCK_LOCKED);
             $.ambulance_rc5.setHeading(166.0);
             $.ambulance_rc5.setCruiseSpeed(20.0);
             $.ambulance_rc5.setDrivingStyle(0);
@@ -385,7 +386,7 @@ async function body() {
                         $.ambulance_rc5.setDrivingStyle(3);
                         $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0);
                         Audio.PlayMissionAudio();
-                        $.ambulance_rc5.switchSiren(true /* ON */);
+                        $.ambulance_rc5.switchSiren(ON);
                         $.player.alterWantedLevelNoDrop(2);
                         $.flag_redalert = 1;
                         $.flag_police_trigger = 1;
@@ -442,7 +443,7 @@ async function body() {
                         $.ambulance_rc5.setDrivingStyle(3);
                         $.ambulance_rc5.gotoCoordinates(405.2, -1137.7, 26.0);
                         Audio.PlayMissionAudio();
-                        $.ambulance_rc5.switchSiren(true /* ON */);
+                        $.ambulance_rc5.switchSiren(ON);
                         $.player.alterWantedLevelNoDrop(2);
                         $.flag_redalert = 1;
                         $.flag_police_trigger = 1;
@@ -467,7 +468,7 @@ async function body() {
                         $.flag_redalert = 3;
                         $.ambulance_rc5.setCruiseSpeed(0.0);
                         $.ambulance_rc5.setDrivingStyle(0);
-                        $.ambulance_rc5.switchSiren(false /* OFF */);
+                        $.ambulance_rc5.switchSiren(OFF);
                         $.ambulance_rc5.setIdle(); //---ambulance has reached destination without bailout -mission failed
                     }
                     if (!$.ambulance_rc5.isHealthGreater(900)) {
@@ -560,25 +561,25 @@ async function body() {
             //zed_value =# ic_z
             //PRINT_WITH_NUMBER_NOW ( Z ) zed_value 1000 1
 
-            if ($.player.isCurrentWeapon(2 /* WEAPONTYPE_PISTOL */) && !$.player.isInAnyCar()) {
+            if ($.player.isCurrentWeapon(WEAPONTYPE_PISTOL) && !$.player.isInAnyCar()) {
                 Text.Print('RM5_4', 500, 1); //bullets won't get through that armoured plaster!!
             }
-            if ($.player.isCurrentWeapon(3 /* WEAPONTYPE_UZI */) && !$.player.isInAnyCar()) {
+            if ($.player.isCurrentWeapon(WEAPONTYPE_UZI) && !$.player.isInAnyCar()) {
                 Text.Print('RM5_4', 500, 1);
             }
-            if ($.player.isCurrentWeapon(4 /* WEAPONTYPE_SHOTGUN */) && !$.player.isInAnyCar()) {
+            if ($.player.isCurrentWeapon(WEAPONTYPE_SHOTGUN) && !$.player.isInAnyCar()) {
                 Text.Print('RM5_4', 500, 1);
             }
-            if ($.player.isCurrentWeapon(6 /* WEAPONTYPE_M16 */) && !$.player.isInAnyCar()) {
+            if ($.player.isCurrentWeapon(WEAPONTYPE_M16) && !$.player.isInAnyCar()) {
                 Text.Print('RM5_4', 500, 1);
             }
-            if ($.player.isCurrentWeapon(5 /* WEAPONTYPE_CHAINGUN */) && !$.player.isInAnyCar()) {
+            if ($.player.isCurrentWeapon(WEAPONTYPE_CHAINGUN) && !$.player.isInAnyCar()) {
                 Text.Print('RM5_4', 500, 1);
             }
-            if ($.player.isCurrentWeapon(9 /* WEAPONTYPE_FLAMETHROWER */) && !$.player.isInAnyCar()) {
+            if ($.player.isCurrentWeapon(WEAPONTYPE_FLAMETHROWER) && !$.player.isInAnyCar()) {
                 Text.Print('RM5_5', 500, 1); //That Plaster's flame retardent!!
             }
-            if ($.player.isCurrentWeapon(10 /* WEAPONTYPE_MOLOTOV */) && !$.player.isInAnyCar()) {
+            if ($.player.isCurrentWeapon(WEAPONTYPE_MOLOTOV) && !$.player.isInAnyCar()) {
                 Text.Print('RM5_5', 500, 1);
             }
             if ($.ic_z < 1.0) {
@@ -635,9 +636,9 @@ async function cleanup() {
     $.swat4_rc5.markAsNoLongerNeeded();
     $.cop_driver.markAsNoLongerNeeded();
 
-    Streaming.MarkModelAsNoLongerNeeded(106 /* CAR_AMBULANCE */);
-    Streaming.MarkModelAsNoLongerNeeded(2 /* PED_SWAT */);
-    Streaming.MarkModelAsNoLongerNeeded(117 /* CAR_ENFORCER */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_AMBULANCE);
+    Streaming.MarkModelAsNoLongerNeeded(PED_SWAT);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_ENFORCER);
     $.blip_ambulance_rc5.remove();
 
     Mission.Finish();

@@ -1,4 +1,5 @@
 // Generated from Main/Suburban/hood5.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 
 // *******************************************************************************************
@@ -220,15 +221,15 @@ async function body() {
     Cutscene.Load('hd_ph5');
     Cutscene.SetOffset(-444.714, -6.321, 2.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
     //CREATE_CUTSCENE_HEAD cs_player CUT_OBJ1 cs_playerhead
     //SET_CUTSCENE_HEAD_ANIM cs_playerhead player
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
 
     Cutscene.Start();
 
@@ -317,7 +318,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -335,7 +336,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     //MARK_MODEL_AS_NO_LONGER_NEEDED CUT_OBJ1
 
@@ -343,11 +344,11 @@ async function body() {
 
     // *****************************************END OF CUTSCENE**********************************
 
-    Streaming.RequestModel(22 /* PED_GANG_HOOD_A */);
+    Streaming.RequestModel(PED_GANG_HOOD_A);
 
-    Streaming.RequestModel(23 /* PED_GANG_HOOD_B */);
+    Streaming.RequestModel(PED_GANG_HOOD_B);
 
-    while (!Streaming.HasModelLoaded(22 /* PED_GANG_HOOD_A */) || !Streaming.HasModelLoaded(23 /* PED_GANG_HOOD_B */)) {
+    while (!Streaming.HasModelLoaded(PED_GANG_HOOD_A) || !Streaming.HasModelLoaded(PED_GANG_HOOD_B)) {
         await asyncWait(0);
     }
 
@@ -355,17 +356,17 @@ async function body() {
 
     Path.SwitchRoadsOff(-286.387, 77.799, 2.5, -215.814, 272.287, 10.0);
 
-    $.bat_hm5 = Pickup.Create(172 /* WEAPON_BAT */, 3 /* pickup_once */, -637.0, -28.5, -100.0);
+    $.bat_hm5 = Pickup.Create(WEAPON_BAT, 3 /* pickup_once */, -637.0, -28.5, -100.0);
 
     $.flag_bat_created_hm5 = 1;
 
     // Creates players helper ped
 
-    $.goodie_hm5 = Char.Create(4 /* PEDTYPE_CIVMALE */, 22 /* PED_GANG_HOOD_A */, -640.9, -28.8, 18.8);
+    $.goodie_hm5 = Char.Create(PEDTYPE_CIVMALE, PED_GANG_HOOD_A, -640.9, -28.8, 18.8);
 
     $.goodie_hm5.setHeading(180.0);
 
-    $.goodie_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.goodie_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_goodie_hm5 = Blip.AddForChar($.goodie_hm5);
 
@@ -391,7 +392,7 @@ async function body() {
     $.goodie_hm5.followPlayer($.player);
     $.radar_blip_goodie_hm5.remove();
 
-    Audio.LoadMissionAudio('h5_a' as any);
+    Audio.LoadMissionAudio(SfxMission.H5_a);
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
@@ -443,7 +444,7 @@ async function body() {
 
     Text.ClearThisPrint('HM5_1');
 
-    Audio.LoadMissionAudio('h5_b' as any);
+    Audio.LoadMissionAudio(SfxMission.H5_b);
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
@@ -483,7 +484,7 @@ async function body() {
 
     Text.ClearThisPrint('HM5_5');
 
-    Audio.LoadMissionAudio('h5_c' as any);
+    Audio.LoadMissionAudio(SfxMission.H5_c);
 
     while (!Audio.HasMissionAudioLoaded()) {
         await asyncWait(0);
@@ -525,15 +526,15 @@ async function body() {
 
     // Creates baddie1
 
-    $.baddie1_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -237.0, 315.5, -100.0);
+    $.baddie1_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -237.0, 315.5, -100.0);
 
     $.baddie1_hm5.setHealth(250);
 
-    $.baddie1_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie1_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie1_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie1_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie1_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie1_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped1_hm5 = Blip.AddForChar($.baddie1_hm5);
 
@@ -545,15 +546,15 @@ async function body() {
 
     // Creates baddie2
 
-    $.baddie2_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -234.1, 315.5, -100.0);
+    $.baddie2_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -234.1, 315.5, -100.0);
 
     $.baddie2_hm5.setHealth(250);
 
-    $.baddie2_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie2_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie2_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie2_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie2_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie2_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped2_hm5 = Blip.AddForChar($.baddie2_hm5);
 
@@ -565,15 +566,15 @@ async function body() {
 
     // Creates baddie3
 
-    $.baddie3_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -229.3, 315.5, -100.0);
+    $.baddie3_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -229.3, 315.5, -100.0);
 
     $.baddie3_hm5.setHealth(250);
 
-    $.baddie3_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie3_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie3_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie3_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie3_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie3_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped3_hm5 = Blip.AddForChar($.baddie3_hm5);
 
@@ -585,15 +586,15 @@ async function body() {
 
     // Creates baddie4
 
-    $.baddie4_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -222.5, 298.4, -100.0); //281.5
+    $.baddie4_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -222.5, 298.4, -100.0); //281.5
 
     $.baddie4_hm5.setHealth(250);
 
-    $.baddie4_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie4_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie4_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie4_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie4_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie4_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped4_hm5 = Blip.AddForChar($.baddie4_hm5);
 
@@ -605,15 +606,15 @@ async function body() {
 
     // Creates baddie5
 
-    $.baddie5_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -222.5, 287.6, -100.0);
+    $.baddie5_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -222.5, 287.6, -100.0);
 
     $.baddie5_hm5.setHealth(250);
 
-    $.baddie5_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie5_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie5_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie5_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie5_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie5_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped5_hm5 = Blip.AddForChar($.baddie5_hm5);
 
@@ -625,15 +626,15 @@ async function body() {
 
     // Creates baddie6
 
-    $.baddie6_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -222.5, 275.9, -100.0);
+    $.baddie6_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -222.5, 275.9, -100.0);
 
     $.baddie6_hm5.setHealth(250);
 
-    $.baddie6_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie6_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie6_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie6_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie6_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie6_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped6_hm5 = Blip.AddForChar($.baddie6_hm5);
 
@@ -645,15 +646,15 @@ async function body() {
 
     // Creates baddie7
 
-    $.baddie7_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -239.8, 287.6, -100.0);
+    $.baddie7_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -239.8, 287.6, -100.0);
 
     $.baddie7_hm5.setHealth(250);
 
-    $.baddie7_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie7_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie7_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie7_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie7_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie7_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped7_hm5 = Blip.AddForChar($.baddie7_hm5);
 
@@ -665,15 +666,15 @@ async function body() {
 
     // Creates baddie8
 
-    $.baddie8_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -239.8, 298.4, -100.0);
+    $.baddie8_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -239.8, 298.4, -100.0);
 
     $.baddie8_hm5.setHealth(250);
 
-    $.baddie8_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie8_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie8_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie8_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie8_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie8_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped8_hm5 = Blip.AddForChar($.baddie8_hm5);
 
@@ -685,15 +686,15 @@ async function body() {
 
     // Creates baddie9
 
-    $.baddie9_hm5 = Char.Create(13 /* PEDTYPE_GANG_HOOD */, 23 /* PED_GANG_HOOD_B */, -239.8, 275.9, -100.0);
+    $.baddie9_hm5 = Char.Create(PEDTYPE_GANG_HOOD, PED_GANG_HOOD_B, -239.8, 275.9, -100.0);
 
     $.baddie9_hm5.setHealth(250);
 
-    $.baddie9_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.baddie9_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
 
-    $.baddie9_hm5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+    $.baddie9_hm5.setThreatSearch(THREAT_PLAYER1);
 
-    $.baddie9_hm5.giveWeapon(1 /* WEAPONTYPE_BASEBALLBAT */, 1);
+    $.baddie9_hm5.giveWeapon(WEAPONTYPE_BASEBALLBAT, 1);
 
     $.radar_blip_ped9_hm5 = Blip.AddForChar($.baddie9_hm5);
 
@@ -716,8 +717,8 @@ async function body() {
                 if (!$.goodie_hm5.isInAnyCar()) {
                     if ($.flag_players_buddy_normal == 0) {
                         $.goodie_hm5.leaveGroup();
-                        $.goodie_hm5.setThreatSearch(8192 /* THREAT_GANG_HOOD */);
-                        $.goodie_hm5.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+                        $.goodie_hm5.setThreatSearch(THREAT_GANG_HOOD);
+                        $.goodie_hm5.setPersonality(PEDSTAT_TOUGH_GUY);
                         $.flag_players_buddy_normal = 1;
                     }
                 }
@@ -793,7 +794,7 @@ async function body() {
 
         if ($.flag_baddie1_dead_hm5 == 0) {
             if (Char.IsDead($.baddie1_hm5)) {
-                if ($.baddie1_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie1_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped1_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie1_dead_hm5 = 1;
@@ -808,7 +809,7 @@ async function body() {
 
         if ($.flag_baddie2_dead_hm5 == 0) {
             if (Char.IsDead($.baddie2_hm5)) {
-                if ($.baddie2_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie2_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped2_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie2_dead_hm5 = 1;
@@ -823,7 +824,7 @@ async function body() {
 
         if ($.flag_baddie3_dead_hm5 == 0) {
             if (Char.IsDead($.baddie3_hm5)) {
-                if ($.baddie3_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie3_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped3_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie3_dead_hm5 = 1;
@@ -838,7 +839,7 @@ async function body() {
 
         if ($.flag_baddie4_dead_hm5 == 0) {
             if (Char.IsDead($.baddie4_hm5)) {
-                if ($.baddie4_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie4_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped4_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie4_dead_hm5 = 1;
@@ -853,7 +854,7 @@ async function body() {
 
         if ($.flag_baddie5_dead_hm5 == 0) {
             if (Char.IsDead($.baddie5_hm5)) {
-                if ($.baddie5_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie5_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped5_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie5_dead_hm5 = 1;
@@ -868,7 +869,7 @@ async function body() {
 
         if ($.flag_baddie6_dead_hm5 == 0) {
             if (Char.IsDead($.baddie6_hm5)) {
-                if ($.baddie6_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie6_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped6_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie6_dead_hm5 = 1;
@@ -883,7 +884,7 @@ async function body() {
 
         if ($.flag_baddie7_dead_hm5 == 0) {
             if (Char.IsDead($.baddie7_hm5)) {
-                if ($.baddie7_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie7_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped7_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie7_dead_hm5 = 1;
@@ -898,7 +899,7 @@ async function body() {
 
         if ($.flag_baddie8_dead_hm5 == 0) {
             if (Char.IsDead($.baddie8_hm5)) {
-                if ($.baddie8_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie8_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped8_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie8_dead_hm5 = 1;
@@ -913,7 +914,7 @@ async function body() {
 
         if ($.flag_baddie9_dead_hm5 == 0) {
             if (Char.IsDead($.baddie9_hm5)) {
-                if ($.baddie9_hm5.hasBeenDamagedByWeapon(1 /* WEAPONTYPE_BASEBALLBAT */)) {
+                if ($.baddie9_hm5.hasBeenDamagedByWeapon(WEAPONTYPE_BASEBALLBAT)) {
                     $.radar_blip_ped9_hm5.remove();
                     ++$.counter_no_of_baddies_dead_hm5;
                     $.flag_baddie9_dead_hm5 = 1;
@@ -925,31 +926,31 @@ async function body() {
         }
         if ($.player.isShootingInArea(-327.0, 72.0, -134.0, 350.0, false)) {
             if ($.flag_baddie1_dead_hm5 == 0) {
-                $.baddie1_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie1_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             if ($.flag_baddie2_dead_hm5 == 0) {
-                $.baddie2_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie2_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             if ($.flag_baddie3_dead_hm5 == 0) {
-                $.baddie3_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie3_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             if ($.flag_baddie4_dead_hm5 == 0) {
-                $.baddie4_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie4_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             if ($.flag_baddie5_dead_hm5 == 0) {
-                $.baddie5_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie5_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             if ($.flag_baddie6_dead_hm5 == 0) {
-                $.baddie6_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie6_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             if ($.flag_baddie7_dead_hm5 == 0) {
-                $.baddie7_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie7_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             if ($.flag_baddie8_dead_hm5 == 0) {
-                $.baddie8_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie8_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             if ($.flag_baddie9_dead_hm5 == 0) {
-                $.baddie9_hm5.giveWeapon(3 /* WEAPONTYPE_UZI */, 30000);
+                $.baddie9_hm5.giveWeapon(WEAPONTYPE_UZI, 30000);
             }
             Text.PrintNow('HM5_3', 7000, 1); //You were told to use a baseball bat only!"
             FAIL("mission_hood5_failed");
@@ -971,11 +972,11 @@ async function onFailed() {
     Text.PrintBig('M_FAIL', 5000, 1); //"Mission Failed!"
 
     if ($.player.hasBeenArrested()) {
-        Restart.OverridePolice(3 /* LEVEL_SUBURBAN */);
+        Restart.OverridePolice(LEVEL_SUBURBAN);
     }
 
     if ($.player.isDead()) {
-        Restart.OverrideHospital(3 /* LEVEL_SUBURBAN */);
+        Restart.OverrideHospital(LEVEL_SUBURBAN);
     }
 }
 
@@ -989,7 +990,7 @@ async function onPassed() {
     $.player.addScore(10000);
     $.player.clearWantedLevel();
     $.hood_contact_blip.remove();
-    Gang.SetPedModelPreference(6 /* GANG_HOOD */, 0);
+    Gang.SetPedModelPreference(GANG_HOOD, 0);
     // START_NEW_SCRIPT hood_mission3_loop
 }
 
@@ -997,8 +998,8 @@ async function onPassed() {
 async function cleanup() {
     ONMISSION = false;
     $.flag_player_on_hood_mission = 0;
-    Streaming.MarkModelAsNoLongerNeeded(23 /* PED_GANG_HOOD_B */);
-    Streaming.MarkModelAsNoLongerNeeded(22 /* PED_GANG_HOOD_A */);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_HOOD_B);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_HOOD_A);
     $.radar_blip_goodie_hm5.remove();
     $.radar_blip_ped1_hm5.remove();
     $.radar_blip_ped2_hm5.remove();

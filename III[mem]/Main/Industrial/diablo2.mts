@@ -54,12 +54,12 @@ async function body() {
     Cutscene.Load('EL_PH2');
     Cutscene.SetOffset(938.27, -229.561, 4.023);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.Switch(true /* ON */);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -133,7 +133,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -149,7 +149,7 @@ async function body() {
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     World.SetPedDensityMultiplier(1.0);
 
@@ -161,17 +161,17 @@ async function body() {
     $.creamers_spotted_you = 0;
     $.removed_ice_cream_blip = 0;
 
-    Streaming.RequestModel(113 /* CAR_MRWHOOPEE */);
-    Streaming.RequestModel(10 /* PED_GANG_MAFIA_A */);
-    Streaming.RequestModel(49 /* PED_LI_MAN1 */);
+    Streaming.RequestModel(CAR_MRWHOOPEE);
+    Streaming.RequestModel(PED_GANG_MAFIA_A);
+    Streaming.RequestModel(PED_LI_MAN1);
 
-    while (!Streaming.HasModelLoaded(113 /* CAR_MRWHOOPEE */) || !Streaming.HasModelLoaded(10 /* PED_GANG_MAFIA_A */) || !Streaming.HasModelLoaded(49 /* PED_LI_MAN1 */)) {
+    while (!Streaming.HasModelLoaded(CAR_MRWHOOPEE) || !Streaming.HasModelLoaded(PED_GANG_MAFIA_A) || !Streaming.HasModelLoaded(PED_LI_MAN1)) {
         await asyncWait(0);
     }
 
     await asyncWait(2000);
 
-    $.briefcase_diablo2 = Pickup.Create(1319 /* briefcase */, 3 /* PICKUP_ONCE */, 934.9, -69.8, 8.1);
+    $.briefcase_diablo2 = Pickup.Create(1319 /* briefcase */, PICKUP_ONCE, 934.9, -69.8, 8.1);
     $.blip1_diablo2 = Blip.AddForPickup($.briefcase_diablo2);
 
     Text.Print('DIAB2_1', 5000, 1); // Pick up briefcase
@@ -182,14 +182,14 @@ async function body() {
 
     $.blip1_diablo2.remove();
 
-    $.icecream_van1 = Car.Create(113 /* CAR_MRWHOOPEE */, 1381.0, -382.0, -100.0);
-    $.icecream_man1 = Char.CreateInsideCar($.icecream_van1, 4 /* PEDTYPE_CIVMALE */, 49 /* PED_LI_MAN1 */);
-    $.icecream_van1.setDrivingStyle(0 /* DRIVINGMODE_STOPFORCARS */);
+    $.icecream_van1 = Car.Create(CAR_MRWHOOPEE, 1381.0, -382.0, -100.0);
+    $.icecream_man1 = Char.CreateInsideCar($.icecream_van1, PEDTYPE_CIVMALE, PED_LI_MAN1);
+    $.icecream_van1.setDrivingStyle(DRIVINGMODE_STOPFORCARS);
     $.blip1_icecream1 = Blip.AddForCar($.icecream_van1);
 
     Text.PrintNow('DIAB2_2', 5000, 1); // Find an icecream van
 
-    while (!$.player.isInModel(113 /* CAR_MRWHOOPEE */)) {
+    while (!$.player.isInModel(CAR_MRWHOOPEE)) {
         await asyncWait(0);
         if (Car.IsDead($.icecream_van1)) {
             FAIL("mission_diablo2_failed");
@@ -200,9 +200,9 @@ async function body() {
     $.icecreamvan_any = $.player.storeCarIsIn();
 
     if (!Car.IsDead($.icecreamvan_any)) {
-        $.icecreamvan_any.armWithBomb(3 /* CARBOMB_REMOTE */);
+        $.icecreamvan_any.armWithBomb(CARBOMB_REMOTE);
         Player.GiveDetonator();
-        $.player.setCurrentWeapon(12 /* WEAPONTYPE_DETONATOR */);
+        $.player.setCurrentWeapon(WEAPONTYPE_DETONATOR);
     }
 
     Text.PrintNow('DIAB2_3', 5000, 1); // Park the icecream van down at atlantic quays
@@ -254,25 +254,25 @@ async function body() {
     }
 
     World.ClearArea(1190.5, -1141.2, 11.6, 2.0, true);
-    $.creamed_guy1 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1190.5, -1141.2, 11.6);
+    $.creamed_guy1 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, 1190.5, -1141.2, 11.6);
 
     World.ClearArea(1192.5, -1141.2, 11.6, 2.0, true);
-    $.creamed_guy2 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1192.5, -1141.2, 11.6);
+    $.creamed_guy2 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, 1192.5, -1141.2, 11.6);
 
     World.ClearArea(1194.5, -1141.2, 11.6, 2.0, true);
-    $.creamed_guy3 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1194.5, -1141.2, 11.6);
+    $.creamed_guy3 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, 1194.5, -1141.2, 11.6);
 
     World.ClearArea(1196.5, -1141.2, 11.6, 2.0, true);
-    $.creamed_guy4 = Char.Create(7 /* PEDTYPE_GANG_MAFIA */, 10 /* PED_GANG_MAFIA_A */, 1196.5, -1141.2, 11.6);
+    $.creamed_guy4 = Char.Create(PEDTYPE_GANG_MAFIA, PED_GANG_MAFIA_A, 1196.5, -1141.2, 11.6);
 
-    $.creamed_guy1.giveWeapon(3 /* WEAPONTYPE_UZI */, 160);
-    $.creamed_guy2.giveWeapon(3 /* WEAPONTYPE_UZI */, 160);
-    $.creamed_guy3.giveWeapon(3 /* WEAPONTYPE_UZI */, 160);
-    $.creamed_guy4.giveWeapon(3 /* WEAPONTYPE_UZI */, 160);
-    $.creamed_guy1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.creamed_guy2.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.creamed_guy3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
-    $.creamed_guy4.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.creamed_guy1.giveWeapon(WEAPONTYPE_UZI, 160);
+    $.creamed_guy2.giveWeapon(WEAPONTYPE_UZI, 160);
+    $.creamed_guy3.giveWeapon(WEAPONTYPE_UZI, 160);
+    $.creamed_guy4.giveWeapon(WEAPONTYPE_UZI, 160);
+    $.creamed_guy1.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.creamed_guy2.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.creamed_guy3.setPersonality(PEDSTAT_TOUGH_GUY);
+    $.creamed_guy4.setPersonality(PEDSTAT_TOUGH_GUY);
 
     Text.PrintNow('DIAB2_5', 5000, 1); // Use the remote to detonate the icecream van
 
@@ -348,25 +348,25 @@ async function body() {
         if (!Char.IsDead($.creamed_guy1)) {
             if ($.player.locateAnyMeansChar3D($.creamed_guy1, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy1.setObjKillPlayerOnFoot($.player);
-                $.creamed_guy1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.creamed_guy1.setThreatSearch(THREAT_PLAYER1);
             }
         }
         if (!Char.IsDead($.creamed_guy2)) {
             if ($.player.locateAnyMeansChar3D($.creamed_guy2, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy2.setObjKillPlayerOnFoot($.player);
-                $.creamed_guy2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.creamed_guy2.setThreatSearch(THREAT_PLAYER1);
             }
         }
         if (!Char.IsDead($.creamed_guy3)) {
             if ($.player.locateAnyMeansChar3D($.creamed_guy3, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy3.setObjKillPlayerOnFoot($.player);
-                $.creamed_guy3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.creamed_guy3.setThreatSearch(THREAT_PLAYER1);
             }
         }
         if (!Char.IsDead($.creamed_guy4)) {
             if ($.player.locateAnyMeansChar3D($.creamed_guy4, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy4.setObjKillPlayerOnFoot($.player);
-                $.creamed_guy4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.creamed_guy4.setThreatSearch(THREAT_PLAYER1);
             }
         }
         if (!Char.IsDead($.creamed_guy1)) {
@@ -385,19 +385,19 @@ async function body() {
             if ($.creamers_spotted_you == 0) {
                 if (!Char.IsDead($.creamed_guy1)) {
                     $.creamed_guy1.setObjKillPlayerOnFoot($.player);
-                    $.creamed_guy1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.creamed_guy1.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.creamed_guy2)) {
                     $.creamed_guy2.setObjKillPlayerOnFoot($.player);
-                    $.creamed_guy2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.creamed_guy2.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.creamed_guy3)) {
                     $.creamed_guy3.setObjKillPlayerOnFoot($.player);
-                    $.creamed_guy3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.creamed_guy3.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.creamed_guy4)) {
                     $.creamed_guy4.setObjKillPlayerOnFoot($.player);
-                    $.creamed_guy4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.creamed_guy4.setThreatSearch(THREAT_PLAYER1);
                 }
                 $.creamers_spotted_you = 1;
             }
@@ -426,19 +426,19 @@ async function body() {
             if ($.creamers_spotted_you == 0) {
                 if (!Char.IsDead($.creamed_guy1)) {
                     $.creamed_guy1.setObjKillPlayerOnFoot($.player);
-                    $.creamed_guy1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.creamed_guy1.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.creamed_guy2)) {
                     $.creamed_guy2.setObjKillPlayerOnFoot($.player);
-                    $.creamed_guy2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.creamed_guy2.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.creamed_guy3)) {
                     $.creamed_guy3.setObjKillPlayerOnFoot($.player);
-                    $.creamed_guy3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.creamed_guy3.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.creamed_guy4)) {
                     $.creamed_guy4.setObjKillPlayerOnFoot($.player);
-                    $.creamed_guy4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.creamed_guy4.setThreatSearch(THREAT_PLAYER1);
                 }
                 $.creamers_spotted_you = 1;
             }
@@ -446,25 +446,25 @@ async function body() {
         if (!Char.IsDead($.creamed_guy1)) {
             if ($.player.locateAnyMeansChar3D($.creamed_guy1, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy1.setObjKillPlayerOnFoot($.player);
-                $.creamed_guy1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.creamed_guy1.setThreatSearch(THREAT_PLAYER1);
             }
         }
         if (!Char.IsDead($.creamed_guy2)) {
             if ($.player.locateAnyMeansChar3D($.creamed_guy2, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy2.setObjKillPlayerOnFoot($.player);
-                $.creamed_guy2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.creamed_guy2.setThreatSearch(THREAT_PLAYER1);
             }
         }
         if (!Char.IsDead($.creamed_guy3)) {
             if ($.player.locateAnyMeansChar3D($.creamed_guy3, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy3.setObjKillPlayerOnFoot($.player);
-                $.creamed_guy3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.creamed_guy3.setThreatSearch(THREAT_PLAYER1);
             }
         }
         if (!Char.IsDead($.creamed_guy4)) {
             if ($.player.locateAnyMeansChar3D($.creamed_guy4, 8.0, 8.0, 2.0, false)) {
                 $.creamed_guy4.setObjKillPlayerOnFoot($.player);
-                $.creamed_guy4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                $.creamed_guy4.setThreatSearch(THREAT_PLAYER1);
             }
         }
     }
@@ -497,10 +497,10 @@ async function cleanup() {
     $.blip1_diablo2.remove();
     $.blip2_diablo2.remove();
     $.briefcase_diablo2.remove();
-    Streaming.MarkModelAsNoLongerNeeded(113 /* CAR_MRWHOOPEE */);
-    Streaming.MarkModelAsNoLongerNeeded(10 /* PED_GANG_MAFIA_A */);
-    Streaming.MarkModelAsNoLongerNeeded(49 /* PED_LI_MAN1 */);
-    $.player.setAmmo(12 /* WEAPONTYPE_DETONATOR */, 0);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_MRWHOOPEE);
+    Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_A);
+    Streaming.MarkModelAsNoLongerNeeded(PED_LI_MAN1);
+    $.player.setAmmo(WEAPONTYPE_DETONATOR, 0);
     Mission.Finish();
 }
 

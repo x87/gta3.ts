@@ -1,4 +1,5 @@
 // Generated from Main/Commercial/asuka4.sc
+import { SfxMission } from '../../../.config/enums';
 import { $, FAIL } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
@@ -60,16 +61,16 @@ async function body() {
     Cutscene.Load('A4_PDR');
     Cutscene.SetOffset(523.102, -636.96, 15.616);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_asuka = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_asuka = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_asuka.setAnim('asuka');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 186 /* CUT_OBJ2 */);
+    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ2);
     $.cs_asukahead.setAnim('asuka');
 
     $.cs_note = CutsceneObject.Create(187 /* cut_obj3 */);
@@ -80,10 +81,10 @@ async function body() {
 
     $.player.setHeading(180.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -151,7 +152,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -163,17 +164,17 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* CUT_OBJ3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
     Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */);
     Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */);
     Streaming.UnloadSpecialCharacter(1);
@@ -198,7 +199,7 @@ async function body() {
     Hud.DisplayTimer($.$id.countdown_as4);
     $.blip1_as4 = Blip.AddForObject($.phone_1_obj);
     $.Ray_phone1.setMessage('AM4_1A');
-    Audio.LoadMissionAudio('a4_a' as any);
+    Audio.LoadMissionAudio(SfxMission.A4_a);
 
     while (!$.player.locateOnFoot3D(229.2, -1537.6, 26.0, 1.0, 1.0, 3.0, false) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
@@ -208,11 +209,11 @@ async function body() {
         }
     }
 
-    Game.SetPoliceIgnorePlayer($.player, true /* On */);
-    Game.SetEveryoneIgnorePlayer($.player, true /* On */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
     Hud.FreezeTimer(true);
     Camera.SetFixedPosition(214.844, -1549.911, 32.448, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(215.507, -1549.246, 32.105, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(215.507, -1549.246, 32.105, JUMP_CUT);
 
     while (!$.Ray_phone1.isDisplayingMessage()) {
         await asyncWait(0);
@@ -229,10 +230,10 @@ async function body() {
     $.blip1_as4.remove();
     $.blip1_as4 = Blip.AddForObject($.phone_2_obj);
     $.Ray_phone2.setMessage('AM4_1B');
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
-    Game.SetEveryoneIgnorePlayer($.player, false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
+    Game.SetEveryoneIgnorePlayer($.player, OFF);
 
-    Audio.LoadMissionAudio('a4_b' as any);
+    Audio.LoadMissionAudio(SfxMission.A4_b);
 
     while (!$.player.locateOnFoot3D(-53.5, -699.1, 26.0, 1.0, 1.0, 3.0, false) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
@@ -242,11 +243,11 @@ async function body() {
         }
     }
 
-    Game.SetPoliceIgnorePlayer($.player, true /* On */);
-    Game.SetEveryoneIgnorePlayer($.player, true /* On */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
     Hud.FreezeTimer(true);
     Camera.SetFixedPosition(-77.442, -702.532, 33.574, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(-76.5, -702.391, 33.27, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(-76.5, -702.391, 33.27, JUMP_CUT);
 
     while (!$.Ray_phone2.isDisplayingMessage()) {
         await asyncWait(0);
@@ -263,10 +264,10 @@ async function body() {
     $.blip1_as4.remove();
     $.blip1_as4 = Blip.AddForObject($.phone_3_obj);
     $.Ray_phone3.setMessage('AM4_1C');
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
-    Game.SetEveryoneIgnorePlayer($.player, false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
+    Game.SetEveryoneIgnorePlayer($.player, OFF);
 
-    Audio.LoadMissionAudio('a4_c' as any);
+    Audio.LoadMissionAudio(SfxMission.A4_c);
 
     while (!$.player.locateOnFoot3D(204.8, -135.0, 16.0, 1.0, 1.0, 3.0, false) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
@@ -276,11 +277,11 @@ async function body() {
         }
     }
 
-    Game.SetPoliceIgnorePlayer($.player, true /* On */);
-    Game.SetEveryoneIgnorePlayer($.player, true /* On */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
     Hud.FreezeTimer(true);
     Camera.SetFixedPosition(191.656, -130.53, 20.037, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(192.56, -130.834, 19.734, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(192.56, -130.834, 19.734, JUMP_CUT);
 
     while (!$.Ray_phone3.isDisplayingMessage()) {
         await asyncWait(0);
@@ -297,10 +298,10 @@ async function body() {
     $.blip1_as4.remove();
     $.blip1_as4 = Blip.AddForObject($.phone_4_obj);
     $.Ray_phone4.setMessage('AM4_1D');
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
-    Game.SetEveryoneIgnorePlayer($.player, false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
+    Game.SetEveryoneIgnorePlayer($.player, OFF);
 
-    Audio.LoadMissionAudio('a4_d' as any);
+    Audio.LoadMissionAudio(SfxMission.A4_d);
 
     while (!$.player.locateOnFoot3D(60.3, -964.8, 26.1, 1.0, 1.0, 3.0, false) || !$.player.isLiftingAPhone()) {
         await asyncWait(0);
@@ -310,11 +311,11 @@ async function body() {
         }
     }
 
-    Game.SetPoliceIgnorePlayer($.player, true /* On */);
-    Game.SetEveryoneIgnorePlayer($.player, true /* On */);
+    Game.SetPoliceIgnorePlayer($.player, ON);
+    Game.SetEveryoneIgnorePlayer($.player, ON);
     Hud.FreezeTimer(true);
     Camera.SetFixedPosition(51.733, -973.067, 30.559, 0.0, 0.0, 0.0);
-    Camera.PointAtPoint(52.418, -972.45, 30.172, 2 /* JUMP_CUT */);
+    Camera.PointAtPoint(52.418, -972.45, 30.172, JUMP_CUT);
 
     while (!$.Ray_phone4.isDisplayingMessage()) {
         await asyncWait(0);
@@ -330,8 +331,8 @@ async function body() {
     Hud.ClearTimer($.$id.countdown_as4);
     $.blip1_as4.remove();
     $.blip1_as4 = Blip.AddForCoord(38.8, -725.4, 22.8);
-    Game.SetPoliceIgnorePlayer($.player, false /* off */);
-    Game.SetEveryoneIgnorePlayer($.player, false /* off */);
+    Game.SetPoliceIgnorePlayer($.player, OFF);
+    Game.SetEveryoneIgnorePlayer($.player, OFF);
 
     $.rays_cutscene_flag = 1;
 
@@ -360,9 +361,9 @@ async function body() {
     $.player.clearWantedLevel();
     Camera.SetFadingColor(0, 0, 0);
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
-    Streaming.Switch(false /* OFF */);
+    Streaming.Switch(OFF);
 
     Streaming.LoadSpecialCharacter(2, 'ray');
     Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
@@ -381,16 +382,16 @@ async function body() {
     Cutscene.Load('R0_PDR2');
     Cutscene.SetOffset(39.424, -726.677, 21.692);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_ray = CutsceneObject.Create(27 /* PED_SPECIAL2 */);
+    $.cs_ray = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_ray.setAnim('ray');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_rayhead = CutsceneHead.Create($.cs_ray, 186 /* CUT_OBJ2 */);
+    $.cs_rayhead = CutsceneHead.Create($.cs_ray, CUT_OBJ2);
     $.cs_rayhead.setAnim('ray');
 
     World.ClearArea(39.0, -723.5, 22.0, 1.0, true);
@@ -399,10 +400,10 @@ async function body() {
 
     $.player.setHeading(90.0);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -484,7 +485,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -494,14 +495,14 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Text.ClearPrints();
     Cutscene.Clear();
     Camera.SetBehindPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(2);
     Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
@@ -522,7 +523,7 @@ async function onPassed() {
     $.player.addScore(11000);
     Stat.RegisterMissionPassed('AM4');
     Stat.PlayerMadeProgress(1);
-    $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, 15 /* RADAR_SPRITE_RAY */);
+    $.ray_contact_blip = Blip.AddSpriteForContactPoint(38.8, -725.4, -100.0, RADAR_SPRITE_RAY);
     Camera.SetBehindPlayer();
     // START_NEW_SCRIPT asuka_mission5_loop
     // START_NEW_SCRIPT ray_mission1_loop

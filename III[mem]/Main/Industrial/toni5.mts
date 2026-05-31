@@ -64,16 +64,16 @@ async function body() {
     Cutscene.Load('t5_bf');
     Cutscene.SetOffset(1218.42, -314.5, 28.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_tony = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_tony = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_tony.setAnim('tony');
 
-    $.cs_tonyhead = CutsceneHead.Create($.cs_tony, 186 /* CUT_OBJ2 */);
+    $.cs_tonyhead = CutsceneHead.Create($.cs_tony, CUT_OBJ2);
     $.cs_tonyhead.setAnim('tony');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
     World.ClearArea(1219.5, -321.1, 27.5, 1.0, true);
@@ -83,10 +83,10 @@ async function body() {
 
     World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -168,7 +168,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -180,22 +180,22 @@ async function body() {
         await asyncWait(0);
     }
 
-    World.SwitchRubbish(true /* ON */);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
     Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */);
 
-    Streaming.RequestModel(98 /* CAR_TRASHMASTER */);
+    Streaming.RequestModel(CAR_TRASHMASTER);
 
-    while (!Streaming.HasModelLoaded(98 /* CAR_TRASHMASTER */)) {
+    while (!Streaming.HasModelLoaded(CAR_TRASHMASTER)) {
         await asyncWait(0);
     }
 
@@ -204,9 +204,9 @@ async function body() {
 
     // START MISSION
 
-    $.explosive_truck = Car.Create(98 /* CAR_TRASHMASTER */, 1314.0, -106.0, -100.0);
+    $.explosive_truck = Car.Create(CAR_TRASHMASTER, 1314.0, -106.0, -100.0);
     $.explosive_truck.setProofs(true, true, false, false, true);
-    $.explosive_truck.armWithBomb(1 /* CARBOMB_TIMED */);
+    $.explosive_truck.armWithBomb(CARBOMB_TIMED);
 
     $.fish_factory_destroyed = 0;
 
@@ -249,7 +249,7 @@ async function body() {
         while (!$.explosive_truck.isStoppedInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, !!$.blob_flag)) {
             await asyncWait(0);
             if (Car.IsDead($.explosive_truck)) {
-                Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
+                Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 FAIL("mission_toni5_failed");
             }
 
@@ -279,29 +279,29 @@ async function body() {
             }
             if (!$.explosive_truck.isHealthGreater(900) && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
                 $.explosive_truck.explode();
-                Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
+                Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 FAIL("mission_toni5_failed");
             }
             if ($.countdown_tm5 == 0 && !$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
                 $.explosive_truck.explode();
-                Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
+                Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 FAIL("mission_toni5_failed");
             }
         }
 
         Streaming.RequestModel(418 /* fshfctry_dstryd */);
         Text.PrintNow('JM1_3', 5000, 2); //Activate the car bomb then get out of there!
-        Weather.Force(0 /* WEATHER_SUNNY */);
+        Weather.Force(WEATHER_SUNNY);
 
         if (Car.IsDead($.explosive_truck)) {
             Text.PrintNow('WRECKED', 5000, 1);
             FAIL("mission_toni5_failed");
         }
 
-        while (!World.IsExplosionInArea(3 /* EXPLOSION_CAR */, 961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0)) {
+        while (!World.IsExplosionInArea(EXPLOSION_CAR, 961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0)) {
             await asyncWait(0);
             if (Car.IsDead($.explosive_truck)) {
-                Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
+                Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 break toni5_wait_for_van; // SCM GOTO → explosion
             }
             await triad_AI(); // SCM GOSUB triad_AI
@@ -313,17 +313,17 @@ async function body() {
             if (!$.explosive_truck.isInArea3D(961.0, -1112.5, 12.5, 969.5, -1122.8, 15.0, false)) {
                 continue toni5_wait_for_van; // SCM GOTO → toni5_wait_for_van
             }
-            if (!$.player.isInCar($.explosive_truck) && !$.explosive_truck.isArmedWithBomb(4 /* CARBOMB_TIMEDACTIVE */)) {
+            if (!$.player.isInCar($.explosive_truck) && !$.explosive_truck.isArmedWithBomb(CARBOMB_TIMEDACTIVE)) {
                 Text.PrintNow('JM1_5', 5000, 1); // The vehicle bomb's not set!
             }
             if (!$.explosive_truck.isHealthGreater(900)) {
                 $.explosive_truck.explode();
-                Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
+                Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 break toni5_wait_for_van; // SCM GOTO → explosion
             }
             if ($.countdown_tm5 == 0) {
                 $.explosive_truck.explode();
-                Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
+                Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, $.truck_x, $.truck_y, $.truck_z, 0.0, 0.0, 0.0, 4.0, 0, 0, 0, 4000);
                 break toni5_wait_for_van; // SCM GOTO → explosion
             }
         }
@@ -333,13 +333,13 @@ async function body() {
 
     explosion: {
         Hud.ClearTimer($.$id.countdown_tm5);
-        $.player.setControl(false /* Off */);
-        Hud.SwitchWidescreen(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, true /* On */);
-        Game.SetEveryoneIgnorePlayer($.player, true /* ON */);
+        $.player.setControl(OFF);
+        Hud.SwitchWidescreen(ON);
+        Game.SetPoliceIgnorePlayer($.player, ON);
+        Game.SetEveryoneIgnorePlayer($.player, ON);
 
         Camera.SetFixedPosition(940.279, -1136.787, 16.55, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(941.065, -1136.169, 16.522, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(941.065, -1136.169, 16.522, JUMP_CUT);
 
         $.blip1_tm5.remove();
         $.blip2_tm5.remove();
@@ -348,55 +348,55 @@ async function body() {
         Camera.Shake(300);
         //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 965.8 -1111.9 15.5 0.0 0.0 0.0 4.0 0 0 0 4000
 
-        Fx.AddExplosion(965.8, -1111.9, 15.5, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(965.8, -1111.9, 15.5, EXPLOSION_HELI);
         //ADD_ONE_OFF_SOUND 965.8 -1111.9 15.5 sound_test_1
 
         $.fish_Fire3 = ScriptFire.Create(966.0, -1111.8, 13.8);
 
         //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 966.0 -1123.0 15.4 0.0 0.0 0.0 4.0 0 0 0 4000
 
-        Fx.AddExplosion(966.0, -1123.0, 15.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(966.0, -1123.0, 15.4, EXPLOSION_HELI);
         //ADD_ONE_OFF_SOUND 966.0 -1123.0 15.4 sound_test_1
 
         await asyncWait(600);
 
         Camera.Shake(400);
-        Fx.AddExplosion(970.0, -1119.0, 16.0, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(970.0, -1119.0, 16.0, EXPLOSION_HELI);
         await asyncWait(300);
 
         Camera.Shake(300);
-        Fx.AddExplosion(985.0, -1119.0, 14.0, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(985.0, -1119.0, 14.0, EXPLOSION_HELI);
         await asyncWait(400);
 
         Camera.Shake(400);
-        Fx.AddExplosion(985.0, -1120.0, 20.0, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(985.0, -1120.0, 20.0, EXPLOSION_HELI);
         await asyncWait(200);
 
         Camera.Shake(300);
         Camera.SetFixedPosition(960.5, -1094.0, 21.1, 0.0, 0.0, 0.0);
-        Camera.PointAtPoint(961.2, -1094.7, 20.8, 2 /* JUMP_CUT */);
+        Camera.PointAtPoint(961.2, -1094.7, 20.8, JUMP_CUT);
 
-        Fx.AddExplosion(969.2, -1104.0, 18.3, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(969.2, -1104.0, 18.3, EXPLOSION_HELI);
         await asyncWait(300);
 
         Camera.Shake(400);
-        Fx.AddExplosion(968.4, -1119.2, 17.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(968.4, -1119.2, 17.4, EXPLOSION_HELI);
         await asyncWait(200);
 
         Camera.Shake(300);
-        Fx.AddExplosion(979.4, -1103.9, 18.9, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(979.4, -1103.9, 18.9, EXPLOSION_HELI);
         await asyncWait(300);
 
         Camera.Shake(400);
-        Fx.AddExplosion(976.0, -1108.3, 21.4, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(976.0, -1108.3, 21.4, EXPLOSION_HELI);
         await asyncWait(300);
 
         Camera.Shake(300);
-        Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, 969.8, -1104.9, 18.7, 0.0, 0.0, 0.0, 5.0, 0, 0, 0, 5000);
+        Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, 969.8, -1104.9, 18.7, 0.0, 0.0, 0.0, 5.0, 0, 0, 0, 5000);
         //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 986.3 -1103.4 14.7 0.0 0.0 0.0 4.0 0 0 0 4000
 
-        Fx.AddExplosion(972.7, -1102.2, 18.5, 5 /* EXPLOSION_HELI */);
-        Fx.AddExplosion(986.3, -1103.4, 14.7, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(972.7, -1102.2, 18.5, EXPLOSION_HELI);
+        Fx.AddExplosion(986.3, -1103.4, 14.7, EXPLOSION_HELI);
         $.debris1_tm5 = ScriptObject.Create(1413 /* fish01 */, 972.7, -1103.6, 20.6);
         $.debris2_tm5 = ScriptObject.Create(1413 /* fish01 */, 972.7, -1103.2, 20.6);
         $.debris3_tm5 = ScriptObject.Create(1413 /* fish01 */, 978.8, -1107.2, 21.6);
@@ -415,11 +415,11 @@ async function body() {
         await asyncWait(400);
         Camera.Shake(500);
 
-        Fx.AddMovingParticleEffect(15 /* POBJECT_FIREBALL_AND_SMOKE */, 974.2, -1129.8, 19.5, 0.0, 0.0, 0.0, 5.0, 0, 0, 0, 5000);
+        Fx.AddMovingParticleEffect(POBJECT_FIREBALL_AND_SMOKE, 974.2, -1129.8, 19.5, 0.0, 0.0, 0.0, 5.0, 0, 0, 0, 5000);
         //ADD_MOVING_PARTICLE_EFFECT POBJECT_FIREBALL_AND_SMOKE 973.6 -1128.8 19.6 0.0 0.0 0.0 4.0 0 0 0 4000
 
-        Fx.AddExplosion(982.0, -1102.8, 17.4, 5 /* EXPLOSION_HELI */);
-        Fx.AddExplosion(973.6, -1128.8, 19.6, 5 /* EXPLOSION_HELI */);
+        Fx.AddExplosion(982.0, -1102.8, 17.4, EXPLOSION_HELI);
+        Fx.AddExplosion(973.6, -1128.8, 19.6, EXPLOSION_HELI);
         $.debris5_tm5 = ScriptObject.Create(1413 /* fish01 */, 982.0, -1103.8, 20.4);
         $.debris6_tm5 = ScriptObject.Create(1413 /* fish01 */, 982.0, -1103.0, 20.4);
         $.debris7_tm5 = ScriptObject.Create(1413 /* fish01 */, 983.0, -1112.0, 20.4);
@@ -443,11 +443,11 @@ async function body() {
 
         Camera.SetFadingColor(255, 255, 255);
 
-        Camera.DoFade(400, 0 /* FADE_OUT */);
+        Camera.DoFade(400, FADE_OUT);
         if (!$.player.isDead()) {
             World.SwapNearestBuildingModel(981.5, -1123.9, 16.7, 80.0, 419 /* fishfctory */, 418 /* fshfctry_dstryd */);
         }
-        Camera.DoFade(400, 1 /* FADE_IN */);
+        Camera.DoFade(400, FADE_IN);
 
         $.fish_Fire2 = ScriptFire.Create(979.3, -1106.1, 14.7);
         $.fish_fire4 = ScriptFire.Create(981.0, -1132.0, 14.0);
@@ -459,10 +459,10 @@ async function body() {
         await asyncWait(3000);
 
         Weather.Release();
-        Hud.SwitchWidescreen(false /* OFF */);
-        $.player.setControl(true /* ON */);
-        Game.SetPoliceIgnorePlayer($.player, false /* OFF */);
-        Game.SetEveryoneIgnorePlayer($.player, false /* OFF */);
+        Hud.SwitchWidescreen(OFF);
+        $.player.setControl(ON);
+        Game.SetPoliceIgnorePlayer($.player, OFF);
+        Game.SetEveryoneIgnorePlayer($.player, OFF);
         Camera.RestoreJumpcut();
     }
 
@@ -482,9 +482,9 @@ async function onPassed() {
     $.player.clearWantedLevel();
     $.player.addScore(30000);
     $.frankie_contact_blip.remove();
-    $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, 16 /* RADAR_SPRITE_SAL */);
-    Zone.SetPedInfo('FISHFAC', 1 /* DAY */, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Fish factory
-    Zone.SetPedInfo('FISHFAC', 0 /* NIGHT */, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    $.frankie_contact_blip = Blip.AddSpriteForContactPoint(1455.7, -187.3, -100.0, RADAR_SPRITE_SAL);
+    Zone.SetPedInfo('FISHFAC', DAY, 0, 0, 0, 0, 0, 0, 0, 0, 0); //Fish factory
+    Zone.SetPedInfo('FISHFAC', NIGHT, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     $.gen_car47.switch(0);
     $.gen_car48.switch(0);
     $.gen_car49.switch(0);
@@ -503,9 +503,9 @@ async function cleanup() {
     $.blip2_tm5.remove();
     Hud.ClearTimer($.$id.countdown_tm5);
     Hud.ClearCounter($.$id.explosive_truck_health);
-    Streaming.MarkModelAsNoLongerNeeded(98 /* CAR_TRASHMASTER */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_TRASHMASTER);
     Streaming.MarkModelAsNoLongerNeeded(418 /* fshfctry_dstryd */);
-    Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
+    Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1); //TEST
     Camera.SetFadingColor(1, 1, 1);
     Mission.Finish();
 }
@@ -530,7 +530,7 @@ async function triad_AI() {
         if (!Char.IsDead($.fish_triad6)) {
             $.fish_triad6.clearThreatSearch();
         }
-        Game.ClearThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */);
+        Game.ClearThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1);
         $.clear_triads_threats = 1;
     }
 
@@ -538,24 +538,24 @@ async function triad_AI() {
         if ($.triads_spot_you == 0) {
             if (!$.player.isInAnyCar()) {
                 if (!Char.IsDead($.fish_triad1)) {
-                    $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad1.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad2)) {
-                    $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad2.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad3)) {
-                    $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad3.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad4)) {
-                    $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad4.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad5)) {
-                    $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad5.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad6)) {
-                    $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad6.setThreatSearch(THREAT_PLAYER1);
                 }
-                Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
+                Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1); //TEST
                 $.triads_spot_you = 1;
             }
             if (
@@ -567,24 +567,24 @@ async function triad_AI() {
                 Char.IsDead($.fish_triad6)
             ) {
                 if (!Char.IsDead($.fish_triad1)) {
-                    $.fish_triad1.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad1.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad2)) {
-                    $.fish_triad2.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad2.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad3)) {
-                    $.fish_triad3.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad3.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad4)) {
-                    $.fish_triad4.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad4.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad5)) {
-                    $.fish_triad5.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad5.setThreatSearch(THREAT_PLAYER1);
                 }
                 if (!Char.IsDead($.fish_triad6)) {
-                    $.fish_triad6.setThreatSearch(1 /* THREAT_PLAYER1 */);
+                    $.fish_triad6.setThreatSearch(THREAT_PLAYER1);
                 }
-                Game.SetThreatForPedType(8 /* PEDTYPE_GANG_TRIAD */, 1 /* THREAT_PLAYER1 */); //TEST
+                Game.SetThreatForPedType(PEDTYPE_GANG_TRIAD, THREAT_PLAYER1); //TEST
                 $.triads_spot_you = 1;
             }
         }

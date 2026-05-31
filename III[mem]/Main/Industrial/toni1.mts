@@ -102,16 +102,16 @@ async function body() {
     Cutscene.Load('t1_tol');
     Cutscene.SetOffset(1218.42, -314.5, 28.9);
 
-    $.cs_player = CutsceneObject.Create(0 /* PED_PLAYER */);
+    $.cs_player = CutsceneObject.Create(PED_PLAYER);
     $.cs_player.setAnim('player');
 
-    $.cs_tony = CutsceneObject.Create(26 /* PED_SPECIAL1 */);
+    $.cs_tony = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_tony.setAnim('tony');
 
-    $.cs_tonyhead = CutsceneHead.Create($.cs_tony, 186 /* CUT_OBJ2 */);
+    $.cs_tonyhead = CutsceneHead.Create($.cs_tony, CUT_OBJ2);
     $.cs_tonyhead.setAnim('tony');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* CUT_OBJ1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
     World.ClearArea(1219.5, -321.1, 27.5, 1.0, true);
@@ -121,10 +121,10 @@ async function body() {
 
     World.ClearArea(1216.1, -313.0, 29.9, 10.0, true); //TONIS RESTAURANT
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
-    World.SwitchRubbish(false /* OFF */);
-    Streaming.Switch(true /* ON */);
+    World.SwitchRubbish(OFF);
+    Streaming.Switch(ON);
     Cutscene.Start();
 
     // Displays cutscene text
@@ -206,7 +206,7 @@ async function body() {
         $.cs_time = Cutscene.GetTime();
     }
 
-    Camera.DoFade(1500, 0 /* FADE_OUT */);
+    Camera.DoFade(1500, FADE_OUT);
 
     while (!Cutscene.HasFinished()) {
         await asyncWait(0);
@@ -218,22 +218,22 @@ async function body() {
         await asyncWait(0);
     }
 
-    Streaming.RequestModel(133 /* CAR_MRWONGS */);
-    Streaming.RequestModel(45 /* PED_CT_MAN1 */);
-    World.SwitchRubbish(true /* ON */);
+    Streaming.RequestModel(CAR_MRWONGS);
+    Streaming.RequestModel(PED_CT_MAN1);
+    World.SwitchRubbish(ON);
     Cutscene.Clear();
     Camera.SetInFrontOfPlayer();
 
     await asyncWait(500);
 
-    Camera.DoFade(1500, 1 /* FADE_IN */);
+    Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* CUT_OBJ1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* CUT_OBJ2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
     Streaming.MarkModelAsNoLongerNeeded(537 /* ind_newrizzos */);
 
-    while (!Streaming.HasModelLoaded(133 /* CAR_MRWONGS */) || !Streaming.HasModelLoaded(45 /* PED_CT_MAN1 */)) {
+    while (!Streaming.HasModelLoaded(CAR_MRWONGS) || !Streaming.HasModelLoaded(PED_CT_MAN1)) {
         await asyncWait(0);
     }
 
@@ -241,34 +241,34 @@ async function body() {
 
     $.gen_car31.switch(0);
 
-    $.free_greandes = Pickup.CreateWithAmmo(170 /* WEAPON_GRENADE */, 3 /* PICKUP_ONCE */, 10, 1278.8, -81.5, 15.1);
-    $.grenade_blip = Blip.AddSpriteForPickup($.free_greandes, 20 /* RADAR_SPRITE_WEAPON */);
+    $.free_greandes = Pickup.CreateWithAmmo(WEAPON_GRENADE, PICKUP_ONCE, 10, 1278.8, -81.5, 15.1);
+    $.grenade_blip = Blip.AddSpriteForPickup($.free_greandes, RADAR_SPRITE_WEAPON);
 
-    $.t1_triad_van1 = Car.Create(133 /* CAR_MRWONGS */, 854.0, -778.0, -100.0);
-    $.vanman1 = Char.CreateInsideCar($.t1_triad_van1, 4 /* PEDTYPE_CIVMALE */, 45 /* PED_CT_MAN1 */);
+    $.t1_triad_van1 = Car.Create(CAR_MRWONGS, 854.0, -778.0, -100.0);
+    $.vanman1 = Char.CreateInsideCar($.t1_triad_van1, PEDTYPE_CIVMALE, PED_CT_MAN1);
     $.blip1_van1 = Blip.AddForCar($.t1_triad_van1);
     $.t1_triad_van1.setCruiseSpeed(17.0);
     $.t1_triad_van1.setDrivingStyle(0);
     $.t1_triad_van1.setOnlyDamagedByPlayer(true);
-    $.vanman1.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.vanman1.setPersonality(PEDSTAT_TOUGH_GUY);
     //SET_CAR_HEALTH t1_triad_van1 600
 
-    $.t1_triad_van2 = Car.Create(133 /* CAR_MRWONGS */, 1020.0, -677.0, -100.0);
-    $.vanman2 = Char.CreateInsideCar($.t1_triad_van2, 4 /* PEDTYPE_CIVMALE */, 45 /* PED_CT_MAN1 */);
+    $.t1_triad_van2 = Car.Create(CAR_MRWONGS, 1020.0, -677.0, -100.0);
+    $.vanman2 = Char.CreateInsideCar($.t1_triad_van2, PEDTYPE_CIVMALE, PED_CT_MAN1);
     $.blip2_van2 = Blip.AddForCar($.t1_triad_van2);
     $.t1_triad_van2.setCruiseSpeed(17.0);
     $.t1_triad_van2.setDrivingStyle(0);
     $.t1_triad_van2.setOnlyDamagedByPlayer(true);
-    $.vanman2.setPersonality(14 /* PEDSTAT_GEEK_GUY */);
+    $.vanman2.setPersonality(PEDSTAT_GEEK_GUY);
     //SET_CAR_HEALTH t1_triad_van2 600
 
-    $.t1_triad_van3 = Car.Create(133 /* CAR_MRWONGS */, 904.0, -579.0, -100.0);
-    $.vanman3 = Char.CreateInsideCar($.t1_triad_van3, 4 /* PEDTYPE_CIVMALE */, 45 /* PED_CT_MAN1 */);
+    $.t1_triad_van3 = Car.Create(CAR_MRWONGS, 904.0, -579.0, -100.0);
+    $.vanman3 = Char.CreateInsideCar($.t1_triad_van3, PEDTYPE_CIVMALE, PED_CT_MAN1);
     $.blip3_van3 = Blip.AddForCar($.t1_triad_van3);
     $.t1_triad_van3.setCruiseSpeed(17.0);
     $.t1_triad_van3.setDrivingStyle(0);
     $.t1_triad_van3.setOnlyDamagedByPlayer(true);
-    $.vanman3.setPersonality(16 /* PEDSTAT_TOUGH_GUY */);
+    $.vanman3.setPersonality(PEDSTAT_TOUGH_GUY);
     //SET_CAR_HEALTH t1_triad_van3 600
     /*
     CREATE_CAR CAR_MRWONGS 996.0 -463.0 14.0 t1_triad_van4
@@ -425,8 +425,8 @@ async function cleanup() {
     $.grenade_blip.remove();
     $.free_greandes.remove();
     $.gen_car31.switch(101);
-    Streaming.MarkModelAsNoLongerNeeded(133 /* CAR_MRWONGS */);
-    Streaming.MarkModelAsNoLongerNeeded(45 /* PED_CT_MAN1 */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_MRWONGS);
+    Streaming.MarkModelAsNoLongerNeeded(PED_CT_MAN1);
     Mission.Finish();
 }
 
