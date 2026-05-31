@@ -116,9 +116,9 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(1, 'frankie');
     Streaming.LoadSpecialCharacter(2, 'maria');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'FRANKH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MARIAH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'FRANKH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'MARIAH');
     Streaming.RequestModel(PED_GANG_MAFIA_B);
     Streaming.RequestModel(542 /* salvsdetail */);
     Streaming.RequestModel(540 /* swank_inside */);
@@ -130,9 +130,9 @@ async function body() {
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
         !Streaming.HasModelLoaded(PED_GANG_MAFIA_B) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3)
     ) {
         await asyncWait(0);
     }
@@ -172,13 +172,13 @@ async function body() {
 
     $.cs_mafia.setAnim('gang02');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* cut_obj1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, 186 /* cut_obj2 */);
+    $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, CUT_OBJ2);
     $.cs_frankiehead.setAnim('frank');
 
-    $.cs_mariahead = CutsceneHead.Create($.cs_maria, 187 /* cut_obj3 */);
+    $.cs_mariahead = CutsceneHead.Create($.cs_maria, CUT_OBJ3);
     $.cs_mariahead.setAnim('maria');
 
     $.player.setCoordinates(1418.0, -186.0, -100.0);
@@ -307,9 +307,9 @@ async function body() {
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.MarkModelAsNoLongerNeeded(PED_GANG_MAFIA_B);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
     Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */);
     Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */);
     Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */);

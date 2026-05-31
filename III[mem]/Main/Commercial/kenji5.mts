@@ -129,7 +129,7 @@ async function body() {
     Streaming.RequestModel(PED_GANG_YAKUZA_A);
     Streaming.RequestModel(PED_GANG_YAKUZA_B);
     Streaming.RequestModel(PED_GANG_YARDIE_A);
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KENJIH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'KENJIH');
     Streaming.RequestModel(1570 /* casino_garden */);
 
     /*
@@ -144,7 +144,7 @@ async function body() {
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasModelLoaded(PED_GANG_YAKUZA_A) ||
         !Streaming.HasModelLoaded(PED_GANG_YAKUZA_B) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
         !Streaming.HasModelLoaded(1570 /* casino_garden */)
     ) {
         await asyncWait(0);
@@ -166,7 +166,7 @@ async function body() {
     $.cs_yakuza2 = CutsceneObject.Create(PED_GANG_YAKUZA_B);
     $.cs_yakuza2.setAnim('gang08');
 
-    $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, 185 /* cut_obj1 */);
+    $.cs_kenjihead = CutsceneHead.Create($.cs_kenji, CUT_OBJ1);
     $.cs_kenjihead.setAnim('kenji');
 
     //CREATE_CUTSCENE_HEAD cs_player cut_obj2 cs_playerhead
@@ -267,7 +267,7 @@ async function body() {
     Streaming.UnloadSpecialCharacter(1);
     Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_A);
     Streaming.MarkModelAsNoLongerNeeded(PED_GANG_YAKUZA_B);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
     Streaming.MarkModelAsNoLongerNeeded(1570 /* casino_garden */);
 
     // *******************************************END OF CUTSCENE*******************************

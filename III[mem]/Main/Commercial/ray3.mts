@@ -107,8 +107,8 @@ async function body() {
     PRINT_BIG RM3 15000 2 //"Evidence Dash"
     */
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'RAYH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'RAYH');
     Streaming.RequestModel(2104 /* toilet */);
 
     /*
@@ -121,8 +121,8 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
         !Streaming.HasModelLoaded(2104 /* toilet */)
     ) {
         await asyncWait(0);
@@ -252,8 +252,8 @@ async function body() {
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
 
     Streaming.RequestModel(1367 /* files */);
     Streaming.RequestModel(CAR_BOBCAT);

@@ -76,7 +76,7 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(1, 'love2');
     Streaming.LoadSpecialCharacter(2, 'ojg2');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'LOVEH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'LOVEH');
     Streaming.RequestModel(1731 /* tshrorckgrdn */);
     Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */);
 
@@ -85,7 +85,7 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
         !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) ||
         !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */)
     ) {
@@ -105,7 +105,7 @@ async function body() {
     $.cs_ojg = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_ojg.setAnim('ojg2');
 
-    $.cs_lovehead = CutsceneHead.Create($.cs_love, 185 /* cut_obj1 */);
+    $.cs_lovehead = CutsceneHead.Create($.cs_love, CUT_OBJ1);
     $.cs_lovehead.setAnim('love');
 
     World.ClearArea(82.44, -1548.49, 28.0, 2.0, true);
@@ -192,7 +192,7 @@ async function body() {
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.UnloadSpecialCharacter(2);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
     Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */);
     Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */);
 

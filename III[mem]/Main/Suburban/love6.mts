@@ -59,7 +59,7 @@ async function body() {
     //PRINT_BIG LOVE6	15000 2
 
     Streaming.LoadSpecialCharacter(1, 'love2');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'LOVEH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'LOVEH');
     Streaming.RequestModel(1731 /* tshrorckgrdn */);
     Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */);
 
@@ -73,7 +73,7 @@ async function body() {
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */) ||
         !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1)
     ) {
         await asyncWait(0);
     }
@@ -171,7 +171,7 @@ async function body() {
     Streaming.UnloadSpecialCharacter(1);
     Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */);
     Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
 
     Game.SetSwatRequired(true);
     Streaming.RequestModel(CAR_ENFORCER);

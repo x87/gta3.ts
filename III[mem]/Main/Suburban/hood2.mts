@@ -241,9 +241,9 @@ async function body() {
 
     Streaming.RequestModel(CAR_SECURICAR);
 
-    Streaming.RequestModel(131 /* car_rcbandit */);
+    Streaming.RequestModel(CAR_RCBANDIT);
 
-    while (!Streaming.HasModelLoaded(CAR_TOYZ) || !Streaming.HasModelLoaded(CAR_SECURICAR) || !Streaming.HasModelLoaded(131 /* car_rcbandit */)) {
+    while (!Streaming.HasModelLoaded(CAR_TOYZ) || !Streaming.HasModelLoaded(CAR_SECURICAR) || !Streaming.HasModelLoaded(CAR_RCBANDIT)) {
         await asyncWait(0);
     }
 
@@ -460,7 +460,7 @@ async function cleanup() {
     Streaming.LoadScene(-660.9, 76.0, 18.7);
     Streaming.MarkModelAsNoLongerNeeded(CAR_TOYZ);
     Streaming.MarkModelAsNoLongerNeeded(CAR_SECURICAR);
-    Streaming.MarkModelAsNoLongerNeeded(131 /* car_rcbandit */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_RCBANDIT);
     Hud.ClearCounter($.$id.buggies_left_hm2);
     $.radar_blip_car1_hm2.remove();
     $.radar_blip_van1_hm2.remove();

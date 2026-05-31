@@ -83,10 +83,10 @@ async function body() {
 
     Text.PrintNow('RC_2', 4000, 1); //You have 4 minutes to blow up as many Diablo Gang Cars as possible!
 
-    Streaming.RequestModel(131 /* car_rcbandit */);
-    Streaming.RequestModel(134 /* car_mafia */);
+    Streaming.RequestModel(CAR_RCBANDIT);
+    Streaming.RequestModel(CAR_MAFIA);
 
-    while (!Streaming.HasModelLoaded(131 /* car_rcbandit */) || !Streaming.HasModelLoaded(134 /* car_mafia */)) {
+    while (!Streaming.HasModelLoaded(CAR_RCBANDIT) || !Streaming.HasModelLoaded(CAR_MAFIA)) {
         await asyncWait(0);
     }
 
@@ -189,7 +189,7 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_just_done_rc_mission = 1;
     Streaming.LoadScene($.cam_x, $.cam_y, $.cam_z);
-    Streaming.MarkModelAsNoLongerNeeded(131 /* car_rcbandit */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_RCBANDIT);
     Game.SetPoliceIgnorePlayer($.player, OFF);
     $.player.setControl(ON);
     Camera.Restore();

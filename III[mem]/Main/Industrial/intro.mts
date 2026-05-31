@@ -54,11 +54,11 @@ async function body() {
     Streaming.LoadSpecialCharacter(2, 'colrob');
     Streaming.LoadSpecialCharacter(3, 'miguel');
     Streaming.LoadSpecialCharacter(4, 'playerx');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'cs_ban');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'bankd');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'cs_loot');
-    Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'colt1');
-    Streaming.LoadSpecialModel(189 /* cut_obj5 */, 'cath');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'cs_ban');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'bankd');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'cs_loot');
+    Streaming.LoadSpecialModel(CUT_OBJ4, 'colt1');
+    Streaming.LoadSpecialModel(CUT_OBJ5, 'cath');
 
     $.script_controlled_player = $.player.getChar();
 
@@ -83,15 +83,15 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-        !Streaming.HasModelLoaded(188 /* cut_obj4 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3) ||
+        !Streaming.HasModelLoaded(CUT_OBJ4)
     ) {
         await asyncWait(0);
     }
 
-    while (!Streaming.HasModelLoaded(189 /* cut_obj5 */) || !Streaming.HasSpecialCharacterLoaded(3) || !Streaming.HasSpecialCharacterLoaded(4)) {
+    while (!Streaming.HasModelLoaded(CUT_OBJ5) || !Streaming.HasSpecialCharacterLoaded(3) || !Streaming.HasSpecialCharacterLoaded(4)) {
         await asyncWait(0);
     }
 
@@ -112,22 +112,22 @@ async function body() {
     $.cs_miguel = CutsceneObject.Create(PED_SPECIAL3);
     $.cs_miguel.setAnim('miguel');
 
-    $.cs_cathead = CutsceneHead.Create($.cs_cat, 189 /* cut_obj5 */);
+    $.cs_cathead = CutsceneHead.Create($.cs_cat, CUT_OBJ5);
     $.cs_cathead.setAnim('cat');
 
-    $.cs_cs_ban = CutsceneObject.Create(185 /* cut_obj1 */);
+    $.cs_cs_ban = CutsceneObject.Create(CUT_OBJ1);
     $.cs_cs_ban.setAnim('cs_ban');
 
-    $.cs_bankd = CutsceneObject.Create(186 /* cut_obj2 */);
+    $.cs_bankd = CutsceneObject.Create(CUT_OBJ2);
     $.cs_bankd.setAnim('bankd');
 
-    $.cs_loot = CutsceneObject.Create(187 /* cut_obj3 */);
+    $.cs_loot = CutsceneObject.Create(CUT_OBJ3);
     $.cs_loot.setAnim('cs_loot');
 
-    $.cs_colt1 = CutsceneObject.Create(188 /* cut_obj4 */);
+    $.cs_colt1 = CutsceneObject.Create(CUT_OBJ4);
     $.cs_colt1.setAnim('colt1');
 
-    $.cs_colt2 = CutsceneObject.Create(188 /* cut_obj4 */);
+    $.cs_colt2 = CutsceneObject.Create(CUT_OBJ4);
     $.cs_colt2.setAnim('colt2');
 
     $.cs_cs_ban.setDrawLast(true);
@@ -194,11 +194,11 @@ async function body() {
     Streaming.UnloadSpecialCharacter(2);
     Streaming.UnloadSpecialCharacter(3);
     Streaming.UnloadSpecialCharacter(4);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
-    Streaming.MarkModelAsNoLongerNeeded(188 /* cut_obj4 */);
-    Streaming.MarkModelAsNoLongerNeeded(189 /* cut_obj5 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ5);
 
     // *******************************END OF JAIL BREAK CUTSCENE***************************
 
@@ -577,11 +577,11 @@ async function cutscene() {
     Streaming.UnloadSpecialCharacter(2);
     Streaming.UnloadSpecialCharacter(3);
     Streaming.UnloadSpecialCharacter(4);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
-    Streaming.MarkModelAsNoLongerNeeded(188 /* cut_obj4 */);
-    Streaming.MarkModelAsNoLongerNeeded(189 /* cut_obj5 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ5);
 
     // **********************************END OF BANK CUTSCENE******************************
 
@@ -599,10 +599,10 @@ async function cutscene() {
     Streaming.LoadSpecialCharacter(2, 'OJG_P');
     Streaming.LoadSpecialCharacter(3, 'col1');
     Streaming.LoadSpecialCharacter(4, 'col2');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'CS_TRUK');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'REBEL');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'brbomb');
-    Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'COL1H');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'CS_TRUK');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'REBEL');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'brbomb');
+    Streaming.LoadSpecialModel(CUT_OBJ4, 'COL1H');
     Streaming.RequestModel(725 /* bridgefuka */);
     Streaming.RequestModel(724 /* bridgefukb */);
 
@@ -641,16 +641,16 @@ async function cutscene() {
         !Streaming.HasSpecialCharacterLoaded(2) ||
         !Streaming.HasSpecialCharacterLoaded(3) ||
         !Streaming.HasSpecialCharacterLoaded(4) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2)
     ) {
         await asyncWait(0);
         await draw_intro_text();
     }
 
     while (
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-        !Streaming.HasModelLoaded(188 /* cut_obj4 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3) ||
+        !Streaming.HasModelLoaded(CUT_OBJ4) ||
         !Streaming.HasModelLoaded(725 /* bridgefuka */) ||
         !Streaming.HasModelLoaded(724 /* bridgefukb */)
     ) {
@@ -696,16 +696,16 @@ async function cutscene() {
     $.cs_cop2 = CutsceneObject.Create(PED_COP);
     $.cs_cop2.setAnim('male01');
 
-    $.cs_colombian1head = CutsceneHead.Create($.cs_colombian1, 188 /* cut_obj4 */);
+    $.cs_colombian1head = CutsceneHead.Create($.cs_colombian1, CUT_OBJ4);
     $.cs_colombian1head.setAnim('col1');
 
-    $.cs_colt1 = CutsceneObject.Create(185 /* cut_obj1 */);
+    $.cs_colt1 = CutsceneObject.Create(CUT_OBJ1);
     $.cs_colt1.setAnim('CS_TRUK');
 
-    $.cs_colt2 = CutsceneObject.Create(186 /* cut_obj2 */);
+    $.cs_colt2 = CutsceneObject.Create(CUT_OBJ2);
     $.cs_colt2.setAnim('REBEL');
 
-    $.brbomb = CutsceneObject.Create(187 /* cut_obj3 */);
+    $.brbomb = CutsceneObject.Create(CUT_OBJ3);
     $.brbomb.setAnim('brbomb');
 
     $.cs_colt1.setDrawLast(true);

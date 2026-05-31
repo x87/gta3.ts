@@ -54,7 +54,7 @@ async function body() {
         */
 
         Streaming.LoadSpecialCharacter(1, 'FRANKIE');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'FRANKH');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'FRANKH');
         //LOAD_SPECIAL_MODEL cut_obj2 PLAYERH
 
         Streaming.RequestModel(PED_GANG_MAFIA_B);
@@ -75,7 +75,7 @@ async function body() {
 
         // Cutscene stuff
 
-        while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(PED_GANG_MAFIA_B)) {
+        while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(CUT_OBJ1) || !Streaming.HasModelLoaded(PED_GANG_MAFIA_B)) {
             //OR NOT HAS_MODEL_LOADED cut_obj2
 
             await asyncWait(0);

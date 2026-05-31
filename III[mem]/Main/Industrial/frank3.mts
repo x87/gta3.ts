@@ -129,9 +129,9 @@ async function body() {
         */
 
         Streaming.LoadSpecialCharacter(1, 'EIGHT2');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'EITDOOR');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'EIGHTH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'PLAYERH');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'EITDOOR');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'EIGHTH');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'PLAYERH');
         Streaming.RequestModel(605 /* ind_land089c */);
         Streaming.RequestModel(531 /* mak_semtech */);
         Streaming.RequestModel(533 /* mak_bomb01 */);
@@ -142,9 +142,9 @@ async function body() {
 
         while (
             !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */)
+            !Streaming.HasModelLoaded(CUT_OBJ3) ||
+            !Streaming.HasModelLoaded(CUT_OBJ2) ||
+            !Streaming.HasModelLoaded(CUT_OBJ1)
         ) {
             await asyncWait(0);
         }
@@ -175,7 +175,7 @@ async function body() {
 
         $.cs_playerhead.setAnim('player');
 
-        $.cs_eitdoor = CutsceneObject.Create(185 /* cut_obj1 */);
+        $.cs_eitdoor = CutsceneObject.Create(CUT_OBJ1);
 
         $.cs_eitdoor.setAnim('EITDOOR');
 
@@ -306,11 +306,11 @@ async function body() {
         */
 
         Streaming.LoadSpecialCharacter(1, 'EIGHT2');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'EITDOOR');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'EIGHTH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'rifle');
-        Streaming.LoadSpecialModel(189 /* cut_obj5 */, 'cs_bomb');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'EITDOOR');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'EIGHTH');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'PLAYERH');
+        Streaming.LoadSpecialModel(CUT_OBJ4, 'rifle');
+        Streaming.LoadSpecialModel(CUT_OBJ5, 'cs_bomb');
         Streaming.RequestModel(605 /* ind_land089c */);
         Streaming.RequestModel(531 /* mak_semtech */);
         Streaming.RequestModel(533 /* mak_bomb01 */);
@@ -321,11 +321,11 @@ async function body() {
 
         while (
             !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(188 /* cut_obj4 */) ||
-            !Streaming.HasModelLoaded(189 /* cut_obj5 */)
+            !Streaming.HasModelLoaded(CUT_OBJ2) ||
+            !Streaming.HasModelLoaded(CUT_OBJ3) ||
+            !Streaming.HasModelLoaded(CUT_OBJ1) ||
+            !Streaming.HasModelLoaded(CUT_OBJ4) ||
+            !Streaming.HasModelLoaded(CUT_OBJ5)
         ) {
             await asyncWait(0);
         }
@@ -356,15 +356,15 @@ async function body() {
 
         $.cs_playerhead.setAnim('player');
 
-        $.cs_eitdoor = CutsceneObject.Create(185 /* cut_obj1 */);
+        $.cs_eitdoor = CutsceneObject.Create(CUT_OBJ1);
 
         $.cs_eitdoor.setAnim('EITDOOR');
 
-        $.cs_rifle = CutsceneObject.Create(188 /* cut_obj4 */);
+        $.cs_rifle = CutsceneObject.Create(CUT_OBJ4);
 
         $.cs_rifle.setAnim('rifle');
 
-        $.cs_bomb = CutsceneObject.Create(189 /* cut_obj5 */);
+        $.cs_bomb = CutsceneObject.Create(CUT_OBJ5);
 
         $.cs_bomb.setAnim('cs_bomb');
 
@@ -720,7 +720,7 @@ async function body() {
 
         Path.AddRoutePoint(0, 1534.6, -936.8, -100.0);
 
-        $.guard3_fm3.setObjFollowRoute(0, 3 /* follow_route_loop */);
+        $.guard3_fm3.setObjFollowRoute(0, FOLLOW_ROUTE_LOOP);
 
         $.guard3_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -740,7 +740,7 @@ async function body() {
 
         Path.AddRoutePoint(1, 1510.2, -941.7, -100.0);
 
-        $.guard4_fm3.setObjFollowRoute(1, 3 /* follow_route_loop */);
+        $.guard4_fm3.setObjFollowRoute(1, FOLLOW_ROUTE_LOOP);
 
         $.guard4_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -760,7 +760,7 @@ async function body() {
 
         Path.AddRoutePoint(2, 1502.6, -926.7, -100.0);
 
-        $.guard5_fm3.setObjFollowRoute(2, 3 /* follow_route_loop */);
+        $.guard5_fm3.setObjFollowRoute(2, FOLLOW_ROUTE_LOOP);
 
         $.guard5_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -782,7 +782,7 @@ async function body() {
 
         Path.AddRoutePoint(3, 1472.5, -917.7, -100.0);
 
-        $.guard6_fm3.setObjFollowRoute(3, 3 /* follow_route_loop */);
+        $.guard6_fm3.setObjFollowRoute(3, FOLLOW_ROUTE_LOOP);
 
         $.guard6_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -802,7 +802,7 @@ async function body() {
 
         Path.AddRoutePoint(4, 1500.3, -922.2, -100.0);
 
-        $.guard7_fm3.setObjFollowRoute(4, 3 /* follow_route_loop */);
+        $.guard7_fm3.setObjFollowRoute(4, FOLLOW_ROUTE_LOOP);
 
         $.guard7_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -822,7 +822,7 @@ async function body() {
 
         Path.AddRoutePoint(5, 1489.5, -955.8, -100.0);
 
-        $.guard8_fm3.setObjFollowRoute(5, 3 /* follow_route_loop */);
+        $.guard8_fm3.setObjFollowRoute(5, FOLLOW_ROUTE_LOOP);
 
         $.guard8_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -858,7 +858,7 @@ async function body() {
 
         Path.AddRoutePoint(6, 1476.8, -927.2, -100.0);
 
-        $.guard10_fm3.setObjFollowRoute(6, 3 /* follow_route_loop */);
+        $.guard10_fm3.setObjFollowRoute(6, FOLLOW_ROUTE_LOOP);
 
         $.guard10_fm3.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -1699,8 +1699,8 @@ async function body() {
 
         // Cutscene stuff
 
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'ship');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'gangp');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'ship');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'gangp');
         //LOAD_SPECIAL_CHARACTER 1 EIGHT2  // TEST STUFF
 
         while (Camera.GetFadingStatus()) {
@@ -1731,7 +1731,7 @@ async function body() {
 
         Streaming.LoadAllModelsNow();
 
-        while (!Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */)) {
+        while (!Streaming.HasModelLoaded(CUT_OBJ1) || !Streaming.HasModelLoaded(CUT_OBJ2)) {
             //OR NOT HAS_SPECIAL_CHARACTER_LOADED 1 // TEST STUFF
 
             await asyncWait(0);
@@ -1757,11 +1757,11 @@ async function body() {
 
         $.cs_eight.setAnim('eight2');
 
-        $.cs_ship = CutsceneObject.Create(185 /* cut_obj1 */);
+        $.cs_ship = CutsceneObject.Create(CUT_OBJ1);
 
         $.cs_ship.setAnim('ship');
 
-        $.cs_gangplank = CutsceneObject.Create(186 /* cut_obj2 */);
+        $.cs_gangplank = CutsceneObject.Create(CUT_OBJ2);
 
         $.cs_gangplank.setAnim('gangp');
 

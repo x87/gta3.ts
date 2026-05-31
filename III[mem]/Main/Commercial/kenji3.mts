@@ -197,8 +197,8 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(1, 'KENJI');
     Streaming.RequestModel(PED_GANG_YAKUZA_A);
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KENJIH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'KENJIH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'PLAYERH');
     Streaming.RequestModel(1570 /* casino_garden */);
 
     /*
@@ -214,8 +214,8 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasModelLoaded(PED_GANG_YAKUZA_A) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
         !Streaming.HasModelLoaded(1570 /* casino_garden */)
     ) {
         await asyncWait(0);

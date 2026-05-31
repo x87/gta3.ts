@@ -60,8 +60,8 @@ async function body() {
     Streaming.LoadSpecialCharacter(2, 'cat');
     Streaming.LoadSpecialCharacter(3, 'col2');
     Streaming.LoadSpecialCharacter(4, 'colrob');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'fulcase');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'cath');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'fulcase');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'cath');
     Streaming.RequestModel(PED_GANG_COLOMBIAN_A);
     Streaming.RequestModel(PED_GANG_COLOMBIAN_B);
     Streaming.RequestModel(CAR_COLUMB);
@@ -77,8 +77,8 @@ async function body() {
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
         !Streaming.HasSpecialCharacterLoaded(4) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2)
     ) {
         await asyncWait(0);
     }
@@ -123,10 +123,10 @@ async function body() {
     $.cs_colub4 = CutsceneObject.Create(PED_GANG_COLOMBIAN_B);
     $.cs_colub4.setAnim('gang12'); //(unarmed)
 
-    $.cs_case = CutsceneObject.Create(185 /* cut_obj1 */);
+    $.cs_case = CutsceneObject.Create(CUT_OBJ1);
     $.cs_case.setAnim('fulcase');
 
-    $.cs_cathead = CutsceneHead.Create($.cs_cat, 186 /* cut_obj2 */);
+    $.cs_cathead = CutsceneHead.Create($.cs_cat, CUT_OBJ2);
     $.cs_cathead.setAnim('cat');
 
     $.colubian_car1 = Car.Create(CAR_COLUMB, -422.9, 291.8, 61.8);

@@ -36,9 +36,9 @@ async function body() {
     // SCRIPT_NAME asuka4
     await asyncWait(0);
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'ASUKAH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'minnote');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'ASUKAH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'minnote');
     Streaming.LoadSpecialCharacter(1, 'asuka');
     Streaming.RequestModel(2216 /* condo_ivy */);
     Streaming.RequestModel(2215 /* kmricndo01 */);
@@ -47,9 +47,9 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3)
     ) {
         await asyncWait(0);
     }
@@ -73,7 +73,7 @@ async function body() {
     $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ2);
     $.cs_asukahead.setAnim('asuka');
 
-    $.cs_note = CutsceneObject.Create(187 /* cut_obj3 */);
+    $.cs_note = CutsceneObject.Create(CUT_OBJ3);
     $.cs_note.setAnim('minnote');
 
     World.ClearArea(523.6, -639.4, 16.6, 1.0, true);
@@ -366,8 +366,8 @@ async function body() {
     Streaming.Switch(OFF);
 
     Streaming.LoadSpecialCharacter(2, 'ray');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'RAYH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'RAYH');
 
     while (Camera.GetFadingStatus()) {
         await asyncWait(0);
@@ -375,7 +375,7 @@ async function body() {
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */)) {
+    while (!Streaming.HasSpecialCharacterLoaded(2) || !Streaming.HasModelLoaded(CUT_OBJ1) || !Streaming.HasModelLoaded(CUT_OBJ2)) {
         await asyncWait(0);
     }
 
@@ -505,8 +505,8 @@ async function body() {
     Camera.DoFade(1500, FADE_IN);
 
     Streaming.UnloadSpecialCharacter(2);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
 }
 
 // Mission asuka4 failed

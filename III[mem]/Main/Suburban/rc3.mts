@@ -83,10 +83,10 @@ async function body() {
 
     Text.PrintNow('RC_5', 4000, 1); //You have 4 minutes to blow up as many Diablo Gang Cars as possible!
 
-    Streaming.RequestModel(131 /* car_rcbandit */);
+    Streaming.RequestModel(CAR_RCBANDIT);
     //REQUEST_MODEL car_hoods
 
-    while (!Streaming.HasModelLoaded(131 /* car_rcbandit */)) {
+    while (!Streaming.HasModelLoaded(CAR_RCBANDIT)) {
         //OR NOT HAS_MODEL_LOADED car_hoods
         await asyncWait(0);
     }
@@ -135,7 +135,7 @@ async function body() {
         } else {
             FAIL("mission_rc3_failed");
         }
-        $.counter_RCDD = Player.GetNumOfModelsKilled(139 /* car_hoods */);
+        $.counter_RCDD = Player.GetNumOfModelsKilled(CAR_HOODS);
         if ($.intro_time_lapsed > 4000) {
             if (!$.player.isInRemoteMode()) {
                 Rc.GiveCarToPlayer($.player, $.rc_x, $.rc_y, $.rc_z, 60.0);
@@ -190,7 +190,7 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_just_done_rc_mission = 1;
     Streaming.LoadScene($.cam_x, $.cam_y, $.cam_z);
-    Streaming.MarkModelAsNoLongerNeeded(131 /* car_rcbandit */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_RCBANDIT);
     Game.SetPoliceIgnorePlayer($.player, OFF);
     $.player.setControl(ON);
     Camera.Restore();

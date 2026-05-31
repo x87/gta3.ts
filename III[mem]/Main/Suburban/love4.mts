@@ -136,7 +136,7 @@ async function body() {
     Streaming.LoadSpecialCharacter(1, 'love');
     Streaming.RequestModel(1731 /* tshrorckgrdn */);
     Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */);
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'LOVEH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'LOVEH');
 
     Streaming.LoadAllModelsNow();
 
@@ -144,7 +144,7 @@ async function body() {
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */) ||
         !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1)
     ) {
         await asyncWait(0);
     }
@@ -159,7 +159,7 @@ async function body() {
     $.cs_love = CutsceneObject.Create(PED_SPECIAL1);
     $.cs_love.setAnim('love');
 
-    $.cs_lovehead = CutsceneHead.Create($.cs_love, 185 /* cut_obj1 */);
+    $.cs_lovehead = CutsceneHead.Create($.cs_love, CUT_OBJ1);
     $.cs_lovehead.setAnim('love');
 
     World.ClearArea(82.44, -1548.49, 28.0, 2.0, true);
@@ -254,7 +254,7 @@ async function body() {
     Camera.SetBehindPlayer();
 
     Streaming.UnloadSpecialCharacter(1);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
     Streaming.MarkModelAsNoLongerNeeded(1731 /* tshrorckgrdn */);
     Streaming.MarkModelAsNoLongerNeeded(1732 /* tshrorckgrdn_alfas */);
 
@@ -883,11 +883,11 @@ async function body() {
         Streaming.LoadSpecialCharacter(1, 'cat');
         Streaming.LoadSpecialCharacter(2, 'miguel');
         Streaming.LoadSpecialCharacter(3, 'asuka');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'd4props'); //lift
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'cath');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'asukah');
-        Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'miguelh');
-        Streaming.LoadSpecialModel(189 /* cut_obj5 */, 'lift');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'd4props'); //lift
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'cath');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'asukah');
+        Streaming.LoadSpecialModel(CUT_OBJ4, 'miguelh');
+        Streaming.LoadSpecialModel(CUT_OBJ5, 'lift');
         Streaming.RequestModel(2011 /* csitecutscene */);
 
         Streaming.Switch(OFF);
@@ -902,14 +902,14 @@ async function body() {
             !Streaming.HasSpecialCharacterLoaded(1) ||
             !Streaming.HasSpecialCharacterLoaded(2) ||
             !Streaming.HasSpecialCharacterLoaded(3) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+            !Streaming.HasModelLoaded(CUT_OBJ1) ||
+            !Streaming.HasModelLoaded(CUT_OBJ2) ||
+            !Streaming.HasModelLoaded(CUT_OBJ3)
         ) {
             await asyncWait(0);
         }
 
-        while (!Streaming.HasModelLoaded(188 /* cut_obj4 */) || !Streaming.HasModelLoaded(189 /* cut_obj5 */) || !Streaming.HasModelLoaded(2011 /* csitecutscene */)) {
+        while (!Streaming.HasModelLoaded(CUT_OBJ4) || !Streaming.HasModelLoaded(CUT_OBJ5) || !Streaming.HasModelLoaded(2011 /* csitecutscene */)) {
             await asyncWait(0);
         }
 
@@ -931,19 +931,19 @@ async function body() {
         $.cs_asuka = CutsceneObject.Create(PED_SPECIAL3);
         $.cs_asuka.setAnim('asuka');
 
-        $.cs_whip = CutsceneObject.Create(185 /* cut_obj1 */);
+        $.cs_whip = CutsceneObject.Create(CUT_OBJ1);
         $.cs_whip.setAnim('d4props');
 
-        $.cs_lift = CutsceneObject.Create(189 /* cut_obj5 */);
+        $.cs_lift = CutsceneObject.Create(CUT_OBJ5);
         $.cs_lift.setAnim('lift');
 
-        $.cs_cathead = CutsceneHead.Create($.cs_catalina, 186 /* cut_obj2 */);
+        $.cs_cathead = CutsceneHead.Create($.cs_catalina, CUT_OBJ2);
         $.cs_cathead.setAnim('cat');
 
-        $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 187 /* cut_obj3 */);
+        $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ3);
         $.cs_asukahead.setAnim('asuka');
 
-        $.cs_mariahead = CutsceneHead.Create($.cs_miguel, 188 /* cut_obj4 */);
+        $.cs_mariahead = CutsceneHead.Create($.cs_miguel, CUT_OBJ4);
         $.cs_mariahead.setAnim('miguel');
 
         //CREATE_CUTSCENE_OBJECT cut_obj2 cs_loot
@@ -1279,11 +1279,11 @@ async function body() {
         Streaming.UnloadSpecialCharacter(1);
         Streaming.UnloadSpecialCharacter(2);
         Streaming.UnloadSpecialCharacter(3);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
-        Streaming.MarkModelAsNoLongerNeeded(188 /* cut_obj4 */);
-        Streaming.MarkModelAsNoLongerNeeded(189 /* cut_obj5 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ5);
         Streaming.MarkModelAsNoLongerNeeded(2011 /* csitecutscene */);
 
         Streaming.RequestModel(CAR_YAKUZA);

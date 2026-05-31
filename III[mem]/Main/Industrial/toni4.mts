@@ -65,14 +65,14 @@ async function body() {
     Streaming.RequestModel(PED_GANG_MAFIA_A);
     Streaming.RequestModel(PED_GANG_MAFIA_B);
     Streaming.RequestModel(537 /* ind_newrizzos */);
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'NOTE');
 
     Streaming.LoadAllModelsNow();
 
     while (
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
         !Streaming.HasModelLoaded(PED_GANG_MAFIA_A) ||
         !Streaming.HasModelLoaded(PED_GANG_MAFIA_B) ||
         !Streaming.HasModelLoaded(537 /* ind_newrizzos */)
@@ -106,7 +106,7 @@ async function body() {
     $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
+    $.cs_note = CutsceneObject.Create(CUT_OBJ2);
     $.cs_note.setAnim('NOTE');
 
     World.ClearArea(1219.6, -323.0, 25.6, 1.0, true);

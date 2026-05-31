@@ -65,10 +65,10 @@ async function body() {
     {
         Streaming.LoadSpecialCharacter(1, 'joey');
         Streaming.LoadSpecialCharacter(2, 'tony');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'JOEDOOR');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'JOEYH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'TONYH');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'JOEDOOR');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'JOEYH');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'PLAYERH');
+        Streaming.LoadSpecialModel(CUT_OBJ4, 'TONYH');
         Streaming.RequestModel(CAR_MAFIA);
         Streaming.RequestModel(CAR_IDAHO);
         Streaming.RequestModel(CAR_STALLION);
@@ -91,10 +91,10 @@ async function body() {
         }
 
         while (
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-            !Streaming.HasModelLoaded(188 /* cut_obj4 */)
+            !Streaming.HasModelLoaded(CUT_OBJ1) ||
+            !Streaming.HasModelLoaded(CUT_OBJ2) ||
+            !Streaming.HasModelLoaded(CUT_OBJ3) ||
+            !Streaming.HasModelLoaded(CUT_OBJ4)
         ) {
             await asyncWait(0);
         }
@@ -132,7 +132,7 @@ async function body() {
         $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ3);
         $.cs_playerhead.setAnim('player');
 
-        $.cs_joedoor = CutsceneObject.Create(185 /* cut_obj1 */);
+        $.cs_joedoor = CutsceneObject.Create(CUT_OBJ1);
         $.cs_joedoor.setAnim('JOEDOOR');
 
         World.ClearArea(1195.0, -870.3, 15.0, 10.0, true);
@@ -679,7 +679,7 @@ async function body() {
 
         await asyncWait(5000);
 
-        Sound.AddOneOffSound(845.0, -663.0, 14.0, 0 /* sound_test_1 */); //Need Sound event
+        Sound.AddOneOffSound(845.0, -663.0, 14.0, SOUND_TEST_1); //Need Sound event
 
         $.door1_position_jm4 = $.laundrete_door1.getHeading();
         $.door2_position_jm4 = $.laundrete_door2.getHeading();

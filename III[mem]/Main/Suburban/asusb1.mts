@@ -135,9 +135,9 @@ async function body() {
     Streaming.LoadSpecialCharacter(1, 'asuka');
     Streaming.LoadSpecialCharacter(2, 'miguel');
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'ASUKAH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'WHIP');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'ASUKAH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'WHIP');
 
     /*
     WHILE GET_FADING_STATUS
@@ -155,7 +155,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    while (!Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */) || !Streaming.HasModelLoaded(187 /* cut_obj3 */)) {
+    while (!Streaming.HasModelLoaded(CUT_OBJ1) || !Streaming.HasModelLoaded(CUT_OBJ2) || !Streaming.HasModelLoaded(CUT_OBJ3)) {
         await asyncWait(0);
     }
 
@@ -180,7 +180,7 @@ async function body() {
     $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ2);
     $.cs_asukahead.setAnim('asuka');
 
-    $.cs_whip = CutsceneObject.Create(187 /* cut_obj3 */);
+    $.cs_whip = CutsceneObject.Create(CUT_OBJ3);
     $.cs_whip.setAnim('WHIP');
 
     //CREATE_CUTSCENE_HEAD cs_miguel CUT_OBJ3 cs_miguelhead

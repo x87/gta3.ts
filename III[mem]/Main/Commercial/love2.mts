@@ -111,8 +111,8 @@ async function body() {
     Streaming.LoadSpecialCharacter(1, 'love');
     //LOAD_SPECIAL_CHARACTER 2 butler
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'LOVEH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'LOVEH');
     //LOAD_SPECIAL_MODEL cut_obj3 BUTLERH
 
     /*
@@ -123,7 +123,7 @@ async function body() {
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */)) {
+    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(CUT_OBJ1) || !Streaming.HasModelLoaded(CUT_OBJ2)) {
         //OR NOT HAS_SPECIAL_CHARACTER_LOADED 2
         //OR NOT HAS_MODEL_LOADED cut_obj3
         await asyncWait(0);

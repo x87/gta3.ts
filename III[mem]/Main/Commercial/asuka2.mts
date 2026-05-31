@@ -52,9 +52,9 @@ async function body() {
     $.fbi_spotted_player = 0;
     $.fbi_spotted_player2 = 0;
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'ASUKAH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'KENJIH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'ASUKAH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'KENJIH');
     Streaming.LoadSpecialCharacter(1, 'asuka');
     Streaming.LoadSpecialCharacter(2, 'kenji');
     Streaming.RequestModel(2216 /* condo_ivy */);
@@ -65,9 +65,9 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3)
     ) {
         await asyncWait(0);
     }

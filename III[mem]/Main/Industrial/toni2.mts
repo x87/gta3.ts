@@ -50,13 +50,13 @@ async function body() {
     $.thongs_killed_message = 0;
     $.traid_threat_cleared_T2 = 0;
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'NOTE');
     Streaming.RequestModel(537 /* ind_newrizzos */);
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */) || !Streaming.HasModelLoaded(537 /* ind_newrizzos */)) {
+    while (!Streaming.HasModelLoaded(CUT_OBJ1) || !Streaming.HasModelLoaded(CUT_OBJ2) || !Streaming.HasModelLoaded(537 /* ind_newrizzos */)) {
         await asyncWait(0);
     }
 
@@ -69,7 +69,7 @@ async function body() {
     $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
+    $.cs_note = CutsceneObject.Create(CUT_OBJ2);
     $.cs_note.setAnim('NOTE');
 
     World.ClearArea(1219.5, -321.1, 27.5, 1.0, true);

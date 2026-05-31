@@ -248,8 +248,8 @@ async function body() {
     Streaming.LoadSpecialCharacter(1, 'LOVE2');
     Streaming.RequestModel(1731 /* tshrorckgrdn */);
     Streaming.RequestModel(1732 /* tshrorckgrdn_alfas */);
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'LOVEH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'LOVEH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'PLAYERH');
 
     /*
     WHILE GET_FADING_STATUS
@@ -263,8 +263,8 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
         !Streaming.HasModelLoaded(1731 /* tshrorckgrdn */) ||
         !Streaming.HasModelLoaded(1732 /* tshrorckgrdn_alfas */)
     ) {
@@ -488,7 +488,7 @@ async function body() {
 
     $.baddie1_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 71.0, -332.0, -100.0);
 
-    $.baddie1_love1.setThreatSearch(1 /* threat_player1 */);
+    $.baddie1_love1.setThreatSearch(THREAT_PLAYER1);
 
     $.baddie1_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -508,7 +508,7 @@ async function body() {
 
     $.baddie2_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 61.0, -318.0, -100.0);
 
-    $.baddie2_love1.setThreatSearch(1 /* threat_player1 */);
+    $.baddie2_love1.setThreatSearch(THREAT_PLAYER1);
 
     $.baddie2_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // sets weapon to infinate ammo
 
@@ -528,7 +528,7 @@ async function body() {
 
     $.baddie3_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 42.0, -375.0, -100.0);
 
-    $.baddie3_love1.setThreatSearch(1 /* threat_player1 */);
+    $.baddie3_love1.setThreatSearch(THREAT_PLAYER1);
 
     $.baddie3_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
@@ -542,7 +542,7 @@ async function body() {
 
     $.baddie4_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 52.0, -375.0, -100.0);
 
-    $.baddie4_love1.setThreatSearch(1 /* threat_player1 */);
+    $.baddie4_love1.setThreatSearch(THREAT_PLAYER1);
 
     $.baddie4_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
@@ -556,7 +556,7 @@ async function body() {
 
     $.baddie5_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 32.0, -345.0, -100.0);
 
-    $.baddie5_love1.setThreatSearch(1 /* threat_player1 */);
+    $.baddie5_love1.setThreatSearch(THREAT_PLAYER1);
 
     $.baddie5_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 
@@ -570,7 +570,7 @@ async function body() {
 
     $.baddie6_love1 = Char.Create(PEDTYPE_GANG_COLOMBIAN, PED_GANG_COLOMBIAN_A, 33.0, -328.0, -100.0);
 
-    $.baddie6_love1.setThreatSearch(1 /* threat_player1 */);
+    $.baddie6_love1.setThreatSearch(THREAT_PLAYER1);
 
     $.baddie6_love1.giveWeapon(WEAPONTYPE_CHAINGUN, 30000); // AK47 sets weapon to infinate ammo
 

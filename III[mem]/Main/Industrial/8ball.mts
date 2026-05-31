@@ -279,7 +279,7 @@ async function body() {
 
             Camera.SetFixedPosition(785.0, -936.77, 39.75, 0.0, 0.0, 0.0); // New position
 
-            Camera.PointAtChar($.eightball, 15 /* fixed */, 2 /* jump_cut */);
+            Camera.PointAtChar($.eightball, FIXED, JUMP_CUT);
 
             Audio.LoadMissionAudio(SfxMission.Lib_a1);
 
@@ -578,7 +578,7 @@ async function body() {
 
             // creates two cops cars that drive onto the bridge
 
-            $.cop_car1_8ball = Car.Create(116 /* car_police */, 1083.2, -945.0, 13.8);
+            $.cop_car1_8ball = Car.Create(CAR_POLICE, 1083.2, -945.0, 13.8);
 
             $.cop1_8ball = Char.CreateInsideCar($.cop_car1_8ball, PEDTYPE_CIVMALE, PED_COP);
 
@@ -594,7 +594,7 @@ async function body() {
 
             $.cop_car1_8ball.gotoCoordinates(713.9, -916.7, 42.0);
 
-            $.cop_car2_8ball = Car.Create(116 /* car_police */, 1074.1, -946.7, 13.8);
+            $.cop_car2_8ball = Car.Create(CAR_POLICE, 1074.1, -946.7, 13.8);
 
             $.cop2_8ball = Char.CreateInsideCar($.cop_car2_8ball, PEDTYPE_CIVMALE, PED_COP);
 
@@ -949,10 +949,10 @@ async function body() {
 
             if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false, true, true, true, true)) {
                 Camera.SetFixedPosition(848.265, -295.26, 19.136, 0.0, 0.0, 0.0); //high camera that points to the water tower
-                Camera.PointAtPoint(849.11, -295.79, 19.18, 2 /* jump_cut */);
+                Camera.PointAtPoint(849.11, -295.79, 19.18, JUMP_CUT);
             } else {
                 Camera.SetFixedPosition(868.63, -311.7, 8.3, 0.0, 0.0, 0.0); //low new camera that points to the save house
-                Camera.PointAtPoint(869.59, -311.53, 8.53, 2 /* jump_cut */);
+                Camera.PointAtPoint(869.59, -311.53, 8.53, JUMP_CUT);
             }
 
             while ($.script_controlled_player.isInCar($.car_eightball)) {
@@ -1075,7 +1075,7 @@ async function body() {
 
                 Text.PrintHelp('S_PROM2'); //"The garage next door can store one car."
 
-                Camera.PointAtPoint(887.8, -310.5, 9.7, 1 /* interpolation */);
+                Camera.PointAtPoint(887.8, -310.5, 9.7, INTERPOLATION);
 
                 $.player.setCoordinates(895.9, -311.4, 7.7);
 
@@ -1181,10 +1181,10 @@ async function body() {
 
                 if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false, true, true, true, true)) {
                     Camera.SetFixedPosition(848.265, -295.26, 19.136, 0.0, 0.0, 0.0); //high camera that points to the water tower
-                    Camera.PointAtPoint(849.11, -295.79, 19.18, 2 /* jump_cut */);
+                    Camera.PointAtPoint(849.11, -295.79, 19.18, JUMP_CUT);
                 } else {
                     Camera.SetFixedPosition(868.63, -311.7, 8.3, 0.0, 0.0, 0.0); //low new camera that points to the save house
-                    Camera.PointAtPoint(869.59, -311.53, 8.53, 2 /* jump_cut */);
+                    Camera.PointAtPoint(869.59, -311.53, 8.53, JUMP_CUT);
                 }
 
                 Text.ClearHelp();
@@ -1261,10 +1261,10 @@ async function body() {
             World.ClearArea(868.63, -311.7, 8.3, 1.0, true);
             if (World.IsAreaOccupied(870.4, -309.9, 6.0, 865.2, -314.7, 12.0, false, true, true, true, true)) {
                 Camera.SetFixedPosition(848.265, -295.26, 19.136, 0.0, 0.0, 0.0); //high camera that points to the water tower
-                Camera.PointAtPoint(849.11, -295.79, 19.18, 2 /* jump_cut */);
+                Camera.PointAtPoint(849.11, -295.79, 19.18, JUMP_CUT);
             } else {
                 Camera.SetFixedPosition(868.63, -311.7, 8.3, 0.0, 0.0, 0.0); //low new camera that points to the save house
-                Camera.PointAtPoint(869.59, -311.53, 8.53, 2 /* jump_cut */);
+                Camera.PointAtPoint(869.59, -311.53, 8.53, JUMP_CUT);
             }
             $.playersdoor.setHeading(0.0);
             Streaming.LoadSpecialCharacter(1, 'eight2');
@@ -1653,11 +1653,11 @@ async function body() {
         Streaming.LoadSpecialCharacter(2, 'MICKY');
         Streaming.LoadSpecialCharacter(3, 'LUIGI');
 
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'LUDOOR');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'MICKYH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'EIGHTH');
-        Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'LUIGIH');
-        Streaming.LoadSpecialModel(189 /* cut_obj5 */, 'PLAYERH');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'LUDOOR');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'MICKYH');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'EIGHTH');
+        Streaming.LoadSpecialModel(CUT_OBJ4, 'LUIGIH');
+        Streaming.LoadSpecialModel(CUT_OBJ5, 'PLAYERH');
 
         while (Camera.GetFadingStatus()) {
             await asyncWait(0);
@@ -1680,16 +1680,16 @@ async function body() {
         while (
             !Streaming.HasSpecialCharacterLoaded(2) ||
             !Streaming.HasSpecialCharacterLoaded(3) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */)
+            !Streaming.HasModelLoaded(CUT_OBJ1) ||
+            !Streaming.HasModelLoaded(CUT_OBJ2)
         ) {
             await asyncWait(0);
         }
 
         while (
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-            !Streaming.HasModelLoaded(188 /* cut_obj4 */) ||
-            !Streaming.HasModelLoaded(189 /* cut_obj5 */) ||
+            !Streaming.HasModelLoaded(CUT_OBJ3) ||
+            !Streaming.HasModelLoaded(CUT_OBJ4) ||
+            !Streaming.HasModelLoaded(CUT_OBJ5) ||
             !Streaming.HasModelLoaded(257 /* indhibuild3 */) ||
             !Streaming.HasModelLoaded(256 /* luigiclubout */) ||
             !Streaming.HasModelLoaded(243 /* luigiineerclub */)
@@ -1737,7 +1737,7 @@ async function body() {
 
         $.cs_playerhead.setAnim('player');
 
-        $.cs_ludoor = CutsceneObject.Create(185 /* cut_obj1 */);
+        $.cs_ludoor = CutsceneObject.Create(CUT_OBJ1);
 
         $.cs_ludoor.setAnim('LUDOOR');
 
@@ -1876,15 +1876,15 @@ async function body() {
 
         Streaming.UnloadSpecialCharacter(3);
 
-        Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
 
-        Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
 
-        Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
-        Streaming.MarkModelAsNoLongerNeeded(188 /* cut_obj4 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
 
-        Streaming.MarkModelAsNoLongerNeeded(189 /* cut_obj5 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ5);
 
         Streaming.MarkModelAsNoLongerNeeded(257 /* indhibuild3 */);
 
@@ -2250,7 +2250,7 @@ async function body() {
         Hud.SwitchWidescreen(ON);
         Camera.SetFixedPosition(882.6, -425.6, 14.4, 0.0, 0.0, 0.0);
 
-        Camera.PointAtPoint(890.2, -421.1, 15.0, 2 /* jump_cut */);
+        Camera.PointAtPoint(890.2, -421.1, 15.0, JUMP_CUT);
 
         Text.PrintWithNumberBig('M_PASS', 1500, 5000, 1); //"Mission Passed!"
         $.player.addScore(1500);

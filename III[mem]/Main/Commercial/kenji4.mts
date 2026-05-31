@@ -197,8 +197,8 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(1, 'KENJI');
     Streaming.RequestModel(PED_GANG_YAKUZA_A);
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KENJIH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'KENJIH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'PLAYERH');
     Streaming.RequestModel(1570 /* casino_garden */);
 
     Streaming.LoadAllModelsNow();
@@ -206,8 +206,8 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasModelLoaded(PED_GANG_YAKUZA_A) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
         !Streaming.HasModelLoaded(1570 /* casino_garden */)
     ) {
         await asyncWait(0);
@@ -323,7 +323,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    $.briefcase1_km4 = Pickup.Create(1319 /* briefcase */, 3 /* pickup_once */, 236.8, -1580.0, 25.7);
+    $.briefcase1_km4 = Pickup.Create(1319 /* briefcase */, PICKUP_ONCE, 236.8, -1580.0, 25.7);
 
     $.flag_briefcase1_created_km4 = 1;
 
@@ -341,7 +341,7 @@ async function body() {
 
     $.radar_blip_coord2_km4.remove();
 
-    $.briefcase2_km4 = Pickup.Create(1319 /* briefcase */, 3 /* pickup_once */, 119.56, -1110.51, 25.66);
+    $.briefcase2_km4 = Pickup.Create(1319 /* briefcase */, PICKUP_ONCE, 119.56, -1110.51, 25.66);
 
     $.flag_briefcase2_created_km4 = 1;
 
@@ -450,8 +450,8 @@ async function body() {
     // Cutscene stuff
 
     Streaming.LoadSpecialCharacter(2, 'KEEPER');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KEEPERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'KEEPERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'PLAYERH');
     Streaming.LoadSpecialModel(CUT_OBJ3, 'SHDOOR');
 
     while (Camera.GetFadingStatus()) {
@@ -468,9 +468,9 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(2) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */)
+        !Streaming.HasModelLoaded(CUT_OBJ3) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1)
     ) {
         await asyncWait(0);
     }
@@ -491,7 +491,7 @@ async function body() {
 
     $.cs_keeper.setAnim('keeper');
 
-    $.cs_shopdoor = CutsceneObject.Create(187 /* cut_obj3 */);
+    $.cs_shopdoor = CutsceneObject.Create(CUT_OBJ3);
 
     $.cs_shopdoor.setAnim('shdoor');
 
@@ -639,7 +639,7 @@ async function body() {
         await asyncWait(0);
     }
 
-    $.briefcase3_km4 = Pickup.Create(1319 /* briefcase */, 3 /* pickup_once */, 938.0, -180.0, 4.5);
+    $.briefcase3_km4 = Pickup.Create(1319 /* briefcase */, PICKUP_ONCE, 938.0, -180.0, 4.5);
 
     $.flag_briefcase3_created_km4 = 1;
 

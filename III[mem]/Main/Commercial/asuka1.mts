@@ -132,9 +132,9 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(1, 'asuka');
     Streaming.LoadSpecialCharacter(2, 'maria');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'ASUKAH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MARIAH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'ASUKAH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'MARIAH');
     Streaming.RequestModel(2216 /* condo_ivy */);
     Streaming.RequestModel(2215 /* kmricndo01 */);
 
@@ -149,9 +149,9 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */)
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1)
     ) {
         await asyncWait(0);
     }
@@ -173,13 +173,13 @@ async function body() {
     $.cs_maria = CutsceneObject.Create(PED_SPECIAL2);
     $.cs_maria.setAnim('maria');
 
-    $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* cut_obj1 */);
+    $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, 186 /* cut_obj2 */);
+    $.cs_asukahead = CutsceneHead.Create($.cs_asuka, CUT_OBJ2);
     $.cs_asukahead.setAnim('asuka');
 
-    $.cs_mariahead = CutsceneHead.Create($.cs_maria, 187 /* cut_obj3 */);
+    $.cs_mariahead = CutsceneHead.Create($.cs_maria, CUT_OBJ3);
     $.cs_mariahead.setAnim('maria');
 
     World.ClearArea(523.6, -639.4, 16.6, 1.0, true);
@@ -320,9 +320,9 @@ async function body() {
     Streaming.UnloadSpecialCharacter(2);
     Streaming.MarkModelAsNoLongerNeeded(2216 /* condo_ivy */);
     Streaming.MarkModelAsNoLongerNeeded(2215 /* kmricndo01 */);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
     // ******************************************END OF CUTSCENE********************************
 

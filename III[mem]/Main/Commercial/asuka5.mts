@@ -48,16 +48,16 @@ async function body() {
     $.got_to_coord_once = 0;
 
     before_tanner_shits_it: {
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'NOTE');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
         Streaming.RequestModel(2216 /* condo_ivy */);
         Streaming.RequestModel(2215 /* kmricndo01 */);
 
         Streaming.LoadAllModelsNow();
 
         while (
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+            !Streaming.HasModelLoaded(CUT_OBJ1) ||
+            !Streaming.HasModelLoaded(CUT_OBJ2) ||
             !Streaming.HasModelLoaded(2216 /* condo_ivy */) ||
             !Streaming.HasModelLoaded(2215 /* kmricndo01 */)
         ) {
@@ -70,7 +70,7 @@ async function body() {
         $.cs_player = CutsceneObject.Create(PED_PLAYER);
         $.cs_player.setAnim('player');
 
-        $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
+        $.cs_note = CutsceneObject.Create(CUT_OBJ2);
         $.cs_note.setAnim('NOTE');
 
         $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);

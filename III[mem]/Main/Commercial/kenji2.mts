@@ -228,18 +228,18 @@ async function body() {
     // Cutscene stuff
 
     Streaming.LoadSpecialCharacter(1, 'KENJI');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'KENJIH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MINNOTE');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'KENJIH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'MINNOTE');
     Streaming.RequestModel(1570 /* casino_garden */);
 
     Streaming.LoadAllModelsNow();
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3) ||
         !Streaming.HasModelLoaded(1570 /* casino_garden */)
     ) {
         await asyncWait(0);
@@ -267,7 +267,7 @@ async function body() {
 
     $.cs_kenjihead.setAnim('kenji');
 
-    $.cs_note = CutsceneObject.Create(187 /* cut_obj3 */);
+    $.cs_note = CutsceneObject.Create(CUT_OBJ3);
 
     $.cs_note.setAnim('MINNOTE');
 

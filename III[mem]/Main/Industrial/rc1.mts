@@ -80,10 +80,10 @@ async function body() {
 
     Text.PrintNow('RC_1', 4000, 1); //You have 4 minutes to blow up as many Diablo Gang Cars as possible!
 
-    Streaming.RequestModel(131 /* car_rcbandit */);
-    Streaming.RequestModel(137 /* car_diablos */);
+    Streaming.RequestModel(CAR_RCBANDIT);
+    Streaming.RequestModel(CAR_DIABLOS);
 
-    while (!Streaming.HasModelLoaded(131 /* car_rcbandit */) || !Streaming.HasModelLoaded(137 /* car_diablos */)) {
+    while (!Streaming.HasModelLoaded(CAR_RCBANDIT) || !Streaming.HasModelLoaded(CAR_DIABLOS)) {
         await asyncWait(0);
     }
 
@@ -131,7 +131,7 @@ async function body() {
         } else {
             FAIL("mission_rc1_failed");
         }
-        $.counter_RCDD = Player.GetNumOfModelsKilled(137 /* car_diablos */);
+        $.counter_RCDD = Player.GetNumOfModelsKilled(CAR_DIABLOS);
         if ($.intro_time_lapsed > 4000) {
             if (!$.player.isInRemoteMode()) {
                 Rc.GiveCarToPlayer($.player, $.rc_x, $.rc_y, $.rc_z, 180.0);
@@ -188,7 +188,7 @@ async function cleanup() {
     ONMISSION = false;
     $.flag_just_done_rc_mission = 1;
     Streaming.LoadScene($.cam_x, $.cam_y, $.cam_z);
-    Streaming.MarkModelAsNoLongerNeeded(131 /* car_rcbandit */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_RCBANDIT);
     Game.SetPoliceIgnorePlayer($.player, OFF);
     $.player.setControl(ON);
     Camera.Restore();
@@ -207,7 +207,7 @@ async function cleanup() {
     Zone.SetCarInfo('TOWERS', DAY, 8, 0, 0, 100, 0, 0, 0, 0, 20, 400, 0, 0, 350, 0, 0);
     Zone.SetCarInfo('TOWERS', NIGHT, 6, 0, 0, 150, 0, 0, 0, 0, 10, 550, 0, 0, 200, 0, 0);
 
-    Streaming.MarkModelAsNoLongerNeeded(137 /* car_diablos */);
+    Streaming.MarkModelAsNoLongerNeeded(CAR_DIABLOS);
 
     Mission.Finish();
 }

@@ -49,8 +49,8 @@ async function body() {
     Streaming.LoadSpecialCharacter(1, 'frankie');
     //LOAD_SPECIAL_CHARACTER 2 goon
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'FRANKH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'FRANKH');
 
     Streaming.RequestModel(PED_GANG_MAFIA_B);
     Streaming.RequestModel(541 /* franksclb02 */);
@@ -68,8 +68,8 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
         !Streaming.HasModelLoaded(PED_GANG_MAFIA_B)
     ) {
         await asyncWait(0);
@@ -325,8 +325,8 @@ async function body() {
 
         Streaming.LoadSpecialCharacter(2, 'maria');
         Streaming.LoadSpecialCharacter(3, 'asuka');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'MARIAH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'ASUKAH');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'MARIAH');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'ASUKAH');
 
         //PRINT_BIG ( FM4 ) 15000 2 //"Frankie Mission 4"
 
@@ -345,7 +345,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        while (!Streaming.HasModelLoaded(186 /* cut_obj2 */) || !Streaming.HasModelLoaded(187 /* cut_obj3 */)) {
+        while (!Streaming.HasModelLoaded(CUT_OBJ2) || !Streaming.HasModelLoaded(CUT_OBJ3)) {
             await asyncWait(0);
         }
 
@@ -630,7 +630,7 @@ async function body() {
             await asyncWait(0);
         }
 
-        Streaming.LoadCollisionWithScreen(2 /* Level_commercial */);
+        Streaming.LoadCollisionWithScreen(LEVEL_COMMERCIAL);
 
         if (!Car.IsDead($.boat_mar)) {
             if ($.player.isInAnyCar()) {
@@ -643,9 +643,9 @@ async function body() {
 
         Streaming.Switch(OFF);
 
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'MARIAH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'ASUKAH');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'MARIAH');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'ASUKAH');
         Streaming.RequestModel(CAR_YAKUZA);
         Streaming.RequestModel(CAR_BLISTA);
 
@@ -653,7 +653,7 @@ async function body() {
 
         Streaming.LoadAllModelsNow();
 
-        while (!Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */) || !Streaming.HasModelLoaded(187 /* cut_obj3 */)) {
+        while (!Streaming.HasModelLoaded(CUT_OBJ1) || !Streaming.HasModelLoaded(CUT_OBJ2) || !Streaming.HasModelLoaded(CUT_OBJ3)) {
             await asyncWait(0);
         }
 

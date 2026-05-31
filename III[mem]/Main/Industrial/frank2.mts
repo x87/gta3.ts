@@ -218,7 +218,7 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(1, 'FRANKIE');
     Streaming.RequestModel(PED_GANG_MAFIA_B);
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'FRANKH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'FRANKH');
     //LOAD_SPECIAL_MODEL cut_obj2 PLAYERH
 
     Streaming.RequestModel(541 /* franksclb02 */);
@@ -237,7 +237,7 @@ async function body() {
 
     // Cutscene stuff
 
-    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(PED_GANG_MAFIA_B) || !Streaming.HasModelLoaded(185 /* cut_obj1 */)) {
+    while (!Streaming.HasSpecialCharacterLoaded(1) || !Streaming.HasModelLoaded(PED_GANG_MAFIA_B) || !Streaming.HasModelLoaded(CUT_OBJ1)) {
         //OR NOT HAS_MODEL_LOADED cut_obj2
 
         await asyncWait(0);
@@ -580,7 +580,7 @@ async function body() {
 
                 // Checks to see if the player is in the area in a taxi
 
-                if ($.player.isInModel(110 /* car_taxi */) || $.player.isInModel(128 /* car_cabbie */) || $.player.isInModel(148 /* car_borgnine */)) {
+                if ($.player.isInModel(CAR_TAXI) || $.player.isInModel(CAR_CABBIE) || $.player.isInModel(CAR_BORGNINE)) {
                     $.mission_taxi_fm2 = $.player.storeCarIsIn();
                     $.flag_mission_taxi_fm2_created = 1;
                 } else {
@@ -594,7 +594,7 @@ async function body() {
                         Text.PrintNow('FM2_9', 5000, 1); //Curly Bob's dead!"
                         FAIL("mission_frankie2_failed");
                     }
-                    if ($.player.isInModel(110 /* car_taxi */) || $.player.isInModel(128 /* car_cabbie */)) {
+                    if ($.player.isInModel(CAR_TAXI) || $.player.isInModel(CAR_CABBIE)) {
                         $.mission_taxi_fm2 = $.player.storeCarIsIn();
                     }
 
@@ -1112,9 +1112,9 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(3, 'miguel');
     Streaming.LoadSpecialCharacter(4, 'cat');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'MIGUELH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'CATH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'CURLYH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'MIGUELH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'CATH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'CURLYH');
     Streaming.RequestModel(CAR_COLUMB);
 
     while (Camera.GetFadingStatus()) {
@@ -1133,9 +1133,9 @@ async function body() {
         !Streaming.HasSpecialCharacterLoaded(3) ||
         !Streaming.HasSpecialCharacterLoaded(4) ||
         !Streaming.HasModelLoaded(CAR_COLUMB) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3)
     ) {
         await asyncWait(0);
     }

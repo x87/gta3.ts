@@ -133,9 +133,9 @@ async function body() {
     */
 
     Streaming.LoadSpecialCharacter(1, 'ray');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'RAYH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'BOGDOOR');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'RAYH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'BOGDOOR');
     Streaming.RequestModel(2104 /* toilet */);
 
     /*
@@ -148,9 +148,9 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3) ||
         !Streaming.HasModelLoaded(2104 /* toilet */)
     ) {
         await asyncWait(0);
@@ -182,7 +182,7 @@ async function body() {
     $.cs_rayhead = CutsceneHead.Create($.cs_ray, CUT_OBJ2);
     $.cs_rayhead.setAnim('ray');
 
-    $.cs_ludoor = CutsceneObject.Create(187 /* cut_obj3 */);
+    $.cs_ludoor = CutsceneObject.Create(CUT_OBJ3);
     $.cs_ludoor.setAnim('BOGDOOR');
 
     World.SwitchRubbish(OFF);
@@ -273,9 +273,9 @@ async function body() {
 
     Streaming.UnloadSpecialCharacter(1);
     Streaming.MarkModelAsNoLongerNeeded(2104 /* toilet */);
-    Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-    Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-    Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+    Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
 
     // ******************************************END OF CUTSCENE********************************
 

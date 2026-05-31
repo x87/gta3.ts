@@ -43,9 +43,9 @@ async function body() {
     $.in_the_locate_joey3 = 0;
 
     Streaming.LoadSpecialCharacter(1, 'joey');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'JOEYH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'TROLL');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'JOEYH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'TROLL');
     Streaming.RequestModel(939 /* jogarageext */);
     Streaming.RequestModel(1074 /* jogarageint */);
 
@@ -53,9 +53,9 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3)
     ) {
         await asyncWait(0);
     }

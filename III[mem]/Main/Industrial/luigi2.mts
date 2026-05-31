@@ -166,10 +166,10 @@ async function body() {
 
         Streaming.LoadSpecialCharacter(1, 'MICKY');
 
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'LUDOOR');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'MICKYH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'NOTE');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'LUDOOR');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'MICKYH');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'PLAYERH');
+        Streaming.LoadSpecialModel(CUT_OBJ4, 'NOTE');
 
         /*
         WHILE GET_FADING_STATUS
@@ -189,10 +189,10 @@ async function body() {
 
         while (
             !Streaming.HasSpecialCharacterLoaded(1) ||
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-            !Streaming.HasModelLoaded(188 /* cut_obj4 */)
+            !Streaming.HasModelLoaded(CUT_OBJ1) ||
+            !Streaming.HasModelLoaded(CUT_OBJ2) ||
+            !Streaming.HasModelLoaded(CUT_OBJ3) ||
+            !Streaming.HasModelLoaded(CUT_OBJ4)
         ) {
             await asyncWait(0);
         }
@@ -223,11 +223,11 @@ async function body() {
 
         $.cs_playerhead.setAnim('player');
 
-        $.cs_ludoor = CutsceneObject.Create(185 /* cut_obj1 */);
+        $.cs_ludoor = CutsceneObject.Create(CUT_OBJ1);
 
         $.cs_ludoor.setAnim('LUDOOR');
 
-        $.cs_note = CutsceneObject.Create(188 /* cut_obj4 */);
+        $.cs_note = CutsceneObject.Create(CUT_OBJ4);
 
         $.cs_note.setAnim('NOTE');
 

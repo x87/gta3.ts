@@ -224,8 +224,8 @@ async function body() {
     */
 
     Streaming.LoadSpecialCharacter(1, 'ray');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'RAYH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'RAYH');
     Streaming.RequestModel(2104 /* toilet */);
     /*
     WHILE GET_FADING_STATUS
@@ -237,8 +237,8 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
         !Streaming.HasModelLoaded(2104 /* toilet */)
     ) {
         await asyncWait(0);

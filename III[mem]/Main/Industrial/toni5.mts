@@ -46,16 +46,16 @@ async function body() {
     await asyncWait(0);
 
     Streaming.LoadSpecialCharacter(1, 'tony');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'TONYH');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'TONYH');
     Streaming.RequestModel(537 /* ind_newrizzos */);
 
     Streaming.LoadAllModelsNow();
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
         !Streaming.HasModelLoaded(537 /* ind_newrizzos */)
     ) {
         await asyncWait(0);
@@ -409,7 +409,7 @@ async function body() {
         $.debris2_tm5.setVelocity(8.0, 7.0, 16.0);
         $.debris3_tm5.setVelocity(-7.0, 10.0, 14.0);
         $.debris4_tm5.setVelocity(9.0, 6.0, 15.0);
-        Sound.AddOneOffSound(969.8, -1104.9, 18.7, 0 /* sound_test_1 */);
+        Sound.AddOneOffSound(969.8, -1104.9, 18.7, SOUND_TEST_1);
         //ADD_ONE_OFF_SOUND 971.7 -1101.2 17.5 sound_test_1
 
         await asyncWait(400);
@@ -438,7 +438,7 @@ async function body() {
         $.debris8_tm5.setVelocity(8.0, 9.0, 16.0);
         $.debris9_tm5.setVelocity(-7.0, 8.0, 14.0);
         $.debris10_tm5.setVelocity(-1.0, 10.0, 14.0);
-        Sound.AddOneOffSound(974.2, -1129.8, 19.5, 0 /* sound_test_1 */);
+        Sound.AddOneOffSound(974.2, -1129.8, 19.5, SOUND_TEST_1);
         //ADD_ONE_OFF_SOUND 983.0 -1103.8 18.4 sound_test_1
 
         Camera.SetFadingColor(255, 255, 255);

@@ -59,8 +59,8 @@ async function body() {
     PRINT_BIG ( TM3 ) 15000 2 //"Toni Mission 1"
     */
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'NOTE');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'NOTE');
     Streaming.RequestModel(537 /* ind_newrizzos */);
 
     /*
@@ -74,7 +74,7 @@ async function body() {
 
     Streaming.LoadAllModelsNow();
 
-    while (!Streaming.HasModelLoaded(185 /* cut_obj1 */) || !Streaming.HasModelLoaded(186 /* cut_obj2 */) || !Streaming.HasModelLoaded(537 /* ind_newrizzos */)) {
+    while (!Streaming.HasModelLoaded(CUT_OBJ1) || !Streaming.HasModelLoaded(CUT_OBJ2) || !Streaming.HasModelLoaded(537 /* ind_newrizzos */)) {
         await asyncWait(0);
     }
 
@@ -87,7 +87,7 @@ async function body() {
     $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
     $.cs_playerhead.setAnim('player');
 
-    $.cs_note = CutsceneObject.Create(186 /* cut_obj2 */);
+    $.cs_note = CutsceneObject.Create(CUT_OBJ2);
     $.cs_note.setAnim('NOTE');
 
     World.ClearArea(1219.5, -321.1, 27.5, 1.0, true);
@@ -1115,11 +1115,11 @@ async function body() {
         Streaming.LoadSpecialCharacter(4, 'frankie');
         Streaming.RequestModel(PED_GANG_MAFIA_B);
 
-        Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-        Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'FRANKH');
-        Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'JOEYH');
-        Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'LUIGIH');
-        Streaming.LoadSpecialModel(189 /* cut_obj5 */, 'TONYH');
+        Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+        Streaming.LoadSpecialModel(CUT_OBJ2, 'FRANKH');
+        Streaming.LoadSpecialModel(CUT_OBJ3, 'JOEYH');
+        Streaming.LoadSpecialModel(CUT_OBJ4, 'LUIGIH');
+        Streaming.LoadSpecialModel(CUT_OBJ5, 'TONYH');
         Streaming.RequestModel(542 /* salvsdetail */);
         Streaming.RequestModel(540 /* swank_inside */);
         Streaming.RequestModel(541 /* franksclb02 */);
@@ -1141,11 +1141,11 @@ async function body() {
         }
 
         while (
-            !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-            !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-            !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-            !Streaming.HasModelLoaded(188 /* cut_obj4 */) ||
-            !Streaming.HasModelLoaded(189 /* cut_obj5 */)
+            !Streaming.HasModelLoaded(CUT_OBJ1) ||
+            !Streaming.HasModelLoaded(CUT_OBJ2) ||
+            !Streaming.HasModelLoaded(CUT_OBJ3) ||
+            !Streaming.HasModelLoaded(CUT_OBJ4) ||
+            !Streaming.HasModelLoaded(CUT_OBJ5)
         ) {
             await asyncWait(0);
         }
@@ -1171,19 +1171,19 @@ async function body() {
         $.cs_mafia = CutsceneObject.Create(PED_GANG_MAFIA_B);
         $.cs_mafia.setAnim('gang02');
 
-        $.cs_playerhead = CutsceneHead.Create($.cs_player, 185 /* cut_obj1 */);
+        $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
         $.cs_playerhead.setAnim('player');
 
-        $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, 186 /* cut_obj2 */);
+        $.cs_frankiehead = CutsceneHead.Create($.cs_frankie, CUT_OBJ2);
         $.cs_frankiehead.setAnim('frank');
 
-        $.cs_joeyhead = CutsceneHead.Create($.cs_joey, 187 /* cut_obj3 */);
+        $.cs_joeyhead = CutsceneHead.Create($.cs_joey, CUT_OBJ3);
         $.cs_joeyhead.setAnim('joey');
 
-        $.cs_luigihead = CutsceneHead.Create($.cs_luigi, 188 /* cut_obj4 */);
+        $.cs_luigihead = CutsceneHead.Create($.cs_luigi, CUT_OBJ4);
         $.cs_luigihead.setAnim('luigi');
 
-        $.cs_tonyhead = CutsceneHead.Create($.cs_tony, 189 /* cut_obj5 */);
+        $.cs_tonyhead = CutsceneHead.Create($.cs_tony, CUT_OBJ5);
         $.cs_tonyhead.setAnim('tony');
 
         //SET_PLAYER_COORDINATES player 1455.2 -186.8 55.0
@@ -1349,11 +1349,11 @@ async function body() {
         Streaming.UnloadSpecialCharacter(2);
         Streaming.UnloadSpecialCharacter(3);
         Streaming.UnloadSpecialCharacter(4);
-        Streaming.MarkModelAsNoLongerNeeded(185 /* cut_obj1 */);
-        Streaming.MarkModelAsNoLongerNeeded(186 /* cut_obj2 */);
-        Streaming.MarkModelAsNoLongerNeeded(187 /* cut_obj3 */);
-        Streaming.MarkModelAsNoLongerNeeded(188 /* cut_obj4 */);
-        Streaming.MarkModelAsNoLongerNeeded(189 /* cut_obj5 */);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ1);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ2);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ3);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ4);
+        Streaming.MarkModelAsNoLongerNeeded(CUT_OBJ5);
         Streaming.MarkModelAsNoLongerNeeded(542 /* salvsdetail */);
         Streaming.MarkModelAsNoLongerNeeded(540 /* swank_inside */);
         Streaming.MarkModelAsNoLongerNeeded(541 /* franksclb02 */);

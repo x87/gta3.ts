@@ -427,7 +427,7 @@ async function body() {
 
 async function selkirk() {
     Fx.AddExplosion($.bomb_x, $.bomb_y, $.bomb_z, EXPLOSION_GRENADE);
-    Sound.AddOneOffSound($.bomb_x, $.bomb_y, $.bomb_z, 0 /* sound_test_1 */);
+    Sound.AddOneOffSound($.bomb_x, $.bomb_y, $.bomb_z, SOUND_TEST_1);
     Camera.Shake(500);
 
     await asyncWait(1000);
@@ -650,7 +650,7 @@ async function generator_4_easy() {
 async function detonate_1() {
     if ($.flag_bomb1_active == 1) {
         Fx.AddExplosion($.bomb_x, $.bomb_y, $.bomb_z, EXPLOSION_GRENADE);
-        Sound.AddOneOffSound($.bomb_x, $.bomb_y, $.bomb_z, 0 /* sound_test_1 */);
+        Sound.AddOneOffSound($.bomb_x, $.bomb_y, $.bomb_z, SOUND_TEST_1);
         Camera.Shake(500);
         $.flag_bomb1_active = 0;
         $.blip_bomber_1.remove();
@@ -660,7 +660,7 @@ async function detonate_1() {
 async function detonate_4() {
     if ($.flag_bomb4_active == 1) {
         Fx.AddExplosion($.bomb4_x, $.bomb4_y, $.bomb4_z, EXPLOSION_GRENADE);
-        Sound.AddOneOffSound($.bomb4_x, $.bomb4_y, $.bomb4_z, 0 /* sound_test_1 */);
+        Sound.AddOneOffSound($.bomb4_x, $.bomb4_y, $.bomb4_z, SOUND_TEST_1);
         Camera.Shake(500);
         $.blip_bomber_4.remove();
     }
@@ -669,7 +669,7 @@ async function detonate_4() {
 async function detonate_7() {
     if ($.flag_bomb7_active == 1) {
         Fx.AddExplosion($.bomb7_x, $.bomb7_y, $.bomb7_z, EXPLOSION_GRENADE);
-        Sound.AddOneOffSound($.bomb7_x, $.bomb7_y, $.bomb7_z, 0 /* sound_test_1 */);
+        Sound.AddOneOffSound($.bomb7_x, $.bomb7_y, $.bomb7_z, SOUND_TEST_1);
         Camera.Shake(500);
         $.flag_bomb7_active = 0;
         $.blip_bomber_7.remove();
@@ -679,7 +679,7 @@ async function detonate_7() {
 async function detonate_9() {
     if ($.flag_bomb9_active == 1) {
         Fx.AddExplosion($.bomb9_x, $.bomb9_y, $.bomb9_z, EXPLOSION_GRENADE);
-        Sound.AddOneOffSound($.bomb9_x, $.bomb9_y, $.bomb9_z, 0 /* sound_test_1 */);
+        Sound.AddOneOffSound($.bomb9_x, $.bomb9_y, $.bomb9_z, SOUND_TEST_1);
         Camera.Shake(500);
         $.flag_bomb9_active = 0;
         $.blip_bomber_9.remove();

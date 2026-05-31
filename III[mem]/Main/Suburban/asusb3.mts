@@ -124,10 +124,10 @@ async function body() {
     Streaming.LoadSpecialCharacter(1, 'asuka');
     Streaming.LoadSpecialCharacter(2, 'miguel');
     Streaming.LoadSpecialCharacter(3, 'maria');
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'PLAYERH');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'ASUKAH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'MARIAH');
-    Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'WHIP');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'ASUKAH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'MARIAH');
+    Streaming.LoadSpecialModel(CUT_OBJ4, 'WHIP');
 
     /*
     WHILE GET_FADING_STATUS
@@ -146,10 +146,10 @@ async function body() {
     }
 
     while (
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(188 /* cut_obj4 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ4)
     ) {
         await asyncWait(0);
     }
@@ -172,7 +172,7 @@ async function body() {
     $.cs_maria = CutsceneObject.Create(PED_SPECIAL3);
     $.cs_maria.setAnim('maria');
 
-    $.cs_whip = CutsceneObject.Create(188 /* cut_obj4 */);
+    $.cs_whip = CutsceneObject.Create(CUT_OBJ4);
     $.cs_whip.setAnim('WHIP');
 
     $.cs_playerhead = CutsceneHead.Create($.cs_player, CUT_OBJ1);
@@ -528,7 +528,7 @@ async function body() {
                             $.dodo_as3_x = _res333.x;
                             $.dodo_as3_y = _res333.y;
                             $.dodo_as3_z = _res333.z;
-                            $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
+                            $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, BLIP_ONLY);
                             $.blip_as3_dodo.changeScale(2);
                         }
                         Text.ClearPrints();
@@ -622,7 +622,7 @@ async function body() {
                     $.dodo_as3_x = _res334.x;
                     $.dodo_as3_y = _res334.y;
                     $.dodo_as3_z = _res334.z;
-                    $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
+                    $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, BLIP_ONLY);
                     $.blip_as3_dodo.changeScale(3);
 
                     await area_check(); // SCM GOSUB area_check
@@ -676,7 +676,7 @@ async function body() {
                         $.dodo_as3_x = _res335.x;
                         $.dodo_as3_y = _res335.y;
                         $.dodo_as3_z = _res335.z;
-                        $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
+                        $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, BLIP_ONLY);
                         $.blip_as3_dodo.changeScale(3);
                     }
                     Text.ClearPrints();
@@ -737,7 +737,7 @@ async function body() {
             $.dodo_as3_x = _res336.x;
             $.dodo_as3_y = _res336.y;
             $.dodo_as3_z = _res336.z;
-            $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, 2 /* blip_only */);
+            $.blip_as3_dodo = Blip.AddForCoordOld($.dodo_as3_x, $.dodo_as3_y, $.dodo_as3_z, 4, BLIP_ONLY);
             $.blip_as3_dodo.changeScale(2);
 
             await area_check(); // SCM GOSUB area_check
@@ -1141,8 +1141,8 @@ async function body() {
     Streaming.LoadSpecialCharacter(1, 'asuka');
     Streaming.LoadSpecialCharacter(2, 'miguel');
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'whip');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'note');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'whip');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'note');
 
     /*
     WHILE GET_FADING_STATUS
@@ -1156,8 +1156,8 @@ async function body() {
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
         !Streaming.HasSpecialCharacterLoaded(2) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
         !Streaming.HasModelLoaded(2011 /* csitecutscene */)
     ) {
         await asyncWait(0);

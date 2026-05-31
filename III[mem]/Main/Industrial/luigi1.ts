@@ -92,10 +92,10 @@ async function body() {
     Streaming.LoadSpecialCharacter(2, 'EIGHT');
     Streaming.LoadSpecialCharacter(3, 'LUIGI');
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'LUDOOR');
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'MICKYH');
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'EIGHT');
-    Streaming.LoadSpecialModel(188 /* cut_obj4 */, 'LUIGI');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'LUDOOR');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'MICKYH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'EIGHT');
+    Streaming.LoadSpecialModel(CUT_OBJ4, 'LUIGI');
 
     {
         if ($.flag_failed_luigi1 == 0) {
@@ -110,12 +110,12 @@ async function body() {
                 !Streaming.HasSpecialCharacterLoaded(1) ||
                 !Streaming.HasSpecialCharacterLoaded(2) ||
                 !Streaming.HasSpecialCharacterLoaded(3) ||
-                !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-                !Streaming.HasModelLoaded(186 /* cut_obj2 */)
+                !Streaming.HasModelLoaded(CUT_OBJ1) ||
+                !Streaming.HasModelLoaded(CUT_OBJ2)
             ) {
                 await asyncWait(0);
             }
-            while (!Streaming.HasModelLoaded(187 /* cut_obj3 */) || !Streaming.HasModelLoaded(188 /* cut_obj4 */)) {
+            while (!Streaming.HasModelLoaded(CUT_OBJ3) || !Streaming.HasModelLoaded(CUT_OBJ4)) {
                 await asyncWait(0);
             }
 
@@ -141,7 +141,7 @@ async function body() {
             $.cs_eighthead.setAnim('eight');
             $.cs_luigihead = CutsceneHead.Create($.cs_luigi, CUT_OBJ4);
             $.cs_luigihead.setAnim('luigi');
-            $.cs_ludoor = CutsceneObject.Create(185 /* cut_obj1 */);
+            $.cs_ludoor = CutsceneObject.Create(CUT_OBJ1);
             $.cs_ludoor.setAnim('LUDOOR');
             while (TIMERA < 3500) {
                 await asyncWait(0);

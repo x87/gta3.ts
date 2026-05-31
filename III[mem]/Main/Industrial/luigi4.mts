@@ -154,11 +154,11 @@ async function body() {
 
     Streaming.LoadSpecialCharacter(1, 'LUIGI');
 
-    Streaming.LoadSpecialModel(185 /* cut_obj1 */, 'LUDOOR');
+    Streaming.LoadSpecialModel(CUT_OBJ1, 'LUDOOR');
 
-    Streaming.LoadSpecialModel(186 /* cut_obj2 */, 'LUIGIH');
+    Streaming.LoadSpecialModel(CUT_OBJ2, 'LUIGIH');
 
-    Streaming.LoadSpecialModel(187 /* cut_obj3 */, 'PLAYERH');
+    Streaming.LoadSpecialModel(CUT_OBJ3, 'PLAYERH');
 
     Streaming.RequestModel(257 /* indhibuild3 */);
 
@@ -188,9 +188,9 @@ async function body() {
 
     while (
         !Streaming.HasSpecialCharacterLoaded(1) ||
-        !Streaming.HasModelLoaded(185 /* cut_obj1 */) ||
-        !Streaming.HasModelLoaded(186 /* cut_obj2 */) ||
-        !Streaming.HasModelLoaded(187 /* cut_obj3 */)
+        !Streaming.HasModelLoaded(CUT_OBJ1) ||
+        !Streaming.HasModelLoaded(CUT_OBJ2) ||
+        !Streaming.HasModelLoaded(CUT_OBJ3)
     ) {
         await asyncWait(0);
     }
@@ -228,7 +228,7 @@ async function body() {
 
     $.cs_playerhead.setAnim('player');
 
-    $.cs_ludoor = CutsceneObject.Create(185 /* cut_obj1 */);
+    $.cs_ludoor = CutsceneObject.Create(CUT_OBJ1);
 
     $.cs_ludoor.setAnim('LUDOOR');
 
@@ -381,7 +381,7 @@ async function body() {
 
     Camera.PointAtPoint(1049.1, -398.3, 15.5, JUMP_CUT);
 
-    $.gun_lm4 = Pickup.CreateWithAmmo(WEAPON_COLT45, 3 /* pickup_once */, 45, 1080.5, -396.0, 14.5);
+    $.gun_lm4 = Pickup.CreateWithAmmo(WEAPON_COLT45, PICKUP_ONCE, 45, 1080.5, -396.0, 14.5);
 
     $.radar_blip_coord1_lm4 = Blip.AddSpriteForPickup($.gun_lm4, RADAR_SPRITE_WEAPON);
 

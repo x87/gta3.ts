@@ -356,7 +356,7 @@ async function body() {
 
     Path.SwitchRoadsOff(-286.387, 77.799, 2.5, -215.814, 272.287, 10.0);
 
-    $.bat_hm5 = Pickup.Create(WEAPON_BAT, 3 /* pickup_once */, -637.0, -28.5, -100.0);
+    $.bat_hm5 = Pickup.Create(WEAPON_BAT, PICKUP_ONCE, -637.0, -28.5, -100.0);
 
     $.flag_bat_created_hm5 = 1;
 
