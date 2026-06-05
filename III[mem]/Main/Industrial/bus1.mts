@@ -1,6 +1,7 @@
 import { BlipColor, BlipDisplay } from '../../../.config/gta3.enums.mts';
-import { $, FAIL } from '../../utils';
+import { $, FAIL, verbose } from '../../utils';
 import { Counter, type DisplayedCounter } from '../../utils/scm.mts';
+
 
 interface BusStop {
     name: string;
@@ -164,7 +165,7 @@ async function processBus(route: BusRoute) {
             if (bus1_car.locateStopped3D(currentStop!.position.x, currentStop!.position.y, currentStop!.position.z, 7.0, 7.0, 7.0, true)) {
                 busState = 'arrived';
                 assert(currentStop, 'Current stop is undefined');
-                log('[~] Bus arrived at stop:', currentStop!.name);
+                verbose(`[~] Bus arrived at stop: ${currentStop!.name}`);
             }
             break;
         }
@@ -212,12 +213,11 @@ async function processPassengers() {
 
     for (let i = 0; i < activePassengers.length; i++) {
         let passenger = activePassengers[i];
-        log(`Passenger[${i}] state: ${passenger.state}, destination: ${passenger.destination.name}, boardingDelay: ${passenger.boardingDelay}`, TIMERA);
         switch (passenger.state) {
             case 'boarding': {
                 if (passenger.char.isInCar(bus1_car)) {
                     passenger.state = 'onboard';
-                    log('Passenger[' + i + '] got onboard, destination: ' + passenger.destination.name);
+                    verbose(`Passenger[${i}] got onboard, destination: ${passenger.destination.name}`);
                     passenger.blip.remove();
                 } else {
                     passenger.char.setObjEnterCarAsPassenger(bus1_car);
@@ -231,7 +231,7 @@ async function processPassengers() {
 
                     $.player.addScore(5);
                     assert(passenger.destination, 'Unboarding passenger destination is undefined');
-                    log('Passenger[' + i + '] finished unboarding, destination: ' + passenger.destination.name);
+                    verbose(`Passenger[${i}] finished unboarding, destination: ${passenger.destination.name}`);
                 }
                 break;
             }
@@ -250,7 +250,7 @@ async function processPassengers() {
                         break;
                     }
                     passenger.state = 'boarding';
-                    log('Passenger[' + i + '] started boarding, destination: ' + passenger.destination.name);
+                    verbose(`Passenger[${i}] started boarding, destination: ${passenger.destination.name}`);
                     passenger.char.setObjEnterCarAsPassenger(bus1_car);
                     if (Math.RandomIntInRange(0, 100) < 30) {
                         passenger.char.setRunning(true);
@@ -261,7 +261,7 @@ async function processPassengers() {
             case 'onboard': {
                 if (passenger.destination === stopToServe && busState === 'arrived') {
                     passenger.state = 'unboarding';
-                    log('Passenger[' + i + '] started unboarding, destination: ' + passenger.destination.name);
+                    verbose(`Passenger[${i}] started unboarding, destination: ${passenger.destination.name}`);
                     passenger.char.setObjLeaveCar(bus1_car);
                 }
                 break;
@@ -274,7 +274,7 @@ function createStopBlip(stopToServe: BusStop) {
     assert(stopToServe, 'stopToServe is undefined in createStopBlip');
     bus1_stop_blip?.remove();
     bus1_stop_blip = Blip.AddForCoord(stopToServe.position.x, stopToServe.position.y, stopToServe.position.z).changeColor(BlipColor.Yellow).changeDisplay(BlipDisplay.BlipOnly);
-    log(`[~] Bus route stop: ${stopToServe.name}`);
+    verbose(`[~] Bus route stop: ${stopToServe.name}`);
 }
 
 function selectRandomNextStop(currentStop: BusStop, route: BusStop[]) {
@@ -296,7 +296,7 @@ function spawnPassengers(stopToServe: BusStop, route: BusRoute) {
     assert(stopToServe, 'stopToServe is undefined in spawnPassengers');
     let location = Path.GetClosestCharNode(stopToServe.position.x, stopToServe.position.y, stopToServe.position.z);
     let count = Math.RandomIntInRange(0, 5);
-    log(`Spawning ${count} passengers at stop: ${stopToServe.name}`);
+    verbose(`Spawning ${count} passengers at stop: ${stopToServe.name}`);
     for (let i = 0; i < count; i++) {
         const passenger = Char.CreateRandom(location.nodeX + Math.RandomFloatInRange(-1, 1), location.nodeY + Math.RandomFloatInRange(-1, 1), location.nodeZ);
         passenger.setIdle();
@@ -378,7 +378,7 @@ async function cleanup() {
 // -----------------------------------------------------------------------------------------------------------------------------------
 
 async function nextStop(route: BusRoute) {
-    log('[~] Heading from stop', currentStop ? currentStop.name : 'N/A', 'to the next stop');
+    verbose(`[~] Heading from stop ${currentStop ? currentStop.name : 'N/A'} to the next stop`);
 
     if (currentStop === undefined) {
         currentStop = route.stops[0];
@@ -411,7 +411,7 @@ async function nextStop(route: BusRoute) {
 
 async function completeRoute(route: BusRoute) {
     assert(route, 'Route is undefined');
-    log(`[+] Completed bus route ${route.name}`);
+    verbose(`[+] Completed bus route ${route.name}`);
     const bonus = 5000;
     Text.PrintWithNumberNow('BUSBON', bonus, 3000, 1);
     $.player.addScore(bonus);
