@@ -1,6 +1,6 @@
 This project aims to convert GTA III Mission Script from gta3script to CLEO Redux (TypeScript).
 
-# Status
+## Status
 
 - [x] batch conversion
 - [x] first mission playable
@@ -12,6 +12,10 @@ This project aims to convert GTA III Mission Script from gta3script to CLEO Redu
     - [x] Shoreside Valley
     - [ ] 100% checklist
 
-# License
+## See Also
+
+* [VC.ts](https://github.com/x87/vc.ts) - GTA Vice City Mission script converted to to CLEO Redux (TypeScript)
+
+## License
 
 MIT
