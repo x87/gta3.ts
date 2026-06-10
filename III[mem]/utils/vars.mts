@@ -4340,4 +4340,5 @@ export const $ = SCM.bind({
     _flag_emergency_crane_pager_complete: 4336,
     _flag_van_heist_garage_pager_complete: 4337,
     _flag_rampage_complete: 4338,
+    _been_in_a_bus_before: 4339,
 });

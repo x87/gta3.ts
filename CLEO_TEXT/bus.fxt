@@ -1,0 +1,10 @@
+BUS1_01 'Bus Driver'
+BUSTUT Press the ~h~~k~~TOGGLE_SUBMISSIONS~ button~w~ to toggle bus missions on or off. Bus missions are only available between 6 AM and 10 PM.
+BUSTUT2 Press the ~h~~k~~TOGGLE_SUBMISSIONS~ button~w~ to toggle bus missions on or off. Bus missions are only available between 6 AM and 10 PM.
+BUSNEXT Drive to the next stop.
+BUSSTOP Stop in the blue area to load or unload passengers, if there are any.
+BUSCANC Bus mission cancelled.
+BUSCANN Bus mission cancelled. It is night time! You need to rest until 6 AM to start a bus mission.
+BUSFULL The bus is full! Drive to the next stop.
+BUSBON Route completed! Bonus: $~1~
+BUSLATE It is night time! No bus missions available.

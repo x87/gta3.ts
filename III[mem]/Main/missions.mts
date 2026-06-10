@@ -459,6 +459,62 @@ const missions: MissionDefinition[] = [
             $.been_in_a_taxi_before = 1;
         },
     },
+    // ***************************************Bus Mission 1***********************************
+    {
+        scriptPath: `./Industrial/bus1.mts`,
+        name: 'Bus Driver',
+        async canStart() {
+            if ($.player.isInModel(CAR_COACH)) {
+                $.controlmode = Pad.GetControllerMode();
+                if ($._been_in_a_bus_before == 0) {
+                    if (!($.controlmode == 3)) {
+                        Text.PrintHelp('BUSTUT'); //Press RIGHTSHOCK to start
+                    } else {
+                        Text.PrintHelp('BUSTUT2'); //Press SQUARE to start
+                    }
+                    $._been_in_a_bus_before = 1;
+                }
+                if (!($.controlmode == 3)) {
+                    if (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
+                        while (Pad.IsButtonPressed(PAD1, RIGHTSHOCK)) {
+                            await asyncWait(0);
+                            if (!$.player.isPlaying()) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                } else {
+                    if (Pad.IsButtonPressed(PAD1, SQUARE)) {
+                        while (Pad.IsButtonPressed(PAD1, SQUARE)) {
+                            await asyncWait(0);
+                            if (!$.player.isPlaying()) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                }
+                // }
+            } else {
+                if ($._been_in_a_bus_before == 1) {
+                    Text.ClearHelp();
+                    $._been_in_a_bus_before = 0;
+                }
+            }
+            return false;
+        },
+        async beforeMission() {
+            let { hours } = Clock.GetTimeOfDay();
+            if (hours >= 22 || hours < 6) {
+                Text.PrintNow('BUSLATE', 4000, 2);
+                return false;
+            }
+            Text.PrintBig('BUS1_01', 4000, 5);
+            await asyncWait(0);
+            $._been_in_a_bus_before = 1;
+        },
+    },
 
     // *************************************Meat Factory Mission 1******************************
     {
