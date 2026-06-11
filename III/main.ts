@@ -1376,7 +1376,6 @@ async function main() {
     }
 
     // xxx: Start Monitors
-    START_NEW_SCRIPT(__dirname + '/Main/missionMon.ts'); // must run as a separate script as it mutates ONMISSION flag and enables mission-only behavior
     GOSUB_FILE(__dirname + '/Main/Industrial/hj.mts');
     GOSUB_FILE(__dirname + '/Main/Industrial/usj.mts');
     GOSUB_FILE(__dirname + '/Main/Industrial/genstuf.mts');

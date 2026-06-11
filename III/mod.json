@@ -1,0 +1,8 @@
+{
+    "name": "GTA3.ts",
+    "permissions": ["mem"],
+    "entries": [
+        "main.ts",
+        "Main/missionMon.ts"
+    ]
+}
