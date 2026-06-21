@@ -1,4 +1,4 @@
-This project aims to convert GTA III Mission Script from gta3script to CLEO Redux (TypeScript).
+This project aims to convert GTA III Mission Script from gta3script to CLEO Redux (TypeScript). CLEO Redux 1.5.0+ is required.
 
 ## Status
 
