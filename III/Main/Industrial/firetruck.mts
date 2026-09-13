@@ -579,4 +579,4 @@ async function onFailed() {
 }
 /////////////////////////////////////////////////
 
-export default () => body().catch(onFailed);
+export default () => body().finally(onFailed);

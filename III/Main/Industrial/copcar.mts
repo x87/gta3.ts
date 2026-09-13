@@ -864,4 +864,4 @@ async function copcar_cancelled_checks() {
     }
 }
 
-export default () => body().catch(onFailed);
+export default () => body().finally(onFailed);

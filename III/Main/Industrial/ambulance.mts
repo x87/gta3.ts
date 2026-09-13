@@ -1883,4 +1883,4 @@ async function progress_counter2() {
 }
 //////////////////////////////////////////////////////////////////////
 
-export default () => body().catch(onFailed);
+export default () => body().finally(onFailed);
