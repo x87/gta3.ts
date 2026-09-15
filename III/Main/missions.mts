@@ -115,7 +115,7 @@ const missions: MissionDefinition[] = [
         },
     },
     {
-        scriptPath: `./Industrial/rc3.mts`,
+        scriptPath: `./Suburban/rc3.mts`,
         name: 'RC Rumpo Rampage',
         async canStart() {
             if (!$.player.isInModel(CAR_TOYZ)) {
@@ -129,7 +129,7 @@ const missions: MissionDefinition[] = [
         },
     },
     {
-        scriptPath: `./Industrial/rc4.mts`,
+        scriptPath: `./Commercial/rc4.mts`,
         name: 'RC Casino Calamity',
         async canStart() {
             if (!$.player.isInModel(CAR_TOYZ)) {
