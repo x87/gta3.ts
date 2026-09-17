@@ -34,6 +34,30 @@ export async function wait_for(variable: keyof typeof $, checkInterval = 0) {
     }
 }
 
+/**
+ * MESSAGE_WAIT - Pauses the script execution (same as 0001) while allowing to skip the wait time by pressing X on the pad
+ */
+export async function messageWait(time: number, allowSkip = true) {
+    if (!allowSkip) {
+        await asyncWait(time);
+        return;
+    }
+
+    TIMERA = 0;
+    // vanilla needs a fresh press - a Cross that was already held must not skip
+    let wasPressed = Pad.IsButtonPressed(PAD1, CROSS);
+    while (TIMERA < time) {
+        await asyncWait(0);
+        const isPressed = Pad.IsButtonPressed(PAD1, CROSS);
+        if (isPressed && !wasPressed) {
+            // the engine expires the 6 big + the current brief message on skip
+            Text.ClearPrints();
+            return;
+        }
+        wasPressed = isPressed;
+    }
+}
+
 export function verbose(message: any) {
     if (_verbose) {
         log(message);
