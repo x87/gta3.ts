@@ -468,6 +468,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_meat_mission1_passed == 1) {
                 return false;
             }
+            if ($.flag_luigi_mission3_passed == 0) {
+                return false;
+            }
 
             if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false)) {
                 const { hours } = Clock.GetTimeOfDay();
@@ -497,6 +500,9 @@ const missions: MissionDefinition[] = [
         name: 'The Thieves',
         async canStart() {
             if ($.flag_meat_mission2_passed == 1) {
+                return false;
+            }
+            if ($.flag_meat_mission1_passed == 0) {
                 return false;
             }
 
@@ -530,6 +536,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_meat_mission3_passed == 1) {
                 return false;
             }
+            if ($.flag_meat_mission2_passed == 0) {
+                return false;
+            }
 
             if ($.player.locateStoppedOnFoot3D(1224.6, -840.3, 15.0, 1.0, 1.0, 2.0, false)) {
                 const { hours } = Clock.GetTimeOfDay();
@@ -559,6 +568,9 @@ const missions: MissionDefinition[] = [
         name: 'Her Lover',
         async canStart() {
             if ($.flag_meat_mission4_passed == 1) {
+                return false;
+            }
+            if ($.flag_meat_mission3_passed == 0) {
                 return false;
             }
 
@@ -1273,6 +1285,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_asuka_mission1_passed == 1) {
                 return false;
             }
+            if ($.flag_industrial_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false)) {
                 return true;
             }
@@ -1294,6 +1309,9 @@ const missions: MissionDefinition[] = [
         name: 'Under Surveillance',
         async canStart() {
             if ($.flag_asuka_mission2_passed == 1) {
+                return false;
+            }
+            if ($.flag_asuka_mission1_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false)) {
@@ -1319,6 +1337,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_asuka_mission3_passed == 1) {
                 return false;
             }
+            if ($.flag_asuka_mission2_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false)) {
                 return true;
             }
@@ -1342,6 +1363,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_asuka_mission4_passed == 1) {
                 return false;
             }
+            if ($.flag_asuka_mission3_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false)) {
                 return true;
             }
@@ -1362,10 +1386,13 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Commercial/asuka5.mts`,
         name: 'Two-Faced Tanner',
         async canStart() {
+            if ($.flag_asuka_mission5_passed == 1) {
+                return false;
+            }
             if ($.flag_love_mission4_passed == 1) {
                 return false;
             }
-            if ($.flag_asuka_mission5_passed == 1) {
+            if ($.flag_asuka_mission4_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(523.7, -639.0, 16.1, 1.0, 4.5, 2.0, false)) {
@@ -1393,6 +1420,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_kenji_mission1_passed == 1 || $.flag_love_mission2_passed == 1) {
                 return false;
             }
+            if ($.flag_asuka_mission2_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false)) {
                 return true;
             }
@@ -1414,6 +1444,9 @@ const missions: MissionDefinition[] = [
         name: 'Grand Theft Auto',
         async canStart() {
             if ($.flag_kenji_mission2_passed == 1 || $.flag_love_mission2_passed == 1) {
+                return false;
+            }
+            if ($.flag_kenji_mission1_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false)) {
@@ -1439,6 +1472,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_kenji_mission3_passed == 1 || $.flag_love_mission2_passed == 1) {
                 return false;
             }
+            if ($.flag_kenji_mission2_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false)) {
                 return true;
             }
@@ -1462,6 +1498,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_kenji_mission4_passed == 1 || $.flag_love_mission2_passed == 1) {
                 return false;
             }
+            if ($.flag_kenji_mission3_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false)) {
                 return true;
             }
@@ -1483,6 +1522,9 @@ const missions: MissionDefinition[] = [
         name: 'Smack Down',
         async canStart() {
             if ($.flag_kenji_mission5_passed == 1 || $.flag_love_mission2_passed == 1) {
+                return false;
+            }
+            if ($.flag_kenji_mission4_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(459.1, -1413.0, 26.1, 1.5, 1.5, 2.0, false)) {
@@ -1510,6 +1552,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_ray_mission1_passed == 1) {
                 return false;
             }
+            if ($.flag_asuka_mission4_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false)) {
                 return true;
             }
@@ -1532,6 +1577,9 @@ const missions: MissionDefinition[] = [
         name: 'Arms Shortage',
         async canStart() {
             if ($.flag_ray_mission2_passed == 1) {
+                return false;
+            }
+            if ($.flag_ray_mission1_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false)) {
@@ -1558,6 +1606,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_ray_mission3_passed == 1) {
                 return false;
             }
+            if ($.flag_ray_mission2_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false)) {
                 return true;
             }
@@ -1580,6 +1631,9 @@ const missions: MissionDefinition[] = [
         name: 'Gone Fishing',
         async canStart() {
             if ($.flag_ray_mission4_passed == 1) {
+                return false;
+            }
+            if ($.flag_ray_mission3_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false)) {
@@ -1606,6 +1660,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_ray_mission5_passed == 1) {
                 return false;
             }
+            if ($.flag_ray_mission4_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false)) {
                 return true;
             }
@@ -1628,6 +1685,12 @@ const missions: MissionDefinition[] = [
         name: 'Marked Man',
         async canStart() {
             if ($.flag_ray_mission6_passed == 1) {
+                return false;
+            }
+            if ($.flag_ray_mission5_passed == 0) {
+                return false;
+            }
+            if ($.flag_love_mission3_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(38.8, -725.4, 22.8, 1.2, 1.2, 2.0, false)) {
@@ -1656,6 +1719,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_love_mission1_passed == 1) {
                 return false;
             }
+            if ($.flag_ray_mission3_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -1677,6 +1743,9 @@ const missions: MissionDefinition[] = [
         name: 'Waka-Gashira Wipeout!',
         async canStart() {
             if ($.flag_love_mission2_passed == 1) {
+                return false;
+            }
+            if ($.flag_love_mission1_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false)) {
@@ -1702,6 +1771,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_love_mission3_passed == 1) {
                 return false;
             }
+            if ($.flag_love_mission2_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -1723,6 +1795,9 @@ const missions: MissionDefinition[] = [
         name: 'Grand Theft Aero',
         async canStart() {
             if ($.flag_love_mission4_passed == 1) {
+                return false;
+            }
+            if ($.flag_love_mission3_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false)) {
@@ -1748,6 +1823,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_love_mission5_passed == 1) {
                 return false;
             }
+            if ($.flag_love_mission4_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -1771,6 +1849,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_love_mission6_passed == 1) {
                 return false;
             }
+            if ($.flag_love_mission5_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -1792,6 +1873,9 @@ const missions: MissionDefinition[] = [
         name: `Love's Disappearance`,
         async canStart() {
             if ($.flag_love_mission7_passed == 1) {
+                return false;
+            }
+            if ($.flag_love_mission6_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(87.3, -1548.6, 28.3, 2.0, 1.0, 2.0, false)) {
@@ -1844,6 +1928,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_yardie_mission2_passed == 1) {
                 return false;
             }
+            if ($.flag_yardie_mission1_passed == 0) {
+                return false;
+            }
             if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -1866,6 +1953,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_yardie_mission3_passed == 1) {
                 return false;
             }
+            if ($.flag_yardie_mission2_passed == 0) {
+                return false;
+            }
             if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -1886,6 +1976,9 @@ const missions: MissionDefinition[] = [
         name: 'Kingdom Come',
         async canStart() {
             if ($.flag_yardie_mission4_passed == 1) {
+                return false;
+            }
+            if ($.flag_yardie_mission3_passed == 0) {
                 return false;
             }
             if ($.player.locateStoppedOnFoot3D(120.7, -272.1, 16.1, 1.0, 1.0, 2.0, false)) {
@@ -1912,6 +2005,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_asuka_suburban_mission1_passed == 1) {
                 return false;
             }
+            if ($.flag_love_mission4_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -1935,6 +2031,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_asuka_suburban_mission2_passed == 1) {
                 return false;
             }
+            if ($.flag_asuka_suburban_mission1_passed == 0) {
+                return false;
+            }
             if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -1956,6 +2055,9 @@ const missions: MissionDefinition[] = [
         name: 'S.A.M.',
         async canStart() {
             if ($.flag_asuka_suburban_mission3_passed == 1) {
+                return false;
+            }
+            if ($.flag_asuka_suburban_mission2_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(367.3, -328.1, 19.5, 1.0, 1.0, 2.0, false)) {
@@ -2008,6 +2110,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_hood_mission2_passed == 1) {
                 return false;
             }
+            if ($.flag_hood_mission1_passed == 0) {
+                return false;
+            }
             if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -2027,7 +2132,10 @@ const missions: MissionDefinition[] = [
         scriptPath: `./Suburban/hood3.mts`,
         name: 'Rigged To Blow',
         async canStart() {
-            if ($.flag_hood_mission3_passed == 1) {
+            if ($.flag_hood_mission3_passed == 1 && $.flag_hood_mission5_passed == 0) {
+                return false;
+            }
+            if ($.flag_hood_mission2_passed == 0) {
                 return false;
             }
             if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false)) {
@@ -2052,6 +2160,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_hood_mission4_passed == 1) {
                 return false;
             }
+            if ($.flag_hood_mission3_passed == 0) {
+                return false;
+            }
             if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -2074,6 +2185,9 @@ const missions: MissionDefinition[] = [
             if ($.flag_hood_mission5_passed == 1) {
                 return false;
             }
+            if ($.flag_hood_mission4_passed == 0) {
+                return false;
+            }
             if ($.player.locateStoppedOnFoot3D(-443.5, -6.1, 3.8, 1.0, 1.0, 2.0, false)) {
                 return true;
             }
@@ -2094,6 +2208,9 @@ const missions: MissionDefinition[] = [
         name: 'The Exchange',
         async canStart() {
             if ($.flag_cat_mission1_passed == 1) {
+                return false;
+            }
+            if ($.flag_asuka_suburban_mission3_passed == 0) {
                 return false;
             }
             if ($.player.locateOnFoot3D(-362.8, 246.5, 60.0, 4.5, 4.5, 2.0, false)) {

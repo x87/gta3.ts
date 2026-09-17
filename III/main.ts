@@ -2242,10 +2242,6 @@ async function hood_phone_start() {
 
 async function hood_phone_loop() {
     while (true) {
-        if ($.flag_hood_mission1_passed && $.flag_hood_mission2_passed && $.flag_hood_mission3_passed && $.flag_hood_mission4_passed && $.flag_hood_mission5_passed) {
-            return; // TERMINATE_THIS_SCRIPT
-        }
-
         await asyncWait($.mission_trigger_wait_time);
 
         // xxx: activated after love mission 3
