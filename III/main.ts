@@ -1524,12 +1524,29 @@ async function meat_phone_loop() {
     }
 }
 
+async function wasInsideSaveHouseOnLoad(inArea: () => boolean): Promise<boolean> {
+    for (let attempt = 0; attempt < 20; attempt++) {
+        if ($.player.isPlaying() && inArea()) {
+            return true;
+        }
+        await asyncWait(50);
+    }
+    return false;
+}
+
 async function ind_save_loop() {
     //	Should be called before main loop
     // SCRIPT_NAME I_SAVE
 
-    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false)) {
+    if ($._flag_saved_at == 1) {
         log('[*] Loading from industrial area save...');
+        await postSave();
+        $._flag_saved_at = 0;
+    } else if (
+        $._flag_is_loaded_game &&
+        (await wasInsideSaveHouseOnLoad(() => $.player.isInAreaOnFoot3D(891.2, -309.7, 7.7, 899.3, -303.3, 12.7, false)))
+    ) {
+        log('[*] Loading from industrial area save (legacy)...');
         await postSave();
     }
 
@@ -1579,12 +1596,14 @@ async function ind_save_loop() {
                                     while (!Audio.HasMissionAudioFinished()) {
                                         await asyncWait(0);
                                     }
+                                    $._flag_saved_at = 1; // persisted in this save (see the load check above)
                                     Game.ActivateSaveMenu(); //THE GAME SAVES/RE-LOADS HERE!!!!!
                                     await asyncWait(0);
                                     while (!Game.HasSaveGameFinished()) {
                                         await asyncWait(0);
                                     }
                                     await postSave();
+                                    $._flag_saved_at = 0;
                                 }
                             }
                         }
@@ -1863,8 +1882,15 @@ async function toni5_pager_loop() {
 async function com_save_loop() {
     // Should be called before main loop
 
-    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(105.7, -486.0, 15.0, 100.8, -483.4, 18.0, false)) {
+    if ($._flag_saved_at == 2) {
         log('[*] Loading from commercial area save...');
+        await postSave();
+        $._flag_saved_at = 0;
+    } else if (
+        $._flag_is_loaded_game &&
+        (await wasInsideSaveHouseOnLoad(() => $.player.isInAreaOnFoot3D(105.7, -486.0, 15.0, 100.8, -483.4, 18.0, false)))
+    ) {
+        log('[*] Loading from commercial area save (legacy)...');
         await postSave();
     }
     // SCRIPT_NAME C_SAVE
@@ -1916,12 +1942,14 @@ async function com_save_loop() {
                                     while (!Audio.HasMissionAudioFinished()) {
                                         await asyncWait(0);
                                     }
+                                    $._flag_saved_at = 2; // persisted in this save (see the load check above)
                                     Game.ActivateSaveMenu(); //THE GAME SAVES/RE-LOADS HERE!!!!!
                                     await asyncWait(0);
                                     while (!Game.HasSaveGameFinished()) {
                                         await asyncWait(0);
                                     }
                                     await postSave();
+                                    $._flag_saved_at = 0;
                                 }
                             }
                         }
@@ -2090,8 +2118,15 @@ async function sub_save_loop() {
     //	Should be called before main loop
     // SCRIPT_NAME S_SAVE
 
-    if ($._flag_is_loaded_game && $.player.isInAreaOnFoot3D(-670.5, 3.9, 18.0, -660.0, 12.7, 22.0, false)) {
+    if ($._flag_saved_at == 3) {
         log('[*] Loading from suburban area save...');
+        await postSave();
+        $._flag_saved_at = 0;
+    } else if (
+        $._flag_is_loaded_game &&
+        (await wasInsideSaveHouseOnLoad(() => $.player.isInAreaOnFoot3D(-670.5, 3.9, 18.0, -660.0, 12.7, 22.0, false)))
+    ) {
+        log('[*] Loading from suburban area save (legacy)...');
         await postSave();
     }
 
@@ -2144,12 +2179,14 @@ async function sub_save_loop() {
 
                                         ENDWHILE
                                         */
+                                    $._flag_saved_at = 3; // persisted in this save (see the load check above)
                                     Game.ActivateSaveMenu(); //THE GAME SAVES/RE-LOADS HERE!!!!!
                                     await asyncWait(0);
                                     while (!Game.HasSaveGameFinished()) {
                                         await asyncWait(0);
                                     }
                                     await postSave();
+                                    $._flag_saved_at = 0;
                                 }
                             }
                         }

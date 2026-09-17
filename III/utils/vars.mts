@@ -4340,4 +4340,7 @@ export const $ = SCM.bind({
     _flag_emergency_crane_pager_complete: 4336,
     _flag_van_heist_garage_pager_complete: 4337,
     _flag_rampage_complete: 4338,
+
+    // Which save house the game was saved at: 0 = none, 1 = industrial, 2 = commercial, 3 = suburban.
+    _flag_saved_at: 4339,
 });
