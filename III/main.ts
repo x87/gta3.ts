@@ -1481,6 +1481,7 @@ async function main() {
 async function meat_phone_loop() {
     while (true) {
         if ($.flag_meat_mission1_passed && $.flag_meat_mission2_passed && $.flag_meat_mission3_passed && $.flag_meat_mission4_passed) {
+            $.meat_phone.turnOff();
             return; // TERMINATE_THIS_SCRIPT
         }
 
