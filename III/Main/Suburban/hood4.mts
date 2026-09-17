@@ -325,7 +325,7 @@ async function cleanup() {
     $.radar_blip_coord1_hm4.remove();
     $.radar_blip_coord2_hm4.remove();
     Hud.ClearTimer($.$id.timer_hm4);
-    Hud.ClearCounter($.total_no_pills_carried_hm4); // TEST STUFF
+    Hud.ClearCounter($.$id.total_no_pills_carried_hm4); // TEST STUFF
     Mission.Finish();
 }
 
