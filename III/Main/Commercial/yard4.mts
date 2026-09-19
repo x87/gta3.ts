@@ -1,5 +1,5 @@
 // Generated from Main/Commercial/yard4.sc
-import { $, FAIL, messageWait } from '../../utils';
+import { $, FAIL, MESSAGE_WAIT } from '../../utils';
 // *****************************************************************************************
 // *****************************************************************************************
 // *****************************************************************************************
@@ -329,13 +329,13 @@ async function body() {
         Hud.SwitchWidescreen(ON);
 
         Text.PrintNow('YD4_B', 3500, 2);
-        await messageWait(3500, true); // MESSAGE_WAIT 3500 true
+        await MESSAGE_WAIT(3500, true); // xxx: MESSAGE_WAIT 3500 true
 
         Text.PrintNow('YD4_C', 3500, 2);
-        await messageWait(3500, true); // MESSAGE_WAIT 3500 true
+        await MESSAGE_WAIT(3500, true); // xxx: MESSAGE_WAIT 3500 true
 
         Text.PrintNow('YD4_D', 2500, 2);
-        await messageWait(2500, true); // MESSAGE_WAIT 2500 true
+        await MESSAGE_WAIT(2500, true); // xxx: MESSAGE_WAIT 2500 true
 
         if (!Car.IsDead($.gen1_van)) {
             $.gen1_van.gotoCoordinatesAccurate(-113.2, -1442.5, 26.2);
@@ -423,7 +423,7 @@ async function body() {
             }
         }
 
-        // SCM falls through into the `selkirk:` label
+        // xxx: fallthrough
         return selkirk();
     }
 }

@@ -34,10 +34,28 @@ export async function wait_for(variable: keyof typeof $, checkInterval = 0) {
     }
 }
 
+export function verbose(message: any) {
+    if (_verbose) {
+        log(message);
+    }
+}
+
+export function GOSUB_FILE(file: string) {
+    verbose(`GOSUB_FILE: ${file}`);
+    import(file).catch((e) => {
+        log('GOSUB_FILE failed: ' + unwrapError(e));
+    });
+}
+
+export function START_NEW_SCRIPT(file: string, args: Record<string, any> = {}) {
+    verbose(`Starting new script: ${file} with args: ${JSON.stringify(args)}`);
+    CLEO.runScript(file, args);
+}
+
 /**
  * MESSAGE_WAIT - Pauses the script execution (same as 0001) while allowing to skip the wait time by pressing X on the pad
  */
-export async function messageWait(time: number, allowSkip = true) {
+export async function MESSAGE_WAIT(time: number, allowSkip = true) {
     if (!allowSkip) {
         await asyncWait(time);
         return;
@@ -56,24 +74,6 @@ export async function messageWait(time: number, allowSkip = true) {
         }
         wasPressed = isPressed;
     }
-}
-
-export function verbose(message: any) {
-    if (_verbose) {
-        log(message);
-    }
-}
-
-export function GOSUB_FILE(file: string) {
-    verbose(`GOSUB_FILE: ${file}`);
-    import(file).catch((e) => {
-        log('GOSUB_FILE failed: ' + unwrapError(e));
-    });
-}
-
-export function START_NEW_SCRIPT(file: string, args: Record<string, any> = {}) {
-    verbose(`Starting new script: ${file} with args: ${JSON.stringify(args)}`);
-    CLEO.runScript(file, args);
 }
 
 export function unwrapError(error: any): string {
